@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-08-09T18:42:00.021869+00:00",
+  "engine_commit": "0ac8a89f56328fdfb72eaa22ab372c586c1b52e5",
+  "experiment": "exp-001",
+  "grid": {
+    "absorb": 40,
+    "cells_per_lambda": 25,
+    "courant_frac": 0.32,
+    "nx": 560,
+    "ny": 560
+  },
+  "lambda_nm": 750.0,
+  "npz_sha256": "937872de318998c4c4bad4122cef94b370c2f3f8303a42641a6bb75d80281ab9",
+  "objects": [
+    {
+      "params": {
+        "cx": 252,
+        "cy": 280,
+        "r": 30
+      },
+      "type": "pec_disk"
+    },
+    {
+      "params": {
+        "cx": 252,
+        "cy": 280,
+        "eps_max": 1.0,
+        "r_in": 30,
+        "r_out": 78,
+        "sigma_max": 0.5
+      },
+      "type": "graded_black_shell"
+    }
+  ],
+  "observer": {
+    "normalization": "vacuum_run",
+    "plane_x": 78,
+    "reference_run": "experiments/001-flashlight-statement/artifacts/empty-750nm",
+    "start_step": 3200
+  },
+  "provenance": [
+    {
+      "id": "exp-001",
+      "kind": "experiment"
+    },
+    {
+      "id": "pursue-r1--western_us_event_slides_5.08.2026",
+      "kind": "witness-statement",
+      "note": "the statement under test: beam 'stopped about 50 yards away on nothing in particular'"
+    }
+  ],
+  "run": {
+    "quarter_offset_steps": 28,
+    "snapshot_step": 3200,
+    "steps": 3228
+  },
+  "scene": "absorber",
+  "schema_version": "0.2.0",
+  "sources": [
+    {
+      "amplitude": 1.0,
+      "edge": 24,
+      "profile": "plane",
+      "ramp_periods": 3.0,
+      "x": 64,
+      "y_hi": 520,
+      "y_lo": 40
+    }
+  ],
+  "suite_status": "24/24 (2026-08-09)"
+}

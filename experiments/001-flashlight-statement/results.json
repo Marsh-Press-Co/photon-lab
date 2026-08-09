@@ -1,0 +1,56 @@
+{
+  "absorber-450": {
+    "beam_behind": 0.015068473686789503,
+    "camera_floor": 0.002394964358846073,
+    "observer_return": 0.0023934565833325064,
+    "scattered_rms": 0.7547622597705632
+  },
+  "absorber-600": {
+    "beam_behind": 0.01821800444223946,
+    "camera_floor": 0.0013424908910874094,
+    "observer_return": 0.00134962334800652,
+    "scattered_rms": 0.7372374006685515
+  },
+  "absorber-750": {
+    "beam_behind": 0.01690164087279603,
+    "camera_floor": 0.0008952138677827027,
+    "observer_return": 0.000884862337494057,
+    "scattered_rms": 0.7500251680269688
+  },
+  "cloak-450": {
+    "beam_behind": 0.3033750811439182,
+    "camera_floor": 0.002394964358846073,
+    "observer_return": 0.0665853637852113,
+    "scattered_rms": 0.5320385074195703
+  },
+  "cloak-600": {
+    "beam_behind": 0.6356300323851284,
+    "camera_floor": 0.0013424908910874094,
+    "observer_return": 0.04253937707293943,
+    "scattered_rms": 0.46318252967510254
+  },
+  "cloak-750": {
+    "beam_behind": 0.6945389890240456,
+    "camera_floor": 0.0008952138677827027,
+    "observer_return": 0.03903805795509951,
+    "scattered_rms": 0.418841694417932
+  },
+  "reflector-450": {
+    "beam_behind": 0.04186282354184836,
+    "camera_floor": 0.002394964358846073,
+    "observer_return": 0.06713515338199451,
+    "scattered_rms": 0.7016603724983466
+  },
+  "reflector-600": {
+    "beam_behind": 0.05677656546384943,
+    "camera_floor": 0.0013424908910874094,
+    "observer_return": 0.06462726058516903,
+    "scattered_rms": 0.70254094353676
+  },
+  "reflector-750": {
+    "beam_behind": 0.07813707861396638,
+    "camera_floor": 0.0008952138677827027,
+    "observer_return": 0.0640931136036741,
+    "scattered_rms": 0.7016242086670501
+  }
+}

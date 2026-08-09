@@ -66,4 +66,92 @@ time gating of multiple bounces), λ/15–λ/25 resolution across the sweep.
 ## Results
 
 *(Appended after the run — the section above this line was committed
-first.)*
+first; `0ac8a89` is the proof of order. 12 runs, 9.8 min, all artifacts
+through the Evidence Gate.)*
+
+| Scene | λ (nm) | Observer return | Camera floor | Beam-behind | Scattered RMS |
+|---|---|---|---|---|---|
+| reflector | 450 | 0.0671 | 0.0024 | 0.042 | 0.702 |
+| reflector | 600 | 0.0646 | 0.0013 | 0.057 | 0.703 |
+| reflector | 750 | 0.0641 | 0.0009 | 0.078 | 0.702 |
+| absorber | 450 | **0.0024 (= floor)** | 0.0024 | **0.015** | 0.755 |
+| absorber | 600 | **0.0013 (= floor)** | 0.0013 | **0.018** | 0.737 |
+| absorber | 750 | **0.0009 (= floor)** | 0.0009 | **0.017** | 0.750 |
+| cloak | 450 | 0.0666 | 0.0024 | 0.303 | 0.532 |
+| cloak | 600 | 0.0425 | 0.0013 | **0.636** | 0.463 |
+| cloak | 750 | 0.0390 | 0.0009 | 0.695 | 0.419 |
+
+### Predictions scored
+
+- **P1 (reflector) — CONFIRMED.** Return 28–72× the absorber's; beam-behind
+  ≤ 0.078 everywhere. Note: beam-behind drifts 0.042→0.078 across the sweep
+  — longer wavelengths diffract more into the shadow, textbook behavior.
+- **P2 (absorber) — CONFIRMED, at the strongest reading possible.** The
+  observer return *equals the camera's empty-space floor at every
+  wavelength* — to measurement precision, nothing comes back. Beam-behind
+  1.5–1.8%: the beam stops. Wavelength-flat: white light changes nothing.
+- **P3 (cloak on-design) — CONFIRMED.** Beam-behind 0.636; scattered RMS
+  0.463 vs bare metal's 0.703.
+- **P4 (cloak off-design) — HALF CONFIRMED, half refuted, and the refuted
+  half is the finding.** At 450 nm the disguise cracked as predicted
+  (beam-behind −52% relative). At 750 nm it *held* (+9%) and its scatter
+  metric improved. The clamped, discretized reduced cloak fails
+  **asymmetrically** across the spectrum — blue-side collapse, red-side
+  robustness — which no prediction anticipated. Caveat logged before anyone
+  over-reads it: grid resolution co-varies with wavelength in this sweep
+  (λ/15 at 450 vs λ/25 at 750), so staircase numerics are entangled with
+  cloak physics here. exp-003 must separate them (fixed cells-per-λ with
+  scaled geometry) before the asymmetry is claimed as material physics.
+- **P5 (the verdict) — CONFIRMED.** See below.
+
+### The verdict
+
+The witness said the beam went "from shining far into the distance to
+stopping about 50 yards away on nothing in particular." Three clauses,
+three measurements:
+
+1. *The beam stopped* — beam-behind: absorber 0.017, cloak 0.64. A cloak's
+   entire function is that the beam **continues** into the distance; his
+   beam did not.
+2. *On nothing* — observer return: absorber = camera floor (nothing to
+   see, no glint, no edge); the cloak returns as much light as bare metal
+   (0.067 vs 0.067 at 450 nm — the reduced cloak *glints*); the reflector
+   is a lit surface, not "nothing."
+3. *A flashlight* — white light. Only the absorber is wavelength-flat; the
+   cloak's behavior swings by 2× across the visible band.
+
+**Within this bench's idealizations, the statement describes an
+impedance-matched broadband ultra-absorber — and specifically cannot
+describe a transformation-optics cloak.** We have not shown what the agent
+saw; we have shown which physics class his words belong to. Those are
+different claims, and the lab makes only the second.
+
+## What we learned
+
+- The three-clause structure of the witness sentence maps one-to-one onto
+  three independent measurements — the statement was *testable*, which is
+  itself the finding that justifies this lab.
+- "Invisible to an observer at the source" and "invisible from all angles"
+  part ways dramatically: the absorber owns the first and fails the second
+  (its shadow is enormous — scattered RMS 0.75, highest in the table); the
+  cloak attempts the second and betrays itself on the first (the glint).
+  exp-002 quantifies this properly with real cross-sections.
+- The scattered-RMS metric conflates shadow with glint (the absorber
+  "scatters" 0.75 by *removing* light, not radiating it). exp-002's
+  machinery must separate forward-shadow from backscatter before
+  cross-scene comparisons of that number mean anything.
+- The reduced cloak's spectral failure is asymmetric — pending the
+  resolution-controlled rerun, this is exp-003's opening question.
+
+## Next
+
+- Bonnie: the witness figure — three-panel observer view + the sweep, from
+  these 12 artifacts (R1–R4 apply; the observer records carry the story).
+- Preston: cold read of that figure — can a non-physicist see which object
+  the witness described?
+- exp-002: scattering cross-sections (separate shadow from glint).
+- exp-003: the broadband wall, resolution-controlled (the asymmetry
+  question).
+- Parking lot: angled observer (witness geometry wasn't perfectly
+  retroreflective), pulsed/time-gated illumination, absorber thickness
+  sweep.
