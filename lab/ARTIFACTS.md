@@ -44,10 +44,11 @@ One artifact = one directory (one scene of one experiment):
 - **Observer record (pinned):** `obs_angles_rad` are bin centers in radians
   measured at the observer plane (0 = straight back toward the source along
   −x, +CCW), strictly increasing; `obs_return_flux` is time-averaged
-  Poynting flux per bin under `manifest.observer.normalization`. Both or
-  neither, same length. The flux *semantics* (extraction plane, windowing,
-  normalization physics) are solver-lane and validated by the trust suite;
-  this schema only fixes the container.
+  Poynting flux **integrated within each bin** — the sum over bins equals
+  the total returned flux under `manifest.observer.normalization` — *not* a
+  per-radian density. Both or neither, same length. The flux *semantics*
+  (extraction plane, windowing, normalization physics) are solver-lane and
+  validated by the trust suite; this schema only fixes the container.
 
 ## manifest.json
 
@@ -64,7 +65,7 @@ One artifact = one directory (one scene of one experiment):
 | `run` | obj | `steps, snapshot_step, quarter_offset_steps` |
 | `sources` | list | per source: `profile` (`"plane"`/`"gauss"`), `x`, `y_lo`, `y_hi`, `ramp_periods`, `amplitude`, `width` (gauss), `edge` (plane) — mirrors `add_line_source` |
 | `objects` | list | `{type, params}`; `type` is the `lab.materials` builder name, `params` mirror its exact signature (see table below) |
-| `observer` | obj | only with observer arrays: `plane_x`, `start_step`, `normalization` (`"vacuum_run"`/`"incident_power"`), `reference_run` (artifact path or null) |
+| `observer` | obj | only with observer arrays: `plane_x`, `start_step`, `normalization` (`"vacuum_run"`/`"incident_power"`), `reference_run` — non-null (the vacuum run's artifact path) **iff** normalization is `"vacuum_run"`, else null: a vacuum-normalized figure must be regenerable deterministically |
 | `npz_sha256` | str | sha256 hex of `fields.npz` — the Evidence Gate anchor |
 | `provenance` | list | typed refs, may be empty — see below |
 
@@ -89,13 +90,12 @@ e.g. `{"kind": "witness-statement",
 "id": "pursue-r1--western_us_event_slides_5.08.2026", "page": N}` lets an
 incident page cite the experiment mechanically, and the figure cite back.
 
-## Open question for the emitter (flagged, not decided)
+## Storage dtype (decided in PR #1 review)
 
-Storage dtype. exp-000-sized scenes at float64 are ~10 MB/scene before
-compression and experiments carry several scenes. Default proposed here:
-**float32 for stored fields** (rendering never needs float64; physics stays
-solver-side and full precision), with `npz_sha256` anchoring the gate either
-way. The validator accepts both; the emitter picks.
+**float32 for stored fields.** Rendering never needs float64; solver
+precision stays in-memory solver-side; `npz_sha256` anchors the gate on
+bytes either way. The validator accepts float32/float64 so old artifacts
+never rot; the emitter writes float32.
 
 ## Checking
 

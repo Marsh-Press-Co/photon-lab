@@ -139,6 +139,12 @@ def validate_groups(manifest, arrays, npz_path=None):
                     p.append(f"observer block missing '{key}'")
             if obs.get("normalization") not in OBSERVER_NORMS:
                 p.append(f"observer.normalization {obs.get('normalization')!r} not in {OBSERVER_NORMS}")
+            elif obs.get("normalization") == "vacuum_run" and not obs.get("reference_run"):
+                p.append("normalization 'vacuum_run' requires a non-null reference_run "
+                         "(the figure's normalization must be regenerable)")
+            elif obs.get("normalization") == "incident_power" and obs.get("reference_run") is not None:
+                p.append("normalization 'incident_power' requires reference_run null "
+                         "(non-null iff vacuum_run)")
     elif "observer" in manifest:
         p.append("manifest 'observer' block present but observer arrays absent")
     groups.append(("shapes", p))
@@ -268,7 +274,8 @@ def selftest(out=print):
     }
     manifest = _selftest_manifest(nx, ny)
     manifest["observer"] = {"plane_x": 2, "start_step": 5,
-                            "normalization": "vacuum_run", "reference_run": None}
+                            "normalization": "vacuum_run",
+                            "reference_run": "experiments/selftest/artifacts/empty"}
     ok = True
     with tempfile.TemporaryDirectory() as tmp:
         run_dir = save_run(Path(tmp) / "tiny", manifest, arrays)
@@ -295,6 +302,14 @@ def selftest(out=print):
         else:
             ok = False
             out("[FAIL] selftest · missing required array was accepted")
+
+        unref = dict(manifest, observer=dict(manifest["observer"], reference_run=None))
+        problems = validate(unref, arrays)
+        if any("reference_run" in problem for problem in problems):
+            out("[PASS] selftest · vacuum_run without reference_run rejected")
+        else:
+            ok = False
+            out("[FAIL] selftest · vacuum_run without reference_run was accepted")
     return ok
 
 
