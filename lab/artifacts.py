@@ -17,7 +17,13 @@ from pathlib import Path
 
 import numpy as np
 
-SCHEMA_VERSION = "0.1.0"
+SCHEMA_VERSION = "0.2.0"   # 0.2.0: + graded_black_shell (minor bump per
+                           # ARTIFACTS.md extension rule: new builder = new row)
+# Minor bumps are additive: readers tolerate every prior 0.x minor
+# (Bonnie's review of PR #3 — re-emission-on-every-bump must not become
+# policy). SCHEMA_VERSION is what the emitter WRITES; this is what
+# validators ACCEPT.
+KNOWN_VERSIONS = ("0.1.0", "0.2.0")
 
 REQUIRED_ARRAYS = ("ez_snapshot", "ez_quarter", "eps_r", "sigma_e", "pec_mask")
 TENSOR_ARRAYS = ("inv_mu_xx", "inv_mu_yy", "inv_mu_xy_hx", "inv_mu_xy_hy")
@@ -38,6 +44,7 @@ OBJECT_PARAMS = {
     "dielectric_cylinder": (("cx", "cy", "r", "eps_r"), ()),
     "pec_disk": (("cx", "cy", "r"), ()),
     "absorber_shell_stub": (("cx", "cy", "r_in", "r_out"), ("sigma_max", "eps_max")),
+    "graded_black_shell": (("cx", "cy", "r_in", "r_out"), ("sigma_max", "eps_max")),
     "schurig_reduced_cloak_tm": (("cx", "cy", "r1", "r2"), ("mu_r_floor",)),
 }
 
@@ -79,8 +86,8 @@ def validate_groups(manifest, arrays, npz_path=None):
     for key in REQUIRED_MANIFEST:
         if key not in manifest:
             p.append(f"manifest missing key '{key}'")
-    if manifest.get("schema_version") not in (SCHEMA_VERSION,):
-        p.append(f"schema_version {manifest.get('schema_version')!r} != {SCHEMA_VERSION!r}")
+    if manifest.get("schema_version") not in KNOWN_VERSIONS:
+        p.append(f"schema_version {manifest.get('schema_version')!r} not in {KNOWN_VERSIONS}")
     grid = manifest.get("grid", {})
     for key in GRID_KEYS:
         if key not in grid:

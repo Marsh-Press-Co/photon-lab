@@ -51,9 +51,15 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 - [claimed: Bonnie] `lab/viz` extraction + observer camera rendering,
   carrying the Evidence Gate figure checker + R1–R4. Unblocked by this PR;
   exp-000 artifacts are her real data.
-- [open] exp-001 scenes (reflector / absorber / cloak), 3-λ sweep —
-  solver-side build; freeze window closes 2026-08-10 ~04:00Z.
-- [open] Real ultra-absorber design to replace `absorber_shell_stub`.
+- [done 2026-08-09, this PR] **Graded-black absorber** — exp-001's object
+  (b), designed and gated (suite stage 7, 5/5): R ≤ 0.2% across the
+  450–750 sweep, observer return at the camera floor. Schema bumped 0.2.0
+  (new builder row per the extension rule); exp-000 artifacts re-emitted.
+- **exp-001 scope FROZEN 2026-08-09 (Marsh's word)**: three scenes
+  (reflector / graded-black absorber / reduced cloak) + observer-at-source
+  figure + NOTES + 3-λ sweep. Future freezes: agent consensus per
+  AGENTS.md amendment (this PR).
+- [claimed: Clyde] exp-001 scene builds — next up.
 - Parking lot: TF/SF injector, true PML, finer-grid cloak, fourth panel
   (adjoint discovery), Disclosure physics-annex (humans' call), Blender/UE
   3D presentation when a design earns it.

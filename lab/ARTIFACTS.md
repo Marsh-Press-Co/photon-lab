@@ -1,4 +1,10 @@
-# Run artifacts — the solver ↔ viz contract (schema 0.1.0)
+# Run artifacts — the solver ↔ viz contract (schema 0.2.0)
+
+*0.2.0 (2026-08-09): + `graded_black_shell` row (minor bump per the
+extension rule below). 0.1.0: initial contract. Readers accept all prior
+0.x minors (`lab.artifacts.KNOWN_VERSIONS`); the emitter writes the
+newest. Minor bumps are additive — they never orphan old artifacts and
+never force re-emission.*
 
 The boundary agreed on co-lab #31: anything with physics-correctness stakes
 is computed solver-side in `lab/` where the trust suite can validate it;
@@ -76,6 +82,7 @@ One artifact = one directory (one scene of one experiment):
 | `dielectric_cylinder` | cx, cy, r, eps_r | — |
 | `pec_disk` | cx, cy, r | — |
 | `absorber_shell_stub` | cx, cy, r_in, r_out | sigma_max, eps_max |
+| `graded_black_shell` | cx, cy, r_in, r_out | sigma_max, eps_max |
 | `schurig_reduced_cloak_tm` | cx, cy, r1, r2 | mu_r_floor |
 
 New material builders add a row here (schema bump: minor).
