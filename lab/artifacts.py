@@ -101,8 +101,11 @@ def validate_groups(manifest, arrays, npz_path=None):
     present_obs = [n for n in OBSERVER_ARRAYS if n in arrays]
     if len(present_obs) == 1:
         p.append(f"observer arrays are both-or-neither, got only {present_obs}")
+    known = set(REQUIRED_ARRAYS) | set(TENSOR_ARRAYS) | set(OBSERVER_ARRAYS)
     for name, arr in arrays.items():
-        if name == "pec_mask":
+        if name not in known:
+            p.append(f"unknown array '{name}' (schema {SCHEMA_VERSION} knows {sorted(known)})")
+        elif name == "pec_mask":
             if arr.dtype != np.bool_:
                 p.append(f"pec_mask dtype {arr.dtype}, want bool")
         elif not np.issubdtype(arr.dtype, np.floating):
@@ -211,7 +214,9 @@ def check(run_dirs, out=print):
     """Loud validation of artifact dirs. Reports every group per run
     (liveness), returns the number of failing groups."""
     failures = 0
+    n_runs = 0
     for run_dir in run_dirs:
+        n_runs += 1
         run_dir = Path(run_dir)
         out(f"run {run_dir}")
         try:
@@ -229,7 +234,7 @@ def check(run_dirs, out=print):
                     out(f"  [FAIL] {group} · {problem}")
             else:
                 out(f"  [PASS] {group}")
-    out(f"artifact check: {len(list(run_dirs))} run(s), {failures} failing group(s)")
+    out(f"artifact check: {n_runs} run(s), {failures} failing group(s)")
     return failures
 
 
@@ -270,14 +275,18 @@ def selftest(out=print):
         load_run(run_dir)
         out("[PASS] selftest · round-trip save/load/validate")
 
-        (run_dir / "fields.npz").write_bytes(b"tampered")
-        problems = []
+        tampered = dict(arrays, ez_snapshot=arrays["ez_snapshot"] + 1.0)
+        np.savez_compressed(run_dir / "fields.npz", **tampered)
         try:
             load_run(run_dir)
             ok = False
             out("[FAIL] selftest · tampered npz was accepted")
-        except Exception:
-            out("[PASS] selftest · tampered npz rejected loudly")
+        except ArtifactError as exc:
+            if any("sha256" in problem for problem in exc.problems):
+                out("[PASS] selftest · tampered npz caught by the sha256 anchor")
+            else:
+                ok = False
+                out(f"[FAIL] selftest · tamper rejected, but not by the hash: {exc.problems}")
 
         bad = {k: v for k, v in arrays.items() if k != "ez_quarter"}
         problems = validate(manifest, bad)
