@@ -30,6 +30,8 @@ def _grids(sim, cx, cy):
 def dielectric_cylinder(sim, cx, cy, r, eps_r):
     rr, _ = _grids(sim, cx, cy)["ez"]
     sim.eps_r[rr <= r] = eps_r
+    sim.objects.append({"type": "dielectric_cylinder",
+                        "params": {"cx": cx, "cy": cy, "r": r, "eps_r": eps_r}})
 
 
 def pec_disk(sim, cx, cy, r):
@@ -37,6 +39,7 @@ def pec_disk(sim, cx, cy, r):
     exp-001's 'ordinary reflector' object)."""
     rr, _ = _grids(sim, cx, cy)["ez"]
     sim.pec |= rr <= r
+    sim.objects.append({"type": "pec_disk", "params": {"cx": cx, "cy": cy, "r": r}})
 
 
 def absorber_shell_stub(sim, cx, cy, r_in, r_out, sigma_max=0.15, eps_max=2.0):
@@ -53,6 +56,9 @@ def absorber_shell_stub(sim, cx, cy, r_in, r_out, sigma_max=0.15, eps_max=2.0):
     d[shell] = (rr[shell] - r_in) / max(r_out - r_in, 1)
     sim.sigma_e[shell] += sigma_max * d[shell] ** 3
     sim.eps_r[shell] = 1.0 + (eps_max - 1.0) * d[shell] ** 2
+    sim.objects.append({"type": "absorber_shell_stub",
+                        "params": {"cx": cx, "cy": cy, "r_in": r_in, "r_out": r_out,
+                                   "sigma_max": sigma_max, "eps_max": eps_max}})
 
 
 def schurig_reduced_cloak_tm(sim, cx, cy, r1, r2, mu_r_floor=0.10):
@@ -108,3 +114,6 @@ def schurig_reduced_cloak_tm(sim, cx, cy, r1, r2, mu_r_floor=0.10):
 
     write_tensor("hx", "xx")
     write_tensor("hy", "yy")
+    sim.objects.append({"type": "schurig_reduced_cloak_tm",
+                        "params": {"cx": cx, "cy": cy, "r1": r1, "r2": r2,
+                                   "mu_r_floor": mu_r_floor}})

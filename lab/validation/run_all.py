@@ -301,9 +301,87 @@ def stage5_cloak():
     fig.savefig(os.path.join(HERE, "v5_cloak.png")); plt.close(fig)
 
 
+# --------------------------------------------------------------- stage 6
+def stage6_observer():
+    """The observer camera answers to theory before it answers exp-001:
+    an empty room returns ~nothing, a mirror returns ~everything, an eps=4
+    half-space returns Fresnel's 1/9 (specularly). Then the emitter does a
+    full save->load->validate round trip on a real builder scene."""
+    print("stage 6 — observer camera vs Fresnel + emitter round-trip")
+    import tempfile
+    from pathlib import Path
+    from lab import artifacts
+    from lab import emit as em
+
+    def run_scene(build):
+        sim = Sim(360, 240, cells_per_lambda=20, courant_frac=0.99, absorb=30)
+        if build:
+            build(sim)
+        sim.add_line_source(54)
+        sim.run(900)
+        return sim, em.quarter_pair(sim)
+
+    sim_ref, cap_ref = run_scene(None)
+    _, _, aux_ref = em.observer_record(sim_ref, cap_ref, 70)
+    self_ratio = aux_ref["p_backward_total"] / aux_ref["p_forward_total"]
+    check("observer", "empty room returns ~nothing", f"{self_ratio:.4f}",
+          self_ratio < 0.02, "<0.02")
+
+    def mirror(sim):
+        sim.pec[260:276, :] = True
+
+    sim_m, cap_m = run_scene(mirror)
+    _, flux_m, _ = em.observer_record(sim_m, cap_m, 70, reference=aux_ref)
+    total_m = float(np.sum(flux_m))
+    check("observer", "mirror returns ~everything", f"{total_m:.3f}",
+          abs(total_m - 1.0) <= 0.05, "1.00±0.05")
+
+    def halfspace(sim):
+        sim.eps_r[260:, :] = 4.0
+
+    sim_f, cap_f = run_scene(halfspace)
+    ang_f, flux_f, _ = em.observer_record(sim_f, cap_f, 70, reference=aux_ref)
+    total_f = float(np.sum(flux_f))
+    check("observer", "half-space returns Fresnel 1/9", f"{total_f:.4f}",
+          abs(total_f - 1.0 / 9.0) <= 0.02, "0.111±0.02")
+    near = float(np.sum(flux_f[np.abs(ang_f) < np.deg2rad(12)])) / max(total_f, 1e-12)
+    check("observer", "Fresnel return is specular", f"{near:.2f} within ±12°",
+          near >= 0.80, ">=0.80")
+
+    def cyl(sim):
+        materials.dielectric_cylinder(sim, 200, 120, 20, 4.0)
+
+    sim_c, cap_c = run_scene(cyl)
+    ang_c, flux_c, _ = em.observer_record(sim_c, cap_c, 70, reference=aux_ref)
+    print(f"  [info] observer · cylinder total return = {float(np.sum(flux_c)):.4f}")
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            ref_dir = em.emit_run(
+                sim_ref, Path(tmp) / "empty", experiment="validation",
+                scene="empty", lambda_nm=600.0, suite_status="stage6",
+                snapshot_step=900, capture=cap_ref,
+                provenance=[{"kind": "experiment", "id": "stage6"}])
+            cyl_dir = em.emit_run(
+                sim_c, Path(tmp) / "cylinder", experiment="validation",
+                scene="cylinder", lambda_nm=600.0, suite_status="stage6",
+                snapshot_step=900, capture=cap_c,
+                provenance=[{"kind": "experiment", "id": "stage6"}],
+                observer=dict(plane_x=70, start_step=900,
+                              normalization="vacuum_run",
+                              reference_run=str(ref_dir), angles=ang_c,
+                              flux=flux_c))
+            artifacts.load_run(ref_dir)
+            artifacts.load_run(cyl_dir)
+        check("emitter", "save→load→validate round trip (2 runs)", "OK", True,
+              "no exception")
+    except Exception as e:
+        check("emitter", "save→load→validate round trip (2 runs)",
+              f"EXC: {type(e).__name__}: {e}", False, "no exception")
+
+
 # ------------------------------------------------------------------ main
 if __name__ == "__main__":
-    only = "12345"
+    only = "123456"
     if "--only" in sys.argv:
         only = sys.argv[sys.argv.index("--only") + 1]
     t0 = time.time()
@@ -343,6 +421,8 @@ if __name__ == "__main__":
 
     if "5" in only:
         stage5_cloak()
+    if "6" in only:
+        stage6_observer()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")

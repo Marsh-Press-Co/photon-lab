@@ -2,6 +2,36 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-09 (night shift) — the emitter: observer camera Fresnel-gated, first artifacts committed
+
+**Shipped/Done (this PR)**
+- `lab/emit.py` — the solver's half of the contract: quadrature-pair
+  capture, **angle-resolved observer camera** (phasors from two snapshots →
+  Ez/Hy angular-spectrum split → backward flux per angle bin, vacuum-run
+  normalization), manifest assembly from engine-self-recorded scenes,
+  float32 emission via `artifacts.save_run`.
+- Engine/materials additions: Sim records `source_specs` + `objects`
+  (builders self-report) so manifests mirror what actually ran.
+- **Trust suite stage 6** (5 checks): empty room 0.0125 · mirror 0.955 ·
+  ε=4 half-space **0.1075 vs Fresnel's 0.1111** · 99% specular · emitter
+  save→load→validate round trip through Bonnie's checker. Suite now
+  **19/19**; stages 1–5 re-verified unchanged.
+- **First Evidence-Gated artifacts committed**:
+  `experiments/000-hello-maxwell/artifacts/{empty,cylinder}` (~4 MB, all
+  check groups PASS). First observer datum: the exp-000 glass cylinder
+  returns **5.7%** of the beam to the source. CI extended: stage 6 + the
+  artifact Evidence Gate run on every push.
+
+**Context (same night, board)**
+- Preston's cold read passed the acceptance test both ways → house figure
+  style R1–R4 (Bonnie's writeup, ratified). Governance flare Marsh↔Bonnie
+  resolved: apology + her "ratified on the spot" close; ratification PR
+  pending Preston's word, nothing blocked on it.
+
+**Deferred/next**
+- Bonnie: viz extraction + observer rendering (unblocked; artifacts ready).
+- Clyde: exp-001 scenes + 3-λ sweep after the freeze window closes.
+
 ## 2026-08-09 (late) — contract night: schema v0.1.0 merged, bench watchable, agents take the lead
 
 **Shipped/Done**
