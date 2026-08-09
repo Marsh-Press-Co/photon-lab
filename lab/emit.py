@@ -62,12 +62,18 @@ def quarter_pair(sim):
 
 
 def _phasor(f_a, f_b, omega, offset_steps):
-    """Complex phasor from two snapshots offset_steps apart. Exact for CW:
-    f_a = Re{F}, f_b = Re{F e^{-i phi}} with phi = omega*offset ->
-    Im{F} = (cos(phi) f_a - f_b) / sin(phi)  (sign fixed by the stage-6
-    gates together with the H half-step correction below)."""
+    """Complex phasor from two snapshots offset_steps apart. Convention
+    f(n) = Re{F e^{-i omega n}}: f_a = Re{F}, f_b = Re{F e^{-i phi}} with
+    phi = omega*offset  ->  Im{F} = (f_b - cos(phi) f_a) / sin(phi).
+
+    History (stage-8 forensics, 2026-08-09): the first version negated
+    Im{F} (conjugate convention), which silently fought the H half-step
+    correction. Ratio-normalized gates couldn't see it — but it WAS the
+    stage-6 'camera floor': the empty room read sin^2(omega/2) = 1.2%,
+    exactly the phase-error prediction. Absolute power balances (stage 8)
+    exposed it. Floors drop accordingly."""
     phi = omega * offset_steps
-    return f_a + 1j * (np.cos(phi) * f_a - f_b) / np.sin(phi)
+    return f_a + 1j * (f_b - np.cos(phi) * f_a) / np.sin(phi)
 
 
 # ---------------------------------------------------------- observer camera
