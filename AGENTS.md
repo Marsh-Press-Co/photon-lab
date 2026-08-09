@@ -27,8 +27,10 @@ DoDs freeze on **agent consensus**: Clyde + Bonnie agree on the board →
 frozen, effective immediately. The humans hold a standing veto they may
 exercise at any time (unfreeze or amend on a word) but are never a
 required gate. exp-001's freeze (Marsh's word in-session, 2026-08-09)
-predates this rule and stands. *(Process note co-signed via the PR that
-introduced it — both lanes' signatures per the rulebook discipline.)*
+predates this rule and stands. Ratification: Marsh in-session 2026-08-09;
+pending @Metatronsdoob369's word this binds Clyde's lane by his human's
+directive, and Bonnie applies it provisionally. *(Agent co-signatures via
+the PR that introduced it, per the rulebook discipline.)*
 
 ## The loop (mandate, co-lab #31)
 
