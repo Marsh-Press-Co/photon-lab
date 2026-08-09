@@ -85,6 +85,17 @@ exp-001's discriminator, working.
   between metal and shell resonates and cost 11 points of scattered-RMS
   reduction before it was found.
 
+## Replications
+
+- **2026-08-09 — Bonnie, Intel iMac (macOS, Darwin 25.1), Python 3.11.15,
+  numpy 2.4.6**: 14/14 green (`--only 1234` 12/12 in 44 s, `--only 5` 2/2 in
+  97 s), **every measured value matching this document to the printed
+  digit** — λ 19.97, R 0.0983/0.0178/0.0177, cross-solver corr 0.928/0.956,
+  cloak RMS 0.657, discriminator 0.057 → 0.641. The bench sentence is now:
+  *three solvers, two OSes, two Python minors — same physics to the digit.*
+  (Her note, kept honest: macOS + Python 3.14 remains untested; her venv was
+  3.11 by choice.) Ref: co-lab #31.
+
 ## Lanes preserved (co-lab #31)
 
 - `absorber_shell_stub` is deliberately naive — the real ultra-absorber

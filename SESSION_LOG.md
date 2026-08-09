@@ -2,6 +2,64 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-08 — exp-001 groundwork: lab/ engine + 14/14 trust suite
+
+**Shipped/Done**
+- `lab/fdtd2d.py` — engine grown from exp-000: conductivity, PEC,
+  **anisotropic inverse-μ tensor** (B-then-H scheme, staggered evaluation),
+  plane/Gaussian sources, Poynting line monitors, `spatial_wavelength`.
+- `lab/materials.py` — dielectric cylinder, PEC disk, absorber **STUB**
+  (Bonnie's lane preserved), Schurig/Cummer reduced TMz cloak (clamped,
+  derivation + stability arithmetic in docstrings).
+- `lab/validation/` — 5-stage trust suite + `VALIDATION.md`; board #31
+  status note posted. Merged `f016384`.
+**Verified (14/14)**
+- exp-000 regression exact · Fresnel R 0.098 (theory 0.111±0.025) ·
+  matched half-space R≈0.018 through scalar AND tensor μ paths ·
+  scattered-field cross-solver corr 0.93 (flaport fdtd) / 0.96 (ceviche) ·
+  cloak smoke −34% scattered RMS, beam-behind-object 0.057 → 0.641.
+**Decisions**
+- Cross-solver checks compare SCATTERED fields (scene − own vacuum) —
+  total-field comparison caps correlation on source-profile differences.
+- Cloak smoke framed as MACHINERY check (bar 0.75); cloak *quality* is
+  exp-002/003's job. PEC flush at inner wall per canonical setup (the
+  2-cell gap cost 11 RMS points).
+- Bonnie's offered lanes untouched: absorber stub only, no viz module.
+**Board (same night — the four-way arrived)**
+- **Mandate (canon, recorded on #31):** Marsh in-session + Preston to Bonnie —
+  the AGENTS drive experiment discussion/design; humans seed ideas. Design
+  loop proposed and posted: predict-before-run → solver build (Clyde) →
+  Evidence-Gated artifacts → observer/metric verdict (Bonnie) → nature
+  arbitrates disagreements → NOTES.md per loop.
+- **Bonnie's lane: viz + observer camera** (her amendment; all three
+  materials back with Clyde). Contract: solver emits observer record +
+  artifacts (her schema PR, Clyde veto); she never reaches solver internals;
+  Clyde never touches figures. Her figure house rules adopted. She's
+  replicating the 14/14 suite on macOS (3 solvers × 2 OSes).
+- **Preston's role, his call: the acceptance test** — non-physicist reader
+  of every figure ("if he can't answer the witness question from the figure,
+  the figure failed"). First specific handed to him: read v5_cloak.png cold,
+  report what it needs. Meep lane parked, zero pressure.
+- **exp-001 DoD amended + freeze window:** three scenes + observer figure +
+  NOTES + bench cross-check (✅) + **3-λ sweep (450/600/750)** — the witness's
+  flashlight was white light; single-λ matches don't count. Prediction on
+  record: the sweep cracks the cloak's match, not the absorber's. Frozen in
+  ~24h barring human objection; fourth panel (adjoint discovery) parked.
+
+**Deferred/next**
+- Freeze window closes → build exp-001 scenes; Bonnie's schema PR + viz
+  extraction PR; her macOS numbers.
+- Parking lot: TF/SF injector, true PML, finer-grid cloak runs, fourth
+  panel, Disclosure physics-annex (humans' call), Blender/UE 3D
+  presentation when a design earns it.
+**Notes/gotchas** (promoted: pointer now in repo CLAUDE.md)
+- FFT λ on short strips quantizes (190 samples → 19.0/21.1, never 20.0);
+  use `spatial_wavelength` (zero-pad + parabolic).
+- Reflection monitors close to the interface — beam-diffraction losses
+  cancel between reference and scene runs.
+- flaport `fdtd` + ceviche both run the shared scene on Py 3.14 without
+  incident (Object accepts ndarray permittivity; fdfd_ez solve fine).
+
 ## 2026-08-06 — Kickoff: bench verified, exp-000 first light, board live
 
 **Shipped/Done**
