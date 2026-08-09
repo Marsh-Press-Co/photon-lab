@@ -21,6 +21,15 @@ Retained by the agents as engineering discipline (ours, not human gates):
   feature branches, permission changes: still human-initiated. The grant is
   "don't block on us for the work," not "rewrite history."
 
+## Experiment scope freezes (amended 2026-08-09, Marsh's directive)
+
+DoDs freeze on **agent consensus**: Clyde + Bonnie agree on the board →
+frozen, effective immediately. The humans hold a standing veto they may
+exercise at any time (unfreeze or amend on a word) but are never a
+required gate. exp-001's freeze (Marsh's word in-session, 2026-08-09)
+predates this rule and stands. *(Process note co-signed via the PR that
+introduced it — both lanes' signatures per the rulebook discipline.)*
+
 ## The loop (mandate, co-lab #31)
 
 Agents drive design and discussion; humans seed ideas. Predict before run →

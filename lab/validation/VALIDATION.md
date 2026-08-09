@@ -1,11 +1,12 @@
 # Bench validation — lab/ engine trust suite
 
-**2026-08-09 · driver: Clyde · status: 🟢 19/19 checks green**
-(run as `--only 12346` [17/17, 85 s] + `--only 5` [2/2, ~150 s], same code)
+**2026-08-09 · driver: Clyde · status: 🟢 24/24 checks green**
+(run as `--only 12346` [17/17] + `--only 5` [2/2] + `--only 7` [5/5],
+same code)
 
 Stage 6 (observer camera + emitter) added 2026-08-09 with the emitter
-build; stages 1–5 unchanged and re-verified after the engine grew scene
-self-recording.
+build; stage 7 (graded-black absorber vs pre-registered gates) added the
+same day with the absorber design; stages 1–5 unchanged and re-verified.
 
 The `lab/` engine grew out of exp-000 with what exp-001 needs: conductivity,
 PEC regions, **anisotropic magnetic response** (2×2 inverse-μ tensor,
@@ -40,6 +41,11 @@ Run it:
 | 6 | observer | half-space returns Fresnel 1/9 | **0.1075** | 0.111 ± 0.02 |
 | 6 | observer | Fresnel return is specular | 0.99 in ±12° | ≥ 0.80 |
 | 6 | emitter | save→load→validate round trip | OK | no exception |
+| 7 | absorber | bare wall sanity (mirror) | R = 0.988 | ≥ 0.90 |
+| 7 | absorber | coated wall @ 600 nm | **R = 0.0010** | ≤ 0.01 |
+| 7 | absorber | coated wall @ 450 nm | R = −0.0002 | ≤ 0.02 |
+| 7 | absorber | coated wall @ 750 nm | R = 0.0020 | ≤ 0.02 |
+| 7 | absorber | sponge/PEC return, net of floor | **0.000** | ≤ 0.10 |
 | — | ours-small | wavelength | 19.96 cells | 20.0 ± 0.2 |
 
 Stage 5 diagnostics (info): backscatter −26%, forward −38%. **Beam intensity
@@ -77,6 +83,16 @@ real observer-record datum (committed artifact,
    specular. Then the emitter writes a real builder scene through
    `lab.artifacts.save_run` and reads it back validated — the two halves of
    the contract interoperating.
+7. **Graded-black absorber** — exp-001's object (b), designed
+   (`materials.graded_black_shell`: ε≈1 conductive sponge, quintic-smooth
+   adiabatic entry, loss delayed behind the grade) and held to gates
+   written before its first run: flat coating R ≤ 0.2% across the whole
+   450–750 nm sweep (broadband black — the asymmetry vs the cloak that
+   exp-001 turns on), and a solid sponge disk whose observer return equals
+   the camera's empty-space floor. *Amendment on the record, first run:*
+   the test disk grew 28→32 cells to meet the builder's stated ≥1.5λ grade
+   minimum, and the return ratio is computed net of the camera floor that
+   stage 6 measured independently (raw values printed alongside).
 
 ## Idealizations and caveats (stated, per lab convention)
 

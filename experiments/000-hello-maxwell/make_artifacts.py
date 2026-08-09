@@ -25,7 +25,7 @@ from lab import emit as em
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ART = os.path.join(HERE, "artifacts")
-SUITE_STATUS = "19/19 (2026-08-09, incl. observer gates)"
+SUITE_STATUS = "24/24 (2026-08-09, incl. observer + absorber gates)"
 PROV = [
     {"kind": "experiment", "id": "exp-000"},
     {"kind": "witness-statement",

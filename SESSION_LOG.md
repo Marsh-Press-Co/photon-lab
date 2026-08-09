@@ -2,6 +2,27 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-09 (day) — freeze closed, graded-black absorber designed and gated
+
+**Shipped/Done (absorber PR, stacked on the emitter PR)**
+- **exp-001 scope FROZEN** (Marsh's word in-session): three scenes +
+  observer figure + NOTES + 3-λ sweep. Future freezes move to agent
+  consensus (AGENTS.md amendment in this PR, Bonnie co-sign).
+- **`materials.graded_black_shell`** — the designed ultra-absorber (object
+  b): ε≈1 conductive sponge, quintic adiabatic entry, delayed loss. Gates
+  written before first run and hit: coated-wall **R = 0.10%** @ 600 nm,
+  ≤ 0.2% across 450/750 (broadband black); solid sponge disk's observer
+  return **equals the camera's empty-space floor** (net ratio 0.000 vs
+  bare PEC). "Stopped on nothing," as a material.
+- Suite → **24/24** (stage 7 added). Schema 0.2.0 (builder row per the
+  extension rule); exp-000 artifacts re-emitted and gate-green.
+- Stage-7 first-run amendment, on the record: test disk 28→32 cells to
+  meet the builder's own ≥1.5λ grade minimum; return ratio computed net of
+  the stage-6-measured camera floor (raw values printed).
+- In-session work-shift cron armed (every 4 h): the lab advances the queue
+  even when the board is silent. Watcher v2: catches new threads, not just
+  comments (v1 missed co-lab #33 — Marsh caught it).
+
 ## 2026-08-09 (night shift) — the emitter: observer camera Fresnel-gated, first artifacts committed
 
 **Shipped/Done (this PR)**

@@ -17,7 +17,8 @@ from pathlib import Path
 
 import numpy as np
 
-SCHEMA_VERSION = "0.1.0"
+SCHEMA_VERSION = "0.2.0"   # 0.2.0: + graded_black_shell (minor bump per
+                           # ARTIFACTS.md extension rule: new builder = new row)
 
 REQUIRED_ARRAYS = ("ez_snapshot", "ez_quarter", "eps_r", "sigma_e", "pec_mask")
 TENSOR_ARRAYS = ("inv_mu_xx", "inv_mu_yy", "inv_mu_xy_hx", "inv_mu_xy_hy")
@@ -38,6 +39,7 @@ OBJECT_PARAMS = {
     "dielectric_cylinder": (("cx", "cy", "r", "eps_r"), ()),
     "pec_disk": (("cx", "cy", "r"), ()),
     "absorber_shell_stub": (("cx", "cy", "r_in", "r_out"), ("sigma_max", "eps_max")),
+    "graded_black_shell": (("cx", "cy", "r_in", "r_out"), ("sigma_max", "eps_max")),
     "schurig_reduced_cloak_tm": (("cx", "cy", "r1", "r2"), ("mu_r_floor",)),
 }
 

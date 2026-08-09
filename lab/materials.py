@@ -61,6 +61,45 @@ def absorber_shell_stub(sim, cx, cy, r_in, r_out, sigma_max=0.15, eps_max=2.0):
                                    "sigma_max": sigma_max, "eps_max": eps_max}})
 
 
+def _graded_black(d):
+    """Normalized depth d in [0,1] -> (eps_r, sigma) for the graded-black
+    profile. Quintic smoothstep (zero 1st AND 2nd derivative at both ends)
+    so the wave meets no corner in the material properties — the adiabatic
+    entry is what kills the reflection. Loss grows as smoothstep^2:
+    absorption arrives *after* the wave is already inside."""
+    s = d * d * d * (10.0 - 15.0 * d + 6.0 * d * d)
+    return s, 0.5 * s * s          # (smoothstep, sigma profile)
+
+
+def graded_black_shell(sim, cx, cy, r_in, r_out, sigma_max=0.5, eps_max=1.0):
+    """The designed ultra-absorber — exp-001's object (b), replacing the
+    stub. Carbon-nanotube-black-style: a dilute conductive sponge whose
+    permittivity stays ~1 (eps_max default 1.0 — NO index step, so there is
+    no interface to glint off) while conductivity ramps in adiabatically
+    over the shell. Light walks in and doesn't walk out; the object appears
+    as darkness with no boundary — the witness's "stopped on nothing."
+
+    r_in=0 gives a solid sponge disk. Thickness (r_out - r_in) >= ~1.5
+    design wavelengths keeps the entry reflection broadband-small — this
+    absorber should NOT crack across a wavelength sweep (unlike the cloak;
+    that asymmetry is exp-001's discriminator working).
+
+    Gates (trust suite stage 7, written before first run): flat-coating
+    R < 0.01 at the design wavelength, < 0.02 at 450/750 nm equivalents;
+    solid disk returns <= 0.1x a bare PEC disk's backscatter through the
+    observer camera."""
+    rr, _ = _grids(sim, cx, cy)["ez"]
+    shell = (rr >= r_in) & (rr <= r_out)
+    d = np.zeros_like(rr)
+    d[shell] = np.clip((r_out - rr[shell]) / max(r_out - r_in, 1), 0.0, 1.0)
+    s, sig = _graded_black(d[shell])
+    sim.eps_r[shell] = 1.0 + (eps_max - 1.0) * s
+    sim.sigma_e[shell] += sigma_max * sig / 0.5      # sig already carries 0.5
+    sim.objects.append({"type": "graded_black_shell",
+                        "params": {"cx": cx, "cy": cy, "r_in": r_in, "r_out": r_out,
+                                   "sigma_max": sigma_max, "eps_max": eps_max}})
+
+
 def schurig_reduced_cloak_tm(sim, cx, cy, r1, r2, mu_r_floor=0.10):
     """Cylindrical transformation-optics cloak, REDUCED parameter set for
     TMz (Ez) polarization — the set used in the field's founding papers:
