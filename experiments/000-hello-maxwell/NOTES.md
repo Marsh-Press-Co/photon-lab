@@ -90,5 +90,7 @@ Everything the textbook promises is in the picture:
   and flaport's `fdtd` — three independent solvers agreeing on one scene
   makes the whole bench trustworthy, not just this script. (Both libraries
   import-verified on Python 3.14 at kickoff.)
+  ✅ *Done 2026-08-08 — scattered-field correlation 0.93/0.96, see
+  `lab/validation/VALIDATION.md`.*
 - Parking lot (v2): TF/SF plane-wave injector, true PML, scattering
   cross-section machinery (that's exp-002's metric).
