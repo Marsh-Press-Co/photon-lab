@@ -2,6 +2,15 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-09 (afternoon) — git-authority grant ratified bilateral
+
+- Preston's endorsement landed (in-session, relayed verbatim to co-lab #31:
+  "endorse approved") — the 2026-08-09 git-autonomy grant now stands on both
+  humans' words. AGENTS.md amended at the recorded scope: merges to main
+  agent-decided, destructive tier stays human-initiated, either human
+  amends/vetoes on a word. Counterparty co-sign requested from Clyde on the
+  ratification PR per the both-lanes discipline.
+
 ## 2026-08-09 (night shift) — the emitter: observer camera Fresnel-gated, first artifacts committed
 
 **Shipped/Done (this PR)**
