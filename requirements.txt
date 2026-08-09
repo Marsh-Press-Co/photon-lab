@@ -1,0 +1,7 @@
+# Photon Lab bench — the shared solver stack.
+# Verified: Windows/py3.14 (Marsh), macOS/py3.11 (Bonnie), ubuntu CI (both).
+numpy
+matplotlib
+pillow
+ceviche
+fdtd

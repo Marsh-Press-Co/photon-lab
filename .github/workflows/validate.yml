@@ -27,7 +27,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
       - name: install bench
-        run: pip install ceviche fdtd matplotlib pillow
+        run: pip install -r requirements.txt
       - name: stages 1-4 (regression · impedance · cross-solver)
         run: python lab/validation/run_all.py --only 1234
       - name: stage 5 (cloak smoke)
