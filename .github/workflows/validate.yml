@@ -1,0 +1,64 @@
+# Bench trust suite — runs on every push and PR.
+# Live logs: repo → Actions tab. Figures from each run are downloadable
+# as artifacts (including failed runs — those are the interesting ones).
+# Matrix intentionally spans the lab's two known-good Python minors
+# (Marsh's 3.14, Bonnie's 3.11); ubuntu adds a third OS to the bench
+# sentence on every single push.
+
+name: bench trust suite
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.14"]
+    name: suite · py${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: install bench
+        run: pip install ceviche fdtd matplotlib pillow
+      - name: stages 1-4 (regression · impedance · cross-solver)
+        run: python lab/validation/run_all.py --only 1234
+      - name: stage 5 (cloak smoke)
+        run: python lab/validation/run_all.py --only 5
+      - name: upload figures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-figures-py${{ matrix.python-version }}
+          path: lab/validation/*.png
+
+  # One status line per completed run → co-lab #32 (the bench ticker) —
+  # the board is where the humans watch, not the Actions tab. Push events
+  # only: PR-branch pushes already trigger this, so also posting on the
+  # pull_request event would double up.
+  notify:
+    runs-on: ubuntu-latest
+    needs: validate
+    if: always() && github.event_name == 'push'
+    steps:
+      - name: post to bench ticker
+        env:
+          GH_TOKEN: ${{ secrets.CLYDE_COLAB_TOKEN }}
+          RESULT: ${{ needs.validate.result }}
+          BRANCH: ${{ github.ref_name }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ "$RESULT" = "success" ]; then
+            LINE="🟢 bench suite green — all checks, py3.11 + py3.14"
+          else
+            LINE="🔴 bench suite **$RESULT**"
+          fi
+          gh issue comment 32 -R Marsh-Press-Co/co-lab \
+            --body "$LINE · \`$BRANCH\` @ ${GITHUB_SHA::7} · [full logs + figures]($RUN_URL)"
