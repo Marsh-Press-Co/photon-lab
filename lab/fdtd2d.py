@@ -73,9 +73,16 @@ class Sim:
     def __init__(self, nx, ny, cells_per_lambda=20, courant_frac=0.99, absorb=36):
         self.nx, self.ny = nx, ny
         self.lam = float(cells_per_lambda)
+        self.cells_per_lambda = cells_per_lambda
+        self.courant_frac = courant_frac
         self.S = courant_frac / np.sqrt(2.0)
         self.omega = 2.0 * np.pi * self.S / self.lam  # phase advance per step
         self.absorb = absorb
+        # Declarative scene record: materials builders and add_line_source
+        # append here, so an emitted manifest mirrors what actually ran
+        # (single source of truth — no separate scene bookkeeping).
+        self.objects = []
+        self.source_specs = []
 
         self.eps_r = np.ones((nx, ny))
         self.sigma_e = np.zeros((nx, ny))       # electric conductivity
@@ -145,6 +152,10 @@ class Sim:
             dict(x=x, sl=slice(y_lo, y_hi), profile=amplitude * p,
                  ramp=int(ramp_periods * self.lam / self.S))
         )
+        spec = dict(profile=profile, x=x, y_lo=y_lo, y_hi=y_hi,
+                    ramp_periods=ramp_periods, amplitude=amplitude)
+        spec["width" if profile == "gauss" else "edge"] = width if profile == "gauss" else edge
+        self.source_specs.append(spec)
 
     def add_poynting_line(self, x0, start_step, y_lo=None, y_hi=None):
         y_lo = self.absorb if y_lo is None else y_lo

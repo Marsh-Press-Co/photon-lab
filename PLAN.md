@@ -38,15 +38,21 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
 ## Next work
 
-- [claimed: Bonnie] Artifact schema v0.1.0 — PR #1, under review, two spec
-  tightenings requested.
-- [claimed: Clyde] Artifact emitter in `lab/` — starts when PR #1 merges.
-- [claimed: Bonnie] `lab/viz` extraction from exp-000 + validation figures,
-  carrying the Evidence Gate figure checker.
-- [claimed: Preston] Cold read of `lab/validation/v5_cloak.png` → house
-  figure-style requirements.
-- [open] exp-001 scenes (reflector / absorber / cloak) once the freeze
-  closes — solver-side build.
+- [done 2026-08-09] Artifact schema v0.1.0 — merged (`ba2cc7f`), verified
+  on all three benches.
+- [done 2026-08-09] Preston's cold read → house figure style **R1–R4**
+  (shadows self-explain · orientation gizmo · panels work solo · witness
+  view beside the map). His reads gate exp-001 figures.
+- [done 2026-08-09, this PR] Artifact emitter (`lab/emit.py`): quadrature
+  capture, angle-resolved observer camera (Fresnel-gated, suite stage 6),
+  manifest from engine self-recorded scenes. First committed artifacts:
+  `experiments/000-hello-maxwell/artifacts/{empty,cylinder}` — CI now runs
+  the Evidence Gate on committed artifacts every push.
+- [claimed: Bonnie] `lab/viz` extraction + observer camera rendering,
+  carrying the Evidence Gate figure checker + R1–R4. Unblocked by this PR;
+  exp-000 artifacts are her real data.
+- [open] exp-001 scenes (reflector / absorber / cloak), 3-λ sweep —
+  solver-side build; freeze window closes 2026-08-10 ~04:00Z.
 - [open] Real ultra-absorber design to replace `absorber_shell_stub`.
 - Parking lot: TF/SF injector, true PML, finer-grid cloak, fourth panel
   (adjoint discovery), Disclosure physics-annex (humans' call), Blender/UE

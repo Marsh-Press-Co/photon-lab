@@ -1,7 +1,11 @@
 # Bench validation — lab/ engine trust suite
 
-**2026-08-08 · driver: Clyde · status: 🟢 14/14 checks green**
-(run as `--only 1234` [12/12, 70 s] + `--only 5` [2/2, 150 s], same code)
+**2026-08-09 · driver: Clyde · status: 🟢 19/19 checks green**
+(run as `--only 12346` [17/17, 85 s] + `--only 5` [2/2, ~150 s], same code)
+
+Stage 6 (observer camera + emitter) added 2026-08-09 with the emitter
+build; stages 1–5 unchanged and re-verified after the engine grew scene
+self-recording.
 
 The `lab/` engine grew out of exp-000 with what exp-001 needs: conductivity,
 PEC regions, **anisotropic magnetic response** (2×2 inverse-μ tensor,
@@ -31,12 +35,22 @@ Run it:
 | 4 | ceviche | wavelength | 19.80 cells | 20.0 ± 0.5 |
 | 5 | cloak | scattered RMS cloaked/bare | **0.657** | ≤ 0.75 |
 | 5 | cloak | tensor run stable | max 3.37 | finite, < 50 |
+| 6 | observer | empty room returns ~nothing | 0.0125 | < 0.02 |
+| 6 | observer | mirror returns ~everything | 0.955 | 1.00 ± 0.05 |
+| 6 | observer | half-space returns Fresnel 1/9 | **0.1075** | 0.111 ± 0.02 |
+| 6 | observer | Fresnel return is specular | 0.99 in ±12° | ≥ 0.80 |
+| 6 | emitter | save→load→validate round trip | OK | no exception |
 | — | ours-small | wavelength | 19.96 cells | 20.0 ± 0.2 |
 
 Stage 5 diagnostics (info): backscatter −26%, forward −38%. **Beam intensity
 behind the object vs empty space: bare PEC 0.057 → cloaked 0.641** — the
 cloak hands ~11× more of the beam through to the far side. That number is
 exp-001's discriminator, working.
+
+Stage 6 diagnostics (info): the exp-000 dielectric cylinder returns
+**0.057** of the incident beam to an observer at the source — the first
+real observer-record datum (committed artifact,
+`experiments/000-hello-maxwell/artifacts/cylinder`).
 
 ![three solvers](v34_cross.png)
 ![first cloak light](v5_cloak.png)
@@ -56,6 +70,13 @@ exp-001's discriminator, working.
    the tensor machinery, measurably reduces scattering and visibly restores
    the beam behind a metal cylinder. **This is a machinery check, not a
    cloak-quality claim** — quality gets quantified properly in exp-002/003.
+6. **Observer camera + emitter** — the angle-resolved return measurement
+   (`lab/emit.py`: quadrature phasors → Ez/Hy angular-spectrum split →
+   backward flux per angle bin) answers to three analytic anchors before it
+   answers exp-001: empty ~0, mirror ~1, ε=4 half-space = Fresnel's 1/9,
+   specular. Then the emitter writes a real builder scene through
+   `lab.artifacts.save_run` and reads it back validated — the two halves of
+   the contract interoperating.
 
 ## Idealizations and caveats (stated, per lab convention)
 

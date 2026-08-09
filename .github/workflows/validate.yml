@@ -28,10 +28,12 @@ jobs:
           cache: pip
       - name: install bench
         run: pip install -r requirements.txt
-      - name: stages 1-4 (regression · impedance · cross-solver)
-        run: python lab/validation/run_all.py --only 1234
+      - name: stages 1-4 + 6 (regression · impedance · cross-solver · observer/emitter)
+        run: python lab/validation/run_all.py --only 12346
       - name: stage 5 (cloak smoke)
         run: python lab/validation/run_all.py --only 5
+      - name: committed artifacts pass the Evidence Gate
+        run: python -m lab.artifacts check experiments/*/artifacts/*
       - name: upload figures
         if: always()
         uses: actions/upload-artifact@v4

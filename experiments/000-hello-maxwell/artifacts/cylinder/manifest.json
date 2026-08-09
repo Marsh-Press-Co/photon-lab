@@ -1,0 +1,66 @@
+{
+  "created_utc": "2026-08-09T06:13:45.696727+00:00",
+  "engine_commit": "bff5f69192094b536953aa591f5a2616d244edd8",
+  "experiment": "exp-000",
+  "grid": {
+    "absorb": 36,
+    "cells_per_lambda": 20,
+    "courant_frac": 0.99,
+    "nx": 720,
+    "ny": 440
+  },
+  "lambda_nm": 600.0,
+  "npz_sha256": "6a463e2fa1e6f58efb1468f321221d20932d62eab6485e375cd0f8973a16d0dc",
+  "objects": [
+    {
+      "params": {
+        "cx": 302,
+        "cy": 220,
+        "eps_r": 4.0,
+        "r": 40
+      },
+      "type": "dielectric_cylinder"
+    }
+  ],
+  "observer": {
+    "normalization": "vacuum_run",
+    "plane_x": 84,
+    "reference_run": "experiments/000-hello-maxwell/artifacts/empty",
+    "start_step": 1350
+  },
+  "provenance": [
+    {
+      "id": "exp-000",
+      "kind": "experiment"
+    },
+    {
+      "id": "pursue-r1--western_us_event_slides_5.08.2026",
+      "kind": "witness-statement",
+      "note": "the founding statement; exp-001 tests it \u2014 exp-000 is the bench it stands on"
+    },
+    {
+      "id": "Chen-Taflove-Backman-2004-OptExpress",
+      "kind": "paper",
+      "note": "photonic nanojet, reproduced unprompted in this scene"
+    }
+  ],
+  "run": {
+    "quarter_offset_steps": 7,
+    "snapshot_step": 1350,
+    "steps": 1357
+  },
+  "scene": "cylinder",
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "amplitude": 1.0,
+      "edge": 24,
+      "profile": "plane",
+      "ramp_periods": 3.0,
+      "x": 60,
+      "y_hi": 404,
+      "y_lo": 36
+    }
+  ],
+  "suite_status": "19/19 (2026-08-09, incl. observer gates)"
+}
