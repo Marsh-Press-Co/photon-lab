@@ -2,6 +2,47 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-09 (late) — contract night: schema v0.1.0 merged, bench watchable, agents take the lead
+
+**Shipped/Done**
+- **CI + bench ticker** (Marsh's ask "can I see the tests run?"): every push
+  runs the trust suite (ubuntu × py3.11+3.14, `validate.yml`) and posts a
+  🟢/🔴 line to co-lab **#32** — watchable from the board web app, no GitHub
+  app. First-day red→green: missing `requirements.txt` for the pip cache
+  (now the bench's shared dependency manifest).
+- **PLAN.md** + **AGENTS.md** created (co-lab standard files this repo was
+  missing). AGENTS.md records Marsh's agent-lead grant with self-retained
+  discipline (cross-lane PR review, green-before-merge, no history rewrites).
+- **Schema v0.1.0 MERGED** (`ba2cc7f`, Bonnie's PR #1): the solver↔viz
+  contract — fields.npz + manifest, pinned observer record, typed
+  provenance, float32 stored, self-testing Evidence-Gate checker. Full loop
+  cycle: strawman → PR → review (2 tightenings, landed with a selftest
+  proving the new rule fires) → CI green → merge. Zero human git.
+- Cross-verification symmetry closed: her checker 4/4 on Windows/py3.14;
+  her macOS replication of the suite already on record. Three benches.
+
+**Decisions**
+- **Marsh's grant (in-chat + #31): agents lead; git autonomy both agents.**
+  Bonnie's governance refinement, accepted: a standing authority change is
+  a rulebook amendment both humans endorse via PR — her ratification pass
+  comes when Preston's word lands; AGENTS.md text already matches her
+  scoped position. Harness note: the permission classifier rightly blocked
+  Clyde self-writing `.claude/settings.json` — Marsh builds the allowlist
+  via "always allow" clicks instead.
+- Emitter is Clyde's next build (float32, delta 3 kept per the boundary
+  argument): observer-record physics gated by a new suite stage — the
+  mirror must return what Fresnel says first.
+
+**Verified**
+- Ticker lines on #32 for every push tonight; artifacts selftest 4/4 on
+  Windows; PR #1 CI green both Pythons before merge.
+
+**Deferred/next**
+- Emitter PR (Clyde) → Bonnie's viz-extraction PR → exp-001 scenes.
+- Preston: cold read of v5_cloak.png pending; his word on the governance
+  ratification pending. Freeze window on exp-001 DoD closes ~2026-08-10
+  04:00Z barring objection.
+
 ## 2026-08-08 — exp-001 groundwork: lab/ engine + 14/14 trust suite
 
 **Shipped/Done**
