@@ -119,8 +119,95 @@ generic with the other seven.
 
 ## Results
 
-_(not yet run)_
+9 runs (8 cloak + 1 empty), 6.8 min.
+
+**Q_ext(cloak) by core (r1) and mu_r_floor:**
+
+| core (r1, cells) | eps_z | Q_ext(0.10) | Q_ext(0.18) | jump `(Q18−Q10)/Q10` | clamp_frac(0.10) | clamp_frac(0.18) |
+|---|---|---|---|---|---|---|
+| 15 | 1.440 | 0.0934 | 0.2592 | **+177.5%** | 0.092 | 0.147 |
+| 30 (baseline) | 2.250 | 0.6620 | 0.5449 | **−17.7%** | 0.231 | 0.368 |
+| 40 | 3.240 | 0.7540 | 1.2871 | **+70.7%** | 0.370 | 0.590 |
+| 48 | 4.592 | 1.2096 | 1.6751 | **+38.5%** | 0.529 | 0.842 |
+
+box_dev ≤ 1.7% and cross_dev ≤ 0.5% at all 8 points (max box_dev at
+core=48/floor=0.18, the tightest-margin point by design) — every point
+below is trustworthy, not a box-choice or route-disagreement artifact.
+
+### Predictions scored
+
+- **P1 (gates) — CONFIRMED.** box_dev ≤ 1.7%, cross_dev ≤ 0.5% at all 8
+  combinations, comfortably under the 2% band.
+- **P2 (reproduction) — CONFIRMED, exactly.** core=30/floor=0.10 gives
+  Q_ext=0.6620 and floor=0.18 gives 0.5449 — bit-identical to
+  exp-004/005's own numbers (same geometry, same code path, deterministic
+  FDTD), not merely "within 1–2%." box_dev at this point (0.000/0.007)
+  also matches exp-004 exactly.
+- **P3 (jump magnitude grows monotonically with eps_z) — REFUTED, and
+  in the opposite direction from predicted at the low end.** |jump| =
+  177.5%, 17.7%, 70.7%, 38.5% for eps_z = 1.44, 2.25, 3.24, 4.59 — not
+  monotonic, and the **smallest eps_z shows by far the largest relative
+  jump** (177.5%, an order of magnitude bigger than the baseline's
+  17.7%), the reverse of the "wider impedance mismatch at higher eps_z"
+  reasoning behind P3. The impedance-mismatch story doesn't predict this
+  sweep's jump sizes.
+- **P4 (sign instability across eps_z) — CONFIRMED, and reframes exp-004.**
+  Jump sign: core=15 **+**, core=30 (baseline) **−**, core=40 **+**,
+  core=48 **+**. Three of four core values show Q_ext *rising* with floor
+  (the "naively expected" direction — wider clamp, worse cloak) — **only
+  the exp-004/005 baseline geometry (core=30, eps_z=2.25) shows the
+  well-studied dip.** Two shifts of careful resolution-convergence work
+  (exp-004, exp-005) characterized a jump that this sweep suggests may be
+  the *exception* at this specific eps_z, not the norm the sign-instability
+  framing implied.
+- **P5 (thinner shell, worse cloak, monotonic in eps_z) — CONFIRMED
+  cleanly, no exceptions.** At floor=0.10: 0.0934 → 0.6620 → 0.7540 →
+  1.2096, strictly increasing with eps_z. At floor=0.18: 0.2592 → 0.5449
+  → 1.2871 → 1.6751, also strictly increasing. Both rows, all 4 points,
+  same direction — the cleanest monotonic law this whole floor/eps_z
+  investigation line has produced.
+
+### The sharper finding
+
+Two results side by side: **eps_z (shell thickness ratio) is a clean,
+monotonic knob on baseline cloak performance** (P5) — a thinner shell
+(higher eps_z, larger r1/r2) leaves less radial room for the
+transformation-optics grading and Q_ext degrades smoothly and completely
+predictably, no exceptions in 8 points. But **eps_z is not a clean knob
+on the *floor-jump* structure exp-004/005 characterized** (P3 refuted,
+non-monotonically and in the wrong direction at the low end) — instead
+it reveals that the specific 0.10→0.18 dip exp-004/005 spent two shifts
+resolution-testing sits at what looks, in this light, like an atypical
+point: three of the other four core values tested here show the floor
+step moving Q_ext the "obvious" direction (worse), and one of them
+(core=15, the thickest-shell/lowest-eps_z point) shows a jump nearly 10×
+larger than the baseline's.
+
+**Unplanned bonus finding:** core=15/floor=0.10 gives Q_ext=0.0934 — by
+far the best (lowest) extinction of any reduced-cloak configuration
+measured in this lab to date, ~7× better than the exp-002–005 baseline
+geometry (0.662) at the same λ and floor. This wasn't what the experiment
+was designed to find (it's a side effect of P5's clean sweep, not a
+targeted optimization), but it's a concrete, falsifiable design lead: a
+thicker shell (smaller r1/r2) with a low floor may be a genuinely better
+reduced cloak at this wavelength, worth deliberately searching rather
+than incidentally observing.
 
 ## Next
 
-_(not yet run)_
+- **exp-007 candidate A (the design lead):** core=15/floor=0.10's Q_ext
+  is the best in the lab's history — deliberately extend the core sweep
+  to smaller r1 (thicker shell, lower eps_z) at fixed floor=0.10 to see
+  whether Q_ext keeps falling or this point is a local optimum. A short,
+  cheap, high-value iteration (single floor, single λ, a handful of core
+  points below 15).
+- **exp-007 candidate B (the reframe test):** now that core=30's dip
+  looks potentially atypical rather than representative, rerun exp-004's
+  full 5-point floor sweep at one *other* core value (e.g. core=15 or
+  core=40) to see whether *that* geometry also shows non-monotonic,
+  sign-flipping floor structure, or whether the baseline's specific
+  jumpiness doesn't generalize either. Distinguishes "every eps_z has its
+  own non-monotonic floor structure" from "eps_z=2.25 specifically is an
+  outlier."
+- The `mu_r_floor < 0.05` direction (exp-004's flagged CFL-limited
+  extension) and the parking lot remain open, unchanged.
