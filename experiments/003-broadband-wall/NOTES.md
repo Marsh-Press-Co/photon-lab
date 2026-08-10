@@ -94,7 +94,105 @@ have data for.
   the scaling exercise). A control that drifts would mean the scaling
   harness itself has a bug, not new physics.
 
+## Method amendment — a domain-sizing bug, caught before trusting the data
+
+First run (N=560, box halves scaled from exp-002's CX=252 center, same
+formula as everything else) blew up **box independence** at the largest
+scale factor (λ=420nm, f=1.4286): box_dev 2–6 (200–600%!) vs 0.003–0.009
+at every other sweep point, uniformly across all three scenes — a
+same-sized failure on the plain PEC reflector as on the cloak, which
+ruled out "cloak physics" as the cause immediately. Root cause: box_b's
+edge sat only 19 cells from the absorbing boundary at that factor (margin
+shrinks as `212 − box_half·f`, unnoticed when the margin was eyeballed
+only at f=1 during design). Patching only the broken point would have
+introduced exactly the domain-size confound this experiment exists to
+eliminate, so the whole domain was grown instead (N 560→680, CX/CY
+252/280→300/300, STEPS 3200→3600, plus an explicit ≥60-cell margin
+assertion) and the **full sweep was rerun** — nothing from the first run
+is in the numbers below. Post-fix: box_dev ≤ 1.1%, cross-route agreement
+≤ 0.2%, at all 6×3 = 18 scene/λ combinations.
+
 ## Results
 
-*(pending — machinery reused, no new trust-suite stage needed; running
-next.)*
+18 scene/λ combinations, 21 min (24 runs incl. empty references).
+
+| λ (nm) | elec (cloak) | Q_ext refl | Q_ext abs | abs/ext | back (abs) | **Q_ext cloak** | abs/ext (cloak) | back_frac (cloak) | box_dev max |
+|---|---|---|---|---|---|---|---|---|---|
+| 420 | 12.86 | 2.134 | 1.571 | 0.514 | 5e-8 | **0.460** | −0.003 | 0.235 | 0.004 |
+| 480 | 11.25 | 2.132 | 1.558 | 0.514 | 2e-7 | **0.491** | 0.010 | 0.196 | 0.003 |
+| 540 | 10.00 | 2.176 | 1.543 | 0.513 | 7e-7 | **0.408** | −0.001 | 0.220 | 0.001 |
+| 600 | 9.00 | 2.207 | 1.539 | 0.512 | 2e-6 | **0.386** | 0.006 | 0.256 | 0.003 |
+| 660 | 8.18 | 2.240 | 1.527 | 0.512 | 6e-6 | **0.323** | 0.010 | 0.305 | 0.011 |
+| 750 | 7.20 | 2.240 | 1.514 | 0.513 | 4e-5 | **0.318** | 0.001 | 0.285 | 0.007 |
+
+(elec = 2·R_outer(fixed nm) / λ, the object's electrical size; box_dev =
+|σ_ext(box A) − σ_ext(box B)| / σ_ext(box A); i_inc = 2.4849 identically
+at every λ, as expected — cpl fixed means the empty-room physics genuinely
+does not know which nm label we attached to it, a free consistency check
+on the harness.)
+
+### Predictions scored
+
+- **P1 (gates) — CONFIRMED**, after the domain fix above: box_dev ≤ 1.1%
+  and cross-route agreement ≤ 0.2% at every point, both comfortably under
+  the 2% band.
+- **P2 (reproduction check) — CONFIRMED.** The λ=600 point (same cpl,
+  same integer radii/box halves as exp-002's λ=600 run, different domain
+  center/size) reproduces exp-002 tightly: Q_ext reflector 2.207 vs
+  2.208 (0.03%), absorber 1.539 vs 1.539 (0.02%), cloak 0.386 vs 0.384
+  (0.5%). The new harness is trustworthy before trusting its new points.
+- **P3 (the core test) — partially confirmed, partially refuted.** With
+  resolution now held fixed, the cloak's Q_ext still falls net across the
+  sweep — 0.460 at 420nm to 0.318 at 750nm, a 31% drop — confirming the
+  red-side improvement is not purely a resolution artifact: exp-002's
+  finer grid at long λ was not manufacturing the trend. But the sequence
+  is **not monotonic**: 480nm (0.491) sits *above* both 420nm (0.460) and
+  540nm (0.408) — a bump exp-002's 3-point sweep could not have shown.
+  Something structural happens between elec ≈ 11–13 that a clean
+  (defect/λ)ⁿ story doesn't predict.
+- **P4 (rough exponent) — REFUTED.** Log-log fit of Q_ext(cloak) vs
+  electrical size across all 6 points: **slope ≈ 0.79 (R² = 0.87)**,
+  well below the predicted [1.5, 3.0] band. Whatever is driving the
+  red-side improvement, it is far shallower than a (defect/λ)² law —
+  closer to linear-in-electrical-size than quadratic. The 480nm bump
+  drags the fit down further (a slope fit to the 4 monotonic points
+  540→750 alone is closer to ~0.9, still nowhere near 2) — this isn't
+  just noise from one outlier point.
+- **P5 (controls) — CONFIRMED.** Reflector Q_ext stays in [2.13, 2.24]
+  (< 5% spread, inside the predicted ±10% band) — same mild red-drift
+  exp-002 saw, scale-invariant as predicted, so the scaling harness isn't
+  itself introducing drift. Absorber abs/ext holds at 0.512–0.514 and
+  back_frac stays ≤ 4×10⁻⁵ at every λ (three orders of magnitude inside
+  the ≤10⁻³ ask) — broadband-black character survives the geometry
+  rescaling exercise untouched.
+
+### The finding
+
+**The red-side improvement is real, not a resolution artifact — exp-001's
+flagged confound is resolved — but it is not the clean (defect/λ)² story
+exp-002 guessed at.** Holding cells-per-λ fixed removes the numerical
+explanation cleanly (P2's reproduction + P3's confirmed net trend), so
+whatever produces exp-002's asymmetry lives in the field's actual
+interaction with the cloak's fixed-parameter shell, not in grid error.
+But the relationship is shallower (~elec^0.8, not elec²) and has real
+structure the 3-point sweep hid: a local rise at 480nm before the
+familiar improvement resumes. One candidate explanation, not yet tested:
+the mu_r clamp band (§ Method, `schurig_reduced_cloak_tm`'s
+`mu_r_floor=0.05`) has a *fixed radial extent relative to r1* by
+construction (~0.29·r1, see materials.py's derivation comment) — as the
+whole cloak scales, that band's absolute cell-width scales too, but its
+angular/staircase interaction with the fixed grid does not scale the same
+way, which could produce exactly this kind of non-monotonic residual.
+Distinguishing "clamp-band effect" from "staircase effect" would need a
+sweep that varies `mu_r_floor` independently of geometry — logged below,
+not run this shift.
+
+## Next
+
+- **exp-004 candidate:** hold electrical size and cpl both fixed, sweep
+  `mu_r_floor` alone, to test whether the clamp band (not staircase) is
+  responsible for the 480nm bump and the sub-quadratic exponent.
+- exp-001 observer-table rerun post phasor fix — still queued.
+- Parking lot (unchanged from exp-002): absorber-vs-cloak hybrid (eat the
+  backward glint), Q_ext vs incidence angle, near-to-far transform for
+  true far-field patterns.

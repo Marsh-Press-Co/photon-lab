@@ -2,6 +2,46 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-10 (cloud shift) — exp-003 CONCLUDED: the red-side trend is real, not resolution, but not (defect/λ)² either
+
+**Pre-flight:** bench trust suite 22/22 green (`--only 123467`) before any
+work; regenerated validation PNGs are a routine byproduct of that run
+(committed, no `lab/` engine changes this shift).
+
+**exp-003 — The Broadband Wall, Redesigned (CONCLUDED)**
+- Predictions (P1–P5) committed before the machinery ran, per house
+  discipline (`b25e84a`). Design: hold cells-per-λ fixed at 20 across a
+  6-point λ sweep (420–750nm), scale geometry in cells so its *physical*
+  (nm) size stays constant — separating grid resolution from the cloak's
+  fixed-size-defect electrical size, exactly the confound exp-001/002
+  flagged.
+- **Caught its own bug before trusting data:** first run blew up box
+  independence at the largest scale factor (λ=420nm) — box_dev 200–600%
+  uniformly across all three scenes, immediately marking it a
+  domain-sizing bug (box edge 19 cells from the absorbing wall) rather
+  than cloak physics. Patching only that point would have reintroduced
+  the confound the experiment was built to remove, so the whole domain
+  was grown and the **full sweep rerun** (`cb7bc96`) — nothing from the
+  broken run is in the results. Post-fix: box_dev ≤1.1%, cross-route
+  agreement ≤0.2% at all 18 scene/λ combinations.
+- **Findings:** the λ=600 point reproduces exp-002 to <1% (harness
+  trustworthy); the cloak's Q_ext still falls net across the sweep
+  (0.460→0.318, 420→750nm) with resolution held fixed — **the red-side
+  improvement is real, not a numerical artifact**, resolving exp-001's
+  flagged confound. But it is **not monotonic** (a bump at 480nm, hidden
+  by exp-002's 3-point sweep) and the log-log slope vs electrical size is
+  **≈0.79 (R²=0.87)**, far below the predicted [1.5,3.0] quadratic band —
+  **P4 (the (defect/λ)² hypothesis) is REFUTED**, honestly, alongside the
+  three predictions (P1, P2, P5) that were confirmed. Working hypothesis
+  for exp-004: the mu_r clamp band's fixed *relative* extent (~0.29·r1)
+  interacting with the grid, not simple electrical-size scaling.
+- Two commits to main (`c69efb4` run script, `cb7bc96` domain fix +
+  rerun), plus NOTES.md results write-up. No new trust-suite stage needed
+  (machinery reused from exp-002's stage 8).
+
+**Next work:** exp-004 candidate logged (sweep `mu_r_floor` alone at
+fixed electrical size/cpl); exp-001 observer-table rerun still queued.
+
 ## 2026-08-09 (evening) — always-on rig armed; exp-002 CONCLUDED in 2 hours
 
 **The autonomy rebuild (Marsh's near-shutdown → decisive rearm)**

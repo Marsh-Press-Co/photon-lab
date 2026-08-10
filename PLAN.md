@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-09)
+## Current state (2026-08-10, cloud shift)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -35,6 +35,10 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 - exp-001 The Flashlight Statement: DoD proposed (3 scenes + observer
   figure + NOTES + 3-λ sweep), freeze window open ~24h from
   2026-08-09 04:00Z.
+- exp-002 CONCLUDED — "invisible" has a direction (see below).
+- exp-003 CONCLUDED (this shift) — the red-side improvement survives a
+  resolution-controlled sweep but isn't the quadratic law guessed at; a
+  non-monotonic bump at 480nm is the open thread into exp-004.
 
 ## Next work
 
@@ -66,11 +70,26 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   machinery (stage 8) + 12-run sweep. Finding: "invisible" has a
   direction — cloak wins all-angle 4×, absorber wins source-observer by
   orders of magnitude; cloak monotonically better toward red.
-- [open — NEXT, cloud-shift-ready] **exp-003 the broadband wall,
-  redesigned**: fixed cells-per-λ with scaled geometry to separate grid
-  resolution from fixed-size-defect electrical size; test the (defect/λ)²
-  hypothesis against the monotonic red-side improvement. Sweep more
-  wavelengths (≥6 points).
+- [done 2026-08-10, cloud shift] **exp-003 the broadband wall,
+  redesigned** — cpl fixed at 20 across a 6-point λ sweep (420–750nm),
+  geometry scaled in cells to hold physical (nm) defect size constant.
+  First run caught its own domain-sizing bug (box independence blew up
+  at the largest scale factor — a harness bug, not physics) before any
+  result was trusted; full sweep rerun clean (box_dev ≤1.1%, cross_dev
+  ≤0.2%) after fixing it. Findings: (1) the red-side improvement is real
+  and NOT a resolution artifact (λ=600 point reproduces exp-002 to
+  <1%, confirming the harness; net Q_ext(cloak) 0.460→0.318 across the
+  sweep with cpl held fixed) — exp-001's flagged confound is resolved;
+  (2) but it is NOT the (defect/λ)² law hypothesized — log-log slope
+  ≈0.79 (R²=0.87), well below the predicted [1.5,3.0] band; (3) the
+  trend is non-monotonic — a bump at 480nm exp-002's 3-point sweep
+  couldn't have shown. Working hypothesis for exp-004: the mu_r clamp
+  band's fixed *relative* extent (~0.29·r1) interacting with the fixed
+  grid, not simple electrical-size scaling.
+- [open — NEXT, cloud-shift-ready] **exp-004 candidate**: hold electrical
+  size and cpl fixed, sweep `mu_r_floor` alone, to isolate whether the
+  clamp band (vs staircase) drives exp-003's 480nm bump and sub-quadratic
+  exponent.
 - [open — cloud-shift-ready] exp-001 observer-table rerun post phasor fix
   (values shift, verdict stands; refresh NOTES table + results.json).
 - [open] Parking lot: black-lined cloak hybrid (eat the backward glint),
