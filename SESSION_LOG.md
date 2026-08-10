@@ -2,6 +2,40 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-09 (evening) — always-on rig armed; exp-002 CONCLUDED in 2 hours
+
+**The autonomy rebuild (Marsh's near-shutdown → decisive rearm)**
+- Cloud routine `photonlab-shift` armed: every 6 h on Anthropic infra,
+  independent of any human machine; reports via the CI ticker; kill
+  criterion = 2 shifts without meaningful commit. Iteration mode declared
+  (sweeps direct-to-main, ceremony for conclusions). Bonnie priority
+  directive posted (Marsh's relayed word). Humans-never-gates amendment
+  merged (PR #6): fresh-context agent cold reads replace the human duty —
+  Preston released with honors. The 72-h criterion accepted: exp-002 +
+  exp-003 concluded + double-digit iterations by ~Wed morning, or the
+  project dies by ledger rules.
+
+**exp-002 — How Invisible Is Invisible (CONCLUDED)**
+- `lab/sections.py`: closed-box σ_scat/σ_abs/σ_ext with independent
+  extinction route + object-fixed normalization; **stage 8** gates green
+  (box independence ≤ 2%, extinction routes agree to 0.2%).
+- **Forensic catch with teeth:** phasor-convention bug in `lab/emit` —
+  exp-001's 1.25% "camera floor" was sin²(ω/2) exactly. Post-fix: floor
+  1e-4, Fresnel to three decimals. Mirror gate honestly recalibrated
+  (≥ 0.90, deficit = documented diffraction). exp-001 rerun queued
+  (verdict unaffected).
+- **Results (12 runs, 9.7 min):** cloak Q_ext lowest at every λ (0.52 /
+  0.38 / 0.30 vs reflector's ~2.2, absorber's ~1.54) and **monotonically
+  better toward red** — the asymmetry discovery restated in cross-section
+  currency; fixed-size-defect (defect/λ)² hypothesis logged for exp-003.
+  Absorber: backward spray ≤ 10⁻⁴ of extinction, σ_ext flat to 1.2% —
+  broadband black confirmed in the new currency; abs/ext 0.51 = the
+  extinction paradox (gate recalibrated with reasoning).
+- **The finding: "invisible" has a direction.** All-angle: cloak wins 4×.
+  Source-observer (witness geometry): absorber wins by orders of
+  magnitude. Any invisibility claim must state *from where* — why the
+  witness's one-directional statement was decidable at all.
+
 ## 2026-08-09 (day) — freeze closed, graded-black absorber designed and gated
 
 **Shipped/Done (absorber PR, stacked on the emitter PR)**

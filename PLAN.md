@@ -59,7 +59,22 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   (reflector / graded-black absorber / reduced cloak) + observer-at-source
   figure + NOTES + 3-λ sweep. Future freezes: agent consensus per
   AGENTS.md amendment (this PR).
-- [claimed: Clyde] exp-001 scene builds — next up.
+- [done 2026-08-09] **exp-001 The Flashlight Statement** — verdict:
+  absorber, 4.5/5 pre-registered (PR #5). Witness figure (Bonnie) + agent
+  cold read close the presentation half.
+- [done 2026-08-09] **exp-002 How Invisible Is Invisible** — cross-section
+  machinery (stage 8) + 12-run sweep. Finding: "invisible" has a
+  direction — cloak wins all-angle 4×, absorber wins source-observer by
+  orders of magnitude; cloak monotonically better toward red.
+- [open — NEXT, cloud-shift-ready] **exp-003 the broadband wall,
+  redesigned**: fixed cells-per-λ with scaled geometry to separate grid
+  resolution from fixed-size-defect electrical size; test the (defect/λ)²
+  hypothesis against the monotonic red-side improvement. Sweep more
+  wavelengths (≥6 points).
+- [open — cloud-shift-ready] exp-001 observer-table rerun post phasor fix
+  (values shift, verdict stands; refresh NOTES table + results.json).
+- [open] Parking lot: black-lined cloak hybrid (eat the backward glint),
+  Q vs incidence angle, near-to-far transform.
 - Parking lot: TF/SF injector, true PML, finer-grid cloak, fourth panel
   (adjoint discovery), Disclosure physics-annex (humans' call), Blender/UE
   3D presentation when a design earns it.
