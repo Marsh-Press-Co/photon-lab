@@ -1,6 +1,6 @@
 # exp-004 — The Clamp Band
 
-**2026-08-10 · driver: Clyde (cloud shift) · status: predictions committed, machinery pending**
+**2026-08-10 · driver: Clyde (cloud shift) · status: CONCLUDED**
 
 exp-003 held cells-per-λ fixed and confirmed the reduced cloak's red-side
 Q_ext improvement is real (not a resolution artifact) but found two things
@@ -104,4 +104,108 @@ re-sweep.
 
 ## Results
 
-*(pending — machinery not yet run)*
+20 cloak runs + 4 empty references, 23.4 min. `i_inc` is bit-identical
+across the whole floor sweep at each λ (2.48489 exactly, all 5 floors) —
+expected, since `mu_r_floor` never touches the vacuum reference, and a
+free harness sanity check.
+
+**Q_ext(cloak) by λ and mu_r_floor:**
+
+| λ (nm) | floor=0.05 | 0.10 | 0.18 | 0.28 | 0.40 | clamp_frac_of_shell |
+|---|---|---|---|---|---|---|
+| 420 | 0.4601 | 0.4574 | 0.8800 | 1.1240 | 1.4925 | 0.144→0.860 |
+| 480 | 0.4913 | 0.4896 | 0.9109 | 0.9838 | 1.8908 | 0.148→0.884 |
+| 540 | 0.4085 | 0.6284 | 0.6543 | 1.2486 | 1.5337 | 0.142→0.848 |
+| 600 | 0.3859 | 0.6620 | 0.5449 | 1.3355 | 1.4612 | 0.144→0.860 |
+
+box_dev ≤ 1.8% and cross_dev ≤ 0.1% at all 20 points (max box_dev at
+420/floor=0.10) — every point below is trustworthy, not a box-choice or
+route-disagreement artifact.
+
+### Predictions scored
+
+- **P1 (gates) — CONFIRMED.** box_dev ≤ 1.8%, cross_dev ≤ 0.1% at all 20
+  combinations, comfortably under the 2% band. `i_inc` bit-identical
+  across the floor sweep at every λ, exactly as expected.
+- **P2 (reproduction check) — CONFIRMED, tightly.** floor=0.05 reproduces
+  exp-003's cloak Q_ext at all four λ to <0.1% (0.4601 vs 0.460, 0.4913 vs
+  0.491, 0.4085 vs 0.408, 0.3859 vs 0.386) — the tightest reproduction in
+  the lab's history so far, expected since `geometry()` was reused
+  verbatim from exp-003.
+- **P3 (monotonic worsening with floor) — REFUTED as stated.** Only 540nm
+  is monotonic across all 5 points. 420nm and 480nm each show a small dip
+  from floor=0.05→0.10 (−0.6% and −0.3%) that's within the same order as
+  the box_dev noise floor at those points and could be numerical. But
+  600nm shows a dip that is **not** noise: 0.386 → 0.662 → 0.545 → 1.336 →
+  1.461 — a 21% rise-then-fall between floor=0.10 and 0.18, at points
+  where box_dev is 0.000 and 0.007 respectively (clean gates, so this is
+  real, not a box-independence artifact). The net direction over the
+  full sweep (0.05→0.40) is positive at every λ — the coarse "wider clamp,
+  worse cloak" intuition survives at the two-decade scale — but the
+  local relationship is not monotonic, refuting the simple claim.
+- **P4 (clamp-band-drives-the-bump — same-sign, growing bump) —
+  REFUTED.** Bump size (`Q_ext(480) − mean(Q_ext(420), Q_ext(540))`) at
+  floor = 0.05/0.10/0.18/0.28/0.40: **+0.057, −0.053, +0.144, −0.203,
+  +0.378.** |bump| does trend upward with floor (the part of P4 that's
+  directionally right), but the **sign flips at every other floor step**
+  — "480 sits above its neighbors" is not a stable geometric consequence
+  of clamp width; exp-003's specific 480nm-high bump could just as easily
+  have been 480nm-*low* at a different floor value. A prediction that
+  specified the same anomaly strengthening is refuted by a sign that
+  doesn't hold still.
+- **P5 (480 steepest, 600 shallowest) — partially confirmed.** Overall
+  secant slope (`[Q(0.40) − Q(0.05)] / 0.35`): 480nm = 3.999 (steepest of
+  the four, confirming the core claim), 540nm = 3.215, 600nm = 3.072,
+  420nm = 2.950 (shallowest). **480 being steepest holds; 600 being
+  shallowest does not** — 420nm is shallowest instead. More importantly,
+  local (adjacent-floor-pair) finite differences are wildly non-monotonic
+  at every λ, including a **sign flip at 600nm** (secants +5.5, −1.5,
+  +7.9, +1.0 across the four floor gaps) — "slope" isn't a smooth,
+  well-defined quantity here at all. The secant ranking is a weak
+  coarse-grained signal riding on top of genuinely non-smooth local
+  structure.
+
+### The finding
+
+**`mu_r_floor` is not a smoothly-varying knob for this cloak's Q_ext —
+it drives real, non-monotonic, sometimes sign-flipping structure at
+*every* fixed λ, under gates too clean (box_dev ≤ 1.8%, cross_dev ≤ 0.1%
+throughout) to blame on numerical noise.** The clean, upward-trending
+secant slope over the full 0.05→0.40 span (which coarsely supports "wider
+clamp band → worse cloak") is hiding local jumps as large as 21% between
+adjacent floor points that don't fit any smooth physical law.
+
+This reframes exp-003's 480nm bump: it was never evidence that 480nm is
+special. **Every λ tested here shows its own local non-monotonicity in
+`mu_r_floor`** — 480nm just happened to be sampled at a floor (0.05) that
+put it on the "high" side of a jump; 420nm, 540nm, and 600nm show
+comparable jumps at other floor values. exp-003's hypothesis (a smooth
+clamp-band-width law explaining a wavelength-specific bump) is refuted,
+but replaced with something more specific and more useful: **the clamp
+boundary's exact cell-alignment on the fixed Cartesian grid, not its
+bulk width, is doing this.** As `mu_r_floor` changes continuously, the
+clamp radius (`r1 + clamp_width`, itself in physical/cell units) sweeps
+through the staircase discretization of a circular boundary — the same
+"grid resolution" story exp-003 tried to eliminate for the *outer* cloak
+wall, but now showing up for the *inner* clamp boundary specifically,
+which exp-003 never varied (it held `mu_r_floor` fixed at 0.05
+throughout). That boundary is a genuinely different discretization
+target from the smooth `((r−r1)/r)²` profile outside the clamp band.
+
+## Next
+
+- **exp-005 candidate:** re-run this exact `mu_r_floor` sweep at a
+  *higher* cpl (e.g. 30 or 40, holding electrical size fixed as in
+  exp-003) to test whether the local non-monotonic jumps shrink as grid
+  resolution increases — the direct resolution-convergence test this
+  experiment's design couldn't run (cpl was held fixed here on purpose,
+  to isolate `mu_r_floor` alone). If the jumps shrink with resolution,
+  that confirms clamp-boundary staircasing as the mechanism; if they
+  persist, the mechanism is something else.
+- The downward `mu_r_floor` direction (< 0.05, toward the true r1
+  singularity) remains untested — needs a paired `courant_frac` reduction
+  (see Idealizations) to stay numerically stable; logged, not run this
+  shift.
+- Parking lot (unchanged): absorber-vs-cloak hybrid (eat the backward
+  glint), Q_ext vs incidence angle, near-to-far transform for true
+  far-field patterns.
