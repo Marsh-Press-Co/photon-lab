@@ -89,8 +89,85 @@ dimensionless, directly comparable ratio.
 
 ## Results
 
-_pending — run not yet executed._
+8 runs (7 bare-disk cores + 1 empty), 5.1 min.
+
+**Bare-disk Q_ext vs cloaked Q_ext (exp-006/007) at the same 7 core radii,
+λ=600nm, both normalized by the same fixed `2·R2_CELLS=180`:**
+
+| core (r1, cells) | Q_ext (bare) | Q_ext (cloaked) | ratio cloaked/bare | box_dev | cross_dev |
+|---|---|---|---|---|---|
+| 8 | 0.2211 | 0.0429 | **0.194** | 0.013 | 0.002 |
+| 10 | 0.2679 | 0.0520 | 0.194 | 0.012 | 0.002 |
+| 12 | 0.3061 | 0.0591 | 0.193 | 0.010 | 0.001 |
+| 15 | 0.3752 | 0.0934 | 0.249 | 0.002 | 0.001 |
+| 20 | 0.4911 | 0.2592 | 0.528 | 0.009 | 0.001 |
+| 25 | 0.6189 | 0.4913 | 0.794 | 0.011 | 0.001 |
+| 30 | 0.7356 | 0.6620 | **0.900** | 0.004 | 0.001 |
+
+box_dev ≤ 1.3%, cross_dev ≤ 0.2% at every point — the tightest gates of
+any experiment in this line so far.
+
+### Predictions scored
+
+- **P1 (gates) — CONFIRMED, and tighter than predicted.** box_dev ≤ 1.3%,
+  cross_dev ≤ 0.2% at all 7 points — cross_dev in particular is roughly
+  5–10× tighter than the cloaked runs' typical ≤1% (a bare PEC disk is a
+  simpler scatterer than a graded anisotropic shell, as expected).
+- **P2 (bare Q_ext also rises with radius) — CONFIRMED.** Strictly
+  monotonic: 0.2211 → 0.2679 → 0.3061 → 0.3752 → 0.4911 → 0.6189 →
+  0.7356. Ordinary physics, exactly as expected, and — as flagged going
+  in — not itself evidence about the cloak.
+- **P3 (ratio rises as core shrinks) — REFUTED, and the refutation is
+  good news.** The ratio does the opposite of what was predicted: it
+  *falls* as core shrinks, from 0.900 at core=30 down to a plateau of
+  ~0.193 at core=8–12 (with a small, likely-within-noise dip from 0.194
+  to 0.193 between core=10 and 12, well inside the 1.3% box_dev floor).
+  The pre-registered fallback interpretation for exactly this outcome
+  said it plainly: *"A flat or falling ratio as r1 shrinks... [means]
+  the thin shell is doing more, not less, relative suppression at small
+  core — strengthening exp-007's design-lead claim rather than
+  undercutting it."* That is the honest reading here. At the best
+  design point (core=8), the shell suppresses scattering to ~19% of
+  what the same-size bare PEC disk would produce; at the exp-002–005
+  baseline geometry (core=30), the shell only gets it down to ~90% of
+  bare — the cloak there is barely doing anything relative to the
+  object it's hiding. exp-007's ~15× absolute Q_ext improvement is
+  **not** primarily "there's less object to hide" — the relative
+  cloaking effectiveness itself is ~4.6× better at core=8 than at
+  core=30 (ratio 0.194 vs 0.900).
+- **P4 (magnitude floor, no crossover) — CONFIRMED.** Bare Q_ext exceeds
+  cloaked Q_ext at all 7 points, including the closest approach at
+  core=30 (0.7356 vs 0.6620, bare still 11% higher). No crossover
+  anywhere in the sweep — the shell is doing *some* real suppression
+  work at every scale tested, consistent with P4's framing, and the
+  margin widens sharply as core shrinks (P3's finding).
+
+### Reframed headline
+
+exp-007's caveat is resolved, and resolved in the design lead's favor:
+the core=8 result is not a trivial "small object scatters less" artifact
+dressed up as a cloak improvement. The bare-disk control shows the
+*opposite* structure — the shell's own relative effectiveness improves
+sharply as it thickens (small core, large eps_z-ish geometry), fully
+consistent with exp-006's independent finding that thinner shells are
+worse. Two separate measurements (exp-006's fixed-r2 eps_z sweep, and
+this bare-vs-cloaked ratio) now agree: **a thicker shell is a genuinely
+better cloak**, not just a smaller hidden object. core=8/floor=0.10
+stands as the lab's best-characterized cloak design, with its caveat now
+closed rather than open.
 
 ## Next
 
-_pending._
+- The ratio's own shape is interesting and untraced: near-flat
+  (~0.193–0.194) across core=8–12, then a real rise starting at
+  core=15. Worth knowing whether that plateau continues below core=8 or
+  the ratio keeps falling — natural continuation of exp-007's
+  downward-core exploration, now with the control in hand to interpret
+  it correctly as it goes.
+- exp-007's own queued follow-up stands: check whether the core=8 design
+  lead (and now, its genuine relative-effectiveness advantage) survives
+  across λ (exp-002/003's broadband-wall line), not just the single
+  600nm anchor point every experiment in this thread has used.
+- exp-006's still-open candidate B (rerun exp-004's full floor sweep at
+  a non-baseline core, e.g. core=15 or 40) remains queued and untouched
+  by this experiment.
