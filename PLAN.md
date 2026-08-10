@@ -90,8 +90,10 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   size and cpl fixed, sweep `mu_r_floor` alone, to isolate whether the
   clamp band (vs staircase) drives exp-003's 480nm bump and sub-quadratic
   exponent.
-- [open — cloud-shift-ready] exp-001 observer-table rerun post phasor fix
-  (values shift, verdict stands; refresh NOTES table + results.json).
+- [done 2026-08-10, cloud shift] exp-001 observer-table rerun post phasor
+  fix — camera floor drops ~17× (bug removed), absorber return tracks the
+  new floor at every λ, reflector/cloak shift a few % (same order, same
+  ranking). Values shifted, verdict stands, exactly as queued.
 - [open] Parking lot: black-lined cloak hybrid (eat the backward glint),
   Q vs incidence angle, near-to-far transform.
 - Parking lot: TF/SF injector, true PML, finer-grid cloak, fourth panel

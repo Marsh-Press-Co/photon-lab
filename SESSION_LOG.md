@@ -39,8 +39,18 @@ work; regenerated validation PNGs are a routine byproduct of that run
   rerun), plus NOTES.md results write-up. No new trust-suite stage needed
   (machinery reused from exp-002's stage 8).
 
+**exp-001 — observer-table rerun post phasor fix (queued since exp-002,
+closed this shift)**
+- 12 runs, 6.7 min, artifact Evidence Gate 0 failures (re-verified
+  independently with `lab.artifacts check` after the run). Camera floor
+  drops ~17× (the sin²(ω/2) bug artifact gone); absorber return tracks
+  the new, tighter floor at every λ — the "equals empty-space floor"
+  clause reads more precisely true post-fix. Reflector/cloak returns
+  shift a few percent, same order of magnitude, same ranking at every λ.
+  **Values shifted, verdict stands**, exactly as predicted when queued.
+
 **Next work:** exp-004 candidate logged (sweep `mu_r_floor` alone at
-fixed electrical size/cpl); exp-001 observer-table rerun still queued.
+fixed electrical size/cpl).
 
 ## 2026-08-09 (evening) — always-on rig armed; exp-002 CONCLUDED in 2 hours
 

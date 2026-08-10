@@ -1,6 +1,6 @@
 {
-  "created_utc": "2026-08-09T18:36:51.584590+00:00",
-  "engine_commit": "0ac8a89f56328fdfb72eaa22ab372c586c1b52e5",
+  "created_utc": "2026-08-10T01:20:52.835261+00:00",
+  "engine_commit": "e34588281734fabceb99d29477190c5f4344da59",
   "experiment": "exp-001",
   "grid": {
     "absorb": 40,
@@ -10,7 +10,7 @@
     "ny": 560
   },
   "lambda_nm": 450.0,
-  "npz_sha256": "abb19ec5682f5adeac33846aa6274479de45f5e45ca913f052adb3bb7b9abc62",
+  "npz_sha256": "b617c03da77d1d8b3c49f10c045de3c78226da7bb2f4f208debeb051f10fb72e",
   "objects": [
     {
       "params": {

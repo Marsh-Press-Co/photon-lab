@@ -81,6 +81,36 @@ through the Evidence Gate.)*
 | cloak | 600 | 0.0425 | 0.0013 | **0.636** | 0.463 |
 | cloak | 750 | 0.0390 | 0.0009 | 0.695 | 0.419 |
 
+### Rerun post phasor-fix (2026-08-10, cloud shift — queued since exp-002)
+
+exp-002 found and fixed a phasor-convention bug in `lab/emit` whose
+signature was exactly this table's "camera floor" (1.25%-scale values =
+sin²(ω/2) exactly). Rerunning exp-001 on the fixed code (12 runs, 6.7 min,
+artifact gate 0 failures) refreshes observer return and camera floor;
+beam-behind and scattered RMS come from `em.quarter_pair`'s envelope, a
+code path the bug never touched, so those columns are unchanged from
+above (reproduced below for one table to read against).
+
+| Scene | λ (nm) | Observer return | Camera floor | Beam-behind | Scattered RMS |
+|---|---|---|---|---|---|
+| reflector | 450 | 0.0656 | 0.00014 | 0.042 | 0.702 |
+| reflector | 600 | 0.0655 | 0.00007 | 0.057 | 0.703 |
+| reflector | 750 | 0.0658 | 0.00007 | 0.078 | 0.702 |
+| absorber | 450 | **0.00014 (= floor)** | 0.00014 | 0.015 | 0.755 |
+| absorber | 600 | **0.00007 (= floor)** | 0.00007 | 0.018 | 0.737 |
+| absorber | 750 | **0.00009 (= floor)** | 0.00007 | 0.017 | 0.750 |
+| cloak | 450 | 0.0619 | 0.00014 | 0.303 | 0.532 |
+| cloak | 600 | 0.0419 | 0.00007 | **0.636** | 0.463 |
+| cloak | 750 | 0.0396 | 0.00007 | 0.695 | 0.419 |
+
+The camera floor drops ~17× (the bug's sin²(ω/2) artifact removed, as
+exp-002 diagnosed) and the absorber's return tracks it down to the new,
+tighter floor at every λ — the "equals empty-space floor" clause reads
+*more* precisely true post-fix, not less. Reflector and cloak returns
+shift by a few percent (measurement precision, not a different regime —
+same order of magnitude, same ranking at every λ). **Values shift, verdict
+stands**, exactly as exp-002 predicted when it queued this rerun.
+
 ### Predictions scored
 
 - **P1 (reflector) — CONFIRMED.** Return 28–72× the absorber's; beam-behind
