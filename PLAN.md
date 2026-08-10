@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-10, cloud shift 2)
+## Current state (2026-08-10, cloud shift 3)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -57,6 +57,37 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   the shell's `mu_r` profile against its fixed `eps_z=2.25`, not a grid
   artifact. exp-006 candidate: vary `eps_z` independently (r1/r2 ratio)
   at fixed floor values.
+- exp-006 CONCLUDED (this shift) — isolated `eps_z = (r2/(r2−r1))²`
+  independently of overall cloak scale (fixed outer radius r2=90 cells,
+  swept inner radius r1) at 4 core points × exp-004/005's exact
+  0.10/0.18 floor pair, λ=600nm. Found **two things, not one**: (1) a
+  clean, fully monotonic law — Q_ext(cloak) rises as the shell thins
+  (eps_z grows), holding at both floor values with zero exceptions
+  across 8 points, the cleanest law this whole investigation line has
+  produced; (2) the floor-jump exp-004/005 spent two shifts
+  resolution-testing does **not** track eps_z monotonically — |jump| =
+  177.5%/17.7%/70.7%/38.5% at eps_z=1.44/2.25/3.24/4.59, and the
+  exp-004/005 baseline geometry (eps_z=2.25) is the *only* one of the 4
+  showing a negative jump; the other three all show the "naively
+  expected" direction. Reframes exp-004/005's characterized dip as
+  possibly atypical to that specific eps_z, not the norm. Unplanned
+  bonus: core=15/floor=0.10 gave Q_ext=0.0934, ~7× better than the
+  exp-002–005 baseline (0.6620) — a design lead, not a targeted search.
+- exp-007 CONCLUDED (this shift) — deliberate follow-up to exp-006's
+  design lead: traced Q_ext(eps_z) below core=15 (core=8/10/12/20/25,
+  same λ/floor=0.10). All 3 predictions confirmed: the monotonic law
+  extends cleanly all the way to core=8 (**new best Q_ext=0.0429, ~15×
+  better than baseline**, no reversal — core=15 was not a local
+  minimum), and the rate of improvement slows sharply below core≈15
+  (3–10× shallower per-cell slope than the 20–30 range), consistent
+  with Q_ext approaching a positive residual as the hidden core
+  shrinks. **Honest caveat flagged, not yet resolved:** this curve
+  doesn't separate "smaller PEC core intrinsically scatters less" from
+  "the shell genuinely cloaks better when thicker" — q_ext is
+  normalized by the fixed outer radius throughout so it isn't a
+  normalization artifact, but the missing control (bare, uncloaked PEC
+  disk at the same radii) is exp-008's job before core=8 gets treated
+  as an actual better cloak design.
 
 ## Next work
 
@@ -109,12 +140,23 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 - [done 2026-08-10, cloud shift 2] exp-005 (resolution-convergence check
   on exp-004's clearest jump, cpl 20→30 at 600nm) — run; see Current
   state.
-- **[open — NEXT, cloud-shift-ready] exp-006 candidate**: vary `eps_z`
-  independently of overall cloak scale (change the r1/r2 *ratio*, not
-  just the shared scale factor) at 2–3 fixed `mu_r_floor` values, to test
-  whether the non-monotonic `mu_r_floor` response tracks the
-  eps_z/mu_r_floor impedance relationship directly — exp-005's proposed
-  next single-variable isolation.
+- [done 2026-08-10, cloud shift 3] exp-006 candidate (vary `eps_z`
+  independently of overall cloak scale) — run; see Current state.
+- [done 2026-08-10, cloud shift 3] exp-007 (chasing exp-006's design
+  lead, core=8–25 at fixed floor=0.10) — run; see Current state.
+- **[open — NEXT, cloud-shift-ready] exp-008 candidate**: the missing
+  control from exp-007 — bare, uncloaked PEC disk at radius=8 (and 15,
+  30 for comparison) at the same λ/box/gates, to separate "smaller
+  hidden object trivially scatters less" from "the thicker shell is
+  genuinely cloaking better." Resolves exp-007's flagged caveat before
+  core=8 gets treated as an actual better cloak design. Cheap (3–7
+  runs).
+- [open] **exp-006's reframe, unexplored:** now that core=30/eps_z=2.25
+  looks like it may be the atypical point rather than the norm for
+  floor-jump sign, exp-006's own logged candidate B remains open — rerun
+  exp-004's full 5-point floor sweep at a non-baseline core (e.g.
+  core=15 or core=40) to see whether *that* geometry also shows
+  non-monotonic, sign-flipping floor structure.
 - [open] The `mu_r_floor < 0.05` direction (toward the true r1
   singularity) remains untested — needs a paired `courant_frac` reduction
   for CFL stability (derivation in exp-004 NOTES.md Idealizations).

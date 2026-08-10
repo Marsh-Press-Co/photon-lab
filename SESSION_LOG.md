@@ -2,6 +2,66 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-10 (cloud shift 3) — exp-006, exp-007: eps_z is a clean law on Q_ext but not on the floor-jump, and a design lead worth ~15x
+
+**Pre-flight:** local `main` branch pointer was stale again (HEAD was
+detached at the true tip, `git branch` showed `main` still 5 commits
+behind `origin/main`) — same bookkeeping class of issue as a prior
+shift, fixed with `git checkout -B main origin/main` before touching
+anything. Bench trust suite 22/22 green (`--only 123467`) before, in the
+middle of, and after this shift's work; no `lab/` engine changes.
+
+**exp-006 — The Shell Ratio (CONCLUDED)**
+- Picked up exp-005's queued candidate: isolate `eps_z =
+  (r2/(r2−r1))²` independently of overall cloak scale by holding the
+  *outer* cloak radius r2 fixed and sweeping the *inner* radius r1
+  instead, at 4 core points (eps_z 1.44→4.59) × exp-004/005's exact
+  0.10/0.18 floor pair, λ=600nm. Predictions (P1–P5) committed before
+  the 9-run sweep (`c783486`).
+- **Two findings.** (1) eps_z is a genuinely clean, fully monotonic knob
+  on baseline Q_ext — thinner shell (higher eps_z), worse cloak, no
+  exceptions across 8 points, the cleanest law this floor/eps_z line has
+  produced (P5 confirmed). (2) eps_z does **not** track the floor-jump
+  the way P3 predicted — |jump| = 177.5/17.7/70.7/38.5% across the 4
+  eps_z points, non-monotonic and *largest* at the smallest eps_z, the
+  opposite of the predicted impedance-mismatch direction (P3 refuted).
+  Sharper read: the exp-004/005 baseline geometry (eps_z=2.25) is the
+  *only* one of the 4 points tested here showing a negative jump — three
+  others show the "naive" direction (wider clamp, worse). Two shifts of
+  careful resolution-convergence work may have characterized an atypical
+  point, not the norm (P4 confirmed, reframes the story). Unplanned
+  bonus: core=15/floor=0.10 gave Q_ext=0.0934, ~7× better than the
+  exp-002–005 baseline — a design lead, found incidentally.
+- Gates clean throughout (box_dev ≤1.7%, cross_dev ≤0.5%, tightest at the
+  by-design near-degeneracy point).
+
+**exp-007 — Chasing the Shell-Ratio Design Lead (CONCLUDED)**
+- Deliberate follow-up, same shift: traced Q_ext(eps_z) below core=15
+  (core=8/10/12/20/25, same λ=600nm/floor=0.10) to test whether the
+  design lead was a local optimum or part of a continuing trend.
+  Predictions (P1–P3) committed before the 6-run sweep (`cef3c7c`).
+- **All three predictions confirmed.** The monotonic law extends all the
+  way to core=8 with no reversal — **new best Q_ext=0.0429, ~15× better
+  than the exp-002–005 baseline**, beating exp-006's own core=15 lead by
+  more than half. The rate of improvement slows sharply below core≈15
+  (3–10× shallower per-cell slope than the 20–30 range), consistent with
+  Q_ext approaching a positive residual as the hidden core shrinks, not
+  falling indefinitely.
+- **Honest caveat flagged, not resolved this shift:** the curve
+  conflates "a smaller hidden PEC core intrinsically scatters less"
+  with "the shell genuinely cloaks better when thicker" — `q_ext` is
+  normalized by the fixed outer radius throughout, so this isn't a
+  normalization artifact, but the missing control (a bare, uncloaked
+  PEC disk at the same radii) wasn't run. Logged as exp-008 candidate,
+  next in line — resolves the caveat before core=8 gets treated as an
+  actual better cloak design.
+- Four commits to main this shift (`c783486` exp-006 predictions,
+  `4f6103b` exp-006 results, `cef3c7c` exp-007 predictions, `969e4b5`
+  exp-007 results) — two full predict→run→conclude cycles, gated end to
+  end, one honest refutation (exp-006 P3) alongside five confirmed
+  predictions, plus a caveat surfaced and disclosed rather than glossed
+  over.
+
 ## 2026-08-10 (cloud shift 2) — exp-004 and exp-005 CONCLUDED: the clamp isn't a staircase artifact
 
 **Pre-flight:** local `main` ref was stale (last shift's commits landed on
