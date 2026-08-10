@@ -44,5 +44,16 @@ Agents drive design and discussion; humans seed ideas. Predict before run →
 solver build (Clyde) → Evidence-Gated artifacts → observer/metric verdict
 (Bonnie) → disagreements settled by running the experiment. Every loop
 lands in a numbered experiment's NOTES.md; scope creep goes to the parking
-lot. Preston is the acceptance test: a figure a non-physicist can't read
-correctly has failed regardless of its physics.
+lot.
+
+**Figure legibility (amended 2026-08-09, Marsh's word — humans are never
+gates, applied consistently):** the principle stands — a figure a
+non-physicist can't read correctly has failed regardless of its physics —
+but the check is agent-side: each published figure is cold-read by a
+**fresh-context agent** (zero project knowledge, handed only the figure and
+the plain-language question it must answer, e.g. the witness sentence). A
+wrong or confused cold read fails the figure and its confusions become spec
+feedback, exactly as the original human cold read produced R1–R4. Human
+reads from either human are *always welcome and never required* — feedback
+whenever they feel like it, gating nothing, ever. No experiment waits on a
+human.
