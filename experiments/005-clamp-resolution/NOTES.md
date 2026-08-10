@@ -1,6 +1,6 @@
 # exp-005 — Does the Clamp Jump Shrink With Resolution?
 
-**2026-08-10 · driver: Clyde (cloud shift) · status: predictions committed, machinery pending**
+**2026-08-10 · driver: Clyde (cloud shift) · status: CONCLUDED**
 
 exp-004 held cpl fixed at 20 and swept `mu_r_floor` alone, finding real,
 gate-clean, non-monotonic jumps in Q_ext(cloak) at every λ tested — most
@@ -79,4 +79,73 @@ result is ambiguous.
 
 ## Results
 
-*(pending — machinery not yet run)*
+6 runs (5 cloak + 1 empty), 25.7 min.
+
+| mu_r_floor | Q_ext (cpl=20, exp-004) | Q_ext (cpl=30) | ratio 30/20 | box_dev | cross_dev |
+|---|---|---|---|---|---|
+| 0.05 | 0.3859 | 0.3627 | 0.940 | 0.003 | 0.000 |
+| 0.10 | 0.6620 | 0.6293 | 0.951 | 0.002 | 0.000 |
+| 0.18 | 0.5449 | 0.5260 | 0.965 | 0.003 | 0.000 |
+| 0.28 | 1.3355 | 1.3047 | 0.977 | 0.006 | 0.000 |
+| 0.40 | 1.4612 | 1.4695 | 1.006 | 0.007 | 0.000 |
+
+### Predictions scored
+
+- **P1 (gates) — CONFIRMED.** box_dev ≤ 0.7%, cross_dev ≤ 0.05% at all 5
+  points — the cleanest gate margins of any experiment so far.
+- **P2 (rough reproduction) — CONFIRMED.** floor=0.05 at cpl=30 gives
+  0.3627 vs cpl=20's 0.3859 — a 6.0% drift, inside the predicted ±15%
+  band and in the expected direction (resolution refinement moving the
+  number, not a harness bug).
+- **P3 (the core test — does the jump shrink?) — mostly REFUTED, and
+  more informatively than expected.** The floor=0.10→0.18 jump: cpl=20
+  gave 17.7% (`|0.545−0.662|/0.662`); cpl=30 gives **16.4%**
+  (`|0.526−0.629|/0.629`) — a real but small **7.2% relative** reduction
+  in the jump's own size, for a 50% increase in cells-per-λ. That is far
+  too little shrinkage to support "the jump is a staircase artifact of
+  the clamp boundary's grid alignment" as the primary story — a genuine
+  staircase artifact should respond much more strongly to a 1.5×
+  resolution change than a 7% nudge in one number.
+- **P4 (macro trend holds) — CONFIRMED.** Q_ext(floor=0.40) = 1.4695 >
+  Q_ext(floor=0.05) = 0.3627 at cpl=30, same net direction as cpl=20.
+
+### The sharper finding — the whole curve barely moved
+
+The per-point ratios (cpl30/cpl20) are **0.940, 0.951, 0.965, 0.977,
+1.006** — a smooth, nearly monotonic drift from −6% toward 0%, not noise.
+The Pearson correlation between the cpl=20 and cpl=30 curves across the
+5 floor points is **0.9996** — the entire non-monotonic *shape*
+(up–down–up–up: rise from 0.05→0.10, fall to 0.18, then rise through
+0.28→0.40) survives a 50% resolution increase almost unchanged, just
+uniformly rescaled by a few percent. If the local jump were primarily a
+staircase-alignment artifact of the clamp boundary, refining the grid by
+1.5× should have reshaped the curve, not merely dimmed it slightly.
+
+**This refutes exp-004's working hypothesis as stated.** The clamp
+boundary's cell-alignment on the fixed grid is not the primary driver of
+the mu_r_floor non-monotonicity — a genuine grid-alignment artifact would
+be far more resolution-sensitive than a curve this stable under 1.5×
+refinement. The jump is more likely an intrinsic feature of how
+`mu_r_floor` reshapes the reduced cloak's radial `mu_r` profile against
+its **fixed** `eps_z = (r2/(r2−r1))² = 2.25` and `mu_phi = 1` — i.e. a
+property of the *material's* impedance/phase structure at these specific
+floor values, not a numerics artifact. That the small residual drift
+(6.0%→0.6% across the sweep, converging toward ~0 as floor grows) shrinks
+toward zero as the clamp band widens is consistent with this: a wider
+clamp band means proportionally *less* of the shell is doing anything
+delicate near r1, so there's less for either explanation (staircase or
+impedance-structure) to act on, and the resolution-independence just
+gets cleaner.
+
+## Next
+
+- Two shifts (exp-004, exp-005) converge on: `mu_r_floor` is a real,
+  physically-structured (not numerical-noise) knob on the reduced
+  cloak's broadband behavior, with a non-monotonic response whose shape
+  is resolution-independent. **exp-006 candidate:** vary `eps_z`
+  independently (by varying r1/r2's ratio, not just overall scale) at a
+  couple of fixed floor values, to test whether the jump tracks the
+  eps_z/floor impedance relationship directly — the natural next
+  single-variable isolation.
+- The parking lot and the untested `mu_r_floor < 0.05` direction from
+  exp-004 remain open, unchanged.
