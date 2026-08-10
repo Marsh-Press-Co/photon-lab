@@ -70,8 +70,79 @@ tested here).
 
 ## Results
 
-_(not yet run)_
+6 runs (5 cloak + 1 empty), 4.5 min.
+
+**Full combined 7-point curve at λ=600nm, floor=0.10** (this experiment's
+5 points + exp-006's core=15/30 reused, not rerun):
+
+| core (r1, cells) | eps_z | Q_ext | box_dev | cross_dev |
+|---|---|---|---|---|
+| 8 | 1.2046 | **0.0429** | 0.010 | 0.011 |
+| 10 | 1.2656 | 0.0520 | 0.002 | 0.009 |
+| 12 | 1.3314 | 0.0591 | 0.014 | 0.008 |
+| 15 (exp-006) | 1.440 | 0.0934 | 0.000 | 0.001 |
+| 20 | 1.6531 | 0.2592 | 0.001 | 0.002 |
+| 25 | 1.9172 | 0.4913 | 0.011 | 0.001 |
+| 30 (exp-006) | 2.250 | 0.6620 | 0.000 | 0.001 |
+
+box_dev ≤ 1.4% and cross_dev ≤ 1.1% at all 5 new points — both a bit
+larger than exp-006's tightest margins but comfortably inside the 2%
+gate at every point.
+
+### Predictions scored
+
+- **P1 (gates) — CONFIRMED.** box_dev ≤ 1.4%, cross_dev ≤ 1.1% at all 5
+  points.
+- **P2 (the law extends downward, no reversal) — CONFIRMED, cleanly.**
+  The full 7-point curve is strictly monotonically increasing: 0.0429 →
+  0.0520 → 0.0591 → 0.0934 → 0.2592 → 0.4913 → 0.6620. Core=15 was **not**
+  a local minimum — Q_ext keeps falling all the way to core=8, the
+  smallest tested. **New best: core=8/floor=0.10, Q_ext=0.0429** —
+  ~15× better than the exp-002–005 baseline geometry (0.6620) at the
+  same λ and floor, and better than exp-006's own design lead (core=15,
+  0.0934) by more than half.
+- **P3 (diminishing returns near small core) — CONFIRMED.** Per-cell
+  slope `ΔQ_ext/Δcore`: 0.0341 (25→30), 0.0464 (20→25), 0.0332 (15→20),
+  then dropping sharply to 0.0114 (12→15), 0.00355 (10→12), 0.00455
+  (8→10) — the specific comparison predicted (`Q(15)−Q(12)` vs
+  `Q(30)−Q(25)`, per cell: 0.0114 vs 0.0341) holds, and the whole
+  low-core region (8–15) sits 3–10× shallower than the high-core region
+  (20–30). Consistent with Q_ext approaching some positive residual
+  rather than continuing to fall at a constant or accelerating rate.
+
+### An honest caveat this experiment did not control for
+
+This curve conflates two effects that this design hasn't separated: (a)
+a **physically smaller hidden PEC core intrinsically scatters less**,
+independent of any cloak; (b) the reduced-cloak's transformation-optics
+grading may **genuinely work better** with a thicker shell relative to
+r2. `q_ext` is normalized by the fixed outer radius `2·r2` throughout
+(not by `r1`), so this isn't a normalization artifact — every point here
+describes the same fixed-footprint (r2=90) device. But it does NOT by
+itself show how much of the win is "the cloak is doing more work" versus
+"there's simply less object left to hide." That comparison needs a bare
+(uncloaked) PEC disk of the same small radius as a control — not run
+this shift, logged below.
 
 ## Next
 
-_(not yet run)_
+- **exp-008 candidate (the control this experiment is missing):** bare
+  PEC disk, no cloak shell at all, at radius=8 (and maybe 15, 30 for the
+  same three points already characterized with a cloak) — measure Q_ext
+  of the *uncloaked* object at each radius, same λ/box/gates. If the bare
+  disk's Q_ext already falls steeply with radius on its own, most of this
+  experiment's "design lead" is the trivial "smaller object scatters
+  less" effect, not real cloak improvement, and the honest headline
+  changes. If the bare disk's Q_ext is comparatively flat or high across
+  the same radius range while the cloaked numbers still fall steeply,
+  that's real evidence the thicker shell is doing more of the
+  transformation-optics work. Cheap (3–7 runs), directly resolves the
+  caveat above, and is the correct next step before treating core=8 as an
+  actual "better cloak design."
+- If exp-008 confirms a real effect: worth testing whether the advantage
+  generalizes across λ (exp-002/003's multi-wavelength story) — a
+  thin-core cloak design that's genuinely better across the spectrum
+  would be real news for the broadband-wall line.
+- CFL margin shrinks as core shrinks further (core=8's margin was 8.5% at
+  floor=0.10); pushing below core=8 needs the margin checked explicitly,
+  same discipline as this and prior experiments.
