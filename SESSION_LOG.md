@@ -2,6 +2,54 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-10 (cloud shift 2) — exp-004 and exp-005 CONCLUDED: the clamp isn't a staircase artifact
+
+**Pre-flight:** local `main` ref was stale (last shift's commits landed on
+`origin/main` but the local branch pointer hadn't followed) — fast-forwarded
+before touching anything, no data loss, just a bookkeeping catch-up.
+Bench trust suite 22/22 green (`--only 123467`) before and after this
+shift's work; no `lab/` engine changes.
+
+**exp-004 — The Clamp Band (CONCLUDED)**
+- Picked up exp-003's queued candidate: isolate `mu_r_floor` alone
+  (electrical size + cpl held fixed, exp-003's own geometry reused) at
+  420/480/540/600nm × 5 floor values (0.05→0.40, upward from baseline
+  only — going below 0.05 needs a paired `courant_frac` cut for CFL
+  stability, derivation committed in NOTES.md, not run this shift).
+  Predictions (P1–P5) committed before the 20-cloak-run sweep (`ac29101`).
+- **Finding: the 480nm bump isn't wavelength-special.** Q_ext(cloak) vs
+  `mu_r_floor` is non-monotonic — sometimes sign-flipping — at *every* λ
+  tested, under gates too clean to blame on noise (box_dev ≤1.8%,
+  cross_dev ≤0.1% throughout; `i_inc` bit-identical across the whole
+  floor sweep at each λ, a free harness check). exp-003's specific
+  480nm-high reading was just where that λ happened to land on one of
+  these jumps — 420/540/600nm each show comparable structure at other
+  floor values. floor=0.05 reproduced exp-003's cloak numbers to <0.1% at
+  all four λ (P2, tightest reproduction yet). Working hypothesis logged:
+  clamp-boundary cell-alignment on the fixed grid (staircase artifact).
+
+**exp-005 — Does the Clamp Jump Shrink With Resolution? (CONCLUDED)**
+- Direct test of exp-004's hypothesis, run the same shift: reran the
+  clearest jump (600nm, floor=0.10→0.18, a 17.7% rise-then-fall at
+  cpl=20) at 1.5× resolution (cpl 20→30, physical geometry held fixed,
+  5 cloak runs). Predictions committed before running (`64be902`).
+- **Finding: it's not a staircase artifact.** The jump barely moved
+  (17.7%→16.4%, a 7.2% relative reduction for a 50% resolution increase
+  — far too little for grid-alignment noise) and the entire 5-point
+  curve's *shape* survived refinement almost unchanged (Pearson
+  correlation 0.9996 between the cpl=20 and cpl=30 curves; per-point
+  ratios drift smoothly 0.94→1.01). **Refutes exp-004's staircase
+  hypothesis.** Sharper read: the non-monotonicity looks like an
+  intrinsic feature of how `mu_r_floor` reshapes the shell's `mu_r`
+  profile against its fixed `eps_z=2.25`, not a numerics artifact.
+  exp-006 candidate logged: vary `eps_z` independently (r1/r2 ratio) at
+  fixed floor values.
+- Four commits to main this shift (`ac29101` exp-004 predictions,
+  `19fe82c` exp-004 results, `64be902` exp-005 predictions, `37fc3ea`
+  exp-005 results) — two full predict→run→conclude cycles, gated
+  end to end, honest refutation both times (P3/P4 in exp-004, P3 in
+  exp-005) alongside the confirmed predictions.
+
 ## 2026-08-10 (early) — interactive session closed; the lab is autonomous
 
 - Session end on Marsh's call (moving to other work). In-session cron

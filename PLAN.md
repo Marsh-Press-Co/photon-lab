@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-10, cloud shift)
+## Current state (2026-08-10, cloud shift 2)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -36,9 +36,27 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   figure + NOTES + 3-λ sweep), freeze window open ~24h from
   2026-08-09 04:00Z.
 - exp-002 CONCLUDED — "invisible" has a direction (see below).
-- exp-003 CONCLUDED (this shift) — the red-side improvement survives a
+- exp-003 CONCLUDED — the red-side improvement survives a
   resolution-controlled sweep but isn't the quadratic law guessed at; a
-  non-monotonic bump at 480nm is the open thread into exp-004.
+  non-monotonic bump at 480nm was the open thread into exp-004.
+- exp-004 CONCLUDED (this shift) — isolated `mu_r_floor` alone (electrical
+  size + cpl fixed) at 420/480/540/600nm × 5 floor values. Found the
+  480nm bump isn't wavelength-special: Q_ext(cloak) vs `mu_r_floor` is
+  non-monotonic, sometimes sign-flipping, at *every* λ tested, under
+  gates too clean to be noise (box_dev ≤1.8%, cross_dev ≤0.1%
+  throughout). Working hypothesis logged: clamp-boundary cell-alignment
+  on the fixed grid (staircase artifact), not a smooth clamp-band-width
+  law.
+- exp-005 CONCLUDED (this shift) — direct test of exp-004's hypothesis:
+  reran the clearest jump (600nm, floor=0.10→0.18) at 1.5× resolution
+  (cpl 20→30). The jump barely shrank (17.7%→16.4%, only 7% relative)
+  and the whole 5-point curve's *shape* survived refinement almost
+  unchanged (correlation 0.9996 between cpl=20 and cpl=30) —
+  **refutes** the staircase-artifact hypothesis. Sharper read: the
+  non-monotonicity is an intrinsic feature of how `mu_r_floor` reshapes
+  the shell's `mu_r` profile against its fixed `eps_z=2.25`, not a grid
+  artifact. exp-006 candidate: vary `eps_z` independently (r1/r2 ratio)
+  at fixed floor values.
 
 ## Next work
 
@@ -86,10 +104,20 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   couldn't have shown. Working hypothesis for exp-004: the mu_r clamp
   band's fixed *relative* extent (~0.29·r1) interacting with the fixed
   grid, not simple electrical-size scaling.
-- [open — NEXT, cloud-shift-ready] **exp-004 candidate**: hold electrical
-  size and cpl fixed, sweep `mu_r_floor` alone, to isolate whether the
-  clamp band (vs staircase) drives exp-003's 480nm bump and sub-quadratic
-  exponent.
+- [done 2026-08-10, cloud shift 2] **exp-004 candidate** (hold electrical
+  size and cpl fixed, sweep `mu_r_floor` alone) — run; see Current state.
+- [done 2026-08-10, cloud shift 2] exp-005 (resolution-convergence check
+  on exp-004's clearest jump, cpl 20→30 at 600nm) — run; see Current
+  state.
+- **[open — NEXT, cloud-shift-ready] exp-006 candidate**: vary `eps_z`
+  independently of overall cloak scale (change the r1/r2 *ratio*, not
+  just the shared scale factor) at 2–3 fixed `mu_r_floor` values, to test
+  whether the non-monotonic `mu_r_floor` response tracks the
+  eps_z/mu_r_floor impedance relationship directly — exp-005's proposed
+  next single-variable isolation.
+- [open] The `mu_r_floor < 0.05` direction (toward the true r1
+  singularity) remains untested — needs a paired `courant_frac` reduction
+  for CFL stability (derivation in exp-004 NOTES.md Idealizations).
 - [done 2026-08-10, cloud shift] exp-001 observer-table rerun post phasor
   fix — camera floor drops ~17× (bug removed), absorber return tracks the
   new floor at every λ, reflector/cloak shift a few % (same order, same
