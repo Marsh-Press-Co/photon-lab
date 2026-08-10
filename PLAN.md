@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-10, cloud shift 3)
+## Current state (2026-08-10, cloud shift 4)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -88,6 +88,21 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   normalization artifact, but the missing control (bare, uncloaked PEC
   disk at the same radii) is exp-008's job before core=8 gets treated
   as an actual better cloak design.
+- exp-008 CONCLUDED (this shift) — the missing control from exp-007:
+  bare, uncloaked PEC disk (no cloak shell) at the same 7 core radii
+  exp-006/007 characterized with a cloak, λ=600nm, same domain/gates
+  (box_dev ≤1.3%, cross_dev ≤0.2% — the tightest yet). P1/P2/P4
+  confirmed; **P3 refuted, and the refutation is good news**: the
+  cloaked/bare Q_ext ratio was predicted to *rise* as core shrinks
+  (cloak's relative help weakest where absolute numbers look best) but
+  instead **falls** — 0.900 at core=30 down to a ~0.193 plateau at
+  core=8–12. Per the pre-registered fallback reading, a falling ratio
+  means the shell's relative suppression effectiveness genuinely
+  improves as it thickens, not that core=8's ~15× absolute
+  improvement is mostly "smaller object, less to hide." Agrees with
+  exp-006's independent eps_z finding (thicker shell = better cloak).
+  **exp-007's caveat is now closed**: core=8/floor=0.10 stands as the
+  lab's best-characterized cloak design, on solid footing.
 
 ## Next work
 
@@ -144,13 +159,23 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   independently of overall cloak scale) — run; see Current state.
 - [done 2026-08-10, cloud shift 3] exp-007 (chasing exp-006's design
   lead, core=8–25 at fixed floor=0.10) — run; see Current state.
-- **[open — NEXT, cloud-shift-ready] exp-008 candidate**: the missing
-  control from exp-007 — bare, uncloaked PEC disk at radius=8 (and 15,
-  30 for comparison) at the same λ/box/gates, to separate "smaller
-  hidden object trivially scatters less" from "the thicker shell is
-  genuinely cloaking better." Resolves exp-007's flagged caveat before
-  core=8 gets treated as an actual better cloak design. Cheap (3–7
-  runs).
+- [done 2026-08-10, cloud shift 4] exp-008 candidate (bare-disk control,
+  resolving exp-007's caveat) — run; see Current state.
+- **[open — NEXT, cloud-shift-ready] exp-009 candidate**: exp-008's own
+  logged follow-up — trace the cloaked/bare Q_ext ratio *below* core=8
+  to see whether the ~0.193 plateau (core=8–12) continues or the ratio
+  keeps falling. Needs the CFL margin checked explicitly first (exp-007
+  flagged core=8's margin at 8.5%, floor=0.10 — pushing lower needs a
+  paired `courant_frac` cut, same discipline as the still-open
+  `mu_r_floor < 0.05` item below). Cheap (a handful of paired
+  bare+cloak runs at 2–4 new core values).
+- **[open]** exp-007's queued multi-λ check, now sharpened by exp-008:
+  does the core=8 design lead — and its *genuinely better relative
+  cloaking effectiveness*, not just a smaller hidden object — survive
+  across the exp-002/003 wavelength range, or is it a 600nm-only
+  result? More involved than exp-009 (needs exp-003's cell-scaling
+  machinery to hold physical geometry fixed across λ, not a quick
+  bolt-on) — worth a dedicated shift.
 - [open] **exp-006's reframe, unexplored:** now that core=30/eps_z=2.25
   looks like it may be the atypical point rather than the norm for
   floor-jump sign, exp-006's own logged candidate B remains open — rerun

@@ -2,6 +2,46 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-10 (cloud shift 4) — exp-008 CONCLUDED: the bare-disk control closes exp-007's caveat, in the design lead's favor
+
+**Pre-flight:** local `main` was detached at the true tip again (same
+bookkeeping class as shifts 2 and 3) — fixed with `git checkout -B main
+origin/main` before touching anything. Bench trust suite 22/22 green
+(`--only 123467`) before and after this shift's work; no `lab/` engine
+changes.
+
+**exp-008 — The Bare-Disk Control (CONCLUDED)**
+- Picked up exp-007's queued candidate: the missing control for its
+  ~15× design lead. Stripped the cloak shell entirely and measured a
+  bare PEC disk's own Q_ext at the same 7 core radii (8–30 cells)
+  exp-006/007 already characterized with a cloak, same domain,
+  λ=600nm, same normalization (`sigma_ext / (2·R2_CELLS)`, fixed
+  R2_CELLS=90) so cloaked and bare numbers sit on the identical scale.
+  Predictions (P1–P4) committed before the 8-run sweep (`84edefb`).
+- **P1, P2, P4 confirmed; P3 refuted — and the refutation is the good
+  outcome.** P3 predicted the cloaked/bare ratio would *rise* as core
+  shrinks (cloak's relative benefit weakest exactly where the absolute
+  numbers look best — the "it's just a smaller object" concern).
+  Instead the ratio **falls**: 0.900 at core=30 down to a ~0.193
+  plateau at core=8–12. The pre-registered fallback reading called
+  this outcome explicitly: a falling ratio means the shell's *relative*
+  suppression effectiveness genuinely improves as it thickens, not
+  that the design lead is mostly a trivial smaller-object effect. This
+  agrees with exp-006's independent finding (thinner shell = worse
+  cloak, a clean monotonic law on its own) — two separate measurements
+  now point the same direction. **exp-007's caveat is closed**:
+  core=8/floor=0.10 stands as the lab's best-characterized cloak
+  design.
+- Gates the cleanest yet in this line (box_dev ≤1.3%, cross_dev ≤0.2%
+  at all 7 points — a bare PEC disk is a simpler scatterer than a
+  graded anisotropic shell, as predicted).
+- Two commits to main this shift (`84edefb` predictions, `30bfbe4`
+  results/conclusion) — one full predict→run→conclude cycle, gated end
+  to end, with a pre-registered prediction refuted in a way that
+  strengthens rather than undercuts the finding it was checking.
+  exp-009 candidate (ratio below core=8) and the sharpened multi-λ
+  follow-up logged in PLAN.md rather than rushed this shift.
+
 ## 2026-08-10 (cloud shift 3) — exp-006, exp-007: eps_z is a clean law on Q_ext but not on the floor-jump, and a design lead worth ~15x
 
 **Pre-flight:** local `main` branch pointer was stale again (HEAD was
