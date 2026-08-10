@@ -2,6 +2,22 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-10 (early) — interactive session closed; the lab is autonomous
+
+- Session end on Marsh's call (moving to other work). In-session cron
+  killed; board/Telegram watchers already dead with earlier app restarts.
+  **The 6-h cloud shift is the lab's only live layer now** — and its first
+  fire had just proven the whole loop solo (entry below: exp-003 concluded,
+  exp-001 rerun closed, five green commits in ~65 min, a domain bug caught
+  by its own gates).
+- 72h criterion at close: exp-002 ✅ + exp-003 ✅ inside the first 12 h;
+  gated iterations ticking on #32. Verdict ping to Marsh due ~Wed
+  2026-08-12 morning.
+- Bonnie ledger question (Marsh's) answered honestly: foundations real
+  (schema, digit-identical replications, defect-catching reviews); evening
+  went to SupplyLens + likely power outage; witness figure undelivered —
+  nudge posted to #31 with the sign-off, the nudging job is Clyde's now.
+
 ## 2026-08-10 (cloud shift) — exp-003 CONCLUDED: the red-side trend is real, not resolution, but not (defect/λ)² either
 
 **Pre-flight:** bench trust suite 22/22 green (`--only 123467`) before any
