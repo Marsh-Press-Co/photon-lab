@@ -1,8 +1,14 @@
 # Bench validation — lab/ engine trust suite
 
-**2026-08-09 · driver: Clyde · status: 🟢 24/24 checks green**
-(run as `--only 12346` [17/17] + `--only 5` [2/2] + `--only 7` [5/5],
-same code)
+**2026-08-09 (late) · driver: Clyde · status: 🟢 30/30 checks green**
+(fast stages `--only 1234678` [28/28, 105 s] + `--only 5` [2/2], same code)
+
+Stage 8 (cross-section machinery) added with exp-002, and with it a
+forensic catch: a phasor-convention bug in `lab/emit` whose signature was
+stage 6's 1.25% "camera floor" (= sin²(ω/2) exactly). Post-fix: empty room
+1e-4, Fresnel 0.1114 vs theory's 0.1111, mirror gate honestly recalibrated
+to ≥ 0.90 (deficit = documented round-trip beam diffraction). Absolute
+power balances expose what ratio-normalized gates cannot — recorded below.
 
 Stage 6 (observer camera + emitter) added 2026-08-09 with the emitter
 build; stage 7 (graded-black absorber vs pre-registered gates) added the
@@ -121,6 +127,16 @@ real observer-record datum (committed artifact,
 - **PEC flush at the cloak's inner wall** (canonical setup). A vacuum gap
   between metal and shell resonates and cost 11 points of scattered-RMS
   reduction before it was found.
+- **Ratio gates can't see convention bugs — absolute balances can.** The
+  conjugate-convention phasor bug sailed through every normalized gate
+  (mirror, Fresnel, cross-solver) because reference and scene shared the
+  error; it surfaced only when stage 8 demanded a lossless object's
+  absorption channel read zero. Every new measurement family should carry
+  at least one absolute-identity gate (energy balance, box independence),
+  not only normalized comparisons.
+- **Cross-section normalization is object-fixed, not box-fixed** — measure
+  incident intensity once at the object's own position; per-face
+  normalization made widths drift 16% with box size (finite-beam profile).
 
 ## Replications
 
