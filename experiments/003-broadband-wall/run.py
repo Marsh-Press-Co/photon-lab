@@ -31,8 +31,8 @@ from lab import sections as sc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-N, ABSORB, FRAC, STEPS = 560, 40, 0.32, 3200
-CX, CY = 252, 280
+N, ABSORB, FRAC, STEPS = 680, 40, 0.32, 3600
+CX, CY = 300, 300
 SRC_X = 64
 CPL = 20                                # FIXED across the whole sweep
 REF_LAM_NM = 600.0                      # anchor: f(600) = 1
@@ -40,6 +40,19 @@ RADII_BASE = {"core": 30, "coat": 78, "clk": 90}     # cells, at f=1
 BOX_BASE = {"a": 110, "b": 135}                       # cells, at f=1
 SWEEP_NM = [420, 480, 540, 600, 660, 750]
 REF_HALF_H = 60
+MIN_MARGIN = 60          # cells of clearance required box-edge -> absorb layer
+
+# First-run amendment (2026-08-10): the original domain (N=560, CX=CY=252,
+# margins taken straight from exp-002) put box_b's edge only 19 cells from
+# the absorbing boundary at the largest scale factor (lambda=420nm,
+# f=1.4286) -- box independence blew up there (box_dev 2-6, vs 0.003-0.009
+# everywhere else) while every other sweep point was clean. That is a
+# domain-sizing bug, not cloak physics: patching only the broken point
+# would introduce exactly the confound this experiment exists to remove
+# (different domain "container" for one data point). Fixed by growing the
+# whole domain (N 560->640, CX/CY 252/280->320/320, STEPS 3200->3600) so
+# every sweep point keeps >=60 cells of clearance -- and the full sweep
+# was rerun, not patched.
 
 
 def scale_factor(nm):
@@ -51,12 +64,12 @@ def geometry(nm):
     r = {k: int(round(v * f)) for k, v in RADII_BASE.items()}
     box_a = int(round(BOX_BASE["a"] * f))
     box_b = int(round(BOX_BASE["b"] * f))
-    # sanity: every box must clear the absorbing layer on all sides
+    # sanity: every box must clear the absorbing layer with real margin
     for half, name in ((box_a, "box_a"), (box_b, "box_b")):
-        assert CX - half >= ABSORB and CX + half <= N - ABSORB, \
-            f"{name} escapes domain at {nm}nm (half={half})"
-        assert CY - half >= ABSORB and CY + half <= N - ABSORB, \
-            f"{name} escapes domain at {nm}nm (half={half})"
+        margin_x = min(CX - half, N - ABSORB - (CX + half)) - ABSORB
+        margin_y = min(CY - half, N - ABSORB - (CY + half)) - ABSORB
+        assert margin_x >= MIN_MARGIN and margin_y >= MIN_MARGIN, \
+            f"{name} clearance too tight at {nm}nm (margin={min(margin_x, margin_y)})"
         assert half > r["clk"], f"{name} does not clear the cloak at {nm}nm"
     return r, (CX - box_a, CX + box_a, CY - box_a, CY + box_a), \
            (CX - box_b, CX + box_b, CY - box_b, CY + box_b)
@@ -107,7 +120,7 @@ def main():
             box_dev = abs(wa["sigma_ext"] - wb["sigma_ext"]) / abs(wa["sigma_ext"])
             cross_dev = abs(wa["sigma_ext"] - wa["sigma_ext_cross"]) / abs(wa["sigma_ext"])
             out = {k: wa[k] for k in ("sigma_scat", "sigma_abs", "sigma_ext",
-                                       "sigma_ext_cross", "back_frac", "fwd_frac")}
+                                       "sigma_ext_cross", "back_frac", "fwd_frac", "i_inc")}
             out["q_ext"] = wa["sigma_ext"] / (2.0 * r[outer_key[scene]])
             out["box_dev"] = box_dev
             out["cross_dev"] = cross_dev
