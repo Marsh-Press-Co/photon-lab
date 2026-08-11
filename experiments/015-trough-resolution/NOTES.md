@@ -94,8 +94,76 @@ imprecision, not hidden slop.
 
 ## Results
 
-*(to be filled in after the run)*
+7 runs (6 cloak + 1 empty), 41.6 min.
+
+| base (cpl=20 r1) | r1 (cpl=30) | eps_z | Q_ext(0.10) | Q_ext(0.18) | jump (cpl=30) | jump (cpl=20) | box_dev (0.10/0.18) |
+|---|---|---|---|---|---|---|---|
+| 28 | 42 | 2.1072 | 0.5664 | 0.6134 | **+8.31%** | +6.01% | 0.12% / 1.30% |
+| 30 | 45 | 2.2500 | 0.6293 | 0.5260 | **−16.42%** | −17.69% | 0.16% / 0.28% |
+| 33 | 50 | 2.5225 | 0.5982 | 0.8040 | **+34.41%** | +12.22% | 0.85% / 0.05% |
+
+All box_dev ≤1.30%, cross_dev ≤0.0018% — the cleanest gates in this
+whole eps_z investigation line (cross_dev four orders of magnitude below
+its own 2% ceiling), confirming the higher resolution genuinely
+tightened the measurement, not just changed the answer.
+
+### Predictions scored
+
+- **P1 (gates ≤2%)** — CONFIRMED, comfortably: max box_dev 1.30%
+  (base=28/floor=0.18), max cross_dev 0.0018%.
+- **P2 (the discriminator — sign preserved at all 3 points)** —
+  **CONFIRMED, cleanly.** base=28 stays positive (+6.01%→+8.31%),
+  base=30 (trough center) stays negative (−17.69%→−16.42%), base=33
+  stays positive (+12.22%→+34.41%). No sign flips anywhere. The trough
+  exp-014 found is not a cell-quantization artifact of stepping r1 by 1
+  cell at cpl=20 — it survives 1.5× resolution refinement intact, at
+  both the trough's center and both flanks, extending exp-005's own
+  refutation of the grid-staircase-artifact hypothesis (there, for the
+  floor sweep) to the eps_z axis.
+- **P3 (magnitude, secondary)** — mixed, informative beyond what was
+  scored. base=30's jump **shrank 7.2% relative** (−17.69%→−16.42%) —
+  remarkably close to exp-005's own core=30/floor-pair refinement result
+  (17.7%→16.4%, a 7% relative shrink) at the *same* geometry, just a
+  different resolution axis being refined. base=28 grew modestly
+  (+6.01%→+8.31%). base=33 grew substantially (+12.22%→+34.41%, nearly
+  tripled) — but base=33 is also the point with the largest eps_z
+  rounding drift (2.4931→2.5225 cpl=20→30, a 1.2% shift from 33×1.5 not
+  landing on an integer cell), so part of that growth may reflect
+  probing a genuinely different, slightly-further-out eps_z point rather
+  than a pure resolution effect. Flagged honestly rather than folded
+  into a clean "magnitude grows near this flank" claim.
+
+### Headline
+
+**The trough is real, not a grid artifact.** All three signs survive
+1.5× resolution refinement exactly as predicted — the deepest point
+stays deeply negative with almost the identical relative shrink exp-005
+found for the *floor* jump at this same geometry, and both flanks stay
+positive. exp-014's own honest caveat (never having tested whether a
+1-cell eps_z step is fine enough to trust) is now closed: `Q_ext(eps_z)`
+has a genuine local, non-monotonic feature near eps_z≈2.25 that a
+transformation-optics reduced-cloak shell's extinction cross-section
+actually possesses, independent of grid resolution. No mechanism for
+*why* is proposed yet.
 
 ## Next
 
-*(to be filled in after the run)*
+- **[open]** The mechanism question, now on solid footing: why does a
+  reduced-cloak shell's Q_ext(eps_z) have a local resonance-like feature
+  near eps_z≈2.25–2.4, confirmed grid-independent? Candidates worth
+  testing in a future shift: sweep the shell's local impedance mismatch
+  `√(mu_r/eps_z)` at the outer boundary across this same eps_z range
+  (Cummer et al.'s known reduced-parameter residual-reflection
+  mechanism, already invoked as a candidate story back in exp-006's P3
+  and refuted there for the *magnitude* trend — worth revisiting now
+  that the feature's *location* is pinned down) — or a scattered-field
+  angular-pattern comparison across the trough vs its flanks, to see if
+  the mechanism is a shape change (a new backscatter lobe appearing) or
+  a pure magnitude effect.
+- base=33's 1.2% eps_z rounding drift is a small, known imprecision in
+  this file (documented in Setup) — if the mechanism investigation above
+  wants a clean base=33-equivalent point, re-deriving an exact-integer
+  r1 pair at some other cpl (or picking a different cpl=20 anchor whose
+  ×1.5 is exact) would remove it.
+- The `mu_r_floor < 0.05` direction and the parking lot remain open,
+  unchanged.
