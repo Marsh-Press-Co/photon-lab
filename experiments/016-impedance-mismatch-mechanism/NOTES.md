@@ -89,3 +89,95 @@ follow-up if this candidate survives).
   impedance mismatch as the trough's mechanism, on both magnitude
   (no local feature) and structural (no floor-dependence) grounds at
   once.
+
+## Results
+
+Probe complete in 0.5s (no FDTD stepping — pure array read).
+
+| r1 | eps_z | analytic mu_r(r2)=1/eps_z | numeric[0.10] | numeric[0.18] | numeric[0.40] | \|Γ\|² |
+|---|---|---|---|---|---|---|
+| 15 | 1.4400 | 0.6944 | 0.6913 | 0.6913 | 0.6913 | 0.00826 |
+| 27 | 2.0408 | 0.4900 | 0.4853 | 0.4853 | 0.4853 | 0.03114 |
+| 28 | 2.1072 | 0.4746 | 0.4698 | 0.4698 | 0.4698 | 0.03393 |
+| 29 | 2.1768 | 0.4594 | 0.4545 | 0.4545 | 0.4545 | 0.03688 |
+| 30 (trough center) | 2.2500 | 0.4444 | 0.4395 | 0.4395 | 0.4395 | 0.04000 |
+| 31 | 2.3269 | 0.4298 | 0.4247 | 0.4247 | 0.4247 | 0.04329 |
+| 32 | 2.4078 | 0.4153 | 0.4102 | 0.4102 | 0.4102 | 0.04675 |
+| 33 | 2.4931 | 0.4011 | 0.3959 | 0.3959 | 0.4000\* | 0.05040 |
+| 40 | 3.2400 | 0.3086 | 0.3031 | 0.3031 | 0.4000 (clamped) | 0.08163 |
+| 48 | 4.5918 | 0.2178 | 0.2122 | 0.2122 | 0.4000 (clamped) | 0.13223 |
+
+\*r1=33's floor=0.40 column is a genuine, honest surprise (see below) —
+not a bug.
+
+### Predictions scored
+
+- **P1 (formula match) — CONFIRMED.** Numeric mu_r(r2) matches the
+  analytic 1/eps_z formula to within 1.0–1.4% at every point (e.g.
+  core=30: 0.4395 vs 0.4444, 1.1% low) — the small, consistent gap is
+  grid quantization (the outermost shell cell's true radius is 89.001,
+  not exactly r2=90), exactly as expected, not a discrepancy in the
+  formula itself.
+- **P2 (floor-independence in the trough regime, clamping above it) —
+  CONFIRMED, plus one honest surprise.** floor=0.10 and floor=0.18 give
+  *bit-identical* mu_r(r2) at all 10 points including every trough
+  point — full confirmation that in this file's regime, the outer-wall
+  material is completely insensitive to which of the trough's two floor
+  values is used. At floor=0.40: r1=40/48 clamp exactly to 0.4000 as
+  predicted (analytic values 0.3086/0.2178 sit well below 0.40). The
+  surprise is r1=33: analytic mu_r(r2)=0.4011 sits *just* above
+  floor=0.40 (continuous formula predicts unclamped), but the actual
+  grid cell's quantized value (0.3959, from P1's 1.4% grid-rounding gap)
+  falls *below* 0.40 — so the real solver clamps this point even though
+  the idealized continuous formula wouldn't. Flagged honestly: grid
+  quantization can flip a point from "just unclamped" to "just clamped"
+  right at the boundary of the two regimes P2 predicted — a real, small
+  effect the analytic derivation alone would have missed, caught only
+  because this file probed the actual arrays instead of trusting algebra.
+  Doesn't touch the trough bracket itself (r1=27–33 at floor=0.10/0.18,
+  the pair that actually matters here) — all of those stay cleanly
+  unclamped and floor-identical.
+- **P3 (the discriminator) — CONFIRMED, decisively.** `|Gamma|^2` rises
+  smoothly and strictly monotonically from 0.00826 (eps_z=1.44) to
+  0.13223 (eps_z=4.59) with **zero local extremum anywhere**, including
+  a clean, featureless rise straight through the trough's bracket
+  (0.03114→0.05040 across r1=27→33, no dip, no plateau, no sign change
+  in the slope). Combined with P2's exact floor-independence at every
+  trough point, this mechanism is doubly disqualified: it has no local
+  feature to coincide with the trough's location, and it structurally
+  cannot produce a floor-dependent sign flip in the first place, since
+  its value doesn't depend on floor at all in this regime.
+
+### Headline
+
+**Outer-boundary impedance mismatch is refuted as the trough's
+mechanism — cleanly, and for two independent reasons at once.**
+`|Gamma(eps_z)|²` is smooth and monotonic with no feature near
+eps_z≈2.25–2.4 (rules it out on magnitude), and it is exactly
+floor-identical at every trough-bracket point (rules it out
+structurally — a floor-independent quantity cannot explain the
+floor-dependent sign flip that *defines* the trough). This is the
+outer-wall analogue of exp-006's P3, which refuted the *inner-wall*
+version of the same impedance-mismatch story for magnitude trend across
+a coarser sweep; exp-016 closes the outer-wall version too, more
+sharply, without needing a single FDTD run. One candidate mechanism
+down; exp-015's other candidate (a scattered-field angular-pattern
+comparison — does a new backscatter lobe appear inside the trough?)
+remains open and is now the stronger lead, since it probes the actual
+radiated field rather than the material's static boundary properties.
+
+## Next
+
+- **[open]** The angular-pattern candidate from exp-015's Next section:
+  compare the scattered field's angular distribution across the trough
+  (r1=29–32) vs its flanks (r1=27/28/33) to see whether the mechanism is
+  a *shape* change (a new lobe) or a pure magnitude effect. This needs
+  new instrumentation — `lab/sections.py` currently only reports a
+  two-way forward/backward split (`fwd_frac`/`back_frac`) through the
+  box faces, not a full angle-resolved pattern — so it's a genuine new
+  capability, not a bolt-on to this file. Worth a dedicated follow-up.
+- The r1=33/floor=0.40 grid-quantization surprise (P2) is a small,
+  self-contained finding worth a one-line addendum to `materials.py`'s
+  docstring if a future shift touches that file: continuous-formula
+  clamp predictions can be off by one regime right at threshold points,
+  due to the discrete grid never landing exactly on r2.

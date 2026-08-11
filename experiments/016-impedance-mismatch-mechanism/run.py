@@ -70,7 +70,7 @@ def main():
         for floor in PROBE_FLOORS:
             r_last, mu_r_last = mu_r_at_r2(r1, floor)
             clamped = abs(mu_r_last - floor) < 1e-6 and floor > analytic_mu_r_r2
-            row["probe"][f"floor{floor}"] = {
+            row["probe"][f"floor{floor:.2f}"] = {
                 "r_last_cells": r_last, "mu_r_at_r2_numeric": mu_r_last,
                 "clamped_at_r2": bool(clamped),
             }
