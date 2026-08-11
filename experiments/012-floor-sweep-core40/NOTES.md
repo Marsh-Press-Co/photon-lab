@@ -107,8 +107,82 @@ not hidden.
 
 ## Results
 
-*(pending — filled in after the run)*
+3 runs (2 cloak + 1 empty), 2.5 min. Gate check matched the
+pre-registered table exactly (floor=0.05/0.28 both stable and graded,
+floor=0.40 correctly excluded as degenerate).
+
+Full core=40 floor curve, combining exp-006's existing points with this
+experiment's two new ones:
+
+| mu_r_floor | Q_ext | box_dev | cross_dev |
+|---|---|---|---|
+| 0.05 | **0.7374** (new) | 0.005 | 0.001 |
+| 0.10 | 0.7540 (exp-006) | 0.008 | 0.001 |
+| 0.18 | 1.2871 (exp-006) | 0.005 | 0.000 |
+| 0.28 | **1.8821** (new) | 0.001 | 0.000 |
+| 0.40 | — (degenerate, not run) | — | — |
+
+### Predictions scored
+
+- **P1 (gates ≤2%)** — CONFIRMED. box_dev 0.5%/0.1% at the two new
+  points, cross_dev 0.1%/0.0% — the cleanest gates of this generalization
+  series so far, comfortably inside threshold.
+- **P2 (no sign-flip anywhere in 0.05→0.10→0.18→0.28)** — CONFIRMED,
+  cleanly. `Q_ext`: 0.7374 → 0.7540 → 1.2871 → 1.8821 — strictly
+  monotonically increasing across all four points, zero exceptions.
+  core=40/eps_z=3.24 shows exactly the same "naive," non-sign-flipping
+  structure exp-011 found at core=15/eps_z=1.44.
+- **P3 (jump signs, secondary)** — CONFIRMED. `(Q10−Q05)/Q05` = +2.3%,
+  `(Q28−Q18)/Q18` = +46.2% — both positive, consistent with the
+  monotonic reading. No claim made about the *magnitude* pattern (exp-006
+  already found jump magnitude doesn't track eps_z monotonically, and
+  these two numbers don't contradict that — +2.3% is much smaller than
+  either neighboring jump at this or other core values).
+
+### Headline — the generalization is now 3-for-3
+
+Three core/eps_z points have now been swept across most of their
+respective floor ranges: **core=30/eps_z=2.25 (exp-004/005) is
+non-monotonic** (rises, dips at 0.18, rises again); **core=15/eps_z=1.44
+(exp-011) and core=40/eps_z=3.24 (this experiment) are both strictly
+monotonic**, no exceptions. This is no longer a two-point comparison —
+it's a working conclusion with a real majority: of the three core/eps_z
+geometries characterized across most of their floor range, only the
+original exp-002/003 baseline geometry (core=30, eps_z=2.25 — chosen for
+those experiments for unrelated reasons, not because it was special)
+shows the non-monotonic, sign-flipping floor structure that drove two
+full shifts of resolution-convergence work in exp-004/005. The two years'
+— rather, two *shifts'* — worth of careful work characterizing that jump
+characterized something real and reproducible (exp-005's refinement test
+still holds), but increasingly looks like a property of one specific
+shell-thickness ratio rather than a general feature of the `mu_r_floor`
+knob, exactly as exp-006 first proposed and exp-011 began confirming.
+
+A genuinely complete generalization would need core=48/eps_z=4.59
+(exp-006's fourth point) swept too, and/or an explanation for *why*
+eps_z≈2.25 specifically produces the anomaly — neither is chased here;
+logged as the natural next step if this line is revisited.
 
 ## Next
 
-*(pending)*
+- **[open]** core=48/eps_z=4.59 (exp-006's fourth and last core point)
+  is the one remaining geometry that hasn't had its full floor range
+  swept — would make this 4-for-4 (or reveal a second exception) rather
+  than 3-for-3. Cheap, same shape as this experiment and exp-011: check
+  CFL and degeneracy thresholds per-point first (core=48 is the
+  tightest-margin core exp-006 tested, so extra care checking the
+  degeneracy threshold before committing predictions).
+- **[open, upgraded from "worth chasing" to "the natural next
+  question"]** *why* does eps_z≈2.25 specifically produce sign-flipping
+  structure while 1.44, 3.24 (and probably 4.59) don't? No mechanism has
+  been proposed yet beyond "it's the exp-002/003 baseline, chosen for
+  unrelated reasons" — a real explanation (e.g. some impedance-matching
+  coincidence between the clamp band and the unclamped shell profile
+  specific to that ratio) would turn this from an empirical pattern into
+  physical understanding. Not a quick follow-up — likely needs a finer
+  eps_z scan bracketing 2.25 (e.g. 2.0, 2.25, 2.5) rather than another
+  single point.
+- This shift's exp-012 is a complete, self-contained unit: predictions
+  committed and pushed before the run, gates checked and confirmed, one
+  clean confirmation of the discriminating prediction. Builds directly on
+  exp-006 and exp-011 without re-deriving anything already established.
