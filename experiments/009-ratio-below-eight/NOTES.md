@@ -95,8 +95,90 @@ physical reason P3 below predicts the ratio won't stay flat.
 
 ## Results
 
-*(pending)*
+9 runs (4 bare + 4 cloaked + 1 empty), 5.6 min. CFL margins matched the
+pre-registered table exactly (3.42–7.16%, all `OK`).
+
+| core (r1) | Q_ext (bare) | Q_ext (cloak) | ratio | box_dev (bare/cloak) | cross_dev (bare/cloak) |
+|---|---|---|---|---|---|
+| 7 | 0.1970 | 0.0365 | 0.185 | 0.012 / **0.018** | 0.002 / 0.013 |
+| 6 | 0.1763 | 0.0413 | 0.235 | 0.011 / **0.020** | 0.003 / 0.011 |
+| 5 | 0.1541 | 0.0424 | 0.275 | 0.009 / **0.023** | 0.003 / 0.011 |
+| 4 | 0.1242 | 0.0351 | 0.283 | 0.004 / **0.035** | 0.004 / 0.013 |
+
+(context: exp-008's plateau was ratio≈0.193–0.194 at core=8–12; exp-007's
+cloaked Q_ext at core=8 was 0.0429.)
+
+### The gate itself broke, and that has to lead
+
+**P1 is REFUTED at 2 of 4 new points, borderline at a third.** Box
+independence for the *cloaked* runs: 1.8% (core=7, passes) → 2.0%
+(core=6, exactly at the ≤2% line) → 2.3% (core=5, **fails**) → 3.5%
+(core=4, **fails**, worst gate margin in this lab's history). The *bare*
+disk runs stayed clean throughout (0.4–1.2%, same quality as exp-008)
+— this is not a general breakdown of the harness, it is specific to the
+cloak's graded material profile at these radii. The degradation is
+smooth and monotonic with shrinking core, tracking `eps_z`'s approach to
+1 (r1→0, identity-map limit) — consistent with the shell's continuous
+`mu_r=((r−r1)/r)²` profile becoming poorly sampled by the fixed
+`cpl=20` grid as the number of cells spanning the profile's steepest
+part (near the tiny inner radius) shrinks. `sigma_abs` at all 4 cloaked
+points came out **negative** (−0.021 to −0.100, i.e. −0.3% to −1.6% of
+`sigma_ext`) — nonphysical for a lossless clamped-mu_r shell, and
+another symptom of the same discretization strain, not a new failure
+mode.
+
+Per house discipline (verify-before-claim, same standard applied when
+exp-003 caught its own domain-sizing bug): a pre-registered gate failure
+means the numbers behind it are not yet trustworthy, not that they are
+wrong — the next step is a resolution check, exactly exp-004→exp-005's
+precedent, not a shrug.
+
+### Predictions scored (with that caveat attached)
+
+- **P1 (gates ≤2%)** — CONFIRMED at core=7 (cleanly) and core=6
+  (exactly at the boundary); **REFUTED** at core=5 and core=4.
+- **P2 (bare Q_ext keeps falling, steepening)** — CONFIRMED, cleanly.
+  Strictly monotonic (0.1242→0.1541→0.1763→0.1970 as core rises 4→7)
+  with gates the tightest of any run in this experiment, extending
+  exp-008's Rayleigh-regime reading with no ambiguity.
+- **P3 (cloaked Q_ext keeps falling monotonically too)** — **REFUTED**,
+  and not by a small margin: the cloaked curve is **non-monotonic** —
+  0.0351 (core=4) → 0.0424 (core=5) → 0.0413 (core=6) → 0.0365
+  (core=7) → 0.0429 (exp-007's core=8) — a bump peaking around core=5,
+  not the smooth continuation of exp-006/007's law predicted. This bump
+  sits exactly in the region where P1's gate degrades, so it cannot yet
+  be read as a new physical regime (a genuine breakdown of the
+  thicker-shell-is-better law below core~8) rather than a
+  resolution-driven wobble — this experiment's data alone cannot
+  distinguish the two, which is precisely what exp-010 checks next.
+- **P4 (ratio rises above the plateau, ≥0.232 at core=4)** — the
+  *number* clears the pre-registered threshold (0.283 ≥ 0.232) and the
+  ratio trend is monotonic and smooth (0.185→0.235→0.275→0.283) even
+  though the cloaked Q_ext behind it is not — because bare Q_ext's clean
+  monotonic rise dominates the ratio's shape. But scoring P4
+  "confirmed" outright would launder a gate-failing number through a
+  ratio; the honest call is **directionally supported, not yet
+  gate-trustworthy** at core=4/5 specifically. Core=6 (borderline
+  gate) and core=7 (clean gate) both already show the ratio breaking
+  above exp-008's ~0.193 plateau (0.235, 0.185 respectively) — core=7's
+  own clean point is a real, gate-passing data point that the plateau
+  does *not* hold below core=8, even setting the two failing points
+  aside entirely.
 
 ## Next
 
-*(pending)*
+- **exp-010, immediate:** resolution-convergence check on this
+  experiment's box_dev failures and the core=4–7 non-monotonic bump,
+  mirroring exp-004→exp-005's precedent exactly — rerun the same 4
+  paired bare+cloak points at cpl=30 (1.5×), geometry scaled in cells to
+  hold physical size fixed. If the bump and the gate failures both
+  shrink at higher resolution, this experiment's P3 finding was a grid
+  artifact specific to very-thin-shell geometries at cpl=20 — a genuine
+  and useful resolution-floor finding in its own right. If the bump
+  survives refinement (exp-005's own precedent: it can, and did, for a
+  smaller anomaly), it's a real new regime below core~8 worth its own
+  follow-up.
+- Even setting the bump aside, core=7's clean, gate-passing point
+  (ratio=0.185, *below* exp-008's plateau, not above it) already shows
+  the plateau doesn't extend flat below core=8 — worth carrying forward
+  regardless of how exp-010 resolves the core=4–6 question.
