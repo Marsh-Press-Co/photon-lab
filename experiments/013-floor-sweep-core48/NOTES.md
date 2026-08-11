@@ -100,8 +100,64 @@ fact about this core value, not a choice to limit scope.
 
 ## Results
 
-*(pending — filled in after the run)*
+3 runs (2 cloak + 1 empty), 2.5 min. Gate check matched the
+pre-registered table exactly (floor=0.05/0.20 both stable and graded,
+floor=0.28/0.40 correctly excluded as degenerate).
+
+Full core=48 floor curve, combining exp-006's existing points with this
+experiment's two new ones:
+
+| mu_r_floor | Q_ext | box_dev | cross_dev |
+|---|---|---|---|
+| 0.05 | **0.9218** (new) | 0.006 | 0.000 |
+| 0.10 | 1.2096 (exp-006) | 0.003 | 0.000 |
+| 0.18 | 1.6751 (exp-006) | 0.017 | 0.000 |
+| 0.20 | **1.7146** (new) | 0.001 | 0.000 |
+| 0.28, 0.40 | — (degenerate, not run) | — | — |
+
+### Predictions scored
+
+- **P1 (gates ≤2%)** — CONFIRMED. box_dev 0.6%/0.1% at the two new
+  points, cross_dev 0.05%/0.03% — clean gates, consistent with
+  exp-006's own numbers at this geometry (max box_dev 1.7%).
+- **P2 (no sign-flip anywhere in 0.05→0.10→0.18→0.20)** — CONFIRMED,
+  cleanly. `Q_ext`: 0.9218 → 1.2096 → 1.6751 → 1.7146 — strictly
+  monotonically increasing across all four points, zero exceptions,
+  even through the tightest-margin point of the whole series
+  (floor=0.20, 8.2% from the degeneracy threshold).
+- **P3 (jump signs, secondary)** — CONFIRMED. `(Q10−Q05)/Q05` = +31.2%,
+  `(Q20−Q18)/Q18` = +2.4% — both positive. The second jump is small
+  (mirroring exp-012's own small +2.3% jump at a different location in
+  its curve) — consistent with the standing finding that jump magnitude
+  doesn't track any simple rule, without breaking monotonicity.
+
+### Headline — the generalization is complete: 4 for 4
+
+All four of exp-006's core/eps_z points have now been swept across
+their full available floor range: **core=15 (exp-011), core=40
+(exp-012), and core=48 (this experiment) are all strictly monotonic** —
+zero sign-flips across 10 combined data points spanning three different
+shell-thickness ratios. **core=30/eps_z=2.25 (exp-004/005) remains the
+sole exception**, with its characterized dip-then-rise shape at
+floor=0.10→0.18→0.28→0.40. This closes the generalization question
+exp-006 opened and exp-011/012/013 pursued: the exp-004/005 floor-jump
+is not a general feature of the `mu_r_floor` knob — it is specific to
+one particular shell-thickness ratio, out of the four checked, with no
+mechanism yet proposed for *why* that ratio is special.
 
 ## Next
 
-*(pending)*
+- **[open, now the natural next question with no easier alternative
+  left]** *why* does eps_z≈2.25 specifically produce sign-flipping
+  structure while 1.44, 3.24, and 4.59 all don't? exp-012 already logged
+  this; with the 4-for-4 result now in hand there's no remaining
+  "which core to check next" question left to defer it with. A finer
+  eps_z scan bracketing 2.25 (e.g. 2.0, 2.1, 2.25, 2.4, 2.5, holding
+  floor at the 0.10/0.18 pair already characterized everywhere else)
+  would be the natural design — worth a dedicated shift, not a quick
+  bolt-on, since it's a new experimental axis (fine-grained eps_z) not
+  yet explored anywhere in this investigation line.
+- This shift's exp-012→exp-013 pair is a complete, self-contained unit:
+  two predict→run→conclude cycles, each gated and pushed independently,
+  that together closed a 4-point generalization exp-006 opened three
+  shifts ago. A good, tidy place to end the arc.
