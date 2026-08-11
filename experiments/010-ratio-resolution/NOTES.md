@@ -104,8 +104,90 @@ ambiguous, exactly as exp-005 flagged for its own single-step check).
 
 ## Results
 
-*(pending)*
+9 runs (4 bare + 4 cloaked + 1 empty), 19.4 min. CFL margins matched the
+pre-registered table exactly (3.42–6.73%, all `OK`).
+
+| base (cpl=20) | r1 (cpl=30 cells) | Q_ext bare (30 / 20) | Q_ext cloak (30 / 20) | ratio (30 / 20) | box_dev cloak (30 / 20) |
+|---|---|---|---|---|---|
+| 4 | 6 | 0.1309 / 0.1242 | 0.0373 / 0.0351 | 0.285 / 0.283 | **0.005** / 0.035 |
+| 5 | 8 | 0.1640 / 0.1541 | 0.0377 / 0.0424 | 0.230 / 0.275 | **0.002** / 0.023 |
+| 6 | 9 | 0.1810 / 0.1763 | 0.0392 / 0.0413 | 0.217 / 0.235 | **0.000** / 0.020 |
+| 7 | 10 | 0.1982 / 0.1970 | 0.0423 / 0.0365 | 0.213 / 0.185 | **0.003** / 0.018 |
+
+### Predictions scored
+
+- **P1 (the gate itself improves) — CONFIRMED, strongly.** Cloak
+  box_dev drops from 3.5%/2.3%/2.0%/1.8% at cpl=20 to
+  **0.5%/0.2%/0.0%/0.3%** at cpl=30 — an order of magnitude improvement,
+  now tighter than exp-005's own "cleanest gate margins" record (base=6
+  literally hits 0.04%). `sigma_abs` also shrinks toward zero in
+  relative terms at every point (e.g. base=4: −1.6% of `sigma_ext` at
+  cpl=20 → −0.41% at cpl=30). This confirms exp-009's read: the gate
+  failure was cpl=20 under-resolving the graded `mu_r` profile near a
+  very small inner radius, not a sign of anything wrong with the
+  physics or the harness.
+- **P2 (rough reproduction, ±20%) — CONFIRMED.** Largest single drift is
+  base=7's cloaked point at +15.9% (0.0365→0.0423); every other point
+  is within ±11%, most within ±7%. Notably, base=7's point is exactly
+  the one that carried the *worst* distortion at cpl=20 (the bump's
+  dip) — the point with the most resolution bias to begin with drifted
+  the most under refinement, consistent with the bump being an artifact
+  rather than noise.
+- **P3 (does the bump shrink or vanish?) — CONFIRMED, and the bump
+  vanishes essentially completely.** cpl=20's non-monotonic curve
+  (0.0351→0.0424→0.0413→0.0365, peak-then-dip) becomes **cleanly
+  monotonic** at cpl=30 (0.0373→0.0377→0.0392→0.0423, strictly
+  increasing with core, exactly the direction exp-006/007's law
+  predicts). The base=4→5 step is nearly flat (+1.1%, plausibly within
+  remaining discretization noise) rather than the sharp +20.8% rise
+  cpl=20 showed — the "bump" was cpl=20's own resolution artifact on
+  this very-thin-shell geometry, not a new physical regime below
+  core~8. exp-006/007's monotonic law now extends cleanly through the
+  full explored range, r1=6 cells up through core=30.
+- **P4 (ratio still breaks above the plateau) — CONFIRMED, and more
+  cleanly than at cpl=20.** All four cpl=30 ratios (0.213–0.285) sit
+  well above exp-008's ~0.193–0.194 plateau, with a clean **monotonic**
+  trend (ratio rises as core shrinks, base=7→4) — unlike cpl=20, where
+  the same claim was true but the curve itself wasn't smooth. Worth
+  flagging explicitly: cpl=20's base=7 point (ratio=0.185) had
+  *undershot* the plateau, which read at the time as "the plateau does
+  break, just not uniformly" — the resolved cpl=30 number (0.213) shows
+  that undershoot was itself resolution bias, not a real dip below the
+  plateau. The corrected, gate-clean picture is simpler than exp-009
+  could establish alone: the ratio rises smoothly and monotonically as
+  core shrinks below 8, no exceptions.
+
+### Headline
+
+exp-009's anomaly is resolved cleanly in both directions predicted:
+**the gate failure and the non-monotonic bump were the same resolution
+artifact**, both essentially gone at 1.5× cells-per-λ. What survives,
+now on solid footing: exp-006/007's monotonic Q_ext(core) law extends
+without exception down to r1=6 cells (the smallest core tested in this
+lab to date), and the cloaked/bare ratio — flat at ~0.193–0.194 across
+core=8–12 (exp-008) — **rises smoothly below core=8**, reaching ~0.28 at
+the equivalent of core=4. Read together with exp-007's own finding that
+absolute Q_ext improvement *slows* below core~15: the shell's *relative*
+suppression effectiveness also degrades once the hidden core shrinks
+past ~8, not just the rate of absolute improvement. Shrinking the core
+further keeps helping in absolute terms, but buys proportionally less
+each step — two independent signs of the same diminishing-returns
+regime, not one.
 
 ## Next
 
-*(pending)*
+- The lab's best-characterized cloak design remains core=8/floor=0.10
+  (exp-007/008) — this experiment does not unseat it (Q_ext continues
+  falling below core=8 in absolute terms, per the confirmed monotonic
+  law), but sharpens the picture: below core=8, further shrinking helps
+  the raw number while the shell does proportionally less of the work,
+  useful context for any future design read of "how small should the
+  core be."
+- exp-009's flagged multi-λ follow-up (does the core=8 design lead
+  survive across λ, exp-002/003's line) remains open and unstarted,
+  now a good candidate for a dedicated shift.
+- General lesson for this whole floor/eps_z investigation line: cpl=20
+  is evidently *not* uniformly trustworthy for very-thin-shell
+  geometries (small r1 relative to r2) — any future work exploring core
+  radii below ~8 cells at cpl=20 should budget for a cpl=30 confirmation
+  pass before treating the numbers as final, exactly as done here.
