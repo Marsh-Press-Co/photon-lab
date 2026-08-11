@@ -141,3 +141,69 @@ def widths(cap_scene, cap_empty, box, ref):
         "fwd_frac": max(p_fwd, 0.0) / max(p_scat, 1e-30),
         "i_inc": i_inc,
     }
+
+
+def angular_scattered_pattern(cap_scene, cap_empty, box, ref, n_bins=48):
+    """Angle-resolved scattered-power distribution around the box
+    perimeter (exp-016/017's mechanism line: does a trough/flank pair
+    differ in SHAPE, not just magnitude?).
+
+    Reuses `widths()`'s exact per-cell outward-flux terms (same box, same
+    scattered-phasor construction) but keeps them per-cell instead of
+    summing to a single sigma_scat or the two-way back/fwd split — each
+    perimeter cell is tagged with its angle from the box's own center
+    (atan2, source direction = 0 deg = "backward toward the source",
+    180/-180 deg = "forward, downstream") and binned.
+
+    Idealization: this is a square-path angular sample, not a true
+    circular far-field pattern — consistent with sigma_scat's own
+    near-to-mid-field box convention (VALIDATION.md), not a new
+    approximation. Because binning is a re-partition of the exact same
+    per-cell terms `widths()` already sums in full, `sum(pattern) ==
+    sigma_scat` is not an independent physical check -- it's an
+    implementation self-consistency identity, verified by the caller
+    against widths()'s own number before the pattern is trusted for
+    shape comparisons.
+
+    Returns (bin_centers_deg, sigma_scat_per_bin) as two 1-D arrays of
+    length n_bins, angle convention: 0 deg = -x (toward the source,
+    "backward"), +-180 deg = +x (downstream, "forward")."""
+    pt = phasors(cap_scene)
+    pi = phasors(cap_empty)
+    ps = {k: pt[k] - pi[k] for k in pt}
+
+    x0, x1, y0, y1 = box
+    bcx, bcy = (x0 + x1) / 2.0, (y0 + y1) / 2.0
+    ys = slice(y0, y1 + 1)
+    xs = slice(x0, x1 + 1)
+
+    def sx(xf):
+        hy_at = 0.5 * (ps["hy"][xf - 1, ys] + ps["hy"][xf, ys])
+        return -0.5 * np.real(ps["ez"][xf, ys] * np.conj(hy_at))
+
+    def sy(yf):
+        hx_at = 0.5 * (ps["hx"][xs, yf - 1] + ps["hx"][xs, yf])
+        return 0.5 * np.real(ps["ez"][xs, yf] * np.conj(hx_at))
+
+    yy = np.arange(y0, y1 + 1, dtype=float)
+    xx = np.arange(x0, x1 + 1, dtype=float)
+
+    angs = np.concatenate([
+        np.degrees(np.arctan2(yy - bcy, x1 - bcx)),   # x1 face (mostly forward)
+        np.degrees(np.arctan2(yy - bcy, x0 - bcx)),   # x0 face (mostly backward)
+        np.degrees(np.arctan2(y1 - bcy, xx - bcx)),   # y1 face
+        np.degrees(np.arctan2(y0 - bcy, xx - bcx)),   # y0 face
+    ])
+    flux = np.concatenate([sx(x1), -sx(x0), sy(y1), -sy(y0)])
+
+    cx, cy, hh = ref
+    rs = slice(cy - hh, cy + hh + 1)
+    hy_i = 0.5 * (pi["hy"][cx - 1, rs] + pi["hy"][cx, rs])
+    i_inc = float(np.mean(-0.5 * np.real(pi["ez"][cx, rs] * np.conj(hy_i))))
+
+    edges = np.linspace(-180.0, 180.0, n_bins + 1)
+    idx = np.clip(np.digitize(angs, edges) - 1, 0, n_bins - 1)
+    sigma_per_bin = np.zeros(n_bins)
+    np.add.at(sigma_per_bin, idx, flux / i_inc)
+    centers = 0.5 * (edges[:-1] + edges[1:])
+    return centers, sigma_per_bin
