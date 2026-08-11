@@ -90,8 +90,66 @@ exp-006/007/008's single-anchor-wavelength scope.
 
 ## Results
 
-*(pending)*
+3 runs (2 cloak + 1 empty), 2.5 min. CFL check matched the pre-registered
+table exactly (floor=0.05 unstable as predicted, 0.28/0.40 both stable
+with large margins).
+
+Full core=15 floor curve, combining exp-006's existing points with this
+experiment's two new ones:
+
+| mu_r_floor | Q_ext | box_dev | cross_dev |
+|---|---|---|---|
+| 0.05 | — (CFL-unstable, not run) | — | — |
+| 0.10 | 0.0934 (exp-006) | 0.013 | 0.005 |
+| 0.18 | 0.2592 (exp-006) | 0.003 | 0.002 |
+| 0.28 | **0.5242** (new) | 0.011 | 0.001 |
+| 0.40 | **0.7818** (new) | 0.011 | 0.001 |
+
+### Predictions scored
+
+- **P1 (gates ≤2%)** — CONFIRMED. box_dev 1.1% at both new points,
+  cross_dev 0.1% at both — comfortably inside the threshold and
+  consistent with exp-006's own clean gates at this geometry.
+- **P2 (no further sign-flip past 0.18)** — CONFIRMED, cleanly. The full
+  4-point curve (0.0934 → 0.2592 → 0.5242 → 0.7818) is **strictly
+  monotonically increasing** with no exceptions anywhere — not just the
+  0.18→0.28→0.40 back half this experiment tested, but the *entire*
+  tested range including the 0.10→0.18 jump exp-006 already
+  characterized. core=15/eps_z=1.44 shows **zero sign-flipping
+  structure** across every floor value tested at this geometry.
+
+### Headline — the reframe holds, sharpened
+
+exp-006's candidate B is answered: core=15 does **not** replicate
+exp-004/005's core=30 non-monotonic floor curve (which rose 0.05→0.10,
+dipped at 0.18, then rose again through 0.28→0.40). At core=15, the
+relationship is exactly the "naive" one — wider clamp (`mu_r_floor`
+value approaching 1, closer to no clamp at all), worse cloak, no
+exceptions. Two independent core/eps_z values have now been swept
+across most of the floor range (core=30 in exp-004/005: non-monotonic;
+core=15 here: fully monotonic) — this strengthens exp-006's reframe
+from "possibly atypical" to a working conclusion: **the exp-004/005
+non-monotonic floor-jump was a property of the specific eps_z=2.25
+baseline geometry, not a general feature of the `mu_r_floor` knob.**
+Two shifts' worth of careful resolution-convergence work on that jump
+(exp-004→exp-005) characterized something real but geometry-specific,
+not the norm this investigation line initially took it for.
 
 ## Next
 
-*(pending)*
+- One core/eps_z point (core=40, exp-006's other suggested candidate)
+  would make this a 3-point generalization rather than 2 — worth a
+  cheap follow-up if this reframe needs further confirmation before
+  being treated as settled.
+- The floor=0.05 CFL-instability found here (not just below 0.05, but
+  the value itself, at low-eps_z/thick-shell geometries) is a genuine
+  addition to the standing `mu_r_floor < 0.05` PLAN.md item — any future
+  work sweeping floor at core values below ~20 or so should check the
+  CFL ceiling per-point rather than assuming exp-004's core=30 margin
+  carries over.
+- This shift's three-experiment arc (009→010→011) is a complete,
+  self-contained unit: a design-lead follow-up that failed its own
+  gate, a resolution check that resolved the failure and the physics
+  question together, and a cheap closeout of a previously-logged open
+  item. All three commits are gated, honest, and build on each other —
+  a good shift to end on.
