@@ -2,6 +2,71 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-11 (cloud shift 5) — exp-009/010/011: a gate failure caught and resolved, plus a clean generalization of exp-006's reframe
+
+**Pre-flight:** local `main` was detached at the true tip again (same
+bookkeeping class as shifts 2/3/4) — fixed with `git checkout -B main
+origin/main` before touching anything. Bench trust suite 22/22 green
+(`--only 123467`) before and after this shift's work (checked mid-shift
+too, after exp-010/011); no `lab/` engine changes.
+
+**exp-009 — The Ratio Below Eight (CONCLUDED)**
+- Picked up exp-008's queued candidate: traced the cloaked/bare Q_ext
+  ratio below core=8 (r1=4/5/6/7 cells), λ=600nm, floor=0.10, CFL
+  margins checked and asserted stable before running (3.4–7.2%).
+  Predictions (P1–P4) committed before the 8-run sweep (`0b2a47a`).
+- **The pre-registered gate itself failed** at 2 of 4 new points:
+  cloak box_dev 3.5% (core=4) and 2.3% (core=5), both over the ≤2%
+  threshold, core=6 exactly borderline (2.0%) — bare-disk gates stayed
+  clean throughout (≤1.2%), pinning the failure to the cloak's graded
+  profile specifically. The cloaked Q_ext curve itself came out
+  non-monotonic (a bump near core=5) where the established law
+  predicted a smooth continuation. Reported honestly as
+  not-yet-trustworthy rather than as a finding (`bb98d76`) — the same
+  standard applied when exp-003 caught its own domain-sizing bug.
+  P4's specific numeric threshold technically cleared but was flagged
+  as "directionally supported, not gate-trustworthy" rather than scored
+  confirmed.
+
+**exp-010 — Does the Below-Eight Bump Survive Resolution? (CONCLUDED)**
+- Immediate same-shift follow-up, exp-004→exp-005's exact precedent:
+  reran the same 4 core points at cpl=30 (1.5×), geometry scaled to
+  hold physical size fixed. Predictions (P1–P4) committed before the
+  9-run sweep (`aa9a5b3`).
+- **Both anomalies were the same cpl=20 artifact, and it resolved
+  cleanly.** Cloak box_dev dropped from 3.5%/2.3%/2.0%/1.8% to
+  0.5%/0.2%/0.0%/0.3% — an order of magnitude tighter, the cleanest
+  gates in the lab's history. The non-monotonic bump vanished — cpl=30's
+  cloaked Q_ext curve is strictly monotonic, extending exp-006/007's
+  law without exception down to r1=6 cells, the smallest core tested to
+  date. The cloaked/bare ratio genuinely **rises below core=8** (from
+  exp-008's ~0.193–0.194 plateau up to ~0.21–0.28), now confirmed
+  gate-clean. Read with exp-007's own finding (absolute Q_ext
+  improvement slows below core~15): the shell's *relative*
+  effectiveness degrades too past ~8 — two independent signs of
+  diminishing returns, not one (`db05757`).
+
+**exp-011 — The Floor Sweep at core=15, exp-006's Candidate B (CONCLUDED)**
+- Cheap closeout of a previously-logged open item: reran exp-004's
+  floor sweep at core=15/eps_z=1.44 (vs the exp-004/005 baseline
+  core=30/eps_z=2.25), reusing exp-006's existing 0.10/0.18 points and
+  adding 0.28/0.40. floor=0.05 excluded — CFL-unstable at this eps_z
+  (ceiling 0.268 < courant_frac 0.32), a new addendum to the standing
+  `mu_r_floor<0.05` item: the instability is geometry-dependent, not
+  purely a low-floor phenomenon. Predictions committed before the
+  3-run sweep (`4a45de8`).
+- **The full core=15 floor curve (0.0934→0.2592→0.5242→0.7818) is
+  strictly monotonically increasing, no sign-flip anywhere** — unlike
+  core=30's non-monotonic dip-then-rise shape. Strengthens exp-006's
+  reframe from "possibly atypical" toward a working conclusion: the
+  exp-004/005 floor-jump was a property of the eps_z=2.25 baseline
+  specifically, not a general feature of the `mu_r_floor` knob
+  (`0ca52bb`).
+- Six commits to main this shift (three predict/results pairs) — three
+  full predict→run→conclude cycles, one of which caught its own gate
+  failure and resolved it within the same shift rather than reporting
+  ungated numbers as a finding.
+
 ## 2026-08-10 (cloud shift 4) — exp-008 CONCLUDED: the bare-disk control closes exp-007's caveat, in the design lead's favor
 
 **Pre-flight:** local `main` was detached at the true tip again (same

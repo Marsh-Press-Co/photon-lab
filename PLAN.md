@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-10, cloud shift 4)
+## Current state (2026-08-11, cloud shift 5)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -103,6 +103,45 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   exp-006's independent eps_z finding (thicker shell = better cloak).
   **exp-007's caveat is now closed**: core=8/floor=0.10 stands as the
   lab's best-characterized cloak design, on solid footing.
+- exp-009 CONCLUDED (this shift) — exp-008's own queued follow-up:
+  traced the cloaked/bare Q_ext ratio below core=8 (r1=4/5/6/7 cells),
+  CFL margins checked explicitly first. **The pre-registered box_dev
+  gate failed at 2 of 4 new points** (core=4: 3.5%, core=5: 2.3%,
+  vs the ≤2% threshold; core=6 exactly borderline at 2.0%) — bare-disk
+  gates stayed clean throughout, so the failure was specific to the
+  cloak's graded profile at small core. The cloaked Q_ext curve itself
+  came out non-monotonic (a bump peaking near core=5) where the
+  established law predicted a smooth continuation. Flagged honestly as
+  not-yet-trustworthy rather than reported as a finding — resolved by
+  exp-010 the same shift.
+- exp-010 CONCLUDED (this shift) — direct resolution check on exp-009's
+  anomaly, exp-004→exp-005's exact precedent: reran the same 4 core
+  points at cpl=30 (1.5×), geometry scaled to hold physical size fixed.
+  **Both anomalies were the same cpl=20 artifact.** Cloak box_dev
+  dropped from 3.5%/2.3%/2.0%/1.8% to 0.5%/0.2%/0.0%/0.3% — an order of
+  magnitude tighter, the cleanest gates in the lab's history. The
+  non-monotonic bump vanished entirely — cpl=30's cloaked Q_ext curve
+  is cleanly monotonic, extending exp-006/007's law without exception
+  down to r1=6 cells (the smallest core tested to date). The
+  cloaked/bare ratio (exp-008's ~0.193–0.194 plateau at core=8–12) does
+  genuinely **rise below core=8**, reaching ~0.21–0.28 — now confirmed
+  gate-clean rather than resting on ambiguous data. Read with exp-007's
+  own finding (absolute Q_ext improvement slows below core~15): the
+  shell's *relative* effectiveness degrades too, once core shrinks past
+  ~8 — a second, independent sign of diminishing returns, not one.
+- exp-011 CONCLUDED (this shift) — exp-006's own queued "candidate B":
+  reran exp-004's floor sweep at core=15/eps_z=1.44 instead of the
+  baseline core=30/eps_z=2.25, reusing exp-006's existing 0.10/0.18
+  points and adding 0.28/0.40 (floor=0.05 excluded — CFL-unstable at
+  this eps_z, `ceiling=0.268 < courant_frac=0.32`, itself a new addendum
+  to the standing `mu_r_floor<0.05` item: the instability is
+  geometry-dependent, not just a low-floor phenomenon). **Result: the
+  full core=15 floor curve (0.0934→0.2592→0.5242→0.7818) is strictly
+  monotonically increasing, no sign-flip anywhere** — unlike core=30's
+  non-monotonic dip-then-rise shape (exp-004/005). Strengthens exp-006's
+  reframe from "possibly atypical" toward a working conclusion: the
+  exp-004/005 floor-jump was a property of the eps_z=2.25 baseline
+  specifically, not a general feature of the `mu_r_floor` knob.
 
 ## Next work
 
@@ -161,30 +200,40 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   lead, core=8–25 at fixed floor=0.10) — run; see Current state.
 - [done 2026-08-10, cloud shift 4] exp-008 candidate (bare-disk control,
   resolving exp-007's caveat) — run; see Current state.
-- **[open — NEXT, cloud-shift-ready] exp-009 candidate**: exp-008's own
-  logged follow-up — trace the cloaked/bare Q_ext ratio *below* core=8
-  to see whether the ~0.193 plateau (core=8–12) continues or the ratio
-  keeps falling. Needs the CFL margin checked explicitly first (exp-007
-  flagged core=8's margin at 8.5%, floor=0.10 — pushing lower needs a
-  paired `courant_frac` cut, same discipline as the still-open
-  `mu_r_floor < 0.05` item below). Cheap (a handful of paired
-  bare+cloak runs at 2–4 new core values).
-- **[open]** exp-007's queued multi-λ check, now sharpened by exp-008:
-  does the core=8 design lead — and its *genuinely better relative
-  cloaking effectiveness*, not just a smaller hidden object — survive
-  across the exp-002/003 wavelength range, or is it a 600nm-only
-  result? More involved than exp-009 (needs exp-003's cell-scaling
-  machinery to hold physical geometry fixed across λ, not a quick
-  bolt-on) — worth a dedicated shift.
-- [open] **exp-006's reframe, unexplored:** now that core=30/eps_z=2.25
-  looks like it may be the atypical point rather than the norm for
-  floor-jump sign, exp-006's own logged candidate B remains open — rerun
-  exp-004's full 5-point floor sweep at a non-baseline core (e.g.
-  core=15 or core=40) to see whether *that* geometry also shows
-  non-monotonic, sign-flipping floor structure.
+- [done 2026-08-11, cloud shift 5] exp-009 candidate (ratio below core=8)
+  — run; gate failed at 2 of 4 points, resolved by exp-010. See Current
+  state.
+- [done 2026-08-11, cloud shift 5] exp-010 (resolution check on exp-009's
+  gate failure + non-monotonic bump, cpl 20→30) — run; both anomalies
+  were the same artifact, resolved cleanly. See Current state.
+- [done 2026-08-11, cloud shift 5] exp-006's candidate B (floor sweep at
+  a non-baseline core, core=15) — run as exp-011; fully monotonic, no
+  sign-flip, strengthens the eps_z=2.25-is-the-outlier reframe. See
+  Current state.
+- **[open]** exp-007's queued multi-λ check, now sharpened by exp-008
+  and exp-010: does the core=8 design lead — and its *genuinely better
+  relative cloaking effectiveness*, not just a smaller hidden object —
+  survive across the exp-002/003 wavelength range, or is it a
+  600nm-only result? Needs exp-003's cell-scaling machinery to hold
+  physical geometry fixed across λ, not a quick bolt-on — worth a
+  dedicated shift.
+- **[open]** exp-006's reframe is now 2-for-2 (core=30 non-monotonic,
+  core=15 fully monotonic) — exp-011's own logged follow-up: a third
+  core/eps_z point (e.g. core=40) would make this a proper
+  generalization rather than a two-point comparison, if the reframe
+  needs firmer footing before being treated as settled. Cheap (same
+  shape as exp-011: reuse existing floor=0.10/0.18 points where
+  available, add the missing ones, checking CFL per-point).
 - [open] The `mu_r_floor < 0.05` direction (toward the true r1
-  singularity) remains untested — needs a paired `courant_frac` reduction
-  for CFL stability (derivation in exp-004 NOTES.md Idealizations).
+  singularity) remains untested — needs a paired `courant_frac`
+  reduction for CFL stability (derivation in exp-004 NOTES.md
+  Idealizations). **Sharpened by exp-011:** the instability is
+  geometry-dependent, not purely a low-floor phenomenon — floor=0.05
+  itself is already CFL-unstable at core=15/eps_z=1.44 (ceiling 0.268 <
+  courant_frac 0.32), where it was stable at core=30/eps_z=2.25. Any
+  future floor sweep at core values much below ~20 should check the
+  CFL ceiling per-point rather than assume exp-004's core=30 margin
+  carries over.
 - [done 2026-08-10, cloud shift] exp-001 observer-table rerun post phasor
   fix — camera floor drops ~17× (bug removed), absorber return tracks the
   new floor at every λ, reflector/cloak shift a few % (same order, same
