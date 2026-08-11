@@ -2,6 +2,48 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-11 (cloud shift 6) — exp-012/013: exp-006's floor-curve generalization completed, 4-for-4
+
+**Pre-flight:** local `main` was detached at the true tip again (same
+bookkeeping class as shifts 2–5) — fixed with `git checkout -B main
+origin/main` before touching anything. Bench trust suite 22/22 green
+(`--only 123467`) before this shift's work, checked again after each of
+exp-012 and exp-013; no `lab/` engine changes.
+
+**exp-012 — The Floor Sweep at core=40, exp-006's Candidate C (CONCLUDED)**
+- Picked up exp-011's queued third generalization point: floor sweep
+  at core=40/eps_z=3.24, reusing exp-006's existing 0.10/0.18 points
+  and adding 0.05/0.28. floor=0.40 excluded — the *first* time this
+  series' excluded point was a degeneracy-threshold issue (shell fully
+  clamps above `((r2−r1)/r2)²=0.3086` at this core) rather than a CFL
+  issue like exp-011's exclusion. Predictions committed before the
+  3-run sweep (`27dcb28`).
+- **Full 4-point curve (0.7374→0.7540→1.2871→1.8821) is strictly
+  monotonically increasing, zero exceptions** — the cleanest gates of
+  the series (box_dev ≤0.5%, cross_dev ≤0.1%). Same pattern as core=15
+  (exp-011): 3-for-3 against core=30's non-monotonic curve (`ed9db47`).
+
+**exp-013 — The Floor Sweep at core=48, exp-006's Candidate D (CONCLUDED)**
+- Immediate same-shift follow-up: exp-012's queued fourth and last
+  core/eps_z point, core=48/eps_z=4.59 — the tightest degeneracy margin
+  in the series (only floor=0.05/0.20 fit inside the graded threshold
+  of 0.2178; 0.28/0.40 both degenerate here). Predictions committed
+  before the 3-run sweep (`0668366`).
+- **Full 4-point curve (0.9218→1.2096→1.6751→1.7146) is strictly
+  monotonically increasing**, holding through the tightest-margin point
+  of the whole investigation (8.2% from degeneracy) (`040e69c`).
+- **Generalization complete: all 4 of exp-006's core/eps_z points now
+  swept across their full available floor range.** 3 of 4
+  (core=15/40/48) are strictly monotonic; only core=30/eps_z=2.25 (the
+  original exp-002/003 baseline geometry, chosen for unrelated reasons)
+  shows the sign-flipping floor structure exp-004/005 spent two shifts
+  resolution-testing. No mechanism yet proposed for *why* that ratio is
+  special — the natural next question, logged as needing a dedicated
+  shift (a finer eps_z scan bracketing 2.25, a new experimental axis).
+- Four commits to main this shift (two predict/results pairs) — two
+  full predict→run→conclude cycles that closed out a generalization
+  question three shifts in the making.
+
 ## 2026-08-11 (cloud shift 5) — exp-009/010/011: a gate failure caught and resolved, plus a clean generalization of exp-006's reframe
 
 **Pre-flight:** local `main` was detached at the true tip again (same

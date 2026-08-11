@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-11, cloud shift 5)
+## Current state (2026-08-11, cloud shift 6)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -142,6 +142,29 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   reframe from "possibly atypical" toward a working conclusion: the
   exp-004/005 floor-jump was a property of the eps_z=2.25 baseline
   specifically, not a general feature of the `mu_r_floor` knob.
+- exp-012 CONCLUDED (this shift) — exp-011's queued third generalization
+  point: floor sweep at core=40/eps_z=3.24, adding floor=0.05 and 0.28
+  to exp-006's existing 0.10/0.18 points (floor=0.40 excluded — the
+  *first* time this series' excluded point was a degeneracy-threshold
+  issue rather than CFL). Full 4-point curve
+  (0.7374→0.7540→1.2871→1.8821) is **strictly monotonically increasing,
+  zero exceptions** — same pattern as core=15 (exp-011), now 3-for-3
+  against core=30's non-monotonic curve. Gates the cleanest of the
+  series (box_dev ≤0.5%, cross_dev ≤0.1%).
+- exp-013 CONCLUDED (this shift) — exp-012's queued fourth and last
+  point: floor sweep at core=48/eps_z=4.59 (the tightest degeneracy
+  margin in the series — only floor=0.05/0.20 fit inside the graded
+  threshold, 0.28/0.40 both degenerate here), adding those two points
+  to exp-006's existing 0.10/0.18. Full 4-point curve
+  (0.9218→1.2096→1.6751→1.7146) is **strictly monotonically increasing**
+  through the tightest-margin point of the whole investigation (8.2%
+  from degeneracy). **Generalization now complete: all 4 of exp-006's
+  core/eps_z points swept across their full available floor range —
+  3 of 4 (core=15/40/48) are strictly monotonic, only core=30/eps_z=2.25
+  (the original exp-002/003 baseline) sign-flips.** No mechanism yet
+  proposed for why that one ratio is special — logged as the natural
+  next question, needing a finer eps_z scan bracketing 2.25 (a new
+  experimental axis, worth a dedicated shift, not a quick bolt-on).
 
 ## Next work
 
@@ -217,13 +240,19 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   600nm-only result? Needs exp-003's cell-scaling machinery to hold
   physical geometry fixed across λ, not a quick bolt-on — worth a
   dedicated shift.
-- **[open]** exp-006's reframe is now 2-for-2 (core=30 non-monotonic,
-  core=15 fully monotonic) — exp-011's own logged follow-up: a third
-  core/eps_z point (e.g. core=40) would make this a proper
-  generalization rather than a two-point comparison, if the reframe
-  needs firmer footing before being treated as settled. Cheap (same
-  shape as exp-011: reuse existing floor=0.10/0.18 points where
-  available, add the missing ones, checking CFL per-point).
+- [done 2026-08-11, cloud shift 6] exp-006's reframe, third and fourth
+  points (core=40, core=48) — run as exp-012 and exp-013; both strictly
+  monotonic, no sign-flip. Generalization complete: 3 of 4 core/eps_z
+  points monotonic, only core=30/eps_z=2.25 sign-flips. See Current
+  state.
+- **[open]** *Why* does eps_z≈2.25 specifically produce sign-flipping
+  floor structure while 1.44/3.24/4.59 all don't? (exp-012/013's own
+  logged follow-up, now the natural next question with the
+  generalization complete.) No mechanism proposed yet. Needs a finer
+  eps_z scan bracketing 2.25 (e.g. r1 chosen for eps_z=2.0/2.1/2.25/
+  2.4/2.5, holding floor at the already-characterized 0.10/0.18 pair) —
+  a new experimental axis (fine-grained eps_z, not core-value jumps),
+  worth a dedicated shift.
 - [open] The `mu_r_floor < 0.05` direction (toward the true r1
   singularity) remains untested — needs a paired `courant_frac`
   reduction for CFL stability (derivation in exp-004 NOTES.md
