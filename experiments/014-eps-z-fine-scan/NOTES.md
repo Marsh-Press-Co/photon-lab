@@ -125,8 +125,103 @@ with eps_z overall, cleanly, no exceptions).
 
 ## Results
 
-*(to be filled in after the run)*
+13 runs (12 cloak + 1 empty), 21.6 min.
+
+**Full bracketed Q_ext table (6 new points + reused r1=30):**
+
+| r1 | eps_z | Q_ext(0.10) | Q_ext(0.18) | jump `(Q18−Q10)/Q10` | box_dev(0.10 / 0.18) |
+|---|---|---|---|---|---|
+| 27 | 2.0408 | 0.5773 | 0.6304 | **+9.19%** | 0.5% / 2.0% |
+| 28 | 2.1072 | 0.5874 | 0.6227 | **+6.01%** | 0.1% / 1.7% |
+| 29 | 2.1768 | 0.6103 | 0.5610 | **−8.08%** | 0.1% / 1.1% |
+| 30 (reused, exp-004/006) | 2.2500 | 0.6620 | 0.5449 | **−17.69%** | (exp-004/006) |
+| 31 | 2.3269 | 0.6852 | 0.6565 | **−4.19%** | 0.2% / 0.3% |
+| 32 | 2.4078 | 0.7140 | 0.7032 | **−1.51%** | 0.5% / 0.2% |
+| 33 | 2.4931 | 0.6759 | 0.7585 | **+12.22%** | 1.0% / 0.2% |
+
+All 12 new points: box_dev ≤ 2.0% (max at r1=27/floor=0.18, right at but inside
+the gate), cross_dev ≤ 0.08% throughout — P1's gate held everywhere, no point
+needs discounting.
+
+### Predictions scored
+
+- **P1 (gates ≤2%)** — CONFIRMED. Max box_dev 1.96% (r1=27/floor=0.18),
+  every other point well inside; cross_dev ≤0.08% throughout.
+- **P2 (the discriminator — band, not isolated point)** — CONFIRMED,
+  more strongly than the minimum bar set: **3 of the 6 new points**
+  (r1=29, 31, 32 — eps_z 2.18–2.41) show a negative jump, not just the
+  ≥2 predicted. Together with the reused r1=30 point, that's a
+  **contiguous 4-point negative-jump band spanning eps_z≈2.18–2.41**,
+  bracketed on both sides by positive jumps (r1=27/28 below, r1=33
+  above). The zero-crossings interpolate to roughly eps_z≈2.14 (between
+  r1=28 and 29) and eps_z≈2.42 (between r1=32 and 33) — a real trough
+  about 0.28 wide in eps_z, not a sub-cell-scale anomaly at exactly
+  r1=30. **The exp-004/005/006 baseline (r1=30, eps_z=2.25) turns out to
+  sit almost exactly at the trough's deepest point** (−17.69%, more
+  negative than any of the 6 new points) — the two shifts spent
+  resolution-testing that one jump were characterizing the extremum of a
+  real, now-localized feature, not a fluke grid point.
+- **P3 (smoothness, secondary)** — CONFIRMED. Largest adjacent-step swing
+  in the jump sequence is 14.1 percentage points (r1=28→29, where the
+  sign flips), far under the 100pp check; the trough shape is smooth
+  and single-lobed, not jagged, at 1-cell resolution.
+- **P4 (global monotonic law, sanity check)** — **REFUTED at both
+  floors**, the shift's most surprising result. At floor=0.10:
+  `0.5773→0.5874→0.6103→0.6620→0.6852→0.7140→0.6759` — strictly
+  increasing through r1=32, then **drops 5.3% at r1=33**. At floor=0.18:
+  `0.6304→0.6227→0.5610→0.5449→0.6565→0.7032→0.7585` — **decreases from
+  r1=27 through r1=30** (a real local minimum sitting almost exactly at
+  the reused baseline point), then rises the rest of the way. exp-006's
+  own P5 ("Q_ext rises monotonically with eps_z, no exceptions in 8
+  points") was true at the coarse spacing it tested (Δeps_z ≈0.8–1.3)
+  but does **not** survive this finer step (Δeps_z ≈0.07–0.15) — the
+  coarse sweep's sample points happened to miss the dip.
+
+### The sharper finding
+
+This wasn't just "is the negative jump isolated or part of a band" —
+it's now clear the underlying `Q_ext(eps_z)` curves *themselves* (not
+just their difference) have local, non-monotonic structure right in this
+window, at **both** floor values, but shaped differently at each: the
+floor=0.18 curve has a genuine local minimum centered near eps_z≈2.25;
+the floor=0.10 curve stays monotonic through eps_z≈2.41 and only dips at
+the far edge (eps_z=2.49). Because the *jump* is the difference between
+these two curves, a region where one curve dips while the other doesn't
+(or dips less) is exactly where the jump goes negative — which is what
+the trough at eps_z≈2.18–2.41 is. exp-006's coarse 4-point sweep
+(1.44/2.25/3.24/4.59) could only ever see the *aggregate* effect at its
+one sample point landing inside this trough (r1=30) — it had no way to
+resolve the trough's shape, width, or that it's a genuine local feature
+of `Q_ext(eps_z)` rather than an isolated coincidence.
+
+No mechanism is proposed yet for *why* a resonance-like feature sits
+near eps_z≈2.25–2.4 specifically. One candidate worth flagging honestly:
+this is the first experiment in the whole eps_z-sweep line to vary r1 by
+1 grid cell at a time (cell size = λ/cpl = 30nm at this cpl=20) — a much
+finer geometric step than exp-006's 8–15-cell jumps — so it's fair to
+ask whether the trough's fine structure is itself partially a
+grid-quantization effect (each 1-cell step in r1 changes the clamp
+boundary's position relative to the fixed Cartesian grid by a full
+cell), the same class of question exp-005 asked and refuted for the
+*floor* sweep at fixed eps_z, but never checked for a fine *eps_z* sweep
+before. That's the natural resolution-convergence follow-up, not yet
+run here.
 
 ## Next
 
-*(to be filled in after the run)*
+- **[open, natural exp-005/010 precedent]** Resolution check on the
+  trough: rerun a subset of this bracket (e.g. r1 scaled to hold the
+  same eps_z values at cpl=30, or the trough's two edges + center) at
+  1.5× resolution to test whether the trough survives refinement the way
+  exp-005's floor-jump did, or whether it's a cell-quantization artifact
+  of stepping r1 by exactly 1 cell at cpl=20. This is the standing
+  question the "sharper finding" section flags, and the obvious next
+  cheap iteration.
+- Still no mechanism proposed for *why* the trough sits where it does
+  (eps_z≈2.18–2.41, centered near the exp-002/003/004 baseline's own
+  2.25) — once the resolution check above rules out (or confirms) a grid
+  artifact, a physical explanation (some cloak-shell resonance or
+  impedance-matching condition tied to this specific eps_z range) would
+  be the next question, likely its own dedicated shift.
+- The `mu_r_floor < 0.05` direction and the parking lot remain open,
+  unchanged.
