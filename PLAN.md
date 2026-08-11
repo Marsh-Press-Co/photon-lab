@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-11, cloud shift 7)
+## Current state (2026-08-11, cloud shift 8)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -198,6 +198,37 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   exp-014's own honest caveat cleanly, in the same shift it was raised.
   No mechanism proposed yet for *why* the feature sits near eps_z≈2.25–2.4;
   candidates logged (impedance-mismatch sweep, angular-pattern comparison).
+- exp-016 CONCLUDED (this shift) — mechanism candidate 1 (outer-boundary
+  impedance mismatch): pure material-array probe, no FDTD stepping —
+  built a bare `Sim`, called the real `schurig_reduced_cloak_tm`
+  builder, and read the actual solver tensor at r=r2 across the trough
+  bracket (r1=27–33) plus exp-006's corner points (15/40/48), at
+  floor=0.10/0.18/0.40. **Refuted, decisively, two ways at once:**
+  `|Γ(eps_z)|²` (the outer-wall reflection coefficient) rises smoothly
+  and strictly monotonically with zero local feature anywhere near the
+  trough, and it is *exactly floor-identical* at every trough-bracket
+  point (0.10 vs 0.18 give bit-identical `mu_r(r2)`) — a floor-
+  independent quantity structurally cannot produce the floor-dependent
+  sign flip that defines the trough. Honest bonus finding: grid
+  quantization can flip a point from "analytically unclamped" to
+  "numerically clamped" right at threshold (r1=33/floor=0.40) — a small,
+  real effect the continuous formula alone would have missed.
+- exp-017 CONCLUDED (this shift) — mechanism candidate 2 (angular-
+  pattern shape comparison, trough vs flanks): new instrumentation added
+  to `lab/sections.py` (`angular_scattered_pattern`, verified against
+  stage 8 + a per-run self-consistency identity at machine epsilon), run
+  at r1=27/30/33 (flank/trough/flank), floor=0.10, λ=600nm — 4 runs,
+  5.1 min. **Also refuted — magnitude-only, no new scattering mode.**
+  Shape correlation places the trough inside the same family as both
+  flanks (0.9688/0.9717 vs the flank-flank 0.9383); the one asymmetry
+  (trough correlates *better* with each flank than they do with each
+  other) is fully explained by ordinary distance in eps_z-space, not
+  anomaly. **Both queued mechanism candidates are now closed — neither
+  explains the trough.** New candidate proposed for a future shift: a
+  frequency-domain view (sweep λ at fixed core=30/eps_z=2.25 — the
+  mirror of exp-003's λ sweep — to test whether the trough is a
+  resonance-like condition tied to the fixed λ=600nm/cpl=20 grid rather
+  than a pure eps_z effect).
 
 ## Next work
 
@@ -284,14 +315,24 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   negative jump is a real, contiguous 4-point trough in eps_z (≈2.18–
   2.41), confirmed grid-independent — not an isolated point. See Current
   state.
-- **[open]** *Mechanism* for the eps_z≈2.25–2.4 trough, now that its
-  existence and location are pinned down (exp-014/015): candidates
-  logged — sweep the shell's local impedance mismatch √(mu_r/eps_z) at
-  the outer boundary across this range (revisits exp-006's P3 story,
-  refuted there for magnitude trend but not yet checked against this
-  trough's specific location), or compare scattered-field angular
-  patterns across the trough vs its flanks to see if a new backscatter
-  lobe appears there. A new investigation, not a quick bolt-on.
+- [done 2026-08-11, cloud shift 8] *Mechanism* candidates for the
+  eps_z≈2.25–2.4 trough — run as exp-016 (outer-boundary impedance
+  mismatch) and exp-017 (angular-pattern shape comparison, new
+  `lab.sections.angular_scattered_pattern` capability). **Both refuted.**
+  See Current state.
+- **[open]** The trough's actual mechanism is still unknown — both
+  queued candidates closed without finding it. New candidate proposed by
+  exp-017: a frequency-domain view, sweeping λ at fixed core=30/eps_z=
+  2.25 (the mirror of exp-003's λ sweep, held at the trough's own
+  geometry instead of varied) to test whether the trough is a
+  resonance-like condition tied to the λ=600nm/cpl=20 grid specifically,
+  rather than a pure eps_z effect. A genuinely new investigation, worth
+  a dedicated shift.
+- [open, secondary, exp-017] A local-maxima count found 13 angular peaks
+  at the trough vs 10 at each flank — unscored, not folded into the
+  magnitude-only conclusion, but worth a finer-binned or bare-disk-
+  referenced recheck if a future shift returns to this mechanism
+  question.
 - [open] The `mu_r_floor < 0.05` direction (toward the true r1
   singularity) remains untested — needs a paired `courant_frac`
   reduction for CFL stability (derivation in exp-004 NOTES.md

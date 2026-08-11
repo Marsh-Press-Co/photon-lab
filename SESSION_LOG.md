@@ -2,6 +2,71 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-11 (cloud shift 8) — exp-016/017: both queued trough mechanisms tested and refuted
+
+**Pre-flight:** local `main` was detached at the true tip again (same
+bookkeeping class as shifts 2–7) — fixed with `git checkout -B main
+origin/main` before touching anything. Bench trust suite 22/22 green
+(`--only 123467`) before this shift's work, checked again after both
+exp-016 and exp-017 (plus stage 8, since exp-017 adds new `lab/`
+machinery — 6/6 green before and after).
+
+**exp-016 — Mechanism Candidate 1: Outer-Boundary Impedance Mismatch
+(CONCLUDED)**
+- Picked up exp-015's queued mechanism question for the eps_z≈2.25–2.4
+  trough: does the shell's impedance mismatch at the outer wall (r=r2,
+  where the wave actually exits) have a feature coincident with the
+  trough? Distinct from exp-006's earlier P3 story, which tested a
+  different mismatch (at the floor/inner wall) and was refuted there for
+  magnitude trend on a coarser sweep.
+- No FDTD needed — a pure material-array probe: built a bare `Sim`,
+  called the real `schurig_reduced_cloak_tm` builder, and read the
+  actual solver tensor at r≈r2 for the trough bracket (r1=27–33) plus
+  exp-006's corner points (15/40/48), at floor=0.10/0.18/0.40.
+  Predictions committed before the check (`8180aec`).
+- **Refuted, decisively, two independent ways at once** (`b8ed2b6`):
+  `|Γ(eps_z)|²` rises smoothly and strictly monotonically with zero
+  local feature near the trough, and is *exactly floor-identical* at
+  every trough-bracket point — floor-independence that structurally
+  disqualifies this mechanism from producing the floor-dependent sign
+  flip that defines the trough. Honest bonus: grid quantization flips
+  one point (r1=33/floor=0.40) from analytically-unclamped to
+  numerically-clamped right at the threshold — a real small effect only
+  caught by probing actual arrays instead of trusting algebra.
+
+**exp-017 — Mechanism Candidate 2: Angular-Pattern Shape Comparison
+(CONCLUDED)**
+- Same-shift follow-up, exp-015's second queued candidate: does the
+  trough scatter into a different angular *shape* than its flanks, or
+  just a different magnitude? Required new instrumentation —
+  `lab.sections.angular_scattered_pattern`, added this shift, binning
+  the same per-cell scattered-flux terms `widths()` already sums, by
+  angle around the box perimeter instead of collapsing to one number.
+  Verified against stage 8 (6/6 unchanged) plus a per-run self-
+  consistency identity (landed at machine epsilon). Predictions
+  committed before the run, alongside the new capability (`ebce2f5`).
+- 4 runs (3 cloak + 1 empty) at r1=27/30/33 (flank/trough/flank),
+  floor=0.10, λ=600nm — 5.1 min. **Also refuted — magnitude-only, no new
+  scattering mode** (`9ff8e95`). Shape correlation places the trough
+  inside the same family as both flanks (0.9688/0.9717 vs the
+  flank-flank 0.9383); the one asymmetry (trough correlates *better*
+  with each flank than they correlate with each other) is fully
+  explained by ordinary distance in eps_z-space between the sample
+  points, not by anything anomalous at the trough itself.
+- **Both mechanism candidates queued after exp-014/015 are now closed —
+  neither explains the trough.** A genuinely new candidate is proposed
+  for a future shift: a frequency-domain view, sweeping λ at fixed
+  core=30/eps_z=2.25 (the mirror of exp-003's λ sweep, held at the
+  trough's own geometry) to test whether the trough is tied to a
+  resonance-like condition at the fixed λ=600nm/cpl=20 grid rather than
+  a pure eps_z effect. Secondary, unscored observation logged in PLAN.md
+  (a local angular-peak count came out 13 at the trough vs 10 at each
+  flank) — worth a recheck, not claimed as a finding.
+- Three commits to main this shift (predict/results pairs for two
+  independent mechanism tests, plus the new instrumentation bundled with
+  exp-017's predictions) — a clean, fast, two-candidate elimination pass
+  that leaves the trough's real cause as the lab's next open question.
+
 ## 2026-08-11 (cloud shift 7) — exp-014/015: the eps_z trough found, pinned down, and confirmed grid-independent
 
 **Pre-flight:** local `main` was detached at the true tip again (same
