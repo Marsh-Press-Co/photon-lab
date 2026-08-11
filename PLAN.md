@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-11, cloud shift 6)
+## Current state (2026-08-11, cloud shift 7)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -165,6 +165,39 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   proposed for why that one ratio is special — logged as the natural
   next question, needing a finer eps_z scan bracketing 2.25 (a new
   experimental axis, worth a dedicated shift, not a quick bolt-on).
+- exp-014 CONCLUDED (this shift) — the fine eps_z scan bracketing 2.25,
+  exp-012/013's queued follow-up: swept r1=27/28/29/31/32/33 (Δeps_z≈
+  0.07–0.15, the finest step tested in this line) bracketing the reused
+  r1=30 baseline, at floor=0.10/0.18, λ=600nm, cpl=20. **The negative jump
+  is not an isolated grid point — it's a real, contiguous 4-point trough**
+  spanning eps_z≈2.18–2.41 (r1=29/30/31/32 all negative, r1=27/28/33 all
+  positive), and the exp-004/005/006 baseline (r1=30) sits almost exactly
+  at the trough's deepest point (−17.69%, more negative than any new
+  point). **Bigger surprise:** exp-006's own coarse monotonic law (Q_ext
+  rises cleanly with eps_z, "no exceptions in 8 points") does **not**
+  survive this finer resolution — Q_ext(eps_z) itself is non-monotonic at
+  both floor=0.10 (a dip at the far edge, r1=33) and floor=0.18 (a real
+  local minimum near r1=30) — the coarse sweep's widely-spaced points just
+  never landed inside the dip. Gates clean throughout (box_dev ≤2.0%,
+  cross_dev ≤0.08%). Honest caveat raised and immediately addressed by
+  exp-015 the same shift: this was the first fine (1-cell) r1 step tested
+  anywhere in the eps_z line, so a grid-quantization origin hadn't been
+  ruled out.
+- exp-015 CONCLUDED (this shift) — direct resolution check on exp-014's
+  trough, exp-004→exp-005/exp-009→exp-010's exact precedent applied to the
+  eps_z axis for the first time: reran 3 of exp-014's bracketed points
+  (flank/center/flank: r1=28/30/33) at cpl=30 (1.5×), geometry scaled to
+  hold physical size fixed. **The trough survives resolution intact — no
+  sign flips at any of the 3 points.** base=30 (trough center) stays
+  deeply negative (−17.69%→−16.42%, a 7.2% relative shrink almost
+  identical to exp-005's own 7% shrink on the *floor* jump at this same
+  geometry); both flanks (base=28, base=33) stay positive. Gates the
+  cleanest of the whole eps_z line (box_dev ≤1.3%, cross_dev ≤0.0018%).
+  **Confirms exp-014's trough is a genuine physical feature of
+  Q_ext(eps_z), not a 1-cell grid-quantization artifact** — closes
+  exp-014's own honest caveat cleanly, in the same shift it was raised.
+  No mechanism proposed yet for *why* the feature sits near eps_z≈2.25–2.4;
+  candidates logged (impedance-mismatch sweep, angular-pattern comparison).
 
 ## Next work
 
@@ -245,14 +278,20 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   monotonic, no sign-flip. Generalization complete: 3 of 4 core/eps_z
   points monotonic, only core=30/eps_z=2.25 sign-flips. See Current
   state.
-- **[open]** *Why* does eps_z≈2.25 specifically produce sign-flipping
-  floor structure while 1.44/3.24/4.59 all don't? (exp-012/013's own
-  logged follow-up, now the natural next question with the
-  generalization complete.) No mechanism proposed yet. Needs a finer
-  eps_z scan bracketing 2.25 (e.g. r1 chosen for eps_z=2.0/2.1/2.25/
-  2.4/2.5, holding floor at the already-characterized 0.10/0.18 pair) —
-  a new experimental axis (fine-grained eps_z, not core-value jumps),
-  worth a dedicated shift.
+- [done 2026-08-11, cloud shift 7] *Why* does eps_z≈2.25 specifically
+  produce sign-flipping floor structure? — run as exp-014 (the fine
+  bracketing scan) and exp-015 (resolution check on the finding). The
+  negative jump is a real, contiguous 4-point trough in eps_z (≈2.18–
+  2.41), confirmed grid-independent — not an isolated point. See Current
+  state.
+- **[open]** *Mechanism* for the eps_z≈2.25–2.4 trough, now that its
+  existence and location are pinned down (exp-014/015): candidates
+  logged — sweep the shell's local impedance mismatch √(mu_r/eps_z) at
+  the outer boundary across this range (revisits exp-006's P3 story,
+  refuted there for magnitude trend but not yet checked against this
+  trough's specific location), or compare scattered-field angular
+  patterns across the trough vs its flanks to see if a new backscatter
+  lobe appears there. A new investigation, not a quick bolt-on.
 - [open] The `mu_r_floor < 0.05` direction (toward the true r1
   singularity) remains untested — needs a paired `courant_frac`
   reduction for CFL stability (derivation in exp-004 NOTES.md

@@ -2,6 +2,66 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-11 (cloud shift 7) — exp-014/015: the eps_z trough found, pinned down, and confirmed grid-independent
+
+**Pre-flight:** local `main` was detached at the true tip again (same
+bookkeeping class as shifts 2–6) — fixed with `git checkout -B main
+origin/main` before touching anything. Bench trust suite 22/22 green
+(`--only 123467`) before this shift's work, checked again after each of
+exp-014 and exp-015; no `lab/` engine changes.
+
+**exp-014 — The Fine eps_z Scan Bracketing 2.25 (CONCLUDED)**
+- Picked up exp-012/013's queued question, echoed in PLAN.md: *why*
+  does eps_z≈2.25 (core=30, the exp-002/003/004 baseline) specifically
+  produce a negative mu_r_floor=0.10→0.18 jump when 3 of exp-006's other
+  4 core/eps_z points don't? Swept r1=27/28/29/31/32/33, one cell apart
+  (Δeps_z≈0.07–0.15) — the finest geometric step tested anywhere in this
+  line — bracketing the reused r1=30 point on both sides. Predictions
+  committed before the 13-run sweep (`47eb69b`).
+- **The negative jump is a real, contiguous 4-point trough, not an
+  isolated grid point:** r1=29/30/31/32 (eps_z≈2.18–2.41) all show
+  negative jumps, r1=27/28/33 all show positive jumps, and the reused
+  r1=30 baseline sits almost exactly at the trough's deepest point
+  (−17.69%, more negative than any of the 6 new points). **Bigger
+  surprise:** exp-006's own coarse "no exceptions in 8 points" monotonic
+  law for Q_ext(eps_z) does not survive this finer resolution — Q_ext
+  itself is non-monotonic at both floor values inside this window (a
+  real local minimum near r1=30 at floor=0.18, a dip at the far edge at
+  floor=0.10) — the coarse sweep's widely-spaced sample points simply
+  never landed inside the dip. Gates clean throughout (box_dev ≤2.0%,
+  cross_dev ≤0.08%) (`65a87da`).
+- Honest caveat raised in the same file: this was the first fine
+  (1-cell) r1 step tested in the eps_z line, so — unlike the *floor*
+  sweep, where exp-005 already checked this — a grid-quantization origin
+  for the trough hadn't been ruled out. Queued as the immediate next
+  step rather than left open past the shift.
+
+**exp-015 — Does the eps_z Trough Survive Resolution? (CONCLUDED)**
+- Immediate same-shift follow-up: exp-004→exp-005/exp-009→exp-010's
+  exact resolution-convergence precedent, applied to the eps_z axis for
+  the first time. Reran 3 of exp-014's bracketed points (flank/center/
+  flank: r1=28/30/33) at cpl=30 (1.5×), geometry scaled to hold physical
+  size fixed. Predictions committed before the 7-run sweep (`f32af38`).
+- **The trough survives resolution intact — no sign flips at any of the
+  3 points.** base=30 (trough center) stays deeply negative
+  (−17.69%→−16.42%, a 7.2% relative shrink almost identical to exp-005's
+  own 7% shrink on the *floor* jump at this same geometry, just a
+  different resolution axis refined); both flanks stay positive. Gates
+  the cleanest of the whole eps_z line (box_dev ≤1.3%, cross_dev
+  ≤0.0018%) (`02fd70c`).
+- **Confirms exp-014's trough is a genuine physical feature of
+  Q_ext(eps_z), not a 1-cell grid-quantization artifact** — closes
+  exp-014's own honest caveat in the same shift it was raised, the same
+  discipline exp-004→exp-005 and exp-009→exp-010 established. No
+  mechanism proposed yet for *why* the feature sits near eps_z≈2.25–2.4;
+  candidates (impedance-mismatch sweep, angular-pattern comparison)
+  logged in PLAN.md for a future shift.
+- Four commits to main this shift (two predict/results pairs) — a
+  question three shifts in the making (exp-006→exp-011/012/013→
+  exp-014→exp-015) closed end-to-end: found the anomaly's true shape,
+  then ruled out the obvious artifact explanation, in one continuous
+  arc.
+
 ## 2026-08-11 (cloud shift 6) — exp-012/013: exp-006's floor-curve generalization completed, 4-for-4
 
 **Pre-flight:** local `main` was detached at the true tip again (same
