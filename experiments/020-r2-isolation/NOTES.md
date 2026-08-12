@@ -110,8 +110,119 @@ only each internally (box_dev per r2).
 
 ## Results
 
-*(not yet run)*
+30 runs (28 cloak + 2 empty), 46.4 min.
+
+**r2=75** (target r1=15, eps_z=1.5625):
+
+| r1 | shell (λ) | eps_z | Q_ext(0.10) | Q_ext(0.18) | jump | box_dev (0.10 / 0.18) |
+|---|---|---|---|---|---|---|
+| 12 | 3.15 | 1.4172 | 0.0644 | 0.1582 | **+145.6%** | **3.23%** / 1.51% |
+| 13 | 3.10 | 1.4633 | 0.0839 | 0.1945 | **+131.9%** | **3.36%** / 1.78% |
+| 14 | 3.05 | 1.5117 | 0.0978 | 0.2589 | **+164.7%** | **2.75%** / 1.49% |
+| 15 (target) | 3.00 | 1.5625 | 0.1202 | 0.3289 | **+173.5%** | **2.55%** / 1.15% |
+| 16 | 2.95 | 1.6159 | 0.1469 | 0.4230 | **+188.0%** | 1.93% / 0.58% |
+| 17 | 2.90 | 1.6721 | 0.1769 | 0.4748 | **+168.4%** | 1.97% / 0.31% |
+| 18 | 2.85 | 1.7313 | 0.2147 | 0.5352 | **+149.3%** | 1.89% / 0.10% |
+
+**r2=120** (target r1=60, eps_z=4.0000):
+
+| r1 | shell (λ) | eps_z | Q_ext(0.10) | Q_ext(0.18) | jump | box_dev (0.10 / 0.18) |
+|---|---|---|---|---|---|---|
+| 57 | 3.15 | 3.6281 | 0.9169 | 1.2158 | +32.6% | 0.97% / 0.28% |
+| 58 | 3.10 | 3.7461 | 0.9106 | 1.1976 | +31.5% | 1.13% / 0.48% |
+| 59 | 3.05 | 3.8699 | 0.8886 | 1.2848 | +44.6% | 0.12% / 0.29% |
+| 60 (target) | 3.00 | 4.0000 | 0.9399 | 1.4191 | **+51.0%** | 0.31% / 0.23% |
+| 61 | 2.95 | 4.1367 | 0.9705 | 1.6082 | +65.7% | 0.82% / 0.04% |
+| 62 | 2.90 | 4.2806 | 1.0813 | 1.8606 | +72.0% | 0.82% / 0.55% |
+| 63 | 2.85 | 4.4321 | 1.1725 | 1.9406 | +65.5% | 0.58% / 0.09% |
+
+cross_dev ≤0.5% throughout — clean everywhere, including at r2=75/floor=0.10
+where box_dev misses.
+
+### Predictions scored
+
+- **P1 (gates ≤2%) — CONFIRMED at 24 of 28, one systematic honest
+  exception:** every r2=120 point and every r2=75/floor=0.18 point clears
+  2% comfortably (max 1.78%). But **4 of 7 r2=75/floor=0.10 points miss
+  the gate** — r1=12 (3.23%), r1=13 (3.36%), r1=14 (2.75%), r1=15/target
+  (2.55%) — with the miss shrinking smoothly toward the flanks (r1=16/17/
+  18 all clear, 1.89–1.97%). Not discarding or re-running silently to
+  make it disappear — flagged here and taken up directly by exp-021's
+  resolution check, this line's exp-005/010/015 precedent. **This does
+  not touch the discriminating question**: the jump magnitudes at the
+  gate-missing points (+132% to +175%) are two orders of magnitude larger
+  than a 2–3.4% box-independence wobble could produce or hide, so the
+  sign and rough size of the effect are not in doubt even before exp-021
+  resolves the gate.
+- **P2 (the discriminator) — CONFIRMED as the r2-specific outcome, and
+  not close.** Both new shell=3λ targets come back strongly **positive**:
+  r1=15/r2=75 jumps **+173.5%**, r1=60/r2=120 jumps **+51.0%** — both
+  comfortably inside (in fact, on the high side of) the +3%-to-+92% range
+  exp-018/019 mapped at every non-3λ / non-r2=90 point tested so far.
+  **Neither new r2 reproduces r2=90's negative jump at its own shell=3λ
+  point.** The negative-jump feature that defined the "eps_z trough"
+  since exp-014 is tied to **r2=90 specifically**, not to "shell=3λ" as
+  a portable rule — exp-014's original finding was doubly coincidental:
+  the right λ *and* the right r2, not shell thickness alone.
+- **P3 (band shape) — not applicable.** No negative jump was found at
+  either target, so there is no trough to characterize the shape of.
+- **P4 (secondary, narrow-band check) — VIOLATED, and instructively so.**
+  Q_ext(0.10) at r2=75 spans 0.0644–0.2147, a >200% range (far wider than
+  exp-019's ~15% band at r2=90/2λ); r2=120 spans 0.8886–1.1725, a 32%
+  range — also wider. Flagged per the pre-registered instruction. Reading:
+  r2=75's eps_z values (1.42–1.73) sit in a much lower, steeper part of
+  exp-006's own Q_ext(eps_z) curve than any bracket this line has swept
+  before (exp-011's core=15/eps_z=1.44 point is the closest precedent,
+  and that curve was already the steepest of exp-011/012/013's three).
+  A shallow-eps_z regime naturally amplifies percentage swings from a
+  fixed absolute Q_ext change — not evidence of a second hidden feature,
+  but a reminder this experiment pushed into a new part of the eps_z
+  range as a side effect of choosing r2=75, not a deliberate eps_z choice
+  (same caveat exp-019 itself raised about its own eps_z range).
+
+### Headline
+
+**The "shell=3λ" feature is not a shell-thickness law — it is specific
+to r2=90.** Both new outer radii tested, on either side of the r2=90
+baseline, show ordinary, strongly positive floor-jumps at their own
+exact shell=3λ points — nothing resembling exp-014's trough. Combined
+with exp-019 (shell=2λ doesn't reproduce it at r2=90 either), this
+narrows what exp-018 found to its most literal reading: **the negative
+jump exp-004 through exp-017 spent thirteen shifts characterizing is a
+property of the single geometry (r1=30, r2=90, λ=600nm, cpl=20) exp-002
+happened to pick at the very start of this line** — not eps_z, not
+"integer-λ shells," not r2 in general. It may still not be fully
+isolated (r1=30/r2=90 differs from every point tested here in three
+numbers at once: r1, r2, *and* eps_z all differ simultaneously) but the
+population of "things that don't explain it" is now large: eps_z
+(exp-018), λ/cpl-grid resonance in general (exp-019), and r2 in general
+(this experiment).
 
 ## Next
 
-*(not yet written — depends on results)*
+- **[open]** The trough has now survived (i.e., NOT reproduced) five
+  mechanism/generality checks in a row (exp-016 impedance, exp-017
+  angular pattern, exp-018 eps_z, exp-019 integer-λ, exp-020 r2) without
+  a single one explaining or generalizing it. The honest state of the
+  investigation: r1=30/r2=90/λ=600nm/floor∈{0.10,0.18} is characterized
+  to death as an *anomaly*, but still has zero explanatory mechanism.
+  Two paths forward for a future dedicated shift: (a) declare it an
+  idiosyncratic point and stop chasing it — log it as a curiosity in
+  PLAN.md and return fully to the design-lead line (core=8 cloak,
+  exp-007/010's still-open multi-λ check); or (b) one more targeted
+  test — hold r1 AND r2 BOTH fixed at exactly 30/90 and sweep only λ
+  finely around 600nm (not the coarse 6-point exp-018 sweep, a 1–2nm
+  step bracket) to see whether the negative jump is itself narrow-band
+  (a true resonance linewidth) or already at its widest at exactly
+  600nm — a different question than exp-018 asked (that swept λ while
+  rescaling geometry to hold eps_z fixed; this would hold geometry
+  fixed and sweep λ in nm, changing eps_z as a side effect, the mirror
+  experiment).
+- **[open, this shift]** exp-021: resolution check (cpl 20→30) on the
+  r2=75/floor=0.10 box_dev gate misses — this line's exp-005/010/015
+  precedent, taken up immediately.
+- The `mu_r_floor < 0.05` direction and the parking lot remain open,
+  unchanged.
+- **exp-007's queued multi-λ check** (does the core=8 design lead
+  survive across wavelengths) remains the standing highest-value item
+  once this mechanism thread is closed out or parked.
