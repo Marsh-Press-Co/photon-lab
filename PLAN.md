@@ -263,6 +263,15 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
 ## Next work
 
+**2026-08-12 — program redesign (Marsh's directive, in-session):** new work
+runs under `PANEL.md` / `LOGBOOK.md` — the seven-seat research panel
+targeting the founding phenomenon under four explicit constraints (beam
+termination · no return · **no ambient silhouette** · switchable),
+continuous mode with checkpoints. Iteration 1 = exp-020 (ambient-visibility
+instrument + graded-black baseline), halted at Checkpoint #0 for Marsh's
+go-ahead. The remaining [open] items below are **PARKED** (mirrored in
+LOGBOOK.md, resumable, off the program's critical path).
+
 - [done 2026-08-09] Artifact schema v0.1.0 — merged (`ba2cc7f`), verified
   on all three benches.
 - [done 2026-08-09] Preston's cold read → house figure style **R1–R4**

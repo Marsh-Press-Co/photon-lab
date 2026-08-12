@@ -46,6 +46,20 @@ solver build (Clyde) → Evidence-Gated artifacts → observer/metric verdict
 lands in a numbered experiment's NOTES.md; scope creep goes to the parking
 lot.
 
+## The Research Panel (adopted 2026-08-12, Marsh's directive, in-session)
+
+The phenomenon program (the founding flashlight statement, four explicit
+constraints) runs under a seven-seat panel protocol — see `PANEL.md`
+(mechanics) and `LOGBOOK.md` (persistent memory; read before proposing;
+never re-propose a ruled-out idea). The panel supplements the Clyde/Bonnie
+loop while Bonnie is inactive: her lanes stay reserved exactly as recorded
+(absorber stub, viz system), the freeze/consensus rules stand, and her seat
+at the real table is open whenever she returns. Continuous mode: the program
+runs in the background; Marsh is convened only at PANEL.md's checkpoint
+criteria. Humans-never-gates is unchanged — checkpoints are notifications
+with a standing veto, not required approvals; the one-time Checkpoint #0
+go-ahead is Marsh exercising that standing prerogative, on the record.
+
 **Figure legibility (amended 2026-08-09, Marsh's word — humans are never
 gates, applied consistently):** the principle stands — a figure a
 non-physicist can't read correctly has failed regardless of its physics —

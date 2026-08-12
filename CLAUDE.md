@@ -12,4 +12,8 @@ status + the paid-for measurement lessons (FFT wavelength quantization,
 reflection-monitor placement, scattered-vs-total field comparisons, PEC
 flush at cloak walls). Re-run the suite after any `lab/` engine change.
 
+Phenomenon-program work (exp-020+) runs under `PANEL.md` — the seven-seat
+research panel — with `LOGBOOK.md` as its persistent memory. Read both
+first; never re-propose a ruled-out idea.
+
 Personal machine bridges go in `CLAUDE.local.md` (gitignored), never here.
