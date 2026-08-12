@@ -272,6 +272,13 @@ instrument + graded-black baseline), halted at Checkpoint #0 for Marsh's
 go-ahead. The remaining [open] items below are **PARKED** (mirrored in
 LOGBOOK.md, resumable, off the program's critical path).
 
+- **[open, contract lane]** Artifact-schema formalization for the ambient
+  instrument: the `angle_deg` source key + per-run energy/intensity ledger
+  rows belong in `lab/ARTIFACTS.md` — that is the cross-lane contract
+  (Bonnie's veto lane, AGENTS.md), so it needs the counterparty-review PR,
+  not a unilateral panel edit. Until then the ledger lives experiment-side
+  in `results.json` (exp-020 synthesis, docket #4).
+
 - [done 2026-08-09] Artifact schema v0.1.0 — merged (`ba2cc7f`), verified
   on all three benches.
 - [done 2026-08-09] Preston's cold read → house figure style **R1–R4**
