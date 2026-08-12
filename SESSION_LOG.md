@@ -2,6 +2,62 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-12 (cloud shift 10) — exp-020/021: the shell=3λ feature is r2=90-specific
+
+**Pre-flight:** local `main` was detached again (same bookkeeping class
+as every prior shift) — fixed with `git fetch origin main && git
+checkout -B main origin/main` before touching anything. Bench trust
+suite 22/22 green (`--only 123467`) before this shift's work, rechecked
+after both exp-020 and exp-021 (no `lab/` engine changes either time —
+only `experiments/` scripts).
+
+**exp-020 — R2 Isolation (CONCLUDED)**
+- Picked up exp-019's own queued follow-up: every point in the
+  eps_z/shell-thickness line since exp-006 has shared one fixed outer
+  cloak radius, r2=90 cells — "shell=3λ is special" and "r2=90 is
+  special" have never been told apart. Moved r2 itself for the first
+  time in the line: r2=75 and r2=120 (bracketing r2=90 on both sides),
+  holding shell=3λ=60 cells fixed at each (cpl=20, λ=600nm), ±3-cell
+  bracket around each new target, the trough's own floor pair
+  (0.10/0.18). Predictions committed first (`6711dc0`); `check_gates()`
+  found zero exclusions at either r2 — the first fully-clean-inclusion
+  sweep of this whole line.
+- **Result: neither new r2 reproduces r2=90's negative jump at its own
+  shell=3λ point** (`16b61bc`). Both targets came back strongly
+  positive — +173.5% at r2=75/r1=15, +51.0% at r2=120/r1=60 — squarely
+  inside (in fact on the high side of) the range exp-018/019 already
+  mapped at every non-3λ/non-r2=90 point. **The "shell=3λ" feature is
+  r2=90-specific, not a portable shell-thickness law.** Combined with
+  exp-018 (ruled out eps_z) and exp-019 (ruled out any-integer-λ), the
+  population of things that don't explain the original exp-004/005/006
+  finding is now large — mechanism still unidentified after five
+  dedicated checks. One honest gate miss flagged, not hidden: 4 of 7
+  r2=75/floor=0.10 points missed box_dev≤2% (2.55–3.36%), taken up
+  immediately by exp-021.
+
+**exp-021 — R2=75 Resolution Check (CONCLUDED)**
+- Same-shift direct resolution check on exp-020's own gate miss —
+  this line's exp-005/010/015 precedent applied a third time: reran 3
+  of exp-020's r2=75 points (worst miss r1=13, target r1=15, clean
+  flank r1=18) at cpl=30 (1.5×), geometry scaled to hold physical size
+  fixed. Predictions committed first (`c18db7d`).
+- **Result: the gate miss was ordinary cpl=20 grid noise** (`8f07b2f`).
+  box_dev roughly halved at all 3 points (e.g. 3.36%→1.71%), all now
+  clear 2% comfortably; jump values shifted only 3.1–4.8% relative, no
+  sign flip anywhere. Closes exp-020's one open caveat in the same
+  shift it was raised — the r2=75 half of exp-020's conclusion now
+  stands on fully gate-clean footing.
+- Net for the shift: a genuine generality test (exp-020) that further
+  narrows five shifts' worth of mechanism-hunting to "still
+  unexplained, but the list of things it isn't keeps growing," plus a
+  same-shift resolution check that closed its own honest gate miss
+  cleanly. Four commits to main this shift (two predict/results
+  pairs). Trust suite 22/22 green throughout. Next queued: a fine λ
+  sweep (1–2nm steps) at the fixed r1=30/r2=90 geometry, testing
+  whether the negative jump is a true narrow-band resonance — or
+  parking this mechanism thread and returning to exp-007's still-open
+  core=8 multi-λ design-lead check.
+
 ## 2026-08-12 (cloud shift 9) — exp-018/019: the "eps_z trough" was never about eps_z
 
 **Pre-flight:** local `main` was again detached at a stale point (same

@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-12, cloud shift 9)
+## Current state (2026-08-12, cloud shift 10)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -260,6 +260,30 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   r1=47/floor=0.18 box_dev=2.17%, just over the 2% band (doesn't touch
   the r1=50 target point, itself among the cleanest in the set, or the
   qualitative conclusion).
+- exp-020 CONCLUDED (this shift) — exp-019's own queued follow-up: every
+  point in the eps_z/shell-thickness line since exp-006 had shared one
+  fixed outer radius, r2=90 cells — never varied. Moved r2 itself for
+  the first time (r2=75 and r2=120, brackets around r2=90), holding
+  shell=3λ=60 cells fixed at each, ±3-cell bracket around each new
+  target, floor pair 0.10/0.18 reused. **Result: neither new r2
+  reproduces r2=90's negative jump at its own shell=3λ point** — both
+  targets come back strongly positive (+173.5% at r2=75/r1=15, +51.0%
+  at r2=120/r1=60), squarely inside the range exp-018/019 already found
+  at every non-3λ/non-r2=90 point. **The "shell=3λ" feature is
+  r2=90-specific, not a portable shell-thickness law.** Combined with
+  exp-018 (not eps_z) and exp-019 (not any-integer-λ), the population
+  of things that don't explain the original exp-004/005/006 finding is
+  now large; still zero mechanism identified. One honest gate miss
+  flagged: 4 of 7 r2=75/floor=0.10 points missed box_dev≤2%
+  (2.55–3.36%) — resolved same-shift by exp-021.
+- exp-021 CONCLUDED (this shift) — direct resolution check (cpl 20→30,
+  exp-005/010/015 precedent) on exp-020's r2=75/floor=0.10 gate misses,
+  3 representative core points (worst miss, target, clean flank).
+  **Gate miss was ordinary cpl=20 grid noise**: box_dev roughly halves
+  at all 3 points (e.g. 3.36%→1.71%), all now clear 2%; jump values
+  shift only 3.1–4.8% relative, no sign flip. Closes exp-020's one open
+  caveat in the same shift it was raised — the r2=75 half of exp-020's
+  conclusion now stands on fully gate-clean footing.
 
 ## Next work
 
@@ -360,13 +384,24 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   wave hypothesis at 2λ — run as exp-019. **Does not generalize**: no
   dip near 2λ, ruling out a generic "shell = integer × λ" rule. 3λ looks
   specific, not a member of a broader family (yet). See Current state.
-- **[open]** exp-019's own queued follow-up: is the 3λ feature
-  reproducible at a different fixed r2 (every point in this eps_z/shell
-  line, including exp-018/019, has used r2=90 cells — an un-isolated
-  variable)? If shell=3λ only dips at r2=90 specifically, that points at
-  something about r2 itself, not shell thickness in isolation. Needs a
-  fresh CFL/degeneracy gate check at a different r2 before committing —
-  worth a dedicated shift, not a quick bolt-on.
+- [done 2026-08-12, cloud shift 10] exp-019's own queued follow-up (is
+  the 3λ feature reproducible at a different fixed r2?) — run as
+  exp-020. **No**: neither r2=75 nor r2=120 reproduces the negative
+  jump at their own shell=3λ point. The feature is r2=90-specific.
+  Gate miss at r2=75/floor=0.10 resolved same-shift by exp-021. See
+  Current state.
+- **[open]** exp-020's own queued follow-up (see its NOTES.md Next):
+  the trough has now survived five mechanism/generality checks in a row
+  (exp-016 impedance, exp-017 angular pattern, exp-018 eps_z, exp-019
+  integer-λ, exp-020 r2) without one explaining or generalizing it.
+  Two paths for a future dedicated shift: (a) declare
+  r1=30/r2=90/λ=600nm/floor∈{0.10,0.18} an idiosyncratic anomaly and
+  stop chasing it, returning fully to the design-lead line; or (b) one
+  more targeted test — hold r1 AND r2 both fixed at exactly 30/90 and
+  sweep λ finely (1–2nm steps) around 600nm to see whether the negative
+  jump is itself narrow-band (a true resonance linewidth) — the mirror
+  of exp-018's coarse λ sweep, which rescaled geometry to hold eps_z
+  fixed rather than holding geometry fixed.
 - [open, secondary, exp-017] A local-maxima count found 13 angular peaks
   at the trough vs 10 at each flank — unscored, not folded into the
   magnitude-only conclusion, but worth a finer-binned or bare-disk-
