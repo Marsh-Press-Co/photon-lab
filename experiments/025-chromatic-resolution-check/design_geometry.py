@@ -23,12 +23,21 @@ excursion in exp-024, per VISION's V-weighting point).
 Pure geometry -- no FDTD. Run it; the numbers below are what run.py uses.
 """
 
+import importlib.util
+import os
+
 import numpy as np
 
-import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                 "..", "024-ambient-margin-adjudication"))
-import design_geometry as dg024   # the exp-024 baseline this check refines
+# load exp-024's design_geometry.py under a distinct module name -- both
+# files are named design_geometry.py, so a plain `import design_geometry`
+# here would collide with sys.modules' entry for *this* file mid-init.
+_dg024_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "..", "024-ambient-margin-adjudication",
+                            "design_geometry.py")
+_spec = importlib.util.spec_from_file_location("exp024_design_geometry",
+                                                 _dg024_path)
+dg024 = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(dg024)   # the exp-024 baseline this check refines
 
 # ------------------------------------------------------------- target set
 TARGETS = {450: 15, 750: 25}          # lambda_nm -> exp-024's cpl
