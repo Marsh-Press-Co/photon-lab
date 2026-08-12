@@ -2,6 +2,49 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-12 (redesign session) — the Research Panel program; Iteration 1 Phases 1–2; Checkpoint #0
+
+**The redesign (Marsh's directive, in-session):** the phenomenon program now
+runs under a seven-seat research panel — PANEL.md (protocol) + LOGBOOK.md
+(persistent memory, seeded from exp-000..019). Four explicit constraints;
+the hard one (#3, no ambient silhouette) had never been a number on this
+bench. Continuous mode: background iterations, checkpoint pauses only.
+Trough line parked, resumable. Branch: claude/fotson-lab-redesign-uesugb.
+
+**Bench:** this cloud session verified as a live bench — deps installed
+(pyMKL wheel fails to build here; ceviche installed --no-deps per its scipy
+fallback), suite 30/30 green (28/28 in 60 s + stage 5 2/2 in 113 s),
+stage-5 numbers reproduce VALIDATION.md to the digit.
+
+**Iteration 1, Phases 1–2 (7 fresh-context seats):** VISION SCIENCE led —
+"The Ambient-Appearance Instrument": nine-angle ±40° incoherent back-lit
+ambient, B(y) on a near plane, Weber contrast with photopic/scotopic
+thresholds pinned from Blackwell/Rose/Hecht-class sources BEFORE any run;
+predicted absorber C ≈ −0.90 (constraint-3 FAIL ≥ 37× the field bar);
+scotopic crossover committed; and a genuinely new reading — the witness's
+own flashlight glare (Stiles–Holladay) elevates his threshold ~3 log units,
+so the static silhouette can sit sub-threshold FOR THE HOLDER while the
+beam interaction stays high-contrast. All five critique seats returned
+support-with-changes with real catches (oblique source walk-off breaks the
+flatness gate at large angles — photonics and EM independently, with
+different onsets because the proposal never pinned source geometry, as Red
+Team diagnosed; shadow lever arm 93 cells not 15, committed C bands
+geometrically unreachable — EM; missing absorbed-power ledger — thermo;
+linear-only idioms unlabeled, no intensity scale tying ambient to beam
+units — quantum; no calibration article between C = −0.7 and 0, dilute-
+sponge third article proposed — materials). RED TEAM
+(proceed-with-mandatory-fixes) caught what all five missed: the frozen
+threshold table is not self-consistent (L*_field re-derives to 1.7×10⁻⁴
+cd/m², 4.2× the committed value — verified by the Director), gate (c)'s
+0.01 tolerance makes the 0.005 PASS bar undecidable, and the glare sidecar
+quietly re-scopes constraint 3 — promoted to a spec ruling for Marsh.
+
+**HALTED AT CHECKPOINT #0** per protocol: no synthesis, no engine code, no
+runs until Marsh's go-ahead. Mandatory-fix docket in the iteration entry.
+Routine note: photonlab-shift could not be paused by the agent (created via
+http_api; owner-only) — Marsh asked to pause it from his routines list; one
+old-queue fire meanwhile would be harmless.
+
 ## 2026-08-12 (cloud shift 9) — exp-018/019: the "eps_z trough" was never about eps_z
 
 **Pre-flight:** local `main` was again detached at a stale point (same
