@@ -2,6 +2,66 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-12 (cloud shift 9) — exp-018/019: the "eps_z trough" was never about eps_z
+
+**Pre-flight:** local `main` was again detached at a stale point (same
+bookkeeping class as every prior shift) — fixed with `git fetch origin
+main && git checkout -B main origin/main` before touching anything.
+Bench trust suite 22/22 green (`--only 123467`) before this shift's
+work, rechecked after both exp-018 and exp-019 (no `lab/` engine
+changes either time — only `experiments/` scripts).
+
+**exp-018 — The Trough Frequency Sweep (CONCLUDED)**
+- Picked up exp-017's own queued candidate: is the eps_z≈2.25–2.4 trough
+  (exp-014/015, both mechanism candidates refuted by exp-016/017) tied
+  to a resonance-like condition at the fixed λ=600nm/cpl=20 grid, rather
+  than being a pure eps_z effect? Reused exp-003's λ-sweep machinery
+  (cpl fixed, geometry scaled in cells to hold physical size constant),
+  anchored at the trough's own geometry (r1=30/r2=90 at f=1) instead of
+  exp-002's original triple, single cloak scene only, the trough's own
+  floor pair (0.10/0.18). Predictions committed first (`47aa745`).
+- Scaling r1 and r2 together kept eps_z inside the trough's established
+  window (2.2228–2.2907) at every one of 6 λ points, while the shell's
+  radial extent in wavelengths varied 2.40λ–4.30λ across the same sweep
+  — the intended discriminator. **Result: the negative jump survived at
+  exactly one point, λ=600nm — the only sweep point where shell
+  thickness lands on an exact integer number of wavelengths (60 cells =
+  3.00λ at cpl=20)** (`28c5c1c`). All 5 other points came back positive
+  (+3% to +92%) despite eps_z barely moving (0.068 total range) — a
+  ~110-percentage-point swing in jump against a near-flat eps_z. Gates
+  clean (box_dev ≤1.81%, cross_dev ≤0.085%), λ=600 reproduces exp-014's
+  reused number exactly. **Reframes the whole eps_z-trough story**:
+  exp-006/011–017's "eps_z≈2.25 trough" was tracking a coincidence of
+  exp-002's original geometry (shell=3.00λ at cpl=20), not a real
+  feature of `Q_ext(eps_z)`. New hypothesis: a shell-thickness
+  standing-wave/Fabry-Pérot condition.
+
+**exp-019 — Shell Thickness at 2 Wavelengths (CONCLUDED)**
+- Same-shift direct test of exp-018's own hypothesis: does the
+  negative-jump feature reappear at a different integer, 2λ (40 cells),
+  bracketed the same way exp-014 bracketed 3λ (±3 cells around r1=50,
+  r2=90 fixed)? Predictions committed first (`64dd119`), including two
+  points (r1=52/53 at floor=0.18) excluded up front on degeneracy
+  grounds — this eps_z range (4.4–5.9) is past exp-013's own
+  tightest-margin point.
+- **Result: no. All 5 complete-floor-pair points (r1=47–51) show
+  positive jumps (+34% to +46%)** — squarely inside the range exp-018
+  found at its own non-3λ points, no dip, no band, nothing
+  resonance-like near 2λ (`81296ab`). Narrows exp-018's hypothesis:
+  whatever produces the 3λ feature isn't a generic "shell = integer ×
+  λ" rule — 2λ and 3λ behave differently. r1=48 reproduces exp-006/013's
+  existing core=48 numbers exactly. One honest gate miss flagged, not
+  hidden: r1=47/floor=0.18 box_dev=2.17%, just over the 2% band (doesn't
+  touch the r1=50 target point, itself among the cleanest in the set, or
+  the qualitative conclusion).
+- Net for the shift: a genuine reframe (exp-018 overturned a working
+  assumption 5 experiments deep) immediately followed by an honest
+  narrowing (exp-019 stopped that reframe from overreaching into a
+  tidier story than the data supports). Four commits to main this shift
+  (two predict/results pairs). Next queued: is the 3λ feature specific
+  to r2=90 (every point in this line has shared that one fixed outer
+  radius) — a genuinely new investigation, not a quick bolt-on.
+
 ## 2026-08-11 (cloud shift 8) — exp-016/017: both queued trough mechanisms tested and refuted
 
 **Pre-flight:** local `main` was detached at the true tip again (same

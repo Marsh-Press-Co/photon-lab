@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-11, cloud shift 8)
+## Current state (2026-08-12, cloud shift 9)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -229,6 +229,37 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   mirror of exp-003's λ sweep — to test whether the trough is a
   resonance-like condition tied to the fixed λ=600nm/cpl=20 grid rather
   than a pure eps_z effect).
+- exp-018 CONCLUDED (this shift) — the frequency-domain mirror
+  experiment exp-017 queued: swept λ (420–750nm, exp-003's own scaling
+  machinery) anchored at the trough's own geometry (r1=30/r2=90 at f=1),
+  scaling r1/r2 together so eps_z stayed inside the established trough
+  window (2.2228–2.2907) at every λ while the shell's radial extent in
+  wavelengths varied 2.40λ–4.30λ. **Major reframe: the eps_z trough is
+  not an eps_z effect.** The negative floor-0.10→0.18 jump survived at
+  exactly one point — λ=600nm, the *only* sweep point where shell
+  thickness (r2−r1=60 cells) lands on an exact integer number of
+  wavelengths (3.00λ at cpl=20). All 5 other points came back positive
+  (+3% to +92%) despite eps_z barely moving (0.068 range) — eps_z does
+  not track the effect; shell-thickness-in-wavelengths does. Gates clean
+  (box_dev ≤1.81%, cross_dev ≤0.085%); λ=600 point reproduces exp-014's
+  reused number exactly. Reframes exp-006/011–017's "eps_z≈2.25 trough"
+  as a coincidence of exp-002's original geometry choice (shell=3.00λ),
+  not a real eps_z-axis feature. New sharp hypothesis: a shell-thickness
+  standing-wave/Fabry-Pérot condition — tested immediately by exp-019.
+- exp-019 CONCLUDED (this shift) — exp-018's own queued direct test:
+  brackets r1=50 (shell=40 cells=2.00λ) ±3 cells, mirroring exp-014's
+  bracket around 3.00λ, same floor pair, r2=90 fixed. **The
+  standing-wave hypothesis does NOT generalize to 2λ.** All 5
+  complete-floor-pair points (r1=47–51) show positive jumps (+34% to
+  +46%), squarely inside the range exp-018 found at its own non-3λ
+  points — no dip, no band, nothing resonance-like near 2λ. Narrows
+  exp-018's hypothesis considerably: whatever produces the negative jump
+  at 3λ isn't a generic "shell = integer × λ" rule; 2λ and 3λ behave
+  differently. r1=48 reproduces exp-006/013's existing core=48 numbers
+  exactly (sanity check). One honest gate miss flagged, not hidden:
+  r1=47/floor=0.18 box_dev=2.17%, just over the 2% band (doesn't touch
+  the r1=50 target point, itself among the cleanest in the set, or the
+  qualitative conclusion).
 
 ## Next work
 
@@ -320,19 +351,29 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   mismatch) and exp-017 (angular-pattern shape comparison, new
   `lab.sections.angular_scattered_pattern` capability). **Both refuted.**
   See Current state.
-- **[open]** The trough's actual mechanism is still unknown — both
-  queued candidates closed without finding it. New candidate proposed by
-  exp-017: a frequency-domain view, sweeping λ at fixed core=30/eps_z=
-  2.25 (the mirror of exp-003's λ sweep, held at the trough's own
-  geometry instead of varied) to test whether the trough is a
-  resonance-like condition tied to the λ=600nm/cpl=20 grid specifically,
-  rather than a pure eps_z effect. A genuinely new investigation, worth
-  a dedicated shift.
+- [done 2026-08-12, cloud shift 9] The frequency-domain mechanism check
+  proposed by exp-017 — run as exp-018. **Major reframe: the "eps_z
+  trough" is not an eps_z effect.** It's a shell-thickness standing-wave
+  condition at exactly 3λ (exp-002's original geometry, a coincidence
+  not a chosen eps_z). See Current state.
+- [done 2026-08-12, cloud shift 9] Direct test of exp-018's standing-
+  wave hypothesis at 2λ — run as exp-019. **Does not generalize**: no
+  dip near 2λ, ruling out a generic "shell = integer × λ" rule. 3λ looks
+  specific, not a member of a broader family (yet). See Current state.
+- **[open]** exp-019's own queued follow-up: is the 3λ feature
+  reproducible at a different fixed r2 (every point in this eps_z/shell
+  line, including exp-018/019, has used r2=90 cells — an un-isolated
+  variable)? If shell=3λ only dips at r2=90 specifically, that points at
+  something about r2 itself, not shell thickness in isolation. Needs a
+  fresh CFL/degeneracy gate check at a different r2 before committing —
+  worth a dedicated shift, not a quick bolt-on.
 - [open, secondary, exp-017] A local-maxima count found 13 angular peaks
   at the trough vs 10 at each flank — unscored, not folded into the
   magnitude-only conclusion, but worth a finer-binned or bare-disk-
   referenced recheck if a future shift returns to this mechanism
-  question.
+  question. (Read now in light of exp-018/019: "the trough" in that
+  observation is specifically the shell=3λ point, not an eps_z-axis
+  location.)
 - [open] The `mu_r_floor < 0.05` direction (toward the true r1
   singularity) remains untested — needs a paired `courant_frac`
   reduction for CFL stability (derivation in exp-004 NOTES.md
