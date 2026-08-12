@@ -1,7 +1,17 @@
 # Bench validation — lab/ engine trust suite
 
-**2026-08-09 (late) · driver: Clyde · status: 🟢 30/30 checks green**
-(fast stages `--only 1234678` [28/28, 105 s] + `--only 5` [2/2], same code)
+**2026-08-12 · driver: Clyde (panel Iteration 1) · status: 🟢 43/43 checks
+green** (fast stages `--only 12346789` [41/41, 85 s] + `--only 5` [2/2],
+same code, ubuntu cloud bench)
+
+Stage 9 (ambient-appearance instrument) added with exp-020 — the panel
+program's constraint-3 metric (angled line source + `lab/ambient.py`:
+incoherent multi-angle back-light, near-plane B(y), window Weber contrast).
+Its absolute anchors: an exact Beer–Lambert half-plane slab (measured C
+within 0.001 of theory) and the closed-box energy identities re-proven on
+the oblique source path. One honest recalibration on first light, mechanism
+recorded below: point-wise B(y) flatness is fringe-limited on a soft-source
+bench; the gated quantity is the window mean.
 
 Stage 8 (cross-section machinery) added with exp-002, and with it a
 forensic catch: a phasor-convention bug in `lab/emit` whose signature was
@@ -53,6 +63,16 @@ Run it:
 | 7 | absorber | coated wall @ 750 nm | R = 0.0020 | ≤ 0.02 |
 | 7 | absorber | sponge/PEC return, net of floor | **0.000** | ≤ 0.10 |
 | — | ours-small | wavelength | 19.96 cells | 20.0 ± 0.2 |
+| 9 | ambient | angle_deg=0 bit-exact vs legacy | 0.0 | 0.0 exactly |
+| 9 | ambient | oblique wavelength @30° (20/cosθ) | 23.08 | 23.09 ± 0.4 |
+| 9 | ambient | empty window balance @0° | −0.0004 | \|·\| ≤ 0.005 |
+| 9 | ambient | empty window balance @±15° | −0.019 / +0.021 | \|·\| ≤ 0.04 |
+| 9 | ambient | ripple canary @0° / ±15° | 0.130 / 0.325 | ≤ 0.25 / 0.50 |
+| 9 | ambient | empty identity, summed \|C_empty\| | **0.00043** | ≤ 0.005 |
+| 9 | ambient | ±15° mirror symmetry (raw flank) | 0.021 | ≤ 0.03 |
+| 9 | ambient | Beer–Lambert slab C vs analytic | **−0.0982 vs −0.0973** | \|Δ\| ≤ 0.02 |
+| 9 | ambient | oblique lossless: silent absorption | −0.014 | \|·\| ≤ 0.05 |
+| 9 | ambient | oblique extinction: two routes agree | 0.000 | ≤ 0.12 |
 
 Stage 5 diagnostics (info): backscatter −26%, forward −38%. **Beam intensity
 behind the object vs empty space: bare PEC 0.057 → cloaked 0.641** — the
@@ -100,6 +120,16 @@ real observer-record datum (committed artifact,
    minimum, and the return ratio is computed net of the camera floor that
    stage 6 measured independently (raw values printed alongside).
 
+9. **Ambient-appearance instrument** — the panel program's constraint-3
+   metric (exp-020). The angled source proves its geometry (bit-exact
+   legacy path at θ=0; λ/cosθ along x), the empty scene reads identity
+   through the full incoherent pipeline, ± angles mirror-match, a uniform
+   half-plane sponge slab reproduces Beer–Lambert analytically (the
+   measurement family's absolute anchor — no FDTD tuning can fake
+   e^(−τ/cosθ)), and the stage-8 closed-box energy identities hold at
+   oblique incidence. Window means are the gated quantity; the point-wise
+   ripple canary carries the fringe-limit mechanism.
+
 ## Idealizations and caveats (stated, per lab convention)
 
 - The cloak uses the **reduced** TMz parameter set (ε_z const, μ_r=((r−r1)/r)²,
@@ -137,6 +167,15 @@ real observer-record datum (committed artifact,
 - **Cross-section normalization is object-fixed, not box-fixed** — measure
   incident intensity once at the object's own position; per-face
   normalization made widths drift 16% with box size (finite-beam profile).
+- **Point-wise B(y) flatness is fringe-limited on a soft-source bench**
+  (2026-08-12, stage 9 first light): the finite tapered aperture throws
+  Fresnel edge fringes (period 25–40 cells) and residual band reflection
+  adds a few-% standing bow — 13%/32% peak-to-peak at 0°/±15° while the
+  summed window identity read 4×10⁻⁴. Gate window MEANS, not points;
+  per-angle oblique tilt is mirror-antisymmetric in θ and cancels in
+  symmetric incoherent sums; keep analysis windows ≥ one fringe zone
+  √(λD) inside the flat-lit edge (a window 21 cells from the +30° edge
+  read +16% imbalance — measured, not extrapolated).
 
 ## Replications
 

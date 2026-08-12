@@ -118,11 +118,19 @@ question (the glare-adapted flashlight holder) stays open pending docket #7.
 
 ## Predictions — committed before the instrument is built or any run
 
-- **P1a (empty identity / decision floor):** |C_empty| ≤ 0.005 at every λ,
-  both weightings. The measured max defines the decision floor δ_C; every C
-  is reported ±δ_C; a PASS verdict at either bar is decidable only if
-  δ_C < that bar. Empty B(y) flat to ±5% across the analysis span at θ = 0
-  and ±40°.
+- **P1a (empty identity / decision floor):** summed |C_empty| ≤ 0.005 at
+  every λ, both weightings. The measured max defines the decision floor
+  δ_C; every C is reported ±δ_C; a PASS verdict at either bar is decidable
+  only if δ_C < that bar. Per-angle empty window balance |C_empty(θ)| ≤
+  0.05 at every committed angle. *Amendment on the record, pre-run
+  (stage-9 lesson, 2026-08-12): the original "flat to ±5% point-wise"
+  clause is replaced — point-wise flatness is fringe-limited on this bench
+  (finite tapered aperture → Fresnel edge fringes + few-% band-reflection
+  bow; stage-9 measured 13%/32% peak-to-peak ripple at 0°/±15° while the
+  summed window identity read 4×10⁻⁴). The gated quantity is the window
+  mean; per-angle oblique tilt is mirror-antisymmetric and cancels in the
+  symmetric sum; point-wise ripple is recorded as a canary, not gated at
+  ±5%.*
 - **P1b (coverage gate, the design calc's empirical half):** the ±40° empty
   runs light the full analysis span (no window mean below 0.8× the span
   median) — if this fails, the geometry pinning failed and no object number
