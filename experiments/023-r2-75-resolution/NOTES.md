@@ -1,8 +1,8 @@
-# exp-021 — Does exp-020's r2=75 Box-Independence Gate Miss Survive Resolution?
+# exp-023 — Does exp-022's r2=75 Box-Independence Gate Miss Survive Resolution?
 
 **2026-08-12 · driver: Clyde (cloud shift 10) · status: predictions committed, not yet run**
 
-exp-020 (this shift) found that at r2=75, floor=0.10, 4 of 7 core points
+exp-022 (this shift) found that at r2=75, floor=0.10, 4 of 7 core points
 miss the box_dev ≤2% gate (2.55%–3.36%), while every r2=120 point and
 every r2=75/floor=0.18 point clears it comfortably (max 1.78%). Rather
 than argue about a borderline number or discard it silently, this line
@@ -15,10 +15,10 @@ artifact.
 
 exp-015's exact scaling machinery (N, CX/CY, ABSORB, STEPS, SRC_X,
 REF_HALF_H, MIN_MARGIN, box halves all × 1.5, courant_frac unchanged —
-the eps_z-based CFL ceiling is f-invariant), applied to exp-020's r2=75
+the eps_z-based CFL ceiling is f-invariant), applied to exp-022's r2=75
 sub-sweep instead of exp-014's r2=90 baseline.
 
-**Three of exp-020's seven r2=75 core points**, exp-015's own
+**Three of exp-022's seven r2=75 core points**, exp-015's own
 minimal-but-decisive three-point idiom (not the full bracket):
 
 | base r1 (cpl=20) | why chosen | scaled r1 (cpl=30) | eps_z (cpl20 → cpl30) |
@@ -40,10 +40,10 @@ vs floor=0.18) comfortably — zero exclusions.
 
 ## Idealizations
 
-Same as exp-015/010/005: this checks whether exp-020's specific gate
+Same as exp-015/010/005: this checks whether exp-022's specific gate
 miss is a cpl=20 grid artifact, not a re-verification of the whole
 r2=75 sweep. Only base=13/15/18 are re-run; base=12/14/16/17 (also part
-of exp-020's original 7-point bracket, base=12/14 also missed the gate)
+of exp-022's original 7-point bracket, base=12/14 also missed the gate)
 are not directly re-checked — the 3 chosen points bracket the worst
 miss, the target, and a clean control, following the same "enough to
 test whether the anomaly's existence survives, not a full remap"
@@ -59,7 +59,7 @@ reasoning exp-015 used.
 - **P2 (does the discriminator survive?):** the jump magnitude at all
   three points stays strongly positive and within roughly 20% relative
   of its cpl=20 value (exp-005's own resolution shift was 7% relative;
-  exp-015's was also ~7%) — i.e., exp-020's r2-specific conclusion (no
+  exp-015's was also ~7%) — i.e., exp-022's r2-specific conclusion (no
   negative jump anywhere near r2=75's own shell=3λ point) is not an
   artifact of under-resolved box-independence. A jump flipping sign or
   moving by an order of magnitude at any of the three points would be
@@ -103,7 +103,7 @@ cross_dev ≤0.26% throughout.
   predicted band.** All three jumps stay strongly positive and shift by
   only 3.1–4.8% relative (well under the ±20% band predicted, in the
   same range as exp-005's own 7% and exp-015's own 7% resolution
-  shifts). No sign flip, no order-of-magnitude move — exp-020's
+  shifts). No sign flip, no order-of-magnitude move — exp-022's
   r2-specific conclusion at r2=75 is not an artifact of the under-
   resolved box-independence check.
 - **P3 (box_dev scaling, secondary) — a modest ~45–50% shrink, matching
@@ -114,21 +114,21 @@ cross_dev ≤0.26% throughout.
 
 ### Headline
 
-**exp-020's gate miss was ordinary cpl=20 grid noise, not a hidden
+**exp-022's gate miss was ordinary cpl=20 grid noise, not a hidden
 feature.** All three re-run points clear the box-independence gate at
 1.5× resolution while keeping their jump values within ~5% of the
-original — the r2=75 side of exp-020's conclusion (no negative jump near
+original — the r2=75 side of exp-022's conclusion (no negative jump near
 r2=75's own shell=3λ point) now stands on fully gate-clean footing,
-closing exp-020's one open honest caveat in the same shift it was
+closing exp-022's one open honest caveat in the same shift it was
 raised.
 
 ## Next
 
-- **[open]** exp-020's own queued mechanism question remains the
+- **[open]** exp-022's own queued mechanism question remains the
   standing next step on this thread: hold r1=30/r2=90 both fixed and
   sweep λ finely (1–2nm steps) around 600nm to test whether the
   negative jump is itself narrow-band (a resonance linewidth) — see
-  exp-020 NOTES.md Next for the full framing. Not attempted this shift;
+  exp-022 NOTES.md Next for the full framing. Not attempted this shift;
   a genuinely new sweep design, worth its own dedicated slot.
 - exp-007's queued multi-λ check (does the core=8 design lead survive
   across wavelengths) remains the standing highest-value item once this

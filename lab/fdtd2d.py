@@ -130,10 +130,17 @@ class Sim:
 
     # ------------------------------------------------------------- sources
     def add_line_source(self, x, y_lo=None, y_hi=None, profile="plane",
-                        width=None, ramp_periods=3.0, amplitude=1.0, edge=24):
+                        width=None, ramp_periods=3.0, amplitude=1.0, edge=24,
+                        angle_deg=0.0):
         """Soft source on the vertical line at x.
         profile: 'plane' (tapered top-hat) or 'gauss' (beam, needs width =
-        1/e half-width in cells)."""
+        1/e half-width in cells).
+        angle_deg: launch angle from the x-axis (a phase ramp k·sinθ along
+        the line). The −x-going wave then travels along (−cosθ, +sinθ): for
+        positive θ it walks toward +y as it propagates toward the observer
+        side — the ambient-instrument convention (suite stage 9 gates the
+        sign and the λ/cosθ geometry). angle_deg=0 keeps the original
+        scalar-sin arithmetic path bit-exact (stage-1 regression)."""
         y_lo = self.absorb if y_lo is None else y_lo
         y_hi = self.ny - self.absorb if y_hi is None else y_hi
         n = y_hi - y_lo
@@ -148,12 +155,19 @@ class Sim:
             p = np.exp(-(((yy - yc) / width) ** 2))
         else:
             raise ValueError(profile)
+        if angle_deg:
+            k = 2.0 * np.pi / self.lam
+            yy = np.arange(y_lo, y_hi, dtype=float)
+            phase = k * np.sin(np.radians(angle_deg)) * (yy - 0.5 * (y_lo + y_hi))
+        else:
+            phase = None
         self.sources.append(
             dict(x=x, sl=slice(y_lo, y_hi), profile=amplitude * p,
-                 ramp=int(ramp_periods * self.lam / self.S))
+                 ramp=int(ramp_periods * self.lam / self.S), phase=phase)
         )
         spec = dict(profile=profile, x=x, y_lo=y_lo, y_hi=y_hi,
-                    ramp_periods=ramp_periods, amplitude=amplitude)
+                    ramp_periods=ramp_periods, amplitude=amplitude,
+                    angle_deg=angle_deg)
         spec["width" if profile == "gauss" else "edge"] = width if profile == "gauss" else edge
         self.source_specs.append(spec)
 
@@ -217,7 +231,10 @@ class Sim:
 
             for s in self.sources:
                 env = 0.5 * (1.0 - np.cos(np.pi * n / s["ramp"])) if n < s["ramp"] else 1.0
-                self.Ez[s["x"], s["sl"]] += env * np.sin(self.omega * n) * s["profile"]
+                if s.get("phase") is None:
+                    self.Ez[s["x"], s["sl"]] += env * np.sin(self.omega * n) * s["profile"]
+                else:
+                    self.Ez[s["x"], s["sl"]] += env * np.sin(self.omega * n - s["phase"]) * s["profile"]
 
             self.Ez *= self.damp_e
             if self.pec.any():

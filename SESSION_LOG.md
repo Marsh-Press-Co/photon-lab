@@ -2,16 +2,96 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
-## 2026-08-12 (cloud shift 10) — exp-020/021: the shell=3λ feature is r2=90-specific
+## 2026-08-12 (redesign session) — the Research Panel program; Iteration 1 Phases 1–2; Checkpoint #0
+
+**The redesign (Marsh's directive, in-session):** the phenomenon program now
+runs under a seven-seat research panel — PANEL.md (protocol) + LOGBOOK.md
+(persistent memory, seeded from exp-000..019). Four explicit constraints;
+the hard one (#3, no ambient silhouette) had never been a number on this
+bench. Continuous mode: background iterations, checkpoint pauses only.
+Trough line parked, resumable. Branch: claude/fotson-lab-redesign-uesugb.
+
+**Bench:** this cloud session verified as a live bench — deps installed
+(pyMKL wheel fails to build here; ceviche installed --no-deps per its scipy
+fallback), suite 30/30 green (28/28 in 60 s + stage 5 2/2 in 113 s),
+stage-5 numbers reproduce VALIDATION.md to the digit.
+
+**Iteration 1, Phases 1–2 (7 fresh-context seats):** VISION SCIENCE led —
+"The Ambient-Appearance Instrument": nine-angle ±40° incoherent back-lit
+ambient, B(y) on a near plane, Weber contrast with photopic/scotopic
+thresholds pinned from Blackwell/Rose/Hecht-class sources BEFORE any run;
+predicted absorber C ≈ −0.90 (constraint-3 FAIL ≥ 37× the field bar);
+scotopic crossover committed; and a genuinely new reading — the witness's
+own flashlight glare (Stiles–Holladay) elevates his threshold ~3 log units,
+so the static silhouette can sit sub-threshold FOR THE HOLDER while the
+beam interaction stays high-contrast. All five critique seats returned
+support-with-changes with real catches (oblique source walk-off breaks the
+flatness gate at large angles — photonics and EM independently, with
+different onsets because the proposal never pinned source geometry, as Red
+Team diagnosed; shadow lever arm 93 cells not 15, committed C bands
+geometrically unreachable — EM; missing absorbed-power ledger — thermo;
+linear-only idioms unlabeled, no intensity scale tying ambient to beam
+units — quantum; no calibration article between C = −0.7 and 0, dilute-
+sponge third article proposed — materials). RED TEAM
+(proceed-with-mandatory-fixes) caught what all five missed: the frozen
+threshold table is not self-consistent (L*_field re-derives to 1.7×10⁻⁴
+cd/m², 4.2× the committed value — verified by the Director), gate (c)'s
+0.01 tolerance makes the 0.005 PASS bar undecidable, and the glare sidecar
+quietly re-scopes constraint 3 — promoted to a spec ruling for Marsh.
+
+**Checkpoint #0 passed (Marsh, in-session):** two-tier constraint-3 ruling
+(Tier W witness / Tier A anyone) + go. The rest of Iteration 1 ran the
+same session:
+
+**Phase 3** — synthesis committed BEFORE the build (`0c4efff`): all nine
+docket fixes accepted, geometry pinned by a published ray-trace design
+calculation (360×1200, coverage verified at 17 angles), windows
+re-registered outside the 40° penumbra, threshold crossovers re-derived
+with the exponent band, P1–P7 bands committed.
+
+**Build** — angled line source (angle 0 bit-exact, gated), `lab/ambient.py`,
+suite stage 9 (13/13; Beer–Lambert slab anchor −0.0982 vs −0.0973
+analytic; one honest recalibration with mechanism recorded: point-wise
+flatness is fringe-limited, window means are the gated quantity). CI now
+runs stages 8+9 (8 had been missing). Suite 43/43 on the cloud bench.
+
+**Phase 4 (exp-020 CONCLUDED)** — 124 runs, 472 s. **Constraint 3 is now a
+number: absorber C = −0.686** (V-weighted, Tier-A photopic FAIL ×34 field
+bar); PEC −0.826; dilute sponge on its pre-committed geometric value to
+0.001; material blindness only ~20% (rim transmission — first material
+signature in the channel). Honest misses flagged: δ_C floor exceeds the
+lab bar at 600/750 (fringe zone vs margin), P1b 0.795 vs 0.8 at 750/±40°,
+P2's λ-ordering reversed raw, P3's band edge by 0.02.
+
+**Phase 5** — seven fresh seats, blind. Consensus without collusion on
+three clusters: instrument margin fix first (EM's coverage rule
+m ≥ 2√(λ_max·D)), docket #7 witness-scenario table second (vision's
+glare arithmetic: 4–21× sub-threshold for the flashlight holder — Tier-W
+constraint 3 may CLOSE), σ(I) readiness third. **Red Team audited the
+Director and scored two hits**, both accepted: P1b's stop rule had been
+softened post-hoc (retracted — 750 nm carries an asterisk), and additive
+floor-correction is an uncommitted estimator (all floor-corrected claims
+provisional pending Iteration 2's adjudication). Iteration 1 verdict:
+**PROMISING**. Queue: Iterations 2/3/4 in PLAN.md.
+
+**Shift-10 collision, handled:** the old routine fired at 06:23Z
+mid-redesign (Marsh hadn't been able to pause it — owner-created, agents
+can't modify it) and committed its r2-isolation + resolution-check pair as
+"exp-020/021" on main. Resolution at merge: shift 10's pair renumbered
+**exp-022/023** (uniform +2, self-references updated file-scoped, measured
+content untouched; the panel's exp-020 was committed first and is
+cross-referenced throughout the program record); old routine to be paused by Marsh; agent-owned
+panel-shift routine replaces it for continuous mode.
+## 2026-08-12 (cloud shift 10) — exp-022/023: the shell=3λ feature is r2=90-specific
 
 **Pre-flight:** local `main` was detached again (same bookkeeping class
 as every prior shift) — fixed with `git fetch origin main && git
 checkout -B main origin/main` before touching anything. Bench trust
 suite 22/22 green (`--only 123467`) before this shift's work, rechecked
-after both exp-020 and exp-021 (no `lab/` engine changes either time —
+after both exp-022 and exp-023 (no `lab/` engine changes either time —
 only `experiments/` scripts).
 
-**exp-020 — R2 Isolation (CONCLUDED)**
+**exp-022 — R2 Isolation (CONCLUDED)**
 - Picked up exp-019's own queued follow-up: every point in the
   eps_z/shell-thickness line since exp-006 has shared one fixed outer
   cloak radius, r2=90 cells — "shell=3λ is special" and "r2=90 is
@@ -33,21 +113,21 @@ only `experiments/` scripts).
   finding is now large — mechanism still unidentified after five
   dedicated checks. One honest gate miss flagged, not hidden: 4 of 7
   r2=75/floor=0.10 points missed box_dev≤2% (2.55–3.36%), taken up
-  immediately by exp-021.
+  immediately by exp-023.
 
-**exp-021 — R2=75 Resolution Check (CONCLUDED)**
-- Same-shift direct resolution check on exp-020's own gate miss —
+**exp-023 — R2=75 Resolution Check (CONCLUDED)**
+- Same-shift direct resolution check on exp-022's own gate miss —
   this line's exp-005/010/015 precedent applied a third time: reran 3
-  of exp-020's r2=75 points (worst miss r1=13, target r1=15, clean
+  of exp-022's r2=75 points (worst miss r1=13, target r1=15, clean
   flank r1=18) at cpl=30 (1.5×), geometry scaled to hold physical size
   fixed. Predictions committed first (`c18db7d`).
 - **Result: the gate miss was ordinary cpl=20 grid noise** (`8f07b2f`).
   box_dev roughly halved at all 3 points (e.g. 3.36%→1.71%), all now
   clear 2% comfortably; jump values shifted only 3.1–4.8% relative, no
-  sign flip anywhere. Closes exp-020's one open caveat in the same
-  shift it was raised — the r2=75 half of exp-020's conclusion now
+  sign flip anywhere. Closes exp-022's one open caveat in the same
+  shift it was raised — the r2=75 half of exp-022's conclusion now
   stands on fully gate-clean footing.
-- Net for the shift: a genuine generality test (exp-020) that further
+- Net for the shift: a genuine generality test (exp-022) that further
   narrows five shifts' worth of mechanism-hunting to "still
   unexplained, but the list of things it isn't keeps growing," plus a
   same-shift resolution check that closed its own honest gate miss

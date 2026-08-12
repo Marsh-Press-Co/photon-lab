@@ -1,24 +1,24 @@
 """
-exp-021 -- Does exp-020's r2=75 Box-Independence Gate Miss Survive
+exp-023 -- Does exp-022's r2=75 Box-Independence Gate Miss Survive
 Resolution?: the runs.
 ============================================================================
-exp-020 found 4 of 7 r2=75/floor=0.10 points miss the box_dev <=2% gate
+exp-022 found 4 of 7 r2=75/floor=0.10 points miss the box_dev <=2% gate
 (2.55%-3.36%), while every r2=120 point and every r2=75/floor=0.18 point
 cleared it comfortably. This line's exp-004->005, exp-009->010 and
 exp-014->015 precedent: don't discard or argue about a gate miss,
 re-run at 1.5x resolution (cpl 20->30) with geometry scaled to hold
 physical size fixed, and let refinement settle it.
 
-Three of exp-020's r2=75 core points, not the full 7-point bracket:
+Three of exp-022's r2=75 core points, not the full 7-point bracket:
 r1=13 (worst gate miss, 3.36%), r1=15 (the shell=3lambda target itself,
 2.55%), r1=18 (a clean flank, 1.89%, included as a control -- does
-refinement leave an already-clean point clean, or was exp-020's own 2%
+refinement leave an already-clean point clean, or was exp-022's own 2%
 line drawn too finely to mean much at cpl=20?). Same minimal-but-decisive
 three-point design as exp-015.
 
 Predictions were committed before this file first ran (see NOTES.md).
 
-    .venv/bin/python experiments/021-r2-75-resolution/run.py
+    .venv/bin/python experiments/023-r2-75-resolution/run.py
 """
 
 import json
@@ -34,7 +34,7 @@ from lab import sections as sc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-# --- exp-020's r2=75 geometry (cpl=20), scaled by 1.5x to cpl=30 ---
+# --- exp-022's r2=75 geometry (cpl=20), scaled by 1.5x to cpl=30 ---
 CPL_BASE, CPL_NEW = 20, 30
 SCALE = CPL_NEW / CPL_BASE                          # 1.5
 
@@ -48,13 +48,13 @@ REF_HALF_H = int(round(60 * SCALE))
 MIN_MARGIN = int(round(60 * SCALE))
 R2_CELLS = int(round(75 * SCALE))                    # 112 (75 is not a multiple of 2 -- small
                                                        # sub-cell rounding, same as exp-015's r1=33)
-BOX_A_HALF = int(round((75 + 20) * SCALE))            # matches exp-020's r2+20 convention
-BOX_B_HALF = int(round((75 + 45) * SCALE))            # matches exp-020's r2+45 convention
+BOX_A_HALF = int(round((75 + 20) * SCALE))            # matches exp-022's r2+20 convention
+BOX_B_HALF = int(round((75 + 45) * SCALE))            # matches exp-022's r2+45 convention
 
 CORE_BASE = [13, 15, 18]                              # worst gate miss / target / clean flank
 FLOOR_SWEEP = [0.10, 0.18]
 
-# exp-020's cpl=20 numbers at r2=75, for direct comparison in this file's output
+# exp-022's cpl=20 numbers at r2=75, for direct comparison in this file's output
 CPL20 = {
     13: {0.10: 0.08385, 0.18: 0.19447, "jump": +131.87, "box_dev": (0.0336, 0.0178)},
     15: {0.10: 0.12025, 0.18: 0.32887, "jump": +173.46, "box_dev": (0.0255, 0.0115)},
@@ -148,7 +148,7 @@ def main():
 
     with open(os.path.join(HERE, "results.json"), "w") as fh:
         json.dump(results, fh, indent=2, sort_keys=True)
-    print(f"exp-021 runs complete in {(time.time() - t0) / 60:.1f} min", flush=True)
+    print(f"exp-023 runs complete in {(time.time() - t0) / 60:.1f} min", flush=True)
 
 
 if __name__ == "__main__":

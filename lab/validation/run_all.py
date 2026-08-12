@@ -530,9 +530,143 @@ def stage8_sections():
           f"- black back_frac={wk_a['back_frac']:.3f}")
 
 
+# --------------------------------------------------------------- stage 9
+def stage9_ambient():
+    """The ambient-appearance instrument (lab/ambient.py + the angled line
+    source) answers to identities before exp-020 uses it: angle_deg=0 is
+    bit-exact with the legacy source path; an oblique wave's x-wavelength
+    obeys lambda/cos(theta); an empty scene is flat and reads |C| <= 0.005
+    through the full incoherent pipeline; +/-theta mirror-match; a uniform
+    half-plane sponge slab reproduces Beer-Lambert analytically (the
+    absolute anchor of this measurement family); and the closed-box energy
+    identities hold on the NEW oblique source path (lossless cylinder:
+    silent absorption channel, two-route extinction agreement)."""
+    print("stage 9 — ambient-appearance instrument vs identities")
+    from lab import ambient as amb
+    from lab import sections as sc
+
+    # gate 0 — angle_deg=0 keeps the legacy arithmetic bit-exact
+    def mini(kw):
+        sim = Sim(200, 160, cells_per_lambda=20, courant_frac=0.99, absorb=30)
+        sim.add_line_source(54, **kw)
+        sim.run(300)
+        return sim.Ez.copy()
+
+    d0 = float(np.max(np.abs(mini({}) - mini({"angle_deg": 0.0}))))
+    check("ambient", "angle_deg=0 bit-exact vs legacy", f"max|dEz|={d0:.1e}",
+          d0 == 0.0, "0.0 exactly")
+
+    # the small tall scene: source far side, plane observer side
+    NX9, NY9, AB9 = 360, 520, 30
+    SRC_X, PLANE_X = 300, 135
+    OBJ_SL = slice(140, 186)      # abs y [170, 215]  (inside slab shadow)
+    FLK_SL = slice(275, 321)      # abs y [305, 350]  (outside, background)
+    SPAN_SL = slice(140, 321)     # flatness span
+    SIGMA_SLAB = 0.1 / 96.0       # normal-incidence power tau = 0.10
+
+    def run9(build, theta):
+        sim = Sim(NX9, NY9, cells_per_lambda=20, courant_frac=0.99, absorb=AB9)
+        if build:
+            build(sim)
+        sim.add_line_source(SRC_X, angle_deg=theta)
+        sim.run(1000)
+        return sim, sc.full_capture(sim)
+
+    def prof(cap):
+        return amb.observer_profile(sc.phasors(cap), PLANE_X, AB9, NY9 - AB9)
+
+    def slab(sim):
+        sim.sigma_e[150:246, :260] += SIGMA_SLAB
+
+    def cyl(sim):
+        materials.dielectric_cylinder(sim, 170, 260, 20, 4.0)
+
+    thetas = (0.0, 15.0, -15.0)
+    w9 = [np.cos(np.radians(t)) for t in thetas]
+    sims_e, caps_e, pe = {}, {}, {}
+    for th in thetas:
+        sims_e[th], caps_e[th] = run9(None, th)
+        pe[th] = prof(caps_e[th])
+    sim_e30, cap_e30 = run9(None, 30.0)
+
+    # gate a — oblique wavelength: lambda_x = 20 / cos(30) = 23.09 cells
+    lam30 = sim_e30.measure_lambda(y_line=300, x_lo=100, x_hi=290)
+    check("ambient", "oblique wavelength @30° (20/cosθ)", f"{lam30:.2f}",
+          abs(lam30 - 23.09) <= 0.4, "23.09±0.4")
+
+    # gate b — empty window balance per angle, plus a fringe-limited
+    # point-wise canary. Point-wise flatness is FRINGE-LIMITED on this
+    # bench: the finite tapered aperture throws Fresnel edge fringes
+    # (period 25–40 cells, measured), and residual band reflection adds a
+    # few-% standing bow — mechanism recorded in VALIDATION.md
+    # (2026-08-12). The instrument's load-bearing quantity is the WINDOW
+    # MEAN: per-angle tilt is mirror-antisymmetric in θ and cancels in the
+    # symmetric incoherent sum (gate c). Design rule, measured on this
+    # scene: windows must sit ≥ one fringe zone √(λD) inside the flat-lit
+    # edge (a window 21 cells from the +30° edge read +16% imbalance).
+    for th, bar in ((0.0, 0.005), (15.0, 0.04), (-15.0, 0.04)):
+        b = pe[th]
+        c_th = amb.weber(float(b[OBJ_SL].mean()), float(b[FLK_SL].mean()))
+        check("ambient", f"empty window balance @{th:+.0f}°", f"{c_th:+.4f}",
+              abs(c_th) <= bar, f"|·|<={bar}")
+    for th, bar in ((0.0, 0.25), (15.0, 0.50), (-15.0, 0.50)):
+        seg = pe[th][SPAN_SL]
+        flat = float((seg.max() - seg.min()) / np.median(seg))
+        check("ambient", f"ripple canary @{th:+.0f}° (fringe-limited)",
+              f"{flat:.3f}", flat <= bar, f"<={bar}")
+
+    # gate c — empty identity through the full incoherent pipeline
+    e_flanks = [float(pe[th][FLK_SL].mean()) for th in thetas]
+    e_sum = amb.incoherent_sum([pe[th] for th in thetas], e_flanks, w9)
+    c_empty = amb.weber(float(e_sum[OBJ_SL].mean()), float(e_sum[FLK_SL].mean()))
+    check("ambient", "empty identity |C_empty|", f"{c_empty:+.5f}",
+          abs(c_empty) <= 0.005, "|·|<=0.005")
+
+    # gate d — mirror symmetry of the +/-15° raw flank flux
+    mirror = abs(e_flanks[1] / e_flanks[2] - 1.0)
+    check("ambient", "±15° mirror symmetry (raw flank)", f"{mirror:.4f}",
+          mirror <= 0.03, "<=0.03")
+
+    # gate e — Beer-Lambert slab, the absolute analytic anchor:
+    # T(theta) = exp(-tau/cos theta), tau = 0.10
+    ps = {}
+    for th in thetas:
+        _, cap = run9(slab, th)
+        ps[th] = prof(cap)
+    s_sum = amb.incoherent_sum([ps[th] for th in thetas], e_flanks, w9)
+    c_slab = amb.weber(float(s_sum[OBJ_SL].mean()), float(s_sum[FLK_SL].mean()))
+    t_th = [np.exp(-0.10 / np.cos(np.radians(t))) for t in thetas]
+    c_ana = float(np.average(t_th, weights=w9)) - 1.0
+    check("ambient", "Beer–Lambert slab C vs analytic",
+          f"{c_slab:+.4f} vs {c_ana:+.4f}", abs(c_slab - c_ana) <= 0.02,
+          "|Δ|<=0.02")
+
+    # gate f — closed-box energy identities at oblique incidence
+    _, cap_c30 = run9(cyl, 30.0)
+    wd = sc.widths(cap_c30, cap_e30, (120, 220, 210, 310), (170, 260, 40))
+    af = wd["sigma_abs"] / wd["sigma_ext"]
+    xr = abs(wd["sigma_ext_cross"] - wd["sigma_ext"]) / abs(wd["sigma_ext"])
+    check("ambient", "oblique lossless: silent absorption", f"{af:+.4f}",
+          abs(af) <= 0.05, "|·|<=0.05")
+    check("ambient", "oblique extinction: two routes agree", f"{xr:.3f}",
+          xr <= 0.12, "<=0.12")
+
+    fig, ax = plt.subplots(figsize=(7.2, 3.6), dpi=140)
+    yy = np.arange(AB9, NY9 - AB9)
+    ax.plot(yy, e_sum, color="#9198a1", lw=1.0, label="empty (incoherent sum)")
+    ax.plot(yy, s_sum, color="#58a6ff", lw=1.2, label="sponge slab (τ=0.1)")
+    for sl, c in [(OBJ_SL, "#3fb950"), (FLK_SL, "#d29922")]:
+        ax.axvspan(yy[sl][0], yy[sl][-1], color=c, alpha=0.12)
+    ax.set_xlabel("y (cells)"); ax.set_ylabel("B(y), empty-flank normalized")
+    ax.legend(loc="lower right", fontsize=8, framealpha=0.2)
+    ax.set_title("stage 9 — ambient instrument: B(y), windows shaded",
+                 loc="left", fontsize=10)
+    fig.tight_layout(); fig.savefig(os.path.join(HERE, "v9_ambient.png")); plt.close(fig)
+
+
 # ------------------------------------------------------------------ main
 if __name__ == "__main__":
-    only = "12345678"
+    only = "123456789"
     if "--only" in sys.argv:
         only = sys.argv[sys.argv.index("--only") + 1]
     t0 = time.time()
@@ -578,6 +712,8 @@ if __name__ == "__main__":
         stage7_absorber()
     if "8" in only:
         stage8_sections()
+    if "9" in only:
+        stage9_ambient()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")

@@ -1,4 +1,4 @@
-# exp-020 — R2 Isolation: is shell=3λ special, or is r2=90 special?
+# exp-022 — R2 Isolation: is shell=3λ special, or is r2=90 special?
 
 **2026-08-12 · driver: Clyde (cloud shift 10) · status: predictions committed, not yet run**
 
@@ -147,12 +147,12 @@ where box_dev misses.
   the gate** — r1=12 (3.23%), r1=13 (3.36%), r1=14 (2.75%), r1=15/target
   (2.55%) — with the miss shrinking smoothly toward the flanks (r1=16/17/
   18 all clear, 1.89–1.97%). Not discarding or re-running silently to
-  make it disappear — flagged here and taken up directly by exp-021's
+  make it disappear — flagged here and taken up directly by exp-023's
   resolution check, this line's exp-005/010/015 precedent. **This does
   not touch the discriminating question**: the jump magnitudes at the
   gate-missing points (+132% to +175%) are two orders of magnitude larger
   than a 2–3.4% box-independence wobble could produce or hide, so the
-  sign and rough size of the effect are not in doubt even before exp-021
+  sign and rough size of the effect are not in doubt even before exp-023
   resolves the gate.
 - **P2 (the discriminator) — CONFIRMED as the r2-specific outcome, and
   not close.** Both new shell=3λ targets come back strongly **positive**:
@@ -202,7 +202,7 @@ population of "things that don't explain it" is now large: eps_z
 
 - **[open]** The trough has now survived (i.e., NOT reproduced) five
   mechanism/generality checks in a row (exp-016 impedance, exp-017
-  angular pattern, exp-018 eps_z, exp-019 integer-λ, exp-020 r2) without
+  angular pattern, exp-018 eps_z, exp-019 integer-λ, exp-022 r2) without
   a single one explaining or generalizing it. The honest state of the
   investigation: r1=30/r2=90/λ=600nm/floor∈{0.10,0.18} is characterized
   to death as an *anomaly*, but still has zero explanatory mechanism.
@@ -218,7 +218,7 @@ population of "things that don't explain it" is now large: eps_z
   rescaling geometry to hold eps_z fixed; this would hold geometry
   fixed and sweep λ in nm, changing eps_z as a side effect, the mirror
   experiment).
-- **[open, this shift]** exp-021: resolution check (cpl 20→30) on the
+- **[open, this shift]** exp-023: resolution check (cpl 20→30) on the
   r2=75/floor=0.10 box_dev gate misses — this line's exp-005/010/015
   precedent, taken up immediately.
 - The `mu_r_floor < 0.05` direction and the parking lot remain open,

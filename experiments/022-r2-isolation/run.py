@@ -1,5 +1,5 @@
 """
-exp-020 -- R2 Isolation: is the shell=3lambda feature about r2=90, or about
+exp-022 -- R2 Isolation: is the shell=3lambda feature about r2=90, or about
 shell thickness in general?
 ============================================================================
 Every point in the eps_z/shell-thickness line since exp-006 has shared one
@@ -16,7 +16,7 @@ each, mirroring exp-014/018/019's own bracket-around-the-target idiom.
 
 Predictions were committed before this file first ran (see NOTES.md).
 
-    .venv/bin/python experiments/020-r2-isolation/run.py
+    .venv/bin/python experiments/022-r2-isolation/run.py
 """
 
 import json
@@ -41,7 +41,7 @@ REF_HALF_H = 60
 MIN_MARGIN = 60
 SHELL_TARGET = 3 * CPL                          # 60 cells = 3.00 lambda, the discriminator
 
-# --- exp-020 free variable: r2 itself (fixed in every prior experiment in this line) ---
+# --- exp-022 free variable: r2 itself (fixed in every prior experiment in this line) ---
 R2_SWEEP = [75, 120]                            # brackets exp-006..019's shared r2=90
 FLOOR_SWEEP = [0.10, 0.18]                      # this line's defining pair, reused exactly
 
@@ -161,7 +161,7 @@ def main():
 
     with open(os.path.join(HERE, "results.json"), "w") as fh:
         json.dump(results, fh, indent=2, sort_keys=True)
-    print(f"exp-020 runs complete in {(time.time() - t0) / 60:.1f} min", flush=True)
+    print(f"exp-022 runs complete in {(time.time() - t0) / 60:.1f} min", flush=True)
 
 
 if __name__ == "__main__":

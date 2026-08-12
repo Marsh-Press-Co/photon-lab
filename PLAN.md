@@ -260,7 +260,7 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   r1=47/floor=0.18 box_dev=2.17%, just over the 2% band (doesn't touch
   the r1=50 target point, itself among the cleanest in the set, or the
   qualitative conclusion).
-- exp-020 CONCLUDED (this shift) — exp-019's own queued follow-up: every
+- exp-022 CONCLUDED (cloud shift 10; renumbered at the redesign merge) — exp-019's own queued follow-up: every
   point in the eps_z/shell-thickness line since exp-006 had shared one
   fixed outer radius, r2=90 cells — never varied. Moved r2 itself for
   the first time (r2=75 and r2=120, brackets around r2=90), holding
@@ -275,17 +275,56 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   of things that don't explain the original exp-004/005/006 finding is
   now large; still zero mechanism identified. One honest gate miss
   flagged: 4 of 7 r2=75/floor=0.10 points missed box_dev≤2%
-  (2.55–3.36%) — resolved same-shift by exp-021.
-- exp-021 CONCLUDED (this shift) — direct resolution check (cpl 20→30,
-  exp-005/010/015 precedent) on exp-020's r2=75/floor=0.10 gate misses,
+  (2.55–3.36%) — resolved same-shift by exp-023.
+- exp-023 CONCLUDED (cloud shift 10; renumbered at the redesign merge) — direct resolution check (cpl 20→30,
+  exp-005/010/015 precedent) on exp-022's r2=75/floor=0.10 gate misses,
   3 representative core points (worst miss, target, clean flank).
   **Gate miss was ordinary cpl=20 grid noise**: box_dev roughly halves
   at all 3 points (e.g. 3.36%→1.71%), all now clear 2%; jump values
-  shift only 3.1–4.8% relative, no sign flip. Closes exp-020's one open
-  caveat in the same shift it was raised — the r2=75 half of exp-020's
+  shift only 3.1–4.8% relative, no sign flip. Closes exp-022's one open
+  caveat in the same shift it was raised — the r2=75 half of exp-022's
   conclusion now stands on fully gate-clean footing.
 
 ## Next work
+
+**2026-08-12 — program redesign (Marsh's directive, in-session):** new work
+runs under `PANEL.md` / `LOGBOOK.md` — the seven-seat research panel
+targeting the founding phenomenon under four explicit constraints (beam
+termination · no return · **no ambient silhouette** · switchable),
+continuous mode with checkpoints. The remaining [open] items below are
+**PARKED** (mirrored in LOGBOOK.md, resumable, off the critical path).
+
+- [done 2026-08-12, panel Iteration 1] **exp-020 the ambient-appearance
+  baseline** — instrument built (stage 9, 13/13; Beer–Lambert anchor to
+  0.001), constraint 3 measured for the first time: absorber C = −0.686
+  (Tier-A photopic FAIL ×34 field bar), material blindness ~20% (rim
+  transmission), dilute sponge on its geometric value to 0.001. Verdict:
+  PROMISING. 750 nm carries an asterisk pending the margin rerun.
+- **[queued — panel Iteration 2, lead PHOTONICS]** instrument margin +
+  estimator adjudication: ny 1200→1360, coverage rule m ≥ 2√(λ_max·D),
+  pre-committed δ_C ≤ 0.003 at 600/750, additive-vs-ratio floor-estimator
+  adjudication, P1b back to green, N17 ceiling recompute rider.
+- **[queued — panel Iteration 3]** docket #7: sourced witness-scenario
+  parameter table + glare/adaptation sidecar (zero runs) → Tier-W
+  constraint-3 scoring on measured C; potential checkpoint criterion 1
+  (Tier W) if the 4–21× sub-threshold closure holds.
+- **[queued — panel Iteration 4]** σ(I) readiness: time-resolved energy
+  ledger suite stage (stationarity precondition), shared intensity axis +
+  coherent-superposition bridge gate, OFF/ON endpoint article pair — then
+  the first intensity-gated article (checkpoint criterion 3).
+- **[housekeeping]** cloud shift 10 (old routine, fired 06:23Z mid-redesign)
+  committed its r2-isolation experiment as a second "exp-020" on main —
+  renumbered to exp-022/023 at the redesign merge, content untouched, noted in
+  SESSION_LOG. Old `photonlab-shift` routine to be paused by Marsh
+  (owner-created; agents cannot modify it) — replaced by the panel-shift
+  routine.
+
+- **[open, contract lane]** Artifact-schema formalization for the ambient
+  instrument: the `angle_deg` source key + per-run energy/intensity ledger
+  rows belong in `lab/ARTIFACTS.md` — that is the cross-lane contract
+  (Bonnie's veto lane, AGENTS.md), so it needs the counterparty-review PR,
+  not a unilateral panel edit. Until then the ledger lives experiment-side
+  in `results.json` (exp-020 synthesis, docket #4).
 
 - [done 2026-08-09] Artifact schema v0.1.0 — merged (`ba2cc7f`), verified
   on all three benches.
@@ -386,14 +425,14 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   specific, not a member of a broader family (yet). See Current state.
 - [done 2026-08-12, cloud shift 10] exp-019's own queued follow-up (is
   the 3λ feature reproducible at a different fixed r2?) — run as
-  exp-020. **No**: neither r2=75 nor r2=120 reproduces the negative
+  exp-022. **No**: neither r2=75 nor r2=120 reproduces the negative
   jump at their own shell=3λ point. The feature is r2=90-specific.
-  Gate miss at r2=75/floor=0.10 resolved same-shift by exp-021. See
+  Gate miss at r2=75/floor=0.10 resolved same-shift by exp-023. See
   Current state.
-- **[open]** exp-020's own queued follow-up (see its NOTES.md Next):
+- **[open, parked — trough line]** exp-022's own queued follow-up (see its NOTES.md Next):
   the trough has now survived five mechanism/generality checks in a row
   (exp-016 impedance, exp-017 angular pattern, exp-018 eps_z, exp-019
-  integer-λ, exp-020 r2) without one explaining or generalizing it.
+  integer-λ, exp-022 r2) without one explaining or generalizing it.
   Two paths for a future dedicated shift: (a) declare
   r1=30/r2=90/λ=600nm/floor∈{0.10,0.18} an idiosyncratic anomaly and
   stop chasing it, returning fully to the design-lead line; or (b) one

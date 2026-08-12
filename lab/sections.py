@@ -76,6 +76,18 @@ def _face_flux(ez, hx, hy, box):
             + float(np.sum(sy(y1))) - float(np.sum(sy(y0))))
 
 
+def flux_profile_x(ph, x_plane, y_lo, y_hi):
+    """Per-cell time-averaged <Sx> along the Ez line x = x_plane,
+    y in [y_lo, y_hi) — positive toward +x. Exactly the per-cell terms
+    `_face_flux`'s sx() sums (same Hy interpolation, same gate-proven
+    phasor conventions), kept as a profile instead of collapsed to one
+    number. The ambient instrument's B(y) is the −x direction of this
+    (lab/ambient.py)."""
+    ys = slice(y_lo, y_hi)
+    hy_at = 0.5 * (ph["hy"][x_plane - 1, ys] + ph["hy"][x_plane, ys])
+    return -0.5 * np.real(ph["ez"][x_plane, ys] * np.conj(hy_at))
+
+
 def _cross_flux(pi, ps, box):
     """Outward flux of the incident×scattered cross terms through the box:
     S_cross = 1/2 Re{Ei conj(Hs) + Es conj(Hi)} componentwise."""
