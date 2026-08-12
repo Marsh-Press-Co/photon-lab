@@ -73,8 +73,65 @@ reasoning exp-015 used.
 
 ## Results
 
-*(not yet run)*
+7 runs (6 cloak + 1 empty), 44.9 min.
+
+| base r1 | floor | Q_ext (cpl=30) | box_dev (cpl=30) | box_dev (cpl=20) |
+|---|---|---|---|---|
+| 13 | 0.10 | 0.0863 | **1.71%** | 3.36% |
+| 13 | 0.18 | 0.2046 | 1.07% | 1.78% |
+| 15 (target) | 0.10 | 0.1103 | **1.36%** | 2.55% |
+| 15 (target) | 0.18 | 0.2923 | 0.81% | 1.15% |
+| 18 | 0.10 | 0.2024 | 1.20% | 1.89% |
+| 18 | 0.18 | 0.5138 | 0.01% | 0.10% |
+
+| base r1 | jump (cpl=30) | jump (cpl=20) | relative shift |
+|---|---|---|---|
+| 13 | +137.12% | +131.87% | +4.0% |
+| 15 (target) | +165.06% | +173.46% | −4.8% |
+| 18 | +153.89% | +149.30% | +3.1% |
+
+cross_dev ≤0.26% throughout.
+
+### Predictions scored
+
+- **P1 (gates) — CONFIRMED cleanly.** box_dev roughly halves at every
+  point (base=13: 3.36%→1.71%, base=15: 2.55%→1.36%, base=18: 1.89%→
+  1.20%) — all 6 points now clear 2% with margin. The gate miss was a
+  cpl=20 resolution artifact, exactly the pattern exp-005/010/015
+  established for this line.
+- **P2 (discriminator survives) — CONFIRMED, comfortably inside the
+  predicted band.** All three jumps stay strongly positive and shift by
+  only 3.1–4.8% relative (well under the ±20% band predicted, in the
+  same range as exp-005's own 7% and exp-015's own 7% resolution
+  shifts). No sign flip, no order-of-magnitude move — exp-020's
+  r2-specific conclusion at r2=75 is not an artifact of the under-
+  resolved box-independence check.
+- **P3 (box_dev scaling, secondary) — a modest ~45–50% shrink, matching
+  exp-005/015's pattern rather than exp-010's order-of-magnitude one.**
+  Consistent with these points having been only mildly over the gate to
+  begin with (2.55–3.36%, not the 2–3.5% *severe* misses exp-009 saw),
+  so a moderate resolution improvement was enough.
+
+### Headline
+
+**exp-020's gate miss was ordinary cpl=20 grid noise, not a hidden
+feature.** All three re-run points clear the box-independence gate at
+1.5× resolution while keeping their jump values within ~5% of the
+original — the r2=75 side of exp-020's conclusion (no negative jump near
+r2=75's own shell=3λ point) now stands on fully gate-clean footing,
+closing exp-020's one open honest caveat in the same shift it was
+raised.
 
 ## Next
 
-*(not yet written — depends on results)*
+- **[open]** exp-020's own queued mechanism question remains the
+  standing next step on this thread: hold r1=30/r2=90 both fixed and
+  sweep λ finely (1–2nm steps) around 600nm to test whether the
+  negative jump is itself narrow-band (a resonance linewidth) — see
+  exp-020 NOTES.md Next for the full framing. Not attempted this shift;
+  a genuinely new sweep design, worth its own dedicated slot.
+- exp-007's queued multi-λ check (does the core=8 design lead survive
+  across wavelengths) remains the standing highest-value item once this
+  mechanism thread is closed out or deliberately parked.
+- The `mu_r_floor < 0.05` direction and the parking lot remain open,
+  unchanged.
