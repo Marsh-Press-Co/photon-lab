@@ -150,6 +150,15 @@ target; scotopic is the witness-consistency check (the reported scene was a
 night flashlight sweep). VISION SCIENCE pins the numeric pass/fail thresholds
 per experiment, cited, before the run.
 
+**Constraint-3 scoring (Marsh's ruling, Checkpoint #0, 2026-08-12): two
+named tiers.** *Tier W — witness-reproduced:* all four constraints hold in
+the reported scene's own regime (night ambient; observer = the flashlight
+holder, adaptation state including self-glare once pinned with sources).
+Checkpoint-worthy on its own. *Tier A — invisible-to-anyone:* holds for any
+observer and adaptation state, photopic included — the strict stretch goal.
+Every run records the quantities both tiers need; every iteration's verdict
+states which tier(s) it addresses. Checkpoint criterion 1 applies per tier.
+
 ## Checkpoints — continuous mode (Marsh's directive, 2026-08-12)
 
 The program runs essentially continuously in the background. Marsh is

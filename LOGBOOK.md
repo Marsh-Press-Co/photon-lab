@@ -323,3 +323,26 @@ proceed-with-mandatory-fixes · no seat deferred · the five blind seats all
 attacked the FDTD half; Red Team alone audited the lead's own lane and
 found the threshold-table inconsistency — the diversity the panel exists
 to buy, working on cycle one.
+
+### Phase 3 — Synthesis (2026-08-12, post-Checkpoint #0)
+
+Marsh's rulings at Checkpoint #0: **two-tier constraint-3 scoring** (Tier W
+witness-reproduced / Tier A invisible-to-anyone — recorded in PANEL.md) and
+**go**. Synthesis committed as `experiments/020-ambient-baseline/NOTES.md`
++ `design_geometry.py` (the published ray-trace design calculation). All
+nine docket items accepted, none overridden: windows re-registered (flanks
+→ [185, 263] relative — the 40° penumbra reaches 180); domain 360×1200
+(full-span coverage verified at all 17 angles, min margin 69.9 cells);
+geometric ceilings C_geo = −0.799/−0.809 → committed bands P2/P3 ∈
+[−0.82, −0.55] with a falsifiable λ-ordering from the Fresnel numbers;
+threshold crossovers re-derived with the exponent band (L*_lab ∈
+[5.3×10⁻⁶, 7.5×10⁻⁵], L*_field ∈ [1.7×10⁻⁴, 1.2×10⁻³] cd/m² — the
+corrected reading: uncued observers are at threshold on typical moonless
+nights); decision-floor rule replaces the loose empty gate; energy +
+intensity ledger lands experiment-side (the contract-file schema bump is
+deferred to a counterparty PR — Bonnie's lane, not amended unilaterally);
+dilute-sponge third article adopted; glare route held at
+hypothesis-not-result; σ(I) window logged as bands (τ_on/τ_off ≳ 200–800,
+n ≳ 0.62–0.78). exp-020 scores **Tier A only**; Tier W deferred pending
+the witness-scenario parameter table (docket #7 → Phase 5). Predictions
+P1–P7 committed before the instrument build.
