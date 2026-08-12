@@ -300,18 +300,44 @@ continuous mode with checkpoints. The remaining [open] items below are
   (Tier-A photopic FAIL ×34 field bar), material blindness ~20% (rim
   transmission), dilute sponge on its geometric value to 0.001. Verdict:
   PROMISING. 750 nm carries an asterisk pending the margin rerun.
-- **[queued — panel Iteration 2, lead PHOTONICS]** instrument margin +
-  estimator adjudication: ny 1200→1360, coverage rule m ≥ 2√(λ_max·D),
-  pre-committed δ_C ≤ 0.003 at 600/750, additive-vs-ratio floor-estimator
-  adjudication, P1b back to green, N17 ceiling recompute rider.
-- **[queued — panel Iteration 3]** docket #7: sourced witness-scenario
-  parameter table + glare/adaptation sidecar (zero runs) → Tier-W
-  constraint-3 scoring on measured C; potential checkpoint criterion 1
+- [done 2026-08-12, panel Iteration 2, cloud panel shift] **exp-024 the
+  instrument-margin fix** — MARGIN_MULT=3.5 (ny 1200→1584) REFUTED as the
+  governing mechanism (δ_C gate missed at all 6 λ/weighting combos,
+  non-monotonically — 450nm got worse despite the best margin ratio ever
+  measured); the pre-committed ±35° fallback (dropping only the ±40°
+  angles) resolved it cleanly everywhere instead, localizing the real
+  mechanism to something angle-specific at ±40°, not margin-ratio-driven.
+  Bonus: settled the λ-ordering question exp-020 left open — a real, small
+  (~1.5–1.9%) red-ward |C| growth in hard-edged articles survives the
+  clean floor (not pure bias). Constraint-3 headline reconfirmed
+  (C≈−0.684). exp-025 (same shift, direct resolution check on the
+  chromatic finding, closing a gap Red Team's Phase-5 audit caught):
+  CONFIRMED real, not a grid artifact — 4th time this program's R3 rule
+  has refuted an artifact hypothesis. Verdict: PROMISING. Full record:
+  LOGBOOK.md Iteration 2.
+- **[queued — panel Iteration 3, lead per rotation MATERIALS]** three
+  candidate threads, ranked by Iteration-2 Phase-5 consensus (not mutually
+  exclusive — pick per available runway): (a) **EM's ±40°-angle triage**
+  (cheapest, most-requested: zero-run analytic Yee-dispersion check,
+  zero-new-run mirror-symmetry-gate extension to ±40° on existing exp-024
+  field data, then a 4-run settling-time convergence check) — resolves the
+  still-open floor mechanism before Iteration 4's new source machinery
+  inherits it unexplained; (b) **Iteration 4 — σ(I) readiness**, on the
+  ±35° fallback geometry ruled as its standing baseline (not an implicit
+  carryover): thermo's time-resolved ledger (precondition: zero-run
+  fallback-geometry ledger recheck), quantum's shared intensity axis +
+  coherent-superposition bridge gate (fold in a non-gating ±40° diagnostic
+  run), materials' OFF/ON endpoint pair (with an edge-vs-depth chromatic
+  rider on the ON-state run) — 3 of 7 Phase-5 seats ranked this #1; (c)
+  **docket #7** (below) — zero-run, independent, unblocked by either.
+- **[queued]** docket #7: sourced witness-scenario parameter table +
+  glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring on
+  the now-unqualified measured C≈−0.684 (exp-024 removed exp-020's 750nm
+  asterisk and estimator ambiguity); potential checkpoint criterion 1
   (Tier W) if the 4–21× sub-threshold closure holds.
-- **[queued — panel Iteration 4]** σ(I) readiness: time-resolved energy
-  ledger suite stage (stationarity precondition), shared intensity axis +
-  coherent-superposition bridge gate, OFF/ON endpoint article pair — then
-  the first intensity-gated article (checkpoint criterion 3).
+- **[queued]** stage-10 temporal instrument (VISION's Iteration-2 Phase-5
+  #2): TCSF bars pinned first (de Lange/Watson, sourced) — the last
+  unmeasured perceptual axis (T3), gates constraint 4.
 - **[housekeeping]** cloud shift 10 (old routine, fired 06:23Z mid-redesign)
   committed its r2-isolation experiment as a second "exp-020" on main —
   renumbered to exp-022/023 at the redesign merge, content untouched, noted in

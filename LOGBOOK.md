@@ -682,3 +682,144 @@ P-N17 all CONFIRMED (P-M2's gate passed but its central "≥0.99" prediction
 missed — coverage came in at 0.837, still well clear of the 0.8 gate).
 Suite 41/41 before and after (no `lab/` changes). Full scoring:
 `experiments/024-ambient-margin-adjudication/NOTES.md`.
+### Phase 5 — Review (seven fresh seats, blind, verbatim)
+
+#### PHOTONICS
+
+**Reading:** The instrument's optical response is now precise where it matters and honest about where it doesn't. Material blindness is nailed down tightly for the first time: the absorber–PEC split holds at 0.1413/0.1400/0.1427 across 450/600/750 nm against a predicted 0.14±0.02 — the rim-transmission mechanism confirmed wavelength-flat to better than 1%. But the iteration's headline is a clean refutation of my own seat's proposal: the margin/fringe-zone-ratio model didn't work — 450 nm, at the *best* ratio ever measured (4.53×), got *worse* (0.0009→0.0026) while 600/750 nm improved 5×. The residual is angle-localized, not ratio-localized: dropping only ±40° killed the floor at every λ by 3–9× even though the fallback's own margin/fringe ratio for that trimmed set is unremarkable. I checked whether this could be an object-shadow-geometry effect (the ray-traced shadow reach comes closest to the guard/flank boundary at ±40°, a 5.2-cell margin) — but δ_C is measured on the *empty* scene with no object at all, ruling that out. A second, unplanned finding: with the floor negligible, the opaque articles show a real ~1.5–1.9% growth of |C| toward red (absorber Δ=0.0114, PEC Δ=0.0166) while the sponge shows none (Δ=0.0003) — opposite my own diffraction-fill prediction, and tied to hard/graded conductive cores, not diffraction geometry alone.
+
+**Argued next change:** The fine angle sweep near ±40° is the right next probe, run as a cheap empty-scene-only diagnostic. Working hypothesis: a source-injection phase-quantization artifact (per-cell phase step grows with sinθ, intrinsic to the injector, independent of downstream margin) — predicts 450 nm (cpl 15, largest phase step) should show the largest angle-sensitivity, matching what broke worst. Falsifiable, cheap (~15 runs): rerun the empty scene at 1° steps 36°→40°, all 3 λ, plus a near-source wavefront-flatness monitor. On the chromatic finding: R3's meta-rule applies before any mechanism debate — a resolution-convergence check first.
+
+**Ranked top-3:** (1) Fine angle sweep 36°→40° + wavefront-flatness monitor, pre-registering the phase-quantization hypothesis. (2) Resolution-convergence check on the chromatic trend (R3 meta-rule, mandatory). (3) Proceed with docket #7 on its own track, unblocked by and not blocking either.
+
+#### MATERIALS & METAMATERIALS
+
+**Reading:** The margin/fringe-ratio model is dead as a governing variable — 3.5–4.5× ratio still missed the gate everywhere, non-monotonically, while dropping ±40° fixed it at all λ. My own calibration article comes through untouched and more strongly validated: sponge C landed within 0.001–0.003 of its geometric ceiling at BOTH geometries despite their empty-scene floors diverging wildly — direct proof the calibration point is floor-insensitive across the whole range of instrument uncertainty explored. The chromatic finding sharpens further: it's a materials-class split (hard-boundary articles only), not wavelength-universal.
+
+**Argued next change:** Promote Iteration 4 (σ(I) readiness + the OFF-lab/OFF-field/ON static endpoint pair) on the fallback geometry — the calibration platform is doubly confirmed, and both OFF-state targets are decidable today (OFF-lab SNR≈5.5–12×, OFF-field SNR≈22–50×). Caution: the ON-state run (τ=3.9, soft geometry) is a free test of whether the chromatic anomaly tracks optical depth or boundary hardness — score it for the same signature, don't assume it's clean by analogy. Realizability bound, stated in full: the two OFF-state static endpoints are **published**; the ON-state static endpoint is **plausible**; the σ(I) switching mechanism itself (Δσ/σ 500–4000× at CW flashlight intensities) is **unobtainium-with-parameters** at any σ₂ value nameable today — n=1 "clearing the window" is an intensity-scaling identity, not a materials existence proof.
+
+**Ranked top-3:** (1) Promote Iteration 4 on the fallback geometry, with the realizability split logged as a Materials sidecar. (2) Ride the edge-vs-depth chromatic check on the already-planned ON-state run, zero extra cost. (3) Park the ±40° mechanism as a live thread, not a prerequisite — but flag it for revival before any future angular-selectivity T1-escape-route proposal.
+
+#### ELECTROMAGNETISM
+
+**Reading:** My own coverage rule was killed as a *governing* variable by this data, not just under-calibrated. Margin bought something (600/750 improved 5×) but is not dominant; the dominant term lives entirely in the ±40° components. Three field/wave candidates, ranked by prior plausibility: **(A) Yee-grid numerical dispersion anisotropy** — the phase ramp is computed from the continuum dispersion relation, not the grid's own discrete one; classic angular error is worst toward 45° (so ±40° is structurally worst of the 9 committed angles) and scales with (Δ/λ)ⁿ at fixed Courant — worse at coarser cpl, and 450 nm (cpl 15, the surprise failure) is this bench's coarsest. **(B) Per-angle asymmetry in the incoherent sum** — the existing ±15° mirror-symmetry gate was never extended to ±40°. **(C) A per-run settling-time artifact** — fixed ramp_periods/step count never re-examined against angle; margin only changes space, not time, which would explain why domain growth failed.
+
+**Argued next change:** Triage cheaply, in order: Step 1 (zero-run, analytic) — solve the bench's own Yee dispersion relation for θ_FDTD at each committed angle×λ, check whether |Δθ| peaks at ±40°/450nm. Step 2 (zero-new-run) — pull the already-saved ±40° empty-scene component profiles and extend the mirror-symmetry gate to ±40°. Step 3 (minimal rerun, 4 runs) — rerun empty at ±40°/450+750nm at double step count, compare late vs early phasor windows for settling-time convergence. If A: fix is a ky pre-warp correction (well-understood, no new physics class). Secondary: extend the planned fine-angle sweep to 36°→45° (diagonal is where Yee anisotropy peaks — a crest exactly at 40° vs continued growth toward 45° discriminates the hypothesis).
+
+**Ranked top-3:** (1) The three-step triage (dispersion check + symmetry check + settling-time rerun). (2) Extend the fine-angle sweep to 36°→45°. (3) If A confirmed: ky pre-warp correction as the principled fix.
+
+#### THERMODYNAMICS
+
+**Reading:** The ledger's showing (P-M7, near-identical to exp-020 across a 32% domain growth + recenter + derived BOX) is real but only proven for the primary geometry — the Results section never reports ledger identities at the fallback (±35°) configuration that actually resolved the floor, a gap worth naming. I read the ±40° mystery as orthogonal to energy bookkeeping (a far-field windowed-contrast leakage, not a near-field closed-box balance) — but that's argued from instrument design, not measured, and given P-N17's own unexplained near-field PEC excess, "probably orthogonal" shouldn't be asserted as settled.
+
+**Argued next change:** One cheap, zero-new-run addition: rerun P-M7's box-ledger identities against the already-existing fallback field data. If it reproduces (predicted), the "robust across everything" claim becomes fully earned. If it doesn't, the ±40° mystery upgrades to a genuine energy-bookkeeping anomaly and should jump the queue. Otherwise the merged ranking stands unchanged — docket #7 and the time-resolved ledger (Iteration 4) proceed as queued, neither competing with the ±40° thread for engine time.
+
+**Ranked top-3:** (1) Time-resolved energy ledger (Iteration 4), reaffirmed — precondition: close the fallback-geometry ledger-check gap first (zero new runs). (2) Docket #7 — witness-scenario table + thermo columns. (3) The ±40° mechanism, conditionally — only jumps the queue if item 1's fallback-geometry recheck turns up an angle-correlated closure defect.
+
+#### QUANTUM OPTICS
+
+**Reading:** My own Iteration-2 warning (that overriding "add the bridge gate now" could leave Iteration 4 inheriting a doubly-uncertain geometry) is vindicated and worse in scope than stated — the primary geometry missed the gate at ALL SIX combinations, not just at risk. But the outcome is better than my worst case: the fallback resolved it cleanly, so Iteration 4 does not have to inherit uncertainty — but only if it explicitly adopts the fallback rather than defaulting back to ±40°. The sponge calibration lands cleanly at both geometries, so σ(I) OFF-state calibration is uncontaminated. The unexplained ±40° mechanism is angle-specific, not margin-driven — squarely relevant to Iteration 4's new coherent multi-angle source machinery, whose whole purpose is reproducing the incoherent sum as an absolute identity.
+
+**Argued next change:** Iteration 4 is ready to proceed now, on the ±35° fallback explicitly ruled as the new standing baseline (stated, not an implicit carryover). Fold a non-gating diagnostic into the bridge-gate build: run the coherent-superposition identity check (⟨C_joint⟩ vs C_posthoc) at ±40° as well as ±35°, at near-zero extra cost — directly tests whether the ±40° residual is a classical-summation artifact (bridge gate clean at ±40° despite the floor) or a coherent-injection-sensitive effect, resolving T7's open question as a side effect of work Iteration 4 does regardless.
+
+**Ranked top-3:** (1) Iteration 4 on the fallback geometry, ruled explicitly. (2) Fold a diagnostic ±40° run into the bridge-gate build. (3) Docket #7 — still the thing pinning I_beam/I_ambient with sources.
+
+#### VISION SCIENCE
+
+**Reading:** For the first time the instrument's decision floor is smaller than the near-threshold gap it needs to resolve — but only at the fallback geometry (SNR≈5.6 against the pinned OFF-lab target at 450nm, the worst λ). Does this change docket #7? Less than it looks — docket #7 scores an already-deep-FAIL C, which was never a decidability problem; what exp-024 removes is a footnote (the 750nm asterisk, the estimator ambiguity), letting docket #7 cite an unqualified number. Tier-W's status is unmoved — it was never blocked on instrument precision. The chromatic finding is perceptually near-null: the two wavelengths carrying it (450, 750nm) are the smallest photopic contributors (V≈0.038, 0.00012), the V-weighted sum is dominated by 600nm (smallest excursion), and even taken at face value ~1.5-1.9% sits far under contrast-discrimination thresholds (~10%+, Legge & Foley).
+
+**Argued next change:** Nothing perceptual blocks Iteration 3 — execute docket #7 now, scoring against the clean, unqualified exp-024 fallback number. One process condition for Iteration 4: any gated article must inherit the ±35° fallback geometry to inherit decidability, since the ±40° mechanism is still unexplained.
+
+**Ranked top-3:** (1) Execute docket #7 now. (2) Build the stage-10 temporal instrument with sourced TCSF bars — now the more consequential open perceptual gap. (3) Formally adopt ±35° as the default near-threshold-scoring geometry, locked into Iteration 4's setup.
+
+#### RED TEAM
+
+**Audit verdict: MINOR ISSUES.** No repeat of Iteration 1's caliber of defect. Mandatory-fix resolution (checked against my own 7 Phase-2 attacks) genuinely resolved, not softened — the Director went further than either flip on the table. P-M1 REFUTED/RESOLVED framing is accurate at the substance level (correctly not reinterpreted away, unlike Iteration 1's P1b) but the NOTES.md headline ("the margin fix worked, but not for the reason predicted") blurs two different remedies — margin widening (refuted) vs. angle trim (worked); LOGBOOK's own Phase-4 paragraph states it more precisely, so the record that matters most is clean. P-M2's miss (predicted ≥0.99, measured 0.837) is honestly flagged but inconsistently described as "comfortable" — a smaller echo of Iteration 1's generous-language pattern. **The one real unaddressed gap: the "real chromatic effect, not floor bias" claim (P-EST outcome b) rests on treating empty-scene δ_C as the error bound for a cross-wavelength difference on hard-edged objects with their own unexplained near-field excess (P-N17) — and no Δx/cpl resolution check has ever been run anywhere in this instrument family. LOGBOOK's own R3 rule ("any surprising feature gets a resolution check... 'artifact' claims need the check too") was owed here and not proactively applied** before the finding was scored CONFIRMED. Angle-specific-mechanism framing is clean, no overreach — precise about what's known vs. unknown, unlike the chromatic-effect claim.
+
+**Argued next change:** Run the resolution check R3 requires (cpl×1.5, absorber+PEC, 450/750nm, fallback geometry) before the chromatic finding is treated as a standing result anyone builds on — cheap, zero new engine machinery. Separately: P-M2's coverage-formula miss and the P-M1 angle-specific floor may share a root cause; the planned fine-angle sweep should score both δ_C and P1b coverage together, not as separate follow-ups.
+
+**Ranked top-3:** (1) Resolution-check the chromatic finding before it becomes a thread — the one real gap this audit found. (2) The fine angle sweep near ±40°, scoring δ_C and P1b coverage together. (3) Proceed to Iteration 3 (docket #7) once (1) is closed or explicitly carried as a caveat.
+
+### Director's close-out addendum — exp-025 (same shift, before the final verdict)
+
+Red Team's one substantive finding (the R3 gap on the chromatic claim) was accepted in full and closed the same shift, matching this lab's own established precedent for exactly this situation (exp-005/010/015/023: any surprising feature gets a resolution check before a mechanism debate opens on it). **exp-025 (cpl×1.5, absorber+PEC, 450/750nm, fallback geometry): the chromatic effect is REAL, resolution-confirmed** — both spreads landed inside the pre-committed "real" band, an order of magnitude from the artifact-collapse threshold (absorber −0.0114→−0.0120, PEC −0.0166→−0.0151). The fourth time in this program's history an R3 check has refuted the artifact hypothesis rather than confirmed it. Full record: `experiments/025-chromatic-resolution-check/NOTES.md`.
+
+### Director's close of Iteration 2
+
+**VERDICT: PROMISING — instrument hygiene delivered, plus two genuine new
+findings, no checkpoint fires.** The margin/fringe-ratio model this
+iteration was built to fix the instrument with was itself refuted by its
+own data (3.5–4.5× ratio still missed the gate everywhere, non-
+monotonically) — an honest negative result, not hidden or reframed as
+success. What actually worked (the pre-committed ±35° fallback) resolved
+the instrument's decidability problem for the first time in this program:
+δ_C ≤ 0.00089 at every λ, meaning a near-threshold σ(I) target (C≈−0.005)
+is now measurable at SNR≈5.6, not just the deep-FAIL articles this program
+has scored so far. Two unplanned findings ride along, one now fully
+resolved same-shift: (1) the ±40°-angle-specific floor mechanism — real,
+localized, cause unknown, three concrete falsifiable candidates proposed
+(EM: grid-dispersion anisotropy / incoherent-sum asymmetry / settling-time
+artifact), cheap triage plan in hand; (2) the small red-ward chromatic
+effect in hard-edged articles — **resolved this shift**: Red Team's Phase-5
+audit caught that the panel's own R3 meta-rule hadn't been applied before
+this was scored CONFIRMED; exp-025 (same shift) ran the resolution check
+and the effect survived cleanly, an order of magnitude clear of the
+artifact-collapse threshold. Constraint-3's headline number is
+reconfirmed, essentially unchanged (absorber V-weighted C ≈ −0.684 vs
+exp-020's −0.686).
+
+**Red Team's Phase-5 audit — ACCEPTED IN FULL, one item closed same-shift.**
+The R3-meta-rule gap (chromatic finding scored CONFIRMED without a
+resolution check) is now closed via exp-025 — the finding stands as a
+genuine, resolution-checked result. The two softer wording notes (NOTES.md's
+"margin fix worked" headline blurring two different remedies; "comfortable"
+language around P-M2's 0.837-vs-0.8 miss) are logged here for the record,
+per Red Team's own framing — not integrity violations, a pattern worth
+watching so it doesn't compound across future iterations the way Iteration
+1's P1b softening nearly did.
+
+**Merged ranking (next queue) — consensus without collusion:** three seats
+independently ranked Iteration 4 (σ(I) readiness) as their top pick
+(MATERIALS, QUANTUM, THERMO), each *conditioning it explicitly on the ±35°
+fallback geometry as the new standing baseline* — not the ±40° geometry
+that generated every headline C number to date. Three seats independently
+prioritized the ±40°-angle mechanism (PHOTONICS, EM, RED TEAM), with EM
+supplying the only concrete, falsifiable, mostly-zero-cost triage plan
+(analytic dispersion check → existing-data symmetry check → 4-run
+settling-time check). VISION and THERMO both rank docket #7 highly as
+independent, zero-run, unblocked work. Director's synthesis of the queue:
+
+1. **EM's ±40°-angle triage** (analytic dispersion-relation check,
+   zero runs; extend the ±15° mirror-symmetry suite gate to ±40° using
+   already-saved exp-024 field data, zero new runs; a 4-run settling-time
+   convergence check) — cheapest open thread, most-requested, and directly
+   informs whether Iteration 4's new coherent-injection source machinery
+   inherits an understood or unexplained angular quirk. Natural next lead
+   per rotation: MATERIALS (Iteration 3) or whichever seat the triage's
+   first result favors.
+2. **Iteration 4 — σ(I) readiness**, explicitly ruled onto the ±35°
+   fallback geometry as its standing baseline (not an implicit carryover —
+   QUANTUM's and VISION's condition, accepted): thermo's time-resolved
+   ledger (precondition: the zero-run fallback-geometry ledger recheck
+   THERMO flagged), quantum's shared intensity axis + coherent-
+   superposition bridge gate (folding in the non-gating ±40° diagnostic
+   QUANTUM proposed, resolving T7's mechanism question as a side effect),
+   materials' OFF/ON endpoint pair (with the edge-vs-depth chromatic rider
+   on the ON-state run). Ready to proceed independent of item 1.
+3. **Docket #7 — witness-scenario table + glare/adaptation sidecar**
+   (zero runs, analytic): unblocked, independent, scores Tier-W's
+   constraint-3 clause against the now-unqualified C≈−0.684. Per VISION,
+   nothing perceptual blocks this; per THERMO, the thermo columns are
+   needed regardless of how items 1–2 resolve.
+4. **Stage-10 temporal instrument** (VISION's #2): TCSF bars pinned first,
+   the last unmeasured perceptual axis (T3), gates constraint 4.
+
+Panel stats (Phase 5): 7 seats, blind · 3-way consensus on Iteration 4
+(different reasons, same conclusion) · Red Team's audit found one real
+gap and it closed same-shift (exp-025) · two softer wording notes logged,
+not escalated. Carried open threads: EM's T8 near-field→witness-scale
+bridge; the estimator-adjudication question (now retired per T7); the
+±40°-angle mechanism (three candidates, untested); the chromatic effect's
+own mechanism (resolution-confirmed real, cause still open — candidate:
+near-field extinction structure at hard boundaries, same family as the
+still-open PEC N17 excess).

@@ -2,6 +2,88 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-12 (panel shift) — Iteration 2 complete (exp-024/025): the margin
+fix was refuted, the fallback wasn't — plus a same-shift resolution close
+
+**Pre-flight:** local `main` detached at a stale point (same bookkeeping
+class as every prior shift) — fixed with `git fetch origin main && git
+checkout -B main origin/main`. Deps reinstalled (pyMKL wheel fails here,
+`ceviche --no-deps` per the recorded wrinkle). Bench trust suite 41/41
+green (`--only 12346789`) before this shift's work, rechecked after
+exp-024 and again after exp-025 (no `lab/` engine changes any time — only
+`experiments/` scripts).
+
+**Iteration 2 — Instrument Margin + Estimator Adjudication (exp-024,
+CONCLUDED).** Lead: PHOTONICS (rotation). Full seven-seat cycle run as
+fresh sub-agents per PANEL.md's independence mechanics: Phase 1 proposal →
+5 blind parallel critiques (VISION, MATERIALS, EM, THERMO, QUANTUM, all
+support-with-changes) → Red Team last with everything
+(proceed-with-mandatory-fixes, with a decisive finding: PHOTONICS' own
+δ_C-extrapolation model, backtested against exp-020's own data,
+underpredicts by 5.7–15.7× near margin/fringe-ratio≈1 — the true behavior
+is EM's own "threshold collapse," not a smooth power law) → Phase 3
+synthesis (Director: MARGIN_MULT=3.5, further than either flip proposed;
+δ_C gate tightened to ≤0.001 at every λ; BOX derived programmatically;
+P-EST's outcome gap replaced with an exhaustive 3-way partition; QUANTUM's
+bridge-gate deferred to Iteration 4 by explicit ruling, not omission) →
+predictions committed (`b28635b`) → Phase 4 run.
+
+**Result: the fix worked, but not by the predicted mechanism.**
+MARGIN_MULT=3.5 (worst-case margin/fringe ratio 3.5–4.5×, 3–4× better than
+exp-020's best point) still MISSED the δ_C≤0.001 gate at all six
+(λ,weighting) combinations, non-monotonically — 450 nm got *worse*
+(0.0009→0.0026) despite the best ratio ever measured, refuting the
+margin/fringe-ratio model the whole iteration was built on. Per the
+pre-committed falsification clause, no live patch was attempted — the
+pre-committed ±35° fallback reran instead (108 runs) and passed cleanly
+everywhere (δ_C 0.000033–0.00089), localizing the true mechanism to
+something angle-specific at ±40°, not margin-driven. Bonus, resolved as a
+side effect: the fallback's clean floor showed the λ-ordering reversal
+exp-020 flagged is **not** pure floor bias — a real, small (~1.5–1.9%)
+red-ward |C| growth survives in both hard-edged articles (absorber,
+PEC), absent in the soft-edged sponge. Constraint-3's headline is
+reconfirmed, essentially unchanged: absorber V-weighted C ≈ −0.684 (vs
+exp-020's −0.686). Everything else (material blindness 0.14±0.02, N17
+PEC excess, sponge calibration, convergence/ledger identities) CONFIRMED
+per pre-registered bands. `b28635b` (predictions) → `c67506b` (primary
+raw data + fallback script) → `94028d0` (conclusion + LOGBOOK).
+
+**Phase 5 — seven fresh seats, blind.** Three-way consensus without
+collusion on Iteration 4 (σ(I) readiness) as the top pick (MATERIALS,
+QUANTUM, THERMO — each independently conditioning it on the ±35° fallback
+becoming the standing baseline geometry, not an implicit carryover).
+Three seats independently prioritized the ±40°-angle mechanism
+(PHOTONICS, EM, RED TEAM); EM supplied three falsifiable, mostly-zero-cost
+candidate mechanisms (Yee-grid dispersion anisotropy / incoherent-sum
+asymmetry / settling-time artifact) and a concrete triage plan. **Red
+Team's audit (verdict: MINOR ISSUES) found one real, unaddressed gap**:
+the panel's own R3 meta-rule ("any surprising feature gets a resolution
+check before a mechanism debate — artifact claims need the check too")
+was owed to the new chromatic finding and hadn't been applied before it
+was scored CONFIRMED.
+
+**exp-025 — Chromatic Finding Resolution Check (same shift, CONCLUDED).**
+Director accepted Red Team's finding in full and closed it same-shift, per
+this lab's own established precedent (exp-005/010/015/023). cpl×1.5 at
+450/750 nm, geometry rescaled to hold physical size fixed, fallback
+angle set, absorber+PEC only. **Result: the chromatic effect is REAL** —
+both spreads landed inside the pre-committed "real effect" band, an order
+of magnitude clear of the artifact-collapse threshold (absorber
+−0.0114→−0.0120, PEC −0.0166→−0.0151) — the 4th time this program's R3
+rule has refuted the artifact hypothesis rather than confirmed it.
+`37059d0` (predictions) → `b5447ca` (conclusion).
+
+**Director's close: VERDICT PROMISING.** No checkpoint criterion fired
+(no config passes all constraints; no proven-unsatisfiable boundary; no
+major engine build required; Red Team's audit was MINOR ISSUES not
+program-integrity drift; the iteration clearly advanced the logbook — no
+two-consecutive-null-iterations condition). Queue for the next shift/
+iteration (PLAN.md, updated): (a) EM's ±40°-angle triage — cheapest,
+most-requested; (b) Iteration 4 σ(I) readiness on the ±35° fallback
+baseline — 3-seat consensus; (c) docket #7 — zero-run, independent,
+unblocked, now scoring an unqualified C. Six commits to main this shift
+(three predict/results pairs). Trust suite 41/41 green throughout.
+
 ## 2026-08-12 (redesign session) — the Research Panel program; Iteration 1 Phases 1–2; Checkpoint #0
 
 **The redesign (Marsh's directive, in-session):** the phenomenon program now
