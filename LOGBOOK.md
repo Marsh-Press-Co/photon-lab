@@ -102,13 +102,27 @@ measured them here):**
 - **T6 — Cloak-line leftover, kept honest:** exp-017's unscored observation
   (13 angular peaks at the 3λ point vs 10 at flanks) — parked cloak-line
   curiosity; revisit only if a future thread returns to that mechanism space.
-- **T7 — Instrument floor + estimator adjudication (Iteration 2 owns).**
-  The δ_C decision floor is λ-dependent (fringe zone √(λD) vs coverage
-  margin — 74.7 > 69.9 cells at 750 nm); **750 nm object numbers carry an
-  asterisk** and "floor-corrected" values are estimator-provisional
-  (additive vs ratio models disagree on the λ-ordering — Red Team, Phase
-  5) until the pre-committed margin + adjudication rerun (ny→1360,
-  coverage rule m ≥ 2√(λ_max·D), δ_C ≤ 0.003, P1b back to green).
+- **T7 — Instrument floor + estimator adjudication — CLOSED for practical
+  purposes, mechanism still open (Iteration 2, exp-024).** The estimator
+  question is retired: at the pre-committed ±35° fallback geometry, δ_C ≤
+  0.00089 at every λ, so raw C needs no correction and none is applied
+  going forward — the additive-vs-ratio debate dissolves because the floor
+  it argued over is gone. **But the margin/fringe-ratio model that
+  motivated the whole fix was itself refuted**: MARGIN_MULT=3.5 (ratio
+  3.5–4.5×, 3–4× better than exp-020's best point) still MISSED the ≤0.001
+  gate at all six (λ,weighting) combinations at the primary ±40° geometry,
+  non-monotonically (450 nm got *worse* despite the best ratio). Only
+  dropping the ±40° angle pair (the ±35° fallback) fixed it. **New open
+  question, not T7's original one: something specific to the ±40° angle
+  itself, not to margin/fringe-zone ratio, drives the residual floor** —
+  candidate for a fine angle sweep near ±40° in a future iteration. 750 nm's
+  asterisk is lifted (fallback δ_C = 0.00043–0.00045, clean). Bonus,
+  resolved as a side effect: the λ-ordering reversal exp-020 flagged is
+  **not** pure floor bias — a real, small (~1.5–1.9%) growth of |C| toward
+  red survives in both opaque articles at the clean-floor fallback
+  geometry (absorber Δ=0.0114, PEC Δ=0.0166; sponge Δ=0.0003, noise-level)
+  — a new, small, unexplained chromatic-silhouette finding, opposite the
+  originally-hypothesized diffraction-fill direction.
 - **T8 — Near-field → witness-scale bridge.** The bench plane sits deep in
   the shadow's Rayleigh range (z/z_R ≈ 0.04–0.06); at witness scale
   (z/z_R ~ 10⁻⁴) an LTI beam-terminating volume reads |C| ≈ 0.98 (EM,
@@ -514,3 +528,157 @@ Blackwell low-luminance data; near-field→witness-scale bridge (EM: a
 witness-scale LTI absorber reads |C| ≈ 0.98 — bench leniency is partly
 scale); T3 temporal instrument with TCSF bars.
 
+## Iteration 2 — Instrument Margin + Estimator Adjudication (exp-024) — 2026-08-12
+
+Runner: cloud panel shift (background routine) · Lead: **PHOTONICS** (rotation)
+· Phases run: **1–5, complete** · 7 fresh-context seats, Phase-2 critiques
+written blind and in parallel; Red Team read everything and spoke last.
+
+### Phase 1 — Proposal (PHOTONICS, verbatim)
+
+# PHASE 1 — PROPOSAL · Panel Iteration 2 · Lead seat: PHOTONICS
+## "Instrument Margin + Estimator Adjudication" — collapsing the λ-dependent fringe-zone floor, settling the additive-vs-ratio question, and clearing the P1b/N17 riders on exp-020's ambient instrument (candidate exp-024)
+
+### 1. Narrative (≤300 words)
+
+Iteration 1 built the ambient-appearance instrument and put a number on constraint 3 for the first time: absorber C = −0.686, a photopic Tier-A FAIL by 34× the field bar. But its own data flagged an instrument defect, not a material result. Past a coverage margin of ~60–70 cells, the flat-lit source's own edge-diffraction fringe zone (√(λD) = 58/67/75 cells at 450/600/750 nm) overruns the margin (69.9 cells) at 600 and 750 nm, leaking a λ-growing empty-scene floor (δ_C = 0.0009/0.0068/0.0183) into every window mean. That floor did two damaging things at once: it silently *reversed* my own seat's committed λ-ordering prediction (raw |C| grew with λ; diffraction-fill physics says it should shrink), and it left two floor-correction estimators — additive subtraction vs. the illumination-ratio model — disagreeing about whether the reversal was pure bias or partly real. No physics conclusion can be trusted while the floor itself is uncertified.
+
+This iteration is an INSTRUMENT FIX, not a new mechanism test. Same four articles (empty / absorber / PEC / sponge), same object, same windows, same nine committed angles — only the transverse domain, source length, and object center move outward so the source's flat-lit region clears the fringe zone by ≥2× at every committed wavelength, everywhere the old margin fell short. With the floor pushed below ~0.001–0.002 at all three λ, raw C becomes trustworthy C without correction: the additive-vs-ratio question should mostly *dissolve* rather than get won by either side, and my seat's λ-ordering claim becomes decidable at a resolution an order of magnitude finer than Iteration 1 could support. A zero-run rider recomputes the ray-trace ceiling at 17 angles and checks the measured PEC near-field excess against it before that excess is trusted as a real effect. Nothing about T1's escape-route classes, the perceptual threshold table, or any material mechanism is touched.
+
+### 2. Parameter table
+
+**Design recomputation (shown work):**
+
+```
+D_source→plane  = SRC_X − PLANE_X = 300 − 77 = 223 cells       (frozen)
+walk(40°) = 223 × tan(40°) = 187.12 cells
+New SRC_Y = (40, 1320)  [was (40, 1160)]
+margin(θ=±40°) = 149.88 cells  (was 69.88)
+Coverage rule (EM, Phase 5): m ≥ 2·√(λ_max·D) = 149.32 cells → CLEARS by 0.56 cells (0.38%)
+Fringe zones √(λ·D): 57.8 / 66.8 / 74.7 cells @ 450/600/750 nm
+New margin/fringe ratio: 2.591 / 2.244 / 2.007  (old: 1.209 / 1.047 / 0.936)
+N9 ceiling: C_geo −0.799(equal)/−0.809(cos); N17 ceiling (my recompute): −0.809/−0.818
+PEC N-series excess: N9 −0.0271, N17 −0.0286 (essentially N-stable)
+```
+
+Full parameter table (key revisions): NY 1200→1360, source y∈[40,1320], object recentered (170,600)→(170,680), BOX (80,260,510,690)→(80,260,590,770), new permanent coverage-margin rule m ≥ 2√(λ_max·D), δ_C ≤0.003 gate at 600/750nm (Red Team clause i), P1b ≥0.8 everywhere (clause iii), additive floor-subtraction retired as ongoing procedure (clause ii), N17 ceiling recomputed and PEC excess checked against it (zero-run rider). Everything else (grid physics, source x-placement, window geometry relative to object, angle sets, weighting schemes, incoherent-sum machinery, suite stage 9) carried unchanged.
+
+### 3. T1 escape-route statement
+
+This iteration implements no escape mechanism and measures nothing new about escape routes — pure instrument hygiene, re-measuring the existing baseline (empty/absorber/PEC/sponge, materially unmodified) on a corrected instrument.
+
+### 4. Falsifiable predicted outcomes (own optical reasoning)
+
+P-PH1 (δ_C ≤0.003 gate): predicted δ_C(450/600/750) ∈ [0.0001,0.0010]/[0.0002,0.0018]/[0.0002,0.0025], extrapolated via two bracketing power laws (1/ratio, 1/ratio²) calibrated to the single 450nm anchor. P-PH2 (P1b ≥0.94 everywhere). P-PH3 (absorber C∈[−0.71,−0.66], λ-ordering |C(750)−C(450)|≤0.006, diffraction-fill argument). P-EST (estimator adjudication: raw C(750)∈[−0.695,−0.675], central −0.682 — predicted to land near the additive-corrected flat band, "estimator question mostly dissolves"). P-PH4 (PEC C∈[−0.85,−0.80], split 0.14±0.02). P-N17 (PEC N17 excess 0.025–0.035 over recomputed ceiling). P-PH5 (sponge C∈[−0.075,−0.055]). P-PH6/P-PH7 (convergence/ledger gates unchanged, predicted clean).
+
+### 5. Idealizations
+
+2D TMz; linear-media idiom unchanged; back-lit only; the coverage-margin rule extrapolated from a single anchor point via two untested bracketing models — flagged as the proposal's own acknowledged weak point, with a pre-committed ±35° fallback already on the table if it proves too thin.
+
+### 6. Carried forward vs. revised — full accounting in the proposal (grid physics/window geometry/angle sets/incoherent-sum machinery carried; NY/source-extent/object-recenter/δ_C-gate/P1b-bar/estimator-retirement/N17-ceiling all revised, each with a stated reason).
+
+*(Full proposal text: see PHOTONICS' Phase-1 sub-agent output, 2026-08-12 —
+condensed here for LOGBOOK length; nothing material omitted from what Phase
+2/3 acted on.)*
+
+### Phase 2 — Critiques (five seats, blind, verbatim)
+
+#### VISION SCIENCE — verdict: support-with-changes
+
+**Steel-man:** Vision science's charter demands PASS be decidable, not just FAIL. Iteration 1's own retrospective (Materials, Phase 5) named the instrument's core defect precisely: it can certify FAIL but never PASS, because δ_C (0.0068/0.0183 at 600/750 nm) sat above or near the 0.005 lab bar. This proposal is the direct, targeted fix — extrapolated δ_C bands of 0.0002–0.0025 and a hard δ_C ≤ 0.003 gate at 600/750 nm, backed by a permanent, re-derivable coverage-margin design rule (m ≥ 2√(λ_max·D)) rather than an ad hoc patch. It touches none of my frozen machinery, and it is honest that this cycle re-measures known-FAIL articles rather than claiming a new perceptual result.
+
+**Attack:** The proposal frames itself as unblocking "any σ(I) article," but its own gate is calibrated to the wrong signal. The logbook already pins the concrete near-threshold target this fix exists to serve: Materials' OFF-lab σ(I) article, τ_center=0.008, chord-model C = −0.005 — sitting exactly on the lab PASS bar. The proposal's hard gate is δ_C ≤ 0.003, giving SNR ≈ 1.7 — nowhere near the ≥3–5× separation ordinary detection-theory practice would require. "Unblocks the whole program's future C measurements including any σ(I) article" is asserted, not shown.
+
+**Verdict:** support-with-changes. **Flip:** Tighten the decision-floor gate from δ_C ≤ 0.003 to δ_C ≤ 0.001 at every λ.
+
+#### MATERIALS & METAMATERIALS — verdict: support-with-changes
+
+**Steel-man:** The proposal correctly leaves my calibration article's physical design untouched. The sponge's signal (|C|≈0.062) already sat ≥3.4× Iteration 1's worst δ_C, so this was always the instrument's most trustworthy article, and the N17 ceiling recompute + PEC-excess stability check properly applies the R3 meta-rule.
+
+**Attack:** P-EST's "estimator dissolves" claim and P-PH5 both lean on P-PH1's δ_C(750) band — extrapolated from a SINGLE validated anchor via two power laws that agree only because both are forced through that one point. The new margin/fringe ratios (2.01–2.59) sit near, not deep inside, the Fresnel regime, where fringe amplitude follows Cornu-spiral oscillation rather than monotone decay — the bracket could miss a secondary lobe and underpredict δ_C(750) by an order of magnitude.
+
+**Verdict:** support-with-changes. **Flip:** Pre-commit that if δ_C(750) lands outside P-PH1's predicted band, the sponge C and g-value are automatically re-derived against whichever angle set was actually used.
+
+#### ELECTROMAGNETISM — verdict: support-with-changes
+
+**Steel-man:** The margin arithmetic checks out independently — D=223, walk(40°)=187.12, margin=149.88 vs rule=149.32, both reproduce to the printed digit. The N17 ceiling recompute rules out ceiling-coarseness for the PEC near-field excess without overclaiming resolution of the mechanism, correctly deferring to my T8 near-to-far bridge.
+
+**Attack:** P-PH1's δ_C bands rest on an unsound extrapolation. Fitting a power law to Iteration 1's OWN three data points gives an effective exponent p≈11.8 between the 450 and 750nm points — nowhere near the proposal's bracketing p=1/p=2. That extreme steepness is my own Phase-5 finding restated: margin/√(λD) crossing unity at 750nm produced a "twentyfold" cancellation collapse — a near-threshold transition, not a smooth power law. The new ratios (2.01–2.59) sit only ~2× past that threshold.
+
+**Verdict:** support-with-changes. **Flip:** Replace the 2× coverage-margin multiplier with 3× (m ≥ 3√(λ_max·D) ≈ 224 cells) — or adopt ±35° as primary.
+
+#### THERMODYNAMICS — verdict: support-with-changes
+
+**Steel-man:** The +80 y-shift is arithmetically exact, not just asserted — verified by hand: old and new BOX both preserve a uniform 12-cell clearance on every wall around the object.
+
+**Attack:** That correctness is unverified *in the document* — BOX gets one parameter-table line, no shown work, the identical failure pattern the phasor-bug lesson exists to prevent: a load-bearing constant hand-tracked instead of computed and gated.
+
+**Verdict:** support-with-changes. **Flip:** Derive BOX from R_OUT + object center + a stated clearance constant in the design calculation, not by hand. **On the standing demand:** deferring the time-resolved energy ledger to Iteration 4 is clean here — this iteration touches no σ(t)/σ(I) machinery.
+
+#### QUANTUM OPTICS — verdict: support-with-changes
+
+**Steel-man:** The proposal's silence is already-ruled scoping — Iteration 1's merged ranking filed the σ(I)-readiness package as Iteration 4, separate from this instrument-margin rerun, for a real reason (the shared-intensity-axis schema bump belongs in a counterparty PR).
+
+**Attack:** The Bonnie's-lane justification covers only HALF my package — the coherent-superposition bridge gate needs zero schema changes, reusing existing machinery as a new stage-9 check. Nothing forces deferring THAT. If δ_C(750) comes in high, Iteration 4 inherits a geometry whose margin AND bridge-gate are both simultaneously uncertified.
+
+**Verdict:** support-with-changes. **Flip:** Add the zero-schema-cost bridge-gate check now; failing that, require an explicit NOTES.md docket entry naming the deferral as a decision, not an omission.
+
+#### RED TEAM (last, saw everything) — verdict: proceed-with-mandatory-fixes
+
+**Verdict: proceed-with-mandatory-fixes.** The core fix is legitimate, cheap, and correctly implements Iteration 1's own merged-ranking scope. Independently re-verified the load-bearing geometry arithmetic — correct where shown. Two load-bearing numbers are NOT shown work — stated conclusions dressed as derivations.
+
+1. **[inconsistency] The δ_C extrapolation demonstrably fails against data the proposal already possesses.** Backtesting P-PH1's own bracketing models *backward* against exp-020's own two other measured (ratio, δ_C) points: ratio 1.047 (600nm) — predicted [0.00104,0.00120], actual 0.0068, underpredicted 5.7–6.5×. Ratio 0.936 (750nm) — predicted [0.00116,0.00150], actual 0.0183, underpredicted 12.2–15.7×. Local exponents implied by the three real pairs: 14.05/8.83/11.77 — inconsistent with each other, confirming EM's threshold-collapse reading over any single power law. "Comfortably inside the 0.003 gate" is an extrapolation known, by its own author's cited numbers, to undershoot by an order of magnitude in the adjacent regime.
+2. **[inconsistency] The pre-committed ±35° fallback is a fallback in name only — no pre-committed numeric bands.** Every committed band is derived for N9; none re-derived for N7/N9-at-35.
+3. **[unfalsifiable] P-EST's adjudication rule doesn't cover its own reachable outcome space** — an undefined ~0.006-wide gap between the two vindication zones, and no disposition for results outside both bands.
+4. **[inconsistency] The proposal's "unblocks any σ(I) article" claim is not supported by its own gate** — δ_C ≤0.003 gives SNR≈1.7 against the pinned OFF-lab target C=−0.005, reopening Red Team's own Iteration-1 attack #3 at finer resolution.
+5. **[inconsistency] QUANTUM's zero-schema-cost bridge-gate point is left to lapse by silence** — though QUANTUM's own "zero cost" framing is itself overstated (new source machinery needs its own suite stage per house rule).
+6. **[inconsistency] The BOX under-derivation THERMO caught is not isolated** — it's one of two load-bearing numbers skipped in an otherwise rigorous document; the other is attack #1's δ_C bracket.
+7. **Own-seat accountability:** the δ_C ≤0.003 gate value is Red Team's own Iteration-1 Phase-5 number, set without checking it against the OFF-lab σ(I) target pinned in the same cycle — recorded plainly.
+
+**Evidence that would change the verdict — to REJECT:** if post-run δ_C(750) lands far above 0.003 AND the ±35° fallback also fails, meaning margin-fixes are the wrong tool entirely. **To clean PROCEED:** all six items landed pre-freeze — three-point backtest run and reported with widened bands or EM's 3×/±35°-primary flip adopted; fallback bands pre-committed now; P-EST's gap given explicit disposition; "unblocks any σ(I)" claim narrowed or gate tightened; QUANTUM's deferral explicitly accepted/overridden; BOX re-derived.
+
+### Phase 3 — Synthesis (2026-08-12, Director)
+
+Full record: `experiments/024-ambient-margin-adjudication/NOTES.md`. Six
+mandatory fixes resolved: (1) VISION's flip adopted verbatim — δ_C gate
+tightened to ≤0.001 at every λ. (2) THERMO's flip adopted verbatim — BOX
+derived programmatically from R_OUT + a stated 12-cell clearance constant.
+(3) Red Team's decisive backtest (attack #1) accepted in full — resolved
+by going further than either flip proposed: **MARGIN_MULT=3.5** (not
+PHOTONICS' 2× or EM's flip-proposed 3×), pushing the worst-case
+margin/fringe ratio to 3.5–4.5× (NY 1200→1584), chosen specifically to
+clear the ratio≈1 threshold-collapse zone outright rather than trust any
+extrapolation across it. (4) MATERIALS' flip superseded, not adopted
+literally — with no extrapolation model committed pre-run, there's nothing
+to conditionally re-derive against; the root worry is eliminated instead.
+(5) Red Team's #3 (P-EST's outcome gap) replaced with an exhaustive 3-way
+partition (wavelength-flat confirmed / real chromatic effect / gate-miss-
+triggers-fallback). (6) QUANTUM's flip partially overridden — the "add the
+bridge gate now" half rejected (Red Team's own finding: new source
+machinery needs its own gated suite stage, real build cost) but the
+"state the deferral explicitly" half accepted — ruled, on the record, as
+staying Iteration 4's job. No fix overridden outright beyond these two
+partial overrides. Predictions P-M1–P-M7 + P-EST + P-N17 committed before
+any run (`b28635b`).
+
+### Phase 4 — Test (exp-024, 2026-08-12)
+
+Primary run: 124 runs, 390 s. **δ_C gate (≤0.001) MISSED at all six
+(λ,weighting) combinations** despite the 3.5–4.5× margin ratio —
+non-monotonic with λ (450nm got WORSE, 0.0009→0.0026, despite the best
+ratio of any point measured) — refuting the margin/fringe-ratio model this
+whole iteration was built on. Per P-M1's own pre-committed falsification
+clause, the ±35° fallback reran (108 runs, 348 s, `run_fallback.py`) and
+**passed cleanly everywhere** (δ_C 0.000033–0.00089) — localizing the true
+residual to something angle-specific at ±40°, not margin-ratio-driven.
+The fallback's clean floor also resolved the λ-ordering question left open
+since exp-020: a real, small (~1.5–1.9%) growth of |C| toward red survives
+in both opaque articles (absorber Δ=0.0114, PEC Δ=0.0166, sponge
+Δ=0.0003 ≈ noise) — NOT floor bias, a genuine new finding, direction
+opposite the originally-hypothesized diffraction-fill law. Absorber
+V-weighted C = −0.6840 (primary), reconfirming exp-020's −0.686 essentially
+exactly — constraint-3's headline verdict is unchanged. P-M2–P-M7 and
+P-N17 all CONFIRMED (P-M2's gate passed but its central "≥0.99" prediction
+missed — coverage came in at 0.837, still well clear of the 0.8 gate).
+Suite 41/41 before and after (no `lab/` changes). Full scoring:
+`experiments/024-ambient-margin-adjudication/NOTES.md`.

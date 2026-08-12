@@ -229,4 +229,149 @@ near-field excess, not all of them.
 
 ## Results
 
-*(Appended after the run — everything above was committed first.)*
+*(Appended after the run — everything above was committed first, commit
+`b28635b`. Primary run: 124 runs, 390 s. Fallback rerun: triggered per
+P-M1's own pre-committed contingency, 108 runs, 348 s — `run_fallback.py`,
+committed `c67506b` alongside the primary raw data. Suite 41/41 before and
+after (no `lab/` changes).)*
+
+**Headline: the margin fix worked, but not for the reason predicted — and
+that gap is itself the iteration's real finding.** MARGIN_MULT=3.5 pushed
+the worst-case margin/fringe-zone ratio to 3.5–4.5× (vs exp-020's 0.94–1.21),
+comfortably clear of the ratio≈1 collapse zone Red Team's backtest
+identified. δ_C *did* improve dramatically at 600/750 nm (0.0068→0.0015,
+0.0183→0.0037, both ~5× smaller) — but **missed the ≤0.001 gate at ALL SIX
+(λ, weighting) combinations anyway**, including 450 nm, whose δ_C got
+*worse* (0.0009→0.0026) despite having the single best margin/fringe ratio
+(4.53) of any point measured, primary or historical. The margin/fringe-ratio
+model — the mechanism this whole iteration was built around — does not
+predict this. **P-M1: REFUTED, honestly, per its own pre-committed
+falsification clause** ("if δ_C > 0.001 at any λ despite the 3.5–4.5×
+margin ratio, that is a real, surprising instrument finding... the
+pre-committed ±35° fallback reruns instead").
+
+**The pre-committed fallback (±35°, N=9 — dropping only the two ±40° edge
+angles) resolved it cleanly:** δ_C = 0.00089/0.00081 (450), 0.000033/0.000071
+(600), 0.00043/0.00045 (750) — every combination passes the 0.001 gate,
+most by an order of magnitude or more. **This localizes the residual
+floor specifically to the ±40° angle pair, not to margin/fringe-zone ratio
+at all** — trimming 5° off each side collapsed the floor 3–9× at every λ,
+after a 32%-larger domain had already failed to touch it at 450 nm. Neither
+this iteration's own margin-ratio model, EM's original coverage rule, nor
+Red Team's backtest-motivated widening anticipated an angle-specific (not
+ratio-driven) mechanism — genuinely new, unexplained, flagged for Phase 5,
+not quietly folded into "margin fixed it."
+
+**Weber contrast C (plane 15, equal weights, RAW — no correction applied,
+per the retired-estimator ruling):**
+
+| Article | Config | 450 nm | 600 nm | 750 nm | V-weighted |
+|---|---|---|---|---|---|
+| empty (δ_C) | primary (±40°) | −0.0026 | −0.0015 | −0.0037 | −0.0016 |
+| empty (δ_C) | fallback (±35°) | +0.0009 | −0.0000 | +0.0004 | — |
+| absorber | primary | −0.6781 | −0.6843 | −0.6866 | **−0.6840** |
+| absorber | fallback | −0.7170 | −0.7211 | −0.7284 | — |
+| PEC | primary | −0.8194 | −0.8243 | −0.8293 | −0.8240 |
+| PEC | fallback | −0.8605 | −0.8677 | −0.8771 | — |
+| sponge | primary | −0.0652 | −0.0639 | −0.0658 | −0.0640 |
+| sponge | fallback | −0.0651 | −0.0661 | −0.0654 | — |
+
+Convergence (PEC @600, primary geometry): N5 −0.7999 · N9 −0.8243 · N17
+−0.8379. Plane sensitivity ≤ 0.0102 (absorber, worst). Ledger identities:
+empty-box worst 0.0012 (≤ 0.02), two-route worst 0.0006 (≤ 0.12) — both
+reproduce exp-020's own values (0.0012/0.0006) essentially exactly,
+confirming the derived `BOX` preserves the ledger physics as predicted.
+
+### Predictions scored
+
+- **P-M1 — REFUTED at the primary (±40°) geometry; RESOLVED by the
+  pre-committed fallback.** See headline above. The falsification clause
+  fired exactly as written and the pre-committed response (no live patch,
+  run the fallback) is what actually happened — this is the discipline
+  working, not a miss to apologize for.
+- **P-M2 — coverage gate PASSED but the central prediction MISSED.**
+  Worst P1b min/median = 0.837 (≥ 0.8 gate: comfortable pass), but the
+  predicted "≥0.99 everywhere" central value did not hold — 0.837 is well
+  above gate but far short of the predicted near-unity coverage. Flagged,
+  not hidden: the coverage-fraction formula (min/median of the empty
+  window segment) evidently doesn't scale as cleanly with margin as guessed;
+  worth a cheap look in a future iteration, not urgent (gate itself is
+  solidly green).
+- **P-M3 — band CONFIRMED; λ-ordering claim REFUTED, and this time it's
+  real (P-EST resolves it below).** Primary absorber C ∈ [−0.6781,−0.6866]
+  at every λ, band [−0.71,−0.66]: CONFIRMED, central ≈ −0.684 essentially
+  reproducing exp-020's −0.686. λ-ordering: |C(750)−C(450)| = 0.0085
+  (primary), 0.0114 (fallback) — both exceed the predicted ≤0.006 near-flat
+  band. |C| *grows* toward red at both geometries and in both articles
+  (see P-EST) — the opposite direction from the diffraction-fill argument
+  either exp-020 or this proposal predicted, and, thanks to the fallback's
+  clean floor, now known NOT to be an artifact of floor bias.
+- **P-EST — outcome (b), the real-effect branch, CONFIRMED.** Per the
+  pre-committed 3-way partition: fallback δ_C ≤ 0.00089 at every λ (well
+  under the 0.001 gate) AND |C(750)−C(450)| = 0.0114 > 0.006 → **a real,
+  small chromatic effect survives floor-precision.** This is NOT an
+  estimator failure (the floor is negligible either way — no correction
+  was applied or needed) and NOT the additive-vs-ratio question exp-020
+  left open (that question is now moot, exactly as designed — raw fallback
+  numbers need no correction). It IS a genuine, previously-hidden finding:
+  |C| for both opaque articles (absorber AND PEC, same direction, same
+  rough magnitude — absorber Δ=0.0114, PEC Δ=0.0166 at fallback) increases
+  from 450→750 nm by roughly 1.5–1.9%, while the optically-thin sponge
+  shows no clear trend (Δ=0.0003, noise-level against its own ~0.065
+  signal). A real, small, opaque-article-specific chromatic silhouette
+  effect, direction opposite the original diffraction-fill hypothesis —
+  new candidate mechanism thread for a future iteration, not solved here.
+- **P-M4 — CONFIRMED, tightly.** PEC ∈ [−0.8194,−0.8293] (band
+  [−0.85,−0.80]). Material-blindness split |C_PEC−C_absorber| = 0.1413 /
+  0.1400 / 0.1427 (450/600/750) — predicted 0.14 ± 0.02, central hit almost
+  exactly at every λ.
+- **P-N17 — CONFIRMED.** PEC(N17, 600 nm, raw) = −0.8379 vs the recomputed
+  N17 ceiling −0.8074: excess = 0.0305, inside the predicted [0.020,0.035]
+  band and the same order as exp-020's own excess (0.0271→0.0286, N9→N17)
+  — reconfirms the near-field extinction excess as N-stable and
+  margin-independent, still not certified as a design-ready mechanism
+  (EM's T8 bridge remains the open gate for that).
+- **P-M5 — CONFIRMED.** Sponge C ∈ [−0.0639,−0.0658] (band [−0.075,−0.055],
+  central −0.063) — matches the geometric ceiling (−0.0626) to the same
+  ~0.001–0.003 precision exp-020 achieved, now on a properly-margined
+  instrument.
+- **P-M6 — CONFIRMED.** N9 vs N5 ≤ 0.0244 (gate 0.05); N17 vs N9 ≤ 0.0136
+  (gate 0.02); plane sensitivity ≤ 0.0102 (gate 0.05) — all comfortably
+  inside, near-object convergence physics unaffected by the far-field
+  margin change, as predicted.
+- **P-M7 — CONFIRMED.** Empty-box worst 0.0012; two-route worst 0.0006 —
+  both reproduce exp-020's own numbers essentially exactly. The derived
+  `BOX` (Thermo's flip, item 2 above) preserves the ledger identities
+  exactly as the hand-verified clearance arithmetic predicted.
+
+### Headline (for LOGBOOK)
+
+**The instrument-margin fix worked empirically but not by the mechanism
+this iteration was built around.** A 3.5× coverage-margin multiplier
+(worst-case ratio 3.5–4.5, vs exp-020's 0.94–1.21) cut the decision floor
+substantially at 600/750 nm but *increased* it at 450 nm and missed the
+pre-committed ≤0.001 gate everywhere — refuting the margin/fringe-ratio
+model this whole line of reasoning (Phase-1 PHOTONICS, EM's original rule,
+Red Team's backtest-driven widening) shared. The pre-committed ±35°
+fallback — dropping only the ±40° edge angles — passed cleanly everywhere,
+localizing the true mechanism to something angle-specific at ±40°, not
+ratio-driven. That fallback data, clean at every λ, also settled the
+λ-ordering question exp-020 left open: the reversal is **not** pure floor
+bias — a real, small (~1.5–1.9%) growth of |C| toward red survives in both
+opaque articles, opposite the originally-hypothesized diffraction-fill
+direction. Constraint-3's headline number is essentially unchanged and
+reconfirmed (absorber V-weighted C ≈ −0.684, vs exp-020's −0.686) — this
+iteration's contribution is instrument precision and two new open
+questions, not a changed verdict.
+
+## Next (pre-registered)
+
+For Phase 5: (1) the ±40°-specific floor mechanism — not margin/fringe-
+ratio, something else, angle-specific; a natural next probe is a fine
+angle sweep near ±40° (e.g. every 1° from 36° to 40°) to see whether the
+floor onset is itself a sharp threshold like EM's ratio≈1 collapse, just
+in angle rather than in margin. (2) the new, small, opaque-only red-ward
+chromatic C trend (P-EST outcome b) — a genuine new finding, mechanism
+unknown, worth its own dedicated thread. (3) Iteration 3's docket #7
+(witness-scenario table) and Iteration 4's σ(I) readiness remain queued
+per Iteration 1's merged ranking, untouched by this iteration's scope.
