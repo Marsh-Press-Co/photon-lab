@@ -185,10 +185,106 @@ conditions), the hardest case for hiding.
 3. Score P1–P7 in this file; ambient-appearance row into LOGBOOK
    (Iteration 1, Phase 4); panel Phase-5 review follows.
 
+## Results
+
+*(Appended after the run; everything above was committed first — commits
+`0c4efff` (predictions) and `116be57` (instrument) precede this. 124 runs,
+472 s, 4 workers, cloud bench; suite 43/43 green before and after.)*
+
+**Weber contrast C (plane 15, equal weights; "corr" = minus that λ's own
+measured empty floor):**
+
+| Article | 450 nm | 600 nm | 750 nm | corr (450/600/750) | V-weighted |
+|---|---|---|---|---|---|
+| empty (δ_C) | +0.0009 | −0.0068 | −0.0183 | — | −0.0064 |
+| absorber | −0.6758 | −0.6861 | −0.6960 | −0.677 / −0.679 / −0.678 | **−0.6855** |
+| PEC | −0.8173 | −0.8261 | −0.8364 | −0.818 / −0.819 / −0.818 | −0.8256 |
+| sponge | −0.0618 | −0.0689 | −0.0798 | −0.063 / −0.062 / −0.062 | −0.0685 |
+
+Convergence (PEC @600): N5 −0.8005 · N9 −0.8261 · N17 −0.8376. Plane
+sensitivity ≤ 0.010 everywhere. Ledger identities: empty-box worst 0.0012
+(≤ 0.02), two-route σ_ext worst 0.0006 (≤ 0.12).
+
+### Predictions scored
+
+- **P1a — PARTIAL, and the miss is the instrument's honest self-portrait.**
+  Summed |C_empty| ≤ 0.005 holds at 450 nm (0.0009) and FAILS at 600
+  (0.0068) and 750 (0.0183). Mechanism, from the stage-9 lesson's own
+  arithmetic: the fringe zone √(λD) grows with λ (67 cells @600, **74.7
+  @750 — larger than the 69.9-cell coverage margin**), so the ±40°
+  components' fringe tails reach the windows and the ± cancellation goes
+  imperfect. The decision-floor rule operates as designed: δ_C = 0.0009 /
+  0.0068 / 0.0183 per λ. Lab-bar (0.005) PASS verdicts are decidable at
+  450 nm only; field-bar (0.02) decidable at all λ with almost no margin
+  at 750. **No conclusion of THIS experiment is threatened (all articles'
+  |C| ≥ 3.4× their δ_C), but the 750 nm floor is a real instrument limit
+  for the future near-invisible regime — Phase-5 item.**
+- **P1b — MARGINAL MISS at 750 nm, flagged not hidden:** min/median 0.796 /
+  0.795 vs the ≥ 0.8 gate at ±40° (450: 0.821, 600: 0.803 — both pass).
+  Same fringe-zone mechanism as P1a; doesn't touch any article conclusion.
+- **P2 — CONFIRMED on the band, REFUTED on the λ-ordering, and the
+  refutation is an instrument finding.** All five absorber values inside
+  [−0.82, −0.55], central −0.686 vs predicted ≈ −0.70. But the predicted
+  ordering |C(450)| ≥ |C(600)| ≥ |C(750)| (diffraction-fill reasoning)
+  came out REVERSED in the raw numbers — and the reversal is entirely the
+  empty-floor bias: floor-corrected, the absorber is **wavelength-flat to
+  ±0.003** (−0.677/−0.679/−0.678), its stage-7 broadband pedigree showing
+  through the new channel. Diffraction fill is real but λ-flat at this
+  Fresnel-number range — smaller than predicted, swamped by the floor.
+  **Tier-A verdict clause CONFIRMED: photopic constraint-3 FAIL by 34× the
+  field bar, 137× the lab bar** (V-weighted −0.6855).
+- **P3 — band edge REFUTED by 0.02 at 600/750 nm (raw −0.826/−0.836,
+  floor-corrected −0.818 vs band floor −0.82); material-blindness clause
+  CONFIRMED at its edge** (|C_PEC − C_abs| = 0.140 ≤ 0.15). Two honest
+  physics notes: (i) the measured PEC silhouette runs ~0.02 DEEPER than
+  the geometric ceiling −0.799 — the ray trace is not a strict ceiling
+  for a hard reflector in the near field (extinction-paradox deficit
+  concentrates partially in-window); the committed band's floor was
+  misjudged by exactly that margin. (ii) The 0.14 absorber-vs-PEC split
+  is the back-lit channel's first *material* signature: the graded coat's
+  low-τ rim chords transmit (ε≈1 sponge, thin edge paths) where PEC is
+  opaque to its edge — "material-blind" holds only to ~20%.
+- **P4 — CONFIRMED, emphatically.** Sponge C raw within [−0.10, −0.03] at
+  every λ; floor-corrected **−0.062 flat, vs the committed geometric
+  −0.0626** — agreement to 0.001, an order of magnitude inside the ±0.03
+  tolerance. The instrument is calibrated in the weak-extinction regime
+  every future sub-threshold mechanism occupies.
+- **P5 — CONFIRMED.** N9 vs N5 ≤ 0.026 (gate 0.05); N17 vs N9 ≤ 0.0115
+  (gate 0.02); plane sensitivity ≤ 0.0102 (gate 0.05).
+- **P6 — CONFIRMED.** Empty-box worst 0.0012; two-route worst 0.0006;
+  absorber σ_abs/σ_ext = 0.51 at the smoke-checked oblique point (the
+  extinction paradox, again, on the new source path).
+- **P7 — qualitative clause CONFIRMED and SHARPENED; committed numeric
+  band half-missed.** Pushing the measured |C| = 0.6855 (not the perfect
+  absorber's 1.0) through the frozen threshold function: L*_lab ∈
+  [1.4×10⁻⁵, 1.6×10⁻⁴] cd/m² (committed band [5×10⁻⁶, 8×10⁻⁵] — the
+  p = 0.5 end lands above it), and L*_field ∈ [4.4×10⁻⁴, 2.6×10⁻³] —
+  **above the moonless-sky reference at both exponents.** Direction: a
+  real, imperfect black hides *more easily* than the perfect-absorber
+  arithmetic assumed. Sharpened reading: an uncued observer misses this
+  article on essentially all moonless nights; a cued dark-adapted
+  observer still detects it except near the darkest natural ambients.
+
+### Headline
+
+**Constraint 3 is now a number, and the number is −0.69.** The lab's
+best absorber — the object that already satisfies constraints 1 and 2 to
+the camera floor — casts an ambient silhouette of Weber contrast −0.686
+(V-weighted, back-lit, 2D), a photopic Tier-A FAIL by 34× the uncued
+field-detection bar. That is the wall every escape mechanism must climb,
+measured on a gated instrument whose absolute anchor (Beer–Lambert slab)
+agrees with theory to 0.001 and whose weak-extinction calibration point
+(dilute sponge) lands on its pre-committed geometric value to 0.001
+after floor correction. Tier-W (the glare-adapted flashlight holder)
+remains open by design, pending the witness-scenario table.
+
 ## Next (pre-registered)
 
 Phase 5 owns the ranked directions, but two items are already on the
 docket for it: the witness-scenario parameter table (docket #7 — unblocks
 Tier-W scoring and the glare hypothesis test), and the front-lit
 reflectance channel (the PEC-vs-absorber discriminator this back-lit
-baseline deliberately cannot see).
+baseline deliberately cannot see — now with a measured hint: the 0.14
+rim-transmission split). Added by the results: the 750 nm fringe-zone
+floor (widen ny ≈ +80 cells or trim the span — an instrument-margin fix,
+not physics).
