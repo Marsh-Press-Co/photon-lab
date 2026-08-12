@@ -39,11 +39,47 @@ cd/m², 4.2× the committed value — verified by the Director), gate (c)'s
 0.01 tolerance makes the 0.005 PASS bar undecidable, and the glare sidecar
 quietly re-scopes constraint 3 — promoted to a spec ruling for Marsh.
 
-**HALTED AT CHECKPOINT #0** per protocol: no synthesis, no engine code, no
-runs until Marsh's go-ahead. Mandatory-fix docket in the iteration entry.
-Routine note: photonlab-shift could not be paused by the agent (created via
-http_api; owner-only) — Marsh asked to pause it from his routines list; one
-old-queue fire meanwhile would be harmless.
+**Checkpoint #0 passed (Marsh, in-session):** two-tier constraint-3 ruling
+(Tier W witness / Tier A anyone) + go. The rest of Iteration 1 ran the
+same session:
+
+**Phase 3** — synthesis committed BEFORE the build (`0c4efff`): all nine
+docket fixes accepted, geometry pinned by a published ray-trace design
+calculation (360×1200, coverage verified at 17 angles), windows
+re-registered outside the 40° penumbra, threshold crossovers re-derived
+with the exponent band, P1–P7 bands committed.
+
+**Build** — angled line source (angle 0 bit-exact, gated), `lab/ambient.py`,
+suite stage 9 (13/13; Beer–Lambert slab anchor −0.0982 vs −0.0973
+analytic; one honest recalibration with mechanism recorded: point-wise
+flatness is fringe-limited, window means are the gated quantity). CI now
+runs stages 8+9 (8 had been missing). Suite 43/43 on the cloud bench.
+
+**Phase 4 (exp-020 CONCLUDED)** — 124 runs, 472 s. **Constraint 3 is now a
+number: absorber C = −0.686** (V-weighted, Tier-A photopic FAIL ×34 field
+bar); PEC −0.826; dilute sponge on its pre-committed geometric value to
+0.001; material blindness only ~20% (rim transmission — first material
+signature in the channel). Honest misses flagged: δ_C floor exceeds the
+lab bar at 600/750 (fringe zone vs margin), P1b 0.795 vs 0.8 at 750/±40°,
+P2's λ-ordering reversed raw, P3's band edge by 0.02.
+
+**Phase 5** — seven fresh seats, blind. Consensus without collusion on
+three clusters: instrument margin fix first (EM's coverage rule
+m ≥ 2√(λ_max·D)), docket #7 witness-scenario table second (vision's
+glare arithmetic: 4–21× sub-threshold for the flashlight holder — Tier-W
+constraint 3 may CLOSE), σ(I) readiness third. **Red Team audited the
+Director and scored two hits**, both accepted: P1b's stop rule had been
+softened post-hoc (retracted — 750 nm carries an asterisk), and additive
+floor-correction is an uncommitted estimator (all floor-corrected claims
+provisional pending Iteration 2's adjudication). Iteration 1 verdict:
+**PROMISING**. Queue: Iterations 2/3/4 in PLAN.md.
+
+**Shift-10 collision, handled:** the old routine fired at 06:23Z
+mid-redesign (Marsh hadn't been able to pause it — owner-created, agents
+can't modify it) and committed its r2-isolation experiment as a second
+"exp-020" on main. Resolution at merge: shift 10's experiment renumbered
+exp-021, content untouched; old routine to be paused by Marsh; agent-owned
+panel-shift routine replaces it for continuous mode.
 
 ## 2026-08-12 (cloud shift 9) — exp-018/019: the "eps_z trough" was never about eps_z
 

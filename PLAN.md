@@ -267,10 +267,33 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 runs under `PANEL.md` / `LOGBOOK.md` — the seven-seat research panel
 targeting the founding phenomenon under four explicit constraints (beam
 termination · no return · **no ambient silhouette** · switchable),
-continuous mode with checkpoints. Iteration 1 = exp-020 (ambient-visibility
-instrument + graded-black baseline), halted at Checkpoint #0 for Marsh's
-go-ahead. The remaining [open] items below are **PARKED** (mirrored in
-LOGBOOK.md, resumable, off the program's critical path).
+continuous mode with checkpoints. The remaining [open] items below are
+**PARKED** (mirrored in LOGBOOK.md, resumable, off the critical path).
+
+- [done 2026-08-12, panel Iteration 1] **exp-020 the ambient-appearance
+  baseline** — instrument built (stage 9, 13/13; Beer–Lambert anchor to
+  0.001), constraint 3 measured for the first time: absorber C = −0.686
+  (Tier-A photopic FAIL ×34 field bar), material blindness ~20% (rim
+  transmission), dilute sponge on its geometric value to 0.001. Verdict:
+  PROMISING. 750 nm carries an asterisk pending the margin rerun.
+- **[queued — panel Iteration 2, lead PHOTONICS]** instrument margin +
+  estimator adjudication: ny 1200→1360, coverage rule m ≥ 2√(λ_max·D),
+  pre-committed δ_C ≤ 0.003 at 600/750, additive-vs-ratio floor-estimator
+  adjudication, P1b back to green, N17 ceiling recompute rider.
+- **[queued — panel Iteration 3]** docket #7: sourced witness-scenario
+  parameter table + glare/adaptation sidecar (zero runs) → Tier-W
+  constraint-3 scoring on measured C; potential checkpoint criterion 1
+  (Tier W) if the 4–21× sub-threshold closure holds.
+- **[queued — panel Iteration 4]** σ(I) readiness: time-resolved energy
+  ledger suite stage (stationarity precondition), shared intensity axis +
+  coherent-superposition bridge gate, OFF/ON endpoint article pair — then
+  the first intensity-gated article (checkpoint criterion 3).
+- **[housekeeping]** cloud shift 10 (old routine, fired 06:23Z mid-redesign)
+  committed its r2-isolation experiment as a second "exp-020" on main —
+  renumbered to exp-021 at the redesign merge, content untouched, noted in
+  SESSION_LOG. Old `photonlab-shift` routine to be paused by Marsh
+  (owner-created; agents cannot modify it) — replaced by the panel-shift
+  routine.
 
 - **[open, contract lane]** Artifact-schema formalization for the ambient
   instrument: the `angle_deg` source key + per-run energy/intensity ledger

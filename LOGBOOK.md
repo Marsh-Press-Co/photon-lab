@@ -70,16 +70,18 @@ measured them here):**
 
 - **T1 — The central tension.** Linear time-invariant media cannot satisfy
   1+2+3 at photopic ambient: the extinction that stops the beam darkens the
-  ambient view identically. EM seat to formalize per-proposal (reciprocity/
-  passivity bookkeeping). Escape classes on the table: σ(I) intensity
-  gating · σ(x,t) switching · angular selectivity · sub-threshold weak
-  absorption + scotopic ambient. (σ(I) is the only class that natively
-  serves constraints 3 AND 4 with one mechanism — flagged, not yet argued.)
-- **T2 — Perceptual thresholds need pinning.** Photopic Weber-contrast
-  detection sits near |C| ≈ 0.01–0.03 for well-adapted foveal viewing of
-  extended targets; scotopic thresholds rise steeply as ambient falls, and
-  the witness scene is scotopic. VISION SCIENCE pins the exact numbers, with
-  sources, in Iteration 1 — before any run scores against them.
+  ambient view identically. Escape classes: σ(I) intensity gating · σ(x,t)
+  switching · angular selectivity · sub-threshold weak absorption +
+  scotopic ambient. **Measured (exp-020): the wall is C = −0.686 raw**;
+  bench transfer |C| ≈ 0.62–0.63·τ_center; tier-split design windows —
+  photopic (Tier A): τ_on/τ_off ≳ 120–780, n ≳ 0.56–0.78 (EM's g-updated
+  bands); Tier-W night bar at the scenario intensity ratio: τ_on/τ_off ≳
+  13, n ≳ 0.3 (vision). Two-photon-class n = 1 clears every bar.
+- **T2 — Perceptual thresholds.** PINNED and corrected in exp-020: frozen
+  function C_thr(L) = 0.005·max[1,(L/3)^−p], p ∈ [0.4, 0.5], field ×4;
+  crossovers re-derived from the function itself (Red Team #2's catch).
+  Carried: re-fit p from Blackwell's large-target low-luminance data; the
+  exponent, not the bench, now decides Tier-W margins (vision, Phase 5).
 - **T3 — Switching must also hide.** The eye's temporal-contrast (flicker/
   motion) sensitivity beats its static-contrast sensitivity; a mechanism
   that switches ON mid-sweep creates a temporal edge. Constraint 4
@@ -98,6 +100,19 @@ measured them here):**
 - **T6 — Cloak-line leftover, kept honest:** exp-017's unscored observation
   (13 angular peaks at the 3λ point vs 10 at flanks) — parked cloak-line
   curiosity; revisit only if a future thread returns to that mechanism space.
+- **T7 — Instrument floor + estimator adjudication (Iteration 2 owns).**
+  The δ_C decision floor is λ-dependent (fringe zone √(λD) vs coverage
+  margin — 74.7 > 69.9 cells at 750 nm); **750 nm object numbers carry an
+  asterisk** and "floor-corrected" values are estimator-provisional
+  (additive vs ratio models disagree on the λ-ordering — Red Team, Phase
+  5) until the pre-committed margin + adjudication rerun (ny→1360,
+  coverage rule m ≥ 2√(λ_max·D), δ_C ≤ 0.003, P1b back to green).
+- **T8 — Near-field → witness-scale bridge.** The bench plane sits deep in
+  the shadow's Rayleigh range (z/z_R ≈ 0.04–0.06); at witness scale
+  (z/z_R ~ 10⁻⁴) an LTI beam-terminating volume reads |C| ≈ 0.98 (EM,
+  Phase 5) — bench Tier-W leniency is partly scale. Bridge family
+  r = 78/156/312 with a committed C(z/z_R) extrapolation model before any
+  near-threshold verdict is believed at scenario scale.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -346,3 +361,148 @@ hypothesis-not-result; σ(I) window logged as bands (τ_on/τ_off ≳ 200–800,
 n ≳ 0.62–0.78). exp-020 scores **Tier A only**; Tier W deferred pending
 the witness-scenario parameter table (docket #7 → Phase 5). Predictions
 P1–P7 committed before the instrument build.
+
+### Phase 4 — Test (exp-020, 2026-08-12)
+
+124 runs, 472 s, suite 43/43 before and after. Full detail:
+`experiments/020-ambient-baseline/NOTES.md` (results + scored predictions).
+Metric row (V-weighted, back-lit, plane 15): **absorber C = −0.686** (raw;
+Tier-A photopic FAIL ×34 field bar) · PEC −0.826 · dilute sponge −0.0685
+(floor-corrected on its geometric −0.0626 to 0.001) · δ_C floor 0.0009 /
+0.0068 / 0.0183 at 450/600/750 nm · material blindness only to ~20%
+(|ΔC| = 0.140, rim transmission) · ledger identities 17–200× inside gates.
+Honest misses: P1a floor clause at 600/750, P1b 0.795 vs 0.8 at 750/±40°,
+P2 λ-ordering reversed raw, P3 band edge by 0.02. **Per Red Team (below):
+750 nm object numbers carry an asterisk, and "floor-corrected" values are
+estimator-dependent, until Iteration 2's adjudication rerun.**
+
+### Phase 5 — Review (seven fresh seats, blind, verbatim)
+
+#### VISION SCIENCE
+
+**Reading:** Constraint 3's cost is now measured, and the perceptual geometry shifted twice. First: |C| = 0.686 is 34× the uncued photopic bar — unmissable in any daylight adaptation state; Tier A stays closed to static absorbers. Second, the surprise: the REAL article's field crossover, [4.4×10⁻⁴, 2.6×10⁻³] cd/m², sits above moonless sky — darkness alone already hides it from uncued observers, and the cued dark-adapted margin at 1.7×10⁻⁴ is only 1.0–2.7×, inside the p ∈ [0.4, 0.5] band: the threshold exponent, not the bench, now decides Tier W. Floor-corrected λ-flatness makes the silhouette achromatic — V/V′ single-number scoring is complete. The δ_C floor is perceptually asymmetric: photopic verdicts ride 600 nm (0.0068 > lab bar — photopic-lab PASS undecidable), scotopic rides 450 nm (0.0009, decidable now); 750 nm is near-weightless in both systems. The 0.14 PEC–absorber split, photopically plain, is perceptually nil at night — night silhouettes carry no material identity.
+
+**Argued next change:** Execute docket #7 as the one next change: the sourced witness-scenario parameter table plus the glare/adaptation sidecar, scoring Tier W's static-silhouette clause against the measured C = −0.686. Analytic, zero runs, sidecar-labeled. Committed parameters: distance 45 m [30–60]; flashlight 100–200 lm, beam 5×10³–2×10⁴ cd; stray-light-at-eye E ∈ [0.01, 0.1] lx; ambient classes 10⁻⁵–10⁻³ cd/m², moonless-sky anchor 1.7×10⁻⁴; glare angle θ(t) 0.5°→10° over a 1–3 s sweep; Stiles–Holladay veil L_v = 10E/θ²; adaptation persistence as a Crawford equivalent background L_eq(t) with sourced recovery constants (half-times ≥ 10 s at these exposures — Crawford 1946; Hecht et al. 1937; Pugh & Lamb 2000), answering Red Team #1's collapse objection: threshold elevation outlives the θ⁻² veil on sweep timescales. Verdict quantity: minimum over sweep phase of C_thr(L_bg+L_v+L_eq)/C_eff, with C_eff = 0.686·L_bg/(L_bg+L_v+L_eq); both exponents, both bars. My arithmetic says it closes 4–21× sub-threshold at E = 0.01–0.1 lx. If confirmed, glare goes hypothesis→result, Tier W's constraint-3 clause is banked for the existing article, and Tier W reduces to constraint 4, where the loosened night window applies.
+
+**Ranked top-3:**
+1. Complete docket #7 (witness-scenario table + glare/adaptation sidecar) and score Tier W's static-silhouette clause on the measured C — zero runs, converts the program's founding constraint-3 question from hypothesis to result.
+2. Re-freeze the perceptual scaffolding before the next scoring run: tier-split the mechanism design windows (Tier-W night bar at the committed 5×10³ intensity ratio needs only τ_on/τ_off ≳ 13, n ≳ 0.3, vs 200–800 / 0.62–0.78 photopic), re-fit exponent p from Blackwell's large-target low-luminance data, and gate the ny+80 floor fix on δ_C(600 nm) < 0.005 — the perceptually binding wavelength.
+3. Build the stage-10 temporal instrument with temporal-contrast bars pinned first (de Lange / Watson TCSF, sourced) — the phenomenon is a sweep, the eye's temporal channel beats its static one, and the switch transient (T3) is the last unmeasured perceptual axis.
+
+#### PHOTONICS
+
+**Reading:** The back-lit channel reads projected extinction, and exp-020 located exactly where that bends. The 0.140 absorber–PEC split is mostly rim transmission: Beer–Lambert chord integrals over the stage-7 σ(r)=0.5·s(d)² profile (recomputed this review) give T=0.5 at p≈62 cells — a ~16-cell, ~0.8λ semi-transparent annulus — predicting a 0.123 split; the ~0.017 remainder is differential edge physics: the hard PEC edge concentrates near-field extinction in-window (−0.818 vs the −0.799 ray ceiling; plane <λ from the rim, N_F≈3), while the adiabatic rim shows almost none (+0.004) and the sponge none (0.001). Ray traces are band centers, not ceilings, and the error scales with edge hardness. Diffraction fill is λ-flat at N_F 2.6–4.4 (article extinction is λ-flat by construction: per-cell conductivity), so the dataset's largest chromatic term is the instrument's own floor — δ_C=0.0183 at 750 nm, fringe zone 74.7 > 69.9-cell margin — making chromatic signatures below 0.02 unfalsifiable at red.
+
+**Argued next change:** Build the front-lit reflectance channel — completing the constraint-3 instrument — with a wave-corrected design sidecar and the fringe-margin fix in one build. Parameters: mirror the angled line source to the observer side (x=40, +x propagation), θ∈{0,±10,±20,±30,±40}°, 450/600/750 nm, all four exp-020 articles (108 runs + gates). Observable: C_front on the existing x=77 plane and windows, reading observer-directed (−x) flux — direct transit is +x, so the quadrature-phasor direction split isolates returned light; normalize to the back-lit empty flank mean via the intensity ledger (source amplitude 1.0), making C_total = C_back + C_front one unit system (linear-media idiom, labeled). Absolute gates: flat-PEC-mirror return identity at 0°/30°; committed front-lit empty floor δ_front; reciprocity σ_abs(θ) front-vs-back ≤ 12%. Domain ny 1200→1280 (coverage margin ~110 > 74.7-cell fringe zone at 750 nm); gate: re-measured δ_C ≤ 0.005 at every λ, fallback trim to ±35°. Sidecar post-dictions committed before any new band: Beer–Lambert chord integral reproduces the 0.140 split (my check: 0.123 geometric, residual = edge term); Fresnel–Kirchhoff strip reproduces PEC's −0.019 excess ±0.01. Predictions: absorber C_front ∈ [0, +0.005]; PEC C_front ≥ +0.05, strongly θ-structured — material blindness broken.
+
+**Ranked top-3:**
+1. Front-lit ambient channel with the wave-corrected design sidecar and ny fringe-margin fix — completes constraint-3 instrumentation and breaks the back-lit channel's measured ~20%-ceiling material blindness.
+2. Tier-W closure on the existing absorber: commit docket #7's witness photometry (beam candela, solid angle, stray-light illuminance at eye versus sweep angle) and score the measured C=−0.686 through the glare-elevated threshold, since constraints 1+2+3 may already hold witness-side.
+3. First T1 mechanism article using existing engine physics: an angular-selective volume-Bragg notch deflecting only the beam cone into an internal absorbing sink (termination, not routing — R1-compliant), with the broadband-versus-angular-acceptance étendue tension pre-registered as its kill criterion.
+
+#### MATERIALS & METAMATERIALS
+
+**Reading:** For this seat the calibration is the result: the dilute sponge landed on its pre-committed geometric value to 0.001 after floor correction, so Beer–Lambert chord models are now predictive design tools — the weak-extinction regime every escape route's OFF state occupies is a design space, and articles can be placed at a target C rather than discovered there. The 0.14 absorber–PEC split is the channel's first material signature: back-lit C reads the radial extinction profile, not albedo — the graded coat's thin rim chords transmit, giving a silhouette-effective radius ~0.83x geometric. Rim grading designed for constraint 2 apodized the constraint-3 silhouette ~17% for free: the first measured coat-design lever. Cautions: PEC ran 0.02 deeper than the ray-trace ceiling (near-field excess — ray traces are not ceilings for hard reflectors), and the λ-dependent floor makes lab-bar certification 450-nm-only until ny grows. P7's corollary: blackness beyond beam-stopping is pure silhouette cost.
+
+**Argued next change:** The σ(I)-endpoint static article pair on the calibrated sponge platform: measure both ends of the switching trajectory with zero new engine physics. Prerequisite (pre-registered in exp-020's Next): widen ny 1200 to 1280 so the 750 nm fringe zone (74.7 cells) sits inside the coverage margin; re-measure per-λ δ_C and gate δ_C ≤ 0.002 at every λ so both bars are decidable. Articles — r = 78, ε = 1, uniform σ, no PEC core: OFF-lab τ_center = 0.008 (σ = 5.1e-5, chord-model C = −0.005); OFF-field τ_center = 0.032 (σ = 2.05e-4, C = −0.020); ON τ_center = 3.9 (σ = 2.50e-2, chord-model C ≈ −0.73, band [−0.79, −0.65]); plus the τ = 0.10 sponge re-run as the cross-domain tie. Ambient channel on all; exp-001 beam-behind and observer-return on ON — a coreless distributed absorber must re-earn beam-behind ≤ 2% (chord model 2%, band 1.5–6%). Yield: the σ(I) window's endpoints become measured numbers, and disk chord asymmetry — beam takes the thick center chord, ambient averages thin rim chords — should relax the required switching ratio from ~195 to ~122 (field bar). Realizability: static endpoints are published-class (dilute absorbing aerosol); the CW-intensity gating between them is the open half this pair parameterizes.
+
+**Ranked top-3:**
+1. σ(I)-endpoint static pair — OFF sponges designed to the two frozen bars plus a coreless τ=3.9 ON article, after the ny+80 floor fix — measuring the switching window's endpoints on today's linear bench.
+2. Front-lit reflectance channel, with the 0.14 rim transmission recast as a pre-registered absorber-vs-PEC front-lit split prediction — the albedo channel that realizability grading of any coat needs.
+3. Graded-rim apodization curve — a grade-length family at fixed beam-stopping center depth, turning the 0.14 signature into a σ(r)-to-silhouette design rule that minimizes ON-state visibility for Tier-W margin.
+
+#### ELECTROMAGNETISM
+
+**Reading:** Anchors green at oblique incidence (empty-box 0.0012, two-route 0.0006, Beer–Lambert to 0.001): every C is trustworthy. The surprises are all near-zone geometry. Our plane sits deep inside the shadow's Rayleigh range r²/λ ≈ 243–406 cells (z/z_R ≈ 0.04–0.06), so far-zone diffraction fill is absent — explaining both PEC's 0.02 overshoot of the ray ceiling and the refuted λ-ordering (far-zone fill scaling misapplied to a near-zone plane). The 0.14 split is rim-chord transmission: ray optics, λ-flat. The δ_C floor is Fresnel edge-fringe leakage — margin/√(λD) crossed unity at 750 nm; cancellation degraded twentyfold. T1 math updates two ways: measured g = |C|/τ_center = 0.62 relaxes the σ(I) window to τ_on/τ_off ≳ 120–780, n ≳ 0.56–0.78 (conventions attached); but P7's leniency is partly bench-scale — a beam-terminating LTI volume at witness scale (z/z_R ~ 10⁻⁴) reads |C| ≈ 0.98, near the perfect-absorber crossovers.
+
+**Argued next change:** Retire the λ-dependent decision floor at its source before any near-invisible article is scored. Concrete: widen the transverse domain ny 1200 → 1360 (+80 cells per side), object recentered at (170, 680), source line y ∈ [40, 1320] with taper 40, everything else frozen (Δ = 30 nm, D_source→plane = 223, θ ∈ {0, ±10, ±20, ±30, ±40}°, windows fixed relative to object center). Worst-corner flat-lit margin rises 69.9 → 150 cells at both signs of ±40°. Commit the design rule permanently — coverage margin m ≥ 2√(λ_max·D) = 149.3 cells, certified by re-running design_geometry.py at all 17 angles — as a stage-9/P1-class gate. Do NOT trim the angular span (buys margin by discarding fill-in light and the per-θ information the angular-selectivity class needs) and do NOT move the source (re-opens proven oblique gates; widening is strictly additive). Pre-registered outcomes: re-run the 27 empty scenes + convergence empties; δ_C(λ) collapses onto one curve in m/√(λD) with δ_C ≤ 0.002 at every λ (450 nm already reads 0.0009 at ratio 1.21); P1b coverage ≥ 0.8 at 750/±40°. Lab-bar PASS becomes decidable band-wide. Cost ≈ +13% cells, minutes. Floor subtraction stays a cross-check, not a crutch — at |C| ≈ 0.005 bias and signal are same-order.
+
+**Ranked top-3:**
+1. Fix the fringe-zone floor first: ny 1200→1360 plus the permanent coverage-margin gate m ≥ 2√(λ_max·D), pre-registering δ_C ≤ 0.002 at every λ — the prerequisite for any future lab-bar PASS verdict.
+2. Then the first σ(I) mechanism iteration (checkpoint-3 engine build — nonlinearity is T1's formally clean escape: passive, causal, σ ≥ 0 throughout), gated by an EM bridge identity that the nonlinear engine at vanishing beam intensity reproduces exp-020's linear C within δ_C, scored against the updated window τ_on/τ_off ≳ 120–780, n ≳ 0.56–0.78.
+3. A near-to-far-field scale bridge: PEC and fixed-τ sponge at r = 78/156/312 cells with a committed C(z/z_R) extrapolation model, separating scale-invariant rim-chord fill from decaying diffraction terms, so bench silhouettes convert to witness-scale claims before any near-threshold verdict is believed.
+
+#### THERMODYNAMICS
+
+**Reading:** The ledger is the quiet headline: every identity passed 17–200× inside gate (empty-box 0.0012 vs 0.02; two-route σ_ext 0.0006 vs 0.12), and σ_abs/σ_ext = 0.51 reproduced at oblique incidence — the absolute anchor now exists where objects exist, the phasor-bug lesson made standing machinery. Two results are energy stories. PEC at −0.818 corrected, 0.02 past the ray ceiling: extinction removes ~2× geometric blocking (the paradox) and the forward lobe has not refilled the shadow at 15 cells — near planes can undershoot ray ceilings. The 0.14 absorber–PEC split: where extinction goes is now visible even back-lit — the graded rim transmits low-τ chords; material-blindness holds only to ~20%. Kirchhoff confirmed: floor-corrected λ-flat C is pure elastic redistribution; visible self-emission stays Planck-suppressed (e^−87). The witness-scale sidecar remains blocked on docket #7's missing watts.
+
+**Argued next change:** Build the time-resolved energy ledger now — the mandatory suite stage before any σ(t)/σ(I) engine work. Every existing energy identity is stationary: quadrature-phasor, cycle-averaged, CW. σ(t) breaks stationarity, σ(I) breaks superposition, so current gates go blind exactly where the flagged front-runner lives — the phasor-bug precondition recreated. Concrete: on the existing stage-8 box, record three per-step scalars — U(t) = Σ½(εEz² + μ|H|²)ΔV (B·μ⁻¹B on tensor articles), P_J(t) = ΣσEz²ΔV, P_box(t) = net instantaneous Poynting influx (half-step-centered). Gates: (i) discrete closure |ΔU − ∫(P_box − P_J)dt| ≤ 1% of absorbed energy (lossy) or peak stored energy (lossless); (ii) passivity canary min_t P_J(t) ≥ 0 — trivial now, load-bearing once σ varies; (iii) bridge: final-3-cycle mean P_J/i_inc reproduces phasor-route σ_abs within 2% on absorber and sponge (Beer–Lambert analytic), θ = 0 and 30°. Validate on all four exp-020 articles; empty and PEC test pure flux–storage closure (P_J ≡ 0). Cost: three scalars per timestep, a handful of runs, no new physics class, no checkpoint-3 trip; lands experiment-side per docket #4 precedent, schema bump stays in the counterparty PR. Payoff: T3's switch transient gets an energy budget (stored U at switch bounds the observable); gated absorbers get a passivity gate.
+
+**Ranked top-3:**
+1. Time-resolved energy ledger (per-step U, P_Joule, P_box with closure, passivity, and phasor-bridge gates, validated on the four exp-020 articles) as the suite stage that must precede any sigma(t)/sigma(I) build.
+2. Witness-scenario parameter table (docket #7) extended with thermo columns — radiant watts from lumens, beam candela/solid angle, sweep dwell time, volume dimensions, absorbing-medium heat-capacity class — unblocking Tier-W scoring and the witness-scale sidecar (absorbed joules -> Delta-T -> 10 um re-emission -> detectability).
+3. Front-lit reflectance channel with per-article energy-channel decomposition (absorbed/scattered/transmitted from the existing box ledger) to attribute the measured 0.14 rim-transmission split and price constraint 2's glint term.
+
+#### QUANTUM OPTICS
+
+**Reading:** The coherence model performed as it must, and the decisive number for my seat is the smallest one: the dilute sponge landed on its pre-committed geometric value to 0.001 (floor-corrected −0.062 vs −0.0626). The weak-extinction regime — where every σ(I) OFF state will be scored — is now calibrated: bench transfer |C| ≈ 0.63·τ_center, so the field bar needs τ_off ≲ 0.03, the lab bar ≲ 0.008; the committed τ_on/τ_off ≥ 200–800 window stands, and two-photon-class n = 1 (ratio = I_beam/I_ambient = 5×10³) clears both — its predicted OFF silhouette, |C| ≈ 5×10⁻⁴, would pass constraint 3 photopically. The surprise: that value sits below the decision floor everywhere except 450 nm (δ_C = 0.0068/0.0183 at 600/750) — the λ-dependent fringe floor, not physics, is now the σ(I) program's binding constraint. And the window's two ends still live in different units: ambient runs share no committed intensity axis with exp-001's beam.
+
+**Argued next change:** One instrument commitment, no new material physics — make the bench σ(I)-ready before any gated article. (a) Shared intensity axis: every run's ledger gains intensity_role ∈ {ambient_component, beam, joint} and amp_rel = source amplitude in exp-001 beam units (beam ≡ 1.0); commit scenario default I_ambient/I_beam = 2×10⁻⁴ (per-component amplitude √(2.22×10⁻⁵) ≈ 4.7×10⁻³), banded [10⁻⁵, 10⁻³] until docket #7 pins it; ambient sources injected at physical amplitude, flank normalization moved to report side; experiment-side fields only — the contract bump stays in Bonnie's counterparty PR. (b) The linear-idiom bridge gate, new stage-9 checks: simultaneous nine-angle injection, random phases φᵢ ~ U[0, 2π), M = 12 draws, 600 nm — |⟨C_joint⟩ − C_posthoc| ≤ max(δ_C, 0.005) on empty AND sponge; plus one joint beam+ambient run on the linear sponge reproducing beam-behind and C simultaneously (superposition as the absolute identity). The ensemble spread doubles as the ambient speckle statistic any fast gate would false-fire on (I_gate ≳ 30×Ī_amb keeps exponential tails ~10⁻¹³). (c) Fold in the fringe fix: ny 1200 → 1280, margin ~110 > 74.7-cell fringe at 750; target δ_C ≤ 0.005 at all λ, else a two-photon OFF state is scorable only at 450 nm.
+
+**Ranked top-3:**
+1. σ(I)-readiness package (the change above): shared intensity units, coherent-superposition bridge gate proven on linear articles, 750 nm floor fix — one iteration, no new material physics.
+2. First intensity-gated article: two-photon-class σ(I) = σ₂·⟨I⟩ with a committed averaging window, sponge-disk geometry, σ₂ set so τ_on = 3.9 at beam intensity (τ_off = 7.8×10⁻⁴ follows), scored against its two pre-measured linear endpoint articles — flagged Checkpoint-3 engine work, and its turn-on transient becomes stage-10/T3's first target.
+3. Witness-scenario parameter table (docket #7) to pin I_beam/I_ambient with sources: the window's x-axis rests on an uncited 5-lx beam, and at the band's low end (~10³) n = 1's lab-bar margin thins to ~1.2×.
+
+#### RED TEAM
+
+**Reading:** Scoring discipline largely held: verdicts ran on raw numbers against committed bands; P2's ordering and P3's edge scored REFUTED, not excused; the headline −0.686 is raw and Tier-A-honest; no ruled-out idea resurfaces; tiers are not collapsing. Two integrity defects. First, P1b's pre-committed consequence — "no object number is interpreted" — was softened post-hoc to "doesn't touch any conclusion" after the 750 nm gate failed at 0.795 vs 0.8. Second, floor SUBTRACTION is an uncommitted estimator: the frozen rule was ±δ_C bands. Under the equally physical illumination-ratio model, (1+C)/(1+C_empty)−1, the absorber reads −0.676/−0.684/−0.690 — the reversed ordering survives; "wavelength-flat to ±0.003" and "entirely the empty-floor bias" are additive-model artifacts until adjudicated. Estimator-robust: the 34× Tier-A FAIL, sponge-to-geometric 0.001, the 0.140 material split. Also: PEC-below-ceiling got a mechanism story despite a monotone N-drift and no N17-angle-set ceiling recompute — R3's meta-rule, under-applied.
+
+**Argued next change:** One instrument-integrity iteration before any future claim quotes "floor-corrected" numbers. (a) Adopt the results' own margin fix, pinned: ny 1200 → 1280, source line y ∈ [40, 1240], object center (170, 640), windows re-registered by re-running design_geometry.py; target coverage margin ≥ 110 cells > the 74.7-cell fringe zone at 750 nm. (b) Re-run empty + absorber + PEC + sponge at 600 and 750 nm, 9 angles each — 72 runs, ~5 min at exp-020 pace. Pre-commit three clauses: (i) δ_C ≤ 0.003 at both λ; (ii) estimator adjudication — with the floor collapsed, raw absorber C(750) ≈ −0.678 vindicates the additive subtraction, ≈ −0.690 vindicates the ratio model and forces restating every floor-corrected interpretive claim (λ-flatness first); (iii) P1b ≥ 0.8 at all committed angles — the violated stop rule returns to green rather than staying reinterpreted; until then 750 nm object numbers carry an explicit asterisk in LOGBOOK. (c) Zero-run rider: recompute C_geo for the N17 angle set and re-check the PEC N-series against it before "near-field extinction excess" or "rim transmission" becomes a front-lit design input (R3 meta-rule: check before mechanism story).
+
+**Ranked top-3:**
+1. Instrument-margin + estimator-adjudication rerun (the next_change): collapse the 750 nm fringe floor, adjudicate additive-vs-ratio floor correction, restore P1b to green — no floor-corrected claim feeds forward until this lands.
+2. Witness-scenario parameter table (docket #7): sourced, uncertainty-banded distance/candela/glare-angle-vs-sweep-phase/adaptation-recovery numbers — converts the glare route from unfalsifiable sidecar to testable Tier-W arithmetic.
+3. First sigma(I) mechanism test at the calibrated weak-extinction operating point (tau_off <= 0.02, tau_on/tau_off in [200, 800], n in [0.62, 0.78]) — keeps a Tier-A mechanism iteration committed so the program cannot drift into Tier-W-only work.
+
+### Director's close of Iteration 1
+
+**VERDICT: PROMISING.** The instrument exists with absolute anchors
+(Beer–Lambert to 0.001, oblique energy identities to 0.0006); the wall is
+measured (absorber C = −0.686 raw, Tier-A photopic FAIL ×34); the
+weak-extinction regime every OFF-state lives in is calibrated to 0.001;
+the channel's first material signature is in hand (0.140 rim
+transmission); and Tier W cracked open twice — P7's sharpening (a real
+imperfect black beats the perfect-absorber crossover arithmetic) and the
+vision seat's glare/adaptation arithmetic (4–21× sub-threshold for the
+flashlight holder, pending docket #7 sources).
+
+**Red Team integrity items — ACCEPTED, both:** (1) P1b's pre-committed
+stop rule ("no object number is interpreted") was softened post-hoc after
+the 750 nm miss; the softening is retracted — 750 nm object numbers carry
+an explicit asterisk until P1b returns to green. (2) Additive floor
+subtraction is an uncommitted estimator (a ratio model preserves the raw
+λ-ordering); every "floor-corrected" interpretive claim (λ-flatness
+first) is provisional until Iteration 2's pre-committed estimator
+adjudication. The frozen rule (raw C ± δ_C) remains the only committed
+currency. R3 rider accepted too: the PEC near-field-excess mechanism
+story gets its N17 ceiling recompute before feeding any design.
+
+**Merged ranking (Iteration 2/3/4 queue):**
+1. **Iteration 2 — instrument margin + adjudication rerun** (lead:
+   PHOTONICS, per rotation): ny 1200→1360 with EM's permanent coverage
+   rule m ≥ 2√(λ_max·D) ≈ 149 cells; design_geometry re-run at all 17
+   angles; Red Team's three pre-committed clauses (δ_C ≤ 0.003 at
+   600/750; estimator adjudication — collapsed-floor raw C(750) ≈ −0.678
+   vindicates additive, ≈ −0.690 vindicates ratio; P1b ≥ 0.8 everywhere);
+   N17 ceiling recompute rider. ~72–108 runs.
+2. **Iteration 3 — docket #7, the witness-scenario table + glare/
+   adaptation sidecar** (zero runs, analytic, sidecar-labeled): vision's
+   parameter spec + thermo's watt columns + quantum's intensity-ratio
+   pinning; scores Tier W's constraint-3 clause on measured C. If the
+   4–21× closure holds, that is **checkpoint criterion 1 (Tier W,
+   constraints 1+2+3)** — constraint 4 becomes Tier W's last open axis.
+3. **Iteration 4 — σ(I) readiness, then the first gated article**:
+   thermo's time-resolved energy ledger stage (the stationarity-breaking
+   precondition), quantum's shared intensity axis + coherent-superposition
+   bridge gate, materials' OFF/ON endpoint article pair — then the
+   two-photon-class σ(I) article (checkpoint criterion 3: engine build).
+
+Panel stats (Phase 5): 7 seats · consensus without collusion (blind seats
+converged on the same three clusters from different arguments) · Red Team
+audited the Director and scored two hits — the loop polices itself.
+Carried questions: estimator adjudication; exponent p re-fit from
+Blackwell low-luminance data; near-field→witness-scale bridge (EM: a
+witness-scale LTI absorber reads |C| ≈ 0.98 — bench leniency is partly
+scale); T3 temporal instrument with TCSF bars.
+
