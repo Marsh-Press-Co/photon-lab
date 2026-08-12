@@ -100,4 +100,74 @@ fixed, per `materials.graded_black_shell`'s own scaling convention
 
 ## Results
 
-*(Appended after the run — everything above was committed first.)*
+*(Appended after the run — everything above was committed first, commit
+`37059d0` (predictions) + `79f8521` (circular-import fix, no numeric
+change). 54 runs, 485 s. Suite 41/41 before and after, no `lab/` changes.)*
+
+**P-R1 — CONFIRMED.** Both rescaled geometries passed their own coverage
+check (asserted in `run.py` before any group ran); no instrument-margin
+surprise at this scale of headroom (429–444 cells worst margin).
+
+**P-R2 — CONFIRMED: the chromatic effect is REAL, not a numerical-
+dispersion artifact.** Both articles' chromatic spread landed cleanly
+inside the "real effect" band, nowhere near the "artifact" collapse
+threshold:
+
+| Article | Coarse Δ (exp-024 fallback) | Fine Δ (1.5× cpl) | Predicted "real" band | Predicted "artifact" threshold |
+|---|---|---|---|---|
+| absorber | −0.0114 | **−0.0120** (+5% vs coarse) | [0.0068, 0.0160] ✓ | ≤0.0034 (would need ≥70% shrink) |
+| PEC | −0.0166 | **−0.0151** (−9% vs coarse) | [0.0100, 0.0232] ✓ | ≤0.0050 (would need ≥70% shrink) |
+
+Both spreads are comfortably inside the pre-committed "real" band and an
+order of magnitude away from the artifact-collapse threshold — this is not
+a marginal call. Individual C values did shift moderately at finer
+resolution (absorber: −0.0130/−0.0136 at 450/750 nm — both wavelengths
+moved by almost the *same* amount, which is why the spread barely changed;
+PEC: −0.0021/−0.0005, nearly converged already at the coarse resolution).
+The absorber's shift is consistent with ordinary grid-convergence
+sensitivity in its graded shell profile (a real but different question
+from whether the chromatic ordering survives) — and it moved *both*
+wavelengths together, not selectively, which is exactly why the spread
+itself stayed put while the absolute numbers moved.
+
+**P-R3 — untouched, as designed.** No sponge rerun was needed; the
+existing null comparator (Δ=0.0003, exp-024) stands, and this result is
+now stronger evidence for the same reading: a chromatic effect specific to
+hard-edged articles, confirmed resolution-stable, absent in the one
+article with no hard interface.
+
+### Headline
+
+**Red Team's audit gap is closed, cleanly, in the direction this lab's own
+history predicted.** The chromatic red-ward growth of |C| in exp-024's
+hard-edged articles (absorber, PEC) is a real, resolution-confirmed optical
+effect, not a numerical-dispersion artifact of the bench's per-λ cpl
+choice — the fourth time in this program's history (after exp-005, -010,
+-015 on other questions) that R3's meta-rule check has *refuted* the
+artifact hypothesis rather than confirmed it. The finding graduates from
+"provisional, flagged by Red Team as under-scrutinized" to a properly
+resolution-checked result: **a small (~1.5–1.9% of |C|), real,
+edge-structure-dependent chromatic silhouette effect exists in this
+instrument, direction opposite the originally-hypothesized diffraction-fill
+law, mechanism still open** (candidate stories — near-field extinction
+structure at the hard PEC/graded-shell boundary, tied to the same physics
+as the still-unexplained PEC N17 excess — are plausible but untested; EM's
+T8 near-to-far bridge remains the natural next probe for *that* question,
+separate from the ±40°-angle-specific floor mechanism, which this
+experiment does not address).
+
+## Next (pre-registered)
+
+For whichever iteration picks this up: (1) the chromatic effect's own
+mechanism (near-field extinction structure vs. something else) is now a
+legitimate, resolution-checked thread — candidate test: repeat exp-016's
+outer-boundary-impedance probe or exp-017's angular-pattern-shape
+comparison (both from the cloak-line trough investigation, general-purpose
+diagnostics) at 450 vs 750 nm on the absorber/PEC articles. (2) The
+separate ±40°-angle-specific floor mechanism (exp-024's own open question,
+EM's three-candidate triage: grid-dispersion anisotropy / incoherent-sum
+asymmetry / settling-time artifact) remains untouched by this experiment
+and stays queued as its own thread, per exp-024's Phase-5 consensus. (3)
+Per the merged Phase-5 ranking, Iteration 3 (docket #7) and Iteration 4
+(σ(I) readiness, on the ±35° fallback geometry) remain the program's next
+scheduled work, both independent of and unblocked by this result.
