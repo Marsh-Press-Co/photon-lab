@@ -344,26 +344,57 @@ continuous mode with checkpoints. The remaining [open] items below are
   elapsed-time bookkeeping inconsistency (a code instrumentation bug) —
   both corrected same-shift in NOTES.md/LOGBOOK.md and `run.py`. Verdict:
   PROMISING. Full record: LOGBOOK.md Iteration 3.
-- **[queued — panel Iteration 4, lead per rotation ELECTROMAGNETISM]**
-  unusually strong Phase-5 consensus, two threads, ranked: (a) **P-MAT4's
-  beam-behind chromatic-anomaly resolution** — 5 of 7 seats independently
-  top-3'd this; PHOTONICS' concrete falsifiable mechanism (settling-time:
-  double `BEAM_STEPS` at 450/750nm) paired with the standard R3 spatial
-  check (cpl×1.5, this program's own precedent); (b) **the PEC-cored-vs-
-  solid-disk σ_abs/σ_ext disambiguation** (T9) — 4 of 7 seats converge via
-  different designs (MATERIALS'/EM's factorials isolating PEC-presence vs.
-  rim-grading; THERMO's/QUANTUM's cheaper direct rerun of
-  `graded_black_shell` through exp-026's own box-ledger). Not mutually
-  exclusive — EM (next lead) independently proposed designs touching both.
-  Also queued, lower urgency: (c) VISION's r=156 scale-bridge check — 4 of
-  7 seats, now overdue by one iteration per VISION's own Phase-5 reading,
-  the load-bearing precondition for any future constraint-3 language on
-  near-threshold C; (d) QUANTUM's shared-intensity-axis + coherent-
-  superposition bridge-gate package — twice-deferred (Iterations 2 and 3
-  both ran only the static-endpoint half of the originally-bundled work),
-  QUANTUM's own seat flags it should not be deferred a third time without
-  explicit reason; (e) THERMO's time-resolved energy ledger — overlaps
-  with (b), folds into whichever design wins that disambiguation.
+- [done 2026-08-13, panel Iteration 4, cloud panel shift] **exp-027
+  settling, spread, and the PEC ablation** — resolved both of Iteration
+  3's queued threads in one cycle. T9 **ANSWERED**: PEC-core presence is
+  incidental to the established 0.51-vs-0.61 σ_abs/σ_ext gap (true
+  Δ=+1.56×10⁻⁶ between PEC-cored and PEC-free versions of the identical
+  graded-shell profile, indistinguishable from zero; angular-pattern
+  channel independently corroborates) — rim/profile-transmission geometry
+  drives the gap, not the PEC core, though not yet formally floor-gated
+  (Red Team's Phase-5 catch: box_dev is ≈1221× the measured delta, no
+  established decision floor exists for this channel yet). P-MAT4's
+  chromatic beam-behind anomaly: settling-time cleanly, uniformly refuted
+  at all 3λ (doubling `BEAM_STEPS` moves beam-behind ≤0.0012pp everywhere)
+  — but the standard R3 spatial check (cpl×1.5) made the anomaly WORSE
+  (46%→128% relative spread) instead of confirming/refuting it as
+  artifact, the first time in 6 R3 applications this program has produced
+  that outcome (new LIVE THREAD T10). Red Team's Phase-5 audit (MINOR
+  ISSUES) caught two numeric defects (a rounding slip inflating the T9
+  delta 6.4×; the pre-freeze-disclosure blind-run count undercounted "3 of
+  16" vs. the true 8 of 16) and QUANTUM independently caught a scoring
+  error (VISION's commitment clause read "not triggered" using only Block
+  1's data when Block 2's much larger shift — up to −1.54pp — does trigger
+  it) — all four corrected same-shift in NOTES.md/LOGBOOK.md. Verdict:
+  PROMISING. Full record: LOGBOOK.md Iteration 4.
+- **[queued — panel Iteration 5, lead per rotation THERMODYNAMICS]**
+  unusually strong 5-of-7 Phase-5 consensus on one next action: **the
+  box-ledger-vs-envelope-ratio cross-check at Block 2's own rescaled-cpl
+  geometry** (T10's direct resolution path) — reuse `sections.widths()`
+  (validated clean, box_dev≤0.0019, in exp-027's own Block 3) at the
+  already-pinned `experiments/027-settling-spread-pec-ablation/
+  design_geometry.py::BLOCK2_GEOM`, ~6 sim calls, zero new design work.
+  Discriminates "BEAM_BEHIND-specific near-field artifact" from "general
+  grid-resolution defect" (the latter would also implicate exp-001's own
+  original beam-behind ≤2% headline). Second-ranked (4 of 7 seats): a
+  genuine settling check at Block 2's own finer cpl (`BEAM_STEPS` doubled
+  at cpl=22/30/38, not just native cpl) — PHOTONICS proposed a more
+  surgical variant (hold settled periods constant rather than step count).
+  Also queued: (c) VISION's r=156 scale-bridge check — now argued MORE
+  urgent post-T10 (two independent near-field fragility axes, scale and
+  resolution, both unexamined for the ambient bench's near-threshold C
+  values), with a cheap box-ledger diagnostic proposed as a first pass;
+  (d) a formal decision-floor/noise characterization for the beam-scene
+  box-ledger channel (Red Team's own Phase-5 recommendation, load-bearing
+  for (a) and (b) above); (e) QUANTUM's bridge-gate package, now proposed
+  as a mandatory rider on Iteration 5's lead seat rather than a fifth
+  competing item — three consecutive iterations have each had a
+  legitimate, cycle-specific reason to defer it, which QUANTUM's own seat
+  argues is itself now the finding; (f) THERMO's radial-binned
+  absorbed-power ledger (new, THERMO-only pick) — does exp-027's Cell A/B
+  near-identical aggregate ratio hide a real, different spatial heating
+  profile, or is it energetically negligible; falsifiable bands committed
+  in LOGBOOK Iteration 4 Phase 5.
 - **[queued]** docket #7: sourced witness-scenario parameter table +
   glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring on
   the now-unqualified measured C≈−0.684 (exp-024 removed exp-020's 750nm

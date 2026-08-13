@@ -2,6 +2,83 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-13 (panel shift) — Iteration 4 complete (exp-027): T9 answered
+(PEC incidental to the extinction-paradox gap), P-MAT4 half-resolved (settling
+refuted, but the R3 spatial check made the anomaly WORSE — a new pattern,
+new live thread T10), Red Team + Quantum catch four record errors
+
+**Pre-flight:** local `main` up to date at Iteration 3's close (`e74c72c`).
+Deps reinstalled (pyMKL wheel fails here, `ceviche --no-deps` per the
+recorded wrinkle). Bench trust suite 41/41 green (`--only 12346789`)
+before this shift's work, rechecked after exp-027 (no `lab/` engine changes
+this shift).
+
+**Iteration 4 — Settling, Spread, and the PEC Ablation (exp-027,
+CONCLUDED).** Lead: ELECTROMAGNETISM (rotation). Full seven-seat cycle run
+as fresh sub-agents per PANEL.md's independence mechanics: Phase 1
+proposal (two Iteration-3 queued threads combined onto one shared,
+already-validated beam-scene bench: a settling-time diagnostic + R3
+spatial companion for P-MAT4's chromatic beam-behind anomaly, and a
+PEC-ablation factorial for T9's σ_abs/σ_ext anchor ambiguity) → 5 blind
+parallel critiques (PHOTONICS, MATERIALS, THERMO, QUANTUM, VISION, all
+support-with-changes) → Red Team last with everything (proceed-with-
+mandatory-fixes, 7 numbered attacks — two independently-verified code-level
+catches: MATERIALS' Cell-B double-write and PHOTONICS' settling-monotonicity
+argument, both re-derived from scratch by Red Team rather than trusted) →
+Phase 3 synthesis (Director: all seven fixes accepted in full, zero
+overridden) → predictions committed (`5f5f01c`) → Phase 4 run.
+
+**Result: both queued threads resolved, in opposite directions from the
+proposal's own framing.** 16 new FDTD sim calls, 590s. T9's PEC-cored-vs-
+solid-disk question is answered: a single-variable factorial (identical
+graded-shell profile, PEC core present vs. replaced with matched-
+conductivity fill) measured Δσ_abs/σ_ext = +1.56×10⁻⁶ — indistinguishable
+from zero, corroborated by an identical angular-scattering pattern.
+PEC-presence does not drive the established 0.51-vs-0.61 gap; rim/profile-
+transmission geometry does. P-MAT4's chromatic beam-behind anomaly:
+settling-time is cleanly, uniformly refuted at all 3λ (doubling
+`BEAM_STEPS` moves beam-behind ≤0.0012pp everywhere) — but the standard R3
+spatial-resolution check (cpl×1.5, this program's own 5-times-proven
+precedent) made the anomaly dramatically WORSE instead of confirming or
+refuting it as artifact (relative spread 46%→128%), the first time in this
+program's history an R3 check has enlarged a feature. `5f5f01c`
+(predictions) → `fb789ae` (results).
+
+**Phase 5 — seven fresh seats, blind, including a Red Team audit.**
+Unusually strong 5-of-7 consensus (MATERIALS/PHOTONICS/EM/QUANTUM/RED TEAM)
+on one next action: a box-ledger-vs-envelope-ratio cross-check at Block 2's
+own rescaled-cpl geometry, to discriminate a `BEAM_BEHIND`-specific
+near-field artifact from a general grid-resolution defect. **Red Team's
+audit (verdict: MINOR ISSUES) caught two real numeric defects** — Cell B's
+value misrounded (true delta 6.4× smaller than the "0.00001" printed
+throughout the record) and the pre-freeze-disclosure blind-run count
+undercounted ("three of 16" when the true figure, confirmed against the
+enumeration beneath it, is eight of 16) — **and QUANTUM independently
+caught a third, different scoring error**: VISION's commitment clause was
+scored "not triggered" using only Block 1's small deltas, when the clause
+as written covers "Block 1/2" and Block 2's much larger deltas
+(up to −1.54pp) trigger it by 4–5×. All four corrections applied same-shift
+in NOTES.md and LOGBOOK.md; none touch a scored physics conclusion.
+
+**Director's close: VERDICT PROMISING.** No checkpoint criterion fired.
+LOGBOOK updated: T9 marked ANSWERED (with Red Team's floor-gating caveat
+carried forward — this box-ledger channel has no established decision
+floor the way the ambient bench's δ_C does); new LIVE THREAD T10 opened
+for the R3-enlarges finding. Queue for Iteration 5 (lead per rotation
+THERMODYNAMICS; PLAN.md updated): (a) the box-ledger cross-check at Block
+2's geometry (5-of-7 consensus); (b) a genuine settling check at Block 2's
+own finer cpl (4-of-7 consensus); (c) VISION's r=156 scale-bridge check,
+now argued more urgent post-T10; (d) a formal decision-floor
+characterization for the box-ledger channel (Red Team's own recommendation);
+(e) QUANTUM's bridge-gate package, proposed as a mandatory rider on
+Iteration 5's lead rather than a fifth competing item — three consecutive
+iterations have each had a legitimate, cycle-specific reason to defer it,
+which QUANTUM's own seat argues is itself now the finding; (f) THERMO's
+radial-binned absorbed-power ledger, a new THERMO-only pick testing whether
+exp-027's Cell A/B near-identical aggregate ratio hides a real spatial
+heating-profile difference. Three commits to main this shift (predict/
+results pair + this close-out). Trust suite 41/41 green throughout.
+
 ## 2026-08-13 (panel shift) — Iteration 3 complete (exp-026): the σ(I)
 endpoint triplet, a decisive Red Team catch that held up against real
 data, and a program-wide sharpening of an "established" quantity

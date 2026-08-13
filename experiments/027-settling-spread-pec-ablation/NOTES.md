@@ -187,28 +187,51 @@ same register as Iterations 2 and 3's non-mechanism cycles.
 
 ## Pre-freeze plumbing checks (disclosed in full, per house discipline)
 
-Three of this experiment's 16 planned sim calls were run at **full,
+**Correction (Red Team's Phase-5 audit, accepted in full, same-shift — see
+LOGBOOK.md Iteration 4 Phase 5): this section originally said "three of 16
+planned sim calls."** The correct count is **eight**: Block 3's 4 cells
+(empty/A/B/C) + Block 1@600nm's 2 calls (empty+on) + Block 2@600nm's 2
+calls (empty+on) = 8, exactly half this experiment's 16-call budget, not
+the ~19% "three of sixteen" implied. The enumeration beneath the original
+sentence was itself always complete and accurate (no value is scored as
+blind anywhere in Results) — only the summary count was wrong, and it is
+exactly the sentence whose job is to state how much of this cycle was
+genuinely blind, so the correction is recorded here rather than silently
+folded in.
+
+Eight of this experiment's 16 planned sim calls were run at **full,
 native resolution** (not a reduced-step approximation) while smoke-testing
 `run.py` for code correctness, before predictions below were frozen:
 **all four Block 3 cells** (empty, A, B, C — the newest, highest-risk code
 path) and **the λ=600nm points of Block 1 and Block 2**. Because the FDTD
-engine is deterministic, the "real" run below will reproduce these three
+engine is deterministic, the "real" run below will reproduce these eight
 data points bit-for-bit — they are not blind ex-ante forecasts, and the
 predictions for them below are written with that known. **The λ=450nm and
-λ=750nm points of Block 1 and Block 2 were NOT smoke-tested and remain
-genuinely blind.** Values obtained (all pass the code-correctness bar —
-no exceptions, clean box_dev/empty-closure, self-consistent angular
+λ=750nm points of Block 1 and Block 2 (8 more calls) were NOT smoke-tested
+and remain genuinely blind.** Values obtained (all pass the code-correctness
+bar — no exceptions, clean box_dev/empty-closure, self-consistent angular
 pattern):
 
-- **Block 3 (λ=600nm):** A: σ_abs/σ_ext=**0.51180**, box_dev=0.0019,
+- **Block 3 (λ=600nm):** A: σ_abs/σ_ext=**0.5118033**, box_dev=0.0019,
   empty_closure=1.5e-4, p_abs_raw=305.81, side_lobe_frac=0.00561,
-  observer_return=7.2e-5. B: σ_abs/σ_ext=**0.51181** (Δ vs A =
-  **0.00001** — indistinguishable), box_dev=0.0019, empty_closure=1.5e-4,
+  observer_return=7.2e-5. B: σ_abs/σ_ext=**0.5118049** (Δ vs A =
+  **+1.56×10⁻⁶**, relative 3.06×10⁻⁶ — **corrected, Red Team's audit**: both
+  values round to 0.51180 at 5 decimals; the "0.51181"/"Δ=0.00001" printed
+  in the original disclosure and predictions commit was a rounding slip,
+  6.4× larger than the true delta), box_dev=0.0019, empty_closure=1.5e-4,
   p_abs_raw=305.82, side_lobe_frac=0.00561, observer_return=7.3e-5. C:
   σ_abs/σ_ext=**0.60748**, box_dev=0.0004, empty_closure=1.6e-4,
   p_abs_raw=356.87, side_lobe_frac=0.00583, observer_return=1.51e-4
   (matches exp-026's own 600nm value, 0.000151, exactly). Pattern
   self-consistency (`Σpattern − σ_scat`) is ≤10⁻¹⁴ at all three cells.
+  **Red Team's second catch (accepted): this channel has no established
+  decision floor.** box_dev itself (≈0.0019) is **≈1221× larger** than the
+  true A-vs-B delta (1.56×10⁻⁶) — strong informal evidence the delta is
+  deep in this instrument's own noise, but, unlike the ambient bench's
+  gated δ_C, no formal reproducibility/noise-floor characterization exists
+  for this box-ledger channel to gate against. "T9 answered" (below) should
+  be read as well-supported but not yet floor-gated to the standard this
+  program applies elsewhere — closing that gap is queued for Phase 5.
 - **Block 1 (λ=600nm):** beam_behind@6400steps = **2.9701%**, vs the
   established @3200steps = 2.970% — Δ = **+0.00012 pp**, essentially
   exactly zero, box_dev=0.00036.
@@ -230,9 +253,9 @@ genuinely new candidate this proposal did not originally probe — flagged
 for Phase 5, not chased further this cycle), or is this a real spatial/
 grid-quantization effect in the near-field BEAM_BEHIND envelope measurement
 itself? (2) Removing the PEC core (Cell B) changes σ_abs/σ_ext by
-0.00001 relative to Cell A — a null result for the "PEC-driven" hypothesis
-this experiment was built to test, landing cleanly in outcome branch (b),
-**rim/profile-geometry-driven, PEC incidental**.
+1.56×10⁻⁶ (corrected, see above) relative to Cell A — a null result for the
+"PEC-driven" hypothesis this experiment was built to test, landing cleanly
+in outcome branch (b), **rim/profile-geometry-driven, PEC incidental**.
 
 ## Predictions — committed before this experiment's first *official* run
 
@@ -286,8 +309,10 @@ MEASURED at λ=600nm, disclosed above; scored, not blindly predicted:**
   (established 0.512–0.515); C=0.6075 ∈ [0.59,0.62] (established
   0.6056–0.6083).
 - **P-EM4 (central) — outcome (b), rim/profile-geometry-driven, PEC
-  incidental.** B=0.51181 ∈ [0.46,0.56], indistinguishable from A
-  (Δ=0.00001) and nowhere near C. Branch (d) (fix 5, the outside-band
+  incidental.** B=0.51180 ∈ [0.46,0.56], indistinguishable from A
+  (true Δ=+1.56×10⁻⁶, corrected — see Pre-freeze section; the "0.51181"/
+  "Δ=0.00001" originally printed here was a rounding slip, Red Team's
+  Phase-5 catch) and nowhere near C. Branch (d) (fix 5, the outside-band
   case) not needed — B landed cleanly inside branch (b).
 - **P-EM6 (informational, angular pattern) — no discriminating signal.**
   Side-lobe/wide-angle fraction: A=0.00561, B=0.00561 (identical to 3
@@ -308,12 +333,13 @@ MEASURED at λ=600nm, disclosed above; scored, not blindly predicted:**
   identity cannot see. Full ΔT/emission-band/detectability calculation
   remains deferred to docket #7 (unchanged from exp-026's own deferral).
 - **VISION's commitment clause (fix 7) — CHECKED against the 600nm data
-  already in hand:** beam-behind at 600nm/3200steps/native-cpl (the
-  quantity QUANTUM's τ_on/τ_off window was derived from) is unchanged by
-  this experiment — Block 1's 6400-step point differs by only +0.00012pp,
-  far under the ≥0.3pp trigger. **No re-derivation triggered at 600nm.**
-  Whether 450/750nm trigger it depends on the still-blind Block 1 points
-  above; checked explicitly in Results.
+  already in hand for Block 1 only at prediction time:** beam-behind at
+  600nm/3200steps/native-cpl (the quantity QUANTUM's τ_on/τ_off window was
+  derived from) is unchanged by Block 1 — the 6400-step point differs by
+  only +0.00012pp, far under the ≥0.3pp trigger. **Corrected in Results
+  (QUANTUM's Phase-5 catch, accepted): the clause as stated covers "Block
+  1/2," and Block 2's own 600nm point was not checked against it here —
+  see Results, below, where it IS triggered, by a wide margin.**
 
 ## Idealizations
 
@@ -375,7 +401,8 @@ smaller.
 
 **Block 3 (PEC-ablation factorial, λ=600nm) — reproduced bit-for-bit from
 the pre-freeze plumbing check, as expected (deterministic engine):** A=
-0.51180, B=0.51181 (Δ=0.00001), C=0.60748. Precondition/reproducibility/
+0.51180, B=0.51180 (true Δ=+1.56×10⁻⁶, corrected — Red Team's Phase-5
+catch, see Pre-freeze section), C=0.60748. Precondition/reproducibility/
 angular-pattern/thermo numbers unchanged from the disclosure above.
 
 ### Predictions scored
@@ -429,43 +456,76 @@ angular-pattern/thermo numbers unchanged from the disclosure above.
   kind, though not in magnitude.
 - **P-EM7/P-EM5/P-EM4/P-EM6/THERMO sidecar — all CONFIRMED exactly as
   disclosed pre-freeze** (deterministic reproduction). **T9's
-  PEC-cored-vs-solid-disk question is now answered: PEC-presence is
-  incidental.** Removing the PEC core while holding the graded shell's
-  profile byte-for-byte identical (Cell B vs Cell A) changes σ_abs/σ_ext
-  by 0.00001 — indistinguishable from zero, at a box_dev of 0.0019. The
-  established 0.51 anchor and exp-026's measured 0.61 differ because of
-  the shell's own rim/profile-transmission geometry (graded vs. abrupt),
-  not because of the PEC core each construction happens to also carry.
-  The angular-pattern channel (P-EM6) independently corroborates the null:
-  A and B's wide-angle scattered-power fractions are identical to 3
-  decimal places (0.0056 both), so PEC-presence is not measurably
+  PEC-cored-vs-solid-disk question is now well-supported as answered:
+  PEC-presence is incidental — but not yet floor-gated, Red Team's own
+  Phase-5 catch.** Removing the PEC core while holding the graded shell's
+  profile byte-for-byte identical (Cell B vs Cell A) changes σ_abs/σ_ext by
+  **+1.56×10⁻⁶** (corrected from an original "0.00001," 6.4× too large,
+  Red Team's rounding catch) — indistinguishable from zero at a box_dev of
+  0.0019, itself **≈1221× larger than the measured delta**. That ratio is
+  strong informal evidence the delta is deep in this channel's noise, but
+  this box-ledger channel has never had a formal decision-floor
+  characterization the way the ambient bench's δ_C has — queued for Phase
+  5. The established 0.51 anchor and exp-026's measured 0.61 differ
+  because of the shell's own rim/profile-transmission geometry (graded vs.
+  abrupt), not because of the PEC core each construction happens to also
+  carry. The angular-pattern channel (P-EM6) independently corroborates
+  the null: A and B's wide-angle scattered-power fractions are identical
+  to 3 decimal places (0.0056 both), so PEC-presence is not measurably
   redirecting energy into wide-angle scattering at this geometry either.
-- **VISION's commitment clause (fix 7) — CHECKED, not triggered.** Beam-
-  behind (τ_on) moves by at most 0.0012pp at any of the 3 wavelengths, far
-  under the ≥0.3pp trigger. QUANTUM's committed T1 σ(I) window (τ_on/τ_off
-  ≳ 120–780, n ≳ 0.56–0.78) needs no re-derivation from this experiment's
-  results.
+- **VISION's commitment clause (fix 7) — TRIGGERED, corrected from an
+  original "not triggered" scoring error (QUANTUM's Phase-5 catch,
+  accepted in full).** The clause as stated in Phase 3 covers "Block 1/2's
+  settling-time investigation," not Block 1 alone — the Results section
+  above originally checked only Block 1's ≤0.0012pp deltas against the
+  ≥0.3pp trigger and stopped there. **Block 2's deltas are far larger and
+  DO trigger it**: beam-behind (native 3200-step, native cpl) vs Block 2
+  (cpl×1.5, same steps) moves by −1.2533pp (450nm), −1.3744pp (600nm), and
+  −1.5407pp (750nm) — 4–5× the trigger at every wavelength. **QUANTUM's
+  committed T1 σ(I) window (τ_on/τ_off ≳ 120–780, n ≳ 0.56–0.78) IS flagged
+  for re-derivation**, per the clause's own stated consequence — not
+  performed in this experiment (out of scope; QUANTUM's own seat is the
+  natural owner), but the flag is now correctly raised rather than
+  incorrectly cleared. Read together with the T7 cross-reference above:
+  the same Block-2 numbers this clause responds to are the numbers whose
+  physical meaning (real chromatic effect vs. near-field instrument
+  artifact) is itself still open — so the trigger is real, but what it
+  will turn out to mean for τ_on depends on resolving that open question
+  first.
 
 ### Headline (for LOGBOOK)
 
 **Both queued Iteration-3 threads resolve cleanly, in opposite directions
 from what the Phase-1 proposal's own framing anticipated.** (1) T9's
-PEC-cored-vs-solid-disk question: **answered — PEC-presence is incidental,
-rim/profile geometry drives the 0.51-vs-0.61 gap** (Δ between PEC-present
-and PEC-absent, same shell profile: 0.00001, statistically indistinguishable
-from zero; angular pattern independently corroborates). (2) P-MAT4's
-beam-behind chromatic anomaly: **settling-time is cleanly, uniformly
-refuted at all 3λ** (doubling BEAM_STEPS changes nothing, ≤0.0012pp
-everywhere) — but the standard R3 spatial-resolution check, instead of
-explaining the anomaly away as this program's five prior R3 checks always
-did, makes it dramatically WORSE (46%→128% relative spread) — a new kind
-of result for this lab, joining T7's own open hard-edge chromatic-
-silhouette question rather than resolving either. Two of seven Red Team
-mandatory fixes (Cell B's double-write, Block 1's 600nm extension) were
-load-bearing for getting a clean answer at all; the other five closed real
-completeness gaps (rederived Block 2 geometry, exhaustive P-EM4 partition,
-restored Thermo sidecar, named QUANTUM/VISION re-deferrals) without
-changing any scored outcome. All fixes held up; nothing was overridden.
+PEC-cored-vs-solid-disk question: **well-supported as answered — PEC-presence
+is incidental, rim/profile geometry drives the 0.51-vs-0.61 gap** (true Δ
+between PEC-present and PEC-absent, same shell profile: +1.56×10⁻⁶,
+statistically indistinguishable from zero; angular pattern independently
+corroborates; **not yet formally floor-gated** — box_dev is ≈1221× larger
+than the delta, informally decisive but this channel has no established
+decision floor the way the ambient bench's δ_C does — queued for Phase 5).
+(2) P-MAT4's beam-behind chromatic anomaly: **settling-time is cleanly,
+uniformly refuted at all 3λ** (doubling BEAM_STEPS changes nothing,
+≤0.0012pp everywhere) — but the standard R3 spatial-resolution check,
+instead of explaining the anomaly away as this program's five prior R3
+checks always did, makes it dramatically WORSE (46%→128% relative spread)
+— a new kind of result for this lab, joining T7's own open hard-edge
+chromatic-silhouette question rather than resolving either. That same
+Block-2 shift is large enough (−1.25 to −1.54pp across λ) to **trigger**
+VISION's commitment clause, flagging QUANTUM's T1 σ(I) window for future
+re-derivation — corrected from an original in-shift scoring error that
+checked only Block 1's (much smaller) shift and read the clause as
+cleared. Two of seven Red Team mandatory fixes (Cell B's double-write,
+Block 1's 600nm extension) were load-bearing for getting a clean answer at
+all; the other five closed real completeness gaps (rederived Block 2
+geometry, exhaustive P-EM4 partition, restored Thermo sidecar, named
+QUANTUM/VISION re-deferrals) without changing any scored outcome. All
+seven fixes held up; nothing was overridden. **Red Team's own Phase-5
+audit then caught two further defects in this record** (the B-value
+rounding slip and the pre-freeze-disclosure undercount) plus QUANTUM's
+independent catch of the commitment-clause scoring error — all three
+corrected same-shift, above; see LOGBOOK.md Iteration 4 Phase 5 for the
+full audit.
 
 ## Next (pre-registered, for Phase 5)
 
@@ -489,4 +549,16 @@ with PEC" cell (the missing fourth corner of the full 2×2 — abrupt profile
 found, but cheap if a future iteration wants full closure. (4) QUANTUM's
 bridge-gate package and VISION's r=156 scale-bridge check remain queued,
 now overdue by a third and second iteration respectively — Phase 5 should
-weigh whether either's stated re-deferral reason still holds.
+weigh whether either's stated re-deferral reason still holds. (5) **Added
+by Red Team's Phase-5 audit:** the box-ledger channel (σ_abs/σ_ext,
+box_dev) has never had a formal decision-floor/reproducibility
+characterization the way the ambient bench's δ_C has — load-bearing before
+any future box-ledger near-null result (this cycle's T9 answer being the
+first, not last, such claim) can be cited without an implicit-floor
+caveat.
+
+**Phase 5 outcome (seven fresh seats read these results): unusually
+strong 5-of-7 consensus formed independently around item (1) above** — the
+box-ledger-vs-envelope-ratio cross-check at Block 2's own geometry. Full
+verbatim record, Red Team's audit (2 further corrections applied above),
+and the Director's close: `LOGBOOK.md`, Iteration 4 Phase 5.

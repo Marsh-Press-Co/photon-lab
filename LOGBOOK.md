@@ -138,31 +138,74 @@ measured them here):**
   r = 78/156/312 with a committed C(z/z_R) extrapolation model before any
   near-threshold verdict is believed at scenario scale.
 - **T9 — The σ_abs/σ_ext "0.51 anchor" is not an asymptotic material
-  constant (opened Iteration 3, exp-026 Phase 5, EM).** Two independent
-  measurements — `graded_black_shell` (0.51, exp-002/ESTABLISHED) and
-  exp-026's coreless uniform ON disk (0.606–0.608) — both EXCEED the
-  idealized geometric-optics ceiling (σ_abs/σ_ext ≤ 0.5, a Babinet/
-  shadow-formation bound for any perfectly-black object, independent of
-  interior structure). Consistent with T8: this bench's box sits deep in
-  the shadow's near zone, where the asymptotic far-field diffraction
-  relation (σ_scat,forward = σ_geom exactly) doesn't yet hold. Practical
-  consequence: any future proposal anchoring a hard gate or band directly
-  to "the established 0.51" (as Iteration 2's Phase-1 proposal did, before
-  Red Team's Phase-2 catch forced a rebanding that happened to still
-  contain the true near-field value) is citing a near-field-limited
-  measurement at one specific box geometry, not a material property that
-  transfers to other geometries or to T8's own witness-scale bridge.
-  Candidate mechanisms proposed, none yet tested: PEC-core presence
-  redirecting energy into wide-angle scattering (materials/thermo) vs.
-  geometric rim-transmission differences between the two articles'
-  σ(r)/τ(r) profiles (EM/photonics, favored on parsimony grounds — EM's
-  own chord calculation shows the graded shell's T=0.5 point sits at a
-  ~16-cell transparent annulus vs. the solid disk's ~1-cell fringe) vs.
-  the solid disk's non-zero center-chord transmission softening the
-  sharp-shadow assumption (photonics). Resolution needs T8's own bridge
-  family (r=78/156/312) extended to this box-ledger channel specifically,
-  and/or the PEC-core-vs-grading disambiguation queued in Iteration 3's
-  close.
+  constant (opened Iteration 3, exp-026 Phase 5, EM). PEC-vs-rim question
+  ANSWERED Iteration 4 (exp-027): PEC-presence is incidental.** Two
+  independent measurements — `graded_black_shell` (0.51, exp-002/
+  ESTABLISHED) and exp-026's coreless uniform ON disk (0.606–0.608) — both
+  EXCEED the idealized geometric-optics ceiling (σ_abs/σ_ext ≤ 0.5, a
+  Babinet/shadow-formation bound for any perfectly-black object,
+  independent of interior structure). Consistent with T8: this bench's box
+  sits deep in the shadow's near zone, where the asymptotic far-field
+  diffraction relation doesn't yet hold — **neither number is an
+  asymptotic material constant; this remains true after Iteration 4**.
+  **The PEC-core-vs-rim-transmission disambiguation queued at Iteration
+  3's close is now answered**: exp-027's single-variable factorial (same
+  `graded_black_shell` profile, PEC core present vs. replaced with
+  matched-conductivity fill) measured Δσ_abs/σ_ext = +1.56×10⁻⁶ —
+  statistically indistinguishable from zero, corroborated independently by
+  an identical angular-scattering pattern (side-lobe fraction to 3
+  decimals). **PEC-core presence does not drive the 0.51-vs-0.61 gap; rim/
+  profile-transmission geometry does** (EM's own chord calculation — the
+  graded shell's T=0.5 point sits at a ~16-cell transparent annulus vs.
+  the solid disk's ~1-cell fringe — was the correct mechanism all along).
+  **Caveat (Red Team's Phase-5 audit, exp-027): not yet formally
+  floor-gated** — box_dev (≈0.0019) is ≈1221× larger than the measured
+  delta, informally decisive but this box-ledger channel has no
+  established decision-floor characterization the way the ambient bench's
+  δ_C does; establishing one is queued. The missing fourth 2×2 corner
+  (abrupt profile + PEC core, vs. the graded-profile pair actually tested)
+  remains untested, low priority given how clean the null is. T8's own
+  bridge family (r=78/156/312) extended to this box-ledger channel remains
+  a separate, still-open scale question T9's closure does not resolve.
+- **T10 — The R3 spatial-resolution check can ENLARGE a feature, not just
+  confirm or refute it (opened Iteration 4, exp-027 Phase 5, unusually
+  strong 5-of-7 seat consensus).** Every prior R3 application in this
+  program's history (exp-005, -010, -015, -023, -025) either killed an
+  apparent feature as a grid artifact or left a real one's magnitude
+  essentially unchanged. exp-027's Block 2 (cpl×1.5 companion to P-MAT4's
+  beam-behind chromatic anomaly, all 3λ) is the first exception: relative
+  spread grew from 46% (native cpl) to 128% (cpl×1.5), with 750nm's value
+  in particular collapsing to 0.32% — an order of magnitude below the flat
+  Beer–Lambert target and below its own native reading. Meanwhile the
+  box-ledger cross-section channel (`sections.widths`, used throughout
+  Block 3) stayed clean (box_dev ≤0.0019) across the same resolution
+  refinement — the growth is specific to `BEAM_BEHIND`, a near-field
+  squared-envelope-ratio measurement in a narrow window (0.75–7λ behind
+  the object edge), not present in the closed-surface flux-integral
+  channel measured on the identical physics. Settling-time is independently
+  and cleanly ruled out as the explanation AT NATIVE cpl (Block 1: doubling
+  BEAM_STEPS moves beam-behind by ≤0.0012pp at every λ), but Block 2
+  conflates spatial refinement with reduced settling margin at the FINER
+  cpl specifically (post-ramp periods drop to 16.1–29.9 vs native's
+  26.0–45.3) — a confound Block 1 did not test and Phase 5 did not resolve.
+  Leading candidate mechanisms, ranked by cross-seat convergence, none yet
+  tested: (a) the envelope-ratio channel's near-field window sampling a
+  diffraction/Fresnel-ringing pattern whose phase shifts with the
+  independently-rounded per-λ geometry (EM, PHOTONICS — a instance of
+  VALIDATION.md's own "point-wise field samples are position-sensitive,
+  conservation integrals are not" lesson, applied to transmission for the
+  first time); (b) settling re-entering specifically at the finer cpl,
+  untested by Block 1 (PHOTONICS, MATERIALS, EM, QUANTUM, RED TEAM — 5 of
+  7 seats independently flagged this as still open). **Cross-referenced
+  with T7**: if the box-ledger-channel comparison (queued, below) confirms
+  the spread-growth is channel-specific, T7's own hard-edge chromatic
+  mechanism question stays exactly where it was; if the box-ledger channel
+  ALSO shows large chromatic spread at these geometries, T7 gains a second,
+  independent confirming data point in a different measurement family.
+  Resolution needs (i) the box-ledger σ_ext measured at Block 2's own
+  rescaled cpl geometry (5-of-7 seat consensus, Iteration 4's top-ranked
+  next action) and (ii) a genuine settling check at Block 2's finer cpl
+  (BEAM_STEPS doubled at cpl=22/30/38, not just native cpl).
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -1200,3 +1243,349 @@ sharpened from "material constant" to "near-field-limited measurement,
 asymptote unknown" by cross-seat synthesis (EM's Phase-5 reading,
 independently reachable from Iteration 1's own recorded number — the kind
 of catch continuous re-review across iterations is meant to produce).
+
+---
+
+## Iteration 4 — Settling, Spread, and the PEC Ablation (exp-027) — 2026-08-13
+
+Runner: cloud panel shift · Lead: **ELECTROMAGNETISM** (rotation). Full
+seven-seat cycle: Phase 1 proposal (EM) → 5 blind parallel critiques
+(PHOTONICS, MATERIALS, THERMO, QUANTUM, VISION, all support-with-changes)
+→ Red Team last with everything (verdict: proceed-with-mandatory-fixes,
+seven numbered attacks, two independently-verified code-level catches) →
+Phase 3 synthesis (all seven fixes accepted in full) → Phase 4 test → Phase
+5 (seven fresh seats, blind, including a Red Team audit that caught two
+further defects). Full setup/results record: `experiments/027-settling-
+spread-pec-ablation/NOTES.md`.
+
+### Phase 1 — Proposal (ELECTROMAGNETISM, verbatim)
+
+# PHASE 1 — PROPOSAL · Panel Iteration 4 · Lead seat: ELECTROMAGNETISM
+## "Settling, Spread, and the PEC Ablation" — resolving P-MAT4's beam-behind chromatic anomaly and T9's σ_abs/σ_ext anchor ambiguity on the existing beam-scene bench (candidate exp-027)
+
+*Note on independence: LOGBOOK.md records that EM, in a prior cycle I have no memory of writing, proposed a densified-λ beat check and a rim-geometry-vs-PEC-redirect factorial touching these same two threads. I have not read that note as binding and this proposal is derived fresh from my own charter (field/wave behavior, energy coupling, reciprocity/passivity/causality bookkeeping) and the cited repo numbers below — it lands in a related place because the physics is the same, not because I copied it.*
+
+### 1. Mechanism narrative (≤300 words)
+
+Two threads lead Iteration 4's queue, and both are EM bookkeeping questions once stripped to their physics, not new mechanism proposals. P-MAT4's beam-behind anomaly (2.34/2.97/1.86% at 450/600/750 nm, non-monotonic, 46% relative spread, `experiments/026-sigma-i-endpoints/NOTES.md`) is a **causality/transient-completeness** question: the two-snapshot quadrature phasor (`lab/sections.full_capture`) assumes the field has settled into its periodic steady state before it is sampled, but `BEAM_STEPS`=3200 is fixed across a 3-λ sweep whose ramp length (`ramp_periods`×cpl/S, `lab/fdtd2d.py`) grows with cpl — post-ramp settling works out to roughly 45/33/26 periods at 450/600/750 nm (S=courant_frac/√2=0.2263), least at the finest grid. T9's σ_abs/σ_ext anomaly (established `graded_black_shell` 0.512–0.515 vs exp-026's coreless ON disk 0.606–0.608, both above the ≤0.5 geometric-optics ceiling, LOGBOOK T9) is a **passivity/energy-routing** question: a PEC core is a perfect reflector — whatever it doesn't transmit comes back out as scattered flux the box ledger counts against the ratio; a matched-conductivity absorptive fill just eats it instead.
+
+Both threads reuse the identical, already-validated beam-scene bench (`lab/sections.py`'s box ledger, `lab/emit.py`'s observer record, exp-001/002/026's N=560 domain) with zero new `lab/` engine code — an experiment-level array write, the same pattern exp-026's own `build_ambient` already uses. That shared bench is why they combine cheaply into one run set (≈14 new sim calls, ≈7 minutes at exp-026's per-run pace) instead of two separate cycles. This proposal builds no mechanism and claims no T1 escape route — pure diagnostic work making the numbers future σ(I) proposals will cite trustworthy.
+
+### 2. Parameter table
+
+All three blocks inherit exp-001/002/026's beam-scene bench unchanged except where stated: `BEAM_N=560, (BEAM_CX,BEAM_CY)=(252,280), R_OUT=78, courant_frac=0.32 (S=0.226274), BEAM_ABSORB=40, BEAM_SRC_X=64, BEAM_OBS_X=78, BOX_A=(142,362,170,390), BOX_B=(117,387,145,415)` (`experiments/026-sigma-i-endpoints/design_geometry.py`). `ramp_periods=3.0` default (`lab/fdtd2d.py::add_line_source`).
+
+**Block 1 — Settling-time diagnostic (extremes only).** ON article (uniform disk, σ=0.025, τ_center=3.9, no PEC — exp-026's exact article), geometry and cpl **unchanged**; only `BEAM_STEPS`: 3200 → **6400**, at λ=450 nm (cpl=15) and λ=750 nm (cpl=25). 4 new sim calls (empty+ON × 2λ).
+
+**Block 2 — R3 spatial companion, all 3λ (standard cpl×1.5 convention, exp-025's own precedent).** ON article + empty, `BEAM_STEPS` held at the native 3200 (unchanged — see idealization below on why this doesn't fully decouple from settling). cpl: 450:15→22, 600:20→30, 750:25→38. Every cell-based constant rescaled by the same per-λ ratio r and rounded, holding physical (nm) size fixed. 6 new sim calls (empty+ON × 3λ).
+
+**Block 3 — PEC-ablation factorial (T9), single λ=600 nm.** Native beam-scene domain and cpl=20, `BEAM_STEPS`=3200, unchanged. Three articles + one empty, all freshly captured: A (rerun) = `pec_disk(cx,cy,30)` + `graded_black_shell(cx,cy,30,78,sigma_max=0.5,eps_max=1.0)`, established anchor 0.512 (exp-002). **B (new)** = `graded_black_shell(cx,cy,30,78,sigma_max=0.5,eps_max=1.0)` only — no `pec_disk` call — plus `sim.sigma_e[rr<=30] += 0.5` (matches the shell's own plateau value at d=1). C (rerun) = `sim.sigma_e[rr<=78] += 0.025` (exp-026's exact ON-article construction), established anchor 0.6075 (exp-026). 4 new sim calls.
+
+**Total: 14 new sim calls, ≈7 min.** No suite-gated `lab/` changes.
+
+### 3. T1 escape-route statement
+
+No escape mechanism implemented or claimed — calibration/diagnostic work, in the same sense Iterations 2 and 3's non-mechanism cycles were.
+
+### 4. Falsifiable predicted outcomes
+
+**Block 1 (exhaustive 3-way):** P-EM1 (settling CONFIRMED): |Δbeam-behind(750nm, 6400 vs 3200)| ≥0.3pp toward flat target 2.02% AND ≥3×|Δ(450nm)|. P-EM2 (REFUTED): both |Δ|≤0.15pp. P-EM2b (ambiguous middle).
+
+**Block 2 (exhaustive 3-way):** P-EM3a (REAL): relative spread stays [27.6%,64.4%] AND 600nm remains local max. P-EM3b (ARTIFACT): spread collapses to ≤13.8% at all 3λ. P-EM3c (ambiguous middle). Explicit caveat: BEAM_STEPS held at 3200 while cpl rises drops post-ramp periods ~34% uniformly — Block 2 alone can't cleanly separate spatial from temporal; joint reading with Block 1 adjudicates.
+
+**Block 3 (exhaustive):** P-EM7 (precondition): box_dev≤0.02, empty-scene closure≤0.02, all 3 cells. P-EM5 (reproducibility): rerun A∈[0.49,0.53], rerun C∈[0.59,0.62]. P-EM4 (central): (a) PEC-driven — B∈[0.57,0.68]; (b) rim/profile-driven — B∈[0.46,0.56]; (c) ambiguous — B∈(0.56,0.57). P-EM6 (informational): angular_scattered_pattern wide-angle comparison A vs B.
+
+### 5. Idealizations
+
+2D TMz, one polarization. Non-dispersive real σ_e everywhere. Block 2's spatial/temporal confound stated explicitly. Block 3 isolates only PEC-presence (not the full 2×2). All σ_abs/σ_ext values are near/mid-field, relative comparison not asymptote re-measurement. Single-λ Block 3 justified by both anchors' near-flatness across 3λ. No constraint-3/PASS-FAIL language.
+
+### Phase 2 — Critiques (five seats, blind, verbatim)
+
+#### PHOTONICS — verdict: **support-with-changes**
+
+**Steel-man:** Verified settling arithmetic against `lab/fdtd2d.py` exactly (45.3/33.2/26.0 post-ramp periods at 450/600/750nm, matching the table). Settling incompleteness is a real, non-speculative candidate since higher cpl gets fewer post-ramp periods under this fixed-step design. Cell B's interior fill (0.5) verified exactly against `graded_black_shell`'s quintic-smoothstep formula at d=1.
+
+**Attack:** Block 1 tests ONLY the flanks (450/750nm) — never λ=600nm, the actual outlier (2.34/2.97/1.86%, non-monotonic, 600nm the peak). Post-ramp periods decrease *monotonically* 45.3→33.2→26.0 across the sweep: a pure settling-completeness bias predicts a monotonic residual bias tracking elapsed periods, NOT a middle-wavelength spike. Even a clean P-EM1 CONFIRMED at both flanks leaves the point the mechanism narrative most needs to explain completely untested.
+
+**Flip:** Add λ=600nm to Block 1 (2 more sim calls).
+
+#### MATERIALS & METAMATERIALS — verdict: **support-with-changes**
+
+**Steel-man:** Cleanest single-variable PEC-hypothesis test the program has proposed; verified `eps_max=1.0` keeps eps_r=1.0 identically in both A and B cells, so toggling the PEC changes exactly one material fact. Cells A/C reproduce exp-002/026's exact historical constructions verbatim.
+
+**Attack:** Cell B has a VERIFIED boundary defect. `graded_black_shell`'s shell mask is `(rr>=r_in)&(rr<=r_out)` with r_in=30 — inclusive at r=30 — already writing σ_e+=0.5 there via the d=1 plateau. Cell B's own added line `sim.sigma_e[rr<=30]+=0.5` is ALSO inclusive at r=30. Both are `+=`. Any lattice point at exactly r=30.0 (12 points: (±30,0),(0,±30),(±18,±24),(±24,±18)) gets σ=1.0 — double the claimed plateau — via two separate writes.
+
+**Flip:** Change `sim.sigma_e[rr<=30] += 0.5` to strict inequality `sim.sigma_e[rr<30] += 0.5`.
+
+#### THERMODYNAMICS — verdict: **support-with-changes**
+
+**Steel-man:** Block 3's Cell B is exactly the missing article THERMO's own prior critique called for (a PEC-free absorber whose full interior genuinely dissipates). Reuses `sections.widths()` at zero new machinery.
+
+**Attack:** Zero energy-sidecar language anywhere — no absorbed-power number, no deferral statement. PANEL.md's metric table mandates this EVERY run; Red Team enforced this once already (Iteration 1). Cell A's PEC core (r≤30) is a perfect reflector — that interior region CANNOT heat, all of A's absorption is confined to the r=30–78 shell. Cell B is lossy clear through r=0. Even if A and B land at similar aggregate ratios, they are NOT thermally equivalent objects — B develops a hot interior core A structurally cannot — and the box ledger (a net four-face flux identity) cannot see this spatial split.
+
+**Flip:** Commit to reporting Block 3's raw P_abs/I_inc (not just ratio) for all 3 cells + a one-line analytic sidecar per cell, at zero new sim calls.
+
+#### QUANTUM OPTICS — verdict: **support-with-changes**
+
+**Steel-man:** Diagnostic-only proposals are exactly what QUANTUM's expressibility contract wants — no mechanism smuggled in.
+
+**Attack:** This proposal silently defers QUANTUM's shared-intensity-axis + coherent-superposition bridge-gate package a THIRD time. LOGBOOK's own Iteration-4 queue entry warns this "should not be deferred a third time without explicit reason" — this Phase-1 text never mentions the package at all. A deferral by omission is worse than a deferral by argument.
+
+**Flip:** Add one sentence explicitly naming and re-deferring (with stated reason) queue item (d).
+
+#### VISION SCIENCE — verdict: **support-with-changes**
+
+**Steel-man:** Correct restraint — no Weber contrast, no C value, no threshold anywhere in Blocks 1-3; the observer-return sidecar targets constraint 2, not 3.
+
+**Attack:** Silent, not deferred. PLAN.md's Iteration-4 queue names VISION's r=156 check as item (c), already "overdue by one iteration" — this proposal never mentions it. LOGBOOK's own Iteration-2 precedent ruled a deferral must be "a stated decision, not an omission." Also not fully orthogonal to VISION's charter: Block 1/2 may shift beam-behind (τ_on), the number VISION's committed T1 σ(I) window was derived from, yet nothing commits to re-deriving that band if τ_on moves ≥0.3pp.
+
+**Flip:** Add a sentence naming the r=156 deferral as a stated decision + a commitment clause to flag T1 window re-derivation if beam-behind shifts ≥0.3pp.
+
+#### RED TEAM (last, saw everything) — verdict: **proceed-with-mandatory-fixes**
+
+1. **[inconsistency] MATERIALS' Cell-B double-write is real — verified exactly.** 12 lattice points get σ=1.0, double the claimed plateau. Physically negligible (≈6×10⁻⁵ of the object area) but the proposal's own claims are literally false as written. **Flip:** `sim.sigma_e[rr<30] += 0.5`.
+2. **[inconsistency] PHOTONICS' monotonicity claim is real — independently recomputed.** Post-ramp periods: 45.285/33.206/25.967 — monotonically decreasing, matching PHOTONICS' table. A pure settling bias predicts a monotonic residual, not P-MAT4's actual 600nm peak. **Flip (endorsed):** add λ=600nm to Block 1.
+3. **[inconsistency] Block 1/2's mechanism framing omits a THIRD, already-ESTABLISHED live hypothesis — new finding.** T7/P-EST establishes a real, resolution-confirmed chromatic silhouette effect specific to hard-edged, abrupt-boundary articles — exactly this Block's ON article class. Nowhere does the outcome partition mention T7/P-EST or provide a branch attributing a confirmed residual to it rather than settling. **Flip:** one sentence naming T7/P-EST as a live alternative, with a stated comparison criterion.
+4. **[inconsistency] Block 2's parameter table is incomplete for its own stated promise — new finding.** `BEAM_BOX_A/B` are hardcoded absolute cell tuples, not formulas — they do not auto-rescale. A silently stale BOX at the new BEAM_N would corrupt exactly the R3 check Block 2 exists to run. **Flip:** publish the rescaled BEAM_BOX_A/B, BEAM_REF, BEAM_ANNULUS, BEAM_BEHIND values (or formulas) in NOTES.md before the run.
+5. **[unfalsifiable] P-EM4's three-way partition doesn't cover the full outcome space — repeats a previously-fixed defect class.** Nothing said about a measured B outside [0.46,0.68]. This exact defect class was already caught and fixed once (exp-024's own outcome-partition fix). **Flip:** add a fourth branch — "outside [0.46,0.68]: unpredicted, flagged as a surprise finding, no attribution claimed."
+6. **[inconsistency] THERMO's sidecar attack, endorsed and escalated — a regression from an established house norm.** exp-026 carried an explicit one-line deferral clause; this proposal has zero sidecar language, a step backward. THERMO's structural point independently checks out: Cell A's PEC core cannot absorb; Cell B is lossy clear through r=0. **Flip (endorsed, escalated):** report raw P_abs/I_inc per cell + THERMO's caveat, restore the explicit deferral clause.
+7. **[inconsistency] QUANTUM's and VISION's "deferral by omission" attacks — independently verified, a compounding pattern, not two isolated nits.** Both confirmed accurate against PLAN.md/LOGBOOK. **Flip (endorsed):** one sentence each, naming and re-deferring (d) and (c) with a stated reason.
+
+**Verdict: proceed-with-mandatory-fixes.** Every attack is cheap to fix pre-freeze; none rises to Checkpoint territory. **To REJECT:** the double-write turns out symptomatic of broader table/code mismatch; Block 2's rescaling isn't pinned pre-freeze and the run silently samples the wrong window; attack 3's T7 alternative is dismissed rather than addressed. **To clean PROCEED:** all seven items resolved on the record in NOTES.md before the run.
+
+### Phase 3 — Synthesis (2026-08-13, Director)
+
+Full record: `experiments/027-settling-spread-pec-ablation/NOTES.md`. **All
+seven of Red Team's mandatory-fix items ACCEPTED IN FULL, zero overridden**
+— every fix improves correctness or closes a completeness gap at
+negligible cost, none conflicting. Concretely: **Cell B's fill fixed to
+strict `rr<30`** (removes a 12-cell double-write, physically negligible
+but the proposal's own claims were literally false as written). **Block 1
+extended to all 3λ**, testing 600nm — P-MAT4's actual anomaly peak — for
+the first time. **T7/P-EST named as a live alternative** in the outcome
+partition, with its own established magnitudes (Δ=0.0114/0.0166) carried
+as a scale yardstick. **Block 2's BOX_A/BOX_B/ANNULUS/BEHIND rederived by
+formula** (`design_geometry.py::_block2_geom`, verified against the native
+tuples via `assert`), printed as a pinned design calculation. **P-EM4's
+outcome partition closed with a fourth branch** (outside-band = surprise,
+no attribution). **THERMO's sidecar restored**: raw P_abs per cell + the
+structural ring-vs-disk caveat, full ΔT calculation re-deferred to docket
+#7 exactly as exp-026's own precedent set. **QUANTUM's and VISION's
+re-deferrals named explicitly with stated reasons**, plus VISION's
+commitment clause (re-derive T1's σ(I) window if beam-behind shifts
+≥0.3pp at any λ). Predictions P-EM1 through P-EM7 (revised) committed
+before any run (commit `5f5f01c`). **Pre-freeze disclosure**: 8 of 16
+planned sim calls (Block 3's 4 cells + Block1/Block2 @600nm) were run at
+full resolution while smoke-testing `run.py` for code correctness before
+predictions were frozen — disclosed explicitly as not-blind (the original
+disclosure undercounted this as "three," corrected at Phase 5, see below);
+450/750nm points of Blocks 1/2 remained genuinely blind.
+
+### Phase 4 — Test (exp-027, 2026-08-13)
+
+16 new FDTD sim calls, 590 s (239 s Block 1 + 293 s Block 2 + 59 s Block
+3), suite 41/41 before and after (no `lab/` changes). Full scoring:
+`experiments/027-settling-spread-pec-ablation/NOTES.md`. **Both queued
+threads resolved cleanly, in opposite directions from what the Phase-1
+proposal's framing anticipated.** T9 (PEC-vs-rim): **answered — PEC
+presence is incidental** (true Δσ_abs/σ_ext between PEC-cored and
+PEC-free, identical shell profile: +1.56×10⁻⁶, indistinguishable from
+zero; angular pattern corroborates independently). P-MAT4 (chromatic
+beam-behind anomaly): **settling-time cleanly, uniformly refuted at all
+3λ** (doubling BEAM_STEPS moves beam-behind by ≤0.0012pp everywhere) —
+but the standard R3 spatial check (cpl×1.5) made the anomaly dramatically
+WORSE (relative spread 46%→128%), the first time in this program's
+five-prior-instance R3 history that a resolution check has enlarged a
+feature rather than confirming or refuting it as artifact. box_dev stayed
+clean throughout (≤0.0019) — not a box-ledger sanity-check failure. Two of
+seven mandatory fixes (Cell B's double-write, Block 1's 600nm extension)
+were load-bearing for a clean answer; the other five closed real
+completeness gaps without changing any scored outcome.
+
+### Phase 5 — Review (seven fresh seats, blind, verbatim)
+
+#### MATERIALS & METAMATERIALS
+
+**Reading:** The Cell A/B comparison is a clean, well-isolated result — Δ=0.00001 at box_dev=0.0019 is roughly 200× below the noise floor the geometry itself admits, and the angular-pattern corroboration rules out the redirect-into-wide-angle-scattering mechanism this seat itself proposed at Iteration 3's close, not just the aggregate ratio. **PEC backing is now a free design choice, not a materials lever** — future absorber designs can swap PEC-cored construction for a matched-conductivity solid core purely on other grounds (fabrication, thermal mass, mechanical stiffness) without touching σ_abs/σ_ext. This sharpens EM's Iteration-3 reframe: with PEC-presence ruled out, the 0.51-vs-0.61 gap is cleanly attributed to rim/profile-transmission geometry — the "boring explanation" R3's meta-rule prefers, and it survived being checked. T9's caution still stands in full: neither 0.51 nor 0.61 is an asymptotic material constant. Qualifier: Block 3's scope deliberately left the fourth 2×2 corner (abrupt profile + PEC) untested — the null rules out "PEC alone explains the gap" but not a small PEC contribution combined with an abrupt profile. On the Block-2 spread-growth surprise: `sigma_e` is a fixed real scalar with zero λ-dependence anywhere in Block 2's code path — there is no ε(ω)/σ(ω) model, so any λ-structure in a materially identical article has to originate in the measurement/discretization chain, not the medium. The pattern-break (first R3 check to enlarge, not shrink/confirm) argues against ordinary grid coarseness and points at the near-field envelope-ratio measurement's interaction with the independently-rounded per-λ window geometry.
+
+**Argued next change:** Run the box-ledger σ_ext channel at Block 2's own three rescaled geometries — zero new sim calls if captures are still available, else 6 cheap reruns. Falsifiable: if box-ledger spread stays ≤~15-20% while envelope-ratio stays ~128%, the anomaly is instrument-specific; if box-ledger also blows up, it's real and general.
+
+**Ranked top-3:** (1) Box-ledger-vs-envelope-ratio channel comparison at Block 2's geometries. (2) Settling check AT Block 2's finer cpl specifically. (3) The fourth Block-3 corner (abrupt profile + PEC core) for full 2×2 closure.
+
+#### PHOTONICS
+
+**Reading:** Re-derived both headline numbers directly from `results.json`: Block 1 spread 46.41% (≈established 46.44%, settling genuinely refuted); Block 2 spread 127.6%. The 750nm point should worry this seat most: an 84%-below-target near-total transmission collapse, 5× lower than Block 1's own native 750nm reading at the SAME geometry/wavelength, differing only in cpl/steps. My own settling-time mechanism is cleanly dead at native resolution — but I don't read Block 2 as a second, independent optical finding joining T7; I read it as the same settling failure reappearing through a back door Block 1 never tested. `courant_frac` is held fixed while cpl rises and `BEAM_STEPS` is held fixed at native 3200 for all of Block 2 — a fixed step count at higher cpl simulates LESS total physical time, confirmed arithmetically (29.9/21.1/16.1 vs native 45.3/33.2/26.0 post-ramp periods) — and the largest settling-fraction cut (750nm) is exactly where the largest anomaly appears. That ordering is the signature of an under-settled transient. A purely-optical story is weaker: `BEAM_BEHIND` samples a near-field window well inside the Fresnel/near-shadow zone, genuinely sensitive to standing-wave ripple phase — but the box-ledger channel stayed clean at the same geometries, more consistent with a transient-fill artifact local to one narrow measurement than a resolvable optical effect that should show growing in every channel.
+
+**Argued next change:** Rerun Block 2 with BEAM_STEPS set PER λ to hold post-ramp settled periods constant at Block 1's native values — STEPS(450)≈4850, STEPS(600)≈5030, STEPS(750)≈5040. Falsifiable: spread collapses toward ≤60-70% → confound confirmed; stays ≥100% → real resolution-surviving effect.
+
+**Ranked top-3:** (1) Time-matched Block-2 rerun (settled periods fixed, not step count). (2) Cross-channel check: box-ledger σ_ext at Block 2's geometries. (3) Fringe-resolved sub-scan of the BEAM_BEHIND window at matched settled time.
+
+#### VISION SCIENCE
+
+**Reading:** Neither headline result is a scored quantity in my table — beam-behind and σ_abs/σ_ext are both outside the ambient/silhouette instrument. But two things are relevant by implication. (1) T9 reinforces an existing silhouette-design finding: PEC-incidence retires an alternative explanation for why graded and abrupt profiles read differently to an ambient-lit eye, strengthening confidence that rim geometry is a real, controllable silhouette-softening lever. (2) The R3-enlarges finding matters by proximity: this is the first time in 6 R3 applications that resolution refinement grew a feature instead of confirming/refuting it, on a near-field envelope measurement — a class the ambient silhouette instrument (`lab/ambient.py`) also belongs to, whose own fragility is already documented (VALIDATION.md's fringe-limit lesson) but never resolution-swept. exp-026's near-threshold OFF-lab/OFF-field C values have never had an R3 check run on them at all — exp-025's R3 check validated a different, deep-silhouette regime. On the re-deferred items: my own r=156 check's deferral letter still holds (scope was the beam-scene bench, not ambient) but its spirit doesn't — two independent axes of possible fragility (scale, resolution) now sit under the same unexamined near-threshold numbers, where before there was only one. Now three iterations overdue in substance.
+
+**Argued next change:** Run the standard R3 companion on the ambient instrument's own near-threshold weak-extinction articles (OFF-lab, OFF-field) at θ=0, using the cheap box-ledger diagnostic (not the full 9-angle sweep) first. 12 sim calls. Falsifiable: g=|C|/τ_center stays within ±30% at cpl×1.5 for both articles → resolution-stable, scale-bridge becomes the sole remaining precondition; spread grows ≥2.5× at any λ (mirroring Block 2's pattern) → every "no PASS/FAIL" caveat graduates from discretionary to load-bearing.
+
+**Ranked top-3:** (1) Box-ledger R3 diagnostic on the ambient channel's weak-extinction articles. (2) Promote VISION's r=156 scale-bridge check to Iteration 5, unconditionally. (3) Build the stage-10 temporal instrument (TCSF bars, sourced first).
+
+#### ELECTROMAGNETISM
+
+**Reading:** T9's null is consistent with passivity/reciprocity, not a coincidence — re-derived independently from `lab/materials.py`: the shell's conductivity peaks at the INNER boundary (r=30) and is zero at the outer boundary, so the shell does essentially all its extinction before the wave reaches the core; whatever boundary condition sits at r<30 receives negligible incident power either way. T9 should be restated as closed for the PEC-vs-rim question WITH THE MECHANISM NOW UNDERSTOOD, not just measured. On the R3 divergence: `sections.widths()` integrates complex Poynting flux through a closed contour — an EXACT identity for a time-harmonic linear medium, box-radius-independent — while `BEAM_BEHIND` is a raw pointwise envelope-intensity ratio in a narrow window squarely inside the Fresnel near-field/diffraction-ringing zone directly behind an obstacle, with no conservation law protecting a local point sample from ringing. This is a new instance of a house lesson already flagged twice in VALIDATION.md from different angles (fringe-limited point sampling; reflection-monitor placement). The geometry rescaling's independent per-constant rounding plausibly compounds this — sub-percent window-position shifts relative to λ can produce outsized relative changes in a point-sampled ringing field while leaving a closed-surface integral untouched. Settling is not fully closed as a confound, but Block 2's clean box_dev throughout is indirect evidence against it dominating — a non-converged field would leak into the flux-conservation identity too, and it doesn't. T8 needs a footnote: its own bridge-family project also uses a near-field point-windowed channel, structurally closer to BEAM_BEHIND than to the box-ledger — any future bridge run needs its own explicit resolution-convergence gate, which nobody has required of it before.
+
+**Argued next change:** Box-ledger σ_ext cross-check at Block 2's already-pinned geometry, 6 sim calls. Falsifiable: spread ≤3% → channel-specific artifact confirmed, BEAM_BEHIND needs its own near-field convergence study; spread >10-15% → falsifies the channel-specific hypothesis, points at `_block2_geom`'s rounding scheme itself.
+
+**Ranked top-3:** (1) Box-ledger cross-check at Block 2's rescaled-cpl geometry. (2) Settling-at-finer-cpl direct test (BEAM_STEPS doubled at cpl=22/30/38). (3) Fine-offset sweep of the BEAM_BEHIND window's own placement (zero new FDTD calls, reuses existing captures).
+
+#### THERMODYNAMICS
+
+**Reading:** The restored sidecar sharpens rather than closes my open item. Two aggregate numbers came back essentially bit-identical (0.005% apart) — clean on the aggregate channel, correctly answering T9's PEC-vs-rim question. But "the net box can't see a difference" and "there is no difference" are not the same claim: Cell A forces Ez≡0 for r<30 by construction — its Joule term is IDENTICALLY zero there, not small — while Cell B carries σ=0.5 and a nonzero field on that same disk. A box integral summing flux only on the four outer faces is blind to WHERE inside the box the power landed. The near-identical ratio is evidence the instrument can't distinguish the two spatial cases, not evidence the profiles are similar — the same structural blind spot the phasor-bug lesson and the ambient ratio-vs-absolute-gate lesson keep re-teaching. The angular-pattern channel doesn't rescue this either — also a far-field/perimeter quantity, also came back identical, a second null sharing the same structural limitation. Not even obvious a priori that B's core absorbs much power in absolute terms, given the shell's own high optical depth by r=30 — could be a small correction on a heating profile dominated by the outer shell in both cells, or could be large. Right now nobody knows.
+
+**Argued next change:** Build a spatially-resolved, radial-binned absorbed-power ledger (`lab/sections.py::radial_absorbed_power`, steady-state analytic, reusing the exact quadrature-phasor convention `widths()` already uses) and rerun Block 3's three cells through it — 3 sim calls, one new function, one self-consistency gate (Σ_bins p_J must reproduce p_abs_raw to ≤10⁻⁴ relative). Falsifiable, with numbers: P-THERMO1 (Cell A, r<30): P_J=0 exactly (hard identity, PEC). P-THERMO2 (Cell B, r<30): band [1%,40%] of total p_abs — below ~5% the ring-vs-disk distinction is topologically real but energetically negligible; above ~15% it's a real, sizable redistribution the four-face ledger has been silently unable to report through two full iterations.
+
+**Ranked top-3:** (1) The radial-binned absorbed-power ledger above. (2) Docket #7's witness-wattage pin, re-argued — now blocking three stalled sidecars (THERMO, VISION's scale bridge, QUANTUM's intensity axis). (3) Time-resolved companion ledger, sequenced after item 1 identifies where in the object it needs to look.
+
+#### QUANTUM OPTICS
+
+**Reading:** The third deferral is legitimate on its own narrow terms, illegitimate as a pattern: the stated reason is a tautology that will hold for any cycle that doesn't voluntarily choose to open the injection-machinery suite stage, and only QUANTUM leads (once per six-iteration rotation) reliably makes that choice — Red Team's conservative rule has become, in practice, a permanent veto no seat is incentivized to spend its own lead-cycle budget overriding. THERMO's time-resolved ledger shows the identical fate (queued since Iteration 1, never built). The beam-behind surprise bears directly and more urgently than the deferral question: Block 2 measured the exact τ_on-defining ON article at cpl×1.5 and found deltas of −1.25/−1.37/−1.54pp at 450/600/750nm — ALL 4-5× VISION's own ≥0.3pp re-derivation trigger, which by its literal wording ("Block 1/2's settling-time investigation") covers Block 2, not only Block 1. **NOTES.md's "CHECKED, not triggered" conclusion cites only Block 1's ≤0.0012pp figures — the record currently states the commitment clause cleared when, applied to the data it names, it did not.**
+
+**Argued next change:** Not the bridge-gate package immediately — a genuine technical reason to hold it for the first time: building coherent-superposition machinery whose acceptance gate would need to reproduce BEAM_BEHIND-style numbers is premature while that channel's resolution-stability is unresolved. Instead: (1) correct the record — flag the commitment clause as triggered, not cleared; (2) run the box-ledger σ_ext channel at Block 2's cpl points, ~6 sim calls. Falsifiable: box-ledger reproduces native within ~2% while BEAM_BEHIND stays at 128% spread → BEAM_BEHIND is compromised, τ_on/τ_off should be re-derived from box-ledger instead; box-ledger also shows ≥40% spread → general grid-resolution effect on extinction itself, a bigger problem since exp-001's original beam-behind ≤2% headline (constraint 1's evidentiary basis) has never been resolution-checked at this level either.
+
+**Ranked top-3:** (1) Box-ledger σ_ext cross-check at Block 2's cpl points + formal commitment-clause correction. (2) Conditional on (1): the bridge-gate package redesigned against the box-ledger channel, proposed as a mandatory rider on whichever seat leads Iteration 5 — to break the three-cycle scheduling pattern, not re-enter it a fourth time. (3) Genuine settling check at Block 2's own finer cpl.
+
+#### RED TEAM (audit, verdict: MINOR ISSUES)
+
+The substance holds: all three blocks' headline numbers, both spread calculations, and all seven of the predecessor's mandatory fixes were independently re-derived against `results.json` and the actual code, and check out. Two concrete, verifiable defects sit inside this cycle's two flagship claims — the same class the predecessor caught and corrected in Iterations 2/3, not a new failure mode.
+
+1. **[numeric error] Cell B's headline value is misrounded, and the "Δ=0.00001" figure is an artifact of that misrounding.** True raw delta: B−A = 1.5640216×10⁻⁶ (relative 3.06×10⁻⁶) — 6.4× smaller than "0.00001." Doesn't touch the conclusion (makes it stronger), but the number was wrong in the record.
+2. **[methodology gap] The "T9 answered" claim never establishes what magnitude this box-ledger channel can actually resolve.** No decision-floor characterization exists for this channel the way δ_C exists for the ambient bench. box_dev (≈0.0019) is ≈1221× larger than the true delta — decisive informal evidence, but never computed or stated as a ratio in NOTES.md, and never formally gated.
+3. **[numeric error] The pre-freeze disclosure's own headline count is wrong by more than 2.5×.** "Three of 16" undercounts — the enumeration beneath it (Block 3's 4 cells + Block1@600's 2 + Block2@600's 2) totals 8, exactly half the budget, not ~19%. The enumeration itself was always accurate; only the summary sentence — whose entire purpose is stating how much was genuinely blind — was wrong.
+
+**Independently re-derived and confirmed correct (no defect):** both spread numbers (46.41%, 127.57%); all seven mandatory fixes genuinely implemented in code (including the `assert` statements verifying Block 2's box formulas against the native tuples); the "first R3 check to enlarge a feature" claim (checked against all 5 prior R3 instances — none grew anywhere near 128% vs 46%); the Block-2 surprise reported with no softening found; VISION's/QUANTUM's re-deferrals handled with stated reasons, not silence (flagged as a process observation: QUANTUM's "I would not defer a third time" was overridden by a reason that will recur every cycle by construction — worth the Director noting explicitly).
+
+**Argued next change:** Correct both numeric defects same-shift (done, see NOTES.md). Before any future iteration cites a box-ledger near-null as decisive, establish a real decision-floor characterization for this channel.
+
+**Ranked top-3:** (1) Block-2 spread-growth resolution via box-ledger cross-check at Block 2's rescaled cpl points. (2) Genuine settling check at Block 2's own finer cpl. (3) Decision-floor/noise characterization for the beam-scene box-ledger channel.
+
+### Director's close of Iteration 4
+
+**VERDICT: PROMISING.** Both queued Iteration-3 threads resolved cleanly
+in this single cycle. T9 is answered — PEC-core presence is incidental to
+the established 0.51-vs-0.61 σ_abs/σ_ext gap; rim/profile-transmission
+geometry drives it, EM's own mechanism reasoning now independently
+corroborated by both the null ratio result and an identical angular
+scattering pattern. P-MAT4's chromatic beam-behind anomaly is
+half-resolved in the cleanest possible way: settling-time is cleanly,
+uniformly refuted as an explanation at all 3λ, closing PHOTONICS' own
+Iteration-3 candidate mechanism by direct test rather than argument — but
+the standard R3 spatial-resolution check, run as this program's own
+five-times-proven precedent, produced a genuinely new kind of result:
+it made the anomaly WORSE (46%→128% relative spread) instead of
+confirming or refuting it as artifact, the first time that has happened in
+this program's history. This is a real, honestly-reported open finding,
+not a resolved one — Phase 5 converged with unusual strength (5 of 7
+seats, MATERIALS/PHOTONICS/EM/QUANTUM/RED TEAM) on the same concrete next
+step to resolve it.
+
+**Red Team's Phase-5 audit — ACCEPTED IN FULL, all three items corrected
+same-shift, in NOTES.md.** (1) Cell B's value corrected from 0.51181 to
+0.51180 (both round the same at 5dp); the delta corrected from "0.00001"
+to the true 1.56×10⁻⁶ — 6.4× smaller, strengthening rather than weakening
+T9's null-result reading. (2) The T9 claim is now explicitly flagged as
+**well-supported but not yet formally floor-gated** — box_dev is ≈1221×
+larger than the measured delta, decisive informally, but this box-ledger
+channel has no established decision floor the way the ambient bench's δ_C
+does; establishing one is queued. (3) The pre-freeze disclosure's count
+corrected from "three of 16" to the accurate "eight of 16" — the
+enumeration itself was always right, only the summary number was wrong.
+**QUANTUM's independent catch — also accepted in full, corrected
+same-shift:** VISION's commitment clause (re-derive QUANTUM's T1 σ(I)
+window if beam-behind shifts ≥0.3pp at any λ) was scored "CHECKED, not
+triggered" using only Block 1's numbers (≤0.0012pp everywhere); the
+clause as stated covers "Block 1/2," and Block 2's own deltas
+(−1.25 to −1.54pp across λ) trigger it by a wide margin. **QUANTUM's
+committed T1 σ(I) window IS now flagged for re-derivation** — not
+performed this cycle (out of scope; QUANTUM's own seat is the natural
+owner), but correctly flagged rather than incorrectly cleared. Four
+corrections, zero of which touch a scored physics conclusion — all
+bookkeeping, all caught by the same discipline that makes bookkeeping
+worth catching.
+
+**LOGBOOK updated:** T9 marked ANSWERED (PEC-vs-rim question) with Red
+Team's floor-gating caveat carried forward; new **LIVE THREAD T10** opened
+for the R3-enlarges finding, the most concrete new open question this
+iteration produced.
+
+**Merged ranking (next queue) — unusually strong 5-of-7 consensus, the
+second time in two iterations this program has produced a majority
+cross-seat convergence on a single next action (Iteration 3's 5-of-7 on
+P-MAT4's resolution check; this is that check's own direct sequel).**
+
+1. **Box-ledger-vs-envelope-ratio cross-check at Block 2's own rescaled-cpl
+   geometry** — independently proposed as the #1 or #2 pick by **5 of 7
+   seats** (MATERIALS #1, PHOTONICS #2, EM #1, QUANTUM #1, RED TEAM #1),
+   with THERMO and VISION proposing compatible, non-competing items. Every
+   seat that engaged with T10 converged on the same design: reuse
+   `sections.widths()` (already validated clean at box_dev≤0.0019 in this
+   same cycle's Block 3) at Block 2's already-pinned geometry
+   (`design_geometry.py::BLOCK2_GEOM`), zero new design work, ~6 sim
+   calls. Directly discriminates "BEAM_BEHIND-specific near-field
+   artifact" (PHOTONICS'/EM's favored mechanism, argued from first
+   principles — conservation-law-protected flux integral vs. unprotected
+   point sample in a Fresnel-ringing zone) from "general grid-resolution
+   defect" (which would also implicate exp-001's own original beam-behind
+   ≤2% headline, QUANTUM's sharpest framing of the stakes).
+2. **A genuine settling check at Block 2's own finer cpl** (BEAM_STEPS
+   doubled at cpl=22/30/38, not just native cpl which Block 1 already
+   covers) — ranked by **4 of 7 seats** (MATERIALS #2, EM #2, QUANTUM #3,
+   RED TEAM #2). PHOTONICS' own #1 pick (a time-matched rerun holding
+   settled periods constant rather than step count) is a more surgical
+   version of the same underlying question — worth reading together when
+   Iteration 5 designs this block, not as competing proposals.
+3. **VISION's r=156 scale-bridge check**, now argued by VISION's own
+   seat as MORE urgent post-T10, not less — two independent axes of
+   possible near-field fragility (scale, resolution) now sit under the
+   ambient bench's unexamined near-threshold C values, where before there
+   was only one flagged risk. Compatible with, and partially motivated by,
+   VISION's own newly-proposed box-ledger R3 diagnostic on the ambient
+   channel's weak-extinction articles (cheap, 12 sim calls, could run
+   ahead of or alongside the full r=156 rebuild).
+4. **A formal decision-floor/noise characterization for the beam-scene
+   box-ledger channel** (Red Team's own Phase-5 recommendation, item 3) —
+   directly load-bearing for items 1 and 2 above (both cite box-ledger
+   near-null or near-flat readings as the discriminating evidence) and for
+   T9's own "well-supported but not floor-gated" caveat.
+5. **QUANTUM's bridge-gate package**, now explicitly proposed as a
+   **mandatory rider on Iteration 5's lead seat**, whoever it is, rather
+   than a fifth competing standalone item — QUANTUM's own seat argues the
+   scheduling pattern itself (three iterations, three legitimate-but-
+   convenient reasons to skip it) is now the finding, not any single
+   cycle's justification.
+6. **THERMO's radial-binned absorbed-power ledger** — a genuinely new,
+   THERMO-only top pick (not competing with items 1-2, a different
+   question about the SAME Block-3 cells): does Cell A/B's near-identical
+   aggregate ratio hide a real, different spatial heating profile, or is
+   the ring-vs-disk distinction energetically negligible? Falsifiable
+   bands committed in Phase 5 above.
+
+**No checkpoint criterion fires.** No configuration passes all constraint
+metrics; no constraint subset is proven jointly unsatisfiable; this
+iteration required no engine physics beyond the validated bench classes;
+Red Team's audit was MINOR ISSUES, corrected same-shift, not
+program-integrity drift; the iteration clearly advanced the logbook (T9
+closed, a new live thread opened, a real scoring error caught and
+corrected by cross-seat review exactly as the panel is designed to do).
+
+**Next lead per rotation: THERMODYNAMICS** (VISION→PHOTONICS→MATERIALS→
+ELECTROMAGNETISM→**THERMODYNAMICS**→QUANTUM OPTICS→repeat). THERMO's own
+Phase-5 proposal (the radial-binned absorbed-power ledger) is a natural,
+though not required, candidate for its own Phase-1 proposal — a fresh
+Phase-1 sub-agent proposes independently per protocol.
+
+Panel stats (Phase 5): 7 seats, blind · unusually strong 5-of-7 consensus
+on the box-ledger cross-check (T10's own direct resolution path) · Red
+Team's audit found 3 real defects (all bookkeeping/precision, zero
+physics) plus independently corroborated QUANTUM's own catch of a fourth
+(the commitment-clause scoring error) — four corrections, same-shift, none
+changing a physics conclusion · one LIVE THREAD closed (T9, with a
+floor-gating caveat carried forward) and one opened (T10) in the same
+cycle.
