@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-12, cloud shift 10)
+## Current state (2026-08-13, panel Iteration 5)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -367,34 +367,69 @@ continuous mode with checkpoints. The remaining [open] items below are
   1's data when Block 2's much larger shift — up to −1.54pp — does trigger
   it) — all four corrected same-shift in NOTES.md/LOGBOOK.md. Verdict:
   PROMISING. Full record: LOGBOOK.md Iteration 4.
-- **[queued — panel Iteration 5, lead per rotation THERMODYNAMICS]**
-  unusually strong 5-of-7 Phase-5 consensus on one next action: **the
-  box-ledger-vs-envelope-ratio cross-check at Block 2's own rescaled-cpl
-  geometry** (T10's direct resolution path) — reuse `sections.widths()`
-  (validated clean, box_dev≤0.0019, in exp-027's own Block 3) at the
-  already-pinned `experiments/027-settling-spread-pec-ablation/
-  design_geometry.py::BLOCK2_GEOM`, ~6 sim calls, zero new design work.
-  Discriminates "BEAM_BEHIND-specific near-field artifact" from "general
-  grid-resolution defect" (the latter would also implicate exp-001's own
-  original beam-behind ≤2% headline). Second-ranked (4 of 7 seats): a
-  genuine settling check at Block 2's own finer cpl (`BEAM_STEPS` doubled
-  at cpl=22/30/38, not just native cpl) — PHOTONICS proposed a more
-  surgical variant (hold settled periods constant rather than step count).
-  Also queued: (c) VISION's r=156 scale-bridge check — now argued MORE
-  urgent post-T10 (two independent near-field fragility axes, scale and
-  resolution, both unexamined for the ambient bench's near-threshold C
-  values), with a cheap box-ledger diagnostic proposed as a first pass;
-  (d) a formal decision-floor/noise characterization for the beam-scene
-  box-ledger channel (Red Team's own Phase-5 recommendation, load-bearing
-  for (a) and (b) above); (e) QUANTUM's bridge-gate package, now proposed
-  as a mandatory rider on Iteration 5's lead seat rather than a fifth
-  competing item — three consecutive iterations have each had a
-  legitimate, cycle-specific reason to defer it, which QUANTUM's own seat
-  argues is itself now the finding; (f) THERMO's radial-binned
-  absorbed-power ledger (new, THERMO-only pick) — does exp-027's Cell A/B
-  near-identical aggregate ratio hide a real, different spatial heating
-  profile, or is it energetically negligible; falsifiable bands committed
-  in LOGBOOK Iteration 4 Phase 5.
+- [done 2026-08-13, panel Iteration 5, cloud panel shift] **exp-028 the
+  radial ledger and the channel cross-check** — resolved both of
+  Iteration 4's queued threads, one (T10) far more substantially than
+  predicted. New machinery: `lab/sections.py::radial_absorbed_power`
+  (radial-binned absorbed-power ledger), gated by new suite stage 10
+  (PEC-core hard zero + empirical closure, calibrated 1.5% after a
+  first-run measurement of 1.11%, confirmed settling-independent). Full
+  bench 45/45 green throughout. **Load-bearing Red Team catch, before any
+  run**: exp-027's own published Block 2 (the T10 finding) never rescaled
+  `SIGMA_ON` per λ, silently drifting the ON article's optical depth from
+  3.9 to 5.70/5.85/5.95 across the sweep — an explicit erratum added to
+  T10's LOGBOOK entry, independent of exp-028's own outcome. Result: **T10
+  substantially reframed** — the correctly-τ-held rerun shows box-ledger
+  σ_ext spread flat (6.49%) and the corrected beam-behind spread only
+  46.41%→49.46% (+3.05pp), not the published 46.41%→127.57% (+81.16pp) —
+  **96% of T10's reported "enlargement" evaporates**; a small residual
+  survives, open. **T9 sharpened from coincidence to mechanism**: Cell B's
+  (non-PEC) core absorbs only 0.0062% of total power (resolution-stable)
+  — the graded shell's own σ(r) profile extinguishes nearly everything
+  before the field reaches the core, in either construction. Phase 5 (six
+  fresh seats + Red Team audit): three of six seats independently caught
+  the same display-rounding defect (core_frac shown as "0.01%", true
+  0.0062%) and Red Team caught a second instance of the same bug class
+  (a resolution-match figure) — both corrected same-shift; **new LIVE
+  THREAD T11 opened** (box-ledger channel's own decision-floor
+  characterization, promoted from a twice-recurring unassigned backlog
+  item); VISION's Phase-5 dissent (arguing r=156 should move to Iteration
+  6, not 7) preserved on the record, not overridden silently; Checkpoint
+  criterion 4 pre-registered as a tripwire on Iteration 7's r=156 build
+  actually happening. Verdict: PROMISING. Full record: LOGBOOK.md
+  Iteration 5.
+- **[queued — panel Iteration 6, lead per rotation QUANTUM OPTICS,
+  mandatory build committed this shift]** the coherent-superposition
+  bridge-gate package (deferred three times prior; this is the mandatory
+  fourth-cycle build, not a fifth deferral) — QUANTUM's own Iteration-5
+  Phase-5 scoping notes (not binding, but strong self-authored precedent):
+  run the bridge gate on a graded-shell-shaped endpoint article, not a
+  uniform sponge disk; fold in `radial_absorbed_power`'s closure identity
+  as a second acceptance gate alongside the aggregate box-ledger check;
+  hold every per-λ material constant to a printed-assertion discipline
+  (the SIGMA_ON lesson). Also queued, ranked by Iteration 5's Phase-5
+  consensus: (a) the box-ledger channel's own decision-floor/noise
+  characterization — **T11, now the single most-repeated unclosed backlog
+  item in this program's history** (3-of-6 Iteration-5 seats, plus two
+  prior Red Team recommendations); (b) a cheap sub-cell/window offset
+  sweep closing T10's small residual (+3.05pp) — 3-of-6 seats, lowest
+  cost on the table; (c) extending `radial_absorbed_power` to the full 3-λ
+  sweep, ± angular (r,θ) decomposition (PHOTONICS); (d) docket #7's
+  analytic thermal sidecar, now seedable with real spatial data
+  (THERMODYNAMICS); (e) a shell-thickness/optical-depth economy sweep
+  testing where "the core doesn't matter" stops holding (MATERIALS).
+- **[queued — panel Iteration 7, lead per rotation VISION SCIENCE,
+  mandatory build committed Iteration 5, pre-registered Checkpoint-4
+  tripwire if it slips]** VISION's r=156 scale-bridge check (T8) — five
+  consecutive cycles of attempted deferral, each caught only by
+  adversarial review; this is the hard commitment, not a sixth soft one.
+  VISION's own Iteration-5 Phase-5 pre-staging suggestion: pin the
+  r=78/156/312 geometry family, the committed C(z/z_R) extrapolation
+  functional form, and which existing articles it runs against, now
+  rather than at Iteration 7 itself, to shrink the real cost of the build
+  when it comes due. VISION's own dissent (this should have been
+  Iteration 6) is on the record in LOGBOOK.md Iteration 5 Phase 5 —
+  unresolved, not silently dropped.
 - **[queued]** docket #7: sourced witness-scenario parameter table +
   glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring on
   the now-unqualified measured C≈−0.684 (exp-024 removed exp-020's 750nm

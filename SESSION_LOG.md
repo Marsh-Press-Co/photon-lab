@@ -2,6 +2,102 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-13 (panel shift) — Iteration 5 complete (exp-028): T10
+substantially reframed (96% of the reported 46%→128% "enlargement" was an
+uncontrolled optical-depth confound, not resolution), T9 sharpened from
+coincidence to mechanism, new live thread T11 opened, VISION's Phase-5
+dissent preserved on the record
+
+**Pre-flight:** local `main` synced to Iteration 4's close (`e8474b0`).
+Deps reinstalled (pyMKL wheel fails here, `ceviche --no-deps` per the
+recorded wrinkle). Bench trust suite 41/41 green (`--only 12346789`)
+before this shift's work.
+
+**Iteration 5 — The Radial Ledger and the Channel Cross-Check (exp-028,
+CONCLUDED).** Lead: THERMODYNAMICS (rotation). Full seven-seat cycle:
+Phase 1 proposal (THERMO: box-ledger cross-check at exp-027's own Block 2
+rescaled-cpl geometry — the 5-of-7 Iteration-4 consensus item — plus a new
+radial-binned absorbed-power ledger for T9's spatial follow-up) → 5 blind
+parallel critiques (PHOTONICS, MATERIALS, ELECTROMAGNETISM, QUANTUM
+OPTICS, VISION SCIENCE, all support-with-changes) → Red Team last with
+everything (proceed-with-mandatory-fixes, 7 numbered attacks) → Phase 3
+synthesis (Director: all seven fixes accepted, zero overridden) →
+predictions committed (`e9c1d90`) → Phase 4 run.
+
+**Red Team's load-bearing catch, before any run:** MATERIALS' Phase-2
+critique found that exp-027's own Block A/Block 2 reuse would inherit a
+real code bug — `SIGMA_ON` is a single module constant fixed at the
+native `R_OUT=78`, never rescaled to Block 2's own per-λ-rescaled
+`r_out` (114/117/119 cells). Red Team escalated this from "fix the new
+proposal" to "the published record needs a correction": **exp-027's own
+published Block 2 (the T10 finding) silently drifted the ON article's
+optical depth from τ=3.9 to 5.70/5.85/5.95 across the λ sweep.** An
+explicit erratum was added to T10's LOGBOOK.md entry this shift,
+independent of exp-028's own outcome — T10's resolution question was
+reopened, not answered, pending a correctly-τ-held rerun. This experiment
+(Block A) is exactly that rerun, with a code `assert` holding
+τ_center=3.9 exactly at all 3λ.
+
+**Result: T10 substantially reframed, T9 sharpened into a mechanism.** 12
+new FDTD sim calls, ~8 min. New machinery (`lab/sections.py::
+radial_absorbed_power`) gated by new suite stage 10 (PEC-core hard zero +
+empirical closure, calibrated 1.5% after a first-run measurement of
+1.11%, confirmed settling-independent across a 4× step sweep) — full
+bench 45/45 green throughout. **Block A: box-ledger σ_ext relative spread
+= 6.49% (flat), and once τ is correctly held, the corrected beam-behind
+spread is only 46.41%→49.46% (+3.05pp) — not the published
+46.41%→127.57% (+81.16pp). 96% of T10's originally reported "enlargement"
+evaporates**; a small residual (+3.05pp) survives, open, two orders of
+magnitude smaller than what was recorded. **Block B: Cell B's (non-PEC)
+core absorbs only 0.0062% of total power** (resolution-stable at cpl×1.5,
+0.00027%) — T9's PEC-incidental finding is sharpened from an aggregate
+coincidence into a mechanistic one: the graded shell's own conductivity
+profile extinguishes nearly all incident power before it reaches the
+core, in either construction. `e9c1d90` (predictions) → `78d0292`
+(results).
+
+**Phase 5 — six fresh seats blind + Red Team audit (verdict: MINOR
+ISSUES).** Three of six seats (EM, THERMODYNAMICS, QUANTUM) independently
+caught the SAME record defect — Cell B's core fraction was displayed as
+"0.01%" when the true value is 0.0062% (a display-rounding artifact: a
+pre-rounded fraction re-labeled as a percent instead of the full-precision
+fraction converted first) — a first for this program (prior Red Team
+audits caught defects no other seat had independently found). Red Team
+caught a second instance of the same bug class (a resolution-match figure
+reported as "55.47" instead of the true 55.5 exactly). Both corrected
+same-shift in NOTES.md, LOGBOOK.md, and `run.py`'s print format. **New
+LIVE THREAD T11 opened**: the box-ledger channel's own decision-floor
+characterization, promoted from a twice-recurring unassigned Red Team
+queue item (Iteration 4 and Iteration 5's own mandatory-fix docket) to a
+formally tracked thread — now the single most-repeated unclosed backlog
+item in this program's live-thread history. **VISION's Phase-5 dissent
+preserved on the record, not overridden silently**: her seat argued the
+Iteration-7 commitment for r=156 (made in Phase 3, this shift) schedules
+three consecutive beam-scene-only iterations (4, 5, 6) before it executes,
+and should have been Iteration 6 instead. Red Team's own audit
+independently verified VISION's cycle-count and pre-registered a
+Checkpoint-4 tripwire: if Iteration 7 does not execute the r=156 build as
+committed, criterion 4 (constraint quietly dropped) fires automatically,
+not as a fresh judgment call.
+
+**Director's close: VERDICT PROMISING.** No checkpoint criterion fired
+this cycle; one pre-registered as a tripwire on a future cycle. LOGBOOK
+updated: T10 marked substantially reframed (not fully closed — small
+residual open); T9 updated with the mechanistic explanation; new LIVE
+THREAD T11 opened. Queue for Iteration 6 (lead per rotation QUANTUM
+OPTICS; PLAN.md updated): QUANTUM's own mandatory coherent-superposition
+bridge-gate build (its fourth-cycle commitment, scoped per its own
+Phase-5 notes — a graded-shell-shaped endpoint article, not uniform disk;
+the radial-power closure identity as a second acceptance gate), plus T11's
+decision-floor characterization, the cheap residual-closing diagnostic,
+the 3-λ radial-ledger extension, docket #7's thermal sidecar, and a
+shell-thickness economy sweep. Iteration 7 (VISION) carries the r=156
+build as a pre-registered Checkpoint-4 tripwire. Four commits to main this
+shift (2 lab/engine + docs, predict/results pair) — actually: engine +
+docs bundled with the predictions commit, results commit, and this
+close-out. Trust suite 45/45 green throughout (new stage 10 added and
+gated this shift).
+
 ## 2026-08-13 (panel shift) — Iteration 4 complete (exp-027): T9 answered
 (PEC incidental to the extinction-paradox gap), P-MAT4 half-resolved (settling
 refuted, but the R3 spatial check made the anomaly WORSE — a new pattern,

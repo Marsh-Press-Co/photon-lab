@@ -188,10 +188,10 @@ def main():
     for cell, r in native.items():
         print(f"  cell {cell} (native, cpl=20): abs/ext={r['abs_ext_ratio']:.4f} "
               f"closure={r['closure']:.4f} core_power={r['core_power']:.4e} "
-              f"core_frac={r['core_frac']:.4f} peak_bin_r={r['peak_bin_r']:.1f} "
+              f"core_frac={r['core_frac']*100:.4f}% peak_bin_r={r['peak_bin_r']:.1f} "
               f"box_dev={r['box_dev']:.4f}", flush=True)
     print(f"  cell B (companion, cpl=30): closure={companion['closure']:.4f} "
-          f"core_frac={companion['core_frac']:.4f} peak_bin_r={companion['peak_bin_r']:.1f} "
+          f"core_frac={companion['core_frac']*100:.4f}% peak_bin_r={companion['peak_bin_r']:.1f} "
           f"box_dev={companion['box_dev']:.4f}", flush=True)
     elapsed_b = time.time() - t1
 
@@ -226,8 +226,11 @@ def main():
         json.dump(out, f, indent=1)
 
     print(f"\nBlock A sigma_ext relative spread: {sext_spread_rel:.4f}")
-    print(f"Block B native Cell B core_frac: {native['B']['core_frac']:.4f}  "
-          f"(companion cpl x1.5: {companion['core_frac']:.4f})")
+    print(f"Block B native Cell B core_frac: {native['B']['core_frac']*100:.4f}%  "
+          f"(companion cpl x1.5: {companion['core_frac']*100:.4f}%)  "
+          f"-- printed as a PERCENT directly (Red Team's Phase-5 fix), not a re-labeled "
+          f"pre-rounded fraction (exp-028's own first-run bug: 6.199e-05 displayed as "
+          f"'0.0001 (0.01%)' instead of the correct 0.0062%).")
     print("\nresults.json written")
 
 

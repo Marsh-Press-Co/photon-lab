@@ -302,9 +302,9 @@ box-ledger σ_ext relative spread: **6.49%**.
 | Cell | abs/ext | closure | core_power (r≤30) | core_frac | peak bin r |
 |---|---|---|---|---|---|
 | A (native) | 0.5118 | 0.26% | **0.0 exactly** | 0.0000 | 55.5 |
-| B (native) | 0.5118 | 0.26% | 0.019006 | **0.0001 (0.01%)** | 55.5 |
+| B (native) | 0.5118 | 0.26% | 0.019006 | **0.0062%** (raw fraction 6.199e-05) | 55.5 |
 | C (native) | 0.6075 | 0.21% | 27.633 | 0.0773 (7.73%) | 76.5 |
-| B (companion, cpl×1.5) | — | 0.20% | — | **0.0000 (0.00%)** | 83.2 (=55.5 in native cells) |
+| B (companion, cpl×1.5) | — | 0.20% | — | **0.00027%** (raw fraction 2.733e-06) | 83.25 (=55.5 in native cells, exact) |
 
 ### Predictions scored
 
@@ -352,7 +352,12 @@ box-ledger σ_ext relative spread: **6.49%**.
 
 - **P-THERMO-B2 (central, Cell B's native core fraction) — REFUTED, a
   genuine surprise, reported honestly rather than smoothed into the
-  nearest bucket.** Measured core_frac = **0.01%** — an order of magnitude
+  nearest bucket.** Measured core_frac = **0.0062%** (corrected, Red Team's
+  Phase-5 audit — the original "0.01%" was a display-rounding artifact:
+  `run.py` printed the raw fraction at 4 decimal places, `0.0001`, which
+  was then re-labeled a percent by a bare ×100 instead of converting the
+  full-precision fraction; true value is 61% smaller than displayed,
+  though the conclusion is unaffected — see below) — an order of magnitude
   BELOW the committed band's own lower edge [1%,40%], and below even the
   "≤5% → topologically real but energetically negligible" sub-reading.
   **New mechanistic finding, sharper than the band anticipated:** the
@@ -371,11 +376,15 @@ box-ledger σ_ext relative spread: **6.49%**.
   already extinguishes nearly everything.
 
 - **P-THERMO-B2-R3 (resolution companion) — CONFIRMED resolution-stable.**
-  |companion (0.00%) − native (0.01%)| = 0.01 percentage points, well
+  |companion (0.00027%) − native (0.0062%)| = 0.006 percentage points, well
   inside the ≤5pp band. The near-zero core-fraction reading is real, not a
   grid artifact — independently corroborated by the companion's own
-  peak-bin location (r=83.2 at cpl×1.5, which rescales to r=55.47 in
-  native cells — matching the native peak_bin_r=55.5 almost exactly).
+  peak-bin location (r=83.25 at cpl×1.5, which rescales to r=55.5 in
+  native cells EXACTLY — corrected, Red Team's Phase-5 audit: the
+  original "55.47" figure divided the already-rounded display value
+  (83.2) instead of the stored full-precision one (83.25); 83.25/1.5 =
+  55.5 to machine precision, a stronger corroboration than originally
+  reported, not a weaker one).
 
 - **P-THERMO-B3 (informational, corrected direction) — partially
   confirmed, band undershot.** Cell A's radial Joule-dissipation peak sits
@@ -403,7 +412,7 @@ box-ledger channel itself stays flat (6.49% spread) throughout, supporting
 small residual, not a general resolution defect implicating exp-001's
 extinction headline. (2) T9's PEC-incidental finding (exp-027) is
 sharpened from an aggregate coincidence into a mechanistic one: Cell B's
-own (non-PEC) core absorbs essentially nothing (0.01% of total, resolution
+own (non-PEC) core absorbs essentially nothing (0.0062% of total, resolution
 -stable), because the shell in front of it already extinguishes nearly all
 the field before it arrives — Cell A and Cell B's near-identical ratios
 reflect the SAME underlying mechanism (a negligible-contribution core), not
