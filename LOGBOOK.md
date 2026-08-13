@@ -964,8 +964,38 @@ the per-λ empty reference exp-001/002's own idiom requires — corrected to
 
 ### Phase 4 — Test (exp-026, 2026-08-13)
 
-*(Recorded after the run completes — see NOTES.md for the full scored
-table; summarized here for the logbook.)*
+87 new FDTD runs, 435 s, suite 41/41 before and after (no `lab/` changes).
+Full scoring: `experiments/026-sigma-i-endpoints/NOTES.md`. **All eight
+predictions land within their Phase-3-revised bands** — the two mandatory
+rebandings Red Team's decisive P-MAT8 catch forced (σ_abs/σ_ext
+[0.90,1]→[0.35,0.65]; observer-return widened+provisional) both held up
+against real data (measured σ_abs/σ_ext = 0.606–0.608, comfortably inside
+the revised band, nowhere near the refuted ≥0.90 claim). C values: OFF-lab
+−0.0046/−0.0055/−0.0051, OFF-field −0.0209/−0.0218/−0.0213, ON
+−0.7822/−0.7854/−0.7851 @ 450/600/750nm — **no PASS/FAIL or constraint-3
+language attaches to any of these**, per the accepted VISION/Red-Team
+ruling (pending the still-queued r=156 scale-bridge check). g=|C|/τ ranges
+0.576–0.691, essentially confirming exp-024's single-point calibration
+(g≈0.62–0.63) across an order of magnitude in τ_center — one honest
+partial miss (OFF-lab/450nm, the weakest-SNR point, g=0.576 just below
+its band). Two genuine new findings, both flagged honestly: (1) P-MAT4's
+beam-behind is NOT wavelength-flat as predicted (2.34%/2.97%/1.86% @
+450/600/750nm, 46% relative spread, non-monotonic — 750nm has the finest
+grid resolution yet the lowest value, ruling out simple staircase-quality
+as the explanation); (2) P-MAT8's σ_abs/σ_ext sits consistently ~0.10
+ABOVE the established `graded_black_shell` anchor (0.51), opposite the
+direction Red Team/EM's mandatory-fix reasoning predicted (extra front-
+edge reflection from the abrupt σ-step was expected to push it below,
+not above) — though still safely inside the widened band that reasoning
+produced. Candidate explanation proposed, not yet tested: the 0.51 anchor
+was measured on a PEC-cored graded shell, not a solid uniform disk like
+this ON article — an internal hard reflector may redirect extra energy
+into wide-angle scattering the box counts as σ_scat, lowering the PEC-
+cored ratio relative to a solid absorber at the same outer radius and
+optical depth. P-MAT3's chromatic-spread partition landed in the
+pre-committed "ambiguous" bucket (0.0029, between the τ=0.10 null's 0.0003
+and T7's established hard-edge spreads of 0.0114–0.0166) — genuinely
+inconclusive, not forced into either reading.
 
 ### Phase 5 — Review
 

@@ -210,4 +210,152 @@ change that ruling (per the T1 escape-route statement above).
 
 ## Results
 
-*(To be appended after the run — everything above was committed first.)*
+87 new FDTD runs (108 ambient sim calls in 27 groups + 6 beam-scene), 435 s
+total (329 s ambient + 106 s beam-scene), suite 41/41 before and after (no
+`lab/` changes). Full data: `results.json`.
+
+**Ambient decision floors (new empty runs, regenerated bit-reproducibly at
+this geometry, informational — exp-024/025's committed values remain the
+scored ones):** 0.000889/0.000033/0.000432 @ 450/600/750 nm — essentially
+identical to exp-024/025's own numbers (0.00089/0.000033–0.000071/
+0.00043–0.00045), confirming the geometry reproduces bit-for-bit as
+designed.
+
+**Ambient Weber contrast C (fallback, N=9):**
+
+| Article | 450 nm | 600 nm | 750 nm |
+|---|---|---|---|
+| OFF-lab | −0.0046 | −0.0055 | −0.0051 |
+| OFF-field | −0.0209 | −0.0218 | −0.0213 |
+| ON | −0.7822 | −0.7854 | −0.7851 |
+
+**Beam-scene (ON article):**
+
+| λ | beam-behind | observer-return | σ_abs/σ_ext | box_dev | empty-closure |
+|---|---|---|---|---|---|
+| 450 nm | 2.34% | 0.000194 | 0.6056 | 0.0027 | 3.25e-4 |
+| 600 nm | 2.97% | 0.000151 | 0.6075 | 0.0004 | 1.57e-4 |
+| 750 nm | 1.86% | 0.000215 | 0.6083 | 0.0023 | 1.17e-3 |
+
+### Predictions scored
+
+- **P-MAT1 — CONFIRMED.** OFF-lab C ∈ [−0.0055, −0.0046], band
+  [−0.0075, −0.0035]: inside at every λ. Chromatic spread |C(750)−C(450)|
+  = 0.0005 ≤ 0.001. Per the accepted VISION/Red-Team ruling, **no PASS/FAIL
+  or constraint-3 language attaches** — this measures the instrument's
+  precision straddling the lab bar (0.005), nothing more, pending the
+  queued r=156 scale-bridge check.
+- **P-MAT2 — CONFIRMED.** OFF-field C ∈ [−0.0218, −0.0209], band
+  [−0.026, −0.018]. Chromatic spread 0.0004 ≤ 0.002. Same non-verdictive
+  framing.
+- **P-MAT3 — band CONFIRMED; chromatic-spread partition outcome (b),
+  ambiguous.** ON C ∈ [−0.7854, −0.7822], band [−0.85, −0.72]: comfortably
+  inside, close to the −0.786 central prediction. Chromatic spread
+  |C(750)−C(450)| = 0.0029 — **lands in partition (b) [0.001, 0.008):
+  ambiguous/partial, no strong claim per the pre-committed disposition.**
+  Notably: this is 4–6× smaller than T7's established hard-edge spreads
+  (absorber Δ=0.0114, PEC Δ=0.0166) but ~10× larger than the τ=0.10 null
+  (Δ=0.0003) — sitting between both established anchors rather than
+  matching either. Honest reading: a bare, deep (τ=3.9) conductivity step
+  shows *some* chromatic drift, smaller than either hard-edge article, so
+  neither the "opacity alone reproduces it" nor the "opacity alone doesn't"
+  reading is earned — genuinely inconclusive, flagged for Phase 5 rather
+  than forced into either bucket.
+- **P-MAT4 — band CONFIRMED; wavelength-flatness sub-claim REFUTED.**
+  Beam-behind ∈ [1.86%, 2.97%], comfortably inside [1.5%, 6%]. But the
+  predicted ≤1% relative spread across λ is badly missed: (max−min)/mean
+  = (2.97−1.86)/2.39 ≈ 46%, non-monotonic in λ (450 > 750, but 600 is the
+  peak, not either edge). This is a genuine, unpredicted result, not a
+  measurement artifact by the checks available here (box_dev stays low,
+  0.0004–0.0027, at every λ) — flagged honestly rather than folded into
+  "wavelength-flat as expected." Candidate explanations for Phase 5: cpl
+  varies 15/20/25 across this sweep (staircase resolution differs per λ,
+  though 750nm has the FINEST resolution yet the LOWEST beam-behind,
+  ruling out a simple resolution-quality story); or a genuine λ-dependent
+  interaction with the abrupt σ-step boundary, in the same unexplained
+  family as T7's chromatic silhouette finding and the still-open PEC N17
+  excess.
+- **P-MAT5 — informational reading consistent with the provisional band.**
+  Observer-return ∈ [0.000151, 0.000215], inside the revised
+  [7×10⁻⁵, 0.02] band and close to the ≈3×10⁻⁴ central estimate — modest,
+  a few× the established camera floor (7×10⁻⁵–1.4×10⁻⁴), consistent with
+  a weakly-reflective (not glinting) coreless disk. Per the accepted
+  ruling this is NOT scored as a tight constraint-2 verdict.
+- **P-MAT6 — band CONFIRMED at 5 of 6 points; one honest miss.**
+  g = |C|/τ_center ∈ [0.5759, 0.6913] across both articles and all λ; the
+  predicted band [0.62, 0.69] holds at 5/6 points. **OFF-lab/450nm misses
+  low (g=0.5759 vs band floor 0.62)** — the weakest-signal point in the
+  whole dataset (|C|=0.0046 against the 450nm decision floor 0.00089,
+  SNR≈5.2, the thinnest margin of any scored point here), plausibly floor-
+  proximity bias rather than a real transfer-constant deviation, but not
+  asserted as settled — flagged, not hidden, per house discipline.
+- **P-MAT7 — CONFIRMED.** N5 vs N9 (OFF-lab@600nm): N5=−0.0050, N9=−0.0055,
+  |Δ|=0.00050 — exactly at the predicted central value, comfortably inside
+  the 0.001 gate. Zero new runs, as designed.
+- **P-MAT8 — band CONFIRMED; direction of the correction was WRONG, band
+  was still right.** σ_abs/σ_ext ∈ [0.6056, 0.6083] across all 3λ — inside
+  the revised [0.35, 0.65] band (comfortably clear of the original,
+  refuted [0.90,1] claim) but consistently *above*, not at-or-below, the
+  established 0.51 `graded_black_shell` anchor EM/Red Team reasoned toward
+  — the anticipated extra front-edge reflection from the abrupt σ-step did
+  not push the ratio down. **Honest, unresolved candidate explanation for
+  Phase 5:** the established 0.51 anchor was measured on a graded shell
+  wrapped around a PEC core (exp-001's absorber scene), not a solid
+  uniform disk — this ON article has no internal PEC/hard discontinuity at
+  all. A hard internal reflector redirecting energy into wide-angle
+  scattering the box counts as σ_scat (lowering σ_abs/σ_ext) is a
+  plausible mechanism for why the PEC-cored article sits lower than the
+  solid one, but this is NOT established here, only proposed as a testable
+  next step. The revised, correctly-anchored band still did its job:
+  Director's synthesis correctly rejected the original ≥0.90 claim and
+  correctly bracketed the real regime, even though the specific reasoning
+  about which side of 0.51 the true value would land on was itself wrong.
+- **Precondition gate (Thermo's mandatory fix) — PASSED cleanly.**
+  Empty-scene box-closure identity (relative to the ON article's own
+  σ_ext, same run): 3.25×10⁻⁴ / 1.57×10⁻⁴ / 1.17×10⁻³ @ 450/600/750nm, all
+  ≤ 0.02 by 1–2 orders of magnitude. P-MAT8 and P-MAT5 are interpretable.
+
+### Headline (for LOGBOOK)
+
+**All eight predictions land within their (Phase-3-revised) bands — the
+Director's synthesis, especially the two mandatory rebandings (P-MAT8,
+P-MAT5) Red Team's decisive P-MAT8 catch forced, held up against real
+FDTD data.** Two genuine open findings ride along, neither hidden: (1)
+P-MAT4's beam-behind is NOT wavelength-flat as predicted (46% relative
+spread, non-monotonic in λ) — a new, unexplained chromatic effect in the
+beam-transmission channel, distinct from but possibly related to T7's
+ambient-silhouette chromatic finding; (2) P-MAT8's σ_abs/σ_ext sits
+consistently ~0.10 ABOVE the established 0.51 anchor, opposite the
+direction Red Team/EM's mandatory-fix reasoning predicted, though still
+inside the widened band that reasoning produced — a real materials
+distinction (PEC-cored vs. solid-disk absorber) proposed as the candidate
+explanation, not yet tested. One honest partial miss: P-MAT6's weakest-
+signal point (OFF-lab/450nm) falls just outside its band, plausibly floor-
+proximity, not asserted as resolved. The σ(I) design window's static
+endpoints are now real, gate-clean FDTD numbers rather than chord-model
+estimates — g=|C|/τ ≈ 0.58–0.69 across the OFF-lab/OFF-field range,
+essentially confirming exp-024's own one-point calibration (g≈0.62–0.63)
+now across an order of magnitude in τ. **No PASS/FAIL or constraint-3
+verdict is claimed for the near-threshold OFF-lab/OFF-field readings** —
+per the accepted VISION/Red-Team ruling, that requires the still-queued
+r=156 scale-bridge check.
+
+## Next (pre-registered, for Phase 5)
+
+(1) P-MAT4's unexplained beam-behind chromatic spread — candidate for a
+resolution check (R3 meta-rule: any surprising feature gets one before a
+mechanism debate) and/or a direct comparison against the τ=0.10 sponge's
+own beam-behind at the same 3λ (not measured yet — only its ambient
+channel has ever been run). (2) P-MAT8's PEC-cored-vs-solid-disk
+hypothesis for the sign of the 0.51 anchor deviation — testable cheaply:
+rerun the established `graded_black_shell` article (or the bare-PEC-core
+absorber) with the SAME box-ledger machinery at this exact beam-scene
+domain, isolating whether the internal PEC core is what shifts the ratio.
+(3) VISION's r=156 scale-bridge check (OFF-lab, ideally OFF-field too) —
+still queued, the necessary precondition before any PASS/FAIL or
+constraint-3 language may attach to near-threshold C readings. (4) P-MAT3's
+ambiguous chromatic-partition outcome — a genuinely new middle-ground
+result, worth a dedicated resolution check before either "opacity alone"
+reading is asserted. (5) P-MAT6's one floor-proximity miss (OFF-lab/450nm)
+— informational, not urgent, since the article was never intended to
+carry perceptual weight at that specific point.
