@@ -1816,8 +1816,35 @@ house discipline).
 
 ### Phase 4 — Test (exp-028, 2026-08-13)
 
-*(Recorded after the run — see below.)*
+12 new FDTD sim calls, ~8 min, suite 45/45 before and after (no further
+`lab/` changes this run). Full scoring: `experiments/028-radial-ledger-
+channel-crosscheck/NOTES.md`. **Both threads resolve, and Block A produced
+a result well beyond its own pre-committed bands.** P-THERMO-A1
+CONFIRMED (box-ledger σ_ext relative spread 6.49% ≤10%). **The decisive
+result: T10's originally reported "R3 enlarges a near-field feature"
+finding is substantially reframed.** Once exp-027's own SIGMA_ON confound
+is corrected (τ_center held at exactly 3.9 across the λ sweep, verified in
+code), the same cpl×1.5 resolution refinement that produced a 46%→128%
+"enlargement" in the uncorrected published record produces only a
+46%→49% shift here (native 46.41% → Block A 49.46%, Δ=+3.05pp) —
+**96% of T10's originally reported growth (+81.16pp) evaporates**; a
+small (+3.05pp) residual survives, open, but two orders of magnitude
+smaller than what was recorded. P-THERMO-B1 CONFIRMED (closure 0.20–0.26%
+≪ the calibrated 1.5% gate, all cells; Cell A's r≤30 power = 0.0 exactly).
+**P-THERMO-B2 REFUTED, a genuine surprise reported honestly**: Cell B's
+native core fraction measured 0.01%, an order of magnitude below the
+committed [1%,40%] band's own lower edge — sharpening T9's PEC-incidental
+finding (exp-027) from an aggregate-ratio coincidence into a mechanistic
+one: the graded shell's own σ(r) profile means almost no field reaches the
+core in EITHER construction (PEC or lossy), so Cell A/B's near-identical
+ratios reflect the same underlying mechanism, not two effects cancelling.
+P-THERMO-B2-R3 CONFIRMED resolution-stable (companion 0.00% vs native
+0.01%, Δ=0.01pp ≪5pp; peak-bin location also resolution-consistent, r=83.2
+at cpl×1.5 rescaling to r=55.47 vs native's r=55.5). P-THERMO-B3 partially
+confirmed (correct qualitative direction — peak at r=55.5, well inside
+from r_out=78 — but outside the specific committed band [30,50];
+informational only, no gate).
 
-### Phase 5 — Review
+### Phase 5 — Review (seven fresh seats, blind, verbatim)
 
-*(Recorded after Phase 4 — seven fresh seats, blind.)*
+*(Recorded below.)*

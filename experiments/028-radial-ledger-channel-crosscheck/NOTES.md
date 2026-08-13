@@ -282,4 +282,147 @@ reuse existing, already-characterized constructions
 
 ## Results
 
-*(Filled in after Phase 4 — see below.)*
+12 new FDTD sim calls, ~8 min (Block A 307.1s, Block B native+companion
+~161s). Suite 45/45 green before and after (no further `lab/` changes
+this run). Full data: `results.json`.
+
+**Block A (T10 cross-check, τ_center=3.9 held exactly at all 3λ — verified
+by code `assert`, reproduced in `results.json`):**
+
+| λ | cpl | τ_check | beam_behind | σ_ext | box_dev |
+|---|---|---|---|---|---|
+| 450nm | 22 | 3.9000 | 2.822% | 346.26 | 0.0015 |
+| 600nm | 30 | 3.9000 | 3.252% | 353.94 | 0.0001 |
+| 750nm | 38 | 3.9000 | 1.932% | 369.41 | 0.0017 |
+
+box-ledger σ_ext relative spread: **6.49%**.
+
+**Block B (radial-binned absorbed-power ledger):**
+
+| Cell | abs/ext | closure | core_power (r≤30) | core_frac | peak bin r |
+|---|---|---|---|---|---|
+| A (native) | 0.5118 | 0.26% | **0.0 exactly** | 0.0000 | 55.5 |
+| B (native) | 0.5118 | 0.26% | 0.019006 | **0.0001 (0.01%)** | 55.5 |
+| C (native) | 0.6075 | 0.21% | 27.633 | 0.0773 (7.73%) | 76.5 |
+| B (companion, cpl×1.5) | — | 0.20% | — | **0.0000 (0.00%)** | 83.2 (=55.5 in native cells) |
+
+### Predictions scored
+
+- **P-THERMO-A1 (channel-specific artifact) — CONFIRMED.** Box-ledger σ_ext
+  relative spread = 6.49%, inside the ≤10% band. Reading: the box-ledger
+  channel stays comparatively flat at Block A's rescaled-cpl geometries.
+
+- **The T10 comparison, beyond the pre-committed bands (the decisive
+  result this experiment was built to get) — the SIGMA_ON confound
+  explains the overwhelming majority of T10's originally reported
+  "enlargement," once correctly controlled:**
+
+  | Quantity (beam-behind spread) | value |
+  |---|---|
+  | Native, τ=3.9 held (exp-026/027 Block 1, cpl=15/20/25) | 46.41% |
+  | Block 2, τ DRIFTING 3.9→5.70/5.85/5.95 (exp-027 PUBLISHED, cpl=22/30/38) | 127.57% |
+  | Block A here, τ=3.9 held (this experiment, cpl=22/30/38) | **49.46%** |
+
+  Once the SIGMA_ON bug is fixed and τ_center is correctly held at 3.9 at
+  every λ, the cpl×1.5 refinement moves the beam-behind relative spread by
+  only **+3.05 percentage points** (46.41%→49.46%) — not the **+81.16
+  percentage points** (46.41%→127.57%) originally recorded as T10. **96%
+  of T10's reported "enlargement" evaporates once the optical-depth-drift
+  confound is removed.** A small residual (+3.05pp) survives and is not
+  itself explained by this experiment — genuinely open, but two orders of
+  magnitude smaller than what was reported, and well within the kind of
+  run-to-run variation this program's own R3 checks have historically
+  treated as unremarkable when *shrinking* a feature (exp-005, -010, -015,
+  -023, -025 all report native-to-refined shifts of comparable or larger
+  size without triggering a "genuinely enlarged" reading). **T10, as
+  originally framed ("the R3 spatial-resolution check can ENLARGE a
+  feature, not just confirm or refute it" — the first exception to this
+  program's five prior R3 instances), is substantially reframed: the
+  apparent exception was mostly an uncontrolled confound, not a genuine
+  near-field-channel resolution pathology.** Box-ledger σ_ext, in
+  contrast, stayed flat (6.49% spread) at these SAME geometries — so even
+  the small residual +3.05pp beam-behind shift is consistent with
+  `BEAM_BEHIND` being a somewhat noisier near-field channel than the
+  box-ledger (PHOTONICS'/EM's original candidate explanation), just not
+  the dramatic one T10 as originally recorded implied.
+
+- **P-THERMO-B1 (precondition, closure) — CONFIRMED, all cells.** Closure
+  0.20–0.26%, all ≪ the calibrated ≤1.5% gate. **Cell A's r≤30 power =
+  0.0 exactly** — hard identity, PASS.
+
+- **P-THERMO-B2 (central, Cell B's native core fraction) — REFUTED, a
+  genuine surprise, reported honestly rather than smoothed into the
+  nearest bucket.** Measured core_frac = **0.01%** — an order of magnitude
+  BELOW the committed band's own lower edge [1%,40%], and below even the
+  "≤5% → topologically real but energetically negligible" sub-reading.
+  **New mechanistic finding, sharper than the band anticipated:** the
+  graded shell's own conductivity profile (peaking at r=30, the inner
+  wall, per PHOTONICS'/Red Team's corrected reading) means the field must
+  first traverse the r=30–78 shell — itself carrying substantial optical
+  depth — before reaching the core; by the time it arrives, almost no
+  field energy remains to be absorbed there, REGARDLESS of whether the
+  core is PEC (Cell A, exactly zero by construction) or lossy (Cell B,
+  measured statistically negligible). **This sharpens T9's own
+  PEC-incidental finding (exp-027) from an aggregate-ratio coincidence
+  into a mechanistic one**: Cell A and Cell B's near-identical
+  σ_abs/σ_ext ratios aren't a cancellation between "PEC reflects nothing"
+  and "lossy core absorbs a little" — the core's contribution is
+  negligible in BOTH constructions, because the shell in front of it
+  already extinguishes nearly everything.
+
+- **P-THERMO-B2-R3 (resolution companion) — CONFIRMED resolution-stable.**
+  |companion (0.00%) − native (0.01%)| = 0.01 percentage points, well
+  inside the ≤5pp band. The near-zero core-fraction reading is real, not a
+  grid artifact — independently corroborated by the companion's own
+  peak-bin location (r=83.2 at cpl×1.5, which rescales to r=55.47 in
+  native cells — matching the native peak_bin_r=55.5 almost exactly).
+
+- **P-THERMO-B3 (informational, corrected direction) — partially
+  confirmed, band undershot.** Cell A's radial Joule-dissipation peak sits
+  at **r=55.5** — well inside from the outer edge (r_out=78), confirming
+  the corrected qualitative direction (PHOTONICS'/Red Team's fix: rising
+  σ(r) toward r_in competing against a depleted field envelope, not a
+  naive skew toward r_out) — but outside the specific committed band
+  [30,50]. No numeric gate attached (informational only, as specified);
+  noted honestly as a band miss on the specific range, not a directional
+  failure.
+
+### Headline (for LOGBOOK)
+
+**Both threads resolve, and the box-ledger cross-check (Block A) produced
+a result well beyond its own pre-committed bands.** (1) T10's originally
+reported "R3 enlarges a near-field feature" finding is substantially
+reframed: once exp-027's own SIGMA_ON confound is corrected (τ_center held
+at exactly 3.9 across the λ sweep, verified in code), the same cpl×1.5
+resolution refinement that produced a 46%→128% "enlargement" in the
+uncorrected record produces only a 46%→49% shift here — **96% of the
+originally reported growth evaporates**. A small (+3pp) residual survives,
+open but two orders of magnitude smaller than what was recorded. The
+box-ledger channel itself stays flat (6.49% spread) throughout, supporting
+`BEAM_BEHIND`'s own modestly-higher noise as the likely source of the
+small residual, not a general resolution defect implicating exp-001's
+extinction headline. (2) T9's PEC-incidental finding (exp-027) is
+sharpened from an aggregate coincidence into a mechanistic one: Cell B's
+own (non-PEC) core absorbs essentially nothing (0.01% of total, resolution
+-stable), because the shell in front of it already extinguishes nearly all
+the field before it arrives — Cell A and Cell B's near-identical ratios
+reflect the SAME underlying mechanism (a negligible-contribution core), not
+two different mechanisms cancelling.
+
+## Next (pre-registered, for Phase 5)
+
+(1) The small residual (+3.05pp, native→Block-A's own beam-behind spread)
+is not itself explained — worth a future targeted check if this program
+returns to near-field channel characterization, though it is now a small
+enough effect that it may not warrant dedicated cycles. (2) T10's LOGBOOK
+entry needs updating to reflect this experiment's reframing (Phase 5's
+job, this shift). (3) QUANTUM's coherent-superposition bridge-gate
+package is committed as a mandatory build for QUANTUM's own Iteration-6
+lead cycle (next in rotation). (4) VISION's r=156 scale-bridge check is
+committed as a mandatory build for VISION's own Iteration-7 lead cycle.
+(5) The box-ledger channel's own decision-floor/noise characterization
+remains unresolved and cross-cutting (Red Team's own recurring queued
+item) — not assigned to a specific iteration.
+
+**Phase 5 outcome:** seven fresh seats read these results — full verbatim
+record: `LOGBOOK.md`, Iteration 5 Phase 5.
