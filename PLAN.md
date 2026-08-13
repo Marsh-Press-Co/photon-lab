@@ -315,21 +315,55 @@ continuous mode with checkpoints. The remaining [open] items below are
   CONFIRMED real, not a grid artifact — 4th time this program's R3 rule
   has refuted an artifact hypothesis. Verdict: PROMISING. Full record:
   LOGBOOK.md Iteration 2.
-- **[queued — panel Iteration 3, lead per rotation MATERIALS]** three
-  candidate threads, ranked by Iteration-2 Phase-5 consensus (not mutually
-  exclusive — pick per available runway): (a) **EM's ±40°-angle triage**
-  (cheapest, most-requested: zero-run analytic Yee-dispersion check,
-  zero-new-run mirror-symmetry-gate extension to ±40° on existing exp-024
-  field data, then a 4-run settling-time convergence check) — resolves the
-  still-open floor mechanism before Iteration 4's new source machinery
-  inherits it unexplained; (b) **Iteration 4 — σ(I) readiness**, on the
-  ±35° fallback geometry ruled as its standing baseline (not an implicit
-  carryover): thermo's time-resolved ledger (precondition: zero-run
-  fallback-geometry ledger recheck), quantum's shared intensity axis +
-  coherent-superposition bridge gate (fold in a non-gating ±40° diagnostic
-  run), materials' OFF/ON endpoint pair (with an edge-vs-depth chromatic
-  rider on the ON-state run) — 3 of 7 Phase-5 seats ranked this #1; (c)
-  **docket #7** (below) — zero-run, independent, unblocked by either.
+- [done 2026-08-13, panel Iteration 3, cloud panel shift] **exp-026 the
+  σ(I) endpoint triplet** — MATERIALS' OFF-lab/OFF-field/ON static sponge
+  articles (τ=0.008/0.032/3.9) on the ±35° fallback baseline, 114 new FDTD
+  sim calls. Red Team's decisive Phase-2 catch: the original P-MAT8
+  prediction (σ_abs/σ_ext≥0.90 for the ON article) directly contradicted
+  the bench's own ESTABLISHED `graded_black_shell` measurement (0.51,
+  same r_out) — rebanded to [0.35,0.65] pre-freeze, confirmed by real data
+  (measured 0.606–0.608). Seven of eight predictions confirmed cleanly;
+  P-MAT6 (a calibration constant) held at 4 of 6 points, both misses on
+  OFF-lab in opposite directions. **No PASS/FAIL or constraint-3 language
+  attaches to the near-threshold OFF-lab/OFF-field C readings** (VISION's
+  mandatory ruling, Red Team-escalated) — the first cycle to produce C
+  values with real SNR against both frozen bars, but the r=156 scale-bridge
+  check that would license perceptual language stays queued, not built.
+  Two new findings: (1) beam-behind is NOT wavelength-flat (46% relative
+  spread, non-monotonic, uncorrelated with grid resolution — PHOTONICS'
+  Phase-5 candidate mechanism: a settling-time artifact from fixed
+  `BEAM_STEPS` across a cpl sweep, not real material physics); (2) the ON
+  article's σ_abs/σ_ext sits ~0.10 ABOVE the 0.51 anchor, opposite the
+  direction Red Team/EM's own mandatory-fix reasoning predicted — and EM's
+  Phase-5 review sharpened this into a program-wide finding: **both 0.51
+  and 0.61 exceed the idealized ≤0.5 geometric-optics ceiling**, meaning
+  neither is the asymptotic material constant this program has been
+  citing (new LIVE THREAD T9). Red Team's Phase-5 audit (verdict: MINOR
+  ISSUES) caught two real record defects — P-MAT6's miss-count undercounted
+  (an undisclosed second miss, not floor-explicable) and a run-count/
+  elapsed-time bookkeeping inconsistency (a code instrumentation bug) —
+  both corrected same-shift in NOTES.md/LOGBOOK.md and `run.py`. Verdict:
+  PROMISING. Full record: LOGBOOK.md Iteration 3.
+- **[queued — panel Iteration 4, lead per rotation ELECTROMAGNETISM]**
+  unusually strong Phase-5 consensus, two threads, ranked: (a) **P-MAT4's
+  beam-behind chromatic-anomaly resolution** — 5 of 7 seats independently
+  top-3'd this; PHOTONICS' concrete falsifiable mechanism (settling-time:
+  double `BEAM_STEPS` at 450/750nm) paired with the standard R3 spatial
+  check (cpl×1.5, this program's own precedent); (b) **the PEC-cored-vs-
+  solid-disk σ_abs/σ_ext disambiguation** (T9) — 4 of 7 seats converge via
+  different designs (MATERIALS'/EM's factorials isolating PEC-presence vs.
+  rim-grading; THERMO's/QUANTUM's cheaper direct rerun of
+  `graded_black_shell` through exp-026's own box-ledger). Not mutually
+  exclusive — EM (next lead) independently proposed designs touching both.
+  Also queued, lower urgency: (c) VISION's r=156 scale-bridge check — 4 of
+  7 seats, now overdue by one iteration per VISION's own Phase-5 reading,
+  the load-bearing precondition for any future constraint-3 language on
+  near-threshold C; (d) QUANTUM's shared-intensity-axis + coherent-
+  superposition bridge-gate package — twice-deferred (Iterations 2 and 3
+  both ran only the static-endpoint half of the originally-bundled work),
+  QUANTUM's own seat flags it should not be deferred a third time without
+  explicit reason; (e) THERMO's time-resolved energy ledger — overlaps
+  with (b), folds into whichever design wins that disambiguation.
 - **[queued]** docket #7: sourced witness-scenario parameter table +
   glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring on
   the now-unqualified measured C≈−0.684 (exp-024 removed exp-020's 750nm

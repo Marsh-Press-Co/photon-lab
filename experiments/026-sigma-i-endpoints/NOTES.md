@@ -210,9 +210,23 @@ change that ruling (per the T1 escape-route statement above).
 
 ## Results
 
-87 new FDTD runs (108 ambient sim calls in 27 groups + 6 beam-scene), 435 s
-total (329 s ambient + 106 s beam-scene), suite 41/41 before and after (no
-`lab/` changes). Full data: `results.json`.
+**Correction (Red Team's Phase-5 audit, accepted in full — see LOGBOOK.md
+Iteration 3 Phase 5):** this section originally reported "87 new FDTD runs"
+and "435s total (329+106)" — both wrong. The correct count is **114 new
+FDTD sim calls** (108 ambient: 27 groups × [empty + 3 articles] + 6
+beam-scene: 3λ × [empty + on]) — "87" was a leftover arithmetic error from
+an earlier draft, never reconciled against the code's own `n_new_runs`
+field (114, correct in `results.json` throughout). The wall-clock total
+**435 s (329 s ambient + 106 s beam-scene) is itself correct** — it matches
+the run's own console log — but `results.json`'s `elapsed_s_ambient` field
+had an independent instrumentation bug (captured after the beam block too,
+double-counting it as ≈435s instead of the true ≈329s); fixed in `run.py`
+for future runs, not retroactively edited in the committed `results.json`
+(historical record kept honest, not silently patched).
+
+114 new FDTD sim calls, 435 s total (329 s ambient + 106 s beam-scene),
+suite 41/41 before and after (no `lab/` changes). Full data:
+`results.json`.
 
 **Ambient decision floors (new empty runs, regenerated bit-reproducibly at
 this geometry, informational — exp-024/025's committed values remain the
@@ -281,14 +295,25 @@ designed.
   a few× the established camera floor (7×10⁻⁵–1.4×10⁻⁴), consistent with
   a weakly-reflective (not glinting) coreless disk. Per the accepted
   ruling this is NOT scored as a tight constraint-2 verdict.
-- **P-MAT6 — band CONFIRMED at 5 of 6 points; one honest miss.**
-  g = |C|/τ_center ∈ [0.5759, 0.6913] across both articles and all λ; the
-  predicted band [0.62, 0.69] holds at 5/6 points. **OFF-lab/450nm misses
-  low (g=0.5759 vs band floor 0.62)** — the weakest-signal point in the
-  whole dataset (|C|=0.0046 against the 450nm decision floor 0.00089,
-  SNR≈5.2, the thinnest margin of any scored point here), plausibly floor-
-  proximity bias rather than a real transfer-constant deviation, but not
-  asserted as settled — flagged, not hidden, per house discipline.
+- **P-MAT6 — band CONFIRMED at 4 of 6 points; two honest misses (corrected
+  from an earlier miscount — Red Team's Phase-5 audit).** g = |C|/τ_center
+  ∈ [0.5759, 0.6913] across both articles and all λ; the predicted band
+  [0.62, 0.69] holds at 4/6 points. **OFF-lab/450nm misses low** (g=0.5759
+  vs band floor 0.62) — the weakest-signal point in the whole dataset
+  (|C|=0.0046 against the 450nm decision floor 0.00089, SNR≈5.2, the
+  thinnest margin of any scored point here), plausibly floor-proximity
+  bias. **OFF-lab/600nm ALSO misses, high, and this one was originally
+  undisclosed**: g=0.69133 exceeds the band's own upper edge (0.69).
+  Floor-proximity cannot explain this second miss — the 600nm decision
+  floor is ~0.00007, giving SNR≈79–167 at this point, an order of
+  magnitude cleaner than the explained miss. Both misses are on OFF-lab
+  (never OFF-field, four clean points), in OPPOSITE directions (low at
+  450nm, high at 600nm) — read as λ-dependent scatter around the true g
+  at this program's lowest-τ article, not a systematic bias in one
+  direction, but genuinely unexplained rather than dismissed as floor
+  noise. Flagged, not hidden, per house discipline — the original
+  "5 of 6, one honest miss" framing understated this and is corrected
+  here.
 - **P-MAT7 — CONFIRMED.** N5 vs N9 (OFF-lab@600nm): N5=−0.0050, N9=−0.0055,
   |Δ|=0.00050 — exactly at the predicted central value, comfortably inside
   the 0.001 gate. Zero new runs, as designed.
@@ -317,25 +342,30 @@ designed.
 
 ### Headline (for LOGBOOK)
 
-**All eight predictions land within their (Phase-3-revised) bands — the
-Director's synthesis, especially the two mandatory rebandings (P-MAT8,
-P-MAT5) Red Team's decisive P-MAT8 catch forced, held up against real
-FDTD data.** Two genuine open findings ride along, neither hidden: (1)
-P-MAT4's beam-behind is NOT wavelength-flat as predicted (46% relative
-spread, non-monotonic in λ) — a new, unexplained chromatic effect in the
-beam-transmission channel, distinct from but possibly related to T7's
-ambient-silhouette chromatic finding; (2) P-MAT8's σ_abs/σ_ext sits
+**Seven of eight predictions land cleanly within their (Phase-3-revised)
+bands; P-MAT6 (a calibration constant, not a phenomenon verdict) holds at
+4 of 6 points — the Director's synthesis, especially the two mandatory
+rebandings (P-MAT8, P-MAT5) Red Team's decisive P-MAT8 catch forced, held
+up against real FDTD data.** Two genuine open findings ride along, neither
+hidden: (1) P-MAT4's beam-behind is NOT wavelength-flat as predicted (46%
+relative spread, non-monotonic in λ) — a new, unexplained chromatic effect
+in the beam-transmission channel, distinct from but possibly related to
+T7's ambient-silhouette chromatic finding; (2) P-MAT8's σ_abs/σ_ext sits
 consistently ~0.10 ABOVE the established 0.51 anchor, opposite the
 direction Red Team/EM's mandatory-fix reasoning predicted, though still
 inside the widened band that reasoning produced — a real materials
 distinction (PEC-cored vs. solid-disk absorber) proposed as the candidate
-explanation, not yet tested. One honest partial miss: P-MAT6's weakest-
-signal point (OFF-lab/450nm) falls just outside its band, plausibly floor-
-proximity, not asserted as resolved. The σ(I) design window's static
-endpoints are now real, gate-clean FDTD numbers rather than chord-model
-estimates — g=|C|/τ ≈ 0.58–0.69 across the OFF-lab/OFF-field range,
-essentially confirming exp-024's own one-point calibration (g≈0.62–0.63)
-now across an order of magnitude in τ. **No PASS/FAIL or constraint-3
+explanation, not yet tested. **Two honest misses, both on P-MAT6, both on
+OFF-lab, in opposite directions** (450nm low, plausibly floor-proximity,
+SNR≈5.2; 600nm high, g=0.6913 vs. band ceiling 0.69, NOT floor-explicable,
+SNR≈79–167) — corrected here from an original "5 of 6, one miss" framing
+Red Team's Phase-5 audit caught understated the record. The σ(I) design
+window's static endpoints are now real, gate-clean FDTD numbers rather
+than chord-model estimates — g=|C|/τ ≈ 0.58–0.69 across the OFF-lab/
+OFF-field range (4 of 6 points), broadly consistent with exp-024's own
+one-point calibration (g≈0.62–0.63) now across an order of magnitude in τ,
+with two λ-dependent excursions at the lowest-τ article left genuinely
+unexplained rather than smoothed over. **No PASS/FAIL or constraint-3
 verdict is claimed for the near-threshold OFF-lab/OFF-field readings** —
 per the accepted VISION/Red-Team ruling, that requires the still-queued
 r=156 scale-bridge check.
@@ -356,6 +386,9 @@ still queued, the necessary precondition before any PASS/FAIL or
 constraint-3 language may attach to near-threshold C readings. (4) P-MAT3's
 ambiguous chromatic-partition outcome — a genuinely new middle-ground
 result, worth a dedicated resolution check before either "opacity alone"
-reading is asserted. (5) P-MAT6's one floor-proximity miss (OFF-lab/450nm)
-— informational, not urgent, since the article was never intended to
-carry perceptual weight at that specific point.
+reading is asserted. (5) P-MAT6's two OFF-lab misses (450nm low, plausibly
+floor-proximity; 600nm high, NOT floor-explicable, SNR≈79–167) —
+informational, not urgent for perceptual scoring, but the 600nm excursion
+in particular is a genuinely unexplained λ-dependent deviation at this
+program's lowest-τ article and worth a look if a future iteration extends
+the g-calibration to more τ points.

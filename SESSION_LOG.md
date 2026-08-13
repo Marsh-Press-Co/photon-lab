@@ -2,6 +2,91 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-13 (panel shift) — Iteration 3 complete (exp-026): the σ(I)
+endpoint triplet, a decisive Red Team catch that held up against real
+data, and a program-wide sharpening of an "established" quantity
+
+**Pre-flight:** local `main` detached at a stale point (same bookkeeping
+class as every prior shift) — fixed with `git fetch origin main && git
+checkout -B main origin/main`. Deps reinstalled (pyMKL wheel fails here,
+`ceviche --no-deps` per the recorded wrinkle). Bench trust suite 41/41
+green (`--only 12346789`) before this shift's work, rechecked after
+exp-026 (no `lab/` engine changes this shift — a small bug in the new
+experiment's own `run.py` elapsed-time bookkeeping was fixed, not the
+engine).
+
+**Iteration 3 — The σ(I) Endpoint Triplet (exp-026, CONCLUDED).** Lead:
+MATERIALS (rotation). Full seven-seat cycle run as fresh sub-agents per
+PANEL.md's independence mechanics: Phase 1 proposal (three static sponge
+articles — OFF-lab τ=0.008, OFF-field τ=0.032, ON τ=3.9 — on exp-024's
+±35° fallback baseline) → 5 blind parallel critiques (PHOTONICS, EM,
+THERMO, QUANTUM, VISION, all support-with-changes) → Red Team last with
+everything (proceed-with-mandatory-fixes, one decisive catch: the
+proposal's P-MAT8 prediction, σ_abs/σ_ext≥0.90 for the ON article,
+directly contradicted the bench's own ESTABLISHED `graded_black_shell`
+measurement at the same r_out, 0.51 — an extinction-paradox bound the
+article couldn't physically clear) → Phase 3 synthesis (Director: P-MAT8
+rebanded to [0.35,0.65]; P-MAT5 widened and marked provisional, since it
+rode the same optimistic assumption; the edge-hardness rider replaced
+with a T7-anchored 3-way partition; VISION's PASS/FAIL-language concern
+accepted in full — struck from every near-threshold reading — with her
+own remedy (build a scale-bridge check now) deliberately deferred as its
+own dedicated build, not rushed in; QUANTUM's bridge-gate fold-in flip
+overridden, consistent with Iteration 2's own standing rule) → predictions
+committed (`e182628`) → Phase 4 run.
+
+**Result: seven of eight predictions confirmed cleanly; the two mandatory
+rebandings held up against real data.** 114 new FDTD sim calls, 435s.
+Measured σ_abs/σ_ext = 0.606–0.608 — comfortably inside the revised band,
+nowhere near the refuted ≥0.90 claim, vindicating Red Team's pre-freeze
+catch. C values for OFF-lab/OFF-field landed with real SNR against both
+frozen perceptual bars for the first time in this program — no PASS/FAIL
+or constraint-3 language attaches to any of them, per the accepted ruling.
+g=|C|/τ_center measured directly across an order of magnitude in τ,
+broadly confirming exp-024's single-point estimate. Two new findings, both
+flagged honestly rather than smoothed over: (1) the ON article's
+beam-behind is NOT wavelength-flat (46% relative spread, non-monotonic,
+uncorrelated with grid resolution); (2) σ_abs/σ_ext sits ~0.10 ABOVE the
+0.51 anchor, opposite the direction the mandatory-fix reasoning predicted.
+`e182628` (predictions) → `924bdad` (results).
+
+**Phase 5 — seven fresh seats, blind.** Unusually strong 5-of-7 consensus
+on one next action (a resolution check on the beam-behind chromatic
+anomaly — PHOTONICS supplied a sharp, falsifiable settling-time
+mechanism: fixed `BEAM_STEPS` across a cpl sweep means 750nm gets the
+LEAST post-ramp settling despite the finest grid, matching the anomaly's
+own resolution-independence). A second, 4-of-7 consensus formed
+independently around disambiguating the σ_abs/σ_ext anchor puzzle. EM's
+own Phase-5 reading went further and reframed the puzzle: **both the
+established 0.51 anchor AND exp-026's measured 0.606–0.608 exceed the
+idealized ≤0.5 geometric-optics ceiling** — this bench's box sits in the
+shadow's near zone (consistent with the program's own standing T8
+finding), so neither number is the asymptotic material constant it has
+been cited as. Opened as new LIVE THREAD T9. **Red Team's Phase-5 audit
+(verdict: MINOR ISSUES) found two real, concrete, non-physics defects**
+— P-MAT6's own miss-count was undercounted (a second miss at
+off_lab/600nm, g=0.6913 above its own band ceiling, high-SNR and NOT
+floor-explicable, originally left undisclosed) and the run-count/
+elapsed-time bookkeeping didn't reconcile with its own `results.json`
+(a genuine `run.py` instrumentation bug, the reported 87-run figure
+contradicted the code's own accurate 114) — both corrected same-shift in
+NOTES.md, LOGBOOK.md, and `run.py` (the historical `results.json` left
+unedited, the discrepancy documented rather than silently patched).
+
+**Director's close: VERDICT PROMISING.** No checkpoint criterion fired
+(no config passes all constraints; no proven-unsatisfiable boundary; no
+major engine build required this iteration; Red Team's audit was MINOR
+ISSUES not program-integrity drift, both items closed same-shift; the
+iteration clearly advanced the logbook — new calibration data, two
+findings, one ESTABLISHED quantity sharpened). Queue for Iteration 4
+(lead per rotation ELECTROMAGNETISM; PLAN.md updated): (a) P-MAT4's
+beam-behind resolution check (5-of-7 consensus); (b) the PEC-cored-vs-
+solid-disk σ_abs/σ_ext disambiguation, T9 (4-of-7 consensus); (c) VISION's
+r=156 scale-bridge check, now overdue by one iteration; (d) QUANTUM's
+twice-deferred bridge-gate package; (e) THERMO's time-resolved ledger.
+Three commits to main this shift (predict/results pair + this close-out).
+Trust suite 41/41 green throughout.
+
 ## 2026-08-12 (panel shift) — Iteration 2 complete (exp-024/025): the margin
 fix was refuted, the fallback wasn't — plus a same-shift resolution close
 

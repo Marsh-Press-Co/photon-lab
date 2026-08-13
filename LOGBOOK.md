@@ -45,7 +45,15 @@ already satisfies constraints 1 and 2, broadband:**
 - σ_abs/σ_ext = 0.51 — the extinction paradox, measured; "invisible" has a
   direction (exp-002): the absorber wins the source-observer geometry by
   orders of magnitude and *loses* all-angle visibility (largest shadow in
-  the table).
+  the table). **Caveat added Iteration 3 (exp-026 Phase 5, EM):** this
+  0.51 exceeds the idealized geometric-optics ceiling (σ_abs/σ_ext ≤ 0.5
+  for any perfectly-black, zero-reflectivity object, a Babinet/shadow-
+  formation bound independent of interior structure) — consistent with
+  T8's own finding that this bench's box sits deep in the shadow's near
+  zone. **Read as a near-field-limited measurement at this one box
+  geometry, not the asymptotic material constant it has been cited as**
+  (e.g. Iteration 2's Phase-1 proposal anchored a hard gate to it
+  directly) — see T9.
 
 **Bench trust:** 30/30 suite checks green; three independent solvers × two
 OSes agree to the printed digit; CI runs the suite on every push.
@@ -129,6 +137,32 @@ measured them here):**
   Phase 5) — bench Tier-W leniency is partly scale. Bridge family
   r = 78/156/312 with a committed C(z/z_R) extrapolation model before any
   near-threshold verdict is believed at scenario scale.
+- **T9 — The σ_abs/σ_ext "0.51 anchor" is not an asymptotic material
+  constant (opened Iteration 3, exp-026 Phase 5, EM).** Two independent
+  measurements — `graded_black_shell` (0.51, exp-002/ESTABLISHED) and
+  exp-026's coreless uniform ON disk (0.606–0.608) — both EXCEED the
+  idealized geometric-optics ceiling (σ_abs/σ_ext ≤ 0.5, a Babinet/
+  shadow-formation bound for any perfectly-black object, independent of
+  interior structure). Consistent with T8: this bench's box sits deep in
+  the shadow's near zone, where the asymptotic far-field diffraction
+  relation (σ_scat,forward = σ_geom exactly) doesn't yet hold. Practical
+  consequence: any future proposal anchoring a hard gate or band directly
+  to "the established 0.51" (as Iteration 2's Phase-1 proposal did, before
+  Red Team's Phase-2 catch forced a rebanding that happened to still
+  contain the true near-field value) is citing a near-field-limited
+  measurement at one specific box geometry, not a material property that
+  transfers to other geometries or to T8's own witness-scale bridge.
+  Candidate mechanisms proposed, none yet tested: PEC-core presence
+  redirecting energy into wide-angle scattering (materials/thermo) vs.
+  geometric rim-transmission differences between the two articles'
+  σ(r)/τ(r) profiles (EM/photonics, favored on parsimony grounds — EM's
+  own chord calculation shows the graded shell's T=0.5 point sits at a
+  ~16-cell transparent annulus vs. the solid disk's ~1-cell fringe) vs.
+  the solid disk's non-zero center-chord transmission softening the
+  sharp-shadow assumption (photonics). Resolution needs T8's own bridge
+  family (r=78/156/312) extended to this box-ledger channel specifically,
+  and/or the PEC-core-vs-grading disambiguation queued in Iteration 3's
+  close.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -964,21 +998,27 @@ the per-λ empty reference exp-001/002's own idiom requires — corrected to
 
 ### Phase 4 — Test (exp-026, 2026-08-13)
 
-87 new FDTD runs, 435 s, suite 41/41 before and after (no `lab/` changes).
-Full scoring: `experiments/026-sigma-i-endpoints/NOTES.md`. **All eight
-predictions land within their Phase-3-revised bands** — the two mandatory
-rebandings Red Team's decisive P-MAT8 catch forced (σ_abs/σ_ext
-[0.90,1]→[0.35,0.65]; observer-return widened+provisional) both held up
-against real data (measured σ_abs/σ_ext = 0.606–0.608, comfortably inside
-the revised band, nowhere near the refuted ≥0.90 claim). C values: OFF-lab
-−0.0046/−0.0055/−0.0051, OFF-field −0.0209/−0.0218/−0.0213, ON
-−0.7822/−0.7854/−0.7851 @ 450/600/750nm — **no PASS/FAIL or constraint-3
-language attaches to any of these**, per the accepted VISION/Red-Team
-ruling (pending the still-queued r=156 scale-bridge check). g=|C|/τ ranges
-0.576–0.691, essentially confirming exp-024's single-point calibration
-(g≈0.62–0.63) across an order of magnitude in τ_center — one honest
-partial miss (OFF-lab/450nm, the weakest-SNR point, g=0.576 just below
-its band). Two genuine new findings, both flagged honestly: (1) P-MAT4's
+114 new FDTD sim calls, 435 s, suite 41/41 before and after (no `lab/`
+changes). Full scoring: `experiments/026-sigma-i-endpoints/NOTES.md`.
+**Seven of eight predictions land within their Phase-3-revised bands;
+P-MAT6 (a calibration constant, not a phenomenon verdict) holds at 4 of
+6 points** — the two mandatory rebandings Red Team's decisive P-MAT8 catch
+forced (σ_abs/σ_ext [0.90,1]→[0.35,0.65]; observer-return
+widened+provisional) both held up against real data (measured σ_abs/σ_ext
+= 0.606–0.608, comfortably inside the revised band, nowhere near the
+refuted ≥0.90 claim). C values: OFF-lab −0.0046/−0.0055/−0.0051, OFF-field
+−0.0209/−0.0218/−0.0213, ON −0.7822/−0.7854/−0.7851 @ 450/600/750nm —
+**no PASS/FAIL or constraint-3 language attaches to any of these**, per
+the accepted VISION/Red-Team ruling (pending the still-queued r=156
+scale-bridge check). g=|C|/τ ranges 0.576–0.691 across the OFF-lab/
+OFF-field points, broadly consistent with exp-024's single-point
+calibration (g≈0.62–0.63) across an order of magnitude in τ_center — two
+honest misses, both on OFF-lab, in opposite directions (450nm low, g=0.576
+below its band, plausibly floor-proximity at SNR≈5.2; 600nm high, g=0.691
+above its band, NOT floor-explicable at SNR≈79–167 — genuinely
+unexplained, and originally undercounted as "one miss" in this iteration's
+own Phase-4 record until Red Team's Phase-5 audit caught it). Two genuine
+new findings, both flagged honestly: (1) P-MAT4's
 beam-behind is NOT wavelength-flat as predicted (2.34%/2.97%/1.86% @
 450/600/750nm, 46% relative spread, non-monotonic — 750nm has the finest
 grid resolution yet the lowest value, ruling out simple staircase-quality
@@ -997,10 +1037,166 @@ pre-committed "ambiguous" bucket (0.0029, between the τ=0.10 null's 0.0003
 and T7's established hard-edge spreads of 0.0114–0.0166) — genuinely
 inconclusive, not forced into either reading.
 
-### Phase 5 — Review
+### Phase 5 — Review (seven fresh seats, blind, verbatim)
 
-*(Recorded after Phase 4 — seven fresh seats, blind, per protocol.)*
+#### VISION SCIENCE
+
+**Reading:** exp-026 is the first cycle whose ambient channel produced C values near both frozen bars (OFF-lab: −0.0046/−0.0055/−0.0051 vs the 0.005 lab bar; OFF-field: −0.0209/−0.0218/−0.0213 vs the 0.02 field bar) with real SNR against the reused fallback decision floor. Every prior measurement in this program was either a deep FAIL or below the old floor entirely. Striking all PASS/FAIL/constraint-3 language from P-MAT1/P-MAT2 was the right call, not a hedge — the frozen threshold table was calibrated on real extended targets at real viewing geometry, nothing here ties that calibration to a flux ratio read on a plane 0.45µm from a 2.34µm disk, and EM's own T8 finding (bench |C| 0.69–0.83 vs extrapolated witness-scale |C| 0.98 for deep, saturated silhouettes) proves scale is not a formality even in the regime understood best. Was queuing r=156 as future work rather than building it this cycle also right? Procedurally yes — but the calculus has changed: before exp-026, the bridge check was "important but nothing depended on it yet." Now three near-threshold points sit exactly where the scale question is load-bearing. The deferral was correct sequencing, not correct to let run indefinitely — its runway just ran out.
+
+**Argued next change:** Build VISION's own queued r=156 scale-bridge check now. Concrete: object radius r_out=156 cells (T8's own bridge family), OFF-lab and OFF-field only, σ_engine recomputed to hold τ_center fixed (halved relative to r=78), self-similar geometry (lever/windows scaled with r_out), coverage-margin rule re-verified at the new domain, empty-scene decision floor re-measured not assumed. ~81 runs. Falsifiable: |C(r=156)/C(r=78)−1| ≤0.15 at every λ for both articles → weak-extinction C is scale-robust, near-threshold readings provisionally bench-scale-transferable; >30% shift at any λ → real, sign-determined scale correction required before OFF-lab/OFF-field can be read against C_thr at all; [0.15,0.30] → ambiguous, no strong claim (P-MAT3 precedent).
+
+**Ranked top-3:** (1) VISION's r=156 scale-bridge check — now the single blocking item for interpreting exp-026's near-threshold numbers at all. (2) Stage-10 temporal instrument (T3, TCSF bars sourced first) — sharpened by P-MAT4's finding that beam-behind is not wavelength-flat at the program's own ON/beam-termination endpoint. (3) Docket #7's exponent-p re-fit (Blackwell low-luminance data) — lower priority than #1 since it refines an already-scale-characterized deep silhouette, not the unscaled near-threshold numbers exp-026 just produced.
+
+#### PHOTONICS
+
+**Reading:** exp-026 measured the σ(I) window's static endpoints cleanly and surfaced two findings squarely this seat's charter. **(a) The beam-behind chromatic spread is not optically plausible as a real material effect on this article, and its non-monotonicity is the tell.** σ_engine is fixed real at every λ, no ε(ω)/σ(ω) anywhere in `run.py` — Beer–Lambert for a non-dispersive absorber predicts exactly 2.02% at every λ. Edge-diffraction fill is the one legitimate λ-dependence left, and it's smooth/monotonic — it cannot produce a mid-band peak at 600nm with both flanks lower. A non-monotonic result points at the CW-extraction machinery: BEAM_STEPS=3200 is fixed across the sweep but ramp length scales with cpl, so periods elapsed post-ramp before the snapshot differ sharply — ≈45 periods @450nm, ≈33 @600nm, ≈26 @750nm — 750nm gets the LEAST settling time despite the finest spatial grid, exactly matching NOTES.md's own observation that grid fineness doesn't track the anomaly. A two-sample phasor read landing on residual non-CW transient content is a coherent, falsifiable, engine-specific mechanism. **(b)** On σ_abs/σ_ext: the PEC-redirect story is only partially supported — the coat's own near-field was designed/gated to R≤0.2% reflectivity, not nearly enough leaked power to move a 10-point ratio. A more direct alternative: the ON disk's center chord (τ=3.9) still transmits ~2% straight through — never a literal zero-transmission point like the shell's PEC core — softening the sharp-shadow assumption behind σ_scat≈σ_geom, plausibly reducing effective σ_scat directly (same direction as the data, different mechanism). Falsifiable: σ_abs/σ_ext should trend toward 0.51 as τ_center→∞. On P-MAT6: floor-proximity reads correctly for 450nm (SNR≈5.2, thinnest margin of all six points); nothing else in the dataset suggests a genuine τ/λ dependence in g.
+
+**Argued next change:** A settling-time convergence check on the beam-behind chromatic finding, alongside (not instead of) the standard R3 spatial check. Rerun ON beam-scene (empty+on) at 450/750nm with BEAM_STEPS doubled to 6400 (≈98/55 post-ramp periods vs 45/26 today), everything else unchanged. Falsifiable: if settling-time drives it, beam-behind@750nm should move toward 2.02% (shift ≥0.1pp, ≥5× any shift at 450nm); if the spread survives, temporal settling is refuted and the R3 spatial companion (cpl×1.5, all 3λ) becomes decisive; if that also fails, the finding graduates to real physics, joining T7's chromatic family. ~4 extra runs + 6-run R3 companion.
+
+**Ranked top-3:** (1) Settling-time + spatial-resolution two-track check on the beam-behind chromatic finding. (2) A τ_center-dependence sweep on σ_abs/σ_ext (τ=1,2,3.9,8) to test the trend-toward-0.51 hypothesis and sharpen the extinction-paradox anchor. (3) VISION's r=156 scale-bridge check — outside this seat's charter but the one gate standing between clean near-threshold C measurements and any future constraint-3 language.
+
+#### MATERIALS & METAMATERIALS
+
+**Reading:** The revisions held well. The Phase-1 optimism (σ_abs/σ_ext≥0.90) was wrong for a reason this seat should have caught first — the extinction paradox caps the ratio near 0.5 for any large-ka, near-zero-reflectivity absorber regardless of interior construction. The corrected band [0.35,0.65] was well-calibrated in magnitude (measured 0.6056–0.6083 comfortably inside) but the specific direction of the correction (front-edge reflection pushes below 0.51) was wrong: the solid, PEC-free ON disk came in ~0.10 ABOVE the PEC-cored anchor. A real, unresolved materials finding: dropping the PEC core (and/or the adiabatic grading) raised the absorbed fraction. This seat's own proposed explanation (PEC redirects energy into wide-angle scattering) is plausible but conflates two variables (grading and PEC-presence changed together) — not yet isolated. The g=|C|/τ_center calibration (0.576–0.691 across τ=0.008–0.032) is a useful design tool for the thin regime but does NOT extrapolate to ON — implied g at τ=3.9 would be ≈0.20, a >2× break, expected Beer–Lambert saturation. Realizability bounds unchanged in category (OFF-lab/OFF-field PUBLISHED, ON PLAUSIBLE, switching UNOBTANIUM-WITH-PARAMETERS) but architecture (PEC-backed vs. solid bulk) now measurably moves absorbed-fraction ~20% relative — an actionable lever, mechanism still confounded.
+
+**Argued next change:** A 2×2 disambiguation reusing exp-026's exact beam-scene domain/box-ledger/box-closure gate. Variant A "PEC-abrupt": ON's profile + a PEC core at r=40. Variant B "graded-no-PEC": same net τ=3.9, no PEC core, graded via `graded_black_shell`'s own quintic smoothstep over the outer ~20% of radius. 6 new sim calls. Falsifiable: PEC-presence dominant → Variant A ∈[0.45,0.55], B stays ∈[0.58,0.66]; grading dominant → assignment flips; both matter → both land intermediate [0.52,0.58]. Beam-behind recorded as a free byproduct doubling as a P-MAT4 mechanism test.
+
+**Ranked top-3:** (1) The PEC-core-vs-grading disambiguation above. (2) The R3 resolution check on P-MAT4's beam-behind anomaly — required before any mechanism debate, and gates whether item 1's beam-behind byproduct can be trusted. (3) VISION's r=156 scale-bridge check.
+
+#### ELECTROMAGNETISM
+
+**Reading:** My own Phase-2 critique predicted σ_abs/σ_ext at-or-below 0.51; the measured 0.606–0.608 is inside the revised band but wrong in direction. The reflection channel I named is real in principle but evidently smaller than a second effect neither critique considered: geometric rim transmission (PHOTONICS' own exp-020 characterization) — `graded_black_shell`'s T=0.5 point sits at p≈62 of r_out=78 (a ~16-cell transparent annulus), while the ON disk's own T=0.5 point sits at p≈76.8 (a ~1-cell fringe) — the graded shell geometrically under-absorbs a far larger share of its own cross-section, independent of any reflection story, in exactly the direction that raises the solid disk's ratio relative to the shell's. R3's meta-rule (check the boring explanation before crediting a new mechanism) applies here. **More fundamental:** both 0.51 AND 0.61 exceed the idealized large-size-parameter ceiling (σ_abs/σ_ext ≤0.5 for a perfectly black, zero-reflectivity object in the geometric-optics limit — a Babinet/shadow-formation argument independent of interior structure). Consistent with this program's own standing T8 finding: this bench's box sits deep in the shadow's near zone (z/z_R≈0.04–0.06), where the asymptotic far-field relation doesn't yet hold. Neither 0.51 nor 0.61 should be treated as an asymptotic material constant. On P-MAT4: holding σ constant IS itself a dispersion relation (tan δ=σ/ωε₀∝λ) — necessary but not sufficient for a monotonic trend; the measured non-monotonicity needs a second ingredient, plausibly a ka-driven (32.7→19.6 across the sweep) diffraction-phase beat with the tan-δ trend, falsifiable via a densified λ sweep (smooth curve=beat, jagged=something else).
+
+**Argued next change:** A rim-geometry-vs-PEC-redirect factorial: (i) `graded_black_shell` as-is, (ii) new control — same σ(r) rim profile, same r_out, PEC core replaced by the same absorbing profile continued to r=0, (iii) this experiment's uniform ON disk. Predictions: rim-transmission hypothesis → (ii) lands near ON's 0.61; PEC-redirection hypothesis → (ii) stays near the shell's 0.51. Fold in exp-017's `angular_scattered_pattern` at 600nm on all three — PEC-redirection predicts a wide-angle σ_scat bump for (i) that (ii)/(iii) should lack. ~15–20 runs, zero new physics.
+
+**Ranked top-3:** (1) The rim-geometry-vs-PEC-redirect factorial. (2) T8's near-field→far-field bridge (r=78/156/312), extended to the box-ledger channel — neither 0.51 nor 0.61 can be trusted as asymptotic until this exists. (3) A densified-λ beam-behind sweep (5–6 points) to test the size-parameter-interference-beat hypothesis for P-MAT4.
+
+#### THERMODYNAMICS
+
+**Reading:** The box-closure gate is a numerics identity, not a physics validation — it certifies the engine computed 0.606–0.608 self-consistently, not that this is the physically correct abs/scat split. The result is the tell: EM/Red-Team's reasoning predicted the ratio would land below 0.51; it landed ~0.10 above at all three λ, too systematic to be noise given the gate's 17–170× headroom. NOTES.md's PEC-redirect explanation is thermodynamically sensible but untested, and — being a per-region question — the box-closure gate's *net* accounting structurally cannot adjudicate it; only a spatially- or time-resolved ledger can. **Bonus analytic sidecar (explicitly provisional, order-of-magnitude, docket #7's witness-wattage pin still the real precondition):** P_abs ≈ (1–2W)·0.97·0.607 ≈ 0.6–1.2W; steady-state ΔT ≈ P_abs/(4σAT³) ≈ 0.02–0.2K (order 0.1K); peak emission at λ≈9.7µm (mid/far-IR, T5's band, eye-invisible but within reach of uncooled thermal-camera NETD). Caveat that matters more than the number: this is a steady-state ceiling; the real 1–3s sweep transient ΔT is very likely orders of magnitude below it unless the absorber is thin/low-mass — an open parameter docket #7 should pin (heat-capacity/mass-class columns, still unactioned since Iteration 2).
+
+**Argued next change:** Build the time-resolved energy ledger now — this iteration hands it something concrete to validate against (a gate-clean static anchor) and a live puzzle a net ledger can't resolve. On the existing stage-8 box: per-timestep U(t), P_J(t), P_box(t), split near-boundary vs. interior cell shells (the addition this cycle's puzzle demands). Gates: discrete closure ≤1%, passivity canary, bridge (final-3-cycle P_J/i_inc within 2% of 0.6056–0.6083). Run on both the coreless ON disk AND `graded_black_shell` at the same domain. Falsifiable: PEC-core mechanism → shell's radial P_J(t) shows more near-boundary concentration and larger backward P_box(t) than the solid disk's more uniform profile.
+
+**Ranked top-3:** (1) Time-resolved energy ledger, targeted at the P-MAT8 puzzle. (2) Docket #7, extended with heat-capacity/mass-class columns — P_abs is now real and gate-anchored, ΔT is not until thermal mass is pinned. (3) A dedicated rerun of `graded_black_shell` with the same box-ledger machinery at exp-026's domain — cheap, isolates whether the PEC core alone shifts the ratio.
+
+#### QUANTUM OPTICS
+
+**Reading:** The over-read is guarded structurally — NOTES.md's Hypothesis section quotes my own Phase-2 warning nearly verbatim, and every near-threshold C carries explicit non-verdictive framing; that containment held under real data. But the substance of the warning is also vindicated: g=0.5759–0.6913 mostly reconfirms exp-024's single-point g≈0.62–0.63 rather than teaching anything new about switchability — "mostly refines g," exactly as predicted. T1's committed window (τ_on/τ_off≳120–780, n≳0.56–0.78) is unchanged — the measured g's fall inside the already-committed band. One genuinely new complication: P-MAT4's beam-behind is NOT wavelength-flat — at 600nm the τ=3.9 endpoint already exceeds the ≤2% target the τ_on figure was built to hit. That's new uncertainty on the ON side of my own inequality, widening the UNOBTANIUM gap rather than narrowing it. On the override: correct by the letter of Red Team's own standing rule, applied consistently — but this is now the SECOND consecutive iteration my bridge-gate request has been deferred while the static-endpoint half of the same queued bundle ran twice, yielding exactly what a static-only cycle would produce. I would not defer it a third time.
+
+**Argued next change:** Build the shared-intensity-axis + coherent-superposition bridge-gate package now, as its own gated suite stage (satisfying Red Team's rule this time, not deferring past it). Ledger fields `intensity_role`/`amp_rel`, committed default I_ambient/I_beam=2×10⁻⁴ banded [10⁻⁵,10⁻³]. New stage: simultaneous nine-angle injection, random phases, M=12 draws, at ALL 3λ (not just 600nm — the newly-discovered per-λ anomaly is reason to check uniformity across λ). Run on empty, OFF-lab, and — new rider — the ON article, specifically testing whether the abrupt-σ-step boundary behaves differently under coherent summation than the incoherent post-hoc sum. Gate: |⟨C_joint⟩−C_posthoc|≤max(δ_C,0.005). Falsifiable: if the bridge gate holds even on ON despite P-MAT4's anomaly, the anomaly is orthogonal to the coherence assumption; if it fails specifically at ON where the spread is largest, the two findings are the same mechanism.
+
+**Ranked top-3:** (1) The σ(I)-readiness bridge-gate package, this time as its own suite stage. (2) Resolve P-MAT4's beam-behind anomaly as a T1-relevant finding (R3 check). (3) A cheap rerun of `graded_black_shell` through the box-ledger at this domain to isolate the PEC-core question — a real σ(I) switch will be a bare bulk medium, not a PEC-cored shell, so knowing which anchor it sits near matters for future ON-state calibration.
+
+#### RED TEAM
+
+**Audit verdict: MINOR ISSUES.** Cross-checked NOTES.md's Results against Phase 2's eight mandatory-fix items and independently recomputed everything scoreable from `results.json`. The substantive discipline held cleanly: all eight fixes implemented exactly as claimed, no softening, no quiet reinterpretation. Zero PASS/FAIL/constraint-3 language attaches to any near-threshold C reading anywhere (grep-verified); Iteration 1's P1b pattern does not recur. Both flagged "honest surprises" are reported with real epistemic humility, candidate mechanisms explicitly labeled untested. But **two concrete defects survived into the record.** (1) **P-MAT6 undercounted its own misses**: off_lab/600 = 0.69133, ABOVE the committed band's own upper edge (0.69) — a second, undisclosed miss. The floor-proximity explanation for the disclosed miss cannot cover this one: 600nm's decision floor gives SNR≈79–167 there, an order of magnitude cleaner than the explained miss. Correct count is 4/6, not 5/6. (2) **Run-count/elapsed-time bookkeeping didn't reconcile with its own source**: `results.json`'s meta records `n_new_runs: 114`, yet NOTES.md/LOGBOOK said "87" (108+6=114≠87, a leftover draft error); the 435s total was itself actually correct (matches the console log) but `elapsed_s_ambient` in the JSON double-counted the beam block. Neither defect touches a mechanism claim, a constraint verdict, or a mandatory-fix implementation — MINOR, not SUBSTANTIVE — but both are concrete and were corrected same-shift (Director's note: confirmed independently, `run.py` fixed, NOTES.md/LOGBOOK corrected, see above). No new candidate for the RULED OUT registry.
+
+**Argued next change:** Both record corrections landed same-shift (Director's response to this audit) — no further action needed there. Next substantively: P-MAT4's resolution check (already pre-registered as NOTES.md's own queued item, R3 meta-rule) — the beam-behind chromatic non-flatness is a genuine surprising feature and this program's own standing rule requires the check before any mechanism debate opens on it.
+
+**Ranked top-3:** (1) P-MAT4's resolution check (R3 meta-rule) — pre-registered, now reinforced by 5-of-7 seats independently prioritizing the same thread from different angles. (2) The PEC-core-vs-solid-disk disambiguation (Materials'/EM's factorial designs, Thermo's ledger-targeted version, Quantum's cheap-rerun version — four seats converge on resolving this from different angles). (3) VISION's r=156 scale-bridge check — correctly un-rushed into this cycle, but should stay visibly queued rather than let calibration work accumulate on top of an unverified scale assumption.
 
 ### Director's close of Iteration 3
 
-*(Recorded after Phase 5.)*
+**VERDICT: PROMISING.** The σ(I) design window's static endpoints are now
+real, gate-clean FDTD numbers (not chord-model estimates) for the first
+time in this program — g=|C|/τ_center measured directly across an order
+of magnitude in τ_center, broadly reconfirming exp-024's single-point
+estimate. Both of Red Team's Phase-2 mandatory rebandings (the decisive
+P-MAT8 catch, and P-MAT5's cascade) held up cleanly against real data,
+validating the panel's own correction discipline, not just its critique
+discipline. Two genuine new findings ride along (P-MAT4's non-wavelength-
+flat beam-behind; P-MAT8's above-not-below-anchor direction), both
+flagged honestly rather than smoothed over, and EM's Phase-5 reading adds
+a third, more fundamental one: **both measured σ_abs/σ_ext values (0.51
+AND 0.606–0.608) exceed the idealized ≤0.5 geometric-optics ceiling**,
+meaning this program's own "established anchor" was itself always a
+near-field-limited number, not an asymptotic material constant — a
+genuine sharpening of what ESTABLISHED means for that quantity, credited
+to this iteration's Phase-5 review, not to Iteration 1 where the 0.51
+number originated.
+
+**Red Team's Phase-5 audit — ACCEPTED IN FULL, both items corrected
+same-shift.** (1) P-MAT6's miss-count corrected from "5 of 6, one miss" to
+"4 of 6, two misses" — the undisclosed off_lab/600nm miss (g=0.6913 vs.
+band ceiling 0.69, SNR≈79–167, NOT floor-explicable) is now named
+explicitly in NOTES.md and above. (2) The run-count prose ("87") corrected
+to the code's own accurate figure (114 new FDTD sim calls); the
+`elapsed_s_ambient` double-counting bug fixed in `run.py` for future runs,
+with the historical `results.json` left unedited and the discrepancy
+documented rather than silently patched. Both corrections are bookkeeping,
+not physics — no scored prediction, gate, or constraint verdict changes as
+a result — but the record now says what actually happened, which is the
+whole discipline. No RULED OUT registry addition this cycle (calibration,
+not a mechanism test).
+
+**Merged ranking (next queue) — consensus without collusion, unusually
+strong.** Two threads converge independently across most of the panel:
+
+1. **P-MAT4's beam-behind chromatic-anomaly resolution** (46% relative
+   spread, non-monotonic in λ, uncorrelated with grid resolution) —
+   ranked in the top 3 by **5 of 7 seats** (PHOTONICS #1, MATERIALS #2,
+   QUANTUM #2, RED TEAM #1, EM #3), the strongest cross-seat consensus
+   this program has produced on a single next action. PHOTONICS supplies
+   the sharpest concrete mechanism and test: a settling-time artifact
+   from fixed `BEAM_STEPS` across a cpl sweep (750nm gets the LEAST
+   post-ramp settling despite the finest grid, matching the anomaly's own
+   resolution-independence) — falsifiable via `BEAM_STEPS` doubled at the
+   two λ extremes, paired with the standard R3 spatial check (cpl×1.5,
+   this program's own exp-005/010/015/023/025 precedent) as a companion,
+   not a substitute.
+2. **The PEC-cored-vs-solid-disk σ_abs/σ_ext disambiguation** — four
+   seats (MATERIALS #1, EM #1, THERMO #1/#3, QUANTUM #3) independently
+   converge on resolving this, via different but compatible designs (a
+   2×2/3-way factorial isolating PEC-presence vs. rim-grading, vs. a
+   cheaper direct rerun of `graded_black_shell` through exp-026's own
+   box-ledger machinery). EM's Phase-5 finding (both 0.51 and 0.61 exceed
+   the idealized 0.5 ceiling — a near-field, not asymptotic, regime)
+   reframes this from "which anchor is right" to "neither anchor is the
+   asymptotic constant this program has been citing" — sharpening why the
+   disambiguation matters beyond this one number.
+3. **VISION's r=156 scale-bridge check** — ranked by 4 of 7 seats
+   (VISION #1, MATERIALS #3, PHOTONICS #3, RED TEAM #3), consistently
+   important but never the top pick outside VISION's own seat. Correctly
+   un-rushed into exp-026 itself (Red Team's own mandatory-fix ruling);
+   now the load-bearing precondition for any future constraint-3 language
+   on near-threshold C, and — per VISION's own reading — overdue by one
+   iteration now that exp-026 produced real near-threshold numbers to
+   score against it.
+4. **QUANTUM's shared-intensity-axis + coherent-superposition bridge-gate
+   package** — ranked #1 only by QUANTUM's own seat, but flagged
+   explicitly as twice-deferred (Iteration 2 and Iteration 3 both ran the
+   static-endpoint half of the same originally-bundled work). Not this
+   iteration's top pick by consensus, but the panel should not defer it a
+   third time without an explicit reason, per QUANTUM's own standing
+   objection.
+5. **THERMO's time-resolved energy ledger** — THERMO's own #1, overlaps
+   substantially with queue item 2 (both target the P-MAT8 puzzle,
+   THERMO's version with finer per-region resolution). Folds naturally
+   into whichever design wins item 2's disambiguation.
+
+**No checkpoint criterion fires.** No configuration passes all constraint
+metrics; no constraint subset is proven jointly unsatisfiable; this
+iteration required no engine physics beyond the validated bench classes
+(the queued bridge-gate package for Iteration 5+ will, when it runs); Red
+Team's audit was MINOR ISSUES, corrected same-shift, not program-integrity
+drift; the iteration clearly advanced the logbook (new calibration data,
+two genuine findings, one sharpened understanding of an ESTABLISHED
+quantity) — no two-consecutive-null-iterations condition.
+
+**Next lead per rotation: ELECTROMAGNETISM** (VISION→PHOTONICS→
+MATERIALS→**ELECTROMAGNETISM**→THERMODYNAMICS→QUANTUM OPTICS→repeat).
+Notably, EM independently proposed designs touching both of the top two
+consensus threads (a densified-λ sweep for item 1's beat hypothesis; the
+rim-geometry-vs-PEC-redirect factorial for item 2) — a natural fit for
+the next Phase-1 proposal, though the Director need not adopt EM's own
+Phase-5 designs verbatim; a fresh Phase-1 sub-agent proposes independently
+per protocol.
+
+Panel stats (Phase 5): 7 seats, blind · unusually strong 5-of-7 consensus
+on one next action (P-MAT4's resolution check) · Red Team's audit found
+two real, concrete, non-physics defects and both closed same-shift · one
+ESTABLISHED-section quantity (graded_black_shell's σ_abs/σ_ext=0.51)
+sharpened from "material constant" to "near-field-limited measurement,
+asymptote unknown" by cross-seat synthesis (EM's Phase-5 reading,
+independently reachable from Iteration 1's own recorded number — the kind
+of catch continuous re-review across iterations is meant to produce).

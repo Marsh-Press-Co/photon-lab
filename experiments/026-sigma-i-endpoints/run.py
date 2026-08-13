@@ -182,7 +182,8 @@ def main():
             ambient_results[(lam_nm, theta)] = out
             print(f"  [{len(ambient_results):2d}/{len(groups)}] lambda={lam_nm} "
                   f"theta={theta:+05.1f} ({dt:5.1f} s)", flush=True)
-    print(f"ambient block done in {time.time() - t0:.0f} s", flush=True)
+    elapsed_ambient = time.time() - t0
+    print(f"ambient block done in {elapsed_ambient:.0f} s", flush=True)
 
     def contrast(article, lam_nm, angles=dg.FALLBACK_ANGLES):
         profs, e_profs = [], []
@@ -227,7 +228,8 @@ def main():
               f"box_dev={r['box_dev']:.4f} "
               f"empty_closure={r['empty_box_closure']:.2e} "
               f"({r['elapsed_s']:.1f} s)", flush=True)
-    print(f"beam-scene block done in {time.time() - t1:.0f} s", flush=True)
+    elapsed_beam = time.time() - t1
+    print(f"beam-scene block done in {elapsed_beam:.0f} s", flush=True)
 
     # ---------------- assemble + write --------------------------------------
     out = {
@@ -245,8 +247,14 @@ def main():
                  "sigma": dg.SIGMA_BY_ARTICLE,
                  "established_anchor_abs_ext_ratio": dg.ESTABLISHED_ABS_EXT_RATIO,
                  "decision_floor_reused": dg.DECISION_FLOOR,
-                 "elapsed_s_ambient": time.time() - t0,
-                 "elapsed_s_beam": time.time() - t1,
+                 # Red Team's Phase-5 audit (Iteration 3) caught these two
+                 # fields double-counting: both were computed from time.time()
+                 # AFTER the beam block too, so elapsed_s_ambient silently
+                 # included the following beam block's wall time. Fixed to
+                 # capture each block's elapsed time at the point it actually
+                 # finished.
+                 "elapsed_s_ambient": elapsed_ambient,
+                 "elapsed_s_beam": elapsed_beam,
                  "n_new_runs": len(groups) * 4 + 2 * len(dg.BEAM_SWEEP)},
         "ambient_contrasts": table,
         "ambient_decision_floors_new_empty": floors,
