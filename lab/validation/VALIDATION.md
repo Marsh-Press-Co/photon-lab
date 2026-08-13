@@ -1,8 +1,26 @@
 # Bench validation — lab/ engine trust suite
 
-**2026-08-13 · driver: Clyde (panel Iteration 5) · status: 🟢 45/45 checks
-green** (fast stages `--only 12346789,10` [43/43, 84 s] + `--only 5` [2/2],
+**2026-08-13 · driver: Clyde (panel Iteration 6) · status: 🟢 48/48 checks
+green** (fast stages `--only 12346789,10,11` [46/46] + `--only 5` [2/2],
 ubuntu cloud bench)
+
+Stage 11 (multi-source coherent superposition gate) added with exp-029 —
+the first suite check to exercise ≥2 concurrent sources in one `Sim`
+(`Sim.sources` has always been a plain list summed by `run()`'s per-step
+loop, but no check had ever exercised that end-to-end — Red Team's own
+Iteration 5/6 ruling: the mechanical capability existing is not the
+configuration being validated). Two absolute identities — a joint
+two-source run's complex Ez phasor equals the pointwise sum of each
+source's own single-source phasor, in vacuum (1.91×10⁻¹⁵) and with a
+lossy object present (1.89×10⁻¹⁵, the σ_e branch, exercised with 2
+concurrent sources for the first time) — both a machine-epsilon-scale
+confirmation that superposition holds to float64 round-off, not merely
+approximately, exactly as EM's/Red Team's line-by-line trace of
+`Sim.run()`'s fixed linear update operators predicted. A third check
+reuses stage 10's own empirical radial-ledger closure gate (≤1.5%) on the
+two-source joint scene (measured 1.13%) — the same registration offset
+stays source-count-independent, now confirmed on a spatially-interfering
+field for the first time.
 
 Stage 10 (radial-binned absorbed-power ledger) added with exp-028 —
 `lab/sections.py::radial_absorbed_power`, the first spatially-resolved
@@ -93,6 +111,9 @@ Run it:
 | 9 | ambient | oblique extinction: two routes agree | 0.000 | ≤ 0.12 |
 | 10 | radial-power | closure vs box-ledger p_abs | **0.0111** | ≤ 0.015 |
 | 10 | radial-power | PEC-core absorbed power is exactly zero | 0.00e+00 | 0.0 exactly |
+| 11 | multisource | vacuum scene: joint Ez phasor == sum of single-source phasors | **1.91e-15** | ≤ 1e-6 |
+| 11 | multisource | object scene: joint Ez phasor == sum of single-source phasors | **1.89e-15** | ≤ 1e-6 |
+| 11 | multisource | joint (2-source) scene: radial closure vs box-ledger p_abs | 0.0113 | ≤ 0.015 |
 
 Stage 5 diagnostics (info): backscatter −26%, forward −38%. **Beam intensity
 behind the object vs empty space: bare PEC 0.057 → cloaked 0.641** — the
@@ -149,6 +170,15 @@ real observer-record datum (committed artifact,
    e^(−τ/cosθ)), and the stage-8 closed-box energy identities hold at
    oblique incidence. Window means are the gated quantity; the point-wise
    ripple canary carries the fringe-limit mechanism.
+
+11. **Multi-source coherent superposition** — the panel program's first
+    check of ≥2 concurrent sources in one `Sim` (exp-029). A joint
+    two-source run's field phasor equals the pointwise sum of each
+    source's own single-source run, to float64 round-off, in vacuum and
+    with a lossy object present — an algebraic property of the engine's
+    fixed linear update operators, not an approximation. The empirical
+    radial-ledger closure (stage 10's own gate) stays source-count-
+    independent when reused on the joint scene.
 
 ## Idealizations and caveats (stated, per lab convention)
 

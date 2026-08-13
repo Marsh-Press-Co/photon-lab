@@ -2135,3 +2135,199 @@ program — prior audits caught defects Red Team alone found) · one new live
 thread opened (T11) promoted from a recurring backlog item · one
 Checkpoint criterion pre-registered as a tripwire rather than fired ·
 VISION's dissent on scheduling preserved on the record, not smoothed over.
+
+---
+
+## Iteration 6 — The Coherent-Superposition Bridge Gate (exp-029) — 2026-08-13
+
+Runner: cloud panel shift · Lead: **QUANTUM OPTICS** (rotation — the
+mandatory, fourth-cycle build of QUANTUM's own bridge-gate package,
+deferred at Iterations 2, 3/4, and 5). Full seven-seat cycle: Phase 1
+proposal (QUANTUM) → 5 blind parallel critiques (PHOTONICS, MATERIALS,
+ELECTROMAGNETISM, THERMODYNAMICS, VISION SCIENCE, all support-with-
+changes — EM and THERMODYNAMICS independently converged on the identical
+Cauchy-Schwarz normalization catch) → Red Team last with everything
+(verdict: proceed-with-mandatory-fixes, six numbered attacks, one caught
+by none of the five) → Phase 3 synthesis (Director: all six fixes
+accepted, zero overridden) → predictions committed → Phase 4 run. Full
+setup/results record: `experiments/029-coherent-superposition-bridge-
+gate/NOTES.md`.
+
+### Phase 1 — Proposal (QUANTUM OPTICS, verbatim)
+
+# PHASE 1 — PROPOSAL · Panel Iteration 6 · Lead seat: QUANTUM OPTICS
+## "The Coherent-Superposition Bridge Gate" (candidate exp-029)
+
+### 1. Mechanism narrative (≤300 words)
+
+This program has never run two sources simultaneously in one `Sim` and checked the joint field against linear superposition. Every multi-angle ambient measurement (`lab/ambient.py`) sums INTENSITIES from separate single-source runs post-hoc — an incoherent idiom this build leaves untouched. `Sim.sources` is a plain list and `run()` already sums an arbitrary number of source injections with zero new engine physics (Red Team verified this directly, Iteration 5) — but the mechanical capability existing is not the configuration being validated end-to-end (Red Team's own ruling), and it is QUANTUM's own charter gap: no future σ(I) or joint beam+ambient mechanism can be built until this is checked.
+
+The build tests COHERENT superposition, not incoherent — a forced choice, not a preference. A single-tone CW run of two simultaneous same-λ sources is, by this engine's own update equations, deterministically phase-locked; nothing in one CW run can represent true mutual incoherence, which needs ensemble-averaged random-relative-phase runs, a different, unbuilt idiom. Two sources — "beam" (angle 0°, amplitude 1.0) and "ambient" (angle 30°, amp_rel = I_ambient/I_beam = 2×10⁻⁴, Iteration 1's own committed scenario default, field-amplitude ratio ≈0.01414) — illuminate the established, non-PEC-cored `graded_black_shell` (T9's mechanistically clean article). Two absolute identities gate it: the joint run's complex field phasor must equal the sum of each source's own single-source phasor, in vacuum and with the object present — an algebraic property of this LTI discrete recursion, so any measurable miss is an implementation bug, not new physics — plus the already-gated radial-ledger closure surviving a second simultaneous source. A third, informational measurement — the coherent absorbed-power interference cross-term — is this cycle's actual new science.
+
+Stated honestly: a real flashlight-beam-over-ambient scene is physically INCOHERENT (different sources, femtosecond coherence times) — this build does not model that scene; it validates the machinery and characterizes a real complication a future incoherent bridge will need to handle.
+
+### 2. Parameter table
+
+**New machinery, per PANEL.md's house rule:** zero new `lab/fdtd2d.py` or `lab/materials.py` code (multi-source injection already works); zero new `lab/sections.py` functions (reuses `full_capture`, `phasors`, `widths`, `radial_absorbed_power` verbatim); one new `lab/validation/run_all.py::stage11_multisource_superposition()` — the new gated suite stage, following stage 10's own precedent (small canonical scene, ≥1 absolute identity gate before the configuration is trusted).
+
+**Suite Stage 11 (new, compact CI scene — reuses stage 10's own canonical object verbatim):**
+
+| Knob | Value | Note |
+|---|---|---|
+| Domain | `Sim(360, 240, cells_per_lambda=20, courant_frac=0.99, absorb=30)` | stage 10's own canonical scene, unchanged |
+| Object | `graded_black_shell(sim, 240, 120, r_in=0, r_out=32, sigma_max=0.5, eps_max=1.0)` | stage 10's own no-core article; no PEC (keeps the whole medium strictly LTI-continuous) |
+| Steps | 900 | stage 10's own convention |
+| Source "beam" | `add_line_source(54, angle_deg=0, amplitude=1.0)` | native convention |
+| Source "ambient" | `add_line_source(54, angle_deg=30, amplitude=0.014142)` | amp_rel = 0.014142² = 2.000×10⁻⁴ — printed assertion: `assert abs((amb_amp/beam_amp)**2 - 2e-4) < 1e-9`, extending the SIGMA_ON printed-constant discipline to this build's own scenario constant |
+| Runs | empty+beam, empty+ambient, empty+joint, object+beam, object+ambient, object+joint | **6 sim calls** |
+| **Gate Q1** (absolute identity) | RMS‖Ez_phasor(empty+joint) − [Ez_phasor(empty+beam)+Ez_phasor(empty+ambient)]‖ / RMS‖Ez_phasor(empty+joint)‖ ≤ **1×10⁻⁶** | global RMS ratio over the full grid, avoids per-cell divide-by-zero |
+| **Gate Q2** (absolute identity, the primary new claim) | same formula, object+joint vs object+beam + object+ambient, ≤ **1×10⁻⁶** | exercises the lossy σ_e branch with 2 concurrent sources for the first time |
+| **Gate Q3** (empirical closure reuse) | `radial_absorbed_power` on object+joint vs `widths()`'s p_abs, same object, r_max=32 | reuses stage 10's calibrated ≤1.5% bound |
+
+**exp-029 (the experiment — full scenario-realistic bench, reuses exp-001/026/027/028's native beam-scene geometry verbatim, zero rescale):**
+
+| Knob | Value | Note |
+|---|---|---|
+| Domain | BEAM_N=560, courant_frac=0.32, absorb=40, cpl=20, λ=600nm (native, single-λ scope) | exp-001/026/027/028's exact bench |
+| Object | `graded_black_shell(sim, 252, 280, r_in=30, r_out=78, sigma_max=0.5, eps_max=1.0)` | T9's clean, non-PEC-cored article — QUANTUM's own Iteration-5 Phase-5 scoping note (1) |
+| Source "beam" | x=64, angle_deg=0, amplitude=1.0, `intensity_role="beam"`, `amp_rel=1.0` | native convention, unchanged |
+| Source "ambient" | x=64, angle_deg=30, amplitude=0.014142, `intensity_role="ambient"`, `amp_rel=2×10⁻⁴` | the intensity-ledger field's first non-trivial exercise |
+| Steps | 3200 (native `BEAM_STEPS_NATIVE`) | unchanged |
+| Boxes | `BEAM_BOX_A=(142,362,170,390)`, `BEAM_BOX_B=(117,387,145,415)` | exp-028's own, reused verbatim |
+| Ref | `(252, 280, 60)` | exp-028's own, reused verbatim |
+| Radial ledger | r_max=78, n_bins=26 | exp-028's own convention |
+| Runs | empty+beam, empty+ambient, empty+joint, object+beam, object+ambient, object+joint | **6 sim calls** |
+| **Gate P-QUANTUM-5** (absolute identity, reconfirm at scale) | same RMS formula as Q2, object scene, ≤ 1×10⁻⁶ | |
+| **Gate P-QUANTUM-6** (empirical closure) | radial ledger vs box p_abs, object+joint scene, ≤ 1.5% | |
+
+**Total: 12 new FDTD sim calls** (6 suite + 6 experiment) — matches exp-028's own precedent exactly. **Estimated wall-clock: ≈5 min**.
+
+### 3. T1 escape-route statement
+
+**No escape mechanism implemented — pure diagnostic/instrumentation work, the same register as Iterations 2–5.** No σ(I), σ(x,t), or angular-selectivity machinery is built; no constraint-3 number moves. But this build is the first Iteration 4–6 diagnostic whose *raison d'être is T1 itself*, not an unrelated resolution/spatial-ledger question: it removes a named prerequisite QUANTUM's own Iteration-1 critique flagged as missing — "ambient-while-beam-on... cannot be assembled from these runs even in principle" — for any future proposal needing a joint beam+ambient scene. Even so, stated honestly: because the physically correct model of that scene is INCOHERENT, this build does not itself deliver the joint scene T1 needs. It validates that `Sim.sources` correctly implements linear superposition end-to-end (never tested with ≥2 concurrent sources before) and characterizes a genuine complication — coherent interference in the absorption channel — that a future incoherent-ensemble or extended-`ambient.py` bridge will have to handle. Necessary infrastructure and a real physics finding; not a mechanism.
+
+### 4. Falsifiable predicted outcomes (numeric bands, per metric)
+
+- **P-QUANTUM-1 (Gate Q1, absolute identity, vacuum field superposition):** RMS relative error ≤ 1×10⁻⁶ (gate); central prediction **~10⁻¹³–10⁻¹¹** (double-precision floating-point round-off accumulated linearly over 900 steps of a strictly linear, damped discrete recursion with zero initial condition — physics guarantees exact equality; only floating-point summation order can differ). A miss here would localize a real bug to `Sim.sources`'/`run()`'s handling of ≥2 concurrent entries (shared mutable state, ramp/phase mis-indexing).
+- **P-QUANTUM-2 (Gate Q2, absolute identity, object-present field superposition — the primary new claim):** same ≤1×10⁻⁶ gate; central prediction **~10⁻¹³–10⁻¹¹**, same order as Q1 (the lossy-σ_e update coefficients `ca`,`cb` are fixed, Ez-independent arrays — linearity is exact regardless of medium). A miss here *specifically* (Q1 passing, Q2 failing) would newly localize a bug to the σ_e branch's interaction with multi-source injection — a genuinely informative, previously-impossible-to-detect failure mode.
+- **P-QUANTUM-3 (Gate Q3, empirical closure reuse, suite scale):** ≤1.5% gate (reused, calibrated); central prediction **1.0–1.3%**, close to stage 10's own established 1.11–1.12% — CONFIRMS the closure identity is source-count-independent (a circle-vs-square grid-quantization offset, not sensitive to how many sources drive the scene).
+- **P-QUANTUM-4 / P-QUANTUM-5 (Gates at exp-029 scale):** identical formulas/bands to P-QUANTUM-1/2 (≤1×10⁻⁶, central ~10⁻¹³–10⁻¹¹) and P-QUANTUM-6 (≤1.5%, central **0.2–0.4%**, matching exp-028's own BEAM_N=560-bench closure measurements of 0.20–0.26%).
+- **P-QUANTUM-7 (informational, NOT gated — the coherent-interference finding):** ΔP_int = P_abs(object+joint) − [P_abs(object+beam) + P_abs(object+ambient)], normalized |ΔP_int / P_abs(object+ambient)| — predicted band **[0%, 30%]**, nonzero, sign uncommitted (genuinely unknown a priori). Reasoning, not certainty: the ambient source's 30° phase ramp produces interference fringes of period Λ_y = λ/sin30° = 2λ = 40 cells running along y; the object's y-extent (2·r_out=156 cells) spans ≈3.9 fringe periods, so ring-averaging in the radial ledger should give substantial but *incomplete* cancellation of the aggregate cross-term — a band, not a point estimate, held to T11's still-open decision-floor caveat (informally suggestive, not floor-gated, same discipline as Iteration 5's P-THERMO-A/B).
+- **P-QUANTUM-8 (informational, NOT gated — spatial structure):** the peak-magnitude LOCAL (per-annulus) fractional deviation |Δp_J(r)/p_J_naive(r)| exceeds the aggregate fractional deviation (P-QUANTUM-7) by **≥3×** — i.e., real spatial structure an aggregate box-ledger check alone would wash out, the concrete test of "an aggregate match can't hide a real radial redistribution" (QUANTUM's own Iteration-5 Phase-5 scoping note (2)).
+
+### 5. Idealizations
+
+2D TMz, single polarization. **Single λ=600nm scope** — no chromatic sweep of this bridge gate; nothing here rescales a geometric constant, so the SIGMA_ON-style per-λ printed-assertion discipline is satisfied vacuously by scope, not exercised — a future 3-λ extension would need to add it explicitly, named as a carry-forward, not built here. **COHERENT superposition only** — same-frequency, fixed relative phase, deterministic in this single-tone CW engine; explicitly NOT validating incoherent superposition, which remains `lab/ambient.py`'s own separate-run/post-hoc-intensity-sum idiom, untouched. The real beam-over-ambient scene is physically incoherent; this build's two-source coherent injection is not a model of that scene — it is a prerequisite validation plus a byproduct finding about why naive coherent joint-injection would give the wrong physics for it. **No PEC core** in the endpoint article (T9's clean, non-PEC construction) — the PEC-clamp branch's interaction with multi-source injection is trivially exact by construction (both single- and joint-run clamps force the same cells to zero regardless of source count) and is not separately exercised; that untested combination (multi-source + PEC-cored object) is named, low priority given T9. **No R3 (cpl×1.5) resolution companion** for gates Q1/Q2/P-QUANTUM-5 — they are resolution-independent by construction (an algebraic property of the discrete recursion, not a near-field measurement); IF the interference-term finding (P-QUANTUM-7/8) becomes load-bearing for a future mechanism claim, it would warrant its own R3 check in a future cycle — named, not built. **amp_rel=2×10⁻⁴** is Iteration 1's own committed scenario default (Red Team docket #4), reused, not re-sourced or re-derived this cycle. **T11 (box-ledger decision floor) and the T10 +3.05pp residual sub-cell sweep are NOT folded in this cycle** — both are real, cheap, and queued, but this proposal keeps the mandatory build as the sole primary item per the mandate's own instruction not to shortchange it for a rider; both are named for Phase 2/3 consideration or a future cycle. VISION's r=156 build is untouched — not this seat's domain, Iteration 7's own hard commitment, this proposal does not second-guess it.
+
+### Phase 2 — Critiques (five seats, blind, verbatim)
+
+#### PHOTONICS — verdict: **support-with-changes**
+
+**Steel-man (148 words):** This is the right test, correctly scoped for optical coherence across angle. `fdtd2d.py`'s `angle_deg` machinery is a genuine phase ramp k·sinθ along the source line, giving each obliquely-launched component an invariant k_y — the beam (θ=0, y-uniform phase) vs. ambient (θ=30°, k_y=k·sin30°) interference is exactly the standard two-plane-wave fringe geometry. I verified the claimed fringe period Λ_y=λ/sinθ=2λ directly from that phase convention — it's correct, not asserted. Restricting the endpoint object to `graded_black_shell` (radially isotropic, no PEC clamp) is exactly right: every update coefficient (`ca`,`cb`) depends only on static ε_r/σ_e, so the object introduces zero field-nonlinearity — the superposition gates (Q1/Q2) test genuine machinery, not an object-induced confound. Deferring the incoherent-ensemble idiom and any wavelength sweep correctly isolates "does superposition hold" from T10's known chromatic near-field sensitivity. Single-λ scope is disciplined, not lazy.
+
+**Sharpest attack (150 words):** P-QUANTUM-7's predicted band [0%, 30%] is off by roughly two orders of magnitude by the proposal's own numbers. amp_rel=2×10⁻⁴ gives amplitude ratio A_amb/A_beam=0.01414. Joule absorption ∝σ|E|²: the cross term scales as 2·A_beam·A_amb·∫σ, while P_abs(ambient alone) scales as A_amb²·∫σ — ratio 2/0.01414≈141× (14,100%) *before* any cancellation. The proposal's own rescue is radial ring-averaging over "≈3.9 fringe periods." But using its own angle_deg-derived Δk (k·2sin15°≈0.163/cell) against r_out=78, |Δk|·r_out≈12.7 rad — the radially-symmetric-weight cancellation this leans on is a Hankel/J₀(|Δk|r) integral, and J₀(12.7)≈0.15–0.2, i.e. only ~80–85% suppression, not the >99.7% needed to land inside [0%,30%]. A more honest central estimate is closer to 1000–3000%, not ≤30%. "Substantial but incomplete cancellation" undersells its own geometry by ~2 orders of magnitude — a falsifiable-band error, not a physics error.
+
+**Verdict: support-with-changes.**
+
+**Flip:** Re-derive P-QUANTUM-7/8's predicted band from the amplitude-ratio scale factor (~2/√amp_rel, partially suppressed by the J₀(|Δk|·r_out) estimate above) before Phase-3 freeze — plausibly [200%, 3000%], not [0%,30%]. This affects only the informational (non-gated) prediction, not gates Q1/Q2/Q3/P-QUANTUM-5/6, so it doesn't block the core superposition-machinery claim — but the house discipline (predictions committed *before* the run) is broken as written, since the current band would almost certainly be falsified for reasons unrelated to whether coherent superposition itself holds.
+
+Files checked directly: `lab/fdtd2d.py` (lines 132–172, `add_line_source`'s `angle_deg`/phase-ramp implementation, and the fully linear `run()` update loop lines 194–250), `lab/materials.py` (lines 64–100, `graded_black_shell`/`_graded_black` — confirmed radially isotropic, no angular dependence), `lab/sections.py` (`radial_absorbed_power`, lines 158–197), `experiments/028.../design_geometry.py` (confirms the joint-injection diagnostic was explicitly deferred to this Iteration-6 QUANTUM lead cycle) and `run.py` (confirms `amp_rel`/`intensity_role` are manifest-dict metadata keys in exp-028, not actual `add_line_source` kwargs — a Phase-3 wording fix flag).
+
+#### MATERIALS & METAMATERIALS — verdict: **support-with-changes**
+
+**Steel-man (≤150 words):** Zero new `lab/materials.py` code, and the reused construction is genuinely benign from a realizability standpoint. `graded_black_shell` is this program's most validated article: R≤0.2% broadband reflection (450–750nm), σ_abs/σ_ext independently corroborated across four prior experiments (exp-002/026/027/028), no negative index, no gain medium, no resonance — a physically buildable graded-conductivity coating class, squarely "published" on PANEL.md's own realizability tiering. Suite Stage 11's object (r_in=0, solid disk, sigma_max=0.5) exactly matches stage-10's own canonical, already-gated article — no new realizability question there at all. Because the coherent-superposition gates are an algebraic property of the LTI update equations, they need no new material physics to be meaningful, and this proposal correctly declines to introduce any.
+
+**Sharpest attack (≤150 words):** The exp-029 bench object is not actually "T9's mechanistically clean article." That artifact — exp-028's Cell B (`design_geometry.py`/`run.py`, verified) — is `graded_black_shell(cx,cy,30,78,sigma_max=0.5,eps_max=1.0)` **plus** a second line, `sim.sigma_e[rr<30]+=0.5`, filling the core. exp-029's table specifies only the shell call — its sigma_max/eps_max match Cell B's constants exactly — and omits the core-fill. As written, r<30 (a 60-cell, 1.5λ-radius hole) is bare vacuum: not T9's article, an untested one. T9's own finding (core absorbs ~0.006% of power either way, PEC or filled) suggests the practical consequence is small, but that's inferred from two non-vacuum cores, never a hollow one — "established" doesn't transfer automatically. The stated rationale ("no PEC core... keeps the medium strictly LTI-continuous") also conflates linearity with continuity: PEC's Ez=0 is itself linear, so excluding it buys nothing for the superposition gates' algebraic argument.
+
+**Verdict:** support-with-changes.
+
+**Flip:** Add the missing `sigma_e[rr<r_in]+=sigma_max` core-fill line to exp-029's object construction, verified with a printed assertion that r<r_in is non-vacuum before the run — or explicitly relabel the object a new, untested hollow-shell variant with its own predicted band.
+
+Files consulted: `PANEL.md`, `LOGBOOK.md` (offset 1–325, 1674–1913), `lab/materials.py`, `experiments/028.../design_geometry.py`, `experiments/028.../run.py` (lines 75–115).
+
+#### ELECTROMAGNETISM — verdict: **support-with-changes**
+
+**Steel-man (148 words):** I traced `Sim.run()` line-by-line. The claim holds, and holds more strongly than "algebraic identity" suggests. Every per-step operator is a fixed linear map on the field state: `ca`, `cb` depend only on `sigma_e`/`eps_r`/`S` (never on Ez/Hx/Hy), source injection is a plain per-source additive term independent of other sources, `self.Ez *= self.damp_e` is a fixed diagonal multiply, and `self.Ez[self.pec] = 0.0` is a fixed 0/1 diagonal projection — both distribute exactly over addition in exact arithmetic. No field-dependent coefficient exists anywhere in the loop. Superposition to float64 roundoff is therefore guaranteed, not merely expected. The predicted 1e-13–1e-11 band for ~3200 steps is a sane, arguably conservative estimate — 5+ orders of margin under the 1e-6 gate.
+
+**Sharpest attack (149 words):** P-QUANTUM-7's predicted band [0%, 30%] is wrong by roughly three orders of magnitude, and the engine's own convention proves it. `radial_absorbed_power` computes p_J = 0.5·σ_e·|Ez_phasor|². Expanding E_total = E_beam + E_ambient gives P_abs(joint) = P_abs(beam) + P_abs(ambient) + P_cross, with |P_cross| ≤ 2√(P_abs(beam)·P_abs(ambient)) by Cauchy-Schwarz on the σ_e-weighted inner product — a passivity/energy fact, not a numerics quirk. Since P_abs(ambient) ≈ amp_rel·P_abs(beam) with amp_rel = 2×10⁻⁴, the ceiling on the proposal's own metric is |ΔP_int|/P_abs(ambient) ≤ 2/√amp_rel ≈ 141× = 14,142%, not 30%. Cross terms are LINEAR in the weak source's amplitude while its self-power is QUADRATIC, so cross-over-self necessarily diverges as amp_rel→0 — normalizing by P_abs(ambient) instead of P_abs(beam) (bounded, informatively, at 2√amp_rel ≈ 2.8%) turns "this cycle's actual new science" into a metric near-guaranteed to read as an uninterpretable overshoot rather than a clean interference characterization.
+
+**Verdict: support-with-changes.**
+
+**Flip:** Renormalize P-QUANTUM-7 to `|ΔP_int| / P_abs(object+beam)` (not `P_abs(object+ambient)`) with predicted band **[0%, 2.8%]** (the Cauchy-Schwarz ceiling 2√amp_rel), and drop or independently re-derive P-QUANTUM-8's "≥3×" claim, which inherits the same normalization error. With that one denominator change, unqualified support.
+
+#### THERMODYNAMICS — verdict: **support-with-changes**
+
+**Steel-man (150 words):** Folding Q3/P-QUANTUM-6 in as a second gate is exactly the discipline my own Iteration-5 lead demanded of Cell A/B's aggregate box-ledger ratio, now applied to a genuinely harder case. `radial_absorbed_power`'s closure (empirical, ≤1.5% calibrated bound, measured at 0.20–0.26% single-source in exp-028) has only ever been exercised on a smooth, non-interfering single-source field. A coherent two-source scene's p_J(r) = 0.5σ|Ez_phasor|² carries real spatial fringe structure the single-source closure never had to survive. Passing this check at scale means Σ_bins p_J still tracks the box ledger's four-face flux identity even when the underlying field is spatially interfering, not merely superposed in aggregate.
+
+**Sharpest attack (150 words):** P-QUANTUM-7 normalizes ΔP_int by P_abs(object+ambient) — the wrong denominator for a thermodynamic read, and it buries the finding instead of bounding it. Since p_J_joint = 0.5σ|Ez_beam+Ez_ambient|² exactly, P_abs(joint) = P_abs(beam) + P_abs(ambient) + P_int, and Cauchy-Schwarz gives the real passivity envelope: (√P_beam − √P_ambient)² ≤ P_abs(joint) ≤ (√P_beam + √P_ambient)², i.e. |P_int| ≤ 2√(P_abs(beam)·P_abs(ambient)). With field-amplitude ratio ≈0.01414 (amp_rel=2×10⁻⁴), that ceiling is ≈2.8% of P_abs(beam) — not ≈30% of P_abs(ambient)≈6×10⁻⁵ of P_abs(beam), which is what the proposal's own normalization implies is "negligible." The interference term scales as √(I_beam·I_ambient), not I_ambient — it can be ~70× larger in absolute terms than the ambient source's own direct absorption. A potential percent-level correction to the object's dominant heating channel is called "informational" purely because it's divided by the wrong baseline.
+
+**Verdict: support-with-changes.**
+
+**Flip:** Add ΔP_int/P_abs(object+beam) as a stated predicted band derived from the Cauchy-Schwarz ceiling (≈±2.8%), and report the measured value against it as a formal passivity-bounded finding rather than a pure "informational" aside normalized only against the tiny ambient baseline.
+
+#### VISION SCIENCE — verdict: **support-with-changes**
+
+**Steel-man (≤150 words):** By my own charter's letter, this proposal is clean. I grepped its full text for any perceptual claim and found none; it explicitly disclaims scoring against constraint 3. It never touches `lab/ambient.py`'s actual instrument (`window_means`, `weber`, `incoherent_sum`, `contrast_from_runs`), never runs stage 9, pins no observer geometry. My duty (pin thresholds before scoring) is a conditional obligation — it fires only when a run scores against a perceptual threshold, and nothing here does. The honest self-labeling ("stated honestly, this build does not itself deliver the joint scene T1 needs") is exactly the discipline this program's own T1/T3 threads demand.
+
+**Sharpest attack (≤150 words):** The naming is the danger, not the physics. A second source labeled "ambient" with an `intensity_role="ambient"` field and `amp_rel` borrowed verbatim from Iteration 1's committed scenario constant creates every visual cue of constraint-3 progress while touching zero of it — no Weber C, no `lab/ambient.py`, no observer plane, a different bench entirely. This is Iteration 6, QUANTUM's own committed lead — but it is also, by my own Iteration-5 Phase-5 count, the fourth consecutive beam-scene-only cycle since Iteration 3, arriving exactly as I warned it would when the Director declined to move r=156 to Iteration 6. That vindicates my prior dissent; it does not complicate it. The real risk isn't Checkpoint 4 firing on THIS proposal — it explicitly doesn't touch r=156. It's that a future LOGBOOK summary line reading "exp-029: ambient bridge validated" would launder a fourth silent-constraint-3 cycle into apparent progress, softening the political urgency behind the pre-registered Iteration-7 tripwire before it's tested.
+
+**Verdict: support-with-changes**
+
+**Flip:** Rename the second source's `intensity_role`/label away from `"ambient"` (e.g. `"off_axis"` or `"source_B"`) throughout code, NOTES.md, and results, and require the Phase-3 synthesis to append one explicit sentence to LOGBOOK.md's entry: "This experiment is orthogonal to constraint 3 / T8 — it validates coherent-superposition machinery, not the ambient-silhouette instrument." With that language firewall in place, no remaining objection.
+
+#### RED TEAM (last, saw everything) — verdict: **proceed-with-mandatory-fixes**
+
+Every load-bearing code and arithmetic claim in the Phase-1 proposal and all five blind critiques was independently re-derived against the actual repo, not trusted from prose. The core machinery claim holds up under direct inspection and is in fact stronger than "expected": `lab/fdtd2d.py::Sim.run()` (lines 194–250) shows `ca`/`cb` depend only on static `sigma_e`/`eps_r` (never `Ez`), the H-update and E-update are fixed linear operators, `for s in self.sources: self.Ez[...] += env*sin(...)*profile` is a per-source additive injection into a linear recursion, `self.Ez *= self.damp_e` is a fixed diagonal multiply, and `self.Ez[self.pec] = 0.0` is a fixed 0/1 projection applied identically regardless of input value — every step is linear in the source terms given a fixed material scene. Given identical `sigma_e`/`eps_r`/`pec` arrays across runs, `Ez_joint(t) = Ez_beam(t) + Ez_ambient(t)` is a mathematical identity of this exact discrete recursion, not an approximation.
+
+**1. [inconsistency] — MATERIALS' core-fill catch, CONFIRMED exactly, mandatory.** `experiments/028.../run.py::build_cell`: Cell B is `graded_black_shell(...)` **followed by** `sim.sigma_e[rr<r_core]+=BLOCKB_SHELL_SIGMA_MAX` — a second line filling the core. exp-029's table specifies only `graded_black_shell(...)` and omits it. As tabulated, r<30 is bare vacuum — a never-validated hollow-shell object. **Mandatory**: add the core-fill line with a printed non-vacuum assertion.
+
+**2. [inconsistency] — the Cauchy-Schwarz ceiling error (EM/THERMODYNAMICS, independently converged; PHOTONICS' parallel argument), CONFIRMED, mandatory.** Re-derived from scratch: |P_cross| ≤ 2√(P_abs(beam)·P_abs(ambient)) — with amp_rel=2×10⁻⁴, the ceiling on the proposal's own metric is 2/√amp_rel ≈ 14,142%, not 30%. PHOTONICS' partial-suppression Bessel argument independently checks out (|Δk|=0.1626/cell exactly; |Δk|·r_out=12.68 rad; J0-envelope estimate ≈0.22, consistent with the 0.15–0.2 range cited). **Mandatory**: fix P-QUANTUM-7's band by renormalizing (Phase 3's choice), correct P-QUANTUM-8 to match.
+
+**3. [inexpressible] — the `add_line_source` kwargs mismatch is a real implementation blocker, escalating PHOTONICS' catch from recommended to mandatory.** `add_line_source`'s actual signature has no `intensity_role`/`amp_rel` — if implemented literally, `TypeError`. Confirmed the correct pattern is a separate manifest dict (exp-028's own `results.json`). **Mandatory**: rewrite the table's construction column to match this precedent.
+
+**4. [inconsistency] — a NEW find, none of the five caught: the proposal's own printed assertion would fail on its own numbers.** Amplitude 0.014142 squares to 1.99996164×10⁻⁴, missing the stated `assert abs(...) < 1e-9` by 3.8× over budget. The identical "derived value checked against a pre-rounded display number" bug class as Iteration 5's SIGMA_ON drift and the "55.47" rounding-before-dividing artifact. **Mandatory, trivial fix**: derive the amplitude in code at full precision (`sqrt(amp_rel)`), not a hand-copied literal.
+
+**5. [inconsistency] — VISION's naming/scope-risk catch, CONFIRMED and sharpened.** Re-reading LOGBOOK.md's Iteration 1 record (docket #4), the ORIGINAL bridge-gate design had two named halves: (a) random-phase incoherent injection (correctly out of scope) and (b) "one joint beam+ambient run on the linear sponge reproducing beam-behind and C simultaneously (superposition as the absolute identity)." exp-029 builds configuration (b) but drops the "and C" half silently — not an unrelated concern ("orthogonal"), but the omission of a piece of this seat's own long-committed design, in the very cycle assigned to build it. **Mandatory**: the firewall sentence should name exactly what's deferred — the beam+ambient C-reproduction half of docket #4 — not "orthogonal."
+
+**6. [inconsistency], recommended, not mandatory — Gate Q3 satisfies the letter but not the full spirit of QUANTUM's own Iteration-5 Phase-5 scoping note.** Field-level equality (Gate Q2) does not imply p_J (quadratic in Ez) is bin-wise additive — that's precisely what P-QUANTUM-7/8 exist to characterize, but only in aggregate/peak-magnitude terms, never radially resolved. Not mandatory, but should be named — either add one bin-wise superposition comparison, or state explicitly that Q3 satisfies the letter, not the full spatial-redistribution spirit.
+
+**Evidence that would change the verdict.** To REJECT: if the core-fill correction changed the object's optical depth enough that Gate Q3's reused ≤1.5% bound no longer holds, or if the source-call fix surfaced a deeper API mismatch meaning this needs its own scoped build, not a diagnostic patch. To clean PROCEED: all five mandatory items resolved pre-freeze, verified in NOTES.md.
+
+**Panel stats:** 5 of 5 seats support-with-changes, zero oppose · MATERIALS, PHOTONICS, and EM each independently caught a real code/math-level defect this cycle, with EM and THERMODYNAMICS independently converging on the identical Cauchy-Schwarz derivation — the second time this program has seen independent cross-seat convergence on the same catch (first was Iteration 5's core_frac display bug) · Red Team's own audit finds two items none of the five caught: the proposal's own printed self-check assertion fails on its own tabulated amplitude, and the naming-risk fix VISION proposed doesn't go far enough — it mischaracterizes as "orthogonal" what is actually a silently-dropped half of this seat's own Iteration-1-committed design.
+
+### Phase 3 — Synthesis (2026-08-13, Director)
+
+Full record: `experiments/029-coherent-superposition-bridge-gate/NOTES.md`.
+**All six of Red Team's mandatory/recommended items ACCEPTED, zero
+overridden.** Concretely: **the core-fill line added** to exp-029's
+object construction (exp-028's exact Cell B recipe), with a printed
+non-vacuum assertion enforced before any gate is trusted. **P-QUANTUM-7
+renormalized** to `|ΔP_int|/P_abs(object+beam)`, predicted band
+**[0%, 2.83%]** (the Cauchy-Schwarz ceiling `2√amp_rel`), replacing the
+proposal's original, physically-impossible [0%,30%] band against the
+wrong denominator. **The `intensity_role`/`amp_rel` fields moved out of
+`add_line_source()`'s kwargs** into a `results.json` manifest dict,
+exp-028's own precedent — the proposal's original table would have
+raised `TypeError` if implemented literally. **The off-axis amplitude is
+now derived in code** (`AMP_BEAM * sqrt(AMP_REL)`, full float64
+precision) rather than a hand-copied 6-decimal literal that failed its
+own stated assert tolerance by 3.8×. **The second source's role is
+labeled `"off_axis"`, not `"ambient"`**, throughout code, results, and
+NOTES.md; `results.json`'s `meta.note_naming` field states explicitly
+that this experiment defers the beam+ambient-C-reproduction half of
+QUANTUM's own Iteration-1-committed bridge-gate design (LOGBOOK.md docket
+#4/(b)) — named as a deferred commitment, not described as merely
+"orthogonal" (Red Team's sharpening of VISION's own catch). **A new
+informational metric, P-QUANTUM-9, folded in** (Red Team's recommended
+item 6): a bin-wise comparison of the joint scene's radial-ledger bins
+against the naive per-source bin-wise sum, the actual spatial-
+redistribution test Gate Q3's aggregate closure alone can't provide.
+New machinery (`lab/validation/run_all.py::
+stage11_multisource_superposition`) gated by **new suite stage 11** (3
+checks: vacuum-scene field superposition, object-scene field
+superposition — both measured 1.9×10⁻¹⁵, five orders tighter than even
+the proposal's own optimistic central estimate — and the reused
+radial-closure gate at 1.13%) — full bench **48/48 green** before this
+experiment's first official run. Predictions P-QUANTUM-4/5/6/7/9
+(renumbered and revised per the fixes above) committed before any run
+(commit to follow this LOGBOOK entry, per house discipline).

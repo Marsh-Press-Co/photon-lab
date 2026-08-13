@@ -724,12 +724,85 @@ def stage10_radial_power():
           f"{core_power:.2e}", core_power == 0.0, "0.0 exactly")
 
 
+# --------------------------------------------------------------- stage 11
+def stage11_multisource_superposition():
+    """Coherent multi-source linear superposition gate (Panel Iteration 6,
+    exp-029). `Sim.sources` has always been a plain list, summed by
+    `run()`'s per-step loop, but no suite check had ever exercised >=2
+    concurrent sources end-to-end (Red Team's own Iteration 5/6 ruling: the
+    mechanical capability existing is not the configuration being
+    validated). Two ABSOLUTE identities: a joint two-source run's complex
+    Ez phasor must equal the pointwise SUM of each source's own
+    single-source phasor, in vacuum AND with a lossy object present (the
+    sigma_e branch, exercised with 2 concurrent sources for the first
+    time) -- an algebraic property of this LTI discrete recursion (fixed
+    ca/cb depending only on static sigma_e/eps_r, additive per-source
+    injection, fixed diagonal damping and PEC-clamp -- verified
+    line-by-line against fdtd2d.py, Panel Iteration 6 Phase 2,
+    ELECTROMAGNETISM/Red Team), so any measurable miss would be an
+    implementation bug, not new physics. A third, EMPIRICAL closure check
+    reuses stage 10's own radial_absorbed_power gate on the two-source
+    joint scene, for the first time with a spatially-interfering field."""
+    print("stage 11 — multi-source coherent superposition vs identities")
+    from lab import sections as sc
+
+    AMP_REL = 2e-4                        # Iteration 1's own committed scenario default
+    amp_beam = 1.0
+    amp_b = amp_beam * np.sqrt(AMP_REL)   # derived at full float64 precision, not a hand-copied literal
+    assert abs((amp_b / amp_beam) ** 2 - AMP_REL) < 1e-9, "amp_rel derivation failed"
+
+    R_OUT = 32
+    BOX = (190, 290, 70, 170)
+    REF = (240, 120, 40)
+
+    def run_scene(build, sources):
+        sim = Sim(360, 240, cells_per_lambda=20, courant_frac=0.99, absorb=30)
+        if build:
+            build(sim)
+        for x, ang, amp in sources:
+            sim.add_line_source(x, angle_deg=ang, amplitude=amp)
+        sim.run(900)
+        return sim, sc.full_capture(sim)
+
+    def build_object(s):
+        materials.graded_black_shell(s, 240, 120, 0, R_OUT, sigma_max=0.5, eps_max=1.0)
+
+    def rms(x):
+        return float(np.sqrt(np.mean(np.abs(x) ** 2)))
+
+    caps_joint = {}
+    for label, build in (("vacuum", None), ("object", build_object)):
+        _, cap_beam = run_scene(build, [(54, 0.0, amp_beam)])
+        _, cap_b = run_scene(build, [(54, 30.0, amp_b)])
+        sim_j, cap_j = run_scene(build, [(54, 0.0, amp_beam), (54, 30.0, amp_b)])
+        caps_joint[label] = (sim_j, cap_j)
+
+        ez_beam = sc.phasors(cap_beam)["ez"]
+        ez_b = sc.phasors(cap_b)["ez"]
+        ez_j = sc.phasors(cap_j)["ez"]
+        resid = rms(ez_j - (ez_beam + ez_b)) / rms(ez_j)
+        check("multisource", f"{label} scene: joint Ez phasor == sum of single-source phasors (RMS rel.)",
+              f"{resid:.2e}", resid <= 1e-6, "<=1e-6")
+
+    sim_j_obj, cap_j_obj = caps_joint["object"]
+    _, cap_j_vac = caps_joint["vacuum"]
+    wj = sc.widths(cap_j_obj, cap_j_vac, BOX, REF)
+    p_abs_box = wj["sigma_abs"] * wj["i_inc"]
+    _, _, total_j = sc.radial_absorbed_power(cap_j_obj, sim_j_obj.sigma_e, 240, 120, R_OUT)
+    closure = abs(total_j - p_abs_box) / abs(p_abs_box)
+    # Gate reused from stage 10's own calibrated bound (same closure computation,
+    # now exercised on a spatially-interfering 2-source field for the first time).
+    check("multisource", "joint (2-source) scene: radial closure vs box-ledger p_abs",
+          f"{closure:.4f}", closure <= 0.015, "<=0.015")
+
+
 # ------------------------------------------------------------------ main
 if __name__ == "__main__":
     only = "123456789"
     if "--only" in sys.argv:
         only = sys.argv[sys.argv.index("--only") + 1]
     run_stage10 = "10" in only
+    run_stage11 = "11" in only
     t0 = time.time()
 
     if "1" in only:
@@ -777,6 +850,8 @@ if __name__ == "__main__":
         stage9_ambient()
     if run_stage10:
         stage10_radial_power()
+    if run_stage11:
+        stage11_multisource_superposition()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
