@@ -823,3 +823,154 @@ bridge; the estimator-adjudication question (now retired per T7); the
 own mechanism (resolution-confirmed real, cause still open — candidate:
 near-field extinction structure at hard boundaries, same family as the
 still-open PEC N17 excess).
+
+## Iteration 3 — The σ(I) Endpoint Triplet (exp-026) — 2026-08-13
+
+Runner: cloud panel shift (background routine) · Lead: **MATERIALS**
+(rotation) · Phases run: **1–5, complete** · 7 fresh-context seats, Phase-2
+critiques written blind and in parallel; Red Team read everything and
+spoke last.
+
+### Phase 1 — Proposal (MATERIALS, verbatim)
+
+# PHASE 1 — PROPOSAL · Panel Iteration 3 · Lead seat: MATERIALS & METAMATERIALS
+## "The σ(I) Endpoint Triplet" — OFF-lab / OFF-field / ON static articles on the ±35° fallback baseline (candidate exp-026)
+
+### 1. Mechanism narrative (≤300 words)
+
+Iteration 2 closed with three seats — MATERIALS, QUANTUM, THERMO — independently ranking the same next step: measure the σ(I) escape route's static endpoints on the ±35° fallback geometry, the first instrument geometry in this program precise enough to certify a near-threshold PASS rather than only a FAIL (δ_C ≤ 0.00089 at every λ, exp-024/025). This proposal is exactly that measurement and nothing more. Three uniform-conductivity, index-matched (ε_r = 1) sponge disks — no PEC core, same r_out = 78 cells as every prior calibration article — sit at three τ_center values marking the σ(I) design window's OFF-lab bar, OFF-field bar, and ON (beam-stopping) endpoint. No intensity dependence is built; these are two ends and one interior point of a hypothetical trajectory, read as ordinary static linear articles on the existing bench, exactly how the existing τ=0.10 calibration sponge was already validated to 0.001–0.003 of its own chord model. Zero new engine physics: the same sigma_e-disk construction already living in run.py's `sponge` branch, three new σ values.
+
+One rider rides for free. The ON-state disk has a hard geometric edge in conductivity — a step, not the absorber's adiabatic smoothstep — but no index step and no PEC. It is the first article able to separate exp-024/025's confirmed red-ward chromatic drift, measured only in PEC-cored or PEC objects so far, into "a bare conductivity step is sufficient" versus "requires an actual index or PEC discontinuity." It also folds in exp-001's beam-behind and observer-return channels, since a coreless distributed absorber must re-earn beam-termination and no-return on its own terms.
+
+My seat's job is bounding what's real: the OFF endpoints are trivially realizable; the ON endpoint is a real, aggressive, but citable bulk-absorption target; the switching mechanism joining them is not, and this proposal draws that line with numbers.
+
+### 2. Parameter table
+
+Geometry inherited verbatim from exp-024's ±35° fallback (zero changes): grid Δ=30nm, courant 0.99, absorb 40 cells, cpl 15/20/25 (450/600/750nm); domain 360×1584; source x=300, y∈[40,1544], taper 40; object center (170,792); measurement plane x=77 (lever 93 cells); windows object≤78, guard(78,185], flank[185,263]; BOX (80,260,702,882), clearance 12 cells, derived; angles `FALLBACK_ANGLES=(−35,−25,−15,−5,0,5,15,25,35)`, N=9; established decision floor δ_C=0.00089/0.000033–0.000071/0.00043–0.00045 @450/600/750nm (exp-024/025, reused not remeasured); suite 41/41.
+
+New articles: uniform disk, no PEC core, eps_r=1, r_out=78 cells (2.34µm), same construction as run.py's existing "sponge" branch.
+
+| Article | τ_center | σ_engine | Attenuation length | Chord-model C_geo (fallback N9) |
+|---|---|---|---|---|
+| OFF-lab | 0.008 | 5.1282e-5 | ≈585µm | −0.0055 |
+| OFF-field | 0.032 | 2.0513e-4 | ≈146µm | −0.0216 |
+| ON | 3.9 | 2.5000e-2 | ≈1.2µm | −0.7823/−0.7893 |
+| (tie-point, reused not rerun) τ=0.10 sponge | 0.10 | 6.4103e-4 | ≈47µm | −0.0657 (matches exp-024's committed value; fallback data already in hand: −0.0651/−0.0661/−0.0654 @450/600/750nm, commit c67506b) |
+
+Run plan (as proposed): 81 ambient runs + 3 beam-scene runs (ON only) + 5 N-convergence runs = 89 runs total, ≈285–310s.
+
+### 3. T1 escape-route statement
+
+Serves intensity-gated absorption σ(I) — but only its static endpoints. All three articles are ordinary linear, time-invariant media. Measures τ_off at lab bar (OFF-lab), τ_off at field bar (OFF-field), τ_on at beam-termination (ON). No intensity-dependent conductivity function built; Checkpoint 3 engine work explicitly out of scope.
+
+### 4. Predicted outcomes — falsifiable numeric bands (as proposed)
+
+P-MAT1 (OFF-lab): central −0.0055, band [−0.0075,−0.0035], designed to straddle the lab bar (0.005), chromatic spread ≤0.001. P-MAT2 (OFF-field): central −0.0217, band [−0.026,−0.018], straddles field bar (0.02), spread ≤0.002. P-MAT3 (ON): central −0.786, band [−0.85,−0.72]; edge-hardness chromatic rider (binary): ≥0.005 spread → "step alone sufficient"; ≤0.001 → "needs index/PEC discontinuity." P-MAT4 (ON beam-behind): central 2.0%, band [1.5%,6%], wavelength-flat. P-MAT5 (ON observer-return): ≤7e-4 absolute. P-MAT6 (g=|C|/τ_center): g∈[0.62,0.69]. P-MAT7 (N-convergence, N5 vs N9): |ΔC|≤0.001. P-MAT8 (ON, closed-box ledger, zero extra runs): σ_abs/σ_ext≥0.90.
+
+### 5. Idealizations (as proposed)
+
+2D TMz; static/linear/time-invariant throughout; CW single-λ, 3-λ quadrature; incoherent-sum linear idiom unchanged; back-lit ambient only for OFF-lab/OFF-field; graded damping bands not PML; ±35° fallback omits ±40° (T7 still open); chord-model bands are geometric-optics; eps_r pinned at exactly 1.0; ON article's abrupt σ step is a new boundary condition for this family.
+
+### 6. Realizability bound (Materials' seat duty, as proposed)
+
+OFF-lab, OFF-field — PUBLISHED. ON — PLAUSIBLE (absorption coefficient has precedent; eps_r≡1 simultaneous with it is the open engineering ask). Switching mechanism (Δσ/σ≈122–487×) — UNOBTANIUM-WITH-PARAMETERS, carried forward from Iteration 2 Phase 5's ruling verbatim.
+
+### Phase 2 — Critiques (five seats, blind, verbatim)
+
+#### PHOTONICS — verdict: support-with-changes
+
+**Steel-man:** The chord-model machinery is independently verified, not just claimed — re-ran `design_geometry.py`'s own `window_means(..., transmission=True)` at the pinned FALLBACK_ANGLES set with the proposal's four σ values and reproduced OFF-lab (−0.0055/−0.0055), OFF-field (−0.0216/−0.0218), ON (−0.7823/−0.7893), and the τ=0.10 tie-point (−0.0657/−0.0662) to the printed digit. The µm attenuation-length conversions check out arithmetically. The engine's Ohmic update produces λ-flat spatial attenuation for constant σ at every depth tested here — wavelength-flat beam-behind and OFF-state ambient predictions are grounded in real engine mechanics, confirmed at the existing τ=0.10 point (Δ=0.0003, noise-level).
+
+**Sharpest attack:** The ON-state chromatic rider misidentifies which variable it isolates. It's framed as separating "a bare conductivity step is sufficient" from "requires an actual index or PEC discontinuity" — but the bench already holds a bare-conductivity-step article at this exact r_out/eps_r=1, hard-σ-boundary construction: the reused τ=0.10 tie-point sponge, which showed Δ=0.0003 (null, noise-level) at this same fallback geometry. So "a bare step alone" was already tested at low depth and found insufficient. Relative to that existing point, ON changes optical depth (0.10→3.9) while holding edge hardness fixed — it does NOT vary edge hardness against a fixed depth. A positive ON result therefore shows "sufficient optical depth reproduces the drift regardless of PEC/index," not "a bare step is sufficient" as an edge-type claim; the proposal's own step-vs-discontinuity dichotomy is never actually varied at constant depth, so this design cannot distinguish opacity from boundary-type as the driver.
+
+**Verdict:** support-with-changes. **Flip:** Re-derive the rider's decision rule with the τ=0.10 null (Δ=0.0003) explicitly pre-registered as the "insufficient at low depth" anchor of the same bare-step family, so a positive ON reading is scored as "opacity-dependent, boundary-type-independent" rather than "edge-hardness sufficient" — or add one intermediate hard-step depth point (e.g., τ≈1) so the opacity axis this design actually probes is traced, not inferred from two endpoints framed as a different dichotomy.
+
+#### ELECTROMAGNETISM — verdict: support-with-changes
+
+**Steel-man:** Passivity and reciprocity are trivially satisfied: σ_e≥0 everywhere, eps_r pinned at exactly 1 (real, non-dispersive), no gain — manifestly passive, reciprocal, causal. The OFF-lab/OFF-field endpoints sit safely in the optically-thin, weak-scattering regime where the linear chord/Beer–Lambert model IS the correct leading-order EM prediction. Zero new engine physics keeps trust-suite scope minimal, and the realizability bound is honest.
+
+**Sharpest attack:** P-MAT8 contradicts the panel's own established measurement: σ_abs/σ_ext = 0.51 was MEASURED for `graded_black_shell` at the SAME r_out=78 (LOGBOOK, ESTABLISHED) — the extinction paradox operating exactly as EM theory predicts. For an optically thick object, forward diffraction contributes σ_scat≈σ_geom regardless of interior absorptivity, so σ_ext→2σ_geom and σ_abs/σ_ext saturates near 0.5, not →1. The ON disk (τ=3.9, same r_out, size parameter ≈24.5 — deep geometric-optics regime) sits in the identical large-size-parameter regime; a σ-step vs. σ-smoothstep interior profile does not change the far-field shadow/diffraction term capping the ratio near 0.5–0.6. Worse: eps_r≡1 does not guarantee impedance matching — complex ε=1−iσ/ωε₀ still jumps at the hard edge, a physical reflection channel that graded_black_shell's adiabatic quintic smoothstep exists specifically to eliminate. That reflected power adds to σ_scat, pushing the ratio further below 0.90. P-MAT8 needs re-deriving, anchored to the measured 0.51.
+
+**Verdict:** support-with-changes. **Flip:** Re-anchor P-MAT8's band to the panel's own measured extinction-paradox ratio before freeze — e.g. σ_abs/σ_ext∈[0.45,0.65], citing the 0.51 graded_black_shell measurement at the same r_out=78 — rather than ≥0.90. Left uncorrected, a load-bearing energy-ledger prediction that contradicts the panel's own established physics would flip this to oppose.
+
+#### THERMODYNAMICS — verdict: support-with-changes
+
+**Steel-man:** P-MAT8's σ_abs/σ_ext≥0.90 prediction is exactly the question stage-8's box ledger already answers, reused without material redesign. Folding beam-behind, observer-return, and absorbed-power onto the SAME three ON-state beam captures means every energy channel the object touches comes from one set of runs, the tightest ledger closure the bench can offer. The proposal stays honestly inside T1's static-endpoint scope: no σ(t)/σ(I) ledger claim is smuggled in, and THERMO's standing time-resolved-ledger demand is correctly left for its own named iteration.
+
+**Sharpest attack:** Not free, and silent where it owes a number. P-MAT8 reuses P-MAT4/5's captures at zero extra runs, but the box ledger (`sections.widths`, stage 8) has only been suite-gated on the small single-beam exp-001/002 domain and on exp-024's oblique multi-angle ambient domain (P-M7) — never a single-beam capture at THIS domain (360×1584, recentered BOX). That combination is "new machinery" by house rule — Red Team's own Iteration-2 standard for QUANTUM's "zero-cost" bridge-gate claim — yet no absolute-identity gate is named for it. Second: the proposal invokes exp-001-scale beam power but gives no absorbed watts, ΔT, emission band, or detectability estimate for the ON article — THERMO's standing charter duty. Iteration 1's analogous silence was a NAMED deferral (docket #7); this proposal names none.
+
+**Verdict:** support-with-changes. **Flip:** Add one gate: an empty-scene box-closure identity run at the beam-scene single-source geometry (same domain/BOX, no object) before P-MAT8's number is trusted — zero new physics, ~1 run; and add one sentence to §5 stating the ΔT/emission-band/detectability sidecar is explicitly deferred pending docket #7's witness-wattage pin, with σ_abs/σ_ext carried as the only currency until then.
+
+#### QUANTUM OPTICS — verdict: support-with-changes
+
+**Steel-man:** Honest, disciplined linear-only calibration exactly where the σ(I) design window lives. Sponge chord-model transfer was anchored at one point before (τ=0.10, accurate to 0.001–0.003); three new points spanning τ=0.008–3.9 tightens g=|C|/τ_center precisely across the OFF-lab/OFF-field boundary QUANTUM's own T1 inequality depends on. The realizability bound matches QUANTUM's own standing ruling exactly. QUANTUM's bridge-gate package's exclusion is stated explicitly in §3 rather than silently dropped, honoring Iteration-2's own precedent that a deferral must be a stated decision, not an omission.
+
+**Sharpest attack:** Three static points don't touch σ(I)'s real difficulty. τ_on=3.9's optical depth is plain Beer-Lambert, already known to 0.001–0.003 via the τ=0.10 sponge — this mostly refines g, not new terrain. The actual hard problem — one medium hitting τ_off≤0.008 AND τ_on≥3.9 at the SAME σ, gated by instantaneous intensity under CW broadband light — stays exactly as UNOBTANIUM after these 89 runs as before them. Risk: Phase 5 reads "ON endpoint measured, g∈[0.62,0.69]" as de-risking the mechanism when switchability moved zero. A cheaper, more decisive quantum-relevant measurement is available and deprioritized instead of folded in near-free: the coherent-superposition bridge gate (existing 9-angle incoherent sum vs. simultaneous multi-phase injection on the OFF-lab article), which tests the assumption every future joint ambient+beam σ(I) score depends on.
+
+**Verdict:** support-with-changes. **Flip:** Fold the coherent-superposition bridge-gate check into this same run batch as a non-gating rider — zero new engine physics, near-zero marginal runs. That converts this from "one third of the queued σ(I)-readiness bundle, quietly incomplete" into a self-contained step, and QUANTUM would move to unconditional support.
+
+#### VISION SCIENCE — verdict: support-with-changes
+
+**Steel-man:** This is the first proposal to deliberately target the frozen bars rather than only produce another deep-silhouette FAIL — a legitimate step toward the capability Materials itself flagged as missing after exp-020 ("the instrument can certify FAIL but never PASS"). It reuses the exact frozen fallback-geometry decision floors rather than inventing new ones, touches no perceptual machinery, and states plainly that no intensity-gated mechanism is built. For a lead seat outside VISION's charter, this is disciplined use of the numbers VISION already pinned.
+
+**Sharpest attack:** The frozen bars (0.005/0.02) were calibrated on Blackwell's real extended targets, ≥1° angular subtense, foveal, binocular, at real viewing geometry — nothing here ties that calibration to a flux ratio read off a near-field FDTD plane 0.45µm from a 2.34µm disk. exp-020's own idealization (iii) is explicit: measured |C| is a lower bound in object scale, and "any near-invisible reading (|C|<0.1) would not be robust." Both P-MAT1 and P-MAT2 (|C|≈0.0055–0.022) sit an order of magnitude inside that disclaimed zone, and T8 already showed scale changes C non-trivially even for deep silhouettes (bench 0.69–0.83 vs witness-scale 0.98) — nobody has bounded whether weak, near-threshold C scales the same way. Meanwhile the ±35° fallback's own unquantified fill-in bias is comparable in size to the straddle margins themselves. Reading a straddle this fine as a PASS/FAIL verdict, on a regime the program's own idealization list disclaims, reports instrument precision as a perceptual finding.
+
+**Verdict:** support-with-changes. **Flip:** Before P-MAT1/P-MAT2 are read as anything beyond an instrument-precision demonstration, run OFF-lab (and ideally OFF-field) at one additional radius from T8's own bridge family (r=156, doubling the object while holding τ_center fixed) to test whether the near-threshold |C| scales with geometric chord predictions the way the deep articles were shown to depart from them near-field. If it does, the straddle claim earns real evidential weight; if not, P-MAT1/P-MAT2 must be reported as bench-scale-only, with no PASS/FAIL language attached.
+
+#### RED TEAM (last, saw everything) — verdict: proceed-with-mandatory-fixes
+
+1. **[inconsistency]** EM's P-MAT8 attack is correct, and it understates the severity. The extinction paradox is not a loose analogy here — for a near-zero-reflectivity, optically opaque object at this size parameter (ka≈24.5), σ_scat→σ_geom by diffraction alone and σ_abs→σ_geom, so σ_abs/σ_ext→0.5 essentially by definition in the geometric-optics limit. The panel's own measured 0.51 (`graded_black_shell`, R≤0.2% coated-wall reflection, same r_out=78) is that limiting value already reached by a *better-behaved* object than the one proposed. The ON disk is, if anything, the more textbook "black disk" case, so the analogy strengthens, it doesn't merely transfer. P-MAT8's [0.90,1] band asks the article to beat a bound the bench has already sat on.
+2. **[inconsistency]** Going further than EM: eps_r≡1 does not just fail to guarantee impedance matching — the abrupt σ step is a scattering channel the graded shell's design specifically eliminated, and this article has no analogous protection. The most likely correction to P-MAT8 is not "≈0.5" but "≤0.51." EM's own proposed flip band [0.45,0.65] should itself be flagged as possibly too narrow on the low end.
+3. **[inconsistency]** Attack (1)/(2)'s cascade lands on constraint #2, and none of the five critiques caught it. P-MAT5 (observer-return ≤7e-4) implicitly borrows the same low-reflectivity assumption P-MAT8 needs — if σ_scat/σ_ext is really ≈0.49–0.6+ rather than ≈0.10, there is several-fold more scattered power on the table, and EM's named reflection channel has a genuine backward-going component. P-MAT5 is the metric the entire target phenomenon is scored on for constraint 2; it should not ride, unexamined, on the same optimistic split P-MAT8 already fails on independent grounds.
+4. **[unfalsifiable]** The edge-hardness chromatic rider has no committed disposition for a measured spread in [0.001,0.005) — a real possible outcome, given this program's own measured chromatic spreads run 0.0114–0.0166 at comparable geometry. Contrast with exp-024's own P-EST, an exhaustive three-way outcome partition. As written, a mid-band result has no pre-committed reading — the pattern Red Team has killed twice already.
+5. **[inconsistency]** Independent of PHOTONICS' attack (which stands and should be adopted): T7's established finding shows the red-ward chromatic drift in BOTH an adiabatic-smoothstep edge (absorber, Δ=0.0114) AND an abrupt PEC edge (Δ=0.0166, "same rough magnitude") — edge hardness has already been varied, at comparably high opacity, and shown NOT to gate the effect on/off. Neither disposition of the rider can be earned by this measurement when the bench has already produced a result inconsistent with treating edge hardness as the discriminator at all.
+6. **[constraint-3-violation risk]** VISION's attack is correct and its flip should be mandatory, not optional. The proposal's own framing — "the first instrument geometry in this program precise enough to certify a near-threshold PASS rather than only a FAIL" — pre-loads exactly the conflation Red Team's Iteration-1 entry #1 killed once already. A 2.34µm disk sampled 0.45µm away, in a regime exp-020's own idealization (iii) explicitly disclaims, cannot certify anything about human perceptibility until VISION's r=156 bridge check exists. Mandatory: strike or explicitly condition the "certify a PASS" language, withhold PASS/FAIL wording from P-MAT1/P-MAT2 until the scale check lands.
+7. **[inconsistency]** Minor bookkeeping gap: the "5 N-convergence runs" either costs zero new runs (if N5 genuinely subsamples the 9 already-run fallback angles) or isn't actually a "subsample." The 89-run total can't be checked against the text as written. Cheap fix: name the exact 5 angles reused.
+8. THERMO's attack (no absolute identity gate for a single-beam box capture on this domain) is correct and should be adopted as stated — and it compounds with #1–#3: even if P-MAT8 is re-anchored correctly, there is currently no trustworthy empty-scene zero to read the corrected number against.
+
+**Where the five critiques over/under-reach:** PHOTONICS' and EM's attacks are both correct and complementary, not redundant — PHOTONICS kills the rider's discriminating power (wrong axis varied), EM (with #1–#2) kills its optimistic energy premise. QUANTUM's and THERMO's flips are reasonable low-cost additions, not blocking. VISION's attack is the one this proposal is most exposed on and should be escalated from "flip" to "mandatory precondition."
+
+**Verdict: proceed-with-mandatory-fixes.** **Evidence that would change the verdict — to REJECT:** if the Director declines to re-anchor P-MAT8 (and flag P-MAT5 as provisional pending that correction) before freeze. **To clean PROCEED:** all items resolved on the record pre-freeze — P-MAT8 rebanded below its current floor, P-MAT5 explicitly flagged/widened; the edge-hardness rider completed to an exhaustive partition anchored to T7; the "certify a near-threshold PASS" framing struck or explicitly conditioned on VISION's r=156 scale-bridge check; THERMO's empty-scene box-closure identity gate added; the N5-subsample run accounting named exactly.
+
+### Phase 3 — Synthesis (2026-08-13, Director)
+
+Full record: `experiments/026-sigma-i-endpoints/NOTES.md`. All eight of Red
+Team's items **ACCEPTED**, one critique flip (QUANTUM's fold-the-bridge-
+gate-in-now) **OVERRIDDEN** — new source/injection machinery needs its own
+gated suite stage per Red Team's own standing Iteration-2 rule; stays
+queued for its own iteration, unchanged from Iteration 2's ruling.
+Concretely: **P-MAT8 rebanded** [0.90,1]→[0.35,0.65] (central ≈0.50),
+anchored to the established `graded_black_shell` σ_abs/σ_ext=0.51
+measurement, with the added front-edge reflection channel as the reason
+to expect at-or-below rather than above it — **pre-freeze plumbing check
+on real FDTD (600nm) gave 0.6075, inside the revised band**, confirming
+the rebanding was the right call before a single scored run existed.
+**P-MAT5 widened and marked provisional** ([7e-5, 0.02], central ≈3e-4) —
+rides on the same corrected assumption, not scored as a tight constraint-2
+verdict this iteration. **P-MAT3's edge-hardness rider replaced** with an
+exhaustive 3-way partition anchored to the τ=0.10 null and T7's own
+established edge-type-insensitivity finding. **Thermo's box-closure gate
+added** at zero extra runs (reuses the already-required empty-scene beam
+capture) — smoke-tested clean (0.000157, gate ≤0.02). **VISION's PASS/FAIL
+language struck entirely**; her r=156 scale-bridge remedy queued as
+dedicated future work rather than rushed into this cycle, reasoned
+explicitly in NOTES.md (window/domain redesigns get their own careful
+build, this lab's own precedent). **Two run-accounting bugs corrected**:
+Red Team's N5-subsample catch (zero new runs, not 5) and a Director-caught
+beam-scene undercounting (the Phase-1 table's "3 beam-scene runs" omitted
+the per-λ empty reference exp-001/002's own idiom requires — corrected to
+6). Predictions P-MAT1–P-MAT8 (revised) committed before any real run
+(commit to follow this entry).
+
+### Phase 4 — Test (exp-026, 2026-08-13)
+
+*(Recorded after the run completes — see NOTES.md for the full scored
+table; summarized here for the logbook.)*
+
+### Phase 5 — Review
+
+*(Recorded after Phase 4 — seven fresh seats, blind, per protocol.)*
+
+### Director's close of Iteration 3
+
+*(Recorded after Phase 5.)*
