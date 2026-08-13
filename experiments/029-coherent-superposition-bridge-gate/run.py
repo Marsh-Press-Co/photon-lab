@@ -135,7 +135,7 @@ def main():
     # p_J=0.5*sigma*|Ez|^2 is bin-wise additive, since p_J is quadratic in Ez.
     nonzero = bins_naive > 0
     peak_bin_idx = int(np.argmax(np.abs(bin_delta[nonzero]))) if nonzero.any() else -1
-    peak_bin_idx_full = np.arange(len(bins_naive))[nonzero][peak_bin_idx] if nonzero.any() else -1
+    peak_bin_idx_full = int(np.arange(len(bins_naive))[nonzero][peak_bin_idx]) if nonzero.any() else -1
     peak_local_frac = (float(bin_delta[peak_bin_idx_full] / bins_naive[peak_bin_idx_full])
                        if peak_bin_idx_full >= 0 else float("nan"))
     aggregate_frac = p_int_frac_of_beam

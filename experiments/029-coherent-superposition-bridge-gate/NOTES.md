@@ -248,5 +248,83 @@ zero new material physics.
 
 ## Results
 
-*(to be appended after `run.py` executes — predictions above are
-committed to git first, per house discipline.)*
+6 new FDTD sim calls, 266.4s. Full data: `results.json`.
+
+**Harness bug, caught and fixed same-shift, flagged not silently
+corrected (house convention):** the first execution of `run.py` (after
+predictions were committed) crashed at the final `json.dump()` —
+`peak_bin_idx_full` (a bare `numpy.int64` from array indexing) is not
+JSON-serializable, unlike `numpy.float64` values elsewhere in the file
+(which subclass Python `float` and serialize fine). All 6 FDTD runs had
+already completed successfully; nothing about the predictions, the
+object construction, or any gate computation was affected — the failure
+was a pure Python/JSON typing bug in the harness, caught before any
+result was written or trusted. Fixed with one `int(...)` cast; the file
+was rerun in full (fresh RNG-free FDTD, so a full rerun reproduces
+identical physics) and completed clean.
+
+| Gate | Predicted band | Measured | Verdict |
+|---|---|---|---|
+| P-QUANTUM-4 (Q4, vacuum superposition) | ≤1e-6 gate, central ~1e-14–1e-12 | **2.483×10⁻¹⁵** | **CONFIRMED** — PASS, even tighter than the central estimate (same order as suite stage 11's own 1.9×10⁻¹⁵) |
+| P-QUANTUM-5 (Q5, object superposition, primary) | ≤1e-6 gate, central ~1e-14–1e-12 | **2.335×10⁻¹⁵** | **CONFIRMED** — PASS |
+| P-QUANTUM-6 (Q6, radial closure, joint scene) | ≤1.5% gate, central 0.2–0.4% | **0.2538%** | **CONFIRMED** — squarely inside the central band, well under the gate |
+| P-QUANTUM-7 (interference, informational) | [0%, 2.83%] of P_abs(beam), sign uncommitted | **+0.0224%** | **CONFIRMED** — nonzero, positive sign, two orders of magnitude BELOW its own Cauchy-Schwarz ceiling |
+| P-QUANTUM-9 (bin-wise spatial structure, informational) | peak local ≥3× aggregate | **0.1125% vs 0.0224% = 5.02×** | **CONFIRMED** |
+
+**Core-fill assertion (precondition):** `sigma_e(r<r_in) = 0.5` (non-vacuum) — **PASS**, confirmed before any gate was trusted.
+
+**Sanity cross-check (not a formal prediction):** `abs_ext_ratio`
+(object+beam only) = **0.5118** — matches exp-028's own Cell B
+measurement (0.5118, this exact construction) to the digit, confirming
+the core-fill fix (Red Team's attack 1) reproduces the validated article
+exactly, not a near-miss.
+
+### Headline (for LOGBOOK)
+
+**Every prediction confirmed — the cleanest cycle in this program's
+history by that measure.** The primary machinery claim (Gates Q4/Q5) is
+not merely satisfied but overshoots its own central estimate by roughly
+an order of magnitude in the tight direction: coherent superposition
+holds to ~2.4×10⁻¹⁵ RMS relative error, both in vacuum and with a lossy
+object present, confirming EM's/Red Team's line-by-line trace that this
+engine's per-step update is exactly linear in the source terms — not an
+approximation. The renormalized coherent-interference finding
+(P-QUANTUM-7, Red Team's mandatory fix 2) lands at **+0.0224% of the
+beam's own absorbed power** — real, nonzero, positive, but **126× below**
+its own passivity-derived ceiling (2.83%) — meaning the 30° off-axis
+source's interference fringes (Λ_y=2λ=40 cells) largely cancel in the
+aggregate, closer to PHOTONICS'/Red Team's Bessel-suppression estimate
+than to the theoretical maximum. The bin-wise check (P-QUANTUM-9, Red
+Team's recommended fix 6) shows this aggregate smallness hides real local
+structure: the peak-magnitude bin (r=61.5, in the outer half of the
+shell) shows a **5.02× larger** fractional deviation than the aggregate —
+confirming an aggregate closure check alone would have washed out a real,
+smaller-but-nonzero spatial redistribution, exactly the concern Red
+Team's fix 6 existed to make checkable. **The bridge-gate machinery is
+now validated end-to-end**, on its fourth committed cycle, not deferred a
+fifth time — coherent multi-source injection is trustworthy bench
+infrastructure going forward, gated permanently by suite stage 11.
+
+## Next (pre-registered, for Phase 5)
+
+(1) The incoherent-ensemble idiom (random-relative-phase, multi-draw)
+remains unbuilt — the actual mechanism a real beam+ambient scene needs,
+named but explicitly out of scope this cycle. (2) The
+beam+ambient-C-reproduction half of QUANTUM's own Iteration-1-committed
+design (docket #4/(b)) remains deferred — named explicitly (Red Team's
+fix 5), not silently dropped; whether it becomes VISION's own r=156
+build's job, a future QUANTUM cycle, or a new joint proposal is Phase 5's
+call. (3) T11 (box-ledger decision-floor characterization) remains open,
+cross-cutting, unassigned — now the most-repeated unclosed backlog item
+across two full iterations. (4) The T10 +3.05pp residual sub-cell/window
+offset sweep remains queued, cheap, low priority. (5) VISION's r=156
+scale-bridge check is committed HARD for Iteration 7, with its own
+pre-registered Checkpoint-4 tripwire — untouched by this cycle's results.
+(6) The 0.0224%/5.02× interference finding, while small, is the first
+quantitative characterization of coherent cross-term interference in this
+program — worth a one-line note in any future proposal that builds a
+real joint beam+ambient (incoherent) scene, since the coherent case's
+smallness doesn't necessarily predict the incoherent case's behavior.
+
+**Phase 5 outcome:** six fresh seats + Red Team audit read these results
+— full verbatim record: `LOGBOOK.md`, Iteration 6 Phase 5.
