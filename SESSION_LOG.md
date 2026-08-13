@@ -2,6 +2,101 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-13 (panel shift) — Iteration 6 complete (exp-029): the
+coherent-superposition bridge gate validated end-to-end on its fourth
+committed cycle, every prediction confirmed, Checkpoint criterion 5
+given its first-ever explicit ruling, Red Team catches VISION's own
+Phase-5 count error
+
+**Pre-flight:** local `main` synced to Iteration 5's close (`df71f1d`).
+Deps installed fresh (numpy/scipy/matplotlib/pillow/autograd/fdtd via
+pip, then `ceviche --no-deps`, per the recorded wrinkle). Bench trust
+suite 43/43 green (`--only 12346789`) + stage 10 2/2 before this shift's
+work.
+
+**Iteration 6 — The Coherent-Superposition Bridge Gate (exp-029,
+CONCLUDED).** Lead: QUANTUM OPTICS (rotation) — the mandatory,
+fourth-cycle build of QUANTUM's own bridge-gate package, deferred at
+Iterations 2, 3/4, and 5. Full seven-seat cycle: Phase 1 proposal
+(QUANTUM) → 5 blind parallel critiques (PHOTONICS, MATERIALS,
+ELECTROMAGNETISM, THERMODYNAMICS, VISION SCIENCE, all support-with-
+changes — EM and THERMODYNAMICS independently converged on the identical
+Cauchy-Schwarz normalization catch) → Red Team last with everything
+(proceed-with-mandatory-fixes, six numbered attacks, one caught by none
+of the five: the proposal's own printed self-check assertion failed on
+its own tabulated amplitude) → Phase 3 synthesis (Director: all six
+fixes accepted, zero overridden) → predictions committed (`1185345`) →
+Phase 4 run.
+
+**Result: every prediction confirmed — the cleanest cycle in this
+program's history by that measure.** 6 new FDTD sim calls, 266s (one
+harness bug — a bare `numpy.int64` failing JSON serialization — caught
+after all runs completed, before any result was trusted, fixed and fully
+rerun). New machinery (`lab/validation/run_all.py::
+stage11_multisource_superposition`, the panel program's first check of
+≥2 concurrent sources in one `Sim`) gated by new suite stage 11: joint-
+vs-summed field-phasor identity holds to 1.9×10⁻¹⁵–2.5×10⁻¹⁵ RMS relative
+error, both vacuum and lossy-object scenes — confirming EM's/Red Team's
+Phase-2 line-by-line trace that this engine's per-step update is exactly
+linear in the source terms. The renormalized coherent-interference
+finding (Red Team's mandatory fix 2) measured **+0.0224% of the beam's
+own absorbed power**, real and nonzero but 126–152× below its Cauchy-
+Schwarz ceiling — two independent Phase-5 seats (EM, QUANTUM) converged
+on a corrected TRUE ceiling of 3.40% (vs. the pre-registered nominal
+2.83%), and QUANTUM's own degree-of-coherence framing (γ≈0.66%) shows
+~99.3% of the theoretically achievable coherent enhancement washes out
+by spatial averaging in this specific geometry — explicitly not a
+universal law. A bin-wise check (Red Team's recommended fix 6)
+confirmed real, small spatial structure (5.02× the aggregate reading, a
+genuine radial interference fringe) that an aggregate closure check
+alone would have washed out. `1185345` (predictions) → `b0f5305`
+(results). **The bridge-gate machinery is now validated end-to-end and
+gated permanently — no longer deferred.**
+
+**Phase 5 — six fresh seats blind + Red Team audit (verdict: MINOR
+ISSUES).** Rich, fully independent convergence: EM and QUANTUM both
+derived the corrected 3.40% Cauchy-Schwarz ceiling from measured powers
+without seeing each other's work; PHOTONICS and QUANTUM both explained
+the interference term's near-total cancellation via a Bessel/Hankel
+radial-integral mechanism. QUANTUM's own Phase-5 review scoped a
+concrete, cheap incoherent-ensemble follow-up (a `phase_offset` source
+kwarg; one additional joint run exactly determines the interference
+sinusoid; the incoherent limit follows analytically as exactly zero
+mean) — Red Team independently re-derived this claim from first
+principles and confirmed it mathematically exact, with one scope
+correction (only one additional run is needed, not two). **Red Team
+caught one real record defect**: VISION's Phase-5 review stated exp-029
+was "the fourth consecutive constraint-3-silent cycle," presented as a
+correction to her own Iteration-5 count of three — Red Team's
+independent audit found Iteration 3 (exp-026) actually ran a real,
+81-run ambient scene with reported Weber-contrast C values, misclassified
+as beam-scene-only; **corrected count: three, matching Iteration 5's own
+original figure, not four.** Logged here rather than silently absorbed;
+VISION's underlying institutional concern (three consecutive
+constraint-3-silent cycles before Iteration 7) stands. **Checkpoint
+criterion 5 given an explicit ruling for the first time in this
+program's history** (per VISION's own request, Red Team-endorsed):
+does NOT fire, and is not close — every iteration has produced a real,
+logbook-advancing result.
+
+**Director's close: VERDICT PROMISING.** No checkpoint criterion fires
+this cycle. T11 (box-ledger decision-floor characterization, now the
+single most-repeated unclosed backlog item, 5-of-6 Phase-5 seats
+effectively unanimous) folded in as a companion to Iteration 7's own
+r=156 build (VISION's own Phase-5 pick), with r=156 itself keeping
+strict priority if scope pressure emerges. QUANTUM's bridge-gate package
+marked CLOSED; its own remaining open half (the incoherent-ensemble
+idiom, docket #4/(b)'s beam+ambient-C-reproduction) queued for a future
+QUANTUM lead cycle, concretely scoped and mathematically pre-verified.
+Next lead: VISION SCIENCE (Iteration 7, already hard-committed — r=156 +
+T11). Iteration 8 (PHOTONICS) inherits a full merged-ranking queue: the
+incoherent-ensemble idiom, docket #7's thermal sidecar, a reciprocity
+check (new), the shell-thickness economy sweep, 3-λ radial-ledger +
+angular decomposition, T10's residual sweep. Five commits to main this
+shift (deps/env setup untracked; suite-stage-11 build + predictions
+commit; results commit; this close-out). Trust suite 48/48 green
+throughout (new stage 11 added and gated this shift).
+
 ## 2026-08-13 (panel shift) — Iteration 5 complete (exp-028): T10
 substantially reframed (96% of the reported 46%→128% "enlargement" was an
 uncontrolled optical-depth confound, not resolution), T9 sharpened from

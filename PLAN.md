@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-13, panel Iteration 5)
+## Current state (2026-08-13, panel Iteration 6)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -398,26 +398,39 @@ continuous mode with checkpoints. The remaining [open] items below are
   criterion 4 pre-registered as a tripwire on Iteration 7's r=156 build
   actually happening. Verdict: PROMISING. Full record: LOGBOOK.md
   Iteration 5.
-- **[queued — panel Iteration 6, lead per rotation QUANTUM OPTICS,
-  mandatory build committed this shift]** the coherent-superposition
-  bridge-gate package (deferred three times prior; this is the mandatory
-  fourth-cycle build, not a fifth deferral) — QUANTUM's own Iteration-5
-  Phase-5 scoping notes (not binding, but strong self-authored precedent):
-  run the bridge gate on a graded-shell-shaped endpoint article, not a
-  uniform sponge disk; fold in `radial_absorbed_power`'s closure identity
-  as a second acceptance gate alongside the aggregate box-ledger check;
-  hold every per-λ material constant to a printed-assertion discipline
-  (the SIGMA_ON lesson). Also queued, ranked by Iteration 5's Phase-5
-  consensus: (a) the box-ledger channel's own decision-floor/noise
-  characterization — **T11, now the single most-repeated unclosed backlog
-  item in this program's history** (3-of-6 Iteration-5 seats, plus two
-  prior Red Team recommendations); (b) a cheap sub-cell/window offset
-  sweep closing T10's small residual (+3.05pp) — 3-of-6 seats, lowest
-  cost on the table; (c) extending `radial_absorbed_power` to the full 3-λ
-  sweep, ± angular (r,θ) decomposition (PHOTONICS); (d) docket #7's
-  analytic thermal sidecar, now seedable with real spatial data
-  (THERMODYNAMICS); (e) a shell-thickness/optical-depth economy sweep
-  testing where "the core doesn't matter" stops holding (MATERIALS).
+- [done 2026-08-13, panel Iteration 6, cloud panel shift] **exp-029 the
+  coherent-superposition bridge gate** — QUANTUM's own mandatory,
+  fourth-cycle build (deferred three times prior), scoped per its own
+  Iteration-5 Phase-5 notes: graded-shell endpoint article (exp-028's
+  Cell B construction, not a uniform disk), `radial_absorbed_power`'s
+  closure identity as a second acceptance gate, derived (not hand-copied)
+  material constants. New machinery: suite stage 11 (multi-source
+  coherent superposition gate — two absolute identities, joint-vs-summed
+  phasor at 1.9×10⁻¹⁵/2.4×10⁻¹⁵ RMS relative error, both vacuum and
+  lossy-object scenes), full bench 48/48 green. **Every prediction
+  confirmed — the cleanest cycle in the program's history by that
+  measure.** Bridge-gate machinery now validated end-to-end, no longer
+  deferred. Coherent interference cross-term measured for the first time:
+  +0.0224% of beam absorption, 126–152× below its own Cauchy-Schwarz
+  ceiling (two independent Phase-5 re-derivations, EM and QUANTUM,
+  converged on a corrected TRUE ceiling of 3.40% from measured powers,
+  vs. the pre-registered nominal 2.83%) — a normalized degree-of-
+  coherence γ≈0.66%, real but ~99.3% washed out by spatial averaging in
+  this geometry (not a universal law, QUANTUM's own caution). Bin-wise
+  check confirms real, small spatial structure (5.02× the aggregate,
+  genuine radial interference fringe) an aggregate check alone would
+  wash out. Red Team's Phase-5 audit (verdict: MINOR ISSUES) caught one
+  real record defect: VISION's Phase-5 "fourth consecutive constraint-3-
+  silent cycle" count was itself wrong (Iteration 3 ran a real 81-run
+  ambient scene with C values, misclassified as beam-scene-only) —
+  corrected to **three**, matching Iteration 5's own original count.
+  **Checkpoint criterion 5 given an explicit ruling for the first time in
+  the program's history** (non-firing). T11 folded in as a companion to
+  Iteration 7's own r=156 build (VISION's own Phase-5 pick, near-
+  unanimous 5-of-6 seats). QUANTUM's own remaining open half (the
+  incoherent-ensemble/phase-quadrature idiom, concretely scoped and
+  mathematically pre-verified by Red Team) queued for a future QUANTUM
+  lead cycle. Verdict: PROMISING. Full record: LOGBOOK.md Iteration 6.
 - **[queued — panel Iteration 7, lead per rotation VISION SCIENCE,
   mandatory build committed Iteration 5, pre-registered Checkpoint-4
   tripwire if it slips]** VISION's r=156 scale-bridge check (T8) — five
@@ -429,7 +442,34 @@ continuous mode with checkpoints. The remaining [open] items below are
   rather than at Iteration 7 itself, to shrink the real cost of the build
   when it comes due. VISION's own dissent (this should have been
   Iteration 6) is on the record in LOGBOOK.md Iteration 5 Phase 5 —
-  unresolved, not silently dropped.
+  unresolved, not silently dropped. **T11 (box-ledger decision-floor
+  characterization) folded in as a companion this cycle** (Iteration 6
+  Phase-5 near-unanimous pick, Director-adopted) — r=156 itself takes
+  strict priority if scope pressure emerges; T11 falls back to Iteration
+  8 otherwise. Every derived geometric/physical constant in the r=156
+  build must be computed in code, never hand-copied as a rounded literal
+  (VISION's own pre-registered discipline, closing a third recurring bug
+  class instance caught by Red Team at Iteration 6).
+- **[queued — panel Iteration 8, lead per rotation PHOTONICS]** merged
+  ranking from Iteration 6's Phase 5 (six fresh seats + Red Team,
+  near-unanimous on T11 unless closed by Iteration 7): the incoherent-
+  ensemble/phase-quadrature idiom (QUANTUM's own concretely-scoped
+  proposal — a `phase_offset` source kwarg, one additional joint run
+  determines the interference sinusoid's unknown coefficient exactly,
+  the incoherent limit follows analytically as exactly zero mean, Red
+  Team-verified mathematically sound; needs its own gated suite stage
+  per house rule); docket #7's analytic thermal sidecar (THERMODYNAMICS'
+  own #1 pick, now with an explicit coherent-term exclusion ready to
+  write in, still gated on the witness-wattage pin); a formal reciprocity
+  check as a new suite-level identity gate (EM's own #2 pick, never
+  built despite being basic for any scalar reciprocal medium this
+  program uses); the shell-thickness/optical-depth economy sweep
+  (MATERIALS' own #2 pick, sharpened scope from exp-029's own finding
+  that interference sensitivity peaks in the outer adiabatic-entry
+  zone); extending `radial_absorbed_power`/`angular_scattered_pattern`
+  to the 3-λ sweep and angular (r,θ) decomposition (PHOTONICS' own
+  picks); T10's residual +3.05pp sub-cell/window-offset sweep (lowest
+  priority, cheapest, widely named across iterations).
 - **[queued]** docket #7: sourced witness-scenario parameter table +
   glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring on
   the now-unqualified measured C≈−0.684 (exp-024 removed exp-020's 750nm

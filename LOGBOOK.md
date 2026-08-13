@@ -282,9 +282,17 @@ measured them here):**
   on informal magnitude arguments, not a floor-gated verdict. Now the
   single most-repeated unclosed backlog item in this program's live-thread
   history — structurally analogous to r=156's own multi-cycle deferral
-  pattern before Iteration 5 finally forced a hard commitment. No
-  iteration yet assigned; queued for Iteration 6 alongside (but not
-  competing with) QUANTUM's committed bridge-gate build.
+  pattern before Iteration 5 finally forced a hard commitment. **Still
+  unclosed after Iteration 6 (exp-029): P-QUANTUM-6/7/9 (radial closure
+  0.2538%, interference +0.0224%, bin-wise 5.02×) carry the same
+  "informally suggestive, not floor-gated" caveat, now a FOURTH
+  consecutive iteration's worth of headline verdicts leaning on this
+  channel — 5-of-6 Phase-5 seats named it in their top-3 at Iteration 6
+  (effectively unanimous, Red Team's own phrase).** Folded in as a
+  companion diagnostic to Iteration 7's own r=156 build (VISION's own
+  Phase-5 argued-next-change, Director-adopted) — a scale extension of
+  the exact same channel — with r=156 itself taking strict priority if
+  scope pressure emerges; falls back to Iteration 8 otherwise.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -2331,3 +2339,453 @@ radial-closure gate at 1.13%) — full bench **48/48 green** before this
 experiment's first official run. Predictions P-QUANTUM-4/5/6/7/9
 (renumbered and revised per the fixes above) committed before any run
 (commit to follow this LOGBOOK entry, per house discipline).
+
+### Phase 4 — Test (exp-029, 2026-08-13)
+
+6 new FDTD sim calls, 266.4s. One harness bug caught and fixed same-shift
+(a bare `numpy.int64` from array indexing failing JSON serialization,
+caught after all 6 FDTD runs completed successfully, before any result
+was written or trusted — fixed with one `int(...)` cast, file rerun in
+full). Full scoring: `experiments/029-coherent-superposition-bridge-
+gate/NOTES.md`. **Every prediction confirmed — the cleanest cycle in this
+program's history by that measure.** Gates Q4/Q5 (field superposition,
+vacuum and object scenes) measured **2.483×10⁻¹⁵ / 2.335×10⁻¹⁵** RMS
+relative error, an order tighter than even the proposal's own optimistic
+central estimate, confirming EM's/Red Team's Phase-2 line-by-line trace
+that this engine's per-step update is exactly linear in the source
+terms — not an approximation. Gate Q6 (radial closure, joint scene)
+measured **0.2538%**, squarely inside the predicted 0.2–0.4% band. The
+renormalized coherent-interference finding (P-QUANTUM-7, Red Team's
+mandatory fix 2) measured **+0.0224% of the beam's own absorbed power** —
+real, nonzero, positive sign, but **126× below** its own pre-registered
+Cauchy-Schwarz ceiling (2.83%). P-QUANTUM-9 (Red Team's recommended fix
+6, bin-wise spatial-redistribution check) measured the peak-magnitude
+local bin (r=61.5) at **5.02×** the aggregate fractional deviation,
+confirming ≥3× — real, if small, spatial structure an aggregate closure
+check alone would have washed out. A sanity cross-check
+(`abs_ext_ratio_object_beam` = 0.5118) reproduces exp-028's own Cell B
+value bit-exact, confirming the core-fill fix (Red Team's attack 1)
+reproduces the validated article exactly, not a near-miss. **The
+bridge-gate machinery is now validated end-to-end, on its fourth
+committed cycle, not deferred a fifth time** — coherent multi-source
+injection is trustworthy bench infrastructure going forward, gated
+permanently by suite stage 11.
+
+### Phase 5 — Review (six fresh seats, blind, verbatim)
+
+#### PHOTONICS
+
+**Reading:** Re-derived `p_int_frac_of_beam` (2.24092×10⁻⁴) and the
+ceiling ratio (126.2×) directly from `results.json`, matching the
+headline exactly. Swept all 26 radial bins by hand for P-QUANTUM-9: bin
+20 (r=61.5) is unambiguously the largest by ABSOLUTE deviation (0.0413
+vs. bin 21's 0.0237), confirming `run.py`'s selection logic is sound —
+worth stating precisely that "5.02×" is a statement about the bin
+carrying the most absolute power discrepancy, not the largest fractional
+deviation anywhere in the ledger (bin 0, near the noise floor, actually
+reads ~0.46% fractionally). New number NOTES.md's prose never surfaces:
+`p_abs_offaxis/p_abs_beam` = 2.884×10⁻⁴, **44% above** the nominal
+AMP_REL=2×10⁻⁴ — a real angular-coupling-efficiency effect (the 30°-
+launched wave is absorbed somewhat more efficiently per unit incident
+power than the 0°-launched beam).
+
+**Physical meaning of the ~5× local-vs-aggregate ratio, from angular/
+spatial scattering structure:** the interference term's difference
+wavevector |Δk|=2k·sin15° produces a J₀(|Δk|·r) envelope in angle
+(Jacobi-Anger/Hankel), oscillatory and sign-changing in radius. The
+aggregate P-QUANTUM-7 number is a further radial integral of that
+already-oscillating envelope over the shell's full thickness (48 cells,
+≈1.24 oscillation periods) — a radial window spanning more than one
+period buys real additional sign-cancellation beyond a single-radius
+Bessel evaluation. **Consistency check against my own Phase-2 estimate —
+explicit verdict: TIGHTER than predicted.** Translating my Phase-2 band
+([200%,3000%] of P_abs(off_axis)) into the corrected (beam-normalized)
+frame using the measured off_axis/beam ratio gives [0.0577%, 0.865%];
+measured P-QUANTUM-7 (0.0224%) sits below the LOW end by ~2.6×, and below
+the high end by ~39×. My Phase-2 estimate only evaluated the Bessel
+suppression at a single radius (r_out); it never accounted for the
+additional cancellation from integrating over the shell's ~1.24-period
+radial extent — the gap is explained, not contradicted, by finer
+structure this run actually measured.
+
+**Argued next change:** extend `angular_scattered_pattern` (exp-016/017's
+own instrument, unused since) to the joint scene vs. naive-summed angular
+patterns from the two single-source scenes — zero new engine machinery,
+tests whether the radial redistribution has an angular signature relevant
+to constraint 2.
+
+**Ranked top-3:** (1) T11 — box-ledger decision-floor characterization.
+(2) Extend `radial_absorbed_power` to the 3-λ sweep + angular (r,θ)
+decomposition (PLAN.md's own tagged item, sharpened by this cycle's
+findings). (3) T10's residual +3.05pp sub-cell/window-offset sweep.
+
+#### MATERIALS & METAMATERIALS
+
+**Reading:** My own Phase-2 core-fill catch — verified correctly and
+completely implemented, parameter-for-parameter against exp-028's own
+Cell B. Addendum never stated before: the fill value (0.5) matches
+`graded_black_shell`'s own conductivity value exactly AT r=r_in (the
+profile's max), so the core-fill produces a CONTINUOUS conductivity
+field at the boundary, not a discontinuous patch — a small realizability
+point worth having on record (a discontinuous fill would itself have
+been a legitimate second-order scattering-surface objection).
+`abs_ext_ratio_object_beam`=0.5118 is bit-exact (16 sig figs) against
+exp-028's own Cell B — a null test of multi-source plumbing on a
+single-source run, not a test of joint-scene perturbation (that's the
+interference measurement itself).
+
+**The +0.0224%-of-beam interference finding, read for realizability, at
+two scales:** aggregate — the Cauchy-Schwarz ceiling is a passivity fact
+independent of the coating's exact angular absorptivity, a model-
+independent realizability statement (a real coating's off-axis response
+doesn't need tight characterization for an aggregate energy-budget claim
+to stay bounded). Local — P-QUANTUM-9 shows the opposite lesson: the peak
+local deviation (5.02× the aggregate) lands in the shell's outer-middle
+(low-conductivity, adiabatic-entry) zone — an aggregate-only tolerance
+argument would miss a real, five-times-larger local effect; any future
+claim about the LOCAL appearance of a jointly-illuminated coated object
+needs fringe-resolution characterization, not just total power.
+
+**Argued next change:** fold P-QUANTUM-9's bin-wise-naive-sum methodology
+into the still-open shell-thickness/optical-depth economy sweep (own
+Iteration-5 pick) as a second acceptance axis — the outer adiabatic-entry
+zone is exactly the zone a materials-economical design would be tempted
+to trim, and this cycle just showed it carries the largest local
+sensitivity to a second illumination source.
+
+**Ranked top-3:** (1) T11 — box-ledger decision-floor characterization.
+(2) The shell-thickness/optical-depth economy sweep, sharpened scope. (3)
+The incoherent-ensemble idiom (random-relative-phase, multi-draw).
+
+#### ELECTROMAGNETISM
+
+**Reading:** Checked Cauchy-Schwarz directly on the MEASURED numbers, not
+the design-time substitute: `2√(P_abs(beam)·P_abs(off_axis))` = 10.386
+(absolute units); measured `p_int`=0.06853; ratio = 0.66% of the
+available budget, a ~152× margin. **New finding: the pre-registered
+ceiling (2.83%) is a design-time approximation** assuming
+P_abs(off_axis)≈AMP_REL·P_abs(beam) exactly — the actual measured
+P_abs(off_axis) is 44% above that linear prediction, so the TRUE
+Cauchy-Schwarz ceiling from measured powers is **3.40%**, not 2.83%.
+Measured +0.0224% sits 152× below this tighter, data-derived bound (vs.
+NOTES.md's stated 126× against the design constant) — doesn't change any
+verdict, both readings land in the same regime, but the true bound is
+slightly looser than recorded. Sign (positive) is a genuine empirical
+finding, not committed a priori — should not be read as evidence coherent
+joint injection is "safely constructive" in general; it's phase-geometry-
+dependent. The 2.4×10⁻¹⁵ residual is a sane float64 accumulation figure
+for ~3200 steps (naive random-walk estimate ≈2.8×10⁻¹⁴, same order,
+~an order tighter than measured) — neither suspiciously small nor large.
+
+**Argued next change:** (1) a formal reciprocity check (T(A→B)=T(B→A)) is
+now buildable and cheap — a standing suite-level identity gate this
+program has never built despite it being basic for any scalar reciprocal
+medium every article here uses. (2) This cycle is indirect, quantitative
+evidence bounding `lab/ambient.py`'s own foundational incoherent-
+intensity-summing assumption: the coherent worst-case cross-term is
+bounded at 3.40% of beam power (the TRUE measured-power ceiling) — a real
+incoherent ensemble's cross-term is upper-bounded by this coherent worst
+case (random relative phase can only reduce |⟨P_int⟩|, not increase it
+past the coherent bound).
+
+**Ranked top-3:** (1) T11 — box-ledger decision-floor/noise
+characterization (now the most load-bearing item for this seat's own
+passivity/energy bookkeeping). (2) A reciprocity check as a new
+suite-level identity gate. (3) T10's residual +3.05pp sub-cell/window
+offset sweep.
+
+#### THERMODYNAMICS
+
+**Reading:** Re-derived bin 20 directly: diff=0.041326, fractional
+0.11249%, ratio to aggregate 5.021× — matches. **New finding: bin 20 is
+the peak by ABSOLUTE |joint−naive| magnitude, not RELATIVE fractional
+deviation.** Bin 21 (r=64.5) has a SMALLER absolute deviation but a
+LARGER fractional one (0.1382%, exceeding bin 20's 0.1125%) — using bin
+21's fractional peak instead, the ratio would read **6.17×**, not 5.02×,
+still comfortably confirmed and if anything under-, not over-, stated.
+Bins 19–22 (r=58.5–67.5) all sit in a 0.03–0.14% positive fractional
+band — the true local structure is a POSITIVE-GOING BAND, not a single
+spike, stronger corroboration of a genuine spatial fringe than "one peak
+bin" alone would suggest.
+
+**Physical meaning — real or bookkeeping artifact?** Real, in the
+specific sense that matters: `p_J` evaluated on the total field is the
+actual instantaneous Joule-dissipation density; a real thermal camera
+resolving r=58.5–67.5 WOULD measure a real, spatially non-uniform excess
+relative to an incoherent-sum prediction, IF the two sources were
+mutually coherent. But the witness scene is not coherent (femtosecond
+coherence times) — the measured 0.1–0.14% local excursion characterizes
+a complication a future incoherent-ensemble bridge must confirm washes
+out, not a correction the real scene needs applied.
+
+**Energetically consequential for docket #7? No, on two independent
+grounds.** Magnitude: even the local peak (0.11–0.14%) propagates through
+Stefan-Boltzmann's T⁴ scaling to ΔT/T≈0.03% — orders of magnitude below
+any detection floor, independent of coherence. More decisively: the
+coherent case is the WRONG case for the sidecar to worry about at all —
+the correction term literally does not exist in the incoherent (witness)
+regime (it time-averages to exactly zero, not to something small — a
+claim Red Team's audit independently proved exact via the
+phase-quadrature derivation, see below).
+
+**Argued next change:** docket #7's sidecar (own Iteration-5 #1 pick)
+should state, as a NAMED and DISMISSED consideration (not an omission),
+that a coherent cross-term correction was checked and excluded because
+the witness scene is incoherent — closing NOTES.md's own "Next" item (6)
+specifically inside docket #7.
+
+**Ranked top-3:** (1) Build docket #7's analytic sidecar now (this cycle
+removes the last open question standing in front of it). (2) T11 —
+box-ledger decision-floor characterization (directly load-bearing for
+item 1). (3) The hot-ring/detectability companion check (own Iteration-5
+#3 pick).
+
+#### VISION SCIENCE
+
+**Reading:** Naming fix (Red Team's fix 5) verified directly:
+`results.json`'s `meta.note_naming` names docket #4/(b) explicitly as
+deferred, not "orthogonal" — grepped `run.py` for "ambient," found it
+nowhere except inside the disclaiming string. **Program-integrity count,
+presented as a correction, later found by Red Team's own audit to be
+itself mistaken (see Phase-5 Red Team audit, below) — record shown here
+verbatim per house convention, correction follows in Director's
+synthesis:** "this is NOT a third consecutive non-perceptual cycle...
+Iterations 3, 4, 5, AND 6 are ALL beam-scene-only... this makes exp-029
+the FOURTH consecutive cycle with zero movement on T1/constraint-3." My
+own duty (pin thresholds before scoring) is not triggered — nothing here
+scores perceptually. I asked the Director to name Checkpoint criterion 5
+explicitly in this iteration's assessment for the first time in the
+program's history, even to rule it non-firing — no iteration has ever
+addressed it by name.
+
+**Argued next change:** fold T11 into VISION's own r=156 pre-staged
+design as a load-bearing precondition, not a nice-to-have — r=156 is a
+scale extension of the same box-ledger/radial-ledger channel T11
+characterizes. Also: pre-register in the r=156 design pin that every
+derived geometric or physical constant must be computed in code, never
+hand-copied as a rounded literal (closing the third instance of that bug
+class, per Red Team's own exp-029 catch, attack 4).
+
+**Ranked top-3** (r=156 is my own lead cycle, not ranked against itself):
+(1) T11 — fold in as companion to Iteration 7, not deferred further. (2)
+Docket #7 (zero-run desk work, own charter's duty, precondition for
+Tier-W scoring once r=156 lands). (3) After Iteration 7: the incoherent-
+ensemble idiom (docket #4/(b), now the most explicitly-named deferred
+commitment in the program).
+
+#### QUANTUM OPTICS
+
+**Reading:** Re-derived Cauchy-Schwarz independently, confirming EM's
+[0%,30%]-is-impossible finding with zero daylight. **Independently
+converging with EM's own new finding**: the pre-registered ceiling
+(2.83%) is a design-time approximation; the TRUE Cauchy-Schwarz ceiling
+from measured powers is **3.40%**, matching EM's figure exactly. **New
+framing: a normalized degree-of-coherence** γ ≡ P_int / [2√(P_abs(beam)·
+P_abs(off_axis))] ≈ **0.66%** — the fraction of the theoretically-
+achievable coherent enhancement actually realized; ~99.3% washed out by
+spatial averaging despite full deterministic phase-lock. This is
+**23–33× MORE complete** cancellation than PHOTONICS'/Red Team's
+single-point Bessel estimate (J₀≈0.15–0.22, predicting ~78–85%
+cancellation) — explained by a SECOND averaging axis: the shell's radial
+extent spans ≈1.24 radial fringe periods on top of the ≈3.9 angular
+periods PHOTONICS already accounted for — a 2D (r,θ) integral, not a 1D
+slice. Independently re-derived the bin-wise sign structure from raw
+data: NEGATIVE (destructive) across the inner-to-mid shell, POSITIVE
+(constructive) across the outer shell, crossing near r≈53–58 — a genuine
+radial interference fringe, not noise. **Caution for future coherent
+σ(I) work: this near-total cancellation is a property of THIS geometry**
+(radially-symmetric, spanning multiple fringe periods), not a universal
+law — should not be cited later as "coherent interference is always
+negligible."
+
+**Argued next change — a concrete, cheap incoherent-ensemble build:**
+linearity (proven by Q4/Q5 to 2.4×10⁻¹⁵) implies P_int(φ)=A·cosφ+B·sinφ
+EXACTLY, a single sinusoid in relative phase φ — so one additional joint
+run at a known phase offset (a new `phase_offset` kwarg on
+`add_line_source`) determines B (A is already known from this cycle's
+φ=0 run); the incoherent (femtosecond-averaged) limit then follows
+ANALYTICALLY as exactly zero mean, not an empirically-averaged
+near-zero. A genuine multi-draw ensemble (8–16 phases) still earns its
+keep as an empirical cross-check plus a second-moment (RMS fluctuation)
+measurement relevant to constraint 4. New machinery (the `phase_offset`
+kwarg) needs its own suite-stage absolute-identity gate before trusted.
+**Sequencing point for docket #4/(b):** the beam+ambient-C-reproduction
+half should NOT be built as originally worded (a bare single-phase
+coherent run) — it would bake in an arbitrary relative-phase artifact
+the real incoherent scene never has; it should be built ON TOP OF the
+phase-averaging result instead.
+
+**Ranked top-3:** (1) The incoherent-ensemble/phase-quadrature idiom,
+scoped as above. (2) T11 — box-ledger decision-floor characterization.
+(3) The beam+ambient-C-reproduction half of docket #4/(b) — explicitly
+sequenced AFTER/ALONGSIDE item 1, not as originally worded.
+
+#### RED TEAM (audit, verdict: **MINOR ISSUES**)
+
+Independently re-derived every headline numeric claim across all six
+reviews directly against `results.json`/code. **All confirmed to the
+digit** except one: Cauchy-Schwarz ceilings (126.2×, 3.40%/3.3958%,
+152.6×/151.6×), the 44.2% angle-dependent absorption uplift, γ≈0.660%,
+the bin-20/bin-21 fractional-deviation figures (0.11249%/0.13821%,
+ratios 5.02×/6.17×), the |Δk|=0.1626/cell and 1.242-period radial
+extent, PHOTONICS' translated Phase-2 band comparison, EM's float64
+accumulation sanity check, MATERIALS' bit-exact `abs_ext_ratio` cross-
+check, and the core-fill continuity claim — all independently re-derived
+and confirmed exact. **New finding, none of the six caught, worth
+stating precisely**: bin 0 (near the source axis, noise-floor magnitude)
+is in fact the GLOBAL maximum fractional deviation across all 26 bins
+(~0.46%), not just larger than bin 20 as PHOTONICS noted — doesn't change
+any conclusion (it's exactly the near-zero-denominator artifact PHOTONICS
+already named), but the full sweep wasn't done by any of the six.
+**Second new finding: the bin-wise sign structure's positive lobe
+actually extends one bin further (through bin 23) than QUANTUM's stated
+19–22** — cosmetic, doesn't affect the "genuine fringe, not one spike"
+reading. **Third: QUANTUM's phase-quadrature proposal is mathematically
+sound (independently re-derived from first principles: the incoherent-
+limit-is-exactly-zero claim holds), with one scope correction** — only
+ONE additional run (not two) is needed to determine the sinusoid's
+unknown coefficient B, since A is already known from this cycle's own
+φ=0 result; the second proposed run (φ=180°) is a consistency/validation
+gate, not new information.
+
+**The one real defect: VISION's Checkpoint-5 count is factually wrong.**
+Iteration 3 (exp-026) is NOT beam-scene-only — verified directly against
+its own LOGBOOK.md record: 81 ambient runs, real Weber-contrast-style C
+values reported at all 3λ (OFF-lab/OFF-field/ON), a calibration constant
+g=|C|/τ across six points, and its OWN Phase-5 VISION review explicitly
+contrasts it with Iteration 4 ("no Weber contrast, no C value... anywhere
+in Blocks 1-3") as the marker of where the ambient channel actually
+stops. **Correct count: the last genuine ambient/perceptual-instrument
+touch is Iteration 3, and Iterations 4/5/6 are the beam-scene-only run —
+THREE consecutive cycles, exactly matching Iteration 5's own original
+count, not four.** VISION's "corrected" figure moved the count in the
+WRONG direction while presented as a new finding. This does not weaken
+the underlying institutional point (three consecutive constraint-3-silent
+cycles before Iteration 7 is still real) but the specific "fourth, one
+worse" framing is incorrect and should not propagate.
+
+**Checkpoint criteria, explicit ruling:** Criteria 1–3 not applicable
+this cycle. Criterion 4 unaffected (exp-029 doesn't touch r=156 or
+constraint 3; the Iteration-7 tripwire stands exactly where Iteration 5
+set it). **Criterion 5 — does not fire, and is not close, read
+literally**: PANEL.md's text is "two consecutive iterations with no
+logbook-advancing result," not "no perceptual-axis result" — every
+iteration in this program's history has produced a real, gate-confirmed,
+logbook-updating finding; Iteration 6 alone confirms coherent
+superposition machinery to 15 digits and delivers a first-ever
+quantitative interference characterization. VISION's own review agrees
+criterion 5 doesn't fire "on the letter" and asks only that it be
+NAMED — a reasonable institutional-hygiene request, endorsed on its own
+terms, but logged against the correct count (three, not four).
+
+**Where all six reviews agree, nothing to add:** the Cauchy-Schwarz
+renormalization and its consequences (full cross-seat convergence, all
+independently correct); the core-fill continuity and bit-exact
+`abs_ext_ratio` null-test reading; T11 as the single most load-bearing
+open item (5-of-6 seats' top-3, effectively unanimous); THERMODYNAMICS'
+physical-insignificance argument for docket #7 (now PROVEN exact, not
+merely argued, by the phase-quadrature derivation); no seat mischaracter-
+ized a gate result or attached constraint-3 language where none belongs.
+
+**Panel stats:** 6 seats read blind + Red Team audit · zero gated
+predictions in dispute (all five gates independently re-confirmed to the
+reported digit) · one genuine record defect found, all six missed it
+(VISION's Checkpoint-5 count) · Checkpoint criterion 5 explicitly ruled
+non-firing — the first time this program has given it an explicit ruling
+rather than leaving it unaddressed, exactly as VISION's own review
+correctly flagged had never been done before.
+
+### Director's close of Iteration 6
+
+**VERDICT: PROMISING.** Every prediction confirmed — the cleanest cycle
+in this program's history by that measure. The bridge-gate machinery is
+validated end-to-end on its fourth committed cycle (deferred at
+Iterations 2, 3/4, and 5), gated permanently by suite stage 11: coherent
+multi-source superposition holds to ~2.4×10⁻¹⁵ RMS relative error, both
+in vacuum and with a lossy object present. The renormalized coherent-
+interference finding (+0.0224% of beam absorption, 126–152× below its
+Cauchy-Schwarz ceiling depending on which ceiling is used) is real,
+quantified for the first time in this program, and — per two independent
+Phase-5 derivations (EM, QUANTUM) that converged on the same corrected
+3.40% true ceiling from measured powers — sits at a normalized degree-
+of-coherence γ≈0.66%, meaning ~99.3% of the theoretically achievable
+coherent enhancement washes out through spatial averaging in this
+specific geometry (not a universal law, per QUANTUM's own caution). The
+bin-wise check (P-QUANTUM-9) confirms real, if small, spatial structure
+(a genuine radial interference fringe, sign-crossing near r≈53–58) an
+aggregate closure check alone would have washed out — exactly the
+concern Red Team's Phase-2 fix 6 existed to make checkable.
+
+**Red Team's Phase-5 audit (verdict: MINOR ISSUES) caught one real
+record defect, corrected here:** VISION's Phase-5 review stated exp-029
+is "the FOURTH consecutive [constraint-3-silent] cycle," presented as a
+correction to her own Iteration-5 count of three — Red Team's independent
+audit found this new count itself wrong: Iteration 3 (exp-026) ran a
+real, 81-run ambient/perceptual-instrument scene with reported Weber-
+contrast-style C values (verified directly against Iteration 3's own
+LOGBOOK.md record, including its own Phase-5 VISION review's explicit
+contrast against Iteration 4's silence). **Correct count: THREE
+consecutive constraint-3-silent cycles (Iterations 4–6), matching
+Iteration 5's own original figure exactly — not four.** This correction
+is logged here rather than silently absorbed, per house convention; it
+does not weaken VISION's underlying institutional concern, which stands.
+
+**Checkpoint criterion 5, given an explicit ruling for the first time in
+this program's history** (per VISION's own Phase-5 request, endorsed by
+Red Team): does NOT fire, and is not close. PANEL.md's text is "two
+consecutive iterations with no logbook-advancing result" — every
+iteration in this program's history has produced one; Iteration 6 alone
+delivers a fourth-cycle machinery closure plus a first-ever quantitative
+coherent-interference characterization. The narrower institutional point
+— three consecutive cycles with zero constraint-3/perceptual-axis
+movement, before Iteration 7's r=156 build — is real, named explicitly
+here (not smoothed over), and is exactly what Iteration 7's hard
+commitment and its own pre-registered Checkpoint-4 tripwire already
+exist to resolve. No criterion fires this cycle.
+
+**T11 (box-ledger decision-floor/noise characterization) is now named in
+5 of 6 seats' top-3, effectively unanimous** (Red Team's own phrase) —
+the single most-repeated unclosed backlog item in this program's
+live-thread history, now spanning FOUR consecutive iterations' worth of
+headline verdicts leaning on this channel's informal cleanliness (T9,
+T10, Iteration 5's own P-THERMO-A1/B1, and this cycle's P-QUANTUM-6/7/9).
+**Per VISION's own argued-next-change, adopted here**: T11 is folded in
+as a companion diagnostic to Iteration 7's own r=156 build — a scale
+extension of the exact same channel T11 characterizes, cheap, reusing
+already-validated machinery — with the explicit caveat that if scope
+pressure ever threatens the r=156 commitment itself, r=156 takes strict
+priority (the Checkpoint-4 tripwire is pre-registered on r=156
+specifically, not on T11) and T11 falls back to Iteration 8.
+
+**LOGBOOK updated:** T11's entry gains this cycle's own leaning
+(P-QUANTUM-6/7/9, "informally suggestive, not floor-gated," the same
+caveat carried since Iteration 4) and the Iteration-7 fold-in decision.
+QUANTUM's bridge-gate package is marked CLOSED (validated, not deferred)
+— its own remaining open half (the incoherent-ensemble idiom, docket
+#4/(b)'s beam+ambient-C-reproduction, now concretely scoped by QUANTUM's
+Phase-5 phase-quadrature proposal and mathematically verified exact by
+Red Team's own independent re-derivation) is queued for a future QUANTUM
+lead cycle, not this iteration's close.
+
+**Next lead per rotation: VISION SCIENCE (Iteration 7, already
+hard-committed at Iteration 5's close — r=156, with T11 folded in per
+above).** Iteration 8 (next in rotation: PHOTONICS) inherits a full
+merged-ranking queue: T11 (if not fully closed by Iteration 7's
+companion work), the incoherent-ensemble/phase-quadrature idiom
+(QUANTUM's own scoped proposal, mathematically pre-verified), docket #7's
+analytic thermal sidecar (THERMODYNAMICS' own #1 pick, now with an
+explicit coherent-term exclusion ready to write in), a reciprocity check
+as a new suite-level identity gate (EM's own #2 pick), the shell-
+thickness/optical-depth economy sweep (MATERIALS' own #2 pick), extending
+`radial_absorbed_power`/`angular_scattered_pattern` to the 3-λ sweep and
+angular decomposition (PHOTONICS' own picks), and T10's residual +3.05pp
+sub-cell/window-offset sweep (lowest priority, cheapest, widely named).
+
+Panel stats (Phase 5): 6 seats read blind + Red Team audit · zero gated
+predictions in dispute · one genuine record defect caught and corrected
+(VISION's Checkpoint-5 count, three not four) · two cross-seat
+independent convergences (EM/QUANTUM on the true 3.40% Cauchy-Schwarz
+ceiling; the near-unanimous T11 ranking) · one mathematical claim
+(QUANTUM's phase-quadrature analytic-zero proposal) independently
+re-derived and proven exact by Red Team · Checkpoint criterion 5 given
+its first-ever explicit ruling in this program's history, non-firing.
