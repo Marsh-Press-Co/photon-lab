@@ -155,6 +155,48 @@ def widths(cap_scene, cap_empty, box, ref):
     }
 
 
+def radial_absorbed_power(cap_scene, sigma_e, cx, cy, r_max, n_bins=26):
+    """Radial-binned steady-state Joule-dissipation density (Panel Iteration 5,
+    exp-028): p_J(x,y) = 0.5 * sigma_e(x,y) * |Ez_phasor(x,y)|^2, evaluated on
+    the TOTAL field (not scattered) since Joule heating in a lossy medium
+    depends on the total field actually present, native Ez/sigma_e grid
+    registration (no staggering interpolation, unlike Hx/Hy in `_face_flux`).
+    This is the same steady-state peak-phasor convention `widths()` uses for
+    its own absorption channel (0.5 Re{...}), and is consistent term-for-term
+    with the engine's own loss coefficient (`alpha = sigma_e*S/(2*eps_r)`,
+    lab/fdtd2d.py) -- verified, Panel Iteration 5 Phase 2 (ELECTROMAGNETISM).
+
+    Binned into `n_bins` concentric annuli from r=0 to r_max, centered at
+    (cx, cy). Returns (bin_centers, p_j_per_bin, total) where `total` is the
+    sum over the full disk r <= r_max (cells strictly beyond r_max excluded,
+    not folded into the last bin).
+
+    Caveat (Panel Iteration 5 Phase 2, ELECTROMAGNETISM, Red Team-endorsed):
+    the sum-over-bins-equals-box-ledger-p_abs comparison this function's own
+    suite gate (stage 10) checks is an EMPIRICAL closure (discrete circular-
+    boundary staircasing + two-snapshot quadrature phasor extraction are
+    approximations to true CW steady state), not an exact identity to machine
+    epsilon -- unlike a true PEC region's hard p_J=0 (Ez=0 by the PEC clamp,
+    sigma_e=0 by construction, both exact)."""
+    pt = phasors(cap_scene)
+    ez = pt["ez"]
+    p_j = 0.5 * sigma_e * np.abs(ez) ** 2
+
+    nx, ny = ez.shape
+    x = np.arange(nx)[:, None]
+    y = np.arange(ny)[None, :]
+    rr = np.hypot(x - cx, y - cy)
+    inside = rr <= r_max
+
+    edges = np.linspace(0.0, r_max, n_bins + 1)
+    idx = np.clip(np.digitize(rr, edges) - 1, 0, n_bins - 1)
+    bins = np.zeros(n_bins)
+    np.add.at(bins, idx[inside], p_j[inside])
+    centers = 0.5 * (edges[:-1] + edges[1:])
+    total = float(np.sum(p_j[inside]))
+    return centers, bins, total
+
+
 def angular_scattered_pattern(cap_scene, cap_empty, box, ref, n_bins=48):
     """Angle-resolved scattered-power distribution around the box
     perimeter (exp-016/017's mechanism line: does a trough/flank pair

@@ -1,8 +1,26 @@
 # Bench validation — lab/ engine trust suite
 
-**2026-08-12 · driver: Clyde (panel Iteration 1) · status: 🟢 43/43 checks
-green** (fast stages `--only 12346789` [41/41, 85 s] + `--only 5` [2/2],
-same code, ubuntu cloud bench)
+**2026-08-13 · driver: Clyde (panel Iteration 5) · status: 🟢 45/45 checks
+green** (fast stages `--only 12346789,10` [43/43, 84 s] + `--only 5` [2/2],
+ubuntu cloud bench)
+
+Stage 10 (radial-binned absorbed-power ledger) added with exp-028 —
+`lab/sections.py::radial_absorbed_power`, the first spatially-resolved
+absorption channel (Joule-dissipation density in concentric annuli from the
+object's own captured field phasors), closing a structural blind spot the
+box-ledger's net four-face flux identity has carried since exp-002 (it
+cannot see WHERE inside the box absorbed power lands). Gated by a hard
+PEC-core identity (Ez≡0 by the clamp, σ_e≡0 by construction — doubly
+forced, machine-epsilon exact) and an empirical volume-vs-surface closure
+against the box-ledger's own p_abs, calibrated on first run: measured
+1.11–1.12%, stable to the 4th significant figure across a 4× settling-step
+sweep (900/1800/3600) — confirmed settling-INDEPENDENT, a genuine small
+registration offset between the box-ledger's rectangular-face flux
+integral and the radial ledger's circular-disk mask (grid quantization of
+a circle vs. a square), not incomplete CW settling. Gate set to ≤1.5%,
+margin above the measured value. Not run by the fast `--only 12346789`
+invocation (new/optional, like heavy stage 5) — explicit `--only ...,10`
+needed; see Measurement lessons below.
 
 Stage 9 (ambient-appearance instrument) added with exp-020 — the panel
 program's constraint-3 metric (angled line source + `lab/ambient.py`:
@@ -73,6 +91,8 @@ Run it:
 | 9 | ambient | Beer–Lambert slab C vs analytic | **−0.0982 vs −0.0973** | \|Δ\| ≤ 0.02 |
 | 9 | ambient | oblique lossless: silent absorption | −0.014 | \|·\| ≤ 0.05 |
 | 9 | ambient | oblique extinction: two routes agree | 0.000 | ≤ 0.12 |
+| 10 | radial-power | closure vs box-ledger p_abs | **0.0111** | ≤ 0.015 |
+| 10 | radial-power | PEC-core absorbed power is exactly zero | 0.00e+00 | 0.0 exactly |
 
 Stage 5 diagnostics (info): backscatter −26%, forward −38%. **Beam intensity
 behind the object vs empty space: bare PEC 0.057 → cloaked 0.641** — the
@@ -167,6 +187,14 @@ real observer-record datum (committed artifact,
 - **Cross-section normalization is object-fixed, not box-fixed** — measure
   incident intensity once at the object's own position; per-face
   normalization made widths drift 16% with box size (finite-beam profile).
+- **A radial (circular-mask) power sum and a box-ledger (rectangular-face
+  flux) power sum agree only to ~1%, not to machine epsilon, even for the
+  identical physics** (2026-08-13, stage 10 first light): confirmed
+  settling-independent (stable 900→3600 steps) — a genuine grid-
+  quantization registration offset between a circle and a square, not an
+  artifact. Any future channel comparing two differently-shaped measurement
+  regions on the same physics should expect and gate an empirical
+  percent-level offset, not assume exact closure.
 - **Point-wise B(y) flatness is fringe-limited on a soft-source bench**
   (2026-08-12, stage 9 first light): the finite tapered aperture throws
   Fresnel edge fringes (period 25–40 cells) and residual band reflection

@@ -207,6 +207,37 @@ measured them here):**
   next action) and (ii) a genuine settling check at Block 2's finer cpl
   (BEAM_STEPS doubled at cpl=22/30/38, not just native cpl).
 
+  **⚠ ERRATUM (Iteration 5, 2026-08-13, Red Team catch, independently
+  verified by the Director; MATERIALS' seat first surfaced it in Phase 2
+  of Iteration 5's own cycle).** exp-027's `run.py::block2_one()` applies
+  `design_geometry.SIGMA_ON` — a single module constant,
+  `3.9/(2·78)=0.025`, fixed at the NATIVE `R_OUT=78` — unchanged to Block
+  2's own per-λ-RESCALED `r_out` (114/117/119 cells at 450/600/750nm).
+  Since this lab's optical-depth convention is τ_center = 2·σ·r_out(cells),
+  exp-027's **published** Block 2 ON article actually carried τ_center =
+  **5.70 / 5.85 / 5.95** at 450/600/750nm — not the intended 3.9, and
+  drifting ~4.3% across the sweep BY CONSTRUCTION, not by measurement.
+  **T10's headline numbers (46%→128% relative spread; 750nm's collapse to
+  0.32%) are measurements of a systematically different, more strongly
+  absorbing article at every λ, not a resolution-matched rerun of the
+  native τ=3.9 object.** A naive 1D Beer–Lambert check at the true
+  (inflated) τ predicts beam-behind ≈ 0.33%/0.29%/0.26% at 450/600/750nm —
+  close to the measured 750nm value (0.32%, previously read as a
+  mysterious near-field collapse) but far from the measured 450/600nm
+  values (1.09%/1.60%), so **this confound does not cleanly explain T10's
+  whole effect** — it invalidates the premise that Block 2 tested "the
+  same physical object at finer resolution," without yet telling us
+  whether a real resolution-sensitivity remains once the confound is
+  removed. **T10's own resolution question is NOT yet answered — it is
+  reopened, pending a correctly-τ-held rerun.** exp-028 (Iteration 5) runs
+  exactly that rerun (Block A, `SIGMA_ON` rescaled per λ so τ_center=3.9
+  is held exactly, verified in code) — see exp-028's own Results, below,
+  for whether the corrected comparison confirms, refutes, or further
+  complicates T10 as originally framed. exp-027's own `NOTES.md` and
+  `results.json` are left uncorrected as the historical record of what was
+  actually run and published (house convention: flag, don't silently
+  rewrite); this erratum is the flag.
+
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
 - ~~Is the 3λ shell-thickness feature specific to r2=90?~~ **ANSWERED
@@ -1589,3 +1620,204 @@ physics) plus independently corroborated QUANTUM's own catch of a fourth
 changing a physics conclusion · one LIVE THREAD closed (T9, with a
 floor-gating caveat carried forward) and one opened (T10) in the same
 cycle.
+
+---
+
+## Iteration 5 — The Radial Ledger and the Channel Cross-Check (exp-028) — 2026-08-13
+
+Runner: cloud panel shift · Lead: **THERMODYNAMICS** (rotation). Full
+seven-seat cycle: Phase 1 proposal (THERMO) → 5 blind parallel critiques
+(PHOTONICS, MATERIALS, ELECTROMAGNETISM, QUANTUM OPTICS, VISION SCIENCE,
+all support-with-changes) → Red Team last with everything (verdict:
+proceed-with-mandatory-fixes, seven numbered attacks, one load-bearing
+catch reaching into exp-027's own published record — see T10's erratum,
+above) → Phase 3 synthesis (all seven fixes accepted, zero overridden) →
+Phase 4 test → Phase 5 (seven fresh seats, blind). Full setup/results
+record: `experiments/028-radial-ledger-channel-crosscheck/NOTES.md`.
+
+### Phase 1 — Proposal (THERMODYNAMICS, verbatim)
+
+# PHASE 1 — PROPOSAL · Panel Iteration 5 · Lead seat: THERMODYNAMICS
+## "The Radial Ledger and the Channel Cross-Check" — T10's box-ledger resolution path plus the first spatially-resolved absorbed-power ledger (candidate exp-028)
+
+### 1. Mechanism narrative (≤300 words)
+
+Two threads converge here, and neither builds a mechanism. Iteration 4's Phase 5 produced this program's second 5-of-7 cross-seat consensus in two cycles (MATERIALS/PHOTONICS/EM/QUANTUM/RED TEAM independently converged): measure the box-ledger extinction channel (`sections.widths()`) at Block 2's own rescaled-cpl geometries (`design_geometry.py::BLOCK2_GEOM`, exp-027) to test whether T10's 46%→128% relative-spread growth is specific to the near-field `BEAM_BEHIND` point-sample or a general grid-resolution defect that would also implicate exp-001's own beam-behind ≤2% headline. It is well-specified, cheap, reuses machinery already validated clean in the *same* experiment (box_dev ≤0.0019, Block 3), and needs zero new `lab/` code. As lead I adopt it verbatim as this iteration's primary item, not a competing pick — PANEL.md and three iterations of precedent both warn that diverging from a strong consensus without reason invites Red Team, and I have none: this is EM/PHOTONICS bookkeeping any seat can run.
+
+This seat's own contribution is the second block, carried forward from my own Iteration-4 Phase-5 pick. T9's PEC-vs-rim null (Δσ_abs/σ_ext = 1.56×10⁻⁶, Cell A vs. Cell B) is a net four-face FLUX identity — structurally blind to *where* inside the box power lands. Cell A's PEC core cannot physically heat (Ez≡0 there); Cell B is lossy clear through r=0; a near-identical aggregate ratio can still hide a genuinely different spatial heating profile. A radial-binned absorbed-power ledger — Joule-dissipation density integrated in annuli from the object's own captured field phasors, closed against the box-ledger's own p_abs by a real Poynting-theorem identity — answers that directly, something no channel here has measured across two full iterations.
+
+QUANTUM's bridge-gate package rides as a partial, concrete rider, not a third silent deferral: every new run this cycle logs its source amplitude in exp-001 beam units (zero engine cost, experiment-side per docket #4's precedent). The coherent-superposition injection half stays out, for a reason specific to this cycle's design, not a repeated tautology: nothing here injects more than one source at once, so there is no joint run to gate it against.
+
+### 2. Parameter table
+
+**Shared bench (inherited verbatim, zero changes):** `lab/sections.py` box ledger (`widths()`, `full_capture()`, `phasors()`), `lab/materials.py` (`pec_disk`, `graded_black_shell`), courant_frac 0.32, graded damping bands (not PML). All geometry below is either exp-027's own already-pinned design calculation or exp-027's own native Block-3 geometry — no new domain design.
+
+**Block A — T10 box-ledger-vs-envelope-ratio cross-check (the consensus item).** Reuses `experiments/027-settling-spread-pec-ablation/design_geometry.py::BLOCK2_GEOM` and `run.py::block2_one()`'s exact call pattern, bit-for-bit — the only change is *surfacing* `sc.widths(cap, cap_e, box_a, ref)["sigma_ext"]`, which `block2_one()` already computes internally to derive `box_dev` but never saves. No new geometry, no new material.
+
+| λ (nm) | cpl | N | (CX,CY) | R_OUT | SRC_X | ABSORB | BOX_A | Material |
+|---|---|---|---|---|---|---|---|---|
+| 450 | 22 | 821 | (370,411) | 114 | 94 | 59 | (209,531,250,572) | σ_e=0.025 (SIGMA_ON, r≤R_OUT), ε_r=1 |
+| 600 | 30 | 840 | (378,420) | 117 | 96 | 60 | (213,543,255,585) | σ_e=0.025, ε_r=1 |
+| 750 | 38 | 851 | (383,426) | 119 | 97 | 61 | (215,551,258,594) | σ_e=0.025, ε_r=1 |
+
+`BEAM_STEPS` held at native 3200 (unchanged, matching exp-027's own Block 2). Source: single line source at `SRC_X`, `ref=(CX,CY,round(60·ratio))` (exp-027's own formula). **6 sim calls** (empty+on × 3λ) — a deterministic re-derivation of numbers exp-027 already computed once and discarded, not new physics.
+
+**Block B — radial-binned absorbed-power ledger (T9 spatial follow-up, THERMO's own item).** New function, `lab/sections.py::radial_absorbed_power(cap_scene, sigma_e, cx, cy, r_max, n_bins)`: computes steady-state Joule-dissipation density `p_J(x,y) = 0.5·σ_e(x,y)·|Ez_phasor(x,y)|²` from the scene's own total-field phasor (`sections.phasors()`, already validated), binned into `n_bins=26` concentric annuli from r=0 to `r_max=R_OUT`. Geometry: exp-027's exact native Block-3 bench (`BEAM_N=560, (CX,CY)=(252,280), R_OUT=78, cpl=20, λ=600nm, BEAM_STEPS=3200, BEAM_SRC_X=64, BEAM_ABSORB=40`), all three cells reused verbatim:
+
+| Cell | Construction | Core (r&lt;30) |
+|---|---|---|
+| A | `pec_disk(cx,cy,30)` + `graded_black_shell(cx,cy,30,78,σ_max=0.5,ε_max=1.0)` | PEC, Ez≡0 |
+| B | `graded_black_shell(cx,cy,30,78,...)` + `sigma_e[rr&lt;30]+=0.5` (exp-027's strict-inequality fix, reused) | lossy, σ=0.5 |
+| C | `sigma_e[rr&lt;=78]+=0.025` (τ_center=3.9, exp-026's exact ON article) | lossy, σ=0.025 |
+
+**4 sim calls** (empty + A + B + C, freshly captured — self-containment discipline, exp-026/027's own precedent). **New `lab/` code, therefore a new suite stage per PANEL.md's house rule**, gated by an absolute Poynting-theorem closure identity (below) — not an ad hoc addition.
+
+**Total: 10 new sim calls**, ≈5 min at exp-027's per-run pace.
+
+**QUANTUM rider (zero-cost, no new sim calls):** every one of the 10 runs above logs `intensity_role="beam"`, `amp_rel=1.0` in `results.json` — the shared-intensity-axis half of QUANTUM's queued package, applied for the first time to a real experiment, experiment-side per Iteration-1's docket #4 precedent (not the artifact-contract file, which stays Bonnie's counterparty-review lane).
+
+### 3. T1 escape-route statement
+
+**No escape mechanism implemented or claimed — pure diagnostic/instrumentation work, the same register as Iterations 2, 3, and most of 4.** Block A re-derives an already-computed number to close an open resolution-machinery question (T10); Block B adds a spatially-resolved measurement channel to answer a structural blind spot in an already-answered materials question (T9's ring-vs-disk caveat). Nothing here builds σ(I), σ(x,t), or any angular-selectivity machinery, and no proposal in this cycle touches T1's central tension directly.
+
+### 4. Falsifiable predicted outcomes (numeric bands, per metric)
+
+**Block A — box-ledger σ_ext relative spread across the 3 Block-2 geometries** (compared against the two established `BEAM_BEHIND` anchors: 46.41% native, 127.57% at these same rescaled geometries):
+- **P-THERMO-A1 (channel-specific artifact):** relative spread ≤ 10% — an order of magnitude below both anchors, consistent with box-ledger's own established cleanliness (box_dev ≤0.0019 at native geometry) and non-dispersive σ's exact-λ-flatness prediction up to independent per-constant rounding. Reading: T10's growth is `BEAM_BEHIND`-specific (a point-sampled near-field envelope in an unprotected Fresnel-ringing zone), not a general defect — exp-001's own beam-behind headline stays trusted.
+- **P-THERMO-A2 (general grid-resolution defect):** relative spread ≥ 40% — comparable to or exceeding the *native* 46% figure. Reading: extinction itself, not only the near-field point-sample, is resolution-sensitive at these geometries — a genuinely bigger problem, since exp-001's original beam-behind ≤2% headline (constraint 1's evidentiary basis) has never had its own resolution check at this depth.
+- **P-THERMO-A3 (ambiguous, exhaustive middle):** (10%, 40%) — no clean attribution, flagged as a surprise, not forced into either bucket.
+- **Precondition:** box_dev ≤ 0.02 at all 3λ; each λ's beam-behind figure reproduces exp-027's own Block-2 value bit-for-bit (deterministic re-run of the same construction) — failure here voids the whole block before any σ_ext number is trusted.
+
+**Block B — radial-binned absorbed-power ledger:**
+- **P-THERMO-B1 (precondition, absolute identity):** Σ_bins P_J(r) reproduces the box-ledger's own p_abs (`widths()`'s `sigma_abs·i_inc`) to ≤1% relative, all three cells — the Poynting-theorem volumetric-vs-surface closure this new instrumentation's suite-stage gate rests on. **Cell A's r&lt;30 bin must equal exactly 0.0** (machine epsilon) — the hard PEC identity (Ez≡0 inside a perfect conductor), trivial but load-bearing, satisfying PANEL.md's "at least one absolute identity gate" requirement for new machinery.
+- **P-THERMO-B2 (central, Cell B's core fraction) — my own Iteration-4 committed band, resolved this cycle:** fraction of Cell B's total P_J residing in r&lt;30, band **[1%, 40%]**. Sub-readings: **≤5%** → topologically real (a ring vs. a disk) but energetically negligible, the box ledger's blindness was harmless; **≥15%** → a real, sizable spatial redistribution the net four-face ledger has been structurally unable to report across two full iterations; **(5%,15%)** → ambiguous, reported as such.
+- **P-THERMO-B3 (informational, Cell A's shell profile):** the r=30–78 radial profile should skew toward the outer boundary (more Joule dissipation near r≈78 than r≈30), tracking `graded_black_shell`'s own quintic-smoothstep σ(r) — qualitative shape check, no numeric gate, a free cross-consistency read on the new instrument.
+
+### 5. Idealizations
+
+2D TMz, one polarization; non-dispersive real σ_e everywhere — any λ-structure measured in Block A is instrument/numerical, not material dispersion. **The radial-binned ledger is new FDTD-derived instrumentation, not the analytic-only sidecar THERMO's expressibility contract describes** — it reads existing captured phasor fields, the same category as `angular_scattered_pattern` (exp-017), not docket #7's still-deferred ΔT/emission-band/detectability calculation, which stays purely analytic and unbuilt this cycle. Single-λ (600nm) scope for Block B, justified by exp-027's own established near-flatness of both A's and C's aggregate ratios across the 3λ sweep (&lt;1% and &lt;0.5% relative spread respectively) — a chromatic radial-profile difference is not ruled out, only left untested. Block A's own comparison inherits Red Team's Iteration-4 Phase-5 caveat unresolved: **this box-ledger channel still has no formal decision-floor/noise characterization** (Red Team's own queued item) — the 10%/40% bands above are informal, magnitude-based thresholds, not floor-gated verdicts, exactly as T9's own "well-supported but not yet floor-gated" reading was scored. The genuine settling-at-Block-2's-finer-cpl check (PLAN.md queue item, 4-of-7 support) is explicitly **not** folded in here — it answers a different confound (temporal, not spatial-channel) that this proposal's two blocks don't touch, and stays queued for a future cycle, named rather than dropped. No constraint-3/PASS-FAIL language anywhere; orthogonal to VISION's still-twice-deferred r=156 scale-bridge check.
+
+### Phase 2 — Critiques (five seats, blind, verbatim)
+
+#### PHOTONICS — verdict: **support-with-changes**
+
+**Steel-man (≤150 words):** Block A is exactly this seat's charter question, cheaply posed: is the extinction channel's wavelength dependence actually incoherent (T10's spread growing 46%→128%), or is that growth an artifact of one near-field point-sample (`BEAM_BEHIND`) that a conservation-law-protected channel (`sections.widths()`) doesn't share? I verified the parameter table directly against `design_geometry.py::BLOCK2_GEOM` — every N, (CX,CY), R_OUT, SRC_X, ABSORB, BOX_A value in the proposal's table matches the pinned formula's printed output exactly, and `BEAM_STEPS` held at native 3200 matches `block2_one()`'s actual call. Reusing that function's call pattern bit-for-bit keeps this deterministic and reproducible rather than a fresh confound, and the precondition (bit-for-bit beam-behind reproduction before any σ_ext number is trusted) is real, appropriately skeptical discipline for a channel this iteration is about to lean on to adjudicate a live thread.
+
+**Sharpest attack (≤150 words):** P-THERMO-B3 gets `graded_black_shell`'s own radial structure backwards. Tracing `_graded_black(d)` and the shell's `d = clip((r_out−rr)/(r_out−r_in),0,1)` in `lab/materials.py`: d=0 (σ≈0) sits at rr=r_out=78; d=1 (σ=σ_max=0.5) sits at rr=r_in=30. Conductivity is **zero at the outer boundary and maximal at the inner boundary** — the opposite of "skew toward the outer boundary (more Joule dissipation near r≈78 than r≈30)." This isn't a fresh reading: it's the exact structure this same iteration's own LOGBOOK (Iteration 4 Phase 5, EM) already established — "the shell's conductivity peaks at the INNER boundary...and is zero at the outer boundary." With σ≈0 at r≈78 regardless of field strength there, p_J cannot skew outward as claimed; the true radial peak depends on rising σ(r) against a field envelope already depleted by cumulative absorption on the way in — not a naive read of σ(r)'s shape alone. Marked "informational, no numeric gate," but it's precisely the sanity expectation a reader uses to judge Block B's brand-new instrument on its first run.
+
+**Verdict: support-with-changes.**
+
+**Flip:** Correct P-THERMO-B3's stated direction before the run — either predict the peak near r≈30–50 (tracking the actual σ(r) rise) or drop the directional claim and commit only to reporting the observed shape, since it is the product of a rising σ(r) and a falling field envelope, not derivable from σ(r) alone.
+
+#### MATERIALS & METAMATERIALS — verdict: **support-with-changes**
+
+**Steel-man:** Materials' own item (Block B, radial-binned absorbed-power ledger) is exactly the right next instrument for this bench's own established constructions. `graded_black_shell`'s conductivity law is coded with σ(r) peaking at the inner (PEC-adjacent) wall and vanishing at the outer surface (`materials.py`'s `_graded_black`: d=1 at r_in, monotonic smoothstep to d=0 at r_out) — a real, physically motivated grading (adiabatic entry, lossy near the reflector) whose SPATIAL consequence (ring-shaped heating in Cell A vs. filled-disk heating in Cell B) the box's net four-face flux ledger genuinely cannot distinguish, exactly as claimed. `sections.phasors()` does expose native-grid complex Ez, so `p_J=0.5σ|Ez|²` is a legitimate reuse of already-gated machinery, and Cell A's r&lt;30 exact-zero gate is a real, hard, load-bearing identity (Ez≡0 inside PEC). No new material construction is proposed anywhere in the cycle — the realizability bound is unchanged from exp-027's own precedent (published: reused constructions verbatim).
+
+**Attack:** Block A does not re-derive "an already-computed number" on an unchanged material — the ON article's optical depth is NOT held at the established τ_center=3.9 across Block 2's own 3 wavelengths, and this is a code-verified defect, not a channel property. `design_geometry.py`'s `SIGMA_ON=3.9/(2·78)=0.025` is a single global constant; Block 2's `r_out` is independently rescaled per λ (114/117/119 cells) to hold physical size fixed, but `run.py::build_beam_on` applies the same fixed `SIGMA_ON` at every λ (`sigma_e[mask]+=dg.SIGMA_ON`, never rescaled). Optical depth is `2·σ·r_out`(cells), so τ_center = 5.70/5.85/5.95 at 450/600/750nm — not 3.9, and drifting ~4.3% across the sweep by construction, not measurement. Given beam-behind's exponential τ-sensitivity, this is large enough to be a real confound in exactly the spread-growth question Block A exists to adjudicate — it directly contradicts the Idealizations claim ("non-dispersive real σ_e everywhere... any λ-structure measured in Block A is instrument/numerical, not material dispersion").
+
+**Verdict:** support-with-changes.
+
+**Flip:** In Block A, replace the fixed `SIGMA_ON` with a per-λ value σ(λ)=3.9/(2·r_out(λ)) (matching Block 2's own rescale discipline already applied to every geometric constant) so the ON article's optical depth is held at exactly 3.9 at every λ before the box-ledger σ_ext comparison is trusted.
+
+#### ELECTROMAGNETISM — verdict: **support-with-changes**
+
+**Steel-man:** p_J(x,y)=0.5·σ_e·|Ez_phasor|² is the physically correct formula, and it is consistent, term-for-term, with this engine's own conventions. `widths()`'s absorption channel is p_abs = −∮(Poynting flux) using the identical peak-phasor "0.5 Re{E conj(H)}" convention (`_face_flux`); the update equation's loss coefficient (`alpha = sigma_e*S/(2*eps_r)`, `lab/fdtd2d.py`) implies exactly the continuous-PDE conduction term ∂D/∂t+σE=∇×H that this dissipation density represents. p_J is evaluated natively on the Ez/σ_e grid with no staggering interpolation needed (unlike Hx/Hy in `_face_flux`), so it introduces no new registration error. Cell A's r&lt;30 exact-zero prediction is a genuine absolute identity — Ez≡0 there by the PEC clamp (`self.Ez[self.pec]=0.0`) AND σ_e=0 there by construction, doubly forcing p_J=0 to machine epsilon, independent of any closure question. That piece of the gate is real, load-bearing, and correctly specified.
+
+**Sharpest attack:** The proposal calls the volume-vs-surface closure "an absolute Poynting-theorem closure identity" while gating it at ≤1% relative — that conflates two different claims. Discrete circular-boundary staircasing plus the two-snapshot quadrature phasor extraction (an approximation to true CW steady state — the same settling/near-field fragility VALIDATION.md and T10 both flag) make Σ_bins P_J an empirical convergence check, not an exact identity; only the Cell-A r&lt;30≡0 sub-claim (Ez≡0 by the PEC clamp) is genuinely absolute. Worse: this new instrument is structurally the same category — fine-grained near-field spatial sampling — as BEAM_BEHIND, which T10 just showed can blow up under cpl×1.5 while box-ledger flux stayed clean. Block B runs single-cpl, single-λ, with zero R3 companion, against this program's own inherited rule that any surprising reading gets a resolution check before a mechanism debate.
+
+**Verdict: support-with-changes.**
+
+**Flip:** Add a cpl×1.5 resolution companion on at least Cell B (the core-fraction reading, P-THERMO-B2) before that number is cited as anything but provisional — and reword "absolute Poynting-theorem closure identity" to "empirical closure gate (≤1%)," reserving "absolute identity" language strictly for the Cell-A r&lt;30≡0 hard zero.
+
+#### QUANTUM OPTICS — verdict: **support-with-changes**
+
+**Steel-man:** The rider is the first time `intensity_role`/`amp_rel` are actually written into a real `results.json` rather than living only as LOGBOOK prose — verified against the repo: neither key exists anywhere in `lab/`, any `run.py`, or any prior `results.json`, and `lab/ARTIFACTS.md`'s `sources[]` table has no such keys, so keeping this experiment-side is the correct reading of docket #4's precedent, not a schema-contract violation. It costs zero sim calls and establishes the field names and the beam≡1.0 convention a future joint run can write into without inventing syntax from scratch. Block A also protects my own committed inequality even though EM/PHOTONICS lead it: τ_on in the τ_on/τ_off ≳ 200–800 window rests on exp-001's beam-behind headline, which this box-ledger check partially shields from being a resolution artifact — genuinely load-bearing for my seat's own T1 number.
+
+**Sharpest attack:** Both halves of the rider claim are overstated. The "shared intensity axis" contribution is a no-op: all 10 runs are single-source beam captures at amplitude 1.0, so `intensity_role="beam"`, `amp_rel=1.0` is true by construction — no `ambient_component`, no non-unity `amp_rel`, no I_ambient/I_beam default is ever exercised. The axis is stamped, not applied. And the stated reason for skipping the coherent-superposition half — "nothing here injects more than one source at once, so there is no joint run to gate it against" — is circular, not cycle-specific: THERMO designed a run set with zero joint sources, then cites that self-made absence as proof none was needed, even though `lab/fdtd2d.py`'s `Sim.sources` is already a list (multiple simultaneous sources need zero new engine physics — confirmed against the code). This is structurally the same tautology my own seat named in Iteration 4 Phase 5 ("a reason that will hold for any cycle that doesn't voluntarily choose to open the injection-machinery suite stage"). LOGBOOK's own merged ranking made this package a *mandatory rider on Iteration 5's lead seat specifically to break that pattern* — this is the bridge gate's fourth deferral, dressed as a first.
+
+**Flip:** Add one non-gating joint-injection diagnostic reusing engine capability already present (`Sim.sources` as a list): inject two co-phased line sources simultaneously in one of the already-planned Block A or Block B empty-scene runs and compare against 2× the single-source result — near-zero marginal cost, gives the bridge gate its first real substrate instead of a fourth deferral. Failing that, strike "not a repeated tautology" from §1 and replace with an honest count citing LOGBOOK's own Iteration-4 finding.
+
+#### VISION SCIENCE — verdict: **support-with-changes**
+
+**Steel-man (149 words):** This proposal earns real credit on my seat's own discipline: it never misuses a perceptual quantity. "No constraint-3/PASS-FAIL language anywhere" is honored throughout — Block A's σ_ext and Block B's radial Joule-density are pure EM/THERMO bookkeeping, never dressed up as a Weber contrast or scored against C_thr, so my duty ("pin numeric thresholds before any run that scores against them") is trivially satisfied by not being triggered. More substantively, Block A's box-ledger-vs-point-sample methodology — establishing whether `BEAM_BEHIND`'s near-field envelope diverges from a conservation-protected flux integral under resolution refinement — is directly transferable machinery for my own still-queued companion check (box-ledger R3 diagnostic on the ambient channel's OFF-lab/OFF-field weak-extinction articles, proposed at Iteration 4 Phase 5). Even though this cycle touches no perceptual instrument, a clean answer here de-risks the box-ledger tool my own future ambient work will lean on.
+
+**Sharpest attack (150 words):** The r=156 deferral is not adequately justified. Iteration 4's own Phase-5 merged ranking named, as item 3, promoting my scale-bridge check "to Iteration 5, unconditionally" — this is Iteration 5, and the proposal doesn't promote it, doesn't weigh it as a candidate, doesn't even treat it as an active deferral. It gets one subordinate clause ("orthogonal to VISION's still-twice-deferred r=156 scale-bridge check") — no stated reason, no cost estimate, no commitment clause — failing the house norm this program itself set (LOGBOOK's Iteration-2 precedent: a deferral must be "a stated decision, not an omission," the exact standard QUANTUM's bridge-gate package gets held to here). By my own seat's Iteration-4 reading this was already three iterations overdue; silent non-engagement makes it four. Paired with Iteration 4's own silence, that's two consecutive lead cycles (EM, THERMO) choosing beam-scene bookkeeping over the bench PANEL.md calls "the hard one... do not let it slip." — a pattern, not a coincidence, and Checkpoint-4 territory if it continues.
+
+**Verdict: support-with-changes.**
+
+**Flip:** Replace the one-clause dismissal with an explicit, reasoned re-deferral naming r=156's now-four-iteration overdue status and a hard commitment (mandatory lead item at Iteration 6, or fold in my own cheap 12-run box-ledger R3 diagnostic on the ambient channel now, as a zero-conflict rider alongside QUANTUM's) — the same treatment this proposal already gives QUANTUM's package.
+
+#### RED TEAM (last, saw everything) — verdict: **proceed-with-mandatory-fixes**
+
+**Verdict: proceed-with-mandatory-fixes.** Every code-level claim made by the five blind critiques was independently checked against the actual repo — all five hold up. But the audit surfaces one defect none of the five caught in its full severity: a code bug that already contaminates the **published T10 finding currently sitting in LOGBOOK.md**, not just this cycle's new proposal. That is escalated above MATERIALS' own framing of it as a Block-A fix.
+
+1. **[inconsistency] SIGMA_ON is not rescaled in Block 2/Block A — and this bug is already baked into T10 as currently recorded in LOGBOOK.md, not just this cycle's reuse of it.** MATERIALS' catch is verified exactly: `design_geometry.py` defines `SIGMA_ON = 3.9 / (2 * R_OUT)` once, at native `R_OUT=78`, giving 0.025. `run.py::build_beam_on(sim, cx, cy, r_out)` writes `sim.sigma_e[mask] += dg.SIGMA_ON` — the fixed module constant — regardless of what `r_out` is passed. `block2_one()` calls it with Block 2's *rescaled* `r_out` (114/117/119 cells at 450/600/750 nm) while `dg.SIGMA_ON` stays 0.025. Optical depth in this lab's own stated convention (`τ_center = 2·σ·r_out`, the same formula the comment beside `SIGMA_ON` uses to derive 3.9) is therefore **5.70 / 5.85 / 5.95**, not the intended 3.9, at 450/600/750 nm — confirmed to the printed digit against MATERIALS' numbers. Every other rescaled quantity in `_block2_geom` (N, CX, CY, R_OUT, SRC_X, OBS_X, ABSORB, BOX_A/B, ANNULUS, BEHIND, and even the `ref` half-height `60·ratio`) is scaled by formula — this is a one-line omission in an otherwise carefully rescaled design, not a deliberate choice. **This is exactly the code `run.py::block2_one()` that exp-027 already ran and published**: Block 2's headline numbers — the "127.57% relative spread, nearly 3× native's 46%" and "750 nm's value collapsing to 0.32%, an order of magnitude below the flat Beer–Lambert target" — are measurements of a **systematically more strongly absorbing article at every λ**, not a resolution-matched rerun of the native τ=3.9 object. Sanity check: naive 1D transmission at the inflated τ predicts beam-behind ≈ 0.33%/0.29%/0.26% at 450/600/750 nm — 750 nm's measured 0.32% now has a mundane explanation (a heavier absorber, not a mysterious near-field resolution effect) that the LOGBOOK entry never considered; 450/600 nm's measured values (1.09%/1.60%) sit well above that naive prediction, so the confound does not cleanly explain the whole effect, but it unambiguously **invalidates the premise that Block 2 tested "the same physical object at finer resolution."** Consequence for this cycle: if Block A reuses `block2_one()`'s call pattern verbatim as proposed, it inherits the identical bug and measures σ_ext for the same wrongly-doped articles — meaning Block A could land in bucket **P-THERMO-A1 ("channel-specific artifact") for the wrong reason**: a systematically different, non-flat-τ object trivially produces a different σ_ext spread than the native-cpl comparison regardless of what BEAM_BEHIND's resolution sensitivity is. The cross-check this block exists to run would be silently invalid. **Mandatory, twofold: (a)** before Phase-3 freeze, adopt MATERIALS' flip — per-λ σ(λ) = 3.9/(2·r_out(λ)) in Block A's build, verified against a printed τ_center=3.9 assertion at all 3λ before any σ_ext number is trusted; **(b)** independent of whether Iteration 5 proceeds, **T10's entry in LOGBOOK.md needs an explicit caveat now** — the 46%→128% growth and the 0.32% collapse are not yet clean evidence of the phenomenon they are currently recorded as demonstrating, because the comparison silently changed the article between the two data points being compared.
+
+2. **[inconsistency] P-THERMO-B3 gets `graded_black_shell`'s radial law backwards — PHOTONICS' catch, independently reproduced from `materials.py`.** `graded_black_shell`: `d = clip((r_out − rr)/(r_out − r_in), 0, 1)` — d=1 at rr=r_in=30, d=0 at rr=r_out=78; `_graded_black(d)` returns `sigma ∝ smoothstep(d)²`, so conductivity is **maximal at r=30 and zero at r=78** — the exact opposite of the proposal's "skew toward the outer boundary (more Joule dissipation near r≈78 than r≈30)." This is not a fresh subtlety: it is the identical structure this program's own LOGBOOK already recorded from EM's Iteration-4 Phase-5 reading. Marked "informational, no numeric gate" in the proposal, but it is precisely the sanity check a reader will use to judge whether Block B's brand-new instrument is working on its first run — a backwards prediction here reads as a instrument bug even when the instrument is fine. **Mandatory: adopt PHOTONICS' flip** — predict the peak near r≈30–50 (rising σ against a field envelope already depleted by upstream absorption) or commit only to reporting the observed shape.
+
+3. **[inconsistency] "Absolute Poynting-theorem closure identity" overclaims what this channel can deliver — EM's catch, independently verified against this program's own precedent.** `VALIDATION.md` records this codebase's *other* closed-box/two-route "identity" checks with real, non-trivial empirical tolerances: stage 9's "oblique extinction: two routes agree" gates at **≤0.12**, the Beer–Lambert slab anchor at **≤0.02**, and the lesson explicitly logged is "ratio gates can't see convention bugs — absolute balances can," never that such balances hold to machine epsilon under staircasing/dispersion/phasor-extraction. `full_capture()`'s two-snapshot quarter-period phasor extraction is exact only for a fully settled single-tone steady state — exactly the assumption T10 and VALIDATION.md's own settling lessons say cannot be taken for granted at this bench. The **one** piece of Block B that is a genuine machine-epsilon identity is Cell A's r&lt;30 zero, and it is doubly forced (verified against `materials.py`/`fdtd2d.py`): for r&lt;30, σ_e=0 by construction (outside `graded_black_shell`'s r_in=30-inclusive mask) **and** `pec_disk`'s `sim.pec |= rr &lt;= r` forces `Ez[pec]=0.0` every step — either alone already forces p_J=0. **Mandatory: adopt EM's flip** — rename the ≤1% Σ_bins-vs-p_abs check to "empirical closure gate (≤1%)," reserve "absolute" language for the r&lt;30≡0 hard zero only, and add EM's cpl×1.5 companion on Cell B before P-THERMO-B2's core-fraction number is cited as more than provisional — this program's own R3 meta-rule (attack #1 above is a fresh, unplanned instance of exactly this lesson) says a first-run near-field spatial reading earns a resolution check before a mechanism debate, not after.
+
+4. **[inconsistency] QUANTUM's own remedy repeats the exact overclaim Red Team caught from QUANTUM's own seat one iteration ago.** QUANTUM's attack that THERMO's "no joint run" deferral is circular (not cycle-specific) is fair and independently verified — `Sim.sources` in `lab/fdtd2d.py` is a plain list, and `run()`'s step loop (`for s in self.sources: ...`) already handles an arbitrary number of simultaneous sources with no engine change required; the claim that multiple simultaneous sources need zero new *physics* is code-verified true. But QUANTUM's own flip calls injecting two co-phased sources at once "near-zero marginal cost" — this is the identical framing Iteration 2's Red Team explicitly refuted from QUANTUM's own prior proposal ("new source machinery needs its own gated suite stage per house rule... QUANTUM's own 'zero cost' framing is itself overstated"), a ruling QUANTUM's own seat has never actually exercised end-to-end (every prior ambient run injected multiple angles as *separate* CW runs summed post-hoc, never simultaneously in one `Sim`). The mechanical capability existing is not the same as the configuration being validated. **Mandatory, if the rider is adopted:** log the joint-injection diagnostic as opening its own gated suite stage (a real, if small, build cost), not as a free rider — or drop the "near-zero marginal cost" framing and keep the softer flip (strike "not a repeated tautology," cite the honest deferral count).
+
+5. **[inconsistency] Red Team's own Iteration-4 Phase-5 queued item #4 — explicitly ranked "directly load-bearing for items 1 and 2" (this exact cross-check) — is named but not actually closed, and the proposal's falsifiable bands quietly assume it is.** LOGBOOK's merged ranking for Iteration 5 lists, as item 4, "a formal decision-floor/noise characterization for the beam-scene box-ledger channel... directly load-bearing for items 1 and 2" — items 1 and 2 being exactly the box-ledger cross-check and settling work this proposal descends from. The Phase-1 proposal's Idealizations section does name the gap ("this box-ledger channel still has no formal decision-floor/noise characterization... the 10%/40% bands above are informal, magnitude-based thresholds, not floor-gated verdicts") — so this is disclosed, not smuggled, and does not independently fail PANEL.md's deferral-must-be-stated rule. But naming a gap is not closing it: P-THERMO-A1/A2/A3's 10%/40% partition and P-THERMO-B1's ≤1% closure gate are both asserted as decision thresholds for a channel whose own noise floor is, by Red Team's own prior finding, unknown to better than "box_dev is ≈1221× the smallest delta measured here so far" — an order-of-magnitude statement, not a floor. Given attack #1's finding that Block A's own geometry is currently contaminated, this channel's credibility is under more strain this cycle than last, not less. Not mandatory to block this cycle (it is explicitly disclosed, and a full floor characterization is legitimately more than one cycle's work) — but the synthesis should not treat P-THERMO-A/B's verdicts as more decisive than "informally suggestive" until that gap closes, exactly the caveat T9 already carries.
+
+6. **[inconsistency] VISION's r=156 attack is correct, and the proposal's own count of the deferral undersells it.** Verified against LOGBOOK: Iteration 4's own merged ranking (line ~1544) states VISION's r=156 check is "now argued... MORE urgent post-T10, not less" and ranks it #3 of 5, immediately below the box-ledger cross-check and the settling check — this proposal adopts item #1 as its consensus half but drops item #3 with a single subordinate clause and no reason, no cost estimate, no commitment clause, unlike the explicit, reasoned treatment QUANTUM's package gets in the very same proposal (§1: "not a repeated tautology... nothing here injects more than one source at once"). The proposal's "still-twice-deferred" phrasing undercounts: r=156 was raised at Iteration 1 (T8), carried at Iteration 2, left queued-not-built at Iteration 3, and given its first *explicitly reasoned* re-deferral only at Iteration 4 (exp-027 fix 7) — silence at Iteration 5 would be its fourth cycle without a build, not its third. **Mandatory: adopt VISION's flip** — either commit r=156 as a mandatory Iteration-6 lead item with a hard reason (this cycle's own scope is beam-scene, not ambient/silhouette geometry — a legitimate but so-far-unstated reason), or fold in VISION's own cheap 12-run box-ledger R3 diagnostic on the ambient channel now, alongside QUANTUM's rider.
+
+7. **[unfalsifiable] The QUANTUM rider's framing — "applied for the first time to a real experiment" — describes an achievement that cannot fail to be true.** QUANTUM's own steelman for this proposal already half-concedes the point ("genuinely load-bearing for my seat's own T1 number" is claimed for the τ_on/τ_off inequality, not for the ledger stamp itself), and QUANTUM's own attack calls the rider "a no-op... true by construction." Independently verified: every one of the 10 runs (Block A's `run_beam_scene` and Block B's `run_block3_scene`) constructs exactly one `Sim` with exactly one `add_line_source` call at default `amplitude=1.0` — `intensity_role="beam", amp_rel=1.0` cannot be anything else given this code, so nothing about the claim is testable and no future reader can learn anything from its being logged beyond "the field name now exists." This is harmless (it costs nothing and does establish the schema convention for a future run that isn't a no-op), but the proposal's language ("applied for the first time... not a third silent deferral") oversells a schema stub as a validated instrument step. **Recommended, not mandatory: reword to "field name and beam≡1.0 convention established, not yet exercised on a non-trivial value" — matching QUANTUM's own honest characterization rather than the lead's more triumphant framing.**
+
+**Where the five critiques were right and this seat found nothing to add:** PHOTONICS' bit-for-bit verification of Block A's geometry table against `design_geometry.py::BLOCK2_GEOM` (independently reproduced — every N/CX,CY/R_OUT/SRC_X/ABSORB/BOX_A value matches to the printed digit); MATERIALS' realizability read (no new material, existing constructions only); EM's steelman that `p_J = 0.5·σ_e·|Ez_phasor|²` is term-for-term consistent with the engine's own loss coefficient (`alpha = sigma_e*S/(2*eps_r)`) and needs no staggering interpolation on the native Ez/σ_e grid; VISION's confirmation that no constraint-3/PASS-FAIL language appears anywhere in the proposal.
+
+**Evidence that would change the verdict.**
+
+**To REJECT:** if, after the SIGMA_ON fix, Block A's re-derived σ_ext spread still cannot be interpreted because the box-ledger channel's undetermined noise floor (attack #5) turns out to be comparable to or larger than the spread being measured — i.e., if fixing the article-drift bug reveals the whole cross-check was never capable of discriminating "channel-specific" from "general defect" at this box's precision. That would mean this cycle's core consensus item is not executable as scoped and needs a floor-characterization build (Iteration-4 Red Team's queued item 4) first, not a quick geometry patch.
+
+**To clean PROCEED:** all seven items resolved pre-freeze in NOTES.md and the iteration entry — (1) Block A's SIGMA_ON rescaled per λ with a printed τ_center=3.9 verification at all three wavelengths, **and** an explicit erratum/caveat added to T10's own LOGBOOK entry noting the optical-depth drift confound in exp-027's published Block 2 numbers; (2) P-THERMO-B3's direction corrected or the directional claim dropped; (3) the closure-gate language corrected to "empirical (≤1%)," reserved "absolute" for the r&lt;30 hard zero, plus EM's cpl×1.5 companion on Cell B; (4) the joint-injection rider (if kept) logged as opening its own suite stage, not "near-zero marginal cost"; (5) the decision-floor caveat's implications for P-THERMO-A/B's verdict strength stated explicitly in Predictions, not only Idealizations; (6) r=156 given either a hard Iteration-6 commitment or VISION's 12-run diagnostic folded in now; (7) the QUANTUM-rider language softened to match its own honest no-op characterization.
+
+**Panel stats:** 5 seats support-with-changes, zero oppose, zero deferred (each seat attacked from its own charter — MATERIALS and PHOTONICS both independently caught real code-level defects, EM caught a labeling overreach, QUANTUM caught a process-pattern defect in its own lead's reasoning, VISION caught a house-norm violation) · Red Team's own audit escalated one of the five findings (SIGMA_ON) from "fix the new proposal" to "the published record needs a correction," the load-bearing catch of this cycle.
+
+### Phase 3 — Synthesis (2026-08-13, Director)
+
+Full record: `experiments/028-radial-ledger-channel-crosscheck/NOTES.md`.
+**All seven of Red Team's mandatory-fix items ACCEPTED, zero overridden.**
+Concretely: **Block A's SIGMA_ON rescaled per λ** so τ_center=3.9 is held
+exactly at all 3λ (verified by code `assert`) — the load-bearing fix,
+since the Phase-1 proposal's verbatim reuse of exp-027's own
+`block2_one()` call pattern would otherwise have inherited the identical
+bug. **An explicit erratum added to LOGBOOK.md's T10 entry**, independent
+of this experiment's own outcome — T10's original resolution question is
+reopened, not answered, pending the correctly-τ-held comparison this
+experiment provides. **P-THERMO-B3's direction corrected** to r∈[30,50]
+(tracking the shell's actual σ(r) rise, not its fall). **Closure-gate
+language corrected** to "empirical (≤1.5%, calibrated on stage 10's own
+first-run measurement)," reserved "absolute identity" strictly for Cell
+A's r≤30 hard zero; **a cpl×1.5 resolution companion added on Cell B**
+(P-THERMO-B2-R3, new). **The joint-injection rider dropped** (it would
+open its own gated suite stage, a real build cost Red Team correctly
+declined to wave through as "near-zero"); QUANTUM's coherent-superposition
+half **honestly re-deferred as its fourth deferral**, committed as a
+**mandatory build on QUANTUM's own Iteration-6 lead cycle** (next in
+rotation). **The decision-floor caveat carried explicitly into
+Predictions**, not left in Idealizations alone. **VISION's r=156 check
+committed HARD as her own mandatory Iteration-7 lead-cycle build** (one
+full rotation after QUANTUM's Iteration-6 commitment) — not folded in as
+an unreviewed ad hoc Block C this cycle, out of respect for the panel's
+own independence mechanics (a new instrument in another seat's domain
+deserves its own Phase-1/Phase-2 cycle, not a Director shortcut).
+**QUANTUM rider language corrected** to an honest "field names
+established, not yet exercised on a non-trivial value." New machinery
+(`lab/sections.py::radial_absorbed_power`) gated by **new suite stage 10**
+(2 checks: PEC-core hard zero, PASS machine-epsilon exact; empirical
+closure, calibrated ≤1.5% after a first-run measurement of 1.11%,
+confirmed settling-independent across a 4× step sweep) — full bench
+**45/45 green** before this experiment's first official run. Predictions
+P-THERMO-A1/A2/A3 and P-THERMO-B1/B2/B2-R3/B3 (all revised per the fixes
+above) committed before any run (commit to follow this LOGBOOK entry, per
+house discipline).
+
+### Phase 4 — Test (exp-028, 2026-08-13)
+
+*(Recorded after the run — see below.)*
+
+### Phase 5 — Review
+
+*(Recorded after Phase 4 — seven fresh seats, blind.)*
