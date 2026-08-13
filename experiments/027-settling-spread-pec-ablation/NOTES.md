@@ -347,4 +347,146 @@ exp-026) and does not change here.
 
 ## Results
 
-(To be filled in after the official run — see below.)
+16 new FDTD sim calls, 590 s total (239 s Block 1 + 293 s Block 2 + 59 s
+Block 3), suite 41/41 before and after (no `lab/` changes). Full data:
+`results.json`.
+
+**Block 1 (settling-time diagnostic, all 3λ):**
+
+| λ | beam-behind @6400 | established @3200 | Δ (pp) | box_dev |
+|---|---|---|---|---|
+| 450nm | 2.3373% | 2.34% | −0.0027 | 0.0027 |
+| 600nm | 2.9701% | 2.97% | +0.0001 | 0.0004 |
+| 750nm | 1.8612% | 1.86% | +0.0012 | 0.0023 |
+
+Relative spread @6400 steps: **46.41%** — essentially identical to the
+established @3200 value (46.44%).
+
+**Block 2 (R3 spatial companion, cpl×1.5, all 3λ):**
+
+| λ | cpl | beam-behind | box_dev |
+|---|---|---|---|
+| 450nm | 22 | 1.0867% | 0.0015 |
+| 600nm | 30 | 1.5956% | 0.0002 |
+| 750nm | 38 | 0.3193% | 0.0019 |
+
+Relative spread: **127.57%** — nearly 3× larger than native's 46%, not
+smaller.
+
+**Block 3 (PEC-ablation factorial, λ=600nm) — reproduced bit-for-bit from
+the pre-freeze plumbing check, as expected (deterministic engine):** A=
+0.51180, B=0.51181 (Δ=0.00001), C=0.60748. Precondition/reproducibility/
+angular-pattern/thermo numbers unchanged from the disclosure above.
+
+### Predictions scored
+
+- **P-EM1a (450nm) — CONFIRMED, REFUTED-direction.** Δ=−0.0027pp, inside
+  the predicted [0,0.20]pp band (magnitude), in the REFUTED direction as
+  predicted.
+- **P-EM1b (600nm) — matches the disclosed pre-freeze value exactly**
+  (Δ=+0.00012pp then, +0.0001pp now — bit-identical, as expected).
+- **P-EM1c (750nm) — CONFIRMED, REFUTED-direction.** Δ=+0.0012pp, inside
+  the predicted [0,0.40]pp band, near the REFUTED end, not the "settling
+  survives longest here" end the central 0.15pp estimate leaned toward.
+- **Aggregate reading — CONFIRMED exactly as predicted.** All three land
+  ≤0.003pp (far inside the ≤0.20pp aggregate-REFUTED threshold committed
+  above). **Settling-time incompleteness is cleanly, uniformly refuted as
+  an explanation for P-MAT4's beam-behind anomaly, at all three
+  wavelengths, doubling the step count from 3200 to 6400.** PHOTONICS' own
+  Phase-2 attack (that the flanks-only design could never test 600nm, the
+  actual peak) is now moot in the strongest possible way: 600nm was
+  tested, directly, and shows the same null result as the flanks.
+- **P-EM3a/b/c (Block 2 spatial spread) — NONE of the three bands hit;
+  P-EM3c (ambiguous, most-likely-going-in) was the closest call but the
+  magnitude is a genuine surprise beyond what any band anticipated.**
+  Measured relative spread 127.6% is **outside P-EM3a's upper edge
+  (64.4%)** — nearly 2× the "spread persists" ceiling — and obviously
+  outside P-EM3b's collapse threshold (≤13.8%) in the wrong direction
+  entirely (the spread GREW, it did not collapse). 600nm does remain the
+  per-λ local maximum in the rescaled set (1.60% vs 1.09%/0.32%), the one
+  sub-clause P-EM3a got right. **Flagged honestly as an unpredicted
+  result, not smoothed into the nearest bucket**: finer spatial resolution
+  (cpl×1.5) does not converge the beam-behind measurement toward the flat
+  Beer–Lambert target (2.024%) or toward each other — it makes the
+  cross-λ spread substantially WORSE, and 750nm's value in particular
+  collapses to 0.32%, an order of magnitude below the flat target and
+  below its own native value. box_dev stays clean throughout (≤0.0019),
+  so this is not a box-ledger sanity-check failure.
+- **T7 cross-reference — the finding is now resolution-CONFIRMED, not
+  resolution-explained.** Read together with Block 1's clean null (settling
+  is refuted as steps-dependent, and Block 1's own periods-remaining even
+  at the LEAST-settled native point, 750nm/3200steps/26.0 periods, already
+  gave a converged, gate-clean, step-count-independent answer) — the
+  chromatic non-flatness in the beam-transmission channel **survives, and
+  grows under, the standard R3 resolution check** (cpl×1.5, this program's
+  own precedent from exp-005/010/015/023/025). This is the **first time in
+  this program's history that an R3 check made a feature bigger rather
+  than confirming it unchanged or shrinking it away** — a genuinely new
+  pattern, not the artifact-refutation R3 has produced every other time it
+  has been applied (LOGBOOK's R3 meta-rule entry). It joins, rather than
+  resolves, T7's own open hard-edge chromatic-silhouette mechanism
+  question, exactly as the pre-committed cross-reference anticipated in
+  kind, though not in magnitude.
+- **P-EM7/P-EM5/P-EM4/P-EM6/THERMO sidecar — all CONFIRMED exactly as
+  disclosed pre-freeze** (deterministic reproduction). **T9's
+  PEC-cored-vs-solid-disk question is now answered: PEC-presence is
+  incidental.** Removing the PEC core while holding the graded shell's
+  profile byte-for-byte identical (Cell B vs Cell A) changes σ_abs/σ_ext
+  by 0.00001 — indistinguishable from zero, at a box_dev of 0.0019. The
+  established 0.51 anchor and exp-026's measured 0.61 differ because of
+  the shell's own rim/profile-transmission geometry (graded vs. abrupt),
+  not because of the PEC core each construction happens to also carry.
+  The angular-pattern channel (P-EM6) independently corroborates the null:
+  A and B's wide-angle scattered-power fractions are identical to 3
+  decimal places (0.0056 both), so PEC-presence is not measurably
+  redirecting energy into wide-angle scattering at this geometry either.
+- **VISION's commitment clause (fix 7) — CHECKED, not triggered.** Beam-
+  behind (τ_on) moves by at most 0.0012pp at any of the 3 wavelengths, far
+  under the ≥0.3pp trigger. QUANTUM's committed T1 σ(I) window (τ_on/τ_off
+  ≳ 120–780, n ≳ 0.56–0.78) needs no re-derivation from this experiment's
+  results.
+
+### Headline (for LOGBOOK)
+
+**Both queued Iteration-3 threads resolve cleanly, in opposite directions
+from what the Phase-1 proposal's own framing anticipated.** (1) T9's
+PEC-cored-vs-solid-disk question: **answered — PEC-presence is incidental,
+rim/profile geometry drives the 0.51-vs-0.61 gap** (Δ between PEC-present
+and PEC-absent, same shell profile: 0.00001, statistically indistinguishable
+from zero; angular pattern independently corroborates). (2) P-MAT4's
+beam-behind chromatic anomaly: **settling-time is cleanly, uniformly
+refuted at all 3λ** (doubling BEAM_STEPS changes nothing, ≤0.0012pp
+everywhere) — but the standard R3 spatial-resolution check, instead of
+explaining the anomaly away as this program's five prior R3 checks always
+did, makes it dramatically WORSE (46%→128% relative spread) — a new kind
+of result for this lab, joining T7's own open hard-edge chromatic-
+silhouette question rather than resolving either. Two of seven Red Team
+mandatory fixes (Cell B's double-write, Block 1's 600nm extension) were
+load-bearing for getting a clean answer at all; the other five closed real
+completeness gaps (rederived Block 2 geometry, exhaustive P-EM4 partition,
+restored Thermo sidecar, named QUANTUM/VISION re-deferrals) without
+changing any scored outcome. All fixes held up; nothing was overridden.
+
+## Next (pre-registered, for Phase 5)
+
+(1) **The Block-2 spread-growth finding is now this program's most
+concrete open resolution-machinery puzzle**: does the beam-behind
+near-field envelope measurement (`BEAM_BEHIND`, a squared-envelope ratio)
+have a cpl-dependent sensitivity the box-ledger cross-section channel
+(`sections.widths`, used throughout Block 3 and exp-002/026, and clean
+here at box_dev≤0.0019) does not share? A same-geometry comparison — the
+box-ledger σ_ext measured at Block 2's own rescaled cpl points — would
+directly test whether the ~128% spread is specific to the envelope-ratio
+channel or a broader grid-resolution effect. (2) A genuine settling check
+AT Block 2's finer cpl (not just at native cpl, which Block 1 already
+covers) — doubling BEAM_STEPS at cpl=22/30/38 specifically — closes the
+one confound this experiment's own Idealizations section flagged and did
+not fully resolve: settling *could* still reenter at finer grids
+specifically, a mechanism Block 1 did not test. (3) T9 is closed for the
+PEC-vs-rim question, but the residual "rim geometry acting in combination
+with PEC" cell (the missing fourth corner of the full 2×2 — abrupt profile
++ PEC core) remains untested; low priority given the clean null already
+found, but cheap if a future iteration wants full closure. (4) QUANTUM's
+bridge-gate package and VISION's r=156 scale-bridge check remain queued,
+now overdue by a third and second iteration respectively — Phase 5 should
+weigh whether either's stated re-deferral reason still holds.
