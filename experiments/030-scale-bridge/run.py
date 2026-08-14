@@ -370,6 +370,27 @@ def run_fit():
         out[art] = {"C78_established": c78[art], "C156": c156[art], "C312": c312[art],
                     "delta_78_to_312": c312[art] - c78[art]}
 
+    # Fix 4 (Red Team #3/#4): T9/T10-vs-T11-floor consequence, COMPUTED IN
+    # CODE, not hand-asserted -- both the Phase-1 proposal's own "3-3000x"
+    # and THERMODYNAMICS' own hand-corrected "167-5000x" were independently
+    # found wrong by Red Team ("~320-9615x", using the predicted band; here
+    # using the MEASURED box_dev readings instead, the honest final number).
+    t9_delta = 1.56e-6   # exp-027's established Delta(sigma_abs/sigma_ext), PEC-vs-rim null
+    t10_spread = 0.0649  # exp-028's established box-ledger sigma_ext relative spread
+    bd = res.get("t11", {})
+    consequence = {}
+    if "78_20" in bd and "156_20" in bd:
+        for key, label in (("78_20", "r=78"), ("156_20", "r=156 native"),
+                            ("156_30", "r=156 cpl=1.5x")):
+            if key in bd:
+                floor = bd[key]["box_dev"]
+                consequence[label] = {
+                    "box_dev": floor,
+                    "T9_delta_vs_floor_ratio": floor / t9_delta if t9_delta else None,
+                    "T10_spread_vs_floor_ratio": t10_spread / floor if floor else None,
+                }
+    out["t9_t10_floor_consequence"] = consequence
+
     res["fit"] = out
     save_results(res)
     print(json.dumps(out, indent=2))
