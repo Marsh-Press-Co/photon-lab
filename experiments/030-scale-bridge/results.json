@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "experiment": "exp-030-scale-bridge"
+  },
+  "rgate": {
+    "R_bare_sanity": 0.9775557332839095,
+    "78": {
+      "sigma_max": 0.5,
+      "thickness_cells": 48,
+      "R_coat": -2.879015474345501e-07,
+      "elapsed_s": 6.068960189819336
+    },
+    "156": {
+      "sigma_max": 0.25,
+      "thickness_cells": 96,
+      "R_coat": -4.9136148269618444e-05,
+      "elapsed_s": 5.14373254776001
+    },
+    "312": {
+      "sigma_max": 0.125,
+      "thickness_cells": 192,
+      "R_coat": 3.5142101485854046e-05,
+      "elapsed_s": 19.842607021331787
+    }
+  }
+}
