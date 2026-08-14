@@ -94,6 +94,35 @@ measured them here):**
   point (r=156, τ=0.016, |C|≈1%) — not licensed at PEC/absorber-scale
   contrast, and not yet independently tested at a second σ-held
   geometry.**
+  **First-ever PASS (Iteration 9, exp-032): a τ_off≈0.0065 σ(I) OFF-state
+  article clears VISION's frozen |C|<0.005 lab bar at all 3λ, at bench
+  scale — the first σ(I) OFF-state configuration in this program's
+  history to do so.** Sharpens, not eases, this tension: the σ_on/σ_off
+  ratio a real switch would need to span grows to ≈600× (worse than
+  exp-026's already-unobtainium 122–487×), and MATERIALS' Phase-5
+  informal literature check (reverse saturable absorbers, the correct-
+  direction real material class) found published enhancement factors
+  1–2 orders of magnitude short of that target. **A g600≈0.69–0.70
+  recurrence, now FOUR points across three experiments (off_bracket
+  0.6998/τ=0.003, off_pass 0.6927/τ=0.0065, off_lab 0.6913/τ=0.008,
+  exp-031's σ-held r=156 point 0.6969), shares a grid resolution (cpl=20
+  at 600nm) never varied — the one wavelength on this bench line that has
+  never received this program's own mandatory R3 resolution check
+  (450/750nm both have, exp-025). Flagged, NOT yet licensed as
+  "reproducible physics" — an R3 check (cpl 20→30) is Iteration 10's
+  top-ranked item, gating every future citation of this g600 figure.**
+  exp-032's own bracket-point discriminator (τ=0.003, below τ_off) came
+  back a genuine, uninformative null on the bulk-absorption-vs-edge/rim-
+  scattering-floor mechanism question — EM's Phase-5 finding: an
+  aggregate ambient-contrast measurement is structurally underpowered
+  for that question at these optically-thin τ regardless of SNR; the
+  correctly-targeted instrument is the already-validated
+  `radial_absorbed_power` (exp-028), queued for Iteration 10. This PASS
+  is explicitly a bench-scale diagnostic (VISION's own idealization iii),
+  NOT a Tier-W/Tier-A constraint-3 verdict — the r=156 scale-bridge
+  companion leg, queued since Iteration 3, remains unbuilt, now queued
+  third (after the R3 check and the mechanism instrument) for Iteration
+  10.
 - **T2 — Perceptual thresholds.** PINNED and corrected in exp-020: frozen
   function C_thr(L) = 0.005·max[1,(L/3)^−p], p ∈ [0.4, 0.5], field ×4;
   crossovers re-derived from the function itself (Red Team #2's catch).
@@ -3829,3 +3858,169 @@ New experiment `exp-031` (`experiments/031-ripple-core-reconciliation/`). Predic
 **Next lead per rotation: MATERIALS** (Iteration 9). Queue, Red-Team-ranked, binding priority order per this shift's own program-integrity finding: (1) **VISION's τ_off≈0.0065 σ(I) PASS-boundary run** — three iterations overdue, must not be deprioritized again. (2) PHOTONICS' multi-point cored-absorber r-sweep (r≈78,110,156,220,312 at fixed PLANE_DX=15, θ=0) — resolves T14 and closes the r=312 core-correction gap, cost-gated per Iteration 7's own r=312 precedent (pilot before committing). (3) THERMODYNAMICS' trust-suite stage for the ambient/line-source box-ledger channel, prerequisite for any further P-DIR-4 attempt. Lower priority, inherited: MATERIALS' fixed-absolute-thickness shell variant (secondary until (2) resolves whether the C(r) anomaly is real); a genuine PEC r-family ripple test near r≈270–350 (still never executed, T12's own real open half); Iteration 6's still-queued incoherent-ensemble/phase-quadrature idiom.
 
 Panel stats (Phase 5): 6 seats read blind + Red Team audit · zero gated predictions overturned · one erratum already self-corrected before the audit, one live-code defect the audit caught that the erratum missed (now guarded) · one background figure found not to independently reproduce (flagged) · one cross-seat synthesis elevated to a new tracked live thread (T14) · one proposed follow-up found geometrically infeasible as stated · program-integrity flag raised explicitly (five consecutive non-mechanism iterations) as a binding Iteration-9 priority, not a Checkpoint violation.
+
+## Iteration 9 — The σ(I) OFF-State PASS-Boundary Run (exp-032) — 2026-08-14
+
+Runner: cloud panel shift (autonomous background routine) · Lead: **MATERIALS
+& METAMATERIALS** (rotation), executing Iteration 8's binding, Red-Team-
+ranked, three-times-deferred priority. Full seven-seat cycle: Phase 1
+proposal → 5 blind parallel critiques → Red Team last with everything
+(proceed-with-mandatory-fixes) → Phase 3 synthesis → predictions committed
+(`9a186a4`) → Phase 4 run (`8723882`) → Phase 5 (six blind reviews + Red
+Team audit) → close-out (`0ff663e`). Full experiment record:
+`experiments/032-sigma-off-pass-boundary/NOTES.md`.
+
+### PHASE 1 — Proposal (MATERIALS, verbatim)
+
+# PHASE 1 — PROPOSAL · Panel Iteration 9 · Lead seat: MATERIALS & METAMATERIALS
+## "The σ(I) OFF-State PASS-Boundary Run" (candidate exp-032)
+
+### 1. Mechanism narrative (≤300 words)
+
+Iteration 8 closed with a binding, three-times-deferred Iteration-9 priority: locate the σ(I) escape route's OFF-state PASS boundary — the first configuration in this program's history that might read genuinely below VISION's frozen lab bar (|C|<0.005), not merely straddle it as every prior σ(I) article has. This proposal is exactly that one new run, nothing more.
+
+One new uniform-conductivity, index-matched (ε_r=1) sponge disk — no PEC core, r_out=78 cells, identical construction to exp-026's own off_lab/off_field articles — sits at τ_center=τ_off=0.0065. That value is kept, not refined: exp-026's own established per-λ transfer constants (g=|C|/τ; g_450≈0.576, g_600≈0.691, g_750≈0.632, measured on the off_lab τ=0.008 article) predict C=g·τ_off in the range 0.0037–0.0045 across all three λ — inside the 0.005 lab bar by 10–25% margin at every wavelength, provided the linear g-transfer law extends the ~20% further down from τ=0.008 unbroken. This is an ordinary static, linear, time-invariant medium; nothing intensity-dependent is built or claimed. It reuses exp-026's own ±35° N=9 fallback ambient bench verbatim — same domain, decision floors, box, angles — the exact reuse discipline this bench exists to support.
+
+My seat's job stays what it has always been on this thread: bound what's real, and name the tension this run does not resolve. τ_off≈0.0065 (σ_engine=4.167×10⁻⁵, attenuation length ≈720µm) is a *weaker* absorber than either of exp-026's own already-PUBLISHED OFF endpoints — trivially realizable if they are. What this run cannot touch, and is not asked to: whether any real medium can gate σ between this τ_off and the established τ_on≈3.9 endpoint by intensity alone — a ratio that grows to ≈600×, sharper than exp-026's own 122–487×, precisely because chasing the PASS line pushes τ_off lower.
+
+### 2. Parameter table
+
+**Geometry — inherited verbatim from exp-026's ±35° fallback (zero changes, reused not re-derived):** Δ=30nm, courant=0.99, NX=360, NY=1584, ABSORB=40, CPL={450:15, 600:20, 750:25}, SRC_X=300, TAPER=40, OBJ=(170,792), R_OUT=78 cells (2.34µm), PLANE_DX=15, PLANE_X=77 (lever 93 cells), W_OBJ≤78, GUARD_OUT=185, FLANK=(185,263), W_FLANK=78, BOX=(80,260,702,882), FALLBACK_ANGLES N=9 (±35°/±25°/±15°/±5°/0°), DECISION_FLOOR reused {450:0.00089, 600:0.00007, 750:0.00045}. Suite 48/48 green (post-exp-031).
+
+**New article:** uniform disk, no PEC core, ε_r=1.0, single hard σ-step, τ_center=τ_off=**0.0065**, σ_engine=4.16667×10⁻⁵, attenuation length ≈720µm. Chord-model central C (fallback N9, per-λ g-transfer): −0.00374/−0.00449/−0.00411 @450/600/750nm.
+
+**Run plan:** 1 new article × 9 angles × 3λ = 27 object runs + 27 empty runs = 54 new FDTD calls, ≈2.75–3 min at exp-026's own measured rate.
+
+### 3. T1 escape-route statement
+
+This instruments the σ(I) escape route's **OFF-state endpoint only** — it is not a working mechanism. The article built here is an ordinary static, linear, time-invariant medium (σ fixed, real, non-dispersive); no intensity-dependent conductivity function exists in this run or is claimed. It measures whether the *linear* OFF-state contrast, held at τ_off≈0.0065, crosses VISION's frozen PASS line — a static fact about one fixed-σ object, not a demonstration that any medium can be gated between OFF and the established τ_on≈3.9 ON endpoint. That gating question is T1's separate, unresolved central tension (UNOBTANIUM-WITH-PARAMETERS, standing since Iteration 2 Phase 5) and is explicitly not this run's job to resolve, per this cycle's own charter.
+
+### 4. Falsifiable predicted outcomes
+
+**P-MAT-1** (per-λ ambient Weber contrast C, N=9 fallback, all 3λ): Central C_450=−0.00374, C_600=−0.00449, C_750=−0.00411, band [−0.0050,−0.0036], exhaustive (a)/(b)/(c) disposition (clean PASS / chromatic partial PASS / refuted).
+**P-MAT-2** (g=|C|/τ transfer constant, per λ): central = established off_lab g's, band [0.50,0.80].
+**P-MAT-3** (chromatic spread, |C(750)−C(450)|): central 0.0003–0.0007, band [0.0,0.0015].
+**P-MAT-4** (N-convergence, N5 vs N9, zero new runs): |ΔC|≤0.001, central ≤0.0006.
+**P-MAT-5** (decision-floor SNR, informational): predicted SNR 4.2/64/9.1 @450/600/750nm.
+**P-MAT-6** (overall verdict against VISION's frozen ladder): central prediction PASS at all 3λ.
+
+### 5. Idealizations
+
+2D TMz, single polarization. Static/linear/time-invariant medium throughout — no σ(I) built; measures only the hypothesized OFF-state static endpoint. CW single-λ, 3-λ quadrature standing in for white light. Back-lit ambient only. Chord-model bands are geometric-optics; ε_r pinned at exactly 1.0 is zero index-step reflection by construction but NOT zero reflection overall — the abrupt σ-step is its own scattering channel. **Scoring against VISION's frozen ladder is a bench-scale diagnostic, NOT a witness-scale or Tier-W/Tier-A constraint-3 verdict.** VISION's own r=156 scale-bridge check remains the explicit precondition before any PASS reading here licenses perceptual language at scenario scale. **Measuring where the linear/static OFF-state contrast crosses the PASS line does NOT mean a real σ(I) medium can be built that gates between this τ_off≈0.0065 and the established τ_on≈3.9 ON state** — a PASS result *sharpens*, not eases, that verdict (σ_on/σ_off grows to ≈600×, worse than exp-026's 122–487×).
+
+### 6. Realizability bound
+
+τ_off≈0.0065 — **PUBLISHED** (weaker than either already-PUBLISHED off_lab/off_field endpoint). The switching mechanism (σ gated between τ_off≈0.0065 and τ_on≈3.9, Δσ/σ≈600×) — **UNOBTANIUM-WITH-PARAMETERS**, carried forward verbatim from Iteration 2 Phase 5, unmoved by this run's outcome.
+
+### PHASE 2 — Critiques (five seats, blind, verbatim)
+
+#### PHOTONICS — verdict: support-with-changes
+
+**Steel-man:** This is the cheapest, most disciplined test this thread could run: one new τ point, zero geometry/angle/boundary-type changes, reusing an ambient instrument already gate-clean at 3λ across an order of magnitude in τ. Holding geometry, abrupt-σ-step edge type, and the ±35° N=9 angle set fixed while moving only τ isolates the single variable under test.
+
+**Sharpest attack:** The proposal's load-bearing g values (g450=0.576, g600=0.691, g750=0.632) are lifted verbatim from exp-026's off_lab measurement — but exp-026's own NOTES.md flags two of these three as band misses in opposite directions: g450 sits at the program's thinnest-SNR point (≈5.2, plausibly floor-biased low), and g600=0.6913 overshoots its own predicted ceiling at SNR≈79–167 — explicitly "NOT floor-explicable... genuinely unexplained," never resolved. This run extrapolates both unresolved values another ~19% below the only validated τ range, into this program's worst-ever σ(I) SNR regime (≈4.2 at 450nm).
+
+**Flip:** Add one bridging τ point (e.g. τ≈0.012) to check whether g600's anomaly is monotonic drift or noise before the extrapolated PASS reading is trusted.
+
+#### ELECTROMAGNETISM — verdict: support-with-changes
+
+**Steel-man:** Clean by construction: σ_engine≥0, real and frequency-independent, ε_r pinned at exactly 1 removes index-step reflection, no gain — trivially passive, reciprocal, causal. Correctly keeps apart measuring a static linear OFF-state contrast versus demonstrating an intensity-gated switch. Does the bookkeeping honestly in the direction that costs it credit: a PASS boundary sharpens T1's tension (σ_on/σ_off → ≈600×) and states this itself.
+
+**Sharpest attack:** At τ_off=0.0065 the medium is nearly transparent (attenuation length ≈720µm vs. a 4.68µm disk diameter, single-pass bulk loss ≈0.65%). The PASS claim rests on g=|C|/τ staying constant this far below any tested point. But the abrupt σ-step is its own scattering channel (T9's rim-transmission finding), and ε_r≡1 removes only index-mismatch reflection, not the conductivity discontinuity's own. If the real signal is an edge-scattering floor that doesn't shrink with τ, g should RISE, not stay flat, as τ→0 — C may never cross 0.005 no matter how low τ_off goes, and nothing in this design distinguishes the two mechanisms.
+
+**Flip:** Add a second, lower-τ bracket point (e.g. τ≈0.003) in the same batch, zero geometry change, to measure g(τ)'s actual trend near this depth directly.
+
+#### THERMODYNAMICS — verdict: support-with-changes
+
+**Steel-man:** This run legitimately owes nothing new machinery. exp-026's own off_lab/off_field ambient articles never triggered a THERMO sidecar demand. That machinery has never been validated for the ambient/line-source domain; Iteration 8 closed with two failed attempts, now guarded against a silent third try. τ_off=0.0065 is weaker than both already-PUBLISHED OFF endpoints.
+
+**Sharpest attack:** The proposal treats "no beam-scene channel" as equivalent to "no energy channel," but ambient illumination is continuous by construction. A τ_off=0.0065 disk still absorbs a real, non-zero fraction of intercepted flux: for τ≪1 the optically-thin approximation gives absorptance ≈τ_off≈0.65% of geometric cross-section, ~1% of the ON article's own measured σ_abs/σ_ext=0.6056–0.6083. PANEL.md's own metric table says "per proposal," unconditioned on beam-scene presence.
+
+**Flip:** Add one sentence, zero new runs: an order-of-magnitude statement that ambient absorbed power/ΔT/re-emission for τ_off≈0.0065 is negligible and undetectable, derived analytically, explicitly labeled "post-run analytic sidecar, not FDTD output."
+
+#### QUANTUM OPTICS — verdict: support-with-changes
+
+**Steel-man:** This run genuinely sharpens the σ(I) design-window question even without building a mechanism. The OFF-endpoint PASS/FAIL boundary is a load-bearing input to bounding the escape route regardless of whether switching itself is realizable. It is honest, not flattering: it correctly reports that clearing PASS pushes the required σ_on/σ_off ratio to ≈600×.
+
+**Sharpest attack:** The proposal's three central g-transfer constants are exp-026's off_lab values verbatim — but exp-026's own NOTES.md documents TWO of these THREE as misses against their own predicted band (450nm low, plausibly floor-proximity; 600nm high, "NOT floor-explicable... genuinely unexplained," its cleanest channel). If that 600nm trend continues, C(τ=0.0065) could EXCEED rather than undercut the predicted band at exactly the channel most likely to be trusted as clean PASS evidence.
+
+**Flip:** Add an explicit disposition clause: if measured g_600(τ=0.0065) is ALSO above 0.69, the run must be scored as "inconclusive at 600nm, known-anomaly-consistent," not folded silently into a clean 3-of-3 PASS.
+
+#### VISION SCIENCE — verdict: support-with-changes
+
+**Steel-man:** The scoring is correctly matched to my frozen ladder and correctly hedged: explicitly labels any result a "bench-scale diagnostic," not a Tier-W/A constraint-3 verdict — matching the accepted Iteration-3 ruling verbatim. Reuses exp-026's exact validated geometry. Honestly flags the thinnest SNR this program's σ(I) line has ever attempted, pre-registered rather than discovered after the fact.
+
+**Sharpest attack:** The proposal's own §5 concedes my Iteration-1 limit (iii) verbatim: measured |C| at this ~10λ bench is a lower bound on real-scale |C|, and "any near-invisible reading (|C|<0.1) would not be [robust]." The predicted C≈0.004–0.005 is squarely in that disclaimed regime. Yet §1's narrative and P-MAT-6's central claim still frame this as the headline. The PASS/MARGINAL boundary is defined using g extrapolated below its tested range, while the program's only other g measurement (exp-031's r=156 σ-held point) needed a floor-correction and is "not yet independently tested at a second σ-held geometry."
+
+**Flip:** Add the same τ_off≈0.0065 article at r=156 as a required companion leg, not a deferred future item.
+
+### PHASE 2 — Red Team (last, with everything, verbatim)
+
+**Verified facts:** off_lab g-values (results.json): g450=0.575889, g600=0.691333, g750=0.631588 — matches exactly. exp-026's own NOTES.md does say g600=0.69133 is "NOT floor-explicable... genuinely unexplained" at SNR≈79–167 — a real, previously-published, still-open anomaly. Predicted C/SNR at τ_off=0.0065 all match the proposal's stated centrals exactly. Ratio math (3.9/0.0065=600, 3.9/0.008=487.5, 3.9/0.032=121.875) correct. Band-ceiling derivation (0.005/0.0065=0.7692) correct, not a fudge. exp-030's r=156 ambient bench ran 600nm only, δ_C=0.001211, a single unrepeated measurement.
+
+**Numbered attacks:**
+1. [inconsistency] PHOTONICS' proposed τ≈0.012 bridge point does not actually bracket anything — it sits ABOVE the already-validated τ=0.008 floor, not between it and τ_off=0.0065.
+2. [inconsistency] P-MAT-1's implied g-band [0.55,0.7692] and P-MAT-2's stated g-band [0.50,0.80] are silently mismatched — should be harmonized.
+3. [constraint-3-relevant] The convergent g-transfer/band-miss concern is real and load-bearing, not overstated — the extrapolation risks landing exactly on the cleanest-SNR (600nm) channel, the one most likely quoted as clean PASS evidence. QUANTUM's disposition clause closes the gap this creates and should be mandatory.
+4. [unfalsifiable, minor] Without QUANTUM's flip, a "clean PASS at all 3λ" achieved via an unexplained-and-still-rising g600 is indistinguishable in the write-up from one achieved via well-behaved g600.
+5. THERMODYNAMICS' fix is not the Iteration-5 no-op pattern — it computes a real number from an established anchor — PROVIDED the sentence shows its arithmetic, not merely asserts "negligible."
+6. VISION's scale-bias attack is real but not fatal — §5's hedge is substantively adequate, just inconsistently repeated at the headline sentences — same pattern flagged in exp-031's own Phase-5 review, now a second consecutive occurrence.
+7. VISION's r=156 companion leg is not free as framed: r=156's apparatus is validated at 600nm only, its own δ_C floor is a single unrepeated measurement, giving companion-leg SNR≈3.7 — worse than the main run's own worst channel. Legitimate Iteration-10 candidate, not this cycle's obligation, per the identical precedent at Iteration 3.
+8. §6's realizability language doesn't restate the ≈600× dynamic-range consequence at that same location — cheap cross-reference fix.
+
+**Verdict: proceed-with-mandatory-fixes.** (1) EM's second τ bracket point below τ_off (e.g. τ≈0.003) — the substantive fix. (2) QUANTUM's disposition clause, verbatim, zero cost. (3) THERMODYNAMICS' sidecar with actual arithmetic shown. Recommended, not mandatory: harmonize g-bands; restate scale-bias hedge inline; add §6 cross-reference. Not mandatory: VISION's r=156 leg — queue for Iteration 10.
+
+### PHASE 3 — Synthesis (Director)
+
+**Accepted, folded into design:** EM's mandatory bracket point (`off_bracket`, τ=0.003) — corrects/supersedes PHOTONICS' mislabeled τ≈0.012. QUANTUM's disposition clause (verbatim, zero cost). THERMODYNAMICS' energy sidecar (computed in code, labeled POST-RUN ANALYTIC). Red Team's g-band harmonization (G_BAND=(0.50,0.80), applied to both P-MAT-1/P-MAT-2). Red Team's documentation-placement fixes (scale-bias hedge and realizability cross-reference restated inline in NOTES.md's Hypothesis section).
+
+**Overridden, with reasons, both explicitly queued:** VISION's r=156 companion leg — NOT built this cycle (Red Team's analysis adopted verbatim: SNR≈3.7 there is worse, not better, than this run's own worst channel; repeats the identical request the Director already resolved at Iteration 3) — queued explicitly for Iteration 10. PHOTONICS' specific τ≈0.012 bridging point — overridden as literally specified (doesn't bracket anything below τ_off); superseded by EM's τ=0.003 point.
+
+Full parameter table, run plan, and all eight committed predictions (P-MAT-1 through P-MAT-8): `experiments/032-sigma-off-pass-boundary/NOTES.md`.
+
+### PHASE 4 — Test
+
+81 new FDTD calls, 562s (≈9.4 min) wall-clock. Results:
+
+| Article | 450nm | 600nm | 750nm | Ladder |
+|---|---|---|---|---|
+| off_pass (τ=0.0065) | −0.00358 | −0.00450 | −0.00403 | PASS/PASS/PASS |
+| off_bracket (τ=0.003) | −0.00118 | −0.00210 | −0.00163 | PASS/PASS/PASS (informational, not headline) |
+
+**P-MAT-1 CONFIRMED**: off_pass clears VISION's frozen lab bar at all 3λ — first σ(I) OFF-state configuration in this program's history to do so, all values inside the pre-committed band. **P-MAT-5 (QUANTUM's disposition clause) FIRES**: g600(off_pass)=0.6927 ≥ 0.69, anomaly-consistent, may not be reported unqualified. **P-MAT-2 disposition split**: off_bracket also numerically clears PASS at all 3λ but 450nm falls outside its own predicted band (pre-registered thin-SNR channel, not a new finding). **P-MAT-3 (bulk vs. edge/rim-scattering discriminator) — genuine null**: the one channel with adequate SNR (600nm) shows Δg=+0.0071, an order of magnitude below the run's own N5-vs-N9 noise scale (≈0.074); 450/750nm swings are consistent with floor-proximity noise at their own pre-registered thin SNR. **P-MAT-6 (N-convergence) CONFIRMED**: |Δ|=0.00048, inside band. **P-MAT-7 (THERMO sidecar)**: absorbed fraction ≈0.65%, corrected (Phase-5) absorbed-fraction ratio vs. ON-article established scale ≈1.07% (original 0.167% figure was a mismatched τ-ratio, flagged as an erratum, not silently rewritten). Fresh decision floors: 450/750nm match established values closely; 600nm's fresh measurement came out roughly half the committed value (flagged, unresolved).
+
+Full result table and all corrections: `experiments/032-sigma-off-pass-boundary/NOTES.md`.
+
+### PHASE 5 — Review (six blind + Red Team, verbatim; condensed from full subagent transcripts)
+
+**PHOTONICS — PARTIAL.** Verified all numbers. Core finding: the "reproducible anomaly" language is premature — g600(off_pass) and off_lab's established g600 share the identical fixed grid resolution (cpl=20 at 600nm, never varied); this program's own R3 meta-rule has never been applied to this specific excursion. Argued: rerun at cpl 20→30 before "reproducible"/"unexplained mechanism" language hardens further. Top-3: (1) R3 check. (2) SNR-adequate bracket point. (3) VISION's r=156 leg (third — scoring at scale before knowing if the anomaly is real physics or grid artifact risks bridging a number that may need revision).
+
+**MATERIALS — PARTIAL.** Verified P-MAT-1 exactly; confirmed the g600 anomaly is tight (0.2% agreement across two τ), agrees the disposition clause was right to fire. Confirmed σ_on/σ_off ratio exactly 600.0×. Own-seat gap surfaced: UNOBTANIUM-WITH-PARAMETERS asserted seven times, never checked against a named material class — ran an informal (self-flagged non-rigorous) literature check on reverse saturable absorbers, found enhancement factors ~2–10× (occasionally "a few tens of ×"), 1–2 orders of magnitude short of 600×. Argued: a zero-cost realizability memo naming concrete candidate classes. Top-3: (1) VISION's r=156 leg. (2) MATERIALS' own realizability deep-dive. (3) The g600 anomaly.
+
+**ELECTROMAGNETISM — PARTIAL.** Verified all numbers; defended the bracket-point fix as worth its cost. Refined the noise-floor estimate (off_bracket's own N5-vs-N9 noise was never independently measured; combined-noise floor for the difference is closer to Δg≈0.18, making the null even more solid, but the record cites the wrong number). Surfaced a 4-point g600(τ) sequence (pulling in off_field too) monotonically decreasing in τ — intriguing, underpowered at n=4. Structural argument: at these τ, bulk absorption and edge/rim scattering are both leading-order linear in σ — an aggregate ambient contrast can't discriminate spatial origin regardless of SNR; proposes reusing `radial_absorbed_power` (exp-028) instead. Top-3: (1) radial_absorbed_power. (2) Zero-cost N5-vs-N9 extension to off_bracket/off_field. (3) The queued r=156 leg (third — tests scale, not mechanism).
+
+**THERMODYNAMICS — PARTIAL.** Verified the sidecar's core number (0.65%) correct to first order. Found a real, self-flagged defect: the reported ratio (0.167%) juxtaposes a τ-ratio against the unused ON-article σ_abs/σ_ext anchor; the physically apt absorbed-fraction ratio is ≈1.07%, ~6.4× larger. Both individual numbers correct; the composition misleads. Top-3: (1) T11's own trust-suite stage (better-motivated, still not urgent). (2) Fix the sidecar composition. (3) An energetics pass on the g600 anomaly once a mechanism narrows.
+
+**QUANTUM OPTICS — PROMISING** (the lone dissent). Extended the anomaly comparison to four points/two conventions/two scales, clustering inside 0.691–0.700 (1.2% relative band) — calls it "the tightest, most reproducible calibration constant this program has ever measured" — while independently flagging (convergent with PHOTONICS) that every point shares the identical grid resolution, "one check, repeated." Top-3: (1) R3 check. (2) Scope VISION's r=156 leg to also report g600 there. (3) A precision floor remeasurement at 450/750nm.
+
+**VISION SCIENCE — PARTIAL, explicitly not promising.** Verified all C/g values. Recomputed real SNRs: found off_pass/450nm (SNR≈4.02) is the thinnest channel behind the headline PASS claim specifically — thinner than the write-up's own cited comparator. Caught a transcription ambiguity in the Phase-3 "4.2 at 450nm" citation. Sharpened the scale-bias caution: T13/T14 show even the DIRECTION of scale bias is empirically unsettled for the one case ever tested — "unknown, not just unmeasured." Flagged the 600nm decision floor's own 2× drift as undermining every SNR claim this cycle makes, not a footnote. Explicitly argues against "promising" — the program has twice already warned against that word attaching to a bench-scale diagnostic. Top-3: (1) Decision-floor reproducibility check. (2) The g600 anomaly. (3) VISION's own r=156 leg, sequenced after (1)/(2).
+
+**RED TEAM (audit, verdict adjudication) — verbatim key findings:**
+
+Confirmed every `design_geometry.py` in the chain (exp-026/030/031/032) fixes CPL[600]=20, never varied — the PHOTONICS/QUANTUM catch confirmed exactly, and sharpened: 600nm is the ONE wavelength on this entire ambient bench line that has never received this program's own mandatory R3 check (450/750nm both have, exp-025). Load-bearing; "reproducible anomaly" language should be walked back to "a recurrence across four points, sharing an untested grid resolution — R3 check pending, artifact not yet excluded." Additionally caught: the disposition-clause threshold (≥0.69) sat only 0.0014 below the already-known off_lab value — near-certain to fire even under the null; correctly triggered regardless, but not itself growing evidence of improbability until the R3 check runs (uncaught by any blind seat). `results.json`'s `vision_ladder` field scores off_bracket identically to off_pass, contradicting NOTES.md's own framing that off_bracket is a discriminator run, not a headline claim (uncaught by any blind seat). VISION's SNR recomputation is directionally right but its specific superlative needs refinement: off_bracket/750nm's actual measured SNR (3.62) is thinner still than off_pass/450nm's (4.02) — the correct comparison is "thinnest channel behind the headline claim," not "thinnest channel in the run." THERMODYNAMICS' self-caught arithmetic defect verified exact (6.425× discrepancy) — a zero-cost desk fix, should be corrected now per this program's own established same-shift-correction precedent, not deferred.
+
+**QUANTUM's lone PROMISING — overridden to PARTIAL**, per this program's own established precedent (verdict turns on whether a cycle's own central open questions close, not on a favorable headline number — Iteration 7 and Iteration 8 both PARTIAL despite genuine positive content, for the identical reason). QUANTUM's dissent preserved on the record, not silently dropped.
+
+**Final Red Team verdict: PARTIAL.** Ranked top-3 for Iteration 10 (adjudicating six seats' six lists): (1) R3 resolution check (cpl 20→30) on g600 at 600nm — cheapest, highest-leverage, gates every downstream citation. (2) EM's `radial_absorbed_power` applied to off_pass/off_bracket — the correctly-targeted mechanism instrument. (3) VISION's r=156 companion leg — sequenced after (1)/(2), per VISION's own ranking too. Zero-cost desk corrections mandated in this same close (all applied, see Phase 4/results.json): THERMODYNAMICS' sidecar ratio fix, the SNR-citation ambiguity, the off_bracket ladder-scoring clarification.
+
+### Director's close
+
+**VERDICT: PARTIAL** (5 of 6 seats + Red Team's adjudication; QUANTUM's lone PROMISING dissent preserved on the record, overridden per this program's own established precedent — verdict turns on whether a cycle's own open questions close, not on a favorable headline number).
+
+**The real, non-overclaimed content of this cycle**: `off_pass` (τ_off≈0.0065) is the first σ(I) OFF-state article in this program's nine-iteration history to clear VISION's frozen photopic lab bar at all three wavelengths, at bench scale — three iterations of deferral produced a genuine result, not a null. Against that: a g600≈0.69–0.70 recurrence across four points now stands flagged, not confirmed, pending this program's own R3 resolution check (never applied to 600nm specifically, in an otherwise-applied house rule); the bulk-vs-edge mechanism question came back a genuine, informative null from a structurally underpowered instrument (EM's finding — the right tool is already built, `radial_absorbed_power`, unused this cycle); the scale bridge to witness relevance remains unbuilt (r=156, queued since Iteration 3, now explicitly third in line); and a PASS here mechanically worsens the σ(I) switching mechanism's realizability picture (≈600× dynamic range, worse than any prior cycle, with MATERIALS' first-ever citable literature check putting real numbers 1–2 orders of magnitude short of that target). Three zero-cost desk corrections applied same-shift, not deferred (THERMODYNAMICS' sidecar arithmetic, an SNR-citation ambiguity, an off_bracket scoring-status clarification) — this program's own established same-shift-correction discipline held.
+
+**No Checkpoint criterion fires.** This is not a configuration passing all constraint metrics (criterion 1 — the PASS is explicitly bench-scale-diagnostic only, not a Tier-W/A verdict); not a proven boundary (criterion 2); no engine physics beyond validated bench classes was needed (criterion 3); Red Team's own audit found no unfalsifiable claims or quietly-dropped constraints (criterion 4 — if anything, this cycle's discipline caught and corrected several near-misses before they could become that); and this is real logbook-advancing forward motion on constraint 3 specifically, ending a run of instrument/reconciliation-only cycles (criterion 5 does not fire — Iteration 8's own program-integrity flag is answered, not repeated).
+
+`9a186a4` (predictions) → `8723882` (results) → `0ff663e` (Phase-5 close). Next lead per rotation: **ELECTROMAGNETISM** (Iteration 10). Trust suite 46/46 green throughout (no `lab/` engine changes this shift).
+
+Open questions carried forward: the g600≥0.69 recurrence (T1, resolution-check-pending); the bulk-vs-edge mechanism question (queued for `radial_absorbed_power`); VISION's r=156 companion leg (queued third); T11's own trust-suite stage (THERMODYNAMICS, inherited); a proper realizability memo (MATERIALS, following up its own informal Phase-5 check); T14's PHOTONICS r-sweep and the ambient decision-floor reproducibility characterization (both real, neither this cycle's job).

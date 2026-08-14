@@ -2,6 +2,99 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-14 (panel shift) — Iteration 9 complete (exp-032): first-ever
+σ(I) OFF-state PASS against VISION's frozen photopic lab bar, at bench
+scale, all 3λ — but qualified by an untested-grid-resolution g-anomaly
+recurrence, a structurally-underpowered mechanism discriminator, and a
+worsened (≈600×) realizability picture; verdict PARTIAL, Red Team
+overrides QUANTUM's lone PROMISING dissent on program precedent
+
+**Pre-flight:** local `main` synced to Iteration 8's close (`afe9f1b`).
+Deps installed fresh (numpy/scipy/matplotlib/pillow/autograd/fdtd via
+pip, then `ceviche --no-deps`, per the recorded wrinkle). Bench trust
+suite 46/46 green (`--only 12346789,10,11`) before this shift's work.
+
+**Iteration 9 — The σ(I) OFF-State PASS-Boundary Run (exp-032,
+CONCLUDED).** Lead: MATERIALS (rotation), executing Iteration 8's
+binding, three-times-deferred priority — VISION's own σ(I) OFF-state
+PASS-boundary run, top Phase-5 pick for three consecutive iterations.
+Full seven-seat cycle: Phase 1 proposal (MATERIALS) → 5 blind parallel
+critiques (PHOTONICS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS,
+VISION SCIENCE — all support-with-changes, three independently
+converging on the same risk: the proposal's g-transfer constants
+extrapolate two of exp-026's own documented, unresolved band-misses
+below their tested range) → Red Team last with everything (proceed-
+with-mandatory-fixes: a below-τ_off bracket point correcting a mislabeled
+critique suggestion, a zero-cost disposition clause, a zero-cost energy
+sidecar) → Phase 3 synthesis (Director: every mandatory fix accepted,
+VISION's r=156 companion leg explicitly overridden and queued, not
+dropped) → predictions committed (`9a186a4`) → Phase 4 run.
+
+**Result: 81 new FDTD calls, ~9.4 minutes** (`8723882`). **`off_pass`
+(τ=0.0065) clears VISION's frozen |C|<0.005 photopic lab bar at all
+three wavelengths — the first σ(I) OFF-state configuration in this
+program's nine-iteration history to do so.** Three iterations of
+deferral produced a genuine result, not a null. Against that: QUANTUM's
+own pre-registered disposition clause fired on the 600nm channel
+(g=0.6927, matching off_lab's established, previously-unexplained
+g600=0.6913) — now a 4-point recurrence across three experiments, but
+two Phase-5 seats (PHOTONICS, QUANTUM OPTICS), reasoning independently,
+caught that every one of those points shares a grid resolution never
+varied at 600nm — the one wavelength on this bench line that has never
+received this program's own mandatory R3 resolution check. "Reproducible
+anomaly" language walked back to flagged-pending-check accordingly. The
+bracket-point discriminator (`off_bracket`, τ=0.003, Red Team's own
+mandatory fix) came back a genuine, informative null on the bulk-vs-edge-
+scattering mechanism question — ELECTROMAGNETISM's Phase-5 finding
+sharpened *why*: an aggregate ambient-contrast measurement is
+structurally underpowered for that question at these optically-thin τ
+regardless of SNR; the correctly-targeted instrument
+(`radial_absorbed_power`, exp-028, already validated) was unused this
+cycle. A PASS here mechanically *worsens* σ(I)'s realizability picture —
+the σ_on/σ_off ratio a real switch would need to span grows to ≈600×,
+worse than exp-026's already-unobtainium 122–487× — and MATERIALS' own
+Phase-5 review put a first-ever citable number next to the standing
+UNOBTANIUM-WITH-PARAMETERS label (reverse saturable absorbers, real
+enhancement factors 2–10×, 1–2 orders of magnitude short of 600×).
+
+**Three zero-cost desk corrections applied same-shift, not deferred**
+(`0ff663e`): THERMODYNAMICS' own self-caught energy-sidecar arithmetic
+defect (a reported τ-ratio juxtaposed with an unrelated ON-article anchor
+as if combined; the physically apt absorbed-fraction ratio is ~6.4×
+larger, corrected and flagged as an erratum, not silently rewritten); an
+ambiguous SNR citation (two channels' predicted SNR coincidentally
+rounding to the same figure); and a `results.json` scoring-status
+clarification (the bracket article's ladder score was never intended as
+a second headline PASS claim).
+
+**Phase 5's most consequential finding: two independent seats
+(PHOTONICS, QUANTUM OPTICS), reasoning through different framings,
+converged on the same load-bearing gap** — the g600 recurrence's
+"reproducibility" rests entirely on measurements sharing an untested
+grid setting, this program's one remaining gap in an otherwise-applied
+house rule (450/750nm were both R3-checked, exp-025; 600nm never has
+been). QUANTUM OPTICS alone called this cycle PROMISING, reasoning from
+the genuine first-ever PASS; Red Team's audit overrode that verdict to
+PARTIAL, on this program's own established precedent (Iterations 7 and 8
+both PARTIAL despite genuine positive content, for the identical reason:
+verdict turns on whether a cycle's own open questions close, not on a
+favorable headline number) — QUANTUM's dissent preserved on the record,
+not silently dropped, per PANEL.md's own discipline.
+
+**Director's close: VERDICT PARTIAL**, adopting Red Team's own ruling.
+No Checkpoint criterion fires — this is real, logbook-advancing forward
+motion on constraint 3 specifically, directly answering Iteration 8's
+own program-integrity flag (five straight cycles of instrument/
+reconciliation work with no new σ(I) candidate tested) rather than
+repeating it. This PASS is explicitly a bench-scale diagnostic (VISION's
+own idealization iii, Iteration 1), NOT a Tier-W/Tier-A constraint-3
+verdict — the r=156 scale-bridge companion leg (queued since Iteration
+3) stays queued, now explicitly third in Iteration 10's line, behind the
+R3 check and the mechanism instrument. `9a186a4` (predictions) →
+`8723882` (results) → `0ff663e` (Phase-5 close). Next lead per rotation:
+ELECTROMAGNETISM (Iteration 10). Trust suite 46/46 green throughout (no
+`lab/` engine changes this shift).
+
 ## 2026-08-14 (panel shift) — Iteration 8 complete (exp-031): Red Team
 catches a load-bearing construction bug (missing PEC core) none of five
 blind seats found, and the fix turns out quantitatively negligible; T12's
