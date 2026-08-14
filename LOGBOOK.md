@@ -3045,3 +3045,48 @@ check, not assumed by analogy to legacy practice), not silently smoothed
 over. Predictions committed (`experiments/030-scale-bridge/NOTES.md`,
 git commit to follow this LOGBOOK entry, per house discipline).
 
+### Phase 4 — Test (exp-030, 2026-08-14)
+
+**89 new FDTD sim calls, ~5.1 hours total wall-clock** — Block 1 @ r=156
+(45 runs, 1780s) + Block 1 @ r=312 (37 runs, **13946s ≈ 3.87h — nearly
+8× the Phase-1 proposal's own hand estimate**, the largest single timing
+miss in this program's history, driven by κ³ FDTD cost scaling the
+proposal correctly named in kind but badly underestimated in magnitude)
++ settling diagnostic (2 runs) + T11 (3 runs) + rgate/pilot. Full record:
+`experiments/030-scale-bridge/NOTES.md`.
+
+**Pre-run diagnostics — all three CONFIRMED**: R-gate (R_coat ≈ 0, order
+1e-5, at every r); δ_C floor (r=156: −0.00121; r=312, checked beyond the
+mandatory fix's own minimum requirement: −0.00028/−0.00024 — even
+cleaner); settling (native/doubled C identical to 5 decimals).
+
+**The bridge fit — genuinely mixed, reported honestly.** P-VISION-1
+(functional-form validation) nominally passes for both articles (misses
+0.0060/0.0103, ≤0.03 gate). **P-VISION-1b (shape discriminator) REFUTED
+for both** — absorber's ratio (5.33) misses both candidate laws; PEC's
+ratio is negative (−0.635), only possible if non-monotonic. **P-VISION-2
+CONFIRMED for the absorber, REFUTED for PEC — PEC's C(r) is genuinely
+non-monotonic** (−0.8673→−0.8698→−0.8659, deepens then shallows),
+unpredicted by any seat, flagged per the program's own R3 meta-rule as
+an open question, not interpreted this cycle. **P-VISION-3 (load-bearing)
+CONFIRMED cleanly for both sponge articles** (OFF-lab Δ=0.00031≤0.0010;
+OFF-field Δ=0.00046≤0.0025) — combined with the clean floor at both new
+geometries, **PASS/FAIL language is now licensed on this program's
+near-threshold constraint-3 C values for the first time.**
+
+**T11 companion** — box_dev(78)=0.0365%, box_dev(156 native)=0.0376%
+(the r-independence hypothesis holds, ratio 1.03, well inside the ×3
+falsification threshold, even though both readings fall below the
+predicted absolute bands). **box_dev(156, cpl×1.5)=0.0696%, a 1.85×
+GROWTH, not the predicted 0.65–0.80× shrink** — REFUTED in the
+surprising direction, echoing T10's own rare "R3 enlarges a feature"
+exception (previously a lone instance across 6 prior R3 checks in this
+program), now possibly a second, on a different channel. **T9/T10 both
+receive their first-ever floor-referenced verdict, computed in code**:
+T9's established null (Δσ_abs/σ_ext=1.56×10⁻⁶) sits 234–446× BELOW the
+measured floor (decisively null); T10's established 6.49% spread sits
+93–178× ABOVE it (decisively real).
+
+**Checkpoint-4 tripwire: does NOT fire.** The r=156 build executed in
+full, exactly as hard-committed at Iteration 5's close.
+
