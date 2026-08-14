@@ -2,6 +2,102 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-14 (panel shift) — Iteration 7 complete (exp-030): the r=156/312
+near-field→witness-scale bridge executed in full (Checkpoint-4 tripwire
+does not fire), verdict PARTIAL — PASS/FAIL language now decidable on
+near-threshold constraint-3 C values, but every σ(I) OFF-state article
+ever built still fails or is marginal, and Red Team's Phase-5 audit
+catches a program-wide unreconciled witness-scale discrepancy no blind
+seat found
+
+**Pre-flight:** local `main` synced to Iteration 6's close (`e4a9bca`,
+forced-updated from a stale local checkout). Deps installed fresh
+(numpy/scipy/matplotlib/pillow/autograd/fdtd via pip, then
+`ceviche --no-deps`, per the recorded wrinkle). Bench trust suite 49/49
+green (`--only 12346789,10,11`) before this shift's work.
+
+**Iteration 7 — The r=156/312 Near-Field→Witness-Scale Bridge (exp-030,
+CONCLUDED).** Lead: VISION SCIENCE (rotation) — the five-times-deferred,
+Checkpoint-4-tripwired mandatory build. Full seven-seat cycle: Phase 1
+proposal (VISION SCIENCE) → 5 blind parallel critiques (PHOTONICS,
+MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS — all
+support-with-changes, three independently converging on the same
+`graded_black_shell` optical-depth confound via three different
+diagnoses) → Red Team last with everything (proceed-with-mandatory-
+fixes, 11 numbered attacks, four caught by none of the five, most
+consequential: the proposal's own r=78 anchor values used the wrong,
+gate-failing ±40° geometry) → Phase 3 synthesis (Director: every
+mandatory fix accepted, zero overridden) → predictions committed
+(`a318daa`) → Phase 4 run.
+
+**Result: 89 new FDTD sim calls, ~5.1 hours wall-clock** (the r=312 leg
+alone — 37 runs, restoring N=9 angle sampling for the two hard-edged
+articles per Red Team's own mandatory fix — took 3.87h, ~8× the
+proposal's own hand estimate, the largest single timing miss in this
+program's history, driven by κ³ FDTD cost scaling). **The cycle's real
+deliverable: PASS/FAIL language is now decidable on the program's near-
+threshold constraint-3 C values for the first time** — a δ_C decision-
+floor check (Red Team's own mandatory fix) passed cleanly at both r=156
+(−0.00121) and r=312 (−0.00028/−0.00024), and the load-bearing
+prediction (both OFF-lab/OFF-field sponges' scale-robustness across the
+4× radius range) confirmed cleanly. T9 and T11 both closed with their
+first-ever floor-referenced verdicts, computed in code: T9's established
+null sits 234–446× below the measured box-ledger floor (decisively
+null), T10's established spread sits 93–178× above it (decisively
+real). The corrected r=78 anchor for the absorber (−0.7209, V-weighted
+fallback geometry) supersedes the previously-cited −0.684/−0.686
+(sourced from the wrong, gate-failing geometry).
+
+**Against that, the cycle's own central technical question — does
+C(z/z_R) bridge cleanly from bench to witness scale — came back
+genuinely unresolved, on three independent grounds.** PEC's C(r) proved
+flatly non-monotonic (−0.8673→−0.8698→−0.8659, deepens then shallows) —
+PHOTONICS and EM, reviewing blind, independently proposed the same
+mechanism by different routes (a Fresnel-zone/edge-diffraction ripple
+aliased by the family's factor-4 Fresnel-number jumps at a fixed
+measurement-plane offset) — new live thread **T12**. The absorber's own
+shape-ratio discriminator (5.33) fell outside both candidate power-law
+bands, meaning even its nominal fit-validation pass doesn't actually
+validate the functional form. **Most consequentially, Red Team's Phase-5
+audit — missed by all six blind review seats — found that this cycle's
+own fitted witness-scale prediction (absorber ≈−0.734, PEC ≈−0.862,
+essentially flat across the entire witness uncertainty band) sharply
+contradicts the |C|≈0.98 estimate that has justified prioritizing this
+exact thread across five iterations, with no reconciliation anywhere in
+the program's record** — new live thread **T13**. The Director's own
+added reading: the fitted C_∞ never approaches −1 as z/z_R→0, a
+structural mismatch with the far-field silhouette physics the bridge
+was built to reach, not merely a numerical gap.
+
+**Program-integrity statement, made explicit per Red Team's own demand:**
+the decidability achievement is real, but scored against VISION's own
+frozen thresholds, **no σ(I) OFF-state article this program has ever
+built has PASSed constraint 3 at any tier, at any scale** — OFF-lab is
+MARGINAL everywhere, OFF-field is FAIL everywhere. This cycle
+characterized the measuring instrument; it did not find, or bring
+closer, a working escape route — any future summary must carry that
+sentence, not just "PASS/FAIL now licensed."
+
+**Two record corrections made this shift, flagged not silently
+rewritten:** MATERIALS' Phase-2 realizability figure (a real unit
+error — witness radius misread as diameter — corrected from "0.6–1.9m"
+to the honest 0.31–0.92m, still comfortably unobtainium); and the
+sponges' apparent r=156 non-monotonicity, now read as 87–97%
+explained by δ_C-floor instrument bias, not a real effect (doesn't
+touch the P-VISION-3 gate itself, which correctly uses only the
+floor-clean 78/312 endpoints).
+
+**Verdict: PARTIAL** (Red Team's own explicit ruling, adopted). New
+Checkpoint-4 tripwire on the record for future shifts: citing this
+cycle's witness-scale numbers without flagging T13, or treating PEC's
+fit/witness number or `box_dev` as a settled floor before their own R3
+checks resolve, is a retroactive criterion-4 trigger. Checkpoint
+criterion 4 itself does not fire this cycle. `a318daa` (predictions) →
+`fa64268` (Phase 5 close). Next lead per rotation: PHOTONICS (Iteration
+8), queue Red-Team-ranked: T12's dense-standoff-sweep pair, T13's
+zero-cost desk reconciliation (explicitly prioritized ahead of further
+FDTD work), QUANTUM's one new r=156 σ-held sponge run.
+
 ## 2026-08-13 (panel shift) — Iteration 6 complete (exp-029): the
 coherent-superposition bridge gate validated end-to-end on its fourth
 committed cycle, every prediction confirmed, Checkpoint criterion 5
