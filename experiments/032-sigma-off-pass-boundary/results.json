@@ -150,6 +150,12 @@
    0.6056,
    0.6083
   ],
-  "ratio_tau_off_pass_over_tau_on_established": 0.0016666666666666666
- }
+  "ratio_tau_off_pass_over_tau_on_established": 0.0016666666666666666,
+  "erratum_phase5_redteam": {
+   "note": "the original ratio_tau_off_pass_over_tau_on_established (0.00167) is an optical-depth ratio, NOT an absorbed-fraction ratio -- the ON-article sigma_abs/sigma_ext anchor placed beside it was never actually divided into it. Flagged, not silently rewritten (house convention).",
+   "corrected_absorbed_fraction_ratio_vs_on_established": 0.01070928412554576,
+   "derivation": "off_pass absorbed_fraction (0.0065, optically-thin) / ON-article established sigma_abs/sigma_ext midpoint (0.60695)"
+  }
+ },
+ "vision_ladder_scoring_note": "vision_ladder scores both articles identically (PASS/PASS/PASS) as a raw ladder lookup, but per NOTES.md P-MAT-8/Phase-5 Red Team attack #3: only off_pass is the scored constraint-3-diagnostic headline claim. off_bracket is a discriminator run (P-MAT-3) -- its ladder score is informational, not a second confirmed PASS claim."
 }

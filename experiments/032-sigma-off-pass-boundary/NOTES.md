@@ -136,8 +136,18 @@ an assertion.
    analysis is adopted verbatim: the r=156 apparatus (exp-030/031) is
    validated at 600nm only, its own δ_C floor (0.001211) is a
    single unrepeated measurement, and a companion leg there would land at
-   SNR≈3.7 — *worse* than this run's own worst channel (4.2 at 450nm),
-   not better. It would not de-risk the SNR concern; it would move the
+   SNR≈3.7 — *worse* than `off_pass`'s own worst predicted channel
+   (450nm, SNR≈4.21), not better. [**Correction, Phase-5 close, Red Team's
+   audit**: this sentence's own "4.2" was ambiguous on first publication —
+   `off_bracket`'s own predicted 450nm SNR is a much thinner 1.94, and its
+   750nm SNR (≈4.21) coincidentally rounds to the same "4.2" as
+   `off_pass`/450nm, inviting exactly the misreading Red Team caught. The
+   comparison intended, and still correct: r=156's SNR≈3.7 is thinner than
+   the thinnest channel behind the headline PASS/PASS/PASS claim
+   (`off_pass`/450nm, measured 4.02), not thinner than every number this
+   run produced — `off_bracket`/450nm (1.94 predicted, never scored) is
+   thinner still, and `off_bracket`/750nm (measured 3.62) also lands
+   below r=156's own projected SNR. Flagged, not silently rewritten.] It would not de-risk the SNR concern; it would move the
    same concern to a thinner-margin, less-validated instrument. This is
    the identical class of request the Director already resolved at
    Iteration 3 (exp-026), overriding it there for the same reason
@@ -305,22 +315,39 @@ the pre-committed band [−0.00520,−0.00325].
 established g600 = 0.6913). **Per the pre-registered rule, the 600nm PASS
 may NOT be reported as unqualified** — it is numerically clean but
 anomaly-consistent with the same unexplained-high g600 drift exp-026
-already flagged and never resolved. Correct statement: *`off_pass` PASSes
-numerically at all 3λ; the 600nm channel's PASS is anomaly-consistent,
-not yet distinguishable from a still-unexplained systematic drift in this
-program's g600 measurements specifically (now confirmed at a SECOND
-independent τ, strengthening the case it is a real, reproducible feature
-of the measurement at 600nm rather than a one-off fluctuation — but its
-mechanism remains unidentified).*
+already flagged and never resolved. **[Correction, Phase-5 close, Red
+Team's audit — walking back this section's own original "reproducible"
+language, attack #1]**: two independent Phase-5 seats (PHOTONICS, QUANTUM
+OPTICS), reasoning independently, caught that every g600 measurement
+behind this claim — `off_bracket` (0.6998), `off_pass` (0.6927), `off_lab`
+(0.6913, exp-026), and exp-031's σ-held r=156 point (0.6969) — shares the
+IDENTICAL, never-varied grid resolution (cpl=20 at 600nm, dx=30nm).
+Red Team's audit sharpened this further: 600nm is the *one* wavelength on
+this entire ambient bench line that has never received this program's own
+mandatory R3 resolution check (450/750nm were both checked, exp-025).
+**Correct statement, superseding this section's original wording:** a
+g600≈0.69–0.70 recurrence across four points, at a shared, resolution-
+untested grid setting — real enough to flag and worth a cheap check, but
+NOT yet licensed to call "reproducible" as settled fact until that check
+runs. Queued for Iteration 10 (see Next, below).
 
-**P-MAT-2, disposition split**: `off_bracket` also clears PASS at all 3λ,
-but 450nm (−0.00118) falls OUTSIDE the pre-committed band
-[−0.00240,−0.00150] — weaker (less negative) than the band's own floor.
-This is exactly the channel pre-registered as informational-only
-(SNR≈1.94, thinner than any channel this program has ever scored) — per
-the pre-registration, this miss is NOT read as a new finding, but as
-expected floor-proximity noise at a channel explicitly flagged in advance
-as unreliable.
+**P-MAT-2, disposition split**: `off_bracket` also clears PASS at all 3λ
+numerically, but per this cycle's own Phase-3 synthesis (§P-MAT-8),
+`off_bracket` is **a discriminator run, not itself a headline PASS
+claim** — its job is P-MAT-3's mechanism question, not a second scored
+constraint-3 diagnostic. **[Correction, Phase-5 close, Red Team's audit,
+attack #3]**: `results.json`'s own `vision_ladder` field scores
+`off_bracket` PASS/PASS/PASS identically to `off_pass`, which — read
+alone, without this file's own prose — could be misquoted as "6/6 PASS."
+It is not: only `off_pass`'s 3λ are the scored constraint-3-diagnostic
+claim; `off_bracket`'s ladder score is informational, same as any other
+raw measurement in this file. 450nm (−0.00118) falls OUTSIDE the
+pre-committed band [−0.00240,−0.00150] — weaker (less negative) than the
+band's own floor. This is exactly the channel pre-registered as
+informational-only (SNR≈1.94, thinner than any channel this program has
+ever scored) — per the pre-registration, this miss is NOT read as a new
+finding, but as expected floor-proximity noise at a channel explicitly
+flagged in advance as unreliable.
 
 **P-MAT-3 (bulk vs. edge/rim-scattering-floor discriminator) — NULL,
 no clean signal either direction:**
@@ -353,20 +380,36 @@ estimate.
 
 **P-MAT-7 (THERMODYNAMICS sidecar) reported, post-run analytic, not an
 FDTD output**: absorbed fraction of intercepted flux (optically-thin
-approx) ≈0.65%; τ_off_pass/τ_on_established = 0.00167 (≈0.167% of the ON
-article's own established σ_abs/σ_ext=0.6056–0.6083 scale). No
-detectability claim beyond "orders of magnitude below the already-
-established ON-article scale" — the ΔT/emission-band chain stays blocked
-on docket #7's still-missing witness-scenario watts, as recorded since
-Iteration 1.
+approx) ≈0.65%; the JSON also reports τ_off_pass/τ_on_established =
+0.00167 (≈0.167%) juxtaposed next to the ON article's own established
+σ_abs/σ_ext=0.6056–0.6083 range. **[Correction, Phase-5 close, THERMO's
+own self-caught defect, independently verified by Red Team's audit]**:
+that juxtaposition invites a misread — 0.167% is a ratio of OPTICAL
+DEPTHS (τ_off/τ_on), not of absorbed FRACTIONS, and the ON-article anchor
+was never actually divided into it. The physically apt comparison
+(absorbed fraction vs. absorbed fraction: 0.65% vs. the ON article's own
+established ≈60.7% midpoint) gives **0.0065/0.60695 ≈ 1.07%** — about
+**6.4× larger** than the originally-reported figure. Both individual
+numbers in the original JSON are independently correct; only their
+combination was misleading. Corrected reading: off_pass's own absorbed
+fraction is ≈1.07% of the ON article's own established absorbed-fraction
+scale, not ≈0.167%. No detectability claim either way — the ΔT/emission-
+band chain stays blocked on docket #7's still-missing witness-scenario
+watts, as recorded since Iteration 1.
 
 **Decision floors, freshly measured this run** (informational; the
 committed exp-024/025 values remain the ones scored): 450nm 0.000889
 (≈exact match to established 0.00089), 600nm 0.000033 (established
-0.00007 — a fresh measurement roughly half the committed value, not
-itself concerning since committed values are what's scored, but worth a
-note for a future floor-characterization cycle, T11's own still-open
-backlog item), 750nm 0.000432 (≈exact match to established 0.00045).
+0.00007 — a fresh measurement roughly half the committed value), 750nm
+0.000432 (≈exact match to established 0.00045). **[Flagged at Phase 5,
+VISION's own catch, not resolved this cycle]**: the 2× drift at 600nm
+specifically is not waved off as a footnote — every SNR claim in this
+run, including which channels count as "scored" vs. "informational
+only," is a ratio against a decision floor, and this cycle never
+established how reproducible that floor actually is. This is T11's own
+still-open backlog item, now touching the ambient channel's own
+credibility directly for the first time — queued for Iteration 10 (see
+Next, below).
 
 ## Learned
 
@@ -376,49 +419,111 @@ bar at bench scale, at every wavelength tested.** That is real and
 should be recorded as such — three iterations of deferral did not turn
 out to be chasing nothing.
 
-**But the qualifications are load-bearing, not decoration, and the
-Phase-2 mandatory fixes earned their cost:** (1) the 600nm PASS is
-anomaly-consistent with a still-unexplained g-drift now confirmed at a
-second independent τ (exp-026's off_lab AND this run's off_pass both
-land g600 at 0.69+, both at otherwise-clean high-SNR channels) — this is
-now a *reproducible* anomaly, not a one-off, and deserves its own
-mechanism investigation before any future cycle treats 600nm g≈0.69 as
-simply "the established value." (2) The bracket-point discriminator came
-back genuinely inconclusive, not merely "point in favor of bulk-
-dominated" — a fair reading given the SNR risk was pre-registered, not
-discovered after the fact, but it means T1's g-transfer model is
-confirmed-in-range, not confirmed-to-extrapolate-safely-in-general. (3)
-Per VISION's own standing scale-bias rule (idealization iii) and Red
+**But the qualifications are load-bearing, not decoration.** (1) The
+g600 recurrence (four points now: off_bracket 0.6998, off_pass 0.6927,
+off_lab 0.6913, exp-031's σ-held r=156 point 0.6969) shares a grid
+resolution never varied at 600nm specifically — the one wavelength on
+this bench that has never received this program's own mandatory R3
+check (450/750nm both have, exp-025). Real enough to flag; not yet
+licensed to call "reproducible" until that check runs (Phase-5 correction
+above, walking back this section's own original overclaim). (2) The
+bracket-point discriminator came back genuinely inconclusive — not
+"point in favor of bulk-dominated." Phase 5 (ELECTROMAGNETISM's own
+review) sharpened *why*: at τ≪1, bulk absorption and edge/rim scattering
+are both leading-order linear in σ, so an aggregate ambient-contrast
+measurement is structurally underpowered to discriminate spatial origin
+regardless of SNR — the right next instrument is the already-validated
+`radial_absorbed_power` (exp-028), not another ambient bracket point.
+(3) Per VISION's own standing scale-bias rule (idealization iii) and Red
 Team's synthesis-stage ruling, **this PASS is a bench-scale diagnostic,
 not a Tier-W/Tier-A constraint-3 verdict** — the r=156 companion leg that
 would test whether it survives the scale bridge is explicitly still
-unbuilt, queued for Iteration 10.
+unbuilt, queued for Iteration 10. (4) The decision-floor's own 2× drift
+at 600nm (flagged, not resolved) means every SNR-based scoring boundary
+this cycle drew — including which channels counted as "scored" vs.
+"informational only" — rests on an uncharacterized instrument.
 
 **What this does NOT mean**: no σ(I) medium was built or shown
 buildable. The σ_on/σ_off ratio a real switch would need to span, if this
 exact PASS configuration were the OFF target, is ≈600× — worse than
 exp-026's already-unobtainium 122–487× — precisely because a genuine PASS
-required going lower in τ than any prior OFF article. T1's central
-tension (UNOBTANIUM-WITH-PARAMETERS switching mechanism) is unmoved by
-this result in either direction, exactly as predicted in the committed
-idealizations.
+required going lower in τ than any prior OFF article. MATERIALS' own
+Phase-5 review put a first citable number next to that standing
+UNOBTANIUM-WITH-PARAMETERS label (never done in seven prior cycles):
+reverse saturable absorbers, the correct-direction real material class,
+show measured enhancement factors of roughly 2–10× (occasionally "a few
+tens of ×" in unusual systems) — 1–2 orders of magnitude short of 600×,
+informally sourced, not a rigorous survey, but the gap is real and
+widening each cycle the perceptual axis improves. T1's central tension is
+unmoved by this result in either direction, exactly as predicted in the
+committed idealizations.
+
+## Phase 5 — Review (six blind + Red Team; full verbatim transcript LOGBOOK.md Iteration 9)
+
+Five of six seats (PHOTONICS, MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS,
+VISION SCIENCE) called this cycle **PARTIAL**. QUANTUM OPTICS alone called
+it **PROMISING**, reasoning from the genuine first-ever PASS. Red Team's
+audit adjudicated: **override QUANTUM to PARTIAL**, on precedent, not vote
+count — this program's own established convention (Iteration 7: PARTIAL
+despite unlocking PASS/FAIL decidability; Iteration 8: PARTIAL despite a
+clean core-correction, because a companion thread got worse) turns on
+whether a cycle's own central open questions close, not on whether the
+headline number is favorable. exp-032 closes with three new open threads
+of its own making (g600 artifact-status untested, the sidecar's ratio-
+composition defect, the scale-bridge still unbuilt) — the same pattern
+that earned PARTIAL twice before. QUANTUM's dissent is preserved on the
+record, not silently overridden (PANEL.md's own discipline): the
+first-ever-PASS content of QUANTUM's reasoning is real and is folded into
+Learned, above, without adopting QUANTUM's overall verdict label.
+
+Also independently caught, Phase 5: the disposition clause's own
+threshold (≥0.69) sat only 0.0014 below the already-known off_lab value
+it was tested against — near-certain to fire even under the null,
+correctly triggered regardless, but not itself growing evidence of
+improbability-of-coincidence until the R3 check discriminates artifact
+from real effect (Red Team, uncaught by any blind seat).
+
+**Director's synthesis — accepted/overridden, in writing:** All Red-Team-
+identified zero-cost desk corrections accepted and applied above (the
+"4.2 at 450nm" mislabel, the off_bracket ladder-scoring ambiguity, the
+THERMO sidecar ratio-composition fix, the "reproducible" language
+walk-back). QUANTUM's PROMISING verdict: overridden per the precedent
+argument above, dissent preserved. MATERIALS' informal literature check:
+accepted as a first useful citable data point, explicitly not over-
+weighted (self-flagged as non-rigorous by MATERIALS' own review) —
+queued as a proper realizability memo, not treated as closing the
+question. VISION's SNR recomputation: accepted with Red Team's refinement
+(the correct comparison is "thinnest channel behind the headline claim,"
+not an unqualified "thinnest channel in the run" — off_bracket's own
+750nm, never part of the headline claim, is thinner still).
 
 ## Next
 
-Ranked, for Phase 5 to argue over and the Director to adopt/override:
+**Director's ranked top-3 for Iteration 10** (Red Team's final
+adjudication of six seats' six different lists, adopted verbatim):
 
-1. **The reproducible g600≈0.69+ anomaly** — now confirmed at TWO
-   independent τ (0.008 and 0.0065), both high-SNR channels, both
-   unexplained. This has graduated from a single-cycle curiosity to a
-   real, repeat-confirmed live thread and should be named as such
-   (candidate: new LIVE THREAD, or fold into an existing one if Phase 5
-   judges it mechanistically related to T9's rim-transmission finding).
-2. **VISION's r=156 companion leg** (queued explicitly at Phase 3,
-   above) — the same off_pass/off_bracket pair at r=156, 600nm only
-   (matching that bench's validated single-λ scope), to test whether the
-   PASS survives the scale bridge before any Tier-W/A language attaches.
-3. **A genuine SNR-adequate bracket point** — if Phase 5 judges the bulk-
-   vs-edge-scattering question still open (rather than closed-null), a
-   bracket at a τ chosen for adequate 450nm SNR (e.g. τ≈0.005–0.006,
-   closer to off_pass than off_bracket was) would test the same
-   hypothesis without inheriting this run's own thinnest-channel risk.
+1. **R3 resolution check (cpl 20→30) on g600 at 600nm** — `off_pass` and
+   `off_bracket` minimum, `off_lab` as a clean third point if cheap.
+   Cheapest, highest-leverage: directly gates every downstream citation
+   of "g≈0.69–0.70," including exp-031's own σ-held r=156 point.
+2. **`radial_absorbed_power` applied to off_pass/off_bracket** (beam-
+   scene, reusing exp-028's already-validated suite-stage-10 machinery)
+   — the correctly-targeted instrument for the bulk-vs-edge mechanism
+   question this cycle's own ambient bracket point structurally could
+   not answer (ELECTROMAGNETISM's Phase-5 finding).
+3. **VISION's r=156 companion leg** (already committed/queued at Phase
+   3) — legitimate scale-bridge test, sequenced AFTER 1 and 2 (both
+   VISION's and Red Team's own Phase-5 ranking): building a scale bridge
+   on top of a resolution-untested g figure and an uncharacterized
+   decision floor would relocate both open problems to a costlier,
+   thinner instrument rather than resolving them first.
+
+Lower priority, inherited and still valid, not displaced by this cycle:
+T11's own trust-suite stage for the ambient/line-source box-ledger
+channel (THERMODYNAMICS, now better-motivated by having a real
+PASS-clearing candidate worth eventually costing in watts, but still
+correctly not urgent); a proper realizability memo naming 2–3 concrete
+σ(I) material candidate classes with sourced numbers (MATERIALS,
+following up its own Phase-5 informal check); T14's PHOTONICS r-sweep and
+the ambient decision-floor reproducibility characterization (VISION,
+T7/T11-adjacent) — both real, neither this cycle's job.
