@@ -251,4 +251,123 @@ artifact). Graded damping bands, not PML, throughout.
 
 ## Results
 
-*(To be filled in after Phase 4 runs — see results.json for raw data.)*
+**89 new FDTD sim calls, ~5.1 hours total wall-clock** (Block 1 @ r=156:
+45 runs, 1780s; Block 1 @ r=312: 37 runs, 13946s ≈ 3.87h — nearly 8×
+longer than the Phase-1 proposal's own hand estimate, the single largest
+timing miss in this program's history, driven by κ³ FDTD cost scaling
+that the proposal's own §7 correctly flagged in kind but underestimated
+in magnitude; settling diagnostic: 2 runs; T11: 3 runs; rgate + timing
+pilot: zero/one extra runs). Full raw data: `results.json`.
+
+**Pre-run diagnostics — all three CONFIRMED:**
+
+- **P-VISION-R1 (R-gate):** R_coat ≈ 0 (order 1e-5: −2.9e-7 / −4.9e-5 /
+  +... at r=78/156/312) at every r — the σ_max=0.5/κ rescale preserves
+  the coating's broadband-black behavior exactly as fix 2 requires.
+  Bare-wall sanity check reproduced stage7's own R≈0.98 baseline
+  (measured 0.978), confirming the test rig itself.
+- **P-VISION-F1 (δ_C floor):** r=156: **−0.00121** (≤0.005 gate, clean).
+  Also checked at r=312, beyond the mandatory-fix's own minimum
+  requirement: **−0.00028** (N9) / **−0.00024** (N5) — even cleaner than
+  r=156. The floor collapses at both new geometries; P-VISION-3's
+  PASS/FAIL language is licensed at both.
+- **P-VISION-S1 (settling):** native C = −0.83412, doubled C = −0.83412
+  — identical to 5 decimals. `STEPS_AMBIENT(r)`'s linear scaling is
+  amply adequate; no settling artifact at this geometry.
+
+**The bridge fit (Block 1, T8) — a genuinely mixed result, reported
+honestly:**
+
+| Article | C(78) est. | C(156) | C(312) | Fit C_∞ / B | C_pred(78) | miss | shape ratio |
+|---|---|---|---|---|---|---|---|
+| Absorber | −0.7209 | −0.7305 | −0.7323 | −0.7341 / +0.0324 | −0.7269 | **0.0060** | **5.33** |
+| PEC | −0.8673 | −0.8698 | −0.8659 | −0.8620 / −0.0702 | −0.8776 | **0.0103** | **−0.635** |
+
+- **P-VISION-1 (functional-form validation):** both articles pass the
+  ≤0.03 miss gate (absorber 0.0060, PEC 0.0103) — nominally CONFIRMED.
+  **But PEC's pass is not a clean validation** — see P-VISION-2 below;
+  a 2-parameter fit landing near a 3rd point doesn't mean the underlying
+  curve is well-described by *any* smooth 2-parameter law when that curve
+  isn't even monotonic.
+- **P-VISION-1b (shape discriminator) — REFUTED for both articles, in
+  different ways.** Absorber's ratio (5.33) sits outside BOTH the
+  sqrt-law band (2.00±0.3) AND the linear-law band (4.00±0.5) — the true
+  r=78→156 drop is sharper, relative to r=156→312, than either simple
+  power law predicts. PEC's ratio is **negative** (−0.635) — only
+  possible if C(78)→C(156) and C(156)→C(312) move in OPPOSITE
+  directions, which they do (see next item). Neither article's
+  discriminator behaves as either candidate law predicts.
+- **P-VISION-2 (monotonic deepening) — CONFIRMED for the absorber,
+  REFUTED for PEC, a genuine surprise.** Absorber: −0.7209 → −0.7305 →
+  −0.7322, cleanly monotonic. **PEC: −0.8673 → −0.8698 (deepens) →
+  −0.8659 (SHALLOWS again, ending up less negative than even the r=78
+  point)** — non-monotonic, not predicted by any seat in Phase 1 or 2.
+  Per this program's own R3 meta-rule ("any surprising feature gets a
+  resolution check before a mechanism debate"), this is flagged as an
+  open question for Phase 5/a future iteration, not interpreted here —
+  candidates include a genuine near-to-far transition feature specific
+  to a hard reflector (PEC has no rim-transmission channel to smooth
+  the trend, unlike the absorber), a grid-quantization effect at the
+  r=312 domain's much larger cell count, or an artifact of the δ_C floor
+  (clean, but not identically zero) beginning to matter at PEC's much
+  larger |C|. **Not yet explained — a new candidate live thread.**
+- **P-VISION-3 (load-bearing, sponge scale-robustness) — CONFIRMED
+  cleanly for both articles.** OFF-lab |Δ(78→312)| = **0.00031** (≤0.0010
+  gate). OFF-field |Δ(78→312)| = **0.00046** (≤0.0025 gate). Combined
+  with P-VISION-F1's clean floor at both r=156 AND r=312: **PASS/FAIL
+  language is now licensed on the near-threshold OFF-lab/OFF-field C
+  values for the first time in this program's history** — the load-
+  bearing deliverable of this whole cycle, delivered cleanly.
+
+**T11 companion (box-ledger channel decision floor):**
+
+| Point | box_dev (established convention) |
+|---|---|
+| r=78 | 0.0365% |
+| r=156, native cpl=20 | 0.0376% |
+| r=156, cpl=30 (×1.5) | 0.0696% |
+
+- **P-VISION-T11-1/T11-2 — REFUTED (both read below the predicted
+  bands), but the underlying hypothesis they were built to test HOLDS.**
+  Both r=78 (0.0365%) and r=156 (0.0376%) read below the predicted
+  [0.05%,1.0%]/[0.05%,1.5%] floors — a genuine miss on the absolute
+  band. But the actual scientific question — is box_dev roughly
+  r-independent? — is answered cleanly: the two readings agree to 3%
+  relative (ratio 1.03), far inside the ×3 falsification threshold.
+- **P-VISION-T11-3 — REFUTED, in the surprising direction.** The cpl=30
+  companion measured 0.0696%, a **1.85× GROWTH** over native (0.0376%),
+  not the predicted 0.65–0.80× shrink. This is the opposite of every
+  established R3 (resolution-refinement) precedent in this program
+  except one: **T10's own exp-027 finding, "the R3 check can ENLARGE a
+  feature, not just confirm/refute it"** — previously a lone exception
+  across 6 prior R3 applications, now possibly a second instance, on a
+  *different* channel (box_dev vs. `BEAM_BEHIND`). Not yet interpreted;
+  flagged for Phase 5 as a genuine, real miss, not smoothed over.
+- **T9/T10 floor consequence, computed in code (fix 4):** using the
+  measured box_dev readings, T9's established Δσ_abs/σ_ext=1.56×10⁻⁶
+  sits **234–446× BELOW** the measured floor at every point tested —
+  decisively, robustly null, not a floor-limited reading. T10's
+  established 6.49% box-ledger spread sits **93–178× ABOVE** the same
+  floor — decisively a real signal, not floor noise. **Both T9 and T10
+  now have their first-ever floor-referenced verdict** (previously
+  informal magnitude arguments only) — T11's own founding purpose
+  delivered, even though the specific predicted bands (P-VISION-T11-1/2)
+  themselves missed.
+
+## Honest summary
+
+The mandatory, five-times-deferred r=156 build **executed in full this
+cycle** — the pre-registered Checkpoint-4 tripwire does not fire. The
+cycle's single biggest deliverable — PASS/FAIL language now licensed on
+the program's own near-threshold constraint-3 C values — landed cleanly.
+T9 and T11 both close out with real, floor-referenced verdicts for the
+first time. Against that: the functional-form question this whole build
+exists to answer (does C(z/z_R) follow a clean, single-exponent power law
+bridging bench to witness scale?) comes back **genuinely mixed** — the
+absorber's shape doesn't match either candidate law tightly, and PEC is
+flatly non-monotonic, an unpredicted surprise needing its own resolution
+check before any witness-scale number for PEC specifically should be
+trusted. T11's own resolution companion also missed, in the same
+direction as this program's one prior "R3 enlarges" exception. Two new,
+concrete open questions for a future cycle, neither of which erases this
+cycle's own real deliverables.
