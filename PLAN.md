@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-13, panel Iteration 6)
+## Current state (2026-08-14, panel Iteration 7)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -431,50 +431,84 @@ continuous mode with checkpoints. The remaining [open] items below are
   incoherent-ensemble/phase-quadrature idiom, concretely scoped and
   mathematically pre-verified by Red Team) queued for a future QUANTUM
   lead cycle. Verdict: PROMISING. Full record: LOGBOOK.md Iteration 6.
-- **[queued — panel Iteration 7, lead per rotation VISION SCIENCE,
-  mandatory build committed Iteration 5, pre-registered Checkpoint-4
-  tripwire if it slips]** VISION's r=156 scale-bridge check (T8) — five
-  consecutive cycles of attempted deferral, each caught only by
-  adversarial review; this is the hard commitment, not a sixth soft one.
-  VISION's own Iteration-5 Phase-5 pre-staging suggestion: pin the
-  r=78/156/312 geometry family, the committed C(z/z_R) extrapolation
-  functional form, and which existing articles it runs against, now
-  rather than at Iteration 7 itself, to shrink the real cost of the build
-  when it comes due. VISION's own dissent (this should have been
-  Iteration 6) is on the record in LOGBOOK.md Iteration 5 Phase 5 —
-  unresolved, not silently dropped. **T11 (box-ledger decision-floor
-  characterization) folded in as a companion this cycle** (Iteration 6
-  Phase-5 near-unanimous pick, Director-adopted) — r=156 itself takes
-  strict priority if scope pressure emerges; T11 falls back to Iteration
-  8 otherwise. Every derived geometric/physical constant in the r=156
-  build must be computed in code, never hand-copied as a rounded literal
-  (VISION's own pre-registered discipline, closing a third recurring bug
-  class instance caught by Red Team at Iteration 6).
-- **[queued — panel Iteration 8, lead per rotation PHOTONICS]** merged
-  ranking from Iteration 6's Phase 5 (six fresh seats + Red Team,
-  near-unanimous on T11 unless closed by Iteration 7): the incoherent-
-  ensemble/phase-quadrature idiom (QUANTUM's own concretely-scoped
-  proposal — a `phase_offset` source kwarg, one additional joint run
-  determines the interference sinusoid's unknown coefficient exactly,
-  the incoherent limit follows analytically as exactly zero mean, Red
-  Team-verified mathematically sound; needs its own gated suite stage
-  per house rule); docket #7's analytic thermal sidecar (THERMODYNAMICS'
-  own #1 pick, now with an explicit coherent-term exclusion ready to
-  write in, still gated on the witness-wattage pin); a formal reciprocity
-  check as a new suite-level identity gate (EM's own #2 pick, never
-  built despite being basic for any scalar reciprocal medium this
-  program uses); the shell-thickness/optical-depth economy sweep
-  (MATERIALS' own #2 pick, sharpened scope from exp-029's own finding
-  that interference sensitivity peaks in the outer adiabatic-entry
-  zone); extending `radial_absorbed_power`/`angular_scattered_pattern`
-  to the 3-λ sweep and angular (r,θ) decomposition (PHOTONICS' own
-  picks); T10's residual +3.05pp sub-cell/window-offset sweep (lowest
-  priority, cheapest, widely named across iterations).
-- **[queued]** docket #7: sourced witness-scenario parameter table +
-  glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring on
-  the now-unqualified measured C≈−0.684 (exp-024 removed exp-020's 750nm
-  asterisk and estimator ambiguity); potential checkpoint criterion 1
-  (Tier W) if the 4–21× sub-threshold closure holds.
+- [done 2026-08-14, panel Iteration 7, cloud panel shift] **exp-030 the
+  r=156/312 near-field→witness-scale bridge (T8) + box-ledger floor
+  companion (T11)** — VISION's five-times-deferred mandatory build,
+  hard-committed at Iteration 5's close with a pre-registered
+  Checkpoint-4 tripwire: **executed in full this cycle, the tripwire
+  does not fire.** Red Team's Phase-2 audit caught the Phase-1
+  proposal's r=78 anchors citing the wrong, gate-failing ±40° geometry
+  (corrected in code: absorber −0.7209, PEC −0.8673, V-weighted
+  fallback) plus a three-way-converged `graded_black_shell` optical-
+  depth confound (fixed: σ_max=0.5/κ, holding radial optical depth
+  constant). 89 new FDTD sim calls, ~5.1h (r=312's 37-run leg alone took
+  3.87h — ~8× the proposal's own estimate, the largest timing miss in
+  program history, κ³ FDTD scaling). **Real deliverable: PASS/FAIL
+  language is now decidable on near-threshold constraint-3 C values for
+  the first time** — the δ_C floor gate passed cleanly at both r=156
+  and r=312; T9 and T11 both close with their first floor-referenced
+  verdicts (T9 decisively null 234–446× below the floor, T10 decisively
+  real 93–178× above it). **But scored against VISION's own frozen
+  thresholds, every σ(I) OFF-state article ever built is still MARGINAL
+  (OFF-lab) or FAIL (OFF-field) at every scale tested — no configuration
+  has ever PASSed constraint 3.** The cycle's central technical question
+  — does C(z/z_R) bridge cleanly to witness scale — came back genuinely
+  unresolved: PEC's C(r) is flatly non-monotonic (new live thread
+  **T12**, candidate mechanism: Fresnel-zone/edge-diffraction ripple
+  aliased by the family's factor-4 r-steps at fixed measurement-plane
+  offset, independently proposed by PHOTONICS and EM); and Red Team's
+  Phase-5 audit — missed by all six blind review seats — found this
+  cycle's own fitted witness-scale prediction (≈−0.73/−0.86) sharply
+  contradicts the |C|≈0.98 estimate that has justified this whole
+  thread since Iteration 1 (new live thread **T13**). **Verdict:
+  PARTIAL.** New Checkpoint-4 tripwire adopted: any future citation of
+  this cycle's witness-scale numbers without flagging T13, or any
+  reliance on PEC's fit or box_dev as a settled floor before their own
+  R3 checks land, is a retroactive trigger. Full record: LOGBOOK.md
+  Iteration 7.
+- **[queued — panel Iteration 8, lead per rotation PHOTONICS,
+  Red-Team-ranked over the six blind seats' own individual pick lists]**
+  (1) **T12** — EM's dense-PLANE_DX sweep at r=78 + PHOTONICS' r=156
+  standoff-sweep companion (both reuse existing/near-zero-marginal-cost
+  captures), the direct test of the Fresnel-ripple hypothesis for PEC's
+  non-monotonicity. (2) **T13, zero-FDTD-cost, Red-Team-prioritized
+  ahead of (1) and (3)**: locate the method behind the program's
+  standing |C|≈0.98 witness-scale estimate and reconcile it explicitly
+  against exp-030's own C_pred(witness) — the single highest-leverage
+  open item touching constraint 3 directly; the Director's own Iteration-
+  7 note (the fitted C_∞ never reaches −1 as z/z_R→0, a structural not
+  just numerical mismatch with far-field silhouette physics) is the
+  leading hypothesis, untested. (3) QUANTUM's one new r=156 σ-held
+  sponge run (τ_center=0.016) — completes a 3-point fit at near-zero
+  marginal cost (the r=78/r=312 σ-held points already exist for free,
+  per an exact τ_off_field/τ_off_lab=κ(312)=4 coincidence Red Team
+  independently confirmed) and closes a real gap in T1's g=|C|/τ
+  calibration (σ-held media are NOT scale-robust, unlike the confirmed
+  τ-held diagnostic family). **VISION's own "docket #7 is urgent" pick
+  is explicitly deprioritized by Red Team's ruling** — a witness-
+  scenario table shouldn't be built on witness-scale C numbers T13 just
+  showed aren't yet trustworthy. Lower priority, inherited:
+  THERMODYNAMICS' dedicated multi-point/multi-box-pair box_dev floor
+  characterization (T11, still open — its own cpl×1.5 companion grew
+  1.85× instead of shrinking, echoing T10's rare "R3 enlarges"
+  exception); MATERIALS' fixed-absolute-thickness `graded_black_shell`
+  variant (realizability-gated, now well-motivated by exp-030's own
+  clean self-similar baseline); Iteration 6's still-queued incoherent-
+  ensemble/phase-quadrature idiom; a formal reciprocity check (EM's own
+  long-standing #2 pick); the shell-thickness/optical-depth economy
+  sweep (MATERIALS); extending `radial_absorbed_power`/
+  `angular_scattered_pattern` to the 3-λ sweep (PHOTONICS); T10's
+  residual +3.05pp sub-cell/window-offset sweep (lowest priority,
+  widely named across iterations).
+- **[queued, deprioritized behind T13 per Red Team's Iteration-7
+  ruling]** docket #7: sourced witness-scenario parameter table +
+  glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring.
+  The headline bench measurement itself is now the corrected, V-weighted
+  fallback-geometry C≈−0.7209 (exp-030 supersedes exp-024's own primary-
+  geometry −0.684/−0.686 citation) — but the WITNESS-scale extrapolation
+  this docket would score against is exactly what T13 shows is not yet
+  trustworthy; building the sidecar ahead of T13's reconciliation risks
+  publishing a Tier-W verdict on an unreconciled number.
 - **[queued]** stage-10 temporal instrument (VISION's Iteration-2 Phase-5
   #2): TCSF bars pinned first (de Lange/Watson, sourced) — the last
   unmeasured perceptual axis (T3), gates constraint 4.
