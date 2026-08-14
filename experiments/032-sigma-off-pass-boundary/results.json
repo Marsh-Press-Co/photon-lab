@@ -1,0 +1,155 @@
+{
+ "meta": {
+  "geometry_ambient": {
+   "NX": 360,
+   "NY": 1584,
+   "ABSORB": 40,
+   "SRC_X": 300,
+   "OBJ": [
+    170,
+    792
+   ],
+   "R_OUT": 78,
+   "PLANE_X": 77,
+   "W_OBJ": 78,
+   "GUARD_OUT": 185,
+   "W_FLANK": 78,
+   "BOX": [
+    80,
+    260,
+    702,
+    882
+   ]
+  },
+  "fallback_angles": [
+   -35,
+   -25,
+   -15,
+   -5,
+   0,
+   5,
+   15,
+   25,
+   35
+  ],
+  "n5_subsample": [
+   -35,
+   -15,
+   0,
+   15,
+   35
+  ],
+  "tau": {
+   "off_pass": 0.0065,
+   "off_bracket": 0.003
+  },
+  "sigma": {
+   "off_pass": 4.1666666666666665e-05,
+   "off_bracket": 1.923076923076923e-05
+  },
+  "g_band_harmonized": [
+   0.5,
+   0.8
+  ],
+  "decision_floor_reused": {
+   "450": 0.00089,
+   "600": 7e-05,
+   "750": 0.00045
+  },
+  "off_lab_established_anchor": {
+   "C": {
+    "450": -0.00460711308931395,
+    "600": -0.005530667330154762,
+    "750": -0.005052707590063023
+   },
+   "g": {
+    "450": 0.5758891361642438,
+    "600": 0.6913334162693453,
+    "750": 0.6315884487578778
+   },
+   "tau": 0.008
+  },
+  "elapsed_s": 562.1169784069061,
+  "n_new_runs": 81
+ },
+ "ambient_contrasts": {
+  "empty/450": {
+   "C": 0.0008892142330290118,
+   "C_empty": 0.0008892142330290118
+  },
+  "empty/600": {
+   "C": -3.316590819191224e-05,
+   "C_empty": -3.316590819191224e-05
+  },
+  "empty/750": {
+   "C": 0.00043161455167850526,
+   "C_empty": 0.00043161455167850526
+  },
+  "off_pass/450": {
+   "C": -0.0035794978201135084,
+   "C_empty": 0.0008892142330290118
+  },
+  "off_pass/600": {
+   "C": -0.004502830238451187,
+   "C_empty": -3.316590819191224e-05
+  },
+  "off_pass/750": {
+   "C": -0.0040273313964335235,
+   "C_empty": 0.00043161455167850526
+  },
+  "off_bracket/450": {
+   "C": -0.0011764457963717688,
+   "C_empty": 0.0008892142330290118
+  },
+  "off_bracket/600": {
+   "C": -0.0020992636423987046,
+   "C_empty": -3.316590819191224e-05
+  },
+  "off_bracket/750": {
+   "C": -0.0016295252172462596,
+   "C_empty": 0.00043161455167850526
+  }
+ },
+ "ambient_decision_floors_new_empty": {
+  "450": 0.0008892142330290118,
+  "600": 3.316590819191224e-05,
+  "750": 0.00043161455167850526
+ },
+ "g_values": {
+  "off_pass/450": 0.5506919723251552,
+  "off_pass/600": 0.692743113607875,
+  "off_pass/750": 0.6195894456051575,
+  "off_bracket/450": 0.3921485987905896,
+  "off_bracket/600": 0.6997545474662349,
+  "off_bracket/750": 0.5431750724154198
+ },
+ "convergence_n5_vs_n9_off_pass_600": {
+  "N5": -0.004020387823454481,
+  "N9": -0.004502830238451187,
+  "abs_delta": 0.00048244241499670586
+ },
+ "vision_ladder": {
+  "off_pass/450": "PASS",
+  "off_pass/600": "PASS",
+  "off_pass/750": "PASS",
+  "off_bracket/450": "PASS",
+  "off_bracket/600": "PASS",
+  "off_bracket/750": "PASS"
+ },
+ "quantum_disposition_g600": {
+  "g600_off_pass": 0.692743113607875,
+  "off_lab_established_g600": 0.6913334162693453,
+  "anomaly_consistent_threshold": 0.69,
+  "flag_anomaly_consistent": true
+ },
+ "thermo_sidecar_analytic": {
+  "label": "POST-RUN ANALYTIC, NOT AN FDTD OUTPUT (expressibility contract)",
+  "tau_off_pass": 0.0065,
+  "absorbed_fraction_of_intercepted_flux_optically_thin_approx": 0.0065,
+  "on_article_established_sigma_abs_over_sigma_ext_range": [
+   0.6056,
+   0.6083
+  ],
+  "ratio_tau_off_pass_over_tau_on_established": 0.0016666666666666666
+ }
+}

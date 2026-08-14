@@ -287,12 +287,138 @@ direction.
 
 ## Result
 
-*(to be filled in after Phase 4 run)*
+**81 new FDTD calls, 562 s (≈9.4 min) wall-clock for the ambient block.**
+
+| Article | 450nm | 600nm | 750nm | Ladder |
+|---|---|---|---|---|
+| `off_pass` (τ=0.0065) | −0.00358 | −0.00450 | −0.00403 | **PASS / PASS / PASS** |
+| `off_bracket` (τ=0.003) | −0.00118 | −0.00210 | −0.00163 | PASS / PASS / PASS |
+
+**P-MAT-1 CONFIRMED, disposition (a): `off_pass` clears VISION's frozen
+|C|<0.005 lab bar at all three wavelengths — the first σ(I) OFF-state
+configuration in this program's history to clear the lab bar at ANY
+wavelength, let alone all three.** All three measured values land inside
+the pre-committed band [−0.00520,−0.00325].
+
+**P-MAT-5 (QUANTUM's mandatory disposition clause) FIRES: g600(off_pass)
+= 0.6927 ≥ the 0.69 anomaly-consistent threshold** (off_lab's own
+established g600 = 0.6913). **Per the pre-registered rule, the 600nm PASS
+may NOT be reported as unqualified** — it is numerically clean but
+anomaly-consistent with the same unexplained-high g600 drift exp-026
+already flagged and never resolved. Correct statement: *`off_pass` PASSes
+numerically at all 3λ; the 600nm channel's PASS is anomaly-consistent,
+not yet distinguishable from a still-unexplained systematic drift in this
+program's g600 measurements specifically (now confirmed at a SECOND
+independent τ, strengthening the case it is a real, reproducible feature
+of the measurement at 600nm rather than a one-off fluctuation — but its
+mechanism remains unidentified).*
+
+**P-MAT-2, disposition split**: `off_bracket` also clears PASS at all 3λ,
+but 450nm (−0.00118) falls OUTSIDE the pre-committed band
+[−0.00240,−0.00150] — weaker (less negative) than the band's own floor.
+This is exactly the channel pre-registered as informational-only
+(SNR≈1.94, thinner than any channel this program has ever scored) — per
+the pre-registration, this miss is NOT read as a new finding, but as
+expected floor-proximity noise at a channel explicitly flagged in advance
+as unreliable.
+
+**P-MAT-3 (bulk vs. edge/rim-scattering-floor discriminator) — NULL,
+no clean signal either direction:**
+
+| λ | g(off_pass, τ=0.0065) | g(off_bracket, τ=0.003) | Δg | SNR(off_bracket) |
+|---|---|---|---|---|
+| 450 | 0.5507 | 0.3921 | **−0.1586** | 1.94 (informational) |
+| 600 | 0.6927 | 0.6998 | +0.0071 | 29.6 |
+| 750 | 0.6196 | 0.5432 | **−0.0764** | 4.21 |
+
+The edge/rim-scattering-floor hypothesis predicts g RISES as τ shrinks
+further; two of three channels show g falling instead (450, 750), and the
+one channel with real SNR margin at both τ (600nm) shows only a +0.0071
+rise — an order of magnitude smaller than this run's own measured
+angle-subsampling noise scale (N5-vs-N9 |ΔC|=0.00048 at τ=0.0065,
+600nm, which converts to Δg≈0.074 — ten times the observed off_pass-vs-
+off_bracket gap). **Read: no evidence the bracket point's g deviates
+from off_pass's g by more than measurement noise, at the one channel
+with adequate SNR to judge (600nm). The 450/750nm swings are consistent
+with floor-proximity noise at those channels' own pre-registered thin
+SNR, not a resolved mechanism finding.** This is a genuine, informative
+null — it does NOT support the edge-scattering-floor alternative, and it
+does not cleanly confirm the bulk-dominated model either; it mainly
+establishes that this bracket point's own SNR (especially 450nm) was too
+thin to decide the question, a risk flagged in the pre-registration.
+
+**P-MAT-6 (N-convergence) CONFIRMED**: N5=−0.00402, N9=−0.00450,
+|Δ|=0.00048 — inside the ≤0.001 band, close to the ≤0.0006 central
+estimate.
+
+**P-MAT-7 (THERMODYNAMICS sidecar) reported, post-run analytic, not an
+FDTD output**: absorbed fraction of intercepted flux (optically-thin
+approx) ≈0.65%; τ_off_pass/τ_on_established = 0.00167 (≈0.167% of the ON
+article's own established σ_abs/σ_ext=0.6056–0.6083 scale). No
+detectability claim beyond "orders of magnitude below the already-
+established ON-article scale" — the ΔT/emission-band chain stays blocked
+on docket #7's still-missing witness-scenario watts, as recorded since
+Iteration 1.
+
+**Decision floors, freshly measured this run** (informational; the
+committed exp-024/025 values remain the ones scored): 450nm 0.000889
+(≈exact match to established 0.00089), 600nm 0.000033 (established
+0.00007 — a fresh measurement roughly half the committed value, not
+itself concerning since committed values are what's scored, but worth a
+note for a future floor-characterization cycle, T11's own still-open
+backlog item), 750nm 0.000432 (≈exact match to established 0.00045).
 
 ## Learned
 
-*(to be filled in after Phase 5 review)*
+**The headline: this program's σ(I) escape route has, for the first
+time, produced a configuration that clears VISION's frozen photopic lab
+bar at bench scale, at every wavelength tested.** That is real and
+should be recorded as such — three iterations of deferral did not turn
+out to be chasing nothing.
+
+**But the qualifications are load-bearing, not decoration, and the
+Phase-2 mandatory fixes earned their cost:** (1) the 600nm PASS is
+anomaly-consistent with a still-unexplained g-drift now confirmed at a
+second independent τ (exp-026's off_lab AND this run's off_pass both
+land g600 at 0.69+, both at otherwise-clean high-SNR channels) — this is
+now a *reproducible* anomaly, not a one-off, and deserves its own
+mechanism investigation before any future cycle treats 600nm g≈0.69 as
+simply "the established value." (2) The bracket-point discriminator came
+back genuinely inconclusive, not merely "point in favor of bulk-
+dominated" — a fair reading given the SNR risk was pre-registered, not
+discovered after the fact, but it means T1's g-transfer model is
+confirmed-in-range, not confirmed-to-extrapolate-safely-in-general. (3)
+Per VISION's own standing scale-bias rule (idealization iii) and Red
+Team's synthesis-stage ruling, **this PASS is a bench-scale diagnostic,
+not a Tier-W/Tier-A constraint-3 verdict** — the r=156 companion leg that
+would test whether it survives the scale bridge is explicitly still
+unbuilt, queued for Iteration 10.
+
+**What this does NOT mean**: no σ(I) medium was built or shown
+buildable. The σ_on/σ_off ratio a real switch would need to span, if this
+exact PASS configuration were the OFF target, is ≈600× — worse than
+exp-026's already-unobtainium 122–487× — precisely because a genuine PASS
+required going lower in τ than any prior OFF article. T1's central
+tension (UNOBTANIUM-WITH-PARAMETERS switching mechanism) is unmoved by
+this result in either direction, exactly as predicted in the committed
+idealizations.
 
 ## Next
 
-*(to be filled in after Phase 5 review)*
+Ranked, for Phase 5 to argue over and the Director to adopt/override:
+
+1. **The reproducible g600≈0.69+ anomaly** — now confirmed at TWO
+   independent τ (0.008 and 0.0065), both high-SNR channels, both
+   unexplained. This has graduated from a single-cycle curiosity to a
+   real, repeat-confirmed live thread and should be named as such
+   (candidate: new LIVE THREAD, or fold into an existing one if Phase 5
+   judges it mechanistically related to T9's rim-transmission finding).
+2. **VISION's r=156 companion leg** (queued explicitly at Phase 3,
+   above) — the same off_pass/off_bracket pair at r=156, 600nm only
+   (matching that bench's validated single-λ scope), to test whether the
+   PASS survives the scale bridge before any Tier-W/A language attaches.
+3. **A genuine SNR-adequate bracket point** — if Phase 5 judges the bulk-
+   vs-edge-scattering question still open (rather than closed-null), a
+   bracket at a τ chosen for adequate 450nm SNR (e.g. τ≈0.005–0.006,
+   closer to off_pass than off_bracket was) would test the same
+   hypothesis without inheriting this run's own thinnest-channel risk.
