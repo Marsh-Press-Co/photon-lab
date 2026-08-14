@@ -249,6 +249,28 @@ stands accepted in principle; its execution needs a validated box
 geometry for this specific (line-source, θ=0, ambient-plane) scene class,
 which does not yet exist in this program's own machinery.
 
+**Erratum, added at Phase 5 (THERMODYNAMICS' own catch, independently
+verified against the code, more precise than the account above):** the
+first attempt's failure runs deeper than a bad box. `dg030.GEOM[156]` has
+no `ref` field at all — the `sections.widths()` incident-intensity
+reference strip exists only on the beam-scene `BEAM_GEOM`
+(`ref=(cx,cy,round(60·κ))`, tuned to a collimated beam's flat-top core).
+The first attempt's improvised `ref=(cx,cy,r)` (half-height 156) was
+never validated for this scene class, sits upstream of the box entirely,
+and produced a **negative** reference intensity (i_inc=−0.258) — meaning
+every downstream number (including PEC's own sigma_scat=−646, a
+lossless-scatterer sanity violation on its face) is uninterpretable, not
+merely off. This numeric block was left in `results.json` under the key
+`thermo` with no label distinguishing it from validated output — a real
+gap against this program's own "flag, don't silently rewrite" convention,
+corrected in this shift's own close-out: the block is now relocated to
+`thermo_attempt1_INVALID` with an explicit erratum note in the JSON
+itself. **No trust-suite gate exists for this scene class's box-ledger
+channel** (PANEL.md's own house rule: new machinery needs an absolute
+identity gate before results are trusted) — building one (box-independence
++ PEC lossless-null) is the correct prerequisite for any future P-DIR-4
+attempt, not another hand-built box under time pressure.
+
 **Every other prediction ran and is scored below** (all figures computed
 in code, `run.py::run_fit`, not hand-asserted):
 
@@ -324,26 +346,101 @@ functional-form instability worse, not better. No witness-scale number
 for the absorber earns any more trust after this experiment than before
 it; if anything, less.
 
-**QUANTUM's g-calibration gap closes cleanly.** C(156,σ-held)=−0.01236
-lands within 0.0001 of the pre-committed central prediction. Scored
-against VISION's frozen ladder (P-DIR-3, her own mandatory Phase-2 fix):
-**MARGINAL** — the same verdict every σ(I) OFF-state article this
-program has ever built has received, at every scale tested, restated
-explicitly here per her fix rather than left implicit. The raw g(156)
-=0.773 sits notably above g(78)=0.685/g(312)=0.694 — but **once the
-same-run empty-scene δ_C floor bias is subtracted (matching Red Team's
-own Iteration-7 e1 finding that this exact bias explained 87–97% of the
-τ-held sponges' own apparent r=156 excursion), g_floor_corrected=0.697
-lands within 2% of both established endpoints.** QUANTUM's own Iteration-7
-"σ-held media are NOT scale-robust" finding (based on raw ΔC) is
-substantially reframed by this cycle's own data: **once floor-corrected,
-the σ-held family's per-unit-τ efficiency g IS scale-robust, matching
-the already-confirmed τ-held diagnostic family** — the same floor-bias
-story Red Team's e1 finding told for the sponges, now independently told
-a second time for a different material-scaling convention. T1's
-g=|C|/τ calibration constant (g≈0.68–0.70) is strengthened as a robust,
-scale-independent quantity across BOTH the τ-held and σ-held families,
-once the known r=156 instrument bias is accounted for.
+**QUANTUM's g-calibration gap closes, in one regime, at one point —
+narrower than first drafted here, per Phase-5 correction below.**
+C(156,σ-held)=−0.01236 lands within 0.0001 of the pre-committed central
+prediction. Scored against VISION's frozen ladder (P-DIR-3, her own
+mandatory Phase-2 fix): **MARGINAL** — the same verdict every σ(I)
+OFF-state article this program has ever built has received, at every
+scale tested, restated explicitly here per her fix rather than left
+implicit. The raw g(156)=0.773 sits notably above g(78)=0.685/g(312)=0.694
+— but **once the same-run empty-scene δ_C floor bias is subtracted
+(matching Red Team's own Iteration-7 e1 finding that this exact bias
+explained 87–97% of the τ-held sponges' own apparent r=156 excursion),
+g_floor_corrected=0.697 lands within 2% of both established endpoints.**
+
+**Correction, added at Phase 5 (QUANTUM's own review, Red Team-confirmed
+and sharpened):** this floor-correction is not a free arithmetic step —
+it is licensed by an unstated **linear-response/weak-perturbation
+assumption** (the object's own perturbation to the profile is localized
+to the object window, so `C − C_empty ≈ δ_obj/e_flank` cleanly separates
+object signal from baseline instrument bias), valid only because
+τ=0.016 keeps |C| at the ~1% level where second-order terms are
+negligible. **It is explicitly NOT licensed for PEC or the absorber**
+(|C|~0.83–0.99, nowhere near the weak-perturbation regime) — exactly why
+the floor-correction is correctly never applied to them in this
+document, though the reason was never stated until now. The original
+draft's closing claim — "T1's g=|C|/τ calibration constant is
+strengthened as a robust, scale-independent quantity across BOTH the
+τ-held and σ-held families" — **overclaimed relative to what was
+actually measured, per Red Team's Phase-5 audit**: the σ-held family's
+scale-robustness now rests on exactly ONE new floor-corrected point
+(r=156); r=78 for this family was never separately run, and r=312 is
+inherited only via the τ_off_field/τ_off_lab=κ(312)=4 numerical
+coincidence (a repurposed τ-held point, not an independent σ-held
+measurement). **Corrected statement:** the one new floor-corrected point
+is consistent with scale-robust g in the weak-perturbation regime
+(τ≈0.016, |C|≈1%); untested outside it, and untested at a second
+independent σ-held geometry.
+
+## Phase 5 — Director's addendum (six blind reviews + Red Team audit)
+
+Full verbatim transcript: `LOGBOOK.md` Iteration 8. Two corrections above
+already fold in the highest-priority Phase-5 findings (THERMO's erratum,
+QUANTUM's g-calibration overclaim). Three more, recorded here per house
+convention:
+
+**The absorber's "wrong-direction asymptote" is elevated to program-level
+significance.** PHOTONICS (ceiling-law exponent p=−0.148, structurally
+cannot reach C=−1 at any finite z/z_R) and ELECTROMAGNETISM (sqrt-law
+slope B=−0.277, C_∞=−0.803 shallower than either measured point) reached
+the same conclusion through two independent functional-form diagnostics.
+Red Team's audit named this the cycle's most decisive finding: it is the
+**exact pathology Iteration 7's finding e2 first named**, now reproduced
+on a corrected construction (PEC core restored) and a different, shorter
+baseline (r=78,156 vs the original r=156,312) — three independent axes
+of confirmation (construction, baseline, functional form) for the same
+directional anomaly. No longer reasonably read as "the extrapolation is
+merely unstable" — it is a reproducible, sign-consistent physical puzzle:
+this graded absorber's contrast does not deepen toward geometric-shadow
+completeness as the measurement approaches the regime where it should.
+Unexplained; the leading candidate test (PHOTONICS' multi-point r-sweep,
+Ranked top-3 below) is not yet run.
+
+**A proposed cheap fix for T12 is likely geometrically infeasible as
+described — caught by Red Team, missed by all six blind reviews.**
+EM's/PHOTONICS' shared next-change pick (extend the r=156 PLANE_DX sweep
+to reach N_F≈300+, where the original r=156→312 reversal actually lives)
+requires PLANE_DX≈3.75 cells (0.19λ) — well inside the object's own
+reactive near field, a regime none of this program's diagnostics have
+validated and where "Fresnel-zone ripple" may not even be the right
+model. Tips the Iteration 9 queue toward PHOTONICS' costlier but
+structurally correct alternative (a genuine r-family sweep, the axis the
+original reversal was actually observed on) over EM's cheaper one.
+
+**Minor, flagged not corrected:** P-PHOTONICS-5/6's cited "0.011"
+disagreement (ambient-summed sqrt-vs-ceiling law comparison, Phase 1)
+does not independently reproduce under Red Team's audit — recomputing
+with this cycle's own fit functions on the cited established values gives
+0.0029–0.0055 (central 0.0045), roughly 2–4× smaller. Low-stakes (the
+qualitative point — the ambient-summed metric is far more stable than
+the θ=0 diagnostic's 0.220 — survives under every version computed) and
+not gated this cycle; recorded per house discipline.
+
+**Checkpoint assessment (Red Team's own explicit ruling, adopted):**
+criterion 4 does not fire (constraint 3's status stated with unusual
+candor this cycle; the θ=0-diagnostic-only labeling convention honored
+everywhere load-bearing). Criterion 5 does not fire on the letter (both
+Iteration 7 and 8 produced real, independently-verified content) —
+**but Red Team flags, and the Director adopts as a direction check, not
+a violation:** Iterations 4 through 8 — five straight cycles — are
+instrument/reconciliation/audit work; Iteration 3 (exp-026) was the last
+cycle to test an actual σ(I) candidate against VISION's ladder. Her
+cheapest, most directly mechanism-relevant proposal (locate the actual
+σ(I) PASS boundary, τ_off≈0.0065) has now been the top-ranked Phase-5
+pick for three consecutive iterations (7, 8) without being built.
+Surfaced explicitly for Iteration 9's own queue, below — not deprioritized
+a fourth time.
 
 ## Cost note
 

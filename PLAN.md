@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-14, panel Iteration 7)
+## Current state (2026-08-14, panel Iteration 8)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -466,40 +466,72 @@ continuous mode with checkpoints. The remaining [open] items below are
   reliance on PEC's fit or box_dev as a settled floor before their own
   R3 checks land, is a retroactive trigger. Full record: LOGBOOK.md
   Iteration 7.
-- **[queued — panel Iteration 8, lead per rotation PHOTONICS,
-  Red-Team-ranked over the six blind seats' own individual pick lists]**
-  (1) **T12** — EM's dense-PLANE_DX sweep at r=78 + PHOTONICS' r=156
-  standoff-sweep companion (both reuse existing/near-zero-marginal-cost
-  captures), the direct test of the Fresnel-ripple hypothesis for PEC's
-  non-monotonicity. (2) **T13, zero-FDTD-cost, Red-Team-prioritized
-  ahead of (1) and (3)**: locate the method behind the program's
-  standing |C|≈0.98 witness-scale estimate and reconcile it explicitly
-  against exp-030's own C_pred(witness) — the single highest-leverage
-  open item touching constraint 3 directly; the Director's own Iteration-
-  7 note (the fitted C_∞ never reaches −1 as z/z_R→0, a structural not
-  just numerical mismatch with far-field silhouette physics) is the
-  leading hypothesis, untested. (3) QUANTUM's one new r=156 σ-held
-  sponge run (τ_center=0.016) — completes a 3-point fit at near-zero
-  marginal cost (the r=78/r=312 σ-held points already exist for free,
-  per an exact τ_off_field/τ_off_lab=κ(312)=4 coincidence Red Team
-  independently confirmed) and closes a real gap in T1's g=|C|/τ
-  calibration (σ-held media are NOT scale-robust, unlike the confirmed
-  τ-held diagnostic family). **VISION's own "docket #7 is urgent" pick
-  is explicitly deprioritized by Red Team's ruling** — a witness-
-  scenario table shouldn't be built on witness-scale C numbers T13 just
-  showed aren't yet trustworthy. Lower priority, inherited:
-  THERMODYNAMICS' dedicated multi-point/multi-box-pair box_dev floor
-  characterization (T11, still open — its own cpl×1.5 companion grew
-  1.85× instead of shrinking, echoing T10's rare "R3 enlarges"
-  exception); MATERIALS' fixed-absolute-thickness `graded_black_shell`
-  variant (realizability-gated, now well-motivated by exp-030's own
-  clean self-similar baseline); Iteration 6's still-queued incoherent-
-  ensemble/phase-quadrature idiom; a formal reciprocity check (EM's own
-  long-standing #2 pick); the shell-thickness/optical-depth economy
-  sweep (MATERIALS); extending `radial_absorbed_power`/
-  `angular_scattered_pattern` to the 3-λ sweep (PHOTONICS); T10's
-  residual +3.05pp sub-cell/window-offset sweep (lowest priority,
-  widely named across iterations).
+- [done 2026-08-14, panel Iteration 8, cloud panel shift] **exp-031 the
+  T12 ripple sweep, the T13 desk reconciliation, and QUANTUM's σ-held
+  g-point** — Red Team's Phase-2 catch (none of five blind seats found
+  it): exp-030's own `graded_black_shell` "absorber" construction was
+  missing its historical PEC core (a hollow, not solid, shell at every
+  θ=0/ambient reading it ever produced). Fixed, folded into this cycle's
+  own T12 sweep. 18 new FDTD calls (~13 min for the sweep+quantum legs;
+  the accepted THERMO sidecar failed twice and is deferred, root cause
+  pinned by THERMODYNAMICS' own Phase-5 review — a bad `ref`, not just a
+  bad box — and guarded in code against a silent third attempt).
+  **T12's own dense PLANE_DX sweep came back a clean null** (zero
+  significant ripple reversals across 17 points) **but its N_F coverage
+  (≈8–110) never reaches the window (≈81–325) where the original
+  r=156→312 reversal actually lives** — narrowed, not refuted; the
+  correct next test is a genuine r-family sweep, not a denser PLANE_DX
+  sweep (Red Team found EM's own proposed cheap fix likely infeasible —
+  it would require sub-0.2λ standoff). **The core-correction delta is
+  negligible** (6.8×10⁻⁶) — good news, independently reproducing T9's
+  "core is incidental" finding via a new channel. **T13 stays
+  unresolved for the one article that matters and got WORSE, not
+  better**: the corrected absorber's dual-law disagreement (0.220)
+  exceeds the original (0.132). Red Team's Phase-5 audit elevated this
+  into new live thread **T14** — the absorber's contrast shallows,
+  not deepens, toward what should be the geometric-shadow limit,
+  confirmed on three independent axes (construction, baseline,
+  functional form), the same pathology Iteration 7's finding e2 first
+  named. **QUANTUM's g-calibration gap closes** at one new floor-
+  corrected point (g=0.697, within 2% of established endpoints) —
+  language corrected at Phase 5 to state this is licensed only in the
+  weak-perturbation regime tested, not program-wide. **Verdict:
+  PARTIAL. Program-integrity flag raised explicitly by Red Team, adopted
+  by the Director as a binding Iteration-9 priority (not a Checkpoint
+  violation — neither criterion 4 nor 5 fires on the letter)**:
+  Iterations 4–8 are five straight cycles of instrument/reconciliation
+  work; VISION's cheapest, most directly mechanism-relevant proposal (a
+  σ(I) PASS-boundary run) has been the top Phase-5 pick for three
+  iterations running without being built. Full record: LOGBOOK.md
+  Iteration 8.
+- **[queued — panel Iteration 9, lead per rotation MATERIALS,
+  Red-Team-ranked, binding priority order per Iteration 8's own
+  program-integrity finding]** (1) **VISION's σ(I) PASS-boundary run**
+  — one new OFF-state run at τ_off≈0.0065 (g≈0.69 predicts C≈0.0045,
+  inside her frozen PASS line), scored explicitly against the ladder —
+  three iterations overdue (top Phase-5 pick at both Iteration 7 and 8),
+  must not be deprioritized a fourth time. (2) **T14** — PHOTONICS'
+  multi-point cored-absorber r-sweep (r≈78, 110, 156, 220, 312, fixed
+  PLANE_DX=15, θ=0) — resolves whether the wrong-direction-asymptote
+  pathology is a real, reproducible C(r) feature or a 2-point
+  extrapolation artifact; also closes the r=312 core-correction gap and
+  supplies genuine r-family ripple data for T12 (cost-gate r=312 per
+  Iteration 7's own pilot-first precedent — this program's worst
+  timing-miss axis). (3) THERMODYNAMICS' trust-suite stage for the
+  ambient/line-source box-ledger channel (box-independence + PEC
+  lossless-null gate) — prerequisite for any further P-DIR-4 attempt, a
+  PANEL.md house-rule gap Iteration 8 exposed directly. Lower priority,
+  inherited: MATERIALS' fixed-absolute-thickness `graded_black_shell`
+  variant (secondary until (2) resolves whether the C(r) anomaly is
+  real); a genuine PEC r-family ripple test near r≈270–350 (T12's own
+  real open half, still never executed); T11's dedicated multi-point/
+  multi-box-pair box_dev floor characterization; Iteration 6's still-
+  queued incoherent-ensemble/phase-quadrature idiom; a formal
+  reciprocity check (EM's own long-standing #2 pick); the shell-
+  thickness/optical-depth economy sweep (MATERIALS); extending
+  `radial_absorbed_power`/`angular_scattered_pattern` to the 3-λ sweep
+  (PHOTONICS); T10's residual +3.05pp sub-cell/window-offset sweep
+  (lowest priority, widely named across iterations).
 - **[queued, deprioritized behind T13 per Red Team's Iteration-7
   ruling]** docket #7: sourced witness-scenario parameter table +
   glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring.

@@ -2,6 +2,113 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-14 (panel shift) — Iteration 8 complete (exp-031): Red Team
+catches a load-bearing construction bug (missing PEC core) none of five
+blind seats found, and the fix turns out quantitatively negligible; T12's
+ripple sweep is a clean but scope-limited null; T13 gets worse, not
+better, and is elevated into new live thread T14 (the absorber's
+wrong-direction asymptote); Red Team raises a program-integrity flag —
+five straight cycles with no new constraint-3 mechanism tested
+
+**Pre-flight:** local `main` synced to Iteration 7's close (`377c785`).
+Deps installed fresh (numpy/scipy/matplotlib/pillow/autograd/fdtd via
+pip, then `ceviche --no-deps`, per the recorded wrinkle). Bench trust
+suite 46/46 green (`--only 12346789,10,11`) before this shift's work.
+
+**Iteration 8 — The T12 Ripple Sweep, the T13 Desk Reconciliation, and
+QUANTUM's σ-Held g-Point (exp-031, CONCLUDED).** Lead: PHOTONICS
+(rotation), executing Red Team's Iteration-7-ranked queue in one cycle.
+Full seven-seat cycle: Phase 1 proposal (PHOTONICS, zero-FDTD desk
+derivation + a scoped FDTD sweep) → 5 blind parallel critiques
+(MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS, VISION
+SCIENCE — all support-with-changes) → Red Team last with everything
+(verdict: proceed-with-mandatory-fixes, 9 numbered attacks, **one caught
+by none of the five blind seats and predating this cycle: exp-030's own
+`graded_black_shell` absorber construction was missing its historical
+PEC core** — every other construction of this article since exp-001
+pairs a PEC core with the graded shell; exp-030's own ambient-scene
+builder never did, silently making every θ=0/ambient absorber reading it
+ever produced a hollow-shell measurement, not the intended solid-backed
+one) → Phase 3 synthesis (Director: every mandatory fix accepted, zero
+overridden — the core-correction folded directly into the T12 sweep
+rather than run as a separate bolt-on) → predictions committed
+(`09cb9f7`) → Phase 4 run.
+
+**Result: 18 new FDTD calls, ~13 minutes for the sweep+quantum legs**
+(`ce214cd`). **The core-correction delta turned out negligible**
+(6.8×10⁻⁶, five orders of magnitude below the pre-committed "negligible"
+threshold) — good news: Red Team's catch was real and necessary as a
+matter of construction correctness, but the corrected number
+independently reproduces this program's own T9 finding ("the graded
+shell's own optical depth extinguishes nearly all incident power before
+it reaches the core, in either construction") via a completely new
+measurement channel. **T12's own dense PLANE_DX sweep came back a clean,
+unambiguous null** — zero significant sign reversals across 17 swept
+points, for PEC or the absorber, at either r=78 or r=156 — directly
+refuting its own falsifiable prediction. Phase 5's blind seats
+(ELECTROMAGNETISM, then PHOTONICS independently) found the sweep's own
+N_F coverage (≈8–110) never actually reaches the N_F window (≈81–325)
+where PEC's original r=156→312 reversal lives — narrowing T12's live
+hypothesis space rather than closing it. **T13 (the |C|≈0.98-vs-fitted
+witness-scale gap) stayed unresolved for the one article that matters,
+and got WORSE**: the corrected, shorter-baseline absorber dual-law fit
+disagrees by 0.220, exceeding the original uncored/longer-baseline
+disagreement of 0.132; a zero-FDTD desk audit found the standing
+|C|≈0.98 figure traces to exactly one unsourced sentence in this
+program's entire record (Iteration 1's EM Phase-5 review). **QUANTUM's
+σ-held g-calibration gap closed** at one new floor-corrected point
+(g=0.697, within 2% of established τ-held endpoints) — though Phase 5
+(QUANTUM's own review, Red Team-confirmed) found the closing language
+had overclaimed: the correction is licensed only by an unstated linear-
+response assumption, valid at |C|≈1% and untested elsewhere, corrected
+in the record.
+
+**The accepted THERMODYNAMICS energy sidecar failed twice and is
+deferred, not silently dropped.** First attempt used a computed-but-
+never-actually-used geometry field and produced unphysical results;
+second attempt (a hand-built box) stalled past budget and was killed.
+THERMODYNAMICS' own Phase-5 review — independently verified by Red
+Team — sharpened the diagnosis past NOTES.md's own account: the real
+root cause was an invalid reference-intensity strip (`ref`), not the
+box, and a negative-`i_inc` garbage block had been left in `results.json`
+unlabeled, a real gap against "flag, don't silently rewrite." Both
+findings corrected this shift: the block relocated to an explicitly-
+named `thermo_attempt1_INVALID` key with an erratum note, and the still-
+live code guarded with a `NotImplementedError` naming the actual defect
+so a third attempt can't silently repeat it.
+
+**Phase 5's most consequential finding: two blind seats (PHOTONICS,
+ELECTROMAGNETISM), reasoning independently through different functional-
+form diagnostics, converged on the same structural anomaly** — the
+absorber's contrast shallows, not deepens, as the measurement approaches
+what should be the geometric-shadow regime (a negative ceiling-law
+exponent; a negative sqrt-law slope). Red Team's audit named this the
+cycle's single most decisive result: the exact pathology Iteration 7's
+finding e2 first flagged, now independently confirmed on a corrected
+construction and a shorter baseline — three separate axes of
+confirmation for the same anomaly. Elevated to new live thread **T14**.
+Red Team also caught, independently of any blind seat, that the
+cheapest proposed follow-up (EM's own pick — extend the PLANE_DX sweep
+to reach the missing N_F window) is likely geometrically infeasible as
+described, requiring sub-0.2λ standoff — tipping Iteration 9's queue
+toward PHOTONICS' costlier but structurally sound multi-point r-sweep
+instead.
+
+**Director's close: VERDICT PARTIAL**, adopting Red Team's own ruling.
+No Checkpoint criterion fires on the letter, but Red Team raised — and
+the Director adopted as a binding Iteration-9 priority, not a violation
+— an explicit program-integrity flag: **Iterations 4 through 8 are five
+straight cycles of instrument/reconciliation/audit work, with no new
+σ(I) mechanism candidate tested against constraint 3 since Iteration 3.**
+VISION's cheapest, most directly mechanism-relevant proposal (one new
+run to locate the program's own predicted σ(I) PASS boundary,
+τ_off≈0.0065) has been the top-ranked Phase-5 pick for three consecutive
+iterations without being built — queued first, explicitly, for Iteration
+9, ahead of T14's own follow-up and THERMO's trust-suite prerequisite.
+`09cb9f7` (predictions) → `ce214cd` (results) → this close-out. Next
+lead per rotation: MATERIALS (Iteration 9). Trust suite 46/46 green
+throughout (no `lab/` engine changes this shift).
+
 ## 2026-08-14 (panel shift) — Iteration 7 complete (exp-030): the r=156/312
 near-field→witness-scale bridge executed in full (Checkpoint-4 tripwire
 does not fire), verdict PARTIAL — PASS/FAIL language now decidable on

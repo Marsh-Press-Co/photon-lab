@@ -87,6 +87,13 @@ measured them here):**
   photopic (Tier A): τ_on/τ_off ≳ 120–780, n ≳ 0.56–0.78 (EM's g-updated
   bands); Tier-W night bar at the scenario intensity ratio: τ_on/τ_off ≳
   13, n ≳ 0.3 (vision). Two-photon-class n = 1 clears every bar.
+  **g=|C|/τ_center calibration (Iteration 8, exp-031): a σ-held sponge
+  family (σ fixed, not τ_center) closes at g≈0.68–0.70, matching the
+  established τ-held family, but ONLY once a linear-response/weak-
+  perturbation floor-correction is applied and ONLY validated at one new
+  point (r=156, τ=0.016, |C|≈1%) — not licensed at PEC/absorber-scale
+  contrast, and not yet independently tested at a second σ-held
+  geometry.**
 - **T2 — Perceptual thresholds.** PINNED and corrected in exp-020: frozen
   function C_thr(L) = 0.005·max[1,(L/3)^−p], p ∈ [0.4, 0.5], field ×4;
   crossovers re-derived from the function itself (Red Team #2's catch).
@@ -176,7 +183,14 @@ measured them here):**
   underlying mechanism (the graded shell's own σ(r) profile — peaking at
   r_in=30, zero at r_out=78 — extinguishes nearly all incident power
   before it reaches r&lt;30, in either construction), not two different
-  effects cancelling. Still not floor-gated (T11, above).
+  effects cancelling. Still not floor-gated (T11, above). **Third
+  independent confirmation, Iteration 8 (exp-031, discovered as a side
+  effect of fixing Red Team's core-construction catch, not a dedicated
+  T9 test):** restoring the PEC core to exp-030's own (previously hollow)
+  absorber changed its θ=0 ambient-contrast reading by 6.8×10⁻⁶ —
+  negligible, via a completely different measurement channel (single-
+  angle ambient contrast, not radial or box-ledger absorbed power) than
+  either prior confirmation.
 - **T10 — The R3 spatial-resolution check can ENLARGE a feature, not just
   confirm or refute it (opened Iteration 4, exp-027 Phase 5, unusually
   strong 5-of-7 seat consensus).** Every prior R3 application in this
@@ -292,7 +306,64 @@ measured them here):**
   companion diagnostic to Iteration 7's own r=156 build (VISION's own
   Phase-5 argued-next-change, Director-adopted) — a scale extension of
   the exact same channel — with r=156 itself taking strict priority if
-  scope pressure emerges; falls back to Iteration 8 otherwise.
+  scope pressure emerges; falls back to Iteration 8 otherwise. **Still
+  open after Iteration 8**: the ambient/line-source box-ledger channel
+  (a different scene class from the beam-scene channel T11 originally
+  scoped) failed twice with no trust-suite gate of its own — THERMO's own
+  Iteration-8 Phase-5 pick, queued for Iteration 9.
+- **T12 — PEC's non-monotonic C(r) across the r=78/156/312 near-field→
+  witness-scale bridge (opened Iteration 7, exp-030).** Candidate
+  mechanism: Fresnel-zone/edge-diffraction ripple aliased by the family's
+  factor-4 r-steps at fixed measurement-plane offset. **Iteration 8's own
+  direct test (exp-031, dense PLANE_DX sweep at fixed r=78/156, θ=0)
+  came back a clean null — zero significant sign reversals across 17
+  swept points — but the test's own N_F coverage (≈8–110) does not reach
+  the N_F window (≈81–325) where the original r=156→312 reversal actually
+  lives** (Red Team's Phase-5 audit: a proposed cheap extension of this
+  same sweep to reach that window would require sub-0.2λ standoff, likely
+  outside the diagnostics' validated regime). Narrowed, not refuted: the
+  correct next test is a genuine r-family sweep at fixed standoff (the
+  axis the original reversal was observed on), not a denser PLANE_DX
+  sweep at fixed r — queued for Iteration 9.
+- **T13 — the witness-scale extrapolation discrepancy (opened Iteration
+  7, finding e2): this program's own fitted C_pred(witness) ≈ −0.73/−0.86
+  vs. the standing, unsourced |C|≈0.98 estimate.** **Iteration 8's own
+  zero-FDTD-cost desk audit (exp-031) found the |C|≈0.98 figure traces to
+  exactly one place in this program's entire record — Iteration 1's
+  ELECTROMAGNETISM Phase-5 review — with no formula, citation, or shown
+  arithmetic anywhere adjacent to it: an unsourced numeric assertion, not
+  a derivation.** A θ=0 (single-angle) re-reading of the bridge family
+  narrows the gap for PEC (extrapolates to within 0.015 of −0.98) but
+  this is now shown (EM's Phase-2 saturation-artifact attack,
+  independently confirmed by Red Team) to be a near-certain consequence
+  of PEC's own two points already sitting close to −1 — NOT evidence the
+  metric-mismatch hypothesis is true — and PEC is constraint-2-
+  disqualified regardless (MATERIALS). **For the one article that
+  matters, `graded_black_shell`, the gap is NOT closed and got WORSE**:
+  the corrected (PEC-cored), shorter-baseline (r=78,156) θ=0 dual-law fit
+  disagrees by 0.220, exceeding the original uncored/longer-baseline
+  (r=156,312) disagreement of 0.132. **No witness-scale number for the
+  absorber earns any more trust after Iteration 8 than before it.** See
+  T14, below, for the sharpened mechanistic reading.
+- **T14 — the absorber's wrong-direction asymptote (opened Iteration 8,
+  elevated by Red Team's Phase-5 audit from a single-cycle anomaly to a
+  program-level open question).** `graded_black_shell`'s measured contrast
+  does not deepen toward geometric-shadow completeness (C→−1) as the
+  measurement plane approaches the regime where ray optics should
+  dominate — it shallows instead. First named in Iteration 7's finding e2
+  (the fitted sqrt-law's C_∞ parameter sits well short of −1 and cannot
+  be exceeded at any finite distance). **Confirmed independently in
+  Iteration 8 on three separate axes**: a different (θ=0, not ambient-
+  summed) metric, a corrected (PEC-cored, not hollow) construction, a
+  shorter (r=78,156, not r=156,312) baseline, and via two independent
+  functional-form diagnostics reaching the same sign (PHOTONICS: the
+  ceiling-law fit's own exponent is negative, p=−0.148, meaning it
+  structurally cannot reach C=−1 at any finite z/z_R; ELECTROMAGNETISM,
+  independently: the sqrt-law's slope B is negative, so its own C_∞
+  undershoots both measured anchors). No mechanism proposed yet.
+  PHOTONICS' own Phase-5 pick — a multi-point cored-absorber r-sweep
+  (r≈78,110,156,220,312, fixed standoff) — is the pre-registered first
+  test, queued for Iteration 9.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -3524,3 +3595,237 @@ realizability figure) · one instrument-bias reframing (the sponges'
 r=156 apparent excursion) · two new live threads opened (T12, T13) ·
 a new Checkpoint-4 tripwire condition adopted for future shifts.
 
+## Iteration 8 — The T12 Ripple Sweep, the T13 Desk Reconciliation, and
+## QUANTUM's σ-Held g-Point (exp-031) — 2026-08-14
+
+Runner: cloud panel shift · Lead: **PHOTONICS** (rotation). Full seven-seat
+cycle: Phase 1 proposal (PHOTONICS) → 5 blind parallel critiques
+(MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS, VISION
+SCIENCE) → Red Team last with everything (verdict: **proceed-with-
+mandatory-fixes**, 9 numbered attacks, **one — the absorber's missing
+historical PEC core in exp-030's own construction — caught by none of the
+five blind seats, predating this cycle**) → Phase 3 synthesis (Director:
+all mandatory fixes accepted, zero overridden) → predictions committed
+(`09cb9f7`) → Phase 4 run (`ce214cd`) → Phase 5 (six fresh seats blind +
+Red Team audit, verdict: **PARTIAL**). Full setup/results/erratum record:
+`experiments/031-ripple-core-reconciliation/NOTES.md`.
+
+### Phase 1 — Proposal (PHOTONICS, verbatim)
+
+# PHASE 1 — PROPOSAL · Panel Iteration 8 · Lead seat: PHOTONICS
+## "The T12 Ripple Sweep, the T13 Desk Reconciliation, and QUANTUM's σ-Held g-Point" (candidate exp-031)
+
+*Grounding note: every number below was hand-derived from `experiments/030-scale-bridge/design_geometry.py`'s actual formula chain (executed as pure arithmetic — `python3 design_geometry.py`, no `Sim`, no FDTD stepping) and from `experiments/030-scale-bridge/results.json`'s already-saved data, read back through the real `lab.ambient.contrast_from_runs`/`window_means`/`weber` functions (again, pure post-hoc arithmetic on saved arrays, zero new simulation). No FDTD was run to produce this proposal. Two of this document's central claims — (a) exp-030's artifacts do NOT retain full-field data, and (b) a single-angle (θ=0) re-read of exp-030's own r=156/312 data lands far closer to the standing |C|≈0.98 estimate than the ambient-summed metric does — are verified findings from that arithmetic, not assumptions, and are flagged as such throughout.
+
+### 1. Narrative (≤290 words)
+
+Iteration 8 executes Red Team's Iteration-7-ranked queue in one cycle: **T12** (PEC's flatly non-monotonic C(r)), **T13** (the unreconciled |C|≈0.98-vs-−0.73/−0.86 witness-scale gap), and **QUANTUM's** σ-held g-calibration gap. All three are diagnostic/reconciliation work — no new mechanism, no new engine physics, no escape-route claim.
+
+**T12** tests the Fresnel-zone/edge-diffraction-ripple hypothesis (PHOTONICS/EM, Iteration 7) with dense PLANE_DX sweeps at r=78 (EM's pick, cheapest) and r=156 (this seat's companion). **Verification done first, per this cycle's mandate**: exp-030's saved `results.json` retains only the single committed-plane 1D flux profile per (article, angle, r_out) — the full 2D Ez/Hx/Hy phasor field is captured in a worker process's memory (`sections.full_capture`) but never serialized, so "reusing already-captured full fields" from exp-030 itself is **not actually possible**. What IS true, and what makes the sweep cheap: within one NEW run, the full field exists in memory long enough to evaluate `flux_profile_x` at many x-planes for free. So the sweep costs 6 new FDTD runs (empty/PEC/absorber × r∈{78,156}, θ=0° only), each read at 8–9 PLANE_DX offsets — not 6×9.
+
+**T13** locates the original |C|≈0.98 derivation (found: unsourced) and reconciles it two ways, both zero-FDTD: the Director's bounded-C_∞ hypothesis (tested, does NOT close the gap) and a new metric-mismatch hypothesis (single-angle vs 9-angle-ambient), which a free re-read of exp-030's own saved r=156/312 data already supports strongly.
+
+**QUANTUM's** item is one new r=156 σ-held sponge run, reusing exp-030's r=156 empty profiles.
+
+[Full parameter tables, falsifiable predicted bands, idealizations, and cost note: see the Phase-1 proposal text preserved verbatim in the git history of `experiments/031-ripple-core-reconciliation/NOTES.md`'s ancestor commit `09cb9f7`, and in this shift's own session record. Summarized: PLANE_DX grids for r=78 (9 points, N_F 8.0–101.4) and r=156 (8 points, N_F 10.0–110.6); the θ=0 metric-mismatch reconciliation arithmetic (PEC's θ=0 extrapolation landing within 0.015 of |C|≈0.98 vs the ambient-summed metric's 20–30-point miss); QUANTUM's τ_center(156)=0.016 σ-held run reusing exp-030's saved r=156 empty profiles. 15 new FDTD calls committed, ~8–10 min estimated.]
+
+### Phase 2 — Critiques (five seats, blind, verbatim)
+
+#### MATERIALS & METAMATERIALS — verdict: **support-with-changes**
+
+**Steel-man:** This is pure diagnostic/reconciliation work with no new materials proposed — commendable discipline. Every article reused is exactly the previously-vetted construction: `graded_black_shell` with σ_max(κ)=0.5/κ holding τ_shell=24 constant (verified in `lab/materials.py` — a genuine quintic-smoothstep taper with zero first- and second-derivative at both edges, no glint-producing index step), PEC, and the new σ-held sponge, which I independently judge MORE materially realistic than the τ-held convention already on the bench. I independently re-derived the θ=0 single-angle C values and the resulting sqrt-law witness extrapolation straight from `results.json` — bit-for-bit match. No realizability regression.
+
+**Attack:** T13's headline "success" — PEC's θ=0 extrapolation landing within 0.015 of |C|=0.98 — is materially irrelevant to constraint 3. PEC is disqualified by constraint 2 (specular reflection); it exists only as a diagnostic control. The one materially real candidate, `graded_black_shell`, still misses −0.98 by ~20 points under this SAME improved metric — the proposal states this honestly, but P-PHOTONICS-7's ≤0.08 gate is worded so a "pass" can be claimed off PEC's number alone. Separately: `graded_black_shell` has ZERO sharp material discontinuity, yet the proposal's own θ=0 finding shows this article's C is non-monotonic across r — contradicting "apodization suppresses edge-diffraction ripple" for this specific article.
+
+**Flip:** Require the Phase-3 synthesis language to explicitly separate PEC's reconciliation (diagnostic-only, materially moot) from `graded_black_shell`'s — P-PHOTONICS-7 cannot be logged as "reconciled" program-wide unless that qualifier survives into LOGBOOK.md.
+
+#### ELECTROMAGNETISM — verdict: **support-with-changes**
+
+**Steel-man:** T1-clean bookkeeping: every article stays linear, time-invariant, causal, real σ≥0. The θ=0-only restriction for T12 is methodologically sound — it isolates a genuine per-direction diffraction quantity the production instrument's own incoherent 9-angle sum would average out. The κ²=4 N_F-matching grid is a legitimate scale-invariance probe.
+
+**Attack:** T13 Step 3's claim — θ=0 PEC extrapolates within 0.015 of |C|≈0.98 vs the ambient metric's 20–30-point miss — proves less than claimed. I independently re-fit the ceiling-law on the ambient-summed r=156/312 pair and reproduced Step 2's own logic: because C(156) and C(312) are already near-saturated, ANY smooth 2-parameter law anchored to them lands near the same value regardless of functional form. The θ=0 PEC pair is EVEN MORE saturated — so a θ=0 fit landing near −0.99 is largely guaranteed by that saturation, not distinctive evidence that θ=0 is the "right" metric. The proposal applies its own functional-form-robustness diagnostic to refute the bounded-ansatz hypothesis but never applies it to the hypothesis it's actually betting on.
+
+**Flip:** Fit the θ=0 (r=156,r=312) pair with BOTH the sqrt-law and the ceiling-law before treating a P-PHOTONICS-7 pass as confirming the metric-mismatch hypothesis. If the two forms disagree by more than ~0.05, that would refute the saturation-artifact reading; if they agree within ~0.02, log the "pass" as inconclusive-by-construction, not resolving T13.
+
+#### THERMODYNAMICS — verdict: **support-with-changes**
+
+**Steel-man:** Earns thermodynamic trust through restraint — zero energy-budget claims, no repurposed box_dev number. Every new run stays inside one fixed-τ or fixed-σ regime — nothing here changes what gets absorbed vs. re-radiated. Independent re-derivation of τ(156)=0.016, the σ_off_lab(78)=σ_off_field(312) identity, the linear-τ interpolation, and both g-values all check out to 4+ significant figures.
+
+**Attack:** Six new FDTD calls at r=78/156 hit exactly the program's two highest-absorption articles, with full-field capture already resident in memory — and zero absorbed-power data is extracted from it. My charter's expressibility contract exists precisely for this case: a post-run analytic P_abs→ΔT→λ_peak sidecar costs nothing beyond what's already captured. Worse: this cycle leaves T11 — my own Iteration-7 top-ranked pick, still unclosed since Iteration 5 — completely unaddressed, with no deferral note anywhere.
+
+**Flip:** Commit, in Phase 3, to attaching a zero-marginal-cost analytic P_abs→ΔT→λ_peak sidecar to the T12 r=156 absorber/PEC legs.
+
+#### QUANTUM OPTICS — verdict: **support-with-changes**
+
+**Steel-man:** Exactly the run I proposed at Iteration 7 Phase 5 — a single new r=156 point at σ held fixed, completing a 3-point σ-held family whose other two endpoints already exist for free via the τ_off_field(312)=κ(312)·τ_off_lab(78) coincidence. Every derived number checks out to 5+ digits against `results.json`. Correctly reuses r=156 empty profiles — zero new empty runs.
+
+**Attack:** The σ-held disk shares PEC's abrupt boundary (`sigma_e[mask]+=sigma`, a hard step) — verified in `run.py` — while carrying almost no interior damping (τ≤0.032). That is exactly PHOTONICS'/EM's own named precondition for undamped Fresnel-zone ripple (T12). And r=156 is not a neutral test point: it's precisely where PEC's own C(r) peaks non-monotonically. §2c's linear-in-τ interpolation never checks whether a g(156) landing outside its own band reflects real scale-dependence or edge-ripple contamination.
+
+**Flip:** Have the σ-held run's r=156 evaluation reuse T12's already-budgeted full-field capture to check the sponge's own flank-level stability across the swept PLANE_DX offsets — so a ripple-contaminated g(156) can be positively distinguished from genuine σ-held scale-dependence.
+
+#### VISION SCIENCE — verdict: **support-with-changes**
+
+**Steel-man:** Scrupulously narrow about what it does NOT claim perceptually. §2a states outright that the θ=0-only sweep is "a genuinely NARROWER instrument than the production ambient C metric... not smuggled in as equivalent." T13's step 2 correctly treats |C|≈0.98 as an unsourced number requiring provenance before it anchors further work.
+
+**Attack:** §4's QUANTUM predictions never invoke my frozen ladder (PASS<0.005, MARGINAL 0.005–0.02, FAIL>0.02) even though the predicted band sits squarely inside MARGINAL — the same verdict every σ(I) OFF-state article this program has ever built has always received, which Red Team explicitly demanded be restated, not buried, at Iteration 7's close. Separately, T13's θ=0 PEC reading (−0.995) comes from a single boresight source, not the extended-target diffuse-background geometry my C_thr(L) table was built against — treating this as "resolving" the witness-scale C for scoring purposes is a category error.
+
+**Flip:** Add two Phase-3 gate conditions: (1) score P-QUANTUM-1's measured C explicitly against the frozen ladder; (2) label every T12/T13 θ=0 single-angle C value as diagnostic-only and explicitly ineligible for constraint-3 scoring.
+
+#### RED TEAM (last, saw everything) — verdict: **proceed-with-mandatory-fixes**
+
+*Independently verified against `PANEL.md`, `LOGBOOK.md` in full, `experiments/030-scale-bridge/{design_geometry.py,run.py,results.json}`, and `experiments/024/025/026/027`'s own construction code, plus this cycle's own Phase-1 proposal and all five blind critiques.*
+
+**1. [inconsistency] MAJOR, caught by none of the five — `graded_black_shell`'s "absorber" article silently dropped its PEC core in exp-030, and every downstream number this cycle proposes to build on inherits the defect.** Grepped every historical construction of the `absorber` article: exp-001, exp-020, exp-024, exp-025, exp-027 all call `materials.pec_disk(sim, cx, cy, r_in)` immediately before `materials.graded_black_shell(sim, cx, cy, r_in, r_out)`. `experiments/030-scale-bridge/run.py::build_ambient`'s `"absorber"` branch calls **only** `mat.graded_black_shell(...)` — no `pec_disk`, no fill of any kind for `rr < r_in`. This region (14.8% of the object's cross-sectional area, self-similar across r=78/156/312) is literal vacuum, not a coated solid. θ=0 (boresight) is exactly the geometry this most directly contaminates. Consequence for the standing record: the r=78 anchor is sourced from exp-024, which IS PEC-cored, so every r=156/312 point in exp-030's own sqrt-law fit compares a PEC-cored object at r=78 against a hollow, uncored object at r=156/312 — a *third*, previously-unconsidered candidate explanation for finding e2. Minimum fix: one new θ=0 run at r=156 with the historical PEC core restored, compared directly against exp-030's existing no-core reading, before any further absorber-based T13/T12 conclusion is logged.
+
+**2. [unfalsifiable] EM's saturation-artifact attack, independently confirmed by executing EM's own proposed test.** Ran the sqrt-law/ceiling-law cross-check on the θ=0 (r=156,r=312) pair: PEC's two forms land within **0.002** (an order of magnitude inside EM's own 0.02 threshold) — the absorber's disagree by **0.13**. P-PHOTONICS-7 gates only PEC, on a quantity different reasonable functional forms already agree on to 0.002 BEFORE a single new run is taken — Red Team's own charter definition of unfalsifiable.
+
+**3. [inconsistency] The same cross-check on the absorber shows the opposite: wild, unresolved instability, not saturation.** The absorber's θ=0 fit is nowhere near saturated and is instead acutely sensitive to functional-form choice. T13 has, at best, reconciled a control article that cannot fail its own test, and has not produced a trustworthy witness-scale number for the one article MATERIALS scores as even plausibly realizable.
+
+**4. [constraint-3-relevant, echoes MATERIALS] PEC's reconciliation is not merely "materially moot" — it's moot AND guaranteed.** Any Phase-3 language reporting P-PHOTONICS-7 passing without both qualifiers misrepresents what was actually learned.
+
+**5. [unfalsifiable, minor] P-PHOTONICS-1/2's ripple-detection criterion has no noise floor.** Recommend a magnitude gate before reversal counts are scored.
+
+**6. [inconsistency, minor] EM's N_F "point-for-point matching" overstatement** — confirmed, immaterial to the ripple test.
+
+**7. Cost accounting mostly honest, but the "8×" comparison is looser than it looks.** The r=312 pilot run alone came in at ~28.6× the r=156 rate for a κ=2 domain step — worse than naive κ³ by ~3.5×. Iteration 8's own exposure is genuinely low (no run exceeds r=156), but the "even at 8×, 60–80 minutes" framing understates the worst empirically-observed miss and shouldn't be repeated as a calibrated bound.
+
+**8. [constraint-3-relevant, endorse VISION's attack as mandatory]** The θ=0 metric must not leak into constraint-3 scoring by default — it's demonstrably a different, currently-unreliable-for-the-real-article instrument, an even stronger reason it must never be read as a constraint-3 status update. Iteration 7's own e2 tripwire should be explicitly extended to cover T13's new θ=0 numbers.
+
+**9. Internal consistency check on σ-held vs τ-held conventions — clean, no hidden problem.**
+
+**Overall verdict: proceed-with-mandatory-fixes.** Most of this cycle's actual proposed work is legitimate, cheap, disciplined diagnostic work. But the cycle's own headline claim — that T13's metric-mismatch hypothesis meaningfully reconciles |C|≈0.98 — does not survive scrutiny for the article that matters (absorber), on two independent grounds, and its one genuine numeric "win" (PEC) is nearly unfalsifiable.
+
+**Must land before predictions frozen, priority order:** (1) restore the historical PEC-cored absorber construction before any further absorber-based T12/T13 conclusion. (2) Apply the sqrt-law/ceiling-law cross-check to θ=0 data for BOTH PEC and absorber; state explicitly a PEC pass is expected regardless of the hypothesis's truth; do not claim T13 "resolved" for the absorber under any framing. (3) Adopt VISION's two Phase-3 gate conditions verbatim and extend Iteration 7's e2 tripwire to T13's θ=0 numbers. (4) Add a magnitude-significance floor to the ripple-reversal count.
+
+**Recommended, not blocking:** correct EM's "point-for-point" framing; log actual r=156 wall-clock on the first T12 run before launching the rest; note that a solid-backed coated object is also more physically representative of a real witness-scale absorber than a free-floating hollow shell.
+
+### Phase 3 — Synthesis (2026-08-14, Director)
+
+**All of Red Team's mandatory fixes ACCEPTED, zero overridden.** THERMODYNAMICS' flip (energy sidecar) also accepted — directly serves PANEL.md's own mandatory metric-table requirement ("absorbed energy budget + predicted re-radiation" recorded every run). Concrete synthesis decisions:
+
+1. **Fix 1 (Red Team's load-bearing catch), folded into the T12 sweep rather than run as a separate bolt-on**: the sweep's own r=78/156 "absorber" runs use the historically-correct PEC-cored construction (`pec_disk(r_in)` then `graded_black_shell(r_in,r_out,...)`). This both supplies T12's ripple data with the right article AND, by direct comparison against exp-030's existing r=156/θ=0 uncored reading, quantifies the core-correction delta at zero extra run cost. Pre-committed decision bands: <0.02 negligible, 0.02–0.25 moderate (qualifier added to the record, no retraction), >0.25 load-bearing (formal erratum on exp-030's absorber-side conclusions, parallel to the SIGMA_ON/T10 precedent).
+2. **Fix 2/3 (EM's flip, MATERIALS' point)**: both sqrt-law and ceiling-law fit to the θ=0 (r=78,r=156) pair, separately for PEC and the cored absorber. PEC's near-certain convergence stated explicitly as expected-regardless-of-truth, NOT read as validating the hypothesis. No "resolved" language for the absorber under any framing.
+3. **Fix 8 / VISION's flip**: every θ=0 single-angle C value is diagnostic-only, ineligible for constraint-3 scoring. QUANTUM's σ-held run DOES use the full N=9 ambient metric and is scored against VISION's ladder explicitly (P-DIR-3).
+4. **Fix 5**: magnitude floor RIPPLE_NOISE_FLOOR=0.002 applied to reversal counting.
+5. **THERMO's flip**: a post-run analytic P_abs sidecar attached to the r=156 absorber(cored)/PEC legs via `sections.widths()`.
+
+New experiment `exp-031` (`experiments/031-ripple-core-reconciliation/`). Predictions committed to git BEFORE any run (`09cb9f7`), per house discipline — full parameter tables, falsifiable bands (P-PHOTONICS-1..6, P-DIR-1/2, P-QUANTUM-1/2, P-DIR-3/4), idealizations, and cost note in `NOTES.md`.
+
+### Phase 4 — Test (exp-031, 2026-08-14)
+
+18 new FDTD calls (6 sweep + 9 quantum + 3 thermo attempt), ~13 min for the sweep+quantum legs (`ce214cd`). r=156 sweep runs measured 62–84s each (~1.6–2.1× the 39.6s/run baseline — the operational tripwire fired but stayed well inside budget). **The THERMO sidecar (P-DIR-4) did NOT complete** — two attempts, both diagnosed in full in `NOTES.md`'s erratum (see Phase 5, THERMODYNAMICS' independent sharpening of the root cause). Deferred, not silently dropped.
+
+**Every other prediction ran and is scored, all figures computed in code (`run.py::run_fit`):**
+
+| Prediction | Predicted | Measured | Verdict |
+|---|---|---|---|
+| P-PHOTONICS-4 (safety diagnostic) | flank dev ≤5% | max 0.05%/0.02% | **CONFIRMED**, ~100× inside band |
+| P-PHOTONICS-1 (PEC ripple, ≥2 reversals) | ≥2 per r | **0 at both r** | **REFUTED** |
+| P-PHOTONICS-2 (absorber ripple, ≤3) | ≤3 | 0 at both r | inside band, cleaner than predicted |
+| P-PHOTONICS-3 (κ²-matched cross-check) | ≤0.03 | **0.00044** | **CONFIRMED**, ~68× inside band |
+| P-DIR-1 (core-correction delta) | [0.02,0.10] | **6.8×10⁻⁶** | **NEGLIGIBLE, far below predicted range** |
+| P-DIR-2, PEC (dual-law agreement) | ≤0.02 | **0.00314** | **CONFIRMED** (structurally guaranteed, per EM — not evidence of hypothesis truth) |
+| P-DIR-2, absorber (dual-law disagreement) | >0.05 | **0.2203** | **CONFIRMED**, worse than the original 0.132 |
+| P-QUANTUM-1 (C(156,σ-held)) | [−0.0145,−0.0100] | **−0.012361** | **CONFIRMED** to 3 digits |
+| P-QUANTUM-2 (g floor-corrected≈0.69) | within 15% | **0.69685** | **CONFIRMED** within ~2% |
+| P-DIR-3 (ladder score) | MARGINAL | **MARGINAL** | **CONFIRMED** |
+
+**T12's own central hypothesis test came back a clean NULL — zero significant sign reversals anywhere, in any of the four (r,article) sweeps** — directly refuting P-PHOTONICS-1's own band. **P-DIR-1 (Fix 1's core-correction delta) is a clean, load-bearing, GOOD-NEWS result**: 6.8×10⁻⁶, five orders of magnitude below "negligible" — independently reproduces T9's established "core is incidental" finding via a completely new channel. **T13 remains genuinely unresolved for the absorber, and got worse, not better**: the corrected article's own dual-law disagreement (0.220) exceeds the original uncored/longer-baseline comparison (0.132). **QUANTUM's g-calibration gap closes** at the one new point: floor-corrected g=0.697, within 2% of both established endpoints.
+
+### Phase 5 — Review (six fresh seats, blind, verbatim)
+
+#### PHOTONICS
+
+**Reading:** Reproduced every scored number via `run.py::run_fit`. Went past the aggregate reversal counters into the raw `C_by_plane_dx` sequences: the r=78 cored-absorber row is not actually monotonic — a genuine local minimum at PLANE_DX=15 (diffs ±0.00025), correctly excluded from the significant-reversal count (8× below the 0.002 floor) but slightly stronger framing than the raw data fully supports.
+
+**Physical meaning:** T12's clean null is expected on the axis actually tested (standoff at fixed r is a smooth function of N_F, no reason to expect zone-crossing reversals from that alone) — P-PHOTONICS-3's cross-check (0.00044) shows C is governed by N_F alone to 4 decimals, a real scaling law, but this sweep never tested a second independent r at fixed N_F beyond that one point. **T13: the absorber's ceiling-law fit has exponent p=−0.148 — NEGATIVE, meaning it structurally diverges away from −1 rather than approaching it as z/z_R→0** — not curve-fitting noise, forced by the raw data (|C| shallows from r=78 to r=156). This is the exact tension the Director flagged in Iteration 7's finding e2, now confirmed on independent, corrected, shorter-baseline data — the core fix didn't touch it, and it isn't a floor artifact.
+
+**Argued next change:** Replace the exactly-fit 2-point comparison with a genuinely over-determined C(r) curve for the cored absorber (add r=110, 220; extend the core fix to r=312) — the only way to tell whether the shallowing is a real non-monotonic feature or a 2-point artifact.
+
+**Ranked top-3:** (1) Multi-point cored-absorber r-sweep. (2) A genuine r-family ripple test for PEC near r≈270–350 (still never executed). (3) State the ceiling-law exponent's sign explicitly as a diagnostic in future T13 work.
+
+#### MATERIALS & METAMATERIALS
+
+**Reading:** Diffed the two experiments' scene-construction code directly — Red Team's Phase-2 catch is real and correctly characterized. Verified σ_max_shell(r)=0.5/κ(r) holds τ_shell=24.0 fixed across the family.
+
+**Physical meaning:** The core-correction null is a real, positive materials-engineering finding, not just hygiene: the shell's own τ_shell=24 means essentially no power reaches r<r_in regardless of interior structure — corroborates MATERIALS' own Iteration-7 note that a solid-backed construction is also more physically representative of a real witness-scale absorber. But this cycle does NOT touch the realizability bound itself — the self-similar shell's absolute-thickness scaling (0.31–0.92m at witness scale, Iteration 7's UNOBTAINIUM figure) is exactly where Iteration 7 left it. T13's worsened absorber-side disagreement (0.220 vs 0.132) rules out the tempting reading that the missing core was contaminating the extrapolation instability.
+
+**Argued next change:** Build the fixed-absolute-thickness `graded_black_shell` variant (r_in(r)=r−48, held constant) — MATERIALS' own queued Iteration-7 item, now well-motivated.
+
+**Ranked top-3:** (1) Fixed-absolute-thickness shell variant. (2) A real-material-mapped absorption-coefficient check against published CNT-forest figures. (3) Extend the core-correction check to r=312.
+
+#### ELECTROMAGNETISM
+
+**Reading:** Reproduced every number bit-for-bit. Traced the raw diffs behind the reversal counts — a real, non-noise-selected sign flip exists at r=78's PLANE_DX 22→15 (−0.000246), simply below the floor.
+
+**Physical meaning:** P-PHOTONICS-3 licenses treating the PLANE_DX sweep and the original r-family axis as the same physical parameter (N_F) — **but the original PEC non-monotonicity turns over between r=156 and r=312, i.e. N_F∈[81.1,324.5], and this sweep's densest point anywhere is N_F=110.6** — it covers only the low end and never approaches 324.5. The clean null is real but locally scoped — it rules out ripple in a region where the original reversal was never observed, and says nothing about the region where it was. A genuine new finding: PEC deepens monotonically toward −1 as standoff shrinks (expected, hard-edge near-field-to-shadow convergence); the absorber does the reverse at both r — shallows approaching the object, reproducing the same wrong-direction-asymptote structural anomaly the Director flagged in Iteration 7.
+
+**Argued next change:** Extend the r=156 PLANE_DX sweep to N_F≈300+ (one new run) — closes the gap between what was tested and the region that actually needs explaining.
+
+**Ranked top-3:** (1) Extend the r=156 sweep to N_F≈300+. (2) Characterize the PEC-vs-absorber directional asymmetry via a radial-ledger companion. (3) Re-derive `RIPPLE_NOISE_FLOOR` natively for this same-capture-re-sliced channel.
+
+#### THERMODYNAMICS
+
+**Reading:** My own accepted flip did NOT land. Independently sharpened the diagnosis beyond NOTES.md's own account: `dg030.GEOM[156]` has no `ref` field at all — the improvised `ref=(cx,cy,r)` was never validated and produced a NEGATIVE reference intensity (i_inc=−0.258), meaning every downstream number (including PEC's own σ_scat=−646, a lossless-scatterer sanity violation) is uninterpretable, not merely off. The committed `results.json` contained this garbage block unlabeled — a real gap against "flag, don't silently rewrite," now corrected (see Director's close). No trust-suite gate exists for this scene class.
+
+**Physical meaning:** P-DIR-1 stands as a real, corroborated energy-bookkeeping result independent of the sidecar's failure — two independent channels (this cycle's ambient contrast; exp-027/028's radial-binned box-ledger power) agree the core is energetically incidental.
+
+**Argued next change:** Build the missing trust-suite stage for this scene class (box-independence + PEC lossless-null gate) before any further P-DIR-4 attempt — a PANEL.md house-rule gap, not just an unlucky time-budget miss.
+
+**Ranked top-3:** (1) Trust-suite stage for the ambient/line-source box-ledger channel. (2) Re-attempt P-DIR-4 only after (1) passes. (3) Fold into T11's own still-open floor characterization.
+
+#### QUANTUM OPTICS
+
+**Reading:** Confirmed every number bit-for-bit, including a cross-check NOTES.md didn't state: r=78's/312's own δ_C floors are 4–5× smaller than r=156's, so the comparison anchors were already close to floor-clean — strengthening the case that the floor-correction's post-correction agreement is real, not rigged.
+
+**Physical meaning:** The floor-correction smuggles exactly one assumption — linear-response weak-perturbation superposition, valid because τ=0.016 keeps |C|~1% (second-order terms negligible). This is NOT licensed for PEC/absorber (|C|~0.83–0.99) — the correction correctly is never applied there, but NOTES.md never states why. The pre-committed prediction (−0.01226, additive/object-independent) landed within 0.0001 of measured — a real, falsifiable, in-advance test that passed, stronger than Red Team's own Iteration-7 e1 finding (post-hoc). For T1: floor-corrected, the σ-held/τ-held divergence collapses to noise-level at the ONE new point tested — good news, conditional on the assumption holding at higher τ or r=312 (untested).
+
+**Argued next change:** Directly test the linear-response boundary — a σ-held sponge at moderately higher τ to find where floor-correction stops tracking g flat.
+
+**Ranked top-3:** (1) Test the linear-response boundary at higher τ. (2) An independent, non-empty-scene estimate of the r=156 δ_C mechanism's object-dependence. (3) Extend T13/e2-style skepticism to this finding before it hardens into doctrine.
+
+#### VISION SCIENCE
+
+**Reading:** Audited my own Phase-2 fixes: Fix 1 (score explicitly) honored cleanly. Fix 2 (diagnostic-only labeling) honored structurally but unevenly presented — never restated at the two most rhetorically strong paragraphs (P-DIR-1's "GOOD-NEWS," T13's "case for caution stronger"), a documentation-consistency gap, not a scoring-integrity violation.
+
+**Physical meaning:** MARGINAL is a real, previously-pinned perceptual regime (between the lab and field bars), not a hedge. This is the third independent point (exp-026, exp-030, exp-031) at which a σ(I) OFF-state article has scored MARGINAL or worse — zero PASSes, any r, either convention. The g-calibration closure (≈0.68–0.70 across 3 scales, 2 conventions) means this MARGINAL verdict is a property of the material class, not an instrument artifact still hunting its true value.
+
+**Argued next change:** Docket #7 stays deprioritized behind T13 (this cycle reconfirms Red Team's Iteration-7 call — the witness-scale C candidate just got LESS trustworthy, not more). Instead: locate the actual σ(I) PASS boundary (τ_off≈0.0065, one new run) — my own Iteration-7 #2 pick, still unbuilt three cycles later.
+
+**Ranked top-3:** (1) One new σ(I) OFF-state run at τ_off≈0.0065, scored against the ladder. (2) Close the diagnostic-only labeling gap in NOTES.md. (3) Hold docket #7 behind T13, explicitly, again.
+
+#### RED TEAM (audit, verdict: **PARTIAL**)
+
+*Independently reproduced every scored number via `run.py::run_fit`, plus went beyond every seat: checked the geometric feasibility of the proposed follow-ups and the live code behind the failed sidecar.*
+
+**Verdict: PARTIAL, trending toward informative-but-non-advancing.** Not RULED OUT; not PROMISING — constraint 3 gained zero ground this cycle.
+
+**1.** THERMO's erratum was, by the time of this audit, already correctly quarantined and flagged in both `results.json` and `NOTES.md` — no further erratum required. **But the LIVE code (`run.py::run_thermo`) still defines `ref=(cx,cy,r)`, the confirmed-wrong root cause, unchanged** — a future re-attempt will almost certainly reproduce the identical failure. **Fixed this shift**: a `NotImplementedError` guard added to the function, naming the exact defect.
+
+**2. The absorber's "wrong-direction asymptote" is the single most decisive finding of this cycle and deserves program-level naming.** PHOTONICS (negative ceiling-law exponent) and EM (negative sqrt-law slope) found the SAME raw fact through two independent functional forms — the exact pathology Iteration 7's finding e2 first named, now reproduced on a corrected construction and a different, shorter baseline: three independent axes of confirmation (construction, baseline, functional form).
+
+**3. A genuinely new finding, caught by none of the six blind reviews:** EM's/PHOTONICS' shared "cheap fix" (extend PLANE_DX to N_F≈300+) requires PLANE_DX≈3.75 cells (0.19λ) — well inside the object's own reactive near field, a regime this program's diagnostics have never validated, where the Fresnel-ripple model may not even apply. Tips the Iteration 9 queue toward PHOTONICS' costlier but structurally correct r-family sweep.
+
+**4.** NOTES.md's closing g-calibration language ("strengthened as a robust, scale-independent quantity") overclaimed relative to QUANTUM's own review — corrected this shift (see Director's close).
+
+**5. Minor:** the cited "0.011" background figure (P-PHOTONICS-5/6) does not independently reproduce (0.0029–0.0055 under Red Team's own recompute) — flagged, not gated, qualitative conclusion survives.
+
+**Checkpoint assessment:** Criterion 4 does not fire. Criterion 5 does not fire on the letter — **but Red Team flags the spirit explicitly**: Iterations 4 through 8 — five straight cycles — are instrument/reconciliation/audit work; Iteration 3 was the last to test an actual σ(I) candidate. VISION's τ_off≈0.0065 PASS-boundary run has been the top Phase-5 pick for three consecutive iterations without being built. Surfaced as a direction check for Marsh, not a violation.
+
+**Red Team's own ranked top-3:** (1) VISION's τ_off≈0.0065 PASS-boundary run — three iterations overdue, the only item on any list that could move constraint 3's status rather than characterize the instrument. (2) PHOTONICS' multi-point cored-absorber r-sweep. (3) THERMO's trust-suite stage for the ambient box-ledger channel. **Explicitly deprioritized:** EM's PLANE_DX extension as a primary fix (per finding 3, likely infeasible); MATERIALS' fixed-thickness variant (secondary until PHOTONICS' r-sweep establishes whether the C(r) anomaly is even real).
+
+### Director's close of Iteration 8
+
+**VERDICT: PARTIAL**, adopting Red Team's own explicit ruling. Real deliverables landed: Red Team's own load-bearing Phase-2 catch (the missing PEC core) was fixed and found QUANTITATIVELY NEGLIGIBLE (6.8×10⁻⁶) — good news, independently corroborating T9 via a new channel; T12's dense sweep came back a clean, if scope-limited, null; QUANTUM's g-calibration gap closed at one point in the weak-perturbation regime. Against that: **T13 remains genuinely unresolved for the one article that matters, and got worse, not better** — the absorber's dual-law disagreement (0.220) exceeds the original (0.132), and the "wrong-direction asymptote" pathology first named in Iteration 7's finding e2 is now confirmed on independent construction, baseline, and functional-form grounds (PHOTONICS + EM, Red Team-elevated to program-level significance). The THERMO sidecar did not land — diagnosed twice, root cause pinned by THERMODYNAMICS' own Phase-5 review and confirmed by Red Team, live code now guarded against a silent repeat.
+
+**Corrections made this shift, per house convention (flag, don't silently rewrite):** (1) THERMO's garbage numeric block relocated from `results.json['thermo']` to `results.json['thermo_attempt1_INVALID']` with an explicit erratum note; NOTES.md's own Results section carries the matching erratum, sharpened at Phase 5 to name the true root cause (`ref`, not just `box`). (2) `run.py::run_thermo` guarded with a `NotImplementedError` naming the confirmed-wrong `ref` convention, so a future re-attempt cannot silently reproduce the identical failure. (3) NOTES.md's closing g-calibration language ("strengthened as a robust, scale-independent quantity... across BOTH families") corrected to state the linear-response/weak-perturbation licensing condition explicitly and restrict the claim to the one new floor-corrected point tested, per QUANTUM's own Phase-5 review and Red Team's confirmation.
+
+**Program-integrity statement, adopting Red Team's own framing:** this cycle characterized its instruments honestly, including surfacing its own bad news (T13 worse, not better; THERMO failed twice) — real, verified negative and reconciliation results, not the kind of drift Checkpoint 4 exists to catch. But **Iterations 4 through 8 are five consecutive cycles of instrument/reconciliation/audit work, with no new σ(I) candidate tested against constraint 3 since Iteration 3 (exp-026)**. VISION's cheapest, most directly mechanism-relevant proposal — one new run at τ_off≈0.0065 to locate the program's own predicted PASS boundary (g≈0.68–0.70) — has been the top-ranked Phase-5 pick for three consecutive iterations (7, 8) without being built. This is surfaced here explicitly, per Red Team's own recommendation, as a direction check for Marsh — not a Checkpoint violation (neither criterion 4 nor 5 fires on the letter) — and as a binding priority for Iteration 9's own queue: it must not be deprioritized a fourth time.
+
+**LOGBOOK updated:** T12 narrowed but not closed — the tested region (N_F∈[8,110]) does not overlap the region that actually needs explaining (N_F∈[81,325] at the r=156→312 boundary); a genuine r-family sweep (PHOTONICS' pick), not a denser PLANE_DX sweep at fixed r (EM's pick, likely infeasible per Red Team), is now the correct next test. T13 sharpened, not closed: the wrong-direction-asymptote pathology (Iteration 7's finding e2) is elevated from a single-cycle anomaly to a three-axis-confirmed, program-level open question — renamed **T14** below for direct tracking. T9's core-incidental finding gains a second, independent confirming channel. T1's g-calibration gains one new floor-corrected point, explicitly scoped to its weak-perturbation regime, not overclaimed program-wide.
+
+**New live thread T14 — the absorber's wrong-direction asymptote.** `graded_black_shell`'s contrast does not deepen toward geometric-shadow completeness (C→−1) as the measurement plane approaches the regime where ray optics should dominate — confirmed on two independent (r=156,312) and (r=78,156) baselines, both the original uncored and this cycle's corrected construction, and via two independent functional-form diagnostics (sqrt-law slope sign, ceiling-law exponent sign). No mechanism proposed yet. Candidate for Iteration 9: PHOTONICS' multi-point cored-absorber r-sweep (own Phase-5 pick) is the most direct test — does the shallowing continue, reverse, or saturate with more r-points?
+
+**Next lead per rotation: MATERIALS** (Iteration 9). Queue, Red-Team-ranked, binding priority order per this shift's own program-integrity finding: (1) **VISION's τ_off≈0.0065 σ(I) PASS-boundary run** — three iterations overdue, must not be deprioritized again. (2) PHOTONICS' multi-point cored-absorber r-sweep (r≈78,110,156,220,312 at fixed PLANE_DX=15, θ=0) — resolves T14 and closes the r=312 core-correction gap, cost-gated per Iteration 7's own r=312 precedent (pilot before committing). (3) THERMODYNAMICS' trust-suite stage for the ambient/line-source box-ledger channel, prerequisite for any further P-DIR-4 attempt. Lower priority, inherited: MATERIALS' fixed-absolute-thickness shell variant (secondary until (2) resolves whether the C(r) anomaly is real); a genuine PEC r-family ripple test near r≈270–350 (still never executed, T12's own real open half); Iteration 6's still-queued incoherent-ensemble/phase-quadrature idiom.
+
+Panel stats (Phase 5): 6 seats read blind + Red Team audit · zero gated predictions overturned · one erratum already self-corrected before the audit, one live-code defect the audit caught that the erratum missed (now guarded) · one background figure found not to independently reproduce (flagged) · one cross-seat synthesis elevated to a new tracked live thread (T14) · one proposed follow-up found geometrically infeasible as stated · program-integrity flag raised explicitly (five consecutive non-mechanism iterations) as a binding Iteration-9 priority, not a Checkpoint violation.

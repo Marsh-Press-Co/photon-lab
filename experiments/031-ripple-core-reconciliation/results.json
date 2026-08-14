@@ -118485,26 +118485,6 @@
       }
     }
   },
-  "thermo": {
-    "pec": {
-      "sigma_scat": -646.1072583586919,
-      "sigma_abs": -0.048498077681609485,
-      "sigma_ext": -646.1557564363735,
-      "sigma_ext_cross": -646.1541450937741,
-      "back_frac": 0.48627400604023663,
-      "fwd_frac": 0.2567518676425397,
-      "i_inc": -0.2582282992802741
-    },
-    "absorber": {
-      "sigma_scat": -231.5800198960117,
-      "sigma_abs": -248.52976837346895,
-      "sigma_ext": -480.10978826948065,
-      "sigma_ext_cross": -480.1081769268812,
-      "back_frac": 0.9963132194009626,
-      "fwd_frac": 1.3792988756689852e-08,
-      "i_inc": -0.2582282992802741
-    }
-  },
   "fit": {
     "sweep_analysis": {
       "78": {
@@ -118644,6 +118624,29 @@
       "g_78_established": 0.6847665044447171,
       "g_312_established": 0.693595175811213,
       "ladder_verdict": "MARGINAL"
+    }
+  },
+  "thermo_attempt1_INVALID": {
+    "note": "Erratum (Phase 5, THERMODYNAMICS catch, independently verified): this block is residue from the FIRST, broken thermo attempt (dg030.GEOM[156][\"box\"], a field grepped-confirmed unused anywhere in exp-030 own code). i_inc is NEGATIVE (-0.258) for both articles and PEC sigma_scat=-646 is a lossless-scatterer sanity violation -- the reference-intensity strip (ref=(cx,cy,r), r=156) was itself invalid, not just the box, so no number below is physically meaningful. Left here, clearly labeled, rather than deleted, per house convention (flag, dont silently rewrite). The THERMO sidecar (P-DIR-4) is DEFERRED, not completed -- see NOTES.md Results section.",
+    "data": {
+      "pec": {
+        "sigma_scat": -646.1072583586919,
+        "sigma_abs": -0.048498077681609485,
+        "sigma_ext": -646.1557564363735,
+        "sigma_ext_cross": -646.1541450937741,
+        "back_frac": 0.48627400604023663,
+        "fwd_frac": 0.2567518676425397,
+        "i_inc": -0.2582282992802741
+      },
+      "absorber": {
+        "sigma_scat": -231.5800198960117,
+        "sigma_abs": -248.52976837346895,
+        "sigma_ext": -480.10978826948065,
+        "sigma_ext_cross": -480.1081769268812,
+        "back_frac": 0.9963132194009626,
+        "fwd_frac": 1.3792988756689852e-08,
+        "i_inc": -0.2582282992802741
+      }
     }
   }
 }

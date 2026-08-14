@@ -167,6 +167,28 @@ def run_thermo():
            cy - r - clearance, cy + r + clearance)
     ref = (cx, cy, r)
 
+    # GUARD (Phase-5 Red Team catch, independently verified, not fixed by
+    # either of this cycle's two attempts): `ref`'s half-height (=r=156)
+    # is the ACTUAL root cause of the negative-i_inc failure quarantined
+    # in results.json['thermo_attempt1_INVALID'] -- THERMODYNAMICS' own
+    # Phase-5 finding, confirmed by Red Team -- and it is UNCHANGED here.
+    # Only `box`'s clearance differs between attempt 1 and this code.
+    # sections.widths()'s own docstring: `ref` must be a strip narrower
+    # than the object, centered on a locally well-defined incident
+    # direction (the BEAM_GEOM convention uses half-height ~60*kappa, well
+    # inside the object) -- this ambient/line-source/theta=0 scene class
+    # has never had a validated ref convention derived for it. Re-running
+    # this function as committed will almost certainly reproduce the
+    # identical failure. DO NOT remove this guard without first deriving
+    # (not guessing) a correct `ref` for this scene class -- see NOTES.md
+    # Results section erratum and Iteration 8 Phase-5 Red Team audit,
+    # ranked-top-3 item 3 (trust-suite stage for this box-ledger channel).
+    raise NotImplementedError(
+        "P-DIR-4 thermo sidecar: ref=(cx,cy,r) is the confirmed-wrong "
+        "root cause (negative i_inc), not just the box. Derive a valid "
+        "ref for this scene class (and a trust-suite gate) before "
+        "re-attempting -- see the guard comment above.")
+
     def recap(article):
         return one_run(article, 0.0, r)
 
