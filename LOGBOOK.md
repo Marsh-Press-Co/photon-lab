@@ -3090,3 +3090,437 @@ measured floor (decisively null); T10's established 6.49% spread sits
 **Checkpoint-4 tripwire: does NOT fire.** The r=156 build executed in
 full, exactly as hard-committed at Iteration 5's close.
 
+### Phase 5 — Review (six fresh seats, blind, verbatim)
+
+#### PHOTONICS
+
+**Reading:** Independently re-derived z/z_R, x=√(z/z_R) (exactly halving
+at each κ-doubling by construction — x78:x156:x312 = 4:2:1, a fact worth
+stating explicitly since it means the shape-ratio bands 2.00/4.00 are
+forced by geometry, not physics), the fit arithmetic for both articles
+(B=0.032401/C_inf=−0.734053 absorber; shape ratio −0.635 PEC, confirming
+C(312) is genuinely shallower than C(78)), R-gate values, and T9/T10
+floor ratios — all confirmed against `results.json`. Flagged: the δ_C
+floor readings are consistently negative (not sign-random) at every r —
+possibly a small systematic (a fringe-bias direction), worth eventual
+attention (later shown by Red Team's own audit to explain most of the
+sponges' apparent r=156 excursion — see Red Team, below).
+
+**Physical meaning:** PLANE_DX fixed at 15 cells while r doubles twice
+means the Fresnel number N_F=r²/(λ·PLANE_DX) runs 20.3→81.1→324.5 (factor
+16) — at these N_F, near-field diffraction from a HARD sharp-edged
+scatterer is Fresnel-fringe/Cornu-spiral ripple with parametric period
+ΔN_F~1; three points spaced factor-4 apart under-sample an oscillation.
+Two reasons PEC shows this and the absorber doesn't: (1) the graded
+shell is an apodized (soft) edge — apodization is the standard technique
+for suppressing Fresnel ripple; PEC is maximally hard; (2) PEC's curved
+boundary supports an undamped creeping/surface wave the absorber's heavy
+loss (∫σ dr=24) kills. The R-gate (normal-incidence, flat-wall) never
+tests the TANGENTIAL rim-transmission geometry (T9's established
+mechanism) that governs the ambient C metric — the R-gate passing and the
+absorber's own shape-ratio miss (5.33, outside both candidate bands) are
+not in tension; they test different regimes.
+
+**Argued next change:** A PLANE_DX standoff sweep at r=156, PEC only,
+reusing already-captured full fields (near-zero marginal cost) to
+directly test the Fresnel-fringe hypothesis, alongside the R3-mandatory
+cpl×1.5 check.
+
+**Ranked top-3:** (1) PLANE_DX standoff sweep. (2) cpl×1.5 resolution
+check on PEC C(r). (3) Rim/chord-transmission companion measurement for
+the absorber via exp-028's radial ledger machinery at r=156/312.
+
+#### MATERIALS & METAMATERIALS
+
+**Reading:** Verified `sigma_max_shell(r)=0.5/κ` and its printed
+assertions correctly hold τ_shell=24.0 constant at all three r; own
+Phase-2 realizability caveat confirmed still on record, unresolved;
+spot-checked R-gate/fit/T9-T10 numbers, all matching (later found by Red
+Team to contain a real unit error — see Red Team, below).
+
+**Physical meaning:** The clean R-gate pass does NOT resolve the
+realizability gap — it confirms the fix does what it was numerically
+designed to do (hold τ_shell constant), not whether any physical process
+can realize σ(r)~1/κ over a thickness~κ at witness scale. If anything
+sharpens the gap: the optics now has a concrete measured target
+(C_∞≈−0.734 over a τ_shell=24 shell) no real coating technology supplies
+(real ultra-black = fixed ABSOLUTE thickness independent of substrate
+size, the opposite scaling law). PEC's non-monotonicity is outside
+MATERIALS' charter — no subwavelength structure involved, doesn't change
+PEC's "trivially published" tier.
+
+**Argued next change:** Build the fixed-ABSOLUTE-thickness
+`graded_black_shell` variant (own Phase-2 flip, correctly not adopted
+for Block 1's own fit, now well-motivated as its own comparison article
+now that the self-similar version's optics is fully characterized).
+
+**Ranked top-3:** (1) Fixed-absolute-thickness shell variant. (2) A
+real-material-mapped ultra-black witness prediction (e.g. CNT-forest
+thickness). (3) A fabrication-tolerance footnote on PEC's rim once the
+non-monotonicity mechanism is resolved.
+
+#### ELECTROMAGNETISM
+
+**Reading:** Independently re-derived z/z_R, x_bridge, the exact 2-point
+fit solve for both articles (matching results.json to 6 sig figs), and
+the witness extrapolation values — all confirmed.
+
+**Physical meaning — does PEC's non-monotonicity violate T1?** No:
+passivity bounds energy-exchange sign/magnitude, not spatial
+monotonicity; reciprocity constrains source-observer symmetry at ONE
+fixed geometry, not across a varied-r family; causality (transient
+time-ordering) is actually MOOT for this steady-state instrument — worth
+flagging as unexercised, not "satisfied." Named the mechanism: classical
+Fresnel-zone/boundary-diffraction-wave (Rubinowicz-Maggi) theory for a
+hard-edged circular obstacle — the Poisson-Arago-spot family. Fresnel
+number N=z_R/z=r²/(λ·PLANE_DX) runs 20.3/81.1/324.5 (independently
+matching PHOTONICS via a different route — boundary-diffraction-wave
+theory vs. direct edge-sharpness argument). Because PLANE_DX is fixed
+while r doubles, N jumps ~4× per step — aliasing of a ripple with period
+ΔN~1; three points spaced 60–240 ripple periods apart cannot distinguish
+smooth-monotone from randomly-phase-sampled oscillation. States
+P-VISION-1's miss≤0.03 gate is NOT a monotonicity test and should not be
+read as validating the functional form for PEC; a 4th κ-doubled r-point
+has no knowable predicted sign from the current fit — explicitly
+contradicts trusting C_pred(witness) for PEC.
+
+**Argued next change:** Dense PLANE_DX sweep at FIXED r=78 (cheapest,
+reuses existing domain) rather than another expensive r-family point.
+
+**Ranked top-3:** (1) PEC/absorber dense-PLANE_DX sweep at r=78. (2) A
+fine-step PEC-only r-sweep near r≈270–350. (3) Relabel the fit as a
+"ripple-blind monotone envelope ansatz," not "the extrapolation law," in
+code/LOGBOOK; mark C_pred(witness) for PEC specifically as
+provisional/untrusted.
+
+#### THERMODYNAMICS
+
+**Reading:** Independently re-derived all six T9/T10-vs-floor ratios by
+hand from raw box_dev/T9/T10 values — all confirmed to 5+ sig figs; also
+re-derived the T11-internal ratios (1.85× growth, 1.03× r-independence)
+— both confirmed exactly.
+
+**Physical meaning:** box_dev has NO energy-bookkeeping story — it's a
+same-run, two-closed-surface Poynting comparison of the IDENTICAL field;
+Poynting's theorem forces σ_ext(A)=σ_ext(B) exactly in the continuum for
+a source/loss-free annulus between the boxes, so the entire nonzero
+reading at every r/cpl is a discretization/staircase artifact, not a
+physical channel. Own Phase-2 methodological objection (box_dev is a
+same-run/cross-box quantity poorly suited to floor T9/T10's
+cross-run/cross-article comparisons) STANDS UNCHANGED as a construction
+argument, but its practical bite is blunted here because both T9
+(234–446× below) and T10 (93–178× above) sit far enough from the floor
+that the choice of floor instrument doesn't matter for THESE two
+verdicts — would not extend that comfort to a future comparison landing
+within an order of magnitude of box_dev's own value. The T11 R3 anomaly
+(1.85× growth) reinforces rather than retires the original objection: a
+"floor" that itself moves 1.85× under resolution refinement isn't a
+settled number even for the wrong-instrument-class job.
+
+**Argued next change:** Build a dedicated same-box/cross-resolution
+floor (own Iteration-5 pick, still unbuilt) — a third cpl point, a second
+independently-placed box pair (separating resolution-sensitivity from
+placement-sensitivity), reporting the floor as a range not a point.
+
+**Ranked top-3:** (1) Dedicated multi-point multi-box-pair box_dev floor
+characterization. (2) An energy-conservation-flavored resolution check
+specifically for PEC (lossless, so its non-monotonicity is pure elastic
+interference with no absorption to damp standing-wave structure — a
+candidate PHYSICAL, not artifact, explanation). (3) The still-missing
+analytic thermal sidecar for the now witness-scale-characterized
+absorber.
+
+#### QUANTUM OPTICS
+
+**Reading:** Verified the struck §3 sentence stayed struck; verified
+σ_off_lab/off_field still hold τ fixed unchanged; independently checked
+fit/floor/t11/t9_t10 values against results.json — all confirmed.
+
+**Major finding:** τ_off_field/τ_off_lab = 0.032/0.008 = 4 EXACTLY
+equals κ(312)=312/78=4 — meaning σ_off_lab(78) and σ_off_field(312) are
+IDENTICAL. The already-collected off_field-at-r=312 run IS, exactly, the
+σ-held-fixed-at-off_lab-value scale-transfer measurement — zero new runs
+needed. Reading it that way: the σ-held case deepens ~4.05× (tracking
+τ's own 4× growth almost linearly), roughly 50–70× LARGER in relative
+terms than the confirmed-scale-robust τ-held family's own Δ (a figure
+Red Team's own audit later corrected to ~35–55×, see below — the
+qualitative conclusion survives). Conclusion: σ-held media are NOT
+scale-robust, unlike the τ-held diagnostic family — a real, currently-
+unclosed gap in T1's g=|C|/τ calibration.
+
+**Argued next change:** Build ONE new run (σ-held-fixed family @ r=156
+only, τ_center=0.016) to complete a 3-point fit — the r=78 and r=312
+points for this family already exist for free.
+
+**Ranked top-3:** (1) The one new r=156 σ-held run + recompute T1's g
+under this convention. (2) Resolve PEC's non-monotonicity before
+trusting any witness-scale PEC number or g-calibration leaning on PEC's
+shape. (3) Re-derive/re-state T1's τ_on/τ_off/g window with its scaling-
+convention assumption (τ-held vs σ-held) made explicit.
+
+#### VISION SCIENCE
+
+**Reading:** Independently reproduced C(78)=−0.72087 (absorber) and
+−0.86729 (PEC) V-weighted anchors bit-for-bit by hand from the raw
+per-λ fallback table; confirmed δ_C floor gates pass 4–20× inside the
+0.005 lab bar at both r=156 and r=312.
+
+**Scored the corrected anchors against own frozen thresholds:** absorber
+FAILs photopically by 36.0×/144.2× (field/lab bar) — deepened ~5% from
+the previous −0.684/−0.686 anchor, verdict unchanged. **The load-bearing
+new result — scored OFF-lab/OFF-field against the frozen ladder at
+every r:** OFF-lab (τ=0.008) is **MARGINAL at every r** (0.00548/0.00681
+/0.00579, none clears the 0.005 PASS line). OFF-field (τ=0.032) is
+**FAIL at every r** (0.02174/0.02336/0.02220, all above the 0.02 field
+bar). Stated plainly: *"this bench has never yet produced a
+configuration that photopically clears constraint 3, even at its most
+permissive tier, even at the weakest OFF-state article deliberately
+designed to straddle that exact bar."* g=|C|/τ≈0.62–0.69 implies a
+weaker OFF-state (τ~0.006–0.007) would plausibly clear PASS — not yet
+built. PEC's wobble (~0.004 absolute) scored perceptually NULL on two
+grounds: detection is saturated at |C|~0.87 (nowhere near 0.005/0.02);
+suprathreshold discrimination Weber fractions at high pedestal contrast
+(~10–20%, Legge & Foley 1980; Nachmias & Sansbury 1974) are 20–40× larger
+than the wobble.
+
+**Argued next change:** Docket #7 (witness-scenario table + glare/
+adaptation sidecar) is now urgent and unblocked — the scale-bridge check
+it was waiting on is done cleanly at both new geometries (later
+qualified by Red Team's own audit — see below).
+
+**Ranked top-3:** (1) Execute docket #7 in full. (2) Locate the actual
+σ(I) OFF-state PASS boundary (τ~0.006–0.007 follow-up). (3) R3
+resolution check on PEC (low priority for this seat specifically, no
+perceptual consequence either way).
+
+#### RED TEAM (audit, verdict: **PARTIAL**)
+
+*Independent verification against `results.json`/code, not any seat's
+prose.*
+
+**(a) QUANTUM's τ_off_field/τ_off_lab=κ(312)=4 claim — CONFIRMED exactly**
+(σ_off_lab(78) and σ_off_field(312) are bit-for-bit identical in double
+precision, not merely "to displayed precision"). **But the "50–70×
+larger" follow-on is an overstatement** — re-derived from the actual
+deltas, the correct range is **~35–55×** (36.8×/54.1× by the two natural
+readings), not 50–70×. Qualitative conclusion (σ-held media are NOT
+scale-robust) survives; the specific figure should be corrected.
+
+**(b) PHOTONICS'/EM's Fresnel-number arithmetic — CONFIRMED**
+(N_F=20.3/81.1/324.5, factor 16 exactly), the ΔN_F~1 ripple mechanism is
+physically legitimate, standard Fresnel-zone counting. **But EM's own
+derived ripple-period table has an arithmetic error**: Δr(r=312) should
+be **0.48 cells**, not the stated "0.24" (Δr∝1/r halves each step: 1.92→
+0.96→0.48, not →0.24 — EM's own second halving was computed as ÷4, not
+÷2). Doesn't undermine the qualitative recommendation but should be
+corrected before sizing any follow-up sweep at r=312. Separate caution:
+PHOTONICS' and EM's "independent convergence" on the Fresnel-ripple
+mechanism is two physics-literate readers reaching for the same standard
+textbook explanation — a real sanity check, not independently surprising
+corroboration; shouldn't be over-weighted.
+
+**(c) VISION SCIENCE's MARGINAL/FAIL table — all six cells verified,
+all correct**, against the frozen 3-tier rule.
+
+**(d) Two claims that don't hold up, beyond (a)/(b):** MATERIALS'
+realizability caveat ("0.6–1.9m thick shell") is not merely an
+unresolved radius-vs-diameter ambiguity as MATERIALS' own review frames
+it — **it's a real, repeated unit error in the committed NOTES.md
+record.** `WITNESS_R_M=(0.5,1.0,1.5)` is explicitly a radius by
+construction (`witness_z_over_zr(r_m)=z·λ/r_m²`, the same convention the
+whole bridge fit relies on); shell thickness = r_w·(1−30/78) =
+r_w·0.6154, giving **0.31–0.92 m**, not 0.6–1.9m (which only reproduces
+if r_w is wrongly read as a diameter). The "unobtainium" framing is
+roughly 2× too pessimistic; the honest figure is 0.31–0.92m — corrected
+in NOTES.md this shift, per house convention (flag, don't silently
+rewrite the original review text).
+
+**(e1, minor, caught by none of the six) The r=156 δ_C floor
+(−0.00121) is ~4.3× larger in magnitude than r=312's (−0.00028) —
+PHOTONICS flagged the sign-consistency but no seat connected this to the
+sponges' own apparent r=156 excursion.** Comparing each article's r=156
+reading against a linear interpolation of its own r=78/r=312 endpoints:
+the r=156 floor explains **97% of off_lab's** and **87% of off_field's**
+"excess deepening" at r=156, but only **38% of PEC's**. **The sponges
+likely aren't non-monotonic at r=156 at all — the apparent wobble is
+mostly instrument bias**, not a real signal (doesn't touch P-VISION-3's
+own gate, which correctly uses only the floor-clean 78/312 endpoints).
+Floor-corrected, off_lab@156 reads ≈0.0056 — much closer to the 0.005
+PASS line than the raw 0.0068 suggests. For PEC, the floor explains only
+~38% — consistent with the rest of the panel's Fresnel-ripple reading
+needing something additional on top, not instead.
+
+**(e2, major, caught by NONE of the six — the single most consequential
+finding of this Phase-5 review) This cycle's own witness-scale
+extrapolation contradicts the estimate that has justified building this
+thread across five iterations, and nobody said so.** T8's entire
+justification, cited repeatedly since Iteration 1: *"a beam-terminating
+LTI volume reads |C|≈0.98 at witness scale."* Re-running the committed
+fit across the FULL witness z/z_R band (not just the central value):
+absorber C_pred(witness) = −0.7337 to −0.7339; PEC = −0.8622 to −0.8627
+— **varying only in the 4th decimal across the entire band**, and
+landing 20–30 percentage points (in |C|) away from −0.98, nowhere close.
+Either EM's earlier informal −0.98 used a different (and not directly
+comparable) method, or the sqrt-law fit — already shown to fail its own
+shape-ratio discriminator and extrapolating 1.5–2.5 decades past
+calibration — isn't trustworthy this far out and −0.98 stands
+unchallenged. **Neither reconciliation appears anywhere in this cycle's
+own record.**
+
+**Program-integrity read:** the PASS/MARGINAL/FAIL licensing is
+procedurally sound (both gates P-VISION-F1/P-VISION-3 pass cleanly on
+the floor-clean 78/312 endpoints) — but VISION's own scoring shows every
+σ(I) OFF-state article ever built is MARGINAL or FAIL, zero PASSes
+anywhere. **The instrument's decidability improved; the physics did
+not.** Any close-out risks reading "PASS/FAIL now licensed" as progress
+*on* constraint 3 rather than the removal of an excuse for calling it a
+FAIL — must be stated explicitly, not implied.
+
+**Verdict: PARTIAL** (not RULED OUT — nothing forecloses a mechanism;
+not PROMISING — the central technical question this cycle exists to
+answer, does C(z/z_R) bridge cleanly to witness scale, comes back
+genuinely unresolved on three independent grounds: PEC's flat
+non-monotonicity, the absorber's own shape-ratio miss, and finding e2's
+unreconciled −0.98-vs−0.73 gap).
+
+**Red Team's own ranked top-3 (resolving cross-seat conflicts):** (1)
+EM's dense-PLANE_DX sweep at r=78 FIRST (cheapest, avoids this cycle's
+own κ³ cost blowup), run alongside PHOTONICS' r=156 companion sweep
+(near-zero marginal cost, reuses captured fields) — complementary, not
+competing. (2) **[New]** A same-day, zero-FDTD-cost desk reconciliation
+of finding e2 — locate EM's original −0.98 estimate's method and place
+it explicitly against this cycle's own C_pred_witness across the full
+band. (3) QUANTUM's one new r=156 σ-held run. **Explicitly deprioritizes
+VISION's own "docket #7 is urgent" ranking** — the scale-bridge output
+isn't yet trustworthy enough (per e2) to build a witness-scenario table
+on.
+
+**Checkpoint criterion 4: does NOT fire this cycle** (no unfalsifiable
+claim; constraint 3 was this cycle's central subject, not dropped;
+NOTES.md's own "Honest summary" is candid about the mixed result). **New
+tripwire recommended, on the record**: any future LOGBOOK/PLAN entry
+that (i) cites this cycle's witness-scale C_pred numbers without
+flagging their disagreement with the earlier −0.98 estimate (finding
+e2), or (ii) reuses PEC's fit/witness number, or box_dev as an
+established floor, before their respective open R3 checks resolve —
+should be read as a retroactive criterion-4 trigger.
+
+### Director's close of Iteration 7
+
+**VERDICT: PARTIAL**, adopting Red Team's own explicit ruling. The
+mandatory, five-times-deferred r=156 build **executed in full — the
+Checkpoint-4 tripwire does not fire.** Real deliverables landed: PASS/
+MARGINAL/FAIL language is now decidable on the program's near-threshold
+constraint-3 C values for the first time (both gates clean at r=156 AND
+r=312); T9 and T11 both close with their first floor-referenced
+verdicts. But the cycle's own central technical question — does a clean
+C(z/z_R) law bridge bench measurements to witness scale — comes back
+**genuinely unresolved**, on three independent, mutually-reinforcing
+grounds this Phase 5 surfaced: (1) PEC's flatly non-monotonic C(r),
+plausibly a Fresnel-zone/edge-diffraction ripple aliased by this
+family's factor-4 r-steps at fixed PLANE_DX (PHOTONICS and EM
+independently named the same mechanism by different routes — a real
+convergence, though Red Team correctly cautions it's two standard
+textbook readings agreeing, not independent surprise); (2) the
+absorber's own shape-ratio discriminator (5.33) falling outside both
+candidate power-law bands, meaning even its "clean" P-VISION-1 pass
+doesn't validate the functional form, only that a 2-parameter fit can
+land near a 3rd point; (3) **Red Team's own finding e2 — the single
+most consequential catch of this entire cycle, missed by all six blind
+Phase-5 seats**: this cycle's actual fitted witness-scale prediction
+(absorber −0.734, PEC −0.862, essentially FLAT across the entire
+committed witness uncertainty band) contradicts, by 20–30 percentage
+points, the |C|≈0.98 estimate that has justified prioritizing this
+exact thread across five iterations — and the two numbers were never
+set side by side anywhere in this program's record until Red Team's
+audit did it.
+
+**A fourth, physical reading of finding e2, added here by the Director
+and not claimed by any panel seat:** the fitted sqrt-law's own C_∞
+parameter (−0.734 for the absorber, −0.862 for PEC) is the model's
+z/z_R→0 (true far-field) asymptote — and physically, an opaque
+circular silhouette's contrast against a uniform background should
+approach C→−1 in that limit (complete geometric blockage along the
+line of sight), not saturate at a sub-unity value. A fitted C_∞ that
+sits well short of −1 and that the model cannot exceed *at any finite
+distance* (B is the "wrong sign" for the absorber, in the sense that
+increasing x only pulls C toward 0, never past C_∞) is a structural,
+not merely numerical, mismatch with the far-field physics the whole
+bridge was built to reach. This sharpens finding e2 into a testable
+claim: **either the two-term sqrt-law is missing a term that lets C
+continue deepening toward −1 as z/z_R→0 (meaning this cycle's witness
+predictions are simply wrong, in a diagnosable way), or the −0.98
+estimate itself rests on an idealization (e.g. a pure ray-optics/
+zero-diffraction limit) this near-field-calibrated fit was never going
+to reach — either way, a reconciliation is now the single highest-
+leverage open item this program owns, ahead of PEC's own non-
+monotonicity.**
+
+**Two corrections to the committed record, made here per house
+convention (flag, don't silently rewrite):** (1) MATERIALS' Phase-2
+realizability figure — the graded shell's self-similar construction at
+witness scale is **0.31–0.92 m thick, not 0.6–1.9 m** (a real unit
+error: witness radius was used correctly in the code but read as a
+diameter in the prose) — still comfortably in "unobtainium" territory
+for a coating, but the earlier framing overstated the case by roughly
+2×; corrected in `experiments/030-scale-bridge/NOTES.md`. (2) The
+sponges' apparent r=156 non-monotonicity is now read as **mostly
+instrument bias, not a real effect** — Red Team's floor-vs-endpoint
+comparison shows the r=156 δ_C floor explains 87–97% of each sponge
+article's own "excess deepening" there; PEC's own excursion is only
+~38% explained the same way, consistent with a real mechanism (Fresnel
+ripple) operating on top for PEC specifically, not in place of it.
+
+**Program-integrity statement, stated explicitly per Red Team's own
+demand:** PASS/FAIL language is now decidable — the instrument
+achievement is real and earned. **But no σ(I) OFF-state article this
+program has ever built has PASSed constraint 3 at any tier, at any
+scale tested.** OFF-lab is MARGINAL everywhere; OFF-field is FAIL
+everywhere. This cycle characterized the measuring instrument; it did
+not find, or bring closer, a working escape route. Any future summary
+of this cycle must carry that sentence, not merely "PASS/FAIL now
+licensed."
+
+**Checkpoint criterion 4: does not fire.** Red Team's proposed new
+tripwire is **adopted, binding for future shifts**: any LOGBOOK/PLAN
+entry that cites this cycle's witness-scale C_pred numbers without
+flagging the e2 discrepancy, or that treats PEC's fit/witness number or
+box_dev as a settled floor before their own R3 checks resolve, is a
+retroactive criterion-4 trigger.
+
+**LOGBOOK updated:** T9 and T11 both close with floor-referenced
+verdicts for the first time (T9 decisively null, T10 decisively real).
+**Two new live threads opened**: **T12 — PEC's non-monotonic C(r)**
+(candidate mechanism: Fresnel-zone/edge-diffraction ripple aliased by
+this family's r-doubling at fixed PLANE_DX; PHOTONICS/EM's own r=78/156
+standoff-sweep proposals are the pre-registered first test). **T13 —
+the witness-scale extrapolation discrepancy** (finding e2: this cycle's
+fitted C_pred(witness) ≈ −0.73/−0.86 vs. the program's own standing
+|C|≈0.98 estimate; the Director's far-field-asymptote reading above is
+the leading hypothesis for why, not yet tested). T11 itself stays open
+(the cpl×1.5 companion's own anomalous 1.85× growth, per Red Team's
+mandatory-floor-characterization pick, still unclosed).
+
+**Next lead per rotation: PHOTONICS (Iteration 8).** Merged queue,
+Red-Team-ranked: (1) EM's dense-PLANE_DX sweep at r=78 + PHOTONICS' r=156
+companion sweep, run together — the cheapest, most direct test of T12.
+(2) **T13's zero-cost desk reconciliation** — locate the original
+|C|≈0.98 derivation's method, place it explicitly against this cycle's
+own fit, ahead of any further scale-bridge extrapolation work. (3)
+QUANTUM's one new r=156 σ-held sponge run (T1's g-calibration gap).
+VISION's own docket #7 push is explicitly deprioritized behind (2), per
+Red Team's ruling — a witness-scenario table should not be built on
+witness-scale C numbers this audit just showed aren't yet trustworthy.
+Also inherited, lower priority: THERMODYNAMICS' dedicated box_dev
+floor characterization (T11), MATERIALS' fixed-absolute-thickness shell
+variant, and Iteration 6's own still-queued incoherent-ensemble/
+phase-quadrature idiom.
+
+Panel stats (Phase 5): 6 seats read blind + Red Team audit · zero gated
+predictions overturned, but the cycle's own headline extrapolation
+result (finding e2) was found materially unreconciled with prior
+program history · one real unit error corrected (MATERIALS'
+realizability figure) · one instrument-bias reframing (the sponges'
+r=156 apparent excursion) · two new live threads opened (T12, T13) ·
+a new Checkpoint-4 tripwire condition adopted for future shifts.
+

@@ -59,7 +59,12 @@ priority order):**
    coated_wall_r_gate`), reusing suite-7's own wall-test idiom — measured
    R_coat ≈ 0 (order 1e-5, well below the established 0.2% bar) at all
    three scales (see Results). MATERIALS' realizability caveat (a
-   literally self-similar shell would be unobtainium — 0.6–1.9 m thick —
+   literally self-similar shell would be unobtainium — 0.31–0.92 m thick
+   [corrected post-Phase-5, Red Team's audit: the original 0.6–1.9m
+   figure read the witness RADIUS (0.5–1.5m, the code's own convention)
+   as a diameter — a real unit error, not just an ambiguity; the
+   honest figure is roughly 2× smaller, still comfortably unobtainium
+   for a coating] —
    at witness scale) is kept as a stated idealization, not adopted as the
    geometry fix.
 3. **[QUANTUM #3, Red Team's "relabel, don't rescale" adjudication] The
@@ -232,8 +237,10 @@ P-VISION-1's own held-out check is the actual validation, not the
 formula's pedigree). `graded_black_shell` scaling now holds radial optical
 depth constant (fix 2), not the original proposal's held-σ_max reading —
 MATERIALS' realizability caveat (the literal r_in/r_out self-similar
-construction is unobtainium — 0.6–1.9m coating thickness — at witness
-scale; a real ultra-black coating's thickness is independent of substrate
+construction is unobtainium — 0.31–0.92m coating thickness [corrected
+post-Phase-5, see §Results — the original 0.6–1.9m figure was a real
+unit error, witness radius misread as diameter] — at witness scale; a
+real ultra-black coating's thickness is independent of substrate
 size) is on the record here, not resolved. T11 measures the beam-scene
 box-ledger channel (single-source, T9/T10's own usage) — explicitly a
 DIFFERENT instrument from the ambient bench, and (Red Team's fix 4) now
@@ -371,3 +378,52 @@ trusted. T11's own resolution companion also missed, in the same
 direction as this program's one prior "R3 enlarges" exception. Two new,
 concrete open questions for a future cycle, neither of which erases this
 cycle's own real deliverables.
+
+## Phase 5 — post-hoc findings (full verbatim record: LOGBOOK.md
+## Iteration 7)
+
+Six fresh seats + Red Team audit. **Director's verdict: PARTIAL** (not
+RULED OUT — nothing forecloses a mechanism; not PROMISING — the central
+technical question, does C(z/z_R) bridge cleanly to witness scale, comes
+back genuinely unresolved). Two corrections landed in this file this
+shift (flagged, not silently rewritten): the MATERIALS realizability
+figure (§ above, 0.31–0.92m not 0.6–1.9m — a real unit error caught by
+Red Team) and the sponges' r=156 reading (below).
+
+**The most consequential Phase-5 finding, caught by NONE of the six
+blind seats, only by Red Team's audit:** this cycle's own witness-scale
+extrapolation (absorber C_pred(witness)≈−0.734, PEC≈−0.862, essentially
+flat across the ENTIRE committed witness uncertainty band) sharply
+contradicts the |C|≈0.98 estimate that has justified prioritizing this
+exact thread across five iterations — the two numbers were never
+compared side by side anywhere in this program's record until now. The
+Director's own added reading: the fitted C_∞ is the model's z/z_R→0
+asymptote, and physically an opaque silhouette's contrast should
+approach C→−1 in the true far field, not saturate short of it — a
+structural, not just numerical, mismatch. New live thread **T13**
+opened for this; see LOGBOOK.md.
+
+**Second finding:** the sponges' apparent r=156 "excess deepening" is
+mostly **instrument bias, not a real effect** — the r=156 δ_C floor
+(−0.00121, ~4.3× larger than r=312's) explains 87–97% of each sponge's
+own r=156 excursion from a linear 78↔312 interpolation (doesn't touch
+P-VISION-3's own gate, which correctly uses only the floor-clean 78/312
+endpoints). PEC's own excursion is only ~38% explained the same way —
+consistent with a real mechanism (Fresnel-zone ripple, independently
+proposed by PHOTONICS and EM) operating on top, not instead. New live
+thread **T12** opened for PEC's non-monotonicity.
+
+**Program-integrity statement (Red Team's own demand, stated explicitly
+per house convention):** PASS/FAIL language is now decidable — a real,
+earned instrument achievement. **But no σ(I) OFF-state article this
+program has ever built has PASSed constraint 3 at any tier, at any
+scale.** OFF-lab is MARGINAL everywhere (0.00548–0.00681, never below
+the 0.005 bar); OFF-field is FAIL everywhere (0.02174–0.02336, never
+below the 0.02 bar). This cycle characterized the instrument; it did not
+find, or bring closer, a working escape route.
+
+**New Checkpoint-4 tripwire, adopted:** any future citation of this
+cycle's witness-scale C_pred numbers without flagging the T13
+discrepancy, or any treatment of PEC's fit/witness number or box_dev as
+a settled floor before their own R3 checks resolve, is a retroactive
+criterion-4 trigger.
