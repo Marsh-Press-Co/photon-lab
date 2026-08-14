@@ -2789,3 +2789,259 @@ ceiling; the near-unanimous T11 ranking) · one mathematical claim
 (QUANTUM's phase-quadrature analytic-zero proposal) independently
 re-derived and proven exact by Red Team · Checkpoint criterion 5 given
 its first-ever explicit ruling in this program's history, non-firing.
+
+---
+
+## Iteration 7 — The r=156/312 Near-Field→Witness-Scale Bridge (T8), with a
+## Box-Ledger Floor Companion (T11) (exp-030) — 2026-08-14
+
+Runner: cloud panel shift · Lead: **VISION SCIENCE** (rotation — the
+five-times-deferred r=156 bridge, hard-committed at Iteration 5's close
+with a pre-registered **Checkpoint-4 tripwire**: if this build does not
+execute as committed this cycle, criterion 4 fires automatically). Full
+seven-seat cycle: Phase 1 proposal (VISION SCIENCE) → 5 blind parallel
+critiques (PHOTONICS, MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS,
+QUANTUM OPTICS — all support-with-changes, three independently converging
+on the same core defect via three different diagnoses) → Red Team last
+with everything (verdict: **proceed-with-mandatory-fixes**, 11 numbered
+attacks, four caught by none of the five blind critiques) → Phase 3
+synthesis (Director: every mandatory fix accepted, zero overridden) →
+predictions committed → Phase 4 run. Full setup/results record:
+`experiments/030-scale-bridge/NOTES.md`.
+
+### Phase 1 — Proposal (VISION SCIENCE, verbatim)
+
+# PHASE 1 — PROPOSAL · Panel Iteration 7 · Lead seat: VISION SCIENCE
+## "The r=156/312 Near-Field→Witness-Scale Bridge, with a Box-Ledger Floor Companion" (candidate exp-030)
+
+*Grounding note: every number below was hand-derived from the stated formulas against the actual established constants in `experiments/024-ambient-margin-adjudication/design_geometry.py`, `experiments/026-sigma-i-endpoints/design_geometry.py`, `lab/ambient.py`, `lab/sections.py`, `lab/materials.py`, `lab/fdtd2d.py`, and LOGBOOK.md's own cited figures. No number here is a fresh FDTD measurement — this is a proposal only, no code was run. Clyde must re-derive and printed-assert every value below at Phase-3 freeze, per this cycle's own pre-registered discipline (see §6).*
+
+### 1. Narrative (≤300 words)
+
+Iteration 7 executes VISION's own five-times-deferred r=156 near-field→witness-scale bridge (T8), hard-committed at Iteration 5's close with a pre-registered Checkpoint-4 tripwire. The ambient instrument measures constraint-3's silhouette contrast C at z/z_R≈0.04–0.06 (z_R=r_out²/λ, the diffraction scale of the object's own shadow); the witness scene sits far deeper in-field, at z/z_R≈1×10⁻⁵–1×10⁻⁴ (computed here from docket #7's own 45 m / 1–3 m parameters, not hand-copied — see §2). EM's Iteration-1 finding — a beam-terminating LTI volume reads |C|≈0.98 at witness scale versus the bench's measured 0.68–0.83 — means diffraction fill-in is inflating the bench's apparent visibility; Red Team's Iteration-3 ruling forbids PASS/FAIL language on the near-threshold OFF-lab/OFF-field C values until this scale dependence is characterized.
+
+This build measures C on the four established articles (`graded_black_shell` absorber, PEC disk, OFF-lab/OFF-field sponges) at r_out=156 and 312 cells. The r=78 point is entirely REUSED — zero new runs — from exp-024/025/026's own committed results. The measurement-plane offset (PLANE_DX=15 cells) is held FIXED rather than scaled self-similarly with r_out, which maximizes the z/z_R spread sampled (∝1/r², a 16× range across the family) — the design choice that gives the extrapolation real leverage. A committed functional form, C(z/z_R)=C_∞+B·√(z/z_R), separates the scale-invariant rim-chord asymptote (C_∞) from a diffraction-fill term matching this program's own established Fresnel fringe-zone law (√(λD), used since Iteration 2's coverage-margin rule). The fit uses ONLY r=156/312; r=78 is held out as a free, already-measured validation point — self-auditing, not self-fulfilling. T11 rides as a companion at r=78 (confirmatory) + r=156 (primary), with r=312 as an explicitly optional, cost-gated extension.
+
+### 2. Parameter table
+
+**2a. Scale factor and the formula chain (computed in code, not hand-copied)**
+
+```
+kappa(r)        = r / 78                              # scale factor vs established base
+OBJ_X(r)        = round(170 * kappa)
+SRC_X(r)        = round(300 * kappa)
+NX(r)           = SRC_X(r) + 60                        # +ABSORB(40)+20-cell clearance pad
+PLANE_X(r)      = OBJ_X(r) - r - PLANE_DX               # PLANE_DX = 15 (FIXED, not scaled -- see narrative)
+LEVER(r)        = r + PLANE_DX
+D_SP(r)         = SRC_X(r) - PLANE_X(r)
+GUARD_OUT(r)    = ceil( LEVER(r)*tan(35 deg) + r/cos(35 deg) ) + 25   # ray-trace reach @ +-35 deg + safety pad
+W_OBJ(r)        = r ;  W_FLANK(r) = r                    # self-similar windows (established convention)
+FLANK(r)        = (GUARD_OUT(r), GUARD_OUT(r) + r)
+BOX_CLEARANCE(r)= round(12 * kappa)
+BOX(r)          = (OBJ_X-r-BOX_CLEARANCE, OBJ_X+r+BOX_CLEARANCE,
+                    OBJ_Y-r-BOX_CLEARANCE, OBJ_Y+r+BOX_CLEARANCE)
+const(r)        = FLANK(r)[1] + TAPER(40) + ABSORB(40) + D_SP(r)*tan(35 deg)
+fringe(r)       = sqrt(25 * D_SP(r))                     # lam_max_cpl=25 (750nm), reused conservatively
+rule(r)         = MARGIN_MULT(3.5) * fringe(r)            # Iteration 2's established safety factor, reused
+NY(r)           = ceil( 2*(const(r)+rule(r)) / 8 ) * 8
+STEPS_AMBIENT(r)= round(1400 * D_SP(r) / D_SP(78))         # settling steps scale with propagation path
+z_R(r,lam)      = r**2 / lam_cells
+z_over_zR(r)    = PLANE_DX * lam_cells / r**2
+x(r)            = sqrt(z_over_zR(r)) = sqrt(PLANE_DX*lam_cells) / r
+```
+
+**2b. Computed geometry, λ=600 nm, cpl=20 only (single-λ scope, §5)**
+
+| r_out | κ | Status | NX | NY | OBJ | PLANE_X | LEVER | D_SP | GUARD_OUT | FLANK | BOX | z/z_R | x=√(z/z_R) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 78 | 1 | **REUSED** (exp-024/026, 0 new runs) | 360 | 1584 | (170,792) | 77 | 93 | 223 | 185 | (185,263) | (80,260,702,882) | 0.04931 | 0.22206 |
+| 156 | 2 | **NEW** | 660 | 2480 | (340,1240) | 169 | 171 | 431 | 336 | (336,492) | (160,520,1060,1420) | 0.01233 | 0.11103 |
+| 312 | 4 | **NEW** | 1260 | 4264 | (680,2132) | 353 | 327 | 847 | 635 | (635,947) | (320,1040,1772,2492) | 0.003082 | 0.055515 |
+
+`STEPS_AMBIENT`: 1400 (r=78, established) / 2706 (r=156) / 5319 (r=312) — all courant_frac=0.99, TAPER=ABSORB=40.
+
+**2c. Angle sets (in cells/angle, dimensionless — unchanged across r)**
+
+- r=78, r=156: `FALLBACK_ANGLES = (−35,−25,−15,−5,0,5,15,25,35)`, N=9 (established Iteration-2 near-threshold baseline).
+- r=312: `N5_SUBSAMPLE = (−35,−15,0,15,35)`, N=5 — a deliberate cost trim (§7), not a fallback-of-last-resort: r=312's cost (§7) is dominated by domain size, not angle count, and N5-vs-N9 convergence is already established (≤0.05 in C, exp-026's P-MAT7 idiom) at zero new runs.
+
+**2d. Articles**
+
+| Article | Material spec (formula) | r=78 σ/params (established) | r=156 | r=312 |
+|---|---|---|---|---|
+| OFF-lab sponge | uniform disk, ε_r=1, σ=τ_off_lab/(2r), τ_off_lab=**0.008** (given, Iteration-1 lab bar) | σ=5.1282e-5 | σ=2.5641e-5 | σ=1.28205e-5 |
+| OFF-field sponge | uniform disk, ε_r=1, σ=τ_off_field/(2r), τ_off_field=**0.032** (given, Iteration-1 field bar) | σ=2.0513e-4 | σ=1.02564e-4 | σ=5.12821e-5 |
+| `graded_black_shell` absorber | r_in=round(30κ), r_out=r, sigma_max=**0.5**, eps_max=**1.0** (given, fixed material constants — same coating, larger physical size, NOT re-targeted optical depth) | r_in=30,r_out=78 | r_in=60,r_out=156 | r_in=120,r_out=312 |
+| PEC disk | `pec_disk(cx,cy,r)` | r=78 | r=156 | r=312 |
+
+Printed assertion before freeze (per house discipline): `abs(2*sigma*r - tau_target) < 1e-9` for both sponge articles at every r.
+
+**2e. Run count — Block 1 (T8, the r=156/312 bridge)**
+
+| r_out | Articles×angles | Empty×angles | Total |
+|---|---|---|---|
+| 78 | 0 (reused) | 0 (reused) | **0** |
+| 156 | 4×9=36 | 9 | **45** |
+| 312 | 4×5=20 | 5 | **25** |
+| **Block 1 total** | | | **70** |
+
+**2f. T11 companion (box-ledger channel decision-floor characterization, beam-scene bench)**
+
+Reuses `lab/sections.py::widths()` with the SAME two boxes already defined for exactly this purpose (`BEAM_BOX_A`, `BEAM_BOX_B`), on the established "ON" τ_center=3.9 uniform-disk beam-scene article (exp-026/027/028/029's own construction, σ(r)=3.9/(2r)). Metric: **box_dev(r,cpl) = |σ_ext(BOX_A) − σ_ext(BOX_B)| / mean(σ_ext(A),σ_ext(B))**.
+
+| r_out | κ | BEAM_N | BEAM_STEPS(cpl=20) | BEAM_STEPS(cpl=30, ×1.5) | σ_ON |
+|---|---|---|---|---|---|
+| 78 | 1 | 560 (reused geometry) | 3200 | 4800 | 0.025 (established) |
+| 156 | 2 | 1120 | 6400 | 9600 | 0.0125 |
+
+| Leg | Runs | Status |
+|---|---|---|
+| r=78, cpl=20 only, empty+ON | 1 | **NEW, confirmatory** |
+| r=156, cpl=20, empty+ON | 2 | NEW |
+| r=156, cpl=30 (R3 companion), empty+ON | 2 | NEW |
+| **T11 committed total** | **5** | |
+| r=312, cpl=20+30, empty+ON (×4) | 4 | **OPTIONAL** — falls back to Iteration 8 |
+
+### 3. T1 escape-route statement
+
+**Instrumentation, not a mechanism proposal.** No σ(I), σ(x,t), or angular-selectivity machinery is built; no new material behavior is introduced. It bears on T1 only insofar as it determines whether the σ(I) OFF-state bars derived at bench scale (Iteration 1's τ_off≤0.008/0.032) transfer to witness scale — a precondition question, not an escape-route proposal.
+
+### 4. Falsifiable predicted outcomes (numeric bands)
+
+**4a. The r=156/312 bridge — per-article predicted C.** Model: `C(z/z_R) = C_inf + B*sqrt(z/z_R)`, fit exactly on (r=156, r=312), evaluated at x(78)=0.22206 for validation and x(witness) for the extrapolation.
+
+*Witness z/z_R (computed, not hand-copied):* using docket #7's committed witness parameters (distance z_w=45 m, object diameter 1–3 m ⇒ radius r_w∈[0.5,1.5] m, λ_visible=550 nm): `z/z_R,witness = z_w * λ_visible / r_w²` ⇒ **[1.1×10⁻⁵, 9.9×10⁻⁵]**, central (r_w=1.0 m) = **2.48×10⁻⁵**.
+
+| Article | C(r=78) established | Predicted C(156) | Predicted C(312) | Predicted C_∞ | Predicted C(witness) |
+|---|---|---|---|---|---|
+| Absorber (`graded_black_shell`) | −0.684 | [−0.79, −0.71] | [−0.82, −0.74] | [−0.86, −0.76] | [−0.86, −0.76] |
+| PEC disk | −0.826 | [−0.91, −0.87] | [−0.96, −0.90] | [−1.00, −0.92] | [−1.00, −0.92] |
+| OFF-lab sponge (τ=0.008) | −0.0055 | [−0.0062, −0.0050] | [−0.0064, −0.0048] | — | [−0.0064, −0.0048] |
+| OFF-field sponge (τ=0.032) | −0.0218 | [−0.0235, −0.0205] | [−0.0240, −0.0200] | — | [−0.0240, −0.0200] |
+
+P-VISION-1 (gate before witness belief): fit-implied C(78) within 0.03 of established, else widened bars (0.03-0.08) or REJECT (>0.08 miss). P-VISION-1b: [C(78)−C(156)]/[C(156)−C(312)] discriminates sqrt-law (2.00±0.3) vs linear law (4.00±0.5). P-VISION-2: monotonic deepening with r. P-VISION-3 (load-bearing): sponges shift only |ΔC(78→312)|≤0.0010(OFF-lab)/0.0025(OFF-field) — licenses PASS/FAIL language if confirmed.
+
+**4b. T11 companion — box-ledger channel noise floor.** P-VISION-T11-1 (r=78) [0.05%,1.0%]; P-VISION-T11-2 (r=156) [0.05%,1.5%], roughly r-independent, falsified if >3× the r=78 reading; P-VISION-T11-3 (cpl=30 companion) shrinks to [0.65,0.80]× native; P-VISION-T11-4 (r=312, informational) [0.05%,2.0%]. Stated consequence: once box_dev is measured, T9's Δσ_abs/σ_ext=1.56×10⁻⁶ sits an estimated 3–3000× BELOW the predicted floor band, while T10's 6.49% spread sits an estimated 4–130× ABOVE it (this arithmetic later found WRONG by Red Team on both the proposal's own figure and THERMODYNAMICS' hand-corrected one — see Phase 2/3).
+
+### 5. Idealizations
+
+2D TMz, single λ=600nm scope. PLANE_DX held fixed (not self-similar). 2-point exact fit; r=78 held out, not fit. Extrapolation gap: sampled z/z_R∈[0.0031,0.049] vs witness scale 1.5–2.5 decades beyond. N5 angle-subsampling at r=312 only. `graded_black_shell` scaling holds sigma_max/eps_max fixed (not optical depth). T11 measures a different instrument (beam-scene box-ledger) sharing only the r-family. No coherent-superposition interaction (Iteration 6, untouched).
+
+### 6. Computed-in-code vs. given-as-input
+
+**Given as input:** R_OUT family {78,156,312}; PLANE_DX=15; ABSORB=TAPER=40; MARGIN_MULT=3.5; angle sets; τ_off_lab=0.008, τ_off_field=0.032, τ_ON=3.9; sigma_max=0.5, eps_max=1.0; λ=600nm/cpl=20; courant_frac; witness scenario (z_w=45m, diameter 1–3m, λ_visible=550nm).
+
+**Computed in code:** κ, all geometry, z_R, z/z_R, x=√(z/z_R), all σ values, r_in for the graded shell, z/z_R,witness, x_witness, the (C_∞,B) fit, C_pred(78), C_pred(witness), BEAM_N/BEAM_STEPS/BEAM_CX,CY/BEAM_SRC_X/σ_ON for T11, box_dev.
+
+### 7. Cost note
+
+Committed scope: 75 new FDTD sim calls (Block 1: 70, T11 primary: 5). Optional T11 r=312 extension: +4. Estimated wall-clock: Block1@156 ~17min, Block1@312 ~60min, T11@78 ~1min, T11@156 ~20min → **~1.6 hours committed total**. Cost-tiered execution pre-authorized: run Block1@156+T11@78/156 first; time a single r=312 pilot before committing to the full leg; if r=312 wall-clock is prohibitive even at N5, trim/defer with the partial (r=78,156) fit reported as provisional; T11@312 is cut first.
+
+### Phase 2 — Critiques (five seats, blind, verbatim)
+
+#### PHOTONICS — verdict: **support-with-changes**
+
+**Steel-man:** Real, formula-derived T8 build the program owes after five deferrals — every geometric constant traces to a printed formula against κ=r/78. PEC is a genuinely clean asymptotic control (no rim-transmission channel). Holding r=78 out of the fit as an honest validation point is right discipline; sponge articles correctly hold τ_center fixed while scaling r — the control the graded shell fails to apply to itself. N5 at r=312 only is a reasonable disclosed cost trim.
+
+**Sharpest attack:** `graded_black_shell` is not the same optical article at three scales. `_graded_black` normalizes conductivity by depth-fraction d=(r_out−rr)/(r_out−r_in), so with r_in=round(30κ), radial optical depth ∫σ dr scales linearly with shell thickness (48/96/192 cells = 2.4λ/4.8λ/9.6λ at fixed cpl=20) — the coating's own optical depth roughly doubles then quadruples across the family, not merely its size. Non-cosmetic: Iteration 1's ESTABLISHED finding attributes ~20% of r=78's C departure from −1 to rim-transmission — that same chord-optical-depth mechanism scales with κ the same way, so the rim should genuinely darken as r grows, pointing the SAME direction as z/z_R diffraction fill-in. The two effects are non-separable — even a clean P-VISION-1 pass wouldn't validate the sqrt(z/z_R) law for this article. Secondary: the sqrt(z/z_R) form's cited pedigree ("established Fresnel fringe-zone law... since Iteration 2's coverage-margin rule") borrows a formula Iteration 2's own Phase 4 found did NOT govern the actual δ_C floor mechanism — citing a refuted-as-explanatory formula overstates the model's grounding.
+
+**Flip:** Rescale sigma_max(κ)=0.5/κ (or otherwise hold the shell's radial optical depth ∫σ dr constant across r) — the same τ-held convention already applied to the sponges — so the absorber family isolates the z/z_R geometric effect rather than conflating it with a genuinely deeper coating at larger scale.
+
+#### MATERIALS & METAMATERIALS — verdict: **support-with-changes**
+
+**Steel-man:** PEC trivially scale-invariant; both sponges hold τ_center exactly fixed via σ=τ/(2r), verified by printed assertion, matching exp-026's own convention to the digit. The graded_black_shell choice (hold σ_max/ε_max fixed, not re-target optical depth) is at least a stated, non-smuggled reading, materially coherent on its own terms; self-similar r_in/r_out scaling preserves normalized profile shape exactly; longer adiabatic tapers should only IMPROVE R≤0.2%, the safest direction to err in.
+
+**Sharpest attack:** Holding σ_max fixed while r_in/r_out both scale by κ means shell thickness-in-wavelengths ALSO scales by κ (2.4λ→4.8λ→9.6λ) — not "the same coating on a bigger object," a progressively more optically-thick absorber. Unlike the sponges (τ held exactly, printed-asserted) and PEC (trivial), the graded shell's effective optical depth is uncontrolled and increases with r — repeats, in disclosed form, the exact failure class T10's SIGMA_ON erratum was caught for. Undermines "one universal C(z/z_R) form across articles": 3 of 4 hold one thing invariant, 1 holds a different thing, by design.
+
+**Realizability tiering:** PEC — published. Sponges — published but trivially so (barely more attenuating than hazy air at witness scale). `graded_black_shell` — SPLIT VERDICT: literal self-similar construction extrapolated to witness scale gives shell thickness ≈0.62–1.85m — UNOBTAINIUM. But real witness-scale near-black objects ARE plausible via a DIFFERENT, more realistic design: real CNT-black/metamaterial ultra-absorbers achieve R≲1% with ABSOLUTE thickness in the µm–mm range, independent of substrate size — the OPPOSITE scaling law from what this proposal uses.
+
+**Flip:** Hold the graded shell's ABSOLUTE thickness (r_out−r_in) fixed at 48 cells across all r (r_in(r)=r−48, not 30κ) — removes the optical-depth confound, matches how real ultra-black coatings actually scale, pair with a printed R-gate re-check before the r=156/312 absorber numbers are trusted.
+
+#### ELECTROMAGNETISM — verdict: **support-with-changes**
+
+**Steel-man:** Core arithmetic checks out — independently recomputed z/z_R=PLANE_DX·λ_cells/r² at all three r, matches table to printed digits. Witness formula z_w·λ/r_w² reproduces 2.475e-5≈2.48e-5 and both band endpoints exactly. No σ/ε/μ touched — passivity/causality/reciprocity untouched by a measurement-plane relocation, T1 escape-route label correct. Bonus: witness z/z_R central value is ~4× SMALLER than EM's own Iteration-1 "~10⁻⁴" estimate, which REINFORCES rather than undercuts that finding.
+
+**Sharpest attack:** §4's physical justification for the extrapolation law cites a formula this program's own data already REFUTED for its stated purpose — T7/exp-024's margin/fringe-ratio model (same sqrt(λD) shape) was built to predict the ambient instrument's δ_C floor and FAILED. Reusing that formula's shape as precedent for a DIFFERENT physical claim is borrowed authority from a broken model, not validation. z_R=r²/λ is neither πw₀²/λ nor 2D²/λ — self-consistent but unjustified as THE physical scale. STEPS_AMBIENT(r) scales only by D_SP ratio with NO doubled-steps settling check at the two new geometries — exactly T10's confound, one iteration old.
+
+**Flip:** Add a mandatory doubled-STEPS_AMBIENT settling-verification run at r=156 as a pre-registered gate; replace §4's citation of the refuted Iteration-2 margin formula with a direct Fresnel-zone-width derivation, or drop the "established law" framing and label the sqrt-law a phenomenological ansatz pending the r=78 held-out check.
+
+#### THERMODYNAMICS — verdict: **support-with-changes**
+
+**Steel-man:** T11 closes the single most-repeated unclosed item in this program's history. Disciplined scoping: 5 committed runs, r=312 explicitly cost-gated not silently dropped. Naming box_dev as an explicit reproducible quantity is a genuine hygiene improvement.
+
+**Sharpest attack:** box_dev (|σ_ext(BOX_A)−σ_ext(BOX_B)|/mean) is TWO BOXES, ONE RUN, ONE CONSTRUCTION — measures spatial-registration sensitivity to box placement. T9's Δσ_abs/σ_ext=1.56e-6 and T10's 6.49% spread are CROSS-RUN comparisons (PEC-core vs lossy-fill; native vs 1.5×cpl) — different grids, different constructions. Same-run box-placement noise likely a DOWNWARD-BIASED floor for exactly the comparisons it's asked to bound. Numeric check: T10's claimed 4-130× checks out against [0.05%,1.5%]; T9's claimed "3-3000×" does NOT — same arithmetic gives ≈167-5000×, off by ~2 orders of magnitude at the low end. Also: r=78/156 alone can't test P-VISION-T11-2's own geometry-independence hypothesis with real leverage. Also: T11's σ_ON(r)=3.9/(2r) holds τ_center fixed while Block 1's own absorber in the SAME cycle holds sigma_max fixed and lets τ float — two different optical-depth conventions in one proposal, nowhere reconciled.
+
+**Flip:** Relabel box_dev as a spatial box-placement self-consistency check, stop citing it as a T9/T10 floor stand-in; if a real floor is wanted, use same-box cross-resolution comparison instead. Require T9/T10 consequence ratios computed in code, not by hand, before freeze.
+
+#### QUANTUM OPTICS — verdict: **support-with-changes**
+
+**Steel-man:** "No coherent-superposition interaction" holds up for the RIGHT reason: this build only extends ambient.py's post-hoc intensity-SUM, never re-injects a second concurrent source. Iteration 6's own Red-Team-verified phase-quadrature derivation showed the incoherent-ensemble limit is EXACTLY zero mean cross-term, analytically, independent of Δk·r_out or object radius — holds for any r_out.
+
+**Sharpest attack:** Two opposite material-scaling conventions across the proposal's own article families. graded_black_shell holds sigma_max/eps_max FIXED as r grows (τ_center GROWS with r_out). OFF-lab/OFF-field σ(I) proxies do the OPPOSITE: τ_center held exactly fixed (σ SHRINKS as 1/r_out). A real intensity-gated coating's OFF-state σ is set by photophysics at a given sub-threshold intensity, not tuned down as the coated object gets larger. The very family §3 needs to license "σ(I) OFF-state bars transfer to witness scale" is scaled in a way no real σ(I) medium would follow.
+
+**Flip:** Re-derive OFF-lab/OFF-field predictions holding σ FIXED (not τ_center) across r, letting τ_center grow with r_out to match graded_black_shell's own convention — OR explicitly relabel the sponge family "a fixed-τ diagnostic of the C(z/z_R) fit, not a σ(I)-realizability scaling model" and strike the §3 sentence.
+
+#### RED TEAM (audit, verdict: **proceed-with-mandatory-fixes**)
+
+*Independently verified against the repo: `lab/materials.py`, `lab/sections.py`, `experiments/024/026/027/028/029` (`design_geometry.py`, `run.py`, `results*.json`, `NOTES.md`), and the full text of `LOGBOOK.md`/`PLAN.md`.*
+
+**1. [inconsistency] The r=78 "established" anchors for PEC and the absorber are sourced from the program's own superseded, floor-contaminated geometry.** Table 2b's C(78) = −0.684 (absorber), −0.826 (PEC) are exp-024's **primary** (±40°) V-weighted values — the exact geometry that **missed the δ_C≤0.001 gate at all six λ/weighting combinations, non-monotonically**. The sponge anchors correctly come from the fallback geometry. Recomputing from exp-024's own per-λ fallback rows with the program's frozen V-weights: **absorber fallback, V-weighted ≈ −0.721** (proposal cites −0.684); **PEC fallback, V-weighted ≈ −0.867** (proposal cites −0.826). P-VISION-1 gates the entire fit against these exact numbers at 0.03 tolerance with a >0.08 REJECT branch — a ~0.04 anchor error alone eats roughly half the "widened bars" zone.
+
+**2. [inconsistency] The graded_black_shell optical-depth confound (three-way convergence) is real — verified directly in code.** ∫σ dr scales linearly with absolute shell thickness at fixed sigma_max — confirmed by direct computation, thickness = 48/96/192 cells = 2.4λ/4.8λ/9.6λ at cpl=20, exactly matching the cited figures.
+
+**3. [inconsistency, none of the five caught] T11's `box_dev` is silently redefined**, breaking comparability with every historical box_dev figure in the repo. Grepped every `box_dev = ` definition — 27 instances, zero exceptions: `abs(wa["sigma_ext"] - wb["sigma_ext"]) / abs(wa["sigma_ext"])`. Proposal's §2f formula uses `/mean` instead — undisclosed metric drift.
+
+**4. [inconsistency] Independent verification of THERMODYNAMICS' "3–3000×" catch — THERMODYNAMICS' own correction is ALSO wrong.** Redone from scratch: predicted box_dev(156) band [0.0005,0.015] / T9's Δ=1.56×10⁻⁶ → **≈320–9,615×**, not the proposal's "3–3000×" NOR THERMODYNAMICS' "corrected" "167–5000×" (which traces to restating Δ as ≈3×10⁻⁶, roughly double the true value).
+
+**5. [inconsistency] T9/T10/T11 aren't just cross-run — they're cross-*article*.** T9's factorial measures `graded_black_shell`; T10/T11 measure the uniform-conductivity ON disk — different profile shapes entirely.
+
+**6. [unfalsifiable, constraint-#3-relevant] No δ_C decision-floor re-verification is proposed at r=156/312 before P-VISION-3's PASS/FAIL licensing language fires** — and the geometry rule reused to build the new domains is the empirically-refuted-as-a-mechanism one (Iteration 2).
+
+**7. [unfalsifiable] The N=5 convergence claim for r=312 generalizes a single, mismatched data point** — measured on the smoothest, lowest-contrast article (τ=0.10 sponge), now applied to PEC/absorber (hard-edged) at an unprecedented scale.
+
+**8. [inconsistency] No printed R≤0.2% flat-coating reflectance gate re-check at the new shell dimensions.**
+
+**9. Settling-time gate — assessed, not simply endorsed or dismissed.** `STEPS_AMBIENT(r)` DOES scale with the growing domain (unlike T10's actual bug, a literal unrescaled constant) — EM's "exactly T10's confound" framing overstates the parallel — but a doubled-STEPS diagnostic is cheap and recommended, not independently blocking.
+
+**10. Verification of EM's Iteration-2 claim — confirmed accurate.**
+
+**11. Minor — docket #7 sourcing labeling imprecision only; the z/z_R arithmetic itself independently verified exact.**
+
+**(a) Adjudicating the three-way graded_black_shell fix:** PHOTONICS' fix (σ_max=0.5/κ, keep self-similar geometry) is correct for Block 1's stated purpose — the family needs to be optically self-similar, matching the convention already used for PEC/sponges. MATERIALS' fix (fixed absolute thickness) also removes the confound but breaks geometric self-similarity, working against the fit's own premise. MATERIALS' realizability point is correct and kept as a labeled caveat, not the geometry fix. QUANTUM's attack is real but about the sponges, not the shell — the "relabel/strike" option is right; rescaling the sponges to hold σ fixed would reintroduce the confound PHOTONICS' fix removes from the shell. **Net: adopt PHOTONICS' σ_max=0.5/κ; leave sponges as scaled; strike/narrow §3's OFF-state-transfer sentence.**
+
+**Evidence that would change the verdict:** Toward REJECT — if the corrected r=78 anchors sit outside even the widened 0.08 band, or the shell fix still can't separate rim-transmission from z/z_R, or a δ_C floor check at r=156 fails. Toward clean PROCEED — anchors recomputed in code and matching; shell fix applied with a passing R-gate; box_dev redefined and consequence arithmetic recomputed in code; δ_C floor check passes; N=9 retained for hard-edged articles at r=312.
+
+**Overall verdict: proceed-with-mandatory-fixes.** None of the defects are irreconcilable with running this cycle — every one is a cheap, mechanical correction or a scoping edit, not a redesign or an abandonment of the T8 commitment. Given the Checkpoint-4 tripwire, a REJECT verdict would functionally re-defer a five-times-deferred, hard-committed thread over defects fixable in an afternoon.
+
+**Must land before predictions frozen, priority order:** (1) recompute r=78 anchors from fallback, V-weighted, in code; (2) σ_max(κ)=0.5/κ + R-gate re-check; (3) strike §3's sponge OFF-state-transfer claim; (4) redefine box_dev to the established convention, recompute T9/T10 consequence in code, name the cross-article mismatch; (5) add a δ_C floor check at r=156 before P-VISION-3 licensing; (6) restore N=9 for PEC/absorber at r=312. **Recommended, not blocking:** doubled-STEPS settling diagnostic at r=156.
+
+### Phase 3 — Synthesis (2026-08-14, Director)
+
+Full record: `experiments/030-scale-bridge/NOTES.md`. **All of Red Team's
+mandatory fixes ACCEPTED, zero overridden.** Six corrections landed: (1)
+r=78 anchors for absorber/PEC recomputed in code from the actual fallback
+per-λ numbers, V-weighted — **absorber = −0.7209, PEC = −0.8673** (not the
+proposal's wrong −0.684/−0.826); sponge anchors (−0.0055/−0.0217)
+unchanged, already correct. (2) `graded_black_shell`'s sigma_max rescaled
+as **0.5/κ** (PHOTONICS' fix, adjudicated over MATERIALS'/QUANTUM's
+alternatives), holding radial optical depth constant (printed-asserted:
+24.0 at every κ); a new flat-coating R-gate re-check added. (3) §3's
+sponge OFF-state-transfer claim struck (QUANTUM's relabel option). (4)
+T11's `box_dev` redefined to the established `/σ_ext(A)` convention; the
+T9/T10 consequence ratios computed in code, not hand-asserted; T9 vs. T11
+flagged explicitly as cross-article, not just cross-run. (5) A δ_C
+empty-scene decision-floor check added at r=156 (zero marginal FDTD cost)
+before P-VISION-3's PASS/FAIL language is trusted. (6) r=312 restores
+N=9 (not N=5) for PEC/absorber — raising r=312's run count from 25 to
+**37** (Block 1 total: 82; committed total ≈89 new FDTD sim calls).
+Red Team's recommended (not mandatory) settling diagnostic at r=156
+adopted anyway (cheap). **A defect the Director caught independently
+during Phase-4 implementation** (not raised by any Phase-2/Red-Team
+seat): the proposal's own NY-sizing formula used tan(35°), not the
+established tan(40°) convention exp-024/026 inherited from the
+now-abandoned ±40° primary geometry — logged as an idealization (the
+tighter, purpose-built margin is validated directly by the new δ_C floor
+check, not assumed by analogy to legacy practice), not silently smoothed
+over. Predictions committed (`experiments/030-scale-bridge/NOTES.md`,
+git commit to follow this LOGBOOK entry, per house discipline).
+
