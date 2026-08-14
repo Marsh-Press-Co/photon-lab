@@ -151,8 +151,20 @@ def run_thermo():
     witness-scenario watts (Iteration 1's own recorded limit)."""
     r = 156
     g = dg030.GEOM[r]
-    box = g["box"]
     cx, cy = g["obj"]
+    # NOTE (found during Phase-4 implementation, not assumed at Phase-1/3):
+    # dg030.GEOM[r]['box'] is a computed-but-NEVER-ACTUALLY-USED field in
+    # exp-030's own code (grepped -- zero references) -- clearance
+    # round(12*kappa)=24 cells (~1.2 lambda at cpl=20) is too tight for a
+    # closed-box Poynting ledger on this near-field-heavy geometry and
+    # produced unphysical sigma_abs (large negative). Built fresh here at
+    # clearance ~4 lambda (80 cells), matching this program's own
+    # established beam-scene box-ledger convention order-of-magnitude
+    # (BEAM_BOX_A0/B0, design_geometry.py L249-250, ~1.6 lambda at r=78
+    # scaled) with extra margin since this is an untested configuration.
+    clearance = 80
+    box = (cx - r - clearance, cx + r + clearance,
+           cy - r - clearance, cy + r + clearance)
     ref = (cx, cy, r)
 
     def recap(article):
@@ -173,6 +185,125 @@ def run_thermo():
     save_results(res)
 
 
+# -------------------------------------------------------------- fit stage
+def _C_at(res, r, article, dx):
+    g = dg030.GEOM[r]
+    y_lo = dg030.ABSORB
+    b_scene = np.array(res["sweep"][str(r)][article]["profiles"][str(dx)])
+    b_empty = np.array(res["sweep"][str(r)]["empty"]["profiles"][str(dx)])
+    y0 = g["obj"][1]
+    out = amb.contrast_from_runs([b_scene], [b_empty], [1.0], y_lo, y0,
+                                  g["w_obj"], g["guard_out"], g["w_flank"])
+    return out["C"]
+
+
+def _count_significant_reversals(vals, floor):
+    diffs = [vals[i + 1] - vals[i] for i in range(len(vals) - 1)]
+    signs = [(1 if d > 0 else -1) for d in diffs if abs(d) >= floor]
+    return sum(1 for i in range(len(signs) - 1) if signs[i] != signs[i + 1]), diffs
+
+
+def _fit_sqrt(c1, c2, x1, x2, x_t):
+    B = (c1 - c2) / (x1 - x2)
+    Cinf = c1 - B * x1
+    return Cinf, B, Cinf + B * x_t
+
+
+def _fit_ceiling(c1, c2, x1, x2, x_t):
+    import math
+    zzr1, zzr2 = x1 ** 2, x2 ** 2
+    p = math.log((c1 + 1) / (c2 + 1)) / math.log(zzr1 / zzr2)
+    B = (c1 + 1) / (zzr1 ** p)
+    return B, p, -1 + B * (x_t ** 2) ** p
+
+
+def run_fit():
+    res = load_results()
+    res030 = load_exp030_results()
+    out = {}
+
+    # --- T12 ripple detection, magnitude-floored, + safety diagnostic
+    sweep = {}
+    for r in dg.R_SWEEP:
+        g = dg030.GEOM[r]
+        y_lo, y0 = dg030.ABSORB, g["obj"][1]
+        ref_dx = str(dg.ANCHOR_PLANE_DX)
+        _, ref_flank = amb.window_means(
+            np.array(res["sweep"][str(r)]["empty"]["profiles"][ref_dx]),
+            y_lo, y0, g["w_obj"], g["guard_out"], g["w_flank"])
+        flank_devs = {}
+        for dx in dg.PLANE_DX_GRID[r]:
+            _, fl = amb.window_means(
+                np.array(res["sweep"][str(r)]["empty"]["profiles"][str(dx)]),
+                y_lo, y0, g["w_obj"], g["guard_out"], g["w_flank"])
+            flank_devs[str(dx)] = (fl - ref_flank) / ref_flank
+        sweep[str(r)] = {"flank_dev": flank_devs, "any_excluded_gt5pct":
+                          any(abs(v) > 0.05 for v in flank_devs.values())}
+        for art in ("pec", "absorber"):
+            vals = [_C_at(res, r, art, dx) for dx in dg.PLANE_DX_GRID[r]]
+            revs, diffs = _count_significant_reversals(vals, dg.RIPPLE_NOISE_FLOOR)
+            sweep[str(r)][art] = {"C_by_plane_dx":
+                                   dict(zip((str(d) for d in dg.PLANE_DX_GRID[r]), vals)),
+                                   "significant_reversals": revs,
+                                   "max_abs_diff": max(abs(d) for d in diffs)}
+    out["sweep_analysis"] = sweep
+
+    # --- P-PHOTONICS-3: kappa^2-matched cross-check
+    c78_15 = _C_at(res, 78, "pec", 15)
+    c156_60 = _C_at(res, 156, "pec", 60)
+    out["p_photonics_3"] = {"C_78_dx15": c78_15, "C_156_dx60": c156_60,
+                             "abs_diff": abs(c78_15 - c156_60)}
+
+    # --- P-DIR-1: core-correction delta
+    c156_cored = _C_at(res, 156, "absorber", 15)
+    c156_uncored_established = -0.83412   # exp-030's own theta=0 reading, Iter-8 Phase-1 Step 3
+    out["p_dir_1_core_correction"] = {
+        "C_156_absorber_cored": c156_cored,
+        "C_156_absorber_uncored_established": c156_uncored_established,
+        "abs_delta": abs(c156_cored - c156_uncored_established)}
+
+    # --- P-DIR-2: dual-law theta=0 fit, PEC and absorber(cored)
+    x78, x156 = dg030.GEOM[78]["x_bridge"], dg030.GEOM[156]["x_bridge"]
+    x_witness = dg030.WITNESS_ZZR["central"] ** 0.5
+    dual = {}
+    for art in ("pec", "absorber"):
+        c78 = _C_at(res, 78, art, 15)
+        c156 = _C_at(res, 156, art, 15)
+        cinf, b, c_sqrt = _fit_sqrt(c78, c156, x78, x156, x_witness)
+        b_ceil, p_ceil, c_ceil = _fit_ceiling(c78, c156, x78, x156, x_witness)
+        dual[art] = {"C78": c78, "C156": c156,
+                     "sqrt_law": {"C_inf": cinf, "B": b, "C_pred_witness": c_sqrt},
+                     "ceiling_law": {"p": p_ceil, "B": b_ceil, "C_pred_witness": c_ceil},
+                     "law_disagreement": abs(c_sqrt - c_ceil)}
+    out["p_dir_2_dual_law"] = dual
+
+    # --- QUANTUM: sigma-held r=156, N=9 ambient sum, scored against ladder
+    g156 = dg030.GEOM[156]
+    angles = dg.FALLBACK_ANGLES
+    scene_profiles = [np.array(res["quantum"]["angles"][str(a)]["profile"]) for a in angles]
+    empty_profiles = [np.array(res030["block1"]["156"]["profiles"]["empty"][str(a)]) for a in angles]
+    q = amb.contrast_from_runs(scene_profiles, empty_profiles, [1.0] * len(angles),
+                                dg030.ABSORB, g156["obj"][1], g156["w_obj"],
+                                g156["guard_out"], g156["w_flank"])
+    C_q = q["C"]
+    tau156 = dg.TAU_SIGMA_HELD_156
+    g_raw = abs(C_q) / tau156
+    g_floor_corrected = abs(C_q - q["C_empty"]) / tau156
+    g78 = abs(res030["fit"]["off_lab"]["C78_established"]) / 0.008
+    g312 = abs(res030["fit"]["off_field"]["C312"]) / 0.032
+    ladder = "PASS" if abs(C_q) < 0.005 else ("MARGINAL" if abs(C_q) <= 0.02 else "FAIL")
+    out["quantum_sigma_held"] = {
+        "C_156": C_q, "C_empty_156_this_run": q["C_empty"],
+        "tau_156": tau156, "g_raw": g_raw, "g_floor_corrected": g_floor_corrected,
+        "g_78_established": g78, "g_312_established": g312,
+        "ladder_verdict": ladder}
+
+    res["fit"] = out
+    save_results(res)
+    print(json.dumps(out, indent=2, default=str))
+
+
 if __name__ == "__main__":
     stage = sys.argv[1] if len(sys.argv) > 1 else "sweep"
-    {"sweep": run_sweep, "quantum": run_quantum, "thermo": run_thermo}[stage]()
+    {"sweep": run_sweep, "quantum": run_quantum, "thermo": run_thermo,
+     "fit": run_fit}[stage]()

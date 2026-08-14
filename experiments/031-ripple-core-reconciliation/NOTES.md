@@ -229,6 +229,122 @@ resolving Red Team attack #1)**
   regime this program has measured at other geometries. Reported as
   informational — no ΔT/detectability claim is made pending docket #7.
 
+## Results (exp-031, 2026-08-14)
+
+18 new FDTD calls (6 sweep + 9 quantum + 3 thermo attempt), ~13 minutes
+wall-clock for the sweep+quantum legs (sweep 264s, quantum 609s). r=156
+sweep runs measured 62–84s each (vs. the 39.6s/run baseline established
+by exp-030 at the same domain — the operational tripwire fired: actual
+was ~1.6–2.1× the baseline, not the 8–28× miss this program has seen at
+larger domain jumps, and total wall-clock stayed well inside budget).
+**The THERMO sidecar (P-DIR-4) did not complete this cycle** — the first
+attempt used `dg030.GEOM[156]['box']`, a field grepped-confirmed to be
+computed but never actually referenced anywhere in exp-030's own code,
+and produced unphysical `sigma_abs` (large negative) for the absorber. A
+second attempt with a freshly-built, more conservative box (4λ clearance)
+stalled well past the established per-run rate and was killed rather than
+let run indefinitely against this shift's own time budget. **Deferred to
+a future iteration, not silently dropped** — THERMODYNAMICS' Phase-2 flip
+stands accepted in principle; its execution needs a validated box
+geometry for this specific (line-source, θ=0, ambient-plane) scene class,
+which does not yet exist in this program's own machinery.
+
+**Every other prediction ran and is scored below** (all figures computed
+in code, `run.py::run_fit`, not hand-asserted):
+
+| Prediction | Predicted | Measured | Verdict |
+|---|---|---|---|
+| P-PHOTONICS-4 (safety diagnostic) | flank dev ≤5% at every point | max \|dev\| = 0.05% (r=78), 0.02% (r=156) | **CONFIRMED**, ~100× inside band |
+| P-PHOTONICS-1 (PEC ripple, ≥2 sig. reversals) | ≥2 per r | **0 at both r=78 and r=156** | **REFUTED** |
+| P-PHOTONICS-2 (absorber ripple, ≤3 reversals) | ≤3, allowing non-zero | **0 at both r** | technically inside band, but far cleaner than predicted |
+| P-PHOTONICS-3 (κ²-matched cross-check) | agree within 0.03 | \|−0.98987 − (−0.98942)\| = **0.00044** | **CONFIRMED**, ~68× inside band |
+| P-DIR-1 (core-correction delta) | \|ΔC_core\| ∈ [0.02,0.10], deeper when cored | **6.8×10⁻⁶** (−0.834113 vs established −0.83412) | **NEGLIGIBLE band, far below the predicted range** |
+| P-DIR-2, PEC (dual-law agreement) | agree within 0.02 | **0.00314** | **CONFIRMED** (near-certain convergence, per EM's saturation argument — NOT read as validating metric-mismatch) |
+| P-DIR-2, absorber (dual-law disagreement) | >0.05 | **0.2203** | **CONFIRMED**, more unstable than predicted |
+| P-QUANTUM-1 (C(156,σ-held)) | [−0.0145,−0.0100], central −0.0123 | **−0.012361** | **CONFIRMED**, matches central prediction to 3 digits |
+| P-QUANTUM-2 (g floor-corrected ≈0.69) | within 15% of 0.68–0.69 | **0.69685** (g_raw=0.77256) | **CONFIRMED**, within ~2% |
+| P-DIR-3 (ladder score) | MARGINAL | \|C\|=0.01236 ∈ [0.005,0.02] → **MARGINAL** | **CONFIRMED** |
+
+**T12's own central hypothesis test came back a clean, decisive NULL,
+not a confirmation.** Across both r=78 (9 points, N_F 8.0–101.4) and
+r=156 (8 points, N_F 10.0–110.6), for BOTH PEC and the (now correctly
+cored) absorber, C(PLANE_DX) is smoothly and (within the 0.002 magnitude
+floor) monotonically decreasing as PLANE_DX shrinks — **zero significant
+sign reversals anywhere, in any of the four (r, article) sweeps.** This
+directly refutes P-PHOTONICS-1's own falsifiable band. The dense sweep
+finds no aliasing-consistent non-smoothness at this grid resolution for
+either article — a genuinely clean null, not a marginal or ambiguous one
+(the largest raw point-to-point change anywhere in the whole dataset is
+0.0036, and every one of those small changes is monotonic-consistent,
+not sign-flipping). **Read carefully**: this experiment's own PLANE_DX
+sweep varies standoff at FIXED r — a different axis than T12's original
+observation (C varying across the r=78→156→312 family at FIXED
+PLANE_DX=15). A clean null on this axis doesn't retire T12 (the original
+r-family non-monotonicity is untouched by this data — no r=312 point was
+re-measured here), but it does mean the specific mechanism test proposed
+(aliasing detectable as PLANE_DX-sweep non-smoothness) found no support,
+at either r tested — a real, if partial, narrowing of T12's live
+hypothesis space, for Phase 5 to weigh.
+
+**P-DIR-1 (Fix 1's own core-correction delta) is a clean, load-bearing,
+GOOD-NEWS result.** Restoring the historically-correct PEC core to the
+absorber construction changes its r=156/θ=0 reading by **6.8×10⁻⁶** —
+five orders of magnitude below even the "negligible" threshold. Physical
+reading: the shell's own radial optical depth (τ_shell=24, printed-
+asserted since Iteration 7's fix 2) is so large that essentially no
+incident power survives the shell to ever reach the core region, whether
+that region is PEC or vacuum — **the same mechanism T9 already
+established via the box-ledger channel (exp-027/028: "the graded shell's
+own σ(r) profile extinguishes nearly all incident power before it
+reaches the core, in either construction")**, now independently
+reproduced via a completely different measurement channel (single-angle
+ambient contrast, not box-ledger absorbed power). Red Team's attack #1
+was a genuine, necessary, load-bearing catch as a matter of construction
+correctness and program hygiene — exp-030's own record technically used
+the wrong article for every absorber-related θ=0/ambient number it ever
+reported — but the corrected number reveals the defect was, for this
+specific observable, quantitatively inconsequential. **exp-030's own
+committed N=9 ambient-summed conclusions (the r=78 anchor, the PASS/
+MARGINAL/FAIL licensing, T9/T11's floor closures) are untouched** — they
+never used the θ=0 metric this experiment introduces, and in any case the
+core-correction delta measured here is far too small to have moved them.
+
+**T13 remains genuinely unresolved for the absorber — and the properly-
+corrected data makes the case for caution stronger, not weaker.** PEC's
+θ=0 dual-law fit converges tightly (0.00314), exactly as EM's Phase-2
+saturation-artifact argument predicted — but per the pre-committed
+reading, this is a structurally-guaranteed convergence given how close
+PEC's own two points already sit to −1, not evidence the metric-mismatch
+hypothesis is true. MATERIALS' point stands: PEC is constraint-2-
+disqualified, so this convergence is diagnostic-only. **The absorber's
+own dual-law disagreement (0.220) is actually LARGER than the uncored,
+longer-baseline (r=156,312) comparison found at Phase 1/2 (0.132)** —
+using the corrected article and the shorter (r=78,156) baseline makes the
+functional-form instability worse, not better. No witness-scale number
+for the absorber earns any more trust after this experiment than before
+it; if anything, less.
+
+**QUANTUM's g-calibration gap closes cleanly.** C(156,σ-held)=−0.01236
+lands within 0.0001 of the pre-committed central prediction. Scored
+against VISION's frozen ladder (P-DIR-3, her own mandatory Phase-2 fix):
+**MARGINAL** — the same verdict every σ(I) OFF-state article this
+program has ever built has received, at every scale tested, restated
+explicitly here per her fix rather than left implicit. The raw g(156)
+=0.773 sits notably above g(78)=0.685/g(312)=0.694 — but **once the
+same-run empty-scene δ_C floor bias is subtracted (matching Red Team's
+own Iteration-7 e1 finding that this exact bias explained 87–97% of the
+τ-held sponges' own apparent r=156 excursion), g_floor_corrected=0.697
+lands within 2% of both established endpoints.** QUANTUM's own Iteration-7
+"σ-held media are NOT scale-robust" finding (based on raw ΔC) is
+substantially reframed by this cycle's own data: **once floor-corrected,
+the σ-held family's per-unit-τ efficiency g IS scale-robust, matching
+the already-confirmed τ-held diagnostic family** — the same floor-bias
+story Red Team's e1 finding told for the sponges, now independently told
+a second time for a different material-scaling convention. T1's
+g=|C|/τ calibration constant (g≈0.68–0.70) is strengthened as a robust,
+scale-independent quantity across BOTH the τ-held and σ-held families,
+once the known r=156 instrument bias is accounted for.
+
 ## Cost note
 
 15 new FDTD calls for the sweep+quantum stages (6+9, as scoped at Phase
