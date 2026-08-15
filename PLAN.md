@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-14, panel Iteration 9)
+## Current state (2026-08-15, panel Iteration 10)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -538,38 +538,95 @@ continuous mode with checkpoints. The remaining [open] items below are
   idealization iii), NOT a Tier-W/Tier-A constraint-3 verdict — the
   r=156 scale-bridge companion leg stays queued, now third in line. No
   Checkpoint criterion fires. Full record: LOGBOOK.md Iteration 9.
-- **[queued — panel Iteration 10, lead per rotation ELECTROMAGNETISM,
-  Red-Team-ranked, binding priority order per Iteration 9's own close]**
-  (1) **R3 resolution check on the g600≥0.69 recurrence** — rerun
-  `off_pass`/`off_bracket` (+ `off_lab` as a clean third point) at
-  cpl 20→30, the one wavelength on this bench line never resolution-
-  checked; gates every downstream citation of "g≈0.69–0.70," including
-  exp-031's own σ-held r=156 point. (2) **`radial_absorbed_power` applied
-  to off_pass/off_bracket** (beam-scene, reusing exp-028's already-
-  validated suite-stage-10 machinery) — the correctly-targeted instrument
-  for the bulk-vs-edge mechanism question exp-032's own ambient bracket
-  point structurally could not answer. (3) **VISION's r=156 companion
-  leg** (off_pass/off_bracket pair, 600nm only, matching that bench's
-  validated single-λ scope) — sequenced after (1)/(2): building a scale
-  bridge on top of a resolution-untested g figure and an uncharacterized
-  decision floor (VISION's own Phase-5 catch: the 600nm decision floor's
-  fresh measurement came out ~half the committed value, unresolved) would
-  relocate both open problems to a costlier, thinner instrument rather
-  than resolving them first. Lower priority, inherited: T11's own
-  trust-suite stage for the ambient/line-source box-ledger channel
-  (THERMODYNAMICS, better-motivated now, still not urgent); a proper
-  realizability memo naming 2–3 concrete σ(I) material candidate classes
-  with sourced numbers (MATERIALS, following up its own informal Phase-5
-  check); T14's PHOTONICS multi-point cored-absorber r-sweep (r≈78, 110,
-  156, 220, 312, fixed PLANE_DX=15, θ=0) — still never executed; a genuine
-  PEC r-family ripple test near r≈270–350 (T12's own real open half);
-  T11's dedicated multi-point/multi-box-pair box_dev floor
-  characterization; Iteration 6's still-queued incoherent-ensemble/
-  phase-quadrature idiom; a formal reciprocity check (EM's own long-
-  standing #2 pick); the shell-thickness/optical-depth economy sweep
-  (MATERIALS); extending `radial_absorbed_power`/`angular_scattered_
-  pattern` to the 3-λ sweep (PHOTONICS); T10's residual +3.05pp sub-cell/
-  window-offset sweep (lowest priority, widely named across iterations).
+- [done 2026-08-15, panel Iteration 10, cloud panel shift] **exp-033 the
+  g600 resolution check** — ELECTROMAGNETISM's lead (rotation), executing
+  Iteration 9's top-ranked priority. R3-checked (cpl 20→30) the g600≥0.69
+  recurrence at 600nm, the one wavelength on this bench line never
+  resolution-tested, using a free-curvature-fit currency (g_corr, not the
+  imposed 4/3π coefficient QUANTUM's Phase-2 review showed was already
+  refuted by existing data) instead of raw g600. **Block B
+  (`radial_absorbed_power` applied to off_pass/off_bracket, Iteration 9's
+  #2 priority) was CUT this cycle** — PHOTONICS' Phase-2 critique found it
+  structurally underpowered by 2–3 orders of magnitude and partly
+  sign-degenerate, independently confirmed by Red Team; re-queued
+  standalone, not run unmodified (Red Team's own sanctioned fallback).
+  **Result: the raw-g600 cross-resolution shift is fully explained by the
+  empty-scene decision floor's own shift, verified three independent ways
+  to ≈10⁻⁸ precision** (EM's zero-parameter geometric chord model,
+  QUANTUM's per-article decomposition, Red Team's cross-check) — a real
+  advance, closing T1's carried-forward Iteration-9 item. **But Phase 5's
+  seven-seat review (5 PROMISING, 2 substantive PARTIAL — PHOTONICS, Red
+  Team) found the cycle answered a narrower question than first claimed**:
+  the raw-g600 reading itself got MORE pronounced under refinement
+  (0.6927→0.7056), not less; ΔA≈0 is closer to guaranteed-by-construction
+  (the resolution change was almost entirely a common-mode floor shift
+  that g_corr is built to cancel) than to strong evidence g₀ carries no
+  separate resolution-dependent wave physics; and the actually-SCORED raw-C
+  currency was never itself shown resolution-converged (moved toward FAIL
+  at all four articles, only two resolution points). Two new open
+  questions surfaced: g₀ sits ~15% below its own window-integrated
+  geometric chord model, stable across resolution — argued as a real
+  diffractive-leakage effect, not noise (PHOTONICS); and the retired
+  QUANTUM Iteration-9 disposition clause's numeric successor is logically
+  circular (Red Team). A real run-count bookkeeping bug was caught and
+  corrected same-shift (50 FDTD calls, not 47 — the settling-control block
+  runs all 5 scenes per invocation, not 2). **Verdict: PARTIAL**,
+  Director adopting Red Team's audit over the raw 5-2 seat-verdict count,
+  per this program's own established precedent (verdict turns on whether
+  a cycle's own open questions close). MATERIALS' Phase-5 review found R3-
+  CONFIRMED *hardens*, not leaves orthogonal, the σ(I) realizability
+  tension, and surfaced a new, much larger gap: the mechanism must gate at
+  flashlight irradiance (~10⁻³ W/cm²) against published RSA/two-photon
+  onset thresholds (10⁶–10⁹ W/cm²) — 9–12 orders of magnitude short, a
+  candidate Checkpoint-criterion-2 finding if it survives a dedicated
+  check. No Checkpoint criterion fires this cycle (the Phase-3 tripwire on
+  citing the PASS without its ε_r restriction was corrected same-shift,
+  per Red Team's own conditional ruling). Full record: LOGBOOK.md
+  Iteration 10.
+- **[queued — panel Iteration 11, lead per rotation THERMODYNAMICS,
+  Director-adjudicated priority order per Iteration 10's own seven-seat
+  Phase-5 close]** (1) **A third resolution point (cpl=40), empty +
+  off_pass only, 600nm, ~18 calls** — Red Team's and EM's independently-
+  converged top pick: tests whether the actually-scored raw-C currency and
+  the empty-scene decision floor are converging or diverging under
+  refinement (the floor got WORSE at cpl=30, physically anomalous for
+  ordinary discretization error); two points cannot distinguish a trend
+  from noise; gates trust in every PASS/MARGINAL/FAIL this program has
+  ever issued on this bench, not just exp-033's own. Cheap, high-leverage,
+  created (not closed) by exp-033. (2) **VISION's r=156 companion leg** —
+  still the committed, unconditional Iteration-11 trigger (Checkpoint-4
+  tripwire on non-execution) — but Red Team's review recommends pairing it
+  with (1) in the same cycle rather than alone (building a scale bridge on
+  a floor that just moved 3.5× reproduces the exact objection that
+  deferred it four times); VISION's own Phase-5 review adds a second,
+  independent reason (off_pass's entire PASS margin is smaller than this
+  bench's own N5-vs-N9 angular-quadrature convergence increment) plus
+  mandatory riders: dual-currency pre-registration, a fresh δ_C(156)
+  remeasurement, an N17 weak-article convergence check. (3) **Block B,
+  properly scoped as its own standalone lead cycle** (PHOTONICS' full fix
+  package: τ=0.10 substitution, `angular_scattered_pattern`, a re-derived
+  bulk-attenuation reference model) — demoted from exp-033's own
+  pre-Phase-5 draft #1 (attributing where OFF-state absorption sits is
+  second-order to whether the currency scoring it is converged);
+  PHOTONICS' own review reframes its likelier target as the new ~15% g₀
+  chord deficit (T15), a much stronger, more falsifiable signal than the
+  original bulk-vs-rim ripple. **Promoted, newly load-bearing:** a proper
+  realizability memo (MATERIALS) — now carries a specific 9–12
+  order-of-magnitude irradiance-gap number worth a dedicated build, zero
+  FDTD cost, runnable alongside any heavy cycle; a candidate
+  Checkpoint-criterion-2 finding if it survives review. Lower priority,
+  inherited: T11's own trust-suite stage for the ambient/line-source
+  box-ledger channel (THERMODYNAMICS — all four articles' ΔT now cheaply
+  reportable per its own Phase-5 review, not just off_pass's); T14's
+  PHOTONICS multi-point cored-absorber r-sweep (r≈78, 110, 156, 220, 312,
+  fixed PLANE_DX=15, θ=0) — still never executed; a genuine PEC r-family
+  ripple test near r≈270–350 (T12's own real open half); T11's dedicated
+  multi-point/multi-box-pair box_dev floor characterization; Iteration 6's
+  still-queued incoherent-ensemble/phase-quadrature idiom (QUANTUM's own
+  #2 Phase-5 pick); a formal reciprocity check (EM's own long-standing
+  pick); the shell-thickness/optical-depth economy sweep (MATERIALS);
+  T10's residual +3.05pp sub-cell/window-offset sweep (lowest priority,
+  widely named across iterations).
 - **[queued, deprioritized behind T13 per Red Team's Iteration-7
   ruling]** docket #7: sourced witness-scenario parameter table +
   glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring.

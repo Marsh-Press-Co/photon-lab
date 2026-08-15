@@ -117,12 +117,50 @@ measured them here):**
   aggregate ambient-contrast measurement is structurally underpowered
   for that question at these optically-thin τ regardless of SNR; the
   correctly-targeted instrument is the already-validated
-  `radial_absorbed_power` (exp-028), queued for Iteration 10. This PASS
-  is explicitly a bench-scale diagnostic (VISION's own idealization iii),
-  NOT a Tier-W/Tier-A constraint-3 verdict — the r=156 scale-bridge
-  companion leg, queued since Iteration 3, remains unbuilt, now queued
-  third (after the R3 check and the mechanism instrument) for Iteration
-  10.
+  `radial_absorbed_power` (exp-028), still unbuilt (Block B, deferred
+  standalone at Iteration 10 — see below). This PASS is explicitly a
+  bench-scale diagnostic (VISION's own idealization iii), NOT a
+  Tier-W/Tier-A constraint-3 verdict — the r=156 scale-bridge companion
+  leg, queued since Iteration 3, remains unbuilt, now a committed,
+  unconditional Iteration-11 trigger.
+  **R3 check RUN (Iteration 10, exp-033): the raw-g600 cross-resolution
+  shift (cpl 20→30) is fully EXPLAINED by the empty-scene decision floor's
+  own shift, verified independently three ways (EM's zero-parameter
+  geometric chord model, QUANTUM's per-article decomposition, Red Team's
+  cross-check) to ≈10⁻⁸ precision — a genuine, narrower-than-first-claimed
+  result (Director's close, adopting Red Team's Phase-5 audit, VERDICT
+  PARTIAL, not the PROMISING the raw seat count would suggest).**
+  **What this does NOT establish, contra exp-033's own first-draft
+  framing: (i) the raw-g600 reading itself did not go away — it got MORE
+  pronounced under refinement (0.6927→0.7056), not less; only the
+  floor-subtracted explanation improved. (ii) ΔA≈0 is closer to
+  guaranteed-by-construction (this cycle's resolution change was almost
+  entirely a common-mode floor shift, which g_corr is built to cancel)
+  than to strong evidence g₀ itself carries no separate resolution-
+  dependent wave physics — an open methodological gap for any future
+  check to design around. (iii) The actually-SCORED currency, raw C
+  (mandatory fix 8), was NOT itself shown resolution-converged — it moved
+  toward the FAIL bar at all four articles under this one refinement
+  step, with only two resolution points to judge a trend from; a third
+  point (cpl=40) is Iteration 11's own top-ranked item, ahead of r=156.**
+  **New, this cycle: g₀ ≈ 0.6896 sits ~15% below its own window-
+  integrated geometric chord model (PHOTONICS, Phase 5) — stable across
+  cpl=20→30, which PHOTONICS argues is positive evidence of a real
+  diffractive-leakage effect at the measurement plane (a numerical
+  artifact would not survive that refinement), not noise. g₀ therefore
+  needs a SECOND restriction beyond ε_r≡1 (mandatory fix 9): it is
+  specific to this bench's own (PLANE_DX/λ, W_OBJ/r_out) geometry, not a
+  portable constant even among gas-host articles at other standoffs.
+  Unexplained; not investigated this cycle.** MATERIALS' Phase-5
+  propagation: R3-CONFIRMED *hardens*, not leaves orthogonal, the σ(I)
+  realizability tension — D_req≈537–600× moves from "provisional pending
+  resolution check" to "gate-clean." A new, much larger realizability gap
+  surfaced the same shift: the mechanism must gate at flashlight
+  irradiance (~10⁻³ W/cm²) against published RSA/two-photon-absorption
+  onset thresholds (10⁶–10⁹ W/cm²) — a 9–12 order-of-magnitude gap,
+  dwarfing the dynamic-range tension, queued as a dedicated realizability
+  memo (MATERIALS), a candidate Checkpoint-criterion-2 finding if it
+  survives that check.
 - **T2 — Perceptual thresholds.** PINNED and corrected in exp-020: frozen
   function C_thr(L) = 0.005·max[1,(L/3)^−p], p ∈ [0.4, 0.5], field ×4;
   crossovers re-derived from the function itself (Red Team #2's catch).
@@ -393,6 +431,29 @@ measured them here):**
   PHOTONICS' own Phase-5 pick — a multi-point cored-absorber r-sweep
   (r≈78,110,156,220,312, fixed standoff) — is the pre-registered first
   test, queued for Iteration 9.
+- **T15 — g₀'s ~15% window-integrated chord-model deficit (opened
+  Iteration 10, exp-033 Phase 5, PHOTONICS).** The σ(I) OFF-state ambient-
+  contrast calibration constant g₀≈0.6896 (600nm) sits ~15% below the
+  value its own back-lit measurement geometry (9-angle ±35° window-
+  integrated chord average) predicts with zero free parameters
+  (0.814 geometric vs 0.6896 measured; ELECTROMAGNETISM's independent,
+  slightly different chord/window integral gives 0.6981, −1.2% —
+  consistent in sign, differing in exact magnitude by construction
+  detail). **Stable across cpl=20→30** (PHOTONICS: a window-sampling
+  numerical error would not survive that refinement), argued as positive
+  evidence the deficit is a real diffractive-leakage effect at the
+  measurement plane (PLANE_DX=15, 0.75λ standoff), not noise or a grid
+  artifact. Inconsistent with the THERMO energy sidecar's own separate
+  amplitude assumption (π/4, the θ=0 chord peak) computed in the same
+  `results.json` — two extinction amplitudes, ~14% apart, unreconciled in
+  one committed record. Implication: g₀ needs a SECOND restriction beyond
+  ε_r≡1 (T1's own mandatory fix 9) — it is a transfer function of this
+  bench's own (PLANE_DX/λ, W_OBJ/r_out) geometry specifically, not a
+  portable constant even among gas-host articles at other standoffs.
+  Unexplained; no mechanism test run yet. Candidate for folding into
+  Block B's re-scoped standalone cycle (PHOTONICS' own Phase-5 argument:
+  a ~250× stronger, more falsifiable signal than the original bulk-vs-rim
+  ripple Block B was cut for).
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -4225,4 +4286,166 @@ criterion 4 fires retroactively.
 Predictions (P-1 through P-5) committed to git before any run — see
 `experiments/033-g600-resolution-check/NOTES.md` for the full text.
 
-### Phase 4 (test) and Phase 5 (review): to be appended after the run.
+### Phase 4 — Test
+
+50 new FDTD calls (corrected from an originally-documented 47 — Red Team's
+Phase-5 audit caught that the settling-control block's single call
+actually runs all 5 scenes, not 2), 1036s. Suite reconfirmed 46/46 green
+pre-run, no `lab/` change. **All five pre-registered predictions (P-1
+through P-5) confirmed at face value**: residual gate 6.447×10⁻⁶ (465× —
+corrected from an originally-reported 438×, several Phase-5 seats
+independently caught the same slip) inside the ≤3.0×10⁻³ gate; ΔA =
+|0.689637−0.689593| = 4.42×10⁻⁵, inside the CONFIRMED band (≤0.015);
+settling |ΔC|/|C| = 0.48% (band ≤3%); VISION ladder on raw C: off_bracket/
+off_pass PASS, off_lab MARGINAL (not new — its established native value
+was already >0.005), off_field FAIL (expected). One number flagged
+honestly at the time, not smoothed over: the fresh empty-scene decision
+floor at 600nm/cpl=30 measured 1.165×10⁻⁴ — 3.5× larger than the
+established cpl=20 value (3.317×10⁻⁵).
+
+### Phase 5 — Review (seven fresh seats)
+
+**PROMISING (5):** THERMODYNAMICS (verified the energy sidecar to every
+digit, caught a units-conflation defect in its own detectability string
+and a missing-inputs gap in the machine record, found off_field's ΔT sits
+only 5× below NETD — not the 24–700× range implied by reporting only
+off_pass — and committed to proposing the r=156 leg as Iteration-11 lead).
+**MATERIALS** ("narrow" — verified everything, caught the 438→465× slip,
+found mandatory fix 9's ε_r-restriction carry-through insufficient in
+three places, and — its most consequential finding — that R3-CONFIRMED
+*hardens*, not leaves orthogonal, the σ(I) realizability tension:
+provisional-pending-resolution-check becomes gate-clean; proposed a
+realizability-memo calculation showing the mechanism must gate at
+flashlight irradiance ~10⁻³ W/cm² against published RSA/two-photon
+thresholds of 10⁶–10⁹ W/cm² — a 9–12 order-of-magnitude gap, dwarfing the
+537–600× dynamic-range tension, a candidate Checkpoint-criterion-2 finding
+if it survives a dedicated check). **VISION SCIENCE** (confirmed the
+off_lab MARGINAL reading is robust to currency and not new; found a
+second, orthogonal instrument-trust gap — off_pass's entire PASS margin,
+4.14×10⁻⁴, is SMALLER than this bench's own N5-vs-N9 angular-quadrature
+convergence increment, ~4.8×10⁻⁴ — the PASS sits inside unmeasured
+quadrature error; found r=156's own decision floor is already known far
+worse, 24% of the entire lab bar, predicting off_pass would likely read
+MARGINAL there from floor alone; reprioritized r=156 to top with mandatory
+riders). **QUANTUM OPTICS** (no dissent this cycle, contrast with
+Iteration 9 — verified everything, independently decomposed the raw-g600
+cross-resolution shift and found the floor term explains it to 5×10⁻⁵ on
+three articles independently, a stronger confirmation than ΔA alone;
+confirmed its own Phase-2 attack survives refinement, B/A=0.434 vs
+4/(3π)=0.424 persists at cpl=30; flagged the residual gate as blind to
+common-mode floor error, proposing a cheap companion check).
+**ELECTROMAGNETISM** (initially PROMISING — verified everything, derived a
+zero-free-parameter geometric chord model predicting g₀=0.6981 vs measured
+0.68964, confirming g₀ is ~98% instrument geometry; but found two real
+defects: the "floor enters uniformly" robustness claim is stated
+backwards — the gate works because floor error is *differential* across
+τ, not because the run's floor was merely large — and the 3.5× floor
+degradation itself is physically anomalous (refinement should reduce an
+empty-scene floor, not grow it) and should NOT be treated as closed;
+proposed a floor-scaling diagnostic ahead of r=156).
+
+**PARTIAL (2), both substantive:** **PHOTONICS** — found the "λ-dependence
+of the floor" attribution is wrong (media are non-dispersive; λ enters
+only via `cells_per_lambda`, so what varies is resolution, and the floor
+is non-monotone/non-convergent across all three λ under refinement — "600
+nm's floor sits near zero" was a cpl=20 accident); found a simpler
+closure (raw g600≥0.69 was arithmetically guaranteed at every floor ever
+measured on this bench, no chromatic story needed); found g₀ sits ~15%
+below its own window-integrated geometric chord model, inconsistent with
+the THERMO sidecar's own separate amplitude assumption in the same
+`results.json`, and argued resolution-invariance is *positive* evidence
+this is a real diffractive-leakage effect (a window-sampling numerical
+error would not survive cpl 20→30) rather than noise — g₀ needs a second
+restriction beyond ε_r≡1. **RED TEAM's audit** — verified every mandatory
+Phase-2 fix against the actual code (not NOTES.md's claims): fix 1's
+runtime assert is algebraically tautological (σ is defined FROM τ, cannot
+fail); the floor-robustness paragraph is arithmetically backwards
+(recomputed the exact counterfactual: a genuine floor-mismeasurement of
+this run's own 8.33×10⁻⁵ magnitude would give residual 8.5×10⁻³, gate
+FAIL, ΔA 0.021, INCONCLUSIVE — the design didn't get lucky, it measured
+correctly); the retired QUANTUM clause's numeric successor is logically
+circular; ΔA≈0 is closer to guaranteed-by-construction (a common-mode
+floor shift that g_corr is built to subtract) than to strong evidence of
+resolution-invariant wave physics; the scored raw-C currency itself moved
+toward FAIL at all four articles with only two resolution points; a real
+run-count bookkeeping bug (50 calls, not 47 — the third occurrence of this
+defect class, Iterations 3/4); geometry not fully self-similar (PLANE_DX
+drifted 2.2% in wavelengths, on exactly the parameter T12 flags as
+diffraction-sensitive). **Overruled the emerging PROMISING lean**,
+invoking this program's own established precedent (verdict turns on
+whether a cycle's open questions close — Iterations 7/8/9 all PARTIAL for
+the identical reason).
+
+### Director's close
+
+**VERDICT: PARTIAL**, adopting Red Team's audit over the 5-PROMISING/
+2-PARTIAL raw seat count — per this program's own precedent (Red Team's
+audit role has overruled favorable headline counts before: Iteration 9's
+QUANTUM dissent). All of Red Team's mandatory same-shift corrections
+applied to `experiments/033-g600-resolution-check/{NOTES.md,
+design_geometry.py,run.py,results.json}`: run count 47→50; the
+floor-robustness paragraph struck and rewritten (not silently deleted —
+the reasoning error and correction are both on record); ε_r qualifiers
+attached inline to every PASS citation, not just a separate meta key; the
+fix-1 assert's real (non-)protection stated honestly in code; the
+PLANE_DX 2.2% non-self-similarity noted. **Checkpoint criterion 4
+(the Phase-3 tripwire) does NOT fire — corrected same-shift, per Red
+Team's own explicit conditional ruling.**
+
+**The honest headline**: exp-033 converted a three-experiment, four-point
+"g600 recurrence" from an unexplained flag into a floor-subtraction effect
+verified three independent ways (EM's geometric model, QUANTUM's
+per-article decomposition, Red Team's cross-check) to ≈10⁻⁸ precision — a
+genuine, if narrower-than-first-claimed, advance closing T1's
+carried-forward Iteration-9 item. Against that: the actually-scored raw-C
+currency was left unconverged with only two resolution points and a
+physically-anomalous floor degradation; two new open questions surfaced
+(g₀'s ~15% chord deficit; the retired clause's circular successor); and
+Block B — half of Iteration 9's binding two-item priority — was never
+run this cycle. **No other Checkpoint criterion fires**: not a
+configuration passing every constraint metric (1); not a proven boundary
+(2) — though MATERIALS' new irradiance-gap finding is a candidate for one,
+pending its own dedicated check; no engine physics beyond validated bench
+classes was needed (3); and this is not two consecutive
+logbook-non-advancing cycles (5) — the three-way-confirmed
+floor-subtraction result is real forward motion.
+
+Ranked top-3 for Iteration 11 (Director's adjudication of all seven
+Phase-5 reviews, superseding the pre-Phase-5 draft ranking in this
+experiment's own NOTES.md, which is struck and preserved there): (1) a
+third resolution point (cpl=40, empty+off_pass, 600nm, ~18 calls) —
+Red Team's and EM's independently-converged top pick, testing whether the
+SCORED raw-C currency and the decision floor are converging or diverging;
+cheapest, highest-leverage item created (not closed) by this cycle. (2)
+VISION's r=156 leg — still the committed, unconditional Iteration-11
+trigger, but Red Team's review recommends pairing it with (1) in the same
+cycle rather than running it alone, and VISION's own review adds a second,
+independent reason (the PASS margin sits inside unmeasured angular-
+quadrature error) plus mandatory riders (dual-currency pre-registration, a
+fresh δ_C(156) remeasurement, an N17 convergence check). (3) Block B,
+properly scoped as its own standalone lead cycle (PHOTONICS' full fix
+package) — demoted from this experiment's own pre-Phase-5 draft #1, since
+attributing where OFF-state absorption sits is second-order to whether the
+currency that scores it is even converged; PHOTONICS' own review reframes
+its likelier target as the ~15% g₀ chord deficit, a much stronger signal
+than the original bulk-vs-rim ripple. Promoted, not previously this high:
+MATERIALS' realizability memo, now carrying a specific 9–12
+order-of-magnitude irradiance-gap number worth a dedicated build, zero
+FDTD cost, runnable alongside any heavy cycle.
+
+`1f65123` (predictions) → results committed this shift. Next lead per
+rotation: **THERMODYNAMICS** (Iteration 11) — its own Phase-5 review
+commits to proposing the r=156 leg. Trust suite 46/46 green throughout (no
+`lab/` engine changes this shift).
+
+Open questions carried forward: whether the raw-C scoring currency is
+resolution-converged (new, this cycle's own creation — top Iteration-11
+priority); g₀'s ~15% window-integrated chord-model deficit (new, PHOTONICS);
+the retired QUANTUM clause's circular successor (new, Red Team — needs a
+non-circular replacement before next citation); the physically-anomalous
+600nm floor degradation under refinement (new, EM); Block B's bulk-vs-edge
+question (still open, re-queued standalone); VISION's r=156 leg (committed,
+now with mandatory convergence riders); a proper realizability memo
+(MATERIALS, now with a striking new irradiance-gap number); T11's box-ledger
+trust stage; T14's cored-absorber r-sweep; T12's PEC r-family ripple test;
+QUANTUM's incoherent-ensemble idiom; EM's reciprocity check.

@@ -2,6 +2,105 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-15 (panel shift) — Iteration 10 complete (exp-033): the g600≥0.69
+recurrence's cross-resolution behavior is explained (three independent
+confirmations, ≈10⁻⁸ precision) but Red Team's Phase-5 audit overrules a
+5-2 PROMISING seat lean to PARTIAL — the question closed was narrower than
+queued, the actually-scored currency was left unconverged, Block B was cut,
+and two new open questions (a ~15% g₀ chord deficit; a circular retired-
+clause successor) surfaced
+
+**Pre-flight:** local `main` synced to Iteration 9's close (`079a3ba`).
+Deps installed fresh (numpy/scipy/matplotlib/pillow/autograd/fdtd via pip,
+then `ceviche --no-deps`, per the recorded wrinkle). Bench trust suite
+46/46 green (`--only 12346789,10,11`) before this shift's work, reconfirmed
+immediately pre-run.
+
+**Iteration 10 — The g600 Resolution Check (exp-033, CONCLUDED).** Lead:
+ELECTROMAGNETISM (rotation), executing Iteration 9's top-ranked priority:
+R3-check the g600≥0.69 recurrence at 600nm, the one wavelength on this
+ambient bench line never resolution-tested. Full seven-seat cycle: Phase 1
+proposal (EM, two blocks — a desk finding that all twelve existing weak-
+article ambient points collapse onto one constant, g₀≈0.6889, once the
+empty-scene floor is subtracted additively) → 5 blind parallel critiques
+(PHOTONICS, MATERIALS, THERMODYNAMICS, QUANTUM OPTICS, VISION SCIENCE —
+all support-with-changes, each catching a distinct, orthogonal defect) →
+Red Team last with everything (PROCEED-WITH-MANDATORY-FIXES, 16 numbered
+attacks, two load-bearing catches no blind seat found: a silent σ-rescale
+bug reproducing exp-027's historical T10 defect, and a decision-floor
+mixed-weighting bug resolving VISION's "unexplained drift" at zero cost)
+→ Phase 3 synthesis (Director: all ten mandatory fixes accepted; Block B
+— radial_absorbed_power on beam-scene off_pass/off_bracket, Iteration 9's
+#2 priority — CUT this cycle per Red Team's own sanctioned fallback,
+PHOTONICS' structurally-underpowered-by-2-3-orders attack independently
+confirmed; re-queued standalone) → predictions committed (`1f65123`) →
+Phase 4 run.
+
+**Result: 50 new FDTD calls, 1036s.** All five pre-registered predictions
+confirmed at face value: residual gate 6.4×10⁻⁶ inside the ≤3×10⁻³ gate;
+ΔA=4.42×10⁻⁵ inside the CONFIRMED band; settling 0.48%; VISION ladder on
+raw C as predicted (off_pass PASS, margin held). **The raw-g600 cross-
+resolution shift is fully explained by the empty-scene decision floor's
+own shift** — independently confirmed three separate ways (EM's zero-
+parameter geometric chord model, QUANTUM's per-article decomposition, Red
+Team's cross-check) to ≈10⁻⁸ precision in C-space, a genuine advance
+closing T1's carried-forward item.
+
+**Phase 5 (seven fresh seats) found the headline overstated what closed.**
+Five seats (THERMODYNAMICS, MATERIALS, QUANTUM OPTICS, VISION SCIENCE,
+initially ELECTROMAGNETISM) read PROMISING. Two substantive dissents:
+**PHOTONICS** — the "λ-dependence of the floor" attribution is wrong
+(media are non-dispersive; what varies is resolution, and the floor is
+non-monotone/non-convergent across all three λ under refinement); found a
+simpler closure (raw g600≥0.69 was arithmetically guaranteed at every
+floor ever measured on this bench); and found g₀ sits ~15% below its own
+window-integrated geometric chord model, stable across resolution —
+argued as a real diffractive-leakage effect, not noise (new live thread
+T15). **RED TEAM's audit** — verified every mandatory fix against the
+actual code, found the "floor enters uniformly" robustness claim
+arithmetically backwards (a real floor-mismeasurement of the observed
+magnitude would have failed the gate; the design worked because the floor
+was measured correctly, not because the gate tolerates floor size), found
+ΔA≈0 is closer to guaranteed-by-construction than to strong evidence of
+resolution-invariant physics (the resolution change was almost entirely a
+common-mode floor shift that g_corr is built to cancel), found the
+actually-scored raw-C currency was never itself shown resolution-
+converged (moved toward FAIL at all four articles, only two points), found
+the retired QUANTUM disposition clause's numeric successor is logically
+circular, and caught a real run-count bookkeeping bug (50 calls not 47 —
+third occurrence of this defect class). **Overruled the emerging
+PROMISING lean, invoking this program's own precedent** (verdict turns on
+whether a cycle's open questions close — Iterations 7/8/9 all PARTIAL for
+the identical reason).
+
+**Mandatory same-shift corrections applied, not smoothed over:** run count
+corrected in NOTES.md/results.json/run.py; the floor-robustness paragraph
+struck and rewritten with the corrected reasoning; ε_r≡1 qualifiers
+attached inline to every PASS citation (not just a separate meta key,
+mandatory fix 9's carry-through, MATERIALS' Phase-5 catch); the fix-1
+runtime assert's real (non-)protection stated honestly in code (it is
+algebraically tautological — σ is defined FROM τ, so it cannot fail);
+PLANE_DX's 2.2% non-self-similarity under the ×1.5 rescale noted.
+**Checkpoint criterion 4 does NOT fire** — corrected same-shift, per Red
+Team's own explicit conditional ruling.
+
+**Director's close: VERDICT PARTIAL**, adopting Red Team's audit over the
+raw 5-2 seat count — real, verified forward motion (T1's carried item
+closes, three independent confirmations of the floor-subtraction model to
+extraordinary precision) narrower than first claimed, with the actually-
+scored currency left unconverged and two new open questions surfaced.
+MATERIALS' Phase-5 review found R3-CONFIRMED hardens (not leaves
+orthogonal) the σ(I) realizability tension, and surfaced a new, much
+larger gap: the mechanism must gate at flashlight irradiance (~10⁻³
+W/cm²) against published RSA/two-photon onset thresholds (10⁶–10⁹
+W/cm²) — 9–12 orders of magnitude short, a candidate Checkpoint-2 finding
+if it survives a dedicated check. No other Checkpoint criterion fires.
+`1f65123` (predictions) → results/corrections committed this shift. Next
+lead per rotation: **THERMODYNAMICS** (Iteration 11) — commits to
+proposing VISION's r=156 leg, paired per Red Team's recommendation with a
+new top-ranked cpl=40 floor/currency-convergence diagnostic. Trust suite
+46/46 green throughout (no `lab/` engine changes this shift).
+
 ## 2026-08-14 (panel shift) — Iteration 9 complete (exp-032): first-ever
 σ(I) OFF-state PASS against VISION's frozen photopic lab bar, at bench
 scale, all 3λ — but qualified by an untested-grid-resolution g-anomaly
