@@ -25,6 +25,7 @@ import os
 import sys
 import time
 from concurrent.futures import ProcessPoolExecutor
+from functools import partial
 
 import numpy as np
 
@@ -275,7 +276,7 @@ def block_n17(geom, label, established_C, established_margin_bar=0.005):
     scenes = {}
     n_runs = 0
     with ProcessPoolExecutor(max_workers=4) as ex:
-        for theta, steps, out, dt in ex.map(run_group_n17, [(geom, a) for a in main_args]):
+        for theta, steps, out, dt in ex.map(partial(run_group_n17, geom), main_args):
             scenes[theta] = out
             n_runs += 2
             print(f"  [{label} {len(scenes):2d}/{len(main_args)}] theta={theta:+05.1f} ({dt:5.1f}s)", flush=True)
