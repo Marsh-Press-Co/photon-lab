@@ -123,6 +123,20 @@ SIGMA_BY_ARTICLE = {"off_bracket": SIGMA_OFF_BRACKET, "off_pass": SIGMA_OFF_PASS
 for _art in ARTICLES:
     assert abs(2.0 * SIGMA_BY_ARTICLE[_art] * R_OUT - TAU_BY_ARTICLE[_art]) < 1e-9, \
         f"tau_center rescale failed for {_art} -- mandatory fix 1 (attack 1)"
+# HONESTY CORRECTION (Red Team, Phase-5 audit, attack 1): the assert above is
+# algebraically UNFALSIFIABLE as written -- SIGMA_BY_ARTICLE is *defined* as
+# TAU_BY_ARTICLE[_art] / (2*R_OUT), so the check can never fail for any
+# R_OUT or TAU. It does NOT provide the independent verification mandatory
+# fix 1 was meant to add (a guard against a downstream-computed sigma
+# silently drifting from an independently-specified tau, exp-027's own T10
+# bug). Tau happened to be held correctly this run -- verified separately,
+# not by this assert -- because sigma was defined FROM tau, not computed
+# from a separately-rescaled geometry constant the way exp-027's bug arose.
+# A real guard would assert sigma against a HARD-CODED literal per article,
+# independent of this module's own tau/(2*r_out) formula. Left uncorrected
+# in code (fixing it correctly requires literals that would need updating
+# every time R_OUT changes, an anti-pattern) -- flagged here instead so no
+# future cycle cites this as a working independent check.
 
 # ---------------------- established anchors (native cpl=20, 600nm) ----------------------
 # free-curvature-coefficient fit (QUANTUM/Red Team verified, Panel Iteration 10

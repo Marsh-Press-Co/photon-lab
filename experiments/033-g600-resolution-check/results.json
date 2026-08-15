@@ -1,0 +1,153 @@
+{
+ "meta": {
+  "geometry": {
+   "NX": 540,
+   "NY": 2376,
+   "ABSORB": 60,
+   "SRC_X": 450,
+   "OBJ": [
+    255,
+    1188
+   ],
+   "R_OUT": 117,
+   "PLANE_X": 116,
+   "W_OBJ": 117,
+   "GUARD_OUT": 278,
+   "W_FLANK": 117,
+   "BOX": [
+    120,
+    390,
+    1053,
+    1323
+   ],
+   "CPL": 30,
+   "CPL_NATIVE": 20
+  },
+  "fallback_angles": [
+   -35,
+   -25,
+   -15,
+   -5,
+   0,
+   5,
+   15,
+   25,
+   35
+  ],
+  "tau": {
+   "off_bracket": 0.003,
+   "off_pass": 0.0065,
+   "off_lab": 0.008,
+   "off_field": 0.032
+  },
+  "sigma": {
+   "off_bracket": 1.2820512820512822e-05,
+   "off_pass": 2.7777777777777776e-05,
+   "off_lab": 3.418803418803419e-05,
+   "off_field": 0.00013675213675213676
+  },
+  "decision_floor_corrected_equal_weighted": {
+   "450": 0.00088921,
+   "600": 3.3166e-05,
+   "750": 0.00043161
+  },
+  "established_fit_600nm_cpl20": {
+   "A_g0": 0.689593,
+   "B": 0.299943
+  },
+  "eps_r_idealization_note": "g0 and every PASS in this line are properties of an index-matched (eps_r == 1.0, n-1 <~ 1e-5) article -- a gas/aerosol host only. At a realizable condensed-phase index (n=1.33-1.5): two-surface ambient contrast C = -0.040 to -0.078 (VISION-ladder FAIL, 9-17x the off_pass signal), specular return 143-571x the established camera floor (constraint-2 violation). NOT a material transfer function.",
+  "block_b_status": "CUT THIS CYCLE -- see design_geometry.py docstring and NOTES.md Phase 3 (Red Team's sanctioned fallback; PHOTONICS' structurally-underpowered attack, independently confirmed).",
+  "elapsed_s": 1036.0221056938171,
+  "elapsed_s_main": 851.594658613205,
+  "elapsed_s_settling": 184.42734026908875,
+  "n_new_runs": 50,
+  "n_new_runs_erratum": "Corrected from 47 (Red Team, Phase-5 audit, attack 8): run_ambient_group always runs empty + all 4 articles (5 FDTD calls) per invocation; the settling control block calls it ONCE (not twice as originally documented), so it cost 5 calls, not 2 -- 3 of those 5 (off_bracket/off_lab/off_field at 1400 steps) were computed but never analyzed (only empty and off_pass were used for the P-4 settling check, as originally scoped). True total: 45 main + 5 settling = 50."
+ },
+ "ambient_contrasts": {
+  "off_bracket": {
+   "C": -0.002182716511519647,
+   "C_empty": -0.00011647923213709
+  },
+  "off_pass": {
+   "C": -0.004586460833023719,
+   "C_empty": -0.00011647923213709
+  },
+  "off_lab": {
+   "C": -0.005614378988076579,
+   "C_empty": -0.00011647923213709
+  },
+  "off_field": {
+   "C": -0.0218784271997696,
+   "C_empty": -0.00011647923213709
+  }
+ },
+ "fresh_empty_decision_floor_600_cpl30": 0.00011647923213709,
+ "g_corr": {
+  "off_bracket": 0.6887457597941856,
+  "off_pass": 0.6876894770594815,
+  "off_lab": 0.687237469492436,
+  "off_field": 0.6800608739885159
+ },
+ "g_raw": {
+  "off_bracket": 0.727572170506549,
+  "off_pass": 0.705609358926726,
+  "off_lab": 0.7017973735095723,
+  "off_field": 0.6837008499928
+ },
+ "free_curvature_fit": {
+  "A_g0": 0.6896372063633918,
+  "B": 0.2992978811908808,
+  "max_residual": 6.447074366477956e-06,
+  "residual_gate_threshold": 0.003,
+  "residual_gate_pass": true,
+  "delta_A_vs_established": 4.420636339175221e-05,
+  "confirmed_band": 0.015,
+  "artifact_band": 0.035,
+  "disposition": "CONFIRMED (resolution-invariant)"
+ },
+ "quantum_disposition_clause_retirement": {
+  "original_iteration9_clause": "raw g600(off_pass) >= 0.69 flags anomaly-consistent",
+  "retirement_reason": "dissolved by this cycle's own desk arithmetic before any run: g_corr(600) for all 4 articles clusters at 0.686-0.689, BELOW the 0.69 threshold -- the raw-g600 clause would never have fired once the C_empty floor is subtracted; the apparent >=0.69 'anomaly' was g0 showing through the lambda-dependence of the empty-scene floor, not a physical effect.",
+  "successor_clause_g_corr_currency": "the 600nm channel is anomaly-consistent iff EITHER the fit-residual gate fails OR delta_A >= 0.035 (the ARTIFACT band) -- i.e. iff this cycle's own R3 check flags artifact or data-quality failure. A CONFIRMED result licenses g0~0.6889 as resolution-stable at 600nm and formally closes the raw-g600 anomaly question.",
+  "this_run_disposition": "CONFIRMED (resolution-invariant)"
+ },
+ "vision_ladder_raw_C_SCORED": {
+  "off_bracket": "PASS",
+  "off_pass": "PASS",
+  "off_lab": "MARGINAL",
+  "off_field": "FAIL"
+ },
+ "vision_ladder_g_corr_corrected_C_SENSITIVITY_ONLY_not_scored": {
+  "off_bracket": "PASS",
+  "off_pass": "PASS",
+  "off_lab": "MARGINAL",
+  "off_field": "FAIL"
+ },
+ "settling_control": {
+  "C_1400steps": -0.004984060237928548,
+  "C_2100steps_main_theta0": -0.00500788630016099,
+  "relative_delta": 0.004757708303336793,
+  "band": 0.03
+ },
+ "thermo_sidecar_analytic": {
+  "label": "POST-RUN ANALYTIC, NOT AN FDTD OUTPUT (expressibility contract)",
+  "absorbed_fraction_chord_model": {
+   "off_bracket": 0.002353194490192345,
+   "off_pass": 0.005091004728750081,
+   "off_lab": 0.006261851973846253,
+   "off_field": 0.024791407895385014
+  },
+  "off_pass_steady_state_dT_K": 0.000817,
+  "off_pass_transient_dT_K_by_dwell_s": {
+   "0.1": 6.9e-05,
+   "0.5": 0.000346,
+   "1.0": 0.000692
+  },
+  "microbolometer_NETD_K_band": [
+   0.02,
+   0.05
+  ],
+  "off_state_detectability": "UNDETECTABLE at every dwell tested -- 30-700x below NETD even at steady state, and the phenomenon is a SWEPT beam (constraint 4): transient dwell-limited DeltaT is the physically apt number, not steady-state.",
+  "on_endpoint_lwir_claim": "HELD AT HYPOTHESIS-NOT-RESULT (Red Team attack 11): steady-state estimate ~0.15K (2-5x above NETD) INVERTS once swept-beam dwell is applied (same scaling as off_pass would put transient DeltaT far below steady-state); dwell time, parcel geometry, and host phase (MATERIALS restricts off_pass's realizable host to dilute vapour/aerosol, where graybody radiative-equilibrium is the wrong model) are all unpinned. Not scored. Docket #7 (sourced witness-scenario table) would resolve this; still deprioritized behind T13."
+ }
+}

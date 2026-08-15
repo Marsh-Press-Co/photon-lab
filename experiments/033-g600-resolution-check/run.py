@@ -11,10 +11,16 @@ tau=0.003/0.0065/0.008/0.032) on exp-032's own +-35deg N=9 ambient bench,
 RESCALED x1.5 (cpl 20->30, physical size held) -- this program's mandatory
 R3 resolution check, at 600nm, the one wavelength never previously checked.
 
-4 articles + empty = 5 scenes x 9 angles = 45 calls, + a 2-call settling
-control (empty + off_pass @ theta=0, native STEPS=1400 vs this run's own
-STEPS=2100) = 47 new FDTD calls total. No `lab/` change -- suite stays
-46/46 fast-stage green (re-verified before results are read).
+4 articles + empty = 5 scenes x 9 angles = 45 calls, + the settling-control
+block (empty + off_pass @ theta=0, native STEPS=1400 vs this run's own
+STEPS=2100) = 50 new FDTD calls total (corrected from an originally
+documented 47 -- Red Team's Phase-5 audit, attack 8: `run_ambient_group`
+always runs empty + ALL FOUR articles per invocation, so the settling
+block's single call costs 5 FDTD sims, not 2; 3 of those 5 -- off_bracket/
+off_lab/off_field at 1400 steps -- were computed but never analyzed, only
+empty and off_pass were used for the P-4 check, exactly as scoped. Erratum
+recorded in NOTES.md and results.json meta.). No `lab/` change -- suite
+stays 46/46 fast-stage green (re-verified before results are read).
 
 Predictions committed in NOTES.md BEFORE this file's first run (house
 discipline, non-negotiable).
