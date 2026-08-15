@@ -1,0 +1,110 @@
+{
+ "meta": {
+  "n_new_runs_total": 115,
+  "elapsed_s_total": 3378.772257566452,
+  "eps_r_idealization_note": "g0 and every PASS/MARGINAL in this line are properties of an index-matched (eps_r == 1.0, n-1 <~ 1e-5) article -- a gas/aerosol host only. At a realizable condensed-phase index (n=1.33-1.5): two-surface ambient contrast C = -0.040 to -0.078 (VISION-ladder FAIL, independent of tau), specular return 143-571x the established camera floor (constraint-2 violation). NOT a material transfer function. (Fourth recurrence of this exact documentation gap across exp-031/032/033/034 -- Red Team elevated this to mandatory.)"
+ },
+ "block_cpl40": {
+  "n_new_runs": 20,
+  "elapsed_s": 944.2365436553955,
+  "fresh_floor_cpl40": 0.00013522793332221283,
+  "C_off_pass_cpl40": -0.004601531803829529,
+  "ladder": "PASS",
+  "settling_relative_delta": 0.007398462477492938
+ },
+ "block_r156": {
+  "n_new_runs": 27,
+  "elapsed_s": 808.8250186443329,
+  "fresh_C_empty_156": -0.0012113954918918646,
+  "delta_vs_exp030_reused_empty": 0.0,
+  "C": {
+   "off_bracket": -0.0033138842558186636,
+   "off_pass": -0.005759806872194646,
+   "off_lab": -0.006805763564640212,
+   "off_field": -0.023355358832853428
+  },
+  "tau": {
+   "off_bracket": 0.003,
+   "off_pass": 0.0065,
+   "off_lab": 0.008,
+   "off_field": 0.032
+  },
+  "g_corr": {
+   "off_bracket": 0.7008295879755997,
+   "off_pass": 0.6997555969696586,
+   "off_lab": 0.6992960090935434,
+   "off_field": 0.6919988544050488
+  },
+  "fit": {
+   "A": 0.7017360308872204,
+   "B": 0.3043247495965921,
+   "max_residual": 6.531337169102258e-06,
+   "residual_gate_pass": true,
+   "delta_A_vs_A78": 0.012143030887220352,
+   "disposition_naive": "SCALE-INVARIANT (naive, vs raw A78 -- see chord-corrected disposition)"
+  },
+  "common_mode_decomposition": {
+   "delta_C_per_article": {
+    "off_bracket": -0.0011338842558186635,
+    "off_pass": -0.001259806872194646,
+    "off_lab": -0.0012750962344854492,
+    "off_field": -0.00156233265505909
+   },
+   "spread": 0.0004284483992404264,
+   "mean_abs": 0.001307780004389462,
+   "common_mode_fraction": 0.6723849593950262
+  },
+  "chord_model_null": {
+   "g0_geo_156": 0.7012082260693386,
+   "g0_geo_78native_sanity": 0.6857163680484835,
+   "delta_A_vs_chord156": 0.0005278048178817274
+  }
+ },
+ "block_n17_156": {
+  "n_new_runs": 34,
+  "elapsed_s": 1134.5813300609589,
+  "C_empty_N17": 0.0005496127931839956,
+  "coverage_gate_pass": true,
+  "coverage_gate_threshold": 0.005,
+  "C_N9_from_this_domain": -0.005404596414491869,
+  "C_N17": -0.00497974499443827,
+  "delta_N9_vs_N17_same_domain": 0.00042485142005359907,
+  "C_established_reference": null,
+  "delta_vs_established": null,
+  "ladder_N17": "PASS",
+  "ladder_N9_this_domain": "MARGINAL"
+ },
+ "block_n17_native": {
+  "n_new_runs": 34,
+  "elapsed_s": 491.0969707965851,
+  "C_empty_N17": 0.0005092695306367911,
+  "coverage_gate_pass": true,
+  "coverage_gate_threshold": 0.005,
+  "C_N9_from_this_domain": -0.0022682669486551103,
+  "C_N17": -0.003814934613236725,
+  "delta_N9_vs_N17_same_domain": 0.0015466676645816148,
+  "C_established_reference": -0.0045865,
+  "delta_vs_established": 0.00231823305134489,
+  "ladder_N17": "PASS",
+  "ladder_N9_this_domain": "PASS"
+ },
+ "thermo_sidecar_analytic": {
+  "label": "POST-RUN ANALYTIC, NOT AN FDTD OUTPUT (expressibility contract)",
+  "absorbed_fraction_chord_model": {
+   "off_bracket": 0.002353194490192345,
+   "off_pass": 0.005091004728750081,
+   "off_lab": 0.006261851973846253,
+   "off_field": 0.024791407895385014
+  },
+  "dT_steady_K": {
+   "off_bracket": 0.0003776386000252574,
+   "off_pass": 0.000817,
+   "off_lab": 0.0010048965450260795,
+   "off_field": 0.003978503523311864
+  },
+  "NETD_band_K": [
+   0.02,
+   0.05
+  ]
+ }
+}

@@ -339,11 +339,186 @@ constraint-3 verdict.
 
 ## Phase 4 — Results
 
-*(filled in after the run — see below)*
+Trust suite reconfirmed 46/46 green immediately pre-run (no `lab/` change).
+**A harness bug surfaced and was fixed mid-cycle, disclosed in full, not
+smoothed over**: the first Phase-4 attempt crashed partway through Block
+N17_156 — `ex.map(run_group_n17, [(geom, a) for a in main_args])` passes
+each `(geom, a)` tuple as a SINGLE positional argument to a two-argument
+function; `TypeError: run_group_n17() missing 1 required positional
+argument`. Blocks CPL40 and R156 (46 calls, ~30 min of compute) had
+already completed cleanly but were **lost, not corrected** — `results.json`
+is only written once at the end of `main()`, no partial-result caching
+exists. A harness bug, not physics — same class as exp-003's own
+domain-sizing bug, caught before any result was trusted. Fixed with
+`functools.partial(run_group_n17, geom)` mapped over `main_args` alone
+(mirroring `block_cpl40`/`block_r156`'s own single-iterable `ex.map`
+pattern), verified mechanically in an isolated, zero-FDTD-cost smoke test,
+committed (`2ccb7f6`), and the full 115-call run restarted clean. **115
+new FDTD calls, 3378.8s (~56.3 min)** — close to the proposal's own
+revised ~60 min estimate on this environment's hardware.
+
+**P-CPL40-1 (floor trend): PLATEAU.** floor(40)=1.3523×10⁻⁴, inside the
+closed interval [0.93×10⁻⁴, 1.4×10⁻⁴). Neither converging back toward
+floor(20)=3.317×10⁻⁵ nor diverging further from floor(30)=1.165×10⁻⁴ —
+the floor's cpl20→30 jump (3.51×) essentially stopped, cpl30→40 moved
+only 1.16× further.
+
+**P-CPL40-2 (primary, scored) — PLATEAU, ladder PASS, NOT PASS-at-risk.**
+|C(off_pass,40)|=0.0046015, inside the closed interval (0.004545,
+0.004636) — between established |C(20)|=0.00450 and |C(30)|=0.00459,
+neither continuing the upward trend nor reversing it. Ladder: PASS
+(<0.005), well short of the 0.0050 at-risk line. **ε_r≡1 gas/aerosol-host
+restriction applies — not a material transfer function** (mandatory fix
+4).
+
+**P-CPL40-3 (settling control): CONFIRMED.** |ΔC|/|C|=0.74%, well inside
+the ≤3% band.
+
+**P-R156-1 (data-quality gate): CONFIRMED, cleanest yet.**
+max_residual=6.531×10⁻⁶ against the ≤3.0×10⁻³ gate — tighter than
+exp-033's own already-tight residual, ~460× inside the gate.
+
+**P-R156-2a (common-mode decomposition): REPORTED, not forced into either
+label** — per its own pre-registered middle-band rule. spread=4.284×10⁻⁴,
+mean_abs=1.308×10⁻³, spread/mean=32.76% — between the COMMON-MODE (≤20%)
+and DIFFERENTIAL (>50%) bands. Real signal exists on both sides: 67% of
+the ΔC(78→156) shift is common-mode (consistent with EM's "guaranteed by
+construction" risk being partly real), but a third is genuine
+τ-dependent curvature the common-mode subtraction does NOT explain away.
+Neither PHOTONICS/QUANTUM's nor EM's Phase-2 concern is fully vindicated
+or fully dismissed — both were right to flag it.
+
+**P-R156-2b (chord-corrected disposition): CONFIRMED (geometry-aware),
+essentially exact.** ΔA_chord156=5.278×10⁻⁴ — 23× inside the ≤0.010
+CONFIRMED band, and matching the desk check's own ≈0.0005 estimate to
+better than 6%. The naive ΔA vs A78 (0.01214) looked "SCALE-INVARIANT" by
+its own band too, but 96% of that number evaporates once compared against
+r=156's OWN geometric chord null (g0_geo_156=0.701208) instead of r=78's
+— mandatory fix 3 did the work it was built for. g0_geo(156)=0.701208 is
+itself close to A156=0.701736 (Δ=0.0005) — the chord model tracks the
+measured fit far better at r=156 than the naive r=78 comparator ever
+could, independent confirmation that T15's ~15% chord deficit is a
+property of the *native* geometry specifically, not a generic feature of
+this measurement family.
+
+**P-R156-3 (primary, scored ladder currency — the load-bearing prediction
+of this cycle): CONFIRMED, and the desk estimate was almost exactly
+right.** C(off_pass,156) = **−0.005760** (desk central estimate was
+−0.00576 — a 0.7σ-of-nothing match), inside the predicted band
+[−0.0068,−0.0045]. **Disposition: MARGINAL, not PASS** — |C|=0.00576 ≥
+the 0.005 lab bar. C(off_bracket,156) = −0.003314, inside its own band
+[−0.0043,−0.0025], ladder PASS. **ε_r≡1 gas/aerosol-host restriction
+applies to both readings — neither is a material transfer function**
+(mandatory fix 4). **This is the headline result of Block R156: the
+program's only-ever σ(I) OFF-state PASS (r=78-native) does NOT survive
+the scale bridge to r=156 — it downgrades to MARGINAL.**
+
+**P-R156-4 (rider b, determinism): CONFIRMED, exact.** Fresh empty(156) =
+−1.211395×10⁻³, identical to exp-030's own reused value to the last
+printed digit (Δ=0.00×10⁰) — the bench's own determinism (T7's Attack-5
+finding) reconfirmed a second way.
+
+**P-N17-1 (coverage/decision-floor gate, LOAD-BEARING, both blocks):
+CONFIRMED, both blocks — the historical ±40° artifact does NOT recur
+here.** N17_156: |C_empty|=5.496×10⁻⁴. N17_NATIVE: |C_empty|=5.093×10⁻⁴.
+Both clear not only this cycle's own ≤0.005 gate but exp-024's own
+original, much tighter δ_C≤0.001 gate (the one that failed at ALL SIX
+λ/weighting combinations at this exact angle set, Iteration 2) — by
+~2×. The Director's own Phase-3 catch (this cycle uses exp-024's own
+historically-failing ±40° angle set) is answered: at THIS domain sizing
+and THIS measurement family (raw incoherent-sum contrast, not the
+margin/fringe-ratio estimator exp-024 was diagnosing), the ±40°-specific
+artifact does not reproduce. Both N9-vs-N17 comparisons below are
+therefore trusted per P-N17-1's own gating rule.
+
+**P-N17-2 (primary, angular convergence, BOTH blocks, same-domain
+comparison): mixed — one within band, one a clear miss.**
+- **N17_156**: |ΔC(N9,N17)| = 4.249×10⁻⁴ — inside the [0,6×10⁻⁴] band but
+  above the ≤3×10⁻⁴ central expectation. Notably **this delta flips the
+  ladder bucket**: C(N9,thisdomain)=−0.005405 reads MARGINAL, C(N17)=
+  −0.004980 reads PASS — the same physical article, same domain, only the
+  angular sampling density differs.
+- **N17_NATIVE**: |ΔC(N9,N17)| = 1.5467×10⁻³ — **2.6× past the alarming
+  ≥6×10⁻⁴ threshold.** This is a clean, unconfounded reading (identical
+  domain for both N9 and N17 subsets, no cross-run comparison) — angular
+  quadrature is decisively NOT converged at N9 for the native r=78/cpl=30
+  geometry. VISION's own Phase-2 substance-attack (N9-vs-N17 convergence
+  had never been checked at the geometry that actually backs the
+  program's only-ever PASS citation) is vindicated by its own result: the
+  N5-vs-N9 increment this program leaned on (4.824×10⁻⁴, established at
+  cpl=20) does NOT predict N9-vs-N17's own size at cpl=30 native
+  geometry — it undershoots by 3.2×.
+
+**P-N17-3 (N17_NATIVE only, VISION's substance-attack deliverable): a
+genuine miss, but the Director found the comparison is CONFOUNDED and the
+confound must be disclosed, not smoothed over, before either committing
+to or dismissing "the established PASS is reopened."** |Δ| =
+|C(N9,thisdomain) − C(established)| = |−0.002268 − (−0.0045865)| =
+**2.318×10⁻³** — 4.6× past the ≥5×10⁻⁴ "reopens the PASS" threshold.
+
+**Director's own catch, Phase 4 (not raised by any Phase-2/Red-Team seat
+— flagged per house convention before any Phase-5 seat reads this):**
+this cycle's `_coverage_geometry()` formula was validated at import time
+ONLY against exp-030's own r=156/±35° anchor (`assert
+_check35["guard_out"]==336...`). It was never checked against exp-033's
+own r=78-native/cpl=30 geometry. Direct test: evaluating
+`_coverage_geometry(117, 22, 255, 450, 60, 60, 35.0)` — N17_NATIVE's own
+parameters, at the SAME ±35° span exp-033 used — gives
+GUARD_OUT=266/FLANK=(266,383)/NY=2120, which does **NOT** reproduce
+exp-033's own established GUARD_OUT=278/FLANK=(278,395)/NY=2376. Traced
+to source: exp-033's own domain was built by **rescaling exp-032's native
+r=78/cpl=20 domain by RATIO=1.5** (185×1.5=277.5→278, exact to the digit)
+— a *different derivation method* than this cycle's generic
+coverage-margin formula (a fresh geometric rule calibrated only at the
+r=156 anchor, using a fixed `lam_max_cpl=25`/`margin_mult=3.5` that was
+never re-validated for a native cpl=30 grid). **N17_NATIVE's domain is
+therefore not a clean "same domain, wider angular coverage" construction
+relative to exp-033 — the flank measurement window sits 12 cells further
+from the object (266→295 at ±35°→±40°, vs exp-033's own 278) even before
+accounting for the angle-set change**, and per VALIDATION.md's own
+recorded lesson (a 21-cell window-position shift measured a 16%
+imbalance on this exact bench family), a flank-window shift of this size
+is fully capable of moving C by an amount comparable to the observed
+2.318×10⁻³ delta on its own, with zero angular-quadrature or
+reproducibility content. **P-N17-3's "reopens the PASS" framing is
+therefore NOT cleanly established by this cycle's own data — it conflates
+a domain-construction-method difference with the angular-quadrature
+question it was designed to isolate.** The clean, unconfounded part of
+the evidence stands on its own regardless: P-N17-2's same-domain
+N9-vs-N17 delta (1.5467×10⁻³, also past the alarming threshold) does NOT
+depend on this confound and independently establishes that N9 quadrature
+is not converged at native geometry. Flagged here in full for Phase 5 to
+weigh; not resolved by this cycle.
+
+**P-THERMO-1 (sidecar, extended): CONFIRMED, matching the desk model
+closely (expected — a deterministic post-run analytic calculation, not an
+independent FDTD measurement).** off_lab: absorbed fraction 0.6262%,
+ΔT=1.0049×10⁻³K (19.9–49.8× below NETD, vs predicted 20–49×). off_field:
+absorbed fraction 2.4791%, ΔT=3.9785×10⁻³K (5.03–12.6× below NETD, vs
+predicted 5–13×). **Post-run analytic only (expressibility contract) —
+not an FDTD output.**
 
 ## Learned
 
-*(filled in after the run)*
+Two load-bearing, unconfounded results this cycle: **(1) the σ(I)
+OFF-state PASS does not survive the r=78→156 scale bridge** — MARGINAL,
+not PASS, at almost exactly the desk-predicted value — the first time
+this program's headline PASS citation has been directly re-scored at a
+second geometry, and it downgrades. **(2) N9 angular quadrature is not
+converged at ANY geometry this program has checked it against** — 4.2×
+larger swing at r=156 own-domain (this cycle) than the N5-vs-N9 increment
+this program had been treating as its own convergence bound, and 3.2×
+larger still at r=78-native (the geometry the PASS citation actually
+uses). A third, informative-but-inconclusive result: whether the specific
+r=78-native N9 reading reproduces under a wider angular span is genuinely
+unknown after this cycle, because the domain built to test it was not
+constructed the same way the original PASS-citing domain was — a
+methodology gap this cycle discovered rather than closed, and the
+cleanest next-cycle candidate (rebuild N17_NATIVE by RESCALING exp-033's
+own domain, not by the generic coverage formula). Nothing in this cycle
+moves the σ(I) realizability tension (D_req=600×, algebraically
+R_OUT-independent) or the 9–12 order-of-magnitude irradiance gap in
+either direction — both stand exactly as Iteration 10 left them.
 
 ## Phase 5 — Review
 
