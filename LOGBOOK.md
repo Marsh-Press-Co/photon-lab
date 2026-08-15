@@ -4024,3 +4024,205 @@ Confirmed every `design_geometry.py` in the chain (exp-026/030/031/032) fixes CP
 `9a186a4` (predictions) → `8723882` (results) → `0ff663e` (Phase-5 close). Next lead per rotation: **ELECTROMAGNETISM** (Iteration 10). Trust suite 46/46 green throughout (no `lab/` engine changes this shift).
 
 Open questions carried forward: the g600≥0.69 recurrence (T1, resolution-check-pending); the bulk-vs-edge mechanism question (queued for `radial_absorbed_power`); VISION's r=156 companion leg (queued third); T11's own trust-suite stage (THERMODYNAMICS, inherited); a proper realizability memo (MATERIALS, following up its own informal Phase-5 check); T14's PHOTONICS r-sweep and the ambient decision-floor reproducibility characterization (both real, neither this cycle's job).
+
+## Iteration 10 — The g600 Resolution Check (exp-033) — 2026-08-15
+
+Runner: cloud panel shift · Lead: **ELECTROMAGNETISM** (rotation, executing
+Iteration 9's binding priority (1): R3-check the g600≥0.69 recurrence at
+600nm, the one wavelength on the ambient bench line never resolution-tested).
+Full seven-seat cycle: Phase 1 proposal (EM, two blocks) → 5 blind parallel
+critiques (PHOTONICS, MATERIALS, THERMODYNAMICS, QUANTUM OPTICS, VISION
+SCIENCE — all support-with-changes) → Red Team last with everything
+(verdict: PROCEED-WITH-MANDATORY-FIXES) → Phase 3 synthesis (Director) →
+predictions committed BEFORE run → Phase 4 run.
+
+### Phase 1 — Proposal (ELECTROMAGNETISM, abridged; full text in this
+shift's session record)
+
+**Desk finding (zero FDTD cost, the proposal's core content):** every weak
+(τ≤0.032) σ(I) OFF-state ambient point this program has ever measured
+(twelve points: τ∈{0.003,0.0065,0.008,0.032} × λ∈{450,600,750}, cpl
+∈{15,20,25}) collapses onto one constant once the empty-scene decision
+floor is subtracted additively: g_corr ≡ |C_scene−C_empty|/τ =
+g₀(1−(4/3π)τ), g₀=0.6889±0.0002 (pooled). Because C_empty is τ-independent,
+raw g_raw = g_corr − C_empty/τ diverges as τ→0 — **the "g600≥0.69
+recurrence" is the λ-dependence of the empty-scene floor, not distinct
+physics; the R3 check is reframed as "is g₀ resolution-invariant?", tested
+in Block A.** Block B proposed applying `radial_absorbed_power` to
+beam-scene off_pass/off_bracket, testing bulk-vs-rim absorption. Full
+parameter tables, 44 proposed FDTD calls (36+2 Block A, 4+2 Block B),
+9 falsifiable prediction bands (P-EM-1 through P-EM-9), idealizations
+including (in error) no stated ε_r≡1.0 host-material restriction.
+
+### Phase 2 — Critique (5 blind, parallel; Red Team last with everything)
+
+All five: **support-with-changes.** Each independently re-verified the
+twelve-point desk table to the digit and caught a distinct, orthogonal
+defect:
+
+**PHOTONICS:** confirmed the achromatic-collapse logic is physically sound
+(ε_r≡1 + real non-dispersive σ ⇒ τ_center achromatic by construction; the
+±40° object window contains the full forward diffraction lobe at every λ in
+the τ≪1 limit). **Sharpest attack: Block B cannot discriminate what it's
+convened to discriminate** — `radial_absorbed_power` bins Joule density
+σ|E|² and is structurally blind to the scattered channel the rim hypothesis
+lives in; at τ=0.0065 rim enhancement is O(σ)≈10⁻⁵ against gates of
+0.01–0.02, 2–3 orders below every gate in the block — "Block B must return
+'bulk' whether or not rim scattering exists." Proposed flip: swap
+off_bracket for the established τ=0.10 sponge (zero extra calls, 15× τ
+lever) and report `angular_scattered_pattern` instead.
+
+**MATERIALS:** independently re-derived (4/3π) via disk-chord averaging,
+confirmed the fit; computed the required σ_on/σ_off dynamic range
+D_req=g₀·τ_on/C_bar≈537× (still 50–250× past published reverse-saturable-
+absorber enhancement even at the artifact-band edges). **Sharpest attack:
+the ε_r≡1.0 idealization is unstated and load-bearing** — any realizable
+condensed-phase host (n=1.33–1.5) gives 2–4% Fresnel return per surface
+(150–300× the camera floor) and an ambient-window perturbation ~10⁻²,
+larger than the whole off_pass signal; g₀ is a gas/aerosol-host constant
+only, not a material transfer function. Also flagged a real 750nm
+systematic hidden inside the quoted "±0.0002."
+
+**THERMODYNAMICS:** verified the (4/3π) coefficient to O(τ³) exactly.
+**Sharpest attack: no energy sidecar, in the first cycle whose primary
+instrument IS the Joule ledger** — PANEL.md's own metric table mandates
+one. Supplied pre-registered numbers: absorbed fraction 0.51%/0.24%
+(off_pass/off_bracket), witness-scale ΔT≈8×10⁻⁴K steady-state, 9.7µm LWIR,
+30–60× below microbolometer NETD (undetectable) — plus a free bonus finding
+that the ON endpoint (τ=3.9) would be thermally detectable (~0.1K, 2–5×
+above NETD) at steady state, a new T5 deliverable.
+
+**QUANTUM OPTICS:** reproduced the desk table exactly from `results.json`;
+confirmed the fit dissolves its OWN Iteration-9 disposition clause, in the
+direction costing the proposer credit. **Sharpest attack: the imposed
+(4/3π) curvature coefficient is refuted by a free fit** — B/A=0.435 vs.
+4/(3π)=0.424, a 2.5% miss, 35× the fit's own residual scatter, monotone
+across all four τ. Demanded the Iteration-9 clause be formally retired (not
+just declared non-discriminating) and g₀ reported per-λ as a fitted
+constant, never a "bulk-absorption signature."
+
+**VISION SCIENCE:** confirmed 600nm is the perceptually correct focus
+(photopic weight 0.631, carries the verdict almost alone) and the only
+never-R3-checked λ. **Sharpest attack: nothing protects the quantity the
+ladder scores** — exp-025's own historical ×1.5 refinement *degraded* the
+750nm floor 3.9× (0.00045→0.0017375); the proposal's own permitted fine-
+floor band (≤0.0020) could leave off_pass's PASS margin undecidable, with
+no pre-registered disposition for that outcome. Also caught, inside EM's
+own lane: the proposal's stated "artifact kills the PASS" claim is false as
+banded — both artifact-band edges still score PASS. Requested the r=156
+deferral (4th) come with a committed Iteration-11 trigger, not a 5th
+re-queue.
+
+### Phase 2 — Red Team (verdict: PROCEED-WITH-MANDATORY-FIXES)
+
+Verified every seat's load-bearing numbers by independent recomputation —
+all confirmed, several strengthened or corrected in the direction of more
+risk (MATERIALS' Fresnel-return ambient perturbation was 4–8× larger than
+stated: C=−0.040 to −0.078, a VISION-ladder FAIL by 2–4×, not "~1e-2").
+**Sixteen numbered attacks, tagged.** The two most consequential, caught by
+no blind seat:
+
+**[inconsistency, LOAD-BEARING] Attack 1:** Block A's parameter table
+specifies articles by τ only, no σ given — the exact precondition of
+exp-027's own historical T10 bug (a rescaled-geometry σ computed downstream,
+silently drifting τ). A silent drift here would fire P-EM-2's artifact
+branch spuriously and kill a real finding on a bookkeeping error
+indistinguishable from the verdict it triggers. **Mandatory: σ pinned as
+numbers, runtime `assert` per article.**
+
+**[inconsistency] Attack 5:** VISION's "unexplained ~2× drift" in the 600nm
+decision floor is a **mixed-weighting-convention bug** in the committed
+table (450nm equal-weighted, 600/750nm cos-weighted; every scoring run
+since uses equal weights) — not a reproducibility failure. The bench is
+in fact deterministic (exp-024/026/032's empty captures are bit-identical).
+**Mandatory: correct `DECISION_FLOOR`; erratum to T7 and Iteration 9.**
+Closes VISION's stated Iteration-9 #1 pick at zero cost, via a different
+instrument than VISION requested.
+
+Further findings: **Attack 2/3** — P-EM-1's original band was arithmetically
+unsatisfiable even at this bench's best-ever floor, and the 3-article
+design left the fit exactly determined (zero dof) — **mandatory: restore
+off_field, gate on the fit's own max residual** (a 3100×-amplified
+floor-error detector, free from data the run already produces). **Attack
+6/7/8** — Block B, verified independently: real signal 5.9×10⁻⁴ against
+gates of 0.01/0.02 (17–34× short); three of five predictions are geometry/
+normalization identities that confirm for any uniform disk; **P-EM-7's
+discriminator is sign-degenerate — bulk and rim absorption push the same
+observable the same direction, undiscriminable even at infinite SNR.**
+Ruling: adopt PHOTONICS' full fix package or **cut Block B and re-scope as
+standalone.** **Attack 9** — the ε_r≡1 restriction is a constraint-2
+violation as well as constraint-3 (specular return 143–571× the camera
+floor), the clearest constraint-3-slippage risk in the packet. **Attack
+13/14** — the scoring-currency switch must be declared before the run
+(applying g_corr correction to published off_lab flips 450nm PASS→
+MARGINAL); QUANTUM's clause must be formally retired with a numeric
+successor in g_corr currency, not just "won't discriminate." **Attack 11**
+— THERMO's LWIR ON-endpoint claim inverts under the phenomenon's own
+constraint 4 (a swept, not steady, beam): transient dwell-limited ΔT for
+OFF-state is 30–700× *below* NETD; held at hypothesis-not-result.
+
+**Director's four questions, Red Team's answers:** (a) Block B underpowered
+by 2–3 orders — confirmed independently, must not proceed unmodified. (b)
+VISION's undecidable-PASS gap — genuine, this program already adopted the
+underlying rule at Iteration 1 and let it lapse; mandatory to close. (c)
+Five orthogonal real defects from five blind seats — the panel worked, but
+none caught the two highest-stakes bugs (the σ-rescale bug, the floor
+weighting bug); "an argument for the protocol, not against it — and an
+argument against ever compressing it." (d) The fixes largely compose;
+Block B's substitution supersedes the binding queue item's letter but
+serves its purpose; VISION's floor-reproducibility request is superseded by
+attack 5's finding that the bench is deterministic.
+
+### Phase 3 — Synthesis (Director)
+
+**All ten Red Team mandatory fixes accepted, folded into `design_geometry.
+py`/`run.py`** (σ pinning + assert; corrected DECISION_FLOOR; off_field
+restored; free-curvature fit, never imposed 4/3π; residual-gated R3
+disposition, rebanded to CONFIRMED ≤0.015 / ARTIFACT ≥0.035 / else
+INCONCLUSIVE; QUANTUM's clause formally retired with numeric successor;
+raw-C-only scoring currency declared; ε_r≡1 idealization stated with
+numbers at every point of use; THERMO sidecar with ON-endpoint claim held
+at hypothesis-not-result).
+
+**Overridden, both explicit, both re-queued, not dropped:**
+- **Block B cut entirely this cycle** — Red Team's own sanctioned fallback,
+  taken because properly fixing it (τ=0.10 substitution + `angular_
+  scattered_pattern` + a re-derived analytic reference model for the
+  discriminator) risked shipping a second broken instrument in one cycle
+  under this shift's own time budget. Re-queued for a future standalone
+  lead cycle (not a bolt-on), per this program's own r=156 precedent.
+- **MATERIALS' ε_r=1.77 beam-scene probe** — deferred alongside Block B (it
+  was scoped as a companion call); the qualitative C=−0.04/−0.08 estimate
+  stands in the record per the mandatory ε_r-restriction fix.
+- **PHOTONICS' multi-plane readout** — superseded by the residual-gate,
+  which Red Team showed is sharper and already produced by the run.
+- **VISION's decision-floor-reproducibility rerun** — superseded by attack
+  5's finding (the bench is deterministic; the apparent drift was a
+  weighting bug, now fixed at zero cost).
+
+**r=156 (4th deferral):** defensible this cycle (VISION's own ranking,
+Red-Team-endorsed); **committed trigger adopted**, per VISION's request and
+Red Team's grant of precedent (mirroring Iteration 5's own hard commitment,
+honoured at Iteration 7): **Iteration 11 builds it unconditionally, with a
+Checkpoint-4 tripwire on non-execution.**
+
+**Provenance note (Red Team attack 15):** the Phase-1 text handed to Red
+Team carried one Director-inserted bracketed annotation (routing MATERIALS'
+finding for context), added when assembling Red Team's packet after the
+five blind critiques were complete — not part of EM's frozen Phase-1 text,
+and not a violation of the blind-parallel mechanic (which governs only the
+five blind seats). Recorded per Red Team's demand for provenance clarity;
+future cycles keep the frozen Phase-1 file byte-identical when assembling
+Red Team's packet.
+
+**Checkpoint criterion 4: does not fire** (nothing published yet; fixes
+caught drift pre-freeze). **Tripwire adopted verbatim (Red Team):** if g₀
+is ever cited post-run as a measured constant/mechanism signature rather
+than a fitted bench-calibration parameter, or if `off_pass`'s PASS is cited
+without the ε_r≡1 restriction and its consequence in the same sentence,
+criterion 4 fires retroactively.
+
+Predictions (P-1 through P-5) committed to git before any run — see
+`experiments/033-g600-resolution-check/NOTES.md` for the full text.
+
+### Phase 4 (test) and Phase 5 (review): to be appended after the run.
