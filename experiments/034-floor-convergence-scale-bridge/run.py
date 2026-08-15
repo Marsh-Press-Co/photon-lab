@@ -214,8 +214,17 @@ def block_r156():
     # sourced from exp-032/results.json's own committed `ambient_contrasts`
     # (off_lab/off_field: exact digits; off_pass: matches the 5-blind-seat-
     # and Red-Team-verified -0.00450 citation used throughout Phase 2;
-    # off_bracket: exp-032's own established -0.00218 reading).
-    C78 = {"off_bracket": -0.00218, "off_pass": -0.00450,
+    # off_bracket: -0.0020992636423987046, exp-032's own true native-cpl20
+    # digit).
+    # CORRECTED (Red Team Phase-5 audit, attack 3, mandatory fix 3): the
+    # first-draft off_bracket value here (-0.00218) was transcribed from
+    # exp-033's own ROUNDED cpl=30 reading, not exp-032's native cpl=20
+    # figure every other entry in this dict actually is -- a mislabeled
+    # anchor of the same transcription-risk class as the historical
+    # SIGMA_ON/run-count bugs. The correction shifts the common-mode
+    # decomposition below (spread/mean: 32.76%->26.18%, common_mode_fraction:
+    # 67.24%->73.82%) -- corrected same-shift, disclosed not smoothed over.
+    C78 = {"off_bracket": -0.0020992636423987046, "off_pass": -0.00450,
            "off_lab": -0.005530667330154762, "off_field": -0.02179302617779434}
     # ΔC(78->156) per article = C(156) - C(78). Note this cycle's own fresh
     # C_empty(156) and exp-032/033's native C_empty(78) are NOT differenced

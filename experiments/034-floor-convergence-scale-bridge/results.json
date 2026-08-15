@@ -45,14 +45,15 @@
   },
   "common_mode_decomposition": {
    "delta_C_per_article": {
-    "off_bracket": -0.0011338842558186635,
+    "off_bracket": -0.001214620613419959,
     "off_pass": -0.001259806872194646,
     "off_lab": -0.0012750962344854492,
     "off_field": -0.00156233265505909
    },
-   "spread": 0.0004284483992404264,
-   "mean_abs": 0.001307780004389462,
-   "common_mode_fraction": 0.6723849593950262
+   "spread": 0.00034771204163913097,
+   "mean_abs": 0.0013279640937897859,
+   "common_mode_fraction": 0.7381615638064284,
+   "correction_note": "CORRECTED at Iteration-11 close (Red Team Phase-5 audit attack 3, mandatory fix 3): first-draft C78[\"off_bracket\"] was exp-033's rounded cpl=30 value (-0.00218), not exp-032's true native-cpl20 digit (-0.0020992636423987046) every other C78 entry actually is. Original (wrong-anchor) reading: spread=4.284e-4, mean_abs=1.308e-3, common_mode_fraction=0.6724. Corrected: spread=3.477e-4, mean_abs=1.328e-3, common_mode_fraction=0.7382 -- still inside the \"reported, not forced\" middle band (neither <=20% COMMON-MODE nor >50% DIFFERENTIAL) but meaningfully closer to guaranteed-by-construction than the original framing conceded."
   },
   "chord_model_null": {
    "g0_geo_156": 0.7012082260693386,
@@ -105,6 +106,47 @@
   "NETD_band_K": [
    0.02,
    0.05
-  ]
+  ],
+  "transient_dT_K_by_dwell_s": {
+   "off_bracket": {
+    "0.1": 3.198603564473416e-05,
+    "0.5": 0.00015993017822367082,
+    "1.0": 0.00031986035644734163
+   },
+   "off_pass": {
+    "0.1": 6.92e-05,
+    "0.5": 0.000346,
+    "1.0": 0.000692
+   },
+   "off_lab": {
+    "0.1": 8.511486036206206e-05,
+    "0.5": 0.00042557430181031027,
+    "1.0": 0.0008511486036206205
+   },
+   "off_field": {
+    "0.1": 0.00033697973538945045,
+    "0.5": 0.0016848986769472522,
+    "1.0": 0.0033697973538945043
+   }
+  },
+  "transient_rate_K_per_s": {
+   "off_bracket": 0.00031986035644734163,
+   "off_pass": 0.000692,
+   "off_lab": 0.0008511486036206205,
+   "off_field": 0.0033697973538945043
+  },
+  "off_state_detectability": "UNDETECTABLE at every dwell tested, every article -- steady-state DeltaT is 5.9-49.8x below the 0.020-0.050K NETD band (off_field the closest, off_lab/off_bracket furthest); transient (dwell-limited, 1.0s) DeltaT is SMALLER still at every article (linear-heating regime, has not caught up to steady state) -- 5.9-156x below NETD at 1.0s. The phenomenon is a SWEPT beam (constraint 4): transient dwell-limited DeltaT is the physically apt number, not steady-state, restored here per Red Team's Phase-5 audit (a real regression this cycle's own first draft dropped without comment relative to exp-033's own machinery).",
+  "regression_note": "exp-034's first draft dropped exp-033's own transient dwell-limited DeltaT machinery and inline constraint-4 detectability string without comment -- caught by THERMODYNAMICS' Phase-5 review, confirmed by Red Team's audit (attack 7), restored here at Iteration-11 close."
+ },
+ "director_catch_r156_domain_confound": {
+  "label": "EM Phase-5 finding, Red Team Phase-5 audit attack 4 (mandatory fix 4) -- NOT caught by any Phase-1-4 seat or the Director's own Phase-4 catch, which only flagged the N17_NATIVE-vs-exp-033 confound. Block R156 (GUARD_OUT=336, the domain that produced this cycle's SCORED headline MARGINAL number) and Block N17_156 (GUARD_OUT=373, same r_out=156/tau=0.0065 off_pass article, same N9 angle subset) are DIFFERENT domains measuring the identical physical article.",
+  "C_off_pass_R156_domain_GUARD_OUT_336_N9": -0.005759806872194646,
+  "C_off_pass_N17_156_domain_GUARD_OUT_373_N9": -0.005404596414491869,
+  "C_off_pass_N17_156_domain_GUARD_OUT_373_N17": -0.00497974499443827,
+  "domain_construction_delta_same_N9_angles": 0.0003552104577027766,
+  "quadrature_delta_same_domain_N9_vs_N17": 0.00042485142005359907,
+  "domain_delta_as_fraction_of_quadrature_delta": 0.8360816062659351,
+  "total_swing_R156native_to_N17156_N17": 0.0007800618777563757,
+  "reading": "Domain-construction delta (3.552e-4) is 83.6% the size of the disclosed quadrature delta (4.249e-4) -- a second, comparably-sized, previously-undisclosed confound sitting directly under this cycle's own scored headline. Stacked, the two effects span a 7.80e-4 total swing that straddles the 0.005 PASS/MARGINAL bar in both directions for the SAME physical article. The PASS-to-MARGINAL downgrade is directionally consistent across every instrument choice tested (all four readings -0.00580 to -0.00498 sit on the MARGINAL/near-PASS side, none reads deep PASS or deep FAIL) but is NOT cleanly, quantitatively established as a resolution-clean result -- Iteration 12's own top-ranked priority per Red Team's audit."
  }
 }

@@ -161,6 +161,42 @@ measured them here):**
   dwarfing the dynamic-range tension, queued as a dedicated realizability
   memo (MATERIALS), a candidate Checkpoint-criterion-2 finding if it
   survives that check.
+  **Iteration 11 (exp-034): the cpl=40 floor/currency-convergence point
+  landed PLATEAU on both readings (floor and raw-C alike) — closing this
+  thread's own carried-forward Iteration-10 item, cleanly, no confound.**
+  **The r=156 scale bridge (VISION's committed, unconditional Iteration-11
+  trigger, honoured this cycle after four deferrals) found the OFF-state
+  PASS does NOT sit comfortably clear of the lab bar at r=156** — every
+  reading of the article at that scale (four distinct instrument choices:
+  Block R156's own domain, Block N17_156's domain at N9, Block N17_156's
+  domain at N17) sits on the MARGINAL/near-PASS side, a directionally
+  robust finding — **but the specific "downgrades to MARGINAL" number is
+  NOT yet resolution/domain-clean**: a second, undisclosed,
+  comparably-sized domain-construction confound (3.55×10⁻⁴, 84% the size
+  of the disclosed angular-quadrature confound, 4.25×10⁻⁴) was found
+  stacked underneath it at Iteration-11 close (EM's Phase-5 review, Red
+  Team-confirmed) — see new LIVE THREAD **T16**. **Separately, N9 angular
+  quadrature — the sampling this program's entire ambient-contrast
+  measurement family has used since Iteration 1 — is now shown NOT
+  converged at r=78-native (3.2× past this program's own N5-vs-N9
+  convergence bound) and only marginally converged at r=156 (0.88× the
+  bound, but still flips the PASS/MARGINAL ladder bucket)**, meaning
+  **every PASS/MARGINAL citation this program has ever issued on this
+  channel (off_pass at r=78 and r=156, off_lab at both scales) now carries
+  an uncharacterized angular-sampling uncertainty comparable to or larger
+  than its own margin against the lab bar** — see T16. MATERIALS'
+  realizability memo (three-iteration deferral, closed this cycle):
+  **UNOBTANIUM-WITH-PARAMETERS for both candidate mechanism classes** —
+  reverse saturable absorbers (RSA) fall 1–2 orders of magnitude short on
+  dynamic range (D_req≈537–600×) independent of irradiance; two-photon
+  absorption (TPA) clears the dynamic-range/exponent bar comfortably but
+  falls 9–12 orders of magnitude short on operating irradiance (flashlight
+  ~10⁻³ W/cm² vs published TPA onset 10⁶–10⁹ W/cm²) — full record:
+  `experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md`.
+  An informal desk synthesis, not a rigorous literature review (memo's own
+  stated limits) — a candidate Checkpoint-criterion-2 finding that does
+  NOT yet fire; escalating it needs the rigorous check the memo itself
+  names as its own missing rigor.
 - **T2 — Perceptual thresholds.** PINNED and corrected in exp-020: frozen
   function C_thr(L) = 0.005·max[1,(L/3)^−p], p ∈ [0.4, 0.5], field ×4;
   crossovers re-derived from the function itself (Red Team #2's catch).
@@ -454,6 +490,66 @@ measured them here):**
   Block B's re-scoped standalone cycle (PHOTONICS' own Phase-5 argument:
   a ~250× stronger, more falsifiable signal than the original bulk-vs-rim
   ripple Block B was cut for).
+  **RECONCILIATION FLAG (Iteration 11, exp-034 Phase 3/5, PHOTONICS +
+  Red Team) — open, NOT resolved in either direction.** This cycle
+  committed a fresh, code-checked, reusable `chord_model_g0` (mandatory
+  fix 3, `design_geometry.py`), reusing the same precedented weak-
+  absorption chord idiom, and evaluated it at the IDENTICAL r=78-native
+  geometry T15 was measured at: **g0_geo_78native_sanity=0.685716, only
+  0.56% from the measured A78=0.689593 — NOT the ~15% deficit this thread
+  claims.** Three independently-derived "zero-free-parameter" chord
+  models for nominally the same quantity now span **0.6857 (exp-034) /
+  0.6981 (EM, Iteration 10) / 0.814 (PHOTONICS, Iteration 10)** — a spread
+  (14.6pp) LARGER than the ~15% effect this thread reports. Iteration
+  10's own two numbers (0.6981/0.814) were never committed as reusable
+  code (checked directly: absent from exp-033's `results.json`, NOTES.md,
+  `design_geometry.py` — an in-session Phase-5 derivation only). This
+  thread is NOT retired — it remains possible the three formulas differ
+  by construction detail (window integral, chord-averaging convention) in
+  a way that makes them legitimately different quantities, not
+  competing measurements of one — but it CANNOT stand unqualified as
+  "positive evidence of a real diffractive-leakage effect" while a
+  reproducible, committed formula contradicts it by an order of
+  magnitude at the same geometry. **Queued for Iteration 12** (zero FDTD
+  cost): formally reconcile by applying `chord_model_g0` across
+  cpl=20/30/40 at r=78, and by re-deriving (or formally retiring)
+  Iteration 10's own two uncommitted numbers.
+- **T16 — the ambient-contrast instrument's own angular-quadrature and
+  domain-construction sensitivity (opened Iteration 11, exp-034 Phase 5,
+  ELECTROMAGNETISM + VISION SCIENCE, Red Team-elevated to a named thread).**
+  Every ambient-contrast (Weber-contrast) reading this program has ever
+  scored against VISION's frozen ladder — every PASS, MARGINAL, and FAIL
+  citation since Iteration 1 — uses a 9-angle (N9, ±35°-fallback)
+  incoherent angular sum, on a domain sized by one of at least two
+  different, never-cross-validated construction methods (a generic
+  coverage-margin formula vs. rescaling an earlier native geometry by a
+  fixed ratio). This cycle measured, for the first time, how much either
+  choice alone moves C for a FIXED physical article: **angular sampling
+  (N9→N17) moves C by 0.88×–3.2× this program's own established N5-vs-N9
+  convergence bound**, depending on geometry (smaller-than-expected at
+  r=156, 3.2× larger at r=78-native); **domain construction alone (same
+  N9 angles, different GUARD_OUT/NY) moves C by 3.55×10⁻⁴ at r=156 — 84%
+  the size of the angular effect measured at the same geometry.** Stacked,
+  the two effects span a **7.80×10⁻⁴ total swing** on ONE physical article
+  (off_pass, r=156) — larger than the largest PASS margin this program has
+  ever measured (4.14×10⁻⁴, off_pass at r=78-native, Iteration 9). **This
+  is not a claim that any specific PASS citation is wrong** — it is a
+  claim that this program has never before measured its own instrument's
+  uncertainty budget on this channel, and the budget, now measured once,
+  is comparable to or larger than the margins several of this program's
+  headline citations rest on. Distinct from T7 (the additive/ratio
+  estimator + fringe-zone floor question, closed Iteration 2) and T11 (the
+  box-ledger channel's own floor characterization, a different measurement
+  family) — T16 is specifically about the ambient-contrast channel's
+  angular-sampling and domain-sizing choices. **Iteration 12's own
+  top-ranked priority (Red Team's adjudication): disentangle the two
+  stacked confounds at r=156 first** (the number this program actually
+  scored this cycle), **then rebuild the r=78-native N17 domain by the
+  SAME construction method as the citation it's meant to test** (closing
+  the Director's own Iteration-11 Phase-4 catch). No mechanism proposed
+  yet for either sensitivity; PHOTONICS' own Phase-5 review named T10's/
+  T12's standing near-field-fringe hypothesis as an untested candidate for
+  the angular-quadrature half specifically.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -4449,3 +4545,288 @@ now with mandatory convergence riders); a proper realizability memo
 (MATERIALS, now with a striking new irradiance-gap number); T11's box-ledger
 trust stage; T14's cored-absorber r-sweep; T12's PEC r-family ripple test;
 QUANTUM's incoherent-ensemble idiom; EM's reciprocity check.
+
+## Iteration 11 — The Paired Floor-Convergence / R156 Scale-Bridge Cycle (exp-034) — 2026-08-15
+
+Runner: cloud panel shift · Lead: THERMODYNAMICS (rotation)
+
+### Phase 1 — Proposal (THERMODYNAMICS, abridged; full text: exp-034 NOTES.md)
+
+Four independent blocks pairing Iteration 10's two ranked priorities per
+Red Team's own recommendation: **CPL40** (a third resolution point,
+r=78-native physical, self-similar rescale, empty+off_pass only, 20
+calls) testing whether the raw-C currency and empty-scene decision floor
+are converging or diverging; **R156** (off_pass's PASS-boundary finding
+extended to r=156, exp-030's own r-family idiom, τ_center held fixed,
+off_lab/off_field reused verbatim from exp-030, 27 new calls); **N17_156**
+(a 17-angle, ±40°-span angular-quadrature convergence check on off_pass
+at r=156, on a freshly-widened domain, 34 calls). Dual-currency
+pre-declared throughout: raw C is the sole scored ladder currency; g_corr
+is a labeled diagnostic, never substituted.
+
+### Phase 2 — Critique (five blind, then Red Team) — abridged
+
+All five blind seats independently verified the proposal's arithmetic to
+the digit and returned support-with-changes. **Three seats (PHOTONICS,
+QUANTUM, EM) independently converged** on one root defect: Block R156's
+scale-invariance disposition (comparing A₁₅₆ against A₇₈) risked being
+either guaranteed near-invariant by construction (EM) or miscalibrated
+because A₇₈ isn't a portable reference (PHOTONICS/QUANTUM, T15); Red Team
+corrected the specific mechanism cited (z/z_R is the moving quantity, not
+W_OBJ/r_out, an invariant ratio). **MATERIALS** found the ε_r≡1
+restriction — a fourth recurrence — stated once, not inline at every
+headline. **VISION** found Block N17 (as proposed, r=156 only) tests the
+wrong geometry: it never retests the still-standing r=78/cpl=30 "first-
+ever σ(I) OFF-state PASS" (margin 4.14×10⁻⁴), whose own N5-vs-N9
+convergence increment (4.8×10⁻⁴) already exceeds it.
+
+**Red Team (PROCEED-WITH-MANDATORY-FIXES).** Verified every load-bearing
+number, found no arithmetic error anywhere (a first for this program's
+Red Team reviews). Confirmed the three-way convergence as real, ruled
+both proposed fixes needed together. Elevated VISION's substance-attack
+to a Director budget call: fold in Block N17_NATIVE (the geometry that
+ACTUALLY backs the PASS citation) this cycle or make it Iteration 12's
+unconditional trigger — do not defer a fifth time. Caught a real
+run-count bookkeeping risk (mandatory: block-local article lists, no
+shared cross-block tuple) and elevated MATERIALS' documentation-gap
+attack to mandatory (fourth recurrence).
+
+### Phase 3 — Synthesis (Director)
+
+All seven of Red Team's mandatory fixes accepted, folded into
+`design_geometry.py`/`run.py`: run-count bookkeeping guard; common-mode-
+vs-differential floor decomposition (EM's fix, computed BEFORE any
+SCALE-INVARIANT/DIVERGENT language trusted); a fresh, code-committed
+geometric chord-model null (PHOTONICS'/QUANTUM's fix, Red Team's z/z_R
+mechanism correction — Iteration 10's own two chord-model numbers were
+found NOT preserved anywhere in the repo as reusable code, so this cycle
+re-derives fresh rather than guessing at an unrecorded formula); ε_r≡1
+restated inline at every headline (fourth recurrence, elevated);
+**Block N17_NATIVE folded in, Director's own budget call** (VISION's
+substance-attack is correct and load-bearing; total budget 81→115 calls,
++42%, still modest against exp-030's own 89-call precedent); `lab/` build
+identity confirmed unchanged since exp-030; P-CPL40-2's disposition gap
+closed. **Director's own first catch, Phase 3** (not raised by any
+Phase-2/Red-Team seat): the N17 angle set is EXACTLY the ±40° geometry
+Iteration 2 (exp-024) found failed δ_C≤0.001 at all six λ/weighting
+combinations — margin-widening was tested and refuted as the fix there;
+only dropping ±40° (the ±35° fallback used ever since) resolved it. Ruled
+P-N17-1 (the empty-scene coverage gate) load-bearing and checked
+explicitly, both N17 blocks, before any N9-vs-N17 comparison is trusted.
+No overrides — every Red Team fix accepted outright or (fix 5) accepted
+with an explicit Director decision. Predictions P-CPL40-1/2/3,
+P-R156-1/2a/2b/3/4, P-N17-1/2/3, P-THERMO-1 committed to git before any
+run (`dc4a36e`).
+
+### Phase 4 — Test
+
+115 new FDTD calls, four independent blocks. **A harness bug crashed the
+first attempt partway through Block N17_156** — `ex.map(run_group_n17,
+[(geom, a) for a in main_args])` passes each `(geom, a)` tuple as a
+SINGLE positional argument to a two-argument function. Blocks CPL40 and
+R156 (46 calls, ~30 min compute) had already completed cleanly but were
+lost, not corrected — `results.json` is only written once at the end of
+`main()`, no partial-result caching exists. A harness bug, not physics —
+same class as exp-003's own domain-sizing bug. Fixed with
+`functools.partial(run_group_n17, geom)`, verified in an isolated
+zero-FDTD-cost smoke test, committed (`2ccb7f6`), full run restarted
+clean: **115 calls, 3378.8s (~56.3 min).**
+
+All predictions confirmed at or near central estimates except two flagged,
+disclosed honestly rather than smoothed over:
+
+- **P-CPL40-1/2/3**: floor(40) and |C(off_pass,40)| both landed PLATEAU
+  (neither converging nor diverging), settling confirmed (0.74%). Closes
+  T1's carried-forward Iteration-10 item cleanly.
+- **P-R156-1**: residual gate 6.53×10⁻⁶, cleanest yet (~460× inside gate).
+- **P-R156-2a**: common-mode fraction 67.24% (later corrected to 73.82%,
+  see mandatory fixes) — reported in the middle band, not forced.
+- **P-R156-2b**: chord-corrected ΔA=5.28×10⁻⁴, CONFIRMED — but the
+  Director's own text originally over-read this as confirming T15's
+  deficit is geometry-specific; corrected at close (see mandatory fixes).
+- **P-R156-3 (the load-bearing prediction)**: C(off_pass,156)=−0.005760,
+  MARGINAL not PASS, matching the desk estimate almost exactly — but see
+  the Director's SECOND Phase-4/close catch, below.
+- **P-R156-4**: exact bit-identical determinism reconfirmed.
+- **P-N17-1**: BOTH N17 blocks clear even the tighter historical
+  δ_C≤0.001 gate — the ±40° artifact does not recur here.
+- **P-N17-2**: N17_156 same-domain N9-vs-N17 delta 4.249×10⁻⁴ (flips the
+  ladder bucket MARGINAL→PASS); N17_NATIVE same-domain delta 1.5467×10⁻³
+  (2.6× past the alarming threshold, clean and unconfounded — quadrature
+  is decisively NOT converged at native geometry).
+- **P-N17-3**: a 4.6×-past-threshold miss — but the **Director's own
+  FIRST Phase-4 catch**: `_coverage_geometry()`'s self-check only
+  validates the r=156 anchor; applied to N17_NATIVE's own r=78-native/
+  cpl=30 parameters at the SAME ±35° span exp-033 used, it gives
+  GUARD_OUT=266/NY=2120, NOT exp-033's own established GUARD_OUT=278/
+  NY=2376. Traced to source: exp-033's domain was built by RESCALING
+  exp-032's native domain ×1.5 (185×1.5=277.5→278, exact), a *different
+  derivation method* than this cycle's generic formula. P-N17-3's
+  "reopens the PASS" framing is therefore NOT cleanly established.
+- **P-THERMO-1**: confirmed closely (a deterministic post-run calc).
+
+### Phase 5 — Review (seven fresh seats: six blind, Red Team last)
+
+**Unanimous PARTIAL, 7-for-7** — the first unanimous verdict in this
+program's panel-era history.
+
+**PHOTONICS (PARTIAL).** Steel-man: the chord-corrected disposition
+genuinely subtracts false confidence (96% of the naive "scale-invariant"
+reading was common-mode artifact). Sharpest critique, three parts: (a)
+independently ran `chord_model_g0` at r=78-native — 0.685716 vs measured
+A78=0.689593, only **0.56%** apart, NOT T15's claimed ~15% deficit; T15's
+own numbers trace to an unrecorded Iteration-10 derivation — two
+independent implementations disagreeing by ~15 points suggests a
+definition mismatch, not measured physics. (b) `run.py`'s C78 anchor for
+off_bracket (−0.00218) is exp-033's ROUNDED cpl=30 value, not the true
+cpl=20-native figure (−0.0020992636423987046, exp-032's own record) —
+recomputing shifts common-mode fraction 67.2%→73.8%. (c) The N9-non-
+convergence finding is treated as pure numerical quadrature, never
+connected to T10's/T12's own standing near-field-fringe hypothesis.
+Priorities: resolve T15 honestly using the committed formula; stop
+hand-typing historical constants, load from source `results.json`.
+
+**MATERIALS (PARTIAL).** Steel-man: real, disciplined re-scoring of the
+only constraint-3 PASS at a second geometry, confound disclosed not
+oversold. Sharpest critique: D_req=600.0× and the irradiance gap are
+confirmed algebraically orthogonal to the PASS-to-MARGINAL downgrade —
+but caught the Learned section's "4.2× larger swing at r=156" is WRONG
+(actual ratio 0.88×, smaller; only the r=78-native 3.2× is correct). Own
+seat's realizability memo, promised twice before, STILL not written — a
+third consecutive deferral. Priorities: write the memo now; rebuild
+N17_NATIVE by rescaling exp-033's domain.
+
+**ELECTROMAGNETISM (PARTIAL).** Steel-man: the cleanest instrument-
+integrity cycle this program has run; the Director's own confound
+disclosure is exactly the self-policing this program's discipline
+demands. Sharpest critique, the single most consequential finding in the
+whole packet: independently discovered that **Block R156 (GUARD_OUT=336,
+the domain behind this cycle's SCORED headline) and Block N17_156
+(GUARD_OUT=373, the SAME r=156/τ=0.0065 article) are different domains
+measuring the identical physical quantity** — same-N9-angle-set delta
+3.552×10⁻⁴, **84% the size of the disclosed angular-quadrature confound**
+(4.249×10⁻⁴). The cycle disclosed ONE domain confound (N17_NATIVE vs
+exp-033, exploratory) but missed a second, comparably-sized one sitting
+directly under its own scored result. Also independently confirmed the
+0.56% chord-sanity figure. Priority: a flank/guard-window placement
+sweep at fixed r, fixed N — the least-characterized of three now-stacked
+confounds under the R156 headline.
+
+**THERMODYNAMICS (PARTIAL, this cycle's own lead).** Steel-man: sidecar
+math independently re-verified exact to the last digit, correctly
+labeled analytic-not-FDTD. Sharpest critique: (a) confirms the 0.56%
+figure independently. (b) the sidecar's anchor (_REF_DT_OFF_PASS_K=
+8.17e-4, exp-033's own bare literal) remains unsourced — no witness-
+wattage/heat-capacity/dwell-geometry derivation anywhere, same pathology
+as T13's own |C|≈0.98 citation. (c) **REGRESSION**: exp-033's own
+transient dwell-limited ΔT machinery and inline constraint-4
+detectability string were silently DROPPED this cycle's first draft — no
+Phase-1-4 seat flagged it as a regression rather than a scope choice.
+Priority: build docket #7 for real (zero FDTD cost, deferred since
+Iteration 9); restore the dropped transient machinery before it ever
+touches the ON endpoint (where Iteration 10 proved the direction
+inverts).
+
+**QUANTUM OPTICS (PARTIAL).** Steel-man: genuinely defuses the Iteration
+9-10 circularity trap by re-deriving an independent geometric null rather
+than reusing an unrecorded number; reports the honest 67%/33% split
+rather than forcing a verdict. Sharpest critique: independently
+recomputed the chord-sanity check as 0.56% (matching PHOTONICS/EM
+exactly, not NOTES.md's stated "1.9%"); independently caught the SAME
+"4.2×" error MATERIALS found (could not reconstruct it from any
+combination in results.json; true ratio 0.88×). The r=156 g_corr cluster
+(0.6920–0.7008) extends the g600 recurrence to a second geometry, but the
+common-mode split means Iteration 10's "fully explained by floor-
+subtraction" close was narrower than advertised even before this cycle.
+Priorities: rebuild N17_NATIVE properly; finally build the incoherent-
+ensemble/phase-quadrature idiom queued since Iteration 6; formally
+reconcile T15 against the committed code.
+
+**VISION SCIENCE (PARTIAL).** Steel-man: answered VISION's own Iteration-
+10 concern directly instead of deferring a fifth time. Sharpest critique:
+independently pulled THREE C(off_pass,156) numbers for the SAME article
+— R156's own domain N9 (−0.005760, MARGINAL), N17_156's own domain N9
+(−0.005405, MARGINAL), N17_156's own domain N17 (−0.004980, PASS). The
+spread across three defensible instrument choices (7.8×10⁻⁴) EXCEEDS the
+largest PASS margin this program has ever measured (4.14×10⁻⁴). N9 is a
+strict deterministic subset of N17 (asserted in code), so this is
+truncation bias, not sampling noise, and only two points exist on the
+convergence sequence. Direct answer to VISION's own charter question:
+**a 9-angle discrete sum is NOT adequate for this program's own
+|C|<0.005 bar.** Priorities: rebuild N17_NATIVE properly; re-specify the
+frozen ladder to carry a quadrature-uncertainty band; a genuine 3-point
+angular convergence sequence (N9→N17→N33) at r=78-native.
+
+**RED TEAM (audit; verdict: does not overrule the unanimous 6-0 PARTIAL —
+for once the raw count was not too favorable; if anything the record was
+thinner than any single blind seat individually realized).**
+Independently reproduced every load-bearing number in the packet to the
+same digit: confirmed the 1.9%→0.56% error; confirmed the "4.2×" error
+and traced its likely source (leaked from the delta's own exponent
+digits, 4.2**49**×10⁻⁴); confirmed EM's R156-vs-N17_156 confound exactly
+(3.552×10⁻⁴, 83.6% of the quadrature effect — "the single most
+consequential unflagged finding in the packet," missed by five of six
+blind seats and both of the Director's own prior catches); confirmed the
+T15 contradiction; confirmed THERMO's regression finding. Nine numbered
+attacks (tagged). Verdict: **PARTIAL** — not RULED OUT (nothing here
+refutes a mechanism; this is instrument-hygiene work, structurally not a
+mechanism proposal) and not PROMISING (the one number advertised as a
+clean downgrade is now shown as unstable under instrument choice as the
+PASS margin it downgrades from). **Checkpoint ruling: criterion 4 is a
+tripwire, not a firing — conditional on all seven mandatory fixes landing
+same-shift** (mirroring Iteration 10's own conditional-ruling mechanism).
+No other criterion fires. **Ranked Iteration-12 priorities, adjudicating
+across all seven seats**: (1) disentangle the R156-vs-N17_156 confound
+first — it sits under an already-scored number, ahead of several
+individual seats' own top pick (rebuilding N17_NATIVE, which resolves
+only an exploratory comparison); (2) rebuild N17_NATIVE by rescaling
+exp-033's own domain; (3) MATERIALS' realizability memo + THERMO's
+transient-machinery restoration, both zero-cost, run alongside either
+heavy item.
+
+### Director's close
+
+**VERDICT: PARTIAL — unanimous, 7-for-7**, the first unanimous verdict in
+this program's panel-era history. All seven of Red Team's mandatory fixes
+applied same-shift, disclosed not smoothed over (full detail: exp-034
+NOTES.md Phase 5/Director's close): the 1.9%→0.56% correction; the
+"4.2×"→0.88× correction; the C78 anchor correction (common_mode_fraction
+67.24%→73.82%); the R156-vs-N17_156 domain confound disclosed in full and
+the P-R156-3 headline hedged; T15 flagged as an open, unresolved
+three-way contradiction (this entry, above); THERMO's transient ΔT
+machinery restored; MATERIALS' realizability memo written (verdict:
+UNOBTANIUM-WITH-PARAMETERS for both RSA and TPA, for two independent
+reasons — full record: `experiments/034-floor-convergence-scale-bridge/
+REALIZABILITY_MEMO.md`).
+
+**Checkpoint criterion 4 does NOT fire** — Red Team's own conditional
+tripwire is satisfied by the same-shift corrections, per this program's
+own established precedent. No other criterion fires (detail above, Phase
+5 Red Team summary).
+
+**The honest headline**: this cycle set out to test whether the
+program's only-ever constraint-3 PASS survives a scale bridge and whether
+its scored currency is resolution-converged. It found the PASS is
+fragile — every r=156 reading sits close to the bar — but the specific
+number is not yet resolution/domain-clean, because a second confound
+(comparable in size to the disclosed one) was sitting unexamined under
+the headline the whole time, caught only at Phase 5 by the one seat
+(EM) that ran the direct cross-block comparison nobody else thought to
+run. That is real, valuable information about this bench's own
+measurement uncertainty — but it means this cycle answered a narrower,
+messier question than its own first-draft Learned section claimed, the
+same pattern this program's own precedent names at Iterations 7, 8, 9,
+and 10. `2ccb7f6`/`7db48be` (harness fix + results) committed this shift;
+mandatory corrections committed same-shift at close. Next lead per
+rotation: **QUANTUM OPTICS** (Iteration 12).
+
+Open questions carried forward: the R156-vs-N17_156 domain/quadrature
+confound (new, T16, Iteration-12's own top priority); the N17_NATIVE
+domain-construction gap (T16, second priority); T15's three-way chord-
+model contradiction (open, zero-cost to close); the realizability memo's
+informal-not-rigorous status (a candidate Checkpoint-2 finding pending a
+real literature check); Block B's bulk-vs-edge question (still open,
+re-queued standalone); T11's box-ledger trust stage; T14's cored-absorber
+r-sweep; T12's PEC r-family ripple test; QUANTUM's incoherent-ensemble
+idiom; EM's reciprocity check; PHOTONICS' cross-thread suggestion
+(connect T16's angular half to T10/T12's near-field-fringe hypothesis).

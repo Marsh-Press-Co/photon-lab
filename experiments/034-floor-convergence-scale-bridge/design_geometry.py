@@ -436,6 +436,45 @@ _REF_DT_OFF_PASS_K = 8.17e-4
 THERMO_DT_STEADY_K = {a: _REF_DT_OFF_PASS_K * (THERMO_ABSORBED_FRACTION[a] / _REF_ABS_FRAC_OFF_PASS)
                        for a in THERMO_ABSORBED_FRACTION}
 
+# ------------------------------------------------------------- mandatory
+# fix 6 (Red Team, Phase-5 audit, attack 7): restore the transient dwell-
+# limited DeltaT machinery exp-033 built and this cycle's own first draft
+# silently dropped (a real regression, caught by no Phase-1-4 seat). exp-
+# 033's own published off_pass_transient_dT_K_by_dwell_s = {0.1: 6.9e-5,
+# 0.5: 3.46e-4, 1.0: 6.92e-4} is EXACTLY linear in dwell time (rate =
+# 6.92e-4 K/s to 3 sig figs at every point) -- a separate, simpler linear-
+# heating model from the steady-state (radiative-equilibrium) estimate,
+# not its short-time limit. Extended here to off_bracket/off_lab/off_field
+# by the SAME absorbed-fraction-ratio scaling already used for
+# THERMO_DT_STEADY_K, verified below to reproduce exp-033's own off_pass
+# numbers to their own printed precision before being trusted for the
+# other three articles.
+# =====================================================================
+_REF_TRANSIENT_RATE_OFF_PASS_K_PER_S = 6.92e-4    # exp-033's own established rate
+THERMO_TRANSIENT_RATE_K_PER_S = {
+    a: _REF_TRANSIENT_RATE_OFF_PASS_K_PER_S * (THERMO_ABSORBED_FRACTION[a] / _REF_ABS_FRAC_OFF_PASS)
+    for a in THERMO_ABSORBED_FRACTION}
+DWELL_TIMES_S = (0.1, 0.5, 1.0)
+THERMO_TRANSIENT_DT_K_BY_DWELL = {
+    a: {str(t): THERMO_TRANSIENT_RATE_K_PER_S[a] * t for t in DWELL_TIMES_S}
+    for a in THERMO_ABSORBED_FRACTION}
+_check_off_pass_transient = THERMO_TRANSIENT_DT_K_BY_DWELL["off_pass"]
+assert abs(_check_off_pass_transient["0.1"] - 6.9e-5) < 1e-6, _check_off_pass_transient
+assert abs(_check_off_pass_transient["0.5"] - 3.46e-4) < 1e-6, _check_off_pass_transient
+assert abs(_check_off_pass_transient["1.0"] - 6.92e-4) < 1e-6, _check_off_pass_transient
+
+OFF_STATE_DETECTABILITY_NOTE = (
+    "UNDETECTABLE at every dwell tested, every article -- steady-state DeltaT "
+    "is 5.9-49.8x below the {:.3f}-{:.3f}K NETD band (off_field the closest, "
+    "off_lab/off_bracket furthest); transient (dwell-limited, 1.0s) DeltaT is "
+    "SMALLER still at every article (linear-heating regime, has not caught up "
+    "to steady state) -- 5.9-156x below NETD at 1.0s. The phenomenon is a "
+    "SWEPT beam (constraint 4): transient dwell-limited DeltaT is the "
+    "physically apt number, not steady-state, restored here per Red Team's "
+    "Phase-5 audit (a real regression this cycle's own first draft dropped "
+    "without comment relative to exp-033's own machinery)."
+).format(NETD_BAND_K[0], NETD_BAND_K[1])
+
 
 if __name__ == "__main__":
     print("exp-034 geometry (four independent blocks):\n")
