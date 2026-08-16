@@ -29,6 +29,7 @@ Measurement notes (learned the hard way, first run of this suite):
 """
 
 import os
+import re
 import sys
 import time
 
@@ -796,13 +797,133 @@ def stage11_multisource_superposition():
           f"{closure:.4f}", closure <= 0.015, "<=0.015")
 
 
+def stage12_kinetics_kernel():
+    """The T17 rate-equation kernel vs closed-form identities (Panel
+    Iteration 15, exp-038). `lab.kinetics` is a standalone 0D kinetics-only
+    integrator, decoupled from this engine's Maxwell solver entirely -- no
+    Sim, no grid, no FDTD calls anywhere in this stage. Gates, all
+    pre-registered in exp-038/NOTES.md's Phase-3 synthesis BEFORE this code
+    existed:
+
+      1. exponential stepper reproduces the closed-form logistic solution
+         to <=1e-12 relative error (an external re-derivation of the closed
+         form, not just re-calling relax_exact, so this actually exercises
+         `integrate_two_state`/`integrate_segments`'s own bookkeeping).
+      2a. exponential-stepper boundedness: n in [0,1] EXACTLY (a convex-
+          combination argument, not a tolerance -- see relax_exact's
+          docstring).
+      2b. RK4 boundedness: n in [0,1] within floating-point slack (RK4 has
+          no such guarantee in general -- empirical, not exact).
+      3. linear-vs-logistic divergence == r, exactly, at each ratio point
+         (corrected table -- Red Team's Phase-2 catch, exp-038 NOTES.md).
+      4. exp-stepper vs RK4 convergence on Test B's own (piecewise-
+         constant, RK4 pinned to segment edges) trajectory, RMS relative
+         difference <=1e-6 -- mirrors stage 11's own convergence-gate
+         convention.
+    """
+    print("stage 12 — T17 rate-equation kernel vs closed-form identities")
+    from lab import kinetics as kin
+
+    HOSTS = {"A": 1e9, "B": 1e6, "C": 1e3, "D": 1e1, "E": 1e0}   # k_r (s^-1)
+    RATIOS = [1e-9, 1e-5, 1e-3, 1e-1, 1.0]
+    DUR_MULT = [0.3, 1.0, 3.0, 10.0]   # multiples of tau, gate 1
+
+    # --- gates 1 + 2a: exact stepper vs an independently-written closed
+    # form, plus exact-by-construction boundedness, at all 25 grid points.
+    max_rel_err = 0.0
+    max_bound_violation = 0.0
+    for k_r in HOSTS.values():
+        for r in RATIOS:
+            k_f = r * k_r
+            tau = 1.0 / (k_f + k_r)
+            n_eq = k_f / (k_f + k_r)
+            for mult in DUR_MULT:
+                t_span = mult * tau
+                n_final = kin.integrate_two_state(k_f, k_r, (0.0, t_span),
+                                                   n0=0.0, method="exp")
+                n_closed = n_eq * (1.0 - np.exp(-t_span / tau))  # independent re-derivation
+                rel_err = abs(n_final - n_closed) / max(abs(n_closed), 1e-300)
+                max_rel_err = max(max_rel_err, rel_err)
+                max_bound_violation = max(max_bound_violation,
+                                           max(0.0 - n_final, n_final - 1.0, 0.0))
+    check("kinetics", "exp stepper vs closed-form logistic (max rel err, 100 evals)",
+          f"{max_rel_err:.2e}", max_rel_err <= 1e-12, "<=1e-12")
+    check("kinetics", "exp stepper boundedness (max [0,1] violation, exact by construction)",
+          f"{max_bound_violation:.2e}", max_bound_violation == 0.0, "==0.0")
+
+    # --- gate 3: linear-vs-logistic divergence == r exactly (corrected
+    # table). This is a pure algebraic identity about the two FORMULAS
+    # (n_lin=r vs n_exact=r/(1+r)), not a kernel-integration output, so it
+    # is computed with exact rational arithmetic (`fractions.Fraction`),
+    # not float64 -- naive float64 subtraction of n_lin-n_exact loses
+    # catastrophic precision at small r (both are O(r); their difference
+    # is O(r^2), so the float64 relative-error floor on the RESULT is
+    # ~machine-epsilon/r, e.g. ~2e-7 at r=1e-9 -- far short of the
+    # pre-registered <=1e-10 band. Caught during exp-038's own Phase-4 run
+    # (NOTES.md); Fraction sidesteps it since these ratio points are all
+    # exact decimal fractions.
+    from fractions import Fraction
+    max_p3_err = 0.0
+    for r in RATIOS:
+        rf = Fraction(str(r))  # exact decimal -> exact rational, e.g. "1e-09"
+        n_exact = rf / (1 + rf)
+        n_lin = rf
+        measured = (n_lin - n_exact) / n_exact
+        max_p3_err = max(max_p3_err, abs(float(measured - rf)) / float(rf))
+    check("kinetics", "linear-vs-logistic divergence == r (max rel err, 5 pts, exact rational arithmetic)",
+          f"{max_p3_err:.2e}", max_p3_err <= 1e-10, "<=1e-10")
+
+    # --- gates 2b + 4: RK4 boundedness + exp-vs-RK4 convergence on Test B's
+    # own piecewise-constant pulse-train trajectory (150 host/ratio/dt/A
+    # combinations -- the same grid exp-038/run.py sweeps for its science
+    # result; this stage only gates the INSTRUMENT, not the finding).
+    T_PULSE = 0.1
+    A_VALUES = [10.0, 1e3, 1e6]
+    max_rk4_violation = 0.0
+    max_conv_rms = 0.0
+    n_traj = 0
+    for k_r in HOSTS.values():
+        for r in RATIOS:
+            k_f = r * k_r
+            tau = 1.0 / (k_f + k_r)
+            for dt_sweep in (5.0 * tau, 0.5 * tau):
+                for A in A_VALUES:
+                    segs = kin.pulse_train_segments(k_f, k_r, A, T_PULSE, dt_sweep, 5)
+                    _, _, n_exp = kin.integrate_segments(segs, method="exp", record=True)
+                    _, _, n_rk4 = kin.integrate_segments(segs, method="rk4", record=True)
+                    max_rk4_violation = max(max_rk4_violation,
+                                             float(np.max(-n_rk4)), float(np.max(n_rk4 - 1.0)))
+                    denom = max(float(np.sqrt(np.mean(n_exp ** 2))), 1e-300)
+                    rms = float(np.sqrt(np.mean((n_exp - n_rk4) ** 2))) / denom
+                    max_conv_rms = max(max_conv_rms, rms)
+                    n_traj += 1
+    check("kinetics", "RK4 boundedness (max [0,1] violation incl. fp slack, all Test B trajectories)",
+          f"{max_rk4_violation:.2e}", max_rk4_violation <= 1e-9, "<=1e-9")
+    check("kinetics", f"exp-stepper vs RK4 convergence on Test B (max RMS rel diff, {n_traj} trajectories)",
+          f"{max_conv_rms:.2e}", max_conv_rms <= 1e-6, "<=1e-6")
+
+
+def _stage_selected(n, only):
+    """Digit-boundary-aware stage selection: True iff the two-or-more-digit
+    stage number `n` appears in `only` NOT adjacent to another digit.
+    Panel Iteration 15 / Red Team attack #5: the naive `str(n) in only`
+    check silently fires stage 12 on every existing invocation (the local
+    default "123456789" and CI's own "--only 12346789" both happen to
+    contain "1" immediately followed by "2") -- purely an accident of
+    decimal-digit concatenation with the single-digit stages 1-9. This also
+    retroactively fixes stage 10/11's own identical latent fragility,
+    which had simply never been triggered."""
+    return re.search(rf"(?<!\d){n}(?!\d)", only) is not None
+
+
 # ------------------------------------------------------------------ main
 if __name__ == "__main__":
     only = "123456789"
     if "--only" in sys.argv:
         only = sys.argv[sys.argv.index("--only") + 1]
-    run_stage10 = "10" in only
-    run_stage11 = "11" in only
+    run_stage10 = _stage_selected(10, only)
+    run_stage11 = _stage_selected(11, only)
+    run_stage12 = _stage_selected(12, only)
     t0 = time.time()
 
     if "1" in only:
@@ -852,6 +973,8 @@ if __name__ == "__main__":
         stage10_radial_power()
     if run_stage11:
         stage11_multisource_superposition()
+    if run_stage12:
+        stage12_kinetics_kernel()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")

@@ -355,3 +355,125 @@ Unchanged: pure Python/numpy scalar-ODE integration, zero FDTD calls, zero
 WebSearch/WebFetch calls. Estimated well under 1 second wall-clock
 (re-verified valid under the corrected per-configuration Δt, resolution
 #2).
+
+## Phase 4 — Build + Test (exp-038, 2026-08-16)
+
+`lab/kinetics.py` written per the Phase-3 synthesis above; `lab/validation/
+run_all.py` stage 12 added (digit-boundary-aware CLI wiring, gates 1/2a/2b/
+3/4); `experiments/038-.../run.py` (the science sweep, Test A + Test B,
+150 Test-B configurations, 25 Test-A points). **Two genuine implementation
+defects were caught and fixed during this build, before any result was
+trusted — neither was anticipated by any of the seven seats at Phase 1-3,
+both are disclosed here rather than silently corrected out of the record:**
+
+1. **Stiff-segment cost/stability blowup, not anticipated at Phase 3.**
+   The original per-segment RK4 design (Δt = τ_local/steps_per_tau, no
+   cap) requires up to ~2×10¹⁵ steps at the grid's stiffest corner (Host
+   A, r=1, A=10⁶ — τ_pulse ≈ 10⁻¹⁵s against a fixed 100ms pulse duration),
+   and naively capping the step count instead drives Δt/τ_local far
+   outside RK4's stability region, producing genuine numerical
+   instability (not just imprecision). **Fix:** `integrate_segments`'s RK4
+   branch now resolves at most the first `N_TRANSIENT_TAU=25` relaxation
+   times of any segment at full per-tau resolution (≤500 steps, always
+   stable), then finishes any remainder with the exact closed form —
+   after 25τ both methods agree to <1.4×10⁻¹¹ regardless, so this changes
+   nothing about what gate 4 actually cross-checks (RK4's transient
+   accuracy) while keeping cost and stability bounded. Documented in
+   `lab/kinetics.py`'s own `N_TRANSIENT_TAU` docstring.
+2. **A real double-division bug in `relax_rk4`, caught by gate 4 itself
+   failing (RMS rel diff 1.03, vs. the ≤1×10⁻⁶ gate) on the first run of
+   this stage.** `integrate_segments` pre-divided the segment duration by
+   the step count before calling `relax_rk4`, which then divided by the
+   step count AGAIN internally — silently integrating only 1/steps of the
+   intended duration (confirmed by hand: at Host E/r=10⁻⁹'s first ambient
+   dwell, the buggy code returned 4.88×10⁻¹¹ against the correct
+   9.93×10⁻¹⁰, a ~20× miss). **Fix:** `relax_rk4`'s `dt` parameter is now
+   the per-step size directly (renamed `h`), with the division-by-steps
+   done exactly once, at the call site. Re-verified by hand against
+   `relax_exact` after the fix (2×10⁻⁹ relative agreement, one
+   representative segment) before re-running the full suite. **This is
+   exactly the failure mode gate 4 exists to catch** — the same house
+   discipline ("new machinery ⇒ new suite stage with at least one absolute
+   identity gate BEFORE results are trusted") that caught it, working as
+   designed on the first real run, not merely as a formality.
+
+A third, smaller defect: **gate 3's original float64 implementation hit
+catastrophic cancellation at small r** (subtracting two O(r)-magnitude
+floats to recover an O(r²) difference loses relative precision ~ machine-
+epsilon/r — ~2×10⁻⁷ at r=10⁻⁹, far short of the pre-registered ≤1×10⁻¹⁰
+band, even though the identity itself is exactly true, verified
+symbolically). **Fix:** gate 3 now computes the identity with Python's
+`fractions.Fraction` (exact rational arithmetic — these five ratio points
+are all exact decimal fractions), sidestepping float64's precision floor
+entirely for what is a pure algebraic-identity check, not a
+kernel-integration output. This is an implementation-precision fix, not a
+science correction — the identity was never actually wrong.
+
+**Trust suite (all fixes applied): stage 12, 5/5 gates PASS.**
+
+| Gate | Measured | Band |
+|---|---|---|
+| P-MAT-1 (exp stepper vs closed form, 100 evals) | 2.94×10⁻¹⁶ | ≤1×10⁻¹² |
+| P-MAT-2a (exp stepper boundedness) | 0.00 | ==0 (exact by construction) |
+| P-MAT-3 (linear-vs-logistic == r, exact rational) | 0.00 | ≤1×10⁻¹⁰ |
+| P-MAT-2b (RK4 boundedness, 150 trajectories) | 0.00 | ≤1×10⁻⁹ |
+| gate 4 (exp vs RK4 convergence, 150 trajectories) | 4.73×10⁻⁸ | ≤1×10⁻⁶ |
+
+Full local bench (`--only 12346789`) re-confirmed 41/41 unaffected — stage
+12 correctly stays out of that invocation (verified by direct test of the
+new digit-boundary regex against both the local default and CI's own
+`--only 12346789` string before any code was trusted).
+
+### Science results (`experiments/038-.../run.py`, `results.json`)
+
+**P-MAT-4 — CONFIRMED, qualitatively and per-host.** Only Host D's t99
+lands inside/near T3's provisional 10ms-1s window (0.23-0.46s); Hosts A-C
+sit 8, 5, and 2-3 orders of magnitude below it respectively; Host E
+exceeds the upper bound (2.3-4.6s). **One honest, minor imprecision
+caught, not hidden:** P-MAT-4's own predicted values used the host
+lifetime τ_r as a stand-in for the true relaxation time τ=1/(k_f+k_r) —
+exact only in the r≪1 limit. Measured discrepancy: <0.1% for r≤10⁻³, ~10%
+at r=0.1, and a full **2× overstatement at r=1** (τ_exact = τ_r/2 there,
+e.g. Host E/r=1: naive prediction 4.61s vs. measured 2.30s). This does not
+change P-MAT-4's per-host qualitative verdict (confirmed above) but means
+any future cycle citing this cycle's own per-point t99 numbers at r≥0.1
+should use the exact formula, not the host-lifetime shorthand.
+
+**P-MAT-5a — CONFIRMED.** At Δt_sweep=5τ, max measured periodic/first-pulse
+ratio across all 75 (host, ratio, A) points is 1.006, comfortably inside
+the ≤1.02 band.
+
+**P-MAT-5b — PARTIALLY CONFIRMED: co-location claim holds, magnitude band
+misses.** At Δt_sweep=0.5τ (stress case), measurable buildup (ratio >1.05)
+occurs ONLY at Hosts D and E — **the qualitative co-location prediction
+("the worrying axis and the memory-risk axis co-locate") is confirmed
+exactly as stated**, not merely directionally. But the predicted magnitude
+band (~1.4-1.6) is refuted by the measured range (1.00-2.106): several
+Host-D points show no measurable buildup at all (ratio=1.00, still
+correctly excluded from "measurable"), and Host E's own worst points reach
+2.106 — 32% above the predicted upper bound. The original ~1.4-1.6 figure
+was the Phase-1 proposal's own rough impulse-train estimate
+(1/(1-e^{-Δt/τ})), not a tightly-derived band; re-deriving it by hand for
+Δt=0.5τ gives 1/(1-e^{-0.5})≈2.54, itself above the measured 2.106 —
+neither the original estimate nor its own underlying formula bounds the
+measured value tightly. Read plainly: the co-location finding (which host
+regime combines slow relaxation with largest achievable n_ss) is the
+robust result; the specific numeric range was never more than a rough
+estimate and should not be cited as a validated band.
+
+**Realizability cross-reference (MATERIALS' tier table, unchanged):**
+Hosts A-B stay PUBLISHED, Hosts C-D PLAUSIBLE (r≤10⁻¹), Host E and any
+r=1 point stay UNOBTANIUM-WITH-PARAMETERS — exactly the same points that
+P-MAT-5b's own measurable-buildup regime (D/E) span. **The at-rest-memory
+risk this kernel was built to quantify is measurable only in the same
+regime MATERIALS' own memo already flags as least realizable** — a
+genuine, if modest, closing observation: for linearly-pumped FCA
+specifically, the host/doping choices realistic enough to matter
+(Hosts A-C) show negligible sweep-to-sweep memory buildup even under the
+stress-case inter-sweep interval; the memory-risk regime and the
+realizability boundary are not independent axes.
+
+**Elapsed:** 0.14s (Test A + Test B, 175 configurations total). Trust
+suite stage 12: 23s (includes stages 1-2, triggered incidentally by
+`--only 12`'s own digit content — expected, unrelated to this stage).
+Zero FDTD calls, zero WebSearch/WebFetch calls, as predicted.
