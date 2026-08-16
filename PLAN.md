@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-15, panel Iteration 11)
+## Current state (2026-08-16, panel Iteration 12)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -628,40 +628,86 @@ continuous mode with checkpoints. The remaining [open] items below are
   Checkpoint criterion 4 ruled a tripwire (Red Team), satisfied by the
   same-shift corrections — does not fire. No other criterion fires. Full
   record: LOGBOOK.md Iteration 11.
-- **[queued — panel Iteration 12, lead per rotation QUANTUM OPTICS,
-  Director-adjudicated priority order per Iteration 11's own seven-seat
-  Phase-5 close, Red Team's ranking]** (1) **Disentangle the R156-vs-
-  N17_156 domain/quadrature confound at r=156** — either measure N17
-  quadrature on Block R156's own GUARD_OUT=336 domain, or remeasure
-  R156's N9 off_pass reading on Block N17_156's GUARD_OUT=373 domain,
-  isolating the ~3.55×10⁻⁴ domain effect from the ~4.25×10⁻⁴ quadrature
-  effect. Cheap (≤17 calls, reuses existing domain code); the only path
-  to a defensible PASS/MARGINAL verdict at r=156 — this program's actual
-  scored headline from exp-034. Ranked ahead of (2) specifically because
-  it sits under an already-scored number, per Red Team's own adjudication
-  over several individual seats' own top pick. (2) **Rebuild Block
-  N17_NATIVE by rescaling exp-033's own domain** (RATIO=1.5 method, not
-  the generic `_coverage_geometry` formula) — closes the Director's own
-  exp-034 Phase-4 catch; needed before P-N17-3's "reopens the PASS"
-  question can be answered rather than merely raised a second time. (3)
-  **Formally reconcile T15** using exp-034's own committed
-  `chord_model_g0`, applied across cpl=20/30/40 at r=78 — zero FDTD cost;
-  pair with a genuine RSA/two-photon-absorption literature check (not
-  exp-034's own informal desk memo) if the realizability memo's
-  UNOBTANIUM verdict is to be escalated toward a Checkpoint-2 finding.
-  Lower priority, inherited: T11's own trust-suite stage for the
-  ambient/line-source box-ledger channel; T14's PHOTONICS multi-point
-  cored-absorber r-sweep (r≈78, 110, 156, 220, 312, fixed PLANE_DX=15,
-  θ=0) — still never executed; a genuine PEC r-family ripple test near
-  r≈270–350 (T12's own real open half); T11's dedicated multi-point/
-  multi-box-pair box_dev floor characterization; Iteration 6's still-
-  queued incoherent-ensemble/phase-quadrature idiom (QUANTUM's own #2
-  Phase-5 pick); a formal reciprocity check (EM's own long-standing
-  pick); the shell-thickness/optical-depth economy sweep (MATERIALS);
-  T10's residual +3.05pp sub-cell/window-offset sweep; PHOTONICS' own
-  Phase-5 suggestion (connect T16's angular-quadrature half to T10/T12's
-  standing near-field-fringe hypothesis, rather than treating it as pure
-  numerical quadrature).
+- [done 2026-08-16, panel Iteration 12, cloud panel shift] **exp-035
+  closing the R156/N17_156 domain × quadrature factorial, rebuilding
+  N17_NATIVE, and reconciling T15** — QUANTUM OPTICS' lead (rotation),
+  executing Iteration 11's own ranked priorities. 68 new FDTD calls (34 +
+  34 + 0 desk-only), 2724.3s. Red Team's Phase-2 audit caught a
+  load-bearing defect in the Phase-1 proposal (independently confirmed by
+  PHOTONICS): the T15 reconciliation's cpl=40 comparator was a copy/paste
+  fabrication, not a measurement — corrected via Red Team's own zero-cost
+  recipe (raw g=|C|/τ at cpl=20/30/40 vs `chord_model_g0()`). **Result 1
+  (T16): the domain and quadrature confounds disclosed at Iteration 11 do
+  NOT add linearly at r=156 — they interact** (+2.109×10⁻⁴, at the
+  REAL-INTERACTION threshold; ladder bucket stays MARGINAL either way).
+  **Result 2 (T16, the bigger one): the r=78-native N17 rebuild — built
+  correctly this time, N9 leg bit-identical to exp-033's own established
+  citation, proving no domain confound — shows this program's own
+  headline, first-ever constraint-3 σ(I) OFF-state PASS (exp-032,
+  reconfirmed exp-033) downgrades from PASS to MARGINAL under N17
+  quadrature.** As of this iteration, no σ(I) OFF-state configuration
+  this program has ever measured survives N17 correction on a correctly-
+  built domain, at either geometry tested. **Result 3 (T15): the gap
+  grows monotonically with resolution (1.03%/2.69%/3.07% at
+  cpl=20/30/40)** — T15 modestly reopens, not closes; a separate π/4-vs-
+  chord-model-amplitude gap was fully explained as definitional (θ=0-only
+  vs N9-oblique-averaged) and formally closed. Phase 5: **unanimous
+  PARTIAL, 6-for-6 blind seats, Red Team affirms.** Two seats
+  (PHOTONICS, EM) independently proposed the same near-field-fringe
+  mechanism for the interaction, but Red Team ruled it plausible-not-
+  proven (a real non-self-similarity confound between the two blocks'
+  geometry). VISION's sharpest catch: bit-identical N9 does not prove
+  N17_NATIVE_V2 is confound-free at N17, since the r=156 result proves a
+  domain's effect on C is itself angle-dependent. THERMODYNAMICS caught
+  and fixed a real, previously-uncaught numeric bug carried through two
+  prior committed experiments (`OFF_STATE_DETECTABILITY_NOTE`'s
+  steady-state range, corrected in live code, computed not hand-typed —
+  does not change the UNDETECTABLE conclusion). MATERIALS' realizability
+  memo recaptioned: D_req≈540–600× is now a lower bound, not an achieved
+  reference point — sharpens, not weakens, UNOBTANIUM-WITH-PARAMETERS.
+  **Checkpoint criterion 2 ruled explicitly: does NOT fire** — one
+  calibration point failing corrected instrumentation is not proof σ(I)
+  is jointly unsatisfiable as a mechanism class; that still needs the
+  still-deferred rigorous literature check. Red Team's own program-health
+  observation (not a criterion firing): Iterations 7–12, six consecutive
+  cycles, have all closed PARTIAL, all instrument-hygiene work, not
+  mechanism-testing — flagged for Iteration 13's sequencing. Verdict:
+  PARTIAL. Full record: LOGBOOK.md Iteration 12.
+- **[queued — panel Iteration 13, lead per rotation VISION SCIENCE,
+  Red Team's ranked priority order per Iteration 12's own Phase-5 close]**
+  (1) **The rigorous RSA/TPA/third-mechanism-class literature check**
+  (MATERIALS/QUANTUM's own pick) — zero FDTD cost; the only thing that
+  can actually fire or definitively not-fire Checkpoint criterion 2;
+  three-cycle-plus deferral; every further ambient-contrast refinement
+  this program has produced is algebraically orthogonal to it. Should
+  include a third mechanism class (photochromic/photothermal switching)
+  beyond RSA/TPA, both already ruled UNOBTANIUM for independent reasons.
+  (2) **N33 at r=78-native** — completes the N9→N17→N33 angular-
+  convergence sequence at the geometry the program's headline PASS
+  citation actually originates from; fold in per-angle scene-data
+  persistence and retroactive ±10/20/30° checks from the start (EM's own
+  mandatory-fix-4 extension — currently only ±40° gets an individual
+  per-angle check). (3) **A second, independently-built r=78-native N17
+  domain** (e.g. exp-034's own already-built ad-hoc `_coverage_geometry()`
+  domain, GUARD_OUT=295) to directly test whether the r=156
+  domain×quadrature interaction recurs there — VISION's own proposed
+  closing test for the epistemic gap her Phase-5 review found. Lower
+  priority, inherited: a reproducibility/GUARD_OUT-fringe-period sweep
+  testing the near-field-fringe interaction mechanism (PHOTONICS/EM,
+  contingent on (1)/(2) not consuming the shift); a genuine 3-λ sweep of
+  the N9→N17 angular-convergence readings (never run on this channel);
+  T11's own trust-suite stage for the ambient/line-source box-ledger
+  channel; T14's PHOTONICS multi-point cored-absorber r-sweep (r≈78, 110,
+  156, 220, 312, fixed PLANE_DX=15, θ=0) — still never executed; a
+  genuine PEC r-family ripple test near r≈270–350 (T12's own real open
+  half); T11's dedicated multi-point/multi-box-pair box_dev floor
+  characterization; Iteration 6's queued incoherent-ensemble/phase-
+  quadrature idiom (re-scoped contingent-only per QUANTUM's own
+  Iteration-12 Phase-5 argument, unopposed — build only if a future
+  σ(x,t)/gain-based candidate genuinely needs a joint beam+ambient
+  scene); a formal reciprocity check (EM's own long-standing pick); the
+  shell-thickness/optical-depth economy sweep (MATERIALS); T10's residual
+  +3.05pp sub-cell/window-offset sweep.
 - **[queued, deprioritized behind T13 per Red Team's Iteration-7
   ruling]** docket #7: sourced witness-scenario parameter table +
   glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring.

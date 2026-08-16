@@ -2,6 +2,116 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-16 (panel shift) — Iteration 12 complete (exp-035): the program's
+only-ever constraint-3 σ(I) OFF-state PASS no longer survives corrected
+angular-quadrature instrumentation at either geometry ever tested — a real
+domain×quadrature interaction found at r=156 (not the additive model
+assumed), and a clean, domain-confound-free PASS→MARGINAL downgrade shown
+for the first time at r=78-native, the geometry the headline citation
+actually uses. Unanimous 6-for-6 blind-seat PARTIAL, Red Team affirms; a
+real historical numeric bug (THERMO's detectability-note range) caught and
+fixed in live code same-shift; Checkpoint criterion 2 explicitly ruled
+non-firing
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle
+(numpy/scipy/matplotlib/pillow/autograd/fdtd via pip, then
+`ceviche --no-deps`). Bench trust suite 46/46 green (`--only
+12346789,10,11`) before and after this shift's work, re-verified
+independently at Phase 4 and again by Red Team at Phase 5 close.
+
+**Iteration 12 — Closing the R156/N17_156 Domain × Quadrature Factorial,
+Rebuilding N17_NATIVE, and Reconciling T15 (exp-035, CONCLUDED).** Lead:
+QUANTUM OPTICS (rotation), executing Iteration 11's own Red-Team-ranked
+priorities. Full seven-seat cycle: Phase 1 proposal (QUANTUM OPTICS, three
+blocks: T16_CLOSE, N17_NATIVE_V2, T15_RECONCILE) → 5 blind parallel
+critiques (all support-with-changes; PHOTONICS caught the cycle's single
+most consequential defect — a fabricated cpl=40 comparator in the T15
+table) → Red Team last (PROCEED-WITH-MANDATORY-FIXES, independently
+confirmed PHOTONICS' catch and supplied a genuinely zero-cost fix; rejected
+MATERIALS' and VISION's literal fixes on their stated grounds while
+accepting their substance) → Phase 3 synthesis (Director: all mandatory
+fixes accepted, none overridden, budget unchanged at 68 calls) →
+predictions committed (`ed6d007`) → Phase 4 run.
+
+**Result: 68 new FDTD calls, 2724.3s (~45.4 min), ~1.8× the estimate
+uniformly across both blocks (flagged, not gate-material).**
+
+**Block T16_CLOSE found the domain and quadrature confounds disclosed at
+Iteration 11 do NOT add linearly at r=156 — they interact** (+2.109×10⁻⁴,
+clearing the pre-registered ≥2×10⁻⁴ REAL-INTERACTION threshold by ~5%,
+the falsifiable band's own pre-registered alternate outcome, not a
+surprise). The ladder bucket doesn't flip (stays MARGINAL either way).
+
+**Block N17_NATIVE_V2 is this shift's headline result.** Rebuilt correctly
+this time (exp-033's own domain, verbatim — RATIO=1.5 method, not
+exp-034's ad-hoc formula); its N9 leg reproduces exp-033's established
+citation bit-identically (delta=0.0 exactly), proving the domain carries
+no construction confound. **Its N17 leg shows this program's own headline,
+first-ever constraint-3 σ(I) OFF-state PASS (exp-032, Iteration 9,
+reconfirmed exp-033) downgrades from PASS (C=−0.004586) to MARGINAL
+(C=−0.005239)** — the first time this downgrade has been shown at the
+geometry the citation actually originates from, without a domain
+confound riding underneath it. As of this iteration, no σ(I) OFF-state
+configuration this program has ever measured survives N17 angular-
+quadrature correction on a correctly-built domain, at either geometry
+tested.
+
+**Block T15_RECONCILE (0 new calls) found the g₀-vs-chord-model gap grows
+monotonically with resolution** (1.03%/2.69%/3.07% at cpl=20/30/40,
+crossing the pre-registered GROWING threshold) — T15 modestly reopens, not
+closes, 5–8× smaller than Iteration 10's already-refuted ~15% claim but
+real. A separate π/4-vs-chord-model-amplitude gap (~14.3–14.5%, stable
+across resolution) was measured for the first time and, at Phase 5,
+formally closed as a definitional mismatch (θ=0-only vs N9-oblique-
+averaged observables), not an open puzzle.
+
+**Phase 5 (six fresh blind seats + Red Team): unanimous PARTIAL, 6-for-6.**
+PHOTONICS and ELECTROMAGNETISM independently proposed the same near-field-
+fringe mechanism for the T16 interaction; Red Team ruled it plausible, not
+yet accepted (PHOTONICS' own Fresnel-number check found the two blocks
+aren't geometrically self-similar — a real confound in the evidence).
+VISION SCIENCE's sharpest catch: bit-identical N9 reproduction does NOT
+prove N17_NATIVE_V2's domain is confound-free at N17, since the r=156
+result proves a domain's effect on C is itself angle-dependent — no
+second, independently-built r=78-native N17 domain exists yet to cross-
+check against. THERMODYNAMICS caught and fixed a real, previously-
+uncaught numeric bug that had propagated silently through two prior
+committed experiments: `OFF_STATE_DETECTABILITY_NOTE` stated a
+steady-state range of "5.9–49.8×"; the true range, independently
+confirmed by Red Team, is 5.0×–132.4× (does not change the UNDETECTABLE
+conclusion) — fixed in live code, computed from source values rather than
+hand-typed, so it cannot silently drift again. MATERIALS argued, and Red
+Team affirmed, that the PASS-downgrade sharpens (not weakens)
+REALIZABILITY_MEMO.md's UNOBTANIUM-WITH-PARAMETERS verdict — its
+D_req≈540–600× figure is now recaptioned as a lower bound, not an achieved
+reference point. QUANTUM OPTICS argued σ(I)'s empirical privilege among
+T1's four escape routes is now gone (zero surviving bench PASS, zero
+realizable mechanism) even though σ itself was never touched this cycle —
+adopted into LOGBOOK's T1 entry.
+
+**Red Team's Checkpoint ruling, explicit: criterion 2 (a proven boundary
+within a mechanism class) does NOT fire** — this cycle shows one
+calibration point fails correctly-instrumented measurement at both
+geometries checked, not that σ(I) as a class is jointly unsatisfiable;
+that still needs the still-deferred rigorous RSA/TPA/third-class
+literature check, now re-ranked Iteration-13's top priority ahead of the
+previously-planned N33 leg (Red Team's own adjudication: every further
+ambient-contrast refinement this program has produced is algebraically
+orthogonal to the realizability question that check would actually
+settle). No other Checkpoint criterion fires. **Program-health
+observation, not a criterion firing**: Iterations 7–12 — six consecutive
+cycles — have all closed PARTIAL, all instrument-hygiene or reconciliation
+work, not mechanism-testing — flagged for Iteration 13's sequencing.
+
+**Mandatory corrections applied same-shift, disclosed not smoothed over**:
+`experiments/034-floor-convergence-scale-bridge/design_geometry.py`'s
+detectability-note bug fixed in live code (historical NOTES.md/results.json
+prose left uncorrected per house convention, an erratum comment added
+instead); `REALIZABILITY_MEMO.md`'s D_req figure recaptioned as a lower
+bound; a documentation note added on the unsigned-delta convention in
+`results.json`. Full record: LOGBOOK.md Iteration 12. Next lead per
+rotation: VISION SCIENCE (Iteration 13).
+
 ## 2026-08-15 (panel shift) — Iteration 11 complete (exp-034): the paired
 cpl=40/r=156/N17 cycle closes T1's floor-convergence item cleanly, finds the
 program's only-ever constraint-3 PASS fragile (not cleanly resolved either

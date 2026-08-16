@@ -197,6 +197,20 @@ measured them here):**
   stated limits) — a candidate Checkpoint-criterion-2 finding that does
   NOT yet fire; escalating it needs the rigorous check the memo itself
   names as its own missing rigor.
+  **σ(I)'s evidentiary status weakened, not the mechanism class itself
+  (Iteration 12, exp-035, QUANTUM OPTICS' Phase-5 finding).** The one
+  empirical fact that gave σ(I) special standing among T1's four escape
+  routes — exp-032's single bench PASS — no longer survives at either
+  geometry it has been re-measured at (see T16). σ itself is untouched
+  (bit-identical τ_center=0.0065 across every block this cycle); this is
+  a pure measurement-instrument result. But combined with
+  REALIZABILITY_MEMO.md's UNOBTANIUM-WITH-PARAMETERS verdict, σ(I) as
+  this program's leading escape-route candidate now rests on zero
+  surviving bench evidence and zero realizable mechanism, reverting to
+  the same "permitted, undemonstrated" status as σ(x,t), angular
+  selectivity, and sub-threshold operation — a real downgrade in relative
+  standing among the four routes, disclosed here since T1's own summary
+  language elsewhere in this entry still reads as if σ(I) leads.
 - **T2 — Perceptual thresholds.** PINNED and corrected in exp-020: frozen
   function C_thr(L) = 0.005·max[1,(L/3)^−p], p ∈ [0.4, 0.5], field ×4;
   crossovers re-derived from the function itself (Red Team #2's catch).
@@ -533,6 +547,15 @@ measured them here):**
   time, unexplained, and behaving differently (resolution-independent)
   from the first gap. Both gaps are now on the record with real numbers;
   neither has a mechanism.
+  **π/4-vs-chord_model_g0 gap CLOSED (Iteration 12 Phase 5,
+  THERMODYNAMICS, Red-Team-confirmed).** Fully explained as a definitional
+  mismatch, not an open puzzle: evaluating `chord_model_g0()` at a single
+  θ=0 angle (instead of the N9 oblique-averaged set) reproduces π/4 to
+  within 0.3–0.7% at every resolution tested — the two amplitudes measure
+  different physical observables (θ=0-only chord peak vs. N9-window-
+  averaged diffuse contrast), not competing measurements of one quantity.
+  Formally retired as an open question; the g_raw-vs-chord-model gap
+  above (real, growing) remains the thread's only live half.
 - **T16 — the ambient-contrast instrument's own angular-quadrature and
   domain-construction sensitivity (opened Iteration 11, exp-034 Phase 5,
   ELECTROMAGNETISM + VISION SCIENCE, Red Team-elevated to a named thread).**
@@ -601,6 +624,34 @@ measured them here):**
   own r=78-native-worse-than-r=156 pattern, and PHOTONICS' Iteration-11
   suggestion connecting the angular-quadrature half to T10/T12's near-
   field-fringe hypothesis.
+  **Iteration 12 Phase 5 (six-seat review + Red Team audit):** PHOTONICS
+  and EM independently proposed the near-field-fringe mechanism above as
+  a real explanation for the interaction — but PHOTONICS' own Fresnel-
+  number computation (N_F≈81.1 at r=156 vs ≈20.7 at r=78-native, ratio
+  3.9×) falls well short of the observed 11.7–18.3× per-angle-bias ratio,
+  and the two blocks are NOT self-similar (PLANE_DX/R_OUT differs ~2×) —
+  Red Team's audit sided with PHOTONICS' caution: **plausible, not yet an
+  accepted mechanism.** VISION SCIENCE's Phase-5 catch sharpens this
+  thread's own epistemic status further: bit-identical N9 reproduction at
+  r=78-native does NOT by itself prove that domain is confound-free at
+  N17, precisely because this cycle's own r=156 result (domain × angle
+  interact) shows a domain's effect on C is angle-dependent — no second,
+  independently-built r=78-native N17 domain exists yet to cross-check
+  against. **Red Team's Checkpoint ruling: criterion 2 (proven boundary
+  within a mechanism class) does NOT fire** — this thread shows one
+  calibration point fails correctly-instrumented measurement at both
+  geometries checked, not that σ(I) as a class is jointly unsatisfiable.
+  **Re-ranked Iteration-13 priorities (Red Team's adjudication across all
+  six Phase-5 seats): (1) the rigorous RSA/TPA/third-mechanism-class
+  literature check (MATERIALS/QUANTUM, zero cost, could fire or
+  definitively not-fire Checkpoint-2, three-cycle-plus overdue) now
+  outranks N33 — everything this thread's own FDTD work has produced is
+  "algebraically orthogonal" to that check (MATERIALS' Phase-5 finding);
+  (2) N33 at r=78-native, with per-angle scene persistence + ±10/20/30°
+  retroactive checks folded in from the start (EM's mandatory-fix-4
+  extension); (3) a second, independently-built r=78-native N17 domain
+  to directly test whether the r=156 interaction recurs there (VISION's
+  own proposed closing test).**
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -5016,3 +5067,135 @@ already-refuted ~15% claim but not zero and not shrinking. THERMO's π/4
 amplitude sits a stable ~14.3–14.5% above `chord_model_g0()` at all three
 resolutions — a separate, apparently resolution-independent gap, newly
 disclosed, unexplained. `75f3626` (results) committed this shift.
+
+### Phase 5 — Review (six fresh seats blind, Red Team last) — abridged
+
+**All six blind seats independently returned PARTIAL** (unanimous, as at
+Iteration 11). **PHOTONICS** confirmed all arithmetic; flagged the
+interaction (+2.109×10⁻⁴) clears its own ≥2×10⁻⁴ threshold by only ~5%,
+measured once, no reproducibility check; offered a near-field-fringe
+mechanism as *plausible* (computed Fresnel numbers N_F≈81.1 at r=156 vs
+≈20.7 at r=78-native, ratio 3.9× — well short of the observed 11.7–18.3×
+per-angle-bias ratio) but flagged the two blocks are NOT self-similar
+(PLANE_DX/R_OUT differs ~2×), a real confound in the evidence; noted this
+whole program line has never run a 3-λ sweep. **MATERIALS** confirmed all
+arithmetic; found `delta_N9_vs_N17_same_domain` stored as an unsigned
+magnitude despite the two blocks moving in opposite directions (a
+documentation footgun, not a bug); argued the PASS-downgrade sharpens
+REALIZABILITY_MEMO.md's D_req into a lower bound, not an achieved
+reference; confirmed this does not itself trigger Checkpoint-2.
+**ELECTROMAGNETISM** independently diffed N17_NATIVE_V2's geometry
+byte-for-byte against exp-033's own file (confirmed no domain confound in
+the rebuild itself); proposed the SAME near-field-fringe mechanism as
+PHOTONICS independently, citing VALIDATION.md's own 25–40-cell fringe-
+period lesson; found only 2 of N17's 8 new angles (±40° only) get an
+individual per-angle empty check — the middle six are invisible except
+through the pooled gate, and `block_n17()` discards per-angle data after
+aggregating so this can't be recovered retroactively. **THERMODYNAMICS**
+independently derived the π/4-vs-`chord_model_g0` gap is fully explained
+as a definitional mismatch (θ=0-only vs N9-oblique-averaged — evaluating
+`chord_model_g0` at a single θ=0 angle reproduces π/4 to within 0.3–0.7%
+at every resolution); found a real, previously-uncaught bug in
+`OFF_STATE_DETECTABILITY_NOTE` (stated "5.9–49.8×" steady-state, true
+range 5.0×–132.4×, carried unfixed through two prior committed
+experiments — traced to cross-contamination with the transient clause).
+**QUANTUM OPTICS** confirmed σ itself is untouched (bit-identical
+τ_center=0.0065 held throughout — zero mechanism content, per its own
+expressibility contract) but argued σ(I)'s EVIDENTIARY status is now
+materially weaker: its only empirical privilege (the one exp-032 PASS) no
+longer survives anywhere, and combined with MATERIALS' UNOBTANIUM verdict
+it "has neither a surviving bench PASS nor a realizable candidate
+mechanism"; argued the queued incoherent-ensemble idiom should be
+deprioritized to contingent-only (wrong channel, diminishing value).
+**VISION SCIENCE** made the cycle's sharpest catch: bit-identical N9
+reproduction does NOT prove N17_NATIVE_V2's domain is confound-free at
+N17, because T16_CLOSE's own result (domain × quadrature interact, not
+add) proves a domain's effect on C is itself angle-dependent — only ONE
+domain construction has ever been run at N17 for r=78-native, so no
+cross-check exists at the geometry that matters most; noted the two
+geometries' N9→N17 corrections move in OPPOSITE directions, so neither
+predicts the other's N33 behavior; argued N33 (or a second independently-
+built r=78-native N17 domain) should be Iteration-13's must-do, given the
+citation now fails by a margin (6.52×10⁻⁴) 1.6× the historical PASS
+margin itself.
+
+**Red Team (audit; verdict: PARTIAL, affirms all six blind seats, does
+not overrule).** Independently re-verified every load-bearing number
+across all six reviews to the digit, including THERMODYNAMICS' bug
+(confirmed exactly: true steady range 5.0×–132.4×, transient
+5.94×–156.3×) and EM's byte-for-byte domain diff. Corrected the "noise"
+framing three seats (PHOTONICS, EM, QUANTUM) used for the ~5% margin
+concern: this engine is deterministic (this cycle's own bit-identical
+reproductions prove it) — the legitimate risk is discretization/domain-
+construction sensitivity, which this exact channel has repeatedly shown
+at magnitudes (3.55×10⁻⁴, 4.25×10⁻⁴) comparable to the margin in
+question. Sided with PHOTONICS over EM on the fringe mechanism's
+confidence (plausible, not yet accepted, given the non-self-similarity
+confound). **Checkpoint ruling, explicit**: criteria 1/3/4/5 do not fire.
+**Criterion 2 does NOT fire** — this cycle shows one calibration point
+fails correctly-instrumented measurement at both geometries, not that
+σ(I) as a mechanism class is jointly unsatisfiable; that proof still
+needs MATERIALS' own still-deferred rigorous literature check, which the
+memo itself names as the actual gate. **Program-health observation (not
+a criterion firing)**: Iterations 7–12, six consecutive cycles, have all
+closed PARTIAL, all instrument-hygiene/reconciliation work, not
+mechanism-testing — worth weighing in Iteration 13's sequencing.
+**Mandatory corrections, applied same-shift**: THERMO's detectability-
+note bug fixed in live code (`experiments/034-.../design_geometry.py`,
+computed not hand-typed, erratum comment added — historical NOTES.md/
+results.json prose left uncorrected per house convention); REALIZABILITY_
+MEMO.md's D_req recaptioned as a lower bound; unsigned-delta convention
+documented. **Ranked Iteration-13 priorities**: (1) the rigorous RSA/TPA/
+third-mechanism-class literature check (zero cost, could fire or
+definitively not-fire Checkpoint-2, three-iteration-plus overdue); (2)
+N33 at r=78-native (the geometry the headline citation actually
+originates from); (3) persist per-angle scene data and retroactively
+check ±10/20/30° at r=78-native, folded into the N33 run; (4) [already
+done this shift] the detectability-note fix and π/4 sub-thread closure.
+
+### Director's close
+
+**VERDICT: PARTIAL** — Red Team affirms all six blind seats unanimously,
+no override. Every pre-committed prediction confirmed or cleanly refuted
+with real numbers (P-T16-1's additive estimate refuted by a pre-
+registered alternate outcome, REAL INTERACTION; P-N17V2-2's direction
+refuted, its band/margin-exceeded prediction both confirmed; everything
+else confirmed). Budget discipline held (68 calls, unchanged proposal to
+close). A real historical bug was found and corrected in live code this
+same shift, not deferred.
+
+**Checkpoint criterion 2 does NOT fire** — Red Team's explicit ruling,
+adopted without qualification. No other criterion fires.
+
+**The honest headline**: this program's only-ever constraint-3 σ(I)
+OFF-state PASS no longer survives at either geometry it has ever been
+measured at, once angular quadrature is corrected on a domain-confound-
+free basis — shown cleanly for the first time at r=78-native, the
+geometry the citation actually originates from. This does not rule out
+σ(I) as a mechanism class (a smaller τ_off could still clear the bar, at
+the cost of an even larger, not yet bounded, D_req) and does not by
+itself escalate MATERIALS' realizability verdict beyond a documentation-
+level reframing — but the program's "leading candidate" status for σ(I)
+now rests on zero surviving bench evidence, not one. Two independently-
+proposed physical mechanisms (PHOTONICS, EM — near-field fringe sampling)
+exist for the domain×quadrature interaction, but neither is yet
+distinguished from a standoff-ratio confound in the two blocks' own
+geometry. Six consecutive iterations (7–12) have now been instrument-
+hygiene or reconciliation work — a real, disclosed pattern, not a rule
+violation, but a signal for Iteration 13's sequencing (Red Team's own
+program-health observation). `f604f2d` (LOGBOOK Phases 1-4) and mandatory
+corrections committed this shift. Next lead per rotation: **VISION
+SCIENCE** (Iteration 13) — cycling back to the seat that opened this
+program's first iteration.
+
+Open questions carried forward: the rigorous RSA/TPA/third-mechanism-
+class literature check (Iteration-13 top priority, three-cycle-plus
+deferral); N33 at r=78-native (Iteration-13 #2); per-angle ±10/20/30°
+checks at r=78-native, folded into N33 (Iteration-13 #3); the fringe-
+sampling mechanism for T16's interaction (plausible, not proven — the
+non-self-similarity confound between T16_CLOSE/N17_NATIVE_V2 needs
+resolving first); a genuine 3-λ sweep of N9→N17 angular-convergence
+readings (never done on this channel); T11's box-ledger trust stage;
+T14's cored-absorber r-sweep; T12's PEC r-family ripple test; QUANTUM's
+incoherent-ensemble idiom (re-scoped contingent-only, unopposed); EM's
+reciprocity check.

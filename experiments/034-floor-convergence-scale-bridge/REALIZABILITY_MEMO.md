@@ -7,6 +7,30 @@ MATERIALS' own Iteration-9 check was self-flagged), not a rigorous survey.
 Named as an open deliverable at the close of Iterations 9, 10, and 11 — a
 three-cycle deferral this closes.
 
+**AMENDMENT (Iteration 12, exp-035, MATERIALS' Phase-5 review + Red Team's
+mandatory correction):** the "only σ(I) OFF-state configuration... to clear
+that bar" (line 19, below) no longer clears the bar at EITHER geometry it
+has ever been checked at (r=156: already MARGINAL at this memo's own
+writing; r=78-native, THIS configuration's own home geometry: now shown
+MARGINAL too, cleanly, without a domain-construction confound — exp-035,
+LOGBOOK.md Iteration 12/T16). **D_req≈540–600× below should therefore be
+read as a LOWER bound on the true dynamic range a real switch would need,
+not an achieved reference point measured from a configuration that
+actually cleared the bar** — if a genuinely constraint-3-clearing τ_off
+exists at all, it must be smaller than 0.0065 (since 0.0065 no longer
+clears under correctly-quadrature-instrumented measurement), which makes
+the true D_req larger, not smaller, than the figure below. This
+**sharpens, not weakens**, this memo's own UNOBTANIUM-WITH-PARAMETERS
+verdict — it removes the one empirical foothold that made D_req read as
+"the gap from a real starting point" rather than "the gap from a
+hypothetical one." Does not change the TPA irradiance-gap finding (already
+independent of any OFF-state ambient-contrast reading). This amendment
+does not itself escalate this memo toward a Checkpoint-2 finding — that
+still needs the rigorous (not informal) literature check this memo's own
+"Idealizations and honest limits" section names as its missing rigor
+(queued, Iteration 13's top-ranked priority per Red Team's Iteration-12
+close).
+
 ## What the bench has established (this program's own numbers, cited)
 
 The T1 escape route this program has instrumented — intensity-gated

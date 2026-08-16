@@ -422,7 +422,140 @@ channel).
    revision once real FDTD data existed alongside it (Block T15_RECONCILE
    is desk-only and was already final at Phase 3).
 
-## Phase 5 — Review (seven fresh seats: six blind, Red Team last)
+## Phase 5 — Review (seven fresh seats: six blind, Red Team last) — abridged
 
-*Appended below after Phase 5 completes — full verbatim text:
-LOGBOOK.md Iteration 12.*
+Full verbatim text: LOGBOOK.md Iteration 12.
+
+**All six blind seats independently returned PARTIAL** (a program first for
+unanimity-without-Red-Team-needing-to-decide-a-split, matching Iteration
+11's own unanimous pattern). **PHOTONICS** and **ELECTROMAGNETISM**
+independently proposed the SAME physical mechanism for the T16_CLOSE
+interaction (near-field Fresnel-fringe sampling coupling domain placement
+and angle offset) — PHOTONICS additionally computed Fresnel numbers and
+found the two blocks are NOT geometrically self-similar (PLANE_DX/R_OUT
+differs ~2×), so the fringe hypothesis stays plausible, not proven.
+**Three seats** (PHOTONICS, EM, QUANTUM OPTICS) independently flagged that
+the interaction clears its own ≥2×10⁻⁴ threshold by only ~5%. **VISION
+SCIENCE** made the cycle's sharpest epistemic catch: bit-identical N9
+reproduction does NOT prove N17_NATIVE_V2's domain is confound-free at
+N17, because T16_CLOSE's own result (domain × quadrature interact) proves
+a domain's effect on C is itself angle-dependent — no second,
+independently-built r=78-native N17 domain exists to cross-check against.
+**THERMODYNAMICS** independently derived that the π/4-vs-`chord_model_g0`
+gap is fully explained as a definitional mismatch (θ=0-only vs
+N9-oblique-averaged) and found a real, previously-uncaught numeric bug in
+`OFF_STATE_DETECTABILITY_NOTE` (stated "5.9–49.8×", true range
+5.0×–132.4×, carried unfixed through two prior experiments). **MATERIALS**
+argued the PASS-downgrade sharpens, not weakens, the realizability memo's
+verdict (D_req should be read as a lower bound, not an achieved figure).
+**QUANTUM OPTICS** argued σ(I)'s empirical privilege (its one supporting
+PASS) is now gone, though the mechanism class itself remains
+theoretically permitted and untouched.
+
+**Red Team (audit, verdict: PARTIAL, affirms all six blind seats,
+does not overrule).** Independently re-verified every load-bearing number
+across all six reviews, including THERMODYNAMICS' bug (confirmed exactly:
+true range 5.0×–132.4× steady / 5.94×–156.3× transient). Corrected the
+"noise" framing three seats used for the ~5% margin concern: this engine
+is deterministic (this cycle's own bit-identical reproductions prove it)
+— the real, legitimate risk is discretization/domain-construction
+sensitivity, which this exact channel has repeatedly shown at magnitudes
+(3.55×10⁻⁴, 4.25×10⁻⁴) comparable to the margin in question. Sided with
+PHOTONICS over EM on the fringe mechanism's confidence level (plausible,
+not yet an accepted explanation, given the non-self-similarity confound).
+**Checkpoint ruling, explicit**: criteria 1/3/4/5 do not fire. **Criterion
+2 does NOT fire** — this cycle shows one calibration point (τ_off=0.0065)
+fails a correctly-instrumented measurement at both geometries checked,
+NOT that σ(I) as a mechanism class is jointly unsatisfiable; that proof
+still requires MATERIALS' own still-deferred rigorous literature check.
+**Program-health observation (not a criterion firing)**: Iterations 7–12
+— six consecutive cycles — have all closed PARTIAL, all instrument-hygiene
+or reconciliation work, not mechanism-testing work; worth weighing in
+Iteration 13's sequencing. **Mandatory corrections before close**: fix
+THERMODYNAMICS' detectability-note bug in live code (not the historical
+NOTES.md/results.json prose), computed not hand-typed — done, this shift,
+`experiments/034-floor-convergence-scale-bridge/design_geometry.py`.
+Recaption REALIZABILITY_MEMO.md's D_req as a lower bound — done, this
+shift. Document the unsigned-delta convention — done, this section.
+**Ranked Iteration-13 priorities**: (1) the rigorous RSA/TPA/third-class
+literature check (zero cost, could fire or definitively not-fire
+Checkpoint-2, three-iteration overdue); (2) N33 at r=78-native (the
+geometry the headline citation actually originates from); (3) persist
+per-angle scene data and retroactively check ±10/20/30° at r=78-native,
+folded into the N33 run; (4) [already done this shift] fix the
+detectability note, formally close the π/4 sub-thread.
+
+**Documentation note (MATERIALS' catch, confirmed by Red Team):**
+`delta_N9_vs_N17_same_domain` in `results.json` (both blocks) is stored as
+an **unsigned magnitude** (`abs(C_N17 - C_N9)`), even though the two
+blocks move in OPPOSITE directions (r=156: toward zero; r=78-native: away
+from zero). Not a bug — correctly computed as specified — but a footgun
+for any future programmatic query that assumes sign is preserved. Flagged
+here for any future cycle reading this file's numbers directly.
+
+## Director's close
+
+**VERDICT: PARTIAL** — Red Team affirms all six blind seats unanimously;
+no override. Every pre-committed prediction was either confirmed or
+cleanly refuted with real numbers (P-T16-1's additive central estimate
+refuted — REAL INTERACTION instead, the falsifiable band's own
+pre-registered alternate outcome; P-N17V2-2's directional sub-prediction
+refuted, its band and margin-exceeded central prediction both confirmed;
+everything else confirmed). Budget discipline held (68 calls, unchanged
+from the Phase-1 proposal through close). A real historical bug
+(THERMODYNAMICS' detectability-note catch) was found and corrected in
+live code this same shift, not deferred or smoothed over.
+
+**Checkpoint criterion 2 does NOT fire** — Red Team's explicit ruling,
+adopted without qualification: this cycle shows one calibration point
+fails correctly-instrumented measurement at both geometries checked, not
+that σ(I) as a mechanism class is jointly unsatisfiable. No other
+criterion fires.
+
+**The honest headline**: this program's only-ever constraint-3 σ(I)
+OFF-state PASS no longer survives at either geometry it has ever been
+measured at, once angular quadrature is corrected on a
+domain-confound-free basis — for the first time shown cleanly at
+r=78-native, the geometry the citation actually originates from. This
+does not rule out σ(I) as a mechanism class (a smaller τ_off could still
+clear the bar, at the cost of an even larger, not yet bounded, D_req), and
+it does not by itself sharpen MATERIALS' realizability verdict beyond a
+documentation-level reframing — but it does mean the program's own
+"leading candidate" status for σ(I) now rests on zero surviving bench
+evidence, not one. Two, not one, independently-proposed physical
+mechanisms (PHOTONICS, EM — near-field fringe sampling) exist for WHY the
+domain and quadrature confounds interact, but neither is yet
+distinguished from a standoff-ratio confound PHOTONICS itself found in
+the two blocks' geometry. Six consecutive iterations (7–12) have now been
+instrument-hygiene or reconciliation work — a real, disclosed pattern,
+not a violation of any rule, but a signal Iteration 13 should weigh
+(Red Team's own program-health observation).
+
+Corrections applied this shift, disclosed not smoothed over: THERMO's
+detectability-note bug fixed in live code
+(`experiments/034-floor-convergence-scale-bridge/design_geometry.py`,
+computed not hand-typed, erratum comment added); REALIZABILITY_MEMO.md's
+D_req figure recaptioned as a lower bound; the unsigned-delta convention
+documented. `75f3626` (results) committed prior shift; `f604f2d`
+(LOGBOOK Phases 1–4) committed this shift; mandatory corrections and this
+close committed same-shift. Next lead per rotation: **VISION SCIENCE**
+(Iteration 13) — cycling back to the seat that opened this program's
+first iteration.
+
+Open questions carried forward: the rigorous RSA/TPA/third-mechanism-class
+literature check (Iteration-13 top priority, three-cycle-plus deferral);
+N33 at r=78-native (Iteration-13 #2); per-angle ±10/20/30° checks at
+r=78-native, folded into N33 (Iteration-13 #3); the fringe-sampling
+mechanism for T16's interaction (plausible, not proven — the
+non-self-similarity confound between T16_CLOSE and N17_NATIVE_V2 needs
+resolving before it's trusted); a genuine 3-λ sweep of the N9→N17
+angular-convergence readings (never done on this channel); T11's box-
+ledger trust stage; T14's cored-absorber r-sweep; T12's PEC r-family
+ripple test; QUANTUM's incoherent-ensemble idiom (re-scoped as
+contingent-only, not queued-by-default, per QUANTUM OPTICS' own Phase-5
+argument, unopposed); EM's reciprocity check.
+
+## Next
+
+See PLAN.md's Next-work queue (updated this shift) for the authoritative,
+ranked Iteration-13 priority list.

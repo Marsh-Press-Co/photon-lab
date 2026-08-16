@@ -463,17 +463,40 @@ assert abs(_check_off_pass_transient["0.1"] - 6.9e-5) < 1e-6, _check_off_pass_tr
 assert abs(_check_off_pass_transient["0.5"] - 3.46e-4) < 1e-6, _check_off_pass_transient
 assert abs(_check_off_pass_transient["1.0"] - 6.92e-4) < 1e-6, _check_off_pass_transient
 
+# ---------------------------------------------------------------- erratum
+# (Panel Iteration 12, exp-035 Phase 5, THERMODYNAMICS' catch + Red Team's
+# independent confirmation and mandatory fix): the note below was
+# originally HAND-TYPED ("5.9-49.8x" steady-state) and wrong -- the true
+# steady-state range, recomputed directly from THERMO_DT_STEADY_K and
+# NETD_BAND_K, is ~5.0-132.4x (off_bracket's true high end, 132.4x, was
+# silently dropped from the stated range; the stated "5.9" actually matched
+# the TRANSIENT off_field low end, not any steady-state ratio -- apparent
+# cross-contamination between the two clauses at authoring time). Does NOT
+# change the UNDETECTABLE conclusion (the true minimum, ~5.0x steady /
+# ~5.9x transient, is still comfortably sub-threshold). Per house
+# convention this experiment's own NOTES.md/results.json prose from its
+# original run is left uncorrected as the historical record; this LIVE
+# CODE fix (computed from source values, not hand-typed, so it cannot
+# drift silently again) is what every future cycle actually imports and
+# cites -- including exp-035 itself, which carried this note forward by
+# citation before the bug was caught.
+_steady_ratios = [netd / dt for dt in THERMO_DT_STEADY_K.values() for netd in NETD_BAND_K]
+_transient_1s_ratios = [netd / THERMO_TRANSIENT_DT_K_BY_DWELL[a]["1.0"]
+                         for a in THERMO_TRANSIENT_DT_K_BY_DWELL for netd in NETD_BAND_K]
+
 OFF_STATE_DETECTABILITY_NOTE = (
     "UNDETECTABLE at every dwell tested, every article -- steady-state DeltaT "
-    "is 5.9-49.8x below the {:.3f}-{:.3f}K NETD band (off_field the closest, "
-    "off_lab/off_bracket furthest); transient (dwell-limited, 1.0s) DeltaT is "
+    "is {:.1f}-{:.1f}x below the {:.3f}-{:.3f}K NETD band (off_field the "
+    "closest, off_bracket furthest); transient (dwell-limited, 1.0s) DeltaT is "
     "SMALLER still at every article (linear-heating regime, has not caught up "
-    "to steady state) -- 5.9-156x below NETD at 1.0s. The phenomenon is a "
+    "to steady state) -- {:.1f}-{:.1f}x below NETD at 1.0s. The phenomenon is a "
     "SWEPT beam (constraint 4): transient dwell-limited DeltaT is the "
-    "physically apt number, not steady-state, restored here per Red Team's "
-    "Phase-5 audit (a real regression this cycle's own first draft dropped "
-    "without comment relative to exp-033's own machinery)."
-).format(NETD_BAND_K[0], NETD_BAND_K[1])
+    "physically apt number, not steady-state. (Computed from source values, "
+    "not hand-typed -- corrected Iteration 12 per THERMODYNAMICS'/Red Team's "
+    "Phase-5 catch of a hand-typed transcription error in the original range; "
+    "see this module's erratum comment, above.)"
+).format(min(_steady_ratios), max(_steady_ratios), NETD_BAND_K[0], NETD_BAND_K[1],
+         min(_transient_1s_ratios), max(_transient_1s_ratios))
 
 
 if __name__ == "__main__":
