@@ -373,3 +373,407 @@ combined SA+RSA media), plus two zero-cost analytic derivations
 post-search analytic estimate (THERMO). Comparable total search effort to
 exp-036 despite six named rows, because two of six are derived rather than
 searched (Red Team's cost-discipline recommendation, adopted).
+
+## Phase 4 — Results (exp-037, 2026-08-16)
+
+Three parallel WebSearch-grounded search legs (Leg A: linearly-pumped FCA;
+Leg B: ENZ + graphene control; Leg C: combined SA+RSA media), run by fresh
+sub-agents against the pre-registered predictions above, plus two zero-cost
+analytic derivations (TPA-cascade FCA; MATERIALS' field-enhancement
+arithmetic) and one capped post-search THERMO estimate, done directly by
+the Director using the legs' own extracted numbers.
+
+**⚠ Methodology disclosure, per Red Team's fix — genuinely re-attempted,
+not assumed.** All three legs made real WebFetch attempts on promising
+primary/secondary sources before falling back to snippet synthesis: Leg A,
+11 attempts across 11 domains; Leg B, 10 attempts across 10 domains; Leg C,
+18 attempts across 16 domains. **Every single attempt across all three
+legs returned `EGRESS_BLOCKED`** — the same total-blockage pattern exp-036
+found, now independently re-confirmed rather than inherited as an
+assumption, exactly as Red Team's fix required. Every figure below is
+WebSearch-snippet synthesis, not independently-read primary-source tables
+— the same "sourced-but-unverified" evidentiary tier as exp-036.
+
+### TPA-cascade FCA — derived analytically (Si, GaAs, ZnSe, CdS)
+
+Not searched, per Red Team's cost-discipline recommendation (adopted at
+Phase 3): a TPA-generated free-carrier cascade requires the seed two-photon
+event to occur before any carrier population — and therefore any FCA tail
+absorption — exists at all. Since the seed TPA event's own onset threshold
+is already established in this program's record at ~10⁷–10⁸ W/cm²
+(exp-036, citing Sheik-Bahae/Van Stryland's foundational semiconductor-TPA
+database, He et al. *Opt. Lett.* 20, 435 (1995), and ZnSe/GaAs Z-scan
+studies), the cascade's own irradiance gate is bounded below by that same
+threshold — no independent, lower-threshold generation channel exists for
+this row. The classical "TPA+FCA" semiconductor optical-limiting
+literature (the Van-Stryland-group lineage this row's named hosts come
+from) uses the free-carrier tail to *extend the temporal duration and
+sharpen the roll-over* of an already-triggered limiting response, not to
+lower the triggering threshold itself — the carrier population is a
+downstream consequence of the TPA event, not a parallel generation
+pathway. **Dynamic range**: bounded by the same physics — no independent
+mechanism exists to clear D_req below the TPA threshold, predicted NO,
+confirmed by construction. **Irradiance**: NO, same ~10⁷–10⁸ W/cm² onset,
+9–11 OOM above both the ≤10⁻² W/cm² Checkpoint-2 margin and the ~10⁻³
+W/cm² witness estimate — identical to exp-036's own established TPA
+figure, inherited not re-derived. **Switching speed (electronic clock)**:
+YES both directions — TPA generation is sub-ps (virtual-state process,
+exp-036's own established figure), and FCA carrier lifetimes in these
+specific hosts (Si, GaAs, ZnSe, CdS) are reported in the ns–µs range in the
+broader semiconductor-photonics literature (consistent with, though not
+independently re-verified against, this cycle's own Leg A findings for Si
+specifically) — clears the 10ms–1s window comfortably. Lattice-thermal
+clock not separately estimated (THERMO's capped estimate reserved for rows
+with a genuine ambient/near-threshold absorbed-power question — see below;
+this row already fails independently on irradiance by 9–11 OOM, so the
+distinction is moot). **Constraint-3-at-rest**: N/A — threshold-gated,
+k_f(I_ambient) is the same negligible quantity that already earns
+standalone TPA its N/A rating (exp-036). **Absorption-only correction**:
+capped/deprioritized per Red Team's split ruling — not computed, does not
+gate the verdict. **Row verdict: unobtainium, derived not searched — every
+predicted sub-finding confirmed by construction from exp-036's own
+already-established TPA figures.**
+
+### Linearly-pumped (photoconductive) FCA — Search Leg A results (doped Si, doped Ge)
+
+Full verbatim leg report: this shift's session record. **Dynamic range
+(Si)**: a genuine quantitative anchor recovered — Soref & Bennett, *IEEE
+J. Quantum Electron.* QE-23, 123–129 (1987), the field-standard empirical
+free-carrier absorption relation (σ_e ≈ 8.5×10⁻¹⁸ cm², σ_h ≈ 6.0×10⁻¹⁸
+cm² per carrier). A back-of-envelope σ_on/σ_off built from this figure
+(own construction, order-of-magnitude only, every assumption stated) finds
+**D_req is NOT cleared across the entire physically reasonable doping
+range** — a fast host (τ≈1ns) gives a negligible ~1.1×10⁻⁷ shift; a
+long-lifetime host (τ≈1ms, N_D=10¹⁷cm⁻³) gives only ~1.11× (roughly 3
+orders of magnitude short of D_req≥540–600×); even at aggressively low
+doping (N_D=10¹³–10¹⁴cm⁻³) the ratio only approaches ~100×, still short.
+**CONFIRMS the pre-registered NO**, with the exact shortfall shown to be a
+genuinely N_D-sensitive open dependency, not a single fixed number.
+Germanium: qualitative-only ("significantly stronger than Si," multiply
+sourced) — no numeric cross-section recovered, an honest data gap, same
+order-of-magnitude shortfall inferred by extrapolation from Si, not
+independently sourced. **Absorption-only correction applicability: left
+explicitly OPEN**, per QUANTUM's flagged question — no source found either
+confirming or ruling out whether the exp-036 molecular correction (÷0.51–
+0.61, calibrated for dielectric/bound-electron extinction) applies to
+Drude-type free-carrier absorption; neither applied nor silently skipped.
+
+**Irradiance**: **CONFIRMS the pre-registered YES**, clears by many orders
+of magnitude — ordinary photoconductive absorption has no intensity
+threshold (structurally, and confirmed via commercial Si/Ge photodiode
+responsivity figures operating linearly to the shot-noise floor).
+
+**Switching speed, both clocks**: electronic/carrier clock — Si spans
+~1ns (heavily-doped/defect-engineered, e.g. gold-hyperdoped) to ~1ms
+(high-purity/lightly-doped); Ge, a directly-sourced resistivity-dependence
+dataset gives ~30ns (0.01 Ω·cm, heavily doped) to ~500µs (40 Ω·cm,
+high-purity). **Leg A caught and corrected a real error in this cycle's
+own pre-registration**: the parenthetical expectation that "clean
+semiconductor→fast, doped/defect-rich→slow" runs backward from what both
+sourced datasets show — ordinary Shockley-Read-Hall physics has it the
+other way (more recombination centers from doping/defects → SHORTER
+lifetime, i.e. FASTER; higher purity → LONGER lifetime, i.e. slower).
+Flagged and corrected in the record here, not silently absorbed. Lattice-
+thermal clock reserved for THERMO's estimate, below.
+
+**Constraint-3-at-rest, via T17's existing n_ss formula (EM's corrected
+framing, applied as committed)**: using I_ambient≈10⁻⁵ W/cm² (sourced
+indoor-lighting range, 50–500 lux), α_interband(Si,600nm)≈3.7×10³cm⁻¹ (not
+independently WebFetch-verified this session, flagged), N_D=10¹⁷cm⁻³: fast
+host (τ=1ns) gives n_ss≈1.1×10⁻⁹ — negligible; long-lifetime host (τ=1ms)
+gives n_ss≈1.1×10⁻³, rising toward ~0.1 at lower, still-plausible doping
+(N_D=10¹⁵cm⁻³) — **genuinely open, doping-sensitive, exactly as
+pre-registered.** Leg A flagged its own normalization choice (n_ss
+referenced to dopant density N_D, since free-carrier photogeneration draws
+from an unbounded valence-band reservoir with no natural "1" to saturate
+toward, unlike T17's original bounded two-level population) as an open
+methodological gap, not an established result. **Reported strictly per
+VISION's mandatory cap**: real chemistry/physics, visual significance
+unverified, not yet a scored constraint-3 violation — no "confirmed,"
+"risk," or "non-negligible" language attached regardless of the computed
+magnitude's range.
+
+**Row verdict: matches the pre-registered structure in full** — D_req NO
+(quantitatively confirmed for Si, qualitatively consistent for Ge), YES
+irradiance, an electronic clock spanning fast-to-slow hosts (with the
+fast/slow-host material-purity direction corrected against the
+pre-registration's own unverified assumption), and a genuinely open,
+doping-sensitive at-rest finding scored via T17's existing formula and
+held to VISION's language cap throughout — not a disqualified-gate claim,
+exactly as EM's Phase-2 fix required.
+
+### Epsilon-near-zero (ENZ) band-filling nonlinearity — Search Leg B results (ITO, AZO; GZO data gap)
+
+Full verbatim leg report: this shift's session record. **Δε
+disaggregation (QUANTUM's elevated mandatory pre-scoring step)**: the
+headline "unity-order permittivity change" is **confirmed dominantly
+REFRACTIVE (Δε_real)** — Alam, De Leon & Boyd, *Science* 352, 795–797
+(2016), the canonical ENZ-ITO reference: Δn=0.72±0.025 at λ_ENZ=1240nm,
+n₂≈0.11 cm²/GW, a Kerr/intraband-nonparabolicity index effect, corroborated
+independently on AZO by Caspani et al., *Phys. Rev. Lett.* 116, 233901
+(2016). **Per this program's expressibility contract, this dominant effect
+does NOT reduce to a σ(I)/D_req absorption-ratio comparison** — ruled, not
+assumed, exactly as QUANTUM's fix required. A genuine, SEPARATE Δε_imag
+(absorptive) branch was found, not assumed absent: *Photonics Research*
+Z-scan work on ITO shows an SA→RSA crossover at 1030nm driven by
+three-photon absorption (χ⁽⁵⁾) at high intensity — but no paired on/off
+ratio table was recoverable given the WebFetch blockage, so **no D_req
+number is forced onto it; reported genuinely OPEN**, with the higher-order
+(5th-order) nonlinearity noted as expected to fail irradiance even more
+decisively than the refractive branch, though not quantified this cycle.
+
+**Constraint-2 disclosure (Red Team's fix), delivered**: ENZ ITO/AZO
+metafilms document anomalous reflectivity — up to ~15 percentage-point
+reflectance swings at the ENZ point, plus generic Brewster/Berreman
+singular-reflection modes near the near-zero-index condition — a real,
+sourced, non-verdict-changing disclosure (the row fails independently on
+wavelength regardless).
+
+**Wavelength**: ITO's ENZ point sits at λ≈1200–1550nm (tunable via
+doping/annealing); AZO's at ~1300nm. **CONFIRMS the predicted
+disqualification** — entirely outside this program's 450/600/750nm sweep
+and a white flashlight's ~400–700nm visible emission.
+
+**Irradiance**: every demonstration found is femtosecond-pulsed (no CW
+figure found or conflated), peak intensities in the GW/cm² range (1.2–140
+GW/cm² across cited variants). **CONFIRMS NO** — ~11–14 orders of
+magnitude above both bounds, comparable to or worse than TPA's own 9–11
+OOM gap, exactly as predicted.
+
+**Switching speed**: reverse ≈360fs (Alam et al.); forward tracks the
+pump envelope (fs-scale). **CONFIRMS YES both directions**, clears the
+10ms–1s window by many orders of magnitude.
+
+**Row verdict: unobtainium-with-a-wavelength-and-mechanism-class
+disqualifier, confirmed, with one item left genuinely open** (the Δε_imag
+branch's own magnitude) rather than forced — the row's overall
+disqualification does not depend on resolving that open item, since
+wavelength alone is decisive.
+
+### Graphene — control case (Search Leg B)
+
+**CONFIRMED wrong-direction, as predicted**: textbook saturable absorber
+via Pauli blocking (Bao et al., *Adv. Funct. Mater.* 19, 3077 (2009);
+mechanism confirmed in *Phys. Rev. B* 95, 125408 (2017)). One genuine
+exception found, not assumed absent: doped graphene at photon energies
+below 2×the Fermi level can show two-photon-absorption-driven induced
+absorption overpowering the SA effect (*Appl. Phys. Lett.* 114, 091111
+(2019)) — but this requires deliberate Fermi-level doping and sits in the
+mid-IR, not representative of undoped graphene at this program's visible
+operating wavelengths. Cavity-coupled/heterostructure configurations found
+this leg all *enhance* the SA effect (lower saturation intensity ~65%),
+none reverse its sign. **Standard direction confirmed representative for
+this program's regime.**
+
+### Combined saturable/RSA media — Search Leg C results (three named architectures)
+
+Full verbatim leg report: this shift's session record. **Search-order
+discipline (Red Team's fix) applied and disclosed per architecture, not
+blanketed**: Architectures 1 (tandem/cascaded SA+RSA) and 3
+(composite/blended fullerene+CNT/polymer) both found genuine,
+multiply-sourced, directly-published composite dynamic-range claims — the
+primary evidentiary tier, no fallback needed. Architecture 2
+(single-molecule/dyad RSA+TPA) surfaced a genuine THIRD case the
+pre-registration did not anticipate: a real, published, energy-transfer-
+coupled combined mechanism (Joshi et al., *Opt. Lett.* 23(22), 1742
+(1998), AF-380 TPA dye + C60 RSA) and a genuinely single-molecule
+RSA+TPA chromophore (meso-(2-thienyl)porphyrin, RSA@532nm/TPA@800nm) —
+but no usable composite dynamic-range multiplier recoverable for either,
+and no clean fallback pair either (the matched standalone-component
+figures needed for algebraic combination were themselves unrecoverable
+given the WebFetch blockage). Disclosed as its own evidentiary gap, not
+forced into either predicted tier.
+
+**Dynamic range, all three architectures: CONFIRMED NO.** Best composite
+figures recovered cluster **~10×–267×** — Architecture 1's graphene+SWNT
+cascade (~10× threshold-ratio advantage) and cascaded-focus limiters
+("orders of magnitude" qualitative, Van Stryland/Perry-group lineage);
+Architecture 3's fullerene+CNT/polymer analogs (~10× device-level
+clamp-to-damage ratio); a standalone-reference heavy-atom phthalocyanine
+figure (~267× energy-limiting ratio, cited as RSA-class context, not this
+row's own combined number). All 2–4+ orders of magnitude short of the
+540–600× lower bound, and further short of the 890–1180× absorption-
+only-corrected bound — **confirmed applicable here** (molecular/π-
+conjugated-carbon absorbers, the same category exp-036 validated the
+correction against, unlike the FCA/ENZ carrier-plasma rows above where
+applicability stayed open).
+
+**Irradiance: genuinely OPEN, for a more basic reason than pre-registered.**
+Every figure recovered across all three architectures is pulsed ns
+fluence (mJ/cm²–J/cm²) — zero CW W/cm² composite figures found anywhere.
+The predicted conditional structure ("clears if long-triplet-RSA-based,
+open otherwise") presumed a binary that didn't materialize: **no tandem,
+dyad, or blend architecture found in the literature is built on
+exp-036's own long-triplet-lifetime RSA subclass (Hirata et al., 1–21+ s
+reverse rates) at all** — that subclass appears only as a standalone
+material, never yet incorporated into any combined architecture. The
+"open otherwise" half of the prediction is confirmed correct, but because
+no CW data exists for these architectures in the literature found, not
+because a found CW value was ambiguous.
+
+**Switching speed**: every RSA component identified across all three
+architectures (C60, phthalocyanines, porphyrins, graphene/CNT) is drawn
+from the fast (ns–µs) RSA precedent exp-036 already established, not the
+long-triplet subclass — the classic-fast branch applies by elimination.
+Composite-level forward/reverse numbers specifically were a data gap in
+all three legs (a genuine, disclosed shortfall, not filled by inference).
+
+**Constraint-3-at-rest: cleanly N/A, not open, not conditional** — per the
+protocol's own instruction to state plainly when a computation cannot be
+performed and why. No long-triplet-lifetime RSA component was found
+embedded in any combined architecture; n_ss is therefore not computed for
+this row, consistent with (not a violation of) EM's generalized fix.
+
+**Row verdict: published-partial at best, motivation-mismatch — CONFIRMED
+in full.** The literature's own stated purpose for all three architectures
+(pulsed-laser-damage protection, dynamic-range/rollover extension against
+intense transient events) is real, repeatedly attested, and categorically
+different from this program's own question (suppressing a near-
+imperceptible CW/ambient-level silhouette at ~10⁻³–10⁻² W/cm²) — exactly
+the predicted mismatch.
+
+### MATERIALS' field-enhancement-factor arithmetic (capped, derived — not a new search leg)
+
+Per Red Team's capping ruling: a zero-cost arithmetic step converting bare
+"unobtainium" verdicts into "unobtainium-with-parameters," per PANEL.md's
+own Latitude rule, for the two rows whose failure is irradiance-dominated
+by the largest margins (ENZ, TPA-cascade FCA). Published sub-wavelength
+field-enhancement factors for plasmonic hot-spots/nanogap antennas and
+cavity-coupled/critically-coupled resonators cluster in the ~10²–10⁴
+intensity-enhancement range for robust, reproducible geometries, with
+extreme nanogap/hotspot reports occasionally cited up to ~10⁵–10⁶ for
+narrow, fragile configurations (order-of-magnitude figures from the
+broader plasmonics literature, not independently re-verified this cycle
+given the same WebFetch blockage affecting every other row).
+
+**ENZ**: irradiance gap ≈11–14 OOM (GW/cm² demonstrated vs. ≤10⁻²/~10⁻³
+W/cm² bounds). Even the most optimistic published enhancement factor
+(~10⁵–10⁶) closes only 5–6 of the 11–14 orders — **a residual gap of
+~5–9 orders of magnitude survives even under generous, non-robust
+enhancement assumptions.** **TPA-cascade FCA**: irradiance gap ≈9–11 OOM
+(inherited from TPA), same enhancement-factor ceiling applied — **residual
+gap ~3–6 orders of magnitude.** Neither row is closed by any realistically
+published field-enhancement figure; both remain unobtainium-with-
+parameters in the chartered sense, not merely "unobtainium" by assertion.
+**Explicitly capped**: this is order-of-magnitude arithmetic against
+generic published enhancement-factor ranges, not a rigorous engineering
+feasibility study of any specific plasmonic or cavity structure paired to
+either mechanism — no source found or claimed showing these specific FCA/
+ENZ subclasses have actually been demonstrated at field-enhanced
+intensities; per the capping ruling, this is a negative-result note (no
+such demonstration surfaced incidentally in any of the three search legs
+run this cycle), not a dedicated new search.
+
+### THERMODYNAMICS' capped analytic estimate (post-search, one estimate per applicable row)
+
+Per Red Team's capping ruling: one back-of-envelope estimate, explicitly
+barred from a sidecar rebuild or new FDTD thread, addressing THERMO's
+Phase-2 fix (absorbed power → ΔT → emission band → detectability; carrier/
+optical clock split from lattice-thermal clock).
+
+**Linearly-pumped FCA's at-rest population (row 2).** Leg A's own
+extracted absorbed-power figure at ambient illumination (I_ambient≈10⁻⁵
+W/cm², interband absorption near-complete within a few µm of the Si
+surface) is itself five to six orders of magnitude below the ~10⁻³ W/cm²
+flashlight-level absorbed-power figure exp-036's own capped VO2 estimate
+already showed produces, at best, a 15–45 second heating time at the most
+favorable (µm-scale, latent-heat-corrected) geometry — and that VO2
+estimate concluded heating alone is fatal (too slow, or requiring
+unrealistic power density) at every length scale from µm to m. At two
+further orders of magnitude down in absorbed power density, and with no
+phase-transition threshold to cross at all (linearly-pumped FCA's
+absorption is graded and continuous, unlike VO2's discrete transition),
+any steady-state temperature rise above ambient scales down proportionally
+with absorbed power for a fixed geometry and cooling pathway — **the
+resulting ΔT is expected to be a small fraction of VO2's own
+already-negligible-at-this-power-level rise, with re-radiation at any such
+ΔT sitting far below realistic IR-detectability thresholds.** This is a
+qualitative, order-of-magnitude conclusion, explicitly not a quantitative
+ΔT figure — the honest, capped answer given the estimate's own stated
+scope: **no detectable thermal signature is expected for linearly-pumped
+FCA's ambient-driven population**, independent of, and consistent with,
+the negligible-to-small n_ss values Leg A itself computed.
+
+**ON-state absorption events, TPA-cascade FCA and ENZ-ITO FCA (rows 1, 3).**
+A more basic, and arguably more decisive, finding than a ΔT estimate:
+both mechanisms are demonstrated in the literature (this cycle's own Leg B
+findings, and exp-036's own established TPA figures) using **pulsed**
+excitation at GW/cm²-class peak intensities and femtosecond-to-nanosecond
+pulse durations — never CW. A flashlight is a CW source, by construction,
+at ~10⁻³ W/cm². **The carrier/optical relaxation clock and the lattice-
+thermal clock are therefore both moot for these two rows in the witness
+scenario**: no realistic flashlight can supply the peak power density
+these mechanisms require even for a single pulse, let alone sustain it —
+a categorical source-mismatch finding, independent of and prior to any
+ΔT/detectability computation, and consistent with (sharpens, not
+contradicts) both rows' independently-established irradiance failures.
+
+## Learned
+
+**Program-level pre-registered prediction CONFIRMED**: no row clears all
+bounds simultaneously. **Five structurally distinct failure modes
+confirmed**, sharper and more precisely characterized than the
+pre-registration itself predicted in several places: TPA-cascade FCA
+(irradiance, algebraically inherited from TPA, derived not searched);
+linearly-pumped FCA (dynamic range, quantitatively confirmed via a real
+literature cross-section for the first time this program has attempted
+this row-type, with a genuinely open — not disqualified, not assumed —
+at-rest finding scored through T17's existing formula exactly as EM's
+Phase-2 fix required); ENZ (a **genuinely new failure mode for this
+program**: a mechanism-class/expressibility disqualification — the
+headline nonlinearity is refractive, not absorptive, and does not reduce
+to a σ(I) row at all — compounded by, not merely coincident with, a
+decisive wavelength disqualification); combined media (published-partial,
+motivation-mismatch, with real composite dynamic-range figures found and
+scored, not merely gestured at). **Graphene's control case holds without
+qualification**, with one honestly-disclosed, non-representative exception
+(doped/mid-IR TPA-over-SA).
+
+**This cycle closes the program's last named-but-untested mechanism class
+scope** — combined with exp-036, all six named classes from
+REALIZABILITY_MEMO.md (RSA, TPA, photochromic, photothermal/VO2, FCA,
+combined saturable/RSA media) have now been checked, each failing via a
+distinct, literature-grounded gap. **Checkpoint criterion 2 does not
+fire this cycle either**, for the reason honestly determined at Phase 4
+rather than assumed at Phase 1 (per Red Team's fix, striking the
+tooling-guess from the predictions table): the evidentiary tier is,
+independently re-confirmed across all three legs (39 total WebFetch
+attempts, zero successes), WebSearch-snippet synthesis, not primary-
+source-verified figures — the same second reason Red Team named at
+Iteration 13, now shown to recur on its own merits rather than assumed to
+recur. **What changes this cycle, honestly stated**: the FIRST reason
+Iteration 13 gave (a named class remaining untested) is now GONE — this
+program has, for the first time, run out of named mechanism classes to
+check. Only the evidentiary-tier gap keeps criterion 2 from firing. This
+is a genuine, significant narrowing of the program's own remaining path to
+a proven-boundary Checkpoint result, not a repeat of exp-036's finding —
+whether it is enough, and whether Phase 5 finds this cycle's own six-row
+scoping exhaustive within the classes named (the honest open question the
+predictions table itself flagged rather than pre-answered), is for Phase 5
+to determine.
+
+**Two genuinely new findings, neither previously seen in this program's
+realizability-check line:** (1) ENZ's mechanism-class disqualification —
+the first row in this program's history to fail not on dynamic range,
+irradiance, or switching speed, but on failing to reduce to a σ(I) row at
+all; (2) the source-mismatch finding for pulsed-pump mechanisms
+(TPA-cascade FCA, ENZ) — a flashlight, being CW by construction, cannot
+in principle drive a mechanism demonstrated only under pulsed excitation,
+a categorical argument independent of and prior to any irradiance-
+magnitude comparison, though this cycle treats it as reinforcing rather
+than replacing the magnitude-based irradiance verdicts already established.
+
+**One honest, load-bearing self-correction, caught by the search itself
+rather than by Phase 5 review**: Leg A found the pre-registration's own
+"clean semiconductor = fast, doped = slow" framing for linearly-pumped
+FCA's switching-speed hosts was backward, per ordinary Shockley-Read-Hall
+recombination physics and two independently-sourced datasets — corrected
+in the record here, in the same cycle it was found, without waiting for a
+Phase-5 catch.
+
+**Rigor bar, same honest self-assessment as exp-036**: sourced-but-
+unverified (real paper titles, authors, years, and mechanisms recovered
+for nearly every figure above — a genuine search, not a guess), not
+primary-source-verified — WebFetch blockage total and independently
+re-confirmed, not inherited as an assumption, across all 39 attempts made
+this cycle.
