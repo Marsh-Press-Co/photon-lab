@@ -2,6 +2,126 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-16 (panel shift) — Iteration 14 complete (exp-037): the
+free-carrier-absorption/combined-saturable-RSA-media literature check
+closes the two mechanism classes LOGBOOK's own Iteration-13 record named
+as the program's last explicitly-tracked untested scope — all four rows
+(TPA-cascade FCA, linearly-pumped FCA, ENZ, combined media) fail, ENZ via
+a genuinely new-to-this-line but not new-to-the-program disqualification
+(a new instance of R1's already-ruled-out refractive-cloaking principle,
+corrected same-shift after the cycle's own first draft overclaimed it as
+unprecedented). Checkpoint criterion 2 still does not fire (evidentiary
+tier). Seven-seat Phase 5 caught three independently-converging finding
+pairs across blind seats plus a genuine unmet THERMO deliverable
+(self-caught) — a 17-item same-shift fix docket applied in full, and
+`REALIZABILITY_MEMO.md` (a three-cycle-deferred MATERIALS obligation)
+finally rewritten with a consolidated nine-class table. New live thread
+T18 (the field-enhancement/evidentiary-tier ceiling on this whole
+literature-check line).
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle
+(numpy/scipy/matplotlib/pillow/autograd/fdtd via pip, then
+`ceviche --no-deps`). Bench trust suite 41/41 green (`--only
+12346789`) before this shift's work (no `lab/` engine changes this
+cycle — nothing to re-verify after).
+
+**Iteration 14 — The Free-Carrier-Absorption / Combined Saturable-RSA
+Media Literature Check (exp-037, CONCLUDED).** Lead: PHOTONICS (rotation),
+executing Iteration 13's near-unanimous top priority (MATERIALS,
+ELECTROMAGNETISM, QUANTUM OPTICS). Full seven-seat cycle: Phase 1
+proposal (PHOTONICS) → 5 blind parallel critiques (all support-with-
+changes, five non-overlapping fixes, the sharpest being ELECTROMAGNETISM's
+catch that the proposal's own "FOURTH kinetics sub-case" framing for
+linearly-pumped FCA was an overclaim — T17's existing n_ss formula was
+never restricted to threshold-gated generation) → Red Team last
+(proceed-with-mandatory-fixes, 8 attacks, all adopted) → Phase 3 synthesis
+→ predictions committed (`ee58034`) → Phase 4 search (three parallel
+WebSearch legs plus two analytic derivations and one capped THERMO
+estimate, `fd1bd74`).
+
+**Result: TPA-cascade FCA derived analytically as unobtainium (bounded by
+TPA's own established irradiance gap). Linearly-pumped FCA falls 1–9
+orders of magnitude short on dynamic range** — the first quantitative
+cross-section this program has obtained for this row-type (Soref &
+Bennett 1987), with a genuinely open, T17-formula-scored at-rest question
+(n_ss≈10⁻⁹ to ~10⁻¹ depending on doping) held throughout to VISION's
+mandatory perceptual-scoring cap. **ENZ fails on wavelength (near-IR,
+outside the 450/600/750nm sweep) and on mechanism class** — its headline
+"unity-order" nonlinearity is dominantly refractive (Alam et al., *Science*
+2016), not absorptive, so it does not reduce to a σ(I) row at all;
+originally mischaracterized in the committed results as "a genuinely new
+failure mode... never previously seen," corrected same-shift at Phase 5
+(independently caught by ELECTROMAGNETISM and QUANTUM OPTICS) to what it
+actually is — a new INSTANCE of R1's already-ruled-out refractive-cloaking
+principle, now cross-referenced directly in R1's own LOGBOOK entry.
+**Combined saturable/RSA media fails on dynamic range** (corrected to
+~0.65–2.1 orders short, not the originally-published "2–4+" — an
+arithmetic error PHOTONICS caught in its own Phase-5 self-audit) **with a
+"motivation mismatch"**: the real published architectures are designed for
+pulsed-laser-damage protection, not CW ambient-silhouette suppression — no
+CW dynamic-range figure exists anywhere in the literature this cycle
+found. Graphene control case confirmed wrong-direction. Leg A self-caught
+and corrected, mid-search, a real error in the cycle's own pre-
+registration (the fast/slow-host doping direction for FCA switching speed
+was backward per Shockley-Read-Hall physics) — without waiting for a
+Phase-5 catch.
+
+**Phase 5 (six fresh discipline seats plus a second independent PHOTONICS
+pass, since PHOTONICS led this cycle, then Red Team audit): verdict
+PARTIAL.** Three finding-pairs converged unprompted across independently-
+blind seats — a rare, load-bearing signal this program treats seriously:
+(1) PHOTONICS (both passes) and MATERIALS independently caught the same
+wavelength-tagging failure (TPA-cascade FCA's named hosts are above-
+bandgap, not TPA-relevant, at every sweep wavelength; the Soref & Bennett
+cross-sections were applied unscaled from their telecom-wavelength
+source) — the cycle's own committed discipline going unexecuted a second
+consecutive cycle; (2) ELECTROMAGNETISM and QUANTUM OPTICS independently
+attacked both the ENZ-overclaim (above) and a "categorical" CW-vs-pulsed
+source-mismatch argument that Red Team's own re-verification found was not
+merely overstated but directly self-contradicted by another section of
+the same document; (3) MATERIALS and PHOTONICS independently converged on
+the same underlying process gap — `REALIZABILITY_MEMO.md` (MATERIALS'
+own canonical deliverable) had gone three consecutive cycles unupdated
+despite being named at each cycle's close, and the committed results'
+"all six named classes checked" claim didn't match the memo's own actual
+count (five, not six) when read directly. **THERMODYNAMICS self-audited
+its own capped estimate and found it was not actually a computation** —
+a qualitative VO2 analogy containing an internal numeric inconsistency and
+a category error (comparing a time-to-threshold to a steady-state
+temperature) — Red Team ruled this a genuine unmet Phase-3 deliverable,
+not a queueable gap, and it was replaced same-shift with an actual
+numeric estimate (ΔT_ss≈7mK at ambient, ~3–7× below current microbolometer
+NETD) using silicon's own standard thermal constants at zero marginal
+cost. Red Team's audit independently re-derived and confirmed every
+convergent finding against the primary text directly (recomputing
+bandgap-vs-wavelength arithmetic, re-reading R1 and the realizability
+memo, re-checking the "2–4+ orders" claim) rather than trusting seat
+characterizations, and issued a 17-item same-shift mandatory-fix docket,
+all applied.
+
+**Checkpoint ruling, explicit: criterion 2 does NOT fire.** The
+evidentiary-tier gap (39/39 WebFetch attempts EGRESS_BLOCKED across all
+three search legs, independently re-confirmed not inherited) is decisive
+on its own, surviving the same-shift correction of the cycle's own "all
+six classes checked" overclaim — the accurate, narrower claim is that this
+cycle closes the two classes LOGBOOK's own Iteration-13 record explicitly
+named as remaining untested (free-carrier absorption, combined saturable/
+RSA media), not a program-wide class census. **Criterion 4 exercised, not
+fired**: two Learned-section overclaims (the "six classes" claim; ENZ's
+"genuinely new failure mode" claim) are the same self-correcting species
+as Iteration 13's spiropyran correction — caught and corrected same-shift,
+not requiring a program pause. **New live thread T18**: the field-
+enhancement/evidentiary-tier ceiling on this program's entire realizability-
+check methodology — three consecutive literature-check cycles have now
+hit total WebFetch blockage, and MATERIALS' own zero-cost field-
+enhancement arithmetic shows no future cycle can, on its own, escalate to
+Checkpoint criterion 2 without either a working primary-source access
+route or a mechanism class whose own gap is small enough (≲5–6 orders of
+magnitude) for realistic field enhancement to genuinely close it — a bar
+every class checked to date has failed to clear. No other Checkpoint
+criterion fires. Full record: LOGBOOK.md Iteration 14. Next lead per
+rotation: MATERIALS (Iteration 15).
+
 ## 2026-08-16 (panel shift) — Iteration 13 complete (exp-036): the first
 literature-only cycle (zero FDTD calls) rigorously checks RSA, TPA, and
 photochromic/photothermal (VO2) switching against this program's own

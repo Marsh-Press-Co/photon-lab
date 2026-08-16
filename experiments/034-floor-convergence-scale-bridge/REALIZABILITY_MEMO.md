@@ -31,6 +31,57 @@ still needs the rigorous (not informal) literature check this memo's own
 (queued, Iteration 13's top-ranked priority per Red Team's Iteration-12
 close).
 
+**AMENDMENT 2 (Iteration 14, exp-037, MATERIALS' Phase-5 finding — a
+three-cycle-deferred deliverable, named at the close of Iterations 12 and
+13 and finally closed this shift, not deferred a fourth time).** This
+memo's own scope, as originally written, evaluated only RSA and TPA and
+named three further classes as not-yet-evaluated (free-carrier absorption,
+photochromic switching, combined saturable/RSA media — see "Idealizations
+and honest limits," below, unchanged as the historical record). Two
+literature-check cycles since (exp-036, Iteration 13; exp-037, Iteration
+14) have now checked all three of those named classes, plus split
+photothermal/VO2 out of photochromic (exp-036's own mandatory fix) and
+added two classes neither this memo nor any prior cycle had named (ENZ,
+graphene — exp-037's own Phase-1 scoping). **Consolidated realizability
+table, all classes checked to date, tier labels per this seat's charter
+(published / plausible / unobtainium-with-parameters):**
+
+| Class | D_req / dynamic-range finding | Irradiance finding | Tier | Source |
+|---|---|---|---|---|
+| RSA | ~2–7.2× typical, ~40× best single-outlier figure (porphyrin); ≥890–1180× corrected bar → ~22–30× short even at best figure | Clears, one subclass at ~10⁻⁴ W/cm², below witness estimate | UNOBTANIUM-WITH-PARAMETERS | exp-036 |
+| TPA | n≈1 clears exponent bar comfortably | ~10⁷–10⁸ W/cm², 9–11 OOM above ceiling | UNOBTANIUM-WITH-PARAMETERS | exp-036 |
+| Photochromic (photochemical) | Azobenzene ~3–6× short (1–2 orders); diarylethene/spiropyran genuinely open (no paired ε table recovered) | Clears easily | UNOBTANIUM-WITH-PARAMETERS (azobenzene); OPEN (diarylethene/spiropyran) | exp-036 |
+| Photothermal (VO2) | Intrinsic ~10–30×, short before irradiance even binds | Every scale from µm–m fails heating+reset jointly within the window | UNOBTANIUM-WITH-PARAMETERS | exp-036 |
+| TPA-cascade FCA (Si/GaAs/ZnSe/CdS) | Bounded by TPA's own gap, no independent channel | Inherits TPA's 9–11 OOM gap; residual 3–6 OOM even under generous field-enhancement | UNOBTANIUM-WITH-PARAMETERS | exp-037 |
+| Linearly-pumped FCA (doped Si/Ge) | 1–9 OOM short depending on doping (Si, quantitative, Soref & Bennett 1987); Ge qualitative-only | Clears easily (no threshold) | UNOBTANIUM-WITH-PARAMETERS | exp-037 |
+| ENZ (ITO/AZO) | Dominantly refractive (Δε_real) — does not reduce to a D_req/σ(I) comparison at all; separate Δε_imag branch found, magnitude unresolved | ~11–14 OOM above ceiling (GW/cm²-class pulsed only); residual 5–9 OOM even under generous field-enhancement | UNOBTANIUM-WITH-PARAMETERS (irradiance/wavelength) + MECHANISM-CLASS-DISQUALIFIED (dominant effect is not σ(I) at all — a new instance of R1's principle, LOGBOOK.md) | exp-037 |
+| Graphene | Wrong direction (saturable, not reverse-saturable) — confirmed, not a candidate class | N/A | RULED OUT (wrong mechanism direction) | exp-037 |
+| Combined SA+RSA media (tandem/dyad/composite) | Best composite figures ~10×–267×; ~0.65–2.1 orders short of the bound (corrected, exp-037 Red Team audit — not "2–4+" as first published) | No CW figure found for any architecture (pulsed-fluence literature only); no long-triplet-RSA-based architecture found in the literature | UNOBTANIUM-WITH-PARAMETERS, with a "motivation mismatch" caveat (the literature's own design goal is pulsed-laser-damage protection, not CW ambient-silhouette suppression) | exp-037 |
+
+**Net: nine named classes/sub-classes now checked (RSA, TPA, photochromic,
+VO2, TPA-cascade FCA, linearly-pumped FCA, ENZ, graphene, combined media);
+every one fails, each via a distinct or partially-shared gap** —
+predominantly dynamic range and/or irradiance, with ENZ additionally
+failing on expressibility (not a σ(I) mechanism at all in its dominant
+form) and graphene failing on wrong direction entirely. **This is NOT yet
+a Checkpoint criterion 2 finding** — two independent reasons, both live:
+(1) the evidentiary tier across every literature-check cycle to date
+(exp-036, exp-037) remains WebSearch-snippet synthesis (39+ consecutive
+WebFetch attempts blocked across three cycles), not primary-source-
+verified, short of "gates clean"; (2) this table's own scope is bounded by
+the specific named sub-classes and architectures each cycle chose to
+search — a materials space this open-ended cannot be certified exhaustive
+by any finite literature check, only bounded more and more tightly with
+each cycle (this memo's own standing limit, unchanged since Iteration 11).
+**Field-enhancement caveat (exp-037, MATERIALS' own arithmetic,
+Red-Team-audited):** even generous published sub-wavelength plasmonic/
+cavity field-enhancement factors (10²–10⁶×) leave residual irradiance
+gaps of 3–9 orders of magnitude for the two rows checked (ENZ, TPA-cascade
+FCA) — and such enhancement is inherently sub-wavelength-volume and
+narrowband, incompatible with this program's macroscopic-beam/broadband-3λ
+requirement, a third independent reason these specific rows stay
+unobtainium even under generous assumptions.
+
 ## What the bench has established (this program's own numbers, cited)
 
 The T1 escape route this program has instrumented — intensity-gated
@@ -154,9 +205,15 @@ about TPA cross-section magnitudes and typical operating irradiances,
 explicitly flagged as such. No primary sources are cited with DOIs or
 specific material names beyond broad classes. The witness irradiance
 estimate (~10⁻³ W/cm²) is itself an order-of-magnitude estimate pending
-docket #7's own sourced parameter table. This memo considers only RSA and
-TPA — the two classes this program's own record has already named; other
-nonlinear-absorption mechanisms (free-carrier absorption in
-semiconductors, photochromic switching, saturable-then-reverse-saturable
-combined media) are not evaluated and could plausibly change this
-verdict in either direction.
+docket #7's own sourced parameter table. **As originally written (Iteration
+11), this memo considered only RSA and TPA; per Amendment 2 above
+(Iteration 14), all classes it named as not-yet-evaluated have since been
+checked (exp-036, exp-037), consolidated in Amendment 2's table.** The
+open-endedness this paragraph originally flagged persists at a narrower
+scope: exotic/engineered composite or metamaterial-hybrid media beyond the
+specific architectures exp-037 named, and any mechanism class no cycle to
+date has thought to name at all, remain unevaluated and could plausibly
+change any single row's verdict — though the pattern across nine now-
+checked classes (uniform failure via dynamic-range and/or irradiance
+gaps of 1 to 14 orders of magnitude) makes a class clearing all bounds
+simultaneously a narrowing, not widening, possibility with each cycle.

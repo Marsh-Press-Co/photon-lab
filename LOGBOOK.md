@@ -15,7 +15,19 @@ top. Protocol: PANEL.md.*
   behavior swings ~2× across the visible band (exp-001/003) where the
   statement implies wavelength-flat white-light behavior. Do not revisit as a
   constraint-1 mechanism. (Angular-selectivity proposals are a different
-  thread — they must terminate the beam, not route it around.)
+  thread — they must terminate the beam, not route it around.) **Addendum
+  (Iteration 14, exp-037): a dominantly-real Δε (refractive index shift,
+  not absorption) fails constraint 1 for the identical reason, whether the
+  shift is static (this rule's original scope) or intensity-triggered — a
+  new INSTANCE of this same principle, not a new failure category. First
+  applied to epsilon-near-zero (ENZ) band-filling nonlinearity, whose
+  headline "unity-order permittivity change" (Alam et al., *Science* 2016)
+  was confirmed dominantly refractive and correctly disqualified on these
+  grounds, independently caught by ELECTROMAGNETISM and QUANTUM OPTICS at
+  Phase 5 after the cycle's own first-draft language mischaracterized it as
+  "a genuinely new failure mode." Any future proposal whose dominant
+  nonlinearity is a real-part ε(ω) shift, however triggered, gets checked
+  against R1 before being scored as a novel disqualification category.**
 - **R2 — "Shell = any integer × λ" standing-wave rule** (cloak line):
   exp-019 killed the generic-integer version — 2λ shows nothing where 3λ
   dips. **Addendum (exp-022, cloud shift 10): the 3λ feature is also
@@ -707,6 +719,49 @@ measured them here):**
   temporal-contrast instrument, needed before ANY switching-speed verdict
   this or a future cycle issues can be read as a settled perceptual
   finding rather than a comparison against an unsourced band.
+  **Iteration 14 (exp-037) extension**: T17's n_ss formula applied for the
+  first time to a genuinely thresholdless generation channel (linearly-
+  pumped photoconductive FCA, k_f(I) with no intensity threshold, unlike
+  RSA/TPA's negligible-at-low-I k_f) — confirmed by ELECTROMAGNETISM's
+  Phase-5 review to be the SAME formula's small-signal limit (k_f≪k_r),
+  not a new equation or escape-route category, correcting an overclaim in
+  the cycle's own Phase-1 proposal. Computed n_ss≈1.1×10⁻⁹ (fast,
+  ns-lifetime host) to ~10⁻³–10⁻¹ (long-lifetime host, doping-sensitive,
+  genuinely open), held to VISION's mandatory perceptual-scoring cap
+  throughout — real physics, visual significance unverified, not a scored
+  constraint-3 violation. If a future host/doping choice pushes n_ss
+  toward O(1), the linear (n_ss=G·τ) and logistic (n_ss=k_f/(k_f+k_r))
+  forms diverge and which one actually governs becomes load-bearing, not
+  cosmetic (EM's own flagged caveat). The combined-media long-triplet-RSA
+  branch was searched for but not found instantiated in any published
+  architecture — n_ss cleanly N/A for that row, not computed, consistent
+  with (not a violation of) this same generalized treatment.
+- **T18 — the field-enhancement/evidentiary-tier ceiling on the
+  realizability-check line (opened Iteration 14, exp-037, MATERIALS +
+  Red Team).** Three consecutive literature-check cycles (exp-036,
+  exp-037, and this cycle's own Phase-5 re-reads) have hit total WebFetch
+  blockage — 39+ attempts across every scholarly domain type tried, zero
+  successes — meaning every realizability verdict this program has issued
+  since Iteration 13 rests on WebSearch-snippet synthesis, not
+  primary-source-verified figures. Separately, MATERIALS' own zero-cost
+  field-enhancement arithmetic (applied to ENZ and TPA-cascade FCA, the
+  two largest-irradiance-gap rows) found published sub-wavelength
+  plasmonic/cavity enhancement factors (10²–10⁶×) close only part of any
+  irradiance gap exceeding ~6 orders of magnitude, and are additionally
+  confined to sub-wavelength mode volumes and narrow bandwidths —
+  structurally incompatible with this program's macroscopic-beam/
+  broadband-3λ requirement, a third, independent reason large-irradiance-
+  gap rows stay unobtainium even under generous assumptions. Together
+  these two findings mean: **no future literature-check cycle can, on its
+  own, escalate to Checkpoint criterion 2 without either (a) a working
+  primary-source access route (escalation overdue per PHOTONICS' own
+  Iteration-14 Phase-5 finding), or (b) checking a mechanism class whose
+  own irradiance/dynamic-range gap is small enough (≲5–6 OOM) that
+  realistic field-enhancement genuinely closes it — a bar every class
+  checked to date (RSA, TPA, photochromic, VO2, FCA sub-classes, ENZ,
+  combined media) has failed to clear.** Not yet resolved; the WebFetch
+  escalation question and a survey of whether any remaining unchecked
+  class's gap is small enough for (b) are both queued, Iteration 15.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -5550,3 +5605,238 @@ EM); docket #7's sourced witness-parameter table (irradiance and the
 10ms–1s window both still unsourced); QUANTUM's VO2 absorption-correction
 fix; THERMO's latent-heat/ΔT-quantity fix on code promotion;
 REALIZABILITY_MEMO.md amendment with this cycle's sharper cited figures.
+
+## Iteration 14 — The Free-Carrier-Absorption / Combined Saturable-RSA Media Literature Check (exp-037) — 2026-08-16
+Runner: cloud panel shift · Lead: PHOTONICS (rotation, executing Iteration
+13's near-unanimous top priority — MATERIALS, ELECTROMAGNETISM, QUANTUM
+OPTICS independently ranked this)
+
+### Phase 1 — Proposal (PHOTONICS, abridged)
+
+Full verbatim: this shift's session record. Proposed closing the last two
+mechanism classes LOGBOOK's own Iteration-13 record named as untested (FCA,
+combined saturable/RSA media), same zero-FDTD-cost WebSearch methodology
+as exp-036. Split FCA into three photonically distinct sub-classes
+(TPA-cascade, linearly-pumped/thresholdless, ENZ band-filling), added
+graphene as a control case, and named three combined-media architectures
+(tandem/cascaded, single-molecule/dyad, composite/blended). Applied T17's
+memoryless-vs-hysteretic classification plus a proposed third discriminator
+(does the generation channel k_f(I) carry an intensity threshold at all) —
+framed linearly-pumped FCA as a "genuine, previously-unrecognized FOURTH
+kinetics sub-case... may not even qualify as a T1 gate" (later corrected,
+see Phase 2). Predicted five distinct failure modes and pre-committed that
+even a clean sweep likely would not fire Checkpoint criterion 2, since the
+evidentiary-tier gap was predicted to recur.
+
+### Phase 2 — Critique (five blind, then Red Team) — summary
+
+All five blind seats independently returned **support-with-changes**:
+
+- **MATERIALS**: six "unobtainium" verdicts risk understating what
+  "plausible" could mean under PANEL.md's Latitude rule; required a
+  field-enhancement-factor arithmetic step.
+- **ELECTROMAGNETISM**: the cycle's most consequential catch — T17's own
+  n_ss formula was never restricted to threshold-gated k_f; RSA/TPA read
+  N/A because k_f(I_ambient) is negligible, not because the formula
+  excludes thresholdless generation. Required striking the "FOURTH
+  kinetics sub-case"/"not a real gate" language, scoring linearly-pumped
+  FCA via the existing formula instead.
+- **THERMODYNAMICS**: every row depositing absorbed power thermalizes
+  mostly as non-radiative heat; the mandated THERMO sidecar was absent.
+  Required a capped ΔT/detectability estimate with carrier/lattice clocks
+  split.
+- **QUANTUM OPTICS**: the absorption-only correction (÷0.51–0.61) was
+  reused across carrier-plasma rows without re-deriving applicability; ENZ's
+  "unity-order" figure needed Δε_real/Δε_imag disaggregation before any
+  D_req comparison.
+- **VISION SCIENCE**: the proposal pre-committed scoring language
+  ("CONFIRMED... SMALL," "sharpest, most novel finding") for uncarried
+  chemistry quantities, reproducing exp-036's own overclaim structure
+  before any search ran. Required a mandatory pre-registered language cap.
+
+**Red Team (PROCEED-WITH-MANDATORY-FIXES).** Eight numbered attacks:
+struck the Checkpoint-2 tooling-guess as a self-fulfilling infrastructure
+assertion; required a primary composite-figure search before combined
+media falls back to algebraic combination; found ENZ was never checked
+against constraint 2; confirmed EM's reframing correct via direct
+derivation (T17's formula subsumes, not competes with, D_req/irradiance
+scoring for fast-k_r cases) — ranked above the four-seat framing that
+treated it as a taxonomic discovery; required the combined-media
+long-triplet-RSA branch generalize to the same formula-based treatment;
+recommended deriving TPA-cascade FCA analytically (cost discipline); split
+QUANTUM's fix (elevated for ENZ, capped for TPA-cascade); capped
+MATERIALS' fix to a negative-result note only. All eight adopted in full
+by the Director.
+
+### Phase 3 — Synthesis (2026-08-16, Director)
+
+All mandatory-fix items accepted in full, none overridden. Full
+synthesized configuration, T1 escape-route correction, and falsifiable
+predictions committed to `experiments/037-fca-combined-media-literature-
+check/NOTES.md` BEFORE any search ran (`ee58034`, pushed). Six named
+items in the parameter table (five scored rows plus two derived add-ons —
+a count/enumeration mismatch corrected same-shift at Phase 5, see below).
+
+### Phase 4 — Test (exp-037, 2026-08-16)
+
+Three parallel WebSearch-grounded search legs (linearly-pumped FCA; ENZ +
+graphene; combined SA+RSA media), one analytic derivation (TPA-cascade
+FCA), one capped THERMO estimate, one capped MATERIALS arithmetic. **All
+39 WebFetch attempts across all three legs returned EGRESS_BLOCKED** —
+independently re-confirmed, not inherited from exp-036's precedent.
+
+**TPA-cascade FCA — unobtainium, derived not searched.** Bounded below by
+the seed TPA event's own already-established ~10⁷–10⁸ W/cm² threshold; no
+independent generation channel.
+
+**Linearly-pumped FCA — dynamic range NO, quantitatively confirmed for
+the first time via a real cross-section (Soref & Bennett 1987): 1–9 OOM
+short of D_req across the physically reasonable doping range.** Irradiance
+clears easily (no threshold). Leg A self-caught and corrected a real error
+in the cycle's own pre-registration: the fast/slow-host doping direction
+was backward per Shockley-Read-Hall physics. At-rest n_ss computed via
+T17's formula (n_ss≈1.1×10⁻⁹ fast host, ~10⁻³–10⁻¹ long-lifetime host,
+doping-sensitive), held to VISION's cap throughout.
+
+**ENZ (ITO/AZO) — a mechanism-class disqualification.** The headline
+"unity-order" nonlinearity confirmed dominantly refractive (Δn=0.72, Alam
+et al. *Science* 2016; corroborated Caspani et al. *PRL* 2016), does not
+reduce to a σ(I)/D_req comparison; a genuine, separate Δε_imag/RSA branch
+found but left open (no paired ratio recoverable). Wavelength (1200–
+1550nm) confirmed outside the 450/600/750nm sweep and flashlight spectrum.
+Irradiance ~11–14 OOM above bounds (GW/cm²-pulsed only, no CW found).
+Graphene control case confirmed wrong-direction, one narrow doped/mid-IR
+exception disclosed, non-representative.
+
+**Combined SA+RSA media — published-partial, motivation-mismatch.** Real
+composite figures found for two of three architectures via the mandatory
+composite-figure-first search order (~10×–267×); a genuine third
+evidentiary tier surfaced for the single-molecule/dyad architecture
+(mechanism confirmed published, no usable number). No CW figure found for
+any architecture; no long-triplet-RSA-based combined architecture found in
+the literature — constraint-3-at-rest cleanly N/A.
+
+### Phase 5 — Review (seven fresh seats — six discipline seats plus a
+second independent PHOTONICS pass, since PHOTONICS was this cycle's own
+lead — then Red Team audit) — summary
+
+Full verbatim reviews: this shift's session record;
+`experiments/037-.../NOTES.md`'s own Phase-5 summary carries the condensed
+text. **Three findings converged, unprompted, across independently-blind
+seats:**
+
+- **PHOTONICS (both passes) and MATERIALS independently converged**:
+  TPA-cascade FCA's host list (Si, GaAs) is above-bandgap — not
+  TPA-relevant — at every sweep wavelength; the linearly-pumped-FCA row's
+  load-bearing Soref & Bennett cross-sections were applied unscaled from
+  their telecom-wavelength source. Both instances of the cycle's own
+  committed wavelength-tagging discipline going unexecuted a second
+  consecutive cycle.
+- **ELECTROMAGNETISM and QUANTUM OPTICS independently attacked the same
+  two claims**: ENZ's disqualification is a new INSTANCE of R1's
+  already-established principle, not a "genuinely new failure mode"; and
+  THERMO's CW/pulsed "categorical... independent of and prior to" argument
+  overstates its epistemic status and is in direct tension with
+  MATERIALS' own field-enhancement section in the same document.
+- **MATERIALS and PHOTONICS (Pass 2) independently found the same
+  underlying process gap**: `REALIZABILITY_MEMO.md` has gone three
+  consecutive cycles without an update despite being named at each
+  cycle's close; the Learned section's "six named classes" claim doesn't
+  match the memo's own actual class count (five, not six) when read
+  directly.
+
+**THERMODYNAMICS** self-audited its own capped estimate and found it was
+not actually a computation, contained an internal "five to six orders" vs
+"two further orders" inconsistency, and committed a category error
+comparing VO2's time-to-threshold to a steady-state temperature — all
+self-caught. **QUANTUM OPTICS** additionally found the absorption-only
+correction applied to combined media's graphene/CNT sub-components without
+the same disaggregation discipline required elsewhere. **VISION SCIENCE**
+found a loophole in its own language cap (the word "negligible" survived
+the letter while violating the spirit) and a persistent, third-consecutive-
+cycle gap restating the T3-provisional tag at points of claim. **MATERIALS**
+found linearly-pumped FCA never received a realizability tier label, and
+combined media's figures may mix device metrics with the D_req convention
+(PHOTONICS independently caught the resulting "2–4+ orders" arithmetic
+error, corrected to ~0.65–2.1). **PHOTONICS (Pass 2)** found two genuine
+taxonomic orphans (ENZ's χ⁽⁵⁾/3-photon branch; the Joshi et al.
+energy-transfer dyad) and a "six-row" count mismatch.
+
+**Red Team (audit, verdict: PARTIAL).** Independently re-derived the
+physics behind every convergent finding rather than trusting the
+reviewing seats' characterizations — re-computed the Si/GaAs bandgap-vs-
+wavelength arithmetic, re-read R1 and REALIZABILITY_MEMO.md directly,
+re-checked the "2–4+ orders" claim. Found the CW/pulsed claim not merely
+overstated but directly self-contradicted by another section of the same
+document — elevated above what either reviewing seat assigned it. Ruled
+THERMODYNAMICS' self-assessed gap genuinely load-bearing, not queueable
+(Si's thermal constants are free; the estimate was a specifically
+pre-committed Phase-3 deliverable not executed as committed). Ruled
+Checkpoint criterion 2 does NOT fire — the evidentiary-tier reason
+survives even after correcting the "six classes" overclaim. Ruled
+Checkpoint criterion 4 exercised, not fired — both overclaims are the same
+self-correcting species as Iteration 13's spiropyran correction. Issued a
+17-item same-shift mandatory-fix docket (all applied) plus six items
+queued for Iteration 15.
+
+**Director's synthesis: all 17 same-shift docket items accepted in full
+and applied; none overridden.** Every item was independently re-verified
+by Red Team against the primary text before being ruled load-bearing.
+Applied: host-wavelength disclosure for TPA-cascade FCA; wavelength-tag
+disclosure for the Soref & Bennett coefficients; arithmetic correction
+("2–4+" → "~0.65–2.1" orders); Learned-section correction ("six classes"
+→ the accurate two-classes-closed framing, with the memo's own actual
+count stated); ENZ reframed as a new instance of R1, cross-referenced in
+R1's own LOGBOOK entry; the CW/pulsed argument reworded as a reinforcing
+energy-conservation argument, reconciled with MATERIALS' field-enhancement
+section; EM's small-signal caveat added to the linearly-pumped-FCA
+formula claim; THERMO's qualitative analogy replaced with an actual
+numeric estimate (ΔT_ss≈7mK at ambient, ~3–7× below current microbolometer
+NETD) using silicon's own standard thermal constants; REALIZABILITY_
+MEMO.md amended with a consolidated nine-class table (this shift, not
+deferred a fourth time); a realizability tier added to linearly-pumped
+FCA; two omitted caveats (sub-wavelength volume, narrowband) added to the
+field-enhancement section; the carrier-vs-molecular correction gap
+disclosed for combined media's graphene/CNT components; a disclaimer added
+that field-enhancement arithmetic doesn't re-legitimize ENZ as a σ(I)
+candidate; the "negligible" language loophole closed; the T3-provisional
+tag restated at points of claim; ENZ's constraint-2 disclosure
+strengthened with the first-principles impedance-mismatch reasoning; the
+"six-row" taxonomy count and ENZ's mechanism name corrected.
+
+### Director's close of Iteration 14
+
+**Verdict: PARTIAL.** A genuine, citation-sharpened boundary-mapping
+result survives every correction: TPA-cascade FCA, linearly-pumped FCA,
+ENZ, and combined saturable/RSA media each fail via a distinct, now more
+precisely characterized gap. This closes the two mechanism classes
+LOGBOOK's own Iteration-13 record named as the program's last
+explicitly-tracked untested scope. But Checkpoint criterion 2 does not
+fire — the same evidentiary-tier reason Iteration 13 gave, now
+independently reconfirmed, standing on its own even after the "six
+classes" overclaim is corrected to the narrower, accurate claim.
+Checkpoint criterion 4 is exercised, not fired: three independently-
+converging Phase-5 findings were caught and corrected same-shift, exactly
+the program-integrity discipline criterion 4 exists to enforce without
+pausing the program. One specifically pre-committed Phase-3 deliverable
+(THERMO's capped estimate) was not executed as committed and required a
+genuine same-shift replacement. No Checkpoint criterion requires convening
+Marsh this cycle. New live thread **T18** opened (the field-enhancement/
+evidentiary-tier ceiling on the realizability-check line — see LIVE
+THREADS, above). Next lead per rotation: **MATERIALS** (Iteration 15).
+
+Open questions carried forward: retroactive wavelength-tagging and
+primary-source re-verification of exp-036's own four rows AND exp-037's
+own two newly-flagged instances (PLAN.md priority #2, now carrying twice
+the load); escalating the WebFetch egress-proxy blockage (three
+consecutive cycles, 39+ attempts, T18); taxonomic homes for ENZ's χ⁽⁵⁾
+branch and the Joshi et al. dyad; the carrier-vs-molecular correction
+question extended to graphene/CNT; the intrinsic cross-section-ratio-
+extraction discipline for future combined-media checks; building the T17
+rate-equation kernel in-engine (now raised by three seats across two
+cycles); stage-10's T3 instrument (VISION's own most-overdue-item
+ranking, third consecutive cycle); patching the perceptual-scoring cap to
+ban unearned magnitude language in either direction and require the
+T3-provisional tag at each point-of-claim; a reusable THERMO-sidecar
+utility (ΔT_ss/heating-time/diffusion-reset-time as a function of ρ, c_p,
+κ, P_absorbed, L).

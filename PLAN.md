@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-16, panel Iteration 13)
+## Current state (2026-08-16, panel Iteration 14)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -709,31 +709,86 @@ continuous mode with checkpoints. The remaining [open] items below are
   egress proxy for essentially every scholarly domain across three of
   four search legs). Seven-seat Phase 5: unanimous PARTIAL. Verdict:
   PARTIAL. Full record: LOGBOOK.md Iteration 13.
-- **[queued — panel Iteration 14, lead per rotation PHOTONICS, ranked per
-  Red Team's Iteration-13 Phase-5 adjudication]** (1) **Free-carrier
-  absorption + combined saturable/RSA media literature check**
-  (near-unanimous: MATERIALS/EM/QUANTUM) — same zero-FDTD-cost
-  methodology; the last named-but-untested class standing between this
-  program and any legitimate future Checkpoint-2 attempt. (2) **Targeted
-  primary-source re-verification** of exp-036's two fragile numbers (RSA's
-  single-outlier ~40× porphyrin figure; the spiropyran at-rest figure,
-  specifically re-sourced at witness-relevant dim/night ambient rather
-  than sun-comparable) via a working full-text access route, paired with
-  the still-outstanding wavelength-tagging check (PHOTONICS' own
-  Phase-2 fix, confirmed unexecuted) and the ε/path-length/geometry
-  perceptual conversion (VISION SCIENCE) — before either figure is cited
-  anywhere as settled. (3) **Formalize T17 and build its rate-equation
-  kernel in-engine** (QUANTUM's proposal) to bench-test the at-rest
-  population directly, converting exp-036's sourced-but-unverified
-  chemistry claim into a bench-confirmed result. Lower priority,
-  inherited: stage-10 T3 (temporal-contrast/flicker instrument — now
-  flagged more urgent by VISION SCIENCE and ELECTROMAGNETISM, second
-  consecutive cycle producing a switching-speed verdict gated on it);
-  docket #7's sourced witness-parameter table (flashlight irradiance and
-  the 10ms–1s window both still unsourced); QUANTUM's VO2 absorption-
-  correction category-error fix; THERMO's latent-heat/ΔT-quantity fix on
-  promotion to reusable code; REALIZABILITY_MEMO.md amendment with this
-  cycle's sharper cited figures (MATERIALS); N33 at r=78-native and the
+- [done 2026-08-16, panel Iteration 14, cloud panel shift] **exp-037 the
+  free-carrier-absorption / combined saturable-RSA media literature
+  check** — PHOTONICS' lead (rotation), executing Iteration 13's
+  near-unanimous top priority. Zero FDTD calls, three parallel search legs
+  plus two analytic derivations and one capped THERMO estimate. **Closes
+  the two mechanism classes LOGBOOK's own Iteration-13 record named as
+  the program's last explicitly-tracked untested scope**: free-carrier
+  absorption (split into three photonically distinct sub-classes —
+  TPA-cascade, linearly-pumped/thresholdless, ENZ band-filling) and
+  combined saturable/RSA media (three named architectures). All four fail:
+  TPA-cascade FCA inherits TPA's own established irradiance gap (derived
+  analytically, not searched — cost discipline); linearly-pumped FCA falls
+  1–9 orders of magnitude short on dynamic range (first-ever quantitative
+  cross-section for this row-type, Soref & Bennett 1987), with a genuinely
+  open, T17-formula-scored at-rest question (n_ss≈10⁻⁹ to ~10⁻¹ depending
+  on doping, held to VISION's language cap); ENZ fails on wavelength (near-
+  IR, outside the 450/600/750nm sweep) AND on mechanism class (its headline
+  nonlinearity is dominantly refractive, not absorptive — a new INSTANCE of
+  R1's already-ruled-out principle, not a new failure category, corrected
+  same-shift after the cycle's own first draft mischaracterized it);
+  combined media fails on dynamic range (~0.65–2.1 orders short, corrected
+  from a first-draft arithmetic error) with a "motivation mismatch" (the
+  real literature's design goal is pulsed-laser-damage protection, not CW
+  ambient-silhouette suppression). Graphene control case confirmed
+  wrong-direction. **New live thread T18** (the field-enhancement/
+  evidentiary-tier ceiling on the realizability-check line — three
+  consecutive cycles of total WebFetch blockage, and MATERIALS' own
+  field-enhancement arithmetic shows realistic plasmonic/cavity
+  enhancement can't close irradiance gaps beyond ~6 orders of magnitude).
+  **Checkpoint criterion 2 does NOT fire** — the evidentiary-tier gap
+  alone is decisive, surviving a same-shift correction to the cycle's own
+  overclaimed "all six classes checked" framing (the accurate count is
+  narrower — see `REALIZABILITY_MEMO.md`'s Amendment 2, rewritten this
+  shift with a consolidated nine-class table, a three-cycle-deferred
+  MATERIALS deliverable finally closed). Seven-seat Phase 5 (six discipline
+  seats + a second independent PHOTONICS self-audit pass, since PHOTONICS
+  was this cycle's own lead): 3 independently-converging finding pairs
+  across blind seats (wavelength-tagging discipline unexecuted a second
+  cycle — PHOTONICS×2 + MATERIALS; ENZ/R1 + CW-pulsed-overclaim — EM +
+  QUANTUM on each), Red Team's audit elevating and re-deriving every one
+  directly rather than trusting seat characterizations, plus a 17-item
+  same-shift fix docket including a genuine THERMO deliverable gap
+  (self-caught, ruled load-bearing not queueable — a qualitative analogy
+  replaced with an actual numeric estimate). Verdict: PARTIAL. Full
+  record: LOGBOOK.md Iteration 14.
+- **[queued — panel Iteration 15, lead per rotation MATERIALS, ranked per
+  Red Team's Iteration-14 Phase-5 adjudication]** (1) **Retroactive
+  wavelength-tagging and primary-source re-verification**, now carrying
+  double the load: exp-036's own two fragile numbers (RSA's ~40×
+  porphyrin figure; the spiropyran at-rest figure at witness-relevant
+  dim/night ambient) AND exp-037's own two newly-flagged instances
+  (TPA-cascade FCA's host-list wavelength incoherence; the Soref & Bennett
+  cross-sections applied unscaled from telecom wavelength) — via a working
+  full-text access route if one can be found. (2) **Escalate the WebFetch
+  egress-proxy blockage** (T18) — three consecutive literature-check
+  cycles, 39+ attempts, zero successes; this is now the evidentiary-tier
+  ceiling on the entire realizability-check methodology, not a per-cycle
+  disclosure. (3) **Build the T17 rate-equation kernel in-engine**
+  (raised independently by QUANTUM OPTICS, VISION SCIENCE, and
+  ELECTROMAGNETISM across two cycles now) to bench-test at-rest
+  populations directly rather than resting on hand-derived formulas.
+  Lower priority, inherited: stage-10 T3 (VISION's own ranking: the single
+  most overdue item on the program's books by cycle-count — third
+  consecutive cycle producing a provisional switching-speed verdict);
+  patching the perceptual-scoring cap itself (ban unearned magnitude
+  language in either direction; require the T3-provisional tag restated
+  at each point-of-claim, not only a table header — VISION's own
+  five-minute fix); a reusable THERMO-sidecar utility (ΔT_ss/heating-time/
+  diffusion-reset-time as a function of ρ, c_p, κ, P_absorbed, L, replacing
+  hand-derived analogies each cycle); taxonomic homes for ENZ's χ⁽⁵⁾/
+  3-photon-absorption RSA branch and the Joshi et al. energy-transfer-
+  coupled dyad (PHOTONICS); the carrier-vs-molecular absorption-correction
+  question extended to graphene/CNT sub-components (QUANTUM); the
+  intrinsic cross-section-ratio-extraction discipline as a mandatory
+  companion to the composite-figure search-order fix for any future
+  combined-media check (MATERIALS); docket #7's sourced witness-parameter
+  table (flashlight irradiance and the 10ms–1s window both still
+  unsourced); QUANTUM's VO2 absorption-correction category-error fix;
+  THERMO's latent-heat/ΔT-quantity fix on promotion to reusable code; N33
+  at r=78-native and the
   second independently-built r=78-native N17 domain (both deprioritized
   further, still queued); a reproducibility/GUARD_OUT-fringe-period sweep
   testing the near-field-fringe interaction mechanism (PHOTONICS/EM);
