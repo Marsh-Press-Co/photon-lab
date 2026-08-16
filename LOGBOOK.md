@@ -653,6 +653,61 @@ measured them here):**
   to directly test whether the r=156 interaction recurs there (VISION's
   own proposed closing test).**
 
+- **T17 — hysteretic σ(I)-with-memory: a constraint-3-at-rest risk class
+  distinct from T1's other three escape routes (opened Iteration 13,
+  exp-036, ELECTROMAGNETISM's Phase-2 catch, sharpened Phase 5).**
+  Photochromic/photothermal switching (RSA and TPA's proposed third
+  companion class) is not T1's σ(x,t) escape route as originally
+  characterized — it is a **hysteretic σ(I)**, a rate-equation kinetics
+  object dn/dt = k_f(I)(1−n) − k_r·n with a field-independent reverse rate
+  k_r, materially different from memoryless σ(I) (RSA/TPA, fully captured
+  by existing D_req/σ_off bookkeeping), σ(x,t) (externally triggered, no
+  ambient forcing channel unless smuggled in), or sub-threshold operation
+  (a threshold nonlinearity by construction). **Structural finding
+  (ELECTROMAGNETISM, independently re-derived by Red Team, Phase 5): for
+  any such mechanism at rest — where ambient dwell time is effectively
+  unbounded — the steady-state colored population n_ss =
+  k_f(I_ambient)/(k_f(I_ambient)+k_r) is strictly positive for any nonzero
+  k_f(I_ambient); there is no floor ambient intensity that suppresses the
+  ceiling, only the approach rate.** This is a causal necessity for the
+  whole slow-k_r sub-class, not a single-material accident. Only two
+  escapes exist, and both exit the class rather than rescue it: (i) a hard
+  spectral null between the ambient illuminant and the absorption band
+  (reduces to the sub-threshold route); (ii) k_r fast enough to matter at
+  dwell~hours (reduces to the memoryless-σ(I)-adjacent "fast exceptions"
+  exp-036 found — µs–ms diarylethenes, ms–s push-pull azobenzenes — which
+  collide with why slow-k_r materials get chosen in the first place:
+  dynamic range/persistence). **Empirical anchor, corrected at Phase 5:**
+  exp-036's literature search found spiropyran reaching 60–80%
+  steady-state colored population under continuous, sun-comparable
+  illumination — real, sourced (2 independent citations) chemistry, but
+  Red Team's Phase-5 audit (adjudicating two independently-converging
+  blind attacks, PHOTONICS and VISION SCIENCE) ruled the originally-
+  committed "strongly confirmed, sharpest finding" framing an overclaim:
+  (a) measured in the wrong ambient-intensity regime — sun-comparable/
+  photopic, not the dim/night regime the witness scenario (Tier-W)
+  actually specifies; (b) a chemical population fraction is not yet a
+  scored perceptual quantity — never carried through ε_colored/
+  ε_bleached, path length, and geometry into an actual scene contrast, nor
+  checked against a sourced luminance/chromatic detection threshold
+  (T2-style). **Current status: T17's structural (kinetics) half is
+  secure and class-general; its empirical (spiropyran-specific) half is
+  real chemistry whose visual significance is unverified — not yet a
+  scored constraint-3 violation.** Standing requirement, adopted from
+  ELECTROMAGNETISM's Phase-5 review: every future σ(I)-class proposal must
+  declare forward/reverse rate constants (k_f, k_r) and self-classify
+  memoryless-vs-hysteretic before Phase 3; hysteretic proposals carry a
+  mandatory dose-accumulation/at-rest check alongside the existing D_req/
+  irradiance bookkeeping. Queued follow-ups: a primary-source re-
+  verification of the spiropyran figure at witness-relevant dim/night
+  ambient (not sun-comparable); the ε/path-length/geometry perceptual
+  conversion VISION SCIENCE named; an in-engine rate-equation kernel
+  (QUANTUM's Phase-5 proposal) to bench-test the at-rest population
+  directly rather than resting on literature alone; T3's own still-unbuilt
+  temporal-contrast instrument, needed before ANY switching-speed verdict
+  this or a future cycle issues can be read as a settled perceptual
+  finding rather than a comparison against an unsourced band.
+
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
 - ~~Is the 3λ shell-thickness feature specific to r2=90?~~ **ANSWERED
@@ -5199,3 +5254,299 @@ readings (never done on this channel); T11's box-ledger trust stage;
 T14's cored-absorber r-sweep; T12's PEC r-family ripple test; QUANTUM's
 incoherent-ensemble idiom (re-scoped contingent-only, unopposed); EM's
 reciprocity check.
+
+## Iteration 13 — The Rigorous RSA/TPA/Photochromic-Photothermal Literature Check (exp-036) — 2026-08-16
+Runner: cloud panel shift · Lead: VISION SCIENCE (rotation, executing Red
+Team's Iteration-12 top-ranked priority)
+
+### Phase 1 — Proposal (VISION SCIENCE, verbatim)
+
+# PHASE 1 — PROPOSAL · Iteration 13 · Lead seat: VISION SCIENCE
+## The rigorous RSA/TPA/photochromic literature check (exp-036)
+
+### 1. Narrative (≤300 words)
+
+This cycle runs the check Red Team ranked Iteration 13's top priority: a
+rigorous, sourced literature search testing whether any published, real
+material class can simultaneously clear the dynamic-range, irradiance, AND
+(a new axis this proposal adds) switching-speed bounds T1's σ(I)/σ(x,t)
+escape routes require — not another FDTD refinement of a channel MATERIALS'
+own Phase-5 review already called "algebraically orthogonal" to this
+question. Three mechanism classes go in scope: reverse saturable absorption
+(RSA) and two-photon absorption (TPA), both already informally scoped by
+REALIZABILITY_MEMO.md, and photochromic/photothermal switching, named by
+that memo as considered-but-never-evaluated. This upgrades MATERIALS' desk
+synthesis (self-flagged: no DOIs, no named materials, single informal pass)
+into something citation-backed. For each class, search for: (a) review-level
+sources reporting ON/OFF transmission-ratio or ΔOD tables across several
+named material families, not one cherry-picked paper; (b) the operating
+intensity/fluence at which the nonlinearity actually engages, unit-
+normalized to W/cm²; (c) forward AND reverse switching/response time
+constants — an axis this program has never checked, because constraint 4
+requires the mechanism to turn itself back OFF within a human sweep
+timescale, not merely turn ON. Named families to search: RSA — metal
+phthalocyanines, C60/C70 fullerenes, porphyrins, Pt/Ir-acetylide
+organometallics, carbon nanotubes. TPA — TPA-active organic chromophores,
+direct-gap semiconductor TPA coefficients (ZnSe, GaAs). Photochromic/
+photothermal — diarylethenes, spiropyrans/spirooxazines, fulgides,
+azobenzenes (T-type vs P-type reversibility distinguished explicitly), VO2/
+phase-change photothermal switches. Requires ≥2 independent review-level
+sources per class where the literature supports it; single-paper claims get
+flagged lower-confidence, not silently promoted. This is the one check that
+can actually fire or definitively not-fire Checkpoint criterion 2 — no FDTD
+run this program could run instead does that.
+
+### 2. Parameter table (bounds, mechanism classes, search methodology)
+
+Full verbatim: `experiments/036-realizability-literature-check/NOTES.md`
+(committed `58f9c87`). Bounds: D_req≥540–600× (lower bound, Iteration 12
+amendment); irradiance ≤10⁻² W/cm² (Checkpoint-2 margin) / ~10⁻³ W/cm²
+(witness estimate); switching speed ~10ms–1s both directions (new,
+unsourced). Classes: RSA, TPA, photochromic/photothermal (later split into
+photochemical and VO2 rows per Phase-2 mandatory fix). Methodology:
+review-level sources prioritized, ≥2 independent sources per figure,
+CW-vs-pulsed unit discipline, forward+reverse switching times both
+required.
+
+### 3. T1 escape-route statement
+
+Bears directly on σ(I) (RSA, TPA). Photochromic/photothermal framed
+(originally) as σ(x,t)-adjacent — corrected at Phase 2 (see below) to
+hysteretic σ(I)-with-memory.
+
+### 4. Falsifiable predicted outcomes — committed before any search
+
+RSA: predict NO on D_req (2–10× cluster, none above 500×), YES irradiance,
+YES speed → published-partial. TPA: predict YES D_req/exponent, NO
+irradiance (8–12 OOM gap), YES speed → unobtainium. Photochromic/
+photothermal: predict NO D_req (1–2 orders short), YES irradiance, NO
+reverse-switching speed specifically → published-partial with a NEW
+binding failure (speed, not range). Program-level: no class clears all
+bounds; three structurally distinct failure modes predicted.
+
+### 5. Idealizations — proprietary/unpublished materials invisible;
+exotic composite/metamaterial media out of scope; switching-speed band
+unsourced; search not independently re-verified; no materials-engineering
+roadmap; English-language/free-access source bias.
+
+### 6. Cost note — zero FDTD calls.
+
+### Phase 2 — Critiques (five seats, blind, verbatim)
+
+#### PHOTONICS — verdict: **support-with-changes**
+**Steel-man (≤150 words):** The class-level optical characterization is correct throughout: RSA's excited-state-exceeds-ground-state direction is right; TPA's n≈1 loss-coefficient form matches this program's own established σ(I)=σ₂·I convention; named families (phthalocyanines, fullerenes, ZnSe/GaAs) are textbook-accurate TPA/RSA choices; the P-type-vs-T-type photochromic distinction is used correctly. D_req is correctly read as a geometry-independent cross-section RATIO, matching REALIZABILITY_MEMO's own definition, and RSA's literature figure (2–10×) is conventionally reported as exactly that ratio — apples-to-apples. The fluence-vs-CW/pulse-duration trap is explicitly named in methodology. Splitting forward/reverse switching speed, and photochemical vs. photothermal sub-families, is a genuinely new axis, zero-cost, addressing a three-cycle deferral.
+
+**Sharpest attack (≤150 words):** The photochromic dynamic-range leg conflates two different quantities. D_req=τ_on/τ_off is a pure, sample-independent cross-section ratio. RSA literature reports that same ratio directly. But photochromic ΔOD is normally reported for one specific film thickness/concentration — it is Δτ in that sample, not a ratio. The proposal converts "ΔOD~1–2" straight into "transmission-ratio ~10–100×" and scores that AS D_req, silently assuming the literature sample's own τ_off matches the bench's τ_off≈0.0065 — if the cited sample's bleached-state τ is small, the same ΔOD implies a much larger σ_on/σ_off, potentially flipping the pre-registered prediction. The methodology must extract intrinsic ε(colored)/ε(bleached), not film ΔOD, before scoring.
+
+**Fix:** Add a mandatory extraction step — intrinsic ε_colored/ε_bleached, not film ΔOD; tag every extracted figure with its reported wavelength against 450/600/750nm.
+
+#### MATERIALS & METAMATERIALS — verdict: **support-with-changes**
+**Steel-man:** This is the correctly-scoped rigor upgrade my own memo named as its missing piece — cites my numbers accurately, adds a genuinely new axis (forward/reverse switching speed) speaking directly to constraint 4, correctly flagged as unsourced. The ≥2-independent-source bar, CW/pulsed unit discipline, and pre-registered falsifiable per-class predictions are the exact rigor markers separating a literature review from a desk synthesis.
+
+**Sharpest attack:** My own memo named FOUR unevaluated classes: free-carrier absorption, photochromic switching, and saturable-then-reverse-saturable combined media. This proposal narrows that to three — combined media vanishes without even an "out of scope" mention, FCA dismissed as "cost/tractability," not physics. If all three scoped classes return UNOBTANIUM, Red Team's own Checkpoint-2 bar still isn't met.
+
+**Fix:** Add FCA back in-scope (lightweight pass), or explicitly argue on the record why its exclusion doesn't block a clean Checkpoint-2 firing this cycle.
+
+#### ELECTROMAGNETISM — verdict: **support-with-changes**
+**Steel-man:** Zero-cost, correctly scoped, honest about its own axis being unsourced. If three classes fail via three non-overlapping physical reasons, that is a genuine boundary-mapping result worth Checkpoint criterion 2, and this is the cheapest possible cycle to get it.
+
+**Sharpest attack:** Two EM gaps. (1) The σ(x,t) reclassification is imprecise: photochromic/photothermal absorption is still causally driven by the SAME light field (dose/heat integrated over a memory kernel) — it's a hysteretic σ(I) with memory, not σ(x,t). Worse, that memory kernel means ambient light alone, integrated over ordinary dwell time, can drive N_ss into the colored state with no flashlight present — a distinct route to violating constraint 3 at rest the proposal's table never checks. (2) The predicted reverse-switch failure is framed as empirical when it's actually forced by causal population kinetics at fixed low irradiance.
+
+**Fix:** Add an explicit check of steady-state colored-state population under continuous ambient (non-flashlight) illumination for the photochromic/photothermal class.
+
+#### THERMODYNAMICS — verdict: **support-with-changes**
+**Steel-man:** The first cycle to treat switching speed as bidirectional rather than a free literature number — filling T5's own gap. Names VO2/phase-change photothermal switching explicitly, my seat's mechanism class.
+
+**Sharpest attack:** The photothermal row commits a category error the methodology's own fluence-check should catch but doesn't. Photochromic and photothermal (VO2, bulk heating to a phase transition) are lumped into one row, and its "irradiance clears easily" verdict is justified by photochromic eyewear — irrelevant to VO2, whose switching requires actually raising a macroscopic absorbing volume through a ~40–70K span at THIS scenario's own power budget (~10⁻³ W/cm², T5). Published VO2 "response times" are almost universally measured under concentrated pulsed/resistive heating, not diffuse flashlight fluence — the same 9–12 OOM gap that killed TPA may apply here, unchecked. Reset needs passive cooling, governed by thermal diffusion (seconds-minutes at cm–m scale), never computed.
+
+**Fix:** Split the photothermal (VO2) row from photochromic; add a capped power-budget/diffusion-time sub-check using T5's own numbers.
+
+#### QUANTUM OPTICS — verdict: **support-with-changes**
+**Steel-man:** RSA's population-dependent excited-state absorption correctly kept distinct from TPA's virtual-state process. Both map cleanly onto this seat's σ(I) expressibility contract.
+
+**Sharpest attack:** The proposal checks D_req (a ratio) and irradiance separately but never converts either into an ABSOLUTE cross-section a real molecule must supply — missing the connection to my own seat's established g≈0.69–0.70 calibration. This program's own ESTABLISHED σ_abs/σ_ext≈0.51–0.61 means the bench's τ_on≈3.9 extinction is only ~51–61% pure absorption; RSA/TPA/photochromic are absorption-only mechanisms with no engineered scattering assist, so a real material's absorptive σ_on must be ~1.6–2× the bench's nominal figure — tightening D_req further, unaddressed anywhere in the table.
+
+**Fix:** Add an absolute cross-section conversion column corrected by 1/0.51–0.61.
+
+#### RED TEAM (last, saw everything) — verdict: **proceed-with-mandatory-fixes**
+Confirmed EM's constraint-3-at-rest catch as genuinely novel (grep-verified: "photochromic"/"hysteretic" nowhere in LOGBOOK.md before this cycle) and load-bearing — PANEL.md names constraint 3 "the hard one, do not let it slip." Ruled MATERIALS' FCA gap real but capped rather than expanded this cycle's scope — Phase-3 must explicitly disclose Checkpoint criterion 2 does NOT fire regardless of outcome, naming both untested classes (FCA and combined media) by name. Capped THERMODYNAMICS' power-budget check at one analytic estimate, barring a THERMO-sidecar-style rebuild. Sequenced PHOTONICS'/QUANTUM's fixes (extract intrinsic ε first, then apply the absorption-only correction). Added its own new attack: any "switching speed clears" finding must be labeled provisional against an unsourced band (T3 still unbuilt).
+
+**Mandatory-fix docket, all 7 accepted by the Director in full:** (1) constraint-3-at-rest photostationary-state check (EM); (2) reclassify as hysteretic σ(I)-with-memory (EM); (3) FCA/combined-media disclosure, not full search (MATERIALS, capped); (4) VO2 power-budget estimate, split from photochromic, capped (THERMO); (5) intrinsic ε extraction over film ΔOD (PHOTONICS); (6) absolute cross-section conversion, sequenced after (5) (QUANTUM); (7) label switching-speed findings provisional pending T3 (Red Team).
+
+### Phase 3 — Synthesis (2026-08-16, Director)
+
+All seven mandatory-fix items accepted in full, none overridden — Red
+Team's docket was itself already a sound adjudication of five non-
+conflicting seat critiques. Full synthesized configuration, T1
+escape-route correction, and falsifiable predictions committed to
+`experiments/036-realizability-literature-check/NOTES.md` BEFORE any
+search ran (`58f9c87`, pushed). Four mechanism-class rows finalized: RSA,
+TPA, photochromic (photochemical), photothermal (VO2) — split per
+THERMODYNAMICS' fix. Program-level pre-registered prediction: no class
+clears all bounds; four structurally distinct failure modes predicted;
+Checkpoint criterion 2 explicitly disclosed as non-firing regardless of
+outcome.
+
+### Phase 4 — Test (exp-036, 2026-08-16)
+
+Four parallel WebSearch/WebFetch-grounded search legs, one per mechanism-
+class row. **Methodology degradation, disclosed prominently, not
+smoothed over:** WebFetch was blocked by the sandbox's egress proxy for
+essentially every scholarly domain across three of four legs (RSA,
+photochromic, photothermal explicitly reported it) — all findings rest on
+WebSearch snippet synthesis, not independently-read primary-source tables.
+
+**RSA — published-partial, CONFIRMED, dynamic range remains the sole
+decisive gap, now measured wider.** Real figures found: 2.8–7.2×
+(Ir-acac), ~2× (heavy-atom phthalocyanines), ~40× (single-source
+porphyrin outlier). No published figure found above 100×, let alone
+500×. Absorption-only correction sharpens the effective bar to
+≥~890–1,180×; shortfall against the best figure found widens to ~22–30×.
+Irradiance confirmed clearing even more strongly than predicted (one
+subclass operates at 10⁻⁴ W/cm², below the witness estimate itself).
+New, unanticipated finding: the same low-irradiance subclass achieves
+its sensitivity via 1–21+ second triplet lifetimes, plausibly failing
+the reverse/reset leg of the 10ms–1s window — an internal RSA-class
+irradiance-vs-speed tradeoff.
+
+**TPA — unobtainium, CONFIRMED, irradiance gap sharpened not shrunk.**
+n≈1 confirmed textbook-standard. Real cited visible-wavelength thresholds
+(Sheik-Bahae/Van Stryland; He et al. *Opt. Lett.* 20, 435 (1995); ZnSe/
+GaAs Z-scan studies) cluster ~10⁷–10⁸ W/cm² — ~9–11 OOM above the
+ceiling, squarely inside the pre-registered 8–12 OOM band. Speed
+confirmed sub-ps both directions.
+
+**Photochromic (photochemical) — published-partial, CONFIRMED, with the
+at-rest failure the strongest single finding of the cycle (later
+corrected at Phase 5 — see below).** Dynamic range sharpened, not
+uniformly confirmed: azobenzene cleanly confirms "short by orders" (~3–6×
+post-correction); diarylethene/spiropyran genuinely open (near-zero
+bleached-state baseline, no paired ε table recoverable given the WebFetch
+blockage); fulgide an outright data gap. Irradiance confirmed clearing
+easily. Reverse-switching speed confirmed as the dominant failure for
+durable systems (spiropyran half-lives sec–hours–permanent; P-type
+diarylethene/fulgide structurally have no thermal reverse path), with
+real fast exceptions (fast T-type diarylethenes µs–ms; push-pull
+azobenzenes ms–s). Constraint-3-at-rest: spiropyran found to reach 60–80%
+steady-state colored population under continuous sun-comparable ambient
+light (2 independent sources) — see Phase 5 correction, below.
+
+**Photothermal (VO2) — unobtainium, CONFIRMED, sharper than predicted.**
+Intrinsic dynamic range order 10–30× (metasurface/device figures like
+2800× or 5560× correctly excluded as film-not-intrinsic). Irradiance:
+every pulsed figure 6–9 OOM above the witness estimate; every CW figure,
+even the best plasmonically-enhanced case, 2–5+ OOM above. THERMODYNAMICS'
+capped analytic estimate (cited ρ=4340 kg/m³, c_p≈690 J/kg·K, κ≈3.5 W/m·K,
+α≈1.17×10⁻⁶ m²/s, T5's own power budget): heating time ~15–45s (best-case
+1µm, latent-heat-corrected) to ~1.7 days (1cm); reset time ~0.85µs (1µm)
+to ~11.5 days (1m), crossing 1s near L≈1mm. Sharper than predicted: no
+length scale µm-to-m clears both legs simultaneously — heating alone is
+fatal at every tested scale, not only cm–m.
+
+**Program-level prediction CONFIRMED**: no class clears all bounds; four
+distinct, non-overlapping failure modes (RSA: dynamic range; TPA: quantum
+irradiance threshold; photochromic: reverse-switching speed [+ the
+at-rest question, corrected below]; VO2: bulk thermal power-budget). Full
+results committed `48effff`, pushed, before Phase 5 review.
+
+### Phase 5 — Review (six fresh seats, blind, then Red Team) — summary
+
+Full verbatim reviews and Red Team audit: see the six-seat text preserved
+in this shift's session record and `experiments/036-realizability-
+literature-check/NOTES.md`'s own Phase-5 summary section. **Two pairs of
+findings converged unprompted across independently-blind seats:**
+
+- **PHOTONICS and VISION SCIENCE independently attacked the same flagship
+  finding** (spiropyran's at-rest coloration) from different angles —
+  PHOTONICS: measured in sun-comparable/photopic ambient, not the
+  witness's actual dim/night regime (nobody sees a flashlight sweep in
+  daylight); VISION SCIENCE: a chemical population fraction was never
+  carried through ε/path-length/geometry into a scored perceptual
+  quantity against a sourced threshold. Both accepted by Red Team; the
+  "strongly confirmed, sharpest finding" language in the committed
+  results was ruled an overclaim and corrected same-shift.
+- **MATERIALS, ELECTROMAGNETISM, and QUANTUM OPTICS independently ranked
+  closing free-carrier absorption + combined saturable/RSA media as
+  Iteration 14's top priority** — near-unanimous, compatible but distinct
+  reasoning.
+- **PHOTONICS** caught its own Phase-2 wavelength-tagging fix went
+  unexecuted in the Results (confirmed directly against the text by Red
+  Team) — moderate severity, load-bearing for the photochromic row's
+  UV-vs-visible trigger question, queued for Iteration 14.
+- **ELECTROMAGNETISM** derived a structural, class-level leaky-integrator
+  argument (n_ss=k_f/(k_f+k_r)>0 for any nonzero k_f at unbounded ambient
+  dwell time) generalizing the at-rest risk to the whole hysteretic-σ(I)
+  class, independent of the discounted spiropyran number — independently
+  re-derived and confirmed sound by Red Team. Found LOGBOOK.md's T1 had
+  not yet absorbed this cycle's own escape-route correction (grep-
+  confirmed).
+- **THERMODYNAMICS** independently re-derived its own VO2 thermal
+  estimate and found it MORE robust than stated (heating fails even at
+  the best-case smallest scale) — two flagged, non-verdict-overturning
+  inconsistencies queued for correction on promotion to reusable code.
+- **QUANTUM OPTICS** found its own absorption-only correction correctly
+  applied to RSA/photochromic, correctly withheld for TPA, but absent
+  with no hard number for VO2 (Drude/plasma vs. molecular category error)
+  — ruled non-load-bearing this cycle by Red Team (VO2 fails
+  independently by wide margins), queued for future correction.
+
+**Red Team (audit, verdict: PARTIAL).** Independently re-derived and
+confirmed both EM's kinetics argument and THERMO's thermal estimate.
+Ruled the spiropyran-language overclaim a narrow, self-correcting
+Checkpoint-criterion-4 matter (EM's underlying catch is real and useful;
+the risk was in the specific number's description, not in raising the
+question) — corrected same-shift, does not require pausing the program.
+Ruled Checkpoint criterion 2 does NOT fire for two independent reasons:
+the pre-disclosed FCA/combined-media gap, AND (Red Team's own addition)
+the WebFetch-evidentiary-tier gap — even the four covered classes rest on
+snippet synthesis, not primary-source-verified figures. Affirmed the
+near-unanimous FCA-next ranking with no dissenting consideration strong
+enough to displace it.
+
+**Same-shift corrections (all completed before this iteration closed):**
+(1) walked back the spiropyran overclaim language in NOTES.md's Learned
+section, stating both open gaps explicitly; (2) noted the wavelength-
+tagging mandatory-fix miss and its unresolved UV-vs-visible mechanism-
+consistency question; (3) added the second, independent Checkpoint-2
+non-firing reason (evidentiary tier); (4) logged T17 into LOGBOOK.md's
+LIVE THREADS (this entry, above).
+
+**Director's synthesis: all four same-shift corrections accepted in
+full, applied; none overridden.** Nothing in Red Team's docket warranted
+an override — each item was checked directly against the record (a grep,
+a re-derivation, a direct text comparison), not asserted.
+
+### Director's close of Iteration 13
+
+**Verdict: PARTIAL.** A genuine, citation-sharpened four-class boundary-
+mapping result — RSA, TPA, photochromic, and photothermal/VO2 each fail
+via a distinct, now-literature-grounded gap (dynamic range; quantum
+irradiance threshold; reverse-switching speed; bulk thermal power-budget,
+shown fatal at every length scale tested) — but Checkpoint criterion 2
+does not fire, disclosed on two independent grounds (FCA/combined-media
+untested; WebFetch-blockage evidentiary tier). A real new class-level
+finding, T17, is secured on ELECTROMAGNETISM's structural derivation
+(independently re-derived and confirmed sound by Red Team) rather than on
+the empirical spiropyran headline, whose overclaimed framing was caught
+by two independently-converging blind seats and corrected in the same
+cycle it was raised — exactly the program-integrity discipline
+Checkpoint criterion 4 exists to enforce, exercised here without needing
+to pause the program. Rigor bar for the cycle's own stated purpose: only
+partially met (WebSearch-snippet-synthesis tier, not primary-source-
+verified), disclosed honestly throughout rather than smoothed over. No
+Checkpoint criterion requires convening Marsh this cycle. Next lead per
+rotation: **PHOTONICS** (Iteration 14).
+
+Open questions carried forward: free-carrier absorption + combined
+saturable/RSA media literature check (near-unanimous top priority,
+MATERIALS/EM/QUANTUM); targeted primary-source re-verification of the RSA
+~40× figure and the spiropyran at-rest figure at witness-relevant dim/
+night ambient, paired with the wavelength-tagging check and the ε/path-
+length/geometry perceptual conversion, before either is cited as settled;
+building the T17 rate-equation kernel in-engine to bench-test the at-rest
+finding directly (QUANTUM); stage-10 T3 (temporal-contrast instrument,
+now flagged more urgent — second consecutive cycle blocked on it, VISION/
+EM); docket #7's sourced witness-parameter table (irradiance and the
+10ms–1s window both still unsourced); QUANTUM's VO2 absorption-correction
+fix; THERMO's latent-heat/ΔT-quantity fix on code promotion;
+REALIZABILITY_MEMO.md amendment with this cycle's sharper cited figures.

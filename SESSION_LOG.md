@@ -2,6 +2,103 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-16 (panel shift) — Iteration 13 complete (exp-036): the first
+literature-only cycle (zero FDTD calls) rigorously checks RSA, TPA, and
+photochromic/photothermal (VO2) switching against this program's own
+realizability bounds — all four fail via distinct, now-citation-sharpened
+gaps, but Checkpoint criterion 2 still does not fire (free-carrier
+absorption and combined saturable/RSA media remain untested, and the
+evidentiary tier is WebSearch-snippet synthesis, not primary-source-
+verified). A new live thread (T17) formalizes a genuinely novel
+constraint-3-at-rest risk class for hysteretic σ(I) mechanisms; its
+structural half is secure, its empirical headline number was caught
+overclaiming by two independently-converging blind Phase-5 seats and
+corrected same-shift.
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle.
+Bench trust suite 41/41 green (`--only 12346789`) before this shift's work
+(no `lab/` engine changes this cycle — nothing to re-verify after).
+
+**Iteration 13 — The Rigorous RSA/TPA/Photochromic-Photothermal Literature
+Check (exp-036, CONCLUDED).** Lead: VISION SCIENCE (rotation), executing
+Red Team's Iteration-12 top-ranked priority — the first cycle in this
+program's history whose entire "run" is a WebSearch-grounded literature
+search, not an FDTD simulation. Full seven-seat cycle: Phase 1 proposal
+(VISION SCIENCE) → 5 blind parallel critiques (all support-with-changes,
+no verdict conflict, five non-overlapping fixes) → Red Team last
+(proceed-with-mandatory-fixes, 7 attacks, all accepted — the sharpest:
+ELECTROMAGNETISM's catch that photochromic/photothermal switching is a
+hysteretic σ(I)-with-memory mechanism, not σ(x,t) as originally framed,
+exposing a genuinely new constraint-3-at-rest risk) → Phase 3 synthesis
+→ predictions committed (`58f9c87`) → Phase 4 search.
+
+**Result: four parallel WebSearch-grounded search legs, one per mechanism-
+class row (RSA, TPA, photochromic, photothermal/VO2 — split per
+THERMODYNAMICS' mandatory fix).** All four pre-registered program-level
+predictions CONFIRMED — no class clears dynamic range + irradiance +
+switching speed simultaneously, and each fails via a distinct,
+now-literature-grounded gap: **RSA** short ~22–30× on dynamic range even
+at the best published figure (~40×, a single-outlier porphyrin) once the
+absorption-only correction is applied; **TPA** short ~9–11 orders of
+magnitude on irradiance, sharpened with real citations (Sheik-Bahae/Van
+Stryland's foundational semiconductor-TPA database, He et al. *Opt. Lett.*
+1995's visible-wavelength demonstration, ZnSe/GaAs Z-scan studies);
+**photochromic** fails on reverse-switching speed for durable systems
+(spiropyran thermal half-lives seconds-to-permanent; P-type diarylethene/
+fulgide structurally lack any passive reverse path); **photothermal/VO2**
+fails on bulk thermal power-budget — THERMODYNAMICS' capped analytic
+estimate (worked arithmetic, cited thermal properties, this program's own
+T5 power budget) found no length scale from µm to m clears both heating
+and passive-reset within the proposal's 10ms–1s window, sharper than
+predicted (heating alone is fatal at every scale tested, not just cm–m).
+Honest methodology disclosure, not smoothed over: WebFetch was blocked by
+the sandbox's egress proxy for essentially every scholarly domain across
+three of four legs — every finding rests on WebSearch snippet synthesis,
+not independently-read primary-source tables.
+
+**Phase 5 (six fresh blind seats + Red Team audit): unanimous PARTIAL.**
+Two pairs of findings converged unprompted across independently-blind
+seats — a rare, load-bearing signal. **PHOTONICS and VISION SCIENCE
+independently attacked the same flagship finding** (spiropyran's 60–80%
+at-rest coloration) from different angles: PHOTONICS found it was
+measured in sun-comparable/photopic ambient, not the dim/night regime the
+witness scenario actually specifies (nobody notices a flashlight sweep in
+daylight); VISION SCIENCE found a chemical population fraction was never
+converted through ε/path-length/geometry into a scored perceptual quantity
+against a sourced threshold. Red Team's audit accepted both, ruled the
+committed "strongly confirmed, sharpest finding" language a genuine
+Checkpoint-criterion-4 overclaim risk, and corrected it same-shift — real
+chemistry, visual significance unverified, not yet a scored constraint-3
+violation. **What survives intact and is arguably more secure**:
+ELECTROMAGNETISM's structural, class-level derivation (independently
+re-derived and confirmed by Red Team) that any hysteretic-σ(I) mechanism
+with slow reverse rate has a strictly positive steady-state colored
+population under unbounded ambient dwell time — logged as new live thread
+**T17**. **MATERIALS, ELECTROMAGNETISM, and QUANTUM OPTICS independently
+ranked closing free-carrier absorption + combined saturable/RSA media as
+Iteration 14's top priority** — near-unanimous. PHOTONICS also caught its
+own Phase-2 wavelength-tagging mandatory fix went unexecuted in the
+Results (confirmed directly by Red Team against the text) — queued, not
+verdict-changing. THERMODYNAMICS independently re-derived its own VO2
+estimate and found it more robust than stated; QUANTUM found its own
+absorption-only correction was correctly withheld for TPA but is missing
+(non-load-bearing) for VO2's different (Drude/plasma) physics.
+
+**Red Team's Checkpoint ruling, explicit: criterion 2 does NOT fire**, for
+two independent reasons — the pre-disclosed free-carrier-absorption/
+combined-media gap, and (Red Team's own addition) the WebFetch-blockage
+evidentiary-tier gap, since even the four covered classes rest on snippet
+synthesis rather than primary-source-verified figures. **Criterion 4
+fires in narrow, self-correcting form**: not a constraint-3-quietly-
+dropped case (the opposite — EM's catch actively surfaced a genuinely new
+risk, correctly), but the overclaimed spiropyran language required a
+same-shift correction, completed before this iteration closed, per Red
+Team's own mandatory-fix docket (4 items, all applied: language walked
+back; wavelength-tagging miss noted; the second Checkpoint-2 non-firing
+reason added; T17 logged into LOGBOOK.md's LIVE THREADS). No other
+Checkpoint criterion fires. Full record: LOGBOOK.md Iteration 13. Next
+lead per rotation: PHOTONICS (Iteration 14).
+
 ## 2026-08-16 (panel shift) — Iteration 12 complete (exp-035): the program's
 only-ever constraint-3 σ(I) OFF-state PASS no longer survives corrected
 angular-quadrature instrumentation at either geometry ever tested — a real

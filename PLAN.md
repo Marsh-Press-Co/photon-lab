@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-16, panel Iteration 12)
+## Current state (2026-08-16, panel Iteration 13)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -284,8 +284,6 @@ designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
   shift only 3.1–4.8% relative, no sign flip. Closes exp-022's one open
   caveat in the same shift it was raised — the r2=75 half of exp-022's
   conclusion now stands on fully gate-clean footing.
-
-## Next work
 
 **2026-08-12 — program redesign (Marsh's directive, in-session):** new work
 runs under `PANEL.md` / `LOGBOOK.md` — the seven-seat research panel
@@ -673,31 +671,76 @@ continuous mode with checkpoints. The remaining [open] items below are
   cycles, have all closed PARTIAL, all instrument-hygiene work, not
   mechanism-testing — flagged for Iteration 13's sequencing. Verdict:
   PARTIAL. Full record: LOGBOOK.md Iteration 12.
-- **[queued — panel Iteration 13, lead per rotation VISION SCIENCE,
-  Red Team's ranked priority order per Iteration 12's own Phase-5 close]**
-  (1) **The rigorous RSA/TPA/third-mechanism-class literature check**
-  (MATERIALS/QUANTUM's own pick) — zero FDTD cost; the only thing that
-  can actually fire or definitively not-fire Checkpoint criterion 2;
-  three-cycle-plus deferral; every further ambient-contrast refinement
-  this program has produced is algebraically orthogonal to it. Should
-  include a third mechanism class (photochromic/photothermal switching)
-  beyond RSA/TPA, both already ruled UNOBTANIUM for independent reasons.
-  (2) **N33 at r=78-native** — completes the N9→N17→N33 angular-
-  convergence sequence at the geometry the program's headline PASS
-  citation actually originates from; fold in per-angle scene-data
-  persistence and retroactive ±10/20/30° checks from the start (EM's own
-  mandatory-fix-4 extension — currently only ±40° gets an individual
-  per-angle check). (3) **A second, independently-built r=78-native N17
-  domain** (e.g. exp-034's own already-built ad-hoc `_coverage_geometry()`
-  domain, GUARD_OUT=295) to directly test whether the r=156
-  domain×quadrature interaction recurs there — VISION's own proposed
-  closing test for the epistemic gap her Phase-5 review found. Lower
-  priority, inherited: a reproducibility/GUARD_OUT-fringe-period sweep
-  testing the near-field-fringe interaction mechanism (PHOTONICS/EM,
-  contingent on (1)/(2) not consuming the shift); a genuine 3-λ sweep of
-  the N9→N17 angular-convergence readings (never run on this channel);
-  T11's own trust-suite stage for the ambient/line-source box-ledger
-  channel; T14's PHOTONICS multi-point cored-absorber r-sweep (r≈78, 110,
+- [done 2026-08-16, panel Iteration 13, cloud panel shift] **exp-036 the
+  rigorous RSA/TPA/photochromic-photothermal literature check** —
+  VISION SCIENCE's lead (rotation), executing Red Team's Iteration-12 top
+  priority. Zero FDTD calls — the first cycle whose entire "run" was a
+  WebSearch-grounded literature search, not a simulation. Four mechanism-
+  class rows (RSA, TPA, photochromic, photothermal/VO2 — split from
+  photochromic per THERMODYNAMICS' mandatory fix), each confirmed to fail
+  via a distinct, now-citation-sharpened gap: RSA short ~22–30× on dynamic
+  range even at the best published figure once the absorption-only
+  correction is applied; TPA short ~9–11 orders of magnitude on
+  irradiance (real citations: Sheik-Bahae/Van Stryland, He et al. 1995,
+  ZnSe/GaAs Z-scan studies); photochromic fails on reverse-switching speed
+  for durable systems; photothermal/VO2 fails on bulk thermal power-budget,
+  shown fatal at every length scale from µm to m via a capped analytic
+  estimate (THERMODYNAMICS), not just the cm–m scale originally predicted.
+  **New live thread T17**: ELECTROMAGNETISM's Phase-2 catch — photochromic/
+  photothermal switching is a hysteretic σ(I)-with-memory mechanism, not
+  σ(x,t) as originally framed — exposed a genuinely new constraint-3-at-
+  rest risk class. Its structural half (a class-level kinetics derivation:
+  any such mechanism with slow reverse rate has a strictly positive
+  steady-state colored population under unbounded ambient dwell time) is
+  secure, independently re-derived and confirmed by Red Team. Its
+  empirical anchor (spiropyran reaching 60–80% steady-state coloration
+  under continuous ambient light) was originally over-claimed as "the
+  sharpest finding of the cycle" — two independently-converging blind
+  Phase-5 seats (PHOTONICS: wrong ambient-intensity regime, sun-comparable
+  not the witness's dim/night scene; VISION SCIENCE: a chemistry fact
+  never converted into a scored perceptual quantity) caught this, and Red
+  Team's audit corrected the language same-shift — real chemistry, visual
+  significance unverified, not yet a scored constraint-3 violation.
+  **Checkpoint criterion 2 does NOT fire**, for two independent reasons:
+  free-carrier absorption and combined saturable/RSA media remain
+  untested (pre-disclosed), and even the four covered classes rest on
+  WebSearch-snippet synthesis, not primary-source-verified figures (a
+  disclosed methodology degradation — WebFetch was blocked by the sandbox
+  egress proxy for essentially every scholarly domain across three of
+  four search legs). Seven-seat Phase 5: unanimous PARTIAL. Verdict:
+  PARTIAL. Full record: LOGBOOK.md Iteration 13.
+- **[queued — panel Iteration 14, lead per rotation PHOTONICS, ranked per
+  Red Team's Iteration-13 Phase-5 adjudication]** (1) **Free-carrier
+  absorption + combined saturable/RSA media literature check**
+  (near-unanimous: MATERIALS/EM/QUANTUM) — same zero-FDTD-cost
+  methodology; the last named-but-untested class standing between this
+  program and any legitimate future Checkpoint-2 attempt. (2) **Targeted
+  primary-source re-verification** of exp-036's two fragile numbers (RSA's
+  single-outlier ~40× porphyrin figure; the spiropyran at-rest figure,
+  specifically re-sourced at witness-relevant dim/night ambient rather
+  than sun-comparable) via a working full-text access route, paired with
+  the still-outstanding wavelength-tagging check (PHOTONICS' own
+  Phase-2 fix, confirmed unexecuted) and the ε/path-length/geometry
+  perceptual conversion (VISION SCIENCE) — before either figure is cited
+  anywhere as settled. (3) **Formalize T17 and build its rate-equation
+  kernel in-engine** (QUANTUM's proposal) to bench-test the at-rest
+  population directly, converting exp-036's sourced-but-unverified
+  chemistry claim into a bench-confirmed result. Lower priority,
+  inherited: stage-10 T3 (temporal-contrast/flicker instrument — now
+  flagged more urgent by VISION SCIENCE and ELECTROMAGNETISM, second
+  consecutive cycle producing a switching-speed verdict gated on it);
+  docket #7's sourced witness-parameter table (flashlight irradiance and
+  the 10ms–1s window both still unsourced); QUANTUM's VO2 absorption-
+  correction category-error fix; THERMO's latent-heat/ΔT-quantity fix on
+  promotion to reusable code; REALIZABILITY_MEMO.md amendment with this
+  cycle's sharper cited figures (MATERIALS); N33 at r=78-native and the
+  second independently-built r=78-native N17 domain (both deprioritized
+  further, still queued); a reproducibility/GUARD_OUT-fringe-period sweep
+  testing the near-field-fringe interaction mechanism (PHOTONICS/EM);
+  a genuine 3-λ sweep of the N9→N17 angular-convergence readings (never
+  run on this channel); T11's own trust-suite stage for the ambient/
+  line-source box-ledger channel; T14's PHOTONICS multi-point cored-
+  absorber r-sweep (r≈78, 110,
   156, 220, 312, fixed PLANE_DX=15, θ=0) — still never executed; a
   genuine PEC r-family ripple test near r≈270–350 (T12's own real open
   half); T11's dedicated multi-point/multi-box-pair box_dev floor

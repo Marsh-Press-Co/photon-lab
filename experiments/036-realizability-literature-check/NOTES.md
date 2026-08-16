@@ -398,10 +398,32 @@ sweep, however decisive, is not "a whole mechanism class" ruled out.
 program had never checked before this cycle** (ELECTROMAGNETISM's Phase-2
 catch): σ(x,t)-adjacent hysteretic mechanisms can fail PANEL.md's hardest
 clause — "not a black silhouette at rest under ambient light" — via
-ordinary daylight alone, independent of the flashlight entirely. Spiropyran's
-60–80% photostationary coloration under continuous sun-comparable light is
-real, sourced (if intensity-caveated for dim indoor light specifically),
-and the sharpest single number this cycle produced.
+ordinary daylight alone, independent of the flashlight entirely.
+**Correction, Phase 5 (Red Team, adjudicating two independent blind
+attacks from PHOTONICS and VISION SCIENCE — accepted in full, language
+walked back same-shift):** the originally-committed framing here
+("strongly confirmed," "the sharpest single number this cycle produced")
+overclaimed what was actually shown. Two open gaps, neither closed by
+this cycle: (a) the spiropyran 60–80% figure was measured under
+sun-comparable/photopic continuous illumination, not the dim/night ambient
+regime the witness scenario (Tier-W) actually specifies — nobody notices
+a swept flashlight beam in daylight-level light, so the sourced figure sits
+in the wrong intensity regime for the phenomenon this program studies; (b)
+a photostationary *population fraction* is chemistry, not a scored
+perceptual quantity — it has not been carried through ε_colored/
+ε_bleached, path length, and object geometry into an actual scene contrast
+(luminance or chromatic), nor checked against any sourced detection
+threshold analogous to T2's. **Correct standing as of this cycle: a real,
+sourced chemistry finding whose visual significance is unverified — not
+yet a scored constraint-3 violation.** What DOES survive this correction
+intact, and is arguably the more secure result: ELECTROMAGNETISM's
+structural derivation (Phase 5, independently re-derived by Red Team) that
+ANY hysteretic-σ(I) mechanism with reverse rate k_r slow relative to
+ambient dwell time has a strictly positive steady-state colored population
+n_ss = k_f(I_ambient)/(k_f(I_ambient)+k_r) for any nonzero k_f(I_ambient) —
+a class-level kinetic necessity, independent of any single material's
+measured coloration fraction, and not undone by discounting the spiropyran
+number specifically. Logged as new LIVE THREAD **T17** in LOGBOOK.md.
 
 **Two new, unanticipated findings, neither closing cleanly this cycle:**
 (1) a low-irradiance-capable RSA subclass (long-triplet-lifetime
@@ -413,24 +435,141 @@ dynamic range is genuinely open, not closed NO, pending a source that
 supplies a directly paired ε_colored/ε_bleached table — the WebFetch
 blockage is the specific reason this could not be resolved this cycle.
 
-**The rigor bar was only partially met.** This cycle set out to upgrade
-MATERIALS' self-flagged "informal" desk synthesis into something
-citation-backed; it did produce real paper/review titles, authors, and
-years for nearly every figure above, a substantial improvement — but
-WebFetch's total blockage across three of four legs means no primary-
-source table was independently read and verified end-to-end; every number
-rests on WebSearch's own snippet synthesis. Whether this clears Red Team's
-own "rigorous, not informal" bar, or lands short of it, is explicitly
-left to Phase 5's review, not decided unilaterally here.
+**The rigor bar was only partially met (Phase 5 ruling: PARTIAL, not
+full).** This cycle set out to upgrade MATERIALS' self-flagged "informal"
+desk synthesis into something citation-backed; it did produce real paper/
+review titles, authors, and years for nearly every figure above, a
+substantial improvement — but WebFetch's total blockage across three of
+four legs means no primary-source table was independently read and
+verified end-to-end; every number rests on WebSearch's own snippet
+synthesis. Phase 5 (PHOTONICS and MATERIALS, independently) rules this a
+real middle tier — "sourced-but-unverified" — above the prior informal
+synthesis but short of the "rigorous... gates clean" standard Checkpoint
+criterion 2 requires.
+
+**PHOTONICS' own Phase-2 mandatory fix (tag every extracted figure's
+wavelength against this program's 450/600/750nm sweep) was NOT carried out
+in the Results above** — a confirmed mandatory-fix miss (Red Team's Phase
+5 audit, checked directly against the text). Moderate severity: does not
+change RSA/TPA/VO2's verdicts (all fail by wide margins regardless of
+wavelength), but is directly load-bearing for the photochromic row —
+photochromic *coloration* is typically UV-driven (~350–380nm), outside
+both this program's sweep and a white flashlight's dominant spectrum, and
+whether the witness's actual flashlight even triggers the write step at
+all was never checked despite being explicitly committed to. Queued for
+Iteration 14, not resolved this cycle.
+
+**Checkpoint criterion 2 does not fire, for TWO independent reasons, not
+one.** NOTES.md's own pre-registration named the first (free-carrier
+absorption and combined saturable/RSA media remain untested). Red Team's
+Phase-5 audit adds a second, independently sufficient reason: even the
+four classes that WERE covered rest on WebSearch-snippet synthesis, not
+primary-source-verified figures — "gates clean" requires rigor this cycle
+admits it did not fully reach. Either gap alone would keep criterion 2
+from firing; both are open simultaneously.
+
+## Phase 5 — Review (six fresh seats, blind, verbatim) — summary
+
+Full verbatim reviews: LOGBOOK.md Iteration 13. All six seats reviewed the
+committed Results independently; two pairs of findings converged
+unprompted across blind seats — a rare and load-bearing signal:
+
+- **PHOTONICS and VISION SCIENCE independently attacked the same flagship
+  finding** (spiropyran's at-rest coloration) from different angles —
+  PHOTONICS on the wrong ambient-intensity regime (sun-comparable vs. the
+  witness's actual dim/night scene), VISION SCIENCE on the missing
+  chemistry-to-perception conversion. Both correct; both accepted; the
+  Learned section above is corrected accordingly.
+- **MATERIALS, ELECTROMAGNETISM, and QUANTUM OPTICS independently ranked
+  closing free-carrier absorption + combined saturable/RSA media as
+  Iteration 14's top priority** — near-unanimous, for compatible but
+  distinct reasons (MATERIALS: the last gap blocking Checkpoint-2;
+  ELECTROMAGNETISM: directly testable via this cycle's own kinetics
+  framework; QUANTUM: expressible in existing bench machinery).
+- **PHOTONICS** additionally caught its own Phase-2 fix (wavelength-tagging)
+  going unexecuted, and flagged that σ_abs/σ_ext≈0.51–0.61 (T9, this
+  program's own established figure) is being reused outside the near-field
+  box-scale regime it was validated in — an extrapolation risk, not
+  verdict-overturning.
+- **ELECTROMAGNETISM** derived the class-level leaky-integrator argument
+  described above, and found LOGBOOK.md's T1 entry has not yet absorbed
+  the hysteretic-σ(I)-with-memory distinction this cycle established
+  (grep-confirmed zero prior occurrences of "hysteretic"/"at-rest"/
+  "photochromic").
+- **THERMODYNAMICS** independently re-derived its own capped VO2 thermal
+  estimate from cited primitives and found the conclusion MORE robust than
+  originally stated (heating alone is fatal at the smallest length scale
+  tested, not only at cm–m scale) — with two flagged, non-verdict-
+  overturning inconsistencies (latent-heat handling; a possible ΔT
+  rise-vs-hysteresis-width ambiguity) queued for correction on promotion
+  to reusable code.
+- **QUANTUM OPTICS** found the absorption-only correction (its own Phase-2
+  mandatory fix) was applied correctly for RSA and photochromic, correctly
+  withheld for TPA (dimension doesn't apply), but is absent with no hard
+  number for VO2 — a real category error (molecular vs. Drude/plasma
+  physics), ruled non-load-bearing this cycle (VO2 already fails
+  independently by wide margins) but queued for correction before any
+  future standalone VO2 citation.
+
+**Red Team (audit, verdict: PARTIAL).** Independently re-derived EM's
+kinetics argument and THERMO's thermal estimate, confirming both sound.
+Confirmed PHOTONICS' wavelength-tagging miss directly against the text.
+Ruled the spiropyran overclaim a genuine constraint-3-language risk
+(Checkpoint criterion 4, narrow/self-correcting form — not a program
+pause, but a same-shift correction, completed above) precisely because
+EM's underlying catch is real and useful; the risk was in how the specific
+empirical number got described, not in raising the question. Ruled
+Checkpoint criterion 2 does not fire for two independent reasons (the
+pre-disclosed FCA/combined-media gap, plus the WebFetch-evidentiary-tier
+gap). Affirmed the near-unanimous FCA-next ranking with no dissenting
+consideration strong enough to displace it.
+
+**Director's synthesis: all four same-shift corrections in Red Team's
+docket accepted in full, applied above; none overridden.** This was
+itself an adjudication of two independently-converging blind critiques
+(PHOTONICS + VISION SCIENCE on the same finding) plus a confirmed textual
+miss (PHOTONICS' own wavelength-tagging fix) and a bookkeeping gap
+(LOGBOOK.md's T1 not yet reflecting this cycle's finding) — every one
+checked directly against the record, not asserted. Nothing in the docket
+warranted a Director override. **Verdict: PARTIAL** — a genuine,
+citation-sharpened four-class boundary-mapping result (Checkpoint criterion
+2 does not fire, disclosed on two independent grounds), a real new
+class-level finding (T17, secured on EM's structural derivation rather
+than the discounted empirical headline number), and a program-integrity
+catch resolved within the same cycle it was raised, per this program's own
+established precedent for what PARTIAL means (a cycle's own open questions
+close or don't — this one closed cleanly, with corrections disclosed, not
+smoothed over).
 
 ## Next
 
-Carried into Phase 5 for the seven-seat review to rank: (1) whether the
-diarylethene/spiropyran dynamic-range gap and the fulgide data gap warrant
-a dedicated re-run once/if WebFetch access is restored, rather than being
-left open; (2) whether the newly-surfaced RSA-subclass irradiance-vs-speed
-tradeoff deserves its own live thread; (3) free-carrier absorption and
-combined saturable/RSA media remain queued, untested, exactly as
-pre-disclosed; (4) whether the WebFetch-blockage methodology shortfall
-should itself be logged as a standing environment caveat for any future
-literature-check cycle.
+Ranked per Red Team's Phase-5 adjudication across all six seats:
+
+1. **Free-carrier absorption + combined saturable/RSA media literature
+   check** (near-unanimous: MATERIALS, ELECTROMAGNETISM, QUANTUM OPTICS),
+   same zero-FDTD-cost methodology — the last named-but-untested class
+   standing between this program and any legitimate future Checkpoint-2
+   attempt, on top of also needing the evidentiary-tier gap closed.
+2. **Targeted primary-source re-verification of this cycle's two fragile
+   numbers** (RSA's single-outlier ~40× porphyrin figure; the spiropyran
+   at-rest figure, specifically re-sourced at witness-relevant dim/night
+   ambient) via a working full-text access route, paired with the still-
+   outstanding wavelength-tagging check and the ε/path-length/geometry
+   perceptual conversion VISION SCIENCE named — before the spiropyran
+   figure is cited anywhere as a scored constraint-3 violation.
+3. **Formalize T17 (hysteretic-σ(I)-with-memory / constraint-3-at-rest) as
+   a persistent LOGBOOK thread** (done, this record) **and build the
+   rate-equation kernel in-engine** (QUANTUM's proposal) to bench-test the
+   at-rest population directly — converting this cycle's sourced-but-
+   unverified chemistry claim into a bench-confirmed, expressible
+   simulation result.
+
+Lower priority, inherited/queued: stage-10 T3 (temporal-contrast/flicker
+instrument) — VISION SCIENCE's and ELECTROMAGNETISM's own top-3 pick,
+independently, now flagged more urgent (second consecutive cycle producing
+a switching-speed verdict gated on it); docket #7's sourced witness-
+parameter table (flashlight irradiance AND the 10ms–1s window both remain
+unsourced, and every kinetic/thermal verdict this cycle issued depends on
+them); QUANTUM's VO2 absorption-correction category-error fix; THERMO's
+latent-heat/ΔT-quantity fix on promotion to reusable code; REALIZABILITY_
+MEMO.md amendment with this cycle's sharper cited figures (MATERIALS).
