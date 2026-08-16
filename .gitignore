@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 .venv/
 .firecrawl/
+experiments/*/run_log.txt
