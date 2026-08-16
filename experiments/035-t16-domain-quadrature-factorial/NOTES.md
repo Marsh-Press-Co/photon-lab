@@ -301,6 +301,128 @@ conflated with the g0-vs-g_raw gap above).
 
 ---
 
-*Predictions above committed to git before Phase 4's first new FDTD call,
-per house discipline. Phase 4 (Results) and Phase 5 (Review) appended
-below after the run.*
+*Predictions above committed to git before Phase 4's first new FDTD call
+(`ed6d007`), per house discipline.*
+
+## Phase 4 — Results
+
+68 new FDTD calls, 2724.3s (~45.4 min) — above the 25.5-min estimate
+(Block T16_CLOSE alone ran 1816.6s vs its own ~1019s estimate, ~1.8×; Block
+N17_NATIVE_V2 ran 907.6s vs its own ~513s estimate, ~1.8×; a consistent
+per-call underestimate, not a divergent one — flagged honestly, not
+material to any gate). Trust suite re-verified 46/46 green immediately
+before and after the run, no `lab/` diff. No new suite stage needed (no new
+engine machinery this cycle).
+
+**Block T16_CLOSE.** Coverage gate: **PASS** (C_empty=7.092×10⁻⁴, inside
+predicted [0.0005,0.003] — **P-T16-2 CONFIRMED**). Per-angle ±40° advisory:
+**PASS** at both angles (−1.050×10⁻³, −6.942×10⁻⁴, both ≪0.04 —
+**P-T16-3 CONFIRMED**). C(N9,thisdomain)=−0.005759806872194646 — exact
+bit-identical reproduction of exp-034's own R156 off_pass reading (free
+determinism check, as this program's own P-R156-4 precedent predicted).
+**C(N17,R156dom)=−0.005124028047369093.** Additive prediction was
+−0.005335; **interaction = +2.109×10⁻⁴ — at the REAL-INTERACTION boundary
+(≥2×10⁻⁴) — P-T16-1's central estimate (CONFIRMED-ADDITIVE) is REFUTED.**
+The domain-construction and angular-quadrature confounds disclosed at
+Iteration 11 are **not independent** — this is the falsifiable band's own
+named alternate outcome, pre-registered as "diagnostic of the near-field-
+fringe hypothesis T10/T12," not an unanticipated surprise. The practical
+bucket verdict still matches the qualitative central prediction: C(N17,
+R156dom) stays **MARGINAL**, not PASS — the interaction is real but not
+large enough to flip the ladder bucket at this geometry.
+
+**Block N17_NATIVE_V2.** Coverage gate: **PASS** (C_empty=9.266×10⁻⁴,
+inside predicted [0.0006,0.002] — **P-N17V2-3 CONFIRMED**). Per-angle ±40°
+advisory: **PASS** at both angles, but an order of magnitude larger in
+magnitude (−1.229×10⁻², −1.271×10⁻²) than Block T16_CLOSE's own
+(−1.050×10⁻³, −6.942×10⁻⁴) — both still ≪0.04, so the advisory itself does
+not fail, but this asymmetry is a new, unscored observation (below).
+C(N9,thisdomain)=−0.004586460833023719 — **exact bit-identical
+reproduction of exp-033's own established citation, delta=0.0 exactly —
+P-N17V2-1 CONFIRMED to the last printed digit.** **C(N17)=
+−0.005238648461746709.** delta(N9→N17)=6.522×10⁻⁴, inside the predicted
+falsifiable band [3×10⁻⁴,2×10⁻³] — **P-N17V2-2's band CONFIRMED.** The
+delta exceeds N17_NATIVE_V2_MARGIN (4.135×10⁻⁴) — **P-N17V2-2's central
+"exceeds margin" prediction CONFIRMED.** But the **directional**
+sub-prediction (quadrature convergence moves |C| toward zero, PASS-ward,
+matching the r=156 pattern) is **REFUTED**: |C| moved AWAY from zero, the
+same direction exp-034's own untrustworthy ad-hoc reading showed, not the
+opposite. **Consequence: this program's own headline, first-ever
+constraint-3 σ(I) OFF-state PASS (exp-032, Iteration 9, reconfirmed at
+cpl=30 by exp-033) downgrades from PASS to MARGINAL** the moment N9 is
+replaced by N17 on a correctly-constructed domain — the FIRST time this
+downgrade has been shown cleanly, without a domain-construction confound
+riding underneath it (exp-034's own N17_NATIVE attempt could not
+distinguish domain artifact from quadrature effect; this block can, and
+the domain gate here is clean).
+
+**Block T15_RECONCILE** (0 new calls, desk-only, disposition already
+computed and disclosed in Phase 3 as a pre-run correction): gaps 1.025% /
+2.690% / 3.067% at cpl=20/30/40, **GROWING** — T15 modestly reopens. π/4
+peak-chord amplitude sits a stable 14.30–14.55% above `chord_model_g0()`
+at all three resolutions, a separate, apparently resolution-independent
+gap, unexplained, newly disclosed as its own open question.
+
+**New, unscored observation (not pre-registered, flagged not overclaimed):**
+the per-angle ±40° empty-scene bias is ~12–18× larger in magnitude at
+r=78-native (N17_NATIVE_V2, ~−0.0123 to −0.0127) than at r=156
+(T16_CLOSE, ~−0.0007 to −0.0010), even though both pass the same loose
+advisory bound. This tracks the same direction as T16/T10/T12's own
+standing finding that r=78-native's instrument uncertainty exceeds
+r=156's (e.g. the N5-vs-N9 quadrature bound was 3.2× at r=78-native vs
+0.88× at r=156) — consistent with, not yet proof of, PHOTONICS' own
+Iteration-11 suggestion connecting the angular-quadrature sensitivity to
+the standing near-field-fringe hypothesis (T10/T12). Not folded into any
+scored verdict here; a candidate target for a future dedicated per-angle
+floor characterization (T11's own still-open item, extended to this
+channel).
+
+## Learned
+
+1. **The two disclosed Iteration-11 confounds (domain, quadrature) are not
+   additive at r=156 — they interact** (+2.109×10⁻⁴ interaction, at the
+   REAL-INTERACTION threshold). This program's first genuine 2×2
+   factorial on an instrument-uncertainty question came back non-trivial:
+   the confounds compound in a way a linear correction would have
+   mis-predicted, even though the practical PASS/MARGINAL bucket happened
+   not to flip this time. A future cycle should not assume additivity of
+   stacked instrument confounds without testing it, per this result.
+2. **This program's only-ever constraint-3 PASS does not survive proper
+   N17 correction at EITHER geometry it has ever been measured at.**
+   r=156 was already shown fragile at Iteration 11 (with a domain
+   confound riding underneath); this cycle shows the SAME downgrade at
+   r=78-native — the geometry the PASS citation actually originates from
+   — cleanly, with the domain confound resolved (bit-identical N9
+   reproduction proves the domain is correctly built). VISION's own
+   Iteration-11/12 concern ("a 9-angle discrete sum is NOT adequate for
+   this program's own bar") is now confirmed at the ONE geometry that
+   matters most for the headline citation, not just at r=156.
+3. **T15 does not close as a discretization artifact — it modestly
+   reopens**, once the original proposal's fabricated cpl=40 comparator
+   is corrected. The gap (raw g vs `chord_model_g0`) grows monotonically
+   with resolution across all three points this program has ever
+   measured (1.03%→2.69%→3.07%), a real, small, resolution-persistent
+   effect, un-mechanism-explained. This is 5–8× smaller than Iteration
+   10's original, already-refuted ~15% claim, so it does not resurrect
+   that number — but it is not zero, and not shrinking.
+4. **A newly-disclosed, separate ~14.3–14.5% gap exists between THERMO's
+   π/4 peak-chord amplitude and every `chord_model_g0()` value** — stable
+   across all three resolutions (unlike the g_raw-vs-chord-model gap,
+   which grows). Two different chord-idiom amplitudes this program has
+   committed to code disagree by a roughly constant amount; not yet
+   understood, not yet connected to any live thread beyond T15's own
+   "two extinction amplitudes...unreconciled" language.
+5. **This cycle's own compute estimate undershot by ~1.8× uniformly** (both
+   34-call blocks, not just one) — worth a standing note for future
+   budget estimates on this exact per-call/per-angle harness shape,
+   though not large enough to be a Checkpoint-3 "major build" trigger.
+6. Red Team's own zero-cost correction to a Phase-1 proposal error (raw g
+   comparison instead of a nonexistent floor-corrected cpl=40 number) held
+   up under the real run: the desk-computed GROWING disposition needed no
+   revision once real FDTD data existed alongside it (Block T15_RECONCILE
+   is desk-only and was already final at Phase 3).
+
+## Phase 5 — Review (seven fresh seats: six blind, Red Team last)
+
+*Appended below after Phase 5 completes — full verbatim text:
+LOGBOOK.md Iteration 12.*

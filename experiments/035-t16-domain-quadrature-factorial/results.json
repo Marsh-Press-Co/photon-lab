@@ -1,0 +1,114 @@
+{
+ "meta": {
+  "n_new_runs_total": 68,
+  "elapsed_s_total": 2724.259291410446,
+  "eps_r_idealization_note": "g0/g_corr/raw-C in this line are properties of an index-matched (eps_r == 1.0, n-1 <~ 1e-5) article -- a gas/aerosol host only. At a realizable condensed-phase index (n=1.33-1.5): two-surface ambient contrast C = -0.040 to -0.078 (VISION-ladder FAIL, independent of tau), specular return 143-571x the established camera floor (constraint-2 violation). NOT a material transfer function. (Fifth recurrence of this exact documentation gap across exp-031/032/033/034/035.)",
+  "materials_realizability_scope_note": "This cycle's T15 reconciliation (Block T15_RECONCILE) does NOT address, and is not a substitute for, REALIZABILITY_MEMO.md's still-open literature check -- D_req and the TPA irradiance gap are algebraically orthogonal to the ambient-contrast reading refined here (Red Team's ruling on MATERIALS' Phase-2 attack, mandatory fix 5).",
+  "n9_n17_n33_convergence_note": "N17 (this cycle) is still only the SECOND point of an eventual three-point (N9->N17->N33) angular-convergence sequence, not a converged endpoint -- N33 is queued as Iteration-13's top-ranked item (Red Team's ruling on VISION's Phase-2 attack, mandatory fix 6: substance accepted, but folding N33 into THIS cycle was rejected on cost grounds -- N9 is a zero-marginal-cost byproduct of the N17 run, not a separate 17-call leg, so there was no free substitution available)."
+ },
+ "block_t16_close": {
+  "n_new_runs": 34,
+  "elapsed_s": 1816.586697101593,
+  "C_empty_N17": 0.0007092104384753828,
+  "coverage_gate_pass": true,
+  "coverage_gate_threshold": 0.005,
+  "C_N9_from_this_domain": -0.005759806872194646,
+  "C_N17": -0.005124028047369093,
+  "delta_N9_vs_N17_same_domain": 0.0006357788248255525,
+  "C_established_reference": null,
+  "delta_vs_established": null,
+  "ladder_N17": "MARGINAL",
+  "ladder_N9_this_domain": "MARGINAL",
+  "per_angle_empty_check": {
+   "C_empty_plus40": -0.0010503316924216357,
+   "C_empty_minus40": -0.0006942303042943854,
+   "advisory_bound": 0.04,
+   "advisory_pass": true,
+   "note": "Advisory only (mandatory fix 4, EM's catch) -- NOT a previously-validated N=1/+-40deg-specific gate; a fail here means P-A1/P-B2's interaction/margin verdicts should be read with reduced confidence, not silently trusted, even if the aggregate coverage_gate_pass above is clean."
+  },
+  "existing_cells_reused": {
+   "C_N9_R156dom": -0.005759806872194646,
+   "C_N9_N17_156dom": -0.005404596414491869,
+   "C_N17_N17_156dom": -0.00497974499443827
+  },
+  "domain_effect_at_N9": -0.0003552104577027766,
+  "quadrature_effect_on_N17_156dom": 0.00042485142005359907,
+  "additive_prediction_C_N17_R156dom": -0.0053349554521410466,
+  "interaction": 0.00021092740477195344,
+  "interaction_verdict": "REAL INTERACTION (domain choice and angular convergence are not independent)",
+  "ladder_N17_R156dom": "MARGINAL"
+ },
+ "block_n17_native_v2": {
+  "n_new_runs": 34,
+  "elapsed_s": 907.6420736312866,
+  "C_empty_N17": 0.0009265568124420254,
+  "coverage_gate_pass": true,
+  "coverage_gate_threshold": 0.005,
+  "C_N9_from_this_domain": -0.004586460833023719,
+  "C_N17": -0.005238648461746709,
+  "delta_N9_vs_N17_same_domain": 0.0006521876287229897,
+  "C_established_reference": -0.004586460833023719,
+  "delta_vs_established": 0.0,
+  "ladder_N17": "MARGINAL",
+  "ladder_N9_this_domain": "PASS",
+  "per_angle_empty_check": {
+   "C_empty_plus40": -0.012285791778824719,
+   "C_empty_minus40": -0.012708951936678207,
+   "advisory_bound": 0.04,
+   "advisory_pass": true,
+   "note": "Advisory only (mandatory fix 4, EM's catch) -- NOT a previously-validated N=1/+-40deg-specific gate; a fail here means P-A1/P-B2's interaction/margin verdicts should be read with reduced confidence, not silently trusted, even if the aggregate coverage_gate_pass above is clean."
+  }
+ },
+ "block_t15_reconcile": {
+  "n_new_runs": 0,
+  "elapsed_s": 0.0,
+  "raw_g_vs_chord_model": {
+   "20": {
+    "g_raw": 0.692743113607875,
+    "chord_model_g0": 0.6857163680484835,
+    "gap": 0.007026745559391534,
+    "gap_pct": 0.010247306155735091
+   },
+   "30": {
+    "g_raw": 0.705609358926726,
+    "chord_model_g0": 0.6871235171113099,
+    "gap": 0.018485841815416126,
+    "gap_pct": 0.02690322970334536
+   },
+   "40": {
+    "g_raw": 0.7079279698199276,
+    "chord_model_g0": 0.686859909529991,
+    "gap": 0.021068060289936574,
+    "gap_pct": 0.03067300915022565
+   }
+  },
+  "disposition": "GROWING (T15 modestly REOPENS -- a real, resolution-persistent effect survives)",
+  "disposition_bands": {
+   "stable_or_shrinking": "gap(40) <= gap(20)*1.1",
+   "growing": "gap(40) > gap(20)*1.5",
+   "else": "inconclusive"
+  },
+  "pi4_amplitude_vs_chord_model": {
+   "20": {
+    "pi4_amplitude": 0.7853981633974483,
+    "chord_model_g0": 0.6857163680484835,
+    "gap_pct": 0.14536884343690748
+   },
+   "30": {
+    "pi4_amplitude": 0.7853981633974483,
+    "chord_model_g0": 0.6871235171113099,
+    "gap_pct": 0.14302326123152972
+   },
+   "40": {
+    "pi4_amplitude": 0.7853981633974483,
+    "chord_model_g0": 0.686859909529991,
+    "gap_pct": 0.14346193816274078
+   }
+  },
+  "note": "Corrected per Red Team Phase-2 mandatory fixes 1-3: the original Phase-1 proposal's cpl=40 comparator (0.687124) was a copy/paste of the r=117 chord-model value, not a measurement (PHOTONICS' catch, independently confirmed by Red Team). This table uses raw g=|C|/tau at all three resolutions, all zero-new-cost, and adds THERMO's pi/4-vs-chord-model comparison (mandatory fix 3)."
+ },
+ "thermo_sidecar_analytic": {
+  "label": "POST-RUN ANALYTIC, NOT AN FDTD OUTPUT (expressibility contract); off_pass tau_center=0.0065 unchanged from exp-034 -- sidecar constants carried forward, not recomputed (mandatory fix 3 scope note)",
+  "tau_off_pass": 0.0065
+ }
+}
