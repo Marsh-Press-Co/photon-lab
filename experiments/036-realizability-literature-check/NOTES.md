@@ -251,3 +251,186 @@ across four mechanism-class rows × five data axes, including the two new
 mandatory checks) plus one capped analytic thermal estimate. The cheapest
 cycle this program has run, and per Red Team's own ranking, the most
 overdue.
+
+## Phase 4 — Results (exp-036, 2026-08-16)
+
+Four independent search legs, one per mechanism-class row, run in
+parallel by fresh sub-agents against the pre-registered predictions above.
+
+**⚠ Methodology degradation, disclosed up front (verify-before-claim):**
+WebFetch was blocked by this session's network egress proxy for
+essentially every scholarly domain attempted (ScienceDirect, Nature,
+PMC/NCBI, arXiv, RSC, MDPI, AIP, ResearchGate, even Wikipedia) — three of
+the four legs (RSA, photochromic, photothermal) hit this independently and
+reported it explicitly; the TPA leg did not flag it, but also did not
+report opening full-text sources beyond what WebSearch's own snippets
+supplied. **Every figure below comes from WebSearch result/snippet
+synthesis, not independently-opened, directly-read primary-source
+tables.** Where 2+ distinct search hits from different papers/groups
+converged on the same order of magnitude, this is reported as meeting the
+≥2-independent-source bar in the weaker "corroborating search snippets"
+sense, not the stronger "read the actual tables" sense the Phase-1
+proposal and Red Team's "rigorous, not informal" framing intended. This is
+a real, honest shortfall against this cycle's own stated bar — flagged
+for Phase 5 to weigh, not smoothed over.
+
+### RSA — **published-partial, CONFIRMED, dynamic range remains the sole decisive gap, now measured wider**
+
+Real dynamic-range figures found across every named family: 2.8–7.2×
+(Ir-acac complexes, systematic 5-compound series), ~2× (heavy-atom
+phthalocyanines, the field's most-cited paper), ~40× (single-source
+porphyrin outlier, explicitly self-described in its own text as "among the
+best values found in the literature"). Repeated targeted searches for
+>100×/>500× RSA dynamic-range claims across every named family returned
+**nothing** — a genuine negative result. Applying QUANTUM's mandatory
+absorption-only correction (÷0.51–0.61) sharpens the effective bar from
+≥540–600× to **≥~890–1,180×** — against the best literature figure found
+(~40×), the shortfall widens to **~22–30×**, not the naive ~13–15×.
+Irradiance **confirmed clearing even more strongly than predicted**: a
+distinct RSA subclass (long-lived-triplet accumulation, Hirata et al.,
+*Nature Materials* 13, 938 (2014)) operates at **10⁻⁴ W/cm² — below the
+~10⁻³ W/cm² witness estimate itself**, not just the generous ceiling.
+Switching speed confirmed **ns–µs, clears trivially** for classic RSA
+materials — but a genuinely new, unanticipated finding: the same
+low-irradiance-capable subclass achieves its sensitivity via triplet
+lifetimes reaching **1–21+ seconds**, plausibly **failing the reverse/
+reset leg** of the 10ms–1s window — an internal RSA-class irradiance-vs-
+speed tradeoff this program had not previously considered, and a possible
+new constraint-3-at-rest risk for that specific subclass (moderate
+confidence, flagged not scored).
+
+### TPA — **unobtainium, CONFIRMED, irradiance gap sharpened not shrunk**
+
+Dynamic-range/exponent (n≈1, structurally intensity-proportional)
+confirmed as textbook-standard across every source — the least
+contestable finding of the cycle. Irradiance: real, cited visible-
+wavelength thresholds (Sheik-Bahae/Van Stryland foundational
+semiconductor-TPA database; He et al. *Opt. Lett.* 20, 435 (1995), visible
+602nm demonstration; ZnSe/GaAs-nanocrystal Z-scan studies) cluster
+**~10⁷–10⁸ W/cm²** — landing at the lower-middle of the prior 10⁶–10⁹
+estimate, i.e. **~9–11 orders of magnitude above the ≤10⁻²/~10⁻³ W/cm²
+ceilings**, squarely inside (not below, not above) the pre-registered
+8–12 OOM band. Switching speed confirmed sub-ps/instantaneous both
+directions (virtual-state process, no real-state bottleneck), with a
+minor caveat: applied TPA optical limiters often pair the instantaneous
+TPA event with a secondary, genuinely slower excited-state/free-carrier
+process (~ns) — irrelevant to the ms–s window either way.
+
+### Photochromic (photochemical) — **published-partial, CONFIRMED, with the at-rest failure now the strongest single finding of the cycle**
+
+Dynamic range sharpened rather than uniformly confirmed: azobenzene
+cleanly confirms "1–2 orders short" (~3–6× after absorption-only
+correction, 2 independent sources on both ε values); diarylethene and
+spiropyran are **genuinely open, not closed** — both show near-zero
+bleached-state baseline absorption at the colored band, meaning the
+intrinsic on/off ratio could in principle be large, but no paired
+ε_colored/ε_bleached table was recoverable given the WebFetch blockage;
+fulgide dynamic range is an **outright data gap** (no figure found).
+Irradiance confirmed clearing easily (2.4×10⁻³ W/cm², near the witness
+estimate itself). Reverse-switching speed confirmed as the dominant
+failure mode for the commonly-cited, durable systems (spiropyran thermal
+half-lives sec–hours–effectively-permanent depending on matrix; P-type
+diarylethene/fulgide have no thermal reverse path at all, structurally
+failing constraint 4 regardless of speed) — **but real, published fast
+exceptions exist** (fast T-type diarylethenes, µs–ms; amino-/push-pull
+azobenzenes, ms–s), just not the durable systems the pre-registration had
+in mind. **Constraint-3-at-rest — EM's mandatory catch — strongly
+confirmed, the sharpest result of this experiment**: spiropyran reaches
+**60–80% steady-state colored (merocyanine) population under continuous,
+sun-comparable ambient illumination**, two independent sources, no
+flashlight involved at all; P-type systems (fulgide, most diarylethenes)
+are structurally worse (dose-ratcheting toward their photostationary
+ceiling with no thermal escape channel); a newly-surfaced **all-visible-
+light-activated diarylethene subclass** would fail this check
+unconditionally, needing no UV at all. Caveat carried honestly: robust for
+outdoor/daylight-spectrum ambient; the magnitude at dim indoor ambient
+specifically is kinetically expected non-zero but not directly sourced at
+that intensity.
+
+### Photothermal (VO2) — **unobtainium, CONFIRMED, and sharper than predicted**
+
+Intrinsic dynamic range (distinguishing bare-material figures from
+metasurface/resonant-cavity device figures, per PHOTONICS' film-vs-
+intrinsic discipline applied here too) is order 10–30×, likely 1–2 orders
+short even before irradiance is considered — moot, since irradiance fails
+independently and more severely. Irradiance/pump-regime confirmed
+decisively: every pulsed demonstration found sits 6–9 OOM above the
+witness estimate; every CW demonstration, even the most favorably
+plasmonically-enhanced case (0.28–0.4 W/cm²), sits 2–5+ OOM above it — VO2
+photoswitching is essentially never demonstrated at diffuse, unconcentrated
+CW flux. THERMODYNAMICS' mandatory capped analytic estimate, worked
+through with cited VO2 thermal properties (ρ=4340 kg/m³, c_p≈690 J/kg·K,
+κ≈3.5 W/m·K, α≈1.17×10⁻⁶ m²/s) against this program's own T5 power budget:
+heating time at flashlight-level absorbed power ranges from **~15–45s**
+(idealized 1µm film, zero-loss, latent-heat-corrected) to **~1.7 days**
+(1cm scale); passive reset time ranges from **~0.85µs** (1µm) to **~11.5
+days** (1m), crossing the 1s mark near L≈1mm. **Sharper than
+pre-registered: no length scale from µm to m clears BOTH legs
+simultaneously** — the heating leg alone is fatal across the *entire*
+tested size range, not only at the cm–m scale the pre-registration named.
+Constraint-3-at-rest confirmed no signature under ordinary ambient — VO2
+"smart window" self-activation is real but requires direct, sustained,
+hours-long solar irradiance (~0.1 W/cm², two orders above flashlight
+level) heating the object's entire bulk, mechanistically distinct from
+this program's ordinary-ambient framing.
+
+## Learned
+
+**Program-level pre-registered prediction CONFIRMED**: no mechanism class
+clears all bounds simultaneously, and the four classes fail via four
+structurally distinct, non-overlapping primary gaps, now literature-
+grounded rather than informally estimated — RSA (dynamic range, ~22–30×
+short of the absorption-corrected bar even at the best published figure),
+TPA (quantum-nonlinear irradiance threshold, ~9–11 OOM), photochromic
+(reverse-switching speed AND/OR a strongly-confirmed constraint-3-at-rest
+failure — the single sharpest finding of this cycle), photothermal/VO2
+(bulk thermal power-budget/diffusion, now shown fatal at every length
+scale tested, not just cm–m). This is the genuine boundary-mapping result
+PANEL.md's "honest alternative product" names — four now-cited mechanism
+classes, four distinct failure modes, each independently sufficient.
+
+**Checkpoint criterion 2 does NOT fire**, exactly as pre-committed: this
+cycle deliberately left free-carrier absorption and combined saturable/RSA
+media untested (Red Team's own mandatory disclosure). A clean four-class
+sweep, however decisive, is not "a whole mechanism class" ruled out.
+
+**Constraint-3-at-rest is a genuinely new, load-bearing finding this
+program had never checked before this cycle** (ELECTROMAGNETISM's Phase-2
+catch): σ(x,t)-adjacent hysteretic mechanisms can fail PANEL.md's hardest
+clause — "not a black silhouette at rest under ambient light" — via
+ordinary daylight alone, independent of the flashlight entirely. Spiropyran's
+60–80% photostationary coloration under continuous sun-comparable light is
+real, sourced (if intensity-caveated for dim indoor light specifically),
+and the sharpest single number this cycle produced.
+
+**Two new, unanticipated findings, neither closing cleanly this cycle:**
+(1) a low-irradiance-capable RSA subclass (long-triplet-lifetime
+materials) appears to trade its irradiance advantage for a probable
+reverse-switching-speed failure — an internal tradeoff within the RSA
+class itself, structurally echoing the photochromic row's own failure
+mode, previously unconsidered; (2) diarylethene/spiropyran intrinsic
+dynamic range is genuinely open, not closed NO, pending a source that
+supplies a directly paired ε_colored/ε_bleached table — the WebFetch
+blockage is the specific reason this could not be resolved this cycle.
+
+**The rigor bar was only partially met.** This cycle set out to upgrade
+MATERIALS' self-flagged "informal" desk synthesis into something
+citation-backed; it did produce real paper/review titles, authors, and
+years for nearly every figure above, a substantial improvement — but
+WebFetch's total blockage across three of four legs means no primary-
+source table was independently read and verified end-to-end; every number
+rests on WebSearch's own snippet synthesis. Whether this clears Red Team's
+own "rigorous, not informal" bar, or lands short of it, is explicitly
+left to Phase 5's review, not decided unilaterally here.
+
+## Next
+
+Carried into Phase 5 for the seven-seat review to rank: (1) whether the
+diarylethene/spiropyran dynamic-range gap and the fulgide data gap warrant
+a dedicated re-run once/if WebFetch access is restored, rather than being
+left open; (2) whether the newly-surfaced RSA-subclass irradiance-vs-speed
+tradeoff deserves its own live thread; (3) free-carrier absorption and
+combined saturable/RSA media remain queued, untested, exactly as
+pre-disclosed; (4) whether the WebFetch-blockage methodology shortfall
+should itself be logged as a standing environment caveat for any future
+literature-check cycle.
