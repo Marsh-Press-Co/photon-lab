@@ -2,6 +2,81 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-17 (panel shift) — Iteration 18 complete (exp-041): T20 audited
+and closed — the ±40° angle pair was never uniquely bad, the whole
+36°→40° window fails the real gate at 600/750nm, and the mechanism is now
+a Red-Team-hardened Huygens edge-diffraction model near the sweep's own
+Nyquist limit. New live thread T21 opened. Seven-seat Phase 5: 4 PARTIAL /
+2 PROMISING, Red Team adjudicates PARTIAL. VISION's Phase-5 catch (a
+LIVE-THREADS propagation gap one cycle from repeating Iteration 17's
+Checkpoint-4 pattern) fixed in this same close — no Checkpoint fires.
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle
+(numpy/scipy/matplotlib/pillow/autograd/fdtd via pip, then `ceviche
+--no-deps`). Bench trust suite reconfirmed green before any work: `--only
+12346789` 41/41, matching Iteration 17's own committed record. Iteration
+17 found fully closed out on arrival.
+
+**Iteration 18 — Auditing the ±40° Angle Pair as the N17 Correction
+Standard (exp-041, CONCLUDED this shift).** Lead: QUANTUM OPTICS
+(rotation), executing Iteration 17's Red-Team-ranked #1 priority (live
+thread T20). Phase 2's Red Team audit caught two load-bearing defects:
+the Phase-1 draft mislabeled the scoring gate as 0.005 (VISION's own catch
+— exp-024's real committed hard gate is 0.001; 0.005 is VISION's own T2
+perceptual bar, not an instrument-floor gate) and falsely claimed θ=40°
+had already been trust-suite-gated (it never had). Both fixed pre-commit;
+PHOTONICS' object-present spot-check and EM's θ=41–43° extension adopted
+as correctable additions. Predictions committed (`9621609`); Phase 4 ran
+38 new FDTD calls clean (41/41 bench, before and after): **the ±40° pair
+was never uniquely bad** — a 1°-step sweep found the per-angle empty-scene
+floor oscillates in SIGN with a ~1.4–2.5° period across the WHOLE
+36°→43° window, at every wavelength; at 600/750nm every swept angle from
+36°–40° fails the real 0.001 gate. None of the three pre-registered shape
+outcomes survived — a fourth, unanticipated outcome (the oscillation)
+occurred instead, though the ±θ symmetry prediction (P-M3) held, proving
+the pattern reproducible rather than per-run noise. New live thread T21
+opened. Results committed (`83f880c`).
+
+**Phase 5 (six fresh blind discipline seats, then Red Team audit, run
+this shift): 4 PARTIAL (PHOTONICS, MATERIALS, THERMO, VISION), 2 PROMISING
+(EM, QUANTUM OPTICS)** — the first split Phase-5 verdict count since
+Iteration 8. ELECTROMAGNETISM built a zero-free-parameter Huygens
+edge-diffraction model (source taper-edge offset A=752 cells, period
+P(θ)=λ/(A·cosθ)) correctly predicting 600nm's clean sign-alternation as a
+near-Nyquist aliasing effect (predicted period≈2°, matching the 1°-sweep's
+own Nyquist limit) — the opposite ordering PHOTONICS' own simpler
+λ-scaling test expected. Red Team's central Phase-5 adjudication ruled
+these are NOT competing findings: PHOTONICS' test assumed monotonic
+λ-scaling, valid only far from Nyquist; EM's fuller, near-Nyquist account
+is the correct one, independently corroborated by Red Team's own harder
+cross-λ phase-deviation test. Triple-confirmed citation fix: `walk(θ)`'s
+slope is ≈6.0–7.2 cells/degree near θ=40°, not the originally-cited "≈4."
+Ruled NOT primarily a grid-quantization artifact (wavelength-independent
+by construction; no rounding stage found in `add_line_source`) — a
+narrower residual role in the smaller ±θ magnitude asymmetry not excluded.
+**VISION's own load-bearing catch**: the Phase-3 gate fix (GATE_HARD=0.001)
+had propagated cleanly into `results.json`/NOTES.md but NOT yet into
+LOGBOOK's own LIVE THREADS T20 entry (still citing stale 0.005 language,
+no T21 entry) — the exact scope-tag-propagation pattern that fired this
+program's only-ever Checkpoint-4 event one cycle earlier. **Fixed in this
+same Director's close** (T20 entry corrected, T21 entry added,
+"≈4 cells/degree" corrected program-wide) — Checkpoint criterion 4 does
+NOT fire, since the recurrence was caught and corrected within the cycle
+that produced it, not left uncorrected into a next one.
+
+**Ruling: VERDICT PARTIAL** (Red Team's adjudication adopted over the raw
+4-2 split, per this program's own precedent — turns on whether a cycle's
+own open questions close). T20's own question closed cleanly and far more
+informatively than any pre-registered prediction anticipated. What did
+not close: the fringe mechanism is validated against signs/ranking only,
+not magnitudes — Iteration 19's own top priority exists specifically to
+close that gap at zero FDTD cost. **No Checkpoint criterion fires.** Next
+lead per rotation: **VISION SCIENCE** (Iteration 19) — though Iteration
+19's own ranked #1 item is a zero-cost analytic check flowing directly
+from this cycle's own findings, not a fresh lead-seat mechanism proposal;
+see PLAN.md for the full ranked queue.
+Full record: LOGBOOK.md Iteration 18.
+
 ## 2026-08-17 (panel shift) — Iteration 17 complete (exp-040): the
 amplitude bridge built and gate-clean (5/5 predictions confirmed,
 0.20–0.43% in the never-before-measured saturation shoulder), a

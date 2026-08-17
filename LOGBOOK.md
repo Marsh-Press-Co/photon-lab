@@ -892,17 +892,97 @@ measured them here):**
   per-angle ±40° empty-scene floor at r=78-native is **2.35–2.43× the
   article's entire measured signal** and **29.7× the PASS margin it
   retracted**, exceeding this program's own established empty-identity
-  gates (stage 9's |C_empty|≤0.01; exp-024's δ_C≤0.005) by 2.46–2.54×.
-  The advisory bound that let ±40° pass at N17 (0.04) is a ±15°
-  single-angle reference, 3.2× too loose to catch this by construction.
-  exp-040 itself is undamaged (its own dual-g disclosure treats the
-  N9→N17 shift as open, extrapolating in neither direction) — this is a
-  program-level internal inconsistency between two independently-adopted
-  standards, standing since Iteration 11/12, never before assembled.
-  Ranked Iteration 18's #1 priority: (a) zero-cost desk enumeration of
-  every committed conclusion resting on an N17-vs-N9 delta; (b) execute
-  Iteration 2's own never-run fine angle sweep, ~15–30 empty-scene-only
-  runs, scored against the tighter 0.005 gate.
+  gates (stage 9's |C_empty|≤0.005; exp-024's own hard gate δ_C≤0.001,
+  corrected here — an earlier draft of this entry mislabeled it 0.005,
+  which is VISION's own T2 perceptual C_thr bar, not an instrument-floor
+  gate; caught at Iteration 18 Phase 2) by 2.46–2.54× the (correctly
+  labeled) 0.001 figure. The advisory bound that let ±40° pass at N17
+  (0.04) is a ±15° single-angle reference, 3.2× too loose to catch this by
+  construction. exp-040 itself is undamaged (its own dual-g disclosure
+  treats the N9→N17 shift as open, extrapolating in neither direction) —
+  this is a program-level internal inconsistency between two
+  independently-adopted standards, standing since Iteration 11/12, never
+  before assembled.
+  **AUDITED (Iteration 18, exp-041): the ±40°-specific framing was ITSELF
+  wrong.** A fine 1°-step sweep (θ∈{36..43}°, both signs, 3λ,
+  exp-024's exact geometry) scored against the corrected GATE_HARD=0.001
+  found the per-angle floor oscillates in SIGN with a ~1.4–2.5° period
+  (wavelength-dependent) across the WHOLE window — at 600/750nm, every
+  single swept angle from 36°–40° fails the real gate, not just ±40°.
+  Leg (a)'s desk audit (completed, unchallenged) enumerated the committed
+  conclusions actually resting on an N17-vs-N9 delta: primarily exp-032/
+  033's PASS→MARGINAL downgrade (Δ=6.522×10⁻⁴, exp-035) and three
+  secondary citations (exp-034's headline, Block T16_CLOSE's interaction
+  verdict, exp-040's dual-g decomposition); T16's own "off_lab at both
+  scales" program-wide claim is flagged as an unverified analogy, never
+  itself measured at N17. T20's original question ("is ±40° specifically
+  bad?") is now answered NO and superseded by live thread **T21** (below) —
+  see LOGBOOK Iteration 18 for the full record. T20 itself is CLOSED as a
+  distinct question; its downstream consequence (does the exp-032 PASS→
+  MARGINAL citation still hold, given the correction it rested on is not
+  what it appeared to be?) is inherited by T21, not left dangling here.
+- **T21 — the ambient-contrast instrument's per-angle floor is a real,
+  under-sampled angular fringe, not a threshold anywhere in particular
+  (opened Iteration 18, exp-041, superseding T20's own framing).** A 1°-step
+  sweep (θ∈{36..43}°, both signs, 3λ) found `C_empty(θ)` oscillates in sign
+  with a period of roughly 1.4–2.5° (wavelength-dependent), reproducible
+  between independently-run +θ/−θ pairs (ruling out per-run noise) — at
+  600/750nm every swept angle from 36°–40° fails the real GATE_HARD=0.001,
+  not just ±40°. **Mechanism (Phase 5, ELECTROMAGNETISM's own zero-free-
+  parameter model, Red-Team-verified and hardened with an independent
+  discriminating test): a genuine Huygens edge-diffraction fringe from the
+  source's own two taper edges, offset A=752 cells from the object window
+  center, period P(θ)=λ/(A·cosθ) — predicted periods 1.4°/1.9°/2.4° at
+  450/600/750nm, all close to the 2° Nyquist limit of the 1° angular
+  sampling grid used.** This correctly predicts, at zero additional cost,
+  that 600nm's period (nearest 2°, hence nearest Nyquist-critical) should
+  show the cleanest sign-alternation while 450nm and 750nm show messier,
+  aliased patterns — exactly what the already-collected data shows, and
+  what a naive "λ scales the period monotonically" reading (PHOTONICS'
+  Phase-5 first pass) would have predicted backwards. Red Team's own
+  independent, sharper cross-λ test (each λ's per-step phase-advance
+  deviation from the ideal 180°: 450nm 63–73° off, 750nm 30–34° off, 600nm
+  2–10° off) reproduces the same ranking the raw same-sign-pair counts show
+  (2, 1, 0 respectively) — corroborating EM's mechanism independently of
+  EM's own weaker "43% of arbitrary phase offsets would also pass"
+  cross-check. **Ruled NOT primarily a grid-quantization artifact of
+  `walk(θ)=D_SP·tanθ`** (the originally-named candidate (b)): that
+  mechanism is wavelength-independent by construction (D_SP has no λ
+  dependence), contradicting the observed per-λ pattern; `add_line_source`
+  injects a continuous per-cell phase ramp with no rounding stage found in
+  code; and independent triple confirmation (PHOTONICS, EM, Red Team) puts
+  `d(walk)/dθ` at ≈6.0–7.2 cells/degree near θ=40°, not the originally-
+  cited "≈4" — corrected here. A narrower residual claim survives: ordinary
+  Yee-grid numerical dispersion/staircasing remains a plausible contributor
+  to the SMALLER (0.8–30%) ±θ magnitude asymmetry specifically (a discretized
+  aperture cannot be perfectly mirror-symmetric under θ→−θ), not to the
+  dominant oscillation itself. **Not yet resolved: magnitude-level
+  validation** — EM's model has been checked against the sign/ranking
+  pattern only, not against the actual measured |C_empty(θ)| values; Red
+  Team's own top-ranked Iteration-19 priority is a zero-FDTD analytic
+  chord-model companion (this program's own established idiom, cf. T15's
+  `chord_model_g0`) scored directly against all 30 Block MAIN rows, before
+  any new FDTD spend. **Consequence for T16**: the angular-quadrature
+  uncertainty T16 measured (N9-vs-N17 deltas) should be read as sampling a
+  real sub-N17-spacing fringe at effectively uncorrelated phase points, not
+  as classical quadrature error shrinking with more angles — N33 is not
+  guaranteed to converge the reading further unless its own angle set
+  specifically increases resolution in the affected window, a load-bearing
+  caveat for any future N33 design (EM's Phase-5 finding, Red-Team-adopted).
+  **Consequence for T7**: EM's own Phase-5 review rules the "twentyfold
+  cancellation collapse" (a margin/fringe-ratio-domain phenomenon) and T21
+  (an angle-domain diffraction fringe) are related but distinct coherent-
+  sum phenomena on different control axes — should not be conflated going
+  forward. Ranked Iteration-19 priorities (Red Team's synthesis across all
+  six Phase-5 seats, tiered): analytic chord-model magnitude check (zero
+  cost, top priority); a combined finer-angle-resolution (Δθ=0.25–0.5°,
+  θ∈[37°,42°]) AND cpl 20→30 R3 sweep at all 3λ (QUANTUM's own design,
+  resolving the PHOTONICS/EM/MATERIALS disagreement over which axis to
+  refine first by doing both); VISION's zero-cost beam-divergence/
+  contamination-risk check (does the fringe survive integration over a
+  realistic flashlight beam's own angular spread, and does its
+  750nm/θ=40° amplitude — 0.0237, 4.7× VISION's own T2 photopic C_thr —
+  pose a contamination risk for any future near-±40° constraint-3 run).
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -6977,3 +7057,174 @@ silently deferred) — reframes T20 from "is ±40° specifically bad" to "is
 this program's entire N9/N17/fallback angular-quadrature family
 under-sampling a real fine angular structure." Full record:
 `experiments/041-t20-angle-audit/NOTES.md`.
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**PHOTONICS (PARTIAL).** Verified NOTES.md's numbers exactly against
+`results.json`. Ran three plausibility tests against the reported ~1–2°
+period: a hard λ/2 floor (1.13–1.88° — the reported period sits AT this
+floor, ≤1.9 samples/half-period, at/below Nyquist), the classic Fresnel
+knife-edge spacing √(λz) (8.7–11.3° — the 7–8°-wide swept window shows
+3–4× more oscillations than this predicts), and a direct λ-scaling check
+(found the WRONG ordering — 600nm alternates cleanest, not 450nm as a
+naive λ-scaled fringe would predict). Read this as "the fingerprint of a
+coarse angular grid aliasing a finer/different structure," not coherently
+λ-dispersed physics. Independently corrected "≈4 cells/degree" to ≈6.63.
+Recommended a finer-Δθ resweep BEFORE any cpl-only R3 check, since cpl
+refinement alone can't resolve Δθ-aliasing.
+
+**MATERIALS (PARTIAL).** Verified results against `REALIZABILITY_MEMO.md`;
+confirmed the pre-committed realizability cap holds — neither UNOBTANIUM
+verdict moves. But found the actual (bigger, structurally different)
+result WEAKENS confidence in Amendment 1's own D_req citation specifically:
+the exp-032 PASS→MARGINAL delta (6.522×10⁻⁴) sits inside a >20×-per-degree
+oscillation whose mechanism was unresolved at review time — can no longer
+be certified as converged rather than a phase sample of an unresolved
+fringe. Recommended Amendment 1 carry a pointer flagging this pending T21.
+
+**ELECTROMAGNETISM (PROMISING).** Built a zero-free-parameter physical
+model — the source's two taper edges (offset A=752 cells from the window
+center) radiating Huygens edge waves, period P(θ)=λ/(A·cosθ) — predicting
+1.4–2.5° periods across 450–750nm, close to the 1°-step sweep's own 2°
+Nyquist limit. Showed this correctly predicts 600nm's clean alternation
+(period nearest 2°) versus 450/750nm's messier patterns — the opposite
+ordering PHOTONICS' simpler λ-scaling test expected, resolved once
+near-Nyquist aliasing is modeled explicitly. Independently confirmed
+d(walk)/dθ≈6.0–7.2 cells/degree (not "≈4") and found no code stage
+quantizing the source injection to `walk(θ)`'s integer cell value —
+weighing against grid-quantization as the DOMINANT mechanism (a narrower
+residual-dispersion role in the smaller ±θ asymmetry not excluded).
+Confirmed reciprocity/passivity/causality not implicated (empty/linear,
+single-CW-frequency). Reframed T16's angular-quadrature uncertainty as
+likely a lower bound, not shrinking quadrature error, given real
+sub-N17-spacing structure. Distinguished T21 from T7's "twentyfold
+cancellation collapse" (different control axis, should not be conflated).
+
+**THERMODYNAMICS (PARTIAL).** Confirmed charter-correct silence (no
+absorbed-power claim anywhere in this cycle's own data) and confirmed the
+Phase-3 THERMO-deferral ruling was honored explicitly, not silently.
+Independently pushed to re-rank PLAN.md's two zero-FDTD-cost THERMO items
+(sourcing the seven-cycle-unsourced ΔT anchor; docket #7's witness table,
+now verdict-determining for exp-040's v2 above-NETD finding) ahead of a
+T21 resolution check on program-relevance grounds, while noting the two
+don't structurally compete for budget.
+
+**QUANTUM OPTICS (PROMISING, reviewing its own Phase-1 cycle as a fresh,
+independent instance).** Verified the Phase-3 synthesis correctly
+implemented every Phase-2 mandatory fix, no residual defect. Independently
+derived the same d(walk)/dθ≈6.63 cells/degree correction. Proposed a
+falsifiable λ-scaling discriminator (half-periods 1.13°/1.51°/1.89° at
+450/600/750nm) paralleling EM's later, more complete model. Connected T21
+to exp-029's own coherent-superposition machinery (the same interference-
+fringe parameter class this program has already trust-gated) and to T15's
+own resolution-GROWING near-field deficit at the identical PLANE_DX=0.75λ
+standoff — read as prior-program precedent that structure at this standoff
+is more often real than artifact.
+
+**VISION SCIENCE (PARTIAL, load-bearing catch).** Confirmed the GATE_HARD
+fix propagated cleanly inside `results.json`→NOTES.md's own Results
+section. But found it had NOT yet propagated to LOGBOOK.md's own LIVE
+THREADS T20 entry (still citing the stale 0.005 language) or added a T21
+entry there — the exact scope-tag-non-propagation pattern that fired this
+program's only Checkpoint-4 event one cycle ago, now at risk of recurring
+in the very next cycle if left uncorrected. Flagged a secondary
+mis-citation risk: `results.json`'s bare `pass_gate_perceptual_context`
+field is primed for later reuse as if it were a scored perceptual verdict,
+which it is not; and flagged 750nm/θ=40°'s 0.0237 reading (4.7× VISION's
+own T2 C_thr) as a concrete future contamination-risk bound, not a
+constraint-3 finding in its own right.
+
+**RED TEAM (numbered attacks, independently re-derived, then overall
+ruling).** Re-verified every housekeeping claim directly. Central
+adjudication: re-derived EM's P(θ)=λ/(A·cosθ) model exactly, and
+PHOTONICS' λ/2-floor and Fresnel-spacing figures exactly, then ran a
+harder cross-λ test neither seat attempted (per-step phase-advance
+deviation from 180°: 450nm 63–73° off, 750nm 30–34° off, 600nm 2–10° off —
+matching the observed same-sign-pair counts 2/1/0 exactly). **Ruling: EM
+and PHOTONICS are not in conflict** — PHOTONICS' λ-scaling test assumed
+monotonic scaling, which only holds far from Nyquist; near-Nyquist (as
+here), EM's non-monotonic "cleanest-nearest-2°" prediction is the correct
+one, and PHOTONICS' own "looks aliased" read is one inferential step short
+of EM's fuller account, not a rival finding. Noted EM's own 600nm
+cross-check is weaker than advertised (43% of arbitrary phase offsets
+would also pass it) — superseded by Red Team's own harder ranking test.
+Confirmed PHOTONICS' Fresnel-spacing test doesn't actually test EM's
+mechanism (uses the wrong distance, z=223 instead of the edge-to-observer
+≈784 cells) — a cross-comparison slip, not a defect in either seat's
+isolated work. **Independently re-confirmed VISION's LIVE-THREADS catch
+by direct read of the file, ruled MANDATORY and load-bearing** — leaving
+it uncorrected through this close would be a second consecutive-cycle
+instance of the exact failure shape Checkpoint criterion 4 already fired
+on once. Synthesized all six seats' next-direction lists into a tiered
+Iteration-19 ranking (below). No `[unfalsifiable]`, `[inexpressible]`, or
+`[constraint-#N-violation]` findings. One process observation, not a
+Checkpoint trigger: three of six seats independently named that
+Iterations 17–18 are two straight process/instrument cycles over
+mechanism work — noted for Iteration 19's sequencing, not elevated further
+by Red Team's own reading of Checkpoint criterion 5's letter.
+
+### Director's close of Iteration 18
+
+**Verdict: PARTIAL** (4 of 6 blind seats — PHOTONICS, MATERIALS, THERMO,
+VISION — against 2 PROMISING — EM, QUANTUM OPTICS; Red Team's adjudication
+adopted per this program's own established precedent that verdict turns on
+whether a cycle's own open questions close, not a raw seat count). T20's
+own question closed cleanly and far more informatively than either
+pre-registered prediction anticipated: the ±40° pair was never uniquely
+bad — most of the 36°→40° window fails the real GATE_HARD=0.001 at 600 and
+750nm, and the mechanism is now well-characterized (not just observed) as
+a genuine, Red-Team-hardened Huygens edge-diffraction fringe near the
+1°-sampling Nyquist limit, not primarily a grid-quantization artifact.
+What did not close, honestly stated rather than rounded up to PROMISING:
+the fringe model is validated against signs and ranking only, not
+magnitudes — Tier 1 of Iteration 19's own queue exists specifically to
+close that gap at zero FDTD cost before any further run is trusted to
+build on it; and the LIVE THREADS propagation gap VISION caught, now
+fixed in this same close (see the T20/T21 entries above), came within one
+cycle of recurring on the exact pattern that fired this program's only
+Checkpoint event to date. Both gaps are cheap, specific, and now either
+closed (LIVE THREADS) or queued first (the magnitude check) — the
+disciplined reason this closes PARTIAL rather than RULED OUT or a
+premature PROMISING. No Checkpoint criterion fires this cycle: criterion 4
+does not fire (the pattern was CAUGHT and CORRECTED within this same
+close, not left to a next cycle — Red Team's own ruling, consistent with
+Iteration 15's standing instruction being about an UNCORRECTED recurrence,
+not a caught one); no other criterion's letter is met. **Next lead per
+rotation: VISION SCIENCE** (Iteration 19; VISION→PHOTONICS→MATERIALS→
+ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→repeat) — though Iteration
+19's own ranked #1 item is the zero-cost analytic chord-model check below,
+flowing directly from this cycle's own findings, not a fresh lead-seat
+mechanism proposal.
+
+**Ranked priorities for Iteration 19** (Red Team's tiered synthesis,
+adopted in full):
+
+1. **Zero-cost, run first:** an analytic chord-model companion (this
+   program's own established idiom, cf. T15's `chord_model_g0`) scoring
+   EM's edge-diffraction model directly against all 30 Block MAIN rows'
+   signed magnitudes, not just signs/ranking — the single highest-value
+   next action, and the one gap standing between T21's PARTIAL and a
+   PROMISING mechanism-confirmed verdict. Pair with VISION's zero-cost
+   beam-divergence/contamination-risk check.
+2. **The core FDTD item:** a combined finer-angle-resolution
+   (Δθ=0.25–0.5°, θ∈[37°,42°]) AND cpl 20→30 R3 sweep, all 3λ (QUANTUM's
+   own design) — resolves which axis needed refining first by doing both
+   at once, directly tests EM's specific period predictions
+   (1.4°/1.9°/2.4° at 450/600/750nm).
+3. **Deferred-too-long, zero/low-cost, no resource conflict with 1–2:**
+   docket #7's sourced witness-parameter table (now verdict-determining
+   for exp-040's v2 above-NETD finding, unsourced 7 cycles); re-scoping
+   `lab/thermo_sidecar.py`'s two known corrections.
+4. **Recommended lead item once 1–3 clear:** the T3 joint constraint-3/4
+   staircase-σ(t) validation run (composing exp-038's n(t), exp-039's
+   timing classification, and exp-040's amplitude bridge against C_thr(L)
+   for the first time) — to avoid a third straight process-only cycle,
+   per three seats' independent process-health observation this cycle.
+
+*Deprioritized, with reasons*: exp-029's coherent-decomposition machinery
+applied to the θ=38→41° field (QUANTUM's own #2 pick) — informative but
+downstream of item 1's cheaper magnitude check; testing whether a real
+σ(I) article damps the fringe (QUANTUM's own #3) — under-motivated by
+only 2 data points so far; a rigorous RSA literature pass (MATERIALS' own
+#3) — independently blocked on the same WebFetch/T18 infrastructure gap
+across multiple prior cycles, no new information to act on this cycle.
