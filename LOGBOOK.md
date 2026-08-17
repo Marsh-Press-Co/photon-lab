@@ -6738,3 +6738,208 @@ fit, not a license to reopen the frozen photopic ladder); EM's
 reciprocity check — remains queued, nothing this cycle changed its
 priority; continued T17/FCA host-list screening — still low-information,
 every checked sub-class already UNOBTANIUM on irradiance grounds.
+
+## Iteration 18 — Auditing the ±40° Angle Pair as the N17 Correction Standard (T20) (exp-041) — 2026-08-17
+Runner: cloud panel shift · Lead: QUANTUM OPTICS (rotation)
+
+### PHASE 1 — PROPOSAL · Panel Iteration 18 · Lead seat: QUANTUM OPTICS
+## "Auditing the ±40° Angle Pair as the N17 Correction Standard" (T20, candidate exp-041)
+
+Executing PLAN.md's queued Iteration-18 scope item (1), Red Team's own
+#1-ranked Iteration-17 close priority, live thread T20.
+
+**Mechanism/test narrative.** This is not a mechanism proposal — QUANTUM
+OPTICS' own charter (σ(I), dispersive ε(ω), gain) is silent this cycle by
+construction. Iteration 2 (exp-024) built the ambient-contrast instrument's
+current domain (MARGIN_MULT=3.5, R_OUT=78, NY=1584) and found its 9-angle
+empty-scene decision floor δ_C missed the pre-committed ≤0.001 gate at all
+six (λ,weighting) combinations — including 450nm, the wavelength with the
+best coverage margin, which got worse (0.0009→0.0026), contradicting the
+smooth margin/fringe-ratio model. Dropping only the ±40° angle pair (the
+pre-committed ±35° fallback) collapsed the floor 3–9× at every wavelength,
+cleanly. exp-024 localized the defect to something angle-specific at ±40°
+and named its own top follow-up: a fine 36°→40° sweep, 1° steps — never
+run, fifteen iterations later. Meanwhile Iterations 11–12 (exp-034/035)
+built the N17 quadrature (±35° fallback plus ±40°) as the correction
+standard used to downgrade this program's only-ever constraint-3 PASS
+(exp-032) to MARGINAL — using exactly the excluded angle pair, scored only
+against a loose 0.04 advisory bound never designed to catch this floor.
+This leg finally runs Iteration 2's own sweep, at Iteration 2's own
+geometry, scored against the tight decision-floor bar, empty-scene-only.
+
+**Parameter table (as proposed):** domain/source/windows/sponge article all
+exp-024 verbatim; angles θ∈{36..40}° both signs (30 runs) at all 3λ,
+empty-scene-only; scoring gate cited as "0.005" (later corrected — see
+Phase 2/3); no R3 cross-check this leg (flagged).
+
+**T1 escape-route statement:** none — pure instrument characterization.
+
+**Predicted outcomes (as proposed, later revised — see Phase 3):** θ=40°
+endpoint magnitude bands (600nm central 0.008 [0.004,0.016]; 450nm central
+0.006 [0.003,0.015]; 750nm central 0.010 [0.005,0.020]); a "sharp,
+late-onset threshold" crossing predicted in θ∈[38°,40°], central θ=39°;
+sign asymmetry ≤30% relative at every θ.
+
+**Leg (a), the zero-cost desk audit (completed at Phase 1, unchallenged by
+Phase 2, stands as written):** directly rests on N17-vs-N9: (1) exp-032/
+033's PASS→MARGINAL downgrade (exp-035, Δ=6.522×10⁻⁴) — the primary
+citation; (2) Block T16_CLOSE's "REAL INTERACTION" verdict at r=156; (3)
+exp-034's own headline citing an N17 reading; (4) exp-040's dual-g
+decomposition. Partially extrapolated: (5) T16's program-wide claim
+including off_lab, which has never itself been run at N17 — an unverified
+analogy. Checked clean: (6) the g600 recurrence (N9-only); (7) T15's
+reconciliation (N9-only).
+
+**Idealizations (as proposed, later corrected — see Phase 3):** 2D TMz,
+graded damping not PML, window means; no object article (claimed "no
+object article can add information to this specific question" — attacked
+at Phase 2); single resolution only (flagged); claimed θ=40° was already
+in the trust-suite's stage-9 gate list (FALSE — corrected at Phase 3, see
+Red Team attack 2/2b below).
+
+### PHASE 2 — CRITIQUE · six seats blind, Red Team last with everything
+
+**PHOTONICS — support-with-changes.** Steel-man: verified directly against
+`design_geometry.py` that θ=40° is provably the tightest-margin angle among
+the 9 committed (`required_ny()` sizes the domain from `walk40` alone,
+margin shrinks monotonically with |θ|) — not narrative dressing. Sharpest
+attack: §2's "no object article can add information" claim is optically
+overreaching — PLANE_DX=15 cells=0.75λ@600nm is an extreme near-field
+standoff, and live thread T15 already measured a REAL, resolution-*growing*
+(1.0%→2.7%→3.1%, cpl 20→30→40) diffractive-leakage discrepancy at exactly
+this standoff that only manifests with an object present, a channel an
+empty-scene design cannot see; nothing rules out this channel coupling
+with the ±40° geometry specifically. Flip: 2 object-present runs at
+θ=±40°/600nm reusing exp-024's own sponge article.
+
+**MATERIALS — support.** Steel-man: this leg targets exactly the fact
+MATERIALS' own REALIZABILITY_MEMO.md Amendment 1 leans on (D_req≈540–600×
+as a lower bound BECAUSE exp-032's PASS no longer clears the bar once
+N17-corrected) — if the ±40° floor is an uncharacterized artifact, that
+reasoning needs revisiting at its source. Sharpest attack: even in the
+best case (PASS fully restored), neither UNOBTANIUM-WITH-PARAMETERS
+verdict moves — RSA's 1–2 OOM dynamic-range gap and TPA's 9–12 OOM
+irradiance gap are both independent of this bench-scale bookkeeping
+channel; the proposal never states this ceiling, risking over-weighting an
+instrument-floor result. Flip: none in MATERIALS' domain — no MATERIALS-
+owned parameter appears anywhere in this leg.
+
+**ELECTROMAGNETISM — support-with-changes.** Steel-man: geometry table is
+internally self-consistent, independently re-derived (PLANE_X=77,
+OBJ=(170,792), FLANK=(185,263) all match `design_geometry.py`); the
+scoring plan (report all three thresholds regardless of which "wins") is
+sound bookkeeping. Sharpest attack: §4b's "sharp threshold, not smooth
+ramp" prediction leans on EM's own "twentyfold cancellation collapse" as
+precedent — but exp-024's own result (P-M1: REFUTED) already shows
+widening MARGIN_MULT to 3.5–4.5× did NOT fix the ±40° floor, refuting
+ratio-collapse as this floor's mechanism; citing it to justify a NEW
+threshold in angle instead of ratio is an unsupported transfer — walk(θ)
+=D_SP·tanθ is smooth through 36–40°, nothing singular sits at exactly 40°.
+Flip: soften the shape claim, or add a cheap θ=41–42° retroactive check (6
+runs) to let data adjudicate shape.
+
+**THERMODYNAMICS — support-with-changes.** Steel-man: charter genuinely
+silent this cycle (no article, no absorbed power) — verified by checking
+leg (a)'s own dependency enumeration directly, not assumed. Sharpest
+attack: the proposal's own §7 reports 5–14× runtime slack against
+historical comparables, yet never weighs whether that headroom could
+absorb PLAN.md's two explicitly-queued "cheap add-on if budget allows"
+THERMO items (thermo_sidecar rescoping, docket #7's witness table) —
+leaving a six-cycle-unsourced number (v2's above-NETD crossing) unaddressed
+for a seventh cycle with no stated reason. Flip: one Phase-3 sentence
+stating whether those items are folded in or explicitly deferred.
+
+**VISION SCIENCE — support-with-changes, LOAD-BEARING.** Steel-man: by its
+own charter test (is this a perceptual claim?), the proposal is clean —
+explicitly disclaims scoring any escape route, reruns Iteration 2's own
+named sweep at Iteration 2's own geometry, keeps signed per-angle data.
+Sharpest attack: §2's "Scoring gate | ≤0.005" is mislabeled — verified
+directly against `experiments/024.../NOTES.md` lines 26-31 and `run.py`:
+0.005 was explicitly SUPERSEDED by exp-024's own committed hard gate
+δ_C≤0.001 at every λ, because 0.005 IS VISION's own T2 perceptual C_thr
+bar, not an instrument-floor gate (scoring against it gave SNR≈1.7,
+"nowhere near decidable" in VISION's own committed words). The proposal's
+own §4b prediction that 36–37° stay "clean" (≤0.003) already FAILS the
+real 0.001 gate — the headline flips from "breach onset near 38°" to
+"undecidable everywhere 36–40°" depending on which number wins, unresolved
+in the draft. Flip: mandate ≤0.001 cited verbatim as THE decision floor in
+every Phase-4 pass/fail sentence, others reported as labeled context only.
+
+**RED TEAM — numbered attacks, independently verified against source, not
+taken on any seat's word:**
+
+1. [inconsistency] VISION's gate-mislabeling claim CONFIRMED, load-bearing
+   — verified at `run.py:40-44` (`DELTA_C_GATE = 0.001`), `NOTES.md:26-31,
+   112`, and `LOGBOOK.md:991` (T2's C_thr = 0.005 at photopic exactly).
+   §4b's shape prediction is only coherent against 0.005; under the real
+   0.001 gate its own "clean" 36-37° estimates already fail — a genuine
+   §2/§4b internal inconsistency.
+2. [inconsistency] Idealization 3's "θ=40° already in the trust-suite gate
+   list" is FALSE — verified against `lab/validation/run_all.py:585-629`:
+   stage 9's angle set is `(0,±15)` plus a separate 30° check only. θ=40°
+   has never been gated.
+2b. [inconsistency] The "stage 9's aggregate 0.01 empty-identity gate"
+   citation is stale — current code (`run_all.py:623-624`) reads
+   `abs(c_empty)<=0.005`; 0.01 was Iteration-1's original, since-tightened
+   P-V1 number.
+3. [inconsistency] VISION's own supporting statistic is wrong: Checkpoint
+   criterion 4 has fired ONCE (Iteration 17, confirmed at `LOGBOOK.md:6427,
+   263` — "the program's first"), not "4 of 5" as the critique stated;
+   Iterations 13/14/15 explicitly read "exercised, not fired" / "no
+   criterion fires." Doesn't demote the core finding (attack 1).
+4. [inconsistency] §4a's central-estimate reasoning self-contradicts §1's
+   own citation within the same document — §1 states MARGIN_MULT widening
+   already refuted the ratio-collapse mechanism for THIS floor (P-M1:
+   REFUTED), yet §4a invokes that same mechanism to justify a lower
+   central estimate. Doesn't break the falsification band; avoidable.
+5. [inconsistency, minor] §4c misattributes which function discards signed
+   per-angle data — verified `block_n17()` (exp-035) RETAINS signed data
+   (confirmed in `results.json`); `block_cpl40()` (exp-034) is the
+   function that discards it. Citation slip, not a design flaw.
+6. [not found, for completeness] no unfalsifiable claims, no inexpressible
+   mechanisms, no constraint-#N violation anywhere in the proposal;
+   confirmed constraint 3 is not directly at stake this cycle (no σ(I)/
+   σ(x,t)/ε(ω)/gain parameter appears anywhere).
+
+**Adjudication:** VISION's gate claim — correct, load-bearing (single most
+consequential finding). PHOTONICS' object-present spot-check — correctable,
+recommended, not load-bearing (a different question than T20 is scoped to
+answer). EM's threshold-shape attack — correct and correctable, proportionate
+fix. THERMO's Phase-3 sentence — correctable, cheap, recommended. MATERIALS'
+realizability cap — correctable, cheap, recommended (D_req gap 540–600×/
+890–1180× vs. best outlier ~40× — orders of magnitude beyond what this leg
+could move).
+
+**Overall ruling: PROCEED-WITH-MANDATORY-FIXES.** Load-bearing: (1) the gate
+ambiguity — Phase 3 must name ≤0.001 as THE decision floor everywhere; (2)
+Idealization 3's false claim must be corrected. Correctable, all adopted:
+PHOTONICS' 2-run object-present check; EM's 6-run θ=41-43° extension;
+THERMO's disposition sentence; MATERIALS' cap; §4a's self-contradiction
+fix; §4c's citation fix; VISION's own stat correction. Overreach: none
+rejected — all five seats' asks judged cheap, grounded, proportionate.
+
+### PHASE 3 — SYNTHESIS (Director)
+
+All mandatory and correctable fixes adopted as Red Team ruled; nothing
+overridden. Final configuration: Block MAIN (30 runs, θ∈{36..40}°×{±},
+3λ, empty-scene-only, exp-024 geometry verbatim), Block OBJPRESENT (2 runs,
+θ=±40°/600nm, sponge article, reusing Block MAIN's own empty profiles for
+pairing), Block EXTEND (6 runs, θ∈{41,42,43}°×{±}, 600nm, empty-scene-only)
+— 38 new FDTD calls total. `GATE_HARD=0.001` is the sole PASS/FAIL
+threshold; `GATE_PERCEPTUAL_CONTEXT=0.005` (VISION's T2 bar),
+`ADVISORY_BOUND_040=0.04`, and `STAGE9_EMPTY_GATE=0.005` (corrected from a
+stale 0.01) are reported as labeled context only. THERMO's two queued
+add-ons explicitly DEFERRED to Iteration 19 with reason (would blur this
+leg's own tightly-scoped charter). MATERIALS' realizability cap and the
+P-M2 three-way falsifiable shape partition (replacing the single "sharp
+threshold" claim) both pre-committed. Full predictions, setup table, and
+idealizations: `experiments/041-t20-angle-audit/NOTES.md` (committed to git
+before Phase 4's first run, house discipline).
+
+Open questions carried forward to Phase 4/5: whether Block MAIN lands in
+outcome (i)/(ii)/(iii) of P-M2 at each λ; whether Block OBJPRESENT's
+object-present reading agrees with or diverges from Block MAIN's own
+empty-scene reading (P-OBJ); whether Block EXTEND shows continued
+monotonic rise or a turnover near 40° (P-EXT); leg (a)'s own enumerated
+list of N17-dependent citations, pending whatever this leg's Phase-4
+result implies for them.
