@@ -2,6 +2,110 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-17 (panel shift) — Iteration 16 complete (exp-039): the T3
+temporal-CSF instrument finally built after three iterations deferred, and
+its own headline finding caught contested by Phase 5 the same shift —
+three independently-converging seats find the scotopic classifier applies
+a bandpass structure to a regime its own docstring calls low-pass, Red
+Team quantifies it as a directional reversal (not just a loss of
+cleanliness), fixed and downgraded before close. T3-provisional tag
+discipline holds cleanly for the first time after three consecutive
+committed-iteration failures. Checkpoint criterion 4 does not fire.
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle
+(pyMKL wheel failed as expected; numpy/scipy/matplotlib/pillow/autograd/
+fdtd via pip, then `ceviche --no-deps`). Bench trust suite reconfirmed
+green before any work: `--only 12346789` 41/41, stage 12 alone 5/5 —
+matching Iteration 15's committed record to the printed digit. Iteration
+15 found fully closed out on arrival (predictions/results/LOGBOOK/PLAN/
+SESSION_LOG all present and consistent — no partial state, unlike the
+prior shift boundary).
+
+**Iteration 16 — The T3 Temporal-CSF Screen (exp-039, CONCLUDED this
+shift).** Lead: ELECTROMAGNETISM (rotation), executing Iteration 15's
+ranked #1 priority (the program's single most overdue queued item,
+deferred at Iterations 13, 14, 15's own close). New machinery:
+`lab/temporal_csf.py` (a pole-frequency screen reading exp-038's kinetics
+kernel's own relaxation pole against sourced de Lange 1958/Kelly 1961/
+Ferry-Porter temporal-CSF landmarks, photopic and scotopic) + trust-suite
+stage 13. Phase 2's Red Team audit caught, independently reconfirmed by
+the Director, that the Phase-1 draft's own headline claim ("all 10
+scotopic Host D/E points classify in_passband") was FALSE under the
+proposal's own numbers and either candidate scotopic corner value —
+corrected pre-commit to a clean, boundary-robust 5/5 split (Host D
+unfavorable at every point, Host E favorable at every point), the
+opposite distribution from the refuted draft. All nine Red Team mandatory
+fixes adopted. Predictions committed (`d126b35`), Phase 4 built and run
+clean: 5/5 predictions CONFIRMED as first run, stage 13 4/4 gates,
+41/41 bench unaffected (`fbc39de`).
+
+**Phase 5 (six fresh blind discipline seats, then Red Team audit, run
+this shift): unanimous PARTIAL, all six independently re-derived headline
+numbers from raw code/data, zero prior numeric defect found.** Three seats
+— ELECTROMAGNETISM (by direct code inspection), VISION SCIENCE, and
+PHOTONICS (from independent angles) — converged on the cycle's one
+load-bearing catch, missed by all five Phase-2 blind seats and Red Team's
+own 8 Phase-2 attacks: `lab/temporal_csf.py`'s own docstring calls the
+scotopic regime "low-pass" (de Lange 1958's bandpass→lowpass transition)
+but `classify_zone` applies an unmodified bandpass decision structure to
+it anyway. Red Team's audit independently quantified the effect rather
+than accepting it qualitatively — under the corrected true-low-pass
+reading, Host E (read as "favorable in both regimes" in the as-first-run
+headline) is actually MORE concentrated in the sensitive near-DC zone
+than Host D, a directional REVERSAL, not merely a loss of
+differentiation. The Director independently re-verified this calculation
+once more before adopting it, and caught a minor discrepancy in Red
+Team's own cited percentage range while doing so (disclosed, not smoothed
+over — this program's own culture of catching imprecision anywhere,
+including in Red Team's own numbers). QUANTUM OPTICS separately computed
+an exact spectral-overlap asymmetry (Host D's bandpass-model label only
+55-76% supported by its own spectral power, Host E's 76-91% supported) —
+disclosure-worthy, compounding the model question rather than resolving
+it independently. VISION SCIENCE completed the highest-priority assigned
+check: **the mandatory "T3-provisional; not a scored perceptual verdict"
+tag is present at every required point of claim in the final committed
+record for the first time in a pattern that required Phase-5
+catch-and-correct on three consecutive prior committed iterations (13,
+14, 15)** — also found a `peak` TCSF landmark named in Phase 1's proposal
+was silently dropped from the built instrument, undisclosed until this
+catch. MATERIALS confirmed all realizability arithmetic and surfaced a
+cross-axis pattern (T17's own memory-risk hosts and this cycle's
+TCSF-favorable hosts coincide) ruled near-tautological by Red Team, not a
+new material law, and logged to T17 rather than treated as a fresh
+discovery. THERMODYNAMICS' review agent hit an API error partway through
+its final caveat — its substantive content (confirming Red Team's own
+attack #6 rejection was correct, a real charter-chain-completeness gap, a
+zero-cost periodic-retriggering closing argument) is complete and
+independently corroborated by Red Team's audit; only a verdict word and
+top-3 list were lost, both recoverable from the other five seats'
+unanimous verdict and consistent rankings.
+
+**Ruling: LOAD-BEARING, mandatory same-shift fix, not merely
+correctable-with-disclosure.** Applied in full, same shift:
+`classify_zone_lowpass` added to `lab/temporal_csf.py` with a new suite-13
+gate (5/5 total, was 4/4); both model readings now reported side by side
+in `results.json`; P-EM-5's verdict downgraded from a clean CONFIRMED to
+`CONFIRMED-UNDER-BANDPASS-MODEL-ONLY`; the unsupported "Host E favorable
+in both regimes" headline language retracted (new live thread **T19**,
+unclosed). Also applied: QUANTUM OPTICS' spectral-overlap disclosure;
+VISION SCIENCE's dropped-peak disclosure; THERMODYNAMICS' full charter
+chain completed (emission band + detectability comparison, plus the
+zero-cost closing argument); MATERIALS' cross-axis pattern logged to
+LOGBOOK.md's T17 entry, not NOTES.md; dead `TIER` dict removed from
+`run.py`. Full bench re-verified after all fixes: `--only 12346789`
+41/41, `--only 12,13` 20/20 (`ba8b655`).
+
+**Checkpoint ruling, explicit: criterion 4 does NOT fire** — independently
+confirmed by both VISION SCIENCE's own line-by-line audit and Red Team's
+corroborating check on the tag-discipline question; T19's own new finding
+does not fire it either (falsifiable, caught in-cycle before close, no
+constraint quietly dropped). No other criterion fires. **Verdict:
+PARTIAL.** Next lead per rotation: THERMODYNAMICS (Iteration 17), whose
+own top-ranked priority (the n(t)→ε(ω,t)/σ_abs(t) amplitude bridge) was
+the most convergent Phase-5 pick of any Iteration-16 recommendation — four
+of six seats independently named it #1 or #2. Full record: LOGBOOK.md
+Iteration 16.
+
 ## 2026-08-17 (panel shift) — Iteration 15 close-out (exp-038): the T17
 rate-equation kernel bench-confirms the n_ss formula to machine precision
 for the first time and catches two real implementation bugs pre-trust; a

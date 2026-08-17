@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-17, panel Iteration 15)
+## Current state (2026-08-17, panel Iteration 16)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -790,34 +790,75 @@ continuous mode with checkpoints. The remaining [open] items below are
   realizability axis — does not revise the existing linearly-pumped-FCA
   UNOBTANIUM verdict). No Checkpoint criterion fires. Verdict: PARTIAL.
   Full record: LOGBOOK.md Iteration 15.
-- **[queued — panel Iteration 16, lead per rotation ELECTROMAGNETISM,
-  ranked per Red Team's Iteration-15 Phase-5 adjudication]** (1) **Build
-  stage-10's T3 temporal-contrast instrument, sourced** — the single most
-  overdue item on the program's books (deferred at Iterations 13, 14, 15's
-  own close) and now structurally load-bearing: it retires the root cause
-  of the T3-provisional-tag pattern that has required a Phase-5
-  catch-and-correct on three consecutive committed iterations (13, 14,
-  15). Scope: pin a sourced de Lange/Watson temporal-CSF threshold
-  (photopic + scotopic per PANEL.md's dual-regime requirement), re-score
-  exp-038's own Host D/E t99 and P-MAT-5 numbers against it directly. (2)
-  **Re-anchor k_f(I) to real, wavelength-tagged absorption physics via
-  exp-038's now-validated kernel** — closes the carried Iteration-13/14/15
-  wavelength-tagging priority *through* the new machinery instead of a
-  separate literature pull; derive G(λ)=σ_abs(λ)·λ/(hc) for correctly-
-  scaled (not telecom-borrowed) cross-sections at 450/600/750nm —
-  sidesteps T18's WebFetch blockage entirely (established physics, zero
-  search cost). (3) **Build the n(t)→ε(ω,t)/σ_abs(t) causality/passivity-
-  checked material-law bridge** (this cycle's incoming lead's own sharpest
-  self-critique: zero EM bookkeeping happened in exp-038) — the correct
-  prerequisite before any future FDTD coupling of the kinetics kernel;
-  flag to Marsh at proposal time if scope creeps toward a genuinely
-  time-varying-medium FDTD update coefficient (likely Checkpoint
-  criterion 3 territory, per EM's own Iteration-15 review). Cheap
-  same-cycle add-ons if budget allows: QUANTUM OPTICS' numerical grounding
-  of the adiabatic-elimination margin for exp-038's actual FCA host list
-  (a few lines of arithmetic); THERMODYNAMICS' reusable THERMO-sidecar
+- [done 2026-08-17, panel Iteration 16, cloud panel shift] **exp-039 the
+  T3 temporal-CSF screen** — ELECTROMAGNETISM's lead (rotation), executing
+  Iteration 15's ranked #1 priority. New machinery: `lab/temporal_csf.py`
+  (pole-frequency screen against sourced de Lange/Kelly temporal-CSF
+  landmarks, photopic + scotopic) + trust-suite stage 13 (5/5 gates after
+  Phase 5's own fix, tightest 2.22×10⁻¹⁶). Retires the single most overdue
+  item on the program's books, deferred at Iterations 13, 14, 15's own
+  close. **Load-bearing Red Team Phase-2 catch, independently reconfirmed
+  by the Director**: the Phase-1 draft's own headline claim ("all 10
+  scotopic Host D/E points classify in_passband") was FALSE under the
+  proposal's own numbers — corrected pre-commit to a clean 5/5 split
+  (Host D unfavorable at every point, Host E favorable at every point).
+  **Phase 5 found the corrected claim itself rested on a second,
+  unresolved model choice** (three independently-converging seats —
+  ELECTROMAGNETISM, VISION SCIENCE, PHOTONICS): the scotopic classifier
+  applies a bandpass decision structure to a regime its own cited source
+  calls low-pass. Red Team's audit quantified this as a directional
+  REVERSAL, not just a loss of clean differentiation — under the
+  corrected low-pass reading, Host E (read as "favorable in both
+  regimes") is actually MORE concentrated in the sensitive zone than Host
+  D. Mandatory same-shift fix applied: `classify_zone_lowpass` added,
+  both model readings now ship side by side, P-EM-5 downgraded to
+  `CONFIRMED-UNDER-BANDPASS-MODEL-ONLY` (new live thread **T19**, unclosed).
+  **The T3-provisional tag survived intact through Phase 3, Phase 4, AND
+  results.json simultaneously for the first time** in a pattern that
+  required Phase-5 correction on three consecutive prior committed
+  iterations (13, 14, 15) — Checkpoint criterion 4 independently
+  reconfirmed NOT to fire, on either the tag pattern or T19's own finding.
+  Seven-seat Phase 5 (six blind + Red Team): unanimous PARTIAL. Verdict:
+  PARTIAL. Full record: LOGBOOK.md Iteration 16.
+- **[queued — panel Iteration 17, lead per rotation THERMODYNAMICS,
+  ranked per Red Team's Iteration-16 Phase-5 adjudication]** (1) **Build
+  the n(t)→ε(ω,t)/σ_abs(t) causality/passivity-checked amplitude bridge**
+  — the most convergent pick of any Iteration-16 Phase-5 recommendation
+  (ELECTROMAGNETISM's #1, MATERIALS' #1, VISION SCIENCE's #1, QUANTUM
+  OPTICS' #2), and EM's own carried Iteration-15 priority #3. The single
+  piece of missing machinery that would let any T3-provisional timing
+  classification (exp-039) become an actual scored constraint-3/4 verdict
+  against T2's already-pinned C_thr(L). Flag to Marsh at proposal time if
+  scope creeps toward a genuinely time-varying-medium FDTD update
+  coefficient (likely Checkpoint criterion 3 territory, per EM's own
+  Iteration-15 review — still standing). (2) **Resolve T19: the scotopic
+  bandpass/lowpass topology question, with a primary source** —
+  three independently-converging Iteration-16 seat picks
+  (ELECTROMAGNETISM, VISION SCIENCE, PHOTONICS on the adjacent
+  chromatic/achromatic shape-family variant). Needs a working full-text
+  route (T18) or an explicit, sourced engineering rationale for whether a
+  ONE-SHOT scotopic transient behaves as bandpass or lowpass — the classic
+  TCSF curve shapes were measured under periodic flicker, not established
+  for a single switching event. QUANTUM OPTICS' own #1 (replace
+  corner-comparison with an exact spectral-overlap-fraction calculation,
+  the Lorentzian integral both QUANTUM OPTICS and Red Team already used
+  this cycle) is a cheaper, zero-search-cost companion, foldable in. (3)
+  **Reconsider whether continuing to screen the T17/FCA host list is the
+  highest-information use of panel cycles** (PHOTONICS' #3, EM's #3,
+  MATERIALS' #2, independently converging) — `REALIZABILITY_MEMO.md`
+  Amendment 2 already found every checked FCA sub-class UNOBTANIUM on
+  irradiance grounds, and exp-039's own headline result again landed
+  mostly on already-unrealizable grid points. Pursue T18's own still-open
+  item instead if this direction is taken: survey remaining unchecked
+  mechanism classes for an irradiance gap small enough (≲5–6 OOM) that
+  realistic field enhancement genuinely closes it. Cheap same-cycle
+  add-ons if budget allows: THERMODYNAMICS' reusable THERMO-sidecar
   utility (ΔT_ss/heating-time/diffusion-reset-time as a function of ρ,
-  c_p, κ, P_absorbed, L — now overdue a second cycle running).
+  c_p, κ, P_absorbed, L — now overdue a third cycle running); restoring
+  the dropped `peak` TCSF landmark exp-039's own build silently omitted,
+  or explicitly justifying its absence; QUANTUM OPTICS' numerical
+  grounding of the adiabatic-elimination margin for exp-038's actual FCA
+  host list (a few lines of arithmetic, carried from Iteration 15).
   Lower priority, inherited: **Retroactive wavelength-tagging and
   primary-source re-verification** (exp-036's RSA/spiropyran figures,
   exp-037's TPA-cascade/Soref-Bennett figures) — still blocked pending a
