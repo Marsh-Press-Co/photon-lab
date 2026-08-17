@@ -1,0 +1,220 @@
+{
+  "experiment": "exp-040-amplitude-bridge",
+  "panel_iteration": 17,
+  "lead": "THERMODYNAMICS",
+  "block_v": {
+    "450": {
+      "empty": {
+        "C": 0.0008892142330290118,
+        "C_empty": 0.0008892142330290118
+      },
+      "v1": {
+        "C": -0.24987871120488345,
+        "C_empty": 0.0008892142330290118
+      },
+      "v2": {
+        "C": -0.6636950776335983,
+        "C_empty": 0.0008892142330290118
+      }
+    },
+    "600": {
+      "empty": {
+        "C": -3.316590819191224e-05,
+        "C_empty": -3.316590819191224e-05
+      },
+      "v1": {
+        "C": -0.25089785530224296,
+        "C_empty": -3.316590819191224e-05
+      },
+      "v2": {
+        "C": -0.6655530036696808,
+        "C_empty": -3.316590819191224e-05
+      }
+    }
+  },
+  "block_r": {
+    "empty": {
+      "C": -0.00011647923213709,
+      "C_empty": -0.00011647923213709
+    },
+    "v2": {
+      "C": -0.6666044627080313,
+      "C_empty": -0.00011647923213709
+    }
+  },
+  "predictions": [
+    {
+      "id": "P-EXP040-1a [amplitude-only -- not a Tier-W or Tier-A constraint-3 verdict; bench-scale, N9-quadrature-uncorrected (T16), 600nm]",
+      "claim": "chord model reproduces measured |C(v1, 600nm)| in the never-before-measured shoulder (tau=TAU_V1, the Tier-W p=0.4 bar)",
+      "model": 0.24982674966029583,
+      "measured": 0.25089785530224296,
+      "rel_err": 0.004287393737474345,
+      "band": 0.1,
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "P-EXP040-1b [amplitude-only -- not a Tier-W or Tier-A constraint-3 verdict; bench-scale, N9-quadrature-uncorrected (T16), 600nm]",
+      "claim": "chord model reproduces measured |C(v2, 600nm)| in the shoulder (tau=TAU_V2, the Tier-W p=0.5 bar)",
+      "model": 0.664211164155071,
+      "measured": 0.6655530036696808,
+      "rel_err": 0.0020202001818454703,
+      "band": 0.1,
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "P-EXP040-2a [amplitude-only -- not a Tier-W or Tier-A constraint-3 verdict; bench-scale, N9-quadrature-uncorrected (T16); PHOTONICS/VISION L12]",
+      "claim": "chromatic spread at v1 (shoulder) is smaller than exp-026's own off_lab endpoint spread (~16.8% relative) -- band <=8% relative, reflecting decay toward the ON endpoint's small (~0.4%) spread as tau grows",
+      "measured_600": 0.25089785530224296,
+      "measured_450": 0.24987871120488345,
+      "relative_spread": 0.0040702547424211625,
+      "band": 0.08,
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "P-EXP040-2b [amplitude-only -- not a Tier-W or Tier-A constraint-3 verdict; bench-scale, N9-quadrature-uncorrected (T16); PHOTONICS/VISION L12]",
+      "claim": "chromatic spread at v2 (deeper in the shoulder, closer to ON) is smaller still -- band <=4% relative",
+      "measured_600": 0.6655530036696808,
+      "measured_450": 0.6636950776335983,
+      "relative_spread": 0.0027954541551957145,
+      "band": 0.04,
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "P-EXP040-3 [R3 resolution check, mandatory -- Red Team attack #2 fix (L2) live-tested]",
+      "claim": "cpl 20->30 R3 check on v2: |C(cpl30)-C(cpl20)|/|C| <=4% (Phase-1 proposal's own gate, preserved) -- central estimate ~2%, informed by this bench's own established g_raw cpl-sensitivity (off_pass: 0.6927->0.7056, ~1.9%)",
+      "model_predicted_geometric_shift": 0.002032684313253124,
+      "measured_cpl20": 0.6655530036696808,
+      "measured_cpl30": 0.6666044627080313,
+      "rel_shift": 0.001579827650920367,
+      "band": 0.04,
+      "verdict": "CONFIRMED"
+    }
+  ],
+  "n_ss_ceiling_table": {
+    "tier_A_lab": {
+      "lo": {
+        "C_thr": 0.0025059361681363614,
+        "tau_thr": 0.0036601548544799535,
+        "n_ss_Dinf": 0.0009385012447384497,
+        "n_ss_finite_D_0p008": -0.0011150681257759627,
+        "n_ss_finite_D_0p0065": -0.0007293810570232558
+      },
+      "center": {
+        "C_thr": 0.005,
+        "tau_thr": 0.007314604906633623,
+        "n_ss_Dinf": 0.001875539719649647,
+        "n_ss_finite_D_0p008": -0.00017610356972414627,
+        "n_ss_finite_D_0p0065": 0.00020922175590949615
+      },
+      "hi": {
+        "C_thr": 0.009976311574844398,
+        "tau_thr": 0.014641170253265452,
+        "n_ss_Dinf": 0.0037541462187860135,
+        "n_ss_finite_D_0p008": 0.0017063644021750905,
+        "n_ss_finite_D_0p0065": 0.0020909644929409154
+      }
+    },
+    "tier_A_field": {
+      "lo": {
+        "C_thr": 0.010023744672545446,
+        "tau_thr": 0.014711231085054288,
+        "n_ss_Dinf": 0.0037721105346293048,
+        "n_ss_finite_D_0p008": 0.0017243656436419035,
+        "n_ss_finite_D_0p0065": 0.0021089587992947963
+      },
+      "center": {
+        "C_thr": 0.02,
+        "tau_thr": 0.02954250995695741,
+        "n_ss_Dinf": 0.007575002553066003,
+        "n_ss_finite_D_0p008": 0.005535074500759869,
+        "n_ss_finite_D_0p0065": 0.005918199552319869
+      },
+      "hi": {
+        "C_thr": 0.03990524629937759,
+        "tau_thr": 0.05972005866195873,
+        "n_ss_Dinf": 0.015312835554348392,
+        "n_ss_finite_D_0p008": 0.013288812605847567,
+        "n_ss_finite_D_0p0065": 0.013668950471801396
+      }
+    },
+    "tier_W_p04_night_lab_bystander": {
+      "lo": {
+        "C_thr": 0.12520997754833138,
+        "tau_thr": 0.198846601365594,
+        "n_ss_Dinf": 0.05098630804246,
+        "n_ss_finite_D_0p008": 0.049035611861663414,
+        "n_ss_finite_D_0p0065": 0.04940197800580301
+      },
+      "center": {
+        "C_thr": 0.24982674966028512,
+        "tau_thr": 0.4379850109295916,
+        "n_ss_Dinf": 0.11230384895630553,
+        "n_ss_finite_D_0p008": 0.11047919088632878,
+        "n_ss_finite_D_0p0065": 0.11082188543202558
+      },
+      "hi": {
+        "C_thr": 0.4984698988683312,
+        "tau_thr": 1.1435320022945121,
+        "n_ss_Dinf": 0.29321333392166976,
+        "n_ss_finite_D_0p008": 0.29176053501914495,
+        "n_ss_finite_D_0p0065": 0.2920333895709547
+      }
+    },
+    "tier_W_p05_night_lab_bystander": {
+      "lo": {
+        "C_thr": 0.3328941559072303,
+        "tau_thr": 0.6300284813340407,
+        "n_ss_Dinf": 0.16154576444462582,
+        "n_ss_finite_D_0p008": 0.15982232305602279,
+        "n_ss_finite_D_0p0065": 0.16014600779094407
+      },
+      "center": {
+        "C_thr": 0.6642111641550714,
+        "tau_thr": 2.063172497417356,
+        "n_ss_Dinf": 0.5290185890813733,
+        "n_ss_finite_D_0p008": 0.5280504875173063,
+        "n_ss_finite_D_0p0065": 0.528232309597369
+      },
+      "hi": {
+        "C_thr": 1.3252755050202223,
+        "tau_thr": null,
+        "n_ss_Dinf": null,
+        "n_ss_finite_D_0p008": null,
+        "note": "NO BAR (exceeds asymptote)"
+      }
+    },
+    "note": "Tier-W rows here are the DARK-ADAPTED-BYSTANDER bar, NOT true PANEL.md Tier W (Red Team attack #5 / VISION L8) -- the flashlight holder's own Stiles-Holladay self-glare (LOGBOOK Iteration-1 sidecar) elevates the actual Tier-W bar 12-80x looser (no bar at all), so these rows are CONSERVATIVE, not the reported scene's own regime. True Tier W stays unscored pending docket #7."
+  },
+  "dual_g_table": {
+    "chord_model_g0": 0.6857163680484835,
+    "measured_g_N9_r78native_cpl30": 0.705609358926726,
+    "measured_g_N17_r78native_cpl30": 0.805945917,
+    "note": "Red Team attack #16 / L10: the bridge's OWN transfer function predicts a -3.3% N9->N17 shift (angular-quadrature term is FRACTIONAL, confirmed across a 317x tau span) but the one REAL N9->N17 measurement at this geometry shows +14.2% -- opposite sign, 4.3x magnitude. At minimum 100% of the measured shift is non-chord physics (T16's open near-field-fringe candidate and/or the still-unexplained +-40deg-specific artifact). Neither the additive nor the fractional extrapolation of this shift into the shoulder tau range is licensed by evidence -- disclosed as open T16, not resolved this cycle."
+  },
+  "a_req_table_note": "A_req diverges as f_peak->1 (Red Team attack #1, load-bearing L3) -- the witness's I_beam/I_ambient~5e3 is UNSOURCED (idealization 11, docket #7) and is NOT reported here as a cleared margin at any f_peak.",
+  "a_req_table": [
+    {
+      "f_peak": 0.5,
+      "tau_peak": 1.95,
+      "beam_behind_at_peak": 0.142,
+      "A_req_Dinf_tierA_lab": 532.1798572555964
+    },
+    {
+      "f_peak": 0.9,
+      "tau_peak": 3.51,
+      "beam_behind_at_peak": 0.03,
+      "A_req_Dinf_tierA_lab": 4789.618715300368
+    },
+    {
+      "f_peak": 0.99,
+      "tau_peak": 3.861,
+      "beam_behind_at_peak": 0.021,
+      "A_req_Dinf_tierA_lab": 52685.805868304
+    }
+  ],
+  "block_v_runs": 54,
+  "block_r_runs": 18,
+  "elapsed_v_s": 439.93368196487427,
+  "elapsed_r_s": 657.5018784999847,
+  "elapsed_total_s": 1097.864012002945
+}

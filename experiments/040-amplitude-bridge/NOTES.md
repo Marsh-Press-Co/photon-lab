@@ -315,3 +315,84 @@ per idealization 11 and is NOT reported as "cleared" at any row):
 Full precision, all code, gates, and the run harness: `lab/amplitude_bridge.py`,
 `lab/validation/run_all.py::stage14_amplitude_bridge`, `design_geometry.py`,
 `run.py` (this directory).
+
+## Phase 4 — Results
+
+Gates first: full bench `--only 12346789` **41/41**, matching Iteration 16's
+committed record to the printed digit; `--only 12,13,14` (the three
+kinetics-family stages together) **35/35**, stage 14's own 15 gates all
+green including the load-bearing P-TH-4 exact-set identity (the live
+enumeration reproduces the pre-registered 5-point INVALID-QUASISTATIC set
+exactly) and the P-TH-2 regression anchor against exp-026's own MEASURED
+600nm column (1.15% max, inside the ≤2% band). 72 new FDTD calls, 1097.9s
+(Block V 439.9s, Block R 657.5s — Block R's larger R_OUT=117/cpl=30 grid
+runs slower per-call, as expected; the Director's own Phase-3 cost estimate
+of "~5 min" undershot the true 18.3 min by ~3.7×, a timing miss worth
+naming rather than silently correcting, joining this program's own standing
+list of such misses — e.g. Iteration 7's 8×, Iteration 12's 1.8×).
+
+**All 5 predictions CONFIRMED, cleanly — no PARTIAL, no REFUTED, no
+artifact:**
+
+| ID | Model | Measured | Rel. err / spread | Band | Verdict |
+|---|---|---|---|---|---|
+| P-EXP040-1a (v1@600nm) | 0.249827 | 0.250898 | 0.43% | ≤10% | **CONFIRMED** |
+| P-EXP040-1b (v2@600nm) | 0.664211 | 0.665553 | 0.20% | ≤10% | **CONFIRMED** |
+| P-EXP040-2a (v1 chromatic, 600 vs 450) | — | 0.250898 / 0.249879 | 0.41% | ≤8% | **CONFIRMED** |
+| P-EXP040-2b (v2 chromatic, 600 vs 450) | — | 0.665553 / 0.663695 | 0.28% | ≤4% | **CONFIRMED** |
+| P-EXP040-3 (R3, cpl 20→30 on v2) | 0.203% (model geometric) | cpl20 0.665553 / cpl30 0.666604 | 0.158% | ≤4% | **CONFIRMED** |
+
+**Headline finding: the saturating chord model extends into the
+never-before-measured saturation shoulder (τ∈[0.3,2]) at essentially the
+SAME accuracy it already had at the two established anchor points
+(τ≤0.10, τ=3.9)** — 0.20–0.43% here, inside the 0.4–1.15% range this
+program's own regression anchor already carries at every other measured
+point. This is the first genuinely NEW amplitude data this program has
+produced anywhere in the shoulder, and it closes cleanly, on the first
+run, with zero mandatory-fix-driven surprises in the FDTD numbers
+themselves (all the surprises this cycle were in the SCORING layer, at
+Phase 2, caught before the run — exactly where Red Team's own audit says
+they belong).
+
+**One genuine surprise, not pre-registered as sharply as it should have
+been, disclosed here rather than smoothed into the "CONFIRMED" verdict
+above:** the chromatic spread at v1 (τ=0.438) is **0.41%**, not the ≤8%
+the falsifiable band allowed and not any intermediate value between
+exp-026's own off_lab-endpoint spread (16.8% relative, τ=0.008) and its
+on-endpoint spread (0.4%, τ=3.9). The prediction anticipated a *decay*
+across the shoulder from the large OFF-endpoint number toward the small
+ON-endpoint number; what the data show instead is that the chromatic
+spread **collapses almost immediately** once τ moves even modestly above
+the OFF endpoint — v1 (τ=0.438, only 0.056 of the way from τ_off=0.008 to
+τ_on=3.9 in absolute terms, but 2.2 decades in log-τ) already reads at
+essentially ON-endpoint flatness. The verdict-scored claim (spread ≤8%,
+decaying) is CONFIRMED, honestly — but the SHAPE of the decay is not the
+smooth interpolation the claim's own language implied, and Red Team's
+Phase-5 audit should check whether this is a genuine fast-saturating
+chromatic-flatness law (plausible: chromatic sensitivity in this article
+family plausibly tracks the SAME rim/edge-transmission geometry that
+already saturates quickly, per T7/T9's own established rim-transmission
+mechanism) or an artifact of only two shoulder points bracketing a
+non-monotonic feature neither point happens to sit on (this program's own
+repeated lesson — exp-014's eps_z trough, exp-018's shell-thickness
+resonance — that two widely-spaced points can miss real structure).
+**Not elevated to a new live thread this cycle** — a candidate for
+Iteration 18's queue if a future cycle wants a finer τ-scan of the
+chromatic-spread-vs-τ curve, not a load-bearing gap in this cycle's own
+scored claims.
+
+**Block R's R3 check (P-EXP040-3) is this cycle's own direct proof that
+Red Team's attack #2 fix (L2, block-local σ) was necessary and sufficient**:
+the measured cpl20→cpl30 shift (0.158%) is smaller even than the model's
+own predicted pure-geometry shift (0.203%), both far inside the 4% gate —
+had the bug Red Team caught been present, Block R would have measured the
+WRONG article entirely (τ=3.095 instead of τ=2.063, a distinct point on
+the chord curve, +50.0% off), and P-EXP040-3 would have reported a large,
+confusing "ARTIFACT" that was actually a bookkeeping error, not physics —
+exactly the failure mode exp-027's own published T10 erratum was.
+
+Full precision numbers, the n_ss ceiling table, the dual-g table, and the
+A_req table are all in `results.json`; every headline number above was
+independently re-verified by the Director against `results.json` before
+this section was written.
+
