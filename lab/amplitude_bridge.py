@@ -15,10 +15,22 @@ THE CHAIN, three composed maps:
   (a) n(t) -> sigma_e(t)   `sigma_e_of_n` -- bounded LINEAR interpolation
       between two REAL, already-FDTD-measured static articles (exp-026's
       off_lab/on). eps_r == 1 EXACTLY at every n (no Delta-eps_real term
-      anywhere in this chain -- see IDEALIZATION 2 below, and QUANTUM
-      OPTICS' Phase-2 catch: this is Kramers-Kronig-forbidden in the
-      strict sense and creates a real, computed-not-ignored constraint-2
-      exposure, carried as a disclosed correction, not a run).
+      anywhere in this chain -- see IDEALIZATION 2 below). CORRECTED
+      Panel Iteration 17 Phase 5 (QUANTUM OPTICS' catch, Red Team-
+      confirmed, load-bearing fix L-G): a frequency-independent REAL
+      conductivity is NOT Kramers-Kronig-forbidden -- the 1/omega pole it
+      puts in Im(eps) has an EXACTLY ZERO Hilbert transform, so Re(eps)-1
+      stays identically zero and the constitutive law is causal. What is
+      actually unphysical is the missing high-frequency roll-off (no real
+      sigma(omega) is frequency-flat all the way up -- the f-sum rule
+      forbids it), which is why any REAL realization of this idealization
+      carries a nonzero Delta-eps_real this chain sets to zero -- a
+      materially-unrealizable idealization, not a causality violation.
+      Constraint 2 is UNMEASURED-FOR-THE-TRANSIENT, a disclosed
+      correction not a run; see IDEALIZATION 2's own text for the current
+      numeric caveats (the exact assumed omega*tau_s is unstated, and the
+      article's own eps_r=1 boundary reflectance already sits at ~1.1x
+      the established camera floor independent of any KK correction).
   (b) sigma_e(t) -> tau(t) -> C(t)   `chord_contrast` -- a saturating
       ray-chord integral, generalizing exp-034's committed
       `chord_model_g0` (same geometry, same rays) to the FULL non-linear
@@ -46,12 +58,35 @@ PASSIVITY. n in [0,1] is exact by construction (`kinetics` stage-12 gate
 2a), so sigma_e(t) in [sigma_off, sigma_on] with sigma_off > 0 --
 Joule density (1/2)*sigma_e*|E|^2 >= 0 at every instant. eps_r is
 time-INDEPENDENT throughout, so the Poynting energy theorem carries no
-parametric-gain term: d u/dt + div S = -sigma(t)|E|^2 <= 0 pointwise,
-an unconditional theorem for this sub-class (ELECTROMAGNETISM's Phase-2
-steel-man, independently reconfirmed by Red Team from `lab/fdtd2d.py`'s
-own update-coefficient structure -- ca/cb are computed ONCE, outside the
-step loop, so a genuinely time-varying medium is correctly named
-Checkpoint-3 territory and correctly NOT attempted this cycle).
+parametric-gain term: d u/dt + div S = -sigma(t)|E|^2 <= 0 pointwise
+(ELECTROMAGNETISM's Phase-2 steel-man). CORRECTED Panel Iteration 17
+Phase 5 (ELECTROMAGNETISM's own Phase-5 self-audit, Red Team RT4,
+load-bearing): this is NOT an unconditional theorem for the sub-class,
+because eps_r==1 EXACTLY is itself the materially-unrealizable
+idealization above -- any REAL, KK-consistent realization carries a
+nonzero d(eps)/dt, adding a sign-indefinite parametric term the bound
+above omits. That term is negligible AT EVERY QUASI-STATIC-VALID GRID
+POINT (order 1/(omega*tau_local) <= ~3e-5, co-guaranteed by the SAME
+quasi-static gate below, not an independent guarantee), but its status
+is a BOUND, not a theorem, and it fails together with the quasi-static
+gate at the 5 INVALID-QUASISTATIC points.
+
+CHECKPOINT-3 SCOPE, corrected (Red Team RT4 / ELECTROMAGNETISM's Phase-5
+finding, live-tested against `lab/fdtd2d.py` source): `Sim.run()`
+computes ca/cb ONCE PER CALL, not once per simulation -- `sigma_e`,
+`Ez`, `Hx`, `Hy`, and `step_count` all persist across separate `run()`
+invocations. A piecewise-constant sigma(t) built by mutating `sigma_e`
+between successive `run()` calls is therefore ALREADY EXPRESSIBLE with
+ZERO engine change (verified live: a mid-run sigma switch measurably
+diverges a field from an unswitched control), and is exact physics
+specifically BECAUSE eps_r stays time-independent (D and B are
+continuous across a pure-sigma switch; were eps time-varying, the D-vs-E
+discontinuity would make this wrong). Genuinely INTRA-settling-time
+modulation, or any dispersive eps(omega,t), remains Checkpoint-3
+territory and is correctly NOT attempted this cycle -- but a staircase
+sigma(t) run is a same-engine Iteration-18 candidate, not a new-physics
+one (still flagged to Marsh at proposal time per the standing
+instruction, since scope creep here is a judgment call, not a fact).
 
 QUASI-STATIC VALIDITY (Red Team attack #11, adopting ELECTROMAGNETISM's
 Phase-2 fix over the Phase-1 proposal's own criterion). The governing

@@ -396,3 +396,268 @@ A_req table are all in `results.json`; every headline number above was
 independently re-verified by the Director against `results.json` before
 this section was written.
 
+**[amplitude-only — bench-scale (r_out=2.34µm; T8/T13/T14 stand), N9-quadrature-uncorrected (T16, dual-g disclosed), 600/450nm only (750nm deferred), ε_r≡1-idealized (constraint 2 unmeasured-for-the-transient, see Phase 5 §L-G), ±0.3-log T2 threshold uncertainty carried — NOT a Tier-W or Tier-A constraint-3 verdict.]** *(Idealization 12's tag, restated here per Red Team's Phase-5 finding that it did not survive into this section originally — see below.)*
+
+**CORRECTION NOTICE (added at Phase 5, not a silent rewrite of the section above): NOTES.md's A_req table above (534/4805/52852) used the weak-limit LINEAR inversion τ_thr=C_thr/g0, not the SATURATING inversion `design_geometry.py` itself specifies as mandatory. The correct values, matching `results.json`, are 532.180 / 4789.619 / 52685.806 — a Red-Team-confirmed, four-independent-seat-caught defect (Phase 5 finding F1, fix L-D). The Director's own closing sentence above ("independently re-verified... against results.json") did not hold for this one table. See Phase 5 for the full correction and the n_ss ceiling table's own "≡1/A_req" caption error (fix L-C).**
+
+## Phase 5 — Review (six fresh discipline seats, blind, then Red Team audit)
+
+Full verbatim reviews: this shift's session record (LOGBOOK.md Iteration 17
+carries the complete text). All six seats independently re-derived headline
+numbers from raw code/data (this program's established Phase-5 standard)
+rather than trusting NOTES.md's prose — and in this cycle, that standard
+paid off unusually hard: it is the densest, most convergent Phase-5 catch-set
+this program has produced.
+
+**All six independent verdicts: PARTIAL. Red Team's own audit concurs
+(unanimous, 7-for-7).** The FDTD half is clean throughout — every seat that
+re-executed the trust suite got 41/41 and the (corrected) kinetics-family
+count; every seat that re-derived `chord_contrast`'s headline numbers
+reproduced them to the printed digit. Every surprise this cycle was in the
+SCORING layer, exactly where Red Team's own Phase-2 audit predicted the risk
+would concentrate.
+
+**Three findings independently caught by multiple-to-all six seats, all
+confirmed and sharpened by Red Team's own re-derivation:**
+
+1. **The A_req table mismatch** (all six seats, independently) — see the
+   correction notice above. Root cause identically diagnosed by MATERIALS
+   and THERMODYNAMICS: the weak-limit linear inversion was used where the
+   cycle's own code forbids it. Non-load-bearing for any classification;
+   load-bearing for record integrity (fix L-D).
+2. **The chromatic "surprise" is an instrument-floor artifact, not
+   chromatic-flatness physics** (5 of 6 seats independently: VISION,
+   PHOTONICS, QUANTUM OPTICS, ELECTROMAGNETISM, THERMODYNAMICS). Block V's
+   own empty-scene C differs by a near-constant +9.2238×10⁻⁴ offset between
+   450nm and 600nm — this explains 90–100% of every article's RAW chromatic
+   spread, INCLUDING the exp-026 "16.8%" comparator P-EXP040-2a's band was
+   set against (already known floor-driven on this program's own record for
+   sponge-class articles — exp-024/Iteration 2 found sponge chromatic
+   spread "noise-level," Δ=0.0003, versus opaque articles' real ~1.5–1.9%).
+   Red Team's own audit sharpened this twice: the chord model predicts
+   EXACTLY ZERO chromatic spread by construction (σ(n) is λ-independent),
+   so P-2a/2b were never model predictions to begin with (PHOTONICS'
+   independent finding); and chromatic (λ) and resolution (cpl) are
+   perfectly collinear in this bench's design (dx fixed at 30nm) — Block
+   R's own R3 measurement (0.158% for a 1.5× cpl change) exceeds v2's
+   entire floor-corrected residual, so no chromatic physics beyond known
+   grid-resolution sensitivity is needed to explain it either. Once
+   floor-corrected, the residual chromatic spread runs the OPPOSITE
+   direction from the cycle's original "collapses toward ON-endpoint
+   flatness" reading — it INCREASES monotonically with τ. See
+   `results.json::chromatic_floor_correction` for full numbers (fix L-A).
+3. **Stage 14 gate-count miscount** (all six seats, by direct execution):
+   13 gates, not the 15 originally claimed; `--only 12,13,14`'s 35/35 total
+   was correct but mischaracterized as "the three kinetics-family stages"
+   — it also ran stages 1–4 as digit substrings (the un-fixed half of
+   Iteration 15's own Red Team attack #5). **Fixed this same shift**:
+   `lab/validation/run_all.py::_stage_selected` now tokenizes comma/space-
+   separated `--only` strings, so `--only 12,13,14` runs exactly the 23
+   checks belonging to those three stages; the packed-digit default
+   (`"123456789"`) is unchanged, verified against every historical citation
+   pattern (fix L-E).
+
+**Seat-specific load-bearing findings, Red-Team-adjudicated:**
+
+- **MATERIALS** — the ceiling table's own caption claim "n_ss,max ≡
+  1/D_req ≡ 1/A_req" has a FALSE third leg: A_req(f_peak) is a genuinely
+  distinct quantity (introduces f_peak, diverges as f_peak→1) that
+  collapses onto 1/n_ss,max only coincidentally at f_peak=0.5, to 0.19%; at
+  f_peak=0.9/0.99/1.0 it is off by 9×/99×/∞. This is a defect in this
+  cycle's own Phase-2 synthesis (Red Team L6), not the Phase-1 proposal —
+  the Director owns it. **Struck** (fix L-C); the `≡1/D_req` leg is
+  unaffected and stands exactly.
+- **THERMODYNAMICS** — self-reported its own charter gap: the energy
+  sidecar (absorbed power → ΔT → emission band → detectability) was never
+  computed for this cycle's own new articles (v1, v2) during Phase 1–4.
+  Filled at Phase 5, Red-Team-adjudicated: **v2 (τ=2.063) is the first
+  article in this program's 17-iteration history whose predicted thermal
+  signature crosses ABOVE an uncooled-microbolometer NETD band, at both
+  steady-state (6.2×/2.5× the NETD band edges) and 1-second dwell
+  (5.3×/2.1×); v1 straddles it.** Red-Team-corrected framing, both
+  qualifications load-bearing and neither bounded: (1) NOT a Tier-A
+  exposure — both articles exceed the Tier-A VISIBLE-band bar by 50–133×,
+  so the honest claim is narrower: in the scotopic Tier-W-adjacent regime,
+  the THERMAL channel may bind before the VISUAL channel does, for the
+  first time in this program; (2) "DETECTABLE" is PARCEL-FRAME only — a
+  ~2.34µm parcel against a ~17–25µm microbolometer pixel implies a ~100×
+  fill-factor dilution, and sub-thermal-wavelength emissivity is a second,
+  separate, unbounded reduction; (3) the verdict is DWELL-DECIDED over
+  this program's own still-unsourced T3 window (10ms–1s, docket #7): at
+  10ms, v2 reads 19–48× BELOW NETD; at 1s, 2.1–5.3× ABOVE. Full numbers:
+  `results.json::thermo_sidecar_v1_v2` (fix L-F). The ΔT anchor itself
+  remains an UNSOURCED bare literal for a sixth consecutive cycle.
+- **QUANTUM OPTICS** — corrected this cycle's own Phase-2 physics framing:
+  a frequency-independent REAL conductivity (ε_r≡1 exactly) is **NOT**
+  Kramers-Kronig-forbidden (the 1/ω pole in Im ε has an exactly-zero
+  Hilbert transform) — what is actually unphysical is the missing
+  high-frequency roll-off (the f-sum rule forbids a frequency-flat σ), so
+  the correct label is "materially unrealizable," not "causality
+  violation." Also: the R≈1.0×10⁻⁴/ΔC≈−2.0×10⁻⁴ constraint-2 numbers
+  existed only as NOTES.md prose (no committed code), and the article's
+  OWN ε_r≡1 boundary reflectance (independently computed: 1.107×10⁻⁴) is
+  already ≈1.1× the established camera floor, regardless of any KK
+  correction — the disclosed "KK glint" is largely the article's own
+  built-in boundary reflectance under a different name. **Both corrected**
+  (fix L-G): `lab/amplitude_bridge.py`'s docstring relabeled; the
+  numerical caveat added here.
+- **ELECTROMAGNETISM** — the passivity "unconditional theorem" claim holds
+  only for the ε_r≡1 medium the cycle itself calls materially
+  unrealizable; its real status is a bound of order 1/(ωτ_local) ≲ 3×10⁻⁵
+  at every quasi-static-valid point, CO-guaranteed by the same gate that
+  licenses the amplitude reading, not independent of it. **Separately, and
+  more consequentially**: live-tested against `lab/fdtd2d.py` source that
+  `Sim.run()` computes `ca`/`cb` fresh on EVERY call (not once per
+  simulation), so mutating `sigma_e` between successive `run()` calls
+  already gives a genuine piecewise-constant σ(t) medium with **zero
+  engine change** — verified by a live divergence test. Both corrected in
+  `lab/amplitude_bridge.py`'s docstring; the Checkpoint-3 scope is
+  narrowed accordingly (see Checkpoint ruling, below).
+- **PHOTONICS** — beyond the chromatic-collapse compounding above:
+  independently confirmed the model is 41–88× worse at N17 (−17.7%) than
+  its headline shoulder accuracy (0.20–0.43%), and proposed decomposing
+  the dual-g N9→N17 disagreement into a "span" term (±35°→±40° coverage,
+  dominant) versus a "density" term (9→17 angles within ±35°, small) —
+  Red Team independently reconfirmed the split (−4.71%/−0.20% against a
+  true −3.30%) but found it is NOT strictly additive (a +1.61pp
+  interaction, the same non-additivity lesson as Iteration 12's own
+  domain×quadrature interaction). See Red Team's own RT1 finding, below —
+  a program-level catch that goes beyond exp-040 itself.
+- **VISION SCIENCE** (gatekeeper duty) — the mandatory amplitude-scope tag
+  (idealization 12) did NOT survive into this Phase-4 Results section as
+  originally written (present in Idealizations, the Predictions section,
+  and 4 of 5 `results.json` prediction IDs, but absent from the entire
+  prose above) — the exact recurrence pattern Iteration 15's close
+  attached a standing instruction to. **Restored above, and see the
+  Checkpoint ruling below — this is the cycle's load-bearing procedural
+  finding.** Also found and Red-Team-confirmed: NOTES.md's n_ss ceiling
+  table above omits the τ_off=0.0065 column mandated by Red Team's L5 fix
+  (present in `results.json`, absent in the printed table), and its
+  "p-independent (clamp)" label for the two Tier-A rows conflates
+  exponent-p-independence (true) with T2's SEPARATE ±0.3-log vertical
+  uncertainty (not clamped, and it flips the Tier-A-lab EMPTY reading to
+  feasible at the +0.3-log edge — `results.json`'s own
+  `n_ss_finite_D_0p008.hi` = +1.71×10⁻³, positive). **The bolded "EMPTY"
+  headline above holds in only 2 of 6 (τ_off × band-edge) cells** — stated
+  plainly here since the table above is left as originally printed (a
+  correction notice, not a silent edit).
+- **"Tier W" bare (not "Tier-W-adjacent")** appears at several points in
+  this file, `run.py`, and `design_geometry.py`'s comments/live code —
+  VISION SCIENCE confirmed L8's relabel (12–80× looser than a bare
+  bystander bar) is arithmetically correct but was applied inconsistently.
+  Not re-edited retroactively throughout this file (a correction notice
+  rather than a silent rewrite); readers should mentally substitute
+  "Tier-W-adjacent dark-adapted-bystander bar" wherever "Tier W" appears
+  bare above and in the code.
+
+### Red Team's Phase-5 audit
+
+Independently re-derived every convergent finding and every seat-specific
+claim from source (not from the seats' own summaries), and re-executed the
+trust suite live three times. Found one thing all six blind seats missed —
+**RT1, elevated to new live thread T20**: the ±40° angle pair used to
+correct the program's only-ever constraint-3 σ(I) OFF-state PASS to
+MARGINAL (exp-034/exp-035's N17 quadrature) is the SAME angle pair
+Iteration 2 excluded from the standing ±35° fallback baseline for cause
+(an unexplained, gate-failing angle-specific residual, LOGBOOK Iteration 2)
+— the per-angle ±40° empty-scene floor at r=78-native is 2.35–2.43× the
+article's entire measured signal and 29.7× the PASS margin it retracted,
+exceeding this program's own established empty-identity gates by
+2.46–2.54×. exp-040 itself is undamaged (the dual-g table discloses the
+sign disagreement as open, extrapolates in neither direction) — but this is
+a program-level internal inconsistency, standing six iterations, that no
+prior Red Team audit assembled. **New live thread T20 opened; ranked
+Iteration 18's #1 priority.**
+
+Also found: RT2 (P-EXP040-1a/1b's ≤10%/20% falsification bands are 5×
+looser than stage 14's own ≤2% trust gate on the identical quantity — not
+discriminating tests, though the residual (0.20–0.43%) is real and
+informative); RT3 (a second dead-code instance in this cycle's own new
+code, `run_all.py`'s `crossover_err` — fixed this same shift, see the code
+comment); RT4 (idealization 1's Checkpoint-3 inference was over-broad —
+corrected per ELECTROMAGNETISM's finding above); RT5 (the R3 leg's
+pre-registered ~2% central estimate missed the measured 0.158% by 12×,
+2.66× explained by saturation compression, 4.5× unexplained — a free
+Iteration-18 lead, not a defect); RT8 (Block V's empty-scene contrasts are
+bit-identical to exp-026's own committed values at both wavelengths — the
+strongest reproducibility evidence this cycle produced, and the reason
+the floor-offset arithmetic in L-A can be trusted); RT9 (`results.json`'s
+`tier_W_p05.hi.C_thr`=1.3253 exceeds T2's own committed clip at 1 — the
+NO BAR verdict is unaffected since 1.0 also exceeds the 0.835810 asymptote,
+but both should be stated; disclosed here, not re-scored).
+
+**Ruling: LOAD-BEARING, mandatory same-shift fix on all seven items below
+(L-A through L-G), all zero-FDTD-cost, applied in full this same shift —
+none overridden, none deferred:**
+
+- **L-A** (chromatic floor correction) — `results.json::chromatic_floor_correction`
+  added; P-EXP040-2a/2b carry a `reverdict_phase5` field.
+- **L-B** (ceiling table τ_off=0.0065 column + real ±0.3-log bands on
+  Tier-A rows + EMPTY retraction) — stated in this section; `results.json`
+  already carried the correct numbers (the defect was in NOTES.md's
+  printed table only, left as a correction notice above).
+- **L-C** (strike ≡1/A_req) — `results.json::n_ss_ceiling_table.note`
+  amended; stated above.
+- **L-D** (A_req table numbers) — correction notice added above;
+  `results.json`'s own table was already correct.
+- **L-E** (gate-count fix + `_stage_selected` comma/space tokenization) —
+  fixed in `lab/validation/run_all.py`; full bench reverified
+  `--only 12346789` 41/41, `--only 12,13,14` 23/23 (now correctly scoped).
+- **L-F** (THERMO sidecar for v1/v2) — `results.json::thermo_sidecar_v1_v2`
+  added, with the corrected Tier/detectability framing stated above.
+- **L-G** (KK relabel + constraint-2 numeric caveats) — `lab/amplitude_bridge.py`
+  docstring corrected (both the ε_r≡1/KK paragraph and the passivity/
+  Checkpoint-3 paragraph); stated above.
+
+**Checkpoint ruling, all five criteria, explicit (Red Team's own audit,
+adopted by the Director):**
+
+- **Criterion 1** (all constraint metrics pass): does NOT fire — constraints
+  1, 2, 4 unmeasured this cycle by design; both new articles sit on the
+  FAILING side of the Tier-W-adjacent bars they were placed at (measured
+  |C| exceeds C_thr at both τ_V1 and τ_V2).
+- **Criterion 2** (proven boundary, gates clean): does NOT fire. The A_req
+  divergence is the closest candidate this program has produced — within
+  the linear-bounded σ(n) class, reaching this program's own constraint-1
+  requirement (τ_peak=τ_on) while holding the Tier-A-lab at-rest ceiling
+  requires A_req→∞ — but it is blocked on an unsourced comparison ratio
+  (docket #7) and a hand-typed, not measured, beam-behind-at-peak column.
+  Named explicitly as what would fire it: a sourced witness irradiance
+  ratio plus one genuine measured beam-behind at shoulder τ.
+- **Criterion 3** (engine physics beyond validated bench classes): does NOT
+  fire this cycle (the bridge is desk/analytic as scoped) — and the
+  ELECTROMAGNETISM finding above means a future staircase-σ(t) run would
+  likely NOT fire it either (zero engine change, verified), though the
+  Iteration-16 standing instruction to flag time-varying-medium proposals
+  to Marsh at proposal time still applies as a judgment call, not a fact.
+- **Criterion 4** (Red Team flags program-integrity drift): **FIRES.**
+  VISION SCIENCE's finding — the mandatory amplitude-scope tag failed to
+  survive into this Phase-4 Results section, one of idealization 12's own
+  three explicitly-named required loci — is the same pattern class
+  Iteration 15's close attached a standing instruction to ("if this exact
+  pattern recurs on any future cycle, it should fire criterion 4 without
+  further debate"). Red Team's audit ruled this recurs on the letter of
+  that instruction (the instruction is scoped to the mechanism — a
+  Phase-3-committed scope tag failing to propagate into committed prose —
+  not to the specific T3-provisional tag that triggered it originally),
+  overriding two seats' (MATERIALS, THERMODYNAMICS) "exercised, not fired"
+  reading. **This fires on process, not on physics** — the FDTD half of
+  exp-040 is clean, re-verified independently by every seat and by Red
+  Team. What is being convened is narrow: whether to authorize the
+  mechanical remedy VISION SCIENCE proposed at Iteration 15 (a lint-style
+  or verbatim-reuse check) rather than a fourth wording patch, since a
+  wording fix has now failed to propagate twice in three cycles.
+- **Criterion 5** (two consecutive non-advancing iterations): does NOT
+  fire — zero consecutive; Iterations 16 and 17 both advanced the logbook.
+
+**Director's note on Criterion 4, independently re-confirmed before
+adoption:** I re-read Iteration 15's standing instruction in full (LOGBOOK
+Iteration 15 close) and confirm Red Team's reading is the more faithful
+one — the instruction's own stated reasoning ("the escalation language has
+now been invoked twice with two different, uncorroborated ordinal counts,
+and a third ambiguous invocation is not acceptable") is about the
+mechanism-class, and a 2-to-1 seat split on whether this cycle counts is
+exactly the ambiguous invocation the instruction was written to end. I
+adopt Red Team's ruling: **criterion 4 fires.** Full CHECKPOINT entry:
+LOGBOOK.md and SESSION_LOG.md, this same shift.
+

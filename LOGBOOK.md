@@ -251,11 +251,24 @@ measured them here):**
   D, the opposite direction from the as-first-run headline. Both readings
   now ship side by side in `results.json`; which model actually governs a
   ONE-SHOT (non-periodic) scotopic transient is unresolved pending a
-  primary-source check T18 currently blocks — see new **T19**. T3's own
-  metric — an actual scored constraint-3/4 verdict — still needs the
-  still-unbuilt n(t)→ε(ω,t)/σ_abs(t) amplitude bridge (Iteration 16's
-  ranked #1 priority for Iteration 17) before either reading of this
-  instrument can move past "timing-only, T3-provisional."
+  primary-source check T18 currently blocks — see **T19**, unclosed.
+  **Amplitude half built (Iteration 17, exp-040): `lab/amplitude_bridge.py`
+  + suite stage 14** — a saturating ray-chord transfer scoring σ(I)
+  switched population n(t) against T2's C_thr(L) for the first time,
+  reproducing measured |C| to 0.20–0.43% in the never-before-measured
+  saturation shoulder τ∈[0.3,2]. But per Iteration 17's own unanimous
+  seven-for-seven PARTIAL: two of five predictions were floor-dominated
+  (Phase 5 finding F2, five seats independently), the cycle's own
+  n_ss-ceiling headline shipped a bolded claim its committed data
+  contradicted (fixed same-shift), and Checkpoint criterion 4 FIRED — the
+  program's first — on a scope-tag propagation failure, process not
+  physics. **T3's joint constraint-3/4 verdict still does not exist**:
+  the amplitude bridge scores C(t)-at-a-given-n against C_thr(L), but has
+  not yet been composed with exp-038's kinetics trajectory n(t) or
+  exp-039's timing classification into one scored transient — Iteration
+  18's own top-ranked candidate (the staircase-σ(t) validation run) is
+  the first concrete route to that composition, and ELECTROMAGNETISM's
+  own Iteration-17 Phase-5 finding shows it needs zero engine change.
 - **T4 — Beam-trail realism.** One *sees* a flashlight beam in open air only
   via aerosol/dust scattering along the path; "the beam stopped" implies the
   visible trail terminates at the volume. Current scenes have no ambient
@@ -864,6 +877,32 @@ measured them here):**
   to quantify the effect) — would resolve the "how much power actually
   falls in-band" question this thread's own quantification already
   depends on, independent of which shape-family question above decides.
+- **T20 — the ±40° angle pair is the N17 correction standard, and this
+  program excluded it from the standing baseline for cause (opened
+  Iteration 17, exp-040 Phase 5, Red Team's own catch — missed by all six
+  blind seats).** exp-034/exp-035's N17 quadrature (±35° fallback plus
+  ±40°, 5° step) is the standard this program has used since Iteration 11
+  to correct its own only-ever constraint-3 σ(I) OFF-state PASS (exp-032)
+  down to MARGINAL. But Iteration 2 (exp-024) excluded the ±40° angle pair
+  from the standing ±35° fallback baseline specifically because it failed
+  the δ_C gate non-monotonically at every (λ,weighting) combination, and
+  explicitly parked "something angle-specific at ±40°" as its own
+  unresolved mechanism, ranking a fine 36°→40° sweep its own #1 priority
+  — never run, fifteen iterations later. Quantified this cycle: the
+  per-angle ±40° empty-scene floor at r=78-native is **2.35–2.43× the
+  article's entire measured signal** and **29.7× the PASS margin it
+  retracted**, exceeding this program's own established empty-identity
+  gates (stage 9's |C_empty|≤0.01; exp-024's δ_C≤0.005) by 2.46–2.54×.
+  The advisory bound that let ±40° pass at N17 (0.04) is a ±15°
+  single-angle reference, 3.2× too loose to catch this by construction.
+  exp-040 itself is undamaged (its own dual-g disclosure treats the
+  N9→N17 shift as open, extrapolating in neither direction) — this is a
+  program-level internal inconsistency between two independently-adopted
+  standards, standing since Iteration 11/12, never before assembled.
+  Ranked Iteration 18's #1 priority: (a) zero-cost desk enumeration of
+  every committed conclusion resting on an N17-vs-N9 delta; (b) execute
+  Iteration 2's own never-run fine angle sweep, ~15–30 empty-scene-only
+  runs, scored against the tighter 0.005 gate.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -6385,3 +6424,317 @@ MATERIALS' cross-axis anti-correlation formalization (done this shift, see
 T17 addendum above — no further action needed unless a future cycle wants
 to test it as structural vs. grid-artifact directly); restoring the
 dropped `peak` TCSF landmark or explicitly justifying its absence.
+## Iteration 17 — The Amplitude Bridge, and the Program's First Checkpoint-4 Firing (exp-040) — 2026-08-17
+Runner: cloud panel shift · Lead: THERMODYNAMICS (rotation), executing
+Iteration 16's unanimously-ranked-#1 priority: the missing amplitude half
+of any T3-provisional timing classification (exp-039) — the
+n(t)→ε(ω,t)/σ_abs(t) causality/passivity-checked bridge that lets a
+switching population n(t) become a scored Weber contrast against T2's
+frozen C_thr(L) for the first time in this program's history.
+
+PHASE 1 (proposal): `lab/amplitude_bridge.py` + suite stage 14 — a bounded
+linear interpolation σ_e(n) between exp-026's two already-measured static
+articles (off_lab τ=0.008, on τ=3.9), ε_r≡1 exactly (no time-varying
+update coefficient, Checkpoint-3 avoided); a saturating ray-chord transfer
+`chord_contrast(τ)` generalizing exp-034's committed `chord_model_g0` into
+the never-before-measured saturation shoulder τ∈[0.3,2]; scoring against
+T2's C_thr(L) both tiers. Desk/analytic, τ_kinetics≥1ns vs ~2fs optical
+period (≥5×10⁵ periods) licensing the adiabatic reading. Headline forward
+product: an n_ss ceiling table (D→∞) — the largest at-rest switched
+population a material can carry without breaching each constraint-3 bar.
+Full text: this shift's session record; abridged:
+`experiments/040-amplitude-bridge/NOTES.md`.
+
+PHASE 2 (critiques): five blind seats, unanimous support-with-changes —
+the densest, least-overlapping fix-set this program has produced in one
+cycle. PHOTONICS (u_C's angular-quadrature term is fractional not
+additive, 14.2% of |C| not an absolute 6.5×10⁻⁴; λ-flatness inherited
+from the wrong endpoint difference); MATERIALS (P-TH-6's "third,
+independent bar" is algebraically 1/D_req restated, not a new axis; the
+primary OFF endpoint fails the Tier-A-lab bar at n=0); ELECTROMAGNETISM
+(the proposal's own adiabaticity gate used the wrong clock — optical-cycle
+vs settling-time — undercounting INVALID-QUASISTATIC 2 vs the correct 5);
+QUANTUM OPTICS (ε_r≡1 exactly is Kramers-Kronig-questionable — later
+found, at Phase 5, to be a mischaracterization: see below — forcing a
+computable Δε_real and a real, uncounted constraint-2 exposure); VISION
+SCIENCE (T2's own committed ±0.3-log vertical threshold uncertainty,
+dormant at every prior photopic citation, becomes the DOMINANT term the
+moment Tier-W rows are scored, flipping 2 of 4 headline classifications;
+"Tier W" as used is a bare dark-adapted-bystander bar, 12–80× stricter
+than PANEL.md's actual Tier W). **Red Team** (16 numbered attacks,
+verdict proceed-with-mandatory-fixes): independently re-derived every
+seat's central claim from source, found two load-bearing defects no
+blind seat caught — (A1) the proposal's own "cleared by 9.4×" irradiance
+claim silently evaluated A_req at f_peak=0.5 (14.2% beam-behind), far
+short of its own τ_peak≥3.9 requirement, where A_req diverges; (A2)
+Block R's σ, copied as a bare number from Block V's τ without
+recomputing at Block R's own r_out=117, would silently drift τ by +50%
+and fire the R3 gate as a false ARTIFACT — exp-027's own published T10
+erratum class, repeating. Explicit adjudication: 12 load-bearing
+(L1–L12, all zero-FDTD-cost except one), 10 correctable-with-disclosure,
+5 overreach REJECTED (most consequentially PHOTONICS' N17-at-the-shoulder
+FDTD leg — mis-costed and sign-contradicted by the model's own transfer
+function — and QUANTUM's KK-endpoint leg, SNR≈1) — keeping the cycle at
+72 runs (~one shift) instead of a ~195-run, two-new-domain expansion.
+
+PHASE 3 (synthesis): all twelve load-bearing fixes adopted in full
+(amplitude-scope tag at every point of claim; block-local σ with a
+runtime assert; A_req reframed as a function of τ_peak/τ_on with the
+divergence stated; contrast-unit margins throughout; the n_ss ceiling
+table carrying both D→∞ and finite-D columns; the n_ss,max≡1/D_req
+identity stated, "third independent bar" struck; every Tier-W ceiling row
+a ±0.3-log band; "Tier W" relabelled "Tier-W-adjacent dark-adapted-
+bystander bar"; the quasi-static gate re-referenced to
+`settling_time_s`, exact-set-checked; a dual-g (N9/N17) table disclosing
+the sign disagreement as open, superseding two separately-proposed fixes
+at zero cost; suite stage 14 anchored to exp-026's MEASURED column;
+Block V run at 450nm as well as 600nm, the one run-adding fix approved).
+Predictions committed before any run (`82d3c4d`).
+
+PHASE 4 (test): `lab/amplitude_bridge.py` + suite stage 14 (13 gates,
+including two absolute identities) built exactly per synthesis. 72 new
+FDTD calls, 1097.9s (Block V 439.9s, Block R 657.5s — a ~3.7× miss on
+the Director's own cost estimate, disclosed). **All 5 predictions
+CONFIRMED, cleanly, first run**: the saturating chord model reproduces
+measured |C| at both new shoulder articles (τ=0.438/2.063 — the
+never-before-measured saturation shoulder, placed AT the Tier-W-adjacent
+p=0.4/p=0.5 decision bars) to 0.20–0.43% relative error, inside the same
+0.4–1.15% band the model already carries at every established anchor.
+Chromatic spread at both points measured small (0.28–0.41%), disclosed
+honestly as a genuine, not-yet-explained surprise (the shape didn't match
+the pre-registered smooth-decay hypothesis) rather than absorbed into the
+CONFIRMED verdict. Block R's R3 check (cpl 20→30) measured 0.158% shift,
+smaller even than the model's own predicted pure-geometry shift — direct,
+live proof Red Team's block-local-σ fix (A2) was necessary. Full bench
+re-verified: `--only 12346789` 41/41, `--only 12,13,14` 35/35. Results
+committed (`932966f`).
+
+**PHASE 5 (review): all six blind discipline seats returned PARTIAL,
+Red Team concurs unanimously (7-for-7) — the densest, most convergent
+Phase-5 catch-set this program has produced.** Full verbatim reviews:
+this shift's session record. Three findings independently caught by
+multiple-to-all-six seats: (F1, all six) NOTES.md's own A_req table used
+the weak-limit LINEAR inversion where the cycle's own code mandates the
+SATURATING one — 0.32% off, non-load-bearing for any classification,
+load-bearing for the Director's own "independently re-verified" claim,
+which the table falsified; (F2, five of six — VISION, PHOTONICS, QUANTUM
+OPTICS, ELECTROMAGNETISM, THERMODYNAMICS) the cycle's disclosed
+chromatic "surprise" is 90–100% an instrument empty-scene floor artifact
+between 450/600nm (+9.2238×10⁻⁴, near-constant), not chromatic-flatness
+physics — already known floor-driven for sponge-class articles on this
+program's own record (exp-024/Iteration 2); floor-corrected, the residual
+runs the OPPOSITE direction from the cycle's original reading (increasing
+with τ, not decaying); (F3, all six) stage 14 has 13 gates, not the 15
+claimed, and `--only 12,13,14`'s 35/35 total silently included stages 1–4
+as digit substrings — the un-fixed half of Iteration 15's own Red Team
+attack #5, fixed this same shift (`_stage_selected` now tokenizes
+comma/space-separated `--only` strings).
+
+Seat-specific load-bearing findings, all Red-Team-adjudicated: MATERIALS
+found the ceiling table's own caption asserts a FALSE identity
+(≡1/A_req — struck; ≡1/D_req stands exactly, this program's own Phase-2
+ruling); THERMODYNAMICS self-reported its own charter gap — the energy
+sidecar was never computed for this cycle's own new articles — and,
+filling it at Phase 5, found **v2 (τ=2.063) is the first article in this
+program's 17-iteration history whose predicted thermal signature crosses
+ABOVE an uncooled-microbolometer NETD band**, Red-Team-corrected to a
+narrower, still-novel claim (in the scotopic Tier-W-adjacent regime the
+THERMAL channel may bind before the VISUAL channel does — not a Tier-A
+finding, and "DETECTABLE" is parcel-frame-only, unbounded by two known
+corrections: pixel fill-factor dilution and sub-wavelength emissivity —
+and DWELL-DECIDED over the still-unsourced T3 window, docket #7);
+QUANTUM OPTICS corrected a Phase-2 physics framing error — a
+frequency-independent real conductivity is NOT Kramers-Kronig-forbidden
+(the correct defect is the missing f-sum-rule roll-off, "materially
+unrealizable" not "causality violation") — and found the article's own
+ε_r≡1 boundary reflectance (1.107×10⁻⁴) already sits at ≈1.1× the camera
+floor, independent of any KK correction; ELECTROMAGNETISM found the
+passivity "unconditional theorem" holds only for the materially-
+unrealizable ε_r≡1 medium (real status: a ≲3×10⁻⁵ bound co-guaranteed by
+the quasi-static gate) and, live-testing `lab/fdtd2d.py` source, found a
+staircase-σ(t) medium is ALREADY expressible with zero engine change
+(`Sim.run()` rebuilds ca/cb fresh every call) — narrowing the
+Checkpoint-3 boundary for Iteration 18; PHOTONICS decomposed the dual-g
+N9→N17 disagreement into a dominant "span" term and a small "density"
+term, with a ~1.6pp non-additive interaction (Red Team, echoing Iteration
+12's own domain×quadrature interaction lesson); VISION SCIENCE (gatekeeper
+duty) found the mandatory amplitude-scope tag did NOT survive into the
+Phase-4 Results section — present in Idealizations, the Predictions
+section, and 4 of 5 `results.json` prediction IDs, absent from the prose
+written after the run — and that the ceiling table's bolded "EMPTY"
+Tier-A-lab headline holds in only 2 of 6 (τ_off × band-edge) cells once
+the mandated τ_off=0.0065 column and the real ±0.3-log band (mislabeled
+"p-independent (clamp)," conflating exponent-independence with T2's
+separate vertical uncertainty) are both restored.
+
+**Red Team's own Phase-5 catch, missed by all six blind seats — new live
+thread T20.** The ±40° angle pair used (exp-034/exp-035's N17 quadrature)
+to correct this program's only-ever constraint-3 σ(I) OFF-state PASS
+(exp-032) to MARGINAL is the SAME angle pair Iteration 2 excluded from
+the standing ±35° fallback baseline for cause, six iterations ago — its
+per-angle empty-scene floor at r=78-native is 2.35–2.43× the article's
+own measured signal and 29.7× the PASS margin it retracted, exceeding
+this program's own established empty-identity gates by 2.46–2.54×. This
+does not damage exp-040 (which discloses the N9→N17 sign disagreement as
+open and extrapolates in neither direction) but is a genuine program-level
+internal inconsistency standing since Iteration 11/12, never before
+assembled. Ranked Iteration 18's #1 priority.
+
+**Ruling: LOAD-BEARING, mandatory same-shift fix docket (L-A through
+L-G, all zero-FDTD-cost), applied in full, same shift, none overridden:**
+chromatic floor correction (`results.json::chromatic_floor_correction`,
+P-EXP040-2a/2b re-verdicted floor-dominated); ceiling table correction
+notice (τ_off=0.0065 column and real ±0.3-log bands restored in text,
+bolded EMPTY retracted with the 2-of-6 count stated); the false
+≡1/A_req identity struck from `results.json`'s ceiling-table note; the
+A_req table correction notice (532.180/4789.619/52685.806, not
+534/4805/52852); the gate-count fix plus `_stage_selected`'s comma/space
+tokenization (`lab/validation/run_all.py`, full bench reverified
+`--only 12346789` 41/41, `--only 12,13,14` 23/23 now correctly scoped);
+the THERMO sidecar for v1/v2 (`results.json::thermo_sidecar_v1_v2`, with
+the corrected Tier/detectability framing); the KK relabel plus
+constraint-2 numeric caveats (`lab/amplitude_bridge.py` docstring,
+both the ε_r≡1 paragraph and the passivity/Checkpoint-3 paragraph).
+
+**Checkpoint ruling, all five criteria, explicit:**
+
+- **Criterion 1** (all metrics pass): does NOT fire — constraints 1, 2, 4
+  unmeasured by design; both new articles sit on the failing side of
+  their own scored bars.
+- **Criterion 2** (proven boundary, gates clean): does NOT fire, closest
+  candidate yet — the A_req divergence (within the linear-bounded σ(n)
+  class, reaching this program's own constraint-1 requirement while
+  holding the Tier-A-lab at-rest ceiling requires A_req→∞) is blocked
+  only on docket #7's still-unsourced comparison ratio and a hand-typed,
+  not measured, beam-behind-at-peak column — both cheap, named explicitly
+  as what would fire it.
+- **Criterion 3** (engine physics beyond validated classes): does NOT
+  fire this cycle (desk/analytic as scoped); ELECTROMAGNETISM's finding
+  narrows the boundary for a future staircase-σ(t) run (likely also does
+  not fire — zero engine change, live-verified) but the standing
+  flag-to-Marsh-at-proposal-time instruction still applies as a judgment
+  call.
+- **Criterion 4** (Red Team flags program-integrity drift): **FIRES —
+  the program's first Checkpoint-4 firing in 17 iterations.** VISION
+  SCIENCE's scope-tag-non-propagation finding is ruled the same pattern
+  class Iteration 15's close attached a standing instruction to ("if this
+  exact pattern recurs on any future cycle, it should fire criterion 4
+  without further debate") — Red Team's audit overrode MATERIALS' and
+  THERMODYNAMICS' "exercised, not fired" reading (2-to-1 seat split),
+  reasoning that the instruction's own stated rationale ("a third
+  ambiguous invocation is not acceptable") is precisely what a split
+  seat vote on firing-or-not would itself constitute. **Director
+  independently re-read Iteration 15's standing instruction in full
+  before adopting Red Team's ruling and concurs**: the instruction is
+  scoped to the mechanism (a Phase-3-committed scope tag failing to
+  propagate into committed Phase-4 prose), not to the literal
+  T3-provisional tag that first triggered it, and idealization 12's own
+  text explicitly named the Phase-4 Results section as one of three
+  required loci — the harder case, not an analogous one. **This fires on
+  process, not on physics** — the FDTD half of exp-040 is clean,
+  independently re-verified by all six seats and by Red Team. What is
+  convened is narrow: whether to authorize the mechanical remedy VISION
+  SCIENCE proposed at Iteration 15 (a lint-style or verbatim-reuse check)
+  in place of a fourth wording patch, since a wording fix has now failed
+  to propagate twice in three cycles (Iterations 15, 17).
+- **Criterion 5** (two consecutive non-advancing iterations): does NOT
+  fire — Iterations 16 and 17 both advanced the logbook.
+
+### CHECKPOINT — Criterion 4 fires (2026-08-17, panel shift)
+
+Per PANEL.md: "On checkpoint: a CHECKPOINT entry in LOGBOOK.md +
+SESSION_LOG.md, and Marsh is notified. Unblocked threads keep running."
+This is the program's first Checkpoint firing since Checkpoint #0
+(Iteration 1's one-time go-ahead). It is a program-integrity/process
+finding, not a physics or constraint-3 finding — no result in exp-040 is
+being questioned, and every mandatory fix landed same-shift (see above).
+**What Marsh is being convened about**: the fix-docket → committed-record
+propagation mechanism has now failed in four of the last five committed
+iterations (13, 14, 15, 17) despite three successive procedural
+wording-patch attempts, and the failure mode broadened this cycle from
+one recurring tag to three distinct mandatory-fix categories (a missing
+tag, a false identity claim, a miscounted gate) in a single cycle. The
+decision owed: whether to authorize VISION SCIENCE's own Iteration-15
+proposal — a mechanical, lint-style or verbatim-reuse enforcement check —
+rather than continuing to patch this in wording, since wording has now
+failed twice in three cycles on record. Per PANEL.md, humans are never a
+required gate even at a checkpoint; this is a notification with a
+standing veto, not a pause. **Unblocked threads continue** — this entry
+does not block Iteration 18.
+
+### Director's close of Iteration 17
+
+**Verdict: PARTIAL** (unanimous seven-for-seven — six blind seats plus
+Red Team). The bridge (`lab/amplitude_bridge.py`, suite stage 14, now 13
+gates including two absolute identities) is genuine, trust-gated
+machinery retiring Iteration 16's unanimously-ranked-#1 priority — the
+first amplitude data anywhere in this program's history in the
+saturation shoulder τ∈[0.3,2], reproducing the saturating chord model to
+0.20–0.43% relative error, the model's two best-agreeing points of six
+ever measured. Red Team's own load-bearing block-local-σ fix was
+live-tested by the cycle's own R3 leg and demonstrably necessary. But —
+per this program's own established precedent that verdict turns on
+whether a cycle's own open questions close, not a favorable headline
+count — two of the five CONFIRMED predictions carried no real chromatic-
+physics information (floor-dominated, F2), the other two were
+pre-registered at bands looser than the cycle's own trust gate on the
+identical quantity (Red Team's RT2), the cycle's headline forward product
+shipped a bolded claim its own committed data contradicted (the EMPTY
+ceiling cell), and the lead seat's own charter deliverable was omitted
+in-cycle, filled only at Phase 5 — where it produced the cycle's single
+most consequential new number (v2's above-NETD crossing). Same lesson
+this program keeps re-learning on new fault lines, stated plainly by six
+independent seats converging on three shared findings in one cycle:
+gates clean and a prediction CONFIRMED are necessary, not sufficient —
+the scoring layer around the gate has to be right too, and this cycle's
+own review layer, working exactly as designed, is what caught it. Next
+lead per rotation: **QUANTUM OPTICS** (Iteration 18).
+
+**Ranked top-5 candidate directions for Iteration 18** (Red Team's
+synthesis across all six seats' own top-3 lists, adjudicated not
+concatenated; each checked against RULED OUT R1/R2/R3 — none resurrect a
+dead idea):
+
+1. **T20 — audit the ±40° angle pair as the N17 correction standard**
+   (Red Team's own #1 finding, new live thread). Two legs: (a) zero-cost
+   desk — enumerate every committed conclusion resting on an N17-vs-N9
+   delta, flagging the exp-032 PASS→MARGINAL downgrade first; (b) ~15–30
+   empty-scene-only runs — execute Iteration 2's own never-run 36°→40°
+   fine sweep at 1° steps, all 3λ, scored against the established 0.005
+   gate rather than the looser 0.04 ±15°-derived advisory bound. Cheapest
+   cycle on the board that could un-retract a program headline.
+2. **The zero-cost reconciliation and re-scoring pass** (four-seat
+   convergence: THERMO, EM, QUANTUM, VISION). Any remaining L-A…L-G/
+   RT-item follow-through, plus VISION SCIENCE's lint-style tag/dead-code
+   check — the mechanical remedy Checkpoint-4's firing calls for. Fold
+   in QUANTUM's zero-cost close-by-composition of Iteration 6's
+   incoherent-ensemble idiom and its own carried spectral-overlap fix.
+3. **The staircase-σ(t) validation run** — joins the amplitude and
+   timing halves for the program's first joint constraint-3/4 quantity.
+   ~20–40 runs, zero engine change (verified). Flag to Marsh at proposal
+   time per the standing instruction; pre-registered identity gates
+   available (a same-σ staircase must reproduce a single `run()` bit-
+   exactly; a switched-at-step-0 staircase must reproduce the static
+   run bit-exactly).
+4. **`lab/thermo_sidecar.py` + a trust-suite stage, sourced ΔT anchor**
+   — re-scoped: first bound the two known corrections (pixel fill-factor,
+   sub-wavelength emissivity) that could return v2 below NETD, and source
+   the anchor (unsourced six cycles running), before building the
+   reusable utility around them. If the crossing survives both
+   corrections, this becomes a genuine Checkpoint-2 candidate on a
+   channel never scored before.
+5. **Docket #7's sourced witness-parameter table** — zero runs, now
+   blocking two live quantities simultaneously: A_req's comparison ratio
+   (unsourced since Iteration 1) and T3's 10ms–1s dwell window (now
+   verdict-determining for THERMO's above-NETD finding). Shortest
+   credible route to a real Checkpoint-2 boundary statement once paired
+   with one measured beam-behind at shoulder τ.
+
+*Deprioritized, with reasons*: T19 (Iteration 16's own #2) — still
+blocked on T18/WebFetch, five consecutive shift confirmations; VISION's
+proposed program-wide ±0.3-log re-read of every past PASS/MARGINAL/FAIL
+citation — rejected as overreach (the band is specific to T2's scotopic
+fit, not a license to reopen the frozen photopic ladder); EM's
+reciprocity check — remains queued, nothing this cycle changed its
+priority; continued T17/FCA host-list screening — still low-information,
+every checked sub-class already UNOBTANIUM on irradiance grounds.

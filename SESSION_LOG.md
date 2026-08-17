@@ -2,6 +2,102 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-17 (panel shift) — Iteration 17 complete (exp-040): the
+amplitude bridge built and gate-clean (5/5 predictions confirmed,
+0.20–0.43% in the never-before-measured saturation shoulder), a
+seven-seat unanimous PARTIAL with the densest Phase-5 catch-set this
+program has produced, and **CHECKPOINT — criterion 4 fires, the
+program's first Checkpoint since Checkpoint #0.**
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle.
+Bench trust suite reconfirmed green before any work: `--only 12346789`
+41/41, matching Iteration 16's own committed record to the printed
+digit. Iteration 16 found fully closed out on arrival.
+
+**Iteration 17 — The Amplitude Bridge (exp-040, CONCLUDED this shift).**
+Lead: THERMODYNAMICS (rotation), executing Iteration 16's unanimously-
+ranked-#1 priority: the n(t)→σ_e(t)→C(t) causality/passivity-checked
+bridge that lets a switching population score against T2's C_thr(L) for
+the first time. New machinery: `lab/amplitude_bridge.py` + trust-suite
+stage 14 (13 gates, two absolute identities). Phase 2's Red Team audit
+(16 numbered attacks — the densest single-cycle catch-set this program
+has produced) caught two load-bearing defects no blind seat found (a
+silent A_req divergence-point evaluation error; a Block-R σ-copy bug
+that would have drifted τ by +50% and fired a false ARTIFACT) and
+adjudicated the five support-with-changes verdicts into 12 load-bearing
+/ 10 correctable / 5 overreach-rejected fixes, holding the cycle at 72
+FDTD runs instead of a ~195-run expansion. Predictions committed
+(`82d3c4d`); Phase 4 built and run: all 5 predictions CONFIRMED, first
+run — the saturating chord model reproduces measured |C| at two new
+articles in the never-before-measured saturation shoulder (τ∈[0.3,2])
+to 0.20–0.43%, inside the model's existing 0.4–1.15% accuracy band;
+Block R's R3 check (0.158%) live-proved Red Team's block-local-σ fix
+necessary. Full bench re-verified: `--only 12346789` 41/41, `--only
+12,13,14` 35/35. Results committed (`932966f`).
+
+**Phase 5 (six fresh blind discipline seats, then Red Team audit, run
+this shift): unanimous PARTIAL, seven-for-seven — the densest,
+most-convergent Phase-5 catch-set this program has produced.** Three
+findings independently caught by multiple-to-all six seats: the
+committed A_req table used the wrong (weak-limit linear, not saturating)
+inversion method — non-load-bearing for any classification, load-bearing
+for the Director's own "independently re-verified" claim; the cycle's
+disclosed chromatic "surprise" is 90–100% an instrument empty-scene
+floor artifact, already known floor-driven on this program's own record
+for sponge-class articles — floor-corrected, the residual runs the
+OPPOSITE direction from the cycle's original reading; stage 14's own
+gate count was miscounted (13, not 15), and the un-fixed half of
+Iteration 15's own digit-boundary bug (single-digit stages 1–9) was
+found and fixed this same shift. THERMODYNAMICS self-reported its own
+charter gap — the energy sidecar was never computed for this cycle's own
+new articles — and, filling it at Phase 5, found **v2 is the first
+article in this program's 17-iteration history whose predicted thermal
+signature crosses ABOVE an uncooled-microbolometer NETD band**
+(Red-Team-corrected framing: not a Tier-A exposure, parcel-frame-only,
+unbounded by two known corrections, dwell-decided over the still-
+unsourced T3 window). QUANTUM OPTICS corrected a Phase-2 physics framing
+error (a constant real conductivity is NOT Kramers-Kronig-forbidden —
+the actual defect is a missing f-sum-rule roll-off). ELECTROMAGNETISM
+live-tested `lab/fdtd2d.py` source and found a staircase-σ(t) medium is
+already expressible with zero engine change, narrowing the Checkpoint-3
+boundary for Iteration 18. **Red Team's own catch, missed by all six
+blind seats — new live thread T20**: the ±40° angle pair used since
+Iteration 11 to correct this program's only-ever constraint-3 PASS to
+MARGINAL is the same pair Iteration 2 excluded from the standing
+baseline for cause, six iterations ago — a program-level inconsistency
+never before assembled.
+
+**Ruling: LOAD-BEARING, mandatory same-shift fix docket (7 items, all
+zero-FDTD-cost), applied in full this same shift**: the chromatic floor
+correction, the ceiling-table correction notice, the struck false
+≡1/A_req identity, the A_req table correction, the gate-count fix plus
+`_stage_selected`'s comma/space tokenization (full bench reverified
+41/41 and 23/23), the THERMO sidecar for v1/v2, and the Kramers-Kronig
+relabel plus constraint-2 numeric caveats.
+
+**CHECKPOINT — criterion 4 FIRES, explicit, the program's first
+Checkpoint since Checkpoint #0.** VISION SCIENCE's finding — the
+mandatory amplitude-scope tag failed to survive into the Phase-4 Results
+section, one of its own three explicitly-named required loci — was
+ruled by Red Team, and independently re-confirmed by the Director, to be
+the same pattern class Iteration 15's close attached a standing
+instruction to ("if this exact pattern recurs on any future cycle, it
+should fire criterion 4 without further debate"), overriding a 2-to-1
+seat split. **This fires on process, not on physics** — the FDTD half of
+exp-040 is clean, independently re-verified by all six seats and by Red
+Team, and every mandatory fix landed same-shift. What is convened: a
+decision on whether to authorize a mechanical, lint-style enforcement
+check (VISION SCIENCE's own Iteration-15 proposal) in place of a fourth
+wording patch, since wording has now failed to propagate twice in three
+cycles (Iterations 15, 17). Per PANEL.md, this is a notification with a
+standing veto, not a required gate — unblocked threads continue.
+
+**No other criterion fires.** Verdict: **PARTIAL.** Next lead per
+rotation: **QUANTUM OPTICS** (Iteration 18), whose own top-ranked
+priority is auditing T20's ±40°-angle inconsistency — Red Team's own
+Phase-5 catch and the densest-information-per-run item on the board.
+Full record: LOGBOOK.md Iteration 17.
+
 ## 2026-08-17 (panel shift) — Iteration 16 complete (exp-039): the T3
 temporal-CSF instrument finally built after three iterations deferred, and
 its own headline finding caught contested by Phase 5 the same shift —

@@ -1102,9 +1102,17 @@ def stage14_amplitude_bridge():
     exact_39 = ab.chord_absorptance_exact(3.9)
     check("amplitude_bridge", "legacy series chord_absorptance(3.9) stays negative (unphysical, proves fix needed)",
           f"{series_39:.4f}", series_39 < 0.0, "<0.0")
-    crossover_err = abs((3.0 * np.pi / 4.0))   # zero of the series is exactly 3*pi/4 algebraically
-    check("amplitude_bridge", "legacy series zero-crossing == 3*pi/4 (algebraic identity)",
-          f"{3*np.pi/4:.6f}", abs(ab.chord_absorptance_series_legacy(3 * np.pi / 4)) <= 1e-9, "~0")
+    # Panel Iteration 17 Phase 5, Red Team attack RT3 (load-bearing, self-
+    # caught on this cycle's own new code -- the third dead-code instance
+    # of this species, after Iteration 15's `or True` and this cycle's own
+    # MATERIALS b): the prior version of this gate computed and displayed
+    # `abs(3*pi/4)` -- the crossing LOCATION, not a residual -- against an
+    # expectation string of "~0", which a reader parses as a passing
+    # near-zero residual. The boolean was correct throughout (it always
+    # tested the actual residual); only the displayed value was wrong.
+    crossover_residual = abs(ab.chord_absorptance_series_legacy(3.0 * np.pi / 4.0))
+    check("amplitude_bridge", "legacy series zero-crossing residual at 3*pi/4 (algebraic identity)",
+          f"{crossover_residual:.2e}", crossover_residual <= 1e-9, "~0")
     low_tau_agree = abs(ab.chord_absorptance_exact(0.032) - ab.chord_absorptance_series_legacy(0.032)) \
         / ab.chord_absorptance_exact(0.032)
     check("amplitude_bridge", "exact vs legacy series agree at tau=0.032 (weak-tau limit, rel err)",
@@ -1114,15 +1122,38 @@ def stage14_amplitude_bridge():
 
 
 def _stage_selected(n, only):
-    """Digit-boundary-aware stage selection: True iff the two-or-more-digit
-    stage number `n` appears in `only` NOT adjacent to another digit.
-    Panel Iteration 15 / Red Team attack #5: the naive `str(n) in only`
-    check silently fires stage 12 on every existing invocation (the local
-    default "123456789" and CI's own "--only 12346789" both happen to
-    contain "1" immediately followed by "2") -- purely an accident of
-    decimal-digit concatenation with the single-digit stages 1-9. This also
-    retroactively fixes stage 10/11's own identical latent fragility,
-    which had simply never been triggered."""
+    """Stage selection, aware of BOTH of this suite's two `--only` idioms.
+    Panel Iteration 15 / Red Team attack #5 fixed the multi-digit half:
+    True iff the two-or-more-digit stage number `n` appears in `only` NOT
+    adjacent to another digit -- the naive `str(n) in only` check silently
+    fired stage 12 on every existing invocation (the local default
+    "123456789" and CI's own "--only 12346789" both happen to contain "1"
+    immediately followed by "2"), purely an accident of decimal-digit
+    concatenation with the single-digit stages 1-9.
+
+    Panel Iteration 17 Phase 5, Red Team finding F3/L-E (six blind seats
+    independently caught this, all six re-derived it by direct execution):
+    that fix left the SINGLE-digit stages 1-9 on the naive substring test,
+    which is correct for this suite's PACKED convention (one token, no
+    separator, e.g. "123456789" or "12346789" -- each character IS a
+    stage selector, by design, and must stay that way: `_stage_selected`'s
+    own digit-boundary regex would select NOTHING for stage 1 against
+    "123456789", since "1" there is adjacent to "2") -- but wrong the
+    moment an invocation mixes idioms, e.g. "--only 12,13,14" (intended as
+    three 2-digit stage numbers) ALSO silently fired stages 1/2/3/4 as
+    substrings, with no comma-awareness at all. Resolved by tokenizing on
+    commas/whitespace: a SEPARATED invocation (more than one token, e.g.
+    "12,13,14" or "12 13 14") requires an EXACT per-token match for every
+    stage, single- or multi-digit alike; an UNSEPARATED invocation (one
+    token, e.g. "123456789") keeps the legacy packed-digit convention
+    (`str(n) in only` for stages 1-9, the digit-boundary regex for stages
+    10+) so every existing citation in this program's own SESSION_LOG/
+    LOGBOOK history reproduces unchanged."""
+    tokens = [t for t in re.split(r"[,\s]+", only.strip()) if t]
+    if len(tokens) > 1:
+        return str(n) in tokens
+    if n < 10:
+        return str(n) in only
     return re.search(rf"(?<!\d){n}(?!\d)", only) is not None
 
 
@@ -1138,11 +1169,11 @@ if __name__ == "__main__":
     run_stage14 = _stage_selected(14, only)
     t0 = time.time()
 
-    if "1" in only:
+    if _stage_selected(1, only):
         stage1_regression()
-    if "2" in only:
+    if _stage_selected(2, only):
         stage2_impedance()
-    if "3" in only or "4" in only:
+    if _stage_selected(3, only) or _stage_selected(4, only):
         sim_scene, env_scene_ours = _our_small_scene(True)
         _, env_vac_ours = _our_small_scene(False)
         ours_scat = env_scene_ours - env_vac_ours
@@ -1152,8 +1183,8 @@ if __name__ == "__main__":
             / np.mean(env_scene_ours[156:226, 140:165] ** 2))
         check("ours-small", "lambda (cells)", f"{lam_small:.2f}",
               abs(lam_small - 20.0) <= 0.2, "20.0±0.2")
-        env_lib = stage3_fdtd_lib(ours_scat, shadow_small) if "3" in only else None
-        env_c = stage4_ceviche(ours_scat) if "4" in only else None
+        env_lib = stage3_fdtd_lib(ours_scat, shadow_small) if _stage_selected(3, only) else None
+        env_c = stage4_ceviche(ours_scat) if _stage_selected(4, only) else None
 
         if env_lib is not None and env_c is not None:
             fig, axes = plt.subplots(1, 3, figsize=(12.6, 3.6), dpi=140)
@@ -1171,15 +1202,15 @@ if __name__ == "__main__":
             fig.tight_layout(rect=[0, 0, 1, 0.9])
             fig.savefig(os.path.join(HERE, "v34_cross.png")); plt.close(fig)
 
-    if "5" in only:
+    if _stage_selected(5, only):
         stage5_cloak()
-    if "6" in only:
+    if _stage_selected(6, only):
         stage6_observer()
-    if "7" in only:
+    if _stage_selected(7, only):
         stage7_absorber()
-    if "8" in only:
+    if _stage_selected(8, only):
         stage8_sections()
-    if "9" in only:
+    if _stage_selected(9, only):
         stage9_ambient()
     if run_stage10:
         stage10_radial_power()

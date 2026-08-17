@@ -68,7 +68,8 @@
       "measured_450": 0.24987871120488345,
       "relative_spread": 0.0040702547424211625,
       "band": 0.08,
-      "verdict": "CONFIRMED"
+      "verdict": "CONFIRMED",
+      "reverdict_phase5": "CONFIRMED (floor-dominated -- no chromatic-physics content; see results.json::chromatic_floor_correction, Red Team finding F2, Panel Iteration 17 Phase 5)"
     },
     {
       "id": "P-EXP040-2b [amplitude-only -- not a Tier-W or Tier-A constraint-3 verdict; bench-scale, N9-quadrature-uncorrected (T16); PHOTONICS/VISION L12]",
@@ -77,7 +78,8 @@
       "measured_450": 0.6636950776335983,
       "relative_spread": 0.0027954541551957145,
       "band": 0.04,
-      "verdict": "CONFIRMED"
+      "verdict": "CONFIRMED",
+      "reverdict_phase5": "CONFIRMED (floor-dominated -- no chromatic-physics content; see results.json::chromatic_floor_correction, Red Team finding F2, Panel Iteration 17 Phase 5)"
     },
     {
       "id": "P-EXP040-3 [R3 resolution check, mandatory -- Red Team attack #2 fix (L2) live-tested]",
@@ -183,7 +185,7 @@
         "note": "NO BAR (exceeds asymptote)"
       }
     },
-    "note": "Tier-W rows here are the DARK-ADAPTED-BYSTANDER bar, NOT true PANEL.md Tier W (Red Team attack #5 / VISION L8) -- the flashlight holder's own Stiles-Holladay self-glare (LOGBOOK Iteration-1 sidecar) elevates the actual Tier-W bar 12-80x looser (no bar at all), so these rows are CONSERVATIVE, not the reported scene's own regime. True Tier W stays unscored pending docket #7."
+    "note": "Tier-W rows here are the DARK-ADAPTED-BYSTANDER bar, NOT true PANEL.md Tier W (Red Team attack #5 / VISION L8) -- the flashlight holder's own Stiles-Holladay self-glare (LOGBOOK Iteration-1 sidecar) elevates the actual Tier-W bar 12-80x looser (no bar at all), so these rows are CONSERVATIVE, not the reported scene's own regime. True Tier W stays unscored pending docket #7. CORRECTED Panel Iteration 17 Phase 5 (MATERIALS' catch, Red Team-confirmed, fix L-C): n_ss,max(D->infinity) === 1/D_req holds EXACTLY (Phase-2 ruling, reconfirmed); the further claim '=== 1/A_req' asserted in NOTES.md's Phase-3 text is FALSE -- A_req(f_peak) = (D_req-1)*f_peak/(1-f_peak) is a genuinely distinct quantity (introduces f_peak, diverges as f_peak->1) and collapses onto 1/n_ss,max only coincidentally at f_peak=0.5, to 0.19%. The false third leg of the identity is struck; the reciprocal-of-D_req identity stands."
   },
   "dual_g_table": {
     "chord_model_g0": 0.6857163680484835,
@@ -216,5 +218,60 @@
   "block_r_runs": 18,
   "elapsed_v_s": 439.93368196487427,
   "elapsed_r_s": 657.5018784999847,
-  "elapsed_total_s": 1097.864012002945
+  "elapsed_total_s": 1097.864012002945,
+  "chromatic_floor_correction": {
+    "note": "Panel Iteration 17 Phase 5, Red Team finding F2 (independently caught by 5 of 6 blind seats -- VISION, PHOTONICS, QUANTUM OPTICS, ELECTROMAGNETISM, THERMODYNAMICS -- confirmed load-bearing by Red Team's own audit, fix L-A). Block V's own empty-scene C differs by a near-constant additive offset between 450nm and 600nm (+9.2238e-4) -- this accounts for 90-100% of the RAW chromatic spread at every article in this family, including the originally-cited exp-026 'off_lab 16.8%' comparator (~100% floor per Red Team's re-derivation), which was ALREADY known floor-driven on this program's own record for sponge-class articles (exp-024/Iteration 2: absorber Delta=0.0114, PEC Delta=0.0166, sponge Delta=0.0003 'noise-level'). Once floor-corrected, the RESIDUAL chromatic spread runs the OPPOSITE direction from the raw metric -- it INCREASES with tau, not decreases -- because the raw metric is mechanically (near-constant offset)/(growing |C|). Chromatic (lambda) and resolution (cpl) are also perfectly collinear in this bench design (V_CPL={450:15,600:20} at fixed dx=30nm) -- Block R's own R3 measurement (0.158% shift for a 1.5x cpl change at v2) exceeds v2's entire floor-corrected residual, so no chromatic PHYSICS beyond known grid-resolution sensitivity is needed to explain it either. P-EXP040-2a/2b are RE-VERDICTED (see each prediction's own 'reverdict_phase5' field): arithmetically CONFIRMED as pre-registered, but floor-dominated / uninformative about real chromatic physics, not evidence of a fast-saturating chromatic-flatness law as originally read in NOTES.md.",
+    "v1": {
+      "tau_label": "v1 (tau=0.437985)",
+      "C_600": -0.25089785530224296,
+      "C_450": -0.24987871120488345,
+      "raw_delta": 0.001019144097359509,
+      "raw_relative_spread": 0.0040702547424211625,
+      "empty_scene_floor_offset": 0.000922380141220924,
+      "floor_corrected_residual": 9.67639561385849e-05,
+      "floor_corrected_relative_spread": 0.00038567071855603803,
+      "floor_share_of_raw_delta_pct": 90.50537049772551
+    },
+    "v2": {
+      "tau_label": "v2 (tau=2.063172)",
+      "C_600": -0.6655530036696808,
+      "C_450": -0.6636950776335983,
+      "raw_delta": 0.001857926036082591,
+      "raw_relative_spread": 0.0027954541551957145,
+      "empty_scene_floor_offset": 0.000922380141220924,
+      "floor_corrected_residual": 0.0009355458948616671,
+      "floor_corrected_relative_spread": 0.001405667001280616,
+      "floor_share_of_raw_delta_pct": 49.64568682000649
+    }
+  },
+  "thermo_sidecar_v1_v2": {
+    "note": "Panel Iteration 17 Phase 5, THERMODYNAMICS' own self-reported charter gap (this cycle's lead seat never computed its own sidecar for v1/v2 during Phase 1-4), filled at Phase 5 and Red-Team-adjudicated (fix L-F). Post-run analytic sidecar, NOT an FDTD output -- expressibility contract. Uses this program's own established exp-033/034 linear-in-absorbed-fraction rescaling convention, with `chord_absorptance_exact` (this cycle's own defect-fixed replacement for exp-034's unphysical weak-tau series) as the absorbed-fraction link. REF_DT_SS_K and REF_RATE_K_PER_S are UNSOURCED bare literals, flagged unsourced for a sixth consecutive cycle (THERMODYNAMICS' own standing complaint) -- treat all numbers below as order-of-magnitude, not final. FINDING: v2 (tau=2.063) is the FIRST article in this program's 17-iteration history whose predicted thermal signature crosses ABOVE an uncooled-microbolometer NETD band, at both steady-state and 1s dwell; v1 straddles it. Red-Team-corrected framing (both corrections push the same direction, neither is bounded): (1) NOT a Tier-A exposure -- both articles exceed the Tier-A VISIBLE-band lab bar by 50-133x, so this is not a novel Tier-A failure; the correct, narrower, still-novel claim is that in the scotopic Tier-W-adjacent regime the THERMAL channel may bind before the VISUAL channel does, for the first time in this program. (2) 'DETECTABLE' is PARCEL-FRAME only, not apparent-at-a-real-imager: a ~2.34um parcel against a ~17-25um microbolometer pixel pitch implies a ~100x pixel-fill-factor dilution, and an object several times smaller than the 8-14um thermal wavelength has emissivity well below 1 in that band -- either correction alone plausibly returns v2 below NETD; neither is quantified here. (3) The verdict is DWELL-DECIDED over exactly this program's own still-unsourced T3 window (10ms-1s, docket #7): at 10ms, v2 reads 19-48x BELOW NETD (undetectable); at 1s, 2.1-5.3x ABOVE (detectable).",
+    "v1": {
+      "label": "v1",
+      "tau": 0.4379850109295916,
+      "absorbed_fraction_exact": 0.287541363121948,
+      "dT_steady_K": 0.04614416055173092,
+      "dT_at_10ms_K": 0.0003908416046731676,
+      "dT_at_1s_K": 0.03908416046731676,
+      "dT_ss_over_NETD_lo": 2.307208027586546,
+      "dT_ss_over_NETD_hi": 0.9228832110346183,
+      "dT_1s_over_NETD_lo": 1.954208023365838,
+      "dT_1s_over_NETD_hi": 0.7816832093463352,
+      "dT_10ms_over_NETD_hi": 0.007816832093463351
+    },
+    "v2": {
+      "label": "v2",
+      "tau": 2.063172497417356,
+      "absorbed_fraction_exact": 0.7758669768342912,
+      "dT_steady_K": 0.12450984427810444,
+      "dT_at_10ms_K": 0.0010545999050238467,
+      "dT_at_1s_K": 0.10545999050238467,
+      "dT_ss_over_NETD_lo": 6.225492213905222,
+      "dT_ss_over_NETD_hi": 2.4901968855620886,
+      "dT_1s_over_NETD_lo": 5.272999525119233,
+      "dT_1s_over_NETD_hi": 2.109199810047693,
+      "dT_10ms_over_NETD_hi": 0.021091998100476933
+    }
+  },
+  "stage14_gate_count_note": "Panel Iteration 17 Phase 5, Red Team finding F3 (all six blind seats independently caught this by direct execution): stage 14 (stage14_amplitude_bridge) emits exactly 13 checks, not the 15 NOTES.md's Phase-4 prose originally claimed. `--only 12,13,14` now correctly runs exactly the 23 checks belonging to stages 12+13+14 (5+5+13) -- fixed in lab/validation/run_all.py this same shift (_stage_selected now tokenizes comma/space-separated --only strings), completing Iteration 15's own attack #5, which had left single-digit stages 1-9 on the naive substring test."
 }

@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-17, panel Iteration 16)
+## Current state (2026-08-17, panel Iteration 17)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -820,45 +820,77 @@ continuous mode with checkpoints. The remaining [open] items below are
   reconfirmed NOT to fire, on either the tag pattern or T19's own finding.
   Seven-seat Phase 5 (six blind + Red Team): unanimous PARTIAL. Verdict:
   PARTIAL. Full record: LOGBOOK.md Iteration 16.
-- **[queued — panel Iteration 17, lead per rotation THERMODYNAMICS,
-  ranked per Red Team's Iteration-16 Phase-5 adjudication]** (1) **Build
-  the n(t)→ε(ω,t)/σ_abs(t) causality/passivity-checked amplitude bridge**
-  — the most convergent pick of any Iteration-16 Phase-5 recommendation
-  (ELECTROMAGNETISM's #1, MATERIALS' #1, VISION SCIENCE's #1, QUANTUM
-  OPTICS' #2), and EM's own carried Iteration-15 priority #3. The single
-  piece of missing machinery that would let any T3-provisional timing
-  classification (exp-039) become an actual scored constraint-3/4 verdict
-  against T2's already-pinned C_thr(L). Flag to Marsh at proposal time if
-  scope creeps toward a genuinely time-varying-medium FDTD update
-  coefficient (likely Checkpoint criterion 3 territory, per EM's own
-  Iteration-15 review — still standing). (2) **Resolve T19: the scotopic
-  bandpass/lowpass topology question, with a primary source** —
-  three independently-converging Iteration-16 seat picks
-  (ELECTROMAGNETISM, VISION SCIENCE, PHOTONICS on the adjacent
-  chromatic/achromatic shape-family variant). Needs a working full-text
-  route (T18) or an explicit, sourced engineering rationale for whether a
-  ONE-SHOT scotopic transient behaves as bandpass or lowpass — the classic
-  TCSF curve shapes were measured under periodic flicker, not established
-  for a single switching event. QUANTUM OPTICS' own #1 (replace
-  corner-comparison with an exact spectral-overlap-fraction calculation,
-  the Lorentzian integral both QUANTUM OPTICS and Red Team already used
-  this cycle) is a cheaper, zero-search-cost companion, foldable in. (3)
-  **Reconsider whether continuing to screen the T17/FCA host list is the
-  highest-information use of panel cycles** (PHOTONICS' #3, EM's #3,
-  MATERIALS' #2, independently converging) — `REALIZABILITY_MEMO.md`
-  Amendment 2 already found every checked FCA sub-class UNOBTANIUM on
-  irradiance grounds, and exp-039's own headline result again landed
-  mostly on already-unrealizable grid points. Pursue T18's own still-open
-  item instead if this direction is taken: survey remaining unchecked
-  mechanism classes for an irradiance gap small enough (≲5–6 OOM) that
-  realistic field enhancement genuinely closes it. Cheap same-cycle
-  add-ons if budget allows: THERMODYNAMICS' reusable THERMO-sidecar
-  utility (ΔT_ss/heating-time/diffusion-reset-time as a function of ρ,
-  c_p, κ, P_absorbed, L — now overdue a third cycle running); restoring
-  the dropped `peak` TCSF landmark exp-039's own build silently omitted,
-  or explicitly justifying its absence; QUANTUM OPTICS' numerical
-  grounding of the adiabatic-elimination margin for exp-038's actual FCA
-  host list (a few lines of arithmetic, carried from Iteration 15).
+- [done 2026-08-17, panel Iteration 17, cloud panel shift] **exp-040 the
+  amplitude bridge** — THERMODYNAMICS' lead (rotation), executing
+  Iteration 16's unanimously-ranked-#1 priority. New machinery:
+  `lab/amplitude_bridge.py` (σ_e(n) mixing law + saturating `chord_contrast`
+  ray-chord transfer, generalizing exp-034's `chord_model_g0` into the
+  never-before-measured saturation shoulder τ∈[0.3,2]) + trust-suite
+  stage 14 (13 gates, two absolute identities). Phase 2's Red Team audit
+  (16 numbered attacks, densest single-cycle catch-set to date) found two
+  load-bearing defects no blind seat caught (A_req's silent divergence-
+  point evaluation; a Block-R σ-copy bug that would have drifted τ by
+  +50% and fired a false ARTIFACT) and adjudicated 12 load-bearing / 10
+  correctable / 5 overreach-rejected fixes, keeping the cycle at 72 runs
+  instead of a ~195-run expansion. **All 5 predictions CONFIRMED, first
+  run**: the model reproduces measured |C| at two new shoulder articles
+  to 0.20–0.43%, inside the model's existing 0.4–1.15% accuracy band; R3
+  (cpl 20→30) measured 0.158%, live-proving the block-local-σ fix
+  necessary. **Seven-seat Phase 5 (six blind + Red Team): unanimous
+  PARTIAL** — three convergent findings (A_req table used the wrong
+  inversion method, non-load-bearing; the chromatic "surprise" is 90–100%
+  an instrument-floor artifact, floor-corrected residual runs the OPPOSITE
+  direction from the original reading; stage 14's gate count was
+  miscounted). THERMODYNAMICS self-reported its own charter gap and,
+  filling it at Phase 5, found **v2 is the first article in this
+  program's history whose predicted thermal signature crosses ABOVE an
+  uncooled-microbolometer NETD band** (Red-Team-corrected framing: not a
+  Tier-A exposure, parcel-frame-only, dwell-decided). Red Team's own
+  catch (new live thread **T20**): the ±40° angle pair used since
+  Iteration 11 to correct the program's only-ever constraint-3 PASS to
+  MARGINAL is the same pair Iteration 2 excluded from the standing
+  baseline for cause — a program-level inconsistency, never before
+  assembled. **Checkpoint criterion 4 FIRES — the program's first
+  Checkpoint firing since Checkpoint #0** — on a scope-tag propagation
+  failure (process, not physics; every mandatory fix applied same-shift).
+  Verdict: PARTIAL. Full record: LOGBOOK.md Iteration 17.
+- **[queued — panel Iteration 18, lead per rotation QUANTUM OPTICS,
+  ranked per Red Team's Iteration-17 Phase-5 adjudication]** (1) **T20 —
+  audit the ±40° angle pair as the N17 correction standard** (Red Team's
+  own #1 finding, new live thread). Two legs: zero-cost desk enumeration
+  of every committed conclusion resting on an N17-vs-N9 delta (flagging
+  the exp-032 PASS→MARGINAL downgrade first); then execute Iteration 2's
+  own never-run 36°→40° fine angle sweep at 1° steps, all 3λ, ~15–30
+  empty-scene-only runs, scored against the tighter established 0.005
+  gate rather than the looser 0.04 ±15°-derived advisory. (2) **The
+  zero-cost reconciliation and re-scoring pass** (four-seat convergence:
+  THERMO, EM, QUANTUM, VISION) — any remaining exp-040 Phase-5 follow-
+  through, plus VISION SCIENCE's own long-queued lint-style tag/dead-code
+  enforcement check, the mechanical remedy Checkpoint-4's firing calls
+  for in place of a fourth wording patch. Fold in QUANTUM's zero-cost
+  close-by-composition of Iteration 6's incoherent-ensemble idiom. (3)
+  **The staircase-σ(t) validation run** — joins the amplitude and timing
+  halves for the program's first joint constraint-3/4 quantity. ~20–40
+  runs, zero engine change (ELECTROMAGNETISM's Iteration-17 Phase-5
+  finding, live-verified against `lab/fdtd2d.py` source). Flag to Marsh
+  at proposal time per the standing instruction; two identity gates
+  pre-registered (a same-σ staircase must reproduce a single `run()`
+  bit-exactly; a switched-at-step-0 staircase must reproduce the static
+  run bit-exactly). Cheap same-cycle add-ons if budget allows:
+  `lab/thermo_sidecar.py` re-scoped to first bound the two known
+  corrections (pixel fill-factor, sub-wavelength emissivity) that could
+  return exp-040's v2 below NETD, and to source the ΔT anchor (unsourced
+  six cycles running), before building the reusable utility around them
+  — if the crossing survives both corrections, a genuine Checkpoint-2
+  candidate; docket #7's sourced witness-parameter table (now blocking
+  two live quantities: A_req's comparison ratio and T3's dwell window,
+  which is verdict-determining for THERMO's above-NETD finding).
+  Deprioritized, with reasons: T19 (still blocked on T18/WebFetch, five
+  consecutive shift confirmations); VISION's proposed program-wide
+  ±0.3-log re-read of every past PASS/MARGINAL/FAIL citation (rejected as
+  overreach — reopens the frozen photopic ladder without its own cycle);
+  continued T17/FCA host-list screening (still low-information, every
+  checked sub-class already UNOBTANIUM on irradiance grounds).
   Lower priority, inherited: **Retroactive wavelength-tagging and
   primary-source re-verification** (exp-036's RSA/spiropyran figures,
   exp-037's TPA-cascade/Soref-Bennett figures) — still blocked pending a
