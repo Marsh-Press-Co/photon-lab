@@ -24,13 +24,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 HOSTS = {"A": 1e9, "B": 1e6, "C": 1e3, "D": 1e1, "E": 1e0}
 RATIOS = [1e-9, 1e-5, 1e-3, 1e-1, 1.0]
 
-TIER = {
-    ("A",): "PUBLISHED", ("B",): "PUBLISHED",
-    ("C",): "PLAUSIBLE", ("D",): "PLAUSIBLE",
-    ("E",): "UNOBTANIUM-WITH-PARAMETERS",
-}
-
-
 def realizability_tier(host, r):
     """Identical to exp-038's own run.py::realizability_tier (NOTES.md's
     Realizability bound section restates, does not re-derive, this)."""
@@ -90,18 +83,74 @@ def score_predictions(rows_photopic, rows_scotopic):
         "verdict": "CONFIRMED" if (p4_d_ok and p4_e_ok and p4_no_boundary) else "REFUTED",
     })
 
-    # P-EM-5 (scotopic, T3-provisional, CORRECTED): Host D always
-    # in_passband, Host E always sub_passband, no boundary_dependent.
+    # P-EM-5 (scotopic, T3-provisional, CORRECTED at Phase 3, then FLAGGED
+    # at Phase 5): Host D always in_passband, Host E always sub_passband,
+    # no boundary_dependent -- under classify_zone's BANDPASS model.
+    #
+    # Iteration 16 Phase 5, Red Team mandatory fix #1 (load-bearing,
+    # independently reconfirmed by the Director): classify_zone applies a
+    # bandpass (low-frequency-exclusion) decision structure to the
+    # scotopic regime, but that regime's own cited source (de Lange 1958,
+    # see temporal_csf.py's SCOTOPIC_LOW_CORNER_BAND_HZ docstring)
+    # describes it as LOW-PASS -- a shape with NO low-frequency exclusion,
+    # sensitivity maximal near DC. Under the TRUE low-pass alternative
+    # (classify_zone_lowpass, no low_corner), BOTH hosts classify
+    # in_passband, and Host E -- read as "favorable in both regimes" under
+    # the bandpass model -- has MORE of its spectral power concentrated in
+    # the sensitive near-DC zone than Host D (Director's independent
+    # recomputation: Host D ~87-96% of spectral power below CFF, Host E
+    # ~99% below CFF, under the pure-lowpass reading) -- the OPPOSITE
+    # direction from the bandpass model's "Host E is the good one" story.
+    # BOTH readings are reported below; NEITHER is treated as the settled
+    # answer -- which model actually governs a ONE-SHOT scotopic transient
+    # is unresolved (T18 blocks the primary-source check that would decide
+    # it).
     d_zones_scotopic = [find(rows_scotopic, "D", r)["zone"] for r in RATIOS]
     e_zones_scotopic = [find(rows_scotopic, "E", r)["zone"] for r in RATIOS]
+    d_zones_scotopic_lp = [find(rows_scotopic, "D", r)["zone_lowpass_alt"] for r in RATIOS]
+    e_zones_scotopic_lp = [find(rows_scotopic, "E", r)["zone_lowpass_alt"] for r in RATIOS]
     p5_d_ok = all(z == "in_passband" for z in d_zones_scotopic)
     p5_e_ok = all(z == "sub_passband" for z in e_zones_scotopic)
     p5_no_boundary = "boundary_dependent" not in d_zones_scotopic + e_zones_scotopic
+    bandpass_confirmed = p5_d_ok and p5_e_ok and p5_no_boundary
     verdicts.append({
-        "id": "P-EM-5 [T3-provisional; not a scored perceptual verdict]",
-        "claim": "scotopic: Host D always in_passband, Host E always sub_passband (CORRECTED from Phase-1's refuted 'all 10 in_passband' draft)",
+        "id": "P-EM-5 [T3-provisional; not a scored perceptual verdict; "
+              "CONTESTED-MODEL -- see model_dependence below]",
+        "claim": "scotopic, BANDPASS model (classify_zone, as originally run): "
+                 "Host D always in_passband, Host E always sub_passband",
         "measured": {"host_D_zones": d_zones_scotopic, "host_E_zones": e_zones_scotopic},
-        "verdict": "CONFIRMED" if (p5_d_ok and p5_e_ok and p5_no_boundary) else "REFUTED",
+        "verdict": "CONFIRMED-UNDER-BANDPASS-MODEL-ONLY" if bandpass_confirmed else "REFUTED",
+        "model_dependence": {
+            "bandpass_model_reading": {
+                "host_D": d_zones_scotopic, "host_E": e_zones_scotopic,
+                "note": "the model originally run; requires a low-frequency exclusion "
+                        "zone that this regime's own cited source (de Lange 1958) "
+                        "describes as NOT PRESENT (scotopic TCSF is low-pass, not "
+                        "band-pass) -- Red Team mandatory fix #1, Iteration 16 Phase 5.",
+            },
+            "true_lowpass_model_reading": {
+                "host_D": d_zones_scotopic_lp, "host_E": e_zones_scotopic_lp,
+                "note": "the alternative consistent with this regime's own cited "
+                        "source: no low-frequency exclusion. Under this model BOTH "
+                        "hosts classify in_passband, and Host E is MORE concentrated "
+                        "in the sensitive near-DC zone than Host D (~99% vs ~87-96% "
+                        "of spectral power below CFF) -- the OPPOSITE of the "
+                        "bandpass reading's 'Host E is favorable' direction.",
+            },
+            "unresolved": "which model actually governs a ONE-SHOT (non-periodic) "
+                           "scotopic transient is NOT decided by this experiment -- "
+                           "needs a primary-source check T18 (WebFetch egress block) "
+                           "currently prevents.",
+        },
+        "spectral_overlap_asymmetry_note": (
+            "Iteration 16 Phase 5, QUANTUM OPTICS: under the bandpass model, Host D's "
+            "in_passband label captures only ~55-76% of its actual one-shot spectral "
+            "power inside the nominal passband (24-45% falls outside), while Host E's "
+            "sub_passband label is well-supported (~76-91% of power genuinely outside "
+            "the passband). The two hosts' bandpass-model classifications are not "
+            "equally trustworthy in degree, independent of the model-choice question "
+            "above."
+        ),
         "realizability_caveat": {
             "host_D_r1": realizability_tier("D", 1.0),
             "host_E_all": [realizability_tier("E", r) for r in RATIOS],
@@ -109,7 +158,8 @@ def score_predictions(rows_photopic, rows_scotopic):
                     "are independently UNOBTANIUM-WITH-PARAMETERS on the realizability "
                     "axis alone (Red Team fix #5/#6, Director-reconfirmed) -- this "
                     "timing-screen finding describes a mechanism class with zero "
-                    "demonstrated realizable instances in this program's own grid.",
+                    "demonstrated realizable instances in this program's own grid, "
+                    "under EITHER model.",
         },
     })
 

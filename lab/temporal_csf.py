@@ -101,6 +101,41 @@ def _classify_point(f_c, low_corner, cff):
         return "supra_cff"
 
 
+def classify_zone_lowpass(f_c, cff):
+    """TRUE low-pass classification: NO low-frequency exclusion. A genuine
+    low-pass sensitivity curve (de Lange 1958's own bandpass->lowpass
+    transition, cited in SCOTOPIC_LOW_CORNER_BAND_HZ's docstring) is
+    MAXIMAL at/near DC, not excluded there -- unlike photopic's genuine
+    bandpass dip. Returns 'in_passband' if f_c sits at or below cff (the
+    whole low-frequency range including DC counts as sensitive), else
+    'supra_cff'. Band-robust: accepts a scalar or (lo, hi) cff band;
+    returns 'boundary_dependent' if the endpoints disagree.
+
+    Panel Iteration 16 Phase 5, Red Team mandatory fix #1 (load-bearing,
+    independently reconfirmed by the Director): `classify_zone` applies a
+    BANDPASS decision structure (a low-frequency exclusion zone) to BOTH
+    regimes, but the scotopic regime's own cited source describes it as
+    low-pass -- a system with no such exclusion. Under this corrected
+    model, both Host D and Host E's one-shot relaxation transients sit
+    almost entirely below any plausible CFF (spectral power fraction
+    ~87-96% for Host D, ~99% for Host E, Director's independent
+    recomputation of Red Team's own check) -- i.e. BOTH classify
+    `in_passband` (sensitive), and Host E -- the point exp-039's original
+    scotopic reading called "favorable in both regimes" -- is if anything
+    MORE concentrated in the sensitive near-DC zone than Host D, the
+    OPPOSITE of the original bandpass-model reading. This is reported
+    ALONGSIDE, not instead of, `classify_zone`'s bandpass reading (see
+    `score_grid`) -- which model actually governs scotopic vision for a
+    ONE-SHOT transient specifically (as opposed to periodic flicker, where
+    the classic curve shapes were measured) is not resolved by this
+    program and needs a primary-source check T18 currently blocks."""
+    cff_lo, cff_hi = _as_band(cff)
+    results = {("in_passband" if f_c <= c else "supra_cff") for c in (cff_lo, cff_hi)}
+    if len(results) == 1:
+        return results.pop()
+    return "boundary_dependent"
+
+
 def classify_zone(f_c, low_corner, cff):
     """Classify f_c against a (possibly banded) low_corner/cff pair as one
     of 'sub_passband' / 'in_passband' / 'supra_cff'.
@@ -148,8 +183,15 @@ def score_grid(hosts, ratios, regime):
             k_f = r * k_r
             f_c = float(corner_frequency(k_f, k_r))
             zone = classify_zone(f_c, low_corner, cff)
-            rows.append({
+            row = {
                 "host": host, "r": r, "k_f": k_f, "k_r": k_r,
                 "f_c_hz": f_c, "regime": regime, "zone": zone,
-            })
+            }
+            # Red Team mandatory fix #1 (Iteration 16 Phase 5): scotopic
+            # rows also carry the true-low-pass alternative reading
+            # alongside the bandpass one, since which model actually
+            # applies is unresolved (see classify_zone_lowpass docstring).
+            if regime == "scotopic":
+                row["zone_lowpass_alt"] = classify_zone_lowpass(f_c, cff)
+            rows.append(row)
     return rows

@@ -256,7 +256,8 @@
       "k_r": 1000000000.0,
       "f_c_hz": 159154943.2510503,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "A",
@@ -265,7 +266,8 @@
       "k_r": 1000000000.0,
       "f_c_hz": 159156534.64132625,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "A",
@@ -274,7 +276,8 @@
       "k_r": 1000000000.0,
       "f_c_hz": 159314098.03498724,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "A",
@@ -283,7 +286,8 @@
       "k_r": 1000000000.0,
       "f_c_hz": 175070437.40108487,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "A",
@@ -292,7 +296,8 @@
       "k_r": 1000000000.0,
       "f_c_hz": 318309886.1837907,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "B",
@@ -301,7 +306,8 @@
       "k_r": 1000000.0,
       "f_c_hz": 159154.94325105028,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "B",
@@ -310,7 +316,8 @@
       "k_r": 1000000.0,
       "f_c_hz": 159156.53464132626,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "B",
@@ -319,7 +326,8 @@
       "k_r": 1000000.0,
       "f_c_hz": 159314.09803498723,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "B",
@@ -328,7 +336,8 @@
       "k_r": 1000000.0,
       "f_c_hz": 175070.43740108487,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "B",
@@ -337,7 +346,8 @@
       "k_r": 1000000.0,
       "f_c_hz": 318309.8861837907,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "C",
@@ -346,7 +356,8 @@
       "k_r": 1000.0,
       "f_c_hz": 159.1549432510503,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "C",
@@ -355,7 +366,8 @@
       "k_r": 1000.0,
       "f_c_hz": 159.15653464132626,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "C",
@@ -364,7 +376,8 @@
       "k_r": 1000.0,
       "f_c_hz": 159.31409803498724,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "C",
@@ -373,7 +386,8 @@
       "k_r": 1000.0,
       "f_c_hz": 175.0704374010849,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "C",
@@ -382,7 +396,8 @@
       "k_r": 1000.0,
       "f_c_hz": 318.3098861837907,
       "regime": "scotopic",
-      "zone": "supra_cff"
+      "zone": "supra_cff",
+      "zone_lowpass_alt": "supra_cff"
     },
     {
       "host": "D",
@@ -391,7 +406,8 @@
       "k_r": 10.0,
       "f_c_hz": 1.591549432510503,
       "regime": "scotopic",
-      "zone": "in_passband"
+      "zone": "in_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "D",
@@ -400,7 +416,8 @@
       "k_r": 10.0,
       "f_c_hz": 1.5915653464132626,
       "regime": "scotopic",
-      "zone": "in_passband"
+      "zone": "in_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "D",
@@ -409,7 +426,8 @@
       "k_r": 10.0,
       "f_c_hz": 1.5931409803498724,
       "regime": "scotopic",
-      "zone": "in_passband"
+      "zone": "in_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "D",
@@ -418,7 +436,8 @@
       "k_r": 10.0,
       "f_c_hz": 1.7507043740108488,
       "regime": "scotopic",
-      "zone": "in_passband"
+      "zone": "in_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "D",
@@ -427,7 +446,8 @@
       "k_r": 10.0,
       "f_c_hz": 3.183098861837907,
       "regime": "scotopic",
-      "zone": "in_passband"
+      "zone": "in_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "E",
@@ -436,7 +456,8 @@
       "k_r": 1.0,
       "f_c_hz": 0.15915494325105028,
       "regime": "scotopic",
-      "zone": "sub_passband"
+      "zone": "sub_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "E",
@@ -445,7 +466,8 @@
       "k_r": 1.0,
       "f_c_hz": 0.15915653464132626,
       "regime": "scotopic",
-      "zone": "sub_passband"
+      "zone": "sub_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "E",
@@ -454,7 +476,8 @@
       "k_r": 1.0,
       "f_c_hz": 0.15931409803498722,
       "regime": "scotopic",
-      "zone": "sub_passband"
+      "zone": "sub_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "E",
@@ -463,7 +486,8 @@
       "k_r": 1.0,
       "f_c_hz": 0.17507043740108488,
       "regime": "scotopic",
-      "zone": "sub_passband"
+      "zone": "sub_passband",
+      "zone_lowpass_alt": "in_passband"
     },
     {
       "host": "E",
@@ -472,7 +496,8 @@
       "k_r": 1.0,
       "f_c_hz": 0.3183098861837907,
       "regime": "scotopic",
-      "zone": "sub_passband"
+      "zone": "sub_passband",
+      "zone_lowpass_alt": "in_passband"
     }
   ],
   "predictions": [
@@ -522,8 +547,8 @@
       "verdict": "CONFIRMED"
     },
     {
-      "id": "P-EM-5 [T3-provisional; not a scored perceptual verdict]",
-      "claim": "scotopic: Host D always in_passband, Host E always sub_passband (CORRECTED from Phase-1's refuted 'all 10 in_passband' draft)",
+      "id": "P-EM-5 [T3-provisional; not a scored perceptual verdict; CONTESTED-MODEL -- see model_dependence below]",
+      "claim": "scotopic, BANDPASS model (classify_zone, as originally run): Host D always in_passband, Host E always sub_passband",
       "measured": {
         "host_D_zones": [
           "in_passband",
@@ -540,7 +565,45 @@
           "sub_passband"
         ]
       },
-      "verdict": "CONFIRMED",
+      "verdict": "CONFIRMED-UNDER-BANDPASS-MODEL-ONLY",
+      "model_dependence": {
+        "bandpass_model_reading": {
+          "host_D": [
+            "in_passband",
+            "in_passband",
+            "in_passband",
+            "in_passband",
+            "in_passband"
+          ],
+          "host_E": [
+            "sub_passband",
+            "sub_passband",
+            "sub_passband",
+            "sub_passband",
+            "sub_passband"
+          ],
+          "note": "the model originally run; requires a low-frequency exclusion zone that this regime's own cited source (de Lange 1958) describes as NOT PRESENT (scotopic TCSF is low-pass, not band-pass) -- Red Team mandatory fix #1, Iteration 16 Phase 5."
+        },
+        "true_lowpass_model_reading": {
+          "host_D": [
+            "in_passband",
+            "in_passband",
+            "in_passband",
+            "in_passband",
+            "in_passband"
+          ],
+          "host_E": [
+            "in_passband",
+            "in_passband",
+            "in_passband",
+            "in_passband",
+            "in_passband"
+          ],
+          "note": "the alternative consistent with this regime's own cited source: no low-frequency exclusion. Under this model BOTH hosts classify in_passband, and Host E is MORE concentrated in the sensitive near-DC zone than Host D (~99% vs ~87-96% of spectral power below CFF) -- the OPPOSITE of the bandpass reading's 'Host E is favorable' direction."
+        },
+        "unresolved": "which model actually governs a ONE-SHOT (non-periodic) scotopic transient is NOT decided by this experiment -- needs a primary-source check T18 (WebFetch egress block) currently prevents."
+      },
+      "spectral_overlap_asymmetry_note": "Iteration 16 Phase 5, QUANTUM OPTICS: under the bandpass model, Host D's in_passband label captures only ~55-76% of its actual one-shot spectral power inside the nominal passband (24-45% falls outside), while Host E's sub_passband label is well-supported (~76-91% of power genuinely outside the passband). The two hosts' bandpass-model classifications are not equally trustworthy in degree, independent of the model-choice question above.",
       "realizability_caveat": {
         "host_D_r1": "UNOBTANIUM-WITH-PARAMETERS",
         "host_E_all": [
@@ -550,7 +613,7 @@
           "UNOBTANIUM-WITH-PARAMETERS",
           "UNOBTANIUM-WITH-PARAMETERS"
         ],
-        "note": "6 of the 10 P-EM-5 points (Host D r=1 + all 5 Host E points) are independently UNOBTANIUM-WITH-PARAMETERS on the realizability axis alone (Red Team fix #5/#6, Director-reconfirmed) -- this timing-screen finding describes a mechanism class with zero demonstrated realizable instances in this program's own grid."
+        "note": "6 of the 10 P-EM-5 points (Host D r=1 + all 5 Host E points) are independently UNOBTANIUM-WITH-PARAMETERS on the realizability axis alone (Red Team fix #5/#6, Director-reconfirmed) -- this timing-screen finding describes a mechanism class with zero demonstrated realizable instances in this program's own grid, under EITHER model."
       }
     },
     {
@@ -563,5 +626,5 @@
       "verdict": "CONFIRMED"
     }
   ],
-  "elapsed_s": 0.0002827644348144531
+  "elapsed_s": 0.00039458274841308594
 }

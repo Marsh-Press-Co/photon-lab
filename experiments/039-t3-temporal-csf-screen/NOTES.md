@@ -344,18 +344,84 @@ of A/B/C classifies anything other than `supra_cff` in either regime.*
   causality claim beyond the pole's own construction** (real part
   negative whenever k_f+k_r>0, the same convexity argument stage-12 gate
   2a already proved for boundedness).
-- **THERMO: inherited-N/A (Fix #7).** No new absorbed power, no new FDTD
-  run — this experiment inherits exp-037/038's own borrowed ΔT_ss≈7mK–0.7K
-  ceiling unchanged, explicitly NOT re-derived or re-scaled here. The
-  originally-proposed "f_c doubles as the re-radiation modulation
-  frequency" claim is explicitly REJECTED (Red Team attack #6): f_c is a
-  population-kinetics rate, not a thermal-system time constant, and this
-  program has no established relationship between the two.
+- **THERMO: inherited-N/A (Fix #7), full chain completed at Phase 5
+  (Red Team fix docket #4, THERMODYNAMICS' own review).** No new absorbed
+  power, no new FDTD run — this experiment inherits exp-037/038's own
+  borrowed ΔT_ss≈7mK–0.7K ceiling unchanged, explicitly NOT re-derived or
+  re-scaled here. The originally-proposed "f_c doubles as the re-radiation
+  modulation frequency" claim is explicitly REJECTED (Red Team attack #6,
+  independently re-confirmed at Phase 5): f_c is a population-kinetics
+  rate, `f_thermal=G_th/(2π·C_th)` (heat capacity/conductance) is the
+  actual re-radiation bandwidth, a materially different, never-computed
+  quantity — no established relationship between the two exists anywhere
+  in this program's record. **Completing THERMO's full charter chain**
+  (absorbed power → temperature rise → emission band → detectability, not
+  just the temperature-rise number alone): the 7mK figure sits ~3–7×
+  BELOW current uncooled-microbolometer NETD (20–50mK); the 0.7K figure is
+  non-negligible by the same comparison (both borrowed from
+  `experiments/037-fca-combined-media-literature-check/NOTES.md`, emission
+  band ~10µm per T5, unchanged/not re-derived here). **Zero-cost closing
+  argument (THERMODYNAMICS' Phase-5 review):** exp-038's own Test-B
+  periodic-retriggering buildup (up to 2.106× peak-n ratio at Hosts D/E)
+  cannot push duty-cycle-averaged absorbed power past this inherited
+  ceiling — n(t)∈[0,1] is bounded exactly by construction (stage-12 gate
+  2a), and the ceiling was itself derived assuming near-total absorption
+  already, so no duty cycle ≤1 can exceed an already-near-total-absorption
+  assumption. An analytic argument, not FDTD-derived — stated as such.
 - **Realizability untouched by the instrument's mechanics, but restated at
   every point of claim it applies to (Fix #6).** This instrument scores
   timing only; it does not revise `REALIZABILITY_MEMO.md`'s verdicts —
   but P-EM-4/5's own headline classifications must be read against which
-  grid points are actually realizable (see P-EM-5, above).
+  grid points are actually realizable (see P-EM-5, above), **under either
+  bandpass/lowpass model** (see next bullet — the realizability caveat is
+  model-independent).
+- **Scotopic bandpass/lowpass model dependence (Phase 5, Red Team
+  mandatory fix #1 — LOAD-BEARING, added post-commit before iteration
+  close).** `classify_zone`'s scotopic branch applies a bandpass
+  (low-frequency-exclusion) decision structure, but the regime's own cited
+  source (de Lange 1958, see `temporal_csf.py`'s
+  `SCOTOPIC_LOW_CORNER_BAND_HZ` docstring: "bandpass→lowpass transition
+  with falling luminance") describes scotopic TCSF as LOW-PASS — sensitivity
+  maximal near DC, no low-frequency exclusion. This was an undisclosed
+  code-vs-docstring internal inconsistency, caught by ELECTROMAGNETISM's
+  Phase-5 review (independently corroborated by VISION SCIENCE and
+  PHOTONICS from different angles) and confirmed load-bearing by Red
+  Team's own independent quantification: under the TRUE low-pass
+  alternative (`classify_zone_lowpass`, no low-frequency exclusion), BOTH
+  Host D (~87–96% of spectral power below CFF) AND Host E (~99% below CFF)
+  classify `in_passband` — and Host E, read as "favorable in both
+  regimes" under the bandpass model, is if anything MORE concentrated in
+  the sensitive near-DC zone than Host D under the low-pass reading — the
+  OPPOSITE direction. **Which model actually governs a ONE-SHOT (not
+  periodic) scotopic transient is NOT resolved by this experiment** — it
+  needs a primary-source check T18's WebFetch block currently prevents.
+  Both readings are now reported side by side in `results.json` (see
+  P-EM-5's `model_dependence` field); P-EM-5's verdict is downgraded from
+  a clean CONFIRMED to `CONFIRMED-UNDER-BANDPASS-MODEL-ONLY`, and the
+  original "Host E stays favorable in both regimes" headline language is
+  RETRACTED as unsupported pending model resolution.
+- **Spectral-overlap asymmetry within the bandpass model (Phase 5, QUANTUM
+  OPTICS, Red-Team-verified arithmetic).** Independent of the model
+  question above: even taken at face value, the bandpass model's Host D
+  `in_passband` label only captures ~55–76% of Host D's actual one-shot
+  spectral power inside the nominal passband (24–45% falls outside),
+  while Host E's `sub_passband` label is well-supported (~76–91% of power
+  genuinely outside the passband). The two hosts' bandpass-model
+  classifications were not equally trustworthy in degree even before the
+  model-family question above was raised.
+- **Dropped `peak` landmark, Phase 1 vs. built instrument (Phase 5, VISION
+  SCIENCE, Red Team fix docket #3).** Phase 1's proposal narrative named
+  three TCSF landmarks (low corner, peak, upper cutoff/CFF); the actual
+  built `lab/temporal_csf.py` implements only two (`low_corner`, `cff`) —
+  no `peak` parameter anywhere in the module, `run.py`, or `results.json`.
+  `classify_zone` treats the whole `[low_corner, cff]` interval as one
+  undifferentiated `in_passband` zone, so a point just above the corner
+  (e.g. Host D r=1, photopic, 1.18 Hz above the 2.0 Hz corner) is scored
+  identically to a point at the curve's actual peak sensitivity. This drop
+  between proposal and build was undisclosed until this Phase-5 catch; it
+  changes no P-EM-* verdict this cycle (verdicts are pure zone-membership
+  checks) but should be restored or explicitly justified before any future
+  cycle relies on fine within-passband distinctions.
 
 ## Realizability bound (MATERIALS' own charter, restated per Fix #6)
 
@@ -415,9 +481,15 @@ own grid in both regimes and scoring every P-EM-* prediction
 programmatically (Red Team fix #9: hand-re-verified by construction, not
 narration) against the corrected classify_zone logic.
 
-**Science results: 5/5 predictions CONFIRMED, zero refuted, zero
-boundary_dependent results anywhere in the 50-point (25 grid points × 2
-regimes) sweep.**
+**Science results, AS FIRST RUN this shift: 5/5 predictions CONFIRMED, zero
+refuted, zero boundary_dependent results anywhere in the 50-point (25 grid
+points × 2 regimes) sweep. AMENDED at Phase 5 (below) — P-EM-5 downgraded
+to `CONFIRMED-UNDER-BANDPASS-MODEL-ONLY` (4 of 5 predictions stand as
+originally reported; P-EM-5 required a same-shift fix and is now
+model-contested, not a clean confirmation). This section is left showing
+the as-first-run reasoning for the historical record (house convention),
+flagged by this amendment rather than silently rewritten; `results.json`
+itself now carries the corrected, regenerated numbers.**
 
 - **P-EM-2 CONFIRMED**: Host D f_c ∈ [1.5916, 3.1831] Hz, inside the
   predicted [1.55, 3.25] band, strictly monotonic in r.
@@ -428,13 +500,13 @@ regimes) sweep.**
   all 5 Host E points `sub_passband`. Matches Phase 1's original,
   unrevised prediction exactly (this was the one prediction Red Team's
   audit did NOT find defective).
-- **P-EM-5 CONFIRMED** [T3-provisional; not a scored perceptual verdict —
-  **the corrected version of the cycle's headline claim**]: scotopic —
-  all 5 Host D points `in_passband`; all 5 Host E points `sub_passband`.
-  A clean 5/5 split, robust across the full corner/CFF uncertainty band
-  at every one of the 10 points (zero `boundary_dependent` results) — this
-  is the OPPOSITE distribution from Phase 1's original, Red-Team-refuted
-  draft ("all 10 in_passband"), and the directionally correct reading:
+- **P-EM-5, AS FIRST RUN: CONFIRMED** [T3-provisional; not a scored
+  perceptual verdict]: scotopic (bandpass model) — all 5 Host D points
+  `in_passband`; all 5 Host E points `sub_passband`. A clean 5/5 split,
+  robust across the full corner/CFF uncertainty band at every one of the
+  10 points (zero `boundary_dependent` results) — the OPPOSITE
+  distribution from Phase 1's original, Red-Team-refuted draft ("all 10
+  in_passband"). As-first-run reading (RETRACTED below, see Phase 5):
   Host D (the faster of the two slow hosts) is the one classified
   timing-unfavorable at every scotopic point; Host E (the slower host)
   stays timing-favorable in BOTH regimes. **Realizability caveat, restated
@@ -443,22 +515,232 @@ regimes) sweep.**
   `realizability_tier` alone, compounding with `REALIZABILITY_MEMO.md`
   Amendment 2's separate D_req/irradiance verdict — this finding describes
   a mechanism class with zero demonstrated realizable instances in this
-  program's own grid.
+  program's own grid, **under either bandpass or lowpass model (see
+  Phase 5 amendment)**.
+  **AMENDED AT PHASE 5 (Red Team mandatory fix #1, load-bearing — see
+  Idealizations' "Scotopic bandpass/lowpass model dependence" bullet,
+  above): the bandpass decision structure this reading depends on
+  contradicts this regime's own cited source, which describes it as
+  low-pass. Under the true low-pass alternative, Host E is MORE (not
+  less) concentrated in the sensitive near-DC zone than Host D — the
+  OPPOSITE of "Host E stays favorable in both regimes." That sentence is
+  RETRACTED as unsupported. Verdict downgraded to
+  `CONFIRMED-UNDER-BANDPASS-MODEL-ONLY`; both readings now reported side
+  by side in `results.json`'s `model_dependence` field.**
 - **P-EM-6 CONFIRMED** [T3-provisional; not a scored perceptual verdict]:
   all 30 Hosts A/B/C points (3 hosts × 5 ratios × 2 regimes) classify
   `supra_cff`, as predicted — the classifier does not misfire at the
   grid's fast extreme.
 
-**Honest reading of the whole cycle's science content.** This experiment's
-real contribution is NOT that it discovered a dramatic new finding — it is
-that Phase 2/3's own process caught and corrected a headline claim that was
-wrong on inspection, before it could be committed as a result, and the
-CORRECTED version confirms cleanly. The corrected P-EM-5 is real
-information (a genuine photopic/scotopic divergence for Host D, none for
-Host E) but is narrower than Phase 1's original framing, and — per the
-realizability caveat — describes a mechanism class this program has never
-shown a realizable instance of. Per the instrument's own stated
-idealizations, none of this is a scored constraint-3/4 verdict: it answers
-"is the switching transient in a temporally-sensitive band," not "would a
-human actually see it" (that needs the still-unbuilt amplitude/contrast
-bridge, Iteration 16's queued priority #3).
+**Honest reading of the whole cycle's science content, AS FIRST WRITTEN
+(amended by Phase 5, below).** This experiment's real contribution is NOT
+that it discovered a dramatic new finding — it is that Phase 2/3's own
+process caught and corrected a headline claim that was wrong on
+inspection, before it could be committed as a result, and the CORRECTED
+version confirms cleanly. The corrected P-EM-5 is real information (a
+genuine photopic/scotopic divergence for Host D, none for Host E) but is
+narrower than Phase 1's original framing, and — per the realizability
+caveat — describes a mechanism class this program has never shown a
+realizable instance of. Per the instrument's own stated idealizations,
+none of this is a scored constraint-3/4 verdict: it answers "is the
+switching transient in a temporally-sensitive band," not "would a human
+actually see it" (that needs the still-unbuilt amplitude/contrast bridge,
+Iteration 16's queued priority #3). **Phase 5 found this "clean
+confirmation" reading itself rests on an unresolved, load-bearing model
+choice — see below.**
+
+## Phase 5 — Review (six fresh discipline seats, blind, then Red Team audit)
+
+Full verbatim reviews: this shift's session record. All six seats
+independently re-derived headline numbers from raw code/data (this
+program's established Phase-5 standard) rather than trusting NOTES.md's
+prose.
+
+**All six independent verdicts on exp-039: PARTIAL.** PHOTONICS, MATERIALS,
+ELECTROMAGNETISM, QUANTUM OPTICS, VISION SCIENCE all returned complete
+reviews with independently re-verified arithmetic (zero numeric defect
+found in `temporal_csf.py`/`run.py`/`results.json` by any seat).
+THERMODYNAMICS' review agent hit an API error partway through its final
+caveat sentence — its substantive content (all three assigned questions
+fully answered) is complete and independently corroborated by Red Team's
+own audit; only a verdict word and top-3 list were lost, both recoverable
+from the other five seats' unanimous PARTIAL and consistent top-3 rankings.
+
+**The cycle's one load-bearing finding: three seats independently
+converged on variants of the same structural concern.** ELECTROMAGNETISM
+found, by direct code inspection, that `lab/temporal_csf.py`'s own
+docstring describes the scotopic regime as "low-pass" (de Lange 1958's
+bandpass→lowpass transition) while `classify_zone` applies an unmodified
+BANDPASS decision structure to it anyway — an internal code-vs-docstring
+inconsistency none of the five Phase-2 blind seats or Red Team's own 8
+Phase-2 attacks caught. VISION SCIENCE independently raised the same
+concern from the literature side (a genuinely low-pass system has no
+low-frequency exclusion; DC is maximally, not minimally, sensitive).
+PHOTONICS independently raised the adjacent concern that a chromatic
+(vs. achromatic) mechanism could invoke a different-SHAPE (not just
+different-bandwidth) curve family, for the same underlying reason.
+
+**MATERIALS** confirmed all realizability arithmetic correct (including
+independently re-deriving the Director's own Phase-3 correction of Red
+Team's Phase-2 "6 of 10" miscount — 9 of 10, under the retired reading)
+and surfaced a new pattern: Hosts D/E are the same corner T17's own
+Amendment 3 already found produces at-rest memory buildup — a real,
+if near-tautological (both are monotonic functions of the same rate
+constants on the same fixed grid), cross-axis anti-correlation between
+temporal favorability and realizability, worth a logged LOGBOOK addendum
+per Red Team's ruling, not a new material law.
+
+**QUANTUM OPTICS** computed the exact Lorentzian one-shot spectral-overlap
+fraction (an integral Red Team's own Phase-2 adjudication had only
+gestured at qualitatively) and found Host D's bandpass-model `in_passband`
+label captures only ~55–76% of its actual spectral power in-band, while
+Host E's `sub_passband` label is well-supported (~76–91% genuinely
+out-of-band) — an asymmetry in classification confidence, independent of
+(and compounding) the model-choice question above.
+
+**VISION SCIENCE** completed the assignment's highest-priority check —
+line-by-line audit confirming the mandatory "T3-provisional; not a scored
+perceptual verdict" tag is present at every point of claim in all three
+required locations (NOTES.md predictions section, NOTES.md Phase-4
+results, `results.json`'s own prediction `id` fields) — **the first cycle
+in this recurring pattern's history where the tag survived intact through
+Phase 3, Phase 4, AND results.json simultaneously.** Also found: Phase 1's
+narrative named three TCSF landmarks (low corner, peak, CFF); the built
+module implements only two — the `peak` landmark was silently dropped,
+undisclosed until this catch.
+
+### Red Team's Phase-5 audit
+
+Independently re-derived rather than trusted throughout, per this
+program's own Iteration-15 precedent. Verified all 50 `results.json` rows
+by hand recomputation; independently re-checked QUANTUM OPTICS' Lorentzian
+arithmetic (confirmed exact); independently quantified ELECTROMAGNETISM's
+scotopic finding rather than accepting it qualitatively — computing the
+true-low-pass spectral fractions directly (Host D ~87–96% below CFF, Host
+E ~99% below CFF) and finding the effect is **sharper than EM's own
+"collapses to undifferentiated" framing**: under the corrected model, Host
+E is not merely equally-salient to Host D, it is MORE concentrated in the
+sensitive zone — a directional reversal of the cycle's own headline claim,
+not just a loss of differentiation. **The Director independently
+re-verified this calculation once more before adopting it** (see
+Idealizations, above) and found the qualitative/directional conclusion
+holds, with a minor discrepancy in Red Team's own cited Host-E percentage
+range (Director computed 98.6–99.6%, not Red Team's stated 93.3–99.6%) —
+disclosed here per this program's own culture of catching imprecision
+anywhere, including in Red Team's own numbers, rather than silently
+accepting it.
+
+**Ruling: LOAD-BEARING, mandatory same-shift fix, not merely
+correctable-with-disclosure** — a disclosure sentence would leave a
+classification that may point backwards still labeled CONFIRMED and cited
+as the cycle's headline finding. QUANTUM OPTICS' spectral-overlap
+asymmetry: confirmed correct, disclosure-worthy, compounds with (does not
+independently resolve) the model question, since it was computed inside
+the same possibly-wrong bandpass frame. VISION SCIENCE's dropped-peak
+finding: real, undisclosed, non-blocking (changes no verdict, since
+verdicts are pure zone-membership checks with no near-peak scoring).
+MATERIALS' cross-axis pattern: real, worth logging, but should be framed
+as a likely consequence of the fixed grid rather than an independent
+discovery. THERMODYNAMICS' cut-off content: sound and usable as-is, the
+incompleteness it found in itself (dropped emission-band/detectability
+links) is the material item, not the cutoff.
+
+**Checkpoint ruling, explicit: criterion 4 does NOT fire** — independently
+re-confirmed (Red Team, corroborating VISION SCIENCE's own line-by-line
+audit): the T3-provisional tag is present at every required point of claim
+in the actual committed record. The scotopic model-dependence finding does
+not itself fire criterion 4 either — it is falsifiable (a low-pass variant
+gives a distinct, testable answer), was caught in-cycle before the
+iteration closed (exactly what Phase 5 is for), and no constraint is
+"quietly dropped" — P-EM-5 was correctly, consistently disclaimed as
+non-scored everywhere it appeared, before and after the fix. **No other
+quiet constraint-1/2/3/4 violation found; no unfalsifiable claim survives
+in the committed record** (every prediction carries an explicit,
+programmatically-checked falsification condition).
+
+**Red Team's same-shift fix docket, applied in full, none overridden:**
+(1) resolve the scotopic model question in code — DONE: `classify_zone_lowpass`
+added to `lab/temporal_csf.py`, a new absolute-identity ordering gate added
+to suite stage 13 (gate 4), `score_grid` computes both readings for
+scotopic rows, `run.py` reports both in `results.json`'s `model_dependence`
+field, P-EM-5 downgraded to `CONFIRMED-UNDER-BANDPASS-MODEL-ONLY`, the
+unsupported "Host E favorable in both regimes" headline language retracted;
+(2) QUANTUM OPTICS' spectral-overlap asymmetry added to Idealizations —
+DONE; (3) dropped-peak-landmark Idealization bullet added — DONE; (4)
+THERMO's full charter chain (emission band + detectability comparison)
+completed, plus the zero-cost periodic-retriggering closing argument logged
+— DONE; (5) MATERIALS' cross-axis pattern logged as a LOGBOOK addendum,
+not this file — done in LOGBOOK.md Iteration 16 (T17 cross-reference); (6)
+dead `TIER` dict removed from `run.py` — DONE.
+
+**Full local bench re-verified after all fixes: `--only 12346789` 41/41,
+`--only 12,13` 20/20 (new gate 4 added, 5/5 stage-13 gates now, was 4/4).**
+`experiments/039-.../run.py` re-run: 4/5 predictions CONFIRMED as
+originally stated, P-EM-5 now correctly reports
+`CONFIRMED-UNDER-BANDPASS-MODEL-ONLY` with both model readings recorded.
+
+### Director's close of Iteration 16
+
+**Verdict: PARTIAL** (unanimous across all six blind seats, Red Team
+concurs). The instrument itself — `lab/temporal_csf.py`, suite stage 13,
+now 5/5 gates — is genuine, trust-gated machinery that retires this
+program's single most overdue queued item (the T3 temporal-contrast
+instrument, deferred since Iteration 1, named top priority at Iterations
+13, 14, 15's own close). The pole/causality bookkeeping is independently
+confirmed sound (EM's own re-derivation, tighter than the record
+previously stated). The T3-provisional tag discipline held cleanly through
+every stage of a committed record for the first time in a pattern that
+required Phase-5 correction on three consecutive prior iterations (13, 14,
+15) — genuine progress on a standing program-integrity concern. But — per
+this program's own established precedent that verdict turns on whether a
+cycle's own open questions close, not a favorable headline number — the
+cycle's one genuinely novel claim (P-EM-5's scotopic divergence) turned out
+to rest on an unresolved, load-bearing model choice, caught only at Phase 5
+after surviving Phase 1 through Phase 4, and required a real same-shift
+code fix (not just a disclosure) to avoid leaving a directionally uncertain
+finding labeled CONFIRMED. This is a different fault line than the
+T3-provisional pattern the cycle successfully avoided, but the same
+underlying lesson this program keeps re-learning: a clean gate pass and a
+falsified-or-not verdict are necessary, not sufficient, for a finding to be
+trustworthy — the MODEL the gate checks against also has to be right.
+Next lead per rotation: **THERMODYNAMICS** (Iteration 17).
+
+**Ranked top-3 candidate directions for Iteration 17** (Red Team's
+synthesis across all six seats' own top-3 lists, adjudicated not
+concatenated; each checked against RULED OUT R1/R2/R3 — none resurrect a
+dead idea):
+
+1. **Build the n(t)→ε(ω,t)/σ_abs(t) causality/passivity-checked amplitude
+   bridge** (ELECTROMAGNETISM's own #1, MATERIALS' #1, VISION SCIENCE's
+   #1, QUANTUM OPTICS' #2 — the most convergent pick of any Iteration-16
+   Phase-5 recommendation). Iteration 15/16's own carried, still-unbuilt
+   priority #3. The single piece of missing machinery that would let any
+   T3-provisional timing classification become an actual scored
+   constraint-3/4 verdict against T2's already-pinned C_thr(L). Every
+   seat's own reasoning converges: timing alone, however precisely
+   classified, cannot answer "would a human actually see it."
+2. **Resolve the scotopic bandpass/lowpass topology question with a
+   primary source** (ELECTROMAGNETISM's #2, VISION SCIENCE's #2,
+   PHOTONICS' #1 on the adjacent chromatic/achromatic shape-family
+   question — three independently-converging picks). Needs a working
+   full-text access route (T18) or an explicit, sourced engineering
+   rationale for treating a one-shot scotopic transient as bandpass — the
+   question this cycle could quantify but not resolve. QUANTUM OPTICS'
+   own #1 (build the exact spectral-overlap module, replacing
+   corner-comparison entirely) is a related, cheaper, zero-search-cost
+   companion that should be folded in if this direction is taken.
+3. **Reconsider whether continuing to screen the T17/FCA host list is the
+   highest-information use of panel cycles**, given `REALIZABILITY_MEMO.md`
+   Amendment 2 already found every checked FCA sub-class UNOBTANIUM on
+   irradiance grounds, and this cycle's own headline result again lands
+   mostly on already-unrealizable grid points (PHOTONICS' #3, EM's #3,
+   MATERIALS' #2 — independently converging). Pursue T18's own still-open
+   item instead: survey remaining unchecked mechanism classes for an
+   irradiance gap small enough (≲5–6 OOM) that realistic field enhancement
+   genuinely closes it.
+
+*Non-blocking, queued if budget allows*: THERMODYNAMICS' own reusable
+sidecar utility (still overdue a running implementation, carried from
+Iterations 15/16); MATERIALS' cross-axis anti-correlation formalization
+(zero-cost synthesis task, T17 + this cycle); restoring the dropped `peak`
+TCSF landmark or explicitly justifying its absence.

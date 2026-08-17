@@ -921,6 +921,11 @@ def stage13_temporal_csf():
       3. Anchor-value regression: Host D r=1 and Host E r=1e-9 reproduce
          their pre-registered f_c values (3.1831 Hz, 0.159155 Hz) to
          <=1e-6 relative.
+      4. `classify_zone_lowpass`'s ordering is self-consistent: a
+         monotonic f_c sweep visits in_passband -> supra_cff exactly once
+         each -- added Panel Iteration 16 Phase 5 (Red Team mandatory fix
+         #1), the true-low-pass alternative reading for the scotopic
+         regime.
     """
     print("stage 13 — T3 temporal-CSF screen vs closed-form identities")
     from lab import kinetics as kin
@@ -960,6 +965,14 @@ def stage13_temporal_csf():
           f"{err_d1:.2e}", err_d1 <= 1e-6, "<=1e-6")
     check("temporal_csf", "anchor Host E r=1e-9 f_c vs pre-registered 0.159155 Hz (rel err)",
           f"{err_e0:.2e}", err_e0 <= 1e-6, "<=1e-6")
+
+    # --- gate 4 (Iteration 16 Phase 5, Red Team mandatory fix #1):
+    # classify_zone_lowpass ordering self-consistency.
+    zones_lp = [tcsf.classify_zone_lowpass(f, landmarks[1]) for f in f_c_sweep]
+    order_lp = ["in_passband", "supra_cff"]
+    transitions_lp = [z for i, z in enumerate(zones_lp) if i == 0 or z != zones_lp[i - 1]]
+    check("temporal_csf", "classify_zone_lowpass ordering (visits in/supra exactly once each, in order)",
+          str(transitions_lp), transitions_lp == order_lp, str(order_lp))
 
 
 def _stage_selected(n, only):
