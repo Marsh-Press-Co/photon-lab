@@ -211,12 +211,23 @@ estimate's own underlying reference n_ss precisely enough to scale
 correctly — the Director does not have that figure memorized precisely
 enough to do so honestly without risking a fabricated linkage, and
 Red Team's own ruling explicitly permitted "an honest n/a" as the
-alternative to a disclosed borrowed figure. **Decision: THERMO sidecar
-marked N/A this cycle for all 25 grid cells**, with the reason stated
-explicitly (no photon-energy/site-density parameter in scope) rather than
-silently omitted — queued as a genuine follow-up once PHOTONICS'
-already-queued wavelength-retag (PLAN.md priority #1) supplies real
-absorbed-power-density inputs a sidecar could correctly use.
+alternative to a disclosed borrowed figure. **Decision (Phase 3): THERMO
+sidecar marked N/A this cycle for all 25 grid cells**, with the reason
+stated explicitly (no photon-energy/site-density parameter in scope) rather
+than silently omitted.
+
+**Correction (Phase 5, THERMODYNAMICS + Red Team, same shift):** the
+Phase-3 concern above was a category error, caught independently by
+THERMODYNAMICS' own Phase-5 review and confirmed by Red Team reading
+exp-037's actual computation directly. exp-037's ΔT_ss≈7mK
+(I_ambient≈0.1 W/m²) / ≈0.7K (flashlight-level, I≈10 W/m²) figures
+(`experiments/037-.../NOTES.md` lines ~827-852) come from a pure
+absorbed-power/heat-balance calculation — P_abs = I × (bulk interband
+absorption fraction), ΔT_ss = P_abs/h — and **never use n_ss anywhere**.
+There was no "underlying reference n_ss" to know or scale by; the figure
+borrows cleanly as a ceiling bound with zero marginal cost. Reversed:
+**the THERMO sidecar is N/A-with-a-borrowed-ceiling, not a bare N/A** —
+see the Idealizations entry below for the actual number.
 
 **8. QUANTUM OPTICS' two disclosures added** to Section 5 (Idealizations,
 below) verbatim.
@@ -295,9 +306,18 @@ Unchanged from Phase 1, plus the two Iteration-15 additions:
   multi-valued steady states — single-well relaxation kinetics only.
 - Rate constants temperature-independent — no thermal feedback on (k_f,
   k_r) themselves modeled.
-- **THERMO sidecar: N/A this cycle for all 25 grid cells** (Director's
-  Phase-3 resolution, above) — no photon-energy/site-density parameter in
-  scope; queued once the wavelength-retag priority supplies one.
+- **THERMO sidecar: no per-cell ΔT computed this cycle** (no
+  photon-energy/site-density parameter in this grid's scope; queued once
+  the wavelength-retag priority supplies one) **but a borrowed ceiling
+  bound applies, added at Phase 5** (THERMODYNAMICS + Red Team, same
+  shift, correcting a Phase-3 category error — see "Phase 3, item 7,"
+  above): exp-037's own ΔT_ss≈7mK (ambient, I≈0.1 W/m²) to ≈0.7K
+  (flashlight-level, I≈10 W/m²) figure is a pure absorbed-power/heat-balance
+  estimate, independent of n_ss, and bounds this cycle's steady-state
+  temperature rise from above in the fully-absorbing limit — 3–7× below
+  current microbolometer NETD even at the flashlight-power ceiling.
+  Explicitly borrowed, not re-derived, not n_ss-scaled — a ceiling, not a
+  per-configuration measurement.
 - No perceptual scoring attaches to any n_ss or n(t) value this cycle —
   enforced at every point of claim this time, not only in a caveats
   section (P-MAT-4 and P-MAT-5 both restate the T3-provisional tag).
@@ -426,30 +446,47 @@ new digit-boundary regex against both the local default and CI's own
 
 ### Science results (`experiments/038-.../run.py`, `results.json`)
 
-**P-MAT-4 — CONFIRMED, qualitatively and per-host.** Only Host D's t99
-lands inside/near T3's provisional 10ms-1s window (0.23-0.46s); Hosts A-C
-sit 8, 5, and 2-3 orders of magnitude below it respectively; Host E
-exceeds the upper bound (2.3-4.6s). **One honest, minor imprecision
-caught, not hidden:** P-MAT-4's own predicted values used the host
-lifetime τ_r as a stand-in for the true relaxation time τ=1/(k_f+k_r) —
-exact only in the r≪1 limit. Measured discrepancy: <0.1% for r≤10⁻³, ~10%
-at r=0.1, and a full **2× overstatement at r=1** (τ_exact = τ_r/2 there,
-e.g. Host E/r=1: naive prediction 4.61s vs. measured 2.30s). This does not
-change P-MAT-4's per-host qualitative verdict (confirmed above) but means
-any future cycle citing this cycle's own per-point t99 numbers at r≥0.1
-should use the exact formula, not the host-lifetime shorthand.
+**P-MAT-4 — CONFIRMED, qualitatively and per-host. T3-provisional; not a
+scored perceptual verdict** (restated here, at this point of claim, per
+Phase 5's mandatory-fix docket — see "Phase 5 — Review," below). Only Host
+D's t99 lands inside/near T3's provisional 10ms-1s window (0.23-0.46s).
+The "orders of magnitude below the window" figures for Hosts A-C depend on
+which edge they're measured from — corrected at Phase 5 (Red Team caught
+the original draft measured only from the window's *far* edge, 1s):
+measured from the *near* edge (10ms, the literal "how far below the window"
+reading), Host A sits ~6.3-6.6 OOM below, Host B ~3.3-3.6 OOM below, and
+Host C only ~0.3-0.6 OOM below — Host C sits far closer to the window than
+the far-edge figures (8/5/2-3) implied. Host E exceeds the upper bound
+(2.3-4.6s). **One honest, minor imprecision caught, not hidden:** P-MAT-4's
+own predicted values used the host lifetime τ_r as a stand-in for the true
+relaxation time τ=1/(k_f+k_r) — exact only in the r≪1 limit. Measured
+discrepancy: <0.1% for r≤10⁻³, ~10% at r=0.1, and a full **2× overstatement
+at r=1** (τ_exact = τ_r/2 there, e.g. Host E/r=1: naive prediction 4.61s
+vs. measured 2.30s). This does not change P-MAT-4's per-host qualitative
+verdict (confirmed above) but means any future cycle citing this cycle's
+own per-point t99 numbers at r≥0.1 should use the exact formula, not the
+host-lifetime shorthand.
 
-**P-MAT-5a — CONFIRMED.** At Δt_sweep=5τ, max measured periodic/first-pulse
-ratio across all 75 (host, ratio, A) points is 1.006, comfortably inside
-the ≤1.02 band.
+**P-MAT-5a — CONFIRMED. T3-provisional; not a scored perceptual verdict.**
+At Δt_sweep=5τ, max measured periodic/first-pulse ratio across all 75
+(host, ratio, A) points is 1.006, comfortably inside the ≤1.02 band.
 
 **P-MAT-5b — PARTIALLY CONFIRMED: co-location claim holds, magnitude band
-misses.** At Δt_sweep=0.5τ (stress case), measurable buildup (ratio >1.05)
-occurs ONLY at Hosts D and E — **the qualitative co-location prediction
-("the worrying axis and the memory-risk axis co-locate") is confirmed
-exactly as stated**, not merely directionally. But the predicted magnitude
-band (~1.4-1.6) is refuted by the measured range (1.00-2.106): several
-Host-D points show no measurable buildup at all (ratio=1.00, still
+misses. T3-provisional; not a scored perceptual verdict.** At Δt_sweep=0.5τ
+(stress case), measurable buildup (ratio >1.05) occurs ONLY at Hosts D and
+E — **the qualitative co-location prediction ("the worrying axis and the
+memory-risk axis co-locate") is confirmed exactly as stated**, not merely
+directionally, **though Phase 5 (Red Team, independently re-deriving from
+the parameter table rather than trusting this framing) found the
+prediction is close to a near-mechanical consequence of the grid's own
+construction, not a fully independent discovery**: `T_PULSE=0.1s` is fixed
+across every host and was itself chosen inside T3's provisional window;
+since `Δt_sweep` is defined as a fixed multiple of each host's own τ,
+measurable buildup requires τ comparable to or larger than the fixed pulse
+duration — which is true, by construction, of exactly Hosts D and E. See
+"Phase 5 — Review," below, for the full derivation. But the predicted
+magnitude band (~1.4-1.6) is refuted by the measured range (1.00-2.106):
+several Host-D points show no measurable buildup at all (ratio=1.00, still
 correctly excluded from "measurable"), and Host E's own worst points reach
 2.106 — 32% above the predicted upper bound. The original ~1.4-1.6 figure
 was the Phase-1 proposal's own rough impulse-train estimate
@@ -457,23 +494,111 @@ was the Phase-1 proposal's own rough impulse-train estimate
 Δt=0.5τ gives 1/(1-e^{-0.5})≈2.54, itself above the measured 2.106 —
 neither the original estimate nor its own underlying formula bounds the
 measured value tightly. Read plainly: the co-location finding (which host
-regime combines slow relaxation with largest achievable n_ss) is the
-robust result; the specific numeric range was never more than a rough
+regime combines slow relaxation with largest achievable n_ss) is real but
+substantially construction-driven, not a surprising independent
+correlation; the specific numeric range was never more than a rough
 estimate and should not be cited as a validated band.
 
-**Realizability cross-reference (MATERIALS' tier table, unchanged):**
-Hosts A-B stay PUBLISHED, Hosts C-D PLAUSIBLE (r≤10⁻¹), Host E and any
-r=1 point stay UNOBTANIUM-WITH-PARAMETERS — exactly the same points that
-P-MAT-5b's own measurable-buildup regime (D/E) span. **The at-rest-memory
-risk this kernel was built to quantify is measurable only in the same
-regime MATERIALS' own memo already flags as least realizable** — a
-genuine, if modest, closing observation: for linearly-pumped FCA
+**Realizability cross-reference (MATERIALS' tier table, unchanged).
+T3-provisional; not a scored perceptual verdict.** Hosts A-B stay
+PUBLISHED, Hosts C-D PLAUSIBLE (r≤10⁻¹), Host E and any r=1 point stay
+UNOBTANIUM-WITH-PARAMETERS — exactly the same points that P-MAT-5b's own
+measurable-buildup regime (D/E) span. **The at-rest-memory risk this
+kernel was built to quantify is measurable only in the same regime
+MATERIALS' own memo already flags as least realizable** — a real but
+modest observation, tempered at Phase 5 (see P-MAT-5b above: the pattern
+follows substantially from this cycle's own parameter choices rather than
+standing as a fully independent discovery): for linearly-pumped FCA
 specifically, the host/doping choices realistic enough to matter
 (Hosts A-C) show negligible sweep-to-sweep memory buildup even under the
 stress-case inter-sweep interval; the memory-risk regime and the
-realizability boundary are not independent axes.
+realizability boundary are not shown to be independent axes, though the
+degree of independence this cycle's own grid could have demonstrated is
+limited by construction. See `REALIZABILITY_MEMO.md` Amendment 3 for the
+carried-forward record.
 
 **Elapsed:** 0.14s (Test A + Test B, 175 configurations total). Trust
 suite stage 12: 23s (includes stages 1-2, triggered incidentally by
 `--only 12`'s own digit content — expected, unrelated to this stage).
 Zero FDTD calls, zero WebSearch/WebFetch calls, as predicted.
+
+## Phase 5 — Review (six fresh discipline seats, then Red Team audit) — summary
+
+Run the same shift the science above was closed out, after Phase 1-4 sat
+uncommitted-to-LOGBOOK for one full shift boundary (predictions committed
+`a7c05f3`, results `98daa63`; Phase 5 run and this file's own corrections
+applied by the following shift). Full verbatim reviews and audit: this
+shift's session record; LOGBOOK.md Iteration 15 carries the complete text.
+
+**All six seats independently re-ran the trust suite and re-derived the
+headline numbers from scratch (not from this file's prose) — zero
+science-numeric defects found.** PHOTONICS and MATERIALS independently
+wrote from-scratch reimplementations of Test A/B and matched every
+reported number. PHOTONICS additionally isolated that both disclosed
+Phase-4 bugs live exclusively in the diagnostic RK4 cross-check path, never
+touching a single reported science number (confirmed: `run.py` computes
+every Test A/B row via `method="exp"` only).
+
+**Four real, previously-undisclosed issues surfaced, all fixed same-shift
+in this file/code, none changing any reported science verdict:**
+
+1. **`run.py`'s P-MAT-5b `confirmed_range` check contained a vacuous
+   `1.3 <= min(...) or True` clause** (dead code — the lower-bound test
+   could never fail), independently caught by **both QUANTUM OPTICS and
+   MATERIALS**. Fixed (the `or True` removed); `results.json` regenerated;
+   the field now correctly evaluates both bounds. No reported verdict
+   changed (`confirmed_range` was already, and remains, `False`, for the
+   right reason both before and after).
+2. **VISION SCIENCE's line-by-line audit found the mandatory
+   "T3-provisional; not a scored perceptual verdict" tag present at every
+   point of claim in the Phase-3 predictions section but absent at all
+   four points of claim in this file's own Phase-4 results section**
+   (P-MAT-4, P-MAT-5a, P-MAT-5b, the realizability cross-reference) —
+   independently confirmed by Red Team, who also found the program's own
+   "third consecutive cycle" bookkeeping for this exact recurring pattern
+   is internally inconsistent across Iteration 14's and this cycle's own
+   citations (see LOGBOOK.md Iteration 15 for the full reconciliation).
+   Fixed: the tag now restated at all four points of claim, above. **Red
+   Team's ruling: Checkpoint criterion 4 is exercised, not fired, on
+   condition this same-shift fix lands — recurrence beyond this cycle
+   should be treated as firing without further debate.**
+3. **THERMODYNAMICS' review found the Phase-3 THERMO-sidecar N/A ruling
+   rested on a category error**: exp-037's own borrowed ΔT_ss figure is a
+   pure absorbed-power/heat-balance estimate that never used n_ss, so the
+   Phase-3 concern about needing a "reference n_ss" to scale by did not
+   apply — a zero-cost ceiling bound was available and wrongly declined.
+   Confirmed directly by Red Team reading exp-037's actual computation.
+   Fixed, above (Phase 3 item 7 correction + Idealizations entry).
+4. **MATERIALS' review found the P-MAT-5b "co-location" framing overclaimed
+   independence** — confirmed by Red Team via direct derivation: with
+   `T_PULSE=0.1s` fixed across all hosts and itself anchored inside T3's
+   provisional window, and `Δt_sweep` defined as a fixed multiple of each
+   host's own τ, measurable buildup requiring τ≳T_PULSE follows
+   near-mechanically from the parameter choices for exactly Hosts D/E —
+   not a fully independent empirical discovery. Language tempered, above.
+   **MATERIALS also found `REALIZABILITY_MEMO.md` had not been updated
+   this cycle** (confirmed via `git log`) — see its own Amendment 3.
+
+**Also corrected:** VISION SCIENCE's independent finding that P-MAT-4's
+"8, 5, and 2-3 orders of magnitude below [T3's window]" figures were
+computed from the window's far edge, not its near edge — Red Team extended
+this beyond VISION's own Host-A-only catch to all three hosts (corrected
+figures: ~6.3-6.6 / ~3.3-3.6 / ~0.3-0.6 OOM), finding Host C in particular
+sits far closer to T3's window than the original phrasing implied. Fixed,
+above. ELECTROMAGNETISM's attribution note (the adiabatic-elimination
+condition should credit QUANTUM OPTICS' Iteration-15 fix, not earlier EM
+work) was checked by Red Team and found already correctly attributed in
+this file — no fix needed. QUANTUM OPTICS flagged the adiabatic-elimination
+disclosure as currently unfalsifiable (no numeric margin given for either
+molecular T2 or FCA carrier-thermalization time against this cycle's
+k_r range) — real but low-severity, queued for Iteration 16, not
+mandatory this shift.
+
+**Red Team's overall verdict: PROCEED-WITH-MANDATORY-FIXES** (all applied,
+above). **No Checkpoint criterion fires.** Seat verdicts on exp-038 itself:
+PROMISING (ELECTROMAGNETISM, QUANTUM OPTICS-with-scope-caveat), PARTIAL
+(PHOTONICS, MATERIALS, THERMODYNAMICS, VISION SCIENCE) — **Director's
+close: PARTIAL**, per this program's established precedent that verdict
+turns on whether a cycle's own open questions close, not a favorable
+headline count; see LOGBOOK.md Iteration 15 for the full adjudication and
+the ranked Iteration-16 candidate list.

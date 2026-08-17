@@ -158,7 +158,7 @@ def main():
         "claim": "0.5*tau: ratio ~1.4-1.6, measurable (>1.05) only at Hosts D/E",
         "measured_ratio_range": [min(band_05tau), max(band_05tau)],
         "measurable_hosts": measurable_05tau_hosts,
-        "confirmed_range": (1.3 <= min(band_05tau) or True) and (max(band_05tau) <= 1.7),
+        "confirmed_range": (1.3 <= min(band_05tau)) and (max(band_05tau) <= 1.7),
         "confirmed_hosts_co_locate": measurable_05tau_hosts == ["D", "E"],
     })
 

@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-16, panel Iteration 14)
+## Current state (2026-08-17, panel Iteration 15)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -754,58 +754,110 @@ continuous mode with checkpoints. The remaining [open] items below are
   (self-caught, ruled load-bearing not queueable — a qualitative analogy
   replaced with an actual numeric estimate). Verdict: PARTIAL. Full
   record: LOGBOOK.md Iteration 14.
-- **[queued — panel Iteration 15, lead per rotation MATERIALS, ranked per
-  Red Team's Iteration-14 Phase-5 adjudication]** (1) **Retroactive
-  wavelength-tagging and primary-source re-verification**, now carrying
-  double the load: exp-036's own two fragile numbers (RSA's ~40×
-  porphyrin figure; the spiropyran at-rest figure at witness-relevant
-  dim/night ambient) AND exp-037's own two newly-flagged instances
-  (TPA-cascade FCA's host-list wavelength incoherence; the Soref & Bennett
-  cross-sections applied unscaled from telecom wavelength) — via a working
-  full-text access route if one can be found. (2) **Escalate the WebFetch
-  egress-proxy blockage** (T18) — three consecutive literature-check
-  cycles, 39+ attempts, zero successes; this is now the evidentiary-tier
-  ceiling on the entire realizability-check methodology, not a per-cycle
-  disclosure. (3) **Build the T17 rate-equation kernel in-engine**
-  (raised independently by QUANTUM OPTICS, VISION SCIENCE, and
-  ELECTROMAGNETISM across two cycles now) to bench-test at-rest
-  populations directly rather than resting on hand-derived formulas.
-  Lower priority, inherited: stage-10 T3 (VISION's own ranking: the single
-  most overdue item on the program's books by cycle-count — third
-  consecutive cycle producing a provisional switching-speed verdict);
-  patching the perceptual-scoring cap itself (ban unearned magnitude
-  language in either direction; require the T3-provisional tag restated
-  at each point-of-claim, not only a table header — VISION's own
-  five-minute fix); a reusable THERMO-sidecar utility (ΔT_ss/heating-time/
-  diffusion-reset-time as a function of ρ, c_p, κ, P_absorbed, L, replacing
-  hand-derived analogies each cycle); taxonomic homes for ENZ's χ⁽⁵⁾/
-  3-photon-absorption RSA branch and the Joshi et al. energy-transfer-
-  coupled dyad (PHOTONICS); the carrier-vs-molecular absorption-correction
-  question extended to graphene/CNT sub-components (QUANTUM); the
-  intrinsic cross-section-ratio-extraction discipline as a mandatory
-  companion to the composite-figure search-order fix for any future
-  combined-media check (MATERIALS); docket #7's sourced witness-parameter
-  table (flashlight irradiance and the 10ms–1s window both still
-  unsourced); QUANTUM's VO2 absorption-correction category-error fix;
-  THERMO's latent-heat/ΔT-quantity fix on promotion to reusable code; N33
-  at r=78-native and the
-  second independently-built r=78-native N17 domain (both deprioritized
-  further, still queued); a reproducibility/GUARD_OUT-fringe-period sweep
-  testing the near-field-fringe interaction mechanism (PHOTONICS/EM);
-  a genuine 3-λ sweep of the N9→N17 angular-convergence readings (never
-  run on this channel); T11's own trust-suite stage for the ambient/
-  line-source box-ledger channel; T14's PHOTONICS multi-point cored-
-  absorber r-sweep (r≈78, 110,
-  156, 220, 312, fixed PLANE_DX=15, θ=0) — still never executed; a
-  genuine PEC r-family ripple test near r≈270–350 (T12's own real open
-  half); T11's dedicated multi-point/multi-box-pair box_dev floor
-  characterization; Iteration 6's queued incoherent-ensemble/phase-
-  quadrature idiom (re-scoped contingent-only per QUANTUM's own
-  Iteration-12 Phase-5 argument, unopposed — build only if a future
-  σ(x,t)/gain-based candidate genuinely needs a joint beam+ambient
-  scene); a formal reciprocity check (EM's own long-standing pick); the
-  shell-thickness/optical-depth economy sweep (MATERIALS); T10's residual
-  +3.05pp sub-cell/window-offset sweep.
+- [done 2026-08-16/17, panel Iteration 15, cloud panel shift] **exp-038
+  the T17 rate-equation kernel** — MATERIALS' lead (rotation), executing
+  Iteration 14's near-unanimous priority #3 (priorities #1/#2 blocked, T18
+  re-confirmed a fourth consecutive shift). New machinery: `lab/kinetics.py`
+  (0D two-state kinetics integrator, exact-exponential + RK4 propagators)
+  + trust-suite stage 12 (5/5 gates, tightest 2.94×10⁻¹⁶). Bench-confirms
+  T17's n_ss=k_f/(k_f+k_r) formula to machine precision for the first time
+  (no longer resting on algebra alone) across a 25-point host/ratio grid.
+  Two genuine implementation bugs (RK4 double-division; a stiff-segment
+  cost/stability blowup) caught by the trust-suite gate itself failing on
+  first run, fixed pre-trust — house discipline working as designed.
+  **P-MAT-4 CONFIRMED** (only Host D lands in T3's provisional window);
+  **P-MAT-5a CONFIRMED** (5τ: max ratio 1.006 ≤1.02); **P-MAT-5b PARTIALLY
+  CONFIRMED** (the co-location claim — at-rest-memory risk and the
+  realizability tier's least-realizable hosts coincide, at D/E — held
+  exactly; the predicted 1.4–1.6 magnitude band was refuted by the
+  measured 1.00–2.106 range). **Seven-seat Phase 5** (six blind discipline
+  seats + Red Team audit, run the following shift after Phase 1-4 sat
+  uncommitted to LOGBOOK for one shift boundary — see SESSION_LOG): all
+  six seats independently re-derived every headline number from raw
+  code/data, zero science-numeric defect found; four same-shift fixes
+  applied (a dead-code bug in `run.py`'s P-MAT-5b check, independently
+  caught by QUANTUM OPTICS and MATERIALS; the T3-provisional tag missing
+  from all four Phase-4 results citations, VISION SCIENCE — the third
+  consecutive committed iteration this exact pattern required a Phase-5
+  catch, Checkpoint criterion 4 ruled exercised-not-fired with a standing
+  instruction that a further recurrence fires it without debate; a THERMO
+  N/A ruling resting on a category error, THERMODYNAMICS — exp-037's
+  borrowed ΔT_ss figure never used n_ss, so a zero-cost ceiling bound was
+  available and wrongly declined; the co-location finding's framing
+  overclaiming independence, MATERIALS — Red Team derived it follows
+  substantially from this cycle's own fixed pulse-duration parameter).
+  `REALIZABILITY_MEMO.md` Amendment 3 added (a separate, tempered
+  realizability axis — does not revise the existing linearly-pumped-FCA
+  UNOBTANIUM verdict). No Checkpoint criterion fires. Verdict: PARTIAL.
+  Full record: LOGBOOK.md Iteration 15.
+- **[queued — panel Iteration 16, lead per rotation ELECTROMAGNETISM,
+  ranked per Red Team's Iteration-15 Phase-5 adjudication]** (1) **Build
+  stage-10's T3 temporal-contrast instrument, sourced** — the single most
+  overdue item on the program's books (deferred at Iterations 13, 14, 15's
+  own close) and now structurally load-bearing: it retires the root cause
+  of the T3-provisional-tag pattern that has required a Phase-5
+  catch-and-correct on three consecutive committed iterations (13, 14,
+  15). Scope: pin a sourced de Lange/Watson temporal-CSF threshold
+  (photopic + scotopic per PANEL.md's dual-regime requirement), re-score
+  exp-038's own Host D/E t99 and P-MAT-5 numbers against it directly. (2)
+  **Re-anchor k_f(I) to real, wavelength-tagged absorption physics via
+  exp-038's now-validated kernel** — closes the carried Iteration-13/14/15
+  wavelength-tagging priority *through* the new machinery instead of a
+  separate literature pull; derive G(λ)=σ_abs(λ)·λ/(hc) for correctly-
+  scaled (not telecom-borrowed) cross-sections at 450/600/750nm —
+  sidesteps T18's WebFetch blockage entirely (established physics, zero
+  search cost). (3) **Build the n(t)→ε(ω,t)/σ_abs(t) causality/passivity-
+  checked material-law bridge** (this cycle's incoming lead's own sharpest
+  self-critique: zero EM bookkeeping happened in exp-038) — the correct
+  prerequisite before any future FDTD coupling of the kinetics kernel;
+  flag to Marsh at proposal time if scope creeps toward a genuinely
+  time-varying-medium FDTD update coefficient (likely Checkpoint
+  criterion 3 territory, per EM's own Iteration-15 review). Cheap
+  same-cycle add-ons if budget allows: QUANTUM OPTICS' numerical grounding
+  of the adiabatic-elimination margin for exp-038's actual FCA host list
+  (a few lines of arithmetic); THERMODYNAMICS' reusable THERMO-sidecar
+  utility (ΔT_ss/heating-time/diffusion-reset-time as a function of ρ,
+  c_p, κ, P_absorbed, L — now overdue a second cycle running).
+  Lower priority, inherited: **Retroactive wavelength-tagging and
+  primary-source re-verification** (exp-036's RSA/spiropyran figures,
+  exp-037's TPA-cascade/Soref-Bennett figures) — still blocked pending a
+  working full-text access route (T18, four consecutive shift
+  confirmations); **escalating the WebFetch egress-proxy blockage**
+  itself (T18) — still a network-policy matter outside agent control;
+  patching the perceptual-scoring cap's enforcement mechanically (VISION
+  SCIENCE's own Iteration-15 proposal — a lint-style check or a
+  verbatim-reuse rule, rather than another wording patch, given that a
+  Phase-3 wording fix demonstrably failed to propagate to Phase 4 this
+  cycle); taxonomic homes for ENZ's χ⁽⁵⁾/3-photon-absorption RSA branch
+  and the Joshi et al. energy-transfer-coupled dyad (PHOTONICS); the
+  carrier-vs-molecular absorption-correction question extended to
+  graphene/CNT sub-components (QUANTUM); the intrinsic cross-section-
+  ratio-extraction discipline as a mandatory companion to the
+  composite-figure search-order fix for any future combined-media check
+  (MATERIALS); docket #7's sourced witness-parameter table (flashlight
+  irradiance and the 10ms–1s window both still unsourced); QUANTUM's VO2
+  absorption-correction category-error fix; THERMO's latent-heat/
+  ΔT-quantity fix on promotion to reusable code; N33 at r=78-native and
+  the second independently-built r=78-native N17 domain (both
+  deprioritized further, still queued); a reproducibility/GUARD_OUT-
+  fringe-period sweep testing the near-field-fringe interaction mechanism
+  (PHOTONICS/EM); a genuine 3-λ sweep of the N9→N17 angular-convergence
+  readings (never run on this channel); T11's own trust-suite stage for
+  the ambient/line-source box-ledger channel; T14's PHOTONICS multi-point
+  cored-absorber r-sweep (r≈78, 110, 156, 220, 312, fixed PLANE_DX=15,
+  θ=0) — still never executed; a genuine PEC r-family ripple test near
+  r≈270–350 (T12's own real open half); T11's dedicated multi-point/
+  multi-box-pair box_dev floor characterization; Iteration 6's queued
+  incoherent-ensemble/phase-quadrature idiom (contingent-only, unopposed);
+  a formal reciprocity check (EM's own long-standing pick — now doubly
+  relevant given EM's own Iteration-16 lead); the shell-thickness/
+  optical-depth economy sweep (MATERIALS); T10's residual +3.05pp
+  sub-cell/window-offset sweep; a genuinely continuous (non-step-function)
+  Test-B sweep profile for the kinetics kernel (MATERIALS' Iteration-15
+  #3 — `integrate_two_state`'s `I_profile` path is currently
+  `NotImplementedError`); reconnecting the kernel to its original
+  spiropyran empirical anchor at witness-relevant dim/night ambient
+  (PHOTONICS/QUANTUM OPTICS, Iteration-15).
 - **[queued, deprioritized behind T13 per Red Team's Iteration-7
   ruling]** docket #7: sourced witness-scenario parameter table +
   glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring.

@@ -82,6 +82,33 @@ narrowband, incompatible with this program's macroscopic-beam/broadband-3λ
 requirement, a third independent reason these specific rows stay
 unobtainium even under generous assumptions.
 
+**AMENDMENT 3 (Iteration 15, exp-038, Phase-5 same-shift fix docket —
+MATERIALS' own Phase-5 finding, Red Team-confirmed).** exp-038 built and
+gate-validated `lab/kinetics.py` (T17's rate-equation kernel) and swept
+linearly-pumped FCA's own 5-host × 5-ratio (k_f, k_r) grid for a **second,
+separate realizability axis this memo had not previously carried: at-rest
+sweep-to-sweep population memory**, distinct from the D_req/irradiance axis
+above and **not a revision of it** — the linearly-pumped FCA UNOBTANIUM-
+WITH-PARAMETERS verdict in Amendment 2's table is unchanged. Finding:
+measurable sweep-to-sweep memory buildup (periodic/first-pulse peak-n ratio
+>1.05 under a stress-case inter-sweep interval) occurred *only* at Hosts D
+and E of the 25-point grid — exactly the two hosts this memo's own tier
+labels already call PLAUSIBLE/UNOBTANIUM-WITH-PARAMETERS (least
+realizable), not the PUBLISHED Hosts A/B. Read plainly: **for
+linearly-pumped FCA specifically, the host/doping choices realistic enough
+to matter (PUBLISHED tier) show negligible at-rest memory buildup even
+under a stress-case test; the memory-risk regime and the D_req/irradiance
+realizability boundary are not shown to be independent axes.** Tempered,
+per Red Team's Phase-5 audit (LOGBOOK.md Iteration 15): this pattern is
+substantially a near-mechanical consequence of exp-038's own fixed
+pulse-duration parameter (0.1s, itself chosen inside T3's provisional
+window) landing inside the same decade as this memo's own host-lifetime
+grid — not a fully independent empirical discovery, and should be read as
+a modest, real, but constructed-not-surprising narrowing, not an
+additional evidentiary pillar for the UNOBTANIUM verdict. No other class in
+Amendment 2's table has had this axis checked; this remains a single-class,
+single-mechanism finding.
+
 ## What the bench has established (this program's own numbers, cited)
 
 The T1 escape route this program has instrumented — intensity-gated

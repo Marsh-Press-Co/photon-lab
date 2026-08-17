@@ -2,6 +2,74 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-17 (panel shift) — Iteration 15 close-out (exp-038): the T17
+rate-equation kernel bench-confirms the n_ss formula to machine precision
+for the first time and catches two real implementation bugs pre-trust; a
+Phase 5 that had been left un-run by the prior shift closes it out with a
+four-item same-shift fix docket, including a third-consecutive-committed-
+iteration recurrence of VISION SCIENCE's T3-provisional-tag gap (Checkpoint
+criterion 4 exercised, not fired, with a standing instruction that a fourth
+recurrence fires it without debate).
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle.
+Found Iteration 15 (exp-038) partially complete on arrival: the prior
+shift had committed predictions (`a7c05f3`) and results (`98daa63`) —
+Phases 1-4 — but stopped before Phase 5 and before any LOGBOOK.md/PLAN.md/
+SESSION_LOG.md update, despite the results commit message stating "see
+LOGBOOK.md for the complete Phase 1-4 transcript." Bench trust suite
+reconfirmed green before continuing: `--only 12346789` 41/41, `--only 12`
+(stage 12 alone) 5/5 — both matching the committed record's own numbers to
+the printed digit.
+
+**Iteration 15 — The T17 Rate-Equation Kernel (exp-038, CONCLUDED this
+shift).** Lead: MATERIALS (rotation), executing Iteration 14's near-
+unanimous priority #3 (the in-engine rate-equation kernel; priorities #1/#2
+had no executable route — WebFetch egress-blocked a fourth consecutive
+shift, T18). New machinery: `lab/kinetics.py` (0D two-state kinetics
+integrator, exact-exponential + RK4 propagators) + trust-suite stage 12
+(5/5 gates, tightest 2.94×10⁻¹⁶). Two genuine implementation bugs (RK4
+double-division; a stiff-segment cost/stability blowup) were caught by the
+gate itself failing on first run, fixed before any science result was
+trusted. Science: P-MAT-4 CONFIRMED, P-MAT-5a CONFIRMED, P-MAT-5b
+PARTIALLY CONFIRMED (the co-location claim — at-rest sweep-to-sweep memory
+risk coincides with the least-realizable host tier — held exactly; the
+predicted magnitude band did not).
+
+**Phase 5 (six fresh blind discipline seats, then Red Team audit, run this
+shift): all six independently re-derived every headline number from raw
+code/data — zero science-numeric defect found anywhere.** Four same-shift
+fixes applied, none changing any reported verdict: (1) a dead-code bug in
+`run.py`'s P-MAT-5b confirmation check (`or True` making a bound
+unreachable) — independently caught by both QUANTUM OPTICS and MATERIALS,
+a genuine converging finding; (2) the mandatory "T3-provisional" tag,
+present at every point of claim in the Phase-3 predictions section, was
+absent at all four points of claim in the Phase-4 results section — caught
+by VISION SCIENCE, Red-Team-confirmed as the third consecutive committed
+iteration (13, 14, 15) this exact species of defect has required a Phase-5
+catch-and-correct, with the program's own "consecutive-cycle" bookkeeping
+found internally inconsistent and reconciled in the LOGBOOK entry; (3) the
+Phase-3 THERMO-sidecar N/A ruling rested on a category error — exp-037's
+borrowed ΔT_ss figure never used n_ss, so a zero-cost ceiling bound was
+available and wrongly declined, caught by THERMODYNAMICS; (4) the P-MAT-5b
+"co-location" finding's framing overclaimed independence — Red Team
+derived it follows substantially from this cycle's own fixed pulse-
+duration parameter, caught by MATERIALS, who also found
+`REALIZABILITY_MEMO.md` had gone unupdated since Iteration 14 (Amendment 3
+added, a separate tempered axis, does not revise the existing UNOBTANIUM
+verdict).
+
+**Checkpoint ruling, explicit: criterion 4 exercised, not fired** — the
+T3-provisional-tag defect was caught by the review layer built to catch
+it, no reported verdict changed, and precedent (Iterations 13, 14) ruled
+comparable same-shift-corrected issues the same way; but a **standing
+instruction is now on the record**: any further recurrence of this exact
+pattern fires criterion 4 without further debate. No other criterion
+fires. **Verdict: PARTIAL.** Next lead per rotation: ELECTROMAGNETISM
+(Iteration 16), whose own top-ranked priority (building an n(t)→ε(ω,t)
+causality/passivity-checked material-law bridge) responds directly to its
+own Phase-5 self-critique that zero EM bookkeeping happened this cycle.
+Full record: LOGBOOK.md Iteration 15.
+
 ## 2026-08-16 (panel shift) — Iteration 14 complete (exp-037): the
 free-carrier-absorption/combined-saturable-RSA-media literature check
 closes the two mechanism classes LOGBOOK's own Iteration-13 record named

@@ -736,6 +736,32 @@ measured them here):**
   branch was searched for but not found instantiated in any published
   architecture — n_ss cleanly N/A for that row, not computed, consistent
   with (not a violation of) this same generalized treatment.
+  **Iteration 15 (exp-038) extension**: T17's own queued build finally
+  executed — `lab/kinetics.py`, a bench-validated 0D two-state kinetics
+  integrator (exact-exponential + RK4 propagators), gated by trust-suite
+  stage 12 (5/5 absolute-identity gates, tightest 2.94×10⁻¹⁶). Bench-
+  confirms the n_ss=k_f/(k_f+k_r) formula to machine precision across a
+  25-point (5-host × 5-ratio) grid — no longer resting on algebra alone.
+  New quantitative result: the linear-vs-logistic divergence
+  (n_ss≈G·τ vs the exact form) equals r exactly, giving a hard number for
+  where the small-signal approximation stops being trustworthy (10% at
+  r=0.1). New structural (if modest, and partly construction-driven —
+  Phase-5 Red Team finding) result: measurable sweep-to-sweep population
+  memory under a stress-case inter-pulse interval occurs only at the two
+  hosts (D, E) this program's own realizability tier table already calls
+  least realizable — the at-rest-memory risk axis and the D_req/irradiance
+  realizability axis are not shown to be independent for linearly-pumped
+  FCA (`REALIZABILITY_MEMO.md` Amendment 3). Two genuine implementation
+  bugs (RK4 double-division; a stiff-segment cost/stability blowup) were
+  caught by the trust-suite gate itself failing on first run, before any
+  science result was trusted — the house discipline working as designed.
+  Queued follow-ups (Iteration 16 candidates, Red Team-ranked): re-anchor
+  k_f(I) to real wavelength-tagged absorption physics (closing PLAN.md's
+  carried wavelength-retag priority *through* this new machinery); build
+  the n(t)→ε(ω,t) causality/passivity-checked material-law bridge (EM's
+  own charter gap — zero EM bookkeeping happened this cycle); numerically
+  ground the adiabatic-elimination condition for the actual FCA host list
+  (currently asserted, not checked against a number).
 - **T18 — the field-enhancement/evidentiary-tier ceiling on the
   realizability-check line (opened Iteration 14, exp-037, MATERIALS +
   Red Team).** Three consecutive literature-check cycles (exp-036,
@@ -5840,3 +5866,282 @@ ban unearned magnitude language in either direction and require the
 T3-provisional tag at each point-of-claim; a reusable THERMO-sidecar
 utility (ΔT_ss/heating-time/diffusion-reset-time as a function of ρ, c_p,
 κ, P_absorbed, L).
+
+## Iteration 15 — The T17 Rate-Equation Kernel (exp-038) — 2026-08-16/17
+Runner: cloud panel shift · Lead: MATERIALS & METAMATERIALS (rotation,
+executing Iteration 14's near-unanimous top priority #3 — the in-engine
+rate-equation kernel; priorities #1/#2 had no executable route this shift,
+see T18 re-confirmation below). **Process note**: predictions (Phase 1-3,
+`a7c05f3`) and results (Phase 4, `98daa63`) were committed by the prior
+shift, which stopped before Phase 5 and before this LOGBOOK entry — the
+following shift (this entry's author) ran Phase 5, applied the resulting
+same-shift fix docket, and closes the iteration out.
+
+### Pre-flight / T18 re-confirmation (Director, before Phase 1)
+
+Re-tested WebFetch against three scholarly domains (arxiv.org,
+semanticscholar.org, nature.com) — all three `EGRESS_BLOCKED`. Fourth
+consecutive confirmation. PLAN.md's Iteration-15 priorities #1
+(retroactive wavelength/primary-source re-verification) and #2 (escalating
+the blockage) had no executable route this shift; priority #3 (this
+kernel) was this cycle's only executable candidate.
+
+### Phase 1 — Proposal (MATERIALS, abridged)
+
+Full verbatim: `experiments/038-t17-rate-equation-kernel/NOTES.md`.
+Proposed a standalone, 0D, kinetics-only numerical kernel (no `Sim`, no
+FDTD calls) — two cross-checked propagators (exact-exponential
+piecewise-constant primary, RK4 cross-check), a 5-host (carrier-lifetime,
+τ_r=1ns–1s) × 5-ratio (k_f/k_r=10⁻⁹–1) = 25-point sweep grid anchored to
+exp-037's own cited fast/long-lifetime FCA hosts plus two MATERIALS-owned
+boundary probes (Host E, r=1), a constraint-3-at-rest test (Test A: time
+to 99% of n_ss) and a constraint-4 test (Test B: repeated beam-transit
+pulses, two inter-pulse intervals). New machinery: `lab/kinetics.py` +
+trust-suite stage 12, at least one absolute identity gate. Explicitly
+scoped as not touching T1's central tension and not a new escape route.
+
+### Phase 2 — Critique (five blind, then Red Team) — summary
+
+All five blind seats independently returned **support-with-changes**:
+PHOTONICS (k_f grid values traceable to Soref & Bennett's telecom-sourced
+cross-sections — required either per-point wavelength disclosure or an
+explicit dimensionless framing); THERMODYNAMICS (Iteration 14's own
+precedent — "no thermal feedback modeled" ≠ "no THERMO sidecar owed" —
+required a ΔT_ss post-processing step); ELECTROMAGNETISM (Test B's
+"smoothly time-varying" language contradicted its own discontinuous
+step-function definition, undermining the RK4 cross-check's validity —
+required fixing the profile/stepper mismatch); QUANTUM OPTICS (the
+adiabatic-elimination assumption was never stated; risk of conflating
+Test B's `A` with T18's field-enhancement factor — required both
+disclosures); VISION SCIENCE (P-MAT-5's language reused scoring verbs for
+an uncarried population fraction — the same violation caught on this
+seat's own prior cycle — required rewording plus restating the
+T3-provisional tag at P-MAT-5's own point of claim).
+
+**Red Team (PROCEED-WITH-MANDATORY-FIXES).** Six numbered attacks,
+independently re-derived rather than trusted: (1) P-MAT-3's own predicted
+table contradicted its claimed exact algebraic identity at 2 of 5 points;
+(2) the RK4 step-size spec was ambiguous between per-configuration and
+grid-global readings differing by 9-12 orders of magnitude in cost; (3)
+gate 2's "exact by construction" claim didn't hold for the RK4 path; (4)
+confirmed EM's Test-B/RK4 mismatch, ruled it must be fixed jointly with
+attack #2; (5) the proposed stage name was never wired to `--only`
+parsing — under the naive substring convention, stage 12 would have
+silently fired on every existing invocation including CI's own `--only
+12346789`; (6) independently confirmed VISION SCIENCE's constraint-4
+language-cap catch, flagged a fourth recurrence as escalation-worthy.
+Adjudication: PHOTONICS/QUANTUM OPTICS/VISION SCIENCE adopted in full; EM
+adopted, folded with attack #2; THERMODYNAMICS adopted in substance,
+rejected as literally stated (needs a photon-energy/site-density
+parameter out of this cycle's scope — resolved as an explicit N/A, later
+corrected at Phase 5, see below).
+
+### Phase 3 — Synthesis (Director)
+
+All six Red Team mandatory-fix items adopted in full. Director
+independently re-verified attacks #1 (P-MAT-3 arithmetic) and #5
+(stage-wiring collision) before accepting. Corrected P-MAT-3 table
+(error = r exactly, all 5 points); RK4 step size pinned per-configuration;
+Test B redefined as explicitly piecewise-constant, RK4 pinned to pulse
+edges; gate 2 split into 2a (exact-by-construction) / 2b (empirical);
+suite wiring fixed via a digit-boundary regex; VISION SCIENCE's language
+fixes applied verbatim; THERMO sidecar rescoped to an explicit N/A
+(Director's stated reason: insufficient information to scale a borrowed
+figure honestly — **found to be a category error at Phase 5, see below**).
+Predictions committed before any run (`a7c05f3`).
+
+### Phase 4 — Build + Test (exp-038)
+
+`lab/kinetics.py` written; suite stage 12 added; `run.py` (Test A + Test
+B, 175 configurations). **Two genuine implementation defects caught and
+fixed during build, before any result was trusted:** (1) a stiff-segment
+RK4 cost/stability blowup (up to ~2×10¹⁵ steps at the grid's stiffest
+corner) — fixed via a 25-relaxation-time transient window with an exact
+closed-form remainder; (2) a real double-division bug in `relax_rk4`,
+caught by gate 4 itself failing on first run (RMS rel diff 1.03 vs the
+≤1e-6 band) — confirmed by hand (~20× miss at one segment), fixed, and
+re-verified (2×10⁻⁹ relative agreement). A third, smaller defect (gate 3's
+float64 catastrophic cancellation at small r) was fixed via exact rational
+arithmetic (`fractions.Fraction`) — an implementation-precision fix, not a
+science correction. **Trust suite: stage 12, 5/5 gates PASS** (P-MAT-1
+2.94e-16 ≤1e-12; P-MAT-2a exact; P-MAT-3 exact via rational arithmetic;
+P-MAT-2b 0.00 ≤1e-9; gate 4 4.73e-08 ≤1e-6). Full local bench
+(`--only 12346789`) re-confirmed 41/41 unaffected, stage 12 correctly
+excluded.
+
+**Science results.** P-MAT-4 CONFIRMED (only Host D lands in T3's window),
+with an honest minor imprecision disclosed (the host-lifetime shorthand
+for τ overstates t99 by 2× at r=1). P-MAT-5a CONFIRMED (5τ: max ratio
+1.006, band ≤1.02). P-MAT-5b PARTIALLY CONFIRMED: the co-location claim
+(memory-risk axis and largest-n_ss axis coincide, at Hosts D/E
+specifically) held exactly; the ~1.4-1.6 magnitude band was refuted by the
+measured 1.00-2.106 range.
+
+### Phase 5 — Review (six fresh discipline seats, blind, then Red Team audit)
+
+Full verbatim reviews: this shift's session record;
+`experiments/038-.../NOTES.md`'s own condensed Phase-5 summary carries the
+abridged text. **All six seats independently re-ran the trust suite and
+re-derived the headline numbers from the raw code/data (not from NOTES.md's
+prose) — zero science-numeric defects found anywhere.** PHOTONICS and
+MATERIALS both wrote from-scratch reimplementations of Test A/B outside
+`lab/kinetics.py` and matched every one of 175 reported values.
+
+**Individual seat verdicts on exp-038 itself:** ELECTROMAGNETISM
+PROMISING; QUANTUM OPTICS PROMISING-with-scope-caveat; PHOTONICS,
+MATERIALS, THERMODYNAMICS, VISION SCIENCE — PARTIAL (4 of 6).
+
+**Four real, previously-undisclosed issues surfaced, all fixed same-shift,
+none changing any reported science verdict:**
+
+1. **A dead-code bug in `run.py`'s P-MAT-5b `confirmed_range` check**
+   (`(1.3 <= min(band_05tau) or True) and (max(band_05tau) <= 1.7)` — the
+   `or True` made the lower-bound clause unreachable) — **independently
+   caught by both QUANTUM OPTICS and MATERIALS**, a genuine converging
+   finding. Red Team confirmed by direct inspection: harmless this run
+   (the upper-bound clause alone already forced the correct `False`), but
+   a future grid could silently misreport. Fixed (`or True` removed),
+   `results.json` regenerated, verdicts unchanged.
+2. **VISION SCIENCE's line-by-line audit**: the mandatory
+   "T3-provisional; not a scored perceptual verdict" tag was present at
+   every point of claim in the Phase-3 predictions section but **absent
+   at all four points of claim in the Phase-4 results section**
+   (P-MAT-4, P-MAT-5a, P-MAT-5b, the realizability cross-reference) —
+   scored-verdict words ("CONFIRMED," "PARTIALLY CONFIRMED") applied
+   without the qualifier at their own point of use. Red Team independently
+   confirmed the claim exactly and additionally found the program's own
+   "consecutive-cycle" bookkeeping for this recurring pattern is
+   internally inconsistent (Iteration 14's own entry already called
+   itself "third consecutive"; this cycle's Phase-2 critique used the same
+   ordinal for a later cycle) — reconciled here: **at minimum, three
+   consecutive committed iterations (13, 14, 15) have each required a
+   Phase-5 catch-and-correct of this exact species of defect.** Fixed:
+   tag restated at all four points of claim.
+3. **THERMODYNAMICS' review**: the Phase-3 THERMO-sidecar N/A ruling
+   rested on a category error. exp-037's own borrowed ΔT_ss≈7mK/0.7K
+   figure is a pure absorbed-power/heat-balance estimate that **never
+   used n_ss** — there was no "reference n_ss" to scale by, contrary to
+   the Director's stated Phase-3 concern. Red Team confirmed directly by
+   reading exp-037's actual computation. Fixed: the borrowed ceiling bound
+   now appears in NOTES.md's Idealizations, explicitly labeled
+   borrowed/not re-derived/not n_ss-scaled.
+4. **MATERIALS' review**: the P-MAT-5b "co-location" finding's framing
+   overclaimed independence. Red Team confirmed via direct derivation:
+   `T_PULSE=0.1s` is fixed across every host and was itself chosen inside
+   T3's provisional window; since `Δt_sweep` is a fixed multiple of each
+   host's own τ, measurable buildup requiring τ≳T_PULSE follows
+   near-mechanically from the parameter choices for exactly Hosts D/E —
+   not a fully independent empirical discovery. **MATERIALS also found
+   `REALIZABILITY_MEMO.md` had gone unupdated since Iteration 14**
+   (confirmed via `git log`: last touch `eb51f9e`). Both fixed: NOTES.md
+   language tempered; `REALIZABILITY_MEMO.md` Amendment 3 added (a
+   separate, tempered realizability axis — does not revise the existing
+   D_req/irradiance UNOBTANIUM verdict for linearly-pumped FCA).
+
+**Also corrected, Red Team-extended beyond the originating seat's own
+catch:** VISION SCIENCE found P-MAT-4's "8, 5, and 2-3 orders of magnitude
+below [T3's window]" figures were computed from the window's far edge
+(1s), not its near edge (10ms) — Red Team recomputed all three hosts (not
+just VISION's own Host-A check) and found Host C's correction the most
+consequential: ~0.3-0.6 OOM below the near edge, not "2-3," meaning Host C
+sits far closer to T3's provisional window than the original phrasing
+implied. Fixed in NOTES.md.
+
+**Checked and found already correct, no fix needed:** ELECTROMAGNETISM's
+attribution note (the adiabatic-elimination condition should credit
+QUANTUM OPTICS' Iteration-15 fix, not earlier EM work) — Red Team grepped
+LOGBOOK.md/PLAN.md/NOTES.md and found no misattribution anywhere; NOTES.md
+already correctly credits QUANTUM OPTICS. **Queued, not mandatory this
+shift:** QUANTUM OPTICS' finding that the adiabatic-elimination disclosure
+is currently unfalsifiable (no numeric margin given for either molecular
+T2 or FCA carrier-thermalization time against this cycle's k_r range) —
+real, low-severity (does not affect any reported verdict), first-ranked
+follow-up for Iteration 16 (see below).
+
+**Red Team's Checkpoint ruling, explicit:**
+- **#1/#2/#3/#5: do not fire** (unanimous across all six seats, Red-Team-
+  confirmed) — no constraint metric was scored this cycle; T17's
+  structural boundary was already established Iteration 13-14, this cycle
+  bench-confirms rather than newly proves it; the kernel stays
+  deliberately 0D and decoupled from the FDTD engine; both exp-037 and
+  exp-038 advanced the logbook, no stall.
+- **#4: EXERCISED, NOT FIRED, conditional on the same-shift fix landing.**
+  Reasoning: the underlying T3-provisional disclosure was never erased
+  from the record (Idealizations and the predictions section both state
+  it), only failed to propagate into one later section of the same
+  document; no reported verdict changed; the defect was caught by the
+  review layer built to catch it, functioning as designed; precedent
+  (Iterations 13, 14) ruled comparably-severe same-shift-corrected issues
+  the same way. **Standing instruction, on the record**: if this exact
+  pattern recurs on any future cycle, it should fire criterion 4 without
+  further debate — the escalation language has now been invoked twice
+  with two different, uncorroborated ordinal counts, and a third
+  ambiguous invocation is not acceptable.
+- **Flagged for the future, not fired now**: EM's own Iteration-16
+  proposal #2 (a genuinely time-varying-medium FDTD update coefficient)
+  would likely raise criterion 3 if built — standing instruction that
+  whichever seat leads that direction flag it to Marsh at proposal time,
+  not build it silently.
+
+**No Checkpoint criterion fires this cycle. Marsh does not need to be
+convened.**
+
+### Director's close of Iteration 15
+
+**Verdict: PARTIAL.** The kernel itself is a genuine, cleanly-gated
+contribution — independently re-verified end-to-end by all six Phase-5
+seats plus Red Team, zero residual numeric defect anywhere, two real
+implementation bugs caught by the house discipline exactly as designed.
+It bench-confirms T17's structural finding to machine precision for the
+first time, rather than resting on hand-derivation, and produces one new
+quantitative result (the exact linear-vs-logistic divergence law) and one
+real, if modest and partly construction-driven, structural finding (the
+at-rest-memory-risk/realizability-boundary co-location). But — per this
+program's own established precedent that verdict turns on whether a
+cycle's own open questions close, not a favorable seat-count — four
+same-shift fixes were required to correct a category error (THERMO), an
+overclaim (MATERIALS' co-location framing), a dead-code bug (QUANTUM
+OPTICS + MATERIALS, converging), and a recurring documentation-discipline
+lapse now confirmed present for a third consecutive committed iteration
+(VISION SCIENCE) — none individually severe, all real, all disclosed
+rather than smoothed over. This is the same pattern this program has
+repeatedly named PARTIAL for (Iterations 12, 13, 14). Checkpoint criterion
+4 is exercised, not fired, with an explicit standing instruction that a
+further recurrence should fire it. Next lead per rotation:
+**ELECTROMAGNETISM** (Iteration 16).
+
+**Ranked top-3 candidate directions for Iteration 16** (Red Team's
+synthesis across all six seats' own top-3 lists, adjudicated not
+concatenated; each checked against RULED OUT R1/R2/R3 — none resurrect a
+dead idea):
+
+1. **Build stage-10's T3 temporal-contrast instrument, sourced**
+   (VISION SCIENCE's own #1 pick, ranked #1 overall — the single most
+   overdue item on the program's books, deferred at Iterations 13, 14,
+   and now 15's own close; retires the root cause of the recurring
+   T3-provisional-tag pattern that has now required Phase-5 intervention
+   three cycles running, not just VISION SCIENCE's own charter concern).
+   Scope: pin a sourced de Lange/Watson temporal-CSF threshold (photopic +
+   scotopic per PANEL.md's dual-regime requirement), re-score exp-038's
+   own Host D/E t99 and P-MAT-5 numbers against it directly.
+2. **Re-anchor k_f(I) to real, wavelength-tagged absorption physics via
+   the now-validated kernel** (PHOTONICS' #1, MATERIALS' #2 —
+   independently converging). Closes PLAN.md's carried Iteration-13/14/15
+   priority #1 *through* the new machinery instead of as a separate
+   literature exercise; derive G(λ)=σ_abs(λ)·λ/(hc) for correctly-scaled
+   (not telecom-borrowed) cross-sections at 450/600/750nm — sidesteps
+   T18's WebFetch blockage entirely (established physics, not a new
+   literature pull).
+3. **Build the n(t)→ε(ω,t)/σ_abs(t) causality/passivity-checked
+   material-law bridge** (ELECTROMAGNETISM's #1, this cycle's incoming
+   lead). Closes EM's own sharpest self-critique (zero EM bookkeeping
+   happened this cycle) and is the correct prerequisite before any future
+   FDTD coupling of this kernel — EM's own #2 (a time-varying-medium
+   update coefficient) is flagged Checkpoint-3-scale and should not be
+   attempted before this exists.
+
+*Cheap same-cycle add-ons, not ranked but worth folding in if budget
+allows*: QUANTUM OPTICS' numerical grounding of the adiabatic-elimination
+margin for the actual FCA host list (a few lines of arithmetic, closes a
+queued item above); THERMODYNAMICS' reusable THERMO-sidecar utility
+(PLAN.md's own twice-carried item, now overdue a second cycle running).

@@ -1,7 +1,7 @@
 {
   "experiment": "exp-038-t17-rate-equation-kernel",
   "panel_iteration": 15,
-  "elapsed_s": 0.14186334609985352,
+  "elapsed_s": 0.1425914764404297,
   "n_fdtd_calls": 0,
   "test_a_rows": [
     {
