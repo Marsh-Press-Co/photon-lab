@@ -975,6 +975,144 @@ def stage13_temporal_csf():
           str(transitions_lp), transitions_lp == order_lp, str(order_lp))
 
 
+def stage14_amplitude_bridge():
+    """The Panel Iteration 17 amplitude bridge vs closed-form identities and
+    exp-026's own MEASURED data (exp-040). `lab.amplitude_bridge` is a
+    standalone, zero-FDTD-cost module reading `lab.kinetics`-shaped (k_f,
+    k_r) grids and exp-026's own established (sigma_off, sigma_on, r_out)
+    endpoints. Gates, all pre-registered in exp-040/NOTES.md's Phase-3
+    synthesis BEFORE this code existed:
+
+      1. sigma_e/tau boundary identities: sigma_e_of_n(0)==sigma_off and
+         sigma_e_of_n(1)==sigma_on bit-exactly; tau_of_n boundary values
+         match tau_off/tau_on to <=1e-15 relative (P-TH-1a).
+      2. Dense-sampling identity: splitting one segment into M=1000 exact
+         sub-segments via `lab.kinetics.integrate_segments` reproduces the
+         single-segment boundary n to <=1e-13 relative (P-TH-1b) -- an
+         identity about `kinetics`, exercised here because this is the
+         first module to rely on it for a fine-grained C(t) trajectory.
+      3. `chord_contrast` REGRESSION ANCHOR against exp-026's own MEASURED
+         600nm ambient contrasts (NOT `chord_model_g0`'s own output -- Red
+         Team's Phase-2 attack #3, load-bearing: since chord_contrast is
+         the SAME ray-chord code path as `chord_model_g0` evaluated off
+         its tau->0 linear limit, comparing the two would be a near-
+         tautology; this anchors against real FDTD data instead) at
+         tau=0.008/0.032/0.10/3.9, <=2% relative each (P-TH-2).
+      4. Passivity + monotonicity: sigma_e_of_n(n) in [sigma_off, sigma_on]
+         for n in [0,1] on a dense sweep, and |chord_contrast(tau)| strictly
+         increasing over tau in [1e-4, 10] -- zero violations required
+         (P-TH-3).
+      5. Quasi-static validity gate, RE-REFERENCED (Red Team's Phase-2
+         attack #11, adopting ELECTROMAGNETISM's fix over the Phase-1
+         proposal's own 100-optical-period criterion): tau_local >=
+         100*t_settle, t_settle computed from the ambient instrument's OWN
+         parameters (`settling_time_s`, never hand-typed). The live
+         enumeration over exp-038's 5-host x 5-ratio x 3-A Test-B grid must
+         reproduce EXACTLY the pre-registered 5-point INVALID-QUASISTATIC
+         set (P-TH-4) -- an identity check, not a count-only tolerance,
+         per Red Team's own mandatory-fix wording ("the list must be
+         pre-enumerated as it is now").
+      6. Defect-regression: exp-034's legacy weak-tau series
+         (`chord_absorptance_series_legacy`) must stay NEGATIVE at tau=3.9
+         and cross zero within 1% of 3*pi/4 -- proof `chord_absorptance_exact`
+         (this cycle's replacement, gated to reproduce the series at
+         tau<=0.032 to <=1% and diverge from it above tau~0.3) was a real
+         fix, not a silent rewrite (P-TH-5).
+    """
+    print("stage 14 — amplitude bridge vs closed-form identities and exp-026 measured data")
+    from lab import amplitude_bridge as ab
+
+    R_OUT, PLANE_DX = 78, 15
+    ANGLES = (-35, -25, -15, -5, 0, 5, 15, 25, 35)
+    GUARD_OUT, W_FLANK = 185, 78
+    SIGMA_OFF, SIGMA_ON = 5.1282051282051286e-05, 2.5000000000000001e-02
+    TAU_OFF, TAU_ON = 0.008, 3.9
+
+    # --- gate 1 (P-TH-1a): boundary identities.
+    s0 = ab.sigma_e_of_n(0.0, SIGMA_OFF, SIGMA_ON)
+    s1 = ab.sigma_e_of_n(1.0, SIGMA_OFF, SIGMA_ON)
+    check("amplitude_bridge", "sigma_e_of_n(0) == sigma_off (bit-exact)",
+          f"{s0!r}", s0 == SIGMA_OFF, f"{SIGMA_OFF!r}")
+    check("amplitude_bridge", "sigma_e_of_n(1) == sigma_on (bit-exact)",
+          f"{s1!r}", s1 == SIGMA_ON, f"{SIGMA_ON!r}")
+    t0v = ab.tau_of_n(0.0, TAU_OFF, TAU_ON)
+    t1v = ab.tau_of_n(1.0, TAU_OFF, TAU_ON)
+    err_t0 = abs(t0v - TAU_OFF) / TAU_OFF
+    err_t1 = abs(t1v - TAU_ON) / TAU_ON
+    check("amplitude_bridge", "tau_of_n boundary rel err (max of 2 pts)",
+          f"{max(err_t0, err_t1):.2e}", max(err_t0, err_t1) <= 1e-15, "<=1e-15")
+
+    # --- gate 2 (P-TH-1b): dense-sampling identity on kinetics.integrate_segments.
+    from lab import kinetics as kin
+    k_f, k_r, dur = 3.7, 11.0, 0.253   # arbitrary nontrivial point
+    n_direct = kin.integrate_segments([(k_f, k_r, dur)], n0=0.137, method="exp")
+    M = 1000
+    segs_sub = [(k_f, k_r, dur / M)] * M
+    n_sub = kin.integrate_segments(segs_sub, n0=0.137, method="exp")
+    err_sub = abs(n_direct - n_sub) / max(abs(n_direct), 1e-300)
+    check("amplitude_bridge", f"M={M} sub-segmentation vs single segment (rel err)",
+          f"{err_sub:.2e}", err_sub <= 1e-13, "<=1e-13")
+
+    # --- gate 3 (P-TH-2): regression anchor against exp-026's MEASURED 600nm column.
+    MEASURED_600 = {0.008: -0.005530667330154762, 0.032: -0.02179302617779434,
+                     0.10: -0.0661, 3.9: -0.785366695952265}
+    max_reg_err = 0.0
+    for tau, c_meas in MEASURED_600.items():
+        c_model = ab.chord_contrast(tau, R_OUT, PLANE_DX, ANGLES, GUARD_OUT, W_FLANK)
+        rel = abs(c_model - abs(c_meas)) / abs(c_meas)
+        max_reg_err = max(max_reg_err, rel)
+    check("amplitude_bridge", "chord_contrast vs exp-026 MEASURED 600nm column (max rel err, 4 pts)",
+          f"{max_reg_err:.2%}", max_reg_err <= 0.02, "<=2%")
+
+    # --- gate 4 (P-TH-3): passivity + monotonicity.
+    n_sweep = np.linspace(0.0, 1.0, 2001)
+    s_sweep = ab.sigma_e_of_n(n_sweep, SIGMA_OFF, SIGMA_ON)
+    bound_viol = float(np.max(np.maximum(SIGMA_OFF - s_sweep, s_sweep - SIGMA_ON)))
+    check("amplitude_bridge", "sigma_e(n) in [sigma_off, sigma_on] (max violation, 2001 pts)",
+          f"{bound_viol:.2e}", bound_viol <= 1e-18, "<=1e-18 (exact by construction)")
+    n_mono_viol, max_backstep = ab.check_monotonic(R_OUT, PLANE_DX, ANGLES, GUARD_OUT, W_FLANK)
+    check("amplitude_bridge", "|chord_contrast(tau)| strictly increasing (violations, 10000 pts)",
+          str(n_mono_viol), n_mono_viol == 0, "0")
+
+    # --- gate 5 (P-TH-4): quasi-static validity, re-referenced + exact-list identity.
+    HOSTS = {"A": 1e9, "B": 1e6, "C": 1e3, "D": 1e1, "E": 1e0}
+    RATIOS = [1e-9, 1e-5, 1e-3, 1e-1, 1.0]
+    A_VALUES = [10.0, 1e3, 1e6]
+    t_settle_s, _periods = ab.settling_time_s(20, 0.99, 1400, 600)
+    PRE_REGISTERED_INVALID = {
+        ("A", 1e-3, 1e6), ("A", 1e-1, 1e6), ("A", 1.0, 1e3),
+        ("A", 1.0, 1e6), ("B", 1.0, 1e6),
+    }
+    live_invalid = set()
+    for hn, k_r in HOSTS.items():
+        for r in RATIOS:
+            k_f_ambient = r * k_r
+            for A in A_VALUES:
+                tau_pulse = 1.0 / (k_f_ambient * A + k_r)
+                if not ab.is_quasistatic(tau_pulse, t_settle_s, margin=100.0):
+                    live_invalid.add((hn, r, A))
+    check("amplitude_bridge", "t_settle (600nm, cpl=20, 1400 steps) computed from instrument params",
+          f"{t_settle_s*1e15:.4f} fs", abs(t_settle_s * 1e15 - 98.0728) <= 0.01, "98.0728±0.01 fs")
+    check("amplitude_bridge", "INVALID-QUASISTATIC set == pre-registered 5-point list (re-referenced to 100*t_settle)",
+          str(sorted(live_invalid)), live_invalid == PRE_REGISTERED_INVALID,
+          str(sorted(PRE_REGISTERED_INVALID)))
+
+    # --- gate 6 (P-TH-5): defect-regression on the legacy weak-tau series.
+    series_39 = ab.chord_absorptance_series_legacy(3.9)
+    exact_39 = ab.chord_absorptance_exact(3.9)
+    check("amplitude_bridge", "legacy series chord_absorptance(3.9) stays negative (unphysical, proves fix needed)",
+          f"{series_39:.4f}", series_39 < 0.0, "<0.0")
+    crossover_err = abs((3.0 * np.pi / 4.0))   # zero of the series is exactly 3*pi/4 algebraically
+    check("amplitude_bridge", "legacy series zero-crossing == 3*pi/4 (algebraic identity)",
+          f"{3*np.pi/4:.6f}", abs(ab.chord_absorptance_series_legacy(3 * np.pi / 4)) <= 1e-9, "~0")
+    low_tau_agree = abs(ab.chord_absorptance_exact(0.032) - ab.chord_absorptance_series_legacy(0.032)) \
+        / ab.chord_absorptance_exact(0.032)
+    check("amplitude_bridge", "exact vs legacy series agree at tau=0.032 (weak-tau limit, rel err)",
+          f"{low_tau_agree:.2%}", low_tau_agree <= 0.01, "<=1%")
+    check("amplitude_bridge", "exact absorptance A(3.9) is physical (in [0,1])",
+          f"{exact_39:.4f}", 0.0 <= exact_39 <= 1.0, "[0,1]")
+
+
 def _stage_selected(n, only):
     """Digit-boundary-aware stage selection: True iff the two-or-more-digit
     stage number `n` appears in `only` NOT adjacent to another digit.
@@ -997,6 +1135,7 @@ if __name__ == "__main__":
     run_stage11 = _stage_selected(11, only)
     run_stage12 = _stage_selected(12, only)
     run_stage13 = _stage_selected(13, only)
+    run_stage14 = _stage_selected(14, only)
     t0 = time.time()
 
     if "1" in only:
@@ -1050,6 +1189,8 @@ if __name__ == "__main__":
         stage12_kinetics_kernel()
     if run_stage13:
         stage13_temporal_csf()
+    if run_stage14:
+        stage14_amplitude_bridge()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
