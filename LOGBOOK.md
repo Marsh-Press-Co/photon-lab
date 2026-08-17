@@ -6943,3 +6943,37 @@ empty-scene reading (P-OBJ); whether Block EXTEND shows continued
 monotonic rise or a turnover near 40° (P-EXT); leg (a)'s own enumerated
 list of N17-dependent citations, pending whatever this leg's Phase-4
 result implies for them.
+
+### PHASE 4 — TEST (run 2026-08-17)
+
+Bench reverified 41/41 immediately before and after (no `lab/` change). 38
+new FDTD calls, 137.8s. **Headline, unanticipated by any pre-registered
+prediction: the per-angle empty-scene floor oscillates in SIGN with a
+~1–2° period across the whole 36°→43° window, at every wavelength**, not a
+smooth ramp or a single threshold near 40°. At 600nm and 750nm, **every
+swept angle from 36° to 40° fails the real GATE_HARD=0.001** — the ±40°
+pair was never uniquely bad at these wavelengths; the whole ±35°→±40°
+window is contaminated by this fine structure. Only at 450nm do two angles
+(37°, 39°) pass, landing near apparent zero-crossings. P-M1 (θ=40°
+magnitude): confirmed at 450/600nm, refuted at 750nm (measured 0.0237 vs.
+predicted ceiling 0.020). P-M2 (three-way shape partition): refuted in all
+three branches — a fourth, unanticipated outcome (the oscillation)
+occurred instead. P-M3 (±θ magnitude symmetry ≤30%): CONFIRMED — the
+oscillation itself reproduces between independently-run +θ/−θ pairs,
+evidence it is a real, repeatable instrument feature, not per-run noise.
+P-EXT (monotonic rise past 40°, 600nm): refuted — θ=41° is the single
+cleanest point in the whole extended window (0.0032, a sharp drop from
+40°'s 0.0110), then rises again at 42–43°; the endpoint ratio coincidentally
+lands near the predicted band for the wrong reason. P-OBJ (object-present
+±40°/600nm): the pre-registered (a)/(b) partition was under-specified (no
+clean-angle sponge baseline was collected this cycle to test T15-coupling
+against) — disclosed as a scoping gap, not forced to a verdict; the data
+does show the object-present channel is far more ±-stable (1.1% asymmetry)
+than the empty-scene channel (0.8–30%) at the same geometry. Materials
+realizability cap and THERMO deferral both hold as pre-committed, untouched
+by this outcome. **New live thread T21 opened**: the fine ~1–2°-period
+angular oscillation, not resolution-checked this cycle (flagged, not
+silently deferred) — reframes T20 from "is ±40° specifically bad" to "is
+this program's entire N9/N17/fallback angular-quadrature family
+under-sampling a real fine angular structure." Full record:
+`experiments/041-t20-angle-audit/NOTES.md`.

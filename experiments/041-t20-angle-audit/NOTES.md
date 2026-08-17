@@ -298,3 +298,149 @@ small OBJPRESENT block), results written to `results.json`. Full bench
 (`lab/validation/run_all.py --only 12346789`) reverified green before and
 after (no `lab/` change, so this is a formality per house discipline, not
 expected to move).
+
+## PHASE 4 — RESULTS (run 2026-08-17)
+
+Bench reverified green immediately before and after this leg's run:
+`lab/validation/run_all.py --only 12346789` **41/41** both times (matching
+Iteration 17's own committed record — no `lab/` change, as expected). 38
+new FDTD calls, 137.8s wall-clock (well under the ≈95–150s estimate).
+Full data: `results.json`.
+
+**Headline finding, not anticipated by any pre-committed prediction: the
+per-angle empty-scene floor does not vary smoothly or monotonically across
+36°→43° — it oscillates in SIGN with a period of roughly 1–2°, at every
+wavelength, with amplitude that itself varies non-monotonically.** Signed
+`C_empty(θ)` at 600nm: θ=36:−0.0142, 37:+0.0119, 38:−0.0073, 39:+0.0124,
+40:−0.0110, 41:+0.0032, 42:−0.0142, 43:+0.0150 — sign flips at (nearly)
+every 1° step, not a smooth ramp or a single threshold. 450nm and 750nm
+show the same qualitative character (see `results.json`), each with its
+own phase/amplitude pattern. **None of P-M2's three pre-registered
+outcomes — (i) generic-large-angle, (ii) localized-near-40°, (iii)
+extrapolation failure — describes this. A fourth, unanticipated outcome
+occurred: fine, near-periodic angular fringe structure spanning the whole
+swept window, not a threshold at any single angle.**
+
+### Scoring against pre-committed predictions
+
+**P-M1 (θ=40° endpoint magnitude) — CONFIRMED at 450/600nm, REFUTED at
+750nm.** 600nm: |C_empty(40°)| = 0.0110–0.0116 (both signs) vs. predicted
+central 0.008, band [0.004,0.016] — inside band. 450nm: 0.0110–0.0113 vs.
+central 0.006, band [0.003,0.015] — inside band. 750nm: 0.0233–0.0237 vs.
+central 0.010, band [0.005,0.020] — **exceeds the upper bound by ~17%,
+falsified.**
+
+**P-M2 (three-way shape partition) — REFUTED, all three branches.** Not
+(i): 450nm shows a genuinely mixed pattern (θ=37,39 pass GATE_HARD;
+36,38,40 breach) — not uniformly "generic-large-angle" the way 600/750nm
+are. Not (ii): no single localized crossing exists — 600nm and 750nm
+breach GATE_HARD at literally every one of the 10 swept angles. Not (iii):
+θ=40° magnitude is well above GATE_HARD at every λ, so no extrapolation
+failure. **The real outcome is the oscillation described above — this
+program's falsifiable-band discipline caught a genuine miss, not a near
+miss:** none of the three pre-registered branches survive, and the
+headline is more informative than any of them would have been.
+
+**GATE_HARD (0.001) pass/fail table, positive-angle side (the mandatory,
+Red-Team-corrected decision floor — VISION's own load-bearing fix):**
+
+| θ | 450nm | 600nm | 750nm |
+|---|---|---|---|
+| 36° | FAIL (0.00537) | FAIL (0.01423) | FAIL (0.01097) |
+| 37° | **PASS** (0.00094) | FAIL (0.01189) | FAIL (0.00894) |
+| 38° | FAIL (0.00595) | FAIL (0.00730) | FAIL (0.00926) |
+| 39° | **PASS** (0.00046) | FAIL (0.01244) | FAIL (0.00396) |
+| 40° | FAIL (0.01101) | FAIL (0.01096) | FAIL (0.02367) |
+
+At 600nm and 750nm, **every single swept angle from 36° to 40° fails the
+real 0.001 gate** — the ±40° pair was never uniquely bad at these two
+wavelengths; the whole window is bad, at 1° granularity the program has
+never measured before. Only at 450nm do two angles (37°, 39°) pass —
+coincidentally landing near zero-crossings of the oscillation, not because
+the floor is well-behaved there. **Consequence for T20 itself: excluding
+"the ±40° pair" specifically, as exp-024 did and this leg set out to
+audit, is not the right frame — under the real 0.001 gate, most of the
+±35°→±40° window is contaminated by this same fine structure, at least at
+600/750nm.** This sharpens, not resolves, live thread T20 — see New Live
+Thread, below.
+
+**P-M3 (sign/magnitude asymmetry between +θ and −θ, ≤30% relative) —
+CONFIRMED.** Despite the wild θ-to-θ oscillation, the ± pairing itself is
+well-behaved: relative differences between |C_empty(+θ)| and
+|C_empty(−θ)| at matching θ range ≈0.8–30% across all 15 pairs tested
+(the single edge case, θ=±39°/450nm, compares two near-zero magnitudes,
+0.00003 vs 0.00046 — both consistent with sitting near a fringe null, not
+a real asymmetry violation). **The oscillation itself is reproducible
+between independently-injected +θ and −θ runs at the same |θ|** — strong
+evidence this is a real, repeatable feature of the instrument at this
+resolution, not per-run numerical noise.
+
+**P-EXT (Block EXTEND, monotonic rise past 40°, 600nm) — REFUTED.**
+Measured: θ=41°: 0.00315 (a sharp DROP from θ=40°'s 0.0110 — the smallest
+magnitude in the entire 36–43° sweep at 600nm), θ=42°: 0.01418, θ=43°:
+0.01502. Not monotonic — continues the same oscillating character past
+40°, with no sign the pattern is specific to θ≈40° (θ=41° is in fact the
+single cleanest point in the whole extended window). The endpoint ratio
+|C(43°)|/|C(40°)| ≈ 1.37 happens to fall inside the predicted [1.3,1.6]
+central range, but for the wrong reason — coincidental, not a confirmation
+of the predicted monotonic mechanism.
+
+**P-OBJ (Block OBJPRESENT, sponge @ ±40°/600nm) — outcome partition
+under-specified for a clean (a)/(b) call; one solid finding delivered
+anyway.** `C_sponge(−40°)=−0.05879`, `C_sponge(+40°)=−0.05815` — 1.1%
+relative asymmetry, far tighter than the empty-scene channel's 0.8–30%
+spread at the same geometry. Self-consistency identity holds exactly
+(`C_empty_paired` reproduces `C_empty_from_MAIN` to machine precision,
+confirming the block-reuse pairing is correct). **Honest scoping gap,
+disclosed rather than papered over:** the original (a)/(b) partition
+implicitly needed a same-cycle clean-angle sponge baseline to test whether
+T15's channel "couples with ±40° specifically" — this leg collected no
+such baseline (only ±40° was run), so PHOTONICS' original question is not
+cleanly answered either way. What the data does show: the object-present
+channel is materially more stable against the 1° angular perturbation than
+the empty-scene channel at the same geometry — suggestive that the
+oscillation is a background/diffraction-floor phenomenon that partially
+washes out once a strongly-absorbing object dominates the window, not
+proof either way for T15's specific coupling question.
+
+**Materials realizability cap (pre-committed) — holds as stated.** Nothing
+in this leg's result moves either UNOBTANIUM-WITH-PARAMETERS verdict in
+`REALIZABILITY_MEMO.md`.
+
+**THERMO disposition (pre-committed) — holds as stated.** The two queued
+cheap THERMO add-ons remain deferred to Iteration 19, untouched by this
+leg's outcome.
+
+### New live thread opened: T21 — the fine (~1–2°) angular fringe oscillation
+
+The ambient-contrast instrument's per-angle empty-scene floor oscillates in
+sign with a period of roughly 1–2° across at least a 36°→43° window, at
+every wavelength tested, with amplitude that is itself non-monotonic in θ.
+Reproducible between independently-run +θ/−θ pairs (P-M3), so not simple
+per-run noise. **Not yet resolution-checked** (no R3/cpl-refinement leg run
+this cycle — flagged explicitly in Idealizations, not silently deferred).
+Two live candidate explanations, neither tested yet: (a) a genuine Fresnel/
+edge-diffraction fringe pattern at this bench's own near-field measurement
+standoff (PLANE_DX=0.75λ@600nm) — consistent with, and a much finer-grained
+sibling of, the mechanism PHOTONICS and EM both speculated about in Phase 2
+without predicting this specific periodicity; (b) a grid-quantization
+aliasing artifact from how `walk(θ)=D_SP·tanθ` (≈4 cells/degree near θ=40°)
+interacts with the fixed-cpl source injection at 1° steps — this program's
+own R3 meta-rule (three prior confirmations: exp-005, -010, -015) requires
+this exact kind of surprising feature to get a resolution check before any
+mechanism debate is trusted. **This reframes T20 itself**: the original
+question ("is the ±40° pair specifically bad?") is now subsumed by a bigger
+one ("is the whole N9/N17/fallback angular quadrature family — 5° and 10°
+step grids used by this program since Iteration 1 — under-sampling a real
+~1–2°-period structure, landing on arbitrary points of it rather than a
+smooth, well-characterized floor?"). Directly bears on T16 (the angular-
+quadrature uncertainty budget) as well as T20. Candidate next steps (for
+Phase 5 to rank, not pre-decided here): (1) an R3 check (cpl 20→30,
+geometry rescaled to hold physical size fixed, this program's own
+established methodology) at a representative subset of this leg's most
+striking points (the 38→39→40→41 dip-rise-drop-rise run at 600nm is the
+single most information-dense candidate); (2) if the oscillation survives
+R3, a systematic characterization of its period/phase across the full
+0°→40°+ range, not just 36°→43°, since it may already be present (and
+unaccounted for) in the N9/N17/fallback grids' own historically "clean"
+angles too.
