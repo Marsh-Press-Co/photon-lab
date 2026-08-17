@@ -1,0 +1,567 @@
+{
+  "experiment": "exp-039-t3-temporal-csf-screen",
+  "panel_iteration": 16,
+  "lead": "ELECTROMAGNETISM",
+  "landmarks": {
+    "photopic": {
+      "low_corner_hz": 2.0,
+      "cff_hz_band": [
+        50.0,
+        90.0
+      ]
+    },
+    "scotopic": {
+      "low_corner_hz_band": [
+        0.8,
+        1.1
+      ],
+      "cff_hz_band": [
+        15.0,
+        25.0
+      ]
+    }
+  },
+  "rows_photopic": [
+    {
+      "host": "A",
+      "r": 1e-09,
+      "k_f": 1.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 159154943.2510503,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "A",
+      "r": 1e-05,
+      "k_f": 10000.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 159156534.64132625,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "A",
+      "r": 0.001,
+      "k_f": 1000000.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 159314098.03498724,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "A",
+      "r": 0.1,
+      "k_f": 100000000.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 175070437.40108487,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "A",
+      "r": 1.0,
+      "k_f": 1000000000.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 318309886.1837907,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 1e-09,
+      "k_f": 0.001,
+      "k_r": 1000000.0,
+      "f_c_hz": 159154.94325105028,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 1e-05,
+      "k_f": 10.0,
+      "k_r": 1000000.0,
+      "f_c_hz": 159156.53464132626,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 0.001,
+      "k_f": 1000.0,
+      "k_r": 1000000.0,
+      "f_c_hz": 159314.09803498723,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 0.1,
+      "k_f": 100000.0,
+      "k_r": 1000000.0,
+      "f_c_hz": 175070.43740108487,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 1.0,
+      "k_f": 1000000.0,
+      "k_r": 1000000.0,
+      "f_c_hz": 318309.8861837907,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 1e-09,
+      "k_f": 1.0000000000000002e-06,
+      "k_r": 1000.0,
+      "f_c_hz": 159.1549432510503,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 1e-05,
+      "k_f": 0.01,
+      "k_r": 1000.0,
+      "f_c_hz": 159.15653464132626,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 0.001,
+      "k_f": 1.0,
+      "k_r": 1000.0,
+      "f_c_hz": 159.31409803498724,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 0.1,
+      "k_f": 100.0,
+      "k_r": 1000.0,
+      "f_c_hz": 175.0704374010849,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 1.0,
+      "k_f": 1000.0,
+      "k_r": 1000.0,
+      "f_c_hz": 318.3098861837907,
+      "regime": "photopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "D",
+      "r": 1e-09,
+      "k_f": 1e-08,
+      "k_r": 10.0,
+      "f_c_hz": 1.591549432510503,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "D",
+      "r": 1e-05,
+      "k_f": 0.0001,
+      "k_r": 10.0,
+      "f_c_hz": 1.5915653464132626,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "D",
+      "r": 0.001,
+      "k_f": 0.01,
+      "k_r": 10.0,
+      "f_c_hz": 1.5931409803498724,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "D",
+      "r": 0.1,
+      "k_f": 1.0,
+      "k_r": 10.0,
+      "f_c_hz": 1.7507043740108488,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "D",
+      "r": 1.0,
+      "k_f": 10.0,
+      "k_r": 10.0,
+      "f_c_hz": 3.183098861837907,
+      "regime": "photopic",
+      "zone": "in_passband"
+    },
+    {
+      "host": "E",
+      "r": 1e-09,
+      "k_f": 1e-09,
+      "k_r": 1.0,
+      "f_c_hz": 0.15915494325105028,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "E",
+      "r": 1e-05,
+      "k_f": 1e-05,
+      "k_r": 1.0,
+      "f_c_hz": 0.15915653464132626,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "E",
+      "r": 0.001,
+      "k_f": 0.001,
+      "k_r": 1.0,
+      "f_c_hz": 0.15931409803498722,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "E",
+      "r": 0.1,
+      "k_f": 0.1,
+      "k_r": 1.0,
+      "f_c_hz": 0.17507043740108488,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "E",
+      "r": 1.0,
+      "k_f": 1.0,
+      "k_r": 1.0,
+      "f_c_hz": 0.3183098861837907,
+      "regime": "photopic",
+      "zone": "sub_passband"
+    }
+  ],
+  "rows_scotopic": [
+    {
+      "host": "A",
+      "r": 1e-09,
+      "k_f": 1.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 159154943.2510503,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "A",
+      "r": 1e-05,
+      "k_f": 10000.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 159156534.64132625,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "A",
+      "r": 0.001,
+      "k_f": 1000000.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 159314098.03498724,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "A",
+      "r": 0.1,
+      "k_f": 100000000.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 175070437.40108487,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "A",
+      "r": 1.0,
+      "k_f": 1000000000.0,
+      "k_r": 1000000000.0,
+      "f_c_hz": 318309886.1837907,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 1e-09,
+      "k_f": 0.001,
+      "k_r": 1000000.0,
+      "f_c_hz": 159154.94325105028,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 1e-05,
+      "k_f": 10.0,
+      "k_r": 1000000.0,
+      "f_c_hz": 159156.53464132626,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 0.001,
+      "k_f": 1000.0,
+      "k_r": 1000000.0,
+      "f_c_hz": 159314.09803498723,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 0.1,
+      "k_f": 100000.0,
+      "k_r": 1000000.0,
+      "f_c_hz": 175070.43740108487,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "B",
+      "r": 1.0,
+      "k_f": 1000000.0,
+      "k_r": 1000000.0,
+      "f_c_hz": 318309.8861837907,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 1e-09,
+      "k_f": 1.0000000000000002e-06,
+      "k_r": 1000.0,
+      "f_c_hz": 159.1549432510503,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 1e-05,
+      "k_f": 0.01,
+      "k_r": 1000.0,
+      "f_c_hz": 159.15653464132626,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 0.001,
+      "k_f": 1.0,
+      "k_r": 1000.0,
+      "f_c_hz": 159.31409803498724,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 0.1,
+      "k_f": 100.0,
+      "k_r": 1000.0,
+      "f_c_hz": 175.0704374010849,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "C",
+      "r": 1.0,
+      "k_f": 1000.0,
+      "k_r": 1000.0,
+      "f_c_hz": 318.3098861837907,
+      "regime": "scotopic",
+      "zone": "supra_cff"
+    },
+    {
+      "host": "D",
+      "r": 1e-09,
+      "k_f": 1e-08,
+      "k_r": 10.0,
+      "f_c_hz": 1.591549432510503,
+      "regime": "scotopic",
+      "zone": "in_passband"
+    },
+    {
+      "host": "D",
+      "r": 1e-05,
+      "k_f": 0.0001,
+      "k_r": 10.0,
+      "f_c_hz": 1.5915653464132626,
+      "regime": "scotopic",
+      "zone": "in_passband"
+    },
+    {
+      "host": "D",
+      "r": 0.001,
+      "k_f": 0.01,
+      "k_r": 10.0,
+      "f_c_hz": 1.5931409803498724,
+      "regime": "scotopic",
+      "zone": "in_passband"
+    },
+    {
+      "host": "D",
+      "r": 0.1,
+      "k_f": 1.0,
+      "k_r": 10.0,
+      "f_c_hz": 1.7507043740108488,
+      "regime": "scotopic",
+      "zone": "in_passband"
+    },
+    {
+      "host": "D",
+      "r": 1.0,
+      "k_f": 10.0,
+      "k_r": 10.0,
+      "f_c_hz": 3.183098861837907,
+      "regime": "scotopic",
+      "zone": "in_passband"
+    },
+    {
+      "host": "E",
+      "r": 1e-09,
+      "k_f": 1e-09,
+      "k_r": 1.0,
+      "f_c_hz": 0.15915494325105028,
+      "regime": "scotopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "E",
+      "r": 1e-05,
+      "k_f": 1e-05,
+      "k_r": 1.0,
+      "f_c_hz": 0.15915653464132626,
+      "regime": "scotopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "E",
+      "r": 0.001,
+      "k_f": 0.001,
+      "k_r": 1.0,
+      "f_c_hz": 0.15931409803498722,
+      "regime": "scotopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "E",
+      "r": 0.1,
+      "k_f": 0.1,
+      "k_r": 1.0,
+      "f_c_hz": 0.17507043740108488,
+      "regime": "scotopic",
+      "zone": "sub_passband"
+    },
+    {
+      "host": "E",
+      "r": 1.0,
+      "k_f": 1.0,
+      "k_r": 1.0,
+      "f_c_hz": 0.3183098861837907,
+      "regime": "scotopic",
+      "zone": "sub_passband"
+    }
+  ],
+  "predictions": [
+    {
+      "id": "P-EM-2",
+      "claim": "Host D f_c in [1.55,3.25] Hz, monotonic in r",
+      "measured": [
+        1.591549432510503,
+        1.5915653464132626,
+        1.5931409803498724,
+        1.7507043740108488,
+        3.183098861837907
+      ],
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "P-EM-3",
+      "claim": "Host E f_c in [0.155,0.325] Hz, monotonic in r",
+      "measured": [
+        0.15915494325105028,
+        0.15915653464132626,
+        0.15931409803498722,
+        0.17507043740108488,
+        0.3183098861837907
+      ],
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "P-EM-4 [T3-provisional; not a scored perceptual verdict]",
+      "claim": "photopic: Host D r<=0.1 sub_passband/r=1 in_passband, Host E always sub_passband",
+      "measured": {
+        "host_D_zones": [
+          "sub_passband",
+          "sub_passband",
+          "sub_passband",
+          "sub_passband",
+          "in_passband"
+        ],
+        "host_E_zones": [
+          "sub_passband",
+          "sub_passband",
+          "sub_passband",
+          "sub_passband",
+          "sub_passband"
+        ]
+      },
+      "verdict": "CONFIRMED"
+    },
+    {
+      "id": "P-EM-5 [T3-provisional; not a scored perceptual verdict]",
+      "claim": "scotopic: Host D always in_passband, Host E always sub_passband (CORRECTED from Phase-1's refuted 'all 10 in_passband' draft)",
+      "measured": {
+        "host_D_zones": [
+          "in_passband",
+          "in_passband",
+          "in_passband",
+          "in_passband",
+          "in_passband"
+        ],
+        "host_E_zones": [
+          "sub_passband",
+          "sub_passband",
+          "sub_passband",
+          "sub_passband",
+          "sub_passband"
+        ]
+      },
+      "verdict": "CONFIRMED",
+      "realizability_caveat": {
+        "host_D_r1": "UNOBTANIUM-WITH-PARAMETERS",
+        "host_E_all": [
+          "UNOBTANIUM-WITH-PARAMETERS",
+          "UNOBTANIUM-WITH-PARAMETERS",
+          "UNOBTANIUM-WITH-PARAMETERS",
+          "UNOBTANIUM-WITH-PARAMETERS",
+          "UNOBTANIUM-WITH-PARAMETERS"
+        ],
+        "note": "6 of the 10 P-EM-5 points (Host D r=1 + all 5 Host E points) are independently UNOBTANIUM-WITH-PARAMETERS on the realizability axis alone (Red Team fix #5/#6, Director-reconfirmed) -- this timing-screen finding describes a mechanism class with zero demonstrated realizable instances in this program's own grid."
+      }
+    },
+    {
+      "id": "P-EM-6 [T3-provisional; not a scored perceptual verdict]",
+      "claim": "Hosts A/B/C always supra_cff, both regimes (sanity check)",
+      "measured": {
+        "n_points": 30,
+        "n_supra_cff": 30
+      },
+      "verdict": "CONFIRMED"
+    }
+  ],
+  "elapsed_s": 0.0002827644348144531
+}

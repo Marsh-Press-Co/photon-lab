@@ -386,3 +386,79 @@ already gathered at Phase 1). Pure post-hoc analysis of exp-038's own
 already-computed (k_f, k_r) grid plus a 4001-point synthetic sweep for the
 suite's own ordering gate — sub-minute wall-clock expected for both the
 suite stage and `run.py`.
+
+## Phase 4 — Build + Test (exp-039, this shift)
+
+`lab/temporal_csf.py` written (`corner_frequency`, band-robust
+`classify_zone`, `score_grid`) exactly per Phase 3's synthesis — no
+deviation from the corrected specification during implementation, no
+implementation defects found (unlike exp-038's own Phase 4, which caught
+two genuine bugs; this module's arithmetic is simple enough, and Phase 3's
+own independent hand-verification already caught the one real defect —
+Red Team attack #1 — before any code was written). Suite stage 13 added
+(`stage13_temporal_csf`), wired via the same digit-boundary regex
+established at Iteration 15, verified directly to stay excluded from both
+the fast default (`123456789`) and CI's `--only 12346789` before being
+trusted (`re.search` check on both strings, no match for "13").
+
+**Trust suite: stage 13, 4/4 gates PASS.** Pole-identity 2.22×10⁻¹⁶
+(≤1e-12); classifier ordering exact (`['sub_passband', 'in_passband',
+'supra_cff']`, as pre-registered); anchor Host D r=1 3.58×10⁻⁷ rel err
+(≤1e-6); anchor Host E r=1e-9 3.57×10⁻⁷ rel err (≤1e-6). Full local bench
+(`--only 12346789`) re-confirmed 41/41 unaffected; stage 12 re-confirmed
+5/5 unchanged (2.94e-16/0/0/0/4.73e-08, matching Iteration 15's committed
+record to the printed digit); stage 12+13 run together (`--only 12,13`)
+19/19 clean.
+
+`experiments/039-.../run.py` written, applying `score_grid` to exp-038's
+own grid in both regimes and scoring every P-EM-* prediction
+programmatically (Red Team fix #9: hand-re-verified by construction, not
+narration) against the corrected classify_zone logic.
+
+**Science results: 5/5 predictions CONFIRMED, zero refuted, zero
+boundary_dependent results anywhere in the 50-point (25 grid points × 2
+regimes) sweep.**
+
+- **P-EM-2 CONFIRMED**: Host D f_c ∈ [1.5916, 3.1831] Hz, inside the
+  predicted [1.55, 3.25] band, strictly monotonic in r.
+- **P-EM-3 CONFIRMED**: Host E f_c ∈ [0.1592, 0.3183] Hz, inside the
+  predicted [0.155, 0.325] band, strictly monotonic in r.
+- **P-EM-4 CONFIRMED** [T3-provisional; not a scored perceptual verdict]:
+  photopic — Host D r≤10⁻¹ (4 points) `sub_passband`, r=1 `in_passband`;
+  all 5 Host E points `sub_passband`. Matches Phase 1's original,
+  unrevised prediction exactly (this was the one prediction Red Team's
+  audit did NOT find defective).
+- **P-EM-5 CONFIRMED** [T3-provisional; not a scored perceptual verdict —
+  **the corrected version of the cycle's headline claim**]: scotopic —
+  all 5 Host D points `in_passband`; all 5 Host E points `sub_passband`.
+  A clean 5/5 split, robust across the full corner/CFF uncertainty band
+  at every one of the 10 points (zero `boundary_dependent` results) — this
+  is the OPPOSITE distribution from Phase 1's original, Red-Team-refuted
+  draft ("all 10 in_passband"), and the directionally correct reading:
+  Host D (the faster of the two slow hosts) is the one classified
+  timing-unfavorable at every scotopic point; Host E (the slower host)
+  stays timing-favorable in BOTH regimes. **Realizability caveat, restated
+  at this point of claim per Red Team fix #6**: Host D r=1 and all 5 Host
+  E points (6 of these 10) are independently UNOBTANIUM-WITH-PARAMETERS on
+  `realizability_tier` alone, compounding with `REALIZABILITY_MEMO.md`
+  Amendment 2's separate D_req/irradiance verdict — this finding describes
+  a mechanism class with zero demonstrated realizable instances in this
+  program's own grid.
+- **P-EM-6 CONFIRMED** [T3-provisional; not a scored perceptual verdict]:
+  all 30 Hosts A/B/C points (3 hosts × 5 ratios × 2 regimes) classify
+  `supra_cff`, as predicted — the classifier does not misfire at the
+  grid's fast extreme.
+
+**Honest reading of the whole cycle's science content.** This experiment's
+real contribution is NOT that it discovered a dramatic new finding — it is
+that Phase 2/3's own process caught and corrected a headline claim that was
+wrong on inspection, before it could be committed as a result, and the
+CORRECTED version confirms cleanly. The corrected P-EM-5 is real
+information (a genuine photopic/scotopic divergence for Host D, none for
+Host E) but is narrower than Phase 1's original framing, and — per the
+realizability caveat — describes a mechanism class this program has never
+shown a realizable instance of. Per the instrument's own stated
+idealizations, none of this is a scored constraint-3/4 verdict: it answers
+"is the switching transient in a temporally-sensitive band," not "would a
+human actually see it" (that needs the still-unbuilt amplitude/contrast
+bridge, Iteration 16's queued priority #3).

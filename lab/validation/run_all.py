@@ -903,6 +903,65 @@ def stage12_kinetics_kernel():
           f"{max_conv_rms:.2e}", max_conv_rms <= 1e-6, "<=1e-6")
 
 
+def stage13_temporal_csf():
+    """The T3 temporal-CSF screen vs closed-form identities (Panel
+    Iteration 16, exp-039). `lab.temporal_csf` is a standalone frequency-
+    domain screen, decoupled from both the Maxwell solver and the kinetics
+    integrator's own state -- it reads (k_f, k_r) directly, not
+    `lab.kinetics` outputs. Gates, all pre-registered in exp-039/NOTES.md's
+    Phase-3 synthesis BEFORE this code existed:
+
+      1. `corner_frequency` (independently re-derived) agrees with the
+         already-validated `kinetics.tau_exact` via f_c*2*pi*tau == 1
+         exactly, across the full 25-point grid.
+      2. `classify_zone`'s ordering is self-consistent: a dense synthetic
+         f_c sweep from 1e-3 to 1e3 Hz visits sub_passband -> in_passband
+         -> supra_cff in that order exactly once each, zero re-entries --
+         an internal-logic identity, not a physics measurement.
+      3. Anchor-value regression: Host D r=1 and Host E r=1e-9 reproduce
+         their pre-registered f_c values (3.1831 Hz, 0.159155 Hz) to
+         <=1e-6 relative.
+    """
+    print("stage 13 — T3 temporal-CSF screen vs closed-form identities")
+    from lab import kinetics as kin
+    from lab import temporal_csf as tcsf
+
+    HOSTS = {"A": 1e9, "B": 1e6, "C": 1e3, "D": 1e1, "E": 1e0}
+    RATIOS = [1e-9, 1e-5, 1e-3, 1e-1, 1.0]
+
+    # --- gate 1: pole-identity vs the already-validated kernel's own tau.
+    max_rel = 0.0
+    for k_r in HOSTS.values():
+        for r in RATIOS:
+            k_f = r * k_r
+            f_c = tcsf.corner_frequency(k_f, k_r)
+            tau = kin.tau_exact(k_f, k_r)
+            max_rel = max(max_rel, abs(f_c * 2.0 * np.pi * tau - 1.0))
+    check("temporal_csf", "pole-identity vs kinetics.tau_exact (max |f_c*2pi*tau - 1|, 25 pts)",
+          f"{max_rel:.2e}", max_rel <= 1e-12, "<=1e-12")
+
+    # --- gate 2: classifier ordering self-consistency (exact-by-
+    # construction: a monotonic sweep of f_c against FIXED point landmarks
+    # must visit each zone exactly once, in order).
+    landmarks = (2.0, 60.0)   # point values for this internal-logic check
+    f_c_sweep = np.geomspace(1e-3, 1e3, 4001)
+    zones = [tcsf.classify_zone(f, landmarks[0], landmarks[1]) for f in f_c_sweep]
+    order = ["sub_passband", "in_passband", "supra_cff"]
+    transitions = [z for i, z in enumerate(zones) if i == 0 or z != zones[i - 1]]
+    check("temporal_csf", "classify_zone ordering (visits sub/in/supra exactly once each, in order)",
+          str(transitions), transitions == order, str(order))
+
+    # --- gate 3: pre-registered anchor-value regression.
+    f_c_d1 = tcsf.corner_frequency(1.0 * HOSTS["D"], HOSTS["D"])
+    f_c_e0 = tcsf.corner_frequency(1e-9 * HOSTS["E"], HOSTS["E"])
+    err_d1 = abs(f_c_d1 - 3.1831) / 3.1831
+    err_e0 = abs(f_c_e0 - 0.159155) / 0.159155
+    check("temporal_csf", "anchor Host D r=1 f_c vs pre-registered 3.1831 Hz (rel err)",
+          f"{err_d1:.2e}", err_d1 <= 1e-6, "<=1e-6")
+    check("temporal_csf", "anchor Host E r=1e-9 f_c vs pre-registered 0.159155 Hz (rel err)",
+          f"{err_e0:.2e}", err_e0 <= 1e-6, "<=1e-6")
+
+
 def _stage_selected(n, only):
     """Digit-boundary-aware stage selection: True iff the two-or-more-digit
     stage number `n` appears in `only` NOT adjacent to another digit.
@@ -924,6 +983,7 @@ if __name__ == "__main__":
     run_stage10 = _stage_selected(10, only)
     run_stage11 = _stage_selected(11, only)
     run_stage12 = _stage_selected(12, only)
+    run_stage13 = _stage_selected(13, only)
     t0 = time.time()
 
     if "1" in only:
@@ -975,6 +1035,8 @@ if __name__ == "__main__":
         stage11_multisource_superposition()
     if run_stage12:
         stage12_kinetics_kernel()
+    if run_stage13:
+        stage13_temporal_csf()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
