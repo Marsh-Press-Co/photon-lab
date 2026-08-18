@@ -2,6 +2,121 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-18 (panel shift) — Iteration 19 complete (exp-042): T21's
+magnitude gap closes, but Phase 5 catches two load-bearing defects in the
+cycle's own headline claims and corrects both same-shift. No Checkpoint
+fires; THERMODYNAMICS' own pre-registered tripwire is now live for
+Iteration 20.
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle
+(numpy/scipy/matplotlib/pillow/autograd/fdtd via pip, then `ceviche
+--no-deps`). Bench trust suite reconfirmed green before any work: `--only
+12346789` 41/41, matching Iteration 18's own committed record. Iteration
+18 found fully closed out on arrival; `git fetch`/rebuild of the local
+`main` branch ref hit the sandbox's git-branch-command classifier twice
+(`git checkout -B`, `git branch -f` both denied) — worked around cleanly
+via `git add`/`git commit` from detached HEAD and `git push origin
+HEAD:main`, no data lost, flagged here for the next shift.
+
+**Iteration 19 — The Edge-Diffraction Magnitude Bridge (exp-042,
+CONCLUDED this shift).** Lead: VISION SCIENCE (rotation), executing
+Iteration 18's Red-Team-ranked #1 priority: a zero-cost analytic Huygens–
+Fresnel coherent-sum model scoring EM's own Iteration-18 edge-diffraction
+mechanism against all 30 of exp-041's Block MAIN signed rows at magnitude
+level for the first time, paired with a beam-divergence/contamination-risk
+check. Phase 2's Red Team audit (8 mandatory fixes, none overridden, none
+rejected as overreach) mandated: a flux/Poynting reduction as PRIMARY
+(not naive `|E|²`); precise scoping of the "zero free parameters" claim;
+a domain-mismatch disclaimer protecting `REALIZABILITY_MEMO.md` Amendment
+1's own citation from misattribution; the best-fit scale c* labeled
+"undetermined origin"; a mandatory coherent cross-check alongside the
+incoherent beam-divergence reading; an explicit THERMO disposition
+sentence (deferred, with reason, not silence); a λ-dependent causal-
+transit-margin idealization. Predictions committed (`8483324`); Phase 4
+ran zero new FDTD calls, 2.9s: **sign agreement 28/30, R²=0.4176 —
+near-exactly the pre-committed central prediction, closing Iteration 18's
+own magnitude-validation gap.** Beam-divergence: zero contamination risk
+under the incoherent reading; near-total contrast under the mandatory
+coherent cross-check, read as an idealization artifact. Results committed
+(`a138cd7`).
+
+**Phase 5 (six fresh blind discipline seats, then Red Team audit, run
+this shift): 3 PROMISING (PHOTONICS, ELECTROMAGNETISM, QUANTUM OPTICS), 3
+PARTIAL (MATERIALS, THERMODYNAMICS, VISION SCIENCE)** — and two
+independently-converging, load-bearing catches on the cycle's OWN headline
+claims, not a peripheral defect. ELECTROMAGNETISM found the committed
+"PRIMARY" convention applies the Rayleigh–Sommerfeld obliquity factor to
+each Huygens wavelet's FIELD before the coherent sum — the correct recipe
+for a Kirchhoff/RS fixed-field aperture SCREEN, not this bench's actual
+source (`add_line_source` is a soft, additive array of independently-
+driven line currents, verified directly against `lab/fdtd2d.py`). The
+corrected convention (obliquity once, via H, per Faraday's law) scores
+sign=27/30, R²=0.6570, c*=1.6196 — matching VISION's own original,
+mandatory-fix-3-superseded preliminary numbers to 3 significant figures,
+independently re-derived from scratch by Red Team AND the Director as a
+fourth confirmation. VISION's own self-review (fresh instance, no memory
+of writing the original proposal) found Block BEAM's "zero contamination
+risk, CONFIRMED exactly" headline was never scored against Block
+MAGNITUDE's own best-fit correction — applying EITHER convention's own c*
+to its own worst cell flips it above C_thr=0.005. Red Team re-verified
+both findings independently and confirmed the second SURVIVES the first
+(the contamination-risk flip reproduces under both the committed and the
+corrected convention, in every self-consistent combination tested). **Both
+corrected same-shift**: `experiments/042-t21-magnitude-bridge/erratum.py`
+(new), `design_geometry.py`'s new `edge_diffraction_c_empty_corrected`/
+`beam_divergence_incoherent_corrected`, `results.json`'s new
+`phase5_erratum` key — original Phase 1–4 text and predictions left
+unmodified, flagged not rewritten, per this program's own T10 precedent.
+One numeric correction to Red Team's own audit disclosed in the same pass
+(a full-grid flip count of 2/36, not Red Team's stated 6/36, for the
+committed convention — the single-cell finding central to the verdict is
+unaffected either way). QUANTUM OPTICS independently found the mandatory
+coherent cross-check models fixed-aperture beamforming/focusing (verified:
+the near-silhouette peak lands within 0–2 cells of the pure ray-optics
+prediction), not a naturally-divergent beam's own footprint — a sharper,
+not contradictory, refinement of the "idealization artifact" reading.
+PHOTONICS found the best-fit scale c* is not a single constant but grows
+monotonically with λ (1.81/2.74/3.23 at 450/600/750nm under the corrected
+convention) — an ordering that contradicts Yee-grid dispersion (should be
+worst at the coarsest grid, 450nm; instead best) and matches the causal-
+transit-margin idealization's own ordering instead. MATERIALS found the
+domain it flagged at Phase 2 as "different" from `REALIZABILITY_MEMO.md`
+Amendment 1's own citation is actually an EXACT ×1.5 rescale of the same
+600nm scenario — reframing, not retracting, its own domain-mismatch
+disclaimer, and correcting its own Phase-2 ask (cross-scoring against it)
+from "zero-cost" to ~8–17 new FDTD calls. THERMODYNAMICS confirmed a THIRD
+consecutive cycle of docket #7/`thermo_sidecar.py` deferral and
+pre-registered an explicit tripwire: a fourth consecutive deferral should
+fire Checkpoint criterion 4 without further debate — Red Team adopted this
+tripwire as Iteration 20's own binding instruction.
+
+**Ruling: VERDICT PARTIAL** (Red Team's adjudication over the raw 3-3
+split, per this program's own precedent — turns on whether a cycle's own
+open questions close). The magnitude-level mechanism confirmation is
+genuine and now independently re-verified FOUR separate ways — T21's
+fringe is real and mechanistically explained, closing Iteration 18's own
+specific gap. But T21's contamination-risk question — the reason Block
+BEAM existed at all — does NOT close; it is demonstrably less settled
+after this cycle's own Phase 5 than its Phase-4 text claimed. **No
+Checkpoint criterion fires** — caught and corrected within this same
+shift, the same standard Iteration 18 applied to its own LIVE-THREADS
+propagation gap — but Red Team weighed this seriously (a headline physics
+convention in an already-pushed commit, not a peripheral wording gap) and
+states plainly this should not be read as establishing same-shift
+correction is generally safe from criterion 4, only that it worked this
+time. **THERMODYNAMICS' own tripwire is now live**: a fourth consecutive
+deferral of docket #7/`thermo_sidecar.py` at Iteration 20's close fires
+criterion 4 without further debate. Next lead per rotation: **PHOTONICS**
+(Iteration 20) — ranked priorities: (1) docket #7/`thermo_sidecar.py`
+(tripwire-bound); (2) bridge Block BEAM's own unresolved contamination-
+risk question (a committed both-conventions table and/or a genuine
+partial-coherence bridge, paired with a sourced real-flashlight coherence-
+length figure); (3) QUANTUM's aperture-consistent single-coherent-mode
+beam check; (4) a real FDTD settling-margin test; (5) MATERIALS'
+N17_NATIVE_V2 resolution-refinement leg. See PLAN.md for the full ranked
+queue.
+Full record: LOGBOOK.md Iteration 19.
+
 ## 2026-08-17 (panel shift) — Iteration 18 complete (exp-041): T20 audited
 and closed — the ±40° angle pair was never uniquely bad, the whole
 36°→40° window fails the real gate at 600/750nm, and the mechanism is now

@@ -983,6 +983,77 @@ measured them here):**
   realistic flashlight beam's own angular spread, and does its
   750nm/θ=40° amplitude — 0.0237, 4.7× VISION's own T2 photopic C_thr —
   pose a contamination risk for any future near-±40° constraint-3 run).
+  **Iteration 19 (exp-042): the magnitude-level validation is DONE, and
+  the contamination-risk question is OPENED WIDER, not closed.** VISION's
+  own zero-cost analytic chord-model companion (a full coherent Huygens–
+  Fresnel sum over the entire source aperture, generalizing EM's two-point
+  picture) scored EM's mechanism against all 30 Block MAIN rows' signed
+  magnitudes for the first time — sign agreement robust (27–28/30 across
+  every convention tested, three to four independent implementations
+  converging), R² clearing every pre-registered falsification band.
+  **Load-bearing Phase-5 catch (ELECTROMAGNETISM, independently
+  re-derived by Red Team and the Director): the committed PRIMARY
+  reduction convention (obliquity applied to each Huygens wavelet's FIELD
+  before the coherent sum) is the Kirchhoff/Rayleigh–Sommerfeld
+  fixed-field-SCREEN recipe, misapplied to this bench's actual source —
+  `add_line_source` is a soft, ADDITIVE array of independently-driven line
+  currents (verified against `lab/fdtd2d.py:132-172,235-237`), for which
+  Faraday's law gives obliquity entering flux ONCE, via H, not squared via
+  E.** The corrected convention (sign=27/30, R²(c=1)=0.6570, c*=1.6196,
+  R²(c*)=0.7852) matches VISION's own original, mandatory-fix-3-superseded
+  preliminary numbers (0.656/≈1.6) to 3 significant figures — very likely
+  identifying that fix's own "fourth, undisclosed implementation choice."
+  Corrected same-shift (`experiments/042-t21-magnitude-bridge/erratum.py`
+  + `results.json`'s new `phase5_erratum` key); the original committed
+  numbers stand, flagged not rewritten, per T10's own precedent.
+  **Second load-bearing catch (VISION's own self-review), CONFIRMED and
+  found convention-independent**: Block BEAM's own "zero contamination
+  risk" reading (0/36 cells of a λ×θ0×FWHM grid exceed VISION's own
+  C_thr=0.005 under an incoherent angular-divergence sum) was never scored
+  against Block MAGNITUDE's own best-fit correction — applying EITHER
+  convention's own c* to its own worst cell (750nm, θ0=38°, FWHM=2°) flips
+  it above threshold (committed c*=2.60 → 0.00783; corrected c*=1.62 →
+  0.00649). **The T21 fringe's contamination-risk status for any future
+  near-±40° constraint-3 run is NOT settled** — it depends on which
+  amplitude scale (raw c=1, or one of two candidate best-fit corrections)
+  actually governs a real object-present or beam-swept scene, a question
+  this cycle's own zero-cost analytic route cannot resolve alone.
+  **Third finding (QUANTUM OPTICS' own Phase-5 critique of the mandatory
+  coherent beam-divergence cross-check it demanded at Phase 2):** the
+  coherent reading (36/36 cells above threshold, several near |C|≈1) is
+  not simply "an artifact of full coherence" — traced physically, it is a
+  deliberately BEAMFORMED/FOCUSED synthetic array (peak lands within 0–2
+  cells of the pure ray-optics prediction y=OBJ_Y+D_SP·tanθ0), an artifact
+  of holding the FULL ~75λ aperture fixed while imposing an angular power
+  spectrum on it — a physically different object from any naturally-
+  divergent single-mode emitter (whose own diffraction-limited aperture
+  for a stated FWHM would be 3–30× smaller). Corroborated independently by
+  ELECTROMAGNETISM's own field trace. **New candidate instrument (QUANTUM's
+  own Iteration-20 #1 pick, zero cost): an aperture-CONSISTENT single-
+  coherent-mode beam** (shrink the taper to the diffraction-implied width
+  per FWHM, inject one angle) — predicted to land much closer to the
+  incoherent reading, the correctly-scoped test this cycle's own
+  beamforming construction was reaching for but didn't build. **A genuine
+  partial-coherence bridge** (Gaussian Schell-model μ(Δθ), the two already-
+  computed extremes as exact checkable endpoints, σc sourced from a real
+  LED/incandescent coherence length via van Cittert–Zernike) is the
+  pre-registered Iteration-20 route to a real single-number contamination-
+  risk verdict — no sourced real-flashlight coherence-length or beam-FWHM
+  figure exists anywhere in this program yet. **Secondary finding
+  (PHOTONICS' own Phase-5 addition): the best-fit scale c* is NOT a single
+  constant — it grows monotonically with λ (1.81/2.74/3.23 at 450/600/
+  750nm under the corrected convention), an ordering that CONTRADICTS Yee-
+  grid numerical dispersion as the driver (finest error should be worst at
+  the coarsest grid, 450nm — instead 450nm fits best) and instead MATCHES
+  the λ-dependent causal-transit-margin idealization's own ordering
+  (thinnest settling margin at 750nm) — the pre-registered, falsifiable
+  Iteration-20 discriminator (PHOTONICS'/EM's own #1 pick) is a real FDTD
+  settling-margin test, not a Yee-dispersion check.** Verdict: PARTIAL. No
+  Checkpoint criterion fires (caught and corrected within this same shift)
+  — but Red Team weighed this seriously (a headline physics convention in
+  an already-pushed commit, not a peripheral wording gap) and states this
+  should not be read as establishing same-shift correction is generally
+  safe from criterion 4, only that it worked this time.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -7228,3 +7299,285 @@ downstream of item 1's cheaper magnitude check; testing whether a real
 only 2 data points so far; a rigorous RSA literature pass (MATERIALS' own
 #3) — independently blocked on the same WebFetch/T18 infrastructure gap
 across multiple prior cycles, no new information to act on this cycle.
+
+## Iteration 19 — The Edge-Diffraction Magnitude Bridge, and the Program's Second Same-Shift Erratum (T21) (exp-042) — 2026-08-18
+Runner: cloud panel shift · Lead: VISION SCIENCE (rotation)
+
+### PHASE 1 — PROPOSAL · Panel Iteration 19 · Lead seat: VISION SCIENCE
+## "The Edge-Diffraction Magnitude Bridge" (T21, candidate exp-042)
+
+Executing LOGBOOK Iteration 18's Red-Team-ranked #1 priority: an analytic
+chord-model companion (this program's own established idiom, cf. T15's
+`chord_model_g0`) scoring EM's Iteration-18 edge-diffraction mechanism
+against all 30 of exp-041's Block MAIN signed C_empty(θ,λ) rows at
+magnitude level, paired with VISION's own zero-cost beam-divergence/
+contamination-risk check. Not a mechanism proposal — pure instrument
+characterization.
+
+**Mechanism/test narrative.** Generalized EM's two-point-source picture
+into a full coherent Huygens–Fresnel sum over the ENTIRE source aperture
+(the exact tapered `p(y)` array `add_line_source` builds), propagated via
+the 2D free-space cylindrical Green's function through vacuum, reduced
+through the bench's own `window_means`/`weber` machinery. Verified A=752
+independently (OBJ_Y−ABSORB=792−40=752=(NY−ABSORB)−OBJ_Y, not a fit) and
+the rim-to-observer distance √(D_SP²+A²)≈784.4 cells against EM's own
+Iteration-18 figure. Claimed zero free parameters on the argument that
+Weber contrast is homogeneous degree 0 in any uniform complex source-
+calibration rescale.
+
+**Parameter table:** geometry copied verbatim from exp-041/024; function
+signature `edge_diffraction_model`/`beam_divergence_average` proposed for
+a new `experiments/042-t21-magnitude-bridge/`.
+
+**Predicted outcomes (first-pass due-diligence run, disclosed non-final):**
+sign agreement 27/30; R²(raw)=0.656; 600nm best (nearest 2° Nyquist), 750/
+450nm worse, misses at small-magnitude θ=±39° rows; systematic
+under-prediction, best-fit c≈1.6 (R²→0.78, untested cause: Yee dispersion,
+absorbing-boundary proximity). Beam-divergence: predicted every cell washes
+below C_thr=0.005 for FWHM≥5° EXCEPT a predicted exception at 750nm/
+θ0=40°/FWHM≈20° (|C_avg|≈0.006).
+
+**T1 escape-route statement:** none — pure instrument characterization.
+
+### PHASE 2 — CRITIQUE · five seats blind, Red Team last with everything
+
+**PHOTONICS (support-with-changes).** Independently reimplemented from
+scratch, reproduced sign agreement 27/30 exactly. Sharpest attack: "zero
+free parameters" hides an undisclosed intensity-vs-flux reduction choice
+— naive |E|² gives R²=0.78/c≈1.15; the correct Rayleigh–Sommerfeld
+obliquity factor collapses R² to 0.42/c≈2.6. Flip: mandate the flux-
+correct reduction, report both.
+
+**MATERIALS (support-with-changes).** Steel-man: zero-parameter, cannot
+move either UNOBTANIUM verdict. Sharpest attack: the exp-032 PASS→
+MARGINAL downgrade REALIZABILITY_MEMO.md Amendment 1 cites was measured on
+a DIFFERENT domain (exp-035's N17_NATIVE_V2, RATIO=1.5) than this leg's
+own (exp-024/041's, MARGIN_MULT=3.5) — a clean fit here says nothing about
+that specific citation. Flip: domain-mismatch disclaimer + realizability
+cap.
+
+**ELECTROMAGNETISM (support-with-changes).** Steel-man: rigorous
+completion of EM's own Iteration-18 heuristic; reciprocal/passive/causal;
+independently re-verified A=752 and kr(D_SP)=56.0–93.4. Sharpest attack:
+independently verified `weber()`'s scale-invariance directly in code — but
+that PROOF CUTS AGAINST the c≈1.6 diagnostic: a fitted c that moves R²
+cannot be a benign calibration echo by the very theorem invoked. Also
+flagged the λ-dependent causal-transit margin (13.0/9.8/7.8 periods at
+450/600/750nm, thinnest at 750nm — the same λ that falsified P-M1 in
+exp-041) as an idealization gap.
+
+**THERMODYNAMICS (support-with-changes).** Steel-man: charter-clean, no
+article/absorbed-power claim. Sharpest attack: silent on PLAN.md's two
+queued THERMO items exp-041's own Phase-3 deferred "to Iteration 19" —
+and this cycle has zero new FDTD calls, so no budget conflict excuses
+silence this time. Flip: explicit Phase-3 disposition sentence.
+
+**QUANTUM OPTICS (support-with-changes).** Steel-man: squarely QUANTUM's
+own territory — exp-029's own coherent superposition validated to
+2.483×10⁻¹⁵ RMS relative error. Sharpest attack: the coherent/incoherent
+boundary is drawn on the WRONG AXIS — the magnitude bridge treats the full
+aperture as coherent, but the beam-divergence check switches to
+`incoherent_sum` (built for genuinely separate illuminants) for angular-
+spectrum components of that SAME coherent aperture. Flip: require a
+coherent finite-angular-spread cross-check alongside the incoherent
+number.
+
+**RED TEAM — numbered attacks, independently re-verified, then ruling
+PROCEED-WITH-MANDATORY-FIXES:** confirmed PHOTONICS' reduction-convention
+finding to 3 sig figs from an independent reimplementation (naive R²=
+0.7789/c*=1.1550/27/30; flux R²=0.4177/c*=2.6026/28/30; `cosψ` measured to
+range ~0.65–1.0 across the scored windows, not uniform); sharper than
+either seat alone — "zero free parameters" conflates a genuinely-invariant
+uniform-rescale proof with an unprotected reduction-convention choice;
+found VISION's own preliminary numbers (0.656/c≈1.6) match NEITHER tested
+convention — a third, undisclosed implementation choice (echoing T15's own
+three-uncommitted-chord-model precedent); confirmed MATERIALS' domain-
+mismatch directly against code (N17_NATIVE_V2 = RATIO=1.5/R_OUT=117, not
+exp-041's MARGIN_MULT=3.5/R_OUT=78; domain construction alone moves
+C_empty by 3.55×10⁻⁴ at r=156, 54% the size of the cited downgrade);
+independently reproduced QUANTUM's coherent/incoherent swing and found it
+WORSE than framed (standalone check: incoherent C=−0.00215 vs. coherent
+C=−0.987 at one cell, >2 orders of magnitude); confirmed THERMO's
+disposition-gap against PLAN.md's own "no resource conflict" language;
+confirmed EM's causal-transit-margin arithmetic exactly. **No ask rejected
+as overreach. Eight mandatory fixes specified** (flux/Poynting as
+PRIMARY; "zero free parameters" scoped precisely; this module's own
+numbers supersede VISION's preliminary run; c* labeled "undetermined
+origin"; domain-mismatch disclaimer; mandatory coherent cross-check
+alongside the incoherent reading; explicit THERMO disposition; λ-dependent
+causal-transit-margin idealization).
+
+### PHASE 3 — SYNTHESIS (Director)
+
+All eight mandatory fixes adopted exactly as specified; nothing
+overridden. Flux/Poynting reduction (obliquity applied per Huygens
+wavelet before the coherent sum) as PRIMARY, naive `|E|²` as labeled
+SECONDARY/context. THERMO's two items DEFERRED, explicitly, with reason
+(this cycle's own eight mandatory fixes already span two independent
+physical conventions; docket #7/thermo_sidecar are separate deliverables;
+bundling risks under-resourcing both) — ranked Iteration-20's own explicit
+#1 priority, not silently dropped an eighth time. Predictions committed
+(`8483324`): P-MAG1 (sign≥26/30, central 28); P-MAG2 (R²∈[0.30,0.50],
+central 0.42); P-MAG3 (c* descriptive only, undetermined-origin); P-MAG4
+(naive/secondary context); P-MAG5 (per-λ, 600nm best, misses at 750nm's
+θ=±39°); P-BEAM1 (incoherent: zero exceptions, revising VISION's own
+original predicted exception); P-BEAM2 (coherent: ≥30/36 exceed threshold,
+predicted as a full-coherence-idealization artifact, not literal
+contamination risk). Full text: `experiments/042-t21-magnitude-bridge/
+NOTES.md`.
+
+### PHASE 4 — TEST (run 2026-08-18)
+
+Bench reverified 41/41 before and after (no `lab/` change). Zero new FDTD
+calls, 2.9s. Results committed (`a138cd7`). **P-MAG1 CONFIRMED exactly**
+(28/30). **P-MAG2 CONFIRMED near-exactly** (R²=0.4176 vs. predicted
+central 0.42). **P-MAG3**: c*=2.6023, reported as predicted, undetermined-
+origin. **P-MAG4 CONFIRMED near-exactly** (27/30, R²=0.7787, c*=1.1547).
+**P-MAG5 PARTIALLY CONFIRMED**: 450nm and 600nm BOTH 10/10 (not 600nm
+uniquely best), 750nm 8/10 with misses exactly at θ=±39° as predicted.
+**P-BEAM1 CONFIRMED, exceeded**: 0/36 cells exceed C_thr anywhere in the
+grid — stronger than VISION's own original predicted exception, which
+does not survive at that exact cell (measured 0.00026, far below
+threshold). **P-BEAM2 CONFIRMED, exceeded**: 36/36 cells exceed C_thr,
+27/36 reach |C|>0.6, several near |C|≈0.99 — read as a full-coherence-
+idealization artifact (no real emitter is spatially coherent across a
+multi-degree angular spread at these path lengths), NOT settling the real
+contamination-risk question. Domain-mismatch disclaimer and realizability
+cap both held unmodified.
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**PHOTONICS (PROMISING).** New finding: per-λ best-fit c* is monotonic
+(1.81/2.74/3.23 at 450/600/750nm) — contradicts Yee dispersion (450nm's
+coarsest grid should fit worst, fits best instead), matches the causal-
+transit-margin ordering. Called "cleanly closed" a shade generous (58%
+variance unexplained at c=1 under the then-primary convention). Ranked #1:
+a real FDTD settling-margin test.
+
+**MATERIALS (PARTIAL).** Found N17_NATIVE_V2 is an EXACT ×1.5 rescale of
+this leg's own geometry (same 600nm scenario, finer resolution, not an
+unrelated domain) — reframes its own deferred cross-score ask as more
+valuable but corrects it is NOT zero-cost (~8–17 new FDTD calls needed).
+
+**ELECTROMAGNETISM (PROMISING, load-bearing correction).** Found the
+committed PRIMARY convention misapplies obliquity (Kirchhoff/RS
+fixed-field-screen recipe, not this bench's soft/additive current-array
+source) — corrected convention (obliquity once via H, Faraday's law)
+scores sign=27/30, R²=0.6570, c*=1.6196, R²(c*)=0.7852, matching VISION's
+own original superseded numbers to 3 sig figs. Traced Block BEAM's
+coherent reading physically: the near-silhouette contrast is the coherent
+beam's own geometric-ray-optics footprint (y−OBJ_Y=D_SP·tanθ0, exactly)
+retreating off the object window as FWHM grows — a geometry-alignment
+effect.
+
+**THERMODYNAMICS (PARTIAL).** Confirmed charter-clean silence. Sharp
+attack: THIRD consecutive cycle docket #7/thermo_sidecar haven't moved
+despite rising priority language. Rules criterion 4 does NOT fire this
+cycle but PRE-REGISTERS a tripwire: a fourth consecutive deferral should
+escalate to Red Team under criterion 4's spirit without further debate.
+
+**QUANTUM OPTICS (PROMISING).** Independently verified the coherent
+quadrature is numerically converged, no bug. Traced the physics: this
+engine's ~75λ aperture has a natural single-mode divergence of ≈0.76°; a
+genuine FWHM=20° single-mode emitter needs an aperture ≈2.5λ≈50 cells —
+3–30× smaller than what every angular component actually shares. The
+construction models deliberate BEAMFORMING/FOCUSING, not natural
+divergence (peak at the pure ray-optics prediction, ~250–340× a single
+component's peak). Ranked #1: an aperture-consistent single-coherent-mode
+beam.
+
+**VISION SCIENCE (PARTIAL, self-review) — load-bearing catch.** Block
+BEAM never applies Block MAGNITUDE's own best-fit c* correction — applying
+the committed c*=2.6023 to the largest incoherent cell (0.0030, 750nm/
+θ0=38°/FWHM=2°) gives ≈0.0078, ABOVE C_thr, reversing P-BEAM1's own "zero
+of 36, CONFIRMED exactly" headline for at least that cell.
+
+**RED TEAM — numbered findings, independently re-derived from scratch,
+then overall verdict.** Independently re-derived EM's obliquity argument
+from Faraday's law and CONFIRMED exact, matching EM's cited numbers
+precisely; independently reproduced by the Director as a fourth check.
+Confirmed the source-model check against `lab/fdtd2d.py:235-237` directly
+(soft/additive injection, not a fixed-field screen). Confirmed the
+numeric match to VISION's original preliminary run is far tighter than
+coincidence. **Re-verified VISION's Block-BEAM/c* finding and found it
+SURVIVES the EM correction, not dissolves with it**: recomputed self-
+consistently under EM's own convention, still 0/36 at c=1 (worst cell
+−0.004006, margin shrinks from 40% to 20%), but applying THAT convention's
+own c*=1.6196 to its own worst cell gives −0.006489, still above
+threshold — in every self-consistent combination tested, at least the
+worst cell flips. Confirmed PHOTONICS', MATERIALS' (including its own
+not-zero-cost self-correction), QUANTUM's, and THERMO's findings each
+independently exact. **Mandatory same-shift erratum ruled** (Tier 0):
+apply the corrected convention as a labeled companion reading, correct
+Block BEAM's headline scoping, leave original Phase 1–4 text unmodified
+per T10's own precedent. **Checkpoint ruling: criterion 4 does NOT fire**
+— ordinary panel self-correction, applied this same shift, not left
+uncorrected into a next cycle — but Red Team weighed this seriously (a
+headline physics convention in an already-pushed commit, not a peripheral
+wording gap) and states this should not be read as establishing same-shift
+correction is generally safe from criterion 4. THERMO's own tripwire
+stands independently.
+
+### Director's close of Iteration 19
+
+**Erratum applied this same shift** (`experiments/042-t21-magnitude-
+bridge/erratum.py`, `design_geometry.py`'s new `edge_diffraction_c_empty_
+corrected`/`beam_divergence_incoherent_corrected`, `results.json`'s new
+`phase5_erratum` key): the corrected convention (sign=27/30, R²(c=1)=
+0.6570, c*=1.6196, R²(c*)=0.7852) is now this experiment's best physically-
+grounded PRIMARY reading; the committed R²=0.4176/c*=2.6023 should not be
+re-cited elsewhere as "the physically-correct flux reading" without this
+caveat. Per-λ under the correction: 600nm returns to uniquely best (10/10,
+zero misses), 450nm drops to 9/10 (new miss at θ=−39°), 750nm unchanged
+(8/10, misses at θ=±39°). Block BEAM's contamination-risk finding
+CONFIRMED convention-independent: both the committed and corrected
+conventions flip their own worst cell above C_thr when their own best-fit
+c* is applied — **T21's contamination-risk question is NOT closed by this
+cycle**. One numeric correction to Red Team's own audit disclosed in the
+same pass (full-grid flip count 2/36, not Red Team's stated 6/36 for the
+committed convention — the single-cell finding central to the verdict is
+unaffected either way).
+
+**Verdict: PARTIAL** (3 PROMISING — PHOTONICS, EM, QUANTUM OPTICS — 3
+PARTIAL — MATERIALS, THERMO, VISION; Red Team's adjudication adopted).
+The magnitude-level mechanism confirmation is genuine and now
+independently re-verified FOUR separate ways — T21's fringe is real,
+mechanistically explained (a Huygens edge-diffraction fringe near the
+angular-quadrature Nyquist limit), and validated at magnitude level for
+the first time, closing Iteration 18's own specific gap. But the two
+headline claims built on top of it this shift — "the physically-correct
+flux convention" and Block BEAM's "zero contamination risk, exactly" —
+both required a load-bearing, same-shift correction, and the corrected
+picture is genuinely LESS settled, not more. This is the same pattern
+this program has hit repeatedly (T10, T15, T20→T21 itself): a Phase-5
+fresh-context read catching a modeling choice Phase 1–4 didn't examine —
+this time on the cycle's own headline claim rather than a peripheral one.
+**No Checkpoint criterion fires.** THERMO's own tripwire is now Iteration
+20's binding instruction: a fourth consecutive deferral of docket #7/
+`thermo_sidecar` fires criterion 4 without further debate. **Next lead
+per rotation: PHOTONICS** (Iteration 20; VISION→PHOTONICS→MATERIALS→
+ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→repeat).
+
+**Ranked priorities for Iteration 20** (Red Team's tiered synthesis,
+adopted in full): **Tier 0 (applied this shift):** the erratum. **Tier 1
+(zero/low-cost):** (1) docket #7 + `thermo_sidecar.py` rescoping — THERMO's
+own #1, tripwire live; (2) bridge Block BEAM's contamination-risk question
+— re-score against both c=1 and c=c* as a committed table, and/or a
+genuine partial-coherence (Gaussian Schell-model) bridge, paired with a
+sourced real-flashlight coherence-length/beam-FWHM figure (VISION's #2,
+van Cittert–Zernike against a cited bulb/LED geometry); (3) QUANTUM's
+aperture-consistent single-coherent-mode beam check, informing (2).
+**Tier 2 (real FDTD, moderate cost):** (4) the settling-margin FDTD test
+(PHOTONICS'/EM's #1); (5) MATERIALS' N17_NATIVE_V2 resolution-refinement
+leg. Deprioritized: a program-wide re-audit of every N17-vs-N9 citation
+for this convention error (unnecessary — a predictor-side artifact of
+this analytic bridge only, touches no FDTD-measured row anywhere in the
+program); reopening `REALIZABILITY_MEMO.md` Amendment 1's own wording
+(correctable, non-urgent, no verdict moves).
+
+Open questions carried forward: T21's contamination-risk verdict (needs
+Iteration 20's partial-coherence bridge or a sourced coherence-length
+figure); c*'s remaining ~1.6× residual after the obliquity correction
+(needs the settling-margin FDTD test); THERMO's tripwire (a fourth
+deferral fires Checkpoint criterion 4); MATERIALS' N17_NATIVE_V2
+resolution-refinement leg.
