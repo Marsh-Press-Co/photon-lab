@@ -231,6 +231,70 @@ def field_profile(theta_deg, lam_cells, obliquity=True):
     return np.abs(E) ** 2
 
 
+_G0cache = {}
+
+
+def _G0_for(lam_cells):
+    """Bare (no-obliquity) propagator, cached per lambda -- the E-field
+    half of the CORRECTED convention (erratum, Panel Iteration 19 Phase 5,
+    Red Team + ELECTROMAGNETISM). Separate cache from `_G_for` so both
+    conventions can coexist without recomputation."""
+    if lam_cells not in _G0cache:
+        k = 2.0 * np.pi / lam_cells
+        _G0cache[lam_cells] = (k, np.exp(1j * (k * _R - np.pi / 4)) / np.sqrt(_R))
+    return _G0cache[lam_cells]
+
+
+def field_and_h(theta_deg, lam_cells):
+    """CORRECTED convention (Panel Iteration 19 Phase 5 erratum): E from
+    the BARE (no-obliquity) coherent sum, H from the OBLIQUITY-WEIGHTED
+    coherent sum -- Faraday's law for an array of independently-driven
+    line currents (this bench's actual `add_line_source` soft-source
+    model, verified against `lab/fdtd2d.py:132-172,235-237`), NOT the
+    Kirchhoff/Rayleigh-Sommerfeld fixed-field-screen recipe the ORIGINAL
+    `obliquity=True` path above implements (obliquity applied to E,
+    effectively squared into the |E|^2 cross terms -- the correct recipe
+    for a boundary-value screen problem, not this engine's source).
+    Red-Team-confirmed and independently re-derived by the Director
+    (see NOTES.md erratum) to reproduce ELECTROMAGNETISM's own Phase-5
+    numbers to 4 significant figures."""
+    k, G0 = _G0_for(lam_cells)
+    amp = _src_amp(theta_deg, k)
+    E = G0 @ amp
+    H = (G0 * _OBLIQUITY) @ amp
+    return E, H
+
+
+def edge_diffraction_c_empty_corrected(theta_deg, lam_cells):
+    """CORRECTED single-obliquity-via-H PRIMARY reading (erratum). Sx =
+    -Re(Ez * conj(Hy)) -- the time-averaged Poynting flux for this
+    source model, obliquity entering once (via H), not squared (via E)."""
+    from lab import ambient as amb
+    E, H = field_and_h(theta_deg, lam_cells)
+    Sx = -np.real(E * np.conj(H))
+    bo, bf = amb.window_means(Sx, Y_LO, OBJ_Y, R_OUT, GUARD_OUT, W_FLANK)
+    return amb.weber(bo, bf)
+
+
+def beam_divergence_incoherent_corrected(theta0_deg, fwhm_deg, lam_cells, n=41):
+    """Beam-divergence incoherent reading under the CORRECTED convention
+    (erratum) -- same Gaussian-kernel/`incoherent_sum` machinery as
+    `beam_divergence_incoherent`, single-obliquity-via-H flux."""
+    from lab import ambient as amb
+    thetas, w = gaussian_angle_weights(theta0_deg, fwhm_deg, n)
+    k, G0 = _G0_for(lam_cells)
+    profiles = []
+    for th in thetas:
+        amp = _src_amp(th, k)
+        E = G0 @ amp
+        H = (G0 * _OBLIQUITY) @ amp
+        profiles.append(-np.real(E * np.conj(H)))
+    flanks = [amb.window_means(b, Y_LO, OBJ_Y, R_OUT, GUARD_OUT, W_FLANK)[1] for b in profiles]
+    s = amb.incoherent_sum(profiles, flanks, list(w))
+    bo, bf = amb.window_means(s, Y_LO, OBJ_Y, R_OUT, GUARD_OUT, W_FLANK)
+    return amb.weber(bo, bf)
+
+
 def edge_diffraction_c_empty(theta_deg, lam_cells, obliquity=True):
     """Predicted C_empty(theta,lambda) -- the single number scored against
     exp-041's results.json rows. Reduced through `lab.ambient.window_means`

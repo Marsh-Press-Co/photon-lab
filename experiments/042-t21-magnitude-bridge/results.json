@@ -833,5 +833,525 @@
     "n_coherent_above_thr": 36,
     "elapsed_s": 1.3840343952178955
   },
-  "total_elapsed_s": 2.9443857669830322
+  "total_elapsed_s": 2.9443857669830322,
+  "phase5_erratum": {
+    "panel_iteration": 19,
+    "phase": 5,
+    "author": "Red Team (numeric claim by ELECTROMAGNETISM, independently re-derived by Red Team and the Director)",
+    "reason": "The committed PRIMARY convention (obliquity applied to E before |E|^2) is the Kirchhoff/Rayleigh-Sommerfeld fixed-field-screen recipe, misapplied to this bench's actual soft, additive current-array source. Faraday's law for an array of independently-driven line currents gives Hy=cos(psi)*Ez/eta -- obliquity enters ONCE, via H, not squared via E. See NOTES.md erratum section and design_geometry.py's edge_diffraction_c_empty_corrected docstring.",
+    "block_magnitude_corrected": {
+      "sign_agree": 27,
+      "n": 30,
+      "r2_c1": 0.6569548291361436,
+      "c_star": 1.6196430704378861,
+      "r2_cstar": 0.7852421354715854,
+      "per_lambda": {
+        "450": {
+          "sign_agree": 9,
+          "n": 10,
+          "miss_thetas": [
+            -39.0
+          ]
+        },
+        "600": {
+          "sign_agree": 10,
+          "n": 10,
+          "miss_thetas": []
+        },
+        "750": {
+          "sign_agree": 8,
+          "n": 10,
+          "miss_thetas": [
+            -39.0,
+            39.0
+          ]
+        }
+      },
+      "rows": [
+        {
+          "theta": -40.0,
+          "lambda_nm": 450,
+          "measured": -0.011335069410266185,
+          "predicted": -0.01014047129343993,
+          "sign_match": true
+        },
+        {
+          "theta": -39.0,
+          "lambda_nm": 450,
+          "measured": -3.020028329858704e-05,
+          "predicted": 0.00020749601234341605,
+          "sign_match": false
+        },
+        {
+          "theta": -38.0,
+          "lambda_nm": 450,
+          "measured": 0.006255949209561075,
+          "predicted": 0.003987699305238634,
+          "sign_match": true
+        },
+        {
+          "theta": -37.0,
+          "lambda_nm": 450,
+          "measured": -0.0007208565086593844,
+          "predicted": -0.000795181863224341,
+          "sign_match": true
+        },
+        {
+          "theta": -36.0,
+          "lambda_nm": 450,
+          "measured": -0.005659649208921036,
+          "predicted": -0.002750514247388005,
+          "sign_match": true
+        },
+        {
+          "theta": 36.0,
+          "lambda_nm": 450,
+          "measured": -0.0053653108523679105,
+          "predicted": -0.0025095143865323665,
+          "sign_match": true
+        },
+        {
+          "theta": 37.0,
+          "lambda_nm": 450,
+          "measured": -0.0009350631754475589,
+          "predicted": -0.0010506654739423583,
+          "sign_match": true
+        },
+        {
+          "theta": 38.0,
+          "lambda_nm": 450,
+          "measured": 0.005950227236979797,
+          "predicted": 0.0035267144009553273,
+          "sign_match": true
+        },
+        {
+          "theta": 39.0,
+          "lambda_nm": 450,
+          "measured": 0.000456450249854079,
+          "predicted": 0.0011394298588915247,
+          "sign_match": true
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 450,
+          "measured": -0.011012017132851715,
+          "predicted": -0.010329176182132263,
+          "sign_match": true
+        },
+        {
+          "theta": -40.0,
+          "lambda_nm": 600,
+          "measured": -0.01160545044577854,
+          "predicted": -0.005277538902023865,
+          "sign_match": true
+        },
+        {
+          "theta": -39.0,
+          "lambda_nm": 600,
+          "measured": 0.01253967139826484,
+          "predicted": 0.006832228256261151,
+          "sign_match": true
+        },
+        {
+          "theta": -38.0,
+          "lambda_nm": 600,
+          "measured": -0.007563064296448594,
+          "predicted": -0.0033186632633381533,
+          "sign_match": true
+        },
+        {
+          "theta": -37.0,
+          "lambda_nm": 600,
+          "measured": 0.012472592845825137,
+          "predicted": 0.009643548893500383,
+          "sign_match": true
+        },
+        {
+          "theta": -36.0,
+          "lambda_nm": 600,
+          "measured": -0.013875882338417078,
+          "predicted": -0.010059010224413165,
+          "sign_match": true
+        },
+        {
+          "theta": 36.0,
+          "lambda_nm": 600,
+          "measured": -0.014232451473982333,
+          "predicted": -0.010371078385411358,
+          "sign_match": true
+        },
+        {
+          "theta": 37.0,
+          "lambda_nm": 600,
+          "measured": 0.011893370830601047,
+          "predicted": 0.009068529529623002,
+          "sign_match": true
+        },
+        {
+          "theta": 38.0,
+          "lambda_nm": 600,
+          "measured": -0.007304790833964625,
+          "predicted": -0.0030314658103897194,
+          "sign_match": true
+        },
+        {
+          "theta": 39.0,
+          "lambda_nm": 600,
+          "measured": 0.012443324626619349,
+          "predicted": 0.006809641123275325,
+          "sign_match": true
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 600,
+          "measured": -0.010964794540566314,
+          "predicted": -0.004649509989137881,
+          "sign_match": true
+        },
+        {
+          "theta": -40.0,
+          "lambda_nm": 750,
+          "measured": -0.023311207345655727,
+          "predicted": -0.006041097931205755,
+          "sign_match": true
+        },
+        {
+          "theta": -39.0,
+          "lambda_nm": 750,
+          "measured": 0.003825668702282403,
+          "predicted": -0.0027737569772556736,
+          "sign_match": false
+        },
+        {
+          "theta": -38.0,
+          "lambda_nm": 750,
+          "measured": -0.009095086633416627,
+          "predicted": -0.003382008391291972,
+          "sign_match": true
+        },
+        {
+          "theta": -37.0,
+          "lambda_nm": 750,
+          "measured": -0.00951743447402964,
+          "predicted": -0.007328048178257587,
+          "sign_match": true
+        },
+        {
+          "theta": -36.0,
+          "lambda_nm": 750,
+          "measured": 0.010486207735919795,
+          "predicted": 0.00427283984706114,
+          "sign_match": true
+        },
+        {
+          "theta": 36.0,
+          "lambda_nm": 750,
+          "measured": 0.010967102692418297,
+          "predicted": 0.004703773366252192,
+          "sign_match": true
+        },
+        {
+          "theta": 37.0,
+          "lambda_nm": 750,
+          "measured": -0.00893740183374125,
+          "predicted": -0.006808271468974088,
+          "sign_match": true
+        },
+        {
+          "theta": 38.0,
+          "lambda_nm": 750,
+          "measured": -0.009262640989200597,
+          "predicted": -0.0037494782523070083,
+          "sign_match": true
+        },
+        {
+          "theta": 39.0,
+          "lambda_nm": 750,
+          "measured": 0.003956297332449399,
+          "predicted": -0.00252651010230377,
+          "sign_match": false
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 750,
+          "measured": -0.02366812812938001,
+          "predicted": -0.006421144336224298,
+          "sign_match": true
+        }
+      ]
+    },
+    "block_beam_corrected": {
+      "rows": [
+        {
+          "lambda_nm": 450,
+          "theta0": 36,
+          "fwhm_deg": 2,
+          "C_incoherent": -0.0008683834885279129,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 36,
+          "fwhm_deg": 5,
+          "C_incoherent": -0.00012954352437977157,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 36,
+          "fwhm_deg": 10,
+          "C_incoherent": 0.0001698516663133364,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 36,
+          "fwhm_deg": 20,
+          "C_incoherent": 0.000582578000838829,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 38,
+          "fwhm_deg": 2,
+          "C_incoherent": 0.0013803750624024056,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 38,
+          "fwhm_deg": 5,
+          "C_incoherent": -0.00020033078385495173,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 38,
+          "fwhm_deg": 10,
+          "C_incoherent": -0.0005018876647228109,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 38,
+          "fwhm_deg": 20,
+          "C_incoherent": -0.0015234240275712185,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 40,
+          "fwhm_deg": 2,
+          "C_incoherent": -0.002724942898721604,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 40,
+          "fwhm_deg": 5,
+          "C_incoherent": -0.0002566276157511815,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 40,
+          "fwhm_deg": 10,
+          "C_incoherent": -0.00020849150278023915,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 450,
+          "theta0": 40,
+          "fwhm_deg": 20,
+          "C_incoherent": -0.0008866597649133108,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 36,
+          "fwhm_deg": 2,
+          "C_incoherent": -0.003084810023363027,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 36,
+          "fwhm_deg": 5,
+          "C_incoherent": -0.000306333293064065,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 36,
+          "fwhm_deg": 10,
+          "C_incoherent": -0.00032182867009911126,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 36,
+          "fwhm_deg": 20,
+          "C_incoherent": -0.0005933461633160774,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 38,
+          "fwhm_deg": 2,
+          "C_incoherent": 0.0020782683022237953,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 38,
+          "fwhm_deg": 5,
+          "C_incoherent": -0.00024202963776420716,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 38,
+          "fwhm_deg": 10,
+          "C_incoherent": -0.0004551845330847957,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 38,
+          "fwhm_deg": 20,
+          "C_incoherent": -0.0009259669327981164,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 40,
+          "fwhm_deg": 2,
+          "C_incoherent": -0.0023498612866137405,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 40,
+          "fwhm_deg": 5,
+          "C_incoherent": -0.0009426675299416543,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 40,
+          "fwhm_deg": 10,
+          "C_incoherent": -0.0005765991390072056,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 600,
+          "theta0": 40,
+          "fwhm_deg": 20,
+          "C_incoherent": -4.286161421007682e-06,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 36,
+          "fwhm_deg": 2,
+          "C_incoherent": 0.0017045681500076344,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 36,
+          "fwhm_deg": 5,
+          "C_incoherent": -0.0004614523998556217,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 36,
+          "fwhm_deg": 10,
+          "C_incoherent": -0.0004744259063724775,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 36,
+          "fwhm_deg": 20,
+          "C_incoherent": 1.2924812838210897e-05,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 38,
+          "fwhm_deg": 2,
+          "C_incoherent": -0.004006497410421138,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 38,
+          "fwhm_deg": 5,
+          "C_incoherent": -0.0015031459803472862,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 38,
+          "fwhm_deg": 10,
+          "C_incoherent": -0.0005898114237431473,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 38,
+          "fwhm_deg": 20,
+          "C_incoherent": 0.000997995838909027,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 40,
+          "fwhm_deg": 2,
+          "C_incoherent": -0.0029086034530989564,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 40,
+          "fwhm_deg": 5,
+          "C_incoherent": 0.00023831854503519878,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 40,
+          "fwhm_deg": 10,
+          "C_incoherent": -0.0007054498426298793,
+          "incoherent_above_thr": false
+        },
+        {
+          "lambda_nm": 750,
+          "theta0": 40,
+          "fwhm_deg": 20,
+          "C_incoherent": 0.00017754112897971908,
+          "incoherent_above_thr": false
+        }
+      ],
+      "n": 36,
+      "n_incoherent_above_thr_at_c1": 0,
+      "worst_cell": {
+        "lambda_nm": 750,
+        "theta0": 38,
+        "fwhm_deg": 2,
+        "C_incoherent": -0.004006497410421138,
+        "incoherent_above_thr": false
+      }
+    },
+    "cross_check": {
+      "committed_convention_worst_cell_x_own_c_star": -0.007828520533043256,
+      "corrected_convention_worst_cell_x_own_c_star": -0.006489095767515932,
+      "committed_convention_full_grid_flip_count": 2,
+      "corrected_convention_full_grid_flip_count": 1,
+      "note": "Both conventions, self-consistently applied (own c* to own c=1 reading), flip at least the worst cell above C_thr. Only a cross-convention shortcut (committed c=1 reading x corrected c*, or vice versa) avoids a flip -- not a methodologically legitimate combination."
+    },
+    "elapsed_s": 11.32715916633606
+  }
 }
