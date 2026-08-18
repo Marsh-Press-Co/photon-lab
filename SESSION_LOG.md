@@ -2,6 +2,64 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-18 (panel shift) — Iteration 20 documentation catch-up
+(exp-043): docket #7 + `lab/thermo_sidecar.py` were already run and
+committed by the prior shift, but LOGBOOK.md/PLAN.md/SESSION_LOG.md were
+left uncaught-up; recorded here, bench re-verified 82/82, Iteration 21
+begun.
+
+**Pre-flight:** fresh container, deps installed per the recorded wrinkle
+(numpy/scipy/matplotlib/pillow/autograd/fdtd via pip, then `ceviche
+--no-deps`). `git fetch origin main && git checkout -B main origin/main`
+landed on `be8fa29` — three commits past Iteration 19's own close
+(`0ef7e4f`): `ad88f92` (Iteration 20 predictions), `330ca5a` (Iteration 20
+results), `be8fa29` (Iteration 20 Phase 5 + erratum). **LOGBOOK.md still
+ended at Iteration 19's own text, and PLAN.md's queue still read "queued —
+panel Iteration 20" — the prior shift ran and committed the full cycle
+(Phases 1–5, six blind seats + Red Team audit, three Tier-0 same-shift
+fixes) but stopped before writing it up.** Read the committed
+`experiments/043-docket7-thermo-sidecar/NOTES.md`/`phase1_proposal.md`/
+`results.json` in full, cross-checked the claimed 54/54 gate count and the
+Tier-0 fixes directly against the commit diffs (all confirmed present, no
+science re-derived or re-scored — this was a documentation catch-up, not a
+review), and reconstructed LOGBOOK.md's Iteration 20 entry, T5's update,
+new live thread T22, PLAN.md's Current-state/queue, and this entry from
+that record.
+
+**Iteration 20 headline (exp-043, PHOTONICS lead, executing
+THERMODYNAMICS' Iteration-19 tripwire — a fourth deferral would have fired
+Checkpoint criterion 4 without debate):** docket #7's flashlight-irradiance
+sourcing **FALSIFIED against its own predicted band, landing ~46× BELOW
+this program's 5-cycle-old unsourced ~10⁻³ W/cm² placeholder**
+(6.58×10⁻⁶ W/cm² central); `lab/thermo_sidecar.py` promoted to reusable,
+trust-suite-gated code (stage 15, 13/13) and applied to the program's own
+flagship absorber and σ(I) ON endpoint for the first time — every OFF-state
+article and `graded_black_shell` read UNDETECTABLE against a newly-sourced
+microbolometer NETD; the ON endpoint reads UNDETECTABLE too, but only at
+two UNOBTANIUM-tier kinetics boundary hosts, not a realistic one. Phase 5's
+most severe catch (VISION's own self-review): a Phase-4 claim that an
+erratum had been written to two other experiments' `results.json` was FALSE
+AS WRITTEN — would have fired Checkpoint criterion 4 on its own standing
+instruction had all three of that shift's Tier-0 fixes not been applied
+within the same close (they were). New live thread **T22** opened (the
+`iso_xsec_sq` area convention — provably inert for every ΔT_ss verdict
+issued this cycle, live for τ_thermal and future short-dwell scenarios).
+Verdict: PARTIAL. No Checkpoint criterion fires. THERMODYNAMICS' own
+tripwire retired on process grounds. Full record: LOGBOOK.md Iteration 20.
+
+**Bench trust reconfirmed this shift, beyond the standard `--only
+12346789` check**: fast stages 41/41; stage 5 (heavy) run separately,
+43/43 including it; the full non-heavy suite including every stage added
+since Iteration 5 (`--only "1,2,3,4,6,7,8,9,10,11,12,13,14,15"`) — **82/82
+green**, matching exp-043's own claimed 54/54 delta over the prior 41/41
+baseline exactly once stages 10–14 are counted in. No regressions from any
+uncommitted local state; the repo's committed `main` was already exactly
+what CI would reproduce.
+
+Next lead per rotation: **MATERIALS** (Iteration 21). Ranked priorities:
+see PLAN.md's queue (Red Team's Iteration-20 synthesis) — QUANTUM's ON-
+endpoint kinetics rerun against realistic hosts ranked most consequential.
+
 ## 2026-08-18 (panel shift) — Iteration 19 complete (exp-042): T21's
 magnitude gap closes, but Phase 5 catches two load-bearing defects in the
 cycle's own headline claims and corrects both same-shift. No Checkpoint

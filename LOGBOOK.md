@@ -277,7 +277,22 @@ measured them here):**
 - **T5 — The thermo ledger.** A ~1 W-class flashlight beam absorbed in a
   ~m-scale volume: where does it go? ΔT, re-emission band (~10 µm — eye-
   invisible, IR-detectable), and steady-state budget must be logged per
-  proposal (THERMO sidecar, analytic).
+  proposal (THERMO sidecar, analytic). **Sidecar promoted to reusable,
+  trust-suite-gated code (Iteration 20, exp-043, `lab/thermo_sidecar.py`,
+  stage 15).** Bench-scale (R_OUT≈78 cells, ≈2.34µm at 600nm/cpl20) readings:
+  every OFF-state σ(I) article and the flagship `graded_black_shell`
+  absorber read UNDETECTABLE (>100×/comfortably below microbolometer NETD,
+  itself sourced for the first time this cycle, 8.6–100mK across 4 refs);
+  the σ(I) ON endpoint (τ=3.9) reads UNDETECTABLE too, but only at the two
+  UNOBTANIUM-tier kinetics boundary hosts tested, not yet a realistic host
+  (Iteration 21's #1 priority). Docket #7's own witness-irradiance sourcing
+  landed the flashlight-at-45m irradiance ~46× BELOW this program's own
+  5-cycle-old unsourced ~10⁻³ W/cm² placeholder (6.58×10⁻⁶ W/cm² central) —
+  does not move any `REALIZABILITY_MEMO.md` tier (MATERIALS: RSA's gap is
+  irradiance-independent, TPA's gap only widens). All ΔT numbers are
+  bench-scale, not witness-scale (T8/T13's own unresolved bridge governs any
+  extrapolation) — see LOGBOOK Iteration 20 for the full record, including
+  the new area-convention thread **T22**.
 - **T6 — Cloak-line leftover, kept honest:** exp-017's unscored observation
   (13 angular peaks at the 3λ point vs 10 at flanks) — parked cloak-line
   curiosity; revisit only if a future thread returns to that mechanism space.
@@ -1054,6 +1069,31 @@ measured them here):**
   an already-pushed commit, not a peripheral wording gap) and states this
   should not be read as establishing same-shift correction is generally
   safe from criterion 4, only that it worked this time.
+- **T22 — `lab/thermo_sidecar.py`'s `iso_xsec_sq` area convention and the
+  two branches' inconsistent area/mass bookkeeping (opened Iteration 20,
+  exp-043 Phase 5, Red Team — quantified independently by PHOTONICS and
+  ELECTROMAGNETISM).** The established-ratio branch's absorbing area
+  (Area = w², w = measured extinction width σ_ext·dx — a compact-blob
+  idealization, not infinite-rod) inflates ~2.9–3.0× vs. the bench's real
+  simulated geometric-disk area (EM). **PHOTONICS proved algebraically and
+  numerically that this convention CANCELS OUT of `steady_state_delta_T`
+  entirely** (ΔT_ss = I·ratio/(4εσT³+h), area-independent) — provably inert
+  for every UNDETECTABLE verdict issued this cycle. **Live, not inert, for
+  τ_thermal and any future short-dwell/transient scenario**: EM
+  independently solved the coupled kinetics-thermal ODE exactly and found
+  the module's two-stage "steady-state ceiling × end-of-dwell kinetics
+  ratio" shortcut is only asymptotically exact at the two rate-constant
+  extremes actually tested (k_r=1e6, k_r=1) — unvalidated at intermediate
+  (kinetics τ≈thermal τ, ms-scale) rate constants, arguably the most
+  physically relevant regime for a real switchable material. EM also found
+  an unexamined ~3× area/mass inconsistency between the weak-τ and
+  established-ratio branches (same arbitrary `mass_kg`, different area
+  conventions, producing a spurious-looking τ_thermal difference between
+  articles that isn't a real physical difference). Ranked Iteration-21
+  priority #3 (EM's own disclosed geometric-disk-vs-`iso_xsec_sq` reading
+  as a committed table entry); the intermediate-rate-constant coupling test
+  folds into T17 as a direct extension (Tier 2, moderate FDTD-free
+  analytic cost, not urgent).
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -7581,3 +7621,269 @@ figure); c*'s remaining ~1.6× residual after the obliquity correction
 (needs the settling-margin FDTD test); THERMO's tripwire (a fourth
 deferral fires Checkpoint criterion 4); MATERIALS' N17_NATIVE_V2
 resolution-refinement leg.
+
+## Iteration 20 — Docket #7 + `lab/thermo_sidecar.py`: Sourcing the Witness Wattage/Dwell Window and Promoting the Ledger to Reusable Code (exp-043) — 2026-08-18
+
+*Logged retroactively by the following shift: Phases 1–5 and the erratum
+were executed and committed (`ad88f92`, `330ca5a`, `be8fa29`) but this
+LOGBOOK entry, PLAN.md, and SESSION_LOG.md were not yet written when this
+shift began. Reconstructed here verbatim from
+`experiments/043-docket7-thermo-sidecar/NOTES.md`/`phase1_proposal.md`/
+`results.json`, cross-checked against the commits — no science re-derived
+or re-scored, this is a documentation catch-up, not a new review.*
+
+Runner: cloud panel shift · Lead: PHOTONICS (rotation; legitimately PHOTONICS'
+slot per Iteration-18 precedent — a Red-Team-ranked priority not native to
+the lead seat's own charter). Executing THERMODYNAMICS' pre-registered
+Iteration-19 tripwire: a fourth consecutive deferral of docket #7/
+`thermo_sidecar` fires Checkpoint criterion 4 without further debate.
+
+### PHASE 1 — PROPOSAL · Lead seat: PHOTONICS
+
+Two independently-scoped, separately-gated deliverables (deliberately not
+bundled, per exp-042's own mandatory-fix-#7 caution): **(A)** docket #7,
+narrowed to sourcing flashlight irradiance-at-volume and beam dwell time via
+WebSearch (WebFetch still EGRESS_BLOCKED for scholarly domains, T18); **(B)**
+`lab/thermo_sidecar.py` — promoting the ad-hoc `thermo_sidecar_analytic`
+dict (originally believed "one dict copy-pasted four ways" across
+exp-032/033/034/035) into one reusable, regime-dispatched module with a new
+trust-suite stage, applied for the first time to the σ(I) ON endpoint
+(τ=3.9) and the flagship `graded_black_shell` absorber with real absorbed-
+power arithmetic. Full parameter table and original predictions:
+`phase1_proposal.md` (kept verbatim, T10 precedent).
+
+### PHASE 2 — CRITIQUE · five seats blind, Red Team last with everything
+
+**MATERIALS** (support-with-changes): the proposal overstates the stakes —
+no plausible sourced-irradiance outcome moves a `REALIZABILITY_MEMO.md`
+tier (RSA's gap is irradiance-independent; TPA's 9–12 OOM gap dwarfs any
+<1 OOM the sourcing could move). **ELECTROMAGNETISM** (support-with-changes,
+LOAD-BEARING): the proposed weak-τ formula is verbatim
+`chord_absorptance_series_legacy`, valid only to τ≤0.032 (documented,
+unphysical/negative by τ=3.9) — the proposed TAU_WEAK_LIMIT≈0.5 is ~15.6×
+the validated boundary; a validated exact replacement
+(`chord_absorptance_exact`) already exists in-repo, unreferenced.
+**THERMODYNAMICS** (support-with-changes, LOAD-BEARING): `NETD_BAND_K` is a
+self-referential citation to an already-unsourced bare literal, five cycles
+running. **QUANTUM OPTICS** (support-with-changes, LOAD-BEARING): feeding the
+ON-endpoint's steady-state ratio into a dwell-limited transient without a
+kinetics gate silently assumes instantaneous switching, contradicting T17's
+own standing requirement — `lab/kinetics.py` already has the machinery to
+gate this. **VISION SCIENCE** (support-with-changes, LOAD-BEARING, converges
+with THERMO): same NETD catch, plus NETD is a thermal-camera/detector band,
+not a human-eye threshold — the exact scope-tag-non-propagation pattern
+that fired Checkpoint criterion 4 at Iteration 17, one dropped caveat away
+from recurring.
+
+**RED TEAM** (PROCEED-WITH-MANDATORY-FIXES, 8 numbered attacks, none
+rejected as overreach): independently re-verified all five blind seats'
+catches with exact numbers (series is 3.43%/65.19% low at τ=0.5/1.95,
+negative at τ=3.9); corrected the proposal's own historical narrative
+(THREE distinct implementations across four files, not one dict copy-pasted
+four ways — exp-032/035 never call the chord series at all, and the
+ON-endpoint's ΔT was always hand-typed, explicitly disclaimed, in every
+file — the "silently negative at τ=3.9" defect cited as historical fact
+never actually fired). Load-bearing attacks beyond the five seats': (1)
+**[inexpressible, caught by no blind seat]** the proposed established-ratio
+function cannot compute watts as specified — σ_abs/σ_ext is dimensionless;
+converting to power needs σ_ext (or Q_ext×area) as a *separate* input, and
+any code assuming σ_ext≈geometric area (Q_ext=1) would smuggle in exactly
+the idealization T9 already refutes (both 0.51 and 0.6075 exceed the ≤0.5
+geometric-optics ceiling); (2) attack 1's fix must precede QUANTUM's
+kinetics gate, not run alongside it; (5) the established-ratio branch needs
+its own trust-suite identity gate, not just the weak-τ branch (PANEL.md's
+own new-machinery rule); (6) state explicitly which wattage feeds the
+code-correctness regression (OLD, exp-033's unstated inputs) vs. the new
+Part-A-sourced predictions — never conflate the two in one committed
+number; (7) **[constraint-3-adjacent risk, elevated above VISION's own
+"correctable" framing]** the NETD/human-eye conflation is a live recurrence
+of the exact pattern class that fired Checkpoint criterion 4 at Iteration
+17 — every P-TS claim needs its own disclaimer AT THE POINT OF THE CLAIM.
+Red Team's own ruling on the tripwire question: **yes, executing this
+proposal with all mandatory fixes applied genuinely satisfies the
+Iteration-19 tripwire, not merely by headcount.** VISION's own original,
+broader docket #7 (the glare/adaptation Tier-W sidecar) stays separately
+open, not retired by this narrower scope.
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All Red-Team-designated load-bearing fixes adopted in full, no overrides.
+Part A gains a sixth sourced parameter (microbolometer NETD, replacing the
+self-referential placeholder) plus VISION's mandatory disclaimer sentence
+verbatim at every P-TS claim point. Part B's API revised per EM/Red Team:
+`TAU_WEAK_LIMIT=0.032` reusing `chord_absorptance_exact` directly; the
+established-ratio branch renamed/resigned to take σ_ext (cells) and grid
+spacing explicitly, converting via a new, disclosed `iso_xsec_sq` area
+idealization (Area = w², w = σ_ext·dx — a compact-blob assumption, not an
+infinite-rod one); trust-suite stage 15 gates both branches (Wien round-trip;
+bounds identity at ratio=0/1; weak-branch bit-identity; the P-TS-1
+regression re-scoped to OLD inputs only). ON-endpoint disposition: compute
+steady-state P_abs first (now soundly normalized), then scale by
+`n_at_dwell/n_ss` via `lab.kinetics.relax_exact` across representative
+hosts, not one arbitrary pick. `graded_black_shell`'s mass/heat-capacity
+model left explicitly UNRESOLVED, not silently generalized. Predictions
+(P-D7-1/2/4, P-TS-1/2/3/4, P-STAGE15) committed to git before Part A/B ran.
+
+### PHASE 4 — TEST
+
+Zero FDTD calls (WebSearch + code only). Bench: 41/41 fast stages unchanged
++ new stage 15's 13/13 (Wien round-trip, weak-tau bit-exactness, bounds
+identity, thermal identities) = 54/54, matching P-STAGE15.
+
+**Part A**: irradiance (P-D7-1) derived from 4 sourced tactical/EDC
+flashlight spec sheets — central **6.58×10⁻⁶ W/cm²**, range
+[1.10×10⁻⁶, 4.41×10⁻⁵] W/cm², **FALSIFIED against the predicted
+[3×10⁻⁴,3×10⁻³] band — ~46× below the band's own low edge**, a real
+sourced result (MATERIALS' Phase-2 fix confirms it moves no realizability
+tier — RSA is irradiance-independent, TPA's gap only widens). Luminous
+efficacy: WebSearch initially returned wall-plug efficacy (137–180 lm/W),
+the wrong quantity for candela→radiant-intensity conversion — flagged, not
+silently substituted; 300 lm/W used uncited. Dwell (P-D7-2): central 66.7ms,
+range [20.8,200]ms — **CONFIRMED** inside [20,500]ms. NETD (P-D7-4, new):
+sourced 8.6–100mK across 4 refs; adopted band (0.020,0.050)K matches the
+program's 5-cycle-old unsourced placeholder exactly, now genuinely grounded
+— **CONFIRMED**.
+
+**Part B**: OFF-state weak-τ articles all UNDETECTABLE, >100× below NETD —
+**P-TS-2 CONFIRMED**. P-TS-1 regression: 5.02×10⁻³K vs. exp-033's legacy
+8.17×10⁻⁴K, 514% relative error — **MISS**, exactly as Red Team's attack 6
+anticipated (the old number's own area/geometry assumptions were never
+committed anywhere — a provenance gap in the OLD number, not the new
+module). ON endpoint (τ=3.9): P_abs=2.00×10⁻¹²W, steady ΔT=3.944×10⁻³K,
+**PARTIAL against P-TS-3** (~21% below the predicted band's low edge);
+kinetics gate applied at two boundary hosts (k_r=1e6 fast, k_r=1 slow) —
+both later found (Phase 5) to sit at r=1, the TOP EXTREME of
+`lab/kinetics.py`'s grid, UNOBTANIUM-WITH-PARAMETERS per
+`REALIZABILITY_MEMO.md` Amendment 3, not "representative" as first
+labeled — corrected same-shift. `graded_black_shell`: P_abs=1.74×10⁻¹²W,
+ΔT=3.311×10⁻³K, UNDETECTABLE — **P-TS-4 CONFIRMED**, the program's
+first-ever NETD disposition for its own flagship article. **Self-caught
+bug, fixed within-shift**: an early pass used `transient_delta_T`'s
+adiabatic mode uniformly, producing a transient ΔT (0.191K/0.166K,
+DETECTABLE) that exceeded its own steady-state ceiling — physically
+impossible; root cause was dwell (~67ms) sitting ~48× the articles' own
+thermal time constant (~1.4ms), deep in the equilibrium-reaching regime,
+not the adiabatic one; fixed via the exponential-approach mode, which
+guarantees transient ≤ steady by construction. **Scorecard: 6/8 CONFIRMED,
+1 PARTIAL (P-TS-3), 1 MISS (P-TS-1, a provenance finding about the OLD
+number, anticipated by Red Team).**
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**PHOTONICS (PROMISING).** Verified both σ_ext citations trace exactly.
+Found "achromatic by construction" overclaims against this program's own T7
+(1.5–1.9% chromatic silhouette growth) and T10 (still-open 46% chromatic
+beam-behind spread) — single-λ used without checking already-available 3λ
+data. **Key finding**: proved algebraically that `iso_xsec_sq` CANCELS OUT
+of `steady_state_delta_T` entirely (area-independent) — the whole cycle's
+area-inflation debate has zero effect on any UNDETECTABLE verdict.
+
+**MATERIALS (PARTIAL).** Re-verified the irradiance arithmetic and confirmed
+"only makes gaps worse" holds row-by-row. Found a real staleness: an
+embedded RSA sub-finding is now WRONG under the new 46×-lower irradiance
+number; TPA's "9–12 OOM" now understates (recomputed ~10–13 OOM). Positive
+finding: the "unsourced" 45m distance almost exactly matches the founding
+witness statement's own "50 yards" (45.7m) — never previously connected.
+
+**ELECTROMAGNETISM (PARTIAL).** Called the bounds identity "a tautology,
+not a physics result." Quantified `iso_xsec_sq`'s actual inflation for the
+first time (~2.9–3.0× vs. the bench's real simulated geometric-disk area).
+**Key finding**: independently solved the coupled kinetics-thermal ODE
+exactly and found the module's two-stage shortcut is only asymptotically
+exact at the two tested extremes — unvalidated at intermediate (kinetics
+τ≈thermal τ) rate constants, arguably the most physically relevant regime.
+Also found an unexamined ~3× area/mass inconsistency between the two
+branches.
+
+**THERMODYNAMICS (PARTIAL).** Confirmed the steady-state formula and
+arithmetic. **Key finding**: `h_conv=5.0 W/(m²K)` is a macroscopic
+natural-convection value, unphysical at micron scale — the correct regime
+is gas-phase conduction, h_eff≈11,000 W/(m²K), ~2000× larger; `mass_kg` is
+also ~400–1000× too small. The two errors partially cancel in
+`thermal_tau_s` but not in ΔT magnitude — correcting h_conv alone would
+drop steady-state ΔT ~3 orders of magnitude, meaning the UNDETECTABLE
+margins are far more comfortable than the headline numbers suggest.
+
+**QUANTUM OPTICS (PARTIAL).** Independently re-derived every kinetics-gate
+number exactly. **Key finding**: confirmed the "representative midpoint"
+language is factually wrong against the established grid (median r=1e-3,
+not the tested r=1) — r=1 is UNOBTANIUM-WITH-PARAMETERS per
+`REALIZABILITY_MEMO.md` Amendment 3; the genuinely open question (does a
+PUBLISHED/PLAUSIBLE-tier host reach meaningful ON-state absorption within
+one dwell) stays untested despite the machinery sitting unused in-repo.
+
+**VISION SCIENCE (PARTIAL, self-review) — load-bearing catch.** Audited the
+NETD disclaimer's propagation word-by-word: thorough in code/`results.json`,
+absent from NOTES.md's own prose and `run.py`'s console prints (fixed).
+**More severe**: independently verified NOTES.md's own claim that an
+erratum was "flagged... on exp-033/034/035's own `results.json`" was FALSE
+AS WRITTEN — both files still carried the disputed 8.17×10⁻⁴K value with
+zero erratum marker. Self-imposed an Iteration-23 tripwire on VISION's own
+still-open glare/adaptation Tier-W sidecar (docket #7's other original
+half, open 20 iterations), matching THERMO's own precedent.
+
+**RED TEAM (final audit).** Independently re-verified every load-bearing
+claim (VISION's erratum-never-written and QUANTUM's grid-mislabeling both
+CONFIRMED, VISION's ruled "worse than described": a false statement of
+completed work, not an omission). Re-derived PHOTONICS' cancellation
+identity and THERMO's h_conv/mass figures (both confirmed) — neither
+threatens the qualitative UNDETECTABLE classification, both push toward
+MORE comfortable margins. **Checkpoint criterion 4 — explicit ruling**: the
+standing instruction (a recurrence of the scope-tag/fix-docket-propagation
+failure class fires criterion 4 without further debate UNLESS caught and
+corrected within the same close) applies directly to VISION's
+erratum-never-written finding — ruled the single most severe defect any
+seat found this cycle. **Ruling: criterion 4 does NOT fire, ON THE
+CONDITION that the three Tier-0 fixes (erratum actually written; NETD
+disclaimer propagated into prose/prints; kinetics-host mischaracterization
+corrected) are applied in this same close — all three were applied.** Had
+they been left for a future cycle, criterion 4 would have fired without
+further debate.
+
+**Verdict: PARTIAL** (5 PARTIAL + 1 PROMISING raw split; Red Team's
+adjudication). What closed cleanly: the tripwire's actual ask — real,
+trust-suite-gated, regime-dispatched code; genuine sourcing with one
+honestly-reported FALSIFIED prediction; a self-caught physics bug fixed
+within-shift. What did not close cleanly on first pass: a false claim of
+completed work (fixed), a disclaimer-propagation gap in the same failure
+class that already fired criterion 4 once (fixed), a mischaracterized
+kinetics test (fixed), several cheap documentation gaps carried to
+Iteration 21. **No Checkpoint criterion fires** — contingent on, and
+satisfied by, the Tier-0 fixes applied in this same shift. THERMODYNAMICS'
+own tripwire is retired on process grounds.
+
+**New live thread T22 opened** (Red Team): the `iso_xsec_sq` area-
+convention/branch-consistency question — quantified for the first time
+(~2.9–3.0× inflation vs. geometric disk; drives the entire τ_thermal
+branch discrepancy; provably inert for ΔT_ss per PHOTONICS' identity, live
+for τ and any future short-dwell scenario). The kinetics-thermal coupling
+gap at intermediate rate constants folds into **T17** as a direct
+extension, not a new thread.
+
+**Next lead per rotation: MATERIALS** (Iteration 21; VISION→PHOTONICS→
+MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→repeat).
+
+**Ranked priorities for Iteration 21** (Red Team's synthesis): **Tier 1
+(zero FDTD cost):** (1) QUANTUM's rerun of the ON-endpoint kinetics gate
+against real PUBLISHED/PLAUSIBLE-tier hosts, not the two UNOBTANIUM
+boundary probes — the single most consequential open item; (2) THERMO's
+joint h_conv/mass_kg re-derivation (micron-scale gas conduction; material
+density × `iso_xsec_sq` volume), done together since they partially offset
+in τ but not ΔT; (3) EM's second, disclosed area-convention reading
+(geometric-disk vs. `iso_xsec_sq`) as a committed table entry — T22; (4)
+MATERIALS' `REALIZABILITY_MEMO.md` Amendment 4 (citation corrections only —
+RSA staleness, TPA OOM update, the 45m≈50yd cross-reference); (5)
+PHOTONICS' zero-cost 3λ achromatic-idealization check against already-
+available per-λ data. **Tier 2 (moderate cost):** EM's kinetics-thermal
+coupling test at an intermediate rate constant (T17 extension); T21's
+still-untouched contamination-risk re-score and QUANTUM's aperture-
+consistent beam check (Iteration-19/20 carryovers, not dropped). **Tier 3
+(standing):** VISION's own glare/adaptation Tier-W sidecar, self-imposed
+Iteration-23 tripwire.
+
+Open questions carried forward: T22 (area-convention branch consistency);
+T17's kinetics-thermal coupling gap at intermediate rate constants; the
+ON-endpoint's realistic-host kinetics gate (Iteration 21 top priority);
+T21's contamination-risk verdict and QUANTUM's aperture-consistent beam
+check (still carried from Iteration 19/20); VISION's Iteration-23
+glare/adaptation tripwire.
