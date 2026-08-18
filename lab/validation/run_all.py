@@ -1121,6 +1121,76 @@ def stage14_amplitude_bridge():
           f"{exact_39:.4f}", 0.0 <= exact_39 <= 1.0, "[0,1]")
 
 
+def stage15_thermo_sidecar():
+    """Panel Iteration 20 (exp-043, docket #7 + `lab/thermo_sidecar.py`
+    re-scoping). Gates BOTH regime branches (Red Team's Iteration-20
+    Phase-2 attack 5 -- stage 15 as first proposed gated only the weak-tau
+    branch, leaving the established-ratio branch, carrying both of the
+    cycle's headline "first-ever" claims, with zero coverage):
+
+      1. Wien's-law round-trip, machine precision.
+      2. Weak-tau branch: `absorbed_fraction_weak_tau` reuses
+         `chord_absorptance_exact` bit-exactly (trivial by construction,
+         still gated per PANEL.md's "new machinery => new stage" rule);
+         boundary refusal above TAU_WEAK_LIMIT raises, checked.
+      3. Established-ratio branch bounds identity (Red Team attack 1's own
+         fix target): P_abs(ratio=0)==0 exactly; P_abs(ratio=1)==P_ext
+         exactly -- the bounds ANY normalization bug would violate.
+      4. Steady/transient thermal identities: transient_delta_T's
+         adiabatic-ramp mode reduces linearly in dwell_s; the exponential
+         mode reaches delta_t_steady_k in the large-dwell limit.
+    """
+    print("stage 15 — thermo sidecar (docket #7 promotion) vs closed-form identities")
+    from lab import thermo_sidecar as ts
+
+    # --- gate 1: Wien's law round trip.
+    for T in (300.0, 1000.0, 5778.0):
+        lam = ts.wien_peak_wavelength_um(T)
+        prod = lam * T
+        check("thermo_sidecar", f"Wien round-trip @T={T:.0f}K: lambda*T",
+              f"{prod:.4f}", abs(prod - ts.WIEN_B_UM_K) <= 1e-9, f"{ts.WIEN_B_UM_K}")
+
+    # --- gate 2: weak-tau branch reuses chord_absorptance_exact bit-exactly.
+    from lab.amplitude_bridge import chord_absorptance_exact
+    for tau in (0.0065, 0.008, 0.032, 0.003):
+        a = ts.absorbed_fraction_weak_tau(tau)
+        b = chord_absorptance_exact(tau)
+        check("thermo_sidecar", f"absorbed_fraction_weak_tau({tau}) == chord_absorptance_exact (bit-exact)",
+              f"{a!r}", a == b, f"{b!r}")
+    raised = False
+    try:
+        ts.absorbed_fraction_weak_tau(3.9)
+    except ValueError:
+        raised = True
+    check("thermo_sidecar", "weak-tau branch refuses tau > TAU_WEAK_LIMIT (raises)",
+          str(raised), raised is True, "True")
+
+    # --- gate 3: established-ratio branch bounds identity (Red Team attack 1).
+    I0, SIG, DX = 1.0e-3, 235.96673494878587, 3.0e-8
+    zero = ts.absorbed_power_established_ratio(I0, SIG, DX, 0.0)
+    one = ts.absorbed_power_established_ratio(I0, SIG, DX, 1.0)
+    check("thermo_sidecar", "absorbed_power_established_ratio(ratio=0) P_abs == 0 (exact)",
+          f"{zero['p_abs_w']!r}", zero["p_abs_w"] == 0.0, "0.0")
+    rel_err_one = abs(one["p_abs_w"] - one["p_ext_w"]) / one["p_ext_w"]
+    check("thermo_sidecar", "absorbed_power_established_ratio(ratio=1) P_abs == P_ext (rel err)",
+          f"{rel_err_one:.2e}", rel_err_one <= 1e-12, "<=1e-12")
+    mid = ts.absorbed_power_established_ratio(I0, SIG, DX, 0.6074830175566805)
+    check("thermo_sidecar", "established-ratio branch bounded: 0 <= P_abs <= P_ext",
+          f"{mid['p_abs_w']:.4e} in [0,{mid['p_ext_w']:.4e}]",
+          0.0 <= mid["p_abs_w"] <= mid["p_ext_w"], "True")
+
+    # --- gate 4: thermal identities.
+    P, mass, cp = 1.0e-9, 1.0e-15, 700.0
+    dt1 = ts.transient_delta_T(P, mass, cp, 0.010)
+    dt2 = ts.transient_delta_T(P, mass, cp, 0.020)
+    check("thermo_sidecar", "transient_delta_T adiabatic mode scales linearly in dwell_s",
+          f"{dt2 / dt1:.6f}", abs(dt2 / dt1 - 2.0) <= 1e-9, "2.0")
+    dt_ss = 0.05
+    dt_far = ts.transient_delta_T(P, mass, cp, 1.0e6, thermal_tau_s=1.0, delta_t_steady_k=dt_ss)
+    check("thermo_sidecar", "transient_delta_T exponential mode -> delta_t_steady_k as dwell_s/tau -> inf",
+          f"{dt_far:.6f}", abs(dt_far - dt_ss) <= 1e-9, f"{dt_ss}")
+
+
 def _stage_selected(n, only):
     """Stage selection, aware of BOTH of this suite's two `--only` idioms.
     Panel Iteration 15 / Red Team attack #5 fixed the multi-digit half:
@@ -1167,6 +1237,7 @@ if __name__ == "__main__":
     run_stage12 = _stage_selected(12, only)
     run_stage13 = _stage_selected(13, only)
     run_stage14 = _stage_selected(14, only)
+    run_stage15 = _stage_selected(15, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -1222,6 +1293,8 @@ if __name__ == "__main__":
         stage13_temporal_csf()
     if run_stage14:
         stage14_amplitude_bridge()
+    if run_stage15:
+        stage15_thermo_sidecar()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")

@@ -288,3 +288,98 @@ deliverable, unchanged in priority.
 
 Predictions committed to git in this same commit, before Part A/B are
 executed (house discipline, non-negotiable).
+
+## PHASE 4 — TEST
+
+Zero FDTD calls (WebSearch + code only). Bench trust suite: 41/41 fast
+stages unchanged + new stage 15's own 13/13 (Wien round-trip; weak-tau
+branch bit-exact against `chord_absorptance_exact`; established-ratio
+branch bounds identity at ratio=0/1; thermal identities) — 54/54 total,
+0 new FDTD calls, matching P-STAGE15.
+
+**Part A — docket #7, sourced (WebSearch snippet-level; WebFetch
+EGRESS_BLOCKED for scholarly domains again this shift, T18's 6th
+consecutive confirmation):**
+
+- **Candela**: 4 named tactical/EDC products, 13,827–99,310 cd (Fenix
+  PD36R V2.0/ACE, Olight Warrior Ultra/X4 — product spec sheets).
+- **Luminous efficacy**: WebSearch returned the WRONG quantity for this
+  calculation — 137–180 lm/W is white-LED DEVICE wall-plug efficacy
+  (electrical→optical), not the luminous efficacy OF RADIATION needed to
+  convert candela (photometric) to radiant intensity (radiometric),
+  ~250–350 lm/W for a white-light SPD. Flagged explicitly, not silently
+  substituted; 300 lm/W central used, not separately WebSearch-cited this
+  cycle.
+- **Distance**: 45m, carried unsourced per Phase-1's own scope decision.
+- **Irradiance (P-D7-1)**: derived, central 6.58×10⁻⁶ W/cm², range
+  [1.10×10⁻⁶, 4.41×10⁻⁵] W/cm² across the full candela/efficacy/distance
+  uncertainty. **FALSIFIED against the predicted [3×10⁻⁴,3×10⁻³] W/cm²
+  band — ~46× below the band's own low edge, and the entire uncertainty
+  range never touches it.** A real, disclosed result of actually sourcing
+  the number, not a point-estimate artifact (the full parameter-range
+  check confirms it). Per MATERIALS' own Phase-2 fix (adopted verbatim):
+  this does not move any `REALIZABILITY_MEMO.md` tier — RSA is
+  irradiance-independent, and TPA's 9–12 OOM gap only widens with a lower
+  measured irradiance.
+- **Dwell (P-D7-2)**: central 66.7ms (10° assumed beam full-angle ÷ 150°/s
+  assumed sweep rate, both order-of-magnitude, beam angle not separately
+  WebSearch-confirmed this cycle), range [20.8, 200]ms.
+  **CONFIRMED** inside the predicted [20,500]ms band.
+- **NETD (P-D7-4, new)**: sourced range 8.6–100mK across 4 refs (FLIR
+  A325sc <50mK product spec; academic high-performance devices 8.6–40mK;
+  budget cameras ~100mK). Adopted band (0.020,0.050)K — the SAME numeric
+  values this program used unsourced for 5 cycles, now genuinely
+  grounded rather than self-referential. **CONFIRMED**.
+
+**Part B — `lab/thermo_sidecar.py` applied to established readings** (600nm,
+cpl20, R_OUT=78 cells, dx=30nm):
+
+- **Weak-τ OFF-state articles** (off_pass/off_lab/off_field/off_bracket):
+  P_abs ≈ 3–28 femtowatts; transient ΔT 1.5×10⁻⁵–1.6×10⁻⁴K, all
+  **UNDETECTABLE**, >100× below NETD. **P-TS-2 CONFIRMED.**
+- **P-TS-1 regression**: computed 5.02×10⁻³K vs exp-033's legacy
+  8.17×10⁻⁴K, 514% relative error — **MISS**, exactly as Red Team's
+  attack 6 anticipated ("will almost certainly not reproduce... not
+  because the module is wrong, but because the input changed"): the
+  legacy number's own area/geometry assumptions were never committed
+  anywhere (independently confirmed by THERMO's Phase-2 desk audit), so
+  this is a real provenance gap in the OLD number, not a defect in the
+  new module — flagged as an erratum on exp-033/034/035's own
+  `results.json` (their `off_pass_steady_state_dT_K=8.17e-4` should be
+  read as unreproduced/unprovenanced going forward, not as validated).
+- **ON endpoint (τ=3.9)**: P_abs=2.00×10⁻¹² W, steady ΔT=3.944×10⁻³K.
+  **PARTIAL against P-TS-3**: sits ~21% BELOW the predicted [0.005,0.10]K
+  band's own low edge — a real miss, disclosed, not hidden. Kinetics
+  gate (QUANTUM's fix, applied after attack 1's normalization per Red
+  Team's own ordering): fast host (k_r=1e6) reaches n_ss within the
+  67ms dwell (ratio=1.0); slow host (k_r=1) reaches only ~12.5% of n_ss
+  (ratio=0.125) — confirming QUANTUM's own Phase-2 point that which host
+  applies is load-bearing, not cosmetic. Both hosts read **UNDETECTABLE**
+  after this cycle's own self-caught methodology fix (below).
+- **`graded_black_shell` (flagship absorber)**: P_abs=1.74×10⁻¹² W,
+  steady/transient ΔT=3.311×10⁻³K, **UNDETECTABLE**. **P-TS-4
+  CONFIRMED** — first-ever NETD disposition for this program's headline
+  article, at bench scale.
+
+**Self-caught methodology bug, fixed within this shift (disclosed per
+this program's own erratum convention, not left for Phase 5):** an
+earlier pass of `run.py` used `transient_delta_T`'s ADIABATIC (no-cooling)
+mode uniformly. For the ON endpoint and flagship absorber this produced a
+transient ΔT (0.191K / 0.166K, both DETECTABLE) EXCEEDING their own
+steady-state ceiling (3.9mK / 3.3mK) — physically impossible for a system
+approaching a fixed equilibrium under constant absorbed power. Root cause:
+`dwell_central` (~67ms) is ~48× these articles' own linearized thermal
+time constant (~1.4ms, from their tiny assumed mass) — deep in the
+equilibrium-reaching regime, not the adiabatic one. Fixed by computing
+`thermal_tau_s` from the same area/emissivity/h_conv inputs and using the
+exponential-approach mode (`_physical_transient_dT` in `run.py`), which
+guarantees transient ΔT ≤ steady-state ΔT by construction. The weak-τ
+articles' own numbers happened to stay UNDETECTABLE either way (their
+absorbed power is orders of magnitude smaller), so this bug was silent
+there — caught only because the ON-endpoint/flagship numbers were large
+enough to expose the inconsistency on inspection.
+
+**Full predictions scorecard**: `results.json::predictions_scorecard`.
+6 of 8 predictions CONFIRMED, 1 PARTIAL (P-TS-3, real and disclosed), 1
+MISS (P-TS-1, anticipated by Red Team's own attack 6, a provenance
+finding about the OLD number not a defect in the new one).
