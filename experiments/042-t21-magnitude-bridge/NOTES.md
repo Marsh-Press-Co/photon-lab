@@ -359,3 +359,123 @@ sweeps a 3×3×4 (λ×θ0×FWHM) grid × 2 conventions, results written to
 `results.json`. Full bench (`lab/validation/run_all.py --only 12346789`)
 reverified green before and after (no `lab/` change, a formality per house
 discipline).
+
+## PHASE 4 — RESULTS (run 2026-08-18)
+
+Bench reverified green immediately before and after (no `lab/` change):
+`lab/validation/run_all.py --only 12346789` **41/41** both times, matching
+Iteration 18's own committed record. Zero new FDTD calls, 2.9s total
+wall-clock. Full data: `results.json`. The official run reproduces the
+Director's own due-diligence prototype to machine precision — no
+discrepancy to report.
+
+### Block MAGNITUDE
+
+**P-MAG1 (sign agreement, PRIMARY/flux) — CONFIRMED, exactly central.**
+Measured **28/30**, matching the predicted central value exactly (band
+[26,30], falsification floor 22).
+
+**P-MAG2 (R² at c=1, PRIMARY/flux) — CONFIRMED, near-exact.** Measured
+**R²=0.4176** vs. predicted central 0.42 (band [0.30,0.50]) — a genuine,
+magnitude-level confirmation of EM's edge-diffraction mechanism under the
+physically-correct (flux/Poynting) instrument convention. **This closes
+the specific gap Iteration 18 left open**: T21's fringe is now validated
+against signed magnitudes, not just sign/ranking, at zero FDTD cost.
+
+**P-MAG3 (best-fit scale c*, descriptive) — reported as predicted.**
+Measured **c*=2.6023** (flux) — inside the predicted band [2.0,3.2], and
+per mandatory fix 4, labeled **of undetermined origin**, not asserted as
+real non-cancelling physics or a benign calibration echo. Distinguishing
+the two remains open, unscoped this cycle.
+
+**P-MAG4 (naive/secondary convention, context) — CONFIRMED, near-exact.**
+Measured **sign=27/30, R²(c=1)=0.7787, c*=1.1547** — matches predicted
+central values (27/30, 0.78, 1.15) closely. Numerically better-fitting than
+the flux convention, but **not the physically correct reduction** (per
+mandatory fix 1 — `lab.ambient.observer_profile` measures flux, not `|E|²`)
+— reported here as context only, never as the headline result.
+
+**P-MAG5 (per-λ breakdown, PRIMARY/flux) — PARTIALLY CONFIRMED, precisely.**
+Measured: **450nm 10/10, 600nm 10/10, 750nm 8/10.** The sharpened claim
+("misses concentrated at θ=±39° specifically at 750nm") is **CONFIRMED
+exactly** — both 750nm misses are at θ=±39°, the smallest-magnitude rows in
+that λ's own set (measured 0.00383/0.00396 vs. predicted −0.00248/−0.00241
+— correct magnitude order, wrong sign, exactly the near-zero-crossing
+fragility VISION's original Phase-1 language anticipated). But the "600nm
+uniquely best" framing is **not quite right, honestly reported rather than
+rounded up**: 450nm ALSO scores 10/10 under the flux convention — the two
+are TIED for best, not 600nm alone. This is itself informative: the
+"nearest-2°-Nyquist" narrative that explains 600nm's clean *sign*
+alternation under the ORIGINAL (naive-convention, exp-041 Phase-5) reading
+does not cleanly predict which λ wins under the flux-corrected convention's
+own sign-agreement count — a nuance for any future cycle citing this
+ranking, not a refutation of the underlying mechanism.
+
+### Block BEAM
+
+**P-BEAM1 (incoherent/PRIMARY reading) — CONFIRMED, exactly.** **Zero of
+36** (λ,θ0,FWHM) cells exceed C_thr=0.005 in magnitude — the largest
+measured |C| is 0.00301 (750nm, θ0=38°, FWHM=2°), still 40% below
+threshold. **This is a STRONGER finding than VISION's own original
+Phase-1 prediction**, which flagged a specific exception at 750nm/θ0=40°/
+FWHM≈20° — that exact cell measures |C|=0.00026 here, far below C_thr, not
+an exception. Under the properly flux/obliquity-consistent, committed model,
+**the T21 fringe shows NO contamination risk anywhere in the tested grid**
+for any beam with angular FWHM≥2° — even a beam only 2° wide already washes
+the fringe to <60% of C_thr at every tested (λ,θ0) combination.
+
+**P-BEAM2 (coherent/mandatory cross-check reading) — CONFIRMED, exceeded.**
+**36 of 36** cells exceed C_thr (predicted ≥30/36) — every single tested
+cell, not just most. 27 of 36 (all FWHM∈{5,10,20}°) reach |C|>0.6, several
+approaching |C|≈0.99–1.00 (near-total geometric silhouette contrast); the
+remaining 9 (FWHM=2° only) range 0.03–0.47, still all above C_thr. **The
+predicted sharp divergence between the two readings is confirmed, and the
+reasoning for it stated in the predictions holds up**: coherently summing
+plane-wave tilts spanning several degrees of angular spread reproduces the
+physics of a focused/interfering phased array, not a real flashlight — no
+ordinary incandescent or LED emitter maintains spatial coherence across an
+aperture radiating a multi-degree angular spread at these path lengths, so
+this reading is read as **an artifact of the full-coherence idealization**,
+not a literal physical contamination-risk finding, exactly as flagged before
+the run. **The contamination-risk question is therefore NOT settled by
+either reading alone** — the incoherent number is very likely close to
+physical reality for any real flashlight, but this cycle builds no
+partial-coherence model that would let a single number replace "probably
+near the incoherent reading, bounded above by the coherent one." Mandatory
+fix 6 (QUANTUM/Red Team) is satisfied: both readings are reported together,
+and the contamination-risk language above is stated as probable, not
+certain.
+
+### Discussion
+
+**T21 status: the magnitude-level gap Iteration 18 left open is now
+closed**, cleanly, at zero FDTD cost, under a Red-Team-hardened, precisely-
+scoped convention — three independent implementations (VISION's own
+prototype, PHOTONICS' and Red Team's Phase-2 reimplementations, and this
+committed module) converge on the same qualitative and (for the latter two)
+quantitative picture: sign/ranking robust (27–28/30 across both
+conventions), R² convention-dependent (0.42 flux vs. 0.78 naive) but
+clearing the falsification floor either way, and a genuine, as-yet-
+unexplained systematic scale gap (c*) whose origin is explicitly left open
+rather than claimed either direction. **The domain-mismatch disclaimer
+(mandatory fix 5) stands unmodified by this result**: this leg validates
+the mechanism at exp-041's own geometry (MARGIN_MULT=3.5, R_OUT=78 native)
+— it says nothing new about `REALIZABILITY_MEMO.md` Amendment 1's own
+cited number, which lives at a structurally different domain
+(N17_NATIVE_V2, RATIO=1.5, R_OUT=117). The realizability-relevance cap
+(carried from exp-041) holds: nothing here moves either UNOBTANIUM-WITH-
+PARAMETERS verdict.
+
+**New, sharp open question from Block BEAM**: the incoherent/coherent
+divergence is large enough (near 0 vs. near-total silhouette) that it
+cannot be waved away as a rounding-level nuance — a genuine partial-
+coherence model (a real emitter's finite coherence length/area, bridging
+the two extremes measured here) is the natural next test if this program
+ever needs a settled, single-number contamination-risk verdict for a
+near-±40°/near-3λ-scale-shell constraint-3 run. Not scoped this cycle;
+queued for Phase 5 ranking.
+
+**THERMO disposition (mandatory fix 7) — holds as stated.** PLAN.md's two
+queued THERMO items (docket #7's sourced witness table; `thermo_sidecar.py`
+re-scoping) remain explicitly deferred, ranked as Iteration 20's own #1
+priority below — not silently dropped an eighth time.
