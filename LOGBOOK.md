@@ -1094,6 +1094,34 @@ measured them here):**
   as a committed table entry); the intermediate-rate-constant coupling test
   folds into T17 as a direct extension (Tier 2, moderate FDTD-free
   analytic cost, not urgent).
+  **Iteration 21 (exp-044): the τ_thermal-is-live half CONFIRMED with real
+  numbers for the first time (EM's Phase-5 catch, Red-Team-quantified).**
+  A Phase-3 idealization sentence claiming Block A's ON-endpoint kinetics
+  gate "does not... rescale under a future T22 revision" was itself an
+  overclaim caught the same cycle — true for `steady_state_delta_T`
+  (proven area-invariant), false for `tau_thermal_s` (scales linearly with
+  `iso_xsec_sq`). Applying T22's own 2.9–3.0× inflation to `tau_thermal_s`
+  at Host C drops `dwell/τ_thermal` from 48.4× to 16.1–16.7× (below
+  `N_TRANSIENT_TAU=25`) and gives a real, nonzero relative difference of
+  7.3×10⁻⁸–1.3×10⁻⁷ in the coupled kinetics-thermal ODE check — five
+  orders inside the pass band, so no verdict moves, but the first time
+  this thread's own "live, not inert" half has been checked with an
+  actual computed number instead of asserted. **Separately, Red Team's own
+  Phase-5 audit closed the OTHER half of EM's original Iteration-20
+  finding** — the intermediate-rate-constant coupling test — by computing
+  it for ALL FOUR hosts, not just Host C: Host D (k_r=1e1) shows a real
+  1.44–1.50% relative difference between the exact coupled solution and
+  the decoupled shortcut, outside the pre-registered clean-pass band
+  (≤1×10⁻²) though far inside the hard-falsification threshold (≥1×10⁻¹)
+  — because Host D's own kinetics never clears the dwell the way Hosts
+  A/B/C's do, not because of the τ_kinetics≈τ_thermal ratio EM's original
+  concern was about (Host D's ratio is actually the LEAST order-1 of the
+  four hosts checked). Genuinely informative, not tautological like Host
+  C's own 0.00e+00 result — but still harmless to any UNDETECTABLE
+  verdict (both readings ~10 orders of magnitude below NETD). The
+  genuinely unresolved half of T22/T17's original concern — a dwell
+  actually comparable to (not 16–73× larger than) either time constant —
+  remains untested, Iteration-22's own top-ranked priority.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -7887,3 +7915,190 @@ ON-endpoint's realistic-host kinetics gate (Iteration 21 top priority);
 T21's contamination-risk verdict and QUANTUM's aperture-consistent beam
 check (still carried from Iteration 19/20); VISION's Iteration-23
 glare/adaptation tripwire.
+
+## Iteration 21 — The Realistic-Host ON-Endpoint Kinetics Gate + `REALIZABILITY_MEMO.md` Amendment 4 + PHOTONICS' 3λ Achromatic Check (exp-044) — 2026-08-18
+
+Runner: cloud panel shift · Lead: MATERIALS (rotation, executing Red
+Team's Iteration-20 top-ranked priority — QUANTUM's own native charge,
+non-native lead per Iteration-18/20 precedent).
+
+### PHASE 1 — PROPOSAL · Lead seat: MATERIALS
+
+Two blocks, bundled per exp-034's own "tightly-related, all-zero-cost,
+all-desk/analytic items" precedent. **Block A** (Red Team's Iteration-20
+priority #1, "the single most consequential open item"): rerun the σ(I)
+ON-endpoint kinetics gate against `lab/kinetics.py`'s real PUBLISHED/
+PLAUSIBLE-tier grid (Hosts A–D × RATIOS∈{1e-9,1e-5,1e-3,1e-1} — 16 points),
+not exp-043's two r=1 UNOBTANIUM boundary probes. **Block B** (native,
+priority #4): `REALIZABILITY_MEMO.md` Amendment 4 — three citation
+corrections triggered by exp-043's newly-sourced witness irradiance.
+Deferred with stated reasons: #2 (THERMO's h_conv/mass_kg re-derivation),
+#3 (EM's `iso_xsec_sq`-vs-geometric-disk table entry, T22), #5 (PHOTONICS'
+3λ achromatic check). Full text: `phase1_proposal.md`.
+
+### PHASE 2 — CRITIQUE · five seats blind, Red Team last with everything
+
+All five seats independently landed support-with-changes. PHOTONICS
+verified reading(a)'s host/r-insensitivity is a forced formula consequence,
+attacked the single-λ `RATIO_ON` applied grid-wide against T18's own
+narrowband finding. ELECTROMAGNETISM verified the ceiling's area-
+invariance, attacked reading (a) as not a physical temperature — silently
+substitutes n_ss for 1 in the n=1 calibration. THERMODYNAMICS confirmed
+the area-invariance inheritance, attacked Host C's placement in the
+"kinetics τ≈thermal τ" intermediate regime as unflagged, and that the
+reused ceiling is KNOWN (not merely feared) ~3 OOM too high. QUANTUM
+OPTICS independently re-derived all seven original predictions in closed
+form, attacked reading (a) as dimensionally — corrected by Red Team to
+"scaling" — wrong, converging with THERMO on Host C. VISION SCIENCE
+confirmed the correct perceptual boundary, attacked the NETD disclaimer's
+absence at the three actual points of claim.
+
+**RED TEAM**: independently re-derived the coupled kinetics→thermal ODE
+in closed form (a check no blind seat nor the original T22 finding had
+done) and upgraded EM/QUANTUM's catch: reading (a) doesn't merely
+mislabel a convention — it solves no physical model this codebase has
+ever stated, at any grid point except the unreached edge case n_ss=1.
+Found the Host-C intermediate-regime concern is *resolved*, not merely
+narrowed, given this specific dwell clears both time constants by ≥45×.
+Found one defect no blind seat caught: the proposal's own Scope Decision
+never mentioned Iteration-20's own Tier-2 kinetics-thermal-coupling
+priority despite it being squarely what Host C's own points implicate.
+Ruling: PROCEED-WITH-MANDATORY-FIXES (7 fixes, all adopted — see NOTES.md
+for the full list: demote reading (a) to a labeled artifact; correct the
+T22 idealization sentence; run the Host-C closed-form check; add THERMO's
+caveat; resolve PHOTONICS' 3λ check this cycle or state why not;
+propagate the NETD disclaimer; disclose the Tier-2 scope gap).
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All seven mandatory fixes adopted, no overrides. Fix 5 resolved by
+actually running **Block C** — PHOTONICS' 3λ achromatic-idealization
+check, using exp-026's own already-committed `beam_scene` 3λ data, never
+previously read for ratio-flatness, zero new cost. Predictions committed
+(`acbcc81`): P-IT21-A1 (dynamic range span), A2 (all-16-UNDETECTABLE,
+reading b), A3 (Host-C coupled-ODE match), A4 (reading-a-is-artifact
+magnitude), B1 (RSA reversal), B2 (TPA OOM widen), B3 (distance
+cross-reference), C1 (achromatic flatness ≤1.5%).
+
+### PHASE 4 — TEST (run 2026-08-18)
+
+Bench 41/41 (no `lab/` change). Zero new FDTD calls, <1s. **8 of 8
+predictions CONFIRMED** (`a828501`): min/max ΔT span 1.9×10⁻¹²–3.585×
+10⁻⁴K; every one of 16 points UNDETECTABLE, worst-case margin 55.8× below
+NETD; Host C's coupled-ODE check agrees to displayed precision; reading
+(a) exceeds reading (b) by 1001–10⁹× as predicted; RSA onset now sits
+15.2× ABOVE the sourced witness irradiance (a sign reversal from exp-036's
+old, unsourced framing); TPA gap widens to 11.2–14.2 OOM; 45m↔50 yards
+matches to 1.6%; the ON-endpoint article's own σ_abs/σ_ext ratio is flat
+to 0.45% relative across 450/600/750nm.
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**All six seats independently landed PARTIAL** — unusually convergent,
+and unusually productive: every seat re-derived a real number by hand,
+found zero arithmetic errors, but found real process/scope gaps.
+**MATERIALS and PHOTONICS independently converged on the cycle's most
+load-bearing catch**: `REALIZABILITY_MEMO.md` was never actually amended
+— confirmed via `git log`/grep, the memo's live text was stale AND
+actively contradicted by exp-044's own findings. **ELECTROMAGNETISM**
+independently derived the coupled-ODE closed form and found the Phase-3
+T22 idealization-sentence fix over-generalized (true for
+`steady_state_delta_T`, false for `tau_thermal_s`), quantifying the real
+corrected Host-C relative difference (7.3×10⁻⁸–1.3×10⁻⁷). **THERMODYNAMICS**
+and **VISION** independently converged on the h_conv caveat being
+propagated to block scope only, not per-point (unlike the NETD
+disclaimer). **QUANTUM OPTICS** found a citation provenance error
+(`realizability_tier` misattributed) and a load-bearing scope gap: Block
+A tests only a single cold-started dwell, not the repeated-sweep/dose-
+accumulation regime exp-038 (Iteration 15) already flagged Host D —
+this cycle's own headline minimum — as relevant to.
+
+**RED TEAM (final audit)**: independently confirmed the memo-not-amended
+finding, sharper than reported (the live text actively contradicts recent
+data, not merely stale). Independently confirmed and CLOSED the
+PHOTONICS/EM gap by computing the Host-D coupled-ODE check across all 4
+of its points (nobody else had): **1.44–1.50% relative difference, real,
+outside the pre-registered clean-pass band (≤1×10⁻²), though harmless to
+the UNDETECTABLE verdict** — Host D's own kinetics never clears the dwell
+the way A/B/C's does, a genuinely different regime from Host C's
+tautological 0.0. Named a program-level pattern independent of this
+cycle's instance: this is the FIFTH occurrence in seven iterations (13,
+14, 15, 17, 20, 21) of a fix-docket item claimed complete that wasn't
+fully delivered — the rate is not decreasing (flagged for Marsh's
+attention, not a fresh criterion-4 trigger on its own).
+
+**Checkpoint criterion 4 — explicit ruling**: fires the standing
+instruction directly (an experiment whose own directory/key names claim
+delivery of "Amendment 4" while the target file sat untouched — arguably
+sharper than either Iteration 17's or Iteration 20's own firing
+candidates). **Ruling: does NOT fire, ON THE CONDITION that Amendment 4's
+actual text is written into `REALIZABILITY_MEMO.md` as part of closing
+this same shift — done** (`70757a8`): RSA row reversal, TPA OOM update,
+the 45m≈50yd cross-reference; no tier moves. All eight of Red Team's
+mandatory same-shift fixes applied in the same commit (T22-idealization-
+sentence correction with the real corrected Host-C number; Host-D
+coupled-ODE check computed and added; h_conv caveat and NETD disclaimer
+propagated to all 16 grid points; `run.py` print-ordering fixed;
+`realizability_tier` citation corrected; single-cold-started-dwell scope
+gap disclosed, cross-referencing exp-038's Host-D finding; the deliberate
+no-new-trust-suite-stage scope judgment for `coupled_kinetics_thermal_dT`
+named explicitly, backed by three independent verifications). No other
+Checkpoint criterion fires.
+
+**Verdict: PARTIAL, affirming the six-seat unanimous verdict.** The
+qualitative physics conclusion (ON-endpoint stays UNDETECTABLE across the
+realistic-host grid) is robust — every correction found this cycle pushes
+margins MORE comfortable, none threaten it — but the cycle closed with a
+Checkpoint-conditional undelivered deliverable (now delivered),
+an idealization-sentence overclaim (now corrected), a caveat-propagation
+gap (now fixed), a citation error (now fixed), and a load-bearing scope
+gap (single-exposure vs. the witness's actual repeated-sweep scenario,
+disclosed, testing deferred to Iteration 22).
+
+**Self-imposed tripwires**: THERMODYNAMICS' own priority #2 (h_conv/
+mass_kg re-derivation) is now an Iteration-22 floor, not Iteration-23 —
+accelerated per Red Team's own MODIFY ruling on a 2-cycle-running
+deferral. QUANTUM OPTICS self-imposes: a THIRD deferral of its own
+aperture-consistent single-coherent-mode beam check (2 real deferrals now,
+Iterations 19→20→21) fires Checkpoint criterion 4 without further debate.
+VISION's own Iteration-23 glare/adaptation tripwire stands unchanged, not
+accelerated (Red Team: REJECT-AS-OVERREACH on acceleration).
+
+**Next lead per rotation: ELECTROMAGNETISM** (Iteration 22; VISION→
+PHOTONICS→MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→
+repeat).
+
+**Ranked priorities for Iteration 22** (Red Team's tiered synthesis):
+**Tier 1 (top-3, ~zero FDTD cost):** (1) a genuinely short/intermediate-
+dwell coupled kinetics-thermal stress test (EM+THERMO+PHOTONICS
+convergent pick) — sweep `coupled_kinetics_thermal_dT` across dwell/τ
+ratios spanning ~0.1×–10×, including Host D's own under-converged corner
+explicitly — the only regime never tested is the physically relevant one
+for a real switchable material; (2) THERMODYNAMICS' h_conv/mass_kg
+re-derivation, bundled with EM's disclosed geometric-disk-vs-`iso_xsec_sq`
+table entry (T22) — unanimous 6/6-seat convergence, self-imposed floor
+now due; (3) QUANTUM's repeated-sweep/dose-accumulation kinetics test via
+`lab/kinetics.py::pulse_train_segments` (already built, unused for this
+purpose), targeting Host D at the real witness parameters. **Tier 2
+(moderate, carried):** QUANTUM's aperture-consistent single-coherent-mode
+beam check (self-imposed tripwire, 2nd deferral); T21's still-untouched
+contamination-risk re-score; PHOTONICS' R3 recheck of Block C's 0.45%
+flatness claim (comparable in magnitude to its own underlying box_dev
+noise floor — the first headline flatness number in this program to skip
+that house discipline); the still-blocked rigorous RSA/TPA literature
+check (T18/WebFetch, 9th consecutive shift confirmation). **Tier 3
+(standing, not yet due):** VISION's glare/adaptation Tier-W sidecar
+(Iteration-23 tripwire); deduplicating `realizability_tier` into one
+shared, imported location instead of two independent copies (exp-038,
+exp-039).
+
+Open questions carried forward: T22's own remaining live half
+(`tau_thermal_s`'s area-dependence, real but small at Host C, untested at
+other geometries); the physically-relevant intermediate-dwell coupled-ODE
+regime (never tested, Iteration-22 top priority); THERMO's h_conv/mass_kg
+correction (now Iteration-22, not Iteration-23); the repeated-sweep/dose-
+accumulation kinetics question for Host D specifically; QUANTUM's aperture-
+consistent beam check (Checkpoint-4 tripwire on a 3rd deferral); T21's
+contamination-risk verdict; VISION's Iteration-23 glare/adaptation
+tripwire; the program-level fix-docket-delivery pattern Red Team named
+(5 of 7 iterations) as a standing item for Marsh's attention.
