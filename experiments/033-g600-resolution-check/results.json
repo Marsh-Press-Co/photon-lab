@@ -148,6 +148,11 @@
    0.05
   ],
   "off_state_detectability": "UNDETECTABLE at every dwell tested -- 30-700x below NETD even at steady state, and the phenomenon is a SWEPT beam (constraint 4): transient dwell-limited DeltaT is the physically apt number, not steady-state.",
-  "on_endpoint_lwir_claim": "HELD AT HYPOTHESIS-NOT-RESULT (Red Team attack 11): steady-state estimate ~0.15K (2-5x above NETD) INVERTS once swept-beam dwell is applied (same scaling as off_pass would put transient DeltaT far below steady-state); dwell time, parcel geometry, and host phase (MATERIALS restricts off_pass's realizable host to dilute vapour/aerosol, where graybody radiative-equilibrium is the wrong model) are all unpinned. Not scored. Docket #7 (sourced witness-scenario table) would resolve this; still deprioritized behind T13."
+  "on_endpoint_lwir_claim": "HELD AT HYPOTHESIS-NOT-RESULT (Red Team attack 11): steady-state estimate ~0.15K (2-5x above NETD) INVERTS once swept-beam dwell is applied (same scaling as off_pass would put transient DeltaT far below steady-state); dwell time, parcel geometry, and host phase (MATERIALS restricts off_pass's realizable host to dilute vapour/aerosol, where graybody radiative-equilibrium is the wrong model) are all unpinned. Not scored. Docket #7 (sourced witness-scenario table) would resolve this; still deprioritized behind T13.",
+  "panel_iteration_20_erratum": {
+   "flagged_by": "panel Iteration 20 (exp-043), THERMODYNAMICS + VISION SCIENCE Phase-5 catch, Red Team Tier-0 mandatory fix",
+   "status": "UNPROVENANCED, not validated -- read with caution",
+   "note": "The off_pass_steady_state_dT_K figure below (8.17e-4 K) was never committed anywhere with its own area/emissivity/h_conv/irradiance inputs -- exp-043's lab/thermo_sidecar.py attempted a code-correctness regression against it (P-TS-1) and got 5.02e-3 K, a 514% relative miss, using its own stated (1e-3 W/cm^2 placeholder irradiance, geometric-disk area, emissivity=0.9, h_conv=5.0) inputs -- consistent with this number's inputs having been different and never recorded, not evidence either number is wrong on its own terms. Per this program's flag-don't-rewrite convention (T10 precedent): this file's original value is left unmodified below; treat it as unprovenanced/unreproduced going forward, not as validated. Full record: experiments/043-docket7-thermo-sidecar/NOTES.md, results.json (predictions_scorecard.P-TS-1_regression)."
+  }
  }
 }

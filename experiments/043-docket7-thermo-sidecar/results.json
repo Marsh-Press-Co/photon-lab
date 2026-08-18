@@ -206,7 +206,7 @@
   "dwell_over_tau_thermal": 48.40661089143973,
   "transient_dT_K_at_dwell_central_STEADY_STATE_CEILING": 0.0039436462408276455,
   "kinetics_gate_n_at_dwell_over_n_ss": {
-   "fast (k_r=1e6)": {
+   "fast-kinetics boundary probe (k_r=1e6, r=1, UNOBTANIUM-tier per REALIZABILITY_MEMO.md Amdt.3)": {
     "k_f": 1000000.0,
     "k_r": 1000000.0,
     "n_ss": 0.5,
@@ -214,7 +214,7 @@
     "n_at_dwell_over_n_ss_central": 1.0,
     "dwell_shorter_than_t99": false
    },
-   "slow (k_r=1e0)": {
+   "slow-kinetics boundary probe (k_r=1e0, r=1, UNOBTANIUM-tier per REALIZABILITY_MEMO.md Amdt.3)": {
     "k_f": 1.0,
     "k_r": 1.0,
     "n_ss": 0.5,
@@ -224,10 +224,10 @@
    }
   },
   "kinetics_scaled_transient_dT_K_by_host": {
-   "fast (k_r=1e6)": 0.0039436462408276455,
-   "slow (k_r=1e0)": 0.000492272271111272
+   "fast-kinetics boundary probe (k_r=1e6, r=1, UNOBTANIUM-tier per REALIZABILITY_MEMO.md Amdt.3)": 0.0039436462408276455,
+   "slow-kinetics boundary probe (k_r=1e0, r=1, UNOBTANIUM-tier per REALIZABILITY_MEMO.md Amdt.3)": 0.000492272271111272
   },
-  "kinetics_gate_label": "steady-state ceiling reported alongside the KINETICS-SCALED transient dT for 2 representative hosts (fast/slow k_r), not a single pinned host -- T17's own standing requirement satisfied by reporting the bound, per Red Team attack 2's ordering (this normalization fix applied BEFORE the kinetics gate). The fast host reaches n_ss within the dwell (ratio=1.0, ceiling applies exactly); the slow host reaches only ~12.5% of n_ss -- QUANTUM's own Phase-2 point, confirmed: the static steady-state ceiling is NOT the right number for every host, and which one applies is load-bearing, not cosmetic.",
+  "kinetics_gate_label": "steady-state ceiling reported alongside the KINETICS-SCALED transient dT at 2 fast/slow k_r BOUNDARY PROBES (r=k_f/k_r=1 for both), NOT a single pinned host and NOT 'representative' of a realistic host either (CORRECTED, Red Team's Phase-5 Tier-0 fix, panel Iteration 20 close: an earlier draft called these 'representative' -- wrong; r=1 is REALIZABILITY_MEMO.md Amendment 3's own named UNOBTANIUM-tier boundary probe, the grid's LEAST realistic corner, not its midpoint (median r=1e-3)). T17's own standing requirement satisfied by reporting a bound on the MECHANISM, per Red Team attack 2's ordering (this normalization fix applied BEFORE the kinetics gate). The fast probe reaches n_ss within the dwell (ratio=1.0, ceiling applies exactly); the slow probe reaches only ~12.5% of n_ss -- QUANTUM's own Phase-2 point, confirmed: the static steady-state ceiling is NOT the right number for every host, and which one applies is load-bearing, not cosmetic. Whether a PUBLISHED/PLAUSIBLE-tier realistic host reaches meaningful ON-state absorption within one dwell is NOT answered by this cycle -- queued Iteration 21.",
   "netd_disposition_ceiling_UNSCALED": {
    "classification": "UNDETECTABLE",
    "effective_delta_t_k": 0.0039436462408276455,
@@ -241,7 +241,7 @@
    "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
   },
   "netd_disposition_kinetics_scaled_by_host": {
-   "fast (k_r=1e6)": {
+   "fast-kinetics boundary probe (k_r=1e6, r=1, UNOBTANIUM-tier per REALIZABILITY_MEMO.md Amdt.3)": {
     "classification": "UNDETECTABLE",
     "effective_delta_t_k": 0.0039436462408276455,
     "raw_delta_t_k": 0.0039436462408276455,
@@ -253,7 +253,7 @@
     "emissivity_correction": 1.0,
     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
    },
-   "slow (k_r=1e0)": {
+   "slow-kinetics boundary probe (k_r=1e0, r=1, UNOBTANIUM-tier per REALIZABILITY_MEMO.md Amdt.3)": {
     "classification": "UNDETECTABLE",
     "effective_delta_t_k": 0.000492272271111272,
     "raw_delta_t_k": 0.000492272271111272,

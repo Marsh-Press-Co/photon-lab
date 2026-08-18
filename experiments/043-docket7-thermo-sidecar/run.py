@@ -226,14 +226,29 @@ def main():
     # Iteration-15 grid, NOT a single pinned (k_f,k_r) -- T17's own
     # standing requirement satisfied by reporting the bound, not picking
     # one host arbitrarily.
+    # CORRECTION (Red Team's Phase-5 Tier-0 mandatory fix, QUANTUM's own
+    # catch, panel Iteration 20 close): these two points are NOT
+    # "representative" of a realistic host, contra this comment's own
+    # first-draft language. Both are drawn at r=k_f/k_r=1, the TOP EXTREME
+    # of lab/kinetics.py's own established grid
+    # (RATIOS=[1e-9,1e-5,1e-3,1e-1,1.0], median 1e-3, not 1.0) --
+    # REALIZABILITY_MEMO.md Amendment 3's own tier table explicitly names
+    # r=1 (either host) UNOBTANIUM-WITH-PARAMETERS, "a boundary probe,
+    # beyond any published device-grade lifetime," not PUBLISHED/PLAUSIBLE.
+    # These two points bound the kinetics-GATING MECHANISM (real,
+    # load-bearing) at its own fast/slow k_r extremes; they do not
+    # represent a realistic host. The open question -- does a
+    # PUBLISHED/PLAUSIBLE-tier host reach meaningful ON-state absorption
+    # within one dwell -- stays untested; queued Iteration 21 (Red Team's
+    # #1 ranked priority).
     from lab import kinetics as kin
     kinetics_hosts = {
-        "fast (k_r=1e6)": 1.0e6,
-        "slow (k_r=1e0)": 1.0e0,
+        "fast-kinetics boundary probe (k_r=1e6, r=1, UNOBTANIUM-tier per REALIZABILITY_MEMO.md Amdt.3)": 1.0e6,
+        "slow-kinetics boundary probe (k_r=1e0, r=1, UNOBTANIUM-tier per REALIZABILITY_MEMO.md Amdt.3)": 1.0e0,
     }
     kinetics_gate = {}
     for hname, k_r in kinetics_hosts.items():
-        k_f = k_r  # r=1 (n_ss=0.5) representative midpoint, generic host probe
+        k_f = k_r  # r=1 -- a boundary probe on the kinetics-gating mechanism, NOT a representative realistic host (see correction above)
         n_ss = float(kin.n_eq_exact(k_f, k_r))
         n_at_dwell_central = float(kin.relax_exact(n0=0.0, k_f=k_f, k_r=k_r, dt=dwell_central))
         ratio = n_at_dwell_central / n_ss if n_ss > 0 else 0.0
@@ -359,16 +374,26 @@ def main():
             "kinetics_scaled_transient_dT_K_by_host": on_dt_transient_scaled,
             "kinetics_gate_label": (
                 "steady-state ceiling reported alongside the KINETICS-"
-                "SCALED transient dT for 2 representative hosts (fast/slow "
-                "k_r), not a single pinned host -- T17's own standing "
-                "requirement satisfied by reporting the bound, per Red "
-                "Team attack 2's ordering (this normalization fix applied "
-                "BEFORE the kinetics gate). The fast host reaches n_ss "
-                "within the dwell (ratio=1.0, ceiling applies exactly); "
-                "the slow host reaches only ~12.5% of n_ss -- QUANTUM's "
-                "own Phase-2 point, confirmed: the static steady-state "
-                "ceiling is NOT the right number for every host, and "
-                "which one applies is load-bearing, not cosmetic."
+                "SCALED transient dT at 2 fast/slow k_r BOUNDARY PROBES "
+                "(r=k_f/k_r=1 for both), NOT a single pinned host and NOT "
+                "'representative' of a realistic host either (CORRECTED, "
+                "Red Team's Phase-5 Tier-0 fix, panel Iteration 20 close: "
+                "an earlier draft called these 'representative' -- wrong; "
+                "r=1 is REALIZABILITY_MEMO.md Amendment 3's own named "
+                "UNOBTANIUM-tier boundary probe, the grid's LEAST "
+                "realistic corner, not its midpoint (median r=1e-3)). "
+                "T17's own standing requirement satisfied by reporting a "
+                "bound on the MECHANISM, per Red Team attack 2's ordering "
+                "(this normalization fix applied BEFORE the kinetics "
+                "gate). The fast probe reaches n_ss within the dwell "
+                "(ratio=1.0, ceiling applies exactly); the slow probe "
+                "reaches only ~12.5% of n_ss -- QUANTUM's own Phase-2 "
+                "point, confirmed: the static steady-state ceiling is NOT "
+                "the right number for every host, and which one applies "
+                "is load-bearing, not cosmetic. Whether a PUBLISHED/"
+                "PLAUSIBLE-tier realistic host reaches meaningful ON-state "
+                "absorption within one dwell is NOT answered by this "
+                "cycle -- queued Iteration 21."
             ),
             "netd_disposition_ceiling_UNSCALED": on_netd_disp_ceiling,
             "netd_disposition_kinetics_scaled_by_host": on_netd_disp_scaled,
@@ -457,7 +482,10 @@ def main():
     print(f"graded_black_shell (flagship): P_abs={absorber_central['p_abs_w']:.3e} W  "
           f"steady dT={absorber_dt_ss_central:.3e} K  transient dT={absorber_dt_transient_central:.3e} K  "
           f"{absorber_netd_disp['classification']}")
-    print("\nresults.json written")
+    print("\nNOTE: NETD (DETECTABLE/MARGINAL/UNDETECTABLE above) is an "
+          "instrument/detector threshold, not a human perceptual one -- "
+          "none of the above bears on constraint-3/4's human-eye verdict.")
+    print("results.json written")
 
 
 if __name__ == "__main__":
