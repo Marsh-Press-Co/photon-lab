@@ -32,7 +32,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 1000000001.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "A_r1e-05": {
     "host": "A",
@@ -60,7 +61,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 100000.99999999999,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "A_r1e-03": {
     "host": "A",
@@ -88,7 +90,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 1001.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "A_r1e-01": {
     "host": "A",
@@ -116,7 +119,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 11.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "B_r1e-09": {
     "host": "B",
@@ -144,7 +148,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 1000000001.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "B_r1e-05": {
     "host": "B",
@@ -172,7 +177,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 100000.99999999999,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "B_r1e-03": {
     "host": "B",
@@ -200,7 +206,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 1001.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "B_r1e-01": {
     "host": "B",
@@ -228,7 +235,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 11.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "C_r1e-09": {
     "host": "C",
@@ -256,7 +264,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 1000000000.9999998,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "C_r1e-05": {
     "host": "C",
@@ -284,7 +293,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 100000.99999999999,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "C_r1e-03": {
     "host": "C",
@@ -312,7 +322,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 1001.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "C_r1e-01": {
     "host": "C",
@@ -340,7 +351,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
     "reading_a_vs_b_ratio": 11.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "D_r1e-09": {
     "host": "D",
@@ -368,7 +380,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0019189107507280277,
     "reading_a_vs_b_ratio": 1000000001.0000001,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "D_r1e-05": {
     "host": "D",
@@ -396,7 +409,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0019189242475698197,
     "reading_a_vs_b_ratio": 100001.0,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "D_r1e-03": {
     "host": "D",
@@ -424,7 +438,8 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0019202601231979204,
     "reading_a_vs_b_ratio": 1001.0000000000001,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    },
    "D_r1e-01": {
     "host": "D",
@@ -452,49 +467,360 @@
     "reading_a_ARTIFACT_ONLY_dT_K": 0.0020494920457352676,
     "reading_a_vs_b_ratio": 10.999999999999998,
     "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
-    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number."
    }
   },
-  "host_c_coupled_kinetics_thermal_check": {
-   "r1e-09": {
-    "tau_kinetics_s": 0.000999999999,
+  "coupled_kinetics_thermal_check_ALL_HOSTS": {
+   "A_r1e-09": {
+    "host": "A",
+    "r": 1e-09,
+    "tau_kinetics_s": 9.99999999e-10,
     "tau_thermal_s": 0.001377222355355104,
-    "tau_ratio_kinetics_over_thermal": 0.7260991626454969,
-    "exact_coupled_dT_K": 3.943646236884e-12,
-    "decoupled_shortcut_dT_K": 3.943646236884e-12,
+    "dwell_over_tau_kinetics": 66666666.73333334,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.943646236883999e-12,
+    "decoupled_shortcut_dT_K": 3.943646236883999e-12,
     "relative_difference": 0.0,
-    "shortcut_validated_here": true
+    "shortcut_validated_clean_pass_here": true
    },
-   "r1e-05": {
-    "tau_kinetics_s": 0.000999990000099999,
+   "A_r1e-05": {
+    "host": "A",
+    "r": 1e-05,
+    "tau_kinetics_s": 9.99990000099999e-10,
     "tau_thermal_s": 0.001377222355355104,
-    "tau_ratio_kinetics_over_thermal": 0.7260919024525716,
+    "dwell_over_tau_kinetics": 66667333.33333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
     "exact_coupled_dT_K": 3.9436068047595984e-08,
     "decoupled_shortcut_dT_K": 3.9436068047595984e-08,
     "relative_difference": 0.0,
-    "shortcut_validated_here": true
+    "shortcut_validated_clean_pass_here": true
    },
-   "r1e-03": {
-    "tau_kinetics_s": 0.000999000999000999,
+   "A_r1e-03": {
+    "host": "A",
+    "r": 0.001,
+    "tau_kinetics_s": 9.99000999000999e-10,
     "tau_thermal_s": 0.001377222355355104,
-    "tau_ratio_kinetics_over_thermal": 0.725373789582014,
+    "dwell_over_tau_kinetics": 66733333.333333336,
+    "dwell_over_tau_thermal": 48.40661089143973,
     "exact_coupled_dT_K": 3.939706534293352e-06,
     "decoupled_shortcut_dT_K": 3.939706534293352e-06,
     "relative_difference": 0.0,
-    "shortcut_validated_here": true
+    "shortcut_validated_clean_pass_here": true
    },
-   "r1e-01": {
-    "tau_kinetics_s": 0.0009090909090909091,
+   "A_r1e-01": {
+    "host": "A",
+    "r": 0.1,
+    "tau_kinetics_s": 9.090909090909091e-10,
     "tau_thermal_s": 0.001377222355355104,
-    "tau_ratio_kinetics_over_thermal": 0.6600901485196328,
+    "dwell_over_tau_kinetics": 73333333.33333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
     "exact_coupled_dT_K": 0.00035851329462069506,
     "decoupled_shortcut_dT_K": 0.00035851329462069506,
     "relative_difference": 0.0,
-    "shortcut_validated_here": true
+    "shortcut_validated_clean_pass_here": true
+   },
+   "B_r1e-09": {
+    "host": "B",
+    "r": 1e-09,
+    "tau_kinetics_s": 9.99999999e-07,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66666.66673333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.943646236883999e-12,
+    "decoupled_shortcut_dT_K": 3.943646236883999e-12,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "B_r1e-05": {
+    "host": "B",
+    "r": 1e-05,
+    "tau_kinetics_s": 9.99990000099999e-07,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66667.33333333334,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.9436068047595984e-08,
+    "decoupled_shortcut_dT_K": 3.9436068047595984e-08,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "B_r1e-03": {
+    "host": "B",
+    "r": 0.001,
+    "tau_kinetics_s": 9.99000999000999e-07,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66733.33333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.939706534293352e-06,
+    "decoupled_shortcut_dT_K": 3.939706534293352e-06,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "B_r1e-01": {
+    "host": "B",
+    "r": 0.1,
+    "tau_kinetics_s": 9.09090909090909e-07,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 73333.33333333334,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 0.00035851329462069506,
+    "decoupled_shortcut_dT_K": 0.00035851329462069506,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "C_r1e-09": {
+    "host": "C",
+    "r": 1e-09,
+    "tau_kinetics_s": 0.000999999999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66.66666673333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.943646236884e-12,
+    "decoupled_shortcut_dT_K": 3.943646236884e-12,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "C_r1e-05": {
+    "host": "C",
+    "r": 1e-05,
+    "tau_kinetics_s": 0.000999990000099999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66.66733333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.9436068047595984e-08,
+    "decoupled_shortcut_dT_K": 3.9436068047595984e-08,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "C_r1e-03": {
+    "host": "C",
+    "r": 0.001,
+    "tau_kinetics_s": 0.000999000999000999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66.73333333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.939706534293352e-06,
+    "decoupled_shortcut_dT_K": 3.939706534293352e-06,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "C_r1e-01": {
+    "host": "C",
+    "r": 0.1,
+    "tau_kinetics_s": 0.0009090909090909091,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 73.33333333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 0.00035851329462069506,
+    "decoupled_shortcut_dT_K": 0.00035851329462069506,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "D_r1e-09": {
+    "host": "D",
+    "r": 1e-09,
+    "tau_kinetics_s": 0.0999999999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 0.6666666673333334,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 1.890636236092263e-12,
+    "decoupled_shortcut_dT_K": 1.9189107488091168e-12,
+    "relative_difference": 0.01495502528571764,
+    "shortcut_validated_clean_pass_here": false
+   },
+   "D_r1e-05": {
+    "host": "D",
+    "r": 1e-05,
+    "tau_kinetics_s": 0.09999900000999991,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 0.6666733333333332,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 1.890630730331667e-08,
+    "decoupled_shortcut_dT_K": 1.9189050585192346e-08,
+    "relative_difference": 0.014954971234709269,
+    "shortcut_validated_clean_pass_here": false
+   },
+   "D_r1e-03": {
+    "host": "D",
+    "r": 0.001,
+    "tau_kinetics_s": 0.0999000999000999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 0.6673333333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 1.8900857174914065e-06,
+    "decoupled_shortcut_dT_K": 1.9183417814165036e-06,
+    "relative_difference": 0.014949620360392804,
+    "shortcut_validated_clean_pass_here": false
+   },
+   "D_r1e-01": {
+    "host": "D",
+    "r": 0.1,
+    "tau_kinetics_s": 0.09090909090909091,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 0.7333333333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 0.0001836686593588443,
+    "decoupled_shortcut_dT_K": 0.00018631745870320617,
+    "relative_difference": 0.014421618547270771,
+    "shortcut_validated_clean_pass_here": false
    }
   },
+  "host_c_coupled_kinetics_thermal_check": {
+   "C_r1e-09": {
+    "host": "C",
+    "r": 1e-09,
+    "tau_kinetics_s": 0.000999999999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66.66666673333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.943646236884e-12,
+    "decoupled_shortcut_dT_K": 3.943646236884e-12,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "C_r1e-05": {
+    "host": "C",
+    "r": 1e-05,
+    "tau_kinetics_s": 0.000999990000099999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66.66733333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.9436068047595984e-08,
+    "decoupled_shortcut_dT_K": 3.9436068047595984e-08,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "C_r1e-03": {
+    "host": "C",
+    "r": 0.001,
+    "tau_kinetics_s": 0.000999000999000999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 66.73333333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 3.939706534293352e-06,
+    "decoupled_shortcut_dT_K": 3.939706534293352e-06,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   },
+   "C_r1e-01": {
+    "host": "C",
+    "r": 0.1,
+    "tau_kinetics_s": 0.0009090909090909091,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 73.33333333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 0.00035851329462069506,
+    "decoupled_shortcut_dT_K": 0.00035851329462069506,
+    "relative_difference": 0.0,
+    "shortcut_validated_clean_pass_here": true
+   }
+  },
+  "host_d_coupled_kinetics_thermal_check": {
+   "D_r1e-09": {
+    "host": "D",
+    "r": 1e-09,
+    "tau_kinetics_s": 0.0999999999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 0.6666666673333334,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 1.890636236092263e-12,
+    "decoupled_shortcut_dT_K": 1.9189107488091168e-12,
+    "relative_difference": 0.01495502528571764,
+    "shortcut_validated_clean_pass_here": false
+   },
+   "D_r1e-05": {
+    "host": "D",
+    "r": 1e-05,
+    "tau_kinetics_s": 0.09999900000999991,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 0.6666733333333332,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 1.890630730331667e-08,
+    "decoupled_shortcut_dT_K": 1.9189050585192346e-08,
+    "relative_difference": 0.014954971234709269,
+    "shortcut_validated_clean_pass_here": false
+   },
+   "D_r1e-03": {
+    "host": "D",
+    "r": 0.001,
+    "tau_kinetics_s": 0.0999000999000999,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 0.6673333333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 1.8900857174914065e-06,
+    "decoupled_shortcut_dT_K": 1.9183417814165036e-06,
+    "relative_difference": 0.014949620360392804,
+    "shortcut_validated_clean_pass_here": false
+   },
+   "D_r1e-01": {
+    "host": "D",
+    "r": 0.1,
+    "tau_kinetics_s": 0.09090909090909091,
+    "tau_thermal_s": 0.001377222355355104,
+    "dwell_over_tau_kinetics": 0.7333333333333333,
+    "dwell_over_tau_thermal": 48.40661089143973,
+    "exact_coupled_dT_K": 0.0001836686593588443,
+    "decoupled_shortcut_dT_K": 0.00018631745870320617,
+    "relative_difference": 0.014421618547270771,
+    "shortcut_validated_clean_pass_here": false
+   }
+  },
+  "max_relative_difference_all_hosts": 0.01495502528571764,
+  "max_relative_difference_point": "D_r1e-09",
+  "coupled_check_scope_note": "The decoupled shortcut is validated (relative difference <=1e-2, the pre-registered clean-pass band) at every point for Hosts A/B/C. Host D does NOT clear this band at any of its 4 ratio points (relative difference ~1.44-1.50%, just outside the 1e-2 band though far inside the 1e-1 hard-falsification threshold) -- Host D's own tau_kinetics (~0.1s at k_r=10) is comparable to the dwell itself (0.0667s), so it never reaches even its OWN tau_kinetics-set equilibrium within one dwell, a fundamentally different (and more informative) regime than Host C's comfortable-clearance result. Changes NOTHING about the UNDETECTABLE verdict (Host D's corrected vs. reported dT differ by ~1.5%, both ~10 orders of magnitude below NETD) but means 'validated at this specific dwell' should be read as scoped to Hosts A/B/C specifically, not all 16 points uniformly (mandatory fix 3, Red Team's own Phase-5 computation).",
+  "host_c_t22_corrected_tau_thermal_check": {
+   "r1e-09": {
+    "factor_2.9": {
+     "tau_thermal_corrected_s": 0.003993944830529801,
+     "dwell_over_tau_thermal_corrected": 16.691934790151635,
+     "relative_difference_corrected": 7.51524474879384e-08
+    },
+    "factor_3.0": {
+     "tau_thermal_corrected_s": 0.004131667066065312,
+     "dwell_over_tau_thermal_corrected": 16.135536963813244,
+     "relative_difference_corrected": 1.2965077696701951e-07
+    }
+   },
+   "r1e-05": {
+    "factor_2.9": {
+     "tau_thermal_corrected_s": 0.003993944830529801,
+     "dwell_over_tau_thermal_corrected": 16.691934790151635,
+     "relative_difference_corrected": 7.515219649714905e-08
+    },
+    "factor_3.0": {
+     "tau_thermal_corrected_s": 0.004131667066065312,
+     "dwell_over_tau_thermal_corrected": 16.135536963813244,
+     "relative_difference_corrected": 1.2965036300589553e-07
+    }
+   },
+   "r1e-03": {
+    "factor_2.9": {
+     "tau_thermal_corrected_s": 0.003993944830529801,
+     "dwell_over_tau_thermal_corrected": 16.691934790151635,
+     "relative_difference_corrected": 7.512737960912248e-08
+    },
+    "factor_3.0": {
+     "tau_thermal_corrected_s": 0.004131667066065312,
+     "dwell_over_tau_thermal_corrected": 16.135536963813244,
+     "relative_difference_corrected": 1.2960943158044366e-07
+    }
+   },
+   "r1e-01": {
+    "factor_2.9": {
+     "tau_thermal_corrected_s": 0.003993944830529801,
+     "dwell_over_tau_thermal_corrected": 16.691934790151635,
+     "relative_difference_corrected": 7.29377425965563e-08
+    },
+    "factor_3.0": {
+     "tau_thermal_corrected_s": 0.004131667066065312,
+     "dwell_over_tau_thermal_corrected": 16.135536963813244,
+     "relative_difference_corrected": 1.2599331930611247e-07
+    }
+   }
+  },
+  "t22_correction_note": "mandatory fix 2 (Phase-5, EM's load-bearing catch): steady_state_delta_T (dt_ss_full, the reference ceiling) is PROVEN area-invariant -- algebraically verified, the iso_xsec_sq area cancels exactly between p_abs_w and dp_dt. tau_thermal_s is NOT area-invariant -- it scales LINEARLY with the iso_xsec_sq area (T22, unchanged by this cycle). Applying T22's own established 2.9-3.0x inflation factor to tau_thermal_s drops dwell_over_tau_thermal from 48.4x to 16.1-16.7x -- BELOW N_TRANSIENT_TAU=25, the convergence bar P-IT21-A3's original 'comfortably past 25x' framing leaned on -- and gives a real, nonzero Host-C relative difference of ~7.3e-8 to 1.3e-7 -- five orders of magnitude inside the 1e-2 pass band, so the qualitative shortcut-is-valid conclusion survives, but the as-first-reported '0.00e+00' framing (computed against the UNCORRECTED tau_thermal_s) should not be read as proof the area convention is irrelevant to this check -- only that it doesn't change the verdict at Host C specifically. See host_c_t22_corrected_tau_thermal_check.",
   "reference_ceiling_dT_ss_full_K": 0.0039436462408276455,
-  "reference_ceiling_note": "reused verbatim from exp-043 (n=1 full switch), NOT re-derived this cycle",
+  "reference_ceiling_note": "reused verbatim from exp-043 (n=1 full switch), NOT re-derived this cycle. PROVEN area-invariant (steady_state_delta_T only -- see t22_correction_note for the tau_thermal_s distinction).",
   "thermal_tau_s": 0.001377222355355104,
   "dwell_central_s": 0.06666666666666667,
   "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number.",
@@ -503,6 +829,7 @@
   "max_reading_b_vs_netd_lo_ratio": 55.785936812078006,
   "all_16_points_undetectable_reading_b": true,
   "min_reading_a_over_b_ratio_at_PUBLISHED_tier": 1001.0,
+  "single_cold_started_dwell_scope_note": "mandatory fix 7 (Phase-5, QUANTUM's catch): n_at_dwell is computed from a SINGLE cold-started (n0=0) relax_exact call -- one fresh dwell, not exp-043's own disclosed dwell-uncertainty range, and NOT a repeated-sweep/dose-accumulation scenario. lab/kinetics.py::pulse_train_segments exists, validated, and is unused this cycle. This matters specifically for Host D: exp-038 (Iteration 15, LOGBOOK.md T17/REALIZABILITY_MEMO.md Amendment 3) already found Hosts D and E are the only two hosts (of a 25-point grid) showing measurable sweep-to-sweep population memory under a stress-case inter-pulse interval -- Host D is this cycle's own reported minimum-dT point. This cycle shows the thermal ceiling stays UNDETECTABLE for a SINGLE fresh exposure; it does NOT show this for repeated sweeps or standing ambient forcing, the regime exp-038's own prior data flags as Host-D-relevant. Queued, not answered, Iteration 22.",
   "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
  },
  "block_b_realizability_memo_amendment4": {

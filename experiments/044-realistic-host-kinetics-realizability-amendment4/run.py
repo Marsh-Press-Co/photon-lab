@@ -174,30 +174,75 @@ def main():
                     "show quantitatively how badly exp-043's own convention "
                     "would have overstated DeltaT at low n_ss (ratio column)."),
                 "netd_disclaimer": NETD_DISCLAIMER,
+                # mandatory fix 4 (Phase-5, THERMO+VISION): propagated to
+                # every grid point, not just block scope, matching the
+                # netd_disclaimer's own already-complete propagation.
+                "h_conv_known_correction_note": H_CONV_KNOWN_CORRECTION_NOTE,
             }
             key = f"{host}_r{r:.0e}"
             grid[key] = point
 
-    # Host C coupled kinetics-thermal ODE check (mandatory fix 3): does the
-    # decoupled two-stage shortcut (reading b) match the EXACT coupled
-    # solution at this specific dwell, given Host C's tau_kinetics sits
-    # within ~30% of tau_thermal (an order-1 ratio, the regime T22 flagged
-    # as unvalidated in general)?
-    host_c_coupled_check = {}
+    # Coupled kinetics-thermal ODE check, ALL FOUR HOSTS (mandatory fix 3,
+    # extended per Red Team's own Phase-5 audit): does the decoupled
+    # two-stage shortcut (reading b) match the EXACT coupled solution at
+    # this specific dwell? Originally scoped to Host C alone (tau_kinetics
+    # within ~30% of tau_thermal, an order-1 ratio); Red Team's Phase-5
+    # audit ran it for ALL hosts and found Host D -- NOT Host C -- is the
+    # one host whose own dwell/tau_kinetics fails to clear even 1x (Host D
+    # never reaches its own tau_kinetics-set equilibrium within the dwell,
+    # a fundamentally different regime from Host C's comfortable-clearance
+    # tautology). Both are reported; corrected T22 tau_thermal is applied
+    # to the Host-C leg per mandatory fix 2 (below).
+    coupled_check = {}
+    for host, k_r in HOSTS:
+        for r in RATIOS:
+            k_f = r * k_r
+            exact = coupled_kinetics_thermal_dT(k_f, k_r, dt_ss_full, tau_thermal_s, dwell_central)
+            decoupled = grid[f"{host}_r{r:.0e}"]["reading_b_SCORED_dT_K"]
+            rel_diff = abs(exact - decoupled) / exact if exact > 0 else 0.0
+            coupled_check[f"{host}_r{r:.0e}"] = {
+                "host": host, "r": r,
+                "tau_kinetics_s": 1.0 / (k_f + k_r), "tau_thermal_s": tau_thermal_s,
+                "dwell_over_tau_kinetics": dwell_central / (1.0 / (k_f + k_r)),
+                "dwell_over_tau_thermal": dwell_central / tau_thermal_s,
+                "exact_coupled_dT_K": exact,
+                "decoupled_shortcut_dT_K": decoupled,
+                "relative_difference": rel_diff,
+                "shortcut_validated_clean_pass_here": rel_diff <= 1e-2,
+            }
+    host_c_coupled_check = {k: v for k, v in coupled_check.items() if v["host"] == "C"}
+    host_d_coupled_check = {k: v for k, v in coupled_check.items() if v["host"] == "D"}
+    max_rel_diff_all_hosts = max(v["relative_difference"] for v in coupled_check.values())
+    max_rel_diff_key = max(coupled_check, key=lambda k: coupled_check[k]["relative_difference"])
+
+    # mandatory fix 2 (Phase-5, EM's load-bearing catch, Red Team-confirmed
+    # and quantified): the T22 idealization sentence in the ORIGINAL
+    # Phase-3 synthesis claimed Block A's numbers "do not depend on, and
+    # will not rescale under, a future T22 area-convention revision" --
+    # TRUE for steady_state_delta_T (dt_ss_full, algebraically
+    # area-invariant, verified) but FALSE for tau_thermal_s, which scales
+    # LINEARLY with the iso_xsec_sq area and feeds the coupled-ODE check
+    # directly -- contradicting LOGBOOK's own T22 entry ("live, not inert,
+    # for tau_thermal"). Reported here: applying T22's own established
+    # 2.9-3.0x iso_xsec_sq inflation factor to tau_thermal_s and re-running
+    # Host C's coupled check.
+    T22_AREA_INFLATION_FACTOR_RANGE = (2.9, 3.0)
+    host_c_t22_corrected = {}
     for r in RATIOS:
         k_r = 1e3
         k_f = r * k_r
-        exact = coupled_kinetics_thermal_dT(k_f, k_r, dt_ss_full, tau_thermal_s, dwell_central)
-        decoupled = grid[f"C_r{r:.0e}"]["reading_b_SCORED_dT_K"]
-        rel_diff = abs(exact - decoupled) / exact if exact > 0 else 0.0
-        host_c_coupled_check[f"r{r:.0e}"] = {
-            "tau_kinetics_s": 1.0 / (k_f + k_r), "tau_thermal_s": tau_thermal_s,
-            "tau_ratio_kinetics_over_thermal": (1.0 / (k_f + k_r)) / tau_thermal_s,
-            "exact_coupled_dT_K": exact,
-            "decoupled_shortcut_dT_K": decoupled,
-            "relative_difference": rel_diff,
-            "shortcut_validated_here": rel_diff <= 1e-6,
-        }
+        row = {}
+        for factor in T22_AREA_INFLATION_FACTOR_RANGE:
+            tau_th_corrected = tau_thermal_s * factor
+            exact_corrected = coupled_kinetics_thermal_dT(k_f, k_r, dt_ss_full, tau_th_corrected, dwell_central)
+            decoupled = grid[f"C_r{r:.0e}"]["reading_b_SCORED_dT_K"]
+            rel_diff_corrected = abs(exact_corrected - decoupled) / exact_corrected if exact_corrected > 0 else 0.0
+            row[f"factor_{factor}"] = {
+                "tau_thermal_corrected_s": tau_th_corrected,
+                "dwell_over_tau_thermal_corrected": dwell_central / tau_th_corrected,
+                "relative_difference_corrected": rel_diff_corrected,
+            }
+        host_c_t22_corrected[f"r{r:.0e}"] = row
 
     # Predicted-band checks (P-MAT21-A1..A7, as re-scoped by Red Team's
     # mandatory fixes -- reading (b) is now the ONLY scored reading for
@@ -216,9 +261,49 @@ def main():
 
     block_a = {
         "grid": grid,
+        "coupled_kinetics_thermal_check_ALL_HOSTS": coupled_check,
         "host_c_coupled_kinetics_thermal_check": host_c_coupled_check,
+        "host_d_coupled_kinetics_thermal_check": host_d_coupled_check,
+        "max_relative_difference_all_hosts": max_rel_diff_all_hosts,
+        "max_relative_difference_point": max_rel_diff_key,
+        "coupled_check_scope_note": (
+            "The decoupled shortcut is validated (relative difference <=1e-2, "
+            "the pre-registered clean-pass band) at every point for Hosts "
+            "A/B/C. Host D does NOT clear this band at any of its 4 ratio "
+            "points (relative difference ~1.44-1.50%, just outside the 1e-2 "
+            "band though far inside the 1e-1 hard-falsification threshold) "
+            "-- Host D's own tau_kinetics (~0.1s at k_r=10) is comparable to "
+            "the dwell itself (0.0667s), so it never reaches even its OWN "
+            "tau_kinetics-set equilibrium within one dwell, a fundamentally "
+            "different (and more informative) regime than Host C's "
+            "comfortable-clearance result. Changes NOTHING about the "
+            "UNDETECTABLE verdict (Host D's corrected vs. reported dT differ "
+            "by ~1.5%, both ~10 orders of magnitude below NETD) but means "
+            "'validated at this specific dwell' should be read as scoped to "
+            "Hosts A/B/C specifically, not all 16 points uniformly "
+            "(mandatory fix 3, Red Team's own Phase-5 computation)."),
+        "host_c_t22_corrected_tau_thermal_check": host_c_t22_corrected,
+        "t22_correction_note": (
+            "mandatory fix 2 (Phase-5, EM's load-bearing catch): "
+            "steady_state_delta_T (dt_ss_full, the reference ceiling) is "
+            "PROVEN area-invariant -- algebraically verified, the "
+            "iso_xsec_sq area cancels exactly between p_abs_w and dp_dt. "
+            "tau_thermal_s is NOT area-invariant -- it scales LINEARLY with "
+            "the iso_xsec_sq area (T22, unchanged by this cycle). Applying "
+            "T22's own established 2.9-3.0x inflation factor to "
+            "tau_thermal_s drops dwell_over_tau_thermal from 48.4x to "
+            "16.1-16.7x -- BELOW N_TRANSIENT_TAU=25, the convergence bar "
+            "P-IT21-A3's original 'comfortably past 25x' framing leaned on "
+            "-- and gives a real, nonzero Host-C relative difference of "
+            "~7.3e-8 to 1.3e-7 -- five orders of magnitude inside the 1e-2 "
+            "pass band, so the qualitative shortcut-is-valid conclusion "
+            "survives, but the as-first-reported '0.00e+00' framing "
+            "(computed against the UNCORRECTED tau_thermal_s) should not be "
+            "read as proof the area convention is irrelevant to this check "
+            "-- only that it doesn't change the verdict at Host C "
+            "specifically. See host_c_t22_corrected_tau_thermal_check."),
         "reference_ceiling_dT_ss_full_K": dt_ss_full,
-        "reference_ceiling_note": "reused verbatim from exp-043 (n=1 full switch), NOT re-derived this cycle",
+        "reference_ceiling_note": "reused verbatim from exp-043 (n=1 full switch), NOT re-derived this cycle. PROVEN area-invariant (steady_state_delta_T only -- see t22_correction_note for the tau_thermal_s distinction).",
         "thermal_tau_s": tau_thermal_s,
         "dwell_central_s": dwell_central,
         "h_conv_known_correction_note": H_CONV_KNOWN_CORRECTION_NOTE,
@@ -227,6 +312,23 @@ def main():
         "max_reading_b_vs_netd_lo_ratio": NETD_BAND_K[0] / max_dT_b,
         "all_16_points_undetectable_reading_b": all_undetectable_b,
         "min_reading_a_over_b_ratio_at_PUBLISHED_tier": a_vs_b_min_ratio_published,
+        "single_cold_started_dwell_scope_note": (
+            "mandatory fix 7 (Phase-5, QUANTUM's catch): n_at_dwell is "
+            "computed from a SINGLE cold-started (n0=0) relax_exact call -- "
+            "one fresh dwell, not exp-043's own disclosed dwell-uncertainty "
+            "range, and NOT a repeated-sweep/dose-accumulation scenario. "
+            "lab/kinetics.py::pulse_train_segments exists, validated, and "
+            "is unused this cycle. This matters specifically for Host D: "
+            "exp-038 (Iteration 15, LOGBOOK.md T17/REALIZABILITY_MEMO.md "
+            "Amendment 3) already found Hosts D and E are the only two "
+            "hosts (of a 25-point grid) showing measurable sweep-to-sweep "
+            "population memory under a stress-case inter-pulse interval -- "
+            "Host D is this cycle's own reported minimum-dT point. This "
+            "cycle shows the thermal ceiling stays UNDETECTABLE for a "
+            "SINGLE fresh exposure; it does NOT show this for repeated "
+            "sweeps or standing ambient forcing, the regime exp-038's own "
+            "prior data flags as Host-D-relevant. Queued, not answered, "
+            "Iteration 22."),
         "netd_disclaimer": NETD_DISCLAIMER,
     }
 
@@ -369,17 +471,24 @@ def main():
     print(f"  max reading-(b) dT across 16 pts: {max_dT_b:.3e} K at {max_dT_b_key} "
           f"({NETD_BAND_K[0]/max_dT_b:.1f}x below netd_lo={NETD_BAND_K[0]}K)")
     print(f"  all 16 points UNDETECTABLE (reading b, scored): {all_undetectable_b}")
-    print(f"  Host C coupled-ODE check (exact vs decoupled shortcut):")
-    for k, v in host_c_coupled_check.items():
+    # mandatory fix 5 (Phase-5, VISION's catch): disclaimer co-located with
+    # the classification lines immediately above, not printed after Blocks
+    # B/C's own unrelated output.
+    print(f"  NOTE: {NETD_DISCLAIMER}")
+    print(f"  {H_CONV_KNOWN_CORRECTION_NOTE}")
+    print(f"  Coupled kinetics-thermal ODE check, Hosts C and D (exact vs decoupled shortcut):")
+    for k, v in {**host_c_coupled_check, **host_d_coupled_check}.items():
         print(f"    {k}: exact={v['exact_coupled_dT_K']:.6e} K  decoupled={v['decoupled_shortcut_dT_K']:.6e} K  "
-              f"rel_diff={v['relative_difference']:.2e}  validated={v['shortcut_validated_here']}")
+              f"rel_diff={v['relative_difference']:.2e}  clean_pass(<=1e-2)={v['shortcut_validated_clean_pass_here']}")
+    print(f"  Host C, T22-corrected tau_thermal (2.9-3.0x iso_xsec_sq inflation): "
+          f"relative_difference ~7.3e-8-1.3e-7 (see host_c_t22_corrected_tau_thermal_check) -- "
+          f"real and nonzero, still far inside the 1e-2 pass band")
     print(f"Block B: RSA ratio(central)={rsa_ratio_central:.1f}x, TPA OOM(central)="
           f"[{tpa_oom_central_lo:.1f},{tpa_oom_central_hi:.1f}], "
           f"50yd={fifty_yards_m:.2f}m vs carried {witness_distance_m_carried}m ({distance_rel_diff:.1%})")
     print(f"Block C: per-lambda ratio 450/600/750 = "
           f"{per_lambda_ratio['450']['ratio']:.4f}/{per_lambda_ratio['600']['ratio']:.4f}/"
           f"{per_lambda_ratio['750']['ratio']:.4f}, spread={spread_rel_pct:.2f}% relative")
-    print(f"\nNOTE: {NETD_DISCLAIMER}")
     print("results.json written")
 
 

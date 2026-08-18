@@ -109,6 +109,56 @@ additional evidentiary pillar for the UNOBTANIUM verdict. No other class in
 Amendment 2's table has had this axis checked; this remains a single-class,
 single-mechanism finding.
 
+**AMENDMENT 4 (Iteration 21, exp-044, MATERIALS' Phase-1 proposal +
+Red Team's Phase-5 audit — a same-shift correction, not a deferred one:
+Phase 5 found this memo file itself had NOT been amended despite exp-044's
+own directory name and results claiming to deliver it, ruled a
+Checkpoint-4-conditional defect and fixed in this same close).** Triggered
+by exp-043's own newly-sourced witness irradiance (Iteration 20, docket
+#7): the first time this program has ever had a SOURCED, not assumed,
+flashlight-at-witness-volume irradiance figure to check the RSA/TPA rows
+against. Central value 6.58×10⁻⁶ W/cm², range [1.10×10⁻⁶, 4.41×10⁻⁵]
+W/cm² — **~46× below** the unsourced "~10⁻³ W/cm²" placeholder Amendment
+2's table (below) was built against.
+
+- **RSA row REVERSES SIGN, not just shrinks.** Amendment 2's table reads
+  "Clears, one subclass at ~10⁻⁴ W/cm², below witness estimate." Checked
+  against the real, sourced figure (exp-044, Block B): the subclass's own
+  1×10⁻⁴ W/cm² onset (Hirata et al., *Nat. Mater.* 13, 938 (2014)) now
+  sits **15.2× ABOVE** the sourced witness central irradiance, and **2.27×
+  above even the high end** of the full witness uncertainty range — the
+  onset no longer clears at any point in the sourced range, reversed from
+  the original (unsourced-irradiance) framing. Does **not** change the
+  RSA tier: per Iteration-20's own Phase-2 finding (MATERIALS), RSA's
+  UNOBTANIUM-WITH-PARAMETERS verdict is dynamic-range-bound (D_req≈540–
+  600× short) and irradiance-independent — this correction removes RSA's
+  one irradiance-side "at least it clears" footnote, it does not change
+  which bound actually governs the verdict.
+- **TPA OOM gap WIDENS**, as MATERIALS' own Iteration-20 Phase-2 reasoning
+  predicted before this cycle ran: recomputed at the sourced central
+  irradiance against the same broad 10⁶–10⁹ W/cm² comparator range
+  Amendment 2's table used, the gap is **11.2–14.2 OOM**, not the
+  original 9–11 (later corrected to "9–12," see Amendment 2's own text
+  above). TPA's tier is unchanged (UNOBTANIUM-WITH-PARAMETERS) — this
+  sharpens the magnitude, it was already decisive.
+- **New, previously unconnected**: the 45m witness distance this memo's
+  own irradiance chain has carried unsourced since Iteration 20 matches
+  the founding witness statement's own figure almost exactly — "stopping
+  about 50 yards away" (`README.md`) = 45.72m, 1.6% from the carried
+  45.0m. Still an eyewitness estimate, not a metered figure; this connects
+  two numbers already in this program's own record, it does not newly
+  source either independently.
+
+**Net effect on this memo's verdicts: none move.** Both corrections push
+in the direction this memo's own standing UNOBTANIUM-WITH-PARAMETERS
+tiers already point — RSA loses its one irradiance-side footnote, TPA's
+already-decisive gap widens further. No class in Amendment 2's table
+changes tier. The evidentiary-tier limitation named there (WebSearch-
+snippet synthesis, not primary-source-verified — T18, now a ninth
+consecutive shift confirmation of the WebFetch block) is unchanged and
+still the binding reason this memo has not escalated to a Checkpoint
+criterion 2 finding.
+
 ## What the bench has established (this program's own numbers, cited)
 
 The T1 escape route this program has instrumented — intensity-gated
