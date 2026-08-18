@@ -1,0 +1,579 @@
+{
+ "meta": {
+  "elapsed_s": 0.0,
+  "n_new_fdtd_calls": 0,
+  "trust_suite_stage": "reuses stages 12/14/15, no new stage this cycle"
+ },
+ "block_a_realistic_host_kinetics_gate": {
+  "grid": {
+   "A_r1e-09": {
+    "host": "A",
+    "k_f": 1.0,
+    "k_r": 1000000000.0,
+    "r": 1e-09,
+    "n_ss": 9.99999999e-10,
+    "tau_kinetics_s": 9.99999999e-10,
+    "n_at_dwell": 9.99999999e-10,
+    "dwell_over_tau_kinetics": 66666666.73333334,
+    "tier": "PUBLISHED",
+    "reading_b_SCORED_dT_K": 3.943646236883999e-12,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.943646236883999e-12,
+     "raw_delta_t_k": 3.943646236883999e-12,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 1000000001.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "A_r1e-05": {
+    "host": "A",
+    "k_f": 10000.0,
+    "k_r": 1000000000.0,
+    "r": 1e-05,
+    "n_ss": 9.99990000099999e-06,
+    "tau_kinetics_s": 9.99990000099999e-10,
+    "n_at_dwell": 9.99990000099999e-06,
+    "dwell_over_tau_kinetics": 66667333.33333333,
+    "tier": "PUBLISHED",
+    "reading_b_SCORED_dT_K": 3.9436068047595984e-08,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.9436068047595984e-08,
+     "raw_delta_t_k": 3.9436068047595984e-08,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 100000.99999999999,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "A_r1e-03": {
+    "host": "A",
+    "k_f": 1000000.0,
+    "k_r": 1000000000.0,
+    "r": 0.001,
+    "n_ss": 0.000999000999000999,
+    "tau_kinetics_s": 9.99000999000999e-10,
+    "n_at_dwell": 0.000999000999000999,
+    "dwell_over_tau_kinetics": 66733333.333333336,
+    "tier": "PUBLISHED",
+    "reading_b_SCORED_dT_K": 3.939706534293352e-06,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.939706534293352e-06,
+     "raw_delta_t_k": 3.939706534293352e-06,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 1001.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "A_r1e-01": {
+    "host": "A",
+    "k_f": 100000000.0,
+    "k_r": 1000000000.0,
+    "r": 0.1,
+    "n_ss": 0.09090909090909091,
+    "tau_kinetics_s": 9.090909090909091e-10,
+    "n_at_dwell": 0.09090909090909091,
+    "dwell_over_tau_kinetics": 73333333.33333333,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 0.00035851329462069506,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 0.00035851329462069506,
+     "raw_delta_t_k": 0.00035851329462069506,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 11.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "B_r1e-09": {
+    "host": "B",
+    "k_f": 0.001,
+    "k_r": 1000000.0,
+    "r": 1e-09,
+    "n_ss": 9.99999999e-10,
+    "tau_kinetics_s": 9.99999999e-07,
+    "n_at_dwell": 9.99999999e-10,
+    "dwell_over_tau_kinetics": 66666.66673333333,
+    "tier": "PUBLISHED",
+    "reading_b_SCORED_dT_K": 3.943646236883999e-12,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.943646236883999e-12,
+     "raw_delta_t_k": 3.943646236883999e-12,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 1000000001.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "B_r1e-05": {
+    "host": "B",
+    "k_f": 10.0,
+    "k_r": 1000000.0,
+    "r": 1e-05,
+    "n_ss": 9.99990000099999e-06,
+    "tau_kinetics_s": 9.99990000099999e-07,
+    "n_at_dwell": 9.99990000099999e-06,
+    "dwell_over_tau_kinetics": 66667.33333333334,
+    "tier": "PUBLISHED",
+    "reading_b_SCORED_dT_K": 3.9436068047595984e-08,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.9436068047595984e-08,
+     "raw_delta_t_k": 3.9436068047595984e-08,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 100000.99999999999,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "B_r1e-03": {
+    "host": "B",
+    "k_f": 1000.0,
+    "k_r": 1000000.0,
+    "r": 0.001,
+    "n_ss": 0.000999000999000999,
+    "tau_kinetics_s": 9.99000999000999e-07,
+    "n_at_dwell": 0.000999000999000999,
+    "dwell_over_tau_kinetics": 66733.33333333333,
+    "tier": "PUBLISHED",
+    "reading_b_SCORED_dT_K": 3.939706534293352e-06,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.939706534293352e-06,
+     "raw_delta_t_k": 3.939706534293352e-06,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 1001.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "B_r1e-01": {
+    "host": "B",
+    "k_f": 100000.0,
+    "k_r": 1000000.0,
+    "r": 0.1,
+    "n_ss": 0.09090909090909091,
+    "tau_kinetics_s": 9.09090909090909e-07,
+    "n_at_dwell": 0.09090909090909091,
+    "dwell_over_tau_kinetics": 73333.33333333334,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 0.00035851329462069506,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 0.00035851329462069506,
+     "raw_delta_t_k": 0.00035851329462069506,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 11.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "C_r1e-09": {
+    "host": "C",
+    "k_f": 1.0000000000000002e-06,
+    "k_r": 1000.0,
+    "r": 1e-09,
+    "n_ss": 9.999999990000001e-10,
+    "tau_kinetics_s": 0.000999999999,
+    "n_at_dwell": 9.999999990000001e-10,
+    "dwell_over_tau_kinetics": 66.66666673333333,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 3.943646236884e-12,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.943646236884e-12,
+     "raw_delta_t_k": 3.943646236884e-12,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 1000000000.9999998,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "C_r1e-05": {
+    "host": "C",
+    "k_f": 0.01,
+    "k_r": 1000.0,
+    "r": 1e-05,
+    "n_ss": 9.99990000099999e-06,
+    "tau_kinetics_s": 0.000999990000099999,
+    "n_at_dwell": 9.99990000099999e-06,
+    "dwell_over_tau_kinetics": 66.66733333333333,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 3.9436068047595984e-08,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.9436068047595984e-08,
+     "raw_delta_t_k": 3.9436068047595984e-08,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 100000.99999999999,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "C_r1e-03": {
+    "host": "C",
+    "k_f": 1.0,
+    "k_r": 1000.0,
+    "r": 0.001,
+    "n_ss": 0.000999000999000999,
+    "tau_kinetics_s": 0.000999000999000999,
+    "n_at_dwell": 0.000999000999000999,
+    "dwell_over_tau_kinetics": 66.73333333333333,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 3.939706534293352e-06,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 3.939706534293352e-06,
+     "raw_delta_t_k": 3.939706534293352e-06,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 1001.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "C_r1e-01": {
+    "host": "C",
+    "k_f": 100.0,
+    "k_r": 1000.0,
+    "r": 0.1,
+    "n_ss": 0.09090909090909091,
+    "tau_kinetics_s": 0.0009090909090909091,
+    "n_at_dwell": 0.09090909090909091,
+    "dwell_over_tau_kinetics": 73.33333333333333,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 0.00035851329462069506,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 0.00035851329462069506,
+     "raw_delta_t_k": 0.00035851329462069506,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0039436462408276455,
+    "reading_a_vs_b_ratio": 11.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "D_r1e-09": {
+    "host": "D",
+    "k_f": 1e-08,
+    "k_r": 10.0,
+    "r": 1e-09,
+    "n_ss": 9.99999999e-10,
+    "tau_kinetics_s": 0.0999999999,
+    "n_at_dwell": 4.865828808231031e-10,
+    "dwell_over_tau_kinetics": 0.6666666673333334,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 1.9189107488091168e-12,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 1.9189107488091168e-12,
+     "raw_delta_t_k": 1.9189107488091168e-12,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0019189107507280277,
+    "reading_a_vs_b_ratio": 1000000001.0000001,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "D_r1e-05": {
+    "host": "D",
+    "k_f": 0.0001,
+    "k_r": 10.0,
+    "r": 1e-05,
+    "n_ss": 9.99990000099999e-06,
+    "tau_kinetics_s": 0.09999900000999991,
+    "n_at_dwell": 4.865814379224131e-06,
+    "dwell_over_tau_kinetics": 0.6666733333333332,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 1.9189050585192346e-08,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 1.9189050585192346e-08,
+     "raw_delta_t_k": 1.9189050585192346e-08,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0019189242475698197,
+    "reading_a_vs_b_ratio": 100001.0,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "D_r1e-03": {
+    "host": "D",
+    "k_f": 0.01,
+    "k_r": 10.0,
+    "r": 0.001,
+    "n_ss": 0.000999000999000999,
+    "tau_kinetics_s": 0.0999000999000999,
+    "n_at_dwell": 0.00048643860637304656,
+    "dwell_over_tau_kinetics": 0.6673333333333333,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 1.9183417814165036e-06,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 1.9183417814165036e-06,
+     "raw_delta_t_k": 1.9183417814165036e-06,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0019202601231979204,
+    "reading_a_vs_b_ratio": 1001.0000000000001,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   },
+   "D_r1e-01": {
+    "host": "D",
+    "k_f": 1.0,
+    "k_r": 10.0,
+    "r": 0.1,
+    "n_ss": 0.09090909090909091,
+    "tau_kinetics_s": 0.09090909090909091,
+    "n_at_dwell": 0.04724497262820006,
+    "dwell_over_tau_kinetics": 0.7333333333333333,
+    "tier": "PLAUSIBLE",
+    "reading_b_SCORED_dT_K": 0.00018631745870320617,
+    "reading_b_netd": {
+     "classification": "UNDETECTABLE",
+     "effective_delta_t_k": 0.00018631745870320617,
+     "raw_delta_t_k": 0.00018631745870320617,
+     "netd_band_k": [
+      0.02,
+      0.05
+     ],
+     "fill_factor": 1.0,
+     "emissivity_correction": 1.0,
+     "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "reading_a_ARTIFACT_ONLY_dT_K": 0.0020494920457352676,
+    "reading_a_vs_b_ratio": 10.999999999999998,
+    "reading_a_disclaimer": "ARTIFACT, not a physical reading -- Red Team's Iteration-21 closed-form solve proves this expression (ceiling * n_at_dwell/n_ss) solves no stated physical model on this grid except the unreached edge case n_ss=1; kept ONLY to show quantitatively how badly exp-043's own convention would have overstated DeltaT at low n_ss (ratio column).",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+   }
+  },
+  "host_c_coupled_kinetics_thermal_check": {
+   "r1e-09": {
+    "tau_kinetics_s": 0.000999999999,
+    "tau_thermal_s": 0.001377222355355104,
+    "tau_ratio_kinetics_over_thermal": 0.7260991626454969,
+    "exact_coupled_dT_K": 3.943646236884e-12,
+    "decoupled_shortcut_dT_K": 3.943646236884e-12,
+    "relative_difference": 0.0,
+    "shortcut_validated_here": true
+   },
+   "r1e-05": {
+    "tau_kinetics_s": 0.000999990000099999,
+    "tau_thermal_s": 0.001377222355355104,
+    "tau_ratio_kinetics_over_thermal": 0.7260919024525716,
+    "exact_coupled_dT_K": 3.9436068047595984e-08,
+    "decoupled_shortcut_dT_K": 3.9436068047595984e-08,
+    "relative_difference": 0.0,
+    "shortcut_validated_here": true
+   },
+   "r1e-03": {
+    "tau_kinetics_s": 0.000999000999000999,
+    "tau_thermal_s": 0.001377222355355104,
+    "tau_ratio_kinetics_over_thermal": 0.725373789582014,
+    "exact_coupled_dT_K": 3.939706534293352e-06,
+    "decoupled_shortcut_dT_K": 3.939706534293352e-06,
+    "relative_difference": 0.0,
+    "shortcut_validated_here": true
+   },
+   "r1e-01": {
+    "tau_kinetics_s": 0.0009090909090909091,
+    "tau_thermal_s": 0.001377222355355104,
+    "tau_ratio_kinetics_over_thermal": 0.6600901485196328,
+    "exact_coupled_dT_K": 0.00035851329462069506,
+    "decoupled_shortcut_dT_K": 0.00035851329462069506,
+    "relative_difference": 0.0,
+    "shortcut_validated_here": true
+   }
+  },
+  "reference_ceiling_dT_ss_full_K": 0.0039436462408276455,
+  "reference_ceiling_note": "reused verbatim from exp-043 (n=1 full switch), NOT re-derived this cycle",
+  "thermal_tau_s": 0.001377222355355104,
+  "dwell_central_s": 0.06666666666666667,
+  "h_conv_known_correction_note": "h_conv=5.0 W/(m^2K) (macroscopic natural convection) is KNOWN, not merely suspected, to be ~2000x too small at this object's micron scale (correct regime: gas-phase conduction, h_eff~=k_air/r_out~=11,000 W/(m^2K) -- THERMODYNAMICS' own Iteration-20 Phase-5 finding, reused here per Red Team's Iteration-21 mandatory fix 4, NOT re-derived this cycle -- see Iteration-21 priority #2, still deferred). Correcting h_conv alone would drop every steady-state DeltaT in this results.json by roughly 3 orders of magnitude -- every UNDETECTABLE classification below is conservative (an upper bound on DeltaT), not a converged number.",
+  "max_reading_b_dT_K": 0.00035851329462069506,
+  "max_reading_b_point": "A_r1e-01",
+  "max_reading_b_vs_netd_lo_ratio": 55.785936812078006,
+  "all_16_points_undetectable_reading_b": true,
+  "min_reading_a_over_b_ratio_at_PUBLISHED_tier": 1001.0,
+  "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict."
+ },
+ "block_b_realizability_memo_amendment4": {
+  "rsa_subclass_reversal": {
+   "subclass_onset_w_cm2": 0.0001,
+   "source": "Hirata et al., Nat. Mater. 13, 938 (2014) -- long-triplet RSA, exp-036 citation",
+   "old_framing": "10^-4 W/cm^2 -- below the ~10^-3 W/cm^2 UNSOURCED witness estimate (exp-036)",
+   "witness_irr_central_w_cm2": 6.584362139917695e-06,
+   "witness_irr_range_w_cm2": [
+    1.0973809523809524e-06,
+    4.413777777777778e-05
+   ],
+   "ratio_onset_over_witness_central": 15.187500000000002,
+   "ratio_onset_over_witness_hi": 2.2656328667807877,
+   "finding": "REVERSED, not confirmed: the subclass's own 1e-04 W/cm^2 onset now sits 15.2x ABOVE the newly-sourced witness central irradiance (6.584e-06 W/cm^2), and 2.27x above even the HIGH end of the full witness uncertainty range -- the entire range never touches or falls below the subclass onset. Tier UNCHANGED (UNOBTANIUM-WITH-PARAMETERS -- dynamic range alone is already decisive, irradiance-independent per Iteration-20's own Phase-2 finding), but the specific 'clears, even below witness estimate' claim in exp-036/REALIZABILITY_MEMO.md is stale and reverses sign."
+  },
+  "tpa_oom_recompute": {
+   "tpa_range_w_cm2": [
+    1000000.0,
+    1000000000.0
+   ],
+   "source": "Sheik-Bahae/Van Stryland; He et al. 1995 -- exp-037 citation",
+   "old_oom_range": "9-12 OOM (using the old ~10^-3 W/cm^2 placeholder)",
+   "witness_irr_central_w_cm2": 6.584362139917695e-06,
+   "new_oom_range_central": [
+    11.181486290942388,
+    14.181486290942388
+   ],
+   "finding": "RECOMPUTED: 11.2-14.2 OOM at the witness central irradiance (vs the original 9-12 OOM) -- the gap WIDENS under the corrected, lower witness irradiance, as MATERIALS' Phase-1 predicted and Red Team independently confirmed arithmetically clean."
+  },
+  "witness_distance_cross_reference": {
+   "carried_unsourced_m": 45.0,
+   "founding_statement_source": "README.md: 'stopping about 50 yards away'",
+   "fifty_yards_in_m": 45.72,
+   "relative_difference": 0.015999999999999976,
+   "finding": "CONFIRMED as a genuine match: 50 yards = 45.72m, 1.6% from the 45.0m this program has carried unsourced since exp-043 -- never previously connected to the founding witness statement's own distance figure. Still an eyewitness estimate, not a metered figure -- this connects two numbers, it does not newly source either one independently."
+  }
+ },
+ "block_c_3lambda_achromatic_check": {
+  "source": "experiments/026-sigma-i-endpoints/results.json::beam_scene (already-committed 3-lambda sweep, exp-026, never previously read for sigma_abs/sigma_ext flatness)",
+  "per_lambda_ratio": {
+   "450": {
+    "sigma_abs": 144.27281232047517,
+    "sigma_ext": 238.21939142154164,
+    "ratio": 0.6056300096291359
+   },
+   "600": {
+    "sigma_abs": 143.34578418968587,
+    "sigma_ext": 235.96673494878587,
+    "ratio": 0.6074830175566805
+   },
+   "750": {
+    "sigma_abs": 146.6878663715478,
+    "sigma_ext": 241.12657897715502,
+    "ratio": 0.6083438291779747
+   }
+  },
+  "spread_percentage_points": 0.27138195488387584,
+  "spread_relative_percent": 0.44673175552360994,
+  "finding": "The exp-026/043 ON-endpoint article's OWN sigma_abs/sigma_ext ratio, as actually measured (not assumed), is essentially wavelength-flat across this program's 3-lambda sweep: 0.6056 / 0.6075 / 0.6083 at 450/600/750nm -- spread 0.27 percentage points (0.45% relative). This CONFIRMS the bench article's own 'achromatic by construction' idealization (T1's sigma(I) formalism: eps_r=1, non-dispersive sigma) is self-consistent as MEASURED, not merely asserted -- PHOTONICS' Iteration-20/21 concern about applying a single-lambda number as if broadband-representative is answered for THIS bench idealization specifically.",
+  "scope_caveat": "Does NOT resolve the deeper, separate question T18/REALIZABILITY_MEMO.md already raises: whether a REAL physical sigma(I) mechanism achieving this dynamic range (RSA/TPA/etc) would ITSELF be this broadband. This bench article is an idealized scalar sigma_e bump by construction, not a real material's dispersive nonlinearity -- the 0.45% flatness measured here is a property of the SIMULATION'S idealization, confirmed self-consistent, not evidence a real narrowband mechanism (T18's own finding) would match it. PHOTONICS' concern is substantially, not fully, addressed."
+ },
+ "netd_disclaimer_ALL_CLAIMS": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's mandatory fix, exp-043 Red Team attack 7, reconfirmed exp-044 Red Team mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+ "predictions_scorecard": {
+  "P-IT21-A1_dynamic_range": "CONFIRMED",
+  "P-IT21-A2_all_undetectable": "CONFIRMED",
+  "P-IT21-A3_host_c_coupled_check": "CONFIRMED",
+  "P-IT21-A4_reading_a_is_artifact": "CONFIRMED",
+  "P-IT21-B1_rsa_reversal": "CONFIRMED",
+  "P-IT21-B2_tpa_oom": "CONFIRMED",
+  "P-IT21-B3_distance_crossref": "CONFIRMED",
+  "P-IT21-C1_achromatic_flatness": "CONFIRMED"
+ }
+}

@@ -240,3 +240,61 @@ by this cycle).
 
 Predictions committed to git in this same commit, before Block A/B/C's
 `run.py` is executed (house discipline, non-negotiable).
+
+## PHASE 4 — TEST (run 2026-08-18)
+
+Bench reverified 41/41 (no `lab/` change this cycle). Zero new FDTD calls,
+<1s. Results committed alongside this section.
+
+**Block A** (16-point grid, reading b scored): min ΔT = 1.919×10⁻¹² K
+(Host D, r=1e-9 — the slowest-kinetics host, not Host A/B as first
+guessed by hand, because Host D's own τ_kinetics≈0.1s is comparable to
+the 66.7ms dwell, so it never fully relaxes even toward its own tiny
+n_ss); max ΔT = 3.585×10⁻⁴ K (Hosts A/B/C all converge to
+near-identical values at r=1e-1, effectively a three-way tie — Host C's
+own point edges out A's by floating-point noise, not a real difference).
+**P-IT21-A1 CONFIRMED** (min inside [1e-13,1e-11]K, max inside
+[3e-4,4.5e-4]K). **P-IT21-A2 CONFIRMED**: all 16 points UNDETECTABLE,
+worst-case margin 55.8× below netd_lo — **NETD is an instrument/detector
+threshold, not a human perceptual one; this does NOT bear on
+constraint-3/4's human-eye verdict.** **P-IT21-A3 CONFIRMED, exceeded**:
+Host C's exact coupled-ODE solution and the decoupled shortcut agree to
+0.00e+00 relative difference at every one of the 4 points (displayed
+precision) — the intermediate-regime concern (τ_kinetics/τ_thermal≈
+0.66–0.73) does not translate into any measurable endpoint discrepancy AT
+THIS DWELL, because dwell clears both time constants by ≳45×, far past
+the codebase's own 25× convergence bar. **This is a resolution, not a
+dismissal, of the T22-flagged concern** — the shortcut is validated at
+this specific dwell, not proven valid in general for any future
+shorter-dwell scenario. **P-IT21-A4 CONFIRMED**: reading (a) exceeds
+reading (b) by exactly 1001× at the tightest PUBLISHED-tier point (r=1e-3,
+Hosts A/B) and by up to 10⁹× at r=1e-9 — Red Team's "solves no physical
+model" characterization holds quantitatively, not just qualitatively.
+
+**Block B**: RSA onset/witness-central = 15.2× [predicted 13–17],
+onset/witness-hi = 2.27× [predicted 1.8–2.6] — **P-IT21-B1 CONFIRMED**.
+TPA OOM central range [11.2, 14.2] [predicted 10.0–15.0] — **P-IT21-B2
+CONFIRMED**, widened from the original 9–12 as MATERIALS' Phase-1
+reasoning predicted. 50 yards = 45.72m, 1.6% from the carried 45.0m
+[predicted ≤3%] — **P-IT21-B3 CONFIRMED**.
+
+**Block C**: per-λ ratio 0.6056/0.6075/0.6083 at 450/600/750nm, spread
+0.271 percentage points / 0.447% relative [predicted ≤1.5%] — **P-IT21-C1
+CONFIRMED**.
+
+**Full predictions scorecard: 8 of 8 CONFIRMED** (`results.json::
+predictions_scorecard`) — unusually clean, but honestly explainable
+rather than suspicious: every Block A/B number was already independently
+re-derived by hand by at least two of the five Phase-2 seats plus Red
+Team before this run, so Phase 4 mostly re-confirms closed-form
+arithmetic already checked three ways, not a fresh empirical surprise.
+
+**Explicit disposition on items not touched this cycle** (house
+discipline — state a deferral, don't let it go silent): Iteration-21
+priority #2 (THERMO's h_conv/mass_kg re-derivation) and #3 (EM's
+geometric-disk-vs-`iso_xsec_sq` table entry, T22) remain deferred, exactly
+as scoped at Phase 1/3 — this cycle's Block A caveat states the KNOWN
+direction of #2's correction but does not apply it. T21's contamination-
+risk question and QUANTUM's aperture-consistent beam check
+(Iteration-19/20 carryovers) are untouched this cycle, not silently
+dropped.
