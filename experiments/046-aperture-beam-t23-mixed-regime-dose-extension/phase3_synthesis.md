@@ -38,6 +38,24 @@ survived Red Team's audit in a form that contradicts it.*
 
 ## Director's own call on item 24
 
+> **PHASE-5 ERRATUM (p5 docket 4) — flag, don't rewrite. The paragraph below
+> is left exactly as committed; the rule it states is SUPERSEDED and is not
+> the one to carry.** VISION SCIENCE's V3 found, and Red Team confirmed, that
+> this rendering quietly *weakened* the constraint it advertised as hardened:
+> (a) the carve-out "or with an explicit renewed-deferral reason that itself
+> survives a Phase-2 Red Team audit" re-admits precisely the device its
+> sibling (Iteration 22's aperture-check rule) forecloses — and Iteration 23's
+> own deferral *was* such a reason (Phase-2 docket item 24: "I do not contest
+> the deferral"), so **the behaviour that tripped the tripwire satisfies it**;
+> (b) the sibling rule's clause "and no further one-cycle extensions via
+> prose" is silently dropped; (c) "mirroring the aperture-check rule's own
+> wording exactly" is **false**. The carve-out is struck, the dropped clause
+> restored, the false mirroring claim struck, and VISION's disambiguating
+> sentence added. **The single canonical rendering is in `NOTES.md` ("The
+> item-24 hardened rule — ONE rendering") and, verbatim as a string, in
+> `results.json`'s `phase5_erratum.item_24_hardened_rule`.** That is the text
+> to carry to LOGBOOK's Iteration-23 close.
+
 Red Team is right that carrying the VISION Tier-W sidecar tripwire in prose
 ("recommended as Iteration 24 Tier-1 #1") repeats the exact soft-form
 mechanism this program closed for its sibling item (the aperture check) at

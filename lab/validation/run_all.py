@@ -1206,8 +1206,9 @@ def stage16_oblique_gaussian_source():
     GUARD_OUT=185 / W_FLANK=78), hardcoded here with citation rather than
     imported, so the suite never depends on an experiment directory.
 
-    Four gates, four 1400-step FDTD runs (~90 s -- an opt-in stage like the
-    heavy stage 5, NOT part of the fast `--only 12346789` default):
+    Five gates, four 1400-step FDTD runs (~90 s -- an opt-in stage like the
+    heavy stage 5, NOT part of the fast `--only 12346789` default). Gate (b2)
+    is desk-only and adds no FDTD cost:
 
       a. FREE-SPACE DIVERGENCE IDENTITY (theta=0, width=40): the 1/e^2
          half-width of `ambient.observer_profile` at three planes reproduces
@@ -1217,11 +1218,30 @@ def stage16_oblique_gaussian_source():
          domain's usable x-span (223 cells ~ 0.89 z_R) cannot reach the true
          far field, so a direct far-field-FWHM gate is not honestly available.
       b. POINTING IDENTITY (theta=40deg, width=40): the interpolated beam
-         centre at PLANE_X sits within 8% of the beam's own half-width of the
-         EXACT non-paraxial angular-spectrum centre. AMENDED ON FIRST LIGHT --
-         as proposed this gate scored against ray optics (979.12) to +/-2
-         cells and failed at 992.09; the target, not the engine, is what broke.
-         Full reasoning at the gate itself.
+         centre at PLANE_X sits within 1.5% of the beam's own half-width of
+         the EXACT non-paraxial angular-spectrum centre FOR THIS ENGINE'S
+         ACTUAL SOURCE MODEL (impressed line current, flux reduction).
+         AMENDED ON FIRST LIGHT -- as proposed this gate scored against ray
+         optics (979.12) to +/-2 cells and failed at 992.09; the target, not
+         the engine, is what broke. REPOINTED AT PHASE 5 (Red Team docket
+         item 1, Panel Iteration 23): the first-light amendment's comparator
+         was itself physically wrong -- a prescribed-aperture-FIELD model
+         reduced with |E|^2, where this engine impresses a line CURRENT and
+         `ambient.observer_profile` reads a FLUX. Full reasoning, both
+         obliquity factors, and the mandatory independent second derivation
+         at the gate itself.
+      b2. CORRECTED-COMPARATOR ACCEPTANCE TEST (desk-only, zero FDTD): the
+         corrected angular-spectrum comparator must reproduce an INDEPENDENT
+         second derivation of the same quantity by a different route -- a
+         real-space Rayleigh-Sommerfeld/Huygens sum with the obliquity on H
+         (exp-042's own committed `_G0_for` + `field_and_h` recipe,
+         re-derived here from geometry so the suite stays free of any
+         experiment directory). Red Team measured 991.675 vs 991.645 (0.030
+         cells) and 91.587 vs 91.576 half-width; gate <=0.1 cells on both.
+         This gate exists because docket item 20 makes a post-freeze change
+         to a gate's TARGET a physics change requiring an independent second
+         derivation before it is committed. This is that derivation, wired in
+         so it cannot silently rot.
       c. ABSOLUTE REGRESSION ANCHOR (theta=+40deg, profile="plane"): the
          legacy tapered-top-hat path still reproduces exp-041 Block MAIN's
          committed C_empty(+40deg, 600nm) = -0.010964794540566314. Stated as a
@@ -1296,59 +1316,143 @@ def stage16_oblique_gaussian_source():
 
     # --- gate b: pointing identity (theta = 40 deg, same width)
     #
-    # GATE AMENDED ON FIRST LIGHT (exp-046 Phase 4, recorded here and in
-    # VALIDATION.md -- the same first-run amendment convention stages 6, 7, 8
-    # and 10 each carry in their own docstrings). As proposed at Phase 1 this
-    # gate scored the beam centre against RAY OPTICS, y_c + D_SP*tan(theta0)
-    # = 979.12, to +/-2 cells. First light failed it: measured 992.09.
+    # GATE AMENDED ON FIRST LIGHT (exp-046 Phase 4), then REPOINTED AT PHASE 5
+    # (Red Team docket item 1, Panel Iteration 23). Both steps recorded here
+    # and in VALIDATION.md, neither hidden.
     #
-    # The failure is in the TARGET, not the engine, and that is demonstrable
-    # without the engine. Ray optics assumes the paraxial mapping k_y = k*theta.
-    # This gate's own width=40 emits a 14.0deg FWHM, where k_y = k*sin(theta)
-    # is measurably nonlinear and the propagated profile skews toward +y. Exact
-    # NON-PARAXIAL angular-spectrum propagation of the same aperture (below --
-    # k_x = sqrt(k^2-k_y^2), evanescent clipped, no FDTD involved) puts the
-    # 1/e^2 midpoint at 987.14, i.e. +8.0 cells from the ray-optics target: the
-    # pre-registered target sits outside its own band before any solver runs.
+    # As proposed at Phase 1 this gate scored the beam centre against RAY
+    # OPTICS, y_c + D_SP*tan(theta0) = 979.12, to +/-2 cells. First light
+    # failed it: measured 992.09. The failure is in the TARGET, not the engine
+    # -- ray optics assumes the paraxial mapping k_y = k*theta, and this gate's
+    # own width=40 emits a 14.0deg FWHM where k_y = k*sin(theta) is measurably
+    # nonlinear. That much stands.
     #
-    # The amendment therefore scores the engine against the exact propagation
-    # instead of against ray optics, in units of the beam's own width (a
-    # pointing error is only meaningful relative to how wide the beam is), and
-    # keeps the ray-optics comparison as an [info] line so the original
-    # question is still visible. Measured on first light: 5.4% of the half-width
-    # at width=40 and 2.8% at width=56.063; the bar is set at 8%, margin above
-    # the measured value, per stage 10's own calibration convention.
+    # But the first-light amendment's replacement comparator was ALSO wrong,
+    # and wrong in a way this program has adjudicated three times before
+    # (LOGBOOK T21, Iteration 19: "obliquity entering flux ONCE, via H, not
+    # squared via E"). It propagated exp(-(y/w)^2)exp(i k sin(theta0) y) as a
+    # prescribed APERTURE FIELD and reduced it with |E|^2. Neither factor is
+    # what this bench does:
+    #
+    #   * `lab/fdtd2d.py:232-237` adds `env*sin(w n - phase)*profile` to Ez
+    #     every step -- an impressed line CURRENT sheet J_z, not a prescribed
+    #     field. The radiated angular spectrum therefore carries an extra
+    #     1/k_x: E~(k_y) ~ J~(k_y)/k_x (2-D line-current Green's function).
+    #   * `lab/ambient.py:36-39` -> `lab/sections.py:79-88`: observer_profile
+    #     = -flux_profile_x = +0.5*Re(E_z conj(H_y)) -- a FLUX, which carries
+    #     +k_x/k once, via H, for each plane-wave component. Not |E|^2.
+    #
+    # The two missing obliquities point in OPPOSITE directions and do not
+    # cancel. Measured (Red Team's own `rt_s16b.py`, reproduced by this
+    # function): field/|E|^2 987.144 · field/flux 983.035 · current/|E|^2
+    # 996.748 · current/flux (correct) 991.675; FDTD 992.093.
+    #
+    # Consequences of the wrong comparator, both real and both fixed here:
+    #   * the engine's true pointing accuracy is 0.418 cells = 0.459% of the
+    #     beam half-width, not the 5.4% the 8% bar was calibrated against --
+    #     the bar was ~17x too loose and a ~7-cell pointing regression would
+    #     have passed;
+    #   * at Block A's own extreme cell (width=28.03, FWHM=20deg, theta0=40deg)
+    #     the shipped comparator reads 994.223 against an FDTD 1005.549 --
+    #     9.38% against an 8% bar, i.e. the gate would FAIL and blame a solver
+    #     whose true error there is 0.38%. A gate that mis-fires inside the
+    #     block it certifies is not a gate.
+    #
+    # Repointed to the current/flux comparator and RE-BARRED at <=1.5% of the
+    # beam half-width (measured 0.459%, 3x margin, stage 10's own calibration
+    # convention). The ray-optics reading and the PEAK-estimator comparison --
+    # a stationary-phase ray is what ray optics actually predicts, and under a
+    # peak estimator the exact/FDTD/ray-optics spread is only ~2.6 cells, not
+    # 13 -- are kept as [info] lines so the original question stays visible.
     # exp-046's own run.py scores the ORIGINAL, unamended gate and records it
     # as FAILED -- the pre-registered prediction is not retro-fitted there.
     def exact_center(width, theta, lam, z, n_fft=1 << 20, span=6.0e4):
+        """EXACT non-paraxial propagation of THIS ENGINE'S ACTUAL SOURCE.
+
+        Impressed line current (spectrum divided by k_x) propagated with
+        exp(i k_x z), evanescent components clipped, reduced as the flux
+        Sx = Re(E conj(H)) with H = F^-1[(k_x/k) E~] -- i.e. exactly the pair
+        (`fdtd2d.add_line_source`, `ambient.observer_profile`) the FDTD number
+        it is compared against comes from. Returns (centre, 1/e^2 half-width,
+        peak position), centre and peak in absolute cell coordinates."""
         k = 2.0 * np.pi / lam
         y = (np.arange(n_fft) - n_fft // 2) * (span / n_fft)
         e0 = np.exp(-((y / width) ** 2)) * np.exp(1j * k * np.sin(np.radians(theta)) * y)
         ky = 2.0 * np.pi * np.fft.fftfreq(n_fft, d=span / n_fft)
         kx2 = k * k - ky * ky
-        prop = np.where(kx2 > 0, np.exp(1j * np.sqrt(np.maximum(kx2, 0.0)) * z), 0.0)
-        inten = np.abs(np.fft.ifft(np.fft.fft(e0) * prop)) ** 2
+        ok = kx2 > 0
+        kx = np.sqrt(np.maximum(kx2, 0.0))
+        a = np.where(ok, np.fft.fft(e0) / np.where(ok, kx, 1.0), 0.0)   # line CURRENT
+        a = a * np.where(ok, np.exp(1j * kx * z), 0.0)
+        e = np.fft.ifft(a)
+        h = np.fft.ifft(a * np.where(ok, kx / k, 0.0))                  # obliquity on H
+        inten = np.real(e * np.conj(h))                                 # a FLUX
         ip = int(np.argmax(inten))
         thr = inten[ip] / np.e ** 2
         r = ip + int(np.argmax(inten[ip:] < thr))
         l = ip - int(np.argmax(inten[:ip + 1][::-1] < thr))
         itp = lambda i0, i1: y[i0] + (thr - inten[i0]) * (y[i1] - y[i0]) / (inten[i1] - inten[i0])
         hi, lo = itp(r - 1, r), itp(l + 1, l)
-        return 0.5 * (hi + lo) + OBJ_Y16, 0.5 * (hi - lo)
+        return 0.5 * (hi + lo) + OBJ_Y16, 0.5 * (hi - lo), float(y[ip]) + OBJ_Y16
+
+    def huygens_center(width, theta, lam):
+        """INDEPENDENT SECOND DERIVATION of the same quantity, different route
+        (docket item 20's standing rule, applied to the change that item 1
+        makes). Real-space Rayleigh-Sommerfeld/Huygens sum over the source
+        line -- G0[i,j] = exp(i(k r - pi/4))/sqrt(r) for E, the same kernel
+        weighted by the obliquity cos(psi) = D_SP/r for H, reduced as
+        Sx = -Re(E conj(H)). This is exp-042's own committed `_G0_for` +
+        `field_and_h` recipe (042/design_geometry.py:237-266), re-derived here
+        from the geometry constants so the suite depends on no experiment
+        directory. No FFT, no angular spectrum, no shared code with
+        `exact_center` -- if the two agree the comparator is not carrying a
+        convention error, which is precisely what went wrong before."""
+        y_src = np.arange(AB16, NY16 - AB16, dtype=float)
+        dy = y_src[:, None] - y_src[None, :]
+        rr = np.sqrt(D_SP16 ** 2 + dy ** 2)
+        k = 2.0 * np.pi / lam
+        g0 = np.exp(1j * (k * rr - np.pi / 4)) / np.sqrt(rr)
+        yy = y_src - OBJ_Y16
+        src = np.exp(-((yy / width) ** 2)) * np.exp(1j * k * np.sin(np.radians(theta)) * yy)
+        e = g0 @ src
+        h = (g0 * (D_SP16 / rr)) @ src
+        b = -np.real(e * np.conj(h))
+        if b.mean() < 0.0:                 # global sign convention only; weber-invariant
+            b = -b
+        hw, ctr = half_width_1e2(b, AB16)
+        return ctr, hw
 
     ph_b = run16(W0_A, 40.0)
     prof_b = amb.observer_profile(ph_b, PLANE_X16, AB16, NY16 - AB16)
     hw_b, ctr_b = half_width_1e2(prof_b, AB16)
+    ip_b = int(np.argmax(np.asarray(prof_b, dtype=float)))
+    peak_b = float(AB16 + ip_b)
     ray_ctr = OBJ_Y16 + D_SP16 * np.tan(np.radians(40.0))
-    exact_ctr, exact_hw = exact_center(W0_A, 40.0, CPL16, D_SP16)
+    exact_ctr, exact_hw, exact_peak = exact_center(W0_A, 40.0, CPL16, D_SP16)
     print(f"  [info] stage16 · beam centre: FDTD {ctr_b:.2f} | exact angular spectrum "
-          f"{exact_ctr:.2f} | ray optics {ray_ctr:.2f} (gate amended on first light — "
-          f"the ray-optics target is {exact_ctr - ray_ctr:+.1f} cells off the exact "
-          f"one at this 14.0° divergence; see docstring)")
+          f"(line current + flux, the engine's own model) {exact_ctr:.2f} | ray optics "
+          f"{ray_ctr:.2f} — the ray-optics target is {exact_ctr - ray_ctr:+.1f} cells off "
+          f"the exact one at this 14.0° divergence; see docstring")
+    print(f"  [info] stage16 · PEAK estimator (what a stationary-phase ray actually "
+          f"predicts): exact {exact_peak:.2f} | FDTD peak cell {peak_b:.1f} | ray optics "
+          f"{ray_ctr:.2f} — {exact_peak - ray_ctr:+.2f} cells, i.e. ~2.6 cells of the "
+          f"13-cell 1/e² discrepancy is genuine non-paraxial target error and the rest "
+          f"is estimator/skew mismatch (Red Team docket item 1)")
     off_b = abs(ctr_b - exact_ctr) / hw_b
-    check("gauss-source", "oblique beam centre vs EXACT angular spectrum (fraction of beam half-width)",
-          f"{off_b:.2%} ({abs(ctr_b - exact_ctr):.2f} of {hw_b:.2f} cells)",
-          off_b <= 0.08, "<=8%")
+    check("gauss-source", "oblique beam centre vs EXACT angular spectrum, line-current/flux "
+          "model (fraction of beam half-width)",
+          f"{off_b:.2%} ({abs(ctr_b - exact_ctr):.3f} of {hw_b:.2f} cells)",
+          off_b <= 0.015, "<=1.5%")
+
+    # --- gate b2: the corrected comparator vs an independent second derivation
+    huy_ctr, huy_hw = huygens_center(W0_A, 40.0, CPL16)
+    d_ctr, d_hw = abs(exact_ctr - huy_ctr), abs(exact_hw - huy_hw)
+    print(f"  [info] stage16 · comparator cross-derivation: angular spectrum "
+          f"{exact_ctr:.3f}/{exact_hw:.3f} vs real-space Huygens {huy_ctr:.3f}/{huy_hw:.3f} "
+          f"(Red Team measured 991.675/91.587 vs 991.645/91.576)")
+    check("gauss-source", "corrected comparator reproduces an INDEPENDENT second derivation "
+          "(real-space Huygens, obliquity on H) — centre and half-width",
+          f"{d_ctr:.3f} / {d_hw:.3f} cells", d_ctr <= 0.1 and d_hw <= 0.1, "<=0.1 cells")
 
     # --- gate c: absolute regression anchor on the legacy plane path
     ph_c = run16(None, 40.0, profile="plane")

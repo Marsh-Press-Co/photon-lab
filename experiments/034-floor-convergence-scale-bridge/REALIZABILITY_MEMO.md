@@ -222,6 +222,27 @@ dilute vapour/aerosol host — so the claim that the thermal time constant is
 "decided by the conduction length alone" is wrong as stated: it is
 `ρ C_P L²/(4εσT³L + k_air)`, and the `ρ C_P` half is the unsourced half.
 
+**(b) — VALIDITY CONDITION APPENDED, Iteration 23 Phase-5 close, Red Team's
+Phase-5 docket item 15 (THERMODYNAMICS' finding, adopted).** *A fill factor
+below unity also lowers κ_eff, raising `Bi = k_air/κ_eff` toward unity
+(**0.25 / 0.75 / 0.97** at φ = 0.5 / 0.1 / 0.01 under Maxwell–Garnett,
+`κ_eff = k_air(1+2φ)/(1−φ)`) and invalidating the lumped single-τ model the
+sensitivity row's own numbers come from; the ΔT classification is unaffected
+(internal gradients make the radiating surface cooler, not warmer), the
+`τ_thermal` numbers are.* Recorded here because this memo's fill-factor
+disclosure above is one of the three loci that carry it (the others are
+exp-046's `NOTES.md` idealization 7 and `results.json`'s
+`fill_factor_disclosure.validity_conditions`, where `biot_number` and
+`knudsen_number` are now stored per sensitivity row under the stated mixing
+rule). **No verdict in Amendment 2's table moves**, and no UNDETECTABLE
+classification is threatened — the worst case, computed: ε → 0 moves the
+mixed regime's NETD margin 607.33× → 607.05×, a 1.000463× inflation, because
+the radiative channel is **0.0463%** of dP/dT (MATERIALS' "~4×" estimate is
+wrong by ~4 orders, in the safe direction; its conclusion holds a fortiori).
+What this *does* move is **T23**, whose entire content is a `τ_thermal`
+question: a `τ_thermal` that is not a well-defined single number is a worse
+problem for T23 than the length-scale ambiguity T23 was opened to settle.
+
 **Net effect on this memo's verdicts: none move.** (a) supplies a
 mechanism for an Amendment-3 finding and narrows it further (memory is a
 dwell/lifetime ratio, not a material property); (b) weakens the evidentiary

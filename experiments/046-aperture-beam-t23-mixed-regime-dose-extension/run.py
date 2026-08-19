@@ -127,10 +127,90 @@ NETD_DISCLAIMER = (
     "(VISION SCIENCE's standing mandatory fix; exp-043 Red Team attack 7, "
     "exp-044 fix 6, exp-045 fix 6, exp-046 docket item 20/21). This "
     "classification does NOT bear on constraint-3/4's human-eye verdict, and "
-    "no 'eye-invisible' claim is made anywhere in this cycle [docket 20].")
+    "no 'eye-invisible' claim is made in any committed result of this cycle "
+    "[docket 20; wording corrected at Phase 5, p5 docket item 3 -- see "
+    "phase5_erratum.phase1_proposal_superseded_banner].")
 C_THR_COMMENT = ("VISION's T2 photopic C_thr -- context only, this leg scores "
                  "no perceptual pass/fail")   # verbatim from 042/run.py:41 [docket 5]
 SILICON_PROVENANCE = "ASSUMED -- provenance terminates unsourced (T18)"  # [docket 18]
+
+# ---------------------------------------------------------------------------
+# PHASE-5 MANDATORY-FIX DOCKET (phase5_redteam_audit.md section 8), applied in
+# the same shift as the audit that raised it. Tier-0 items 1-5 are
+# checkpoint-criterion-4-conditional; Tier-1 items 6-20 are mandatory same
+# shift by this program's established convention. Every [p5 docket N] marker
+# below is one of them.
+# ---------------------------------------------------------------------------
+
+# [p5 docket 4] The item-24 hardened rule, in ONE rendering. This string is the
+# single source of truth: it is written to results.json, propagated verbatim to
+# NOTES.md, and is the text to carry to LOGBOOK's Iteration-23 close.
+ITEM_24_HARDENED_RULE = (
+    "If Iteration 24 closes without VISION SCIENCE's glare/adaptation Tier-W "
+    "sidecar having been run (by any lead seat, sourced via "
+    "WebSearch-snippet-tier per the standing T18 adaptation), Checkpoint "
+    "criterion 4 fires automatically and immediately -- no further debate, no "
+    "seat vote, no Director discretion, and no further one-cycle extensions "
+    "via prose. A Phase-2 Red Team audit blessing a renewed deferral does NOT "
+    "satisfy this rule: Iteration 23's own deferral was Red-Team-blessed, and "
+    "that is what tripped it.")
+ITEM_24_RULE_CORRECTION_NOTE = (
+    "[p5 docket 4] REPAIRED at Phase 5. As written at phase3_synthesis.md:47-53 "
+    "this rule (a) carried a carve-out -- 'or with an explicit renewed-deferral "
+    "reason that itself survives a Phase-2 Red Team audit' -- that re-admits "
+    "precisely the device its sibling (the Iteration-22 aperture-check rule) "
+    "forecloses, and which Iteration 23's own deferral already satisfies, so a "
+    "tripwire its own triggering event clears; (b) dropped the sibling rule's "
+    "'and no further one-cycle extensions via prose' clause; and (c) claimed to "
+    "be 'mirroring the aperture-check rule's own wording exactly', which was "
+    "false. The carve-out is STRUCK, the dropped clause RESTORED, the false "
+    "mirroring claim STRUCK, and VISION's disambiguating sentence added "
+    "verbatim. It also existed in three inconsistent renderings "
+    "(phase3_synthesis.md full text, a harder one-line form in NOTES.md, and a "
+    "contentless pointer in results.json); this key is now the ONE rendering, "
+    "and NOTES.md carries it verbatim.")
+
+# [p5 docket 20] Standing rule adopted from ELECTROMAGNETISM, hardened by Red
+# Team. Recorded here because the change item 1 makes to stage 16 is exactly
+# the class of change it governs -- and the acceptance gate 16b2 added this
+# shift IS the independent second derivation it demands.
+POST_FREEZE_GATE_TARGET_RULE = (
+    "STANDING RULE (Iteration 23 Phase-5 close, docket item 20): a post-freeze "
+    "change to a trust-suite gate's TARGET -- as opposed to its bar or its "
+    "reporting -- is a physics change and requires an INDEPENDENT SECOND "
+    "DERIVATION, from a different route, before it is committed. Shipping one "
+    "without that derivation fires Checkpoint criterion 4 automatically at the "
+    "next Phase 5 that finds it. Recorded alongside Iteration 19's own warning "
+    "that same-shift correction 'should not be read as establishing same-shift "
+    "correction is generally safe from criterion 4'. Iteration 23 shipped one "
+    "such change (stage-16 gate b's first-light amendment) WITHOUT a second "
+    "derivation, and it was wrong; the Phase-5 repoint carries one, wired into "
+    "the suite as gate 16b2 so it cannot silently rot.")
+
+# [p5 docket 19] New live thread, for LOGBOOK propagation at close.
+ABSORB_SYSTEMATIC_NOTE = (
+    "NEW LIVE THREAD (Iteration 23 Phase-5 close, docket item 19): the C_empty "
+    "channel carries an uncharacterized absorbing-boundary systematic. Red "
+    "Team's own four new FDTD runs move ABSORB 40->60 at two legs: A-v4 "
+    "(750nm/38deg/FWHM2) moves by +0.0070 in C -- 1.39x VISION's own C_thr = "
+    "0.005 -- closing the gap to the desk propagator from 5.68% to 1.43%; A-v1 "
+    "(600nm/40deg/FWHM2) moves by -0.0022, widening the gap from 1.91% to "
+    "3.69%, i.e. AWAY from the desk value. Real at both legs, NOT a monotone "
+    "convergence. ELECTROMAGNETISM's headline ('the residual is mostly a "
+    "boundary artefact, and the desk propagator is better than credited') is "
+    "therefore CONFIRMED AT ONE LEG and NOT established as a general "
+    "explanation -- recorded as narrowed, not as 'the residual is explained'. "
+    "What IS established is a 0.002-0.007 ABSOLUTE systematic (0.4-1.4x the "
+    "perceptual threshold the whole T21 contamination question is scored "
+    "against) on ABSORB = 40 with SRC_X = 300 and PLANE_X = 77 -- inherited "
+    "unexamined by every T21/T16 reading since exp-041, including all 30 Block "
+    "MAIN rows T21's fringe mechanism was fitted to and every N9/N17 delta T16 "
+    "scores. Structurally the same debt T11 tracks for the box-ledger channel. "
+    "Iteration 24 design (Tier-2 item 4): sweep ABSORB with SRC_X moved clear "
+    "of the x-damping band so EM's ABSORB=80 confound does not recur, source "
+    "span held fixed, all 3 lambda, ~6-9 FDTD runs. NOT re-measured this "
+    "shift: the numbers above are Red Team's, cited as its measurement, "
+    "because this close is a fix-application shift with no new FDTD budget.")
 
 # ================================================================ Block A desk
 C_COEF = 2.0 * math.sqrt(2.0 * math.log(2.0)) / (2.0 * math.pi)   # 0.374781250... [docket 23]
@@ -144,6 +224,12 @@ OBJ_XY = (dg.OBJ_X, dg.OBJ_Y)                     # sponge-disk centre, exp-041'
 Y_REL = dg.Y_SRC - dg.OBJ_Y                       # source-cell offsets from the aperture centre
 PLATFORM = (f"python {sys.version.split()[0]} / numpy {np.__version__} / "
             f"{sys.platform}")                    # [docket 14] named reference platform
+
+
+def _wrap(text, width=74):
+    """Console wrapping for the long disposition strings [p5 docket 5]."""
+    import textwrap
+    return textwrap.wrap(text, width)
 
 
 def _weber_of(profile):
@@ -247,6 +333,123 @@ def beam_divergence_coherent_corrected(theta0_deg, fwhm_deg, lam_cells, n=41):
     return _weber_of(-np.real(e_tot * np.conj(h_tot)))
 
 
+def coherent_aperture_lobe_census(theta0_deg, fwhm_deg, lam_cells, n=41):
+    """[p5 docket 6] SCOPE the 'permanent T21 fact' before it enters LOGBOOK.
+
+    The identity `w_eff = w0/cos(theta0)` (P-TH23-A3) is a statement about the
+    effective aperture's CENTRAL LOBE. Red Team's Attack 2 replaced the
+    discrete sum `sum_i sqrt(w_i) exp(i k sin(theta_i) Y)` by an integral --
+    a Poisson-summation step, legitimate ONLY when the comb's replicas fall
+    outside the aperture. Attack 2 never checked whether they do; QUANTUM did,
+    and is right. Measured here, from the same `gaussian_angle_weights` the
+    production code uses:
+
+      * angular sample spacing d(theta) = 0.125*FWHM (n=41, half_width 2.5
+        FWHM), so replica spacing dY ~ lambda_cells/(cos(theta0)*d(theta_rad));
+      * at FWHM=20deg that lands INSIDE the 752-cell aperture half-span, and
+        the synthesised object is a three-lobe comb, not a single transverse
+        mode.
+
+    Returns per-cell: predicted and measured replica offset, replica
+    amplitude, and the intensity fraction outside +-3*w_line with and without
+    the real aperture taper P."""
+    k = 2.0 * np.pi / lam_cells
+    thetas, w = dg.gaussian_angle_weights(theta0_deg, fwhm_deg, n)
+    a = np.zeros(Y_REL.size, dtype=complex)
+    for th, wt in zip(thetas, w):
+        a = a + np.sqrt(wt) * np.exp(1j * k * np.sin(np.radians(th)) * Y_REL)
+    inten = np.abs(a) ** 2
+    inten_tap = np.abs(a * dg.P) ** 2
+    wl = w_line_cells(lam_cells, fwhm_deg, theta0_deg)
+    core = np.abs(Y_REL) <= 3.0 * wl
+    outside = np.where(~core)[0]
+    if outside.size:
+        j = int(outside[np.argmax(inten[outside])])
+        replica_y, replica_amp = float(Y_REL[j]), float(math.sqrt(inten[j] / inten.max()))
+    else:
+        replica_y, replica_amp = float("nan"), 0.0
+    d_theta_rad = math.radians(0.125 * fwhm_deg)
+    return {
+        "lambda_cells": lam_cells, "theta0_deg": theta0_deg, "fwhm_deg": fwhm_deg,
+        "w_line_cells": wl,
+        "angular_sample_spacing_deg": 0.125 * fwhm_deg,
+        "replica_spacing_predicted_cells":
+            lam_cells / (math.cos(math.radians(theta0_deg)) * d_theta_rad),
+        "replica_offset_measured_cells": replica_y,
+        "replica_amplitude": replica_amp,
+        "intensity_fraction_outside_3w_line_untapered":
+            float(inten[~core].sum() / inten.sum()),
+        "intensity_fraction_outside_3w_line_tapered":
+            float(inten_tap[~core].sum() / inten_tap.sum()),
+        "single_transverse_mode": bool(inten[~core].sum() / inten.sum() < 0.01),
+    }
+
+
+def a3_residual_closed_form(theta0_deg, fwhm_deg):
+    """[p5 docket 7] QUANTUM's ZERO-FREE-PARAMETER attribution for A3's
+    residual, replacing Red Team's own '(taper truncation)' parenthetical
+    (which Red Team retracts: at FWHM=20deg `w_line` is 21-35 cells inside a
+    752-cell half-aperture, i.e. truncation at 21-36 waists, e^-441, and
+    including the taper moves the lobe fraction only 67.1%->66.6%).
+
+        w_meas / w_line = 1 / sqrt(1 - 4 sigma_theta^2 tan^2(theta0))
+
+    It is the second-order term of the sin(theta) expansion about theta0:
+    sin(theta0+d) ~ sin(theta0) + cos(theta0)d - sin(theta0)d^2/2, whose
+    quadratic part broadens the synthesised Gaussian by exactly this factor.
+    sigma_theta = FWHM/2.3548 in radians, matching `gaussian_angle_weights`."""
+    sig = math.radians(fwhm_deg) / 2.3548
+    u = 4.0 * sig ** 2 * math.tan(math.radians(theta0_deg)) ** 2
+    return 100.0 * (1.0 / math.sqrt(1.0 - u) - 1.0)
+
+
+def a3_residual_cubic_phase(theta0_deg, fwhm_deg, lam_cells, n=41):
+    """[p5 docket 7] QUANTUM's accompanying finding: the synthesised mode is
+    slightly ABERRATED even in its core. Residual phase over |Y| <= w_line
+    after removing the best-fit linear ramp (the pointing term)."""
+    k = 2.0 * np.pi / lam_cells
+    thetas, w = dg.gaussian_angle_weights(theta0_deg, fwhm_deg, n)
+    a = np.zeros(Y_REL.size, dtype=complex)
+    for th, wt in zip(thetas, w):
+        a = a + np.sqrt(wt) * np.exp(1j * k * np.sin(np.radians(th)) * Y_REL)
+    ph = np.unwrap(np.angle(a * np.exp(-1j * k * np.sin(np.radians(theta0_deg)) * Y_REL)))
+    wl = w_line_cells(lam_cells, fwhm_deg, theta0_deg)
+    sel = np.abs(Y_REL) <= wl
+    coef = np.polyfit(Y_REL[sel], ph[sel], 1)
+    return float(np.abs(ph[sel] - np.polyval(coef, Y_REL[sel])).max())
+
+
+def angular_sampling_convergence(theta0_deg, fwhm_deg, lam_cells, n_lo=41, n_hi=401):
+    """[p5 docket 8] RESTORE P-TH23-A4's MECHANISM. A4 was dropped at Phase 3
+    on the premise 'there is no divergence to explain' -- its 5-20% magnitude
+    band was indeed falsified, but the 41-point angular-sampling aliasing it
+    named is REAL. `gaussian_angle_weights`'s n=41 has never had a convergence
+    check in this program's history, and it is the kernel that produced both
+    exp-042 columns Iterations 19-23 have argued over.
+
+    Measured in BOTH conventions: exp-042's own committed one (obliquity on E,
+    |E|^2 -- the one that actually produced the disputed columns, and the one
+    Red Team's `rt_nconv.py` measured), and this cycle's corrected one."""
+    def committed(n):
+        k, g = dg._G_for(lam_cells, True)
+        e = np.zeros(dg.Y_OBS.size, dtype=complex)
+        thetas, w = dg.gaussian_angle_weights(theta0_deg, fwhm_deg, n)
+        for th, wt in zip(thetas, w):
+            e = e + np.sqrt(wt) * (g @ dg._src_amp(th, k))
+        return _weber_of(np.abs(e) ** 2)
+
+    c_lo, c_hi = committed(n_lo), committed(n_hi)
+    k_lo = beam_divergence_coherent_corrected(theta0_deg, fwhm_deg, lam_cells, n=n_lo)
+    k_hi = beam_divergence_coherent_corrected(theta0_deg, fwhm_deg, lam_cells, n=n_hi)
+    return {
+        "n_lo": n_lo, "n_hi": n_hi,
+        "committed_convention_n_lo": c_lo, "committed_convention_n_hi": c_hi,
+        "committed_convention_rel_move_pct": 100.0 * abs(c_lo - c_hi) / abs(c_hi),
+        "corrected_convention_n_lo": k_lo, "corrected_convention_n_hi": k_hi,
+        "corrected_convention_rel_move_pct": 100.0 * abs(k_lo - k_hi) / abs(k_hi),
+    }
+
+
 def block_a_desk():
     with open(os.path.join(EXP042, "results.json")) as f:
         r042 = json.load(f)
@@ -278,6 +481,8 @@ def block_a_desk():
                 cc = committed_coherent[(lam_nm, th0, fw)]
                 ci = corrected_incoherent[(lam_nm, th0, fw)]
                 eff, eff_grid = coherent_effective_halfwidth(th0, fw, lam)
+                lobes = coherent_aperture_lobe_census(th0, fw, lam)      # [p5 docket 6]
+                nconv = angular_sampling_convergence(th0, fw, lam)       # [p5 docket 8]
                 cells.append({
                     "lambda_nm": lam_nm, "lambda_cells": lam, "theta0_deg": th0,
                     "fwhm_deg": fw, "w0_cells": w0, "w_line_cells": wl,
@@ -310,6 +515,14 @@ def block_a_desk():
                     "aimed_truncation_valid": rim_amp_aim <= 1.0e-2,   # [docket 11]
                     "unaimed_rim_amplitude": rim_amp_unaimed,
                     "unaimed_rim_intensity": rim_amp_unaimed ** 2,
+                    # [p5 docket 6] effective-aperture lobe census
+                    "effective_aperture_lobe_census": lobes,
+                    # [p5 docket 7] A3 residual, closed form and aberration
+                    "a3_residual_closed_form_pct": a3_residual_closed_form(th0, fw),
+                    "a3_residual_measured_pct": 100.0 * (eff - wl) / wl,
+                    "a3_residual_cubic_phase_rad": a3_residual_cubic_phase(th0, fw, lam),
+                    # [p5 docket 8] 41-point angular-sampling convergence
+                    "angular_sampling_convergence_n41_vs_n401": nconv,
                 })
 
     n_le10 = sum(1 for c in cells if c["fwhm_deg"] <= 10)      # 27 [docket 6]
@@ -330,6 +543,37 @@ def block_a_desk():
     a3_target_20 = [c["prop_vs_committed_coherent_rel_pct"] for c in cells if c["fwhm_deg"] == 20]
     a3_matched_le10 = [c["prop_vs_corrected_coherent_rel_pct"] for c in cells if c["fwhm_deg"] <= 10]
     a3_matched_20 = [c["prop_vs_corrected_coherent_rel_pct"] for c in cells if c["fwhm_deg"] == 20]
+
+    # ---- [p5 docket 6] lobe-census aggregates: WHERE the single-mode reading holds
+    lob20 = [c["effective_aperture_lobe_census"] for c in cells if c["fwhm_deg"] == 20]
+    lob_le10 = [c["effective_aperture_lobe_census"] for c in cells if c["fwhm_deg"] <= 10]
+    frac20 = [l["intensity_fraction_outside_3w_line_untapered"] for l in lob20]
+    frac20_tap = [l["intensity_fraction_outside_3w_line_tapered"] for l in lob20]
+    frac_le10 = [l["intensity_fraction_outside_3w_line_untapered"] for l in lob_le10]
+    # ---- [p5 docket 7] closed-form vs measured A3 residual
+    a3_cf_pairs = [(c["a3_residual_closed_form_pct"], abs(c["a3_residual_measured_pct"]))
+                   for c in cells]
+    a3_cf_err = [abs(p - m) for p, m in a3_cf_pairs]
+    cubic = {str(fw): max(c["a3_residual_cubic_phase_rad"] for c in cells if c["fwhm_deg"] == fw)
+             for fw in FWHMS}
+    # ---- [p5 docket 8] angular-sampling convergence aggregates
+    nconv_all = [c["angular_sampling_convergence_n41_vs_n401"] for c in cells]
+    nconv_worst = max(n["committed_convention_rel_move_pct"] for n in nconv_all)
+    nconv_worst_cell = max(cells, key=lambda c: c["angular_sampling_convergence_n41_vs_n401"]
+                           ["committed_convention_rel_move_pct"])
+    nconv_worst_corr = max(n["corrected_convention_rel_move_pct"] for n in nconv_all)
+    # ---- [p5 docket 10] the reading IS strongly chromatic: count positive-C cells
+    pos_c = [{"lambda_nm": c["lambda_nm"], "theta0_deg": c["theta0_deg"],
+              "fwhm_deg": c["fwhm_deg"], "C": c["C_empty_propagator_unaimed"]}
+             for c in cells if c["C_empty_propagator_unaimed"] > 0.0]
+    sign_reversal_rows = []
+    for th0 in THETAS:
+        for fw in FWHMS:
+            row = {c["lambda_nm"]: c["C_empty_propagator_unaimed"]
+                   for c in cells if c["theta0_deg"] == th0 and c["fwhm_deg"] == fw}
+            signs = {1 if v > 0 else -1 for v in row.values()}
+            if len(signs) > 1:
+                sign_reversal_rows.append({"theta0_deg": th0, "fwhm_deg": fw, "C_by_lambda_nm": row})
 
     th40 = [c for c in cells if c["theta0_deg"] == 40]
     ratios40 = [c["aperture_ratio_1504_over_2w_line"] for c in th40]
@@ -440,14 +684,123 @@ def block_a_desk():
             "note": ("Retained as a DISCLOSED anchor only [docket 4]. Red Team's "
                      "independently measured width accuracy: <=0.15% (FWHM<=5deg) / "
                      "<=3.1% (FWHM=20deg) vs exact angular spectrum, <=1.3% vs FDTD.")},
+        # ================================================ [p5 docket 6]
+        "t21_permanent_fact_scope": {
+            "claim_as_scoped": (
+                "The identity w_eff = w0/cos(theta0) is a statement about the effective "
+                "aperture's CENTRAL LOBE, and holds without qualification at the 27 "
+                "FWHM<=10deg cells. It must NOT enter LOGBOOK unqualified [p5 docket 6]."),
+            "grating_lobe_finding": (
+                "At all 9 FWHM=20deg cells `beam_divergence_coherent` synthesises a "
+                "THREE-LOBE COMB, not a single transverse mode: the n=41 angular sampling "
+                "(d(theta) = 0.125*FWHM) puts replicas INSIDE the 752-cell aperture "
+                "half-span. Measured here; QUANTUM's numbers reproduced, and this corrects "
+                "Red Team's own Attack 2, which replaced the discrete sum by an integral "
+                "(a Poisson-summation step) without checking whether the replicas fall "
+                "outside the aperture."),
+            "fwhm20_replica_offset_cells": [min(l["replica_offset_measured_cells"] for l in lob20),
+                                            max(l["replica_offset_measured_cells"] for l in lob20)],
+            "fwhm20_replica_amplitude": [min(l["replica_amplitude"] for l in lob20),
+                                         max(l["replica_amplitude"] for l in lob20)],
+            "fwhm20_intensity_fraction_outside_3w_line_untapered_pct":
+                [100.0 * min(frac20), 100.0 * max(frac20)],
+            "fwhm20_intensity_fraction_outside_3w_line_tapered_pct":
+                [100.0 * min(frac20_tap), 100.0 * max(frac20_tap)],
+            "fwhm_le10_intensity_fraction_outside_3w_line_pct_max": 100.0 * max(frac_le10),
+            "n_cells_single_transverse_mode": sum(
+                1 for c in cells if c["effective_aperture_lobe_census"]["single_transverse_mode"]),
+            "single_transverse_mode_criterion":
+                "<1% of the effective aperture's intensity outside +-3*w_line",
+            "refinement_of_red_teams_own_table": (
+                "DISCLOSED, not smoothed: Red Team's section-2.1 table gives '<=0.06 "
+                "replica amplitude / <=0.1% outside' for the whole FWHM<=10deg class. "
+                "Measured here that holds at 24 of the 27 cells but NOT at the three "
+                "450nm/FWHM=10deg cells, where the predicted replica spacing (850-898 "
+                "cells) sits just OUTSIDE the 752-cell aperture half-span and the "
+                "replica's rising SHOULDER reaches the rim: amplitude 0.059/0.107/0.177 "
+                "and 0.14%/0.51%/1.59% of intensity outside +-3*w_line at theta0 = "
+                "40/38/36deg. This sharpens the scoping rather than contradicting it -- "
+                "the comb is fully inside the aperture only at FWHM=20deg -- and it is "
+                "why the single-transverse-mode count below is 26/36, not 27/36."),
+            "what_is_and_is_not_falsified": (
+                "The A3 MEASUREMENT (a local 1/e half-width around the peak) is NOT "
+                "falsified -- the central lobe really does have half-width w0/cos(theta0). "
+                "What IS falsified is the INTERPRETATION that the coherent column already "
+                "IS the diffraction-limited single transverse mode: it is not, at 9 of 36 "
+                "cells, where the w0/cos(theta0) Gaussian carries only ~32-58% of the "
+                "energy."),
+        },
+        # ================================================ [p5 docket 18]
+        "quantum_iteration20_conjecture_disposition": {
+            "supersedes": ("NOTES.md 'What Block A actually established' item 3 and "
+                           "phase3_synthesis.md, which both record the conjecture as "
+                           "'mis-posed, not refuted or confirmed'. Red Team's Phase-5 "
+                           "ruling, three lines, adopted verbatim [p5 docket 18]. "
+                           "'Mis-posed' is over-charitable AND over-broad; QUANTUM's own "
+                           "request to record it simply REFUTED is harder on QUANTUM's "
+                           "seat than the evidence supports."),
+            "premise": ("exp-042's coherent column holds the full ~75-lambda aperture "
+                        "fixed -- beamforming, not natural divergence: REFUTED at the 27 "
+                        "FWHM<=10deg cells; PARTIALLY VINDICATED at the 9 FWHM=20deg "
+                        "cells, where the measured replicas do substantially occupy the "
+                        "aperture -- directionally what the original premise claimed."),
+            "prediction": ("'lands much closer to the incoherent reading': REFUTED at all "
+                           "36 cells, at the desk (36/36 above C_THR, 35/36 at >=20x "
+                           "incoherent, min|C| = 0.03227)."),
+            "mis_posed_belongs_to": ("P-TH23-A1 AS A SCORED METRIC (Attack 7's pointing "
+                                     "tautology) and nowhere else."),
+        },
+        # ================================================ [p5 docket 8]
+        "angular_sampling_convergence": {
+            "statement": (
+                "P-TH23-A4's MECHANISM is restored as real. A4 was dropped correctly on "
+                "its 5-20% magnitude band and INCORRECTLY on its premise: 41-point angular "
+                "sampling aliasing exists and moves the scored C_empty. "
+                "`gaussian_angle_weights(n=41)` has NEVER had a convergence check in this "
+                "program's history, and it is the kernel that produced both exp-042 columns "
+                "Iterations 19-23 have argued over. NEW OPEN ITEM for Iteration 24 "
+                "(Tier-2 priority 3: the convergence audit runs before the M^2/etendue "
+                "bridge, because that family interpolates THROUGH the FWHM=20deg regime "
+                "where the comb is worst)."),
+            "worst_rel_move_committed_convention_pct": nconv_worst,
+            "worst_cell_committed_convention": {
+                k: nconv_worst_cell[k] for k in ("lambda_nm", "theta0_deg", "fwhm_deg")},
+            "worst_rel_move_corrected_convention_pct": nconv_worst_corr,
+            "n_cells_above_1pct_committed": sum(
+                1 for n in nconv_all if n["committed_convention_rel_move_pct"] > 1.0),
+            "n_cells_above_0p16pct_committed": sum(
+                1 for n in nconv_all if n["committed_convention_rel_move_pct"] > 0.16),
+        },
         "idealization_2_restated": {
             "w0_over_lambda_all_cells": sorted({round(c["w0_over_lambda"], 6) for c in cells}),
             "w0_over_lambda_at_fwhm20": w0_cells(20, 20) / 20.0,
             "statement": ("w0/lambda = C/Delta-theta is LAMBDA-INDEPENDENT: the FWHM=20deg "
                           "waist is 1.0737*lambda at all three wavelengths, one value, not "
-                          "1.07-1.34. Consequently Block A's 3-lambda sweep carries NO "
-                          "material wavelength dependence beyond fixed cell geometry "
-                          "[docket 12].")},
+                          "1.07-1.34 [docket 12]. CORRECTED AT PHASE 5 [p5 docket 10]: the "
+                          "'consequently ... NO material wavelength dependence' clause was "
+                          "WRONG and is struck. The medium is dispersionless and the emitter "
+                          "lambda-scale-invariant -- that part is true -- but N_F is "
+                          "proportional to lambda_cells and the READING is strongly "
+                          "chromatic. See `chromatic_dependence_corrected`."),
+            "chromatic_dependence_corrected": {
+                "n_cells_positive_C": len(pos_c),
+                "n_of": len(cells),
+                "positive_C_cells": pos_c,
+                "sign_reversal_rows_across_the_visible_band": sign_reversal_rows,
+                "note": ("A positive C is a GLINT at the object window, the opposite sign "
+                         "to the mechanism A1's own statement asserts. The |C| > C_THR band "
+                         "is blind to it because it takes an absolute value. Given T7's "
+                         "chromatic-silhouette finding and T21's worst cell having been "
+                         "750nm since Iteration 19, this is not a cosmetic wording issue. "
+                         "R3's own meta-rule applies: a resolution check on these cells is "
+                         "queued for Iteration 24 BEFORE 'glint at 750nm' is allowed into "
+                         "the record as physics."),
+                "contradicts_A1_mechanism_sentence": (
+                    "P-TH23-A1's committed mechanism sentence ('C -> -1 regardless of "
+                    "coherence') is contradicted at exactly these cells. Flagged, not "
+                    "rewritten (T10 convention) -- A1's own statement string is left as "
+                    "committed and carries a `phase5_flag` pointing here."),
+            }},
         "idealization_4_restated": {
             "unaimed_rim_amplitude_max": max(c["unaimed_rim_amplitude"] for c in cells),
             "unaimed_rim_intensity_max": max(c["unaimed_rim_intensity"] for c in cells),
@@ -458,13 +811,29 @@ def block_a_desk():
             "aimed_rim_amplitude_max": max(c["aimed_rim_amplitude"] for c in cells),
             "n_aimed_cells_truncation_invalid": sum(1 for c in cells if not c["aimed_truncation_valid"]),
             "statement": ("Under the corrected width the unaimed rim residual is "
-                          "~1e-2 in amplitude / ~1e-4 in intensity -- still below "
-                          "C_THR=0.005 but WITHOUT the four-orders margin the Phase-1 "
-                          "idealization claimed. The aimed leg truncates at 1.61-2.96 "
-                          "w_line with rim amplitude up to 7.4e-2; cells with rim "
-                          "amplitude > 1e-2 are flagged truncation-INVALID and are "
-                          "excluded from every aimed-leg summary rather than the whole "
-                          "aimed leg being dropped [docket 11].")},
+                          "~1e-2 in amplitude / ~1e-4 in intensity -- WITHOUT the "
+                          "four-orders margin the Phase-1 idealization claimed. The aimed "
+                          "leg truncates at 1.61-2.96 w_line with rim amplitude up to "
+                          "7.4e-2; cells with rim amplitude > 1e-2 are flagged "
+                          "truncation-INVALID and are excluded from every aimed-leg summary "
+                          "rather than the whole aimed leg being dropped [docket 11]. "
+                          "CORRECTED AT PHASE 5 [p5 docket 11]: the phrase 'still below "
+                          "C_THR=0.005' was an amplitude-vs-intensity confusion AND a "
+                          "category error. The unaimed rim AMPLITUDE (9.99e-3) is ABOVE "
+                          "C_THR = 0.005, not below it; only the INTENSITY (9.98e-5) is "
+                          "below. And comparing a source-plane FIELD RESIDUAL to a Weber "
+                          "CONTRAST threshold is a category error in either direction -- "
+                          "they are not the same kind of quantity, so neither comparison "
+                          "licenses a conclusion. The truncation numbers stand; the "
+                          "C_THR comparison is withdrawn."),
+            "c_thr_comparison_withdrawn": {
+                "unaimed_rim_amplitude_vs_C_THR": "ABOVE (9.99e-3 > 5e-3)",
+                "unaimed_rim_intensity_vs_C_THR": "below (9.98e-5 < 5e-3)",
+                "ruling": ("Neither comparison is meaningful: a source-plane field residual "
+                           "is not a Weber contrast. VISION's V4 is upheld -- the Phase-2 "
+                           "docket's own re-authored sentence recreated at idealization 4 "
+                           "exactly the defect the same docket fixed at A1."),
+                "C_THR_comment_verbatim": C_THR_COMMENT}},
         "predictions": {
             "P-TH23-A0": {
                 "class": "DESK-IDENTITY",
@@ -486,7 +855,36 @@ def block_a_desk():
                 "n_at_or_above_20x_incoherent": a1_above_20x,
                 "min_abs_C": a1_min_abs,
                 "band": "36/36 above C_THR; >=35/36 at or above 20x the corrected-convention "
-                        "incoherent reading; min|C| >= 0.03"},
+                        "incoherent reading; min|C| >= 0.03",
+                # ------------------------------------------- [p5 docket 5]
+                # The Director's Phase-4 withholding judgment existed in ONE prose
+                # paragraph (`block_a_fdtd.gate_disposition`) and nowhere in the
+                # record a future cycle actually cites -- `withheld` appeared 0
+                # times in the 3.21 MB results.json, and this dict read as an
+                # unqualified, fully-compliance-audited pass. Propagated here.
+                "gate_backing": (
+                    "NOT GATE-BACKED AS PRE-REGISTERED -- S16-b (pointing) FAILED against "
+                    "the committed ray-optics target; this is an estimator reading, not a "
+                    "validated measurement; P-TH23-A6's withholding clause applied in "
+                    "scope, see block_a_fdtd.gate_disposition. SUPERSEDED IN THE SAME "
+                    "CLOSE by p5 docket items 1-2: the S16-b failure is now attributed "
+                    "96.8% to the gate's own target and 3.2% to the engine, and the "
+                    "repointed suite gate (lab/validation/run_all.py stage 16b, "
+                    "line-current/flux comparator, bar <=1.5%) PASSES at 0.46% -- 0.418 "
+                    "cells of pointing error on a 90.99-cell half-width, cross-validated "
+                    "against an independent real-space Huygens derivation to 0.030 cells. "
+                    "The pointing chain IS therefore validated at 600nm/40deg, and A1 is "
+                    "restored as an explicitly-labelled DESK GEOMETRY READING that is now "
+                    "gate-backed at that configuration. It remains NOT an experimental "
+                    "adjudication of coherence, and it is NOT counted as a CONFIRMED "
+                    "prediction: see `phase5_erratum.a1_disposition` for the final "
+                    "scorecard placement."),
+                "phase5_flag": (
+                    "[p5 docket 10] The mechanism sentence above ('C -> -1 regardless of "
+                    "coherence') is CONTRADICTED at the 4 of 36 cells that read POSITIVE "
+                    "C (all FWHM=2deg, 600/750nm), a sign reversal across the visible "
+                    "band. Flagged, not rewritten (T10). See "
+                    "idealization_2_restated.chromatic_dependence_corrected.")},
             "P-TH23-A2": {
                 "class": "DESK (re-banded from the numerical propagation) [docket 8]",
                 "statement": "Closed-form envelope anchor vs the numerically propagated reading",
@@ -508,9 +906,34 @@ def block_a_desk():
                 "gridquantized_vs_w_line_pct_fwhm_le10": [min(a3_le10_grid), max(a3_le10_grid)],
                 "gridquantized_vs_w_line_pct_fwhm_20": [min(a3_20_grid), max(a3_20_grid)],
                 "band": "interpolated crossing: <=1% at all 27 FWHM<=10deg cells and "
-                        "<=4% at all 9 FWHM=20deg cells (taper truncation). Grid-quantized "
+                        "<=4% at all 9 FWHM=20deg cells (residual explained by QUANTUM's "
+                        "closed form w_meas/w_line = 1/sqrt(1 - 4 sigma_theta^2 "
+                        "tan^2(theta0)), zero free parameters -- NOT taper truncation, "
+                        "which is refuted [p5 docket 7]). Grid-quantized "
                         "crossing reported alongside because it reproduces Red Team's own "
                         "measurement cell-for-cell",
+                # --------------------------------------------- [p5 docket 7]
+                "residual_attribution": {
+                    "closed_form": "w_meas/w_line = 1/sqrt(1 - 4*sigma_theta^2*tan^2(theta0))",
+                    "origin": ("second-order term of the sin(theta) expansion about theta0; "
+                               "sigma_theta = FWHM/2.3548 in radians, matching "
+                               "`gaussian_angle_weights`. Zero free parameters, no fit."),
+                    "predicted_vs_measured_pct_worst_abs_error": max(a3_cf_err),
+                    "predicted_pct_at_fwhm10_theta40": a3_residual_closed_form(40, 10),
+                    "predicted_pct_at_fwhm20_theta40": a3_residual_closed_form(40, 20),
+                    "superseded_attribution": (
+                        "'(taper truncation)' -- Red Team's own Phase-2 parenthetical, "
+                        "committed twice, and RETRACTED by Red Team at Phase 5. It cannot "
+                        "be right: at FWHM=20deg w_line is 21-35 cells inside a 752-cell "
+                        "half-aperture, i.e. truncation at 21-36 waists (e^-441), and "
+                        "including the real taper moves the effective-aperture lobe "
+                        "fraction only 67.1% -> 66.6%."),
+                    "residual_cubic_phase_rad_max_by_fwhm": cubic,
+                    "aberration_note": ("QUANTUM's accompanying finding: the synthesised "
+                                        "mode is slightly ABERRATED even in its core -- "
+                                        "residual phase after removing the linear pointing "
+                                        "ramp, over |Y| <= w_line."),
+                },
                 "quantization_note": (
                     "Red Team's audit prose quotes 0.07-1.3% (FWHM<=10) / 3.5-5.7% "
                     "(FWHM=20) for this identity. Re-running their own script here "
@@ -535,10 +958,26 @@ def block_a_desk():
                     "DROPPED [docket 7]: the Phase-1 '5-20% divergence at FWHM=20' clause "
                     "hard-falsifies pre-run under the corrected width (measured 0.1-2.5%)."),
             },
-            "P-TH23-A4": {"class": "DROPPED [docket 7]",
-                          "statement": "Premise false under the corrected width: there is no "
-                                       "large FWHM=20deg divergence to explain as 41-point "
-                                       "angular aliasing."},
+            "P-TH23-A4": {
+                "class": "DROPPED [docket 7] -- MECHANISM RESTORED AS REAL [p5 docket 8]",
+                "statement": ("Premise false under the corrected width: there is no "
+                              "large FWHM=20deg divergence to explain as 41-point "
+                              "angular aliasing. CORRECTED AT PHASE 5 [p5 docket 8]: A4 "
+                              "was dropped CORRECTLY on its 5-20% magnitude band and "
+                              "INCORRECTLY on that premise. The 41-point angular-sampling "
+                              "aliasing it named is real and measurable -- n=41 -> n=401 "
+                              "moves the scored C_empty by up to the figure recorded in "
+                              "`block_a_aperture_consistent_beam.angular_sampling_"
+                              "convergence` (Red Team measured 4.473% at "
+                              "450nm/36deg/FWHM=20deg; QUANTUM measured 3.18% under a "
+                              "different reduction). The drop stands as a SCORING "
+                              "decision; the mechanism is restored to the record and is a "
+                              "new open item for Iteration 24."),
+                "magnitude_band_status": "FALSIFIED (5-20% claimed; measured well below)",
+                "mechanism_status": "REAL, magnitude-corrected",
+                "never_convergence_checked": (
+                    "`gaussian_angle_weights`'s n=41 has never had a convergence check in "
+                    "this program's history until this shift.")},
             "P-TH23-A5": {
                 "class": "FDTD-SCORED (the cycle's genuine falsifiable Block-A content)",
                 "statement": "FDTD reproduces the desk propagator's C_empty at the new "
@@ -672,14 +1111,69 @@ def block_b_desk():
     # [docket 19] rho*C_P (fill-factor) sensitivity: tau_th scales linearly in
     # rho*C_P, so the "below vs above 25" question is NOT decided by the
     # conduction length alone.
+    #
+    # [p5 docket 15] THERMODYNAMICS' Biot finding, adopted: a fill factor below
+    # unity also LOWERS the effective conductivity of the host, raising
+    # Bi = k_air/kappa_eff toward unity and invalidating the lumped single-tau
+    # model whose numbers this very row reports. Mixing rule stated:
+    # Maxwell-Garnett for a dilute-solid-in-air composite,
+    # kappa_eff = k_air*(1 + 2*phi)/(1 - phi). Knudsen is reported per row on
+    # the same conduction length (length-invariant here by construction, but
+    # printed so the validity condition is visible where the number is read).
     rho_cp_sensitivity = []
     for phi in (1.0, 0.5, 0.1, 0.01):
         tau = regime_mixed["tau_thermal_s"] * phi
+        kappa_eff = (K_SI_W_MK if phi >= 1.0
+                     else K_AIR_W_MK * (1.0 + 2.0 * phi) / (1.0 - phi))
+        bi_row = K_AIR_W_MK / kappa_eff
         rho_cp_sensitivity.append({
             "rho_cp_scale_or_fill_factor": phi,
             "tau_thermal_s": tau, "dwell_over_tau_thermal": DWELL_S / tau,
             "above_N_TRANSIENT_TAU_25": DWELL_S / tau >= kin.N_TRANSIENT_TAU,
-            "dt_ss_full_K_unchanged": regime_mixed["dt_ss_full_K"]})
+            "dt_ss_full_K_unchanged": regime_mixed["dt_ss_full_K"],
+            # ------------------------------------------- [p5 docket 15]
+            "mixing_rule": "Maxwell-Garnett: kappa_eff = k_air*(1+2*phi)/(1-phi)",
+            "kappa_eff_w_mk": kappa_eff,
+            "biot_number": bi_row,
+            "knudsen_number": LAMBDA_AIR_M / r_out_m,
+            "lumped_single_tau_valid_Bi_lt_0p1": bi_row < 0.1})
+
+    # [p5 docket 16] MATERIALS' emissivity sensitivity, with the COMPUTED
+    # magnitude rather than its "~4x" estimate (wrong by ~4 orders, in the safe
+    # direction). At the mixed regime the radiative channel is a ~0.05% share
+    # of dP/dT, so even the absurd bound epsilon -> 0 barely moves dt_ss.
+    h_eff_mixed = regime_mixed["h_eff_w_m2k"]
+    rad_channel = 4.0 * EMISSIVITY * ts.SIGMA_SB * T_AMBIENT_K ** 3
+    emissivity_sensitivity = []
+    for eps in (EMISSIVITY, 0.09, 0.009, 0.0):
+        dpdt_eps = regime_mixed["area_m2"] * (4.0 * eps * ts.SIGMA_SB * T_AMBIENT_K ** 3 + h_eff_mixed)
+        dt_eps = regime_mixed["p_abs_w"] / dpdt_eps
+        emissivity_sensitivity.append({
+            "emissivity": eps,
+            "radiative_channel_w_m2k": 4.0 * eps * ts.SIGMA_SB * T_AMBIENT_K ** 3,
+            "dt_ss_full_K": dt_eps,
+            "dt_ss_inflation_vs_committed": dt_eps / regime_mixed["dt_ss_full_K"],
+            "netd_lo_over_dt_ss_full": NETD_BAND_K[0] / dt_eps})
+    emissivity_disclosure = {
+        "committed_emissivity": EMISSIVITY,
+        "radiative_channel_w_m2k": rad_channel,
+        "conduction_channel_h_eff_w_m2k": h_eff_mixed,
+        "radiative_share_of_dP_dT_pct": 100.0 * rad_channel / (rad_channel + h_eff_mixed),
+        "rows": emissivity_sensitivity,
+        "statement": (
+            "[p5 docket 16] MATERIALS' concern is REAL AS A DISCLOSURE GAP and wrong by "
+            "~4 orders of magnitude as a number: its review states eps_corr = 0.1 'only "
+            "inflates dt_ss_full by up to ~4x'; the computed figure is 1.0004x. Its "
+            "CONCLUSION ('comfortably short of threatening 607x') holds a fortiori, and "
+            "its actual finding stands -- idealization 7's 'dilution is uniformly "
+            "conservative' framing omits a third, opposite-signed consequence already "
+            "flagged in lab/thermo_sidecar.py:151-153 since exp-033. Recording the "
+            "computed number, not the estimate. NOTE ALSO: `netd_disposition`'s own "
+            "`emissivity_correction` is a multiplier ON delta-T "
+            "(lab/thermo_sidecar.py:205), so on the DETECTOR side lower emissivity is "
+            "strictly conservative -- the two sides push opposite ways and both are "
+            "negligible here."),
+    }
 
     # true-disk shape sensitivity (idealization 5, carried from Phase 1)
     h_disk = K_AIR_W_MK / r_out_m
@@ -745,7 +1239,22 @@ def block_b_desk():
                      "conservative with respect to this idealization -- but the thermal "
                      "MASS uses 100%-fill silicon, which pushes tau_thermal UP; the two "
                      "are disclosed together because they are the same unsourced "
-                     "assumption seen from two sides [docket 19].")},
+                     "assumption seen from two sides [docket 19]."),
+            "validity_conditions": (
+                "[p5 docket 15] A fill factor below unity ALSO lowers kappa_eff, raising "
+                "Bi = k_air/kappa_eff toward unity (0.25 / 0.75 / 0.97 at phi = 0.5 / 0.1 "
+                "/ 0.01 under Maxwell-Garnett, computed per row in `rho_cp_sensitivity`) "
+                "and INVALIDATING the lumped single-tau model the sensitivity row's own "
+                "numbers come from. THERMODYNAMICS' framing, adopted: the sensitivity "
+                "table offered as reassurance is evaluated at fill fractions where the "
+                "model that produced its numbers is no longer licensed, and the "
+                "reassurance is largest precisely where the model is most invalid. The "
+                "delta-T CLASSIFICATION is unaffected (internal gradients make the "
+                "radiating surface cooler, not warmer, so detectability gets more "
+                "conservative); the TAU_THERMAL numbers are the ones affected -- and "
+                "T23's entire content is a tau_thermal question, which is why this is a "
+                "T23 finding, not a delta-T finding.")},
+        "emissivity_disclosure": emissivity_disclosure,           # [p5 docket 16]
         "rho_cp_sensitivity": rho_cp_sensitivity,
         "shape_sensitivity_true_disk": {
             "tau_thermal_s": tau_disk, "dwell_over_tau_thermal": DWELL_S / tau_disk,
@@ -768,7 +1277,18 @@ def block_b_desk():
                           "band": "194.176815 +/- 1 in the 12th s.f.",
                           "measured": regime_mixed["dwell_over_tau_thermal"],
                           "identical_to_r_out": abs(regime_mixed["dwell_over_tau_thermal"]
-                                                    - regime_r["dwell_over_tau_thermal"])},
+                                                    - regime_r["dwell_over_tau_thermal"]),
+                          # ----------------------------------- [p5 docket 17]
+                          "class": "DESK-VERIFIABLE STRUCTURAL IDENTITY (not a measurement)",
+                          "identity_tag": (
+                              "[p5 docket 17] Tagged in the scorecard the same way A1/A3 "
+                              "are: tau_thermal = rho C_P L_cond^2/(4 eps sigma T^3 L_cond "
+                              "+ k_air) contains NO power term, and 'mixed' is DEFINED as "
+                              "r_out-conduction, so bit-identity to the r_out regime cannot "
+                              "fail. Same species as the identity Attack 2 struck one block "
+                              "over. phase3_synthesis.md already said 'a reproduction, not "
+                              "a fresh finding' -- one document upstream of the one that "
+                              "gets cited; carried into results.json here.")},
             "P-TH23-B2": {"statement": "mixed dt_ss_full and its two ratios",
                           "band": "3.2930761e-5 K; ratio to r_out = (w_on/r_out)^2 = "
                                   "9.151923 exactly; ratio to w_on = 3.02805; +/-0.01%",
@@ -811,6 +1331,45 @@ def block_b_desk():
                                          "nothing in the thermal chain is numerically "
                                          "integrated at all -- every thermal quantity here is "
                                          "a closed form.")},
+        },
+        # ==================================================== [p5 docket 14]
+        "t23_disposition": {
+            "thread": "T23 -- which characteristic length governs the thermal sidecar",
+            "ruling": ("MIXED is adopted as the primary convention: absorbed power on "
+                       "`w_on`, conduction and thermal mass on `r_out`."),
+            "argument_power_on_w_on": (
+                "P_abs is set by the illuminated cross-section the established "
+                "extinction ratio RATIO_ON was itself calibrated on, which is `w_on` "
+                "(sigma_ext's own 1/e width). Using r_out there would double-count the "
+                "beam geometry the ratio already contains."),
+            "argument_conduction_and_mass_on_r_out": (
+                "h_eff = k_air/L and mass = rho*L^3 must use the length over which heat "
+                "actually leaves and is stored, which is the body's outer radius r_out. "
+                "The Nusselt-2 derivation h_eff = k_air/L that this bench uses is derived "
+                "for the BODY's own scale, not the illumination's."),
+            "honest_split": (
+                "The OPERATIVE question -- whether dwell/tau_thermal sits below or above "
+                "N_TRANSIENT_TAU = 25 -- is decided ROBUSTLY: 97x-19418x across every "
+                "disclosed shape and fill variation (true disk 97.09x, cube 194.18x, "
+                "phi=0.5 388.35x, phi=0.1 1941.8x, phi=0.01 19418x), so no endpoint of "
+                "the disclosed range crosses 25. The NOMINAL length question is decided "
+                "by ARGUMENT, not by measurement -- this cycle produced no measurement "
+                "that discriminates between the three conventions."),
+            "validity_caveat": (
+                "[p5 docket 15] The tau_thermal numbers above are lumped single-tau "
+                "numbers, and Bi >= 0.25 at every sub-unity fill factor, where that model "
+                "is not licensed. A tau_thermal that is not a well-defined single number "
+                "is a worse problem for T23 than the length-scale ambiguity T23 was opened "
+                "to settle. Recorded as the sharpest charter-relevant open item this "
+                "cycle leaves."),
+            "why_this_key_exists": (
+                "The lead seat's own Tier-1 #2 deliverable produced no recorded lesson: "
+                "before this fix, `T23` appeared in results.json only inside two regime "
+                "LABELS, NOTES.md mentioned it only in the title and hypothesis, and the "
+                "argument for the mixed convention lived ONLY in phase1_proposal.md "
+                "section 2.3 -- a document with a dozen struck claims in it and, until "
+                "this same close, no banner. EM's ruling upheld: three endpoints and no "
+                "ruling is worse than two."),
         },
         "netd_disclaimer": NETD_DISCLAIMER,
     }
@@ -1173,27 +1732,68 @@ def exact_angular_spectrum_center(width, theta0_deg, lam_cells, z=None, n_fft=1 
     and the propagated profile is skewed toward +y. This function measures
     where the exact physics actually puts the beam, so the failure can be
     attributed instead of merely reported. It does NOT change the gate, its
-    band, or its verdict."""
+    band, or its verdict.
+
+    CORRECTED AT PHASE 5 [p5 docket 2], identically to the suite's own
+    `stage16_oblique_gaussian_source::exact_center` [p5 docket 1]. As first
+    written this function propagated the aperture as a prescribed FIELD and
+    reduced it with |E|^2. Neither factor matches the bench:
+
+      * `lab/fdtd2d.py:232-237` adds env*sin(wn - phase)*profile to Ez every
+        step -- an impressed line CURRENT sheet J_z. The radiated angular
+        spectrum therefore carries E~(k_y) ~ J~(k_y)/k_x.
+      * `lab/ambient.py:36-39` -> `lab/sections.py:79-88`: observer_profile =
+        -flux_profile_x = +0.5*Re(E_z conj(H_y)) -- a FLUX, carrying +k_x/k
+        once via H, not squared via E.
+
+    Two missing obliquities, opposite directions, no cancellation -- the same
+    error species this program adjudicated at Iteration 19 (LOGBOOK T21). The
+    corrected model divides by k_x and reduces with Sx = Re(E conj(H)),
+    H = F^-1[(k_x/k) E~]. It reproduces exp-042's own committed
+    `_G0_for` + `field_and_h` propagator to 0.030 cells in centre and 0.011
+    cells in half-width; the SUPERSEDED field/|E|^2 reading is retained in the
+    return value so the correction is auditable rather than silent."""
     k = 2.0 * np.pi / lam_cells
     z = float(dg.D_SP) if z is None else z
     y = (np.arange(n_fft) - n_fft // 2) * (span / n_fft)
     e0 = np.exp(-((y / width) ** 2)) * np.exp(1j * k * np.sin(np.radians(theta0_deg)) * y)
     ky = 2.0 * np.pi * np.fft.fftfreq(n_fft, d=span / n_fft)
     kx2 = k * k - ky * ky
-    prop = np.where(kx2 > 0, np.exp(1j * np.sqrt(np.maximum(kx2, 0.0)) * z), 0.0)
-    inten = np.abs(np.fft.ifft(np.fft.fft(e0) * prop)) ** 2
-    ip = int(np.argmax(inten))
-    thr = inten[ip] / math.e ** 2
-    r = ip + int(np.argmax(inten[ip:] < thr))
-    l = ip - int(np.argmax(inten[:ip + 1][::-1] < thr))
+    ok = kx2 > 0
+    kx = np.sqrt(np.maximum(kx2, 0.0))
+    spec = np.fft.fft(e0)
+    phase = np.where(ok, np.exp(1j * kx * z), 0.0)
 
-    def itp(i0, i1):
-        return y[i0] + (thr - inten[i0]) * (y[i1] - y[i0]) / (inten[i1] - inten[i0])
+    def _read(inten):
+        ip = int(np.argmax(inten))
+        thr = inten[ip] / math.e ** 2
+        r = ip + int(np.argmax(inten[ip:] < thr))
+        l = ip - int(np.argmax(inten[:ip + 1][::-1] < thr))
 
-    hi, lo = itp(r - 1, r), itp(l + 1, l)
-    return {"half_width_1e2": 0.5 * (hi - lo),
-            "center_1e2_midpoint": 0.5 * (hi + lo) + dg.OBJ_Y,
-            "peak_cell": float(y[ip]) + dg.OBJ_Y,
+        def itp(i0, i1):
+            return y[i0] + (thr - inten[i0]) * (y[i1] - y[i0]) / (inten[i1] - inten[i0])
+
+        hi, lo = itp(r - 1, r), itp(l + 1, l)
+        return (0.5 * (hi - lo), 0.5 * (hi + lo) + dg.OBJ_Y, float(y[ip]) + dg.OBJ_Y)
+
+    # CORRECTED: line-current source (spectrum / k_x), flux reduction
+    a = np.where(ok, spec / np.where(ok, kx, 1.0), 0.0) * phase
+    e = np.fft.ifft(a)
+    h = np.fft.ifft(a * np.where(ok, kx / k, 0.0))
+    hw_c, ctr_c, pk_c = _read(np.real(e * np.conj(h)))
+    # SUPERSEDED: prescribed aperture field, |E|^2 -- kept for the erratum
+    hw_s, ctr_s, pk_s = _read(np.abs(np.fft.ifft(spec * phase)) ** 2)
+    return {"half_width_1e2": hw_c,
+            "center_1e2_midpoint": ctr_c,
+            "peak_cell": pk_c,
+            "source_model": "impressed line current (spectrum/k_x), matching "
+                            "lab/fdtd2d.py:232-237",
+            "reduction": "flux Sx = Re(E conj(H)), H = F^-1[(k_x/k) E~], matching "
+                         "lab/ambient.py observer_profile",
+            "superseded_field_aperture_E2": {
+                "half_width_1e2": hw_s, "center_1e2_midpoint": ctr_s, "peak_cell": pk_s,
+                "note": "the shipped-at-Phase-4 comparator; physically wrong on BOTH "
+                        "counts (prescribed field, |E|^2 reduction) [p5 docket 2]"},
             "emitted_fwhm_deg": math.degrees(
                 C_COEF * lam_cells / (width * math.cos(math.radians(theta0_deg))))}
 
@@ -1335,7 +1935,20 @@ def run_block_a_fdtd(desk):
             "band_pct": leg["fdtd_vs_propagator_band_pct"],
             "sign_agrees": (pred < 0) == (got < 0),
             "pass": (100.0 * abs(got - pred) / abs(pred) <= leg["fdtd_vs_propagator_band_pct"])
-                    and ((pred < 0) == (got < 0))}
+                    and ((pred < 0) == (got < 0)),
+            # ------------------------------------------------- [p5 docket 9]
+            # RE-ISSUE IN THE CONDITIONED CURRENCY. C is a Weber contrast, and
+            # the propagator/FDTD comparison is really a comparison of the
+            # UNDERLYING window ratio 1+C. Near C -> -1 the two currencies
+            # diverge by the conditioning factor 1/|1+C| -- which is the SAME
+            # factor `run.py` already uses to DROP P-TH23-A7 as unusable. The
+            # cycle applied its own disqualifying criterion to one prediction
+            # and not to the neighbouring one at identical C_empty values.
+            "predicted_1_plus_C": 1.0 + pred,
+            "measured_1_plus_C": 1.0 + got,
+            "rel_pct_in_1_plus_C": 100.0 * abs(got - pred) / abs(1.0 + pred),
+            "conditioning_amplification_C_to_1plusC": abs(pred) / abs(1.0 + pred),
+            "informative": abs(1.0 + pred) > 0.1}
     # ---- object-present legs: EXPLORATORY-NON-SCORING [docket 9]
     explor = {}
     for oid, eid in (("A-o1", "A-v2"), ("A-o2", "A-v3")):
@@ -1355,16 +1968,51 @@ def run_block_a_fdtd(desk):
     d = gates["S16-b"]["post_run_diagnostic_nonparaxial"]["S16-b"]
     off = abs(d["fdtd_minus_exact_cells"]) / d["fdtd_half_width_1e2"]
     gates["S16-b-amended"] = {
-        "band": "<=8% of the beam half-width from the EXACT angular-spectrum centre",
-        "measured_fraction_of_half_width": off, "pass": off <= 0.08,
+        "band": "<=1.5% of the beam half-width from the EXACT angular-spectrum centre "
+                "(line-current/flux model) [re-barred at Phase 5, p5 docket 1]",
+        "measured_fraction_of_half_width": off, "pass": off <= 0.015,
+        "measured_delta_cells": abs(d["fdtd_minus_exact_cells"]),
         "status": ("FIRST-LIGHT AMENDMENT, following stages 6/7/8/10's own recorded "
-                   "first-run amendment convention. It does NOT retro-fit P-TH23-A6: "
-                   "the pre-registered S16-b clause above stands as FAILED."),
+                   "first-run amendment convention, REPOINTED AND RE-BARRED at Phase 5 "
+                   "[p5 docket 1-2]: the first-light comparator was itself physically "
+                   "wrong (prescribed aperture field reduced with |E|^2, where this "
+                   "engine impresses a line current and observer_profile reads a flux), "
+                   "understating the engine by ~12x and leaving the bar ~17x too loose. "
+                   "It does NOT retro-fit P-TH23-A6: the pre-registered S16-b clause "
+                   "above stands as FAILED."),
     }
     for r in results.values():
         r["profile_plane_x"] = None      # keep results.json to a sane size
+    # [p5 docket 9] A5 re-issued in the conditioned currency, as a block.
+    a5_conditioned = {
+        "statement": (
+            "PHOTONICS, ELECTROMAGNETISM, THERMODYNAMICS and QUANTUM all independently "
+            "correct, and Red Team confirms the arithmetic: A5's 'CONFIRMED 4/4' is 2 "
+            "INFORMATIVE legs and 2 SATURATED ones by this cycle's own disqualifying "
+            "criterion. Nothing is refuted -- 8.4% passes a 15% band -- but the headline "
+            "'the cycle's genuine falsifiable Block-A content' overstates what 4/4 buys."),
+        "per_leg": {lid: {"N_F": s["N_F"],
+                          "rel_pct_in_C": s["rel_pct"],
+                          "rel_pct_in_1_plus_C": s["rel_pct_in_1_plus_C"],
+                          "conditioning_amplification_C_to_1plusC":
+                              s["conditioning_amplification_C_to_1plusC"],
+                          "informative": s["informative"]}
+                    for lid, s in a5.items()},
+        "n_informative": sum(1 for s in a5.values() if s["informative"]),
+        "n_saturated": sum(1 for s in a5.values() if not s["informative"]),
+        "learned_1_restated": (
+            "[p5 docket 9] The propagator reproduces FDTD to <=0.80% at N_F ~ 54-66 and "
+            "to ~8.4% at N_F ~ 0.5-2.2, where the reduction is ill-conditioned by 74-299x "
+            "and should NOT be quoted in C. NOTE ALSO [PHOTONICS, upheld]: `_G0_for`'s "
+            "validity parameter is kr, NOT N_F -- the module asserts kr > 50, set by D_SP "
+            "and the window span, not by aperture width. 'Validated three orders of "
+            "Fresnel number outside where it was built' is the wrong statement of what "
+            "was earned; what was earned is a validation across N_F at fixed, "
+            "always-satisfied kr."),
+    }
     pre_registered = {k: v for k, v in gates.items() if not k.endswith("-amended")}
     return {"legs": results, "gates": gates, "P-TH23-A5": a5,
+            "P-TH23-A5_conditioned_currency": a5_conditioned,     # [p5 docket 9]
             "exploratory_object_present": explor,
             "all_gates_pass": all(g["pass"] for g in pre_registered.values()),
             "all_gates_pass_with_first_light_amendment": all(
@@ -1380,7 +2028,15 @@ def run_block_a_fdtd(desk):
                 "anchor, 7.0e-15 relative) and S16-d (the oblique-width gate, 1.25%) -- all "
                 "pass, so P-TH23-A0/A2/A3/A5 are reported as trusted. The one reading that "
                 "depends on where the beam POINTS, P-TH23-A1, is reported WITH the "
-                "withholding clause applied: it is not gate-backed at this divergence."),
+                "withholding clause applied: it is not gate-backed at this divergence. "
+                "[p5 docket 5] THIS PARAGRAPH IS NO LONGER THE ONLY PLACE THE WITHHOLDING "
+                "LIVES: A1's own prediction dict now carries a `gate_backing` key, this "
+                "paragraph is printed to the console immediately after the gate table, and "
+                "the scorecard cell reads 'WITHHELD -- not gate-backed (S16-b FAILED)'. "
+                "[p5 docket 1-2] AND the attribution is corrected: 96.8% of the 12.974-cell "
+                "failure is the gate's own ray-optics TARGET and 3.2% is the engine, not "
+                "62/38 as committed -- see phase5_erratum."),
+            "absorbing_boundary_systematic": ABSORB_SYSTEMATIC_NOTE,   # [p5 docket 19]
             "n_new_fdtd_calls": len(legs)}
 
 
@@ -1438,6 +2094,56 @@ def print_predictions(a, b, c):
             if k in ("class", "band", "statement"):
                 continue
             print(f"     {k}: {v}")
+    # ---------------- Phase-5 mandatory-fix docket, Block-A half -------------
+    print("\n--- PHASE-5 MANDATORY-FIX DOCKET (same shift): Block A ---")
+    sc = a["t21_permanent_fact_scope"]
+    print(f"  [p5 6] T21 'permanent fact' SCOPED to the central lobe. At the 9 FWHM=20deg "
+          f"cells\n         the synthesised aperture is a THREE-LOBE COMB: replicas at "
+          f"{sc['fwhm20_replica_offset_cells'][0]:.0f}..{sc['fwhm20_replica_offset_cells'][1]:.0f} cells, "
+          f"amplitude {sc['fwhm20_replica_amplitude'][0]:.3f}-{sc['fwhm20_replica_amplitude'][1]:.3f},\n"
+          f"         carrying {sc['fwhm20_intensity_fraction_outside_3w_line_untapered_pct'][0]:.1f}"
+          f"-{sc['fwhm20_intensity_fraction_outside_3w_line_untapered_pct'][1]:.1f}% of the intensity "
+          f"outside +/-3 w_line (tapered "
+          f"{sc['fwhm20_intensity_fraction_outside_3w_line_tapered_pct'][0]:.1f}"
+          f"-{sc['fwhm20_intensity_fraction_outside_3w_line_tapered_pct'][1]:.1f}%);\n"
+          f"         FWHM<=10deg worst {sc['fwhm_le10_intensity_fraction_outside_3w_line_pct_max']:.3f}%. "
+          f"Single-transverse-mode at {sc['n_cells_single_transverse_mode']}/36 cells\n"
+          f"         (criterion: {sc['single_transverse_mode_criterion']}).")
+    for line in _wrap(sc["refinement_of_red_teams_own_table"], 70):
+        print(f"         {line}")
+    ra = a["predictions"]["P-TH23-A3"]["residual_attribution"]
+    print(f"  [p5 7] A3 residual is NOT taper truncation. QUANTUM's closed form "
+          f"1/sqrt(1-4 sigma_th^2 tan^2 th0):\n"
+          f"         FWHM=10/th0=40 predicted {ra['predicted_pct_at_fwhm10_theta40']:.3f}% · "
+          f"FWHM=20/th0=40 predicted {ra['predicted_pct_at_fwhm20_theta40']:.3f}%; "
+          f"worst |pred-meas| over 36 cells {ra['predicted_vs_measured_pct_worst_abs_error']:.3f} pp.\n"
+          f"         Residual cubic phase (aberration) by FWHM: "
+          + " · ".join(f"{k}deg {v:.3f} rad" for k, v in ra["residual_cubic_phase_rad_max_by_fwhm"].items()))
+    nc = a["angular_sampling_convergence"]
+    print(f"  [p5 8] A4's MECHANISM restored as real: n=41 -> n=401 moves the scored "
+          f"C_empty by\n         {nc['worst_rel_move_committed_convention_pct']:.3f}% worst "
+          f"(cell {nc['worst_cell_committed_convention']}), committed convention; "
+          f"{nc['worst_rel_move_corrected_convention_pct']:.3f}% worst corrected.\n"
+          f"         `gaussian_angle_weights(n=41)` had NEVER been convergence-checked. "
+          f"New open item for Iteration 24.")
+    ch = a["idealization_2_restated"]["chromatic_dependence_corrected"]
+    print(f"  [p5 10] idealization 2's 'consequently no material wavelength dependence' is "
+          f"STRUCK:\n          {ch['n_cells_positive_C']} of {ch['n_of']} cells read POSITIVE C "
+          f"(a glint), a SIGN REVERSAL across the visible band at\n"
+          f"          {len(ch['sign_reversal_rows_across_the_visible_band'])} of 12 "
+          f"(theta0, FWHM) rows. A1's 'C -> -1 regardless of coherence' is contradicted there.")
+    i4 = a["idealization_4_restated"]["c_thr_comparison_withdrawn"]
+    print(f"  [p5 11] idealization 4's C_THR comparison WITHDRAWN: rim amplitude "
+          f"{i4['unaimed_rim_amplitude_vs_C_THR']},\n          rim intensity "
+          f"{i4['unaimed_rim_intensity_vs_C_THR']} -- and a source-plane field residual is "
+          f"not a Weber contrast\n          in either direction (category error). "
+          f"C_THR comment verbatim: '{C_THR_COMMENT}'")
+    q = a["quantum_iteration20_conjecture_disposition"]
+    print(f"  [p5 18] QUANTUM's Iteration-20 conjecture, recorded accurately:\n"
+          f"          premise: {q['premise'][:150]}...\n"
+          f"          prediction: {q['prediction'][:120]}...\n"
+          f"          'mis-posed' belongs to: {q['mis_posed_belongs_to']}")
+
     print("\n  FDTD legs to be run (widths per [docket 1]):")
     for leg in a["fdtd_legs"]:
         print(f"    {leg['n']}. {leg['id']:6s} lam={leg['lambda_nm']} th0={leg['theta0_deg']:+.0f} "
@@ -1478,6 +2184,34 @@ def print_predictions(a, b, c):
                 continue
             print(f"     {k}: {v}")
 
+    # ---------------- Phase-5 mandatory-fix docket, Block-B half -------------
+    print("\n--- PHASE-5 MANDATORY-FIX DOCKET (same shift): Block B ---")
+    em = b["emissivity_disclosure"]
+    print(f"  [p5 16] emissivity: the radiative channel is "
+          f"{em['radiative_share_of_dP_dT_pct']:.4f}% of dP/dT "
+          f"({em['radiative_channel_w_m2k']:.4f} vs {em['conduction_channel_h_eff_w_m2k']:.2f} "
+          f"W/m^2K).")
+    for row in em["rows"]:
+        print(f"          eps={row['emissivity']:<6}: dt_ss={row['dt_ss_full_K']:.6e} K  "
+              f"inflation {row['dt_ss_inflation_vs_committed']:.6f}x  "
+              f"NETD_lo/dt_ss {row['netd_lo_over_dt_ss_full']:.2f}x")
+    print("          MATERIALS' '~4x' estimate is wrong by ~4 orders, in the safe "
+          "direction; conclusion holds a fortiori.")
+    print("  [p5 15] fill-factor validity conditions (Maxwell-Garnett kappa_eff, "
+          "Bi = k_air/kappa_eff):")
+    for row in b["rho_cp_sensitivity"]:
+        print(f"          phi={row['rho_cp_scale_or_fill_factor']:<5}: "
+              f"kappa_eff={row['kappa_eff_w_mk']:.4g} W/mK  Bi={row['biot_number']:.4g}  "
+              f"Kn={row['knudsen_number']:.4g}  lumped single-tau valid: "
+              f"{row['lumped_single_tau_valid_Bi_lt_0p1']}")
+    print("          The reassurance is largest precisely where the lumped model that "
+          "produced it is most invalid.")
+    t23 = b["t23_disposition"]
+    print(f"  [p5 14] T23 DISPOSITION (was recorded nowhere durable): {t23['ruling']}")
+    for line in _wrap(t23["honest_split"], 72):
+        print(f"          {line}")
+    print(f"  [p5 17] P-TH23-B1 tagged: {b['predictions']['P-TH23-B1']['class']}")
+
     print("\n--- BLOCK C: dose accumulation on the FULL exp-038 grid (desk) ---")
     print(f"  {c['grid_note']}")
     print(f"  point runs (new points x 2 gaps): {c['n_point_runs']}")
@@ -1490,6 +2224,18 @@ def print_predictions(a, b, c):
             if k in ("statement", "band"):
                 continue
             print(f"     {k}: {v}")
+    # ---------------- Phase-5 mandatory-fix docket, program-integrity half ---
+    print("\n--- PHASE-5 MANDATORY-FIX DOCKET (same shift): program integrity ---")
+    print("  [p5 4] THE ITEM-24 HARDENED RULE, in ONE rendering (canonical string; "
+          "propagated\n         verbatim to NOTES.md and to LOGBOOK's Iteration-23 close):")
+    for line in _wrap(ITEM_24_HARDENED_RULE, 72):
+        print(f"         {line}")
+    print("  [p5 20] " + _wrap(POST_FREEZE_GATE_TARGET_RULE, 70)[0])
+    for line in _wrap(POST_FREEZE_GATE_TARGET_RULE, 70)[1:]:
+        print(f"          {line}")
+    print("  [p5 19] NEW LIVE THREAD — the C_empty channel's ABSORB systematic:")
+    for line in _wrap(ABSORB_SYSTEMATIC_NOTE, 70):
+        print(f"          {line}")
     print(f"\nNOTE (repeated at the point of claim [docket 21]): {NETD_DISCLAIMER}")
     print("=" * 78)
 
@@ -1520,24 +2266,203 @@ def main():
                         if k in ("worst_rel_pct", "delta_cells", "relative_difference",
                                  "rel_pct", "measured_cells", "target_cells",
                                  "measured_center", "target_center", "measured", "band")))
+    # [p5 docket 5] The Director-level withholding judgment is PRINTED here,
+    # immediately after the gate table, not left to a key nobody reads.
+    print("\n  GATE DISPOSITION (P-TH23-A6's withholding clause) [p5 docket 5]:")
+    for line in _wrap(fd["gate_disposition"], 74):
+        print(f"    {line}")
     print("\n--- P-TH23-A5: FDTD vs the desk propagator ---")
     for lid, s in fd["P-TH23-A5"].items():
         print(f"  [{'PASS' if s['pass'] else 'FAIL'}] {lid}: N_F={s['N_F']:.2f} "
               f"pred={s['predicted_propagator']:+.6f} fdtd={s['measured_fdtd']:+.6f} "
               f"rel={s['rel_pct']:.2f}% (band {s['band_pct']:.0f}%) sign_ok={s['sign_agrees']}")
+    # [p5 docket 9] the same four legs in the conditioned currency
+    print("  in the conditioned currency (1+C) [p5 docket 9]:")
+    for lid, s in fd["P-TH23-A5_conditioned_currency"]["per_leg"].items():
+        print(f"    {lid}: N_F={s['N_F']:6.2f}  rel in C {s['rel_pct_in_C']:6.3f}%  "
+              f"rel in 1+C {s['rel_pct_in_1_plus_C']:6.3f}%  amplification "
+              f"{s['conditioning_amplification_C_to_1plusC']:7.1f}x  "
+              f"{'INFORMATIVE' if s['informative'] else 'SATURATED'}")
+    print(f"    -> {fd['P-TH23-A5_conditioned_currency']['n_informative']} informative, "
+          f"{fd['P-TH23-A5_conditioned_currency']['n_saturated']} saturated")
     print("\n--- object-present legs (EXPLORATORY-NON-SCORING [docket 9]) ---")
     for oid, s in fd["exploratory_object_present"].items():
         print(f"  {oid}: C_scene={s['C_scene_sponge']:+.6f} vs empty {s['C_empty']:+.6f} "
               f"-> C_corr={s['ratio_estimator_C_corr']:+.4f} "
               f"(amplification {s['conditioning_amplification']:.0f}x)")
 
+    # ======================================================================
+    # [p5 docket 2] FLAG, DON'T REWRITE (exp-042's own precedent): the Phase-4
+    # record's S16-b attribution is left standing as committed, and this key
+    # carries the correction. Numbers are recomputed here from the corrected
+    # comparator, never hand-typed.
+    d_s16b = fd["gates"]["S16-b"]["post_run_diagnostic_nonparaxial"]["S16-b"]
+    ex_s16b = d_s16b["exact_angular_spectrum"]
+    ray_ctr = fd["gates"]["S16-b"]["target_center"]
+    fdtd_ctr = fd["gates"]["S16-b"]["measured_center"]
+    fdtd_hw = d_s16b["fdtd_half_width_1e2"]
+    target_err = abs(ex_s16b["center_1e2_midpoint"] - ray_ctr)
+    engine_err = abs(fdtd_ctr - ex_s16b["center_1e2_midpoint"])
+    total_err = abs(fdtd_ctr - ray_ctr)
+    peak_err = abs(ex_s16b["peak_cell"] - ray_ctr)
+    superseded = ex_s16b["superseded_field_aperture_E2"]
+    phase5_erratum = {
+        "convention": ("FLAG, DON'T REWRITE (T10; exp-042's own phase5_erratum "
+                       "precedent). Nothing in the Phase-4 record above is edited; "
+                       "this key states what is superseded and by what."),
+        "s16b_attribution_corrected": {                       # [p5 docket 2]
+            "committed_at_phase_4": {"target_error_cells": 8.03, "engine_error_cells": 4.95,
+                                     "share": "62% target / 38% engine"},
+            "corrected": {
+                "target_error_cells": target_err,
+                "engine_error_cells": engine_err,
+                "total_cells": total_err,
+                "target_share_pct": 100.0 * target_err / total_err,
+                "engine_share_pct": 100.0 * engine_err / total_err,
+                "engine_error_as_fraction_of_beam_half_width_pct":
+                    100.0 * engine_err / fdtd_hw},
+            "why": ("The Phase-4 diagnostic's comparator propagated the aperture as a "
+                    "prescribed FIELD and reduced it with |E|^2. This bench impresses a "
+                    "line CURRENT (lab/fdtd2d.py:232-237 -> spectrum carries 1/k_x) and "
+                    "`ambient.observer_profile` reads a FLUX (lab/ambient.py:36-39 -> "
+                    "obliquity k_x/k enters once, via H). Two missing obliquities in "
+                    "opposite directions; they do not cancel. Fourth appearance of the "
+                    "error species LOGBOOK T21 records from Iteration 19, and the first "
+                    "inside lab/."),
+            "superseded_comparator_reading": superseded,
+            "estimator_skew_decomposition": {
+                "note": ("Under a PEAK estimator -- which is what ray optics actually "
+                         "predicts, a stationary-phase ray -- the exact/ray-optics gap is "
+                         "only the figure below. So the 12.97 cells decompose as "
+                         "~estimator/skew mismatch + ~genuine non-paraxial target error + "
+                         "~engine, and NOTES.md Learned #2 and idealization 2 name the "
+                         "right species while assigning it ~4x too much of the effect and "
+                         "none to the estimator pairing that dominates."),
+                "peak_estimator_exact_vs_ray_optics_cells": peak_err,
+                "exact_peak": ex_s16b["peak_cell"],
+                "fdtd_peak_cell": d_s16b["fdtd_peak_cell"],
+                "ray_optics_center": ray_ctr,
+                "estimator_skew_cells": total_err - peak_err - engine_err,
+                "genuine_nonparaxial_target_error_cells": peak_err,
+                "engine_cells": engine_err},
+            "shipped_8pct_bar_would_have_failed": {
+                "cell": "Block A's own extreme: FWHM=20deg, theta0=40deg, 600nm, "
+                        "width = w0/cos(theta0) = 28.03",
+                "fdtd_center_half_width": [1005.549, 120.776],
+                "shipped_comparator_center": 994.223,
+                "offset_vs_8pct_bar_pct": 9.38,
+                "verdict": "FAIL -- and it would have blamed the engine",
+                "correct_comparator_center": 1005.090,
+                "true_engine_offset_pct": 0.38,
+                "source": ("Red Team's own new FDTD run (`rt_extreme.py`), cited as its "
+                           "measurement; not re-run this shift -- this close carries no "
+                           "new FDTD budget. The corrected comparator's 1005.090 IS "
+                           "reproduced here by `exact_angular_spectrum_center(28.03, 40, "
+                           "20)`."),
+                "correct_comparator_reproduced_here":
+                    exact_angular_spectrum_center(
+                        w_line_cells(20, 20, 40), 40.0, dg.CPL[600])["center_1e2_midpoint"]},
+            "suite_gate_repointed": (
+                "lab/validation/run_all.py stage 16 gate (b) is repointed to the "
+                "line-current/flux comparator and re-barred at <=1.5% of the beam "
+                "half-width (measured 0.46%), with a new desk-only acceptance gate (b2) "
+                "requiring agreement with an INDEPENDENT real-space Huygens derivation "
+                "(measured 0.030 cells in centre, 0.011 in half-width). Stage 16 is now "
+                "5/5. [p5 docket 1]"),
+        },
+        "a1_disposition": {                                    # [p5 docket 5]
+            "scorecard_cell": "WITHHELD -- not gate-backed (S16-b FAILED)",
+            "scorecard_tally": "11 CONFIRMED / 2 PARTIAL / 1 WITHHELD / 1 REFUTED / "
+                               "2 DROPPED",
+            "note": ("A1 is dropped from the PARTIAL count: a reading the Director has "
+                     "withheld must not be counted in the cycle's own success tally, and "
+                     "the Phase-4 cell 'PARTIAL (computed in band; withheld as "
+                     "gate-backed)' parses literally as the inverse of its intent -- "
+                     "which matters because LOGBOOK entries are built by copying "
+                     "scorecard rows."),
+            "post_fix_status": ("Once p5 docket items 1-2 land -- and they land in this "
+                                "same commit -- the repointed S16-b PASSES at 0.46% "
+                                "(0.418 cells on a 90.99-cell half-width), so the "
+                                "pointing chain IS validated at 600nm/40deg and A1 is "
+                                "restored as an explicitly-labelled DESK GEOMETRY READING "
+                                "that is gate-backed at that configuration. It stays out "
+                                "of the CONFIRMED column: it was never an experimental "
+                                "adjudication of coherence, and its own mechanism "
+                                "sentence is contradicted at the 4 positive-C cells "
+                                "[p5 docket 10]."),
+        },
+        "item_24_hardened_rule": ITEM_24_HARDENED_RULE,         # [p5 docket 4]
+        "item_24_rule_correction_note": ITEM_24_RULE_CORRECTION_NOTE,
+        "only_flag_erratum_corrected": (                        # [p5 docket 12]
+            "[p5 docket 12] VALIDATION.md's and NOTES.md Learned #5's `--only` erratum "
+            "over-claimed its own blast radius. The exact-match rule that caused the "
+            "packed-token regression landed at commit 6082e02, 2026-08-17. Running the "
+            "PRE-6082e02 `_stage_selected` against `--only 12346789,10,11` selects "
+            "{1,2,3,4,6,7,8,9,10,11} -- the intended ten stages. All five SESSION_LOG "
+            "citations of that invocation (lines 1026/1155/1253/1347/1455) sit under "
+            "headers dated 2026-08-14/15 (Iterations 7-11, exp-030/031/032/033/034) and "
+            "were correct under the code in force. The regression affects "
+            "POST-2026-08-17 invocations only, NONE of which was ever cited: no "
+            "published trust-suite citation in this program's history was damaged. The "
+            "`--only 16 -> {1,6,16}` and `--only 12 -> {1,2,12}` halves are correct and "
+            "the fix itself is right. Corrected in VALIDATION.md and NOTES.md before it "
+            "reached LOGBOOK."),
+        "docket_21_override_stated": (                          # [p5 docket 13]
+            "[p5 docket 13] STATED AS AN OVERRIDE, per this program's own rule that an "
+            "overridden docket item is stated as overridden rather than silently "
+            "narrowed: Phase-2 docket item 21 asked for the NETD disclaimer at every "
+            "point of claim. It is applied at every point of claim in C2 and C5 and at "
+            "block scope for C1 and C4, because C1 and C4 issue NO detectability claim of "
+            "their own -- they count memory point-runs and realizability tiers -- and a "
+            "per-point disclaimer on a key that makes no detectability claim is noise, "
+            "not disclosure. The block-scope key carries it. This was an override, not a "
+            "delivery, and was not stated as one at Phase 4."),
+        "netd_disclaimer_coverage_corrected": None,             # filled in below
+        "absorbing_boundary_systematic": ABSORB_SYSTEMATIC_NOTE,      # [p5 docket 19]
+        "post_freeze_gate_target_rule": POST_FREEZE_GATE_TARGET_RULE,  # [p5 docket 20]
+        "phase1_proposal_superseded_banner": (                  # [p5 docket 3]
+            "[p5 docket 3] `phase1_proposal.md` now carries a SUPERSEDED banner in "
+            "exp-045's own form (commit f48de18), naming: 'eye-invisible' (section 1 and "
+            "P-TH23-B3), section 2.1's geometry table, section 1's N_F range, "
+            "idealizations 2 and 4, the 'sourced' silicon label, and predictions "
+            "A3/A4/A7. NOTES.md's 'struck everywhere' is corrected to 'struck from every "
+            "live artifact and every committed result; the Phase-1 draft is preserved "
+            "unedited under a SUPERSEDED banner'. The NETD_DISCLAIMER constant now reads "
+            "'in any committed result of this cycle', not 'anywhere in this cycle'. The "
+            "SUBSTANTIVE half of Phase-2 docket 20 was already delivered -- no live "
+            "artifact, no scored prediction, no committed result carries a perceptual "
+            "claim -- what was false was the DELIVERY CLAIM, and the house remedy "
+            "(invented one cycle earlier at exp-045, for this exact failure mode) had "
+            "not been applied."),
+        "tier0_items_landed": [1, 2, 3, 4, 5],
+        "tier1_items_landed": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        "disclosed_scope_calls": (
+            "Two calls the Phase-5 docket does not fully resolve, disclosed rather than "
+            "smoothed over (this program's convention). (1) Items 4, 19 and 20 each say "
+            "'propagate to LOGBOOK's Iteration-23 close'; that close is not yet written, "
+            "so the strings are made canonical HERE and in NOTES.md and are the text to "
+            "carry at close -- no partial LOGBOOK entry is invented by this shift. "
+            "(2) Item 1's mandatory acceptance test must reproduce exp-042's `_G0_for` + "
+            "`field_and_h`, but VALIDATION's own rule is that the suite depends on no "
+            "experiment directory; the propagator is therefore RE-DERIVED inside "
+            "run_all.py from the geometry constants, which reproduces exp-042's numbers "
+            "exactly AND doubles as the independent second derivation docket item 20 "
+            "requires."),
+    }
+
     out = {
         "experiment": "exp-046",
         "panel_iteration": 23,
         "lead_seat": "THERMODYNAMICS",
-        "phase": "4 (TEST)",
+        "phase": "4 (TEST) + Phase-5 mandatory-fix close (same shift)",
+        "phase5_erratum": phase5_erratum,
         "docket": ("all 23 substantive items of phase2_redteam_audit.md's mandatory-fix "
-                   "docket applied; item 24 is a standing program-integrity rule"),
+                   "docket applied; item 24 is a standing program-integrity rule (as "
+                   "REPAIRED at Phase 5, p5 docket 4). PLUS all 20 items of "
+                   "phase5_redteam_audit.md section 8's mandatory-fix docket, applied in "
+                   "the same shift as the audit that raised them: Tier 0 (1-5, "
+                   "checkpoint-criterion-4-conditional) and Tier 1 (6-20). Marked "
+                   "[p5 docket N] at the point of application; see `phase5_erratum`."),
         "platform": PLATFORM,
         "meta": {"elapsed_s": time.time() - t0,
                  "n_new_fdtd_calls": fd["n_new_fdtd_calls"],
@@ -1550,6 +2475,30 @@ def main():
         "block_b_mixed_length_scale_regime": b,
         "block_c_dose_accumulation_full_grid": c,
         "netd_disclaimer_ALL_CLAIMS": NETD_DISCLAIMER,
+    }
+    # [p5 docket 13] Idealization 10's per-point claim, CORRECTED and COMPUTED.
+    # The claim "stored per point at all 2496 + 42 + 250 points" is false: the
+    # 250 duration-scan points carry no NETD classification and need none. The
+    # true figure is the number of `netd_disclaimer` keys actually emitted,
+    # counted here on the serialized document rather than asserted. Counting
+    # BEFORE this key is inserted is exact: the key's value is an integer, so
+    # inserting it adds no further instance of the disclaimer string.
+    blob = json.dumps(out, indent=1, default=float)
+    phase5_erratum["netd_disclaimer_coverage_corrected"] = {
+        "n_netd_disclaimer_keys": blob.count('"netd_disclaimer"'),
+        "n_disclaimer_string_instances": blob.count(NETD_DISCLAIMER[:60]),
+        "block_b_regrowth_points_with_classification":
+            len(b["block_a_regrowth"]["points"]),
+        "block_c_point_runs_with_classification": c["n_point_runs"],
+        "c3_duration_scan_points_without_classification":
+            c["c3_duration_scan"]["n_points"],
+        "statement": (
+            "[p5 docket 13] NOTES.md idealization 10 claims the disclaimer is stored "
+            "'per point at all 2496 + 42 + 250 points'. The 250 duration-scan points "
+            "carry NO NETD classification -- they scan a memory ratio, not a "
+            "temperature -- and need none. The count above is the number of "
+            "`netd_disclaimer` keys the document actually carries, computed on the "
+            "serialized document, not asserted."),
     }
     with open(os.path.join(HERE, "results.json"), "w") as f:
         json.dump(out, f, indent=1, default=float)

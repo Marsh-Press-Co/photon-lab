@@ -1,3 +1,73 @@
+**SUPERSEDED — see `NOTES.md` (Phase 3 + Phase 5), `phase3_synthesis.md`,
+`phase2_redteam_audit.md` and `phase5_redteam_audit.md`. This Phase-1 draft is
+preserved UNEDITED below as the historical record of what Phase 1 actually
+proposed and Phase 2 actually critiqued (T10's "flag, don't rewrite"
+convention, extended to a Phase-1 draft at exp-045 `f48de18` and applied here
+at the Iteration-23 Phase-5 close, Red Team docket item 3). What below is
+superseded, and by what:**
+
+- **"eye-invisible" (§1's seat sidecar; prediction P-TH23-B3 — lines 46 and
+  342 of the un-bannered file `8950125`, now offset by this banner) —
+  STRUCK.** A perceptual claim whose only falsifier was a detector
+  ratio, i.e. unfalsifiable as posed, and constraint-3-shaped (Phase-2 docket
+  item 20; VISION SCIENCE upheld in full). It appears in **no** live artifact,
+  **no** scored prediction and **no** committed result of this cycle; it
+  survives only in the two loci named above, in this preserved draft.
+- **§2.1's geometry table — SUPERSEDED.** Every oblique source width is
+  `w₀/cos θ₀`, not `w₀` (Phase-2 docket item 1); the table is re-issued in
+  `run.py`/`results.json`. The `w_y(450 nm, FWHM 2°, θ₀=40°) = 199.33` entry
+  is a θ₀=36° value pasted into a θ₀=40° column; corrected to **210.54**
+  (docket item 2).
+- **§1's N_F range (~310–518 → 0.32–40.7, and §2.1's 0.24–39.6) —
+  SUPERSEDED** by the corrected width: the committed range is **0.38–67.5**
+  (0.40–67.5 at θ₀=40°), and the aperture ratio is **2.15×–35.8×**, not
+  2.80×–46.70× (docket item 3).
+- **Idealization 2 (paraxial Gaussian relation) — SUPERSEDED TWICE.** The
+  waist is **1.0737 λ at all three wavelengths, one value**, not "1.07–1.34 λ"
+  (docket item 12). And its successor's "consequently the 3-λ sweep carries no
+  material wavelength dependence" clause is itself **struck at Phase 5**
+  (docket item 10): the medium is dispersionless and the emitter
+  λ-scale-invariant, but `N_F ∝ λ_cells` and the reading is strongly
+  chromatic — **4 of 36 cells read positive C**, a sign reversal across the
+  visible band.
+- **Idealization 4 (aperture truncation) — SUPERSEDED TWICE.** The unaimed rim
+  residual is **9.99×10⁻³ in amplitude / 9.98×10⁻⁵ in intensity**, 25×/657×
+  worse than the "≤3.90×10⁻⁴ / ≤1.52×10⁻⁷, four-plus orders below `C_THR`"
+  claimed here (docket item 11). And its successor's "still below `C_THR`"
+  clause is **also struck at Phase 5** (p5 docket item 11): the amplitude is
+  *above* `C_THR` = 0.005, only the intensity is below — and comparing a
+  source-plane field residual to a Weber contrast threshold is a category
+  error in either direction.
+- **The "sourced" silicon label (§2.3's parameter table) — DOWNGRADED** to `ASSUMED — provenance terminates unsourced (T18)`. The chain
+  reads exp-046 §2.3 → exp-037 `NOTES.md:828-829` → "standard *cited* thermal
+  constants" → grep returns only that sentence. The values are correct for
+  bulk crystalline Si; the **label** was wrong (docket item 18).
+- **Prediction P-TH23-A3 — RE-SCOPED.** Not an experimental result but an
+  algebraic identity of `beam_divergence_coherent` (Phase-2 Attack 2), and its
+  "5–20% divergence at FWHM=20°" clause hard-falsifies pre-run under the
+  corrected width. Its residual is QUANTUM's closed form
+  `w_meas/w_line = 1/√(1−4σ_θ² tan²θ₀)`, **not** taper truncation (p5 docket
+  item 7). And the identity is a statement about the effective aperture's
+  **central lobe only**: at the 9 FWHM=20° cells the synthesised object is a
+  three-lobe comb carrying 41.7–68.0% of its intensity outside ±3·w_line
+  (p5 docket item 6).
+- **Prediction P-TH23-A4 — DROPPED** at Phase 3 on its 5–20% magnitude band
+  (docket item 7). Its stated **mechanism** — 41-point angular-sampling
+  aliasing — is **restored as real** at Phase 5 (p5 docket item 8): n=41→401
+  moves the scored `C_empty` by up to 4.473%.
+- **Prediction P-TH23-A7 — DROPPED** at Phase 3 (docket item 9): the ratio
+  estimator is ill-conditioned by 77–300× at these `C_empty` values. Its two
+  object-present FDTD legs still run, as EXPLORATORY-NON-SCORING.
+- **§2.3's "decided by the conduction length alone" — CORRECTED** to the full
+  `ρ C_P L²/(4εσT³L + k_air)` dependence (docket item 19), and T23's own
+  disposition now lives in `results.json`'s `t23_disposition` key rather than
+  only in this document (p5 docket item 14).
+- **The Tier-2 escalation's soft form — HARDENED** (docket item 24), and the
+  hardened rule itself **repaired** at Phase 5 (p5 docket item 4): see
+  `NOTES.md` for the one canonical rendering.
+
+---
+
 # PHASE 1 — PROPOSAL · Panel Iteration 23 · Lead seat: THERMODYNAMICS
 
 ## "The Aperture-Consistent Single-Mode Beam, T23's Mixed Length-Scale Regime, and the Dose-Accumulation Extension" (candidate exp-046)
