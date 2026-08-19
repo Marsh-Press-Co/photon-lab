@@ -1481,7 +1481,86 @@ def stage16_oblique_gaussian_source():
           f"{hw_d:.2f} vs {target_d:.2f} ({rel_d:.2%})", rel_d <= 0.05, "<=5%")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 17))
+def stage17_glare_sidecar():
+    """VISION's glare/adaptation Tier-W sidecar vs closed-form identities
+    (panel Iteration 24, exp-047 -- docket #7's second and final half).
+    Desk-analytic only, zero FDTD -- PANEL.md's "new machinery => new
+    suite stage with an absolute identity gate" rule applied to a pure
+    radiometric-composition module, same discipline as stage 15.
+
+      1. Zero-glare identity: veiled_contrast(C, L_v=0, L_B) == C exactly
+         (the whole sidecar must reduce to a no-op at zero glare).
+      2. Cross-check identity: `veiled_contrast` (dilution form) and
+         `veiled_contrast_direct` (first-principles form) are algebraically
+         identical (EM's Phase-2 re-derivation) -- bit-exact to machine
+         epsilon at several (C, L_v, L_B) combinations.
+      3. c_thr photopic-floor identity: at L=L_ref=3 cd/m^2, (L/L_ref)^-p=1
+         exactly for any p, so c_thr must equal the bare base value (lab
+         bar 0.005, field bar 0.02) exactly, independent of p.
+      4. c_thr clip identity: above L_ref (photopic), c_thr stays pinned at
+         the base value (the clip fires) rather than continuing to fall.
+      5. stray_light_ceiling_lux corner-bound identity: the proposal's own
+         cited [553, 55172] lx ceiling band is exactly the min/max over the
+         four (f_spill, r_hold) corners at the sourced candela extremes
+         (exp-043) -- an absolute regression anchor on the committed
+         parameter table, not just an internal-consistency check.
+      6. corneal_irradiance_wcm2 unit round trip: reproduces THERMO's
+         independently-verified 18.4 mW/cm^2 at the ceiling extreme
+         (Phase-2 critique arithmetic, re-verified by Red Team).
+    """
+    print("stage 17 — glare/adaptation Tier-W sidecar vs closed-form identities")
+    from lab import glare_sidecar as gs
+
+    # --- gate 1: zero-glare identity.
+    for c in (-0.7209, -0.5, -0.05):
+        c_eff = gs.veiled_contrast(c, 0.0, 1.7e-4)
+        check("glare-sidecar", f"veiled_contrast(C={c}, L_v=0) == C (exact)",
+              f"{c_eff!r}", c_eff == c, f"{c!r}")
+
+    # --- gate 2: dilution form vs direct form, bit-exact cross-check.
+    combos = [(-0.7209, 55.3, 1.7e-4), (-0.7209, 0.0001, 1e-5),
+              (-0.5, 40.0, 1e-3), (-0.7209, 5.02e-3, 1.7e-4)]
+    for c, lv, lb in combos:
+        via_dilution = gs.veiled_contrast(c, lv, lb)
+        via_direct = gs.veiled_contrast_direct(c, lv, lb)
+        rel = abs(via_dilution - via_direct) / max(abs(via_direct), 1e-300)
+        check("glare-sidecar",
+              f"veiled_contrast vs veiled_contrast_direct (C={c},Lv={lv},Lb={lb})",
+              f"{rel:.2e}", rel <= 1e-12, "<=1e-12 relative")
+
+    # --- gate 3: c_thr photopic-floor identity (p-independent at L=L_ref).
+    for p in (0.4, 0.5):
+        lab_val = gs.c_thr(3.0, p, bar="lab")
+        field_val = gs.c_thr(3.0, p, bar="field")
+        check("glare-sidecar", f"c_thr(L=3.0, p={p}, lab) == 0.005 (exact)",
+              f"{lab_val!r}", lab_val == 0.005, "0.005")
+        check("glare-sidecar", f"c_thr(L=3.0, p={p}, field) == 0.02 (exact)",
+              f"{field_val!r}", field_val == 0.02, "0.02")
+
+    # --- gate 4: c_thr clip identity (above L_ref, pinned at base value).
+    for L in (3.0, 30.0, 300.0):
+        val = gs.c_thr(L, 0.5, bar="lab")
+        check("glare-sidecar", f"c_thr(L={L} >= L_ref, p=0.5, lab) clipped at base",
+              f"{val!r}", val == 0.005, "0.005")
+
+    # --- gate 5: stray_light_ceiling_lux corner-bound identity (regression anchor).
+    I_LO, I_HI = 13827.0, 99310.0
+    FSPILL_LO, FSPILL_HI = 0.01, 0.05
+    RHOLD_LO, RHOLD_HI = 0.3, 0.5
+    e_min = gs.stray_light_ceiling_lux(I_LO, FSPILL_LO, RHOLD_HI)
+    e_max = gs.stray_light_ceiling_lux(I_HI, FSPILL_HI, RHOLD_LO)
+    check("glare-sidecar", "stray_light_ceiling_lux corner minimum (regression anchor)",
+          f"{e_min:.2f}", abs(e_min - 553.08) <= 0.1, "553.08 lx (+-0.1)")
+    check("glare-sidecar", "stray_light_ceiling_lux corner maximum (regression anchor)",
+          f"{e_max:.2f}", abs(e_max - 55172.22) <= 0.1, "55172.22 lx (+-0.1)")
+
+    # --- gate 6: corneal_irradiance_wcm2 unit round trip vs THERMO's own arithmetic.
+    mw_cm2 = gs.corneal_irradiance_wcm2(e_max, 300.0) * 1000.0
+    check("glare-sidecar", "corneal_irradiance_mwcm2 at ceiling extreme vs THERMO's Phase-2 figure",
+          f"{mw_cm2:.2f}", abs(mw_cm2 - 18.39) <= 0.05, "18.4 mW/cm^2 (+-0.05)")
+
+
+_STAGE_IDS = frozenset(str(n) for n in range(1, 18))
 
 
 def _stage_selected(n, only):
@@ -1541,6 +1620,7 @@ if __name__ == "__main__":
     run_stage14 = _stage_selected(14, only)
     run_stage15 = _stage_selected(15, only)
     run_stage16 = _stage_selected(16, only)
+    run_stage17 = _stage_selected(17, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -1600,6 +1680,8 @@ if __name__ == "__main__":
         stage15_thermo_sidecar()
     if run_stage16:
         stage16_oblique_gaussian_source()
+    if run_stage17:
+        stage17_glare_sidecar()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
