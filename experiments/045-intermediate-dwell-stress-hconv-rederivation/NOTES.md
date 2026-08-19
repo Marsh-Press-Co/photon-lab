@@ -205,6 +205,94 @@ this commit; Phase 4 regenerates it fresh from the same (now-frozen) code.
   below `netd_lo` — population memory is real but does not threaten the
   UNDETECTABLE verdict at Host D.
 
+## Phase 4 — Results (run 2026-08-19)
+
+Bench unchanged (no `lab/` file touched this cycle) — 41/41 fast stages
+stand as pre-flight-verified this shift. Zero new FDTD calls, 0.27s.
+`results.json` regenerated fresh from the frozen, predictions-committed
+code (`24406dc`).
+
+**8 of 9 predictions CONFIRMED, 1 PARTIAL (disclosed, not hidden):**
+
+- **P-IT22-A1 CONFIRMED**: max ΔT = 3.585×10⁻⁴ K (in-band), margin 55.8×
+  below `netd_lo` (≥50×), all 2080 points UNDETECTABLE-or-better.
+- **P-IT22-A2 PARTIAL** — 3 of 4 Host-D ratio points at the R-grid point
+  nearest 0.67–0.73 land inside the predicted [1.40%,1.55%] band (1.451%,
+  1.451%, 1.452%); the r=1e-1 point reads **1.60%**, just outside the
+  predicted ceiling. Genuine, disclosed miss, small in magnitude (5
+  percentage-points-of-the-value overshoot) — an artifact of the fixed
+  R-grid's nearest point not landing exactly on r=1e-1's own dwell/τ_k
+  ratio (unlike A3, which tests the EXACT witness dwell directly and
+  matches cleanly — see below). Does not affect any UNDETECTABLE
+  classification (still comfortably sub-NETD at every point on this axis).
+- **P-IT22-A3 CONFIRMED**: all 4 Host-D ratios reproduce exp-044's
+  published 1.44–1.50% figure at the exact witness dwell (1.4955%,
+  1.4955%, 1.4950%, 1.4422% — all inside [1.44%,1.50%]).
+- **P-IT22-A4 CONFIRMED**: Hosts A/B/C at R=0.1 read relative difference
+  2.7×10⁴%–3.0×10⁷% (comfortably ≥1000%, the stated falsification floor),
+  while absolute ΔT stays 1.1×10⁻⁶–1.4×10⁻²⁰ K — many orders below NETD.
+  Confirmed benign-artifact, not new physics.
+- **P-IT22-A5 CONFIRMED** — worst-case *relative_difference* shift between
+  the uncorrected and T22-area-only regimes (the correct comparison: each
+  regime's own worst-case coupled-vs-decoupled relative difference on axis
+  T, not a raw ΔT comparison at matching R — axis T's R denotes a different
+  actual dwell per regime by construction, since dwell=R×τ_thermal(regime)):
+  Host A 5×10⁻⁴%, Host B 0.50%, Host C 4.22%, Host D 0.045% — all ≤10%.
+- **P-IT22-A6 CONFIRMED both readings**: `dwell/τ_thermal` = 21.24× at the
+  primary `w_on`-consistent silicon regime (in [19×,23×], **below**
+  `N_TRANSIENT_TAU=25` as predicted — the Phase-1 draft's "relief" framing
+  does not survive self-consistency) and 194.18× at the alternate
+  `r_out`-consistent silicon regime (in [180×,210×]).
+- **P-IT22-B CONFIRMED**: Bi(silicon) = 1.7568×10⁻⁴ at BOTH length-scale
+  regimes (in [1×10⁻⁴,3×10⁻⁴]), confirming length-invariance numerically
+  and confirming the Biot concern is specific to the (superseded) PMMA
+  identity's low conductivity, not structural under silicon.
+- **P-IT22-C CONFIRMED**: Host D max periodic/first-pulse ratio 1.0051 at
+  5τ gap (≤1.05) and 1.4509 at 0.5τ gap (in [1.2,1.8], matching exp-038's
+  own order-of-magnitude finding at a different pulse duration). Max
+  periodic decoupled ΔT = 7.385×10⁻⁷ K, margin 27,080× below `netd_lo` (≥500×
+  predicted) — population memory is real but does not threaten the
+  UNDETECTABLE verdict.
+
+## Learned
+
+1. **The genuinely untested intermediate-dwell regime does not threaten any
+   UNDETECTABLE verdict this program has issued** — the coupled-ODE ceiling
+   argument (Attack 12, structurally proven: Block B's own corrections can
+   only ever lower `dt_ss_full`, never raise it) holds across 2080 points
+   spanning 0.1×–10× of both time constants, 5 regimes, and a genuine
+   population-memory check. This is the load-bearing physics result of the
+   cycle.
+2. **"First-principles" re-derivations need the SAME discipline this
+   program applies to FDTD runs**: a from-scratch analytic correction
+   (Block B) produced a real, sign-flipping, falsification-condition-firing
+   defect (mixed length scales) that five blind critiques and one Red Team
+   audit were needed to catch and fix — instrument-fidelity work is not
+   lower-risk than mechanism-testing work just because it has zero FDTD
+   cost.
+3. **A material-identity fix can silently repair an unrelated-looking
+   caveat**: adopting silicon (fixing MATERIALS' citation catch) also
+   resolved THERMODYNAMICS' Biot-number concern almost entirely (Bi
+   dropping ~780×) — a coupling between two seats' independent findings
+   neither seat's own critique stated, caught only at Phase 3 synthesis.
+4. **Self-consistency has a real, disclosed cost**: the properly-derived
+   correction (21.2×) is genuinely LESS comfortable than the Phase-1
+   draft's own (buggy) headline claim (126.7×) — dropping below the
+   informal `N_TRANSIENT_TAU=25` comfort heuristic, though this does not
+   threaten any actual verdict since Block A always uses the exact closed
+   form, never the decoupled shortcut this heuristic originally governed.
+
+## Next
+
+Per Red Team's own next-seat note: QUANTUM OPTICS leads Iteration 24; this
+cycle's Block C should be read as ELECTROMAGNETISM/Red-Team executing
+QUANTUM's own design on QUANTUM's behalf this shift, not as preempting
+QUANTUM's Iteration-24 leadership. QUANTUM's own aperture-consistent
+single-coherent-mode beam check (self-imposed Checkpoint-4 tripwire, now a
+THIRD deferral if not run at Iteration 23) remains untouched by this cycle
+and is still due. See PLAN.md for the full ranked Iteration-23 queue,
+updated this shift.
+
 ## Idealizations (carried from Phase 1, corrected/extended at Phase 3)
 
 - Block A's `coupled_kinetics_thermal_dT` is reused verbatim from exp-044,
