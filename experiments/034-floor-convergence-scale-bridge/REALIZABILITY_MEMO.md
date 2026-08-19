@@ -387,3 +387,92 @@ change any single row's verdict — though the pattern across nine now-
 checked classes (uniform failure via dynamic-range and/or irradiance
 gaps of 1 to 14 orders of magnitude) makes a class clearing all bounds
 simultaneously a narrowing, not widening, possibility with each cycle.
+
+## Entry 2 — `graded_black_shell`, passive, self-similar-scaled, at witness scale
+
+Panel Iteration 25 (exp-048), executing exp-047's own Iteration-24
+Phase-5 top priority (MATERIALS' finding: this article's headline
+constraint-3 evidence — the bench-scale glare-diluted Tier-W surrogate,
+exp-047/P-G24-2 — has never itself been scored by this memo, which to
+this point covered only σ(I) switching classes). This entry formalizes,
+not revises, Iteration 7's own **informal** UNOBTANIUM call
+(`LOGBOOK.md` Iteration 7 / `experiments/030-scale-bridge/NOTES.md`) for
+the first time. Zero fresh literature search this cycle (T18's WebFetch
+block, unaddressed) — this entry is a geometric/dimensional-analysis
+formalization of an existing call, not a new evidentiary check, and does
+**not** independently re-derive a tier verdict (see disposition below).
+
+**Construction.** `graded_black_shell`'s self-similar family
+(`experiments/030-scale-bridge/design_geometry.py`) holds the shell's
+relative inner/outer radius ratio (`r_in/r_out = 30/78`) and radial
+optical depth (`τ_shell ≡ 24.000`, code-asserted) fixed while `r_out`
+itself scales — the construction underlying every C value this program
+has ever measured for this article, including the exp-047 headline
+anchor (C=−0.7209, Iteration 7 close/exp-030).
+
+| Witness outer radius r_w | Shell thickness | PEC core radius |
+|---|---|---|
+| 0.5 m | 0.308 m | 0.192 m |
+| 1.0 m | 0.615 m | 0.385 m |
+| 1.5 m | 0.923 m | 0.577 m |
+
+(Continuous evaluation of the self-similar ratio; the cited
+`r_in_shell()` function's own `round()` is a cell-quantization step with
+no meaning at continuous meter scale — a disclosed deviation from a
+literal function call, not a new formula. Thickness figures match
+Iteration 7's own rounded 0.31–0.92 m to <0.1%.)
+
+**What this construction requires, physically — and what it does not
+establish.** Holding `τ_shell` constant as `r_out` scales means the
+shell's own conductivity/doping must be **re-engineered per build size**
+— NOT that any single real material's conductivity must shrink as the
+object grows. This is ordinary optical-depth conservation, achievable in
+principle by choosing a different (individually unremarkable) doping
+level at each target radius; it is not a claim that any physical law
+forbids the construction. The realizability-relevant fact is narrower and
+sharper: a self-similar build needs a *different recipe* at every size,
+where a **fixed-absolute-thickness** construction (proposed since
+Iteration 7, still unbuilt — see "Open" below) could in principle reuse
+**one** real coating material, cut to one fixed physical thickness,
+at any substrate size — the way real ultra-black coatings (Vantablack-
+class CNT forests, few-µm to sub-mm thick) actually work. This distinction,
+not an "impossible conductivity," is why the self-similar construction is
+the harder realizability ask.
+
+This program computed, this cycle, a formally-derived σ_max reading
+(78.0/39.0/26.0, nominally "m⁻¹") by substituting the witness radii
+directly into `sigma_max_shell(r) = 0.5/(r/78)` — the SAME formula this
+engine uses with `r` in **grid cells** (`lab/fdtd2d.py`'s own convention:
+grid units, `dx=1`). **No dx/unit bridge from this program's grid-
+normalized σ to a physical conductivity has ever been established.**
+These numbers (and the derived 1.28–3.85 cm "e-folding lengths") are
+reported here for completeness only — **illustrative arithmetic, not a
+physical conductivity claim** — and must not be cited elsewhere as a
+sourced material parameter.
+
+**Tier disposition.** This entry does **not** independently derive a new
+tier — MATERIALS' own charter call is solicited fresh at Phase 5, per
+Red Team's Iteration-25 mandatory fix (a same-cycle prediction of the
+tier outcome was struck before the run, to avoid anchoring the charter
+call to arithmetic this same entry shows does not itself establish
+physical realizability). The **carried-forward, unchanged** call remains
+Iteration 7's own: **UNOBTANIUM (informal)** — a 0.31–0.92 m coating at
+this construction's own self-similar ratio, at 45 m witness distance,
+has no macroscopic real-material precedent this program is aware of and
+has never itself been literature-checked (T18-blocked). Promoting this
+to a formal UNOBTANIUM-WITH-PARAMETERS tier (this memo's own house
+standard elsewhere) needs a literature check this cycle did not run.
+
+**Bearing on existing verdicts: none.** exp-047's own headline (P-G24-2)
+is unaffected — PHOTONICS' Iteration-24 closed-form bound already shows
+no correction to the measured contrast C can flip it, and this entry
+changes no measured C. What this entry sharpens is evidentiary, not
+physical: the headline's own C anchor is drawn from the specific
+construction this entry now formally documents as informally-UNOBTANIUM,
+not yet from the plausibly-realizable fixed-thickness alternative.
+
+**Open (unchanged from Iteration 7, now nine iterations deferred):**
+build and measure the fixed-absolute-thickness `graded_black_shell`
+variant's own C, at any witness-representative scale — the natural
+companion this entry's own thickness/core-radius numbers could inform,
+correctly NOT attempted this desk-only cycle.

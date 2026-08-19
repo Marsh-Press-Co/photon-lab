@@ -1,0 +1,375 @@
+{
+  "experiment": "exp-048",
+  "panel_iteration": 25,
+  "lead_seat": "VISION SCIENCE",
+  "block_a": {
+    "rows": [
+      {
+        "witness_r_m": 0.5,
+        "thickness_m": 0.307692,
+        "core_radius_m": 0.192308,
+        "sigma_max_illustrative_only_permeter": 78.0,
+        "efold_length_illustrative_only_cm": 1.2821,
+        "tau_check": 24.0
+      },
+      {
+        "witness_r_m": 1.0,
+        "thickness_m": 0.615385,
+        "core_radius_m": 0.384615,
+        "sigma_max_illustrative_only_permeter": 39.0,
+        "efold_length_illustrative_only_cm": 2.5641,
+        "tau_check": 24.0
+      },
+      {
+        "witness_r_m": 1.5,
+        "thickness_m": 0.923077,
+        "core_radius_m": 0.576923,
+        "sigma_max_illustrative_only_permeter": 26.0,
+        "efold_length_illustrative_only_cm": 3.8462,
+        "tau_check": 24.0
+      }
+    ],
+    "tau_identity_holds": true,
+    "c_anchor": -0.7209,
+    "c_anchor_citation": "Iteration 7 close (exp-030), V-weighted, r=78 cells, +-35deg fallback",
+    "prior_tier_call": "UNOBTANIUM (informal call, Iteration 7/exp-030 Phase 5, MATERIALS)",
+    "sigma_illustrative_only_disclaimer": "NOT physically-grounded conductivities -- literal reuse of the FDTD's cell-normalized sigma_max_shell formula fed meter-valued input, no dx/unit bridge established (mandatory fix 2).",
+    "tau_conservation_reframe": "Holding tau_shell constant under self-similar r-scaling is ordinary optical-depth conservation, achievable via an independently-chosen conductivity/doping at each build size -- NOT a forbidden material property (mandatory fix 3).",
+    "tier_prediction_struck": "P-A2 struck per mandatory fix 7 -- MATERIALS' own charter call, not predicted here."
+  },
+  "block_b": {
+    "regression": {
+      "450": {
+        "value": -0.010329176182132263,
+        "ref": -0.010329176182132263,
+        "rel_err": 0.0
+      },
+      "600": {
+        "value": -0.004649509989137881,
+        "ref": -0.004649509989137881,
+        "rel_err": 0.0
+      },
+      "750": {
+        "value": -0.006421144336224298,
+        "ref": -0.006421144336224298,
+        "rel_err": 0.0
+      }
+    },
+    "regression_ok": true,
+    "geom78": {
+      "NY": 1528,
+      "OBJ_Y": 764,
+      "D_SP": 223,
+      "GUARD_OUT": 186,
+      "R_OUT": 78,
+      "W_FLANK": 78,
+      "PLANE_X": 77,
+      "SRC_X": 300,
+      "ABSORB": 40,
+      "TAPER": 40
+    },
+    "a_new": 724,
+    "predicted_periods_deg": {
+      "450": 1.549606247742114,
+      "600": 2.066141663656152,
+      "750": 2.58267707957019
+    },
+    "cited_periods_deg": {
+      "450": 1.4,
+      "600": 1.9,
+      "750": 2.4
+    },
+    "period_rel_err": {
+      "450": 0.10686160553008148,
+      "600": 0.0874429808716589,
+      "750": 0.07611544982091249
+    },
+    "rows": [
+      {
+        "theta": -35,
+        "lam_nm": 450,
+        "c_empty": -0.0004802478956480676,
+        "abs_c_empty": 0.0004802478956480676,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -35,
+        "lam_nm": 600,
+        "c_empty": 0.0014933406295517435,
+        "abs_c_empty": 0.0014933406295517435,
+        "exceeds_gate_hard": true,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -35,
+        "lam_nm": 750,
+        "c_empty": -0.004704453110524075,
+        "abs_c_empty": 0.004704453110524075,
+        "exceeds_gate_hard": true,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -25,
+        "lam_nm": 450,
+        "c_empty": -0.00013627850876156384,
+        "abs_c_empty": 0.00013627850876156384,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -25,
+        "lam_nm": 600,
+        "c_empty": -0.0005519853775641011,
+        "abs_c_empty": 0.0005519853775641011,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -25,
+        "lam_nm": 750,
+        "c_empty": -0.004855129276590877,
+        "abs_c_empty": 0.004855129276590877,
+        "exceeds_gate_hard": true,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -15,
+        "lam_nm": 450,
+        "c_empty": -0.0001559690405645971,
+        "abs_c_empty": 0.0001559690405645971,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -15,
+        "lam_nm": 600,
+        "c_empty": -0.0003395330386037154,
+        "abs_c_empty": 0.0003395330386037154,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -15,
+        "lam_nm": 750,
+        "c_empty": 0.000406923632908784,
+        "abs_c_empty": 0.000406923632908784,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -5,
+        "lam_nm": 450,
+        "c_empty": 5.827842053791362e-05,
+        "abs_c_empty": 5.827842053791362e-05,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -5,
+        "lam_nm": 600,
+        "c_empty": -4.129408691476439e-05,
+        "abs_c_empty": 4.129408691476439e-05,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": -5,
+        "lam_nm": 750,
+        "c_empty": -0.00021870724251753072,
+        "abs_c_empty": 0.00021870724251753072,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 0,
+        "lam_nm": 450,
+        "c_empty": 1.0704348024930993e-05,
+        "abs_c_empty": 1.0704348024930993e-05,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 0,
+        "lam_nm": 600,
+        "c_empty": -0.00040822876809340703,
+        "abs_c_empty": 0.00040822876809340703,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 0,
+        "lam_nm": 750,
+        "c_empty": 1.9125924287918406e-05,
+        "abs_c_empty": 1.9125924287918406e-05,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 5,
+        "lam_nm": 450,
+        "c_empty": 2.2604177988677242e-05,
+        "abs_c_empty": 2.2604177988677242e-05,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 5,
+        "lam_nm": 600,
+        "c_empty": -2.2755873076279475e-06,
+        "abs_c_empty": 2.2755873076279475e-06,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 5,
+        "lam_nm": 750,
+        "c_empty": -0.0001851264446107833,
+        "abs_c_empty": 0.0001851264446107833,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 15,
+        "lam_nm": 450,
+        "c_empty": -0.00014521702543499702,
+        "abs_c_empty": 0.00014521702543499702,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 15,
+        "lam_nm": 600,
+        "c_empty": -0.00034125263005879415,
+        "abs_c_empty": 0.00034125263005879415,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 15,
+        "lam_nm": 750,
+        "c_empty": 0.00023053363391356454,
+        "abs_c_empty": 0.00023053363391356454,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 25,
+        "lam_nm": 450,
+        "c_empty": -0.00022561155004230624,
+        "abs_c_empty": 0.00022561155004230624,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 25,
+        "lam_nm": 600,
+        "c_empty": -0.0004194433307674947,
+        "abs_c_empty": 0.0004194433307674947,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 25,
+        "lam_nm": 750,
+        "c_empty": -0.004294297197536189,
+        "abs_c_empty": 0.004294297197536189,
+        "exceeds_gate_hard": true,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 35,
+        "lam_nm": 450,
+        "c_empty": -0.0009103660979797953,
+        "abs_c_empty": 0.0009103660979797953,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 35,
+        "lam_nm": 600,
+        "c_empty": 0.0009698468836612333,
+        "abs_c_empty": 0.0009698468836612333,
+        "exceeds_gate_hard": false,
+        "exceeds_c_thr_lab": false
+      },
+      {
+        "theta": 35,
+        "lam_nm": 750,
+        "c_empty": -0.0043014861175589645,
+        "abs_c_empty": 0.0043014861175589645,
+        "exceeds_gate_hard": true,
+        "exceeds_c_thr_lab": false
+      }
+    ],
+    "worst": {
+      "theta": -25,
+      "lam_nm": 750,
+      "c_empty": -0.004855129276590877,
+      "abs_c_empty": 0.004855129276590877,
+      "exceeds_gate_hard": true,
+      "exceeds_c_thr_lab": false
+    },
+    "n_exceed_gate_hard": 5,
+    "n_total": 27,
+    "p_g24_2_worst_ratio": 0.005865,
+    "multiplicative_scale_to_ceiling": 1.3871549452073797,
+    "corrected_worst_ratio_multiplicative": 0.008135663753641283,
+    "margin_to_marginal": 61.45780051150894,
+    "margin_to_fail": 245.83120204603577,
+    "near_boundary_sensitivity": [
+      {
+        "label": "P-G24-1 L_B=1e-5,p=0.4",
+        "c_eff": -0.7209,
+        "c_thr": 0.77592278695768,
+        "ratio": 0.9290872907942049,
+        "ratio_shifted_worst_case": 0.9228300582986528,
+        "ratio_delta": -0.006257232495552101
+      },
+      {
+        "label": "P-G24-1 L_B=1.7e-4,p=0.5",
+        "c_eff": -0.7209,
+        "c_thr": 0.6642111641550714,
+        "ratio": 1.085347610675953,
+        "ratio_shifted_worst_case": 1.0780379935863833,
+        "ratio_delta": -0.0073096170895696755
+      },
+      {
+        "label": "P-G24-3 L_B=1.7e-4,p=0.4,theta=10,E=0.01",
+        "c_eff": -0.10474615384615385,
+        "c_thr": 0.11548994154398182,
+        "ratio": 0.9069720916454319,
+        "ratio_shifted_worst_case": 0.8649326792803135,
+        "ratio_delta": -0.042039412365118434
+      }
+    ],
+    "scope_note": "Re-parameterization + magnitude cross-check ONLY (mandatory fix 5) -- INCONCLUSIVE against live thread T24's own uncharacterized ABSORB=40 boundary systematic (0.002-0.007 absolute), held fixed and uncorrected this cycle.",
+    "beamformed_array_disclosure": "This block's per-angle numbers, like exp-041/042's own, are produced by `_src_amp` driving the FULL tapered aperture with a per-theta linear phase ramp -- the same deliberately beamformed/focused synthetic-array construction exp-046/T21 already flagged as physically distinct from a naturally-divergent single-mode emitter (mandatory fix 6)."
+  },
+  "block_c": {
+    "computed_hi": 1.9952623149688795,
+    "computed_lo": 0.5011872336272722,
+    "target_hi": 2.0,
+    "target_lo": 0.5,
+    "hi_rel_err": 0.0023688425155602433,
+    "lo_rel_err": 0.002374467254544488,
+    "t2_source": "LOGBOOK.md 'Scotopic scaling' section -- committed threshold function C_thr(L)=0.005*max[1,(L/3)^-0.4], vertical uncertainty +-0.3 log",
+    "near_boundary_regime": [
+      {
+        "l_eq_cdm2": 1e-05,
+        "clamped": false
+      },
+      {
+        "l_eq_cdm2": 0.00017,
+        "clamped": false
+      },
+      {
+        "l_eq_cdm2": 0.00117,
+        "clamped": false
+      }
+    ],
+    "all_near_boundary_points_unclamped": true,
+    "recommendation": "SOURCE",
+    "recommendation_scope": "Applicability CONFIRMED for exp-047's own three near-boundary points (all L_eq << L_REF=3.0, the low-luminance regime this +-0.3-log figure is committed for). NOT verified for any future near-boundary point at L_eq>=L_REF (the clamped photopic floor), where c_thr is pinned and the vertical-log uncertainty's own applicability is unaddressed by this cycle."
+  }
+}

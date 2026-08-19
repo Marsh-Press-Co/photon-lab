@@ -232,8 +232,21 @@ def tier_w_verdict(c_measured: float, l_v_cdm2: float, l_b_cdm2: float,
                     p: float, bar: str = "lab") -> dict:
     """One scored point: composes veiled_contrast + c_thr and classifies
     PASS / MARGINAL / FAIL against the (bar-explicit, fix-4) threshold.
-    MARGINAL band: within a factor of 2 either side of the bar (a stated,
-    round convention -- not itself sourced)."""
+    MARGINAL band: within a factor of 2 either side of the bar.
+
+    SOURCED (panel Iteration 25, exp-048, Block C): the x2/x0.5 band
+    matches T2's own committed vertical-log uncertainty on C_thr(L) itself
+    (+-0.3 log -- LOGBOOK.md, "Scotopic scaling" section) to 0.24%
+    (10^0.3=1.99526, 10^-0.3=0.50119) -- a distinct axis from the
+    separately-gridded p in {0.4,0.5} exponent family, not a restatement
+    of it. Regime-checked, not just numerically matched: exp-047's own
+    three near-boundary points (L_eq=1e-5/1.7e-4/1.17e-3 cd/m^2) all sit
+    well below L_REF=3.0 -- the low-luminance regime this +-0.3-log figure
+    is committed for, not the clamped photopic floor. Applicability
+    CONFIRMED for the points that currently matter; NOT independently
+    verified for any future near-boundary point at L_eq>=L_REF, where
+    c_thr is pinned at its floor and this figure's own status is
+    unaddressed."""
     l_eq = veiled_adapting_luminance(l_b_cdm2, l_v_cdm2)
     c_eff = veiled_contrast(c_measured, l_v_cdm2, l_b_cdm2)
     thr = c_thr(l_eq, p, bar=bar)

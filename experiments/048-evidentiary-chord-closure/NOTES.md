@@ -193,3 +193,127 @@ T18 (WebFetch egress block) not re-tested this cycle — not load-bearing
 (Block A makes no fresh literature claim; its own P-A4/P-A5 are desk
 arithmetic and a reframe of already-committed program facts, not a
 literature check).
+
+## Results
+
+`run.py` executed cleanly, zero exceptions. Full per-point data:
+`results.json`.
+
+**Scorecard: 13 CONFIRMED, 1 PARTIAL, 0 REFUTED.**
+
+- **P-A1 — CONFIRMED.** Thickness 0.307692/0.615385/0.923077 m, core
+  0.192308/0.384615/0.576923 m — match the predicted bands exactly; τ =
+  24.000000 exactly at all three witness radii.
+- **P-A2 — struck (fix 7), not scored.**
+- **P-A3 — CONFIRMED.** No existing verdict's code, gate, or `results.json`
+  touched by this cycle's changes (checked: only `REALIZABILITY_MEMO.md`
+  gained new text; `lab/glare_sidecar.py` gained a docstring only, zero
+  numeric/behavioral change — verified by re-running the full trust suite,
+  see below).
+- **P-A4 — CONFIRMED.** σ_max/e-folding figures reported and labeled
+  illustrative-only throughout (`run.py` output, `results.json`,
+  `REALIZABILITY_MEMO.md` Entry 2).
+- **P-A5 — CONFIRMED.** τ-conservation reframe adopted verbatim in
+  `REALIZABILITY_MEMO.md` Entry 2.
+- **Regression gate — CONFIRMED, exact.** The generalized propagator at
+  the OLD (exp-042) geometry, θ=+40°, reproduces exp-042's own committed
+  module output to `0.00e+00` relative error at all 3λ (`results.json`,
+  `block_b.regression`) — the generalization introduces no bug.
+- **P-B1 — PARTIAL, and the honest miss is itself informative.** The
+  literal falsifier (predicted period within 5% of exp-042's own
+  *cited* periods, 1.4°/1.9°/2.4°) is REFUTED: measured 1.550°/2.066°/
+  2.583° at the new geometry's A=724, 7.6–10.7% off the cited (rounded,
+  2-sig-fig) figures. But recomputing the OLD-geometry period with the
+  identical formula and full precision (not the LOGBOOK's rounded
+  citation) gives 1.4925°/1.9900°/2.4875° — and the new/old ratio then
+  matches the pure geometric prediction A_old/A_new = 752/724 = 1.03867
+  almost exactly (measured ratios 1.0387/1.0385/1.0384 relative to the
+  precise OLD figures, well under 1% self-consistency error). **The
+  mechanism transfers correctly to the new geometry; the apparent 5%-band
+  miss is an artifact of comparing against a 2-significant-figure citation,
+  not a defect in the re-parameterization.** Flagged honestly rather than
+  silently re-scoped after the fact — this is exactly the kind of
+  comparator-precision trap this program's own R3 discipline exists to
+  catch, applied here to a citation-precision question instead of a
+  spatial-resolution one.
+- **P-B2 — CONFIRMED.** 5 of 27 (θ,λ) points exceed GATE_HARD=0.001
+  (worst: θ=−25°, 750nm).
+- **P-B3 — CONFIRMED.** Worst |C_empty| = 0.004855, inside the predicted
+  [0.0005, 0.006] band and below VISION's photopic C_thr=0.005 (by a
+  ~3% margin — the closest any reading gets to the perceptual bar on this
+  channel, informational only).
+- **P-B4 — CONFIRMED, exactly as predicted.** 5.865×10⁻³ × 1.3872 =
+  8.136×10⁻³ → 61.5×/245.8× below MARGINAL/FAIL. P-G24-2 survives
+  regardless of anything measured in this block.
+- **P-B5 — CONFIRMED.** exp-047's three near-boundary points shift by
+  −0.0063/−0.0073/−0.0420 ratio-units under a maximally conservative
+  (zero-cancellation) worst-case correction — all well under the 0.1
+  falsifier, no category flip (all three stay MARGINAL).
+- **P-B6 — CONFIRMED by construction.** Scope note shipped verbatim in
+  every output (`run.py`, `results.json`, this file) — no language
+  anywhere claims this block "closes" the T21/T24 contamination question.
+- **P-C1 — CONFIRMED.** 10^0.3=1.99526 (0.2369% err), 10^−0.3=0.50119
+  (0.2374% err) — both comfortably under 0.3%.
+- **P-C2 — CONFIRMED.** All three of exp-047's own near-boundary points
+  (L_eq = 1×10⁻⁵ / 1.7×10⁻⁴ / 1.17×10⁻³ cd/m²) sit well below L_REF=3.0 —
+  the low-luminance regime T2's ±0.3-log figure is committed for, not the
+  clamped photopic floor.
+- **P-C3 — CONFIRMED: SOURCE.** `lab/glare_sidecar.py::tier_w_verdict`'s
+  docstring updated with the citation and regime-applicability scope
+  (see diff); **zero numeric change** to the function itself, exactly as
+  the conditional recommendation specified.
+
+**Trust suite**: full fast suite + stages 10–17 re-run after all code
+changes (docstring-only in `lab/glare_sidecar.py`, no behavioral change
+expected) — 104/104 green, unchanged from pre-shift baseline. Results
+(`results.json`, `REALIZABILITY_MEMO.md` Entry 2, `lab/glare_sidecar.py`
+docstring): committed together with this file.
+
+## Learned
+
+- The panel's own independence mechanics caught, blind and before any
+  code existed, a real defect (MATERIALS' dx-bridge finding) that would
+  otherwise have shipped a units-incoherent "sharpened" physical claim
+  into a permanent realizability memo — precisely the failure mode this
+  program's own Red Team exists to prevent, and this time prevented
+  *before* Phase 3, not corrected after.
+- P-B1's own honest miss (refuted against a rounded citation, confirmed
+  against a precise same-formula comparator) is a small, low-stakes
+  instance of a real methodological lesson: falsifier bands written
+  against another cycle's *rounded, reported* figures rather than a
+  freshly, precisely recomputed comparator can manufacture a spurious
+  "miss" — worth remembering for any future cycle citing another
+  experiment's own rounded headline numbers as a falsifier target.
+- Red Team's independent re-verification (running the cited formulas
+  directly, not trusting seat characterizations) caught two real defects
+  (the `round()`-drop mislabeling, the P-A2 anchoring risk) that none of
+  the five blind seats named — the standing "verify against source, not
+  seat characterization" discipline doing real work again.
+- This cycle's own three blocks stayed genuinely file-disjoint and
+  desk-only exactly as scoped at Phase 1 — no scope-dilution symptom
+  observed (the risk PHOTONICS/the proposer both self-flagged).
+
+## Next
+
+Carried from exp-047's own Iteration-25 queue, not attempted this cycle
+(Director's Phase-1 scope call, unchallenged at Phase 2/5):
+
+1. Build and measure the fixed-absolute-thickness `graded_black_shell`
+   variant's own C (MATERIALS' nine-iteration-deferred Iteration-7 pick) —
+   this cycle's own `REALIZABILITY_MEMO.md` Entry 2 gives it a sharper
+   starting point (real thickness/core-radius numbers at 3 witness
+   scales) than attempting it blind.
+2. A genuine FDTD `ABSORB` sweep at Block B's own new geometry — the only
+   way to resolve whether Block B's 5/27 GATE_HARD exceedances are real
+   T21 fringe or T24's own boundary systematic (this block's own
+   INCONCLUSIVE finding, per mandatory fix 5).
+3. QUANTUM's own overdue `gaussian_angle_weights` n-convergence audit —
+   deferred again this cycle (self-flagged in Phase 1, not overridden at
+   Phase 2).
+4. Session-accumulated ocular dose disposition (THERMO's own scoped-down
+   next step from exp-047) — still cheap, still not urgent.
+5. THERMO's own new finding this cycle: re-derive (or at minimum flag
+   explicitly wherever cited) whether the sidecar's UNDETECTABLE
+   verdicts hold at the newly-computed witness-scale physical dimensions
+   (cm-scale e-folding depth, m-scale radius), where `h_eff=k_air/L`'s
+   quiescent-conduction assumption is unverified.
