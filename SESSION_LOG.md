@@ -2,6 +2,72 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-19 (panel shift) — Iteration 22 complete (exp-045): the
+intermediate-dwell coupled kinetics-thermal stress sweep never threatens
+any UNDETECTABLE verdict, but Block B's own from-first-principles
+re-derivation ships a real sign-flipping bug caught pre-run, and Phase 5
+catches a 6th-plus recurrence of the program's fix-docket-delivery
+pattern, fixed same-shift.
+
+**Pre-flight**: fresh container, deps installed per the recorded wrinkle
+(numpy/scipy/matplotlib/pillow/autograd/fdtd via pip, then `ceviche
+--no-deps`). `git fetch origin main && git checkout -B main origin/main`
+landed on `af8f6be` (Iteration 21's own close). Read HANDOFF.md, README.md,
+PANEL.md, LOGBOOK.md in full (8104 lines), PLAN.md's Current-state section,
+AGENTS.md, and SESSION_LOG.md's top two entries per the onboarding
+sequence. Bench verified: `python3 lab/validation/run_all.py --only
+12346789` — 41/41 (the ceviche stage-4 failure at first run was the known
+wrinkle, resolved by `pip install --no-deps ceviche`).
+
+**Iteration 22 — The Intermediate-Dwell Coupled Kinetics-Thermal Stress
+Sweep + h_conv/mass_kg Re-derivation + Dose-Accumulation Check (exp-045,
+CONCLUDED this shift).** Lead: ELECTROMAGNETISM (rotation), executing Red
+Team's Iteration-21 Tier-1 priorities. Block A swept `coupled_kinetics_
+thermal_dT` across dwell/τ ratios spanning 0.1×–10× of both time constants
+(2080 points, 5 τ_thermal regimes) — the genuinely untested intermediate-
+dwell regime exp-044 never reached. Block B re-derived `h_conv`/`mass_kg`
+from first principles (gas-phase conduction, silicon identity). Five blind
+Phase-2 seats + Red Team caught a real, sign-flipping length-scale-mixing
+bug in Block B's own Phase-1 draft (mixing a geometric radius and an
+extinction-cross-section width inside one claimed-consistent chain) plus a
+fabricated material citation (PMMA, replaced with silicon, already sourced
+in exp-037 for this exact mechanism) — both fixed pre-commit, predictions
+committed (`24406dc`). Phase 4: 8 of 9 predictions CONFIRMED, 1 disclosed
+PARTIAL (an R-grid-quantization artifact); the headline physics — no
+UNDETECTABLE verdict is threatened anywhere across the swept regime, nor by
+a new Block-C population-memory check (Host D, ratios 1.005–1.451, added
+this shift overriding the Phase-1 draft's own deferral) — is robust
+throughout. Results committed (`6f751fa`).
+
+**Phase 5 (six fresh blind seats, then Red Team audit): PARTIAL**, one
+seat (MATERIALS) dissenting PROMISING, preserved on the record and
+overridden per this program's own established precedent. PHOTONICS and
+ELECTROMAGNETISM independently converged on a genuinely open question (new
+live thread **T23**: which characteristic length is physically licensed
+for the `h_eff=k_air/L` conduction formula — the two disclosed endpoints,
+21.2× vs 194.2×, were never argued to a conclusion, and the choice decides
+whether the cycle's own headline reading clears an informal comfort
+heuristic). ELECTROMAGNETISM closed a gap THERMODYNAMICS and QUANTUM both
+flagged (is the decoupled ΔT estimate conservative under population
+memory? — yes, proven and committed as new, reusable code). VISION SCIENCE
+caught that this cycle's own Phase-3 synthesis claimed "all eight fixes
+adopted, none overridden" when one fix's own sub-requirement had not
+actually been delivered — Red Team's audit confirmed this independently: a
+**sixth-plus occurrence** of the program's own named fix-docket-delivery
+pattern (now 8 iterations: 13, 14, 15, 17, 20, 21, 22), arising in the same
+cycle whose own Phase-2 Red Team audit had explicitly pre-warned against
+it. Checkpoint criterion 4 triggers the pattern but does **not** fire,
+contingent on the same-shift fixes (all ten applied, `f48de18`) — the
+identical mechanism this program applied at Iterations 19 and 21. **A
+hardened, unconditional rule was stated**, permanently closing a counting
+ambiguity in the standing aperture-consistent-beam-check tripwire: it MUST
+run at Iteration 23 or Checkpoint criterion 4 fires automatically, no
+further debate. Next lead per rotation: **THERMODYNAMICS** (Iteration 23)
+— ranked priorities: (1) QUANTUM's aperture-consistent beam check
+(mandatory); (2) resolve T23; (3) extend the new `coupled_segment_general`
+closed form beyond Host D. See PLAN.md for the full ranked queue. Full
+record: LOGBOOK.md Iteration 22.
+
 ## 2026-08-18 (panel shift) — Iteration 21 complete (exp-044): realistic-
 host kinetics gate stays UNDETECTABLE across all 16 real hosts, RSA/TPA
 gaps sharpen, but Phase 5 catches a Checkpoint-4-conditional undelivered

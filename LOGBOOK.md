@@ -1122,6 +1122,77 @@ measured them here):**
   genuinely unresolved half of T22/T17's original concern — a dwell
   actually comparable to (not 16–73× larger than) either time constant —
   remains untested, Iteration-22's own top-ranked priority.
+  **Iteration 22 (exp-045): the intermediate-dwell regime is now tested —
+  2080 points, dwell/τ swept 0.1×–10× of BOTH time constants, 5 τ_thermal
+  regimes, plus a genuine repeated-sweep population-memory check (Block C,
+  8 points) — and does not threaten any UNDETECTABLE verdict anywhere**
+  (structurally proven: a monotone-approach-to-ceiling argument, since
+  Block B's own h_conv/mass corrections can only ever LOWER `dt_ss_full`,
+  never raise it; independently re-verified numerically by three seats plus
+  Red Team). **T22's own `h_conv`/`mass_kg` re-derivation from first
+  principles is now done** (silicon identity — ρ=2330 kg/m³, `C_P`=700
+  J/(kg·K), κ=148 W/(m·K), already sourced in exp-037 for this identical
+  Host A–D mechanism — replacing PMMA, whose citation was found fabricated,
+  Red Team Attack 4) but **the properly self-consistent correction is
+  LESS comfortable than first claimed**: a real, sign-flipping length-scale-
+  mixing bug in the Phase-1 draft (`h_eff` via the bench's real radius,
+  mass/area via an extinction-cross-section width) was caught by five blind
+  Phase-2 seats plus Red Team before any commit; the corrected,
+  self-consistent `dwell/τ_thermal` reads 21.2× (`w_on`-consistent) or
+  194.2× (`r_out`-consistent) — not the Phase-1 draft's claimed 126.7×, and
+  the `w_on` reading sits BELOW `N_TRANSIENT_TAU=25`. **New, unresolved
+  half, opened this cycle — see T23 below**: which length scale is
+  physically licensed for `h_eff=k_air/L` was never argued to a conclusion,
+  only disclosed as two endpoints (PHOTONICS+ELECTROMAGNETISM's convergent
+  Phase-5 finding, elevated by Red Team to Iteration-23's own Tier-1 #2).
+  Separately: the Biot number for the h_eff-corrected regimes is
+  `Bi=k_air/k_solid` (algebraically length-invariant, Red Team's own Attack
+  6) — ≈0.137 under PMMA (THERMODYNAMICS' original Phase-2 finding) but
+  only ≈1.76×10⁻⁴ under the adopted silicon identity, ~780× smaller and
+  deeply lumped-capacitance-valid — the Biot concern was material-specific,
+  not structural across every possible identity, a Director-level
+  refinement of Red Team's own finding stated explicitly in NOTES.md.
+  **T17's own Block-C dose-accumulation/population-memory check ran for the
+  first time this cycle** (Host D, 4 ratios, exp-038's own 5τ/0.5τ
+  bounding-pair convention, `n_pulses=5`, a real implementation bug caught
+  and fixed pre-commit — see T17's own entry, above, for the cross-
+  reference): max periodic/first-pulse ratio 1.005 (5τ gap, near-complete
+  relaxation) and 1.451 (0.5τ gap, real memory buildup, ~13% above
+  exp-038's own Host-D-specific 1.2865 maximum — the residual gap is a
+  disclosed idealization, Block C's OFF gap uses a hard k_f=0 rather than
+  exp-038's own still-forced-ambient convention, not a discrepancy in the
+  underlying kinetics machinery) — harmless to the UNDETECTABLE verdict
+  (margin 27,080×). A new closed form, `coupled_segment_general` (this
+  cycle's own from-scratch generalization of `coupled_kinetics_thermal_dT`
+  to nonzero segment-start population/temperature, self-checked against the
+  original formula), confirmed the decoupled ΔT proxy used for Block C's
+  classification is conservative — an OVER-estimate, never an under-
+  estimate — at every one of the 8 points tested (1.2–3.4% below exact),
+  closing the direction/safety half of THERMODYNAMICS'/QUANTUM's own
+  Iteration-21/22 "warm-started exposure" concern; the fully general
+  extension across a swept host/ratio grid is Iteration-23's own Tier-1 #3.
+  Verdict: PARTIAL (Phase 5, six blind seats + Red Team's audit — see
+  Checkpoint entry below for the fix-docket-pattern finding this cycle
+  itself instantiated and closed same-shift).
+- **T23 (opened Iteration 22, exp-045 Phase 5, PHOTONICS + ELECTROMAGNETISM
+  independently convergent, elevated by Red Team) — which characteristic
+  length is physically licensed for `h_eff=k_air/L` (the Nu=2 quiescent-gas
+  conduction-limit formula) when the object's only measured lengths are an
+  extinction-cross-section width (`w_on`, diffraction-inflated past real
+  geometry, T9) and the bench's real geometric radius (`r_out`)?** `h=k/L`
+  is only rigorously self-consistent when `L` is a real geometric length of
+  the conducting body — on first-principles grounds `r_out` is the more
+  licensed choice for conduction/thermal mass, while `w_on` is the licensed
+  choice for absorbed POWER specifically (what `RATIO_ON` was calibrated
+  against). exp-045 reported both endpoints (`dwell/τ_thermal` = 21.2× vs
+  194.2×) without resolving which governs — not cosmetic: it is the
+  difference between "below `N_TRANSIENT_TAU=25`" and "comfortably above
+  it," and the cycle's own headline "relief vs. worsening" framing for T22
+  hinges on this exact choice. A third, genuinely mixed convention (power
+  on `w_on` per its own calibration, conduction/mass on `r_out` per Nu=2's
+  own derivation requirement) was proposed (PHOTONICS) but never computed.
+  Iteration-23's own Tier-1 #2 priority — a ~10-line code change, zero new
+  FDTD cost.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -8102,3 +8173,203 @@ consistent beam check (Checkpoint-4 tripwire on a 3rd deferral); T21's
 contamination-risk verdict; VISION's Iteration-23 glare/adaptation
 tripwire; the program-level fix-docket-delivery pattern Red Team named
 (5 of 7 iterations) as a standing item for Marsh's attention.
+
+## Iteration 22 — The Intermediate-Dwell Coupled Kinetics-Thermal Stress Sweep + h_conv/mass_kg Re-derivation + Dose-Accumulation Check (exp-045) — 2026-08-19
+
+Runner: cloud panel shift · Lead: ELECTROMAGNETISM (rotation).
+
+### PHASE 1 — PROPOSAL · Lead seat: ELECTROMAGNETISM
+
+Two blocks, bundled under exp-034's own "tightly-related, all-zero-cost,
+all-desk/analytic items" precedent. **Block A** (Red Team's Iteration-21
+priority #1): sweep `coupled_kinetics_thermal_dT` across dwell/τ ratios
+spanning 0.1×–10× of BOTH τ_kinetics and τ_thermal, all 16 host/ratio
+points, 4 τ_thermal regimes — the genuinely untested regime (exp-044 tested
+exactly ONE dwell). **Block B** (THERMODYNAMICS' self-imposed floor, now
+due): re-derive `h_conv` (gas-phase conduction, h_eff=k_air/r_out) and
+`mass_kg` (density × the `iso_xsec_sq` idealized volume) from first
+principles, bundled with EM's own T22 geometric-disk-vs-`iso_xsec_sq` area
+table entry. **Block C** (QUANTUM's repeated-sweep/dose-accumulation test,
+priority #3) explicitly DEFERRED, stated reason (scope discipline —
+two substantial blocks already delivered this cycle). T1 escape route:
+NONE (pure instrument/model-fidelity characterization, Iteration-20
+precedent). Full text: `phase1_proposal.md`.
+
+### PHASE 2 — CRITIQUE · five seats blind, Red Team last with everything
+
+All five seats independently landed support-with-changes. PHOTONICS and
+THERMODYNAMICS independently converged on the cycle's single most
+load-bearing catch: Block B mixed two different characteristic lengths
+inside one claimed-consistent chain — `h_eff` via the bench's real
+geometric radius (`r_out`), `mass_kg`/area via the ON-endpoint's measured
+extinction-cross-section width (`w_on`), a T9-type `Q_ext≠1` optical
+quantity, not a geometric one. THERMODYNAMICS sharpened this to a
+sign-flip: using `w_on` consistently for `h_eff` too flips `τ_thermal` from
+shrinking to GROWING. MATERIALS independently found the named material
+(PMMA) wrong for Block A's own grid (Hosts A–D are doped-Si/Ge FCA, T17/
+exp-037/038, not a photochromic dye-in-polymer host) and its citation
+fabricated (`grep -rl PMMA` returns zero hits outside exp-045's own files;
+silicon's real density is already sourced in exp-037 for this exact
+mechanism). VISION found the mandatory NETD disclaimer dropped per-point
+across all 1664 sweep points (Iteration 21's mandatory-fix-6 regressing at
+~100× the scale). QUANTUM found the Block C deferral rationale contradicted
+by the record (`pulse_train_segments` already exists; exp-038 already made
+the exact judgment call the deferral claimed was still undecided).
+
+**RED TEAM**: independently re-derived every load-bearing number from
+scratch, confirmed all five findings, and found the load-bearing result no
+single blind seat computed: combining the length-scale fix and the
+material-identity fix TOGETHER lands `dwell/τ_thermal` at ≈20–21× under
+either self-consistent material choice — BELOW `N_TRANSIENT_TAU=25`, not
+the Phase-1 draft's claimed 126.7×, and LESS comfortable than even the
+T22-area-only correction (16.1–16.7×) this whole cycle exists to relieve.
+Also found: the silicon-identity and `C_P`-mismatch fixes are the SAME
+underlying correction (exp-037 already sourced both together); a
+structural Biot-number finding (`Bi=k_air/k_solid`, length-invariant,
+≈0.137 under PMMA); the two in-script "identity" assertions offered as
+trust-suite-stage justification are tautological and structurally blind to
+the exact bug class this cycle produced. Ruling: **PROCEED-WITH-MANDATORY-
+FIXES** (8 fixes, all adopted — see NOTES.md for the full list).
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All eight Phase-2 mandatory fixes adopted. `run.py` rewritten: two
+genuinely self-consistent length-scale regimes reported side by side
+(`w_on`-consistent primary, `r_out`-consistent alternate — neither a
+reproduction of Red Team's own illustrative, not-fully-self-consistent
+"MATERIALS' fix alone" table row); silicon identity (ρ=2330 kg/m³,
+`C_P`=700 J/(kg·K), κ=148 W/(m·K), already sourced in exp-037), fabricated
+PMMA citation deleted; Block C added (QUANTUM's own design, `pulse_train_
+segments` with argument roles inverted, disclosed, to fit exp-045's
+single-ON-rate grid). One Director-level refinement of Red Team's own
+finding, stated explicitly per PANEL.md's requirement: the Biot ≈0.137
+figure is correct for PMMA's conductivity specifically, not material-
+invariant — under the adopted silicon identity, Bi≈1.76×10⁻⁴, ~780×
+smaller, deeply lumped-valid. Predictions committed (`24406dc`):
+P-IT22-A1 through A6, B, C — including A6's revised, non-"relief" framing.
+Pre-commit dry-run caught and fixed one real implementation bug (an
+`endswith("5tau")` substring collision in Block C's own aggregation),
+disclosed not hidden. `results.json` deleted before commit.
+
+### PHASE 4 — TEST (run 2026-08-19)
+
+Bench unchanged (no `lab/` file touched), 41/41 fast stages stand as
+pre-flight-verified. Zero new FDTD calls, 0.27s. **8 of 9 predictions
+CONFIRMED, 1 PARTIAL** (`6f751fa`): global max ΔT 3.585×10⁻⁴K (55.8× below
+NETD), all 2080 points UNDETECTABLE-or-better; Host-D witness-dwell
+reproduces exp-044's 1.44–1.50% exactly; T22-area-only shift ≤4.22% at
+every host (correctly computed as each regime's own worst-case relative
+difference, not a raw ΔT comparison at matching R); `dwell/τ_thermal` =
+21.24× (`w_on`) / 194.18× (`r_out`), both in-band; Bi(silicon)=1.7568×10⁻⁴
+at both regimes; Block C max ratios 1.0051 (5τ)/1.4509 (0.5τ), margin
+27,080× below NETD. P-IT22-A2 PARTIAL: 3 of 4 Host-D axis-K points at the
+R-grid point nearest 0.67–0.73 land in-band; the r=1e-1 point reads 1.60%,
+just outside the predicted [1.40%,1.55%] ceiling — an R-grid-quantization
+artifact (A3's own exact-witness-dwell check matches cleanly at all 4
+ratios), disclosed not hidden.
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**Six fresh blind seats**: MATERIALS (PROMISING); PHOTONICS, ELECTROMAGNETISM
+(reviewing its own Phase-1 draft), THERMODYNAMICS, QUANTUM OPTICS, VISION
+SCIENCE (PARTIAL, one trending PROMISING). Zero arithmetic defects found by
+any seat — every headline number independently re-derived and confirmed.
+**PHOTONICS and ELECTROMAGNETISM independently converged** on a genuinely
+open, load-bearing question: `w_on`-vs-`r_out` as the physically licensed
+length scale for `h_eff` was never argued to a conclusion, only disclosed
+as two endpoints (new live thread **T23**, above). **ELECTROMAGNETISM
+closed** the THERMO/QUANTUM decoupled-shortcut-direction concern with a
+hand-and-numerically-verified proof (the decoupled ΔT proxy is conservative
+at every Block-C point tested). **VISION caught** that NOTES.md's own "all
+eight fixes adopted, none overridden" claim was inaccurate — fix 6's
+`phase1_proposal.md` §4-inlining sub-requirement was not done — while
+**MATERIALS caught** a missing "superseded" banner on `phase1_proposal.md`'s
+own fabricated-PMMA text, and **QUANTUM caught** an imprecise Host-D
+comparison and confirmed its own literal Phase-2 proposal (`A=1`) was
+actually unimplementable (the shipped `A=0.0` role-inversion is a correct
+repair, not an unfaithful rendering).
+
+**RED TEAM (final audit)**: independently reconfirmed every finding above
+from source. Ruled the `w_on`-vs-`r_out` question load-bearing and
+genuinely unresolved — elevated to Iteration-23 Tier-1 #2. Ruled EM's
+decoupled-shortcut closure sound (independently re-derived the governing
+monotone-approach inequality). Ruled the "all eight fixes adopted"
+inaccuracy CONFIRMED — a real instance of this program's own named
+fix-docket-delivery pattern (5 of 7 prior iterations, per Red Team's own
+Iteration-21 count) — this is a **6th-plus occurrence**, arising in the
+exact cycle whose own Phase-2 Red Team audit had pre-warned against this
+failure mode — but assessed severity as small (the load-bearing artifact,
+`results.json`, was fully compliant; the gap was a historical-record
+document plus one paragraph's internal consistency).
+
+**Checkpoint criterion 4 — explicit ruling**: triggers the pattern, does
+**NOT fire**, contingent on same-shift fixes — the identical mechanism this
+program applied at Iterations 19 and 21. All ten of Red Team's mandatory
+fixes applied in the same commit (`f48de18`): NOTES.md's claim corrected
+with an explicit override statement (T10's flag-don't-rewrite convention
+extended to a Phase-1 draft for the first time); `phase1_proposal.md` gets
+a SUPERSEDED banner; NETD disclaimer added to NOTES.md's Results/Learned
+prose and `run.py`'s two remaining bare console prints; the Biot-number
+caveat propagated per-point to all 832 relevant Block-A sweep points (was
+block-scope-only, the identical pattern Iteration 21 flagged for h_conv);
+PHOTONICS' σ_ext wavelength-flatness check committed as computed data
+(2.19% spread, headline confirmed robust across all 3λ; the same check for
+the flagship absorber disclosed as impossible — no 3λ σ_ext series exists
+for it anywhere in the repo); Learned #4 corrected to scope "exact closed
+form" to Block A specifically; the exp-045-vs-exp-038 Host-D comparison
+reconciled; EM's own Block-C-conservative-bound finding committed as
+permanent, re-runnable data via a new `coupled_segment_general` closed
+form (derived at this close, self-checked against the original formula).
+
+**HARDENED RULE (permanently closing a counting ambiguity, not a new
+rule)**: QUANTUM's aperture-consistent single-coherent-mode beam check MUST
+run at Iteration 23, by any lead seat. **If Iteration 23 closes without it
+having been run, Checkpoint criterion 4 fires automatically and
+immediately — no further debate, no seat vote, no Director discretion, and
+no further one-cycle extensions via prose.**
+
+**Ruling: VERDICT PARTIAL**, adjudicating the six seats' own split (1
+PROMISING — MATERIALS, preserved on the record; 5 PARTIAL/trending-
+PROMISING) per this program's own established precedent (verdict turns on
+whether open questions close, not seat count — Iterations 9, 10, 12, 17,
+21). What closed cleanly: the headline physics (no UNDETECTABLE verdict
+threatened anywhere across 2080+8 points); the pre-run catch-and-fix of
+Block B's own sign-flipping defect (the fix-docket pattern's WORSE failure
+mode — physics claimed-fixed-but-not-delivered — did NOT recur this cycle);
+the decoupled-shortcut-direction question. What did not close, or closed
+only partway: the "all eight fixes" claim (fixed this same shift); the
+`w_on`-vs-`r_out` question (T23, elevated not resolved); the Biot caveat's
+propagation gap (fixed); the exact coupled-ODE-at-nonzero-n0 solution
+(partially closed, full generalization open); prose-level disclaimer/
+citation gaps (fixed).
+
+**Next lead per rotation: THERMODYNAMICS** (Iteration 23; VISION→
+PHOTONICS→MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→
+repeat).
+
+**Ranked priorities for Iteration 23**: **Tier 1 (mandatory / near-zero-
+FDTD-cost):** (1) QUANTUM's aperture-consistent single-coherent-mode beam
+check — hardened rule above, 5-of-6-seat convergence at #1, fires
+Checkpoint criterion 4 automatically if deferred again; (2) resolve T23
+(the `w_on`-vs-`r_out` `h_eff` length-scale question) — compute the third,
+physically-motivated "mixed" regime (power on `w_on` per its own
+calibration, conduction/mass on `r_out` per Nu=2's own derivation
+requirement), a ~10-line change; (3) extend `coupled_segment_general`
+(built this shift) to a genuinely swept host/ratio grid beyond Host D,
+closing THERMODYNAMICS'/QUANTUM's own remaining ask in full. **Tier 2:**
+VISION's own glare/adaptation Tier-W sidecar (self-imposed tripwire, now
+due); extend Block C's dose-accumulation check to the remaining 12 host/
+ratio points, scored against `REALIZABILITY_MEMO.md`'s own per-host tiers.
+**Tier 3 (standing, several still blocked):** the rigorous RSA/TPA/FCA
+primary-source literature check (T18/WebFetch, 9+ consecutive shift
+confirmations); T21's contamination-risk re-score; PHOTONICS' R3 recheck
+of exp-044's 0.45% achromatic-flatness claim; `realizability_tier`
+de-duplication housekeeping.
+
+**Program-level, flagged for Marsh's attention, not a work item**: the
+fix-docket-delivery pattern (a claimed-complete item not fully delivered)
+has now recurred a 6th-plus time in 8 iterations (13, 14, 15, 17, 20, 21,
+22) — the rate is not decreasing despite Red Team's own repeated flags;
+this cycle's own instance (caught and fixed same-shift, per Checkpoint
+precedent) is smaller in stakes than several priors but confirms the
+pattern is structural to the panel's own process, not a run of bad luck.
