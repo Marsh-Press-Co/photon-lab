@@ -2,6 +2,93 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-19 (panel shift) — Iteration 23 complete (exp-046): the
+aperture-consistent single-coherent-mode beam check runs and its own
+advertised headline turns out to be an algebraic identity of existing
+code — whose own scope Phase 5 catches a Red-Team-authored Phase-2 finding
+getting wrong, and a freshly-shipped trust-suite gate scoring the engine
+against a physically wrong comparator gets caught and repointed the same
+shift it was created, alongside a fourth-way recurrence of the program's
+fix-docket-delivery pattern.
+
+**Pre-flight**: continuing directly in the same container from a prior
+onboarding this shift (deps already installed, bench already verified
+88/88 at the top of this iteration and re-verified 89/89 at its own
+close). Read HANDOFF.md, README.md, PANEL.md, LOGBOOK.md in full (8375
+lines pre-shift), PLAN.md's Current-state section, AGENTS.md, and
+SESSION_LOG.md's top two entries.
+
+**Iteration 23 — The Aperture-Consistent Single-Coherent-Mode Beam (T21)
++ T23's Mixed Length-Scale Regime + Dose Accumulation on the Full
+exp-038 Grid (exp-046, CONCLUDED this shift).** Lead: THERMODYNAMICS
+(rotation), executing Iteration 22's hardened, unconditional Tier-1
+priority — QUANTUM's aperture-consistent single-coherent-mode beam check
+MUST run this cycle or Checkpoint criterion 4 fires automatically. Three
+blocks: Block A built `width=w₀/cosθ₀` at the source (a phased-array
+picture matching `lab/fdtd2d.py`'s actual line-current + phase-ramp
+steering — resolved from a three-seat Phase-2 dispute by Red Team,
+tie-broken by live FDTD), trust-gating `add_line_source(profile="gauss")`
+for the first time since the engine was built (new suite stage 16); Block
+B (T23) computed PHOTONICS' proposed mixed length-scale regime, found
+bit-identical to the `r_out`-consistent regime on the operative axis
+(τ_thermal has no power-length term); Block C extended the dose-
+accumulation closed form to the full 21-new-point exp-038 grid, verified
+250/250, vindicating Red Team's own Iteration-15 tempering of
+`REALIZABILITY_MEMO.md` Amendment 3 (Amendment 5 written same-shift). 9
+new FDTD calls, trust suite 88/88 before any number trusted. Predictions
+committed structurally (`a7eaaf8`, zero FDTD calls, git-diff-verified);
+results (`460f018`): 11 CONFIRMED, 3 PARTIAL, 1 REFUTED — gate S16-b
+(beam pointing) failed pre-registration by 12.97 cells, post-run
+diagnosis (one FFT) attributing most of it to the ray-optics TARGET being
+wrong at 14° divergence, withholding the pointing-dependent prediction
+A1 under its own scope.
+
+**Phase 5 (six fresh blind seats, then Red Team audit): PARTIAL** (5
+PARTIAL, 1 PROMISING raw split — MATERIALS, scoped to its own charter).
+**PHOTONICS and ELECTROMAGNETISM independently converged, by different
+methods, on the single most consequential finding of the cycle**: the
+freshly-shipped stage-16 gate scores the engine against a physically
+wrong comparator (a prescribed-field model instead of the line-current-
+source/flux model the engine actually implements — the identical
+obliquity-convention error class EM adjudicated at Iteration 19, now
+inside the trust suite for the first time). **QUANTUM OPTICS
+independently re-derived Red Team's own Phase-2 "algebraic identity"
+proof and found it correct only for 27 of 36 cells** — at the 9 FWHM=20°
+cells a grating-lobe comb carries 42–68% of the aperture's intensity,
+the first time in this program's history a Red-Team-authored Phase-2
+finding was found wrong by name and corrected in the same cycle's own
+Phase-5 audit. **VISION SCIENCE and THERMODYNAMICS independently
+converged** on "eye-invisible" surviving live and unflagged in the
+Phase-1 draft with a false "struck everywhere" claim repeated 2672 times
+in `results.json` — one cycle after this program invented the
+SUPERSEDED-banner remedy for this exact failure mode. VISION additionally
+found a Director-level withholding judgment absent from the
+machine-readable record. THERMODYNAMICS' own fresh self-review found the
+fill-factor disclosure licensing T23's own resolution is itself
+incomplete (a Biot-number validity-condition gap, non-verdict-moving).
+Red Team's own audit sharpened every finding with new FDTD work (four
+runs plus one full angular-spectrum comparison) and found a SECOND,
+independent Checkpoint-4-shaped defect no seat named: the same-shift
+hardening of VISION's own Tier-W tripwire had inserted a carve-out that
+this cycle's own deferral would itself satisfy — a tripwire whose own
+triggering event satisfies it.
+
+**Checkpoint criterion 4 does NOT fire — conditional on a hardened
+Tier-0 docket (5 of 20 total mandatory-fix items) landing this same
+shift, with a harder condition than any prior cycle: no further
+one-cycle extension of any kind, including one blessed by a Red Team
+audit.** All 20 items applied same-shift (`c2a21f7`): the stage-16 gate
+repointed (re-measured 0.46% against a tightened bar, with a new
+standing rule requiring independent second-derivation before any future
+gate-target change); the S16-b attribution corrected from 62%/38% to
+96.8%/3.2% engine-vs-target; a SUPERSEDED banner added to the Phase-1
+draft; the item-24 hardened rule repaired to one consistent rendering;
+A1's withholding propagated to the canonical record. Trust suite
+re-verified 89/89. Next lead per rotation: **QUANTUM OPTICS** (Iteration
+24) — top-ranked item is VISION's own Tier-W sidecar, run by any lead
+seat per the hardened rule's own wording. See PLAN.md for the full
+ranked queue. Full record: LOGBOOK.md Iteration 23.
+
 ## 2026-08-19 (panel shift) — Iteration 22 complete (exp-045): the
 intermediate-dwell coupled kinetics-thermal stress sweep never threatens
 any UNDETECTABLE verdict, but Block B's own from-first-principles

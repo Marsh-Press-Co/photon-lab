@@ -1069,6 +1069,73 @@ measured them here):**
   an already-pushed commit, not a peripheral wording gap) and states this
   should not be read as establishing same-shift correction is generally
   safe from criterion 4, only that it worked this time.
+  **Iteration 22's own hardened rule (QUANTUM's aperture-consistent single-
+  coherent-mode beam check MUST run at Iteration 23) EXECUTED (exp-046).**
+  Built as `width=w₀/cosθ₀` at the source (a phased-array/leaky-wave picture
+  matching `lab/fdtd2d.py`'s actual line-current + phase-ramp steering, NOT
+  a physically-tilted-aperture picture — resolved from source by Phase-2 Red
+  Team, tie-broken by live FDTD, independently re-confirmed twice more at
+  Phase 5 by PHOTONICS and ELECTROMAGNETISM). `profile="gauss"` is now
+  trust-gated (suite stage 16) for the first time since the engine was
+  built. **The advertised finding — does the aperture-consistent reading
+  land near the incoherent or coherent column — turns out not to be an
+  experimental question**: Red Team's own Phase-2 Attack 2 proved
+  `beam_divergence_coherent` (exp-042) already synthesises a Gaussian
+  aperture of half-width `w₀/cosθ₀`, an algebraic identity of the existing
+  code, not a physics result QUANTUM's Iteration-20 conjecture could have
+  been tested against. **But that identity itself was scoped too broadly —
+  caught by QUANTUM at Phase 5, against Red Team's own prior finding**: at
+  the 9 FWHM=20° cells (all three λ), the synthesised aperture is a
+  three-lobe comb whose grating-lobe replicas (from the underlying 41-point
+  angular sampling comb, never convergence-tested in this program's
+  history) carry 41.7–68.0% of the total intensity outside ±3 aperture-
+  widths — QUANTUM's own Phase-5 audit is the first time in this thread's
+  five-cycle history that a Red-Team-authored Phase-2 finding was found
+  wrong by name and corrected same-shift. QUANTUM's own Iteration-20
+  conjecture: premise (holding a fixed wide aperture is beamforming, not
+  natural divergence) REFUTED at 27 cells, partially vindicated at the 9
+  FWHM=20° cells; prediction (lands near incoherent) REFUTED at all 36
+  cells, at the desk (36/36 above C_THR). **A trust-suite-integrity defect
+  was caught and fixed in the same close it was created**: the stage-16
+  gate built to certify the pointing chain used a physically wrong
+  comparator (a prescribed-field/|E|² model instead of the line-current-
+  source/flux model `lab/fdtd2d.py` and `lab/ambient.py` actually
+  implement — the identical obliquity-convention error class EM adjudicated
+  at Iteration 19, now inside `lab/` for the first time), independently
+  caught by PHOTONICS and EM at Phase 5, resolved by Red Team with new FDTD
+  runs showing the gate was simultaneously ~17× too loose where calibrated
+  AND would have actively FAILED (9.38% vs its own 8% bar) at Block A's own
+  extreme cell, where the engine's true accuracy is 0.38–0.46%. Repointed
+  same shift; re-passes cleanly (0.46% against a tightened ≤1.5% bar).
+  **New standing rule, adopted**: a post-freeze change to a trust-suite
+  gate's TARGET (not its bar, not its reporting) is a physics change and
+  requires an independent second derivation before it is committed —
+  shipping one without that derivation fires Checkpoint criterion 4
+  automatically at the next Phase 5 that finds it. **T21's own
+  contamination-risk question is exactly where Iteration 19 left it,
+  arguably further** — the framing that could have answered it (a genuinely
+  divergent single mode vs. the beamformed synthetic array) turned out to
+  be the same object exp-042 already built, at 27 of 36 cells; A5, the
+  cycle's one falsifiable finding (the desk Huygens–Fresnel propagator
+  validated at N_F≈0.5–66), is carried by 2 of 4 legs once reported in the
+  conditioned `1+C` currency (the other two are saturated near C→−1,
+  amplification 74–299×, the same disqualifying criterion the cycle applied
+  to drop a different prediction, P-TH23-A7, but not to this one — 4-seat
+  independent convergence: PHOTONICS, EM, THERMODYNAMICS, QUANTUM). **New
+  candidate route for Iteration 24 (QUANTUM's own Phase-5 proposal, Red-
+  Team-adopted)**: reframe T21 as an M²/étendue bridge — exp-042's two
+  columns are M²=1 (this cycle's single-mode build) and M²≈2.15–35.8 (the
+  original full-aperture coherent sum) of the identical scene, and a
+  crossover measured at M²≈10–20 with a real flashlight's own M²≈10²–10³
+  would answer the contamination question with two numbers a torch's own
+  spec sheet supplies, replacing the still-unsourced coherence-length route
+  T21 has been blocked on for four iterations. **New live thread T24
+  opened** (the `C_empty` channel's absorbing-boundary systematic — see
+  below) as a direct spinoff of this cycle's own new FDTD legs. Verdict:
+  PARTIAL (5 PARTIAL + 1 PROMISING raw split, Red Team's adjudication).
+  Checkpoint criterion 4 does NOT fire — conditional on a hardened,
+  same-shift Tier-0 docket (5 items, all landed, verified) — see Checkpoint
+  entry below.
 - **T22 — `lab/thermo_sidecar.py`'s `iso_xsec_sq` area convention and the
   two branches' inconsistent area/mass bookkeeping (opened Iteration 20,
   exp-043 Phase 5, Red Team — quantified independently by PHOTONICS and
@@ -1193,6 +1260,66 @@ measured them here):**
   own derivation requirement) was proposed (PHOTONICS) but never computed.
   Iteration-23's own Tier-1 #2 priority — a ~10-line code change, zero new
   FDTD cost.
+  **Iteration 23 (exp-046): the mixed regime computed — and it is
+  algebraically identical to the `r_out`-consistent regime on the axis T23
+  was opened to decide.** τ_thermal = ρC_P·L_cond²/(4εσT³·L_cond + k_air)
+  contains no power-length term at all (verified independently by four
+  seats + Red Team), so ANY convention that puts conduction/mass on `r_out`
+  gives `dwell/τ_thermal` = 194.176815× identically to the already-computed
+  `r_out`-consistent regime, bit-for-bit — the mixed regime differs from
+  `w_on`-consistent only in `dt_ss_full` (3.293×10⁻⁵K, the least
+  comfortable of the three on THERMODYNAMICS' own charter axis, 607× below
+  NETD vs 1839×/5558×). **T23's OPERATIVE question (below vs. above
+  `N_TRANSIENT_TAU`=25) is now closed robustly**: every disclosed shape/
+  fill variation this cycle and its Phase-5 audit computed — the cube
+  (194×), a true disk (97×), fill fractions down to 1% (19418×) — reads
+  comfortably above 25 except the single `w_on`-everywhere convention this
+  program's own argument holds is not licensed for conduction. **T23's
+  NOMINAL question (which length is licensed) is closed by ARGUMENT, not
+  measurement** — the mixed convention's own justification (power on
+  `w_on` per `RATIO_ON`'s calibration; conduction/mass on `r_out` per Nu=2's
+  derivation requirement) is sound and adopted as this program's working
+  position, but it lives in exactly one place, a Phase-1 draft carrying a
+  SUPERSEDED banner for a dozen other reasons (THERMODYNAMICS' own
+  fresh-context Phase-5 self-review, the sharpest finding of that review) —
+  fixed same-shift via a `t23_disposition` key in `results.json` and a
+  Learned item in NOTES.md, per Red Team's Phase-5 mandatory-fix docket.
+  **New, unresolved: Red Team's own Phase-5 audit found the fill-factor
+  disclosure that makes the τ_thermal question "robust" is itself
+  incomplete** — a fill fraction below unity lowers not just ρC_P (the
+  disclosed effect) but also the solid's effective thermal conductivity,
+  raising the Biot number toward unity (0.25/0.75/0.97 at φ=0.5/0.1/0.01,
+  Maxwell–Garnett) and invalidating the single-τ lumped-capacitance model
+  the whole regime machinery assumes — the reassurance is largest exactly
+  where the model producing it is least valid (THERMODYNAMICS' own
+  fresh-context Phase-5 catch, Red-Team-confirmed and quantified). Does not
+  move any UNDETECTABLE verdict (internal gradients make the radiating
+  surface cooler, not warmer, if the lumped model breaks) but is a real,
+  disclosed gap in the instrument T23 itself depends on — fixed same-shift
+  with Biot/Knudsen validity-condition rows added to the sensitivity table.
+  Verdict: PARTIAL (see Iteration 23 entry, below, for the full record).
+- **T24 (opened Iteration 23, exp-046, ELECTROMAGNETISM's own Phase-5
+  finding, independently ratified and narrowed by Red Team's own four new
+  FDTD legs) — the ambient-contrast instrument's `C_empty` channel carries
+  an uncharacterized absorbing-boundary (`ABSORB`) systematic.** `ABSORB`
+  40→60 at two Block-A legs moved `C_empty` by **+0.0070** (750nm/38°/
+  FWHM=2°, 1.39× VISION's own perceptual C_thr, and the gap to the desk
+  propagator's own prediction shrank 5.68%→1.43%) and **−0.0022**
+  (600nm/40°/FWHM=2°, gap GREW 1.91%→3.69% — moving AWAY from the desk
+  value). EM's own Phase-5 reading ("mostly a boundary artefact, the desk
+  propagator is better than credited") is confirmed at exactly one of the
+  two legs it tested and Red Team's own independent second leg refutes it
+  as a general explanation — narrowed, not adopted: what is established is
+  a real, non-monotone 0.002–0.007-absolute systematic on this channel at
+  `ABSORB=40` (0.4–1.4× the perceptual threshold the whole T21 contamination
+  question is scored against), inherited unexamined by every T21/T16
+  reading since exp-041 — including all 30 of exp-041's own Block MAIN rows
+  that T21's own edge-diffraction fringe mechanism was fitted to, and every
+  N9/N17 quadrature delta T16 has ever scored. Structurally the same class
+  of unexamined-instrument-floor debt T11 tracks for the box-ledger
+  channel. Queued for a dedicated ABSORB sweep (Iteration-24 Tier-2 #4,
+  `SRC_X` moved clear of the x-damping band so the confound EM's own two
+  legs exposed does not recur) — not urgent, no verdict threatened.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -8373,3 +8500,259 @@ has now recurred a 6th-plus time in 8 iterations (13, 14, 15, 17, 20, 21,
 this cycle's own instance (caught and fixed same-shift, per Checkpoint
 precedent) is smaller in stakes than several priors but confirms the
 pattern is structural to the panel's own process, not a run of bad luck.
+
+## Iteration 23 — The Aperture-Consistent Single-Coherent-Mode Beam (T21) + T23's Mixed Length-Scale Regime + Dose Accumulation on the Full exp-038 Grid (exp-046) — 2026-08-19
+
+Runner: cloud panel shift · Lead: **THERMODYNAMICS** (rotation).
+
+### PHASE 1 — PROPOSAL · Lead seat: THERMODYNAMICS
+
+Three blocks under exp-034's own "tightly-related, all-zero-cost-except-one,
+all-desk/analytic" precedent, executing Iteration 22's ranked Tier-1
+priorities in full. **Block A** (Iteration-22's own hardened, unconditional
+rule — QUANTUM's aperture-consistent single-coherent-mode beam check MUST
+run this cycle or Checkpoint criterion 4 fires automatically): replace
+exp-042's full-aperture coherent angular-sum with a physically real
+diffraction-limited single mode (Gaussian waist `w₀=C·λ/Δθ`,
+`C=2√(2ln2)/2π`), one angle injected, on exp-042's own geometry/propagator/
+reduction; a small FDTD leg (9 calls) to validate the propagator at the new
+Fresnel-number regime (N_F falling from ~310–518 to 0.24–47) and to
+trust-gate `add_line_source(profile="gauss")` — declared in `lab/fdtd2d.py`
+since the engine was built, grep-verified never once exercised. **Block B**
+(T23): add PHOTONICS' third, mixed length-scale regime (power on `w_on`,
+conduction/mass on `r_out`) to exp-045's `self_consistent_regime`, desk
+only. **Block C**: extend `coupled_segment_general`'s dose-accumulation
+check from exp-045's Host-D-only 4 points to the full exp-038 5-host ×
+5-ratio grid, desk only. Full text: `experiments/046-.../phase1_proposal.md`.
+
+### PHASE 2 — CRITIQUE · five seats blind, Red Team last with everything
+
+All five blind seats independently landed support-with-changes.
+**PHOTONICS, ELECTROMAGNETISM and QUANTUM OPTICS independently converged**
+on Block A's oblique Gaussian-source geometry being wrong as written, but
+diagnosed THREE apparently-different corrected formulas. **MATERIALS**
+found Block C's grid contained zero UNOBTANIUM-tier points (Host E and
+ratio=1.0 both excluded), making its own corroboration claim against
+`REALIZABILITY_MEMO.md` Amendment 3 structurally impossible, and found the
+silicon-identity citation traces to an unsourced sentence one file upstream.
+**VISION SCIENCE** found the "eye-invisible" language in §1/P-TH23-B3 has
+no perceptual falsifier — an unfalsifiable claim, the same species Red Team
+struck at Iteration 22 — and that idealization 9's NETD-disclaimer
+propagation commits only to storage, not to the two loci that have actually
+failed twice before.
+
+**RED TEAM (ruling: PROCEED-WITH-MANDATORY-FIXES).** Resolved the
+three-way geometry dispute from source (`lab/fdtd2d.py`'s actual phased-
+array/phase-ramp steering, not a physically-rotated aperture): EM's and
+PHOTONICS' closed forms turned out to be algebraically identical — the
+single defect was the source width (`w₀`→`w₀/cosθ₀`), not the observation-
+plane `w_y` formula the proposal already had right — tie-broken by exact
+angular-spectrum propagation AND four new live FDTD runs. Found the
+headline itself was never falsifiable: `beam_divergence_coherent` already
+synthesises exactly the aperture Block A was proposing to build (Attack 2,
+an algebraic identity, not an experimental question). Ruled `(b)`, per this
+program's own T21 precedent: replace the closed-form band-setter with a
+desk numerical propagation through exp-042's own committed Huygens–Fresnel
+propagator. 24-item mandatory-fix docket, all adopted at Phase 3, none
+overridden.
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All 24 Red Team mandatory fixes adopted. Configuration: `width=w₀/cosθ₀`
+at every oblique Block-A call; `w_y` formula unchanged (one transcription
+slip corrected); the geometry table re-issued (N_F 0.40–67.5); every
+Block-A band set by numerical desk propagation, the closed form retained
+only as a disclosed accuracy anchor; A1 re-scoped to a pointing/estimator
+reading, A3 to a desk-identity check, A4 and A7 dropped; Block C extended
+to the full 21-new-point grid (Host E + ratio=1.0 added). **Director's own
+call, item 24**: VISION's Tier-W glare/adaptation sidecar tripwire hardened
+to the same unconditional automatic-criterion-4 form as the aperture-check
+rule, matching Iteration 22's own precedent for its sibling item —
+recorded here for LOGBOOK propagation. Predictions committed structurally,
+not by hand-typing a duplicate copy: `run.py` computes and prints every
+P-TH23-* band before any Block-A FDTD call executes, and that printed state
+is the frozen prediction (`a7eaaf8`, zero FDTD calls, verified by git diff).
+
+### PHASE 4 — TEST (run 2026-08-19)
+
+9 new FDTD calls (126s), Blocks B/C zero. Trust suite 88/88 before any
+number trusted (82/82 fast stages, 4/4 stage 16, 2/2 heavy). **Scorecard:
+11 CONFIRMED, 3 PARTIAL, 1 REFUTED.** The genuine falsifiable content: A5
+(the desk Huygens–Fresnel propagator, built and used at N_F≈310–518,
+validated against FDTD at N_F=0.54–65.6 to 0.03–5.68%, signs 4/4) —
+**CONFIRMED, and the honest result of this cycle's Block A.** A6 REFUTED:
+gate S16-b (beam-centre pointing) failed pre-registration by 12.97 cells;
+post-run desk diagnosis (one FFT) attributed 8.03 of those cells to the
+ray-optics TARGET being wrong at 14° divergence, not the engine, and
+withheld A1 (the pointing-dependent reading) under the withholding clause
+in scope. Blocks B/C confirmed cleanly: mixed regime `dwell/τ_thermal`=
+194.176815× (bit-identical to `r_out`-consistent), `dt_ss_full`=
+3.293076×10⁻⁵K, 607× below NETD; Block C's 21-point extension found real
+memory buildup exactly where Red Team's own Attack 9 predicted (Host E,
+D/τ_k≈0.067), zero at all 30 PUBLISHED-tier negative controls, closed form
+verified 250/250 against a new duration scan. **A real program-integrity
+catch, disclosed same-shift, not deferred**: the `--only` stage-selector
+wiring bug (this species' third recurrence — Iterations 15, 17, and now
+this cycle) was found and fixed before it could contaminate stage 16's own
+wiring; `VALIDATION.md` was amended with an erratum (later found itself
+overstated — see Phase 5).
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**All six seats independently re-derived the cycle's headline numbers from
+raw code/data, not NOTES.md's prose — zero arithmetic defects found
+anywhere in Blocks B/C, confirmed independently by every seat that
+checked.** But the packet contained the densest, most consequential Phase-5
+catch-set since Iteration 17's own Checkpoint-4 firing. **PHOTONICS and
+ELECTROMAGNETISM independently converged, by different methods, on the
+single most consequential finding of the cycle**: the post-run diagnostic
+used to attribute the S16-b gate failure — and the newly-shipped stage-16
+gate itself, already green, already committed inside `lab/` — used a
+physically WRONG comparator (a prescribed-field/`|E|²` model, when
+`add_line_source` impresses a line CURRENT and `observer_profile` reads a
+FLUX with obliquity entering once via H, not squared via E — the identical
+error class ELECTROMAGNETISM adjudicated for exp-042 at Iteration 19, now
+inside the trust suite for the first time). Both computed a physically
+correct comparator agreeing with FDTD to 0.3–0.8%, not the 5.4% on record.
+**QUANTUM OPTICS independently re-derived Red Team's own Phase-2 Attack 2**
+(the "algebraic identity" proof) and found it correct only for the central
+lobe — at the 9 FWHM=20° cells, `beam_divergence_coherent`'s synthesised
+aperture is a three-lobe comb whose grating-lobe replicas carry 42–68% of
+the total intensity, meaning Red Team's own "permanent T21 fact" would have
+entered LOGBOOK true at 27 cells and materially false at 9. **VISION
+SCIENCE, independently converging with THERMODYNAMICS** (fresh-context,
+reviewing its own seat's Phase-1 draft), found "eye-invisible" survives
+live and unflagged in `phase1_proposal.md` at exactly the two loci docket
+item 20 named, with no SUPERSEDED banner — one cycle after this program
+invented that exact banner for this exact failure mode (Iteration 22), and
+in the same shift Phase 3 cited that precedent for a different item.
+VISION additionally found A1's "withheld as gate-backed" disposition exists
+in exactly one NOTES.md prose paragraph and nowhere in the canonical
+`results.json` record a future cycle would actually cite. **THERMODYNAMICS'
+own sharpest self-critique**: the fill-factor disclosure (docket item 19)
+discloses two conservative-direction effects and omits a third — a diluted
+host also lowers the solid's effective thermal conductivity, raising the
+Biot number toward unity and invalidating the single-τ lumped model the
+whole T23 machinery assumes — with the reassurance growing largest exactly
+where the model producing it is least valid.
+
+**RED TEAM (final audit): every one of the six seats' load-bearing findings
+independently re-verified from source, several sharpened with new FDTD
+work** (four new runs plus one full angular-spectrum/Huygens comparison, in
+the audit itself). Confirmed the stage-16 gate is not merely ~17× too loose
+where calibrated but would actively FAIL (9.38% vs its own 8% bar) at
+Block A's own extreme cell, where the engine's true accuracy is 0.38–0.46%
+— a trust-suite-integrity defect, a graver class than the fix-docket
+pattern, shipped green. Confirmed QUANTUM's grating-lobe finding to the
+printed digit, against Red Team's own prior Attack 2 — the first time in
+this program's history a Red-Team-authored Phase-2 finding was found wrong
+by name and corrected in the following cycle's own Phase-5 audit. Confirmed
+"eye-invisible" and A1's withholding gaps by direct grep/JSON query.
+**Found a second, independent Checkpoint-4-shaped defect no seat
+named**: Phase 3's own hardening of the VISION Tier-W tripwire (item 24)
+had inserted a carve-out — "or with an explicit renewed-deferral reason
+that itself survives a Phase-2 Red Team audit" — that this cycle's OWN
+Red-Team-blessed deferral of that exact sidecar would itself satisfy,
+re-admitting precisely the device its sibling rule (the aperture-check
+rule) was written to foreclose, while falsely claiming to mirror that
+rule's wording exactly. A tripwire whose own triggering event satisfies it
+is not a tripwire.
+
+**Checkpoint criterion 4: does NOT fire — CONDITIONAL, with a harder
+condition than any prior cycle in this program's history: if ANY Tier-0
+docket item (5 items) is carried past this same close, criterion 4 fires
+automatically and immediately, no debate, no seat vote, no Director
+discretion, and no renewed-deferral reason of any kind — including one
+blessed by a Red Team audit.** All five Tier-0 items, plus all fifteen
+Tier-1 items (20 total), were applied in the same shift: the stage-16 gate
+repointed to the physically correct comparator (re-measured 0.46% against a
+tightened ≤1.5% bar, with a mandatory independent-second-derivation
+acceptance test built in, per a new standing rule this cycle adopts — a
+post-freeze change to a gate's TARGET is a physics change and requires
+independent re-derivation before commit, or it fires criterion 4
+automatically at the next Phase 5 that finds it); the S16-b attribution
+corrected from 8.03/4.95 cells (62%/38%) to 12.556/0.418 cells (96.8%/3.2%
+— the engine is 12× better than first recorded); a SUPERSEDED banner added
+to `phase1_proposal.md`; the item-24 hardened rule repaired to one
+consistent, uncarved-out rendering; A1's withholding propagated to the
+canonical record. Full docket (20 items): `experiments/046-.../
+phase5_redteam_audit.md` §8; applied same-shift, `results.json`
+regenerated (nine FDTD legs reproduced bit-identically a third time this
+shift — a free determinism check), trust suite re-verified 89/89
+(commit `c2a21f7`). No other Checkpoint criterion fires: criterion 1 (no
+constraint metric scored); criterion 2 (no realizability tier moves,
+Block C's D_req-adjacent corroboration confirmed genuine); criterion 3
+(zero `lab/` engine change beyond the trust-suite stage itself, verified by
+`git diff`); criterion 5 (Iterations 22 and 23 both advanced the logbook
+substantially).
+
+**Verdict: PARTIAL** (5 PARTIAL + 1 PROMISING raw seat split — MATERIALS,
+explicitly scoped to its own charter and correct within it; Red Team's
+adjudication adopted per this program's own established precedent that
+verdict turns on whether a cycle's own open questions close, not the raw
+count). What closed cleanly: the Iteration-22 hardened rule (the aperture
+check ran); `profile="gauss"` is genuinely trust-gated for the first time;
+exp-042's desk propagator is now FDTD-backed three-plus orders of Fresnel
+number outside where it was built, honestly reported in the conditioned
+currency; Block C's `D/τ_k < ln(21f)` closed-form memory criterion is a
+genuine advance, replacing a five-host empirical list with one dimensionless
+number, verified 250/250, vindicating Red Team's own Iteration-15 tempering
+of `REALIZABILITY_MEMO.md` Amendment 3; Amendment 5 was actually written in
+the shift that promised it — Iteration 21's specific failure did not
+recur; no UNDETECTABLE classification anywhere is threatened by anything
+any seat found, worst case 607.33×→607.05×. What did not close: the
+cycle's advertised Block-A headline was never an experimental question, and
+its replacement identity was itself recorded with the wrong scope until
+Phase 5 caught it; a trust-suite gate shipped into `lab/` scored the engine
+against a physically wrong comparator; T21's contamination-risk verdict is
+exactly where Iteration 19 left it, arguably further; T23 has a third
+endpoint (mixed = `r_out` on the operative axis) and its argument survived
+Phase 4 in an unbannered, soon-to-be-superseded document; and this cycle's
+own fix-docket-delivery pattern (LOGBOOK: Iterations 13, 14, 15, 17, 20,
+21, 22) reproduced in FOUR distinct instances, in the cycle immediately
+after the one that invented the SUPERSEDED-banner remedy for the sharpest
+of them.
+
+**Next lead per rotation: QUANTUM OPTICS** (Iteration 24; VISION→
+PHOTONICS→MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→**QUANTUM OPTICS**→
+repeat) — though Iteration 24's own top-ranked item is VISION's own
+sidecar, run by any lead seat per the hardened rule's own wording, not a
+fresh QUANTUM mechanism proposal.
+
+**Ranked priorities for Iteration 24** (Red Team's Phase-5 tiered
+synthesis, adopted in full): **(1) VISION's glare/adaptation Tier-W
+sidecar**, under the corrected hardened rule — outranks everything on
+program-integrity grounds; every numeric input it needs is already
+committed on the record (Iteration 1's Phase-5 parameter set, T2's frozen
+`C_thr(L)`, exp-020's measured C=−0.686), nothing requires a blocked
+WebFetch. **(2) Stage-16's forward half**: identity gates at Block A's own
+actual extremes (w₀=1.074λ and 10.74λ; both current identity gates sit at
+w₀≈2λ), ~2 FDTD calls. **(3) QUANTUM's own n-convergence audit of
+`gaussian_angle_weights`** (n=41 has never been convergence-tested; n=401
+already measured to move scored `C_empty` by up to 4.47%), **then** the
+M²/étendue reframing of T21 (in that order — the M² bridge interpolates
+through the FWHM=20° regime where the angular comb is worst, so the
+convergence question must close first); identity-gate the high-M² endpoint
+against exp-042's own committed `block_beam_corrected` bit-for-bit before
+any intermediate M² is trusted. **(4)** design the T24 `ABSORB` sweep
+(`SRC_X` moved clear of the x-damping band so EM's own confound does not
+recur), ~6–9 FDTD calls. **(5)** the R3 resolution check on the four cells
+where `results.json`'s own 36-cell grid reads a POSITIVE `C_empty` (a sign
+reversal across the visible band at FWHM=2°, contradicting idealization 2's
+committed "no material wavelength dependence" claim) — before "glint at
+750nm" is allowed into the record as physics, per this program's own R3
+meta-rule.
+
+**Program-level, flagged for Marsh's attention, not a work item**: the
+fix-docket-delivery pattern recurred in FOUR distinct forms this single
+cycle (an unfalsifiable claim surviving unflagged in a Phase-1 draft with a
+false "struck everywhere" claim repeated 2672 times in `results.json`; a
+disclaimer delivered at 3 of 5 named loci with the override unstated; a
+Director-level judgment call absent from the machine-readable record it
+needed to reach; a hardened tripwire whose own wording change re-admitted
+the device it existed to foreclose) — one cycle after the SUPERSEDED-banner
+remedy was invented for the first of these, in the same document that cited
+that remedy's own precedent for a different item. All four were caught and
+corrected inside this same shift; Checkpoint criterion 4's harder,
+zero-further-extension condition (§ above) is this program's own explicit
+response.
