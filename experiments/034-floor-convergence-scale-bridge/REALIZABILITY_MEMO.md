@@ -420,7 +420,11 @@ anchor (C=−0.7209, Iteration 7 close/exp-030).
 `r_in_shell()` function's own `round()` is a cell-quantization step with
 no meaning at continuous meter scale — a disclosed deviation from a
 literal function call, not a new formula. Thickness figures match
-Iteration 7's own rounded 0.31–0.92 m to <0.1%.)
+Iteration 7's own rounded 0.31–0.92 m to **0.75%/0.33%** relative
+[corrected at Phase 5, MATERIALS' catch: the original text claimed
+"<0.1%" — both endpoints round correctly to 2dp against Iteration 7's
+own 2-sig-fig figures, but the tighter claim was arithmetically wrong;
+non-load-bearing, no verdict depends on this precision].)
 
 **What this construction requires, physically — and what it does not
 establish.** Holding `τ_shell` constant as `r_out` scales means the
@@ -444,11 +448,19 @@ This program computed, this cycle, a formally-derived σ_max reading
 directly into `sigma_max_shell(r) = 0.5/(r/78)` — the SAME formula this
 engine uses with `r` in **grid cells** (`lab/fdtd2d.py`'s own convention:
 grid units, `dx=1`). **No dx/unit bridge from this program's grid-
-normalized σ to a physical conductivity has ever been established.**
-These numbers (and the derived 1.28–3.85 cm "e-folding lengths") are
-reported here for completeness only — **illustrative arithmetic, not a
-physical conductivity claim** — and must not be cited elsewhere as a
-sourced material parameter.
+normalized σ to a physical conductivity has ever been established AT
+WITNESS SCALE** [narrowed at Phase 5, MATERIALS' catch: the original
+text claimed no such bridge exists "anywhere in this program," which
+overstates the gap — a real bench-scale bridge (dx≈30nm) has existed
+since exp-001, e.g. r_out=78 cells↔2.34µm; what is genuinely missing is
+a bridge from grid units to *this entry's own* 0.5–1.5 m witness-scale
+regime, which via the established dx≈30nm ratio would require r in the
+range of ~1.7×10⁷–5×10⁷ cells — orders of magnitude beyond anything this
+engine has ever run. Correcting the claim's scope strengthens, not
+weakens, the disclaimer below]. These numbers (and the derived 1.28–3.85
+cm "e-folding lengths") are reported here for completeness only —
+**illustrative arithmetic, not a physical conductivity claim** — and
+must not be cited elsewhere as a sourced material parameter.
 
 **Tier disposition.** This entry does **not** independently derive a new
 tier — MATERIALS' own charter call is solicited fresh at Phase 5, per
@@ -462,6 +474,13 @@ has no macroscopic real-material precedent this program is aware of and
 has never itself been literature-checked (T18-blocked). Promoting this
 to a formal UNOBTANIUM-WITH-PARAMETERS tier (this memo's own house
 standard elsewhere) needs a literature check this cycle did not run.
+**Phase-5 note**: MATERIALS' own fresh-context review this cycle offered
+to render that tier call informally (UNOBTANIUM-WITH-PARAMETERS, via a
+desk comparison against real ultra-black coating thickness precedent,
+tens of nm to ~1mm) — considered and declined by Red Team's audit: every
+existing WITH-PARAMETERS row in this memo's own table rests on a sourced
+literature check (exp-036/exp-037), none informally; this entry's own
+deferral is the standard-consistent call, not a shortfall.
 
 **Bearing on existing verdicts: none.** exp-047's own headline (P-G24-2)
 is unaffected — PHOTONICS' Iteration-24 closed-form bound already shows
@@ -470,6 +489,17 @@ changes no measured C. What this entry sharpens is evidentiary, not
 physical: the headline's own C anchor is drawn from the specific
 construction this entry now formally documents as informally-UNOBTANIUM,
 not yet from the plausibly-realizable fixed-thickness alternative.
+**Also unaddressed here (THERMODYNAMICS' Phase-5 catch — disclosed in
+`experiments/048-evidentiary-chord-closure/NOTES.md`'s own Idealizations
+and `design_geometry.py`'s docstring, but omitted from this entry until
+now):** no existing THERMO sidecar UNDETECTABLE verdict (exp-043/044/045)
+has been re-derived at this entry's own newly-computed witness-scale
+physical dimensions (cm-scale e-folding depth, m-scale radius), where
+`h_eff=k_air/L`'s quiescent-conduction-limit assumption is unverified —
+real natural convection, not conduction-limited transfer, likely governs
+at meter scale. A same-shift Phase-5 estimate (not a run) suggests this
+narrows, but does not flip, this program's two thinnest existing
+detectability margins — queued for Iteration 26.
 
 **Open (unchanged from Iteration 7, now nine iterations deferred):**
 build and measure the fixed-absolute-thickness `graded_black_shell`

@@ -225,17 +225,36 @@ literature check).
   2.583° at the new geometry's A=724, 7.6–10.7% off the cited (rounded,
   2-sig-fig) figures. But recomputing the OLD-geometry period with the
   identical formula and full precision (not the LOGBOOK's rounded
-  citation) gives 1.4925°/1.9900°/2.4875° — and the new/old ratio then
-  matches the pure geometric prediction A_old/A_new = 752/724 = 1.03867
-  almost exactly (measured ratios 1.0387/1.0385/1.0384 relative to the
-  precise OLD figures, well under 1% self-consistency error). **The
-  mechanism transfers correctly to the new geometry; the apparent 5%-band
-  miss is an artifact of comparing against a 2-significant-figure citation,
-  not a defect in the re-parameterization.** Flagged honestly rather than
-  silently re-scoped after the fact — this is exactly the kind of
-  comparator-precision trap this program's own R3 discipline exists to
-  catch, applied here to a citation-precision question instead of a
-  spatial-resolution one.
+  citation) gives **1.4919°/1.9892°/2.4865°** [corrected at Phase 5 —
+  see erratum below; an earlier draft of this paragraph cited
+  1.4925°/1.9900°/2.4875°, hand-computed out-of-band rather than
+  produced by invoking the committed `ripple_period_deg` function, caught
+  independently by PHOTONICS and ELECTROMAGNETISM] — and the new/old
+  ratio then matches the pure geometric prediction A_old/A_new =
+  752/724 = 1.0386740331491713 **exactly** (an algebraic identity of
+  `ripple_period_deg`'s own formula — λ and cosθ cancel — not an
+  approximate empirical convergence; EM's own Phase-5 correction to this
+  paragraph's original "well under 1% self-consistency" framing, itself
+  more conservative than the truth). **The re-parameterized CODE is
+  internally self-consistent at the new geometry; this is a
+  code-algebraic identity, not evidence that the real edge-diffraction
+  fringe (only an FDTD run could confirm) tracks the formula this
+  precisely at the new geometry** — EM's own Phase-5 correction to this
+  paragraph's original "the mechanism transfers correctly" sentence,
+  which overclaimed past what mandatory fix 5's own INCONCLUSIVE scope
+  already limits Block B to. The apparent 5%-band miss against the
+  *cited* periods remains an artifact of comparing against a
+  2-significant-figure citation, not a defect in the re-parameterization.
+  Flagged honestly rather than silently re-scoped after the fact — this
+  is exactly the kind of comparator-precision trap this program's own R3
+  discipline exists to catch, applied here to a citation-precision
+  question instead of a spatial-resolution one. **Erratum (Phase 5,
+  applied same-shift, per Red Team's audit):** the figures in this
+  paragraph were corrected in place (T10's own "flag, don't silently
+  rewrite" precedent applies to measured/scored data in `results.json`,
+  which is unaffected — this paragraph is prose commentary, not a scored
+  prediction, and two independent Phase-5 seats plus Red Team's own audit
+  converged on the same correct figures before this text was touched).
 - **P-B2 — CONFIRMED.** 5 of 27 (θ,λ) points exceed GATE_HARD=0.001
   (worst: θ=−25°, 750nm).
 - **P-B3 — CONFIRMED.** Worst |C_empty| = 0.004855, inside the predicted
@@ -254,10 +273,25 @@ literature check).
   anywhere claims this block "closes" the T21/T24 contamination question.
 - **P-C1 — CONFIRMED.** 10^0.3=1.99526 (0.2369% err), 10^−0.3=0.50119
   (0.2374% err) — both comfortably under 0.3%.
-- **P-C2 — CONFIRMED.** All three of exp-047's own near-boundary points
-  (L_eq = 1×10⁻⁵ / 1.7×10⁻⁴ / 1.17×10⁻³ cd/m²) sit well below L_REF=3.0 —
-  the low-luminance regime T2's ±0.3-log figure is committed for, not the
-  clamped photopic floor.
+- **P-C2 — CONFIRMED, regime check passed (necessary, not sufficient) —
+  reworded at Phase 5, VISION's own catch, Red-Team-adopted.** All three
+  of exp-047's own near-boundary points (L_eq = 1×10⁻⁵ / 1.7×10⁻⁴ /
+  1.17×10⁻³ cd/m²) sit below L_REF=3.0 — the low-luminance regime T2's
+  ±0.3-log figure is committed for, not the clamped photopic floor. This
+  rules out the wrong (clamped) regime; it does NOT establish that ±0.3
+  log is UNIFORM across the low-luminance regime, which T2's own source
+  describes as bridging three physically distinct psychophysical
+  behaviors (Weber's law, Rose–de Vries, near-absolute-threshold) via one
+  fitted power law. One of the three points (L_eq=1×10⁻⁵) sits only ~2×
+  above this program's own cited absolute-rod-limit crossover
+  (L*_lab≈5×10⁻⁶ cd/m², LOGBOOK Iteration 1) — a regime where classical
+  psychophysics typically shows LARGER, not smaller, threshold scatter
+  than in the Weber-law regime the figure may be most directly informed
+  by. The original committed language ("Applicability CONFIRMED") is
+  corrected here to state plainly what was and wasn't tested — see
+  `results.json`'s own `block_c.recommendation_scope` field, left
+  unrewritten per T10's precedent, this prose paragraph corrects the
+  reading of it, not the underlying committed data.
 - **P-C3 — CONFIRMED: SOURCE.** `lab/glare_sidecar.py::tier_w_verdict`'s
   docstring updated with the citation and regime-applicability scope
   (see diff); **zero numeric change** to the function itself, exactly as
@@ -293,27 +327,112 @@ docstring): committed together with this file.
   desk-only exactly as scoped at Phase 1 — no scope-dilution symptom
   observed (the risk PHOTONICS/the proposer both self-flagged).
 
+## Phase 5 (six fresh blind seats + Red Team audit)
+
+**Six independent reviews, verdicts: 4 PROMISING (PHOTONICS, ELECTRO-
+MAGNETISM, THERMODYNAMICS, QUANTUM OPTICS), 2 PARTIAL (VISION SCIENCE,
+MATERIALS — each scoped to open items adjacent to the headline, neither
+finding a defect in P-B4/P-G24-2 itself). Red Team's own independent
+verdict for the cycle as a whole: PROMISING**, re-derived from source at
+every load-bearing claim, not inherited from the vote count.
+
+**Does anything found threaten P-G24-2/P-B4? No — independently
+re-confirmed by Red Team a fourth way** (own arithmetic, EM's, PHOTONICS',
+and Red Team's own recompute all converge on 8.136×10⁻³, 61.5×/245.8×
+margins). The headline is physics-capped (|C|≤1.0) against every
+correction any seat raised.
+
+**Two genuinely new cross-seat findings, independently converged, both
+verified against source by Red Team and corrected same-shift (see above,
+"Erratum" and reworded P-C2):**
+
+1. **PHOTONICS and ELECTROMAGNETISM independently, by different routes**
+   (direct execution vs. algebraic re-derivation), caught that this
+   file's own "precisely recomputed" OLD-geometry period figures
+   (1.4925°/1.9900°/2.4875°) do not reproduce from the committed
+   `ripple_period_deg` function — they were hand-computed out-of-band.
+   Red Team's own third independent recompute (backward-solving the
+   implied `A` from the wrong figures: 751.70, not 752) confirms the
+   diagnosis precisely. Corrected same-shift. **Separately, EM proved the
+   new/old period ratio is an EXACT algebraic identity** (752/724,
+   λ-independent), not an approximate "<1%" empirical convergence as
+   originally stated — a genuine strengthening, alongside a genuine
+   overclaim catch (the algebra proves code self-consistency, not that
+   the real FDTD fringe tracks the formula this precisely at the new
+   geometry) — both corrected same-shift.
+2. **MATERIALS offered to render, this shift, the tier call
+   `REALIZABILITY_MEMO.md` Entry 2 deliberately deferred**
+   (UNOBTANIUM-WITH-PARAMETERS, via an informal thickness comparison).
+   **Red Team rejected the offer**, checked against the memo's own table:
+   every existing WITH-PARAMETERS row rests on a sourced literature check
+   (exp-036/exp-037), none informally — Entry 2's own deferral is the
+   standard-consistent call, not a shortfall. Recorded in the memo, not
+   acted on.
+
+**Other findings, all confirmed and corrected same-shift:**
+
+- MATERIALS' "<0.1%" thickness-match claim was arithmetically wrong
+  (actual 0.75%/0.33%) — corrected in `REALIZABILITY_MEMO.md`.
+- MATERIALS' "no dx bridge anywhere in this program" overstated the gap
+  (a real bench-scale bridge exists; the missing bridge is specifically
+  to witness scale) — corrected in `REALIZABILITY_MEMO.md`.
+- THERMODYNAMICS' own Phase-2 finding (witness-scale `h_eff` unverified)
+  landed correctly in this file and `design_geometry.py` but was missing
+  from `REALIZABILITY_MEMO.md` Entry 2, the most durable record for
+  exactly these numbers — added same-shift. THERMO also computed (as an
+  estimate, not a run) that the correction shrinks this program's two
+  thinnest detectability margins (exp-043's ON-endpoint: ~5.1×→~2.6×;
+  exp-045's dose-accumulation: ~27,080×→~38–42×) without flipping either
+  — queued as an Iteration-26 candidate, not run this cycle.
+- VISION's Phase-2 catch (Block C's regime check is necessary, not
+  sufficient — doesn't establish ±0.3-log uniformity near the
+  absolute-threshold edge, where one near-boundary point sits only ~2×
+  above this program's own cited crossover) — reworded above.
+- EM found an undisclosed latent narrowing in the geometry-dict
+  generalization (never exercised at TAPER≠ABSORB or OBJ_Y≠NY//2) —
+  harmless for every case this cycle runs (both hold in both geometries
+  used), flagged for any future geometry that might not.
+- PHOTONICS found the 9-angle FALLBACK grid (10° steps) is coarser than
+  the ~1.5–2.6° fringe period it characterizes — the reported worst point
+  is likely not the true worst phase at this geometry. New, not caught at
+  Phase 2, feeds Iteration 26's own ranked queue.
+
+**Checkpoint criterion 4: does NOT fire.** Every defect found this Phase
+5 is confined to disclosure/labeling/citation precision in prose or a
+memo entry, none load-bearing, all correctable same-shift and corrected.
+Named plainly per this program's own convention: this is the **third
+consecutive cycle** (23: Biot/fill-factor gap; 24: bare-"Tier-W" slip;
+25: two independently-caught unreproducible "precise" figures) the
+fix-docket-delivery pattern recurs inside the document meant to close a
+prior gap. **New standing house rule, adopted (VISION's Phase-5 proposal,
+Red-Team-elevated from recommendation to adopted rule):** any falsifier
+or self-consistency figure cited as "precisely recomputed" must be
+produced by invoking the actual committed function at prediction-freeze
+or Phase-5-correction time, never hand-typed, however simple the
+arithmetic looks. Recorded in `LOGBOOK.md`'s house-discipline record.
+
+**Red Team's ranked priorities for Iteration 26** (adjudicating EM's
+disagreement with VISION/PHOTONICS/QUANTUM's own rankings — Red Team's
+standing authority): (1) QUANTUM's `gaussian_angle_weights`
+n-convergence audit — non-negotiable, a third deferral would repeat this
+program's own named r=156 anti-pattern. (2) T8/T13/T14: at minimum,
+replace the point-C=−0.7209 with a sensitivity band spanning T13's two
+extrapolation models everywhere cited as a witness-scale surrogate
+(EM's own cheap fallback), with a proper reconciliation scoped as a
+future Phase-1 proposal, not assumed solved by the band alone. (3)
+Genuine FDTD `ABSORB` sweep at Block B's new geometry (T21-vs-T24). (4)
+Build and measure the fixed-absolute-thickness `graded_black_shell`
+variant (now a 9-iteration deferral, four seats independently rank it).
+(5) Fine (≤1°) angular sweep around the actual ±35° fallback geometry.
+(6) Fresh c*(λ) refit at the new geometry. (7) THERMO's witness-scale
+`h_eff` re-derivation for the two thinnest-margin readings. (8)
+Regime-stratify T2's ±0.3-log uncertainty near the absolute-threshold
+edge. (9) [done same-shift: the house rule above.] (10) Ocular-dose
+disposition (low priority, unchanged).
+
 ## Next
 
-Carried from exp-047's own Iteration-25 queue, not attempted this cycle
-(Director's Phase-1 scope call, unchallenged at Phase 2/5):
-
-1. Build and measure the fixed-absolute-thickness `graded_black_shell`
-   variant's own C (MATERIALS' nine-iteration-deferred Iteration-7 pick) —
-   this cycle's own `REALIZABILITY_MEMO.md` Entry 2 gives it a sharper
-   starting point (real thickness/core-radius numbers at 3 witness
-   scales) than attempting it blind.
-2. A genuine FDTD `ABSORB` sweep at Block B's own new geometry — the only
-   way to resolve whether Block B's 5/27 GATE_HARD exceedances are real
-   T21 fringe or T24's own boundary systematic (this block's own
-   INCONCLUSIVE finding, per mandatory fix 5).
-3. QUANTUM's own overdue `gaussian_angle_weights` n-convergence audit —
-   deferred again this cycle (self-flagged in Phase 1, not overridden at
-   Phase 2).
-4. Session-accumulated ocular dose disposition (THERMO's own scoped-down
-   next step from exp-047) — still cheap, still not urgent.
-5. THERMO's own new finding this cycle: re-derive (or at minimum flag
-   explicitly wherever cited) whether the sidecar's UNDETECTABLE
-   verdicts hold at the newly-computed witness-scale physical dimensions
-   (cm-scale e-folding depth, m-scale radius), where `h_eff=k_air/L`'s
-   quiescent-conduction assumption is unverified.
+Superseded by Red Team's own Phase-5 ranked priorities (above) — this
+section is left as the pre-Phase-5 draft's own record (Director's
+original Phase-1 scope call) for the historical trail; **the authoritative
+Iteration-26 queue is the ten-item Phase-5 list above**, not this one.
