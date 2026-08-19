@@ -1,3 +1,15 @@
+**SUPERSEDED — see `NOTES.md` Phase 3 (`phase2_redteam_audit.md` Attack 4):
+Block B's material identity below (PMMA) was found wrong for what Block A's
+own grid models AND its citation fabricated (no PMMA mention anywhere else
+in this repo) — corrected to silicon in the actually-committed
+`run.py`/`results.json`. Block B's `h_eff`/`mass_kg` length-scale pairing
+below also mixed two different characteristic lengths (Attacks 1–2) —
+corrected to two genuinely self-consistent regimes. This file is preserved
+UNEDITED below as the historical record of what Phase 1 actually proposed
+and Phase 2 actually critiqued (T10's "flag, don't rewrite" convention,
+extended here to a Phase-1 draft for the first time — see NOTES.md's
+explicit override statement).**
+
 # Phase 1 proposal — "The Intermediate-Dwell Coupled Kinetics-Thermal Stress Sweep + h_conv/mass_kg Re-derivation" (candidate exp-045)
 
 # PHASE 1 — PROPOSAL · Panel Iteration 22 · Lead seat: ELECTROMAGNETISM

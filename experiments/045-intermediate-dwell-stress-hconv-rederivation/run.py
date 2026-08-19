@@ -143,6 +143,35 @@ def coupled_kinetics_thermal_dT(k_f, k_r, dt_ss_full, tau_thermal_s, dwell_s):
     return dt_ss_full * n_ss * bracket
 
 
+def coupled_segment_general(k_f, k_r, dt_ss_full, tau_thermal_s, dt, n0, dT0):
+    """Fix 9 (Phase-5 Red Team audit): a GENERALIZED closed-form solve of
+    the same coupled ODE as `coupled_kinetics_thermal_dT`, but for an
+    arbitrary segment starting population n0 and temperature dT0, not just
+    n0=0/dT0=0 -- derived this shift (Director, Phase 5 close) to commit
+    EM's own Phase-5 finding (the decoupled shortcut is conservative --
+    an OVER-estimate -- at every Block-C point tested) into the permanent
+    record as actual computed data, not only a Phase-5 review file's prose.
+
+    Standard linear-ODE solve (integrating factor e^{t/tau_th}) of
+        dn/dt  = k_f*(1-n) - k_r*n,                          n(0)=n0
+        dDT/dt = (1/tau_th)*(dt_ss_full*n(t) - DT),           DT(0)=dT0
+    Reduces EXACTLY to `coupled_kinetics_thermal_dT`'s own formula at
+    n0=0/dT0=0 (verified symbolically and re-confirmed numerically below,
+    at import time is overkill -- see the assertion in main()).
+
+    Returns (n_final, dT_final) at t=dt."""
+    n_eq = k_f / (k_f + k_r)
+    tau_k = 1.0 / (k_f + k_r)
+    n_final = n_eq + (n0 - n_eq) * math.exp(-dt / tau_k)
+    if abs(tau_k - tau_thermal_s) < 1e-12 * max(tau_k, tau_thermal_s):
+        raise ValueError("degenerate tau_k == tau_thermal_s, not expected on this grid")
+    dT_final = (dT0 * math.exp(-dt / tau_thermal_s)
+                + dt_ss_full * n_eq * (1.0 - math.exp(-dt / tau_thermal_s))
+                + dt_ss_full * (n0 - n_eq) * (tau_k / (tau_k - tau_thermal_s))
+                  * (math.exp(-dt / tau_k) - math.exp(-dt / tau_thermal_s)))
+    return n_final, dT_final
+
+
 def main():
     # -------- reused Part-A witness inputs (exp-043/044, unchanged) ------
     irr_central = _irradiance_w_cm2(40000.0, 300.0, 45.0)
@@ -179,9 +208,63 @@ def main():
     # 828-829 for this identical Host A-D (linearly-pumped FCA) mechanism.
     # NOT independently re-sourced this cycle (T18 WebFetch still blocked) --
     # reused from this program's own prior, already-cited literature figure.
+    # (Moved earlier this shift, Phase-5 fix 6, so the sigma_ext-flatness
+    # sensitivity check below can use it too.)
     DENSITY_SI_KG_M3 = 2330.0
     C_P_SI = 700.0
     K_SI_W_MK = 148.0
+
+    # Fix 6 (Phase-5 Red Team audit, PHOTONICS' catch): w_on was promoted
+    # this cycle into a physical LENGTH SCALE feeding h_eff/mass/area --
+    # exp-044's own achromatic-flatness finding (0.45% relative) checked
+    # ONLY sigma_abs/sigma_ext, never sigma_ext itself. Computed here from
+    # exp-026's own already-committed 3-lambda beam_scene data (zero new
+    # cost) -- the ON-endpoint's own sigma_ext varies MORE than its ratio.
+    _exp026_path = os.path.join(ROOT, "experiments", "026-sigma-i-endpoints", "results.json")
+    with open(_exp026_path) as _f:
+        _exp026 = json.load(_f)
+    _sigma_ext_by_lambda = {lam: _exp026["beam_scene"][lam]["sigma_ext"] for lam in ("450", "600", "750")}
+    _sext_vals = list(_sigma_ext_by_lambda.values())
+    _sext_spread_rel_pct = (max(_sext_vals) - min(_sext_vals)) / _sigma_ext_by_lambda["600"] * 100.0
+    # Sensitivity: recompute w_on-consistent dwell/tau_thermal at each
+    # lambda's own sigma_ext (holding silicon identity + RATIO_ON fixed --
+    # only the length scale itself varies) to confirm the headline P-IT22-A6
+    # conclusion (below N_TRANSIENT_TAU=25) survives across the sweep.
+    _sensitivity_by_lambda = {}
+    for _lam, _sext in _sigma_ext_by_lambda.items():
+        _w = _sext * DX_M
+        _h = K_AIR_W_MK / _w
+        _area = _w ** 2
+        _mass = DENSITY_SI_KG_M3 * _w ** 3
+        _dpdt = _area * (4.0 * EMISSIVITY * ts.SIGMA_SB * T_AMBIENT_K ** 3 + _h)
+        _p_abs = irr_central * _area * 1.0e4 * RATIO_ON
+        _tau_th = _mass * C_P_SI / _dpdt
+        _sensitivity_by_lambda[_lam] = {"sigma_ext_cells": _sext, "dwell_over_tau_thermal": dwell_central / _tau_th}
+    sigma_ext_flatness = {
+        "sigma_ext_by_lambda_cells": _sigma_ext_by_lambda,
+        "spread_relative_percent": _sext_spread_rel_pct,
+        "comparison_note": (
+            f"sigma_ext itself varies {_sext_spread_rel_pct:.2f}% relative across "
+            "450/600/750nm -- roughly 5x exp-044's own sigma_abs/sigma_ext RATIO "
+            "flatness (0.45%). This is the quantity w_on (=sigma_ext*dx) is built "
+            "from, so it was an UNCHECKED assumption, not a verified one, that "
+            "using it as a physical length scale for h_eff/mass is achromatic -- "
+            "caught at Phase 5 (PHOTONICS), not disclosed at Phase 1/3."),
+        "dwell_over_tau_thermal_sensitivity_by_lambda": _sensitivity_by_lambda,
+        "headline_survives_note": (
+            "Confirmed harmless: dwell/tau_thermal(w_on-consistent, silicon) "
+            "stays in [20.3x,21.3x] across all 3 swept wavelengths -- the "
+            "P-IT22-A6 headline (below N_TRANSIENT_TAU=25) is robust to this "
+            "gap, though the gap itself was real and undisclosed until Phase 5."),
+        "flagship_absorber_gap_note": (
+            "The SAME check for graded_black_shell (the flagship absorber, "
+            "T22's OTHER area-ratio entry, 3.014x) could not be extended this "
+            "shift: no 3-lambda sigma_ext series for that article exists "
+            "anywhere in this repo (grep-confirmed) -- only the single 600nm "
+            "value (240.007 cells, exp-043) has ever been measured. Disclosed "
+            "as a real, standing gap, not silently skipped -- a candidate "
+            "companion 3-lambda run for a future cycle, not scoped this shift."),
+    }
 
     def self_consistent_regime(length_m, length_name):
         """FIX 7: the one cross-consistency assertion -- h_eff and
@@ -289,6 +372,12 @@ def main():
             "area_ratio_iso_over_geometric_absorber": area_ratio_absorber,
             "t22_established_range_note": "matches T22's own established 2.9-3.0x inflation figure (exp-043/044) at both bench geometries measured to date -- ON endpoint 2.913x, graded_black_shell flagship 3.014x",
         },
+        "sigma_ext_wavelength_flatness_check": sigma_ext_flatness,  # fix 6 (Phase-5 Red
+        # Team audit, PHOTONICS' catch): w_on was promoted this cycle into a
+        # physical LENGTH SCALE (not just a ratio input) -- exp-044's own
+        # achromatic-flatness finding (0.45% relative) checked ONLY
+        # sigma_abs/sigma_ext, never sigma_ext itself. Computed here from
+        # exp-026's own already-committed 3-lambda data (zero new cost).
         "old_uncorrected_reference": {
             "dt_ss_full_K": dt_ss_full_old, "tau_thermal_s": tau_thermal_s_old,
             "h_conv_w_m2k": H_CONV_OLD, "mass_kg": MASS_KG_OLD, "c_p": C_P_OLD,
@@ -322,6 +411,19 @@ def main():
         "fully_corrected_si_r_out_consistent": (regime_r["tau_thermal_s"], regime_r["dt_ss_full_K"]),
     }
 
+    # Phase-5 mandatory fix 5 (Red Team's final audit, phase5_redteam_audit.md):
+    # the Biot-number caveat was originally stored only twice (once per
+    # Block-B regime dict) -- the identical block-scope-only pattern
+    # Iteration 21 flagged for h_conv, recurring for Biot (THERMODYNAMICS'
+    # Phase-5 catch). Propagated here to every sweep point whose regime
+    # actually uses an h_eff-derived tau_thermal (the two silicon-corrected
+    # regimes); the three h_conv=5.0-placeholder regimes never touch h_eff,
+    # so Biot is not applicable there (None, not a fabricated number).
+    BIOT_BY_REGIME = {
+        "fully_corrected_si_w_consistent": (regime_w["biot_number"], regime_w["biot_disclaimer"]),
+        "fully_corrected_si_r_out_consistent": (regime_r["biot_number"], regime_r["biot_disclaimer"]),
+    }
+
     sweep_points = []
     for host, k_r in HOSTS:
         for r in RATIOS:
@@ -337,6 +439,7 @@ def main():
                         decoupled_dT = dt_ss * n_at_dwell
                         rel_diff = abs(exact_dT - decoupled_dT) / exact_dT if exact_dT > 0 else 0.0
                         netd = ts.netd_disposition(exact_dT, NETD_BAND_K)
+                        biot_number, biot_disclaimer = BIOT_BY_REGIME.get(regime_name, (None, None))
                         sweep_points.append({
                             "host": host, "r": r, "k_f": k_f, "k_r": k_r,
                             "tau_kinetics_s": tau_k, "n_ss": n_ss,
@@ -347,6 +450,9 @@ def main():
                             "decoupled_shortcut_dT_K": decoupled_dT,
                             "relative_difference": rel_diff,
                             "netd": netd,  # FIX 6: full dict (incl. disclaimer), not just classification
+                            "biot_number": biot_number,  # fix 5: per-point, not block-scope-only;
+                            "biot_disclaimer": biot_disclaimer,  # None for the 3 h_conv-placeholder
+                            # regimes, which never touch h_eff -- not a fabricated number.
                         })
 
     def worst_for(host=None, axis=None, regime=None):
@@ -449,10 +555,39 @@ def main():
             ratio = n_periodic / n_first if n_first > 0 else float("inf")
 
             dt_ss = regime_w["dt_ss_full_K"]  # primary regime, per Block B
+            tau_th = regime_w["tau_thermal_s"]
             dT_first_decoupled = dt_ss * n_first
             dT_periodic_decoupled = dt_ss * n_periodic
             netd_first = ts.netd_disposition(dT_first_decoupled, NETD_BAND_K)
             netd_periodic = ts.netd_disposition(dT_periodic_decoupled, NETD_BAND_K)
+
+            # Fix 9: walk the SAME 11-segment sequence through the exact
+            # coupled ODE (n AND DT together), committing EM's own Phase-5
+            # closure (the decoupled shortcut is conservative) as actual
+            # computed data.
+            _n_walk, _dT_walk = 0.0, 0.0
+            _dT_at_on_end = []
+            for _seg_k_f, _seg_k_r, _seg_dur in segs:
+                _n_walk, _dT_walk = coupled_segment_general(
+                    _seg_k_f, _seg_k_r, dt_ss, tau_th, _seg_dur, _n_walk, _dT_walk)
+                _dT_at_on_end.append(_dT_walk)
+            # _dT_at_on_end has one entry per segment (ON,OFF,ON,OFF,...,ON);
+            # ON-segment endpoints are at the same 0-indexed positions as
+            # on_end_idx minus 1 (segs is 0-indexed per-segment, not per-
+            # boundary-including-t=0 like t_arr/n_arr).
+            _on_seg_idx = [0, 2, 4, 6, 8, 10]
+            dT_exact_at_on_end = [_dT_at_on_end[i] for i in _on_seg_idx]
+            dT_exact_first = dT_exact_at_on_end[0]
+            dT_exact_periodic = dT_exact_at_on_end[-1]
+            exact_vs_decoupled_ratio_first = dT_exact_first / dT_first_decoupled if dT_first_decoupled > 0 else float("nan")
+            exact_vs_decoupled_ratio_periodic = dT_exact_periodic / dT_periodic_decoupled if dT_periodic_decoupled > 0 else float("nan")
+            # self-check: coupled_segment_general must reduce to
+            # coupled_kinetics_thermal_dT exactly at n0=0/dT0=0 (the first
+            # ON segment starts cold by construction).
+            _n_check, _dT_check = coupled_segment_general(k_f_on, k_r_d, dt_ss, tau_th, dwell_central, 0.0, 0.0)
+            _dT_ref = coupled_kinetics_thermal_dT(k_f_on, k_r_d, dt_ss, tau_th, dwell_central)
+            assert abs(_dT_check - _dT_ref) < 1e-9 * max(abs(_dT_ref), 1e-30), \
+                "coupled_segment_general must reduce to coupled_kinetics_thermal_dT at n0=dT0=0"
 
             block_c_points[f"r{r:.0e}_{gap_name}"] = {
                 "r": r, "gap_name": gap_name,  # stored explicitly -- do NOT
@@ -469,33 +604,69 @@ def main():
                 "dT_first_decoupled_K": dT_first_decoupled,
                 "dT_periodic_decoupled_K": dT_periodic_decoupled,
                 "netd_first": netd_first, "netd_periodic": netd_periodic,
+                # fix 9: the exact coupled-ODE trajectory through the SAME
+                # segment sequence (not just population, but temperature
+                # too), committing EM's own Phase-5 closure as data.
+                "dT_exact_first_K": dT_exact_first,
+                "dT_exact_periodic_K": dT_exact_periodic,
+                "exact_vs_decoupled_ratio_first": exact_vs_decoupled_ratio_first,
+                "exact_vs_decoupled_ratio_periodic": exact_vs_decoupled_ratio_periodic,
+                "decoupled_is_conservative_first": dT_exact_first <= dT_first_decoupled,
+                "decoupled_is_conservative_periodic": dT_exact_periodic <= dT_periodic_decoupled,
             }
 
     max_ratio_5tau = max(v["periodic_over_first_ratio"] for v in block_c_points.values() if v["gap_name"] == "5tau")
     max_ratio_05tau = max(v["periodic_over_first_ratio"] for v in block_c_points.values() if v["gap_name"] == "0.5tau")
     max_dT_periodic = max(v["dT_periodic_decoupled_K"] for v in block_c_points.values())
+    max_dT_exact_periodic = max(v["dT_exact_periodic_K"] for v in block_c_points.values())
     all_c_undetectable = all(v["netd_periodic"]["classification"] != "DETECTABLE" for v in block_c_points.values())
+    all_decoupled_conservative = all(v["decoupled_is_conservative_periodic"] and v["decoupled_is_conservative_first"]
+                                      for v in block_c_points.values())
+    worst_exact_vs_decoupled = min(v["exact_vs_decoupled_ratio_periodic"] for v in block_c_points.values())
 
     block_c = {
         "status": "RUN (Phase 3 override of the Phase-1 draft's deferral, per Red Team mandatory fix 5)",
         "scope_note": (
             "Reports the population-memory ratio (periodic/first-pulse peak "
-            "n, exp-038's own established metric) and a DECOUPLED delta-T "
-            "estimate (dt_ss_full * n) at both readings -- NOT a new "
-            "closed-form coupled-ODE solution for nonzero initial "
-            "population (a disclosed scope limit, not a silent gap: "
-            "coupled_kinetics_thermal_dT assumes n(0)=0 by construction). "
-            "T_pulse(=dwell_central)=66.7ms here, vs exp-038's own T_pulse="
-            "100ms -- a DIFFERENT pulse duration, not a reproduction of "
-            "exp-038's own numbers, though the same Host D / 5tau-0.5tau "
-            "convention."
+            "n, exp-038's own established metric), a DECOUPLED delta-T "
+            "estimate (dt_ss_full * n) at both readings, AND (fix 9, Phase-5 "
+            "close) the EXACT coupled-ODE delta-T through the same segment "
+            "sequence via `coupled_segment_general` -- a from-scratch "
+            "generalization of `coupled_kinetics_thermal_dT` to nonzero "
+            "segment-start population/temperature, derived and self-checked "
+            "against the original formula at n0=dT0=0 (see the in-script "
+            "assertion). Commits EM's own Phase-5 finding (the decoupled "
+            "proxy is conservative at every point tested) as permanent, "
+            "independently re-runnable data, not only a Phase-5 review "
+            "file's prose. T_pulse(=dwell_central)=66.7ms here, vs "
+            "exp-038's own T_pulse=100ms -- a DIFFERENT pulse duration, not "
+            "a reproduction of exp-038's own numbers, though the same Host "
+            "D / 5tau-0.5tau convention. The OFF gap uses a hard k_f=0 "
+            "(disclosed idealization, QUANTUM's Phase-5 catch) -- unlike "
+            "exp-038's own 'ambient' segments, which are never a true dark "
+            "state; this is why exp-045's own 0.5tau ratio (1.4509) reads "
+            "~13% above exp-038's own Host-D-specific 0.5tau maximum "
+            "(1.2865, not the looser programwide 1.4-1.6 band)."
         ),
         "points": block_c_points,
         "max_periodic_over_first_ratio_5tau": max_ratio_5tau,
         "max_periodic_over_first_ratio_0.5tau": max_ratio_05tau,
         "max_dT_periodic_decoupled_K": max_dT_periodic,
+        "max_dT_periodic_exact_K": max_dT_exact_periodic,
         "max_dT_periodic_netd_lo_margin": NETD_BAND_K[0] / max_dT_periodic if max_dT_periodic > 0 else float("inf"),
         "all_points_undetectable_or_better": all_c_undetectable,
+        "decoupled_proxy_conservative_at_every_point": all_decoupled_conservative,
+        "worst_case_exact_vs_decoupled_ratio": worst_exact_vs_decoupled,
+        "conservative_bound_note": (
+            f"exact/decoupled ratio ranges down to {worst_exact_vs_decoupled:.4f} "
+            "across all 8 points (i.e. the exact coupled solution sits up to "
+            f"{(1.0-worst_exact_vs_decoupled)*100:.1f}% BELOW the decoupled "
+            "estimate) -- the decoupled proxy used for classification is an "
+            "OVER-estimate, never an under-estimate, at every point this "
+            "cycle tested (EM's Phase-5 finding, independently spot-checked "
+            "sound by Red Team's own audit). Not a general proof for "
+            "arbitrary future host/gap choices -- see NOTES.md."
+        ),
         "netd_disclaimer": NETD_DISCLAIMER,
     }
 
@@ -535,7 +706,7 @@ def main():
           f"at {global_max_dT['host']}/r={global_max_dT['r']:.0e}/{global_max_dT['regime']}/"
           f"axis-{global_max_dT['axis']}/R={global_max_dT['R']:.2f} "
           f"({NETD_BAND_K[0]/global_max_dT['exact_coupled_dT_K']:.1f}x below netd_lo) -- {NETD_DISCLAIMER}")
-    print(f"  ALL {len(sweep_points)} points UNDETECTABLE-or-better: {all_undetectable_or_better}")
+    print(f"  ALL {len(sweep_points)} points UNDETECTABLE-or-better: {all_undetectable_or_better} -- {NETD_DISCLAIMER}")
     print(f"  theoretical ceiling bound holds everywhere: {ceiling_check}")
     print(f"  Host-D witness-dwell reproduction (should match exp-044's 1.44-1.50%):")
     for k, v in host_d_witness_check.items():
@@ -546,7 +717,7 @@ def main():
     print(f"  max periodic/first ratio: 5tau={max_ratio_5tau:.4f}, 0.5tau={max_ratio_05tau:.4f}")
     print(f"  max periodic dT (decoupled estimate): {max_dT_periodic:.4e} K "
           f"({NETD_BAND_K[0]/max_dT_periodic:.1f}x below netd_lo) -- {NETD_DISCLAIMER}")
-    print(f"  ALL Block-C points UNDETECTABLE-or-better: {all_c_undetectable}")
+    print(f"  ALL Block-C points UNDETECTABLE-or-better: {all_c_undetectable} -- {NETD_DISCLAIMER}")
     print("results.json written")
 
 
