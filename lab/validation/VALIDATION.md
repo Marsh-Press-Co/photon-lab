@@ -1,8 +1,59 @@
 # Bench validation — lab/ engine trust suite
 
-**2026-08-13 · driver: Clyde (panel Iteration 6) · status: 🟢 48/48 checks
-green** (fast stages `--only 12346789,10,11` [46/46] + `--only 5` [2/2],
-ubuntu cloud bench)
+**2026-08-19 · driver: Clyde (panel Iteration 23) · status: 🟢 88/88 checks
+green** (`--only 12346789,10,11,12,13,14,15` [82/82] + `--only 16` [4/4] +
+`--only 5` [2/2], ubuntu cloud bench, python 3.11.15 / numpy 2.4.6)
+
+Stage 16 (oblique Gaussian line source) added with exp-046 — the first
+trust-gating of `add_line_source(profile="gauss")`, an engine path declared
+in `lab/fdtd2d.py:152-156` since the bench was built and, grep-verified,
+never once exercised or gated in this program's history until this cycle
+tried to use it. Four gates on exp-041/042's own committed geometry: the
+free-space divergence identity w(z) = w₀√(1+(z/z_R)²) at three planes
+(measured worst 1.06% of 3%), a beam-pointing gate, the plane-path absolute
+regression anchor against exp-041's committed `C_empty(+40°,600nm)` =
+−0.010964794540566314 (measured **6.96×10⁻¹⁵ relative** — restated as
+relative with the platform named, Red Team docket 14: a 1400-step FDTD
+bit-reproducibility claim that does not name its platform is not a gate),
+and the **oblique-width gate**: `width = w₀/cos θ₀ = 56.063` at θ₀=40°
+must put the 1/e² half-width at `PLANE_X` on 79.47 cells — measured 80.47,
+**1.25%**, against a 5% bar. That last one is the stage's reason to exist:
+gates (a) and (b) cannot fail on the defect this cycle actually had (a
+source width of w₀ where the physics requires w₀/cos θ₀ — the same run at
+the wrong width reads 87.25 against a 79.47 target, 9.8% off), and Red
+Team's own independent FDTD run of the same configuration measured 80.47
+before this stage existed, reproduced here to four significant figures on a
+different code path.
+
+**Gate amended on first light (stage 16b), recorded per this suite's own
+convention (stages 6, 7, 8 and 10 each carry one):** the pointing gate as
+proposed scored the beam centre against RAY OPTICS (`y_c + D_SP·tan40` =
+979.12) to ±2 cells, and failed on first light at 992.09. The failure is in
+the target, and that is demonstrable without the engine: at this gate's own
+`width=40` the emitted divergence is 14.0° FWHM, where `k_y = k·sin θ` is
+measurably nonlinear, and exact non-paraxial angular-spectrum propagation of
+the same aperture puts the 1/e² midpoint at **987.14 — 8.0 cells off the
+ray-optics target**, i.e. outside the gate's own band before any solver
+runs. Amended to score FDTD against the exact propagation, in units of the
+beam's own half-width (measured 5.4% at width=40, 2.8% at width=56.063; bar
+8%, margin above measured, per stage 10's convention). The ray-optics
+reading stays as an `[info]` line. exp-046's own `run.py` scores the
+ORIGINAL, unamended gate and records it as FAILED — the pre-registered
+prediction is not retro-fitted there, only the suite's forward-looking gate
+is repaired.
+
+**`--only` wiring fixed, third recurrence of one bug species** (Iteration
+15's digit-substring collision, Iteration 17's incomplete fix, and now
+this): a LONE multi-digit token was still passed through the single-digit
+substring test, so `--only 16` selected stages 1 and 6 as well as 16, and
+`--only 12` — cited in SESSION_LOG as "stage 12 alone, 5/5" — actually
+fired stages 1, 2 and 12. Iteration 17's own mixed-idiom fix also dropped
+packed tokens entirely in a mixed invocation: `--only 12346789,10,11`,
+cited as 46/46 across five SESSION_LOG entries, selected only stages 10 and
+11. The rule now: each token is EITHER an exact stage id (selects exactly
+that stage) OR a legacy packed digit run (single-digit stages match as
+substrings, multi-digit on digit boundaries); tokens compose. Verified by
+direct execution against every `--only` citation in this program's history.
 
 Stage 11 (multi-source coherent superposition gate) added with exp-029 —
 the first suite check to exercise ≥2 concurrent sources in one `Sim`

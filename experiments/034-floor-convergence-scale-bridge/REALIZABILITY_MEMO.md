@@ -159,6 +159,78 @@ consecutive shift confirmation of the WebFetch block) is unchanged and
 still the binding reason this memo has not escalated to a Checkpoint
 criterion 2 finding.
 
+**AMENDMENT 5 (Iteration 23, exp-046 Phase 4, Red Team's mandatory-fix
+docket items 16/18/22 — delivered in the same shift that promised it, and
+appended, not written over: Amendments 1–4 above stand exactly as
+committed).** Two entries, one on the memory axis Amendment 3 opened and
+one on provenance.
+
+**(a) The memory axis collapses to a dimensionless-dwell criterion.**
+Amendment 3 recorded that sweep-to-sweep population memory (periodic /
+first-pulse peak-n ratio > 1.05) appeared *only* at Hosts D and E of
+exp-038's 5×5 grid, and Red Team's own Phase-5 tempering there noted the
+pattern was "substantially a near-mechanical consequence of exp-038's own
+fixed pulse-duration parameter." exp-046's Block C derives the closed form
+that makes that tempering exact. For an ON-dwell `D`, gap `G = m·τ_k`,
+`τ_k = 1/(k_f+k_r)` and `r = k_f/k_r`, the end-of-ON population obeys the
+affine map `n_{k+1} = n_eq(1−a) + a·f·n_k` with `a = e^(−D/τ_k)` and
+`f = e^(−m/(1+r))`, whose fixed point is
+
+> **ratio_∞ = 1/(1 − a·f)**, and memory (ratio_∞ > 1.05) ⟺ **D/τ_k < ln(21 f)**.
+
+So the axis is not a host-list property at all: it is one dimensionless
+number, `D/τ_k`, against one threshold set by the gap. At the program's own
+witness dwell (66.7 ms) with the 0.5τ gap the threshold is
+`ln(21 e^(−0.5)) = 2.5445` (measured crossing 2.5450 by bisection through
+`lab.kinetics`; 2.5900 at r=1e-1, matching the closed form to 1×10⁻⁷), and
+Hosts A/B/C sit at `D/τ_k ≥ 66.7` — 26 relaxation times past the
+threshold — a factor 26 beyond it — hence exactly zero memory (measured `|ratio−1| = 0` at all 30
+negative-control point-runs, not merely small). Hosts D and E appear in
+Amendment 3's finding because their `τ_k` happens to land within a factor
+of ~15 of the witness dwell, which is the coincidence Red Team's tempering
+suspected. **Amendment 3's tier conclusion is unchanged and now has a
+mechanism: PUBLISHED-tier hosts show no memory (0 of 12 point-runs) not
+because published materials are special, but because their lifetimes are
+10³–10⁸× shorter than any sweep dwell this program models.**
+
+One clause of the Phase-1 proposal's own C6 prediction is **refuted** by
+this extension and is recorded here rather than buried: "at the 5τ gap no
+point anywhere exceeds 1.05" holds only for `r ≤ 1e-1` (supremum
+1.010711). At `r = 1.0` — a column that exists only because docket item 16
+added it, and which is UNOBTANIUM-WITH-PARAMETERS in this memo's own tier
+table — `f = e^(−2.5)`, `21f = 1.72 > 1`, the supremum is **1.0894**, and
+Host E at r=1.0 measures 1.0774 at the witness dwell even with a 5τ gap.
+Memory at a 5τ gap is therefore possible in principle, and only in the
+grid's least realizable corner.
+
+**(b) Silicon's thermal identity is downgraded from "sourced" to
+ASSUMED.** exp-045's Block B (and every thermal number this program has
+computed since) uses ρ=2330 kg/m³, c_p=700 J/(kg·K), κ=148 W/(m·K), cited
+to `experiments/037-fca-combined-media-literature-check/NOTES.md:828-829`.
+Traced this cycle (Red Team Attack 13, MATERIALS M3): that line reads
+"standard *cited* thermal constants", and a grep for any DOI, handbook or
+reference across `experiments/037-*` returns only that same sentence. The
+chain terminates unsourced. The values are correct for bulk crystalline
+silicon — this is **not** a repeat of Iteration 22's fabricated-PMMA
+citation — but the label is wrong, and this memo's standard is a
+provenance standard. **Relabelled `ASSUMED — provenance terminates
+unsourced (T18)`** in exp-046's `results.json` and here. Related, from the
+same attack: `lab/thermo_sidecar.py::netd_disposition`'s `fill_factor`
+multiplier is left at 1.0 by every caller while `mass = ρ_Si·L³` assigns
+100 %-fill crystalline silicon to what the same module elsewhere calls a
+dilute vapour/aerosol host — so the claim that the thermal time constant is
+"decided by the conduction length alone" is wrong as stated: it is
+`ρ C_P L²/(4εσT³L + k_air)`, and the `ρ C_P` half is the unsourced half.
+
+**Net effect on this memo's verdicts: none move.** (a) supplies a
+mechanism for an Amendment-3 finding and narrows it further (memory is a
+dwell/lifetime ratio, not a material property); (b) weakens the evidentiary
+standing of a material identity that no verdict in Amendment 2's table
+rests on. No class changes tier. T18's WebFetch block (eleven consecutive
+shift confirmations as of this iteration's own Phase 1; not independently
+re-tested this shift) remains the binding reason this memo has not
+escalated to a Checkpoint criterion 2 finding.
+
 ## What the bench has established (this program's own numbers, cited)
 
 The T1 escape route this program has instrumented — intensity-gated
