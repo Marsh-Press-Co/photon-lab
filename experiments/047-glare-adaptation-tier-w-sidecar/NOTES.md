@@ -148,12 +148,69 @@ disposition (informational, single-pass only).
 ## Results
 
 Trust suite: 58/58 (`--only 12346789,17`) before this experiment's own
-run. `run.py` executed cleanly, zero exceptions.
+run. `run.py` executed cleanly, zero exceptions (one pre-run bugfix: a
+Python `.format()`/literal-brace collision in the predictions banner,
+caught and fixed before any scoring output existed — the predicted TEXT
+itself was not altered). Full per-point data: `results.json`.
 
-*[Predictions committed above, before this section is filled in. Results
-to be appended after `run.py` executes — see git history: this NOTES.md
-is committed in its pre-results state first, results appended and
-committed separately, per house predict-before-run discipline.]*
+**Scorecard: 4 CONFIRMED, 2 PARTIAL, 0 REFUTED.**
+
+- **P-G24-1 (baseline) — PARTIAL.** L_B=1.7×10⁻⁴, LAB bar: p=0.4 FAILs as
+  predicted (ratio 2.886×); p=0.5 lands **MARGINAL** (ratio 1.085×), not
+  the predicted FAIL — close to the bar but not an exact match.
+  L_B=1.0×10⁻⁵: p=0.5 PASSes (0.263×) and p=0.4 is MARGINAL (0.929×),
+  both inside the predicted "PASS / MARGINAL-or-PASS" band. 5 of 6
+  sub-points hit exactly; 1 landed one class softer than predicted.
+
+- **P-G24-2 (PRIMARY HEADLINE) — CONFIRMED, robustly.** All 36 grid
+  points (L_B × p × θ_hold × {E_ceiling_lo, E_ceiling_hi}) classify
+  **PASS** at the LAB (cued) bar. Worst-case point: θ_hold=15°,
+  E=553.08 lx (the ceiling band's *low* edge — correctly the hardest
+  case, since larger E dilutes contrast further), L_B=10⁻³ (brightest
+  night-ambient sub-class), p=0.4 — `|C_eff|/C_thr = 5.865×10⁻³`, i.e.
+  **PASS by a margin of ~170×**, not a near-miss. The absorber **clears
+  the bench-scale glare-diluted SURROGATE of Tier-W, pending the
+  T8/T13/T14 near-field-to-witness-scale bridge — NOT a witness-scale
+  constraint-3 verdict** (Red Team mandatory fix 1's exact required
+  language) under the "tracking" gaze regime at the ceiling glare
+  estimate, across the full committed night-ambient band and both p.
+  Context only, never headline: the same grid at the FIELD (uncued) bar
+  is also all-PASS, with an even larger margin (worst ratio 1.47×10⁻³)
+  — unsurprising since field is 4× more lenient, and explicitly not the
+  bar Tier-W's cued-observer definition licenses as primary.
+
+- **P-G24-3 (informational, demoted per Red Team fix 7 — never part of
+  the headline commitment) — PARTIAL.** Of the 16 points at L_B≤1.7×10⁻⁴
+  and θ_hold≤10°, 15 PASS as predicted; one (L_B=1.7×10⁻⁴, p=0.4,
+  θ_hold=10°, E=0.01 lx — the single hardest combination inside that
+  sub-grid) lands MARGINAL (ratio 0.907×) rather than PASS. At
+  L_B=10⁻³/p=0.4 (the branch predicted MARGINAL-or-FAIL): confirmed —
+  every θ_hold from 5° to 15° at E=0.01 lx classifies FAIL (ratios
+  2.23×–4.70×), softening to MARGINAL at E=0.1 lx. At θ_hold=15°/p=0.4
+  specifically: the darkest ambient sub-class (L_B=10⁻⁵) still PASSes at
+  both E — this cycle's own prediction wording did not clearly exclude
+  that cell, an ambiguity in the prediction text itself, not a modeling
+  surprise (see Learned). Net picture matches the proposal's own
+  characterization: "genuinely sensitive, not robust" — correctly kept
+  out of the headline.
+
+- **P-G24-4 (fixed-gaze, informational) — CONFIRMED.** L_v collapses by
+  **8100×** (≈3.9 orders of magnitude) between θ=0.5° and θ=45° at the
+  ceiling-estimate E — comfortably past the predicted "2+ orders."
+  Resolution argument (Crawford recovery ≫ single sweep-pass duration)
+  remains argued, not computed — no quantitative L_eq(t) integration
+  exists in this module, as disclosed.
+
+- **P-G24-5 (ocular exposure, informational, new) — CONFIRMED /
+  reported.** Single-pass corneal irradiance: floor 3.3×10⁻⁶–3.3×10⁻⁵
+  mW/cm²; **ceiling 0.184–18.39 mW/cm²** — the upper figure matches
+  THERMO's independent Phase-2 arithmetic (18.4 mW/cm²) to 4 significant
+  figures, now also a trust-suite regression anchor (stage 17, gate 6).
+  Session-accumulated dose over a real multi-pass sweep remains an open
+  question, not computed here, exactly as flagged.
+
+- **P-G24-6 (identity/regression) — CONFIRMED.** Trust-suite stage 17:
+  17/17 green. Full fast suite with it: 58/58 green.
 
 ## Learned
 
@@ -170,6 +227,19 @@ committed separately, per house predict-before-run discipline.]*
 - The ocular-exposure question THERMO raised (near-eye stray light at the
   ceiling estimate, up to ~18.4 mW/cm² at the cornea) is a genuinely new
   open question this program has never scored — flagged, not resolved.
+- The headline (P-G24-2) came back far more robust than its own
+  pre-registered worst case demanded (~170× margin, not a near-miss) —
+  the informational FLOOR branch (P-G24-3) is where the real fragility
+  lives, exactly as the proposal itself predicted and Red Team's fix 7
+  correctly kept out of the headline.
+- Minor process note: P-G24-1 and P-G24-3's own prediction text used
+  informal set-notation ("MARGINAL-or-FAIL at theta_hold=15deg (p=0.4)
+  and at L_B=1e-3 (p=0.4)") that reads ambiguously as either an AND or an
+  OR across the full grid — a real instance of the imprecise-prediction-
+  wording pattern this program has flagged before (informational-only
+  here, so non-load-bearing, but worth tightening in any future
+  cycle's prediction text: state set-membership as an explicit grid
+  subset, not natural-language shorthand).
 
 ## Next
 

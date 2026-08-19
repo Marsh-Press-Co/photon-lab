@@ -48,10 +48,10 @@ P-G24-2 (PRIMARY HEADLINE -- bench-scale surrogate, NOT witness-scale
   returns FAIL or even MARGINAL, this prediction is REFUTED and the
   ceiling-estimate headline route does not hold robustly.
   Label per Red Team mandatory fix 1: any PASS here is
-  "{label}", never bare "Tier-W".
+  "@@LABEL@@", never bare "Tier-W".
 
 P-G24-3 (informational only, demoted per Red Team mandatory fix 7 --
-  T7's un-error-banded ~1.5-1.9%% chromatic red-growth and T21's
+  T7's un-error-banded ~1.5-1.9% chromatic red-growth and T21's
   un-error-banded angular fringe both sit inside this branch's margin):
   "tracking", FLOOR glare estimate, LAB bar. Predicted PASS at L_B<=1.7e-4
   AND theta_hold<=10deg (both p); MARGINAL-or-FAIL at theta_hold=15deg
@@ -80,7 +80,7 @@ P-G24-5 (ocular exposure disposition, NEW this cycle per Red Team
 
 P-G24-6 (identity/regression, code self-consistency): trust-suite stage
   17, 17/17 gates, must be green before any number above is trusted.
-""".format(label=gs.TIER_W_HEADLINE_LABEL)
+""".replace("@@LABEL@@", gs.TIER_W_HEADLINE_LABEL)
 
 print(PREDICTIONS)
 
