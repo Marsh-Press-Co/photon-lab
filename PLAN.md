@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-19, panel Iteration 24)
+## Current state (2026-08-19, panel Iteration 25)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -1257,6 +1257,88 @@ continuous mode with checkpoints. The remaining [open] items below are
   remain open; see exp-047's own record and Iteration-25 queue item 1/2
   above). No Tier-W witness-scale verdict has been published; only a
   labeled bench-scale surrogate result.
+- [done 2026-08-19, panel Iteration 25] **exp-048 the evidentiary-chord
+  closure: `REALIZABILITY_MEMO.md` Entry 2, T21's real-geometry fringe
+  bound, and the MARGINAL band sourced** — VISION SCIENCE's lead,
+  executing exp-047's own Iteration-24 ranked queue items 1–3 in one
+  desk-only cycle (zero new FDTD calls). **Block A**: formalized, not
+  revised, Iteration 7's own informal UNOBTANIUM call for
+  `graded_black_shell` at witness scale — real thickness/core-radius
+  numbers (0.31–0.92m / 0.19–0.58m at 3 witness radii) computed from the
+  self-similar construction's own formulas; a formally-derived σ_max
+  reading was explicitly labeled **illustrative-only** after MATERIALS'
+  Phase-2 catch (Red-Team-hardened) found the original framing silently
+  fed meter-valued input into a grid-normalized FDTD formula with no
+  dx/unit bridge — the identical near-field↔witness-scale conflation
+  T8/T13/T14 already flagged for C, now caught for σ before it shipped.
+  **Block B**: exp-042's own committed T21 edge-diffraction propagator
+  re-parameterized to the ACTUAL ±35° fallback geometry the C=−0.7209
+  headline anchor uses (not the ±40° geometry T21 was discovered at) —
+  5 of 27 points exceed the hard gate, worst 0.004855, explicitly scoped
+  as INCONCLUSIVE against live thread T24's own uncharacterized ABSORB
+  boundary systematic (PHOTONICS' mandatory fix); does not threaten
+  exp-047's headline (P-G24-2), which survives by 61.5×/245.8× under a
+  corrected MULTIPLICATIVE worst-case bound (EM's mandatory fix,
+  replacing an original additive "headroom 0.28" error). **Block C**:
+  `lab/glare_sidecar.py`'s unsourced `[0.5,2.0]` MARGINAL band traced to
+  T2's own committed ±0.3-log threshold uncertainty (match to 0.24%),
+  regime-checked against exp-047's own three near-boundary points (all
+  confirmed in the low-luminance regime that figure is committed for) —
+  sourced, zero numeric change. **13 CONFIRMED, 1 PARTIAL** (an honest
+  P-B1 miss against a rounded citation, confirmed against a precise
+  same-formula comparator — the mechanism transfers correctly), **0
+  REFUTED**. **Phase 5 (four PROMISING, two PARTIAL — VISION SCIENCE/
+  MATERIALS, both scoped to items adjacent to the headline; Red Team's
+  own independent verdict: PROMISING)**: two genuinely new cross-seat
+  findings — PHOTONICS and ELECTROMAGNETISM independently caught an
+  unreproducible "precisely recomputed" citation in NOTES.md (corrected;
+  new standing house rule **R4** adopted, LOGBOOK.md); MATERIALS offered
+  to render the tier call Entry 2 deferred (UNOBTANIUM-WITH-PARAMETERS),
+  which Red Team declined as inconsistent with this memo's own
+  literature-check standard. No Checkpoint criterion fires — flagged as
+  a **third consecutive cycle** (23, 24, 25) of this program's own named
+  fix-docket-delivery pattern, all caught and corrected same-shift. Full
+  record: LOGBOOK.md Iteration 25.
+- **[queued — panel Iteration 26, ranked per Red Team's Iteration-25
+  Phase-5 synthesis, lead: PHOTONICS (rotation)]** (1) **QUANTUM's
+  `gaussian_angle_weights` n-convergence audit** — non-negotiable per Red
+  Team's own ruling: a third consecutive deferral would repeat this
+  program's own named r=156 anti-pattern; already has a documented effect
+  size (n=41→401 moved scored C_empty by up to 4.47%, Iteration 23). (2)
+  **T8/T13/T14 minimum bar**: replace the point-estimate C=−0.7209 with a
+  sensitivity band spanning T13's two extrapolation models everywhere it
+  is cited as a witness-scale surrogate (EM's own cheap, zero-FDTD
+  fallback) — a proper reconciliation attempt (new FDTD legs or a
+  first-principles far-field model) should be scoped as its own Phase-1
+  proposal, not assumed solved by the band alone; this thread has sat
+  dormant 17 iterations since the one prior attempt (Iteration 8) made
+  the disagreement worse, not better. (3) **Genuine FDTD `ABSORB` sweep**
+  at exp-048's own new (exp-030 `GEOM[78]`) geometry — the only way to
+  resolve whether Block B's 5/27 gate exceedances are real T21 fringe or
+  T24's own boundary systematic. (4) **Build and measure the
+  fixed-absolute-thickness `graded_black_shell` variant's own C** —
+  MATERIALS' now-nine-iteration-deferred Iteration-7 pick, four seats
+  independently rank it this cycle; exp-048's own Entry 2 gives it a
+  sharper starting point (real thickness/core-radius numbers) than
+  attempting it blind. (5) **Fine (≤1° step) angular sweep** around the
+  actual ±35° fallback geometry specifically (PHOTONICS' own Phase-5
+  finding: the current 9-angle/10°-step grid is coarser than the
+  ~1.5–2.6° fringe period it characterizes — the reported worst point is
+  likely not the true worst phase). (6) **Fresh c*(λ) refit** at the new
+  geometry (closes the consistency-by-inference gap in exp-048's own
+  regression). (7) **THERMO's witness-scale `h_eff` re-derivation** for
+  the two thinnest existing detectability margins (exp-043's ON-endpoint
+  UNOBTANIUM-tier ceiling, exp-045's dose-accumulation figure) — THERMO's
+  own same-shift ESTIMATE (not a run) suggests both narrow, neither
+  flips (~5.1×→~2.6×; ~27,080×→~38–42×), cheap and desk-only to actually
+  compute. (8) **Regime-stratify T2's ±0.3-log uncertainty** near the
+  absolute-threshold edge (VISION's own Phase-5 finding — one of
+  exp-048's own near-boundary points sits only ~2× above this program's
+  own cited absolute-rod-limit crossover, a regime where scatter is
+  typically larger, not smaller, than in the Weber-law regime the figure
+  may be most directly informed by). (9) [done Iteration 25: house rule
+  R4, LOGBOOK.md.] (10) Ocular-dose disposition (THERMO, still cheap,
+  still not urgent).
 - **[queued]** stage-10 temporal instrument (VISION's Iteration-2 Phase-5
   #2): TCSF bars pinned first (de Lange/Watson, sourced) — the last
   unmeasured perceptual axis (T3), gates constraint 4.

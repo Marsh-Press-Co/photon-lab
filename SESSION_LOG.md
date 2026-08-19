@@ -2,6 +2,81 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-19 (panel shift) — Iteration 25 complete (exp-048): closing
+exp-047's evidentiary chord — a formal `REALIZABILITY_MEMO.md` entry, the
+T21 fringe bound at the actual ±35° fallback geometry, and the MARGINAL
+band sourced, all desk-only, all with the headline (P-G24-2) surviving
+untouched, and a new standing house rule adopted after two independent
+Phase-5 seats caught an unreproducible "precisely recomputed" citation.
+
+**Pre-flight**: continued in the same container from Iteration 24's own
+close this shift (deps already installed, bench already verified 104/104
+at the top of this iteration). Read HANDOFF.md, README.md, PANEL.md,
+LOGBOOK.md in full (9160 lines pre-shift), PLAN.md's Current-state
+section, AGENTS.md, and SESSION_LOG.md's top two entries.
+
+**Iteration 25 — Closing exp-047's Evidentiary Chord (exp-048,
+CONCLUDED this shift).** Lead: VISION SCIENCE (rotation), executing
+exp-047's own Iteration-24 Phase-5 ranked queue items 1–3 in one
+desk-only cycle (zero new FDTD calls): a formal `REALIZABILITY_MEMO.md`
+entry for `graded_black_shell` at witness scale (Block A), the T21
+edge-diffraction fringe bound at the ACTUAL ±35° fallback geometry the
+C=−0.7209 headline anchor uses — not the ±40° geometry T21 was
+discovered at (Block B), and sourcing `lab/glare_sidecar.py`'s unsourced
+`[0.5,2.0]` MARGINAL classification band (Block C). Phase 2 (five blind
+seats + Red Team): ruling proceed-with-mandatory-fixes, seven items
+adopted. Two load-bearing catches: MATERIALS found Block A's σ_max
+figures silently fed meter-valued witness radii into a grid-normalized
+FDTD formula with no dx/unit bridge — the identical near-field↔
+witness-scale conflation T8/T13/T14 already flagged for C, caught for σ
+before it shipped (fixed: labeled illustrative-only throughout); EM found
+Block B's headline-immunity argument used the wrong (additive) lens —
+corrected to the physically right multiplicative bound, 61.5×/245.8×
+margin. Predictions committed structurally before the scoring run
+(`7ccafd3`, zero FDTD calls); results (`f71a246`): 13 CONFIRMED, 1
+PARTIAL (an honest miss against a rounded citation, confirmed against a
+precise same-formula comparator — the mechanism transfers correctly), 0
+REFUTED. `REALIZABILITY_MEMO.md` Entry 2 written, carrying forward
+Iteration 7's own informal UNOBTANIUM call unchanged (no new tier
+derived, per Red Team's own mandatory fix).
+
+**Phase 5 (six fresh blind seats, then Red Team audit): PROMISING** (4
+PROMISING — PHOTONICS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS;
+2 PARTIAL — VISION SCIENCE, MATERIALS, each scoped to open items adjacent
+to the headline, neither finding a defect in P-B4/P-G24-2 itself; Red
+Team's own independent verdict agrees, re-derived from source).
+**Headline (P-B4/P-G24-2) unthreatened, re-confirmed a fourth
+independent way.** Two genuinely new cross-seat findings: **PHOTONICS
+and ELECTROMAGNETISM independently**, by different methods, caught that
+this cycle's own NOTES.md cited a "precisely recomputed" comparator
+figure that did not actually reproduce from the committed function —
+hand-computed out-of-band, corrected same-shift, and a new standing
+house rule (**R4**, LOGBOOK.md) adopted: falsifier/self-consistency
+figures must be produced by invoking committed code, never hand-typed.
+**MATERIALS offered to render the tier call Entry 2 deliberately
+deferred** (UNOBTANIUM-WITH-PARAMETERS) — Red Team checked it against the
+memo's own table and declined: every existing WITH-PARAMETERS row rests
+on a sourced literature check, none informally; Entry 2's own deferral is
+the standard-consistent call. THERMODYNAMICS did real, uninstructed
+follow-through: computed (as an estimate, not a run) that its own
+Phase-2 finding — the sidecar's `h_eff=k_air/L` assumption is unverified
+at Block A's new witness-scale physical dimensions — narrows this
+program's two thinnest existing detectability margins without flipping
+either (~5.1×→~2.6×; ~27,080×→~38–42×), queued for Iteration 26.
+PHOTONICS found the 9-angle FALLBACK grid is coarser than the fringe
+period it characterizes — the reported worst point likely isn't the true
+worst phase, a new finding no Phase-2 seat caught. **No Checkpoint
+criterion fires** — flagged as a **third consecutive cycle** (23, 24, 25)
+of this program's own named fix-docket-delivery pattern, all caught and
+corrected same-shift; the new house rule R4 is the cheapest structural
+response tried so far. Full record: LOGBOOK.md Iteration 25; PLAN.md's
+Current-state and queue updated; next lead per rotation: PHOTONICS.
+
+Bench 104/104 at pre-flight, 58/58 (fast + stage 17) re-verified after
+every code change (all prose/docstring-only, zero behavioral change).
+Commits: `7ccafd3` (predict), `f71a246` (results), `eddf4bd` (Phase-5
+close-out), pushed to origin/main.
+
 ## 2026-08-19 (panel shift) — Iteration 24 complete (exp-047): the
 glare/adaptation Tier-W sidecar runs under Iteration 23's hardened,
 unconditional tripwire and CONFIRMS robustly — the established absorber

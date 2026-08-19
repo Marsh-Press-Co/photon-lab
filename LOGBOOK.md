@@ -39,6 +39,19 @@ top. Protocol: PANEL.md.*
   (exp-005, exp-010, exp-015). Meta-rule inherited by the panel: any
   surprising feature gets a resolution check before it gets a mechanism
   debate — and "artifact" claims need the check too.
+- **R4 — Hand-typed "precisely recomputed" figures in prose (not a ruled-out
+  idea; a standing house-discipline rule, adopted Iteration 25).** Two
+  independent Phase-5 seats (PHOTONICS, ELECTROMAGNETISM) caught, by two
+  different methods, that exp-048's own NOTES.md cited "precisely
+  recomputed" comparator figures that did not actually reproduce from the
+  committed function — hand-computed out-of-band, not invoked. Non-load-
+  bearing this time (corrected same-shift, no verdict moved) but the third
+  consecutive cycle (23, 24, 25) this program's own named fix-docket-
+  delivery pattern recurred inside the document meant to close a prior
+  instance. Rule: any falsifier or self-consistency figure cited as
+  "precisely recomputed" MUST be produced by invoking the actual committed
+  function at prediction-freeze or Phase-5-correction time — never
+  hand-typed, however simple the arithmetic looks.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -1136,6 +1149,32 @@ measured them here):**
   Checkpoint criterion 4 does NOT fire — conditional on a hardened,
   same-shift Tier-0 docket (5 items, all landed, verified) — see Checkpoint
   entry below.
+  **Iteration 25 (exp-048, desk-only): the fringe bound is finally checked
+  at the ACTUAL ±35° fallback geometry the C=−0.7209 anchor uses** (not
+  the ±40° geometry T21 was discovered at) — a re-parameterization of
+  exp-042's own committed propagator to exp-030's `GEOM[78]` domain
+  (NY=1528, GUARD_OUT=186, A=724, vs exp-042's NY=1584/GUARD_OUT=185/
+  A=752), regression-gated bit-exact against exp-042's own module at the
+  OLD geometry before any NEW-geometry number was trusted. **5 of 27
+  (θ,λ) FALLBACK_ANGLES×3λ points exceed GATE_HARD=0.001** (worst:
+  θ=−25°, 750nm, |C_empty|=0.004855, just under VISION's own C_thr=0.005)
+  — explicitly scoped as INCONCLUSIVE against T24's own uncharacterized
+  ABSORB=40 boundary systematic (0.002–0.007 absolute, same order of
+  magnitude), held fixed and uncorrected this cycle (PHOTONICS' own
+  Phase-2 mandatory-fix reframe: a re-parameterization + magnitude
+  cross-check, not a completed contamination verdict). Does not threaten
+  exp-047's own headline (P-G24-2) — a multiplicative worst-case
+  correction (EM's own Phase-2 mandatory fix, replacing an original
+  additive "headroom 0.28" framing) leaves 61.5×/245.8× margin to
+  MARGINAL/FAIL regardless. **New, unflagged at Phase 2: PHOTONICS' own
+  Phase-5 finding — the 9-angle, 10°-step FALLBACK grid is far coarser
+  than the ~1.5–2.6°-period fringe it characterizes; the reported worst
+  point is very likely not the true worst phase at this geometry**, a
+  T16-style angular-under-sampling risk applied to the fringe-search
+  problem specifically. T21's own contamination-risk question at the real
+  geometry remains open, narrower than before (bounded to a known small
+  range, not yet resolved against T24). Full record: LOGBOOK.md
+  Iteration 25.
 - **T22 — `lab/thermo_sidecar.py`'s `iso_xsec_sq` area convention and the
   two branches' inconsistent area/mass bookkeeping (opened Iteration 20,
   exp-043 Phase 5, Red Team — quantified independently by PHOTONICS and
@@ -9158,3 +9197,217 @@ items 3/4/6 above sit substantially in VISION's own charter; QUANTUM
 OPTICS closes its own rotation slot with this cycle, VISION→PHOTONICS→
 MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→**VISION
 SCIENCE**→repeat).
+
+## Iteration 25 — Closing exp-047's Evidentiary Chord (exp-048) — 2026-08-19
+
+Runner: cloud panel shift. Lead: VISION SCIENCE (rotation), executing
+exp-047's own Iteration-24 Phase-5 ranked queue, items 1–3: a formal
+`REALIZABILITY_MEMO.md` entry for `graded_black_shell` at witness scale
+(Block A), the T21 fringe-contamination bound at the actual ±35° fallback
+geometry (Block B), and sourcing `lab/glare_sidecar.py`'s unsourced
+`[0.5,2.0]` MARGINAL band (Block C). Zero new FDTD calls — desk-only.
+
+**Pre-flight**: fresh container onboarding this shift. Read HANDOFF.md,
+README.md, PANEL.md, LOGBOOK.md in full (9160 lines pre-shift), PLAN.md's
+Current-state section, AGENTS.md, and SESSION_LOG.md's top two entries.
+Deps installed per the documented wrinkle. Bench verified green: `--only
+12346789` → 41/41, then the full battery (`--only
+12346789,10,11,12,13,14,15,16,17`) → 104/104, before any panel work
+began.
+
+### PHASE 1 — PROPOSE (VISION SCIENCE)
+
+Proposed all three ranked items combined (Red Team's own Iteration-24
+ranking put them ahead of everything else, all zero-FDTD). Narrative:
+none of the three touch exp-047's headline (P-G24-2) — PHOTONICS already
+proved it C-correction-immune — but all bear on whether any future
+near-boundary Tier-W-surrogate reading can be trusted; three of exp-047's
+own points already sit inside the untested territory (ratios 0.907,
+0.929, 1.085). Self-flagged five conflicts, including that Block A's
+tier judgment is properly MATERIALS' charter call and that combining
+three blocks risks scope dilution (exp-042's own mandatory fix 7
+precedent).
+
+### PHASE 2 — CRITIQUE (five seats, blind, verbatim summary)
+
+All five seats: support-with-changes (zero outright oppose), each with a
+distinct load-bearing catch:
+
+- **MATERIALS** [load-bearing]: Block A's σ_max/e-folding-length figures
+  (78.0/39.0/26.0 "m⁻¹") silently reuse `sigma_max_shell`'s FDTD
+  grid-normalized formula with meter-valued input, no dx/unit bridge —
+  the identical near-field↔witness-scale conflation T8/T13/T14 already
+  flagged for C, now smuggled into σ. Separately: "a conductivity that
+  must shrink as the object grows" mischaracterizes ordinary
+  optical-depth conservation.
+- **ELECTROMAGNETISM** [load-bearing, Red-Team-hardened to a flat
+  mandatory fix]: P-B4's "headroom 0.28" additive framing is wrong —
+  `veiled_contrast` is linear/multiplicative in C; the correct bound is
+  ×1.3872, giving 8.14×10⁻³ and 61×/246× margins (matching PHOTONICS'
+  own Iteration-24 closed-form figure).
+- **PHOTONICS** [load-bearing]: Block B's predicted contamination band
+  overlaps live thread T24's uncharacterized `ABSORB=40` boundary
+  systematic (0.002–0.007 absolute) — a desk propagator with zero FDTD
+  boundary physics cannot distinguish a real edge fringe from a boundary
+  artifact of comparable size.
+- **QUANTUM OPTICS** [load-bearing]: Block B silently inherits the
+  "deliberately beamformed/focused synthetic array" construction
+  QUANTUM's own Iteration-22 finding (exp-046/T21) already flagged as
+  physically distinct from a naturally-divergent single-mode emitter.
+- **THERMODYNAMICS**: Block A's newly-computed witness-scale physical
+  dimensions have never had THERMO's own sidecar UNDETECTABLE verdicts
+  (exp-043/044/045) re-derived at that scale; `h_eff=k_air/L`'s
+  quiescent-conduction assumption is unverified there.
+
+**Red Team** (ruling: **proceed-with-mandatory-fixes**). Independently
+verified MATERIALS' dx-bridge attack (ran `sigma_max_shell(0.5)` directly
+— reproduces 78.0 exactly, found it understated not overreach) and EM's
+multiplicative-bound attack (recomputed 5.865×10⁻³×1.3872=8.1357×10⁻³
+independently, matching). Also found, independently (missed by all five
+blind seats): Block A's core-radius figures do not come from a
+"verbatim" call to exp-030's `r_in_shell` (its `round()` silently returns
+0/0/1 when fed meters) — the continuous formula was used instead,
+undisclosed as such; and Block A's P-A2 ("tier stays
+UNOBTANIUM-WITH-PARAMETERS") pre-commits to MATERIALS' own charter
+verdict before the memo is written — struck. Explicitly checked for
+constraint-3 violations and unfalsifiable claims: none found. Seven
+mandatory fixes, all adopted (see `design_geometry.py`'s module docstring
+for the full numbered list — round()-drop disclosure, illustrative-only
+σ labeling, τ-conservation reframe, multiplicative P-B4 bound, Block B
+scope reframe, beamformed-array disclosure + Block C regime fold-in,
+P-A2 struck).
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All seven Red Team mandatory fixes adopted, none overridden. New
+machinery: `experiments/048-evidentiary-chord-closure/design_geometry.py`
+(Block A's geometric-fact formulas + illustrative-only σ reading; Block
+B's generalized `field_and_h`/`edge_diffraction_c_empty_corrected`,
+parameterized on a geometry dict — exp-042's own module hardcoded a
+single geometry; Block C's constants). No new trust-suite stage (house
+convention: a re-parameterization of an already-committed desk
+propagator, reusing `lab.ambient` unmodified, is not new physics
+machinery) — instead a local regression gate: the generalized propagator
+at the OLD (exp-042) geometry must reproduce exp-042's own committed
+module output to machine precision before any NEW-geometry number is
+trusted. Predictions (P-A1/A3/A4/A5, P-B1/B2/B3/B4/B5/B6 + the
+regression gate, P-C1/C2/C3) committed to git BEFORE the scoring run
+(`7ccafd3`, zero FDTD calls).
+
+### PHASE 4 — TEST (2026-08-19)
+
+Trust suite 104/104 before and after. `run.py` executed cleanly, zero
+exceptions.
+
+**Scorecard: 13 CONFIRMED, 1 PARTIAL, 0 REFUTED.**
+- Block A: all identity checks (thickness/core-radius/τ≡24.000) CONFIRMED
+  at all three witness radii.
+- Regression gate: CONFIRMED, exact (0.00e+00 relative error, all 3λ).
+- **P-B1 — PARTIAL, an honest miss.** The literal falsifier (period
+  within 5% of exp-042's own *rounded* cited periods) is REFUTED
+  (7.6–10.7% off); but recomputing the OLD-geometry period with the
+  identical formula at full precision shows the new/old ratio matches
+  the pure geometric prediction A_old/A_new=752/724 almost exactly — the
+  miss is a comparator-precision artifact (citing a 2-sig-fig figure),
+  not a defect in the re-parameterization. Flagged honestly, not
+  silently re-scoped.
+- P-B2/P-B3/P-B4/P-B5/P-B6 all CONFIRMED: 5/27 points exceed
+  GATE_HARD=0.001 (worst θ=−25°/750nm, 0.004855); P-G24-2's headline
+  survives by 61.5×/245.8× regardless (multiplicative bound); exp-047's
+  own near-boundary points shift <0.043 ratio-units, no category flip;
+  scope framing (inconclusive against T24) shipped verbatim throughout.
+- Block C: P-C1/C2/C3 all CONFIRMED — arithmetic match <0.3%; all three
+  near-boundary points confirmed in the unclamped low-luminance regime
+  T2's ±0.3-log figure is committed for; recommendation SOURCE
+  (`lab/glare_sidecar.py::tier_w_verdict` docstring updated, zero
+  numeric change).
+
+Results committed (`f71a246`), pushed to origin/main. `REALIZABILITY_MEMO.md`
+Entry 2 written (formalizes, does not revise, Iteration 7's own informal
+UNOBTANIUM call — no new tier derived, per mandatory fix 7).
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**Six independent reviews: 4 PROMISING (PHOTONICS, ELECTROMAGNETISM,
+THERMODYNAMICS, QUANTUM OPTICS), 2 PARTIAL (VISION SCIENCE, MATERIALS —
+each scoped to open items adjacent to the headline). Red Team's own
+verdict: PROMISING**, re-derived from source at every load-bearing claim.
+
+**Does anything threaten P-G24-2/P-B4? No — independently re-confirmed a
+fourth way.** The headline is physics-capped (|C|≤1.0) against every
+correction any seat raised.
+
+**Two genuinely new cross-seat findings:**
+1. **PHOTONICS and ELECTROMAGNETISM independently**, by different routes,
+   caught that NOTES.md's own "precisely recomputed" OLD-geometry period
+   figures did not reproduce from the committed function — hand-computed
+   out-of-band. Red Team's own third independent recompute confirmed the
+   exact diagnosis. Corrected same-shift; new standing house rule adopted
+   (**R4**, above). EM separately proved the new/old period ratio is an
+   EXACT algebraic identity (752/724, λ-independent), not an approximate
+   "<1%" empirical convergence as originally stated — corrected both
+   directions (the identity is stronger than claimed; the "mechanism
+   transfers correctly" language was weaker than warranted, since the
+   identity proves code self-consistency, not that a real FDTD fringe
+   tracks the formula this precisely at the new geometry).
+2. **MATERIALS offered to render**, this shift, the tier call
+   `REALIZABILITY_MEMO.md` Entry 2 deliberately deferred
+   (UNOBTANIUM-WITH-PARAMETERS). **Red Team rejected the offer**: every
+   existing WITH-PARAMETERS row in the memo's own table rests on a
+   sourced literature check (exp-036/exp-037), none informally — Entry
+   2's own deferral is the standard-consistent call. Recorded, not acted
+   on.
+
+**Other findings, all corrected same-shift**: MATERIALS' "<0.1%"
+thickness-match claim was arithmetically wrong (actual 0.75%/0.33%);
+MATERIALS' "no dx bridge anywhere in this program" overstated the gap (a
+real bench-scale bridge exists since exp-001; the missing bridge is
+specifically to witness scale); THERMO's own witness-scale `h_eff`
+finding was missing from `REALIZABILITY_MEMO.md` Entry 2 (the most
+durable record) though correctly present elsewhere — added, along with
+THERMO's own same-shift estimate that the correction shrinks (not flips)
+this program's two thinnest detectability margins (exp-043 ON-endpoint
+~5.1×→~2.6×; exp-045 dose-accumulation ~27,080×→~38–42×), queued as an
+Iteration-26 candidate, not run; VISION's catch that Block C's regime
+check is necessary-not-sufficient (doesn't establish ±0.3-log uniformity
+near the absolute-threshold edge, where one near-boundary point sits only
+~2× above this program's own cited crossover) — reworded; EM found an
+undisclosed latent narrowing in the geometry-dict generalization
+(untested at TAPER≠ABSORB), harmless for every case run; PHOTONICS found
+the 9-angle FALLBACK grid is coarser than the fringe period it
+characterizes — the reported worst point likely isn't the true worst
+phase.
+
+**Checkpoint criterion 4: does NOT fire.** Every defect found is confined
+to disclosure/labeling/citation precision, none load-bearing, all
+corrected same-shift. Named plainly: the **third consecutive cycle**
+(23, 24, 25) this program's own fix-docket-delivery pattern recurred
+inside the document meant to close a prior instance — new standing house
+rule R4 adopted as the cheapest structural response so far tried.
+
+**Red Team's ranked priorities for Iteration 26** (adjudicating EM's
+disagreement with VISION/PHOTONICS/QUANTUM's own rankings): (1)
+QUANTUM's `gaussian_angle_weights` n-convergence audit — non-negotiable,
+a third deferral would repeat this program's own named r=156
+anti-pattern. (2) T8/T13/T14: at minimum, replace the point-C=−0.7209
+with a sensitivity band spanning T13's two extrapolation models
+everywhere cited as a witness-scale surrogate (EM's own cheap fallback),
+with a proper reconciliation scoped as a future proposal. (3) Genuine
+FDTD `ABSORB` sweep at Block B's new geometry (T21-vs-T24). (4) Build and
+measure the fixed-absolute-thickness `graded_black_shell` variant (now a
+9-iteration deferral, four seats independently rank it). (5) Fine (≤1°)
+angular sweep around the actual ±35° fallback geometry. (6) Fresh c*(λ)
+refit at the new geometry. (7) THERMO's witness-scale `h_eff`
+re-derivation for the two thinnest-margin readings. (8) Regime-stratify
+T2's ±0.3-log uncertainty near the absolute-threshold edge. (9) [done
+same-shift: house rule R4.] (10) Ocular-dose disposition (unchanged, low
+priority).
+
+**Same-shift close-out**: all seven Red Team Phase-5 fixes applied and
+verified this same shift (bench re-confirmed 58/58 throughout,
+prose/docstring-only changes) — commit `eddf4bd`.
+
+**Next lead per rotation: PHOTONICS** (VISION SCIENCE's own rotation
+slot closes with this cycle, per the standing rotation VISION→PHOTONICS→
+MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→VISION SCIENCE→
+**repeat, next: PHOTONICS**).
