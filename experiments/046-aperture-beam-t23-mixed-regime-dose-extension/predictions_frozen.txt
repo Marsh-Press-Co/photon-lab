@@ -1,0 +1,198 @@
+==============================================================================
+exp-046 -- PANEL ITERATION 23, PHASE 4 -- FROZEN PREDICTIONS
+(computed with ZERO FDTD calls; committed to git before any Block-A leg runs)
+==============================================================================
+platform: python 3.11.15 / numpy 2.4.6 / linux
+
+NOTE (inlined at the point of claim [docket 21]): NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix; exp-043 Red Team attack 7, exp-044 fix 6, exp-045 fix 6, exp-046 docket item 20/21). This classification does NOT bear on constraint-3/4's human-eye verdict, and no 'eye-invisible' claim is made anywhere in this cycle [docket 20].
+
+--- BLOCK A: corrected geometry table (theta0 = 40 deg) [docket 3] ---
+C = 0.374781250   width_line = w0/cos(theta0) [docket 1]
+  lam FWHM       w0   w_line  2w_line  1504/2wl   zR_line      w_y     N_F    (was)
+  450    2   161.05   210.24   420.47     3.58x    9257.1   210.54   40.49    23.76
+  450    5    64.42    84.09   168.19     8.94x    1481.1    88.69    6.48     3.80
+  450   10    32.21    42.05    84.09    17.88x     370.3    70.29    1.62     0.95
+  450   20    16.11    21.02    42.05    35.77x      92.6   114.61    0.40     0.24
+  600    2   214.73   280.32   560.63     2.68x   12342.8   280.54   53.98    31.68
+  600    5    85.89   112.13   224.25     6.71x    1974.8   115.61    8.64     5.07
+  600   10    42.95    56.06   112.13    13.41x     493.7    79.47    2.16     1.27
+  600   20    21.47    28.03    56.06    26.83x     123.4   116.10    0.54     0.32
+  750    2   268.42   350.39   700.79     2.15x   15428.5   350.57   67.48    39.60
+  750    5   107.37   140.16   280.32     5.37x    2468.6   142.96   10.80     6.34
+  750   10    53.68    70.08   140.16    10.73x     617.1    89.91    2.70     1.58
+  750   20    26.84    35.04    70.08    21.46x     154.3   117.98    0.67     0.40
+  N_F span at theta0=40: 0.40 - 67.48   (all 36 cells: 0.38 - 67.48)
+  aperture ratio span: 2.15x - 35.77x
+  LOGBOOK.md:1045's T21 '3-30x smaller' citation is restated against the corrected span: at theta0=40deg the aperture narrowing is 2.15x-35.77x, so 2.15x now sits FURTHER outside 3x at the low end than the Phase-1 table's own 2.80x [docket 3].
+  w_y slip [docket 2]: 450nm/FWHM2/40deg = 210.54 (Phase 1 printed 199.33; 199.33 is that formula's theta0=36deg value (199.33) in a theta0=40deg column [docket 2].)
+  idealization 2 [docket 12]: w0/lambda = 1.0737 lambda at FWHM=20 for ALL three wavelengths (one value, not 1.07-1.34)
+  idealization 4 [docket 11]: unaimed rim amplitude 9.992e-03 / intensity 9.984e-05; aimed truncation (FWHM=2 cells) 1.61-2.96 w_line, rim amp 7.427e-02, 5/36 aimed cells flagged truncation-INVALID
+  closed-form anchor accuracy [docket 4]: worst 12.0%, median 1.14%, per-FWHM worst ['2deg:7.4%', '5deg:1.9%', '10deg:2.1%', '20deg:12.0%']
+
+--- BLOCK A: committed prediction bands ---
+  P-TH23-A0 [DESK-IDENTITY]
+     statement: w0 = 0.374781250*lambda_cells/Delta-theta_rad reproduces the corrected table; aperture ratio at theta0=40deg in [2.14, 35.8] (Red Team's audit rounds the low end to 2.15x; the computed value is 2.1462x)
+     band: [2.14, 35.8]
+     measured: [2.1461560951272256, 35.769268252120426]
+     C_coefficient_9sf: 0.37478125
+  P-TH23-A1 [DESK-POINTING-READING (re-scoped, NOT a coherence adjudication) [docket 5]]
+     statement: The aperture-consistent single-mode reading is dominated by WHERE THE BEAM POINTS: the object window sits in the beam's exponential wing while the +flank window sits under the beam, so C -> -1 regardless of coherence. Reported as a pointing/estimator reading. C_THR is carried with its own source comment verbatim: 'VISION's T2 photopic C_thr -- context only, this leg scores no perceptual pass/fail'.
+     band: 36/36 above C_THR; >=35/36 at or above 20x the corrected-convention incoherent reading; min|C| >= 0.03
+     n_above_C_THR: 36
+     n_of: 36
+     n_at_or_above_20x_incoherent: 35
+     min_abs_C: 0.03227049044535179
+  P-TH23-A2 [DESK (re-banded from the numerical propagation) [docket 8]]
+     statement: Closed-form envelope anchor vs the numerically propagated reading
+     band: <=5% at >=26/36 and <=15% at 36/36 (the Phase-1 >=30/36 clause is retired: it fails at 26/36 under the corrected convention)
+     n_le_5pct: 26
+     n_gt_10pct: 3
+     worst_pct: 11.977052446744105
+     median_pct: 1.1425786171987964
+  P-TH23-A3 [DESK-VERIFIABLE IDENTITY CHECK (re-scoped) [docket 5, 10]]
+     statement: exp-042's `beam_divergence_coherent` ALREADY synthesises a Gaussian aperture of 1/e half-width w0/cos(theta0) -- so the 'aperture-consistent reading lands on the coherent column' is an algebraic identity of that function, not an experimental result. Measured here as an identity check with a numeric tolerance.
+     band: interpolated crossing: <=1% at all 27 FWHM<=10deg cells and <=4% at all 9 FWHM=20deg cells (taper truncation). Grid-quantized crossing reported alongside because it reproduces Red Team's own measurement cell-for-cell
+     effective_halfwidth_vs_w_line_pct_fwhm_le10: [0.022459310761995085, 0.7809177942709457]
+     effective_halfwidth_vs_w_line_pct_fwhm_20: [2.604769797605033, 3.2524510294578968]
+     gridquantized_vs_w_line_pct_fwhm_le10: [0.06569756413632157, 2.9792570313651763]
+     gridquantized_vs_w_line_pct_fwhm_20: [3.454997936651495, 7.644804537956925]
+     quantization_note: Red Team's audit prose quotes 0.07-1.3% (FWHM<=10) / 3.5-5.7% (FWHM=20) for this identity. Re-running their own script here reproduces 0.07-2.98% / 3.45-7.64% -- their prose understated the upper end of the spread they measured. The excess is integer-grid crossing quantization (+/-0.5 cell = 2.4% of the width at the narrowest cell), not a failure of the identity: with the crossing interpolated the FWHM<=10 spread collapses. Disclosed rather than quietly re-quoting the audit's own range.
+     target_convention_mismatch_disclosure: exp-042's committed `C_coherent` exists ONLY under the superseded obliquity-on-E recipe; `phase5_erratum.block_beam_corrected` carries no coherent column at all (verified). A corrected-convention coherent column is therefore GENERATED here so the comparison is made at matched convention; both comparisons are reported [docket 10].
+     prop_vs_committed_coherent_n_gt_3pct_fwhm_le10: 2
+     prop_vs_committed_coherent_worst_fwhm_le10: 9.197067342512561
+     prop_vs_committed_coherent_fwhm20_range: [0.10603822662853364, 2.51973472727637]
+     prop_vs_CORRECTED_coherent_n_gt_3pct_fwhm_le10: 1
+     prop_vs_CORRECTED_coherent_worst: 6.454394216393736
+     phase1_fwhm20_clause_status: DROPPED [docket 7]: the Phase-1 '5-20% divergence at FWHM=20' clause hard-falsifies pre-run under the corrected width (measured 0.1-2.5%).
+  P-TH23-A4 [DROPPED [docket 7]]
+     statement: Premise false under the corrected width: there is no large FWHM=20deg divergence to explain as 41-point angular aliasing.
+  P-TH23-A5 [FDTD-SCORED (the cycle's genuine falsifiable Block-A content)]
+     statement: FDTD reproduces the desk propagator's C_empty at the new Fresnel numbers
+     band: <=15% relative at legs A-v1/A-v2/A-v4 (N_F = 53.98, 2.16, 65.60), <=35% at A-v3 (N_F = 0.54); sign agreement 4/4
+     predicted_C_empty: {'A-v1': -0.12334499893323801, 'A-v2': -0.9966643700574457, 'A-v3': -0.9866178599305405, 'A-v4': 0.16367312820953267}
+  P-TH23-A6 [FDTD-SCORED (trust-suite gates; if any fails, no Block-A number is reported as trusted)]
+     band: {'S16-a': '1/e^2 half-width vs w0*sqrt(1+(z/z_R)^2) at 3 planes, <=3%', 'S16-b': 'beam centre at PLANE_X within +/-2 cells of 979.12', 'S16-c': 'reproduces -0.010964794540566314 to <=1e-12 RELATIVE on the named reference platform (python 3.11.15 / numpy 2.4.6 / linux) [docket 14]', 'S16-d': "NEW oblique-width gate [docket 13]: 600nm/theta0=40deg/width=56.063 -> 1/e^2 half-width 79.47 cells, <=5% (Red Team's own FDTD run of this exact configuration measured 80.47, i.e. 1.3% high)"}
+     s16d_target_cells: 79.4747202195381
+  P-TH23-A7 [DROPPED [docket 9]]
+     statement: The ratio estimator C_corr = (1+C_scene)/(1+C_empty)-1 is ill-conditioned by 77-300x at these C_empty values (-0.997/-0.987), so it cannot carry a scored band. The two object-present legs are still run and reported as EXPLORATORY-NON-SCORING context.
+
+  FDTD legs to be run (widths per [docket 1]):
+    1. S16-a  lam=600 th0=+0 profile=gauss width=40.000
+    2. S16-b  lam=600 th0=+40 profile=gauss width=40.000  N_F=1.10
+    3. S16-c  lam=600 th0=+40 profile=plane width=n/a
+    4. A-v1   lam=600 th0=+40 profile=gauss width=280.315  N_F=53.98  C_pred=-0.123345
+    5. A-v2   lam=600 th0=+40 profile=gauss width=56.063  N_F=2.16  C_pred=-0.996664
+    6. A-v3   lam=600 th0=+40 profile=gauss width=28.032  N_F=0.54  C_pred=-0.986618
+    7. A-v4   lam=750 th0=+38 profile=gauss width=340.626  N_F=65.60  C_pred=+0.163673
+    8. A-o1   lam=600 th0=+40 profile=gauss width=56.063  N_F=2.16  sigma=6.410256e-04
+    9. A-o2   lam=600 th0=+40 profile=gauss width=28.032  N_F=0.54  sigma=6.410256e-04
+
+--- BLOCK B: T23's mixed length-scale regime (desk) ---
+                  quantity     w_on-consistent    r_out-consistent         MIXED (T23)
+            h_eff (W/m^2K)         3672.834083         11111.11111         11111.11111
+                area (m^2)        5.011227e-11          5.4756e-12          5.4756e-12
+                 mass (kg)     8.265555285e-13     2.985406632e-14     2.985406632e-14
+               dP/dT (W/K)     1.843117613e-07      6.08681589e-08      6.08681589e-08
+                 P_abs (W)     2.004434765e-12     2.190178773e-13     2.004434765e-12
+            dt_ss_full (K)     1.087524068e-05     3.598233974e-06     3.293076054e-05
+           tau_thermal (s)      0.003139185833     0.0003433296949     0.0003433296949
+         dwell/tau_thermal         21.23692901          194.176815          194.176815
+                      Biot     0.0001756756757     0.0001756756757     0.0001756756757
+                   Knudsen      0.009280969203       0.02807692308       0.02807692308
+      h_eff slip-corrected         3605.901561         10520.35284         10520.35284
+        NETD_lo/dt_ss_full         1839.039758         5558.282242         607.3348951
+  exp-045 reproduction self-check (max rel): 0.00e+00
+  silicon identity: ASSUMED -- provenance terminates unsourced (T18) [docket 18]
+  tau_thermal = rho C_P L_cond^2 / (4 eps sigma T^3 L_cond + k_air) -- algebraically independent of the ABSORBED POWER, hence of L_power. But it is NOT 'decided by the conduction length alone' [docket 19]: the rho*C_P factor is the unsourced half of the chain (see the provenance downgrade and the rho*C_P sensitivity row), and `netd_disposition`'s own fill_factor multiplier is left at 1.0 here while mass = rho_Si*L^3 assigns 100%-fill crystalline silicon to what the same module elsewhere calls a dilute vapour/aerosol host. Disclosed, not silently carried.
+  rho*C_P / fill-factor sensitivity [docket 19]:
+    scale   1.0: tau_th=3.433297e-04s  dwell/tau_th=194.177  above N_TRANSIENT_TAU=25: True
+    scale   0.5: tau_th=1.716648e-04s  dwell/tau_th=388.354  above N_TRANSIENT_TAU=25: True
+    scale   0.1: tau_th=3.433297e-05s  dwell/tau_th=1941.768  above N_TRANSIENT_TAU=25: True
+    scale  0.01: tau_th=3.433297e-06s  dwell/tau_th=19417.682  above N_TRANSIENT_TAU=25: True
+  P-TH23-B1: mixed dwell/tau_thermal equals the r_out-consistent value identically (tau_thermal is independent of L_power)
+     band: 194.176815 +/- 1 in the 12th s.f.
+     measured: 194.17681504141214
+     identical_to_r_out: 0.0
+  P-TH23-B2: mixed dt_ss_full and its two ratios
+     band: 3.2930761e-5 K; ratio to r_out = (w_on/r_out)^2 = 9.151923 exactly; ratio to w_on = 3.02805; +/-0.01%
+     dt_ss_full_K: 3.293076054169135e-05
+     ratio_to_r_out: 9.151923077316003
+     w_on_over_r_out_squared: 9.151923077316004
+     ratio_to_w_on: 3.0280488955582854
+  P-TH23-B3: mixed regime remains UNDETECTABLE by the NETD/detectability instrument comparison. The Phase-1 'eye-invisible' claim is STRUCK [docket 20]: it had no perceptual falsifier and is constraint-3-shaped.
+     band: NETD_lo/dt_ss_full in [600, 615]; Wien peak in [9.87, 9.90] um
+     netd_lo_over_dt_ss: 607.3348951257713
+     wien_peak_um: 9.884938340376813
+     classification: UNDETECTABLE
+     netd_disclaimer: NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix; exp-043 Red Team attack 7, exp-044 fix 6, exp-045 fix 6, exp-046 docket item 20/21). This classification does NOT bear on constraint-3/4's human-eye verdict, and no 'eye-invisible' claim is made anywhere in this cycle [docket 20].
+  P-TH23-B4: Biot/Knudsen at the mixed regime match the r_out regime
+     band: Bi = 1.7567568e-4, Kn = 2.807692e-2, slip correction -5.3168%
+     biot: 0.00017567567567567568
+     knudsen: 0.028076923076923083
+     slip_correction_pct: -5.31682447195922
+  P-TH23-B5: Block A regrows to 6 regimes
+     band: 2496 points; max dT over the 416 new points in [2.95e-6, 3.05e-6] K; NETD_lo margin >= 6500x; all UNDETECTABLE-or-better
+     n_points: 2496
+     n_new: 416
+     max_dT_new_K: 2.9935695894106383e-06
+     netd_lo_margin: 6680.987163534594
+     netd_disclaimer: NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix; exp-043 Red Team attack 7, exp-044 fix 6, exp-045 fix 6, exp-046 docket item 20/21). This classification does NOT bear on constraint-3/4's human-eye verdict, and no 'eye-invisible' claim is made anywhere in this cycle [docket 20].
+  P-TH23-B6: the N_TRANSIENT_TAU=25 stake is void: thermal saturation at both endpoints
+     band: 1-exp(-dwell/tau_th) >= 1-1e-9 at both 21.24x and 194.18x
+     saturation_w_on: 0.9999999994017001
+     saturation_mixed: 1.0
+     one_minus_saturation_w_on: 5.982998851947545e-10
+     one_minus_saturation_mixed: 4.678220783044492e-85
+     N_TRANSIENT_TAU: 25.0
+     stake_note: N_TRANSIENT_TAU is a NUMERICAL-INTEGRATION constant for lab.kinetics' RK4 branch (lab/kinetics.py:97); nothing in the thermal chain is numerically integrated at all -- every thermal quantity here is a closed form.
+
+--- BLOCK C: dose accumulation on the FULL exp-038 grid (desk) ---
+  full exp-038 grid = 25 points; Host D's exp-045-committed four removed; NEW points computed here = 21. Phase 3's own hand-count was 21 -- code and hand-count AGREE.
+  point runs (new points x 2 gaps): 42
+  C3 duration scan [docket 17]: 250 points, closed-form agreement 250/250
+  P-TH23-C1: RESTATED for the extended grid [docket 16]: the D/tau_k >= 66.7 points are exact negative controls (every ON segment re-equilibrates), while the newly-added Host E column and Host D r=1.0 exercise the POSITIVE branch for the first time -- the original 12-point Hosts-A/B/C scope contained no cell in which memory could appear at all.
+     band: |ratio-1| <= 1e-12 at all 30 negative-control point-runs (D/tau_k >= 66.7); 12 point-runs with nonzero memory and 7 above 1.05, ALL confined to Host D r=1.0 and Host E
+     n_negative_controls: 30
+     max_deviation_negative_controls: 0.0
+     n_points_with_memory: 12
+     memory_points: ['D/r=1e+00/5tau=1.022116', 'D/r=1e+00/0.5tau=1.258226', 'E/r=1e-09/5tau=1.006343', 'E/r=1e-09/0.5tau=2.234529', 'E/r=1e-05/5tau=1.006344', 'E/r=1e-05/0.5tau=2.234540', 'E/r=1e-03/5tau=1.006375', 'E/r=1e-03/0.5tau=2.235598', 'E/r=1e-01/5tau=1.009963', 'E/r=1e-01/0.5tau=2.335470', 'E/r=1e+00/5tau=1.077399', 'E/r=1e+00/0.5tau=2.825693']
+     max_ratio_5tau: 1.0773986758034673
+     max_ratio_0.5tau: 2.82569300672548
+  P-TH23-C2: closed-form memory-onset criterion ratio_inf = 1/(1-a f), memory iff D/tau_k < ln(21 f)
+     band: closed form (the INFINITE-train fixed point) reproduces the measured 5-pulse ratio to <=1e-3 relative at every no-memory / weak-memory point; at the strong-memory points the 5-pulse train UNDER-converges to the fixed point by up to ~10%, in the expected direction -- disclosed, not a discrepancy
+     max_rel_no_or_weak_memory_points: 0.0
+     max_rel_memory_points: 0.1002588437228036
+     max_closed_form_vs_measured_rel: 0.1002588437228036
+     ln_21_exp_minus_0.5: 2.544522437723423
+  P-TH23-C3: delta-T on the extended grid (mixed regime primary). NOTE: Phase 1's [2.9e-6, 3.1e-6] K band was written for the pre-extension 12-point Hosts-A/B/C scope, whose largest n_eq was 0.0909 (r=1e-1). Docket item 16 adds the r=1.0 column (n_eq=0.5) and Host E, which raises the ceiling by ~5.5x by construction. The Phase-1 band is SUPERSEDED here, before the run, and the superseding is attributed.
+     band: max decoupled dT in [1.6e-5, 1.7e-5] K (extended grid); NETD_lo margin >= 1200x; every point UNDETECTABLE-or-better
+     phase1_band_superseded: [2.9e-6, 3.1e-6] K -- valid only for the pre-docket-16 Hosts-A/B/C r<=1e-1 scope
+     max_dT_periodic_decoupled_K: 1.6465380270845675e-05
+     netd_lo_margin: 1214.6697902515425
+     all_undetectable_or_better: True
+     netd_disclaimer: NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix; exp-043 Red Team attack 7, exp-044 fix 6, exp-045 fix 6, exp-046 docket item 20/21). This classification does NOT bear on constraint-3/4's human-eye verdict, and no 'eye-invisible' claim is made anywhere in this cycle [docket 20].
+  P-TH23-C4: Tier scoring on the FULL grid. The Phase-1 'corroborating Amendment 3' claim is STRUCK unless Host E is present -- it is now present, so the check is real: Amendment 3's finding is 'memory only at Hosts D and E', and this grid can now see both halves of it [docket 16].
+     band: zero memory at every PUBLISHED-tier point; memory confined to Host D r=1.0 and Host E (the PLAUSIBLE/UNOBTANIUM tiers)
+     n_published_points: 12
+     n_published_with_memory: 0
+     n_unobtanium_points: 18
+     n_unobtanium_with_memory: 7
+     n_host_e_0.5tau_with_memory: 5
+  P-TH23-C5: the closed form reproduces exp-045's own 8 committed Host-D points
+     band: <= 0.2% relative at 8/8; the 5tau points agree to ~2e-15 [docket 23]
+     max_rel: 0.0009127142523081507
+     min_rel: 1.5489352819341879e-15
+     n_rows: 8
+  P-TH23-C6: Amendment 3's host-list finding is a DIMENSIONLESS-DWELL finding: memory at the 0.5tau gap iff D/tau_k < ln(21 f). VERIFICATION of C2's closed form, not an independent test [docket 17]. CORRECTED PRE-RUN: Phase 1's second clause -- 'at the 5tau gap NO point anywhere exceeds 1.05' -- is FALSE on the extended grid. It holds only for r <= 1e-1, where 21f = 21 e^(-5/(1+r)) < 1 and the supremum is 1.0107. At r = 1.0, f = e^(-2.5) = 0.0821, 21f = 1.72 > 1, so the supremum is 1.0894 and short dwells DO cross 1.05 at a 5tau gap. The r=1.0 column only exists here because docket item 16 added it -- the clause was untestable in the Phase-1 scope.
+     band: 0.5tau crossing at 2.5445 (r<<1) and 2.590 (r=1e-1), both inside [2.4, 2.7]; 5tau supremum 1.006784 (r<<1) / 1.010711 (r=1e-1) / 1.0894 (r=1.0); 5tau points above 1.05 occur ONLY in the r=1.0 column
+     detail: {'measured_0.5tau_crossing_dwell_over_tau_k_r_1e-3': 2.545021705030309, 'measured_0.5tau_crossing_dwell_over_tau_k_r_1e-1': 2.5899767499853557, 'closed_form_threshold_r_small': 2.544522437723423, 'closed_form_threshold_r_1e-1': 2.5899769831779684, 'supremum_5tau_r_small': 1.0067836549063043, 'supremum_5tau_r_1e-1': 1.0107292410732434, 'n_5tau_points_above_1.05': 6}
+     n_c1_5tau_points_above_1.05: 1
+     supremum_5tau_r_1p0: 1.089425489833852
+     onset_threshold_5tau_r_1p0: 0.5445224377234231
+     duration_scan_agreement: 250/250
+
+NOTE (repeated at the point of claim [docket 21]): NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix; exp-043 Red Team attack 7, exp-044 fix 6, exp-045 fix 6, exp-046 docket item 20/21). This classification does NOT bear on constraint-3/4's human-eye verdict, and no 'eye-invisible' claim is made anywhere in this cycle [docket 20].
+==============================================================================
+
+desk work: 4.91s, 0 FDTD calls
+--predict-only: no FDTD leg executed, no results.json written.

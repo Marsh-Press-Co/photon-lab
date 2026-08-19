@@ -1191,40 +1191,188 @@ def stage15_thermo_sidecar():
           f"{dt_far:.6f}", abs(dt_far - dt_ss) <= 1e-9, f"{dt_ss}")
 
 
-def _stage_selected(n, only):
-    """Stage selection, aware of BOTH of this suite's two `--only` idioms.
-    Panel Iteration 15 / Red Team attack #5 fixed the multi-digit half:
-    True iff the two-or-more-digit stage number `n` appears in `only` NOT
-    adjacent to another digit -- the naive `str(n) in only` check silently
-    fired stage 12 on every existing invocation (the local default
-    "123456789" and CI's own "--only 12346789" both happen to contain "1"
-    immediately followed by "2"), purely an accident of decimal-digit
-    concatenation with the single-digit stages 1-9.
+def stage16_oblique_gaussian_source():
+    """The oblique Gaussian line source vs closed-form identities (Panel
+    Iteration 23, exp-046). `add_line_source(profile="gauss")` is an engine
+    path that has been DECLARED in `lab/fdtd2d.py:152-156` since the bench was
+    built and, grep-verified across this repo's whole history, never once
+    exercised or trust-gated -- so per PANEL.md's "new machinery => new suite
+    stage with at least one absolute identity gate BEFORE results are trusted"
+    rule it gets a stage of its own before exp-046 reads any Block-A number.
 
-    Panel Iteration 17 Phase 5, Red Team finding F3/L-E (six blind seats
-    independently caught this, all six re-derived it by direct execution):
-    that fix left the SINGLE-digit stages 1-9 on the naive substring test,
-    which is correct for this suite's PACKED convention (one token, no
-    separator, e.g. "123456789" or "12346789" -- each character IS a
-    stage selector, by design, and must stay that way: `_stage_selected`'s
-    own digit-boundary regex would select NOTHING for stage 1 against
-    "123456789", since "1" there is adjacent to "2") -- but wrong the
-    moment an invocation mixes idioms, e.g. "--only 12,13,14" (intended as
-    three 2-digit stage numbers) ALSO silently fired stages 1/2/3/4 as
-    substrings, with no comma-awareness at all. Resolved by tokenizing on
-    commas/whitespace: a SEPARATED invocation (more than one token, e.g.
-    "12,13,14" or "12 13 14") requires an EXACT per-token match for every
-    stage, single- or multi-digit alike; an UNSEPARATED invocation (one
-    token, e.g. "123456789") keeps the legacy packed-digit convention
-    (`str(n) in only` for stages 1-9, the digit-boundary regex for stages
-    10+) so every existing citation in this program's own SESSION_LOG/
-    LOGBOOK history reproduces unchanged."""
-    tokens = [t for t in re.split(r"[,\s]+", only.strip()) if t]
-    if len(tokens) > 1:
-        return str(n) in tokens
-    if n < 10:
-        return str(n) in only
-    return re.search(rf"(?<!\d){n}(?!\d)", only) is not None
+    Geometry is exp-041/042's own committed scene (NX=360, NY=1584,
+    ABSORB=TAPER=40, SRC_X=300, PLANE_X=77, STEPS=1400, COURANT_FRAC=0.99,
+    OBJ_Y=792, D_SP=223, cpl=20 at 600nm, window geometry R_OUT=78 /
+    GUARD_OUT=185 / W_FLANK=78), hardcoded here with citation rather than
+    imported, so the suite never depends on an experiment directory.
+
+    Four gates, four 1400-step FDTD runs (~90 s -- an opt-in stage like the
+    heavy stage 5, NOT part of the fast `--only 12346789` default):
+
+      a. FREE-SPACE DIVERGENCE IDENTITY (theta=0, width=40): the 1/e^2
+         half-width of `ambient.observer_profile` at three planes reproduces
+         w0*sqrt(1+(z/z_R)^2), z_R = pi*w0^2/lambda = 251.327 cells, to <=3%.
+         This gates the FWHM relation too: Delta-theta = 2*sqrt(2 ln 2)*
+         lambda/(2 pi w0) follows from z_R by one algebraic step, and this
+         domain's usable x-span (223 cells ~ 0.89 z_R) cannot reach the true
+         far field, so a direct far-field-FWHM gate is not honestly available.
+      b. POINTING IDENTITY (theta=40deg, width=40): the interpolated beam
+         centre at PLANE_X sits within +/-2 cells of y_c + D_SP*tan(40deg)
+         = 979.12.
+      c. ABSOLUTE REGRESSION ANCHOR (theta=+40deg, profile="plane"): the
+         legacy tapered-top-hat path still reproduces exp-041 Block MAIN's
+         committed C_empty(+40deg, 600nm) = -0.010964794540566314. Stated as a
+         RELATIVE tolerance with the reference platform named (Red Team docket
+         item 14, ELECTROMAGNETISM's Phase-2 catch upheld): a 1400-step FDTD
+         bit-reproducibility claim that does not name its platform is not a
+         gate, it is a hope.
+      d. OBLIQUE-WIDTH GATE (theta=40deg, width=56.063 = w0/cos(40deg) for
+         FWHM=10deg at 600nm): the 1/e^2 half-width at PLANE_X reproduces
+         w0*sqrt(1+(z_eff/z_R)^2)/cos(theta0) = 79.4747 cells to <=5%. This is
+         the gate that matters: gates (a) and (b) CANNOT fail on exp-046's own
+         actual Phase-1 defect (a source width of w0 where the physics
+         requires w0/cos(theta0)) -- (a) runs at theta=0 where the two agree
+         and (b) reads only the centroid. Red Team's own independent FDTD run
+         of exactly this configuration measured 80.47 cells (1.3% high), and
+         the same run at the WRONG width (w0 = 42.947) measured 87.25 against
+         a 79.47 target -- 9.8% off, i.e. this gate fires on the real defect
+         and passes on the fix.
+    """
+    print("stage 16 — oblique Gaussian line source vs closed-form identities")
+    from lab import ambient as amb
+    from lab import sections as sc
+
+    NX16, NY16, AB16, TAPER16 = 360, 1584, 40, 40
+    SRC_X16, PLANE_X16, STEPS16, CPL16 = 300, 77, 1400, 20
+    OBJ_Y16 = NY16 // 2                    # 792
+    D_SP16 = SRC_X16 - PLANE_X16           # 223
+    R_OUT16, GUARD_OUT16, W_FLANK16 = 78, 185, 78
+    C_COEF16 = 2.0 * np.sqrt(2.0 * np.log(2.0)) / (2.0 * np.pi)   # 0.374781250
+
+    def run16(width, theta, profile="gauss", sigma=None):
+        sim = Sim(NX16, NY16, cells_per_lambda=CPL16, courant_frac=0.99, absorb=AB16)
+        if profile == "gauss":
+            sim.add_line_source(SRC_X16, profile="gauss", width=width,
+                                angle_deg=theta, amplitude=1.0)
+        else:
+            sim.add_line_source(SRC_X16, angle_deg=theta, edge=TAPER16, amplitude=1.0)
+        sim.run(STEPS16)
+        return sc.phasors(sc.full_capture(sim))
+
+    def half_width_1e2(b, y_lo):
+        """1/e^2 half-width and interpolated centre of a positive flux profile.
+        For E ~ exp(-y^2/w^2) the intensity falls to 1/e^2 of peak at y = w, so
+        this measures w directly -- the same quantity every closed form here is
+        written in."""
+        b = np.asarray(b, dtype=float)
+        y = np.arange(y_lo, y_lo + b.size, dtype=float)
+        ip = int(np.argmax(b))
+        thr = b[ip] / np.e ** 2
+        r = ip + int(np.argmax(b[ip:] < thr))
+        l = ip - int(np.argmax(b[:ip + 1][::-1] < thr))
+        itp = lambda i0, i1: y[i0] + (thr - b[i0]) * (y[i1] - y[i0]) / (b[i1] - b[i0])
+        hi, lo = itp(r - 1, r), itp(l + 1, l)
+        return 0.5 * (hi - lo), 0.5 * (hi + lo)
+
+    # --- gate a: free-space Gaussian divergence identity (theta = 0)
+    W0_A = 40.0
+    z_r = np.pi * W0_A ** 2 / CPL16
+    ph_a = run16(W0_A, 0.0)
+    worst_a, detail_a = 0.0, []
+    for plane_x in (250, 150, PLANE_X16):
+        prof = amb.observer_profile(ph_a, plane_x, AB16, NY16 - AB16)
+        hw, _ = half_width_1e2(prof, AB16)
+        z = SRC_X16 - plane_x
+        target = W0_A * np.sqrt(1.0 + (z / z_r) ** 2)
+        rel = abs(hw - target) / target
+        worst_a = max(worst_a, rel)
+        detail_a.append(f"z={z}: {hw:.2f} vs {target:.2f}")
+    print(f"  [info] stage16 · w(z) at 3 planes (z_R={z_r:.2f}): " + " | ".join(detail_a))
+    check("gauss-source", "free-space divergence w(z) vs closed form (worst of 3 planes)",
+          f"{worst_a:.2%}", worst_a <= 0.03, "<=3%")
+
+    # --- gate b: pointing identity (theta = 40 deg, same width)
+    ph_b = run16(W0_A, 40.0)
+    prof_b = amb.observer_profile(ph_b, PLANE_X16, AB16, NY16 - AB16)
+    _, ctr_b = half_width_1e2(prof_b, AB16)
+    target_ctr = OBJ_Y16 + D_SP16 * np.tan(np.radians(40.0))
+    check("gauss-source", "oblique beam centre at PLANE_X (ray optics y_c + D_SP*tan40)",
+          f"{ctr_b:.2f} vs {target_ctr:.2f}", abs(ctr_b - target_ctr) <= 2.0,
+          "within +/-2 cells")
+
+    # --- gate c: absolute regression anchor on the legacy plane path
+    ph_c = run16(None, 40.0, profile="plane")
+    prof_c = amb.observer_profile(ph_c, PLANE_X16, AB16, NY16 - AB16)
+    bo, bf = amb.window_means(prof_c, AB16, OBJ_Y16, R_OUT16, GUARD_OUT16, W_FLANK16)
+    c_empty = amb.weber(bo, bf)
+    REF_C_EMPTY = -0.010964794540566314        # exp-041 results.json, block_main, +40deg/600nm
+    rel_c = abs(c_empty - REF_C_EMPTY) / abs(REF_C_EMPTY)
+    print(f"  [info] stage16 · reference platform for gate c: python "
+          f"{sys.version.split()[0]} / numpy {np.__version__} / {sys.platform}")
+    check("gauss-source", "plane-path C_empty(+40deg,600nm) reproduces exp-041 (RELATIVE, platform-named)",
+          f"{rel_c:.2e}", rel_c <= 1e-12, "<=1e-12 relative")
+
+    # --- gate d: the oblique-width gate (the one that fires on the real defect)
+    W0_D = C_COEF16 * CPL16 / np.radians(10.0)          # 42.947 -- the WRONG width
+    WIDTH_D = W0_D / np.cos(np.radians(40.0))           # 56.063 -- the right one
+    z_r_d = np.pi * W0_D ** 2 / CPL16
+    z_eff_d = D_SP16 / np.cos(np.radians(40.0))
+    target_d = W0_D * np.sqrt(1.0 + (z_eff_d / z_r_d) ** 2) / np.cos(np.radians(40.0))
+    ph_d = run16(WIDTH_D, 40.0)
+    prof_d = amb.observer_profile(ph_d, PLANE_X16, AB16, NY16 - AB16)
+    hw_d, _ = half_width_1e2(prof_d, AB16)
+    rel_d = abs(hw_d - target_d) / target_d
+    check("gauss-source", f"oblique-width identity: 1/e^2 half-width at PLANE_X "
+          f"(width={WIDTH_D:.3f} = w0/cos40)",
+          f"{hw_d:.2f} vs {target_d:.2f} ({rel_d:.2%})", rel_d <= 0.05, "<=5%")
+
+
+_STAGE_IDS = frozenset(str(n) for n in range(1, 17))
+
+
+def _stage_selected(n, only):
+    """Stage selection, aware of ALL THREE of this suite's `--only` idioms.
+
+    Panel Iteration 15 / Red Team attack #5 fixed the multi-digit half: the
+    naive `str(n) in only` check silently fired stage 12 on every existing
+    invocation (the local default "123456789" and CI's "--only 12346789" both
+    contain "1" immediately followed by "2"), purely an accident of decimal-
+    digit concatenation with the single-digit stages 1-9.
+
+    Panel Iteration 17 Phase 5 (Red Team finding F3/L-E) fixed the mixed-idiom
+    half: "--only 12,13,14" ALSO fired stages 1/2/3/4 as bare substrings, with
+    no comma-awareness at all. Resolved by tokenizing on commas/whitespace.
+
+    Panel Iteration 23 (exp-046) fixes what that left, and it is the SAME bug
+    species a third time -- caught by direct execution before stage 16 was
+    wired, not by reading: a LONE multi-digit token was still passed to the
+    single-digit substring test for stages 1-9, so `--only 16` selected stages
+    1 AND 6 as well as stage 16 (and `--only 12`, documented in SESSION_LOG as
+    "stage 12 alone, 5/5", actually fired stages 1, 2 and 12). It also dropped
+    a packed token in a mixed invocation entirely: "--only 12346789,10,11",
+    cited as 46/46 across five SESSION_LOG entries, selected only stages 10
+    and 11.
+
+    The rule now, one sentence: each token is EITHER an exact stage id (any
+    width -- it selects exactly that stage) OR a legacy PACKED digit run
+    (e.g. "123456789", "12346789", "1234"), in which case single-digit stages
+    match as substrings and multi-digit stages match on digit boundaries.
+    Tokens are independent, so mixed invocations compose. Every citation in
+    this program's own history reproduces: "123456789" -> 1-9, "12346789" ->
+    1,2,3,4,6,7,8,9, "12346789,10,11" -> those plus 10 and 11, "12,13" ->
+    12 and 13, "12" -> stage 12 alone, "5" -> stage 5 alone, "16" -> stage 16
+    alone."""
+    for tok in [t for t in re.split(r"[,\s]+", only.strip()) if t]:
+        if tok in _STAGE_IDS:
+            if tok == str(n):
+                return True
+            continue
+        if n < 10:
+            if str(n) in tok:
+                return True
+        elif re.search(rf"(?<!\d){n}(?!\d)", tok):
+            return True
+    return False
 
 
 # ------------------------------------------------------------------ main
@@ -1238,6 +1386,7 @@ if __name__ == "__main__":
     run_stage13 = _stage_selected(13, only)
     run_stage14 = _stage_selected(14, only)
     run_stage15 = _stage_selected(15, only)
+    run_stage16 = _stage_selected(16, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -1295,6 +1444,8 @@ if __name__ == "__main__":
         stage14_amplitude_bridge()
     if run_stage15:
         stage15_thermo_sidecar()
+    if run_stage16:
+        stage16_oblique_gaussian_source()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
