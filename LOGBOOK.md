@@ -8756,3 +8756,405 @@ that remedy's own precedent for a different item. All four were caught and
 corrected inside this same shift; Checkpoint criterion 4's harder,
 zero-further-extension condition (§ above) is this program's own explicit
 response.
+
+## Iteration 24 — The Glare/Adaptation Tier-W Sidecar (exp-047) — 2026-08-19
+
+Lead: VISION SCIENCE, executing Iteration 23's hardened, unconditional
+rule (LOGBOOK Iteration 23 close, Director's item 24): VISION's own
+glare/adaptation Tier-W sidecar MUST run this cycle or Checkpoint
+criterion 4 fires automatically, no further debate, no seat vote, no
+Director discretion, no renewed-deferral reason of any kind — the
+tripwire the cycle before this one hardened specifically to close a
+self-defeating carve-out in its own first version.
+
+**Pre-flight**: fresh container onboarding this shift. Read HANDOFF.md,
+README.md, PANEL.md, LOGBOOK.md in full (8758 lines pre-shift), PLAN.md's
+Current-state section, AGENTS.md, and SESSION_LOG.md's top two entries.
+Deps installed per the documented wrinkle (numpy/scipy/matplotlib/
+pillow/autograd/fdtd, then `pip install --no-deps ceviche`). Bench
+verified green: `--only 12346789` → 41/41 before any panel work began.
+
+### PHASE 1 — PROPOSE (VISION SCIENCE)
+
+Docket #7 has had two halves since Iteration 1: THERMO closed the
+witness-photometry half at Iteration 20 (exp-043); VISION's own half —
+the glare/adaptation Tier-W sidecar — sat as hypothesis-not-result for
+23 iterations. Proposal: re-score the ALREADY-ESTABLISHED
+`graded_black_shell` absorber against a threshold elevated by the
+flashlight holder's own self-glare, composing two standard disability-
+glare relations — Stiles–Holladay veiling luminance (`L_v=10E/θ²`,
+Holladay 1926/Stiles 1929) and the CIE-family veiling-contrast dilution
+(`C_eff=C/(1+L_v/L_B)`) — onto the corrected, floor-cleaned bench
+contrast, scored against T2's frozen `C_thr(L)`. Two gaze regimes
+("tracking"/"fixed") bound Red Team's original Iteration-1 sweep-phase
+objection, the latter resolved by arguing Crawford-class recovery ≫
+sweep duration. Zero new FDTD, zero new mechanism, T1 unchanged.
+
+Self-flagged five conflicts at Phase 1, unprompted: (1) citation drift
+(program text cites exp-020's C=−0.686; the corrected current value is
+−0.7209, Iteration 4/exp-030 — this citation was itself later found
+wrong by EM, see below); (2) "already committed on the record" overstated
+for E-at-eye and θ(t) — never actually sourced; new uncited estimates
+introduced this cycle; (3) scope tension with an older PLAN.md caution
+against publishing Tier-W ahead of T13's reconciliation; (4) do not
+conflate with T1's existing distinct "Tier-W night bar" entry (σ(I)
+kinetics, no glare term); (5) glare not universally necessary — the
+darkest ambient sub-class already clears with zero glare at p≥0.45.
+
+Predicted outcomes (P-VIS24-1..5): headline claim that the absorber
+"clears Tier-W" under the "tracking" regime at the CEILING glare
+estimate, robustly across the full night-ambient band and both p;
+FLOOR-estimate branch explicitly flagged "genuinely sensitive, not
+robust."
+
+### PHASE 2 — CRITIQUE (five seats, blind, verbatim)
+
+**PHOTONICS** (support-with-changes). Steel-man: headline margin (5–8
+orders of magnitude) dwarfs the established chromatic spread (T7,
+~1.5–1.9%); V-weighted C vs C_thr(L) is the correct currency pairing,
+used since Iteration 1; correctly cites the corrected −0.7209 anchor.
+Attack: the single V-weighted C hides two established, un-error-banded
+risks bearing specifically on the proposal's own fragile MARGINAL branch
+— T7's real chromatic red-growth and T21's unresolved ~1–2°-period
+angular fringe adjacent to the ±35° fallback geometry underlying −0.7209.
+Flip: scope the FLOOR-estimate branch out of the headline commitment.
+
+**MATERIALS** (support-with-changes). Steel-man: `graded_black_shell` is
+a published-tier mechanism (Vantablack/CNT-forest analog), categorically
+different from every σ(I) class `REALIZABILITY_MEMO.md` has ever scored
+UNOBTANIUM-WITH-PARAMETERS — if the Tier-W claim holds, it's this
+program's first candidate result built on a realizable, not unobtainium,
+mechanism. Attack: `REALIZABILITY_MEMO.md` has never actually scored
+`graded_black_shell` itself; C=−0.7209 was measured on a ~2.34µm object
+and carried directly to a 45m witness scenario — a >10⁶× scale jump
+PLAN.md already flags as untouched (T8/T13). Flip: cite macro-scale
+ε≈1 graded-absorptive coating evidence, or relabel every headline claim
+as a bench-scale surrogate pending T8/T13.
+
+**ELECTROMAGNETISM** (support-with-changes). Steel-man: the composition
+is sound radiometric bookkeeping — re-derived `C_eff=C/(1+L_v/L_B)`
+directly from adding L_v uniformly to both object and flank windows
+before taking Weber contrast, confirmed algebraically exact. Attack
+[LOAD-BEARING]: C=−0.7209 is a NEAR-FIELD bench measurement (z/z_R≈
+0.04–0.06) reused unmodified inside a calculation whose other half is
+built entirely at WITNESS SCALE — the same error class EM adjudicated at
+Iterations 19 and 23. T8/T13/T14 show the cross-regime gap is KNOWN
+non-negligible and WRONG-SIGNED (measured C SHALLOWS toward far field,
+not deepens; two extrapolation fits disagree by 0.220). PANEL.md's
+Tier-W definition requires holding "in the reported scene's own regime"
+— §5's "bench-scale only" disclaimer directly contradicts §4's "clears
+Tier-W" headline language. Also caught a citation error: cited "Iteration
+4 close (exp-030)" — exp-030 is actually Iteration 7's close. Flip:
+replace the point C with a sensitivity band spanning T13's two
+extrapolation models; relabel every headline claim as "clears the
+bench-scale glare-diluted analog of Tier-W, pending the T8/T13 bridge."
+
+**THERMODYNAMICS** (support-with-changes). Steel-man: cleanly separates
+from the established NETD/detectability channel (Iteration 20/exp-043),
+no new re-radiation pathway. Attack: near-eye stray irradiance at the
+ceiling estimate (up to 55,172 lx ≈ 18.4 mW/cm² at the cornea) never
+checked against anything — the "where does the incident power go, is it
+consequential" question this seat's charter exists to ask. Flip: if the
+ceiling irradiance sits within an established ocular MPE band, that
+undercuts the headline route independently of the glare math.
+
+**QUANTUM OPTICS** (support-with-changes). Steel-man: correctly stays
+inside the expressibility contract — zero quantum/coherent mechanism,
+decoherence argument closes the coherent-cross-term question validly
+(meter-scale path differences decohere far below exp-029's matched
+coherent-bridge geometry). Attack: C_thr(L)'s Blackwell/Rose photon-
+shot-noise-calibrated law is applied to a localized, near-field,
+self-held glare source with no citation establishing the transfer across
+that statistical-regime change. Flip: cite or explicitly flag the
+domain-extrapolation as a new idealization.
+
+**RED TEAM** (ruling: **proceed-with-mandatory-fixes**). Independently
+verified EM's citation-error claim CORRECT (exp-030 is Iteration 7's
+close, not Iteration 4 — checked directly against LOGBOOK.md) and EM's
+near-field/witness-scale attack FACTUALLY GROUNDED and understated if
+anything (T14's wrong-direction asymptote, T13's 0.220 disagreement that
+*got worse* after the Iteration-8 fix, Iteration 11's own headline text
+already calling the PASS "fragile"). Ten numbered attacks:
+
+1. **[constraint-3-violation, inconsistency]** Adopts and hardens EM's
+   attack: §5 says "bench-scale only," §4 says "clears Tier-W" — only one
+   can be true. Every occurrence of "Tier-W"/"PASSES"/"clears" attached
+   to the headline predictions must be replaced with "clears the
+   bench-scale glare-diluted surrogate of Tier-W" in the SAME SENTENCE
+   as the number, not a separate caveat.
+2. **[inconsistency]** EM's citation catch, independently confirmed.
+   Mandatory: fix to "Iteration 7 close (exp-030)."
+3. **[inconsistency]** Adopts and sharpens MATERIALS' attack: verified
+   `REALIZABILITY_MEMO.md` scores only σ(I) classes; `graded_black_shell`
+   has an INFORMAL UNOBTANIUM call from Iteration 7 (shell thickness
+   0.31–0.92m at witness scale) never formalized. Mandatory: carry
+   MATERIALS' realizability status inline with the relabel.
+4. **[inconsistency, unflagged by all five blind seats]** Tier-W's own
+   definition names the observer as "the flashlight holder" — the
+   maximally CUED case. The frozen ladder's two bars are NOT
+   interchangeable: lab=0.005 is cued, field=0.02 is UNCUED
+   (exp-020 NOTES.md). The proposal never disambiguated which bar its
+   headline verdicts used. Mandatory: state explicitly, per prediction,
+   which bar is scored; justify field-bar use if used anywhere headline.
+5. **[unfalsifiable, resolvable]** Adopts and extends THERMO's attack:
+   independently re-derived 18.4/0.184 mW/cm² exactly. Extension: flag
+   session-accumulated dose (constraint 4's "later sweep" implies
+   repeated exposure) as open, not just single-pass CW.
+6. **[unfalsifiable, partially overstated]** QUANTUM's attack adopted
+   with a correction: the same frozen table ALSO cites Adrian 1989 (CIE
+   road-lighting disability-glare literature) — QUANTUM's "zero relevant
+   precedent" claim is too strong. Narrowed: unverified specifically for
+   localized/near-field (<1m) glare geometry, not glare in general.
+7. **[inconsistency]** Adopts PHOTONICS' and EM's chromatic/fringe
+   attacks, both independently confirmed grounded. PHOTONICS' flip
+   (scope the FLOOR branch out) is necessary but not sufficient once
+   #1/#4 are also applied.
+8. **[inconsistency, process-integrity]** The "MUST run this cycle"
+   framing risk is live, not hypothetical: Iteration 23's own ranked-
+   priority text asserted "nothing new needed," already false when
+   written (θ_hold/f_spill/r_hold are new; the anchor C moved from
+   −0.686 to −0.7209 unflagged). This is not a reason to defer further —
+   deferring is its own violation — but satisfying the tripwire's
+   PROCEDURAL requirement does not by itself satisfy Checkpoint
+   criterion 4's SUBSTANTIVE concern if the headline language in #1
+   isn't also fixed.
+9. **[unfalsifiable, minor]** CIE 146:2002 citation not load-bearing —
+   EM independently re-derived the dilution formula from first
+   principles; no fix required.
+10. Not attacked — checked and found fine: the T1 escape-route statement
+    is accurate and correctly scoped.
+
+**Ruling: proceed-with-mandatory-fixes**, not reject — the twice-hardened
+tripwire makes further deferral its own program-integrity risk; the
+substantive glare arithmetic is sound, the failure is in labeling, not
+computation. Seven mandatory fixes before predictions freeze (see Phase
+3). Evidence that would flip to REJECT: shipping with "clears Tier-W"
+unrelabeled.
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All seven Red Team mandatory fixes adopted, none overridden:
+
+1. Every headline PASS labeled `TIER_W_HEADLINE_LABEL` ("clears the
+   bench-scale glare-diluted SURROGATE of Tier-W, pending the T8/T13/T14
+   near-field-to-witness-scale bridge — NOT a witness-scale constraint-3
+   verdict"), structurally forced via string substitution, not hand-typed.
+2. Citation corrected to Iteration 7 close (exp-030) everywhere.
+3. `WITNESS_SCALE_REALIZABILITY` dict carries MATERIALS' realizability
+   status inline with every headline claim.
+4. LAB (cued) bar made the explicit code default (`bar="lab"`) for every
+   Tier-W verdict; FIELD bar computed only as disclosed context, never
+   substituted into the headline.
+5. `corneal_irradiance_wcm2` exposed so every ceiling-estimate result
+   carries its own corneal-irradiance figure; single-pass only,
+   session-accumulated dose explicitly flagged open.
+6. QUANTUM's threshold-transfer caveat narrowed to "unverified for
+   localized/near-field glare specifically."
+7. FLOOR-estimate branch (P-G24-3) demoted to informational-only, never
+   part of the headline commitment regardless of outcome.
+
+New machinery: `lab/glare_sidecar.py` (c_thr, Stiles-Holladay veiling,
+veiled-contrast dilution with two algebraically cross-checked forms,
+stray-light ceiling/floor estimator, corneal-irradiance converter,
+`tier_w_verdict` classifier). Trust-suite stage 17 (6 identity gates: 
+zero-glare no-op, dilution-vs-direct cross-check, photopic-floor
+identity, clip identity, stray-light corner regression anchor, corneal-
+irradiance unit round-trip vs THERMO's own figure). Predictions
+(P-G24-1..6) committed to git BEFORE the scoring run executes (`266d31e`,
+zero FDTD calls — this is a desk/analytic cycle, "run" means executing
+the deterministic scoring script, which happened in a separate commit
+after the predict-commit, matching exp-043/046's structural-commit
+precedent).
+
+### PHASE 4 — TEST (2026-08-19)
+
+Trust suite 58/58 (41 fast + stage 17's 17 new gates) before and after.
+`run.py` executed cleanly (one pre-run mechanics bugfix disclosed:
+a Python `.format()`/literal-brace collision in the predictions banner,
+caught before any scoring output existed).
+
+**Scorecard: 4 CONFIRMED, 2 PARTIAL, 0 REFUTED.**
+- **P-G24-1 (baseline) — PARTIAL**: 5/6 sub-points exact; one landed
+  MARGINAL (ratio 1.085) instead of predicted FAIL.
+- **P-G24-2 (PRIMARY HEADLINE) — CONFIRMED, robustly.** All 36 grid
+  points PASS at the LAB bar. Worst case: θ_hold=15°, E=553.08lx
+  (ceiling band's low edge — correctly the hardest case), L_B=10⁻³,
+  p=0.4 — `|C_eff|/C_thr=5.865×10⁻³`, PASS by ~170×. Field-bar context
+  also all-PASS (worst ratio 1.47×10⁻³), never used as headline.
+- **P-G24-3 (informational, demoted) — PARTIAL**: 15/16 exact in its
+  PASS sub-grid (one MARGINAL); L_B=10⁻³/p=0.4 branch confirmed
+  FAIL-to-MARGINAL as predicted; θ=15°/p=0.4 wording ambiguity flagged
+  honestly (darkest sub-class still PASSes there, not clearly excluded
+  by the original prediction text).
+- **P-G24-4 (fixed-gaze, informational) — CONFIRMED**: 8100× (~3.9
+  orders) collapse by θ=45°, past the predicted "2+ orders."
+- **P-G24-5 (ocular exposure, informational, new) — CONFIRMED/reported**:
+  ceiling 0.184–18.39 mW/cm², matching THERMO's independent arithmetic
+  to 4 sig figs, now a trust-suite regression anchor.
+- **P-G24-6 (identity/regression) — CONFIRMED**: 17/17, 58/58.
+
+Results committed (`6ea2cb9`), pushed to origin/main.
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**VISION SCIENCE (PROMISING).** Independently reproduced the headline
+and all baseline points exactly; ran stage 17 live (17/17). **Found**: 
+this NOTES.md's own Hypothesis section (before the fold) used bare
+"Tier-W" language — the exact overclaim mandatory fix 1 exists to
+prevent, one paragraph before the corrected label — never reaching
+code/results.json but present at the most-skimmed prose locus. Found the
+MARGINAL band `[0.5,2.0]` unsourced. Found C_thr(L) is a static-target
+threshold applied to a physically transient event (T3 still unbuilt).
+Top-3: source/retire the MARGINAL band; fix the Hypothesis-section slip;
+build T3.
+
+**PHOTONICS (PROMISING).** Verified citation and worst-case ratio
+exactly. **Key contribution**: proved via closed form that at the
+worst-case point `c_thr` is pinned at its photopic floor independent of
+C — scaling `|C|` to its physical ceiling (1.0) only moves the worst
+ratio to 0.00814, still 61×/246× below MARGINAL/FAIL. No possible
+correction to `C_measured` can ever flip the headline. Found a second,
+uncredited achromaticity assumption in the veiling-luminance formula
+itself (distinct from C's own V-weighting — this program's caught this
+overclaim pattern before, Iteration 20). Found T21's fringe contamination
+has never been bounded at the ACTUAL ±35° geometry `C_MEASURED` uses
+(only at ±40°). Top-3: bound T21 at the real geometry; run a 3-λ sweep
+scored against the near-boundary branches; add the achromaticity
+idealization sentence.
+
+**MATERIALS (PARTIAL).** Traced `WITNESS_SCALE_REALIZABILITY` to source:
+numerically correct, but its "source" field attributed a Red-Team-
+corrected figure to MATERIALS' own (erroneous) Iteration-7 call.
+**Major new finding**: C_MEASURED is drawn from the SELF-SIMILAR-SCALED
+construction — the exact construction Iteration 7 already names
+UNOBTANIUM at witness scale. A fixed-absolute-thickness variant (the
+plausibly realizable alternative) has been proposed since Iteration 7
+and never built or measured, at any scale. Sharper than "bench≠witness"
+(already known): the specific evidence used is the signature of the
+already-unrealizable construction. Top-3: formal REALIZABILITY_MEMO.md
+entry now urgent; build and measure the fixed-thickness variant; name
+the compounding finding in the live-thread record.
+
+**ELECTROMAGNETISM (PROMISING, narrowly/correctly scoped).**
+Exhaustively re-verified label/citation/identity/reproducibility (live
+suite run, live rerun of run.py, bit-identical, no repo files left
+modified). Confirmed field-bar margin is mechanically just the frozen
+×4 ladder factor, not new evidence. **New finding**: computed L_v/L_B
+for all 36 headline points — ranges 24,581×–2.2×10⁹×, far outside the
+road-lighting/automotive glare literature's typical calibration range
+(small integers to low hundreds). Doesn't overturn PASS (washout
+direction fixed by construction) but the "170× robust margin" partly
+reflects extrapolation past empirical support. Top-3: quantify/disclose
+the extrapolation range; treat T8/T13/T14 reconciliation as the standing
+precondition for ever dropping the SURROGATE qualifier; formal
+REALIZABILITY_MEMO.md entry.
+
+**THERMODYNAMICS (PARTIAL, on the ocular-exposure item).** Verified
+arithmetic exactly; confirmed no conflation with Iteration 20's separate
+absorber-ΔT budget. **Found**: the 18.39 mW/cm² figure shipped with zero
+magnitude context — no comparison anchor (own comparison: ~18% of
+terrestrial solar irradiance, ~100 mW/cm²) and no source-geometry caveat
+(corneal irradiance alone doesn't establish retinal hazard without
+angular-subtense information). Own reassessment: downgrades urgency from
+"needs same-cycle resolution" to "fine to queue, but cheap enough not to
+sit for many cycles." Top-3: scoped-down accumulated-dose next step; add
+the missing anchor/caveat cheaply; preempt future conflation with
+Iteration 20's ΔT budget.
+
+**QUANTUM OPTICS (PROMISING).** Confirmed zero mechanism drift (only
+`math` imported); confirmed the shipped module carries Red Team's
+NARROWED threshold-transfer correction, not QUANTUM's own original
+over-strong framing; confirmed zero shared code path with the
+n-convergence thread. **Found**: the MARGINAL band's ×0.5/×2 convention
+quietly absorbs real uncertainty exactly where the (narrowed but still
+real) threshold-transfer caveat bites hardest (ratio=1.085 and 0.929
+both read identically to a comfortable 1.9/0.6). Top-3: run own
+n-convergence audit next (overdue, now confirmed zero contamination
+risk); stage-16 forward half; source/surface the MARGINAL band's raw
+ratio.
+
+**RED TEAM AUDIT — independent verdict: PROMISING** (agrees with the 4-2
+majority, for a sharper reason: MATERIALS'/THERMO's PARTIALs are each
+scoped to one open item in their own charter, neither finds a defect in
+the claim itself; judged by whether the cycle's own central question
+closed cleanly — it did, 170× margin, 17/17 gates, all 7 mandatory fixes
+verifiably shipped, checked directly not on trust).
+
+Independently confirmed, from source, not inherited: VISION's bare-
+"Tier-W" catch is real (grepped every code/data file: never bare there,
+confirmed only in this one NOTES.md prose paragraph) — and flagged that
+EM's own review didn't catch it, ruled a legitimate scope gap (EM's
+charter doesn't obligate a prose sweep), not an error. MATERIALS' major
+finding independently re-traced to Iteration 7's actual record: MATERIALS'
+own Phase-2 review DID state the shell thickness wrong ("≈0.62–1.85m," a
+unit-misread Red Team corrected to 0.31–0.92m that same cycle) — the
+citation-provenance drift is real. Confirmed the self-similar `r_in/r_out`
+scaling directly from `experiments/030-scale-bridge/design_geometry.py`.
+Grepped every `experiments/*/design_geometry.py` and `run.py` in the repo
+for a fixed-absolute-thickness variant: zero hits — it silently drops off
+the PLAN.md queue after Iteration 9's close and never resurfaces in eight
+subsequent iterations. EM's extrapolation-range finding independently
+re-derived to 5+ significant figures (24,581.3× / 2.2069×10⁹× exactly).
+
+**A finding none of the six seats named**: `STILES_HOLLADAY_VALID_THETA_
+DEG=(1.0,30.0)` is declared but never enforced; P-G24-4's own sweep
+evaluates θ=0.5°, below the stated floor — physically the more dangerous
+direction (L_v diverges as θ→0), previously undisclosed. Non-load-bearing
+(informational only).
+
+**Does anything found threaten P-G24-2? No — confirmed independently.**
+MATERIALS' finding bears on witness-scale realizability, not the bench-
+scale surrogate's own arithmetic (which is exactly and only what P-G24-2
+is scored as). EM's extrapolation finding cannot flip PASS: the formula's
+washout direction is fixed by construction (`C_eff→0` monotonically as
+`L_v→∞`), so it structurally cannot reverse sign. A C-value correction of
+any kind is capped at `|C|≤1.0` by physics, eroding the margin only to
+61.5×/245.8× — nowhere near threatening PASS. Confined entirely to the
+surrounding record: labeling, realizability-memo status, citation
+provenance, disclosure completeness — exactly as all six blind seats
+independently concluded.
+
+**Ranked priorities for Iteration 25** (adopted in full): (1)
+`REALIZABILITY_MEMO.md` formal entry for `graded_black_shell` at witness
+scale, naming the construction/evidence-base link — Tier-0. (2) T21
+fringe-contamination bound at the actual ±35° geometry — cheap, closes
+the one real gap in the headline's own evidentiary chord. (3) [done
+same-shift: three cheap prose/citation/disclosure fixes — see below].
+(4) Source or retire the MARGINAL band convention. (5) Build and measure
+the fixed-absolute-thickness `graded_black_shell` variant — MATERIALS'
+eight-iteration-deferred pick. (6) Resume standing queue: QUANTUM's
+n-convergence audit, stage-16's forward half, the T24 ABSORB sweep.
+
+**Same-shift close-out (Director's call, per this program's own
+established precedent of applying cheap Red-Team-mandated fixes before
+ending the shift, e.g. Iteration 23's 20-item docket)**: applied five of
+the cheap, zero-FDTD Phase-5 fixes in this same shift, verified 58/58
+green throughout: (a) NOTES.md's Hypothesis-section bare-"Tier-W" line
+corrected; (b) `WITNESS_SCALE_REALIZABILITY["source"]` provenance fixed
+and the construction/evidence-base link named inline in code, not just
+in this LOGBOOK entry; (c) the second achromaticity assumption disclosed
+in `stiles_holladay_veiling_luminance`'s docstring; (d) the small-θ
+validity gap disclosed in the same docstring; (e) THERMO's daylight-scale
+anchor and "not a hazard assessment" caveat added to
+`corneal_irradiance_wcm2`'s docstring; (f) EM's extrapolation-range
+caveat added to `veiled_contrast`'s docstring. The three FDTD-requiring
+or new-experiment items (formal `REALIZABILITY_MEMO.md` entry, T21 bound,
+fixed-thickness variant) correctly carried to Iteration 25, not rushed
+same-shift.
+
+**Program-level note**: this cycle produced the sharpest instance yet of
+the fix-docket-delivery pattern this program has repeatedly named
+(Iterations 13, 14, 15, 17, 20, 21, 22, 23) — the very NOTES.md written
+to fix Phase 2's "clears Tier-W" overclaim itself carried a residual
+instance of the same overclaim in its own Hypothesis section, caught only
+at Phase 5. Neither a Checkpoint-4-shaped defect (caught and corrected
+same-shift, per the program's own standing remedy) nor grounds for a new
+live thread — but worth naming plainly: the failure class recurs even
+inside the document written specifically to close it, one level down each
+time. No Checkpoint criterion fires this cycle.
+
+**Next lead per rotation: VISION SCIENCE** (Red Team's own Phase-5 note:
+items 3/4/6 above sit substantially in VISION's own charter; QUANTUM
+OPTICS closes its own rotation slot with this cycle, VISION→PHOTONICS→
+MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→**VISION
+SCIENCE**→repeat).

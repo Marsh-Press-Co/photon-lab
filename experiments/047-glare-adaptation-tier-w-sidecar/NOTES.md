@@ -11,7 +11,8 @@ THERMO's own half (the witness-photometry table) closed at Iteration 20
 
 The already-established, static `graded_black_shell` absorber — the same
 object clearing constraints 1 and 2 to the camera floor since exp-001 —
-clears constraint 3's Tier-W clause once the flashlight holder's own
+clears the bench-scale glare-diluted SURROGATE of constraint 3's Tier-W
+clause (never bare "Tier-W" — see below) once the flashlight holder's own
 self-glare is priced into both the adapting-luminance threshold and the
 measured contrast itself, under the "tracking" gaze regime. No new
 mechanism, no switching, no new material: only the observer/adaptation
@@ -212,26 +213,123 @@ itself was not altered). Full per-point data: `results.json`.
 - **P-G24-6 (identity/regression) — CONFIRMED.** Trust-suite stage 17:
   17/17 green. Full fast suite with it: 58/58 green.
 
+## Phase 5 (six fresh blind seats + Red Team audit)
+
+**Six independent reviews, verdicts: 4 PROMISING (VISION, PHOTONICS, EM,
+QUANTUM), 2 PARTIAL (MATERIALS, THERMO — each scoped to one open item in
+their own charter, neither finding a defect in the claim itself). Red
+Team's own independent verdict: PROMISING**, re-derived from source, not
+inherited from the vote count — P-G24-2 CONFIRMED with a 170× margin,
+17/17 gates, all 7 Phase-2 mandatory fixes verified actually shipped.
+
+**Does anything found at Phase 5 threaten the headline (P-G24-2)? No —
+independently re-confirmed by Red Team from source.** PHOTONICS proved a
+hard closed-form bound: at the worst-case grid point, `c_thr` is pinned at
+its photopic floor independent of `C`, so scaling `|C|` to its *physical
+ceiling* of 1.0 only moves the worst ratio to 0.00814 — still 61× below
+MARGINAL and 246× below FAIL. No possible correction to `C_measured`
+(chromatic, fringe, or realizability-driven) can flip it.
+
+**What Phase 5 found instead — all confined to the surrounding record,
+now fixed same-shift where cheap:**
+
+1. **VISION caught a real slip Phase 2's own fix didn't fully reach**:
+   this NOTES.md's own Hypothesis section (line 14, before the fold) used
+   bare "Tier-W" language — textually the exact overclaim Red Team's
+   mandatory fix 1 exists to prevent, never propagated to code/
+   `results.json` (confirmed clean there by both VISION and, separately,
+   EM), but present in the single most-skimmed prose locus. **Fixed
+   same-shift** (see Hypothesis section above). This revises the earlier
+   "caught at Phase 2, not Phase 5" self-assessment in this file's first
+   draft — it was NOT a clean instance; the failure class recurred one
+   level down, inside the very NOTES.md written to fix it.
+2. **MATERIALS' major finding, independently confirmed by Red Team from
+   source**: `C_MEASURED` is drawn from the SELF-SIMILAR-SCALED
+   `graded_black_shell` construction — the exact construction this
+   program's own Iteration-7 record already names UNOBTANIUM at witness
+   scale. A fixed-absolute-thickness variant (the physically plausible
+   alternative) has been proposed since Iteration 7 and never built or
+   measured, at any scale. Sharper than "bench≠witness" (already known,
+   T8/T13/T14): the specific evidence is the signature of the already-
+   unrealizable construction. Elevated by Red Team to Tier-0 for
+   Iteration 25.
+3. **A citation-provenance drift, caught by MATERIALS, confirmed by Red
+   Team**: `WITNESS_SCALE_REALIZABILITY`'s figure (0.31–0.92m) was
+   attributed to "MATERIALS seat, informal call" when it was actually a
+   correction of MATERIALS' OWN unit error, made by Red Team at Iteration
+   7. **Fixed same-shift** (`lab/glare_sidecar.py`).
+4. **EM's extrapolation-range finding, independently re-derived by Red
+   Team to 5+ significant figures**: the headline grid's `L_v/L_B` ratio
+   spans ~2.5×10⁴×–2.2×10⁹× — far outside the road-lighting/automotive
+   glare literature's typical calibration range (small integers to low
+   hundreds). Doesn't threaten PASS (the formula's washout direction is
+   fixed by construction, cannot reverse), but the "170× robust margin"
+   partly reflects extrapolating the model far past empirical support,
+   not fresh physical confirmation. **Disclosed same-shift** (docstring).
+5. **PHOTONICS found T21's fringe contamination has never been bounded at
+   the ACTUAL ±35° fallback geometry `C_MEASURED` uses** (only at ±40°,
+   where T21 was discovered) — doesn't threaten the headline (per the
+   closed-form bound above) but threatens any non-headline use of this
+   constant (P-G24-1/P-G24-3). Queued for Iteration 25, not same-shift
+   (requires a real FDTD resweep).
+6. **THERMO found the ocular-exposure disclosure (P-G24-5) had zero
+   magnitude context** — no comparison anchor, no source-geometry
+   caveat. **Fixed same-shift** (`corneal_irradiance_wcm2` docstring: the
+   ~100 mW/cm² solar-irradiance anchor and the "not a hazard assessment"
+   caveat).
+7. **PHOTONICS and Red Team independently found a second, uncredited
+   achromaticity assumption**: `stiles_holladay_veiling_luminance`
+   treats near-eye illuminance as spectrally flat — distinct from
+   `C_MEASURED`'s own V-weighting, and this program has caught this exact
+   "achromatic by construction" overclaim pattern before (Iteration 20).
+   **Fixed same-shift** (docstring).
+8. **Red Team's own catch, missed by all six blind seats**: P-G24-4's own
+   informational sweep evaluates θ=0.5°, below the module's own stated
+   1.0° validity floor for the Stiles–Holladay formula — physically the
+   more dangerous direction (L_v diverges as θ→0). Non-load-bearing
+   (informational only). **Disclosed same-shift** (docstring).
+9. **VISION and QUANTUM independently converged** on the `[0.5,2.0]`
+   MARGINAL classification band being an unsourced, round convention that
+   quietly absorbs real uncertainty exactly where it matters most (near-
+   boundary points, e.g. ratio=1.085). Not load-bearing this cycle;
+   queued for Iteration 25.
+
+**Red Team's ranked priorities for Iteration 25** (adopted in full by the
+Director): (1) formal `REALIZABILITY_MEMO.md` entry for `graded_black_shell`
+at witness scale, naming the construction/evidence-base link. (2) T21
+fringe-contamination bound at the actual ±35° geometry. (3) [done
+same-shift, see above — the three cheap prose/citation/disclosure fixes].
+(4) Source or retire the MARGINAL band convention. (5) Build and measure
+the fixed-absolute-thickness `graded_black_shell` variant (MATERIALS'
+eight-iteration-deferred pick). (6) Resume standing queue: QUANTUM's
+n-convergence audit, stage-16 forward half, T24 ABSORB sweep.
+
 ## Learned
 
 - The panel's own mandatory-fix discipline caught a real overclaim risk
-  (bare "clears Tier-W" language) before it reached the permanent record
-  — the same failure class (a scope tag not propagating to the headline
-  locus) this program has now named and fixed multiple times (Iterations
-  17, 20, 21, 22, 23). This cycle is a clean instance: caught at Phase 2,
-  not Phase 5.
-- Red Team's own attack (the cued/uncued bar ambiguity) that no blind
-  seat found is exactly the kind of catch this panel's independence
-  mechanics exist to buy — Red Team seeing everything, going last, is
-  doing real work here, not just formal ritual.
-- The ocular-exposure question THERMO raised (near-eye stray light at the
-  ceiling estimate, up to ~18.4 mW/cm² at the cornea) is a genuinely new
-  open question this program has never scored — flagged, not resolved.
+  (bare "clears Tier-W" language) at Phase 2 — but a residual instance of
+  the SAME failure class survived into this very NOTES.md's own prose
+  until Phase 5 caught it (see above). The failure class (a corrected
+  scope tag not propagating to every locus) is now confirmed recurrent
+  even inside the document written to fix it — the sharpest instance yet
+  of this program's own repeated lesson (Iterations 17, 20, 21, 22, 23).
+- Red Team's own attack (the cued/uncued bar ambiguity, Phase 2) and its
+  own Phase-5 catch (the small-θ validity gap, missed by all six blind
+  seats) both landed on things no blind seat found — the panel's
+  independence mechanics doing real work, not formal ritual.
+- MATERIALS' Phase-5 finding — the headline's own evidence base is drawn
+  from a construction already named unrealizable — is the single most
+  consequential result of this cycle's review, sharper than the already-
+  known bench/witness scale gap, and does not threaten the (correctly
+  narrowly-scoped) headline itself.
 - The headline (P-G24-2) came back far more robust than its own
-  pre-registered worst case demanded (~170× margin, not a near-miss) —
-  the informational FLOOR branch (P-G24-3) is where the real fragility
-  lives, exactly as the proposal itself predicted and Red Team's fix 7
-  correctly kept out of the headline.
+  pre-registered worst case demanded (~170× margin, not a near-miss),
+  and PHOTONICS proved a hard closed-form bound (61×/246× margin even at
+  the physical |C| ceiling) — the informational FLOOR branch (P-G24-3) is
+  where the real fragility lives, exactly as predicted and correctly kept
+  out of the headline. EM's extrapolation-range finding tempers HOW that
+  robustness should be read (it's partly an artifact of scoring far past
+  the underlying literature's calibration range) without overturning it.
 - Minor process note: P-G24-1 and P-G24-3's own prediction text used
   informal set-notation ("MARGINAL-or-FAIL at theta_hold=15deg (p=0.4)
   and at L_B=1e-3 (p=0.4)") that reads ambiguously as either an AND or an
@@ -243,11 +341,28 @@ itself was not altered). Full per-point data: `results.json`.
 
 ## Next
 
-- Session-accumulated ocular dose disposition (P-G24-5's open half) —
-  cheap, zero-FDTD, a natural next-cycle pick if a lead seat wants it.
-- `graded_black_shell`'s formal `REALIZABILITY_MEMO.md` entry at witness
-  scale — MATERIALS' own flagged gap, informal UNOBTANIUM call only so
-  far.
-- The T8/T13/T14 near-field→witness-scale bridge remains the single
-  biggest blocker on ever promoting this cycle's headline from "bench-
-  scale surrogate" to an actual Tier-W verdict.
+Red Team's Phase-5 ranked priorities for Iteration 25 (adopted in full):
+
+1. **`REALIZABILITY_MEMO.md` formal entry for `graded_black_shell` at
+   witness scale**, naming the self-similar-construction/evidence-base
+   link explicitly — now Tier-0, MATERIALS' finding.
+2. **T21 fringe-contamination bound at the actual ±35° fallback
+   geometry** — PHOTONICS' finding, cheap (reuses exp-042's own committed
+   propagator), closes the one open gap in the headline's own evidentiary
+   chord (does not threaten the headline itself).
+3. Source or retire the `[0.5,2.0]` MARGINAL classification band
+   convention (VISION/QUANTUM) — not load-bearing this cycle, will be for
+   any future near-boundary grid.
+4. Build and measure the fixed-absolute-thickness `graded_black_shell`
+   variant's own C — MATERIALS' eight-iteration-deferred Iteration-7
+   pick, natural companion to item 1.
+5. Session-accumulated ocular dose disposition (P-G24-5's open half,
+   THERMO's own scoped-down next step) — cheap, zero-FDTD, not urgent.
+6. Resume standing queue: QUANTUM's `gaussian_angle_weights`
+   n-convergence audit (overdue, now confirmed zero contamination risk),
+   stage-16's forward half, the T24 ABSORB sweep.
+
+The T8/T13/T14 near-field→witness-scale bridge remains the single
+biggest blocker on ever promoting this cycle's headline from "bench-scale
+surrogate" to an actual Tier-W verdict — items 1, 2, and 4 above all
+bear on it without requiring it to close first.

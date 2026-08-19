@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-19, panel Iteration 23)
+## Current state (2026-08-19, panel Iteration 24)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -1084,35 +1084,88 @@ continuous mode with checkpoints. The remaining [open] items below are
   items, of 20 total), all applied and verified this same shift** (suite
   re-confirmed 89/89, commit `c2a21f7`). No other criterion fires. Verdict:
   PARTIAL. Full record: LOGBOOK.md Iteration 23.
-- **[queued — panel Iteration 24, ranked per Red Team's Iteration-23
-  Phase-5 synthesis, lead: QUANTUM OPTICS (rotation), though the top item
-  is run by any lead seat per its own hardened wording]** (1) **VISION's
-  glare/adaptation Tier-W sidecar** — under the Iteration-23-corrected
-  hardened rule (the carve-out that let Iteration 23's own deferral
-  satisfy its own tripwire is struck; one consistent rendering now in
-  LOGBOOK/results.json): if this does not run at Iteration 24, Checkpoint
-  criterion 4 fires automatically, no further debate, no seat vote, no
-  Director discretion, no renewed-deferral reason of any kind. Every
-  numeric input is already committed on the record (Iteration 1's Phase-5
-  parameter set — distance, lumens, candela, stray-light E, ambient
-  classes, glare angle θ(t), Stiles–Holladay `L_v=10E/θ²`, Crawford
-  `L_eq(t)` — plus T2's frozen `C_thr(L)` and exp-020's measured
-  C=−0.686); nothing requires the still-blocked WebFetch. (2) **stage-16's
-  forward half**: identity-gate Block A's own actual extremes (w₀=1.074λ
-  and 10.74λ — both current identity gates sit at w₀≈2λ, and Block A's
-  worst A3 residual and its whole low-N_F reach live at the ungated end),
-  ~2 FDTD calls. (3) **QUANTUM's n-convergence audit of
-  `gaussian_angle_weights`** (n=41 has never been convergence-tested in
-  this program's history; n=401 already measured to move scored
-  `C_empty` by up to 4.47% at 450nm/36°/FWHM=20°) — **run this BEFORE**
-  the M²/étendue reframing of T21 it gates (QUANTUM's own Phase-5
-  proposal, Red-Team-adopted: exp-042's two columns are M²=1 and
-  M²≈2.15–35.8 of the same scene; a crossover measured at M²≈10–20 against
-  a real flashlight's own M²≈10²–10³ would answer T21's contamination
-  question with two sourceable numbers, replacing the coherence-length
-  route T21 has been blocked on for four iterations) — identity-gate the
-  high-M² endpoint against exp-042's own committed `block_beam_corrected`
-  bit-for-bit before any intermediate M² is trusted. **Tier 2 (moderate
+- [done 2026-08-19, panel Iteration 24, cloud panel shift] **exp-047 the
+  glare/adaptation Tier-W sidecar** — VISION SCIENCE's lead, executing
+  Iteration 23's hardened, unconditional tripwire (ran this cycle;
+  Checkpoint criterion 4 did not fire). New machinery:
+  `lab/glare_sidecar.py` (Stiles–Holladay veiling luminance + CIE
+  veiling-contrast dilution, two algebraically cross-checked forms,
+  bar-explicit `C_thr(L)`, corneal-irradiance converter), trust-suite
+  stage 17 (6 identity gates, 17/17; full fast suite 58/58 throughout).
+  **Headline (P-G24-2) CONFIRMED, robustly**: the established
+  `graded_black_shell` absorber clears the bench-scale glare-diluted
+  SURROGATE of Tier-W (never bare "Tier-W" — Red Team's central
+  mandatory fix) under the "tracking" gaze regime at the ceiling
+  stray-light estimate, LAB (cued) bar, across the full night-ambient
+  band and both p — worst-case margin ~170×, and PHOTONICS' Phase-5
+  closed-form bound shows no possible correction to the measured C
+  (chromatic, fringe, or realizability-driven) can ever flip it (61×/
+  246× margin even at the physical |C|=1.0 ceiling). Two load-bearing
+  Phase-2 catches: EM found the original proposal's headline language
+  contradicted its own bench-scale-only scope (fixed: every headline
+  claim now carries the explicit surrogate label) plus a citation error
+  (exp-030 is Iteration 7's close, not Iteration 4); Red Team caught
+  (missed by all five blind seats) that Tier-W's cued observer requires
+  the LAB bar, not the more lenient uncued FIELD bar, never disambiguated
+  originally. **Phase 5 (six blind seats + Red Team): PROMISING** (4
+  PROMISING, 2 PARTIAL — MATERIALS/THERMO, each scoped to one open item
+  in their own charter, neither finding a defect in the claim itself).
+  MATERIALS' major finding: the measured C is drawn from the
+  self-similar-scaled `graded_black_shell` construction — the exact
+  construction Iteration 7 already names UNOBTANIUM at witness scale; a
+  plausibly-realizable fixed-absolute-thickness variant has been proposed
+  since Iteration 7 and never built or measured, at any scale (sharper
+  than the already-known bench≠witness gap, T8/T13/T14). EM independently
+  found the headline grid's own `L_v/L_B` ratio spans ~2.5×10⁴×–2.2×10⁹×,
+  far outside the disability-glare literature's typical calibration range
+  — doesn't threaten PASS (the dilution formula's washout direction is
+  fixed by construction) but tempers how the "170× robust margin" should
+  be read. VISION caught a residual bare-"Tier-W" line inside this
+  cycle's own NOTES.md Hypothesis section — the same overclaim pattern
+  Phase 2 fixed elsewhere, recurring one level down inside the very
+  document written to fix it (this program's sharpest instance yet of its
+  own named fix-docket-delivery pattern, Iterations 13–23). Five cheap,
+  zero-FDTD Phase-5 fixes applied same-shift (label, citation-provenance,
+  two new idealization disclosures, ocular-exposure scale anchor); the
+  three FDTD/new-experiment items correctly carried to Iteration 25. No
+  Checkpoint criterion fires. Full record: LOGBOOK.md Iteration 24.
+- **[queued — panel Iteration 25, ranked per Red Team's Iteration-24
+  Phase-5 synthesis, lead: VISION SCIENCE (rotation)]** (1) **formal
+  `REALIZABILITY_MEMO.md` entry for `graded_black_shell` at witness
+  scale** (MATERIALS' finding, now Tier-0) — naming the self-similar-
+  construction/evidence-base link explicitly, given exp-047 just
+  promoted this article's bench-scale surrogate to headline status. (2)
+  **T21 fringe-contamination bound at the actual ±35° fallback geometry**
+  (PHOTONICS' finding) — cheap, reuses exp-042's own committed
+  propagator, closes the one real gap in exp-047's own evidentiary chord
+  without threatening its headline. (3) **Source or retire the
+  `[0.5,2.0]` MARGINAL classification band convention** (VISION/QUANTUM,
+  independently converged) — not load-bearing for exp-047's headline,
+  will be for any future near-boundary grid (two of exp-047's own
+  informational points already sit at ratio 0.907–1.085). (4) **Build and
+  measure the fixed-absolute-thickness `graded_black_shell` variant's own
+  C** (MATERIALS' eight-iteration-deferred Iteration-7 pick, natural
+  companion to item 1). (5) **stage-16's forward half**: identity-gate
+  Block A's own actual extremes (w₀=1.074λ and 10.74λ — both current
+  identity gates sit at w₀≈2λ, and Block A's worst A3 residual and its
+  whole low-N_F reach live at the ungated end), ~2 FDTD calls. (6)
+  **QUANTUM's n-convergence audit of `gaussian_angle_weights`** (n=41 has
+  never been convergence-tested in this program's history; n=401 already
+  measured to move scored `C_empty` by up to 4.47% at 450nm/36°/
+  FWHM=20°; exp-047's own Phase-5 confirmed zero contamination risk from
+  any parallel thread, removing the last reason to keep deferring it) —
+  **run this BEFORE** the M²/étendue reframing of T21 it gates (QUANTUM's
+  own Phase-5 proposal, Red-Team-adopted: exp-042's two columns are M²=1
+  and M²≈2.15–35.8 of the same scene; a crossover measured at M²≈10–20
+  against a real flashlight's own M²≈10²–10³ would answer T21's
+  contamination question with two sourceable numbers, replacing the
+  coherence-length route T21 has been blocked on for four iterations) —
+  identity-gate the high-M² endpoint against exp-042's own committed
+  `block_beam_corrected` bit-for-bit before any intermediate M² is
+  trusted. (7) **session-accumulated ocular dose disposition** (THERMO's
+  own scoped-down next step from exp-047 — radiant exposure J/cm² via
+  existing dwell figures, comparative order-of-magnitude only, not a
+  hazard-standard verdict) — cheap, not urgent. **Tier 2 (moderate
   cost):** design the new **T24 `ABSORB`-systematic sweep** (`SRC_X`
   moved clear of the x-damping band so the confound EM's own two Iteration-
   23 legs exposed does not recur), ~6–9 FDTD calls; the R3 resolution
@@ -1146,11 +1199,14 @@ continuous mode with checkpoints. The remaining [open] items below are
   WebFetch/T18 infrastructure gap); T19 (still blocked on T18/WebFetch, ten
   consecutive shift confirmations). **Program-level, flagged for Marsh's
   attention, not a work item**: the fix-docket-delivery pattern (a
-  claimed-complete item not fully delivered) has now recurred a SIXTH-PLUS
-  time in eight iterations (13, 14, 15, 17, 20, 21, 22) — the rate is not
-  decreasing despite Red Team's own repeated flags; the mechanical/
-  lint-style enforcement VISION SCIENCE proposed at Iteration 15 to catch
-  this class automatically remains unadopted, seven iterations later.
+  claimed-complete item not fully delivered) has now recurred a SEVENTH-
+  PLUS time in nine iterations (13, 14, 15, 17, 20, 21, 22, 23, and now
+  24 — this cycle's own sharpest instance, a residual overclaim surviving
+  inside the very NOTES.md written to fix Phase 2's original overclaim of
+  the same species) — the rate is not decreasing despite Red Team's own
+  repeated flags; the mechanical/lint-style enforcement VISION SCIENCE
+  proposed at Iteration 15 to catch this class automatically remains
+  unadopted, eight iterations later.
   Lower priority, inherited: **Retroactive wavelength-tagging and
   primary-source re-verification** (exp-036's RSA/spiropyran figures,
   exp-037's TPA-cascade/Soref-Bennett figures) — still blocked pending a
@@ -1191,15 +1247,16 @@ continuous mode with checkpoints. The remaining [open] items below are
   `NotImplementedError`); reconnecting the kernel to its original
   spiropyran empirical anchor at witness-relevant dim/night ambient
   (PHOTONICS/QUANTUM OPTICS, Iteration-15).
-- **[queued, deprioritized behind T13 per Red Team's Iteration-7
-  ruling]** docket #7: sourced witness-scenario parameter table +
-  glare/adaptation sidecar (zero runs) → Tier-W constraint-3 scoring.
-  The headline bench measurement itself is now the corrected, V-weighted
-  fallback-geometry C≈−0.7209 (exp-030 supersedes exp-024's own primary-
-  geometry −0.684/−0.686 citation) — but the WITNESS-scale extrapolation
-  this docket would score against is exactly what T13 shows is not yet
-  trustworthy; building the sidecar ahead of T13's reconciliation risks
-  publishing a Tier-W verdict on an unreconciled number.
+- [done 2026-08-19, panel Iteration 24] **docket #7 in full**: the
+  witness-scenario parameter table (Iteration 20/exp-043) and the
+  glare/adaptation sidecar (Iteration 24/exp-047) are both now closed.
+  This item's own original caution — that the WITNESS-scale extrapolation
+  the sidecar would score against is exactly what T13 shows is not yet
+  trustworthy — was resolved by scoping exp-047's entire headline to the
+  bench-scale surrogate explicitly, not by T13 itself closing (T13/T14
+  remain open; see exp-047's own record and Iteration-25 queue item 1/2
+  above). No Tier-W witness-scale verdict has been published; only a
+  labeled bench-scale surrogate result.
 - **[queued]** stage-10 temporal instrument (VISION's Iteration-2 Phase-5
   #2): TCSF bars pinned first (de Lange/Watson, sourced) — the last
   unmeasured perceptual axis (T3), gates constraint 4.

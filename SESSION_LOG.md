@@ -2,6 +2,86 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-19 (panel shift) — Iteration 24 complete (exp-047): the
+glare/adaptation Tier-W sidecar runs under Iteration 23's hardened,
+unconditional tripwire and CONFIRMS robustly — the established absorber
+clears a labeled bench-scale surrogate of Tier-W, with a Phase-5
+closed-form bound (PHOTONICS) showing no possible correction to the
+measured contrast can ever flip it — but Phase 5 finds the record's own
+most consequential defect inside the very document written to prevent
+it: this NOTES.md's own Hypothesis section carried a residual bare-
+"Tier-W" overclaim (VISION's catch), and MATERIALS independently found
+the headline's evidence base is drawn from a construction this program
+already named unrealizable at witness scale, sharper than the known
+bench/witness gap.
+
+**Pre-flight**: fresh container onboarding this shift (deps installed
+per the documented pip wrinkle). Read HANDOFF.md, README.md, PANEL.md,
+LOGBOOK.md in full (8758 lines pre-shift), PLAN.md's Current-state
+section, AGENTS.md, and SESSION_LOG.md's top two entries. Bench verified
+green: `--only 12346789` → 41/41 before any panel work began.
+
+**Iteration 24 — The Glare/Adaptation Tier-W Sidecar (exp-047,
+CONCLUDED this shift).** Lead: VISION SCIENCE, executing Iteration 23's
+own hardened, unconditional rule — this item MUST run this cycle or
+Checkpoint criterion 4 fires automatically. Composed Stiles–Holladay
+veiling luminance + CIE veiling-contrast dilution onto the already-
+established `graded_black_shell` absorber's measured contrast, scored
+against T2's frozen `C_thr(L)`. New machinery: `lab/glare_sidecar.py`,
+trust-suite stage 17 (6 identity gates, 17/17; full fast suite 58/58
+throughout). Phase 2 (five blind seats + Red Team): ruling proceed-
+with-mandatory-fixes, 7 items adopted. Two load-bearing catches: EM
+found the proposal's headline language contradicted its own bench-
+scale-only scope (fixed: every headline claim now carries an explicit
+surrogate label — "clears the bench-scale glare-diluted SURROGATE of
+Tier-W... NOT a witness-scale constraint-3 verdict") plus a citation
+error (exp-030 is Iteration 7's close, not Iteration 4); Red Team caught
+— missed by all five blind seats — that Tier-W's cued flashlight-holder
+observer requires the LAB bar, not the more lenient uncued FIELD bar,
+never disambiguated originally. Predictions committed structurally
+before the scoring run (`266d31e`, zero FDTD calls); results (`6ea2cb9`):
+4 CONFIRMED, 2 PARTIAL, 0 REFUTED. **Headline (P-G24-2) CONFIRMED,
+robustly**: PASS at all 36 grid points, LAB bar, worst-case margin
+~170×.
+
+**Phase 5 (six fresh blind seats, then Red Team audit): PROMISING**
+(4 PROMISING, 2 PARTIAL — MATERIALS/THERMO, each scoped to one open
+item in their own charter, neither finding a defect in the claim
+itself; Red Team's own independent verdict agrees, judged from source
+not vote count). **PHOTONICS proved a hard closed-form bound**: at the
+worst-case point the threshold is pinned at its photopic floor
+independent of C, so scaling `|C|` to its physical ceiling (1.0) only
+erodes the margin to 61×/246× — no possible future correction to the
+measured contrast (chromatic, fringe, or realizability-driven) can ever
+flip the headline. **MATERIALS' major finding**: the measured C is
+drawn from the self-similar-scaled `graded_black_shell` construction —
+the exact construction this program's own Iteration-7 record already
+names UNOBTANIUM at witness scale; a plausibly-realizable fixed-
+absolute-thickness variant has been proposed since Iteration 7 and
+never built or measured, at any scale — sharper than the already-known
+bench≠witness gap (T8/T13/T14), and independently confirmed by Red
+Team's own re-trace to source. **EM independently found** the headline
+grid's own `L_v/L_B` dilution ratio spans ~2.5×10⁴×–2.2×10⁹×, far
+outside the disability-glare literature's typical calibration range —
+doesn't threaten PASS (the formula's washout direction is fixed by
+construction) but tempers how the "170× robust margin" should be read.
+**VISION caught the cycle's own sharpest instance yet of its named
+fix-docket-delivery pattern**: this very NOTES.md's own Hypothesis
+section carried a residual bare-"Tier-W" line — the same overclaim
+Phase 2's own mandatory fix existed to prevent, recurring one level
+down inside the document written to fix it, never reaching code or
+`results.json`. Five cheap, zero-FDTD fixes applied same-shift (label,
+citation-provenance correction, two new idealization disclosures, an
+ocular-exposure scale anchor); the three FDTD/new-experiment items
+(formal `REALIZABILITY_MEMO.md` entry, T21 geometry-specific bound,
+fixed-thickness-variant build) correctly carried to Iteration 25, not
+rushed. **No Checkpoint criterion fires.** Full record: LOGBOOK.md
+Iteration 24; PLAN.md's Current-state and queue updated; next lead per
+rotation: VISION SCIENCE.
+
+Bench 58/58 throughout (41 fast + stage 17's 17 new gates). Commits:
+`266d31e` (predict), `6ea2cb9` (results), pushed to origin/main.
+
 ## 2026-08-19 (panel shift) — Iteration 23 complete (exp-046): the
 aperture-consistent single-coherent-mode beam check runs and its own
 advertised headline turns out to be an algebraic identity of existing

@@ -81,7 +81,23 @@ WITNESS_SCALE_REALIZABILITY = {
     "tier": "UNOBTANIUM (informal call, not a formal REALIZABILITY_MEMO.md entry)",
     "required_shell_thickness_m": (0.31, 0.92),
     "witness_radius_m": (0.5, 1.5),
-    "source": "Iteration 7 (exp-030) Phase 5, MATERIALS seat, informal call",
+    "source": (
+        "Iteration 7 (exp-030) Phase 5 -- MATERIALS' own Phase-2 review first "
+        "proposed this figure but stated it wrong (a unit-misread, "
+        "'~0.62-1.85m'); RED TEAM's Phase-5 audit caught and corrected it to "
+        "the 0.31-0.92m value used here (Iteration-24 Phase-5, MATERIALS'/"
+        "Red Team's own re-audit, provenance-corrected)."
+    ),
+    "construction_note": (
+        "C_MEASURED (this module) is drawn from the SELF-SIMILAR-SCALED "
+        "graded_black_shell construction (r_in/r_out both scale together) -- "
+        "the exact construction this realizability figure already names "
+        "UNOBTANIUM at witness scale (real ultra-black coatings scale by "
+        "FIXED ABSOLUTE thickness, the opposite law). A fixed-absolute-"
+        "thickness variant has been proposed (Iteration 7) but never built "
+        "or measured, at any scale, as of Iteration 24 (Iteration-24 Phase-5, "
+        "MATERIALS' major finding)."
+    ),
 }
 
 TIER_W_HEADLINE_LABEL = (
@@ -113,9 +129,23 @@ def stiles_holladay_veiling_luminance(e_lux: float, theta_deg: float) -> float:
     (Holladay 1926; Stiles 1929). Canonical validity range
     STILES_HOLLADAY_VALID_THETA_DEG (CIE 146:2002/road-lighting
     literature) -- NOT independently re-verified via WebFetch this cycle
-    (T18 blocked); flagged, not silently assumed valid outside that range
-    (the "fixed-gaze" scenario's own large-theta excursions are stated
-    idealizations, not claims)."""
+    (T18 blocked); flagged, not silently assumed valid outside that range.
+    Callers may evaluate outside it (both directions are un-enforced, not
+    silently safe): the "fixed-gaze" scenario's own LARGE-theta excursions
+    are stated idealizations (Iteration 24 Phase 1); its own SMALL-theta
+    end (P-G24-4 evaluates theta=0.5deg, below the 1.0deg floor) was an
+    undisclosed gap until Red Team's Iteration-24 Phase-5 audit caught it
+    -- physically the more dangerous direction, since L_v diverges as
+    theta->0 and the point-source assumption is weakest exactly there.
+
+    ACHROMATICITY NOTE (Red Team's Iteration-24 Phase-5 audit, elevating
+    PHOTONICS' finding): E here is treated as a flat photometric quantity
+    with no spectral term -- a SECOND, separate achromaticity assumption
+    from C_MEASURED's own V-weighting (this program has caught this exact
+    "achromatic by construction" overclaim pattern before, Iteration 20/
+    exp-043 Phase 5). Intraocular forward light scatter (the physical
+    mechanism behind veiling glare) is itself known to be wavelength-
+    dependent; not modeled here."""
     if theta_deg <= 0:
         raise ValueError(f"theta_deg must be > 0, got {theta_deg}")
     return 10.0 * e_lux / (theta_deg ** 2)
@@ -136,7 +166,20 @@ def veiled_contrast(c_measured: float, l_v_cdm2: float, l_b_cdm2: float) -> floa
     (Iteration 24): algebraically identical to C_measured*L_b/(L_b+L_v),
     obtained by adding L_v uniformly to both the object and flank
     luminance windows before taking Weber contrast -- gated bit-exact
-    against `veiled_contrast_direct` (trust-suite stage 17)."""
+    against `veiled_contrast_direct` (trust-suite stage 17).
+
+    EXTRAPOLATION-RANGE CAVEAT (EM's Iteration-24 Phase-5 finding): the
+    headline grid's own L_v/L_B ratio spans ~2.5e4x to ~2.2e9x -- the
+    Stiles-Holladay/CIE-family literature this relation is drawn from is
+    calibrated against road-lighting/automotive glare scenarios, where
+    glare-to-background ratios are typically small integers to low
+    hundreds, not 1e4-1e9. The formula's asymptotic washout (C_eff->0 as
+    L_v->infinity) is physically sound regardless (verified: this cannot
+    reverse sign or vanish, so it cannot flip a PASS to FAIL) -- but a
+    reported "robust margin" at these ratios is substantially a statement
+    about extrapolating this linear model far past its empirical support,
+    not fresh confirmation of the underlying physical claim. Not
+    independently re-verified via WebFetch this cycle (T18 blocked)."""
     return c_measured / (1.0 + l_v_cdm2 / l_b_cdm2)
 
 
@@ -164,7 +207,21 @@ def corneal_irradiance_wcm2(e_lux: float, efficacy_lm_per_w: float) -> float:
     luminous-efficacy constant docket #7's witness table already uses
     (exp-043, 300 lm/W, uncited). SINGLE-PASS instantaneous figure only --
     session-accumulated dose over multiple sweep passes is explicitly NOT
-    computed here, flagged as open (Red Team fix 5)."""
+    computed here, flagged as open (Red Team fix 5).
+
+    SCALE ANCHOR (THERMO's Iteration-24 Phase-5 finding, added same-shift):
+    for comparison, terrestrial solar irradiance is ~100 mW/cm^2 broadband
+    -- this module's ceiling-extreme figure (~18.4 mW/cm^2) is ~18% of
+    that, for a single-pass, worst-case-STACKED (max spill fraction x min
+    hold distance x max candela -- these do not co-occur by default)
+    near-field SPILL component, not direct beam viewing.
+
+    NOT A HAZARD ASSESSMENT: corneal irradiance ALONE does not establish
+    retinal hazard -- that depends on the source's angular subtense/
+    radiance (a diffuse spill source and a quasi-point source at the same
+    corneal irradiance are different hazard classes), which this function
+    does not model. No ANSI/IEC-class exposure-limit comparison is made
+    or implied anywhere in this module."""
     if efficacy_lm_per_w <= 0:
         raise ValueError(f"efficacy_lm_per_w must be > 0, got {efficacy_lm_per_w}")
     w_per_m2 = e_lux / efficacy_lm_per_w
