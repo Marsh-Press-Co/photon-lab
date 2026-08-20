@@ -208,11 +208,26 @@ def _C_full(res, r, article):
     return c["C"], c["C_empty"]
 
 
+def _zero_key(d):
+    """theta=0 was stored under different str() keys depending on which
+    job list produced it -- int 0 (from dg.FALLBACK_ANGLES, python's set()
+    union dedup keeps the first-inserted representation, an int) for
+    'empty'/'absorber_fixedabs'/'absorber_selfsim', float 0.0 (the hollow
+    article's own singleton angle tuple) for 'absorber_fixedabs_hollow'.
+    Both keys name the identical physical angle; look up whichever exists
+    rather than assume one format (found and fixed at Phase-4 fit time,
+    before any science number was produced -- not silently patched over)."""
+    for key in ("0", "0.0"):
+        if key in d:
+            return d[key]
+    raise KeyError(f"no theta=0 entry in {list(d.keys())}")
+
+
 def _C_theta0(res, r, article):
     g = dg.GEOM[r]
     data = res["block"][str(r)]["profiles"]
-    b_scene = np.array(data[article]["0.0"])
-    b_empty = np.array(data["empty"]["0.0"])
+    b_scene = np.array(_zero_key(data[article]))
+    b_empty = np.array(_zero_key(data["empty"]))
     c = amb.contrast_from_runs([b_scene], [b_empty], [1.0], dg.ABSORB,
                                 g["obj"][1], g["w_obj"], g["guard_out"], g["w_flank"])
     return c["C"]
