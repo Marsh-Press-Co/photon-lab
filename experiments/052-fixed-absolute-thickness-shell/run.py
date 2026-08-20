@@ -253,12 +253,27 @@ def run_fit():
         }
     out["C78_established"] = dg.C78_ABSORBER_ESTABLISHED
 
-    # P-1/P-2 verdicts, computed in code (house discipline, not hand-asserted)
+    # P-1/P-2 verdicts, computed in code (house discipline, not hand-asserted).
+    # NOTE (caught at fit time, before this cycle's conclusion was finalized):
+    # an earlier draft of this function scored P-1 against -0.7350/-0.7305 --
+    # stale bands carried over from phase1_proposal.md's ORIGINAL (pre-Phase-3)
+    # thresholds, not the actually-committed NOTES.md bands (-0.7255 CONFIRMED
+    # cutoff, C78 as the PARTIAL/REFUTED boundary). Fixed here to match the
+    # frozen prediction verbatim; non-load-bearing to this cycle's verdict
+    # (measured C clears -0.7255 by ~0.081, well outside either band's
+    # ambiguity zone) but a real R4-class defect, disclosed not silently
+    # left in the shipped scoring code.
+    C78 = dg.C78_ABSORBER_ESTABLISHED
+    P1_CONFIRMED_THRESHOLD = -0.7255
     if "156" in out:
         c156 = out["156"]["C_fixedabs"]
         cself156 = out["156"]["C_selfsim"]
-        out["P1_verdict"] = ("CONFIRMED" if c156 <= -0.7350 else
-                              "PARTIAL" if c156 <= -0.7305 else "REFUTED")
+        if c156 <= P1_CONFIRMED_THRESHOLD and c156 < cself156:
+            out["P1_verdict"] = "CONFIRMED"
+        elif c156 < C78:
+            out["P1_verdict"] = "PARTIAL"
+        else:
+            out["P1_verdict"] = "REFUTED"
         out["P1_c_fixedabs_156"] = c156
         out["P1_c_selfsim_156_corrected"] = cself156
         out["P1_deepening_vs_c78"] = out["C78_established"] - c156
@@ -270,6 +285,16 @@ def run_fit():
                              ("REFUTED" if c312 >= c156 else "PARTIAL")
         out["P2_c_fixedabs_312"] = c312
         out["P2_delta_156_to_312"] = c156 - c312
+
+    # P-3 (T14 verdict, 600nm-only, NOTES.md's committed logic)
+    if "P1_verdict" in out:
+        p1, p2 = out["P1_verdict"], out.get("P2_verdict")
+        if p1 == "REFUTED":
+            out["P3_verdict"] = "REFUTED"
+        elif p1 in ("CONFIRMED", "PARTIAL") and p2 != "REFUTED":
+            out["P3_verdict"] = "CONFIRMED"
+        else:
+            out["P3_verdict"] = "PARTIAL"
 
     res["fit"] = out
     save_results(res)
