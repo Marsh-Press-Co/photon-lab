@@ -70,8 +70,20 @@ def _G_for_g(lam_cells, gd, obliquity=True):
     (obliquity folded into the propagator matrix itself, then squared into
     `|E|^2` downstream), evaluated on `_geom_derived`'s own `r`/`obliquity`
     instead of exp-042's module-global `_R`/`_OBLIQUITY`. No caching (unlike
-    exp-042's own `_Gcache`) -- this module is called far fewer times per
-    geometry than exp-042's own dense theta sweep needed."""
+    exp-042's own `_Gcache`).
+
+    CORRECTION (Phase 5, Red Team mandatory-fix 2, THERMODYNAMICS' catch):
+    this docstring originally claimed the omission was justified because
+    this module "is called far fewer times per geometry than exp-042's own
+    dense theta sweep needed" -- FALSE, verified against exp-049's own
+    `run.py`: call counts are identical (36 cells x 3 functions x 9
+    N_SERIES-including-401 entries = 972 calls per geometry, both cycles).
+    The real reason caching was skipped is simply that it was not built --
+    a genuine, disclosed performance gap (contributing to this cycle's own
+    understated wall-clock, see NOTES.md Results), not a call-count
+    argument. Queued as a low-priority fix for any future geometry-
+    parameterized cycle, not applied here (Iteration 27's own Checkpoint
+    disposition: non-load-bearing to any scored prediction)."""
     k = 2.0 * np.pi / lam_cells
     G = np.exp(1j * (k * gd["r"] - np.pi / 4)) / np.sqrt(gd["r"])
     if obliquity:
