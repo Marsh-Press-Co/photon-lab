@@ -2,6 +2,115 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-20 (panel shift) — Iteration 27 complete (exp-050): the
+n-convergence audit re-run at exp-048's actual A=724/NY=1528 fallback
+geometry confirms the headline instrument-fidelity finding transfers
+cleanly (global max n\*=81, matching A=752) but REFUTES its own
+pre-registered tier-monotonicity prediction with two unpredicted 600nm
+violations — resolved at Phase 5 by Red Team's own direct execution,
+settling a real PHOTONICS-vs-QUANTUM/EM mechanism disagreement, plus two
+independently-caught disclosure gaps (a discarded run's uncounted compute
+cost; an undisclosed threshold breach at the sharpest-stakes cell's own
+angular neighbors).
+
+**Pre-flight**: fresh container onboarding this shift (deps installed per
+the documented pip wrinkle: numpy/scipy/matplotlib/pillow/autograd/fdtd
+first, then `pip install --no-deps ceviche`). Read PANEL.md, LOGBOOK.md in
+full (9634 lines pre-shift), PLAN.md's Current-state section, AGENTS.md,
+and SESSION_LOG.md's top two entries. Bench verified green:
+`--only 12346789` → 41/41 before any panel work began.
+
+**Iteration 27 — The n-Convergence Audit at the A=724 Fallback Geometry
+(exp-050, CONCLUDED this shift).** Lead: MATERIALS & METAMATERIALS
+(rotation), executing Red Team's Iteration-26 Phase-5 non-negotiable item
+(1) — a third consecutive deferral would have repeated this program's own
+named r=156 anti-pattern, this time for exp-049's own A=752-scoped n\*
+findings being cited at a different geometry without a cheap re-run.
+Desk-only re-generalization of exp-042's three `beam_divergence_*`
+functions to a geometry dict (exp-048 Block B's own precedent), reused at
+exp-048's `GEOM78` (A=724) fallback geometry, zero new FDTD calls. Phase 2
+(five blind seats + Red Team): unanimous support-with-changes, then
+PROCEED-WITH-MANDATORY-FIXES. Two independently-convergent Phase-2
+findings (PHOTONICS/EM's shared concern about the period-growth
+falsification clause; QUANTUM's separate grating-lobe-truncation
+mechanism) resolved by Red Team to the identical two coordinates
+(750nm/38°, 750nm/40°, FWHM=20°) — Red Team then **built the proposal's
+own machinery from prose and ran it through the full doubling series
+before Phase 3**, finding the exemption zone's own predicted violation
+occurring exactly as computed. Predictions frozen structurally before the
+scoring run (`7fa2258`, disclosing Red Team's own pre-check as
+cross-checkable, not authoritative); results (`291c6dd`, 1944/1944
+completeness-ledger records, 6225.3s): **7 CONFIRMED, 1 REFUTED
+(P-NCONV27-2), 1 informational cross-validation.** Headline CONFIRMED:
+global max n\* at GEOM78 stays **81**, matching A=752 exactly — closes
+the follow-up trigger's literal purpose. P-NCONV27-2 REFUTED: two
+unpredicted violations at 600nm, outside the pre-registered exemption
+zone, all three violating cells sharing `|C|`~10⁻⁴ (deep in the
+convergence criterion's own near-zero "exempted" regime). One self-caught,
+pre-result implementation bug (`n401`/`c401` field-name mismatch) fixed
+before any science number was produced.
+
+**Runtime erratum, self-caught before Phase 5 in a different sense than
+usual**: not a science bug, but a cost-disclosure gap THERMODYNAMICS'
+Phase-5 review independently found — the discarded first (buggy) run's
+crash site sits after both full sweeps complete, so its compute cost was
+comparably expensive but never counted; Red Team independently re-derived
+this from raw `git log` timestamps and confirmed true total cost ≈208
+minutes, not the disclosed ≈104.
+
+**Phase 5 (six fresh blind seats, then Red Team audit): PROMISING** (3
+PROMISING — PHOTONICS, MATERIALS, ELECTROMAGNETISM; 1 PROMISING-with-a-
+ruled-out-sub-claim — QUANTUM OPTICS; 2 PARTIAL — THERMODYNAMICS, VISION
+SCIENCE). **PHOTONICS proposed a specific mechanism** for the REFUTAL
+(the corrected propagator convention's signed cross-term is uniquely
+prone to near-zero sign crossings, unlike the original convention's
+strictly non-negative integrand) — **QUANTUM OPTICS and ELECTROMAGNETISM,
+independently, each re-ran the original convention at the same
+coordinates and found it shows the identical qualitative pathology**,
+just narrowly escaping the fixed absolute tolerance. **VISION SCIENCE
+independently mined the already-committed results and found the
+sharpest-stakes cell's immediate 2°-step angular neighbors at GEOM78
+actually exceed the perceptual threshold outright** — a breach absent at
+the old geometry, undisclosed until Phase 5 despite the tracked cell
+itself showing a reassuring 27×-headroom improvement.
+
+**Red Team's final audit resolved the PHOTONICS-vs-(QUANTUM+EM)
+disagreement by direct execution, not seat-counting** (`ba1c731`-class
+discipline, this cycle's commit `c653bc1`): ran the original-convention
+function itself through the full doubling series at all three violating
+coordinates plus a fourth, previously tier-masked cell — both conventions
+share a genuine, fast-settling destructive-interference null of the same
+angular integral; which one trips the fixed tolerance is a reproducible
+~1.9–2.3× magnitude coincidence, unexplained (Iteration 28's own top
+priority). Independently re-derived THERMODYNAMICS' and VISION's findings
+from primary sources (raw git log; both experiments' own committed
+`results.json` files) rather than trusting either seat's prose — both
+confirmed exact. Neither finding is load-bearing to any of the eight
+scored predictions; both fixed same-shift in `NOTES.md`'s Reading/Results
+sections and `design_geometry.py`'s corrected docstring. **Checkpoint
+criterion 4 does NOT fire** (all five criteria explicitly checked,
+criterion 4 scrutinized directly against both PARTIAL findings). **No new
+live thread opened** — folded into T21's existing entry (the same
+edge-diffraction-fringe mechanism, now shown to also govern
+`beam_divergence_*`'s own integrated quantity at a second geometry) with
+a new standing rule: n-convergence CONFIRMED certifies numerical
+stability only, never the underlying physical value's stability under a
+geometry change. Verdict: PROMISING. Full record: LOGBOOK.md Iteration 27;
+PLAN.md's Current-state and queue updated; next lead per rotation:
+ELECTROMAGNETISM.
+
+Bench 41/41 (`--only 12346789`) at pre-flight and re-verified after Phase
+4 (zero `lab/` file touched throughout, independently confirmed by
+MATERIALS' and Red Team's own checks). Commits: `9a9d0ed` (Phase-1
+proposal), five `0764a1e`/`46d7c6b`/`5cfb29c`/`aa27328` (Phase-2 blind
+critiques — four commits, one push batching two), `f8720da` (Phase-2 Red
+Team audit), `7fa2258` (Phase-3 synthesis + predictions frozen),
+`3139376`+`dc7170f` (Phase-4 implementation + a self-caught pre-result
+bugfix), `291c6dd` (results), six `39f606c`/`d2ea1a0`/`908e9f7`/
+`627282b`/`a90b25c`/`6aab317` (Phase-5 blind reviews), `c12dd20` (Phase-5
+Red Team audit), `c653bc1` (Phase-5 close-out fixes), pushed to
+origin/main.
+
 ## 2026-08-20 (panel shift) — Iteration 26 complete (exp-049): the
 `gaussian_angle_weights` n-convergence audit runs, confirming n=41 is
 genuinely under-converged for the coherent function at FWHM=20° (exp-046's
