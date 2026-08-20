@@ -2,6 +2,99 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-20 (panel shift) — Iteration 29 complete (exp-052): the
+21-iteration-deferred fixed-absolute-thickness `graded_black_shell` variant
+is built and measured for the first time — it deepens toward −1 as scale
+grows, the opposite of T13/T14's established wrong-direction shallowing —
+and two independent Phase-5 findings show that puzzle is relocated, not
+resolved, while a third opens a program-wide instrument-trust gap no prior
+cycle had found.
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle). Read PANEL.md, LOGBOOK.md in full (10208 lines
+pre-shift), PLAN.md's Current-state section, AGENTS.md, and SESSION_LOG's
+top two entries. Bench verified green: `--only 12346789` → 41/41 in 81s
+before any panel work began.
+
+**Iteration 29 — The Fixed-Absolute-Thickness `graded_black_shell`
+Variant's Own C (exp-052, CONCLUDED this shift).** Lead: THERMODYNAMICS
+(rotation), executing PLAN.md's LOCKED, UNCONDITIONAL Iteration-29
+trigger — MATERIALS' own idea, first queued Iteration 7, deferred 21
+iterations. 56 new FDTD calls, ~99 minutes total.
+
+**Phase 2's five blind seats (all support-with-changes) converged on real,
+non-overlapping concerns; Red Team's own audit found the load-bearing one
+none of them caught**: exp-030's own reused self-similar comparator
+construction was silently HOLLOW-core (no `pec_disk` call), the exact
+defect exp-031 fixed for a different diagnostic and never propagated back
+into the file exp-052's own comparator figures were drawn from. Phase 3
+accepted all nine mandatory fixes — PEC-cored both the new object and a
+re-measured comparator, corrected a citation, scoped a claim to 600nm-only,
+widened a falsifiable band — and, for one item (the coherent-vs-incoherent
+ambient-sum bridge gate's validity at this cycle's new geometry), explicitly
+disclosed it as **unresolved, not silently cleared**, judging a fresh
+re-implementation under this shift's time budget too error-prone to attempt
+cleanly.
+
+**Results, all five predictions CONFIRMED, 0 PARTIAL, 0 REFUTED** (17–21×
+their required margins — the cleanest prediction sweep in this program's
+history by that count): `C_fixedabs` deepens monotonically and
+substantially toward −1 (−0.72087 → −0.80668 → −0.84032 at r=78/156/312,
+600nm), while the re-measured, PEC-cored self-similar comparator reproduces
+T14's own established shallowing almost exactly (−0.72087 → −0.73046 →
+−0.73225, matching exp-030's own hollow-core figures to 4–5 significant
+digits — the core-fill correction changed nothing for that family either).
+The construction that was already this program's more realizable design
+lead (1.44µm fixed absolute thickness vs. the self-similar family's
+0.31–0.92m witness-scale divergence) is now shown to be optically better at
+scale too — `REALIZABILITY_MEMO.md` Entry 2's nine-iteration-old "Open"
+line closes.
+
+**Phase 5: unanimous PROMISING across six blind seats, Red Team affirms —
+but with four real, independently-verified findings that sharpen rather
+than simply celebrate the headline.** PHOTONICS and ELECTROMAGNETISM,
+independently, found the deepening rate decelerates (residual ratio 0.69
+then 0.83, short of the naive 1/r halving) and a same-shift sqrt-law fit
+gives C_∞≈−0.87 to −0.88 — short of the true −1 geometric-shadow ceiling by
+0.12–0.16: **T14's puzzle is relocated to a sharper question, not fully
+resolved.** QUANTUM OPTICS traced the bridge-gate concern to its root and
+found it is far larger than exp-052-local: exp-029's own coherent-vs-
+incoherent gate validated a structurally different, asymmetric weak-probe
+configuration, meaning **no geometry this program has run, in 29
+iterations, has ever had the actual equal-amplitude ambient-sum instrument
+this program uses for every constraint-3 citation empirically bridge-
+gated** — new live thread **T25**, program-wide. THERMODYNAMICS, reading
+the record cold as a fresh Phase-5 instance, caught that the Phase-1
+proposal's own original P-5 (a THERMO energy sidecar) was silently
+overwritten at Phase 3 by an unrelated core-fill check reusing the same
+label — an entire deliverable never computed, missed by every phase of the
+cycle that actually produced the committed record. Both gaps are now
+disclosed explicitly in NOTES.md and LOGBOOK.md, with two new binding
+Checkpoint-4 tripwires for future citations; **all five Checkpoint criteria
+were checked explicitly and none fire this cycle** — both gaps were caught
+and surfaced within this same Phase-5 audit, before LOGBOOK/PLAN ever
+recorded the cycle as closed.
+
+**Standing-bar flag, actioned not just noted**: this cycle is
+THERMODYNAMICS' own `h_eff` re-derivation's fifth consecutive deferral
+(25–29) — per this program's own prior ruling, **now LOCKED as an
+unconditional Iteration-31 build trigger** in PLAN.md, on the same terms as
+the Iteration-29/30 slots.
+
+Bench 41/41 (`--only 12346789`) at pre-flight; zero `lab/` file touched
+throughout — all new machinery lives in `experiments/052-...`. Commits:
+`ff10360` (Phase-1 proposal), `4dcd135`/`508a400`/`578fc14` (five Phase-2
+blind critiques), `4a819ba` (Phase-2 Red Team audit + Phase-3 synthesis +
+predictions frozen before any run), `c2cd110`/`bb9a9ba`/`c0ef36d`/`73d73c7`
+(Phase-4 results, including a self-caught and disclosed R4-class scoring-
+band defect), `f2fa3ab`/`a744e01`/`9181249`/`add4e8f` (six Phase-5 blind
+reviews), `3ea1b71` (Phase-5 Red Team audit + mandatory disclosure fixes),
+plus the LOGBOOK.md Iteration 29 record, T25 live-thread entry, T14
+addendum, `REALIZABILITY_MEMO.md` Entry 2 closure, and PLAN.md's
+Iteration-29 close-out with the new Iteration-31 lock, all pushed to
+origin/main. Verdict: PROMISING. Next lead per rotation: **QUANTUM
+OPTICS**.
+
 ## 2026-08-20 (panel shift) — Iteration 28 complete (exp-051): the cycle's
 own Phase-1 predictor is killed at the desk by four independent blind seats
 before any run, QUANTUM OPTICS' replacement mechanism is adopted mid-cycle

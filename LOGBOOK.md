@@ -575,6 +575,27 @@ measured them here):**
   PHOTONICS' own Phase-5 pick — a multi-point cored-absorber r-sweep
   (r≈78,110,156,220,312, fixed standoff) — is the pre-registered first
   test, queued for Iteration 9.
+  **Iteration 29 (exp-052): the wrong-direction shallowing is shown to be
+  a property of the self-similar construction specifically, not of
+  black-shell absorbers generally — but the puzzle is RELOCATED, not
+  resolved.** A fixed-absolute-thickness variant (`r_in=r_out−48`,
+  `sigma_max=0.5` held fixed, not rescaled) deepens monotonically and
+  substantially toward −1 (C: −0.72087→−0.80668→−0.84032 at r=78/156/312,
+  600nm) — the structurally correct direction, unlike the self-similar
+  family's negative sqrt-law slope. The re-measured self-similar
+  comparator (this time PEC-cored, not exp-030's own hollow construction)
+  reproduces T14's own shallowing almost exactly (−0.72087→−0.73046→
+  −0.73225), confirming T14 was never a core-fill artifact. **But two
+  independent Phase-5 findings (PHOTONICS, ELECTROMAGNETISM), verified
+  by Red Team, show the fixed-absolute family's own asymptote is not yet
+  shown to reach −1 either**: the deepening rate decelerates (residual
+  `1+C` shrinks by ratio 0.69 at r=78→156, only 0.83 at r=156→312 — well
+  short of the naive 1/r_out halving the mechanism argument implies), and
+  a same-shift (not pre-registered) sqrt-law fit gives C_∞≈−0.87 to
+  −0.88, short of −1 by 0.12–0.16. No formally committed `C(z/z_R)`
+  extrapolation exists yet for this family (T8's own standing
+  requirement) — ranked #3 for Iteration 31+. Full record: LOGBOOK.md
+  Iteration 29; `experiments/052-fixed-absolute-thickness-shell/`.
 - **T15 — g₀'s ~15% window-integrated chord-model deficit (opened
   Iteration 10, exp-033 Phase 5, PHOTONICS).** The σ(I) OFF-state ambient-
   contrast calibration constant g₀≈0.6896 (600nm) sits ~15% below the
@@ -1437,6 +1458,49 @@ measured them here):**
   channel. Queued for a dedicated ABSORB sweep (Iteration-24 Tier-2 #4,
   `SRC_X` moved clear of the x-damping band so the confound EM's own two
   legs exposed does not recur) — not urgent, no verdict threatened.
+- **T25 — the ambient-sum instrument's coherent-vs-incoherent bridge gate
+  has never validated the configuration it is actually used in, at any
+  geometry this program has run (opened Iteration 29, exp-052, QUANTUM
+  OPTICS' Phase-5 catch, Red-Team-verified and elevated to program scope).**
+  Every constraint-3 `C` citation this program has ever issued rests on
+  `lab/ambient.py`'s incoherent sum: nine separate, EQUAL-amplitude
+  single-source FDTD runs, combined post hoc as intensities
+  (`add_line_source(..., amplitude=1.0)`, once per angle — verified by
+  grep across every experiment in this repo that uses the instrument).
+  The only empirical license for treating that approximation as valid —
+  `experiments/029-coherent-superposition-bridge-gate`'s own stage-11
+  cross-term measurement (Iteration 6, +0.0224% aggregate, 126–152× below
+  its own Cauchy-Schwarz ceiling) — tested a **structurally different**
+  configuration: one strong on-axis beam (amplitude=1.0) plus one WEAK
+  off-axis probe (`amplitude=√AMP_REL`, `AMP_REL=2×10⁻⁴`, ≈0.01414) on a
+  beam-scene object, injected simultaneously in one `Sim`. Exp-029's own
+  small ceiling is a direct consequence of that amplitude asymmetry — it
+  places no bound on the cross-term between (up to nine) EQUAL-amplitude
+  sources, the actual object every `C` value in this program's history is
+  built from. **No geometry this program has ever run — including r=78,
+  previously believed validated — has had the real instrument's
+  cross-term empirically bridge-gated.** Caught while reviewing exp-052's
+  own large, clean result (a 21-iteration-deferred realizability finding,
+  T13/T14 §, above) — the size and cleanness of that effect does NOT
+  bound this thread's risk (VISION's own Phase-5 framing, Red-Team-
+  adopted: "elevated stakes, not elevated measured probability" — a
+  contamination artifact at the scale exp-029 measured could not explain
+  a result this large, but exp-029 never measured the artifact's scale
+  for the actual instrument in the first place). Iteration 6's own
+  analytic incoherent-ensemble-limit result (exactly zero mean cross-term,
+  independent of object radius) is a phase-averaged/ensemble statement,
+  not a finite-sample bound on any one specific 9-angle set at one
+  specific geometry — does not substitute for an empirical gate. **Two
+  Checkpoint-4 tripwires adopted (Red Team, Iteration 29 Phase 5):** any
+  future citation of a `lab/ambient.py` `C` value asserting the
+  incoherent-sum approximation is "empirically bridge-gated," without
+  naming this amp_rel/equal-amplitude distinction, is a retroactive
+  criterion-4 trigger; likewise any future citation of exp-052 implying a
+  THERMO energy sidecar was computed for it (none was — see Iteration 29's
+  own record). Ranked #1 (near-unanimous, 5 of 6 exp-052 Phase-5 seats)
+  for Iteration 31+: a bridge-gate rebuild against the actual
+  equal-amplitude N9 configuration, reusing suite stage 11's existing
+  field-identity gates (QUANTUM's own concretely-scoped proposal).
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -10206,3 +10270,239 @@ zero-information convention-identity baseline).
 record: `experiments/051-phase-corrected-difficulty-predictor/` — Phase-1
 proposal, five blind Phase-2 critiques, Phase-2 Red Team audit, Phase-3
 synthesis, NOTES.md, six blind Phase-5 reviews, Phase-5 Red Team audit.
+
+## Iteration 29 — The Fixed-Absolute-Thickness `graded_black_shell` Variant's Own C (exp-052) — 2026-08-20
+
+*Runner: cloud panel shift. Lead: THERMODYNAMICS (rotation), executing
+PLAN.md's LOCKED, UNCONDITIONAL Iteration-29 trigger — MATERIALS' own idea,
+first queued Iteration 7, re-ranked without being reached at Iterations
+25–28 (a 21-iteration span), granted unconditional status by Red Team at
+Iteration 28 Phase 2, re-verified intact three independent ways at Phase 5.
+Realizability/instrument-construction cycle. T1 escape route: NONE. 56 new
+FDTD calls, ~99 minutes.*
+
+**Headline: the fixed-absolute-thickness construction — always the more
+realizable ask — is now shown, for the first time, to also be optically
+better at scale, reversing rather than merely avoiding T13/T14's
+wrong-direction shallowing. Two independent Phase-5 findings show the
+puzzle is relocated, not fully resolved; a third opens a program-wide
+instrument-trust gap no prior cycle had found.**
+
+### PHASE 1 — PROPOSE
+
+THERMODYNAMICS proposed building `r_in(r_out)=r_out−48` (fixed absolute
+shell thickness, held at the r=78-native 48 cells) with `sigma_max=0.5`
+held fixed (not rescaled by κ, unlike exp-030's self-similar family) — the
+literal "same real coating, bigger substrate" instrument-level statement of
+MATERIALS' own realizability claim. r=78 is a zero-cost identity check
+(coincides exactly with the established anchor); r=156 mandatory; r=312
+cost-gated (pilot first, per exp-030's own 3.87h/37-run precedent).
+Falsifiable predictions targeted T13/T14 directly: does removing the
+self-similar family's growing-absolute-thickness confound change whether C
+deepens or shallows with scale. Realizability arithmetic: 1.44µm thickness,
+inside the cited CNT-forest "few-µm" range — PLAUSIBLE, not PUBLISHED.
+
+### PHASE 2 — CRITIQUE · five blind seats, then Red Team
+
+All five seats returned **support-with-changes**, no outright opposition,
+five distinct, non-overlapping concerns:
+
+- **PHOTONICS**: the single-λ=600nm scope can't license P-3's implied
+  program-general T14 verdict — the mechanism argument is itself
+  wavelength-dependent (1.92λ–3.2λ swing at fixed 1.44µm across this
+  program's standard 3λ sweep).
+- **MATERIALS**: §9's realizability note checked thickness against the
+  cited CNT-forest range but never converted `sigma_max=0.5` into an
+  absorption coefficient/e-folding length to check against the SAME
+  citations — computed independently: τ_shell/thickness = 1/60nm, no
+  primary citation exists to compare it against.
+- **ELECTROMAGNETISM**: the reused domain-construction claim holds for
+  `PLANE_DX`/`r_out` but the core (`r_in`) grows to dominate the object at
+  large κ (0.85 at r=312) — a possible interior-cavity/resonant-coupling
+  risk the proposal's own mechanism argument doesn't address.
+- **QUANTUM OPTICS**: the coherent-vs-incoherent ambient-sum bridge gate
+  (exp-029's stage-11 idiom) was only ever validated at shell-fraction
+  61.5% (r=78, where fixed-absolute and self-similar coincide) — untested
+  at this cycle's own 30.8%/15.4% fractions.
+- **VISION SCIENCE**: P-2's r=312 falsifiable band (0.0010) is comparable
+  to or smaller than T16's own measured angular-quadrature+domain
+  uncertainty budget (7.80×10⁻⁴ at r=156) — r=312 has never had any
+  quadrature-convergence check at all.
+
+**Red Team's audit (everything): PROCEED-WITH-MANDATORY-FIXES, 9-item
+docket.** Independently verified all five as REAL and LOAD-BEARING (none
+cosmetic/overstated) and found the single most consequential defect
+itself, missed by all five: `experiments/030-scale-bridge/run.py::
+build_ambient`'s own `"absorber"` branch calls only `graded_black_shell`,
+**no `pec_disk`** — the reused self-similar comparator (and, by the same
+code path, exp-052's own naive reuse) would have been HOLLOW-core, the
+exact defect `experiments/031-ripple-core-reconciliation` diagnosed and
+fixed for a different, single-angle diagnostic and never propagated back
+into exp-030's own committed `results.json` — the file exp-052's own
+comparator figures were drawn from. Also caught: a transcription error
+(§8 cited `C78=−0.7211`; the actual `C78_ESTABLISHED` value is
+−0.7208684660449545, rounds to −0.7209 — R4-pattern, non-load-bearing to
+the scored gate); and that the "mandatory" R-gate re-check bears on
+flat-wall reflectance only, providing zero evidence on the core-fill
+question.
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All nine items accepted — six as specified or via Red Team's own offered
+cheaper alternative (PEC-core the new AND comparator objects; correct the
+C78 citation; scope P-3 to 600nm-only; add the e-folding length to §9;
+widen P-2's r=312 band to 2×T16's budget; state the R-gate's evidentiary
+limits explicitly), one via a **Director-level redesign with reasons
+stated** (Red Team's own proposed `radial_absorbed_power` ledger check was
+replaced with a cheaper, better-targeted PEC-cored-vs-hollow `C`
+comparison at θ=0, using the already-trusted N9 instrument — because
+`experiments/031/run.py::run_thermo` carries a live `NotImplementedError`
+documenting that no validated `box`/`ref` convention exists for a
+box-ledger measurement on this ambient scene class), and one — the
+coherent-vs-incoherent bridge gate (QUANTUM's item) — **explicitly
+disclosed as an open, unresolved scope limitation, not silently cleared**:
+re-implementing exp-029's bespoke cross-term measurement for a new
+ambient-scene object under this shift's time budget was judged too
+error-prone to attempt cleanly.
+
+New design: `absorber_fixedabs` (PEC-cored, `r_in=r_out−48`,
+`sigma_max=0.5`) vs. a re-measured `absorber_selfsim` comparator
+(PEC-cored, exp-030's own self-similar formula, NOT read from exp-030's
+own hollow-core `results.json`), plus a θ=0-only `absorber_fixedabs_hollow`
+core-fill check, all at r=156 (mandatory) and r=312 (cost-gated). N9
+fallback angle set, 600nm, `PLANE_DX/ABSORB/TAPER` reused verbatim from
+`experiments/030-scale-bridge`. Predictions P-0 through P-5 committed to
+git (`4a819ba`) before any FDTD run.
+
+### PHASE 4 — TEST
+
+Bench 41/41 (`--only 12346789`) pre-flight. P-4 (R-gate): `R_coat=
+−2.88×10⁻⁷`, CONFIRMED. r=156 block: 28 runs, 555.1s. r=312 pilot: one
+run, 656.3s (est. 76.6 min full leg) — within budget given this cycle's
+continuous-background nature (exp-030's own r=312 precedent was 3.87h/37
+runs); full r=312 leg run: 28 runs, 5333.3s (~89 min). A theta=0 key-format
+bug (`"0"` vs `"0.0"`, depending on which job list produced the entry) was
+caught by the fit stage's own `KeyError` before any science number was
+produced, fixed and disclosed in code. Separately, a real R4-class defect
+was self-caught before the cycle's conclusion was finalized: `run_fit`'s
+P-1 scoring initially used stale bands (−0.7350/−0.7305, carried over from
+an intermediate draft, not the actually-committed NOTES.md bands of
+−0.7255/C78) — fixed; non-load-bearing to the verdict (measured C clears
+either band by a wide margin) but disclosed, not silently shipped.
+
+**Results** (all five scored predictions, computed in code):
+
+| r_out | C_fixedabs | C_selfsim (PEC-cored, re-measured) |
+|---|---|---|
+| 78 (identity) | −0.72087 | −0.72087 |
+| 156 | −0.80668 | −0.73046 |
+| 312 | −0.84032 | −0.73225 |
+
+**P-0: CONFIRMED** (identity, code-only). **P-1: CONFIRMED**, wide margin
+(−0.80668 vs. required ≤−0.7255, and deeper than the corrected self-similar
+comparator). **P-2: CONFIRMED**, wide margin (deepens 0.0336 from r=156 to
+312, vs. the required ≥0.00156 widened band — 21.6× the threshold). **P-3
+(the T14 verdict, 600nm-only): CONFIRMED** — the fixed-absolute-thickness
+construction does NOT reproduce T14's shallowing; it shows the opposite,
+substantial, monotonic deepening. **P-4 (R-gate): CONFIRMED. P-5
+(core-fill/T9-generalization check): CONFIRMED at BOTH r=156 (ratio 0.692,
+Δ=1.1×10⁻⁶) and r=312 (ratio 0.846, Δ=1.1×10⁻⁶)** — T9's core-incidental
+null generalizes cleanly to more than double its previously-tested ratio
+(0.385), in both directions of sign. The re-measured self-similar
+comparator matches exp-030's own established hollow-core figures to 4–5
+significant digits at both r=156 (−0.73046 vs. −0.730455) and r=312
+(−0.73225 vs. −0.732254) — the core-fill correction made essentially zero
+difference for that family either, an independent third confirmation of
+T9's null (alongside exp-027 and exp-031) at the self-similar family's own
+fixed ratio (0.6154). **All 5 scored predictions CONFIRMED, 0 PARTIAL, 0
+REFUTED** — the cleanest prediction sweep in this program's history by
+that count.
+
+### PHASE 5 — REVIEW · six fresh seats, then Red Team audit
+
+Six independent, convergent, non-overlapping findings, every one
+independently re-verified by Red Team against the actual code/data (not
+prose):
+
+- **PHOTONICS**: the deepening rate DECELERATES — residual `1+C` shrinks
+  by ratio 0.69 (r=78→156) but only 0.83 (r=156→312), well short of the
+  naive 1/r_out halving the mechanism implies — the same qualitative
+  signature that historically preceded T14's own original discovery.
+  Ranked #1: a cheap 450/750nm rerun at r=156, citing three program
+  precedents (R2, T21, the Iteration-19 c*(λ) finding) for near-field
+  channels behaving coincidentally at exactly 600nm.
+- **ELECTROMAGNETISM**: fitting `C=C_∞+B√(z/z_R)` to the fixed-absolute
+  family's own 3 points gives `C_∞≈−0.87` to `−0.88` — short of the −1
+  geometric-shadow ceiling by 0.12–0.16, though `B` is now the structurally
+  correct sign (positive), unlike the self-similar family's known-negative
+  slope. T14's puzzle is RELOCATED, not resolved.
+- **QUANTUM OPTICS**: the bridge-gate concern (Phase 2) sharpens into a
+  program-wide finding — see new live thread **T25**, above.
+- **THERMODYNAMICS**: the original Phase-1 P-5 (THERMO sidecar) was
+  silently overwritten at Phase 3 by an unrelated core-fill check reusing
+  the same label — an entire missing measurement, not a drifted number,
+  and the lead seat's own charter deliverable.
+- **VISION SCIENCE**: the aggregate `C` metric structurally cannot
+  distinguish "deeper shadow" from "wider complete-shadow extent" — the
+  mechanism narrative makes a spatial claim the scored number can't verify
+  on its own. Independently arrives at "elevate, don't discount" for the
+  bridge-gate concern via the correct framing (elevated stakes, not
+  elevated measured probability).
+- **MATERIALS**: realizability tier confirmed to stay PLAUSIBLE-not-
+  PUBLISHED; the 60nm e-folding length remains uncited (T18's WebFetch
+  block, unaddressed).
+
+**Red Team's audit (everything): PROMISING.** All five findings confirmed
+real and load-bearing; two elevated beyond any single seat's own framing —
+the bridge-gate gap (§1c/§2a: "no geometry this program has ever run has
+had the actual instrument empirically bridge-gated," not merely
+exp-052-local) and the P-5 gap (§1d/§2b: Red Team's own Iteration-29
+Phase-2 recommendation to relabel the original P-5 was never explicitly
+actioned either way — a process gap compounding the content gap). **All
+five Checkpoint criteria checked explicitly: NONE fire.** Criterion 4
+scrutinized directly and at length against both gaps — neither is a
+constraint quietly dropped nor an actively-asserted unfalsifiable claim,
+and both are caught and disclosed within this same Phase-5 audit, before
+LOGBOOK/PLAN ever recorded the cycle as closed (this program's own
+established practice, Iterations 7/8/27/28). **Two new binding tripwires
+adopted** (see T25, above, and the P-5 disclosure now in `NOTES.md`).
+
+**Standing-bar flag, ahead of the ranked list**: THERMODYNAMICS' own
+`h_eff` re-derivation (exp-043 ON-endpoint, exp-045 dose-accumulation) was
+named at four consecutive closes (25–28) without being reached; this cycle
+(29) is the fifth deferral — per this program's own explicit prior ruling
+(the r=156/`graded_black_shell` precedent), this is no longer a
+competitive ranked item. **Locked as an unconditional Iteration-31 build
+trigger** (see PLAN.md).
+
+**Ranked priorities beyond the two already-locked slots (Red Team's
+reconciliation of all six seats):** (1) the coherent-vs-incoherent
+bridge-gate revalidation against the actual equal-amplitude N9
+configuration (5 of 6 seats ranked #1/#2; T25). (2) The λ-generalization
+run (450/750nm, r=156, both families) — 3 of 6 seats. (3) A formally
+committed `C(z/z_R)` extrapolation fit for the fixed-absolute family, with
+pre-registered bands on `C_∞` vs. −1 (EM #1, PHOTONICS #2) — resolves
+whether the 0.12–0.16 shortfall is real or a 3-point-fit artifact. (4) The
+genuine FDTD `ABSORB` sweep at GEOM78 — four straight cycles unrun (26–29),
+one deferral from meeting the same unconditional bar just applied to
+`h_eff`. (5) MATERIALS' absorptivity/mechanism literature check
+(T18-dependent). (6) A targeted N9-vs-N17 angular-quadrature check on the
+opaque-absorber article class (new this cycle, VISION) — T16's budget has
+only ever been measured on a near-null σ(I) article. (7) Extend the
+core-fill check to the full N9 sweep, not just θ=0. (8) QUANTUM's
+grating-lobe/array-factor n* criterion for `beam_divergence_coherent`
+(carried unchanged from Iteration 28).
+
+Bench 41/41 at pre-flight; zero `lab/` file touched throughout (all new
+machinery lives in `experiments/052-.../`). `REALIZABILITY_MEMO.md` Entry
+2's own nine-iteration-old "Open" line is CLOSED this cycle, with the
+sharpened absorptivity question folded in as its own next open item.
+Commits: `ff10360` (Phase-1), `4dcd135`/`508a400`/`578fc14` (five Phase-2
+blind critiques), `4a819ba` (Phase-2 Red Team audit + Phase-3 synthesis +
+predictions frozen), `c2cd110`/`bb9a9ba`/`c0ef36d`/`73d73c7` (Phase-4
+results), `f2fa3ab`/`a744e01`/`9181249`/`add4e8f` (six Phase-5 blind
+reviews), `3ea1b71` (Phase-5 Red Team audit + mandatory disclosure fixes).
+**Verdict: PROMISING.** Next lead per rotation: **QUANTUM OPTICS**. Full
+record: `experiments/052-fixed-absolute-thickness-shell/` — Phase-1
+proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
+synthesis, NOTES.md, six Phase-5 blind reviews, Phase-5 Red Team audit.

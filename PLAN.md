@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-20, panel Iteration 28)
+## Current state (2026-08-20, panel Iteration 29)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -1417,19 +1417,56 @@ continuous mode with checkpoints. The remaining [open] items below are
   that run's own stage mark). **No Checkpoint criterion fires** (all five
   checked; criterion 4 scrutinized directly against both defects). Verdict:
   PROMISING. Full record: LOGBOOK.md Iteration 28.
-- **[LOCKED — panel Iteration 29, UNCONDITIONAL, lead: THERMODYNAMICS
-  (rotation)]** **Build and measure the fixed-absolute-thickness
-  `graded_black_shell` variant's own `C`** — MATERIALS' item, granted an
-  unconditional trigger by Red Team at Iteration 28 Phase 2 and re-verified
-  intact three independent ways at Phase 5. **Unconditional: not contingent
-  on Iteration 28's findings, NOT subject to a further ranked-list
-  competition.** First queued Iteration 7; re-ranked without ever being
-  reached at 25, 26, 27, 28 — a 21-iteration span, well past the
-  4-deferral bar that triggered the r=156 precedent's own unconditional
-  lock at Iteration 10. The last three closes softened a correctly-
-  adjudicated finding back into ordinary ranked-item prose one level down;
-  this entry's "unconditional" language is binding and must not be reduced
-  again.
+- [done 2026-08-20, panel Iteration 29, cloud panel shift] **exp-052 the
+  fixed-absolute-thickness `graded_black_shell` variant's own `C`** —
+  executed PLAN.md's 21-iteration-deferred unconditional Iteration-29
+  trigger (MATERIALS' item, first queued Iteration 7). Built `r_in(r_out)=
+  r_out−48` (fixed absolute shell thickness, `sigma_max=0.5` held fixed,
+  not rescaled), PEC-cored per a Red Team Phase-2 catch (exp-030's own
+  reused comparator construction was silently HOLLOW — the exact defect
+  exp-031 fixed for a different diagnostic, never propagated back), and a
+  re-measured (also PEC-cored) self-similar comparator, 56 new FDTD calls.
+  **Result: the fixed-absolute family DEEPENS monotonically and
+  substantially toward −1** (C: −0.72087→−0.80668→−0.84032 at
+  r=78/156/312, 600nm) **— the OPPOSITE of T13/T14's established
+  wrong-direction shallowing** — while the re-measured self-similar
+  comparator reproduces T14's own shallowing almost exactly
+  (−0.72087→−0.73046→−0.73225, matching exp-030's own hollow-core figures
+  to 4–5 significant digits — the core-fill correction changed nothing for
+  THAT family either). All 5 scored predictions (P-0 through P-5)
+  CONFIRMED, 0 PARTIAL, 0 REFUTED, margins 17–21× their required
+  thresholds — the cleanest prediction sweep in this program's history by
+  that count. The construction that was already the more realizable ask
+  (1.44µm fixed absolute thickness vs. the self-similar family's
+  0.31–0.92m witness-scale divergence) is now also shown to be optically
+  better at scale — `REALIZABILITY_MEMO.md` Entry 2's nine-iteration "Open"
+  line is CLOSED. **But two independent Phase-5 findings (PHOTONICS,
+  ELECTROMAGNETISM), Red-Team-verified, show T14's puzzle is RELOCATED, not
+  resolved**: the deepening rate decelerates (residual ratio 0.69 then
+  0.83, short of the naive 1/r halving); a same-shift sqrt-law fit gives
+  C_∞≈−0.87 to −0.88, still short of −1 by 0.12–0.16 — no formally
+  committed `C(z/z_R)` extrapolation exists yet for this family (T8's own
+  standing requirement). **A third finding (QUANTUM OPTICS) opens new live
+  thread T25, program-wide, not exp-052-local**: the coherent-vs-incoherent
+  ambient-sum bridge gate has never empirically validated the actual
+  equal-amplitude N9 configuration `lab/ambient.py` uses, at ANY geometry
+  this program has run in 29 iterations — exp-029's own gate tested a
+  structurally different, asymmetric weak-probe configuration. **A fourth
+  finding (THERMODYNAMICS): the Phase-1 proposal's own original P-5 (a
+  THERMO energy sidecar) was silently overwritten at Phase 3 by an
+  unrelated core-fill check reusing the same label** — an entire
+  deliverable never computed, not a drifted number; caught by no Phase-2
+  seat, no Phase-3 synthesis, no Phase-4 fit — only a fresh Phase-5
+  THERMODYNAMICS instance, reading the record cold. Both gaps disclosed in
+  `NOTES.md` and LOGBOOK.md's Iteration 29 entry with two new binding
+  Checkpoint-4 tripwires; neither fires this cycle (both caught and
+  disclosed before close, per this program's own established practice).
+  All five Checkpoint criteria checked explicitly: none fire. **Standing-
+  bar flag**: this cycle is THERMODYNAMICS' own `h_eff` re-derivation's
+  fifth consecutive deferral (25–29) — per this program's own prior ruling,
+  automatically LOCKED to Iteration 31, below, not re-ranked. Verdict:
+  PROMISING. Next lead per rotation: QUANTUM OPTICS. Full record:
+  LOGBOOK.md Iteration 29.
 - **[LOCKED — panel Iteration 30, UNCONDITIONAL]** **Build the stage-10
   temporal instrument** — the joint constraint-3/4 staircase-σ(t)
   validation run composing exp-038's kinetics `n(t)`, exp-039's timing
@@ -1444,37 +1481,66 @@ continuous mode with checkpoints. The remaining [open] items below are
   exist; PANEL.md's own metrics table has named this instrument, unbuilt,
   since Iteration 1. **Unconditional, not subject to further ranked-list
   competition.**
-- **[queued — ranked for Iteration 31+ / alongside the two locked slots,
-  per Red Team's Iteration-28 reconciliation of all six seats]** (1) **The
-  genuine FDTD `ABSORB` sweep at GEOM78** — near-unanimous (four seats'
-  top 2–3), carried unrun across Iterations 26/27/28, and sharpened by
-  exp-051's own idealization 6: the entire alias-lattice result is a
-  statement about the analytic propagator's *internal* consistency at
-  GEOM78, never cross-checked against FDTD there at any n. **Flagged as
-  itself approaching unconditional-trigger territory if deferred again.**
-  (2) **QUANTUM's grating-lobe/array-factor n\* criterion for
-  `beam_divergence_coherent`**, scored against the 72 `coherent` rows
-  exp-051 already computed and labeled, using exp-046's validated
-  zero-free-parameter closed form — ranked **ahead of** EM's complementary
-  off-diagonal alias extension on evidence, since the linear-correction
-  route is already shown to recover only 0.1–48% at the cells that matter;
-  EM's construction remains a cheap secondary probe. (3)
-  **THERMODYNAMICS' overdue `h_eff` re-derivation** (exp-043 ON-endpoint,
-  exp-045 dose-accumulation) — named at four consecutive closes (25, 26,
-  27, 28) without being reached, **the identical deferral count that
-  triggered r=156's unconditional lock**; per Red Team, a fifth deferral
-  meets this program's established bar for an unconditional trigger and
-  must not pass as an ordinary re-ranking. (4) **VISION's sub-degree
-  (0.25–0.5° step) angular sweep across 36°–40° at 750nm/FWHM=2°/GEOM78**
-  — carried from Iterations 27/28, now doubly motivated by exp-051's own
-  idealization-3 disclosure (those same three FWHM=2° cells are exactly
-  where the `|C(2n)|≥C_THR` clause fires outside `coherent`). (5) Low
+- **[LOCKED — panel Iteration 31, UNCONDITIONAL]** **THERMODYNAMICS' own
+  `h_eff` re-derivation** (exp-043 ON-endpoint, exp-045 dose-accumulation).
+  Named at five consecutive closes (25, 26, 27, 28, 29) without being
+  reached — Iteration 29 (exp-052) was this program's own explicitly-
+  stated fifth-deferral trigger point (Iteration 28's own ranked-item #3
+  language: "a fifth deferral meets this program's established bar for an
+  unconditional trigger and must not pass as an ordinary re-ranking"), on
+  the identical precedent that locked r=156 (Iteration 10) and
+  `graded_black_shell` (Iteration 29 itself). **Unconditional, not subject
+  to further ranked-list competition.**
+- **[queued — ranked for Iteration 32+ / alongside the LOCKED Iteration-31
+  slot, per Red Team's Iteration-29 Phase-5 reconciliation of all six
+  seats]** (1) **The coherent-vs-incoherent ambient-sum bridge-gate
+  revalidation, built against the actual equal-amplitude N9 configuration**
+  (not exp-029's own strong-beam/weak-probe idiom) — new live thread **T25**
+  (LOGBOOK.md), ranked #1 or #2 by five of six exp-052 Phase-5 seats
+  (PHOTONICS #3, EM #2, QUANTUM #1, THERMODYNAMICS #2, VISION #1). No
+  geometry this program has run, in 29 iterations, has ever had its actual
+  ambient-sum instrument empirically bridge-gated — QUANTUM's own
+  concretely-scoped proposal (joint equal-amplitude injection, reusing
+  suite stage 11's existing field-identity gates) is the cheapest correct
+  next build. (2) **The λ-generalization run** (450nm + 750nm, r=156, both
+  families) — ranked by three of six seats (PHOTONICS #1, VISION #3,
+  MATERIALS #2), cheap, directly tests whether exp-052's own T14 reframe is
+  general or a 600nm/2.4λ-specific coincidence (three on-the-record program
+  precedents — R2, T21, the Iteration-19 c*(λ) finding — for treating
+  single-λ near-field results with exactly this suspicion). (3) **A
+  formally committed `C(z/z_R)` extrapolation fit for the fixed-absolute
+  family**, pre-registered falsifiable bands on `C_∞` vs. −1, ideally a 4th
+  r-point — executes T8's own long-standing requirement for the first time
+  on a family whose slope is correctly signed (EM #1, PHOTONICS #2);
+  resolves whether exp-052's own 0.12–0.16 C_∞ shortfall is real or a
+  3-point-fit artifact. (4) **The genuine FDTD `ABSORB` sweep at GEOM78** —
+  carried unrun across Iterations 26–29 (four straight cycles now), already
+  flagged at Iteration 28 as "approaching unconditional-trigger territory
+  if deferred again" — one more deferral from meeting the same bar just
+  applied to `h_eff`. (5) **MATERIALS' absorptivity/mechanism literature
+  check** (T18-dependent, zero-FDTD either way) — the one remaining
+  unchecked axis between exp-052's own PLAUSIBLE tier and a tier change on
+  this program's now-favored design lead. (6) **A targeted N9-vs-N17
+  angular-quadrature check on the opaque-absorber article class** (VISION,
+  new this cycle) — T16's entire angular-sampling uncertainty budget has
+  only ever been measured on a near-null σ(I) article, never on the
+  deep-shadow class most of this program's citations, including exp-052's
+  own headline, actually are. (7) **Extend exp-052's own core-fill check to
+  the full N9 sweep**, not just θ=0 (MATERIALS) — the θ=0 null is decisive
+  at boresight but T9's own established mechanism is a grazing/tangential
+  effect; the ±25°/±35° angles that actually feed the headline deepening
+  have never been core-fill-tested at these ratios. (8) **QUANTUM's
+  grating-lobe/array-factor n\* criterion for `beam_divergence_coherent`**
+  (carried unchanged from Iteration 28's own queue, item 2 there) — scored
+  against the 72 `coherent` rows exp-051 already computed and labeled,
+  using exp-046's validated zero-free-parameter closed form. (9) Low
   priority: promote the `_geom_derived`/`_G_for_g` hoisting pattern to a
   shared utility at the next geometry-parameterized module. Carried
-  forward, not re-ranked: T8/T13/T14's sensitivity-band minimum bar
-  (dormant 20 iterations); fresh c*(λ) refit at the new geometry;
-  regime-stratify T2's ±0.3-log uncertainty near the absolute-threshold
-  edge; ocular-dose disposition.
+  forward, not re-ranked: VISION's sub-degree angular sweep across
+  36°–40° at 750nm/FWHM=2°/GEOM78 (Iterations 27/28/29); T8/T13/T14's
+  sensitivity-band minimum bar (dormant 20+ iterations); fresh c*(λ) refit
+  at the new geometry; regime-stratify T2's ±0.3-log uncertainty near the
+  absolute-threshold edge; ocular-dose disposition.
 - **[SUPERSEDED — now LOCKED to Iteration 30, see above]** stage-10
   temporal instrument (VISION's Iteration-2 Phase-5 #2): TCSF bars pinned
   first (de Lange/Watson, sourced) — the last unmeasured perceptual axis
