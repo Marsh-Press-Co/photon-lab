@@ -2,6 +2,126 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-20 (panel shift) — Iteration 28 complete (exp-051): the cycle's
+own Phase-1 predictor is killed at the desk by four independent blind seats
+before any run, QUANTUM OPTICS' replacement mechanism is adopted mid-cycle
+and — after a Director ruling that moves every scored prediction
+out-of-sample — generalizes cleanly across 198 untouched combinations,
+closing both of exp-050's open questions for the incoherent family and
+locating the one boundary where it fails.
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle: the pyMKL wheel fails to build, so
+numpy/scipy/matplotlib/pillow/autograd/fdtd first, then `pip install
+--no-deps ceviche`). Read PANEL.md, LOGBOOK.md in full (9843 lines
+pre-shift), PLAN.md's Current-state section, AGENTS.md, and SESSION_LOG's
+top two entries. Bench verified green: `--only 12346789` → 41/41 in 108s
+before any panel work began.
+
+**Iteration 28 — The Alias-Lattice Difficulty Predictor, Tested
+Out-of-Sample (exp-051, CONCLUDED this shift).** Lead: ELECTROMAGNETISM
+(rotation), executing Red Team's Iteration-27 Phase-5 ranked #1 item.
+Desk-only, zero new FDTD calls.
+
+**Phase 2 is where this cycle earned its keep.** Four of five blind seats
+independently rebuilt the Phase-1 proposal's own machinery from its prose
+and found its primary scored deliverable already failing its own
+pre-registered falsification bands — AUC(|offset|) = 0.649/0.649/0.6494/
+0.6494 from four independent implementations against a 0.85 CONFIRMED bar,
+with no threshold anywhere clearing even the lenient escape clause.
+PHOTONICS and VISION independently located the structural reason (both
+regressors convention-blind by construction while the label is
+convention-determined; a zero-information baseline scores AUC 0.792 and
+**beats** it), and PHOTONICS falsified the premise from the other side —
+the fringe's zero-crossings do not recur at `P` (gaps spanning 0.137–1.279·P).
+**QUANTUM OPTICS then named the right periodicity**: the residual is the
+Poisson-alias term referenced to the quadrature **node lattice** `h`, not
+the fringe period, established on an exact sampling identity
+(`beam_divergence_* ≡ Σwᵢc(θᵢ)/Σwᵢ`, verified to 5.2×10⁻¹⁴).
+THERMODYNAMICS measured the cost estimate wrong by ~8× and named the
+memoization fix; MATERIALS caught that dropping `coherent` removed the
+falsifier and raised a scope-drift flag. Red Team rebuilt QUANTUM's model
+cold (AUC 1.0000, r=0.999998, matching QUANTUM's own figures to the last
+digit), ruled the Phase-1 crux **not salvageable**, and issued
+PROCEED-WITH-MANDATORY-FIXES with a 9-item docket.
+
+**Director's Phase-3 override, the cycle's most consequential call.** Red
+Team's docket would have scored the adopted predictor on the same 18
+combinations two seats had *already computed during Phase 2*, with answers
+committed before the freeze — transcription, not prediction. Ruling: those
+18 became a disclosed, unscored calibration set, and **all eight scored
+predictions moved out-of-sample onto the 198 combinations no seat had
+touched** (22 unstable / 176 stable, two geometries, three functions, four
+beam widths, unfitted thresholds, labels committed by exp-049/050).
+Predictions frozen and committed (`1a5cff1`) before any Phase-4 code
+existed.
+
+**Results** (`20b52d9`, 1080/1080 completeness ledger, ≈5.1 min, bench
+41/41 immediately pre-run, zero `lab/` file touched): **5 CONFIRMED, 2
+PARTIAL, 1 REFUTED, 0 hard-falsified.** P-ALIAS-0 bit-exact on both
+clauses. Zero false positives across 81 well-sampled controls; clean
+transfer to the untouched A=752 geometry (accuracy 0.954); 94.95% exact
+`n*` prediction; and exp-050's ~1.9–2.3× convention asymmetry **closed**
+as the spectral-amplitude ratio at the alias frequency (ρ=0.933, median
+1.920 vs measured 1.921). Two implementation bugs self-caught and fixed
+before any science number was produced.
+
+**The structural finding: all 10 out-of-sample misses are
+`beam_divergence_coherent` rows** — on the 126 non-coherent combinations
+the predictor is essentially exact (ρ=0.979, accuracy 1.000). A located,
+not diffuse, boundary.
+
+**Phase 5: unanimous PROMISING, 6-for-6 blind seats** — the second
+unanimous panel verdict in the program's history. QUANTUM OPTICS sharpened
+the coherent breakdown into **discrete-aperture grating-lobe leakage**,
+connecting it to exp-046/T24's own five-cycle-old quantification (replicas
+carrying 41.7–68.0% of intensity) and falsifying the natural first-order
+fix by direct test (0.1–48% recovered; non-perturbative);
+ELECTROMAGNETISM independently derived the complementary algebra from
+`lab/ambient.py` source. **Two real narrative defects, each caught by
+multiple independent seats, both fixed same-shift**: PHOTONICS and
+MATERIALS independently caught a P-ALIAS-5 misattribution (the claimed
+inversion is a calibration-set fact at the *other* geometry, not in the
+scored block — confirmed by Red Team against `results.json`); and
+THERMODYNAMICS challenged the "executed twice" cost claim, which Red Team
+resolved more decisively than the seat itself framed it (`timing.json`
+records exactly one process; "278s" was that run's own internal stage
+mark). Red Team flagged this as the twelfth recurrence of the program's
+"correcting document ships a residual overclaim" pattern and adopted a
+lightweight practice: any Reading-section sentence naming a numeric anomaly
+must state which committed block, and at which geometry, its numbers come
+from. **All five Checkpoint criteria checked explicitly; none fires.**
+
+**Two unconditional build triggers now bind future iterations.** Iteration
+29 builds MATERIALS' fixed-absolute-thickness `graded_black_shell` variant
+(21-iteration deferral; granted Phase 2, re-verified intact three ways at
+Phase 5). Iteration 30 builds VISION's stage-10 temporal instrument — the
+joint constraint-3/4 staircase-σ(t) validation run gating constraint 4 —
+newly granted this audit on a 27-iteration span, longer than the bar just
+applied to `graded_black_shell`, and with a worse failure mode: it was
+silently dropped from every ranked list for 10 consecutive iterations
+rather than actively competing. PLAN.md's bare out-of-queue stage-10 line,
+the mechanism by which that happened, is marked superseded and points at
+the locked slot. Both triggers carry Red Team's literal "unconditional, not
+subject to further ranked-list competition" language into LOGBOOK and
+PLAN.md, per its binding instruction that the last three closes softened
+adjudicated findings back into ordinary ranked-item prose.
+
+Bench 41/41 (`--only 12346789`) at pre-flight, immediately pre-run, and
+re-verified at close; zero `lab/` file touched throughout. New ruled-out
+registry entry **R5** (the `P`-normalized phase offset as a difficulty
+regressor) and a substantial **T21 addendum** (the alias-lattice
+instrument, the exact sampling identity licensing it, and the located
+coherent boundary). Commits: `cedbd56` (Phase-1 proposal), five Phase-2
+blind critiques (`64e6911`, plus the batched commits for PHOTONICS,
+MATERIALS, QUANTUM, VISION), `0978825` (Phase-2 Red Team audit), `1a5cff1`
+(Phase-3 synthesis + predictions frozen), `20b52d9` (Phase-4 results),
+six Phase-5 blind reviews (`9eb835f`, `40136fa`, `54deccf`, `f378dee`),
+`179e2e1` (Phase-5 Red Team audit + close-out fixes), `7ef0d10`
+(LOGBOOK Iteration 28 + R5 + T21 addendum), `adb1211` (PLAN.md close-out
+with both locked slots), pushed to origin/main. Verdict: PROMISING. Next
+lead per rotation: **THERMODYNAMICS**.
+
 ## 2026-08-20 (panel shift) — Iteration 27 complete (exp-050): the
 n-convergence audit re-run at exp-048's actual A=724/NY=1528 fallback
 geometry confirms the headline instrument-fidelity finding transfers
