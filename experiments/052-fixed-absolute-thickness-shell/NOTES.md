@@ -121,8 +121,22 @@ Phase-1 proposal's own §7.
    coherent-vs-incoherent bridge gate (`experiments/029`'s stage-11 idiom)
    was validated only at shell-fraction 61.5% (r=78, where both families
    coincide); this cycle's r=156 result sits at 30.8%, untested.
-   Re-implementing exp-029's bespoke beam-scene cross-term measurement for
-   a new ambient-scene object under this shift's time budget was judged too
+   **Correction, added at Phase-5 close (Red Team's audit, §1c/§2a —
+   caught by a fresh Phase-5 QUANTUM instance, sharper than this item's own
+   pre-freeze framing): the gap is larger than "untested at a new shell
+   fraction" states.** `experiments/029/run.py` injects a strong on-axis
+   beam (amplitude=1.0) PLUS one weak off-axis probe (amplitude=√2×10⁻⁴)
+   simultaneously on a beam-scene object — a structurally different
+   configuration from `lab/ambient.py`'s actual instrument, which sums NINE
+   separate, EQUAL-amplitude single-source runs post hoc as intensities.
+   Exp-029's own small cross-term ceiling (≈2.83%) is a property of that
+   specific amplitude asymmetry and bounds nothing about the equal-amplitude
+   case. **No geometry this program has ever run — not r=78, not any prior
+   cycle — has had the actual ambient-sum instrument's cross-term
+   empirically bridge-gated.** This is a program-wide open question, not an
+   exp-052-local one; see `LOGBOOK.md`'s new live thread opened at
+   Iteration 29 close. Re-implementing a correctly-configured gate for a new
+   ambient-scene object under this shift's time budget was judged too
    error-prone to attempt cleanly — **disclosed as an open assumption, not
    silently assumed clean.** Physical argument for low risk (stated, not
    proven): the measured cross-term's smallness (+0.0224% aggregate) is a
@@ -214,6 +228,33 @@ growing-thickness confound specifically.
 comfortably inside — same profile shape/steepness as the already-gated
 r=78 object. **CONFIRMED** if ≤0.002; **hard-stop, do not trust P-1** if it
 fails. **Disclosure (fix 9): a pass says nothing about fixes 1–3.**
+
+**Disclosure, added at Phase-5 close (Red Team's Phase-5 audit, item 1 of
+its "must land before this cycle closes" docket — not present in the
+pre-freeze text above, added here rather than rewritten into it, per
+"flag, don't silently rewrite"):** the Phase-1 proposal's ORIGINAL P-5 was
+a THERMO energy sidecar (`ΔT_ss` vs. NETD, `lab/thermo_sidecar.py`) — it
+was **never computed this cycle**. The "P-5" label below is Red Team's own
+Phase-2 item 3 (a core-fill check), Director-redesigned at Phase 3 and
+written under the reused P-5 label — a different prediction entirely, not
+a renamed version of the same one. Grep confirms: zero references to
+`thermo_sidecar`, `ΔT`, or `NETD` anywhere in this experiment's `run.py`,
+`design_geometry.py`, or `results.json`. Red Team's own Phase-2 audit had
+recommended (not blocking) relabeling the original P-5 as an expected,
+low-information confirmation rather than scoring it as a genuine test —
+that recommendation was never explicitly actioned either way; its label
+was simply reused for something else. Both gaps are recorded here and in
+`LOGBOOK.md`'s Iteration 29 entry, not silently left for a future cycle to
+rediscover. THERMODYNAMICS' own Phase-5 review argues the established T22
+area-invariance result gives good reason to expect the standing
+UNDETECTABLE pattern survives for this object, but its load-bearing input
+(`σ_abs/σ_ext=0.51`) is itself unverified at this cycle's own new
+`r_in/r_out` ratios (0.692/0.846, both above the only-ever-tested 0.385) —
+"probably fine" is not "measured." A real thermo-sidecar run for this
+object needs a genuine box-ledger `σ_ext` measurement first (this
+experiment deliberately did not build one — see fix 3's own reasoning,
+above, for why the box/ref channel was avoided) — queued as a concrete
+Iteration-31+ follow-up, not fabricated here under time pressure.
 
 **P-5 (core-fill check, fix 3, θ=0 only).**
 `|C_hollow_theta0(156) − C_fixedabs_theta0(156)| ≤ 0.02` — an order-of-

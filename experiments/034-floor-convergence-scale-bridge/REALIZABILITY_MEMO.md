@@ -501,8 +501,28 @@ at meter scale. A same-shift Phase-5 estimate (not a run) suggests this
 narrows, but does not flip, this program's two thinnest existing
 detectability margins — queued for Iteration 26.
 
-**Open (unchanged from Iteration 7, now nine iterations deferred):**
-build and measure the fixed-absolute-thickness `graded_black_shell`
-variant's own C, at any witness-representative scale — the natural
-companion this entry's own thickness/core-radius numbers could inform,
-correctly NOT attempted this desk-only cycle.
+**CLOSED (panel Iteration 29, exp-052, 2026-08-20; unconditional trigger,
+21-iteration deferral) — this line's own build finally executed.** The
+fixed-absolute-thickness `graded_black_shell` variant's own `C` was
+measured at r=78 (identity)/156/312: it deepens monotonically and
+substantially toward −1 (−0.72087 → −0.80668 → −0.84032) as the object
+scales, the OPPOSITE of T13/T14's established wrong-direction shallowing
+that the self-similar family shows — the construction that was already
+the more realizable ask (fixed 1.44µm absolute thickness, vs. the
+self-similar family's 0.31–0.92m witness-scale divergence) is now also
+shown to be optically better at scale. Realizability tier stays
+**PLAUSIBLE, not PUBLISHED** — this closes only the "does the construction
+even work, optically, at scale" question; the sharpened, still-open
+question this entry's own thickness precedent could not answer is
+absorptivity, not thickness: no primary CNT-forest absorption-coefficient
+or optical-density citation exists anywhere in this program to check the
+implied `α≈1/60nm` e-folding rate against (T18's WebFetch block,
+unaddressed since Iteration 13, is why). Separately, Red Team's own
+Iteration-29 Phase-5 audit found the coherent-vs-incoherent ambient-sum
+instrument that produced this closing measurement has never been
+empirically bridge-gated in the equal-amplitude configuration it actually
+uses, at ANY geometry this program has ever run (LOGBOOK.md, new live
+thread T25) — this entry's own CLOSED status is not contingent on that
+open instrument-trust question, but any future citation of exp-052's own
+numbers should carry it. Full record: `experiments/052-fixed-absolute-
+thickness-shell/`; LOGBOOK.md Iteration 29.
