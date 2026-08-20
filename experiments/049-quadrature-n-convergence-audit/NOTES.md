@@ -140,5 +140,83 @@ proposal's own (wrong-by-~3×) ~20-minute estimate.
 
 ---
 
-*Predictions above are FROZEN at this commit, before `run.py` is executed.
-Results follow in a separate commit.*
+## Results (Phase 4)
+
+Full sweep: 972/972 completeness-ledger records, 45m44s wall-clock (vs. Red
+Team's profiled ≈52min estimate — close, confirms the profile). Zero FDTD
+calls, as designed. Trust suite re-verified 41/41 (`--only 12346789`)
+immediately before the run — no `lab/` file touched.
+
+**Runtime erratum, self-caught before Phase 5, disclosed not smoothed
+over:** the first execution of `predicted_difficulty_rank()` assigned rank 1
+to the *hardest* cell (a literal, but sign-inverting, reading of
+"hardest→easiest" as an ascending numeric rank). Correlated against a
+measured-magnitude series where *larger* = *harder*, this inverts the sign
+of the Spearman statistic — the first run scored P-NCONV26-2 **REFUTED at
+all three functions** (ρ=−0.450/−0.483/−0.467) when the correct, sign-
+consistent computation (larger predicted-difficulty value ↔ larger measured
+magnitude, the only convention under which the committed "ρ≥0.70 to
+CONFIRM" band is coherent, and the only one consistent with Phase 2's own
+informal citations of ρ=+0.717/+0.600/+0.450) gives ρ=+0.450/+0.483/+0.467
+— **PARTIAL at all three, not REFUTED**. Caught by the runner checking the
+sign convention against the Phase-2 record before treating the run as
+final; both the buggy and corrected computations are preserved in
+`results.json` (`P_NCONV26_2` and `P_NCONV26_2_ERRATUM_ORIGINAL_BUGGY`),
+`run.py`'s fix is documented inline at the point of the bug, and every
+number below uses the corrected computation.
+
+| ID | Outcome | Measured |
+|---|---|---|
+| P-NCONV26-0 | **CONFIRMED** | worst move 4.472688822027389% at (36°,20°,450nm), n_above_1%=2, n_above_0.16%=3 — exact match to `exp-046/results.json` |
+| P-NCONV26-1a | **CONFIRMED** | 8/9 FWHM=20° coherent cells have n*>41 (central estimate was 8/9) |
+| P-NCONV26-1b | **incoherent CONFIRMED** (3/9 fail, ≤4 band), **incoherent_corrected PARTIAL** (5/9 fail, exceeds the ≤4 band though well inside the >6 falsifier) |
+| P-NCONV26-1c | **CONFIRMED, stronger than predicted** | pooled FWHM≤10° convergence at n=41 is **100%** (81/81), not merely ≥70%; FWHM=2° also 100% (27/27) |
+| P-NCONV26-2 | **PARTIAL, all three functions** | ρ = 0.483 (incoherent) / 0.467 (incoherent_corrected) / 0.450 (coherent) — all in [0.30,0.70), none confirm the ≥0.70 bar, none falsify (none <0.30 or negative) |
+| P-NCONV26-3 | **REFUTED** | 0/12 FWHM=10° combinations show a genuine (non-exempted) intermediate Δrel>1% blowup with net<1% move — consistent with 1c's finding that FWHM≤10° is cleanly, universally converged; the "genuinely open regime" prior was wrong |
+| P-NCONV26-4 | **CONFIRMED** | 108/108 combinations have n*≤401, zero NOT-CONVERGED-WITHIN-RANGE (aggregate claim; the demoted specific-cell aside, Attack 8, measured n*=81 at the named hardest cell, not {641,1281} — descriptive only, not scored, consistent with Red Team's own Phase-2 spot-check) |
+| P-NCONV26-5 | **CONFIRMED** | the sharpest-stakes cell is converged already AT n=41 (n*=41, relative move 0.0% across the whole doubling range) — no flip, nowhere close |
+| P-NCONV26-6 | **CONFIRMED** | 36/36 above C_THR; 35/36 at ≥20× incoherent (1 crosses — inside the predicted 1–3 band) |
+| P-NCONV26-7 | **CONFIRMED** | max shift 0.0 percentage points — the coherent function's converged value at every FWHM≤10° cell matches its n=41 value to the precision reported |
+| P-NCONV26-8 | **CONFIRMED** | coherent worst-cell converged move = 4.4747%, inside the predicted [2.2%,8.9%] band, within a factor of 1.001× of exp-046's own 4.473% figure |
+
+**Tally: 8 CONFIRMED, 2 PARTIAL (P-NCONV26-1b, -2), 1 REFUTED
+(P-NCONV26-3). 0 unresolved.**
+
+**Reading.** The central hypothesis motivating this audit (P-NCONV26-1a)
+holds cleanly: n=41 is genuinely under-converged for the coherent function
+at FWHM=20°, confirming exp-046's own restored A4 mechanism is real, not a
+fluke (P-NCONV26-8). But the audit's own *secondary* physical story — that
+the T21 fringe-period/Nyquist-margin analogy (§2.1) correctly *predicts*
+which of the 9 FWHM=20° cells is hardest (P-NCONV26-2), and that FWHM=10°
+is a genuinely marginal, partially-unconverged regime (P-NCONV26-3) — does
+**not** hold as sharply as the Phase-1 prior claimed. All three functions
+show the *same direction* of correlation with the predicted ordering
+(positive, 0.45–0.48) but none clear the pre-registered confirm bar, and
+FWHM=10° turns out to be **universally, cleanly converged at n=41**
+(P-NCONV26-1c/3) — a materially better result for the instrument's own
+existing default than the Nyquist-margin heuristic predicted. **Net
+practical conclusion: n=41 is safe everywhere except the FWHM=20° regime,
+where the coherent function specifically needs n*≥81 (measured, not the
+heuristic's own {641,1281} guess) and the incoherent_corrected function
+needs n* up to 321 at 5 of 9 cells** (see `results.json`
+`per_cell_summary` for the exact per-cell n* table). The T21-period
+analogy motivated a productive, falsifiable search but is not itself a
+reliable predictor of per-cell difficulty at this construction —
+disclosed as a finding, not hidden.
+
+**What this changes going forward:** exp-042/046's own "n=41" default is
+now known-safe for 100/108 cell-function combinations in their own
+geometry (all but the 8 coherent-FWHM=20° failures and the incoherent-
+corrected residual), and any future citation of a FWHM=20° coherent
+reading from that geometry should use n≥81 (cheap: the measured hardest-
+cell n* is 81, not the originally-feared 641–1281). Per idealization 7
+(MATERIALS' Attack 1), **this finding is scoped to A=752/NY=1584 only** —
+a follow-up trigger is added to PLAN.md's queue at shift close-out for a
+cheap re-run at exp-048's A=724/NY=1528 fallback geometry before any
+near-boundary citation leans on it there.
+
+---
+
+*Predictions were FROZEN in a commit before `run.py` was executed. Results
+above follow in a separate commit, with the sign-convention erratum
+disclosed inline rather than silently corrected.*

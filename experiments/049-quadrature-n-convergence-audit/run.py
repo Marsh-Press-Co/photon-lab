@@ -61,13 +61,31 @@ def fringe_period_deg(theta0_deg, lam_cells):
 
 def predicted_difficulty_rank():
     """FWHM=20deg, 9 cells -- predicted hardest->easiest: 450>600>750 (lambda
-    primary), 36>38>40 (theta0 secondary). Returns dict (th,lam)->rank,
-    rank 1 = hardest."""
+    primary), 36>38>40 (theta0 secondary). Returns dict (th,lam)->rank, where
+    LARGER rank = predicted HARDER, so a confirmed hypothesis (harder cells
+    show larger measured Delta_rel magnitude) yields a POSITIVE Spearman rho
+    against the "measured magnitude, larger=harder" series -- consistent with
+    P-NCONV26-2's own committed band (rho>=0.70 to CONFIRM).
+
+    RUN-TIME ERRATUM (self-caught on first execution, before Phase 5): the
+    first version of this function assigned rank 1 to the HARDEST cell (a
+    literal reading of "hardest->easiest" as an ascending rank), which
+    inverts the sign of any correlation against a magnitude-increasing
+    measured series. That produced rho = -0.450/-0.483/-0.467 for
+    coherent/incoherent/incoherent_corrected -- the exact negatives of the
+    values recomputed here -- and scored P-NCONV26-2 REFUTED at all three
+    functions instead of the correct PARTIAL. Caught by the runner before
+    Phase 5 by checking the sign convention against Phase 2's own informal
+    rho=+0.717/+0.600/+0.450 citations, which only make sense under a
+    positive-correlation convention. Fixed here; the original (buggy)
+    function and its REFUTED-at-all-three output are disclosed in NOTES.md's
+    Phase-4 erratum section, not silently corrected."""
     order = []
     for lam in LAMBDAS:  # 450, 600, 750 -- primary, hardest first
         for th in THETA0S:  # 36, 38, 40 -- secondary, hardest first
             order.append((th, lam))
-    return {cell: i + 1 for i, cell in enumerate(order)}
+    n = len(order)
+    return {cell: n - i for i, cell in enumerate(order)}  # hardest (i=0) -> rank n (largest)
 
 
 def delta_step(c_n, c_2n):
