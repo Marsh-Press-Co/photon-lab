@@ -140,12 +140,12 @@ def main():
             row049 = exp049_lookup[(th, fw, lam, fn)]
             d = old[(th, fw, lam, fn)]
             n_rows += 1
-            for field in ("n401", "converged_value"):
-                a, b = d[field], row049[field]
+            for my_field, their_field in (("n401", "c401"), ("converged_value", "converged_value")):
+                a, b = d[my_field], row049[their_field]
                 rel = abs(a - b) / abs(b) if b != 0 else abs(a - b)
                 if rel > worst_rel:
                     worst_rel = rel
-                    worst_cell = (th, fw, lam, field)
+                    worst_cell = (th, fw, lam, my_field)
             c41_a, c41_b = d["values"][41], row049["c41"]
             rel41 = abs(c41_a - c41_b) / abs(c41_b) if c41_b != 0 else abs(c41_a - c41_b)
             if rel41 > worst_rel:
