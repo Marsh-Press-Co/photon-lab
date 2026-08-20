@@ -199,12 +199,26 @@ verified never adopted despite being recommended at Iteration 27's close).
 ## Results (Phase 4)
 
 Bench re-verified 41/41 (`--only 12346789`) immediately before the run.
-Total compute: ≈5.1 min for the scored sweep (the module was executed twice
-— 278s then 306s — while adding the post-hoc block and the idealization-3
-premise disclosure below; every scored number was bit-identical between the
-two runs), plus the bench and pre-run helper checks, ≈13 minutes total,
-disclosed honestly per house discipline (the same standard exp-050's own
-Iteration-27 record was corrected against). Two implementation bugs
+Total compute: ≈5.1 min for the scored sweep. `timing.json` records exactly
+one completed process (`proc_start_unix`=1787242553.222, single
+`exit_unix`); its own internal stage marks show every `P-ALIAS-0` through
+`P-ALIAS-7` number, and the calibration-18 cross-validation block, complete
+at t=278.976s, with the post-hoc block and the idealization-3 disclosure
+(added in the same process) completing the run at t=305.866s (≈306s). An
+earlier draft of this section described this as two separate executions
+("278s then 306s"); **that was an error** — a misreading of these two
+intra-run checkpoints as two runs. No second `proc_start_unix` exists
+anywhere on record, and no independent evidence (git history, `__pycache__`
+mtimes) supports a distinct second execution. Corrected at the Phase-5 Red
+Team audit (THERMODYNAMICS' Phase-5 catch, independently resolved by Red
+Team against source); no scored prediction is affected. Plus the bench and
+pre-run helper checks, ≈13 minutes total. *(Separately, and after the
+Phase-4 commit: a Phase-5 review seat re-executed `run.py` independently in
+the course of its own verification, which overwrote the working-tree
+artifacts with a fresh `proc_start_unix`; every science number reproduced
+bit-identically, and the committed Phase-4 artifact was restored by the
+Director. That reproduction is real but is not the "second run" the
+erroneous sentence above claimed, which predated it.)* Two implementation bugs
 self-caught and fixed **before** any science number was produced (a
 duplicate-keyword `TypeError` in the confusion-matrix assembly; an
 inefficient but not incorrect scan-cache rebuild) — zero runs were burned on
@@ -284,13 +298,23 @@ mechanism: **it is confirmed for the incoherent family the ~1.9–2.3×
 asymmetry was actually measured on (exp-050's own scope), and open for the
 coherent-sum convention specifically**, not open across the board.
 
-**P-ALIAS-5 closes exp-050's second open question cleanly.** The
-alias-frequency spectral-amplitude ratio reproduces the measured Δabs-ratio
-at the 9 out-of-sample A=752 FWHM=20° cells (ρ=0.933, median 1.920 vs
-1.921) — including, per Phase-2's own cross-seat convergence (QUANTUM,
-VISION, Red Team all independently found the same 750nm/38° anomaly by three
-different computations), the correct reproduction of the one cell where the
-ratio inverts below 1. The ~1.9–2.3× convention asymmetry exp-050 left
+**P-ALIAS-5 closes exp-050's second open question cleanly, on its own
+scored data.** The alias-frequency spectral-amplitude ratio reproduces the
+measured Δabs-ratio at the 9 out-of-sample A=752 FWHM=20° cells (ρ=0.933,
+median 1.920 vs 1.921), with every one of the nine ratios sitting
+comfortably above 1 (spectral range [1.656, 2.137], measured Δabs range
+[1.550, 3.558]) — a real, directionally-consistent, weaker version of the
+same mechanism (rising with λ) that does not invert at this geometry. The
+one cell where the ratio genuinely inverts below 1 (750nm/38°, spectral
+≈0.835, raw Δabs ≈0.775) is a **calibration-set fact at the *other*
+geometry** (GEOM78, A=724) — found independently by QUANTUM, VISION, and Red
+Team at Phase 2, reported here only in the unscored
+`calibration_18_unscored` block, and explicitly **not** part of what the
+scored A=752 P-ALIAS-5 test itself demonstrates. *(An earlier draft of this
+paragraph misattributed that inversion to the scored block — caught
+independently by PHOTONICS and MATERIALS at Phase 5, confirmed against
+`results.json` by Red Team, corrected here same-shift.)* The ~1.9–2.3×
+convention asymmetry exp-050 left
 unexplained is now explained: it is the ratio of the two conventions'
 spectral amplitude at the aliasing frequency `1/h`, a geometric property of
 how each convention's obliquity term shapes the single-angle fringe, not a
@@ -330,6 +354,76 @@ convention breaks the E1 sampling identity in a way that specifically
 degrades the alias predictor (not merely "coherent is different" — the
 mechanism is named, the consequence for this predictor is measured, the
 reason the consequence takes this particular form is not yet derived).
+
+**Sharpened, this same-shift Phase-5 audit (QUANTUM OPTICS, independently
+re-derived by Red Team against `results.json` and exp-046's own
+`NOTES.md`):** the gap is not merely "a different combination rule" — the
+two functions operate at categorically different points (`coherent` median
+`|C41|`=0.940, `incoherent` median `|C41|`=4.09×10⁻⁴, four orders of
+magnitude apart), and at the FWHM=20° cells the n=41 error for `coherent` is
+dominated by **discrete-aperture grating-lobe leakage** (a linearized
+cross-term correction recovers at most 48% of the actual step, 0.1–1.0% at
+every 450nm cell — the regime is non-perturbative, not a small correction on
+a converged alias model), the identical mechanism this program already
+measured independently at Iteration 22/23 (exp-046 Phase 5, LOGBOOK: "a
+three-lobe comb whose grating-lobe replicas… carry 41.7–68.0% of the total
+intensity outside ±3 aperture-widths"). This **connects, rather than
+reopens**, a five-cycle-old finding to this cycle's residual — the
+correctly-scoped Iteration-29+ follow-up is a grating-lobe/array-factor n\*
+criterion for `coherent` specifically, not a bigger `m` or a linear
+cross-term add-on to the existing alias model (both tested directly, both
+insufficient).
+
+ELECTROMAGNETISM's Phase-5 review independently derived the complementary
+half of the same picture from `lab/ambient.py`'s own source: the E1
+identity is *exact* (verified to 2.8–5.8×10⁻¹³ relative) for the incoherent
+family, which is what licenses the aliasing framing as sampling bookkeeping
+rather than analogy — and `coherent`'s complex-field sum is that identity's
+structural negation (off-diagonal mutual-coherence terms the diagonal alias
+model is blind to by construction), deviating by three orders of magnitude
+on the same test. Both seats are correct and non-contradictory: EM shows why
+the model cannot see the effect at all; QUANTUM shows why the natural
+first-order fix would not rescue it.
+
+## Phase 5 (six fresh blind seats, then Red Team audit)
+
+**Six blind reviews: PROMISING, 6-for-6** (PHOTONICS, MATERIALS,
+ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS, VISION SCIENCE) — the
+second unanimous-PROMISING panel verdict in the program's history. Every
+seat independently reproduced the scored numbers from raw data or a full
+re-execution; all agree to the displayed digit.
+
+**Red Team's final audit (everything): PROMISING, no Checkpoint criterion
+fires** (all five checked explicitly; criterion 4 scrutinized directly
+against both disclosure defects and ruled non-firing — neither is an
+unfalsifiable claim, no constraint is claimed or dropped, both are
+same-shift narrative-only corrections leaving every scored number
+untouched). Two real defects, both caught by multiple independent seats and
+both fixed above same-shift: the P-ALIAS-5 misattribution (PHOTONICS +
+MATERIALS, independently) and the "executed twice" cost error
+(THERMODYNAMICS, resolved more decisively by Red Team than the seat itself
+framed it). Red Team flagged this as the **twelfth recurrence** of the
+program's "a document correcting a prior overclaim ships a residual instance
+of the same overclaim" pattern, and recommended — as lightweight practice,
+not a binding rule — that any Reading-section sentence naming a specific
+numeric anomaly state in the same sentence which committed block, scored or
+unscored, and at which geometry, the anomaly's numbers come from. Adopted.
+
+**Two unconditional build triggers now bind future iterations:**
+**Iteration 29** builds MATERIALS' fixed-absolute-thickness
+`graded_black_shell` variant (granted at Phase 2, re-verified intact three
+ways at Phase 5 — 21-iteration deferral). **Iteration 30** builds VISION's
+stage-10 temporal instrument — the joint constraint-3/4 staircase-σ(t)
+validation run composing exp-038's kinetics, exp-039's timing
+classification, and exp-040's amplitude bridge — newly granted this audit on
+a 27-iteration span, longer than the bar just applied to
+`graded_black_shell`, and with a worse failure mode (silently dropped from
+every ranked list for 10 consecutive iterations rather than actively
+competing). Both are unconditional: not contingent on the prior cycle's
+findings, not subject to further ranked-list competition.
+
+Full record: `phase5_redteam_audit.md`; all six blind reviews at
+`phase5_review_*.md`.
 
 ---
 
