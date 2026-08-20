@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "experiment": "exp-052-fixed-absolute-thickness-shell"
+  },
+  "rgate": {
+    "sigma_max": 0.5,
+    "thickness_cells": 48,
+    "R_coat": -2.879015474345501e-07,
+    "elapsed_s": 6.118467092514038
+  }
+}

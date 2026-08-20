@@ -87,6 +87,7 @@ See NOTES.md for the full Phase 1/2/3 accepted record and LOGBOOK.md
 Iteration 29 for the verbatim panel transcript.
 """
 
+import importlib.util
 import os
 import sys
 
@@ -95,8 +96,16 @@ import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(HERE, "..", "..")))
 BRIDGE_DIR = os.path.abspath(os.path.join(HERE, "..", "030-scale-bridge"))
-sys.path.insert(0, BRIDGE_DIR)
-import design_geometry as dg30   # noqa: E402  -- exp-030's own module, reused verbatim for geometry()
+
+# exp-030's own module is ALSO named `design_geometry.py` -- a plain
+# `import design_geometry` here would collide with this very module (it is
+# mid-load under that name), exactly the trap exp-031's own run.py already
+# hit and fixed the same way: load exp-030's module by explicit file path,
+# under its own distinct name, not via sys.path + bare import.
+_spec = importlib.util.spec_from_file_location(
+    "dg030_exp052", os.path.join(BRIDGE_DIR, "design_geometry.py"))
+dg30 = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(dg30)
 
 # --------------------------------------------------------- the r-family
 R_FAMILY = (78, 156, 312)
