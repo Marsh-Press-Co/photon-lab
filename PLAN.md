@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-19, panel Iteration 25)
+## Current state (2026-08-20, panel Iteration 26)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -1299,46 +1299,70 @@ continuous mode with checkpoints. The remaining [open] items below are
   a **third consecutive cycle** (23, 24, 25) of this program's own named
   fix-docket-delivery pattern, all caught and corrected same-shift. Full
   record: LOGBOOK.md Iteration 25.
-- **[queued — panel Iteration 26, ranked per Red Team's Iteration-25
-  Phase-5 synthesis, lead: PHOTONICS (rotation)]** (1) **QUANTUM's
-  `gaussian_angle_weights` n-convergence audit** — non-negotiable per Red
-  Team's own ruling: a third consecutive deferral would repeat this
-  program's own named r=156 anti-pattern; already has a documented effect
-  size (n=41→401 moved scored C_empty by up to 4.47%, Iteration 23). (2)
-  **T8/T13/T14 minimum bar**: replace the point-estimate C=−0.7209 with a
-  sensitivity band spanning T13's two extrapolation models everywhere it
-  is cited as a witness-scale surrogate (EM's own cheap, zero-FDTD
-  fallback) — a proper reconciliation attempt (new FDTD legs or a
-  first-principles far-field model) should be scoped as its own Phase-1
-  proposal, not assumed solved by the band alone; this thread has sat
-  dormant 17 iterations since the one prior attempt (Iteration 8) made
-  the disagreement worse, not better. (3) **Genuine FDTD `ABSORB` sweep**
-  at exp-048's own new (exp-030 `GEOM[78]`) geometry — the only way to
-  resolve whether Block B's 5/27 gate exceedances are real T21 fringe or
-  T24's own boundary systematic. (4) **Build and measure the
+- [done 2026-08-20, panel Iteration 26] **exp-049 the
+  `gaussian_angle_weights` n-convergence audit** — PHOTONICS' lead
+  (rotation), executing Iteration 25's own non-negotiable item (1). Zero
+  new FDTD calls: a desk-only geometric n-doubling sweep (41→5121, plus
+  n=401) of all three committed `beam_divergence_*` functions at
+  exp-042/046's own 36-cell grid. **Headline CONFIRMED**: n=41 is
+  genuinely under-converged for the coherent function at FWHM=20°
+  (8/9 cells; worst-cell move 4.4747%, matching exp-046's own 4.473%
+  citation to 0.1%) — exp-046's restored A4 mechanism is real, not a
+  fluke. Secondary story lands softer than predicted: the T21-period/
+  Nyquist analogy predicts the right direction but not a reliable
+  per-cell ranking (Spearman ρ=0.45–0.48, all three functions, PARTIAL);
+  FWHM=10° turns out to be **universally, cleanly converged at n=41**
+  (100% of 81 cell-function combinations, not merely ≥70% as predicted) —
+  the "genuinely open regime" prior was REFUTED. **The global maximum n\*
+  anywhere in the entire 108-cell-function grid is 81** — n=41 is safe
+  for 100/108 combinations at this geometry. 8 CONFIRMED, 2 PARTIAL,
+  1 REFUTED. Two self-caught defects, both instances of R4's own named
+  species one cycle after its adoption: a sign-convention bug in the
+  scoring script (caught by the Director before Phase 5, both buggy and
+  corrected values preserved) and, caught independently by two Phase-5
+  seats (PHOTONICS, THERMODYNAMICS), a fabricated "n\*=321" figure in the
+  write-up (true max is 81) plus a `results.json`/`run.py`
+  reproducibility gap — both fixed same-shift; Red Team's audit found the
+  fabricated figure had already propagated into two other seats' own
+  review documents before catching it. **Checkpoint criterion 4 does NOT
+  fire** (contingent on the applied same-shift fixes) but a new hardened
+  rule is adopted: a **third** consecutive post-R4 non-reproducing
+  headline figure fires criterion 4 automatically, no further debate —
+  this cycle is the second such instance. No REALIZABILITY_MEMO.md tier
+  or constraint-3/4 claim touched anywhere. Verdict: PROMISING. Full
+  record: LOGBOOK.md Iteration 26.
+- **[queued — panel Iteration 27, ranked per Red Team's Iteration-26
+  Phase-5 synthesis, lead: MATERIALS (rotation)]** (1) **Re-run exp-049's
+  identical n-doubling sweep at exp-048's A=724/NY=1528 fallback
+  geometry** — MATERIALS' own Phase-2 Attack-1 follow-up trigger, due
+  this cycle: exp-049's n\* findings are scoped to exp-042/046's
+  A=752/NY=1584 geometry only and must not be cited as governing the
+  A=724 fallback geometry (the one an actual near-boundary constraint-3
+  or realizability citation would use) without this cheap re-run. (2)
+  **Genuine FDTD `ABSORB` sweep** at the T21-vs-T24 geometry — sharpened
+  by exp-049's own finding that the sharpest-stakes cell's n-convergence
+  uncertainty is now ~7.7×10⁻⁹% (effectively zero), leaving T24's own
+  ~0.0070 boundary systematic as the only remaining unresolved
+  uncertainty source on this program's sharpest contamination-risk cell.
+  (3) **EM's phase-corrected difficulty-predictor test**: score
+  Δrel(41→81) against a predictor including each cell's phase offset
+  within its own local T21 fringe period, not period-vs-Nyquist-margin
+  alone — the cheap, desk-only test to resolve the ambiguity exp-049's
+  own near-parity ρ values (0.45–0.48 across all three mechanistically
+  distinct functions) leave open. (4) **Build and measure the
   fixed-absolute-thickness `graded_black_shell` variant's own C** —
-  MATERIALS' now-nine-iteration-deferred Iteration-7 pick, four seats
-  independently rank it this cycle; exp-048's own Entry 2 gives it a
-  sharper starting point (real thickness/core-radius numbers) than
-  attempting it blind. (5) **Fine (≤1° step) angular sweep** around the
-  actual ±35° fallback geometry specifically (PHOTONICS' own Phase-5
-  finding: the current 9-angle/10°-step grid is coarser than the
-  ~1.5–2.6° fringe period it characterizes — the reported worst point is
-  likely not the true worst phase). (6) **Fresh c*(λ) refit** at the new
-  geometry (closes the consistency-by-inference gap in exp-048's own
-  regression). (7) **THERMO's witness-scale `h_eff` re-derivation** for
-  the two thinnest existing detectability margins (exp-043's ON-endpoint
-  UNOBTANIUM-tier ceiling, exp-045's dose-accumulation figure) — THERMO's
-  own same-shift ESTIMATE (not a run) suggests both narrow, neither
-  flips (~5.1×→~2.6×; ~27,080×→~38–42×), cheap and desk-only to actually
-  compute. (8) **Regime-stratify T2's ±0.3-log uncertainty** near the
-  absolute-threshold edge (VISION's own Phase-5 finding — one of
-  exp-048's own near-boundary points sits only ~2× above this program's
-  own cited absolute-rod-limit crossover, a regime where scatter is
-  typically larger, not smaller, than in the Weber-law regime the figure
-  may be most directly informed by). (9) [done Iteration 25: house rule
-  R4, LOGBOOK.md.] (10) Ocular-dose disposition (THERMO, still cheap,
-  still not urgent).
+  MATERIALS' now-nine-plus-iteration-deferred Iteration-7 pick,
+  independently re-ranked again this cycle. (5) **THERMO's witness-scale
+  `h_eff` re-derivation** for the two thinnest existing detectability
+  margins (exp-043's ON-endpoint, exp-045's dose-accumulation figure),
+  overdue since Iteration 25 close. Carried forward, not re-ranked this
+  cycle (Iteration 25's own queue, untouched by exp-049's narrow scope):
+  T8/T13/T14's sensitivity-band minimum bar (dormant 18 iterations);
+  fine (≤1° step) angular sweep around the actual ±35° fallback geometry
+  (PHOTONICS' Iteration-25 finding); fresh c*(λ) refit at the new
+  geometry; regime-stratify T2's ±0.3-log uncertainty near the
+  absolute-threshold edge; ocular-dose disposition (still cheap, still
+  not urgent).
 - **[queued]** stage-10 temporal instrument (VISION's Iteration-2 Phase-5
   #2): TCSF bars pinned first (de Lange/Watson, sourced) — the last
   unmeasured perceptual axis (T3), gates constraint 4.

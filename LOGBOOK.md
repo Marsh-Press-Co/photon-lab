@@ -9411,3 +9411,224 @@ prose/docstring-only changes) — commit `eddf4bd`.
 slot closes with this cycle, per the standing rotation VISION→PHOTONICS→
 MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→VISION SCIENCE→
 **repeat, next: PHOTONICS**).
+
+## Iteration 26 — The `gaussian_angle_weights` n-Convergence Audit (exp-049) — 2026-08-20
+
+*Runner: cloud panel shift. Lead: PHOTONICS (rotation), executing Red
+Team's Iteration-25 Phase-5 non-negotiable item (1) — "QUANTUM's
+`gaussian_angle_weights` n-convergence audit... a third consecutive
+deferral would repeat this program's own named r=156 anti-pattern;
+already has a documented effect size (n=41→401 moved scored `C_empty` by
+up to 4.47%, Iteration 23)." Instrument/model-fidelity cycle, Iteration-
+20/22/23/25 class. T1 escape route: NONE. Zero new FDTD calls.*
+
+### PHASE 1 — PROPOSE
+
+Desk-only, geometric n-doubling sweep (41→81→161→321→641→1281→2561→5121,
+plus n=401 as a fixed regression check) of all three committed
+`beam_divergence_*` functions (`experiments/042-t21-magnitude-bridge/
+design_geometry.py`) at exp-042/046's own committed 36-cell grid
+(θ₀∈{36,38,40}°, FWHM∈{2,5,10,20}°, λ∈{450,600,750}nm), varying only the
+`gaussian_angle_weights` quadrature order `n`. Physical prior derived from
+LOGBOOK's own T21 fringe-period model (reused by analogy, disclosed as
+falsifiable): FWHM=20° samples below Nyquist at n=41, FWHM=10° sits at the
+Nyquist line, FWHM≤5° is comfortably oversampled. Nine falsifiable
+predictions (P-NCONV26-0 through -8). Full record:
+`experiments/049-quadrature-n-convergence-audit/phase1_proposal.md`.
+
+### PHASE 2 — CRITIQUE · five blind seats, then Red Team
+
+**Unanimous support-with-changes** (MATERIALS, ELECTROMAGNETISM,
+THERMODYNAMICS, QUANTUM OPTICS, VISION SCIENCE), four independent
+load-bearing findings: MATERIALS — the proposal's A=752/NY=1584 geometry
+is not exp-048's actual A=724/NY=1528 fallback geometry, a citation-scope
+gap needing a committed follow-up trigger, not a same-cycle re-run.
+ELECTROMAGNETISM — P-NCONV26-2's pooled Spearman correlation could mask a
+coherent-function-specific grating-lobe mismatch; wants a per-function
+split. THERMODYNAMICS — a small (0.03pp) arithmetic slip in P-NCONV26-5's
+margin figure, plus a genuine unprofiled-cost risk at ~1.1M evaluations,
+wanting a completeness ledger and profiled wall-clock. QUANTUM OPTICS —
+(verified by actually running the code) the Δrel(n) convergence criterion
+is ill-conditioned near |C|≈0, producing spurious thousands-of-percent
+swings at 9 FWHM=20° cells that would trip P-NCONV26-1b's own
+falsification band for a metric-artifact reason, not physics; proposed a
+`max(|C|,C_THR)` floor fix. VISION SCIENCE — P-NCONV26-5's worst cell sits
+exactly where live thread T24's own uncharacterized +0.0070 ABSORB-
+boundary systematic dwarfs its headroom to C_THR; the caveat needed to be
+inline with the prediction, not buried in an idealization.
+
+**Red Team's sequential audit (everything): PROCEED-WITH-MANDATORY-FIXES**,
+8 items, all five blind findings independently re-verified from source and
+none downgraded — two (QUANTUM's and a new one of Red Team's own) elevated
+above their original framing. Red Team **ran QUANTUM's own proposed floor
+formula and found it does not work** (still 8/9 cells failing, not the
+predicted 1–3/9) — the correct fix is an *exemption* (judge on `Δabs`
+alone below `C_THR`, not a floored ratio), verified by Red Team to give
+3/9, matching the proposal's own central estimate. Red Team also found, by
+tracing `experiments/046-.../results.json` and `run.py` directly, a defect
+**no blind seat caught**: P-NCONV26-0's own regression gate — explicitly
+"checked first," gating trust in every other number — is not executable
+as written (it promises a 36-cell table `results.json` never recorded at
+that granularity, and half of it needs a function,
+`beam_divergence_coherent_corrected`, that exists only in exp-046's
+`run.py`, outside this audit's own declared 3-function scope). Full
+record: `experiments/049-.../phase2_redteam_audit.md`.
+
+### PHASE 3 — SYNTHESIZE
+
+Director adopted all 8 mandatory-fix items in full, none overridden — the
+docket was unanimous plus independently strengthened, leaving no seat
+disagreement to arbitrate. Corrected design: the Δrel *exemption* (not
+floor) formula, applied to the full 36×3 grid (not just the 9 flagged
+FWHM=20° cells, per Red Team's own finding that 4 FWHM=10° combinations
+show the identical artifact); P-NCONV26-0 restated against exactly what
+`results.json` records (dropping the out-of-scope "corrected convention"
+comparison, Director's choice over adding a 4th function, to avoid the
+scope drift PANEL.md's synthesis exists to resist); P-NCONV26-2 split into
+three independent per-function Spearman bars; P-NCONV26-4's specific-cell
+aside demoted to descriptive-only; P-NCONV26-5's margin corrected and
+given VISION's inline caveat. Predictions frozen in `NOTES.md`
+(`bc830eb`), before any code ran.
+
+### PHASE 4 — TEST
+
+`run.py` (`7699de5`), 972/972 completeness-ledger records, 45m44s
+wall-clock (close to Red Team's own profiled ≈52-minute estimate). Bench
+41/41 (`--only 12346789`) immediately pre-run; zero `lab/` files touched.
+
+**Runtime erratum, self-caught by the Director before Phase 5, disclosed
+not smoothed over**: the first execution's `predicted_difficulty_rank()`
+assigned rank 1 to the *hardest* cell, sign-inverting the Spearman
+correlation against the measured-magnitude series — the first run scored
+P-NCONV26-2 REFUTED at all three functions (ρ=−0.450/−0.483/−0.467) when
+the sign-consistent computation (the only convention coherent with the
+committed "ρ≥0.70 to CONFIRM" band, and with Phase 2's own informal
+citations of ρ=+0.717/+0.600/+0.450) gives ρ=+0.450/+0.483/+0.467 —
+**PARTIAL, not REFUTED**. Caught by checking the sign convention against
+the Phase-2 record before treating the run as final; both computations
+preserved in `results.json`, not silently overwritten (`e5c32b1`).
+
+**Results: 8 CONFIRMED, 2 PARTIAL, 1 REFUTED.** Headline
+(**P-NCONV26-1a, CONFIRMED**): n=41 is genuinely under-converged for the
+coherent function at FWHM=20° (8/9 cells), confirming exp-046's own
+restored A4 mechanism is real, not a fluke (**P-NCONV26-8, CONFIRMED**:
+worst-cell move 4.4747%, within 1.001× of exp-046's own 4.473% citation).
+But the audit's secondary physical story lands softer than the Phase-1
+prior: **P-NCONV26-2 (PARTIAL, all three functions)** — the T21-period/
+Nyquist-margin analogy predicts the right *direction* (ρ=0.45–0.48,
+positive) but none of the three functions clear the ≥0.70 confirm bar,
+and the three values sit close together rather than differentiating
+coherent from incoherent as idealization 4 originally claimed.
+**P-NCONV26-3 (REFUTED)** and **P-NCONV26-1c (CONFIRMED, far stronger than
+predicted — 100% not merely ≥70%)**: FWHM=10° is **not** a genuinely open
+regime — it converges at n=41 with zero exceptions across all 81
+FWHM≤10° cell-function combinations. **P-NCONV26-5 (CONFIRMED)**: the
+sharpest-stakes cell is converged already at n=41 (relative move
+~7.7×10⁻⁹% across the whole doubling range, independently measured by Red
+Team) — no flip, nowhere close, T24's separate systematic notwithstanding.
+Net practical result: n=41 is safe for 100/108 cell-function combinations
+at exp-042/046's own A=752/NY=1584 geometry; the coherent function needs
+n*≥81 at 8 FWHM=20° cells (not the feared 641–1281) and
+`incoherent_corrected` needs n*=81 at 5 cells — **the global maximum n\*
+anywhere in the entire 108-combination grid is 81.**
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**Five PROMISING (MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM
+OPTICS, VISION SCIENCE), one PARTIAL (PHOTONICS).** Every reviewing seat
+independently re-ran or re-derived load-bearing numbers from the actual
+committed code rather than trusting `NOTES.md`'s narrative — QUANTUM
+re-ran the previously ill-conditioned cells and confirmed the corrected
+criterion resolves the artifact without being over-permissive; EM
+independently reproduced the per-function ρ values from scratch and
+found their near-parity (0.450–0.483) a sharper, more interesting
+finding than NOTES.md's own generic framing — suggesting the missing
+ingredient in the difficulty predictor is *phase*, not mechanism identity
+(coherent vs. incoherent); MATERIALS re-confirmed no
+`REALIZABILITY_MEMO.md` tier is touched.
+
+**PHOTONICS caught a real, load-bearing-to-future-citations defect**: the
+NOTES.md "Net practical conclusion" sentence claimed
+`incoherent_corrected` needs "n* up to 321 at 5 of 9 cells" — but a direct
+scan of `results.json`'s own `per_cell_summary` table (which the sentence
+itself cites) shows **no cell-function combination anywhere in the full
+108-row grid ever reaches n*=321; the true global maximum is 81**,
+matching the correctly-reported "5 of 9" count. **A second, independent
+finding, THERMODYNAMICS's**: `results.json`'s `meta.phase4_erratum` and
+`P_NCONV26_2_ERRATUM_ORIGINAL_BUGGY` fields — documenting the sign bug
+above — had no corresponding code path in the committed `run.py`; the
+Director had hand-verified and hand-inserted them when the bug was caught,
+so a fresh `python run.py` would not have regenerated them (values
+genuine, provenance chain broken).
+
+**Red Team's final audit (everything: results + all six reviews):
+PROMISING, criterion 4 does NOT fire, contingent on same-shift fixes.**
+Independently reconfirmed both defects from source (`git diff` on the
+exact commits; a from-scratch reconstruction of the buggy rank formula
+reproducing `results.json`'s erratum block bit-for-bit) and **found a
+third thing no blind seat caught**: the fabricated "321" figure had
+already propagated, uncritically, into two of the six Phase-5 reviews'
+own "corrections to propagate to LOGBOOK" text (MATERIALS,
+ELECTROMAGNETISM) — a live instance of exactly the propagation risk R4
+exists to prevent, caught before the Director could copy either into the
+permanent record a second time. Neither defect is load-bearing to any of
+the eleven scored predictions; both are the panel's own falsification
+machinery working, not failing. **This is the second consecutive cycle
+(25, 26) to carry a real instance of the exact defect class R4 was
+adopted, one cycle ago, to stop.** Red Team did not override this
+program's own established non-firing precedent for this defect shape
+(Iterations 19, 22, 25) but **adopted a new hardened rule**: a third
+consecutive post-R4 cycle carrying a non-reproducing headline figure fires
+Checkpoint criterion 4 automatically, no further debate, mirroring the
+Iteration-22 QUANTUM aperture-check tripwire precedent.
+
+**Mandatory-fix docket (6 items) applied same-shift** (`ba1c731`):
+NOTES.md's "321" corrected to the verified "81" (both loci: the Reading
+paragraph and the practical-conclusion sentence, with the Director
+explicitly instructed to use PHOTONICS'/Red Team's figure, not MATERIALS'
+or EM's own still-wrong review text); `run.py` gained
+`predicted_difficulty_rank_ORIGINAL_BUGGY()` and an erratum-replay block,
+closing the reproducibility gap (independently re-verified by the
+Director via a partial 27-cell re-execution before committing: bit-exact
+match to the previously-committed values); VISION's T24 caveat propagated
+to `results.json`'s `p_ncov5.t24_caveat` field and NOTES.md's Results-
+table row; `converged_value`'s semantics (value at n*, not the n=5121
+asymptote — QUANTUM's Phase-5 finding) documented inline.
+
+**No other Checkpoint criterion fires.** No constraint-3/4 claim, no
+mechanism, no `REALIZABILITY_MEMO.md` tier movement anywhere in this
+cycle's record (independently checked by MATERIALS and Red Team).
+
+**Verdict: PROMISING.** Full record:
+`experiments/049-quadrature-n-convergence-audit/` (phase1_proposal.md,
+five phase2_critique_*.md, phase2_redteam_audit.md, phase3_synthesis.md,
+NOTES.md, run.py, results.json, six phase5_review_*.md,
+phase5_redteam_audit.md).
+
+**Next lead per rotation: MATERIALS** (PHOTONICS' own rotation slot
+closes with this cycle; VISION SCIENCE→PHOTONICS→**MATERIALS**→
+ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→repeat).
+
+**Ranked priorities for Iteration 27** (Red Team's Phase-5 synthesis,
+adopted in full): (1) **Re-run this identical n-doubling sweep at
+exp-048's A=724/NY=1528 fallback geometry** — the geometry any actual
+near-boundary constraint-3 or realizability citation would use, never
+convergence-tested; MATERIALS' own Attack-1 follow-up trigger, due this
+cycle (see PLAN.md queue entry). (2) **Genuine FDTD `ABSORB` sweep at the
+T21-vs-T24 geometry** — sharpened by this cycle's own finding that the
+sharpest-stakes cell's n-convergence uncertainty is now known to be
+~7.7×10⁻⁹% (effectively zero), leaving T24's own ~0.0070 boundary
+systematic as the only remaining unresolved uncertainty source on this
+program's sharpest contamination-risk cell. (3) **EM's phase-corrected
+difficulty-predictor test**: score Δrel(41→81) against a predictor
+including each cell's phase offset within its own local T21 fringe
+period, not period-vs-Nyquist-margin alone — the concrete, cheap,
+desk-only test to distinguish "wrong length scale for `coherent`" from
+"missing phase term for everyone," the ambiguity this cycle's own
+near-parity ρ values (0.45–0.48 across all three mechanistically distinct
+functions) leaves open. (4) Build and measure the fixed-absolute-
+thickness `graded_black_shell` variant (now 9+ iterations deferred,
+independently re-ranked again this cycle). (5) THERMODYNAMICS' own
+standing `h_eff` re-derivation for the program's two thinnest surviving
+detectability margins (exp-043 ON-endpoint, exp-045 dose-accumulation),
+overdue since Iteration 25 close.

@@ -2,6 +2,91 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-20 (panel shift) — Iteration 26 complete (exp-049): the
+`gaussian_angle_weights` n-convergence audit runs, confirming n=41 is
+genuinely under-converged for the coherent function at FWHM=20° (exp-046's
+restored A4 mechanism is real) but refuting the audit's own secondary
+prior that FWHM=10° was a genuinely open regime — it converges at n=41
+with zero exceptions. Two self-caught, same-shift-fixed instances of R4's
+own named defect species recur one cycle after its adoption, prompting a
+new hardened three-strikes rule.
+
+**Pre-flight**: fresh container onboarding this shift (deps installed per
+the documented pip wrinkle: numpy/scipy/matplotlib/pillow/autograd/fdtd
+first, then `pip install --no-deps ceviche`). Read PANEL.md, LOGBOOK.md in
+full (9413 lines pre-shift), PLAN.md's Current-state section, AGENTS.md,
+and SESSION_LOG.md's top two entries. Bench verified green:
+`--only 12346789` → 41/41 before any panel work began.
+
+**Iteration 26 — The `gaussian_angle_weights` n-Convergence Audit
+(exp-049, CONCLUDED this shift).** Lead: PHOTONICS (rotation), executing
+Red Team's Iteration-25 non-negotiable item (1) — a third consecutive
+deferral would have repeated the program's own named r=156 anti-pattern.
+Desk-only geometric n-doubling sweep (41→5121, plus n=401) of all three
+committed `beam_divergence_*` functions at exp-042/046's own 36-cell grid,
+zero new FDTD calls. Phase 2 (five blind seats + Red Team): ruling
+PROCEED-WITH-MANDATORY-FIXES, 8 items. Red Team, running QUANTUM's own
+proposed fix formula directly, found it doesn't work (still 8/9 cells
+failing, not the predicted 1–3/9) and substituted a corrected exemption
+formula (verified to give 3/9); Red Team also caught, alone, that
+P-NCONV26-0's own regression gate — explicitly "checked first" — was not
+executable as written against what `exp-046/results.json` actually
+records. Predictions committed structurally before the scoring run
+(`bc830eb`, zero FDTD calls); results (`e5c32b1`, 972/972 completeness-
+ledger records, 45m44s): **8 CONFIRMED, 2 PARTIAL, 1 REFUTED. Headline
+CONFIRMED**: n=41 under-converges the coherent function at FWHM=20°
+(8/9 cells; worst-cell move 4.4747%, matching exp-046's own 4.473%
+citation to 0.1%). The global maximum n\* anywhere across the full
+108-cell-function grid is **81** — n=41 is safe for 100/108 combinations
+at this geometry.
+
+**Runtime erratum, self-caught before Phase 5**: a sign-inverted rank
+convention in the scoring script scored P-NCONV26-2 REFUTED at all three
+functions when the correct, sign-consistent computation gives PARTIAL —
+caught by checking against Phase 2's own informal citations, both
+computations preserved in `results.json`, not silently overwritten.
+
+**Phase 5 (six fresh blind seats, then Red Team audit): PROMISING** (5
+PROMISING — MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS,
+VISION SCIENCE; 1 PARTIAL — PHOTONICS, scoped to two real defects Red
+Team's own audit independently confirmed). **PHOTONICS caught a
+fabricated numeral**: NOTES.md's practical-conclusion sentence claimed
+`incoherent_corrected` needs "n\* up to 321 at 5 of 9 cells" — the true
+global maximum n\* anywhere in the 108-row grid is 81; 321 never occurs.
+**THERMODYNAMICS independently caught** that the disclosed sign-erratum's
+`results.json` fields had no corresponding code path in the committed
+`run.py` — genuine values, broken provenance. **Red Team's final audit
+found a third thing no blind seat caught**: the fabricated "321" figure
+had already propagated into two of the six Phase-5 reviews' own
+"corrections to propagate to LOGBOOK" text (MATERIALS, ELECTROMAGNETISM)
+— caught before the Director could copy either into the permanent record
+a second time. Both defects fixed same-shift (`ba1c731`): NOTES.md
+corrected to the verified 81 figure at both loci; `run.py` gained an
+erratum-replay code path (independently re-verified by the Director via a
+partial 27-cell re-execution before committing — bit-exact match); the
+T24 caveat propagated to the two loci that lacked it; `converged_value`'s
+semantics documented inline. **Checkpoint criterion 4 does NOT fire**
+(contingent on the applied fixes) but this is the **second** consecutive
+cycle (25, 26) to carry a real R4-species defect, one cycle after R4's own
+adoption — Red Team adopts a new hardened rule: a third consecutive
+post-R4 non-reproducing headline figure fires criterion 4 automatically,
+no further debate. No `REALIZABILITY_MEMO.md` tier or constraint-3/4
+claim touched anywhere. Full record: LOGBOOK.md Iteration 26; PLAN.md's
+Current-state and queue updated (including MATERIALS' own A=724
+geometry follow-up trigger, due Iteration 27); next lead per rotation:
+MATERIALS.
+
+Bench 41/41 (`--only 12346789`) at pre-flight and re-verified after the
+one code change this shift (the Phase-4 implementation, zero `lab/` file
+touched throughout). Commits: `9557aed` (Phase-1 proposal), five
+`36c8f1b`/`80274b9`/`8b0e7c6`/`174b3c8`/`93f6446` (Phase-2 blind
+critiques), `2b9e5b9` (Phase-2 Red Team audit), `bc830eb` (Phase-3
+synthesis + predictions frozen), `7699de5` (Phase-4 implementation),
+`e5c32b1` (results, with disclosed erratum), six
+`dffce8e`/`e3880a3`/`70fbfc9`/`2991981`/`21bda10`/`e279049` (Phase-5
+blind reviews), `e1753ed` (Phase-5 Red Team audit), `ba1c731` (Phase-5
+close-out fixes), pushed to origin/main.
+
 ## 2026-08-19 (panel shift) — Iteration 25 complete (exp-048): closing
 exp-047's evidentiary chord — a formal `REALIZABILITY_MEMO.md` entry, the
 T21 fringe bound at the actual ±35° fallback geometry, and the MARGINAL
