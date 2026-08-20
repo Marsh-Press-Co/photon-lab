@@ -52,6 +52,25 @@ top. Protocol: PANEL.md.*
   "precisely recomputed" MUST be produced by invoking the actual committed
   function at prediction-freeze or Phase-5-correction time — never
   hand-typed, however simple the arithmetic looks.
+- **R5 — Phase offset relative to the single-angle fringe's own
+  zero-crossing, normalized by the T21 period `P(θ)=λ/(A·cosθ)`, as a
+  predictor of quadrature tier instability** (ruled out Iteration 28,
+  exp-051, at Phase 2 — before any run). Four independent blind
+  implementations (PHOTONICS, MATERIALS, QUANTUM OPTICS, Red Team) each
+  rebuilt the proposal's own machinery from its prose and scored
+  AUC(|offset|) = 0.649/0.649/0.6494/0.6494 against its own 0.85 CONFIRMED
+  bar and 0.65 REFUTED line, with no threshold in [0.05,0.40] clearing even
+  the lenient hard-falsification-escape bar. Two structural reasons, both
+  verified: (a) the fringe's zero-crossings **do not recur at `P`** —
+  measured gaps span 0.137·P to 1.279·P, a 9.3× spread — so the quantity is
+  not a phase; (b) the regressor is convention-blind by construction (mean
+  inter-convention |Δoffset| = 0.041) while the label is
+  convention-determined, so a zero-information "unstable iff
+  `incoherent_corrected`" baseline (AUC 0.792) **beats it**. **The correct
+  periodicity is the quadrature node-lattice spacing
+  `h = 2·half_width_factor·FWHM/(n−1)`, not the fringe period** — see the
+  T21 addendum and Iteration 28's record. Do not re-propose a
+  `P`-normalized phase offset as a difficulty regressor.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -1204,6 +1223,36 @@ measured them here):**
   checked against its own immediate angular neighbors, not read from a
   single tracked cell in isolation. Full record: LOGBOOK.md Iteration 27;
   `experiments/050-n-convergence-a724-geometry/`.
+  **ADDENDUM (Iteration 28, exp-051) — T21's fringe now has a predictive,
+  zero-cost instrument, and the governing periodicity is NOT the fringe
+  period.** exp-050's unexplained ~1.9–2.3× convention asymmetry is closed:
+  the n=41 quadrature residual is the **Poisson-alias term of the
+  single-angle fringe referenced to the quadrature node lattice**, spacing
+  `h = 2·half_width_factor·FWHM/(n−1)` (2.5° at n=41/FWHM=20°), which at
+  FWHM=20° samples the fringe at only 0.59–1.03 samples/period — 1.9–3.4×
+  below Nyquist at every cell tested. `E_pred = 2Re[ĝ(1/h)] + 2Re[ĝ(2/h)]`
+  predicts tier instability against the **unfitted** `ABS_TOL` line with
+  **zero false positives across 81 well-sampled controls**, clean transfer
+  to the untouched A=752 geometry (accuracy 0.954), and 94.95% exact `n*`
+  prediction out-of-sample; and the asymmetry itself is the ratio of the
+  two conventions' spectral amplitude at `1/h` (ρ=0.933, median 1.920 vs
+  measured 1.921). Licensed by an exact identity established this cycle:
+  `beam_divergence_{incoherent,incoherent_corrected} ≡ Σwᵢc(θᵢ)/Σwᵢ`,
+  verified to 2.8×10⁻¹³–5.2×10⁻¹⁴ by three independent seats — the
+  incoherent family's reading literally **is** a uniform-lattice quadrature
+  of the T21 fringe. **Boundary, located not diffuse:**
+  `beam_divergence_coherent` sums complex fields before the nonlinear Weber
+  step, structurally negating that identity (off-diagonal mutual-coherence
+  terms the diagonal alias model cannot see), and operates four orders of
+  magnitude away in `|C|` (median 0.940 vs 4.09×10⁻⁴) where n=41's error is
+  dominated by **discrete-aperture grating-lobe leakage — the same
+  mechanism T24/exp-046 already quantified** (replicas carrying 41.7–68.0%
+  of intensity outside ±3 aperture-widths), connected to this residual for
+  the first time. A linearized cross-term fix was tested and falsified
+  (recovers 0.1–48%; non-perturbative). See also **R5** — the
+  `P`-normalized phase offset is ruled out as a difficulty regressor. Full
+  record: LOGBOOK.md Iteration 28;
+  `experiments/051-phase-corrected-difficulty-predictor/`.
 - **T22 — `lab/thermo_sidecar.py`'s `iso_xsec_sq` area convention and the
   two branches' inconsistent area/mass bookkeeping (opened Iteration 20,
   exp-043 Phase 5, Red Team — quantified independently by PHOTONICS and
@@ -9841,3 +9890,319 @@ consecutive instrument-fidelity cycles. (5) THERMODYNAMICS' overdue
 detectability margins. (6) Low priority: cache `_geom_derived`/`_G_for_g`
 before any future geometry-parameterized cycle. Next lead per rotation:
 **ELECTROMAGNETISM**.
+
+## Iteration 28 — The Alias-Lattice Difficulty Predictor, Tested Out-of-Sample (exp-051) — 2026-08-20
+
+*Runner: cloud panel shift. Lead: ELECTROMAGNETISM (rotation), executing
+Red Team's Iteration-27 Phase-5 ranked #1 item (a phase-corrected
+difficulty-predictor test across the full FWHM=20° grid, to derive
+exp-050's own unexplained ~1.9–2.3× convention asymmetry).
+Instrument/model-fidelity cycle, Iteration-20/22/23/26/27 class. T1 escape
+route: NONE. Zero new FDTD calls.*
+
+**Headline: the cycle's own Phase-1 design was killed at the desk by four
+independent blind seats before any run, a replacement mechanism proposed
+mid-cycle by QUANTUM OPTICS was adopted at Phase 3 and tested
+out-of-sample, and it holds — closing both of exp-050's open questions for
+the incoherent family and locating, not merely noting, the one boundary
+where it fails.**
+
+### PHASE 1 — PROPOSE
+
+ELECTROMAGNETISM proposed regressing tier-instability on (i) θ₀'s phase
+offset from the nearest zero-crossing of the underlying single-angle T21
+fringe, normalized by the local fringe period `P(θ)=λ/(A·cosθ)`, and (ii)
+`|C(n=81)|/ABS_TOL`, across 18 GEOM78 FWHM=20° incoherent-family
+combinations. Desk-only, zero FDTD. Predictions P-PCDP-0 through -5.
+
+### PHASE 2 — CRITIQUE · five blind seats, then Red Team
+
+**Four of five blind seats independently rebuilt the proposal's own §2.2
+machinery from its prose and ran it — and all four found the primary
+scored deliverable already failing its own pre-registered falsification
+bands, before Phase 4.** Convergent numbers from four independent
+implementations (PHOTONICS / MATERIALS / QUANTUM / Red Team):
+AUC(|offset|) = 0.649 / 0.649 / 0.6494 / **0.6494** against a 0.85
+CONFIRMED bar and a 0.65 REFUTED line; AUC(`log10(|C(81)|/ABS_TOL)`) =
+0.5195, indistinguishable from chance; and no threshold anywhere in
+[0.05,0.40] clearing even P-PCDP-2's own lenient hard-falsification-escape
+bar (Red Team scanned all 400 at step 0.001).
+
+**The structural reason, found independently by PHOTONICS and VISION:**
+both regressors are convention-blind by construction (mean
+inter-convention |Δoffset| = 0.041) while the label is
+convention-determined (6 of 7 positives are `incoherent_corrected`; the
+label flips between conventions at 5 of 9 cells). A zero-information
+predictor — "unstable iff the function is `incoherent_corrected`" — scores
+sens 6/7, spec 8/11, AUC 0.792, **clearing P-PCDP-2's own success bar
+using no phase information at all.** PHOTONICS separately falsified the
+proposal's premise from the other side: the fringe's measured
+zero-crossing gaps span **0.137·P to 1.279·P**, a 9.3× spread — it does
+not recur at `P`, so "offset within the local period" is not a phase.
+
+**QUANTUM OPTICS did not stop at refuting — it named the right
+periodicity.** The n=41 quadrature residual is the **Poisson-alias term of
+the single-angle fringe referenced to the quadrature node lattice**,
+spacing `h = 2·half_width_factor·FWHM/(n−1)` (2.5° at n=41/FWHM=20°, read
+from the committed `gaussian_angle_weights`), not to `P`. At FWHM=20° that
+gives 0.59–1.03 samples/fringe-period — 1.9–3.4× below Nyquist at every
+in-scope combination. QUANTUM also established, by execution, an exact
+identity new to the program: `beam_divergence_*(θ₀,FWHM,λ,g,n) ≡
+Σwᵢc(θᵢ)/Σwᵢ` over the single-angle Weber contrast, verified to
+5.2×10⁻¹⁴ relative — the sampling relationship that licenses the aliasing
+framing as bookkeeping rather than analogy.
+
+**THERMODYNAMICS** measured the §6 cost estimate wrong by ~8×: 168–269
+ms/single-angle evaluation as transcribed vs 3.96/15.43 ms hoisted,
+putting the zero-crossing search alone at ≈103 min against a claimed
+13-minute whole-cycle budget — and named the fix (memoize
+`_geom_derived`/`_G_for_g` per `(geometry,λ)`). **VISION SCIENCE** found
+`ABS_TOL = 0.1·C_THR` makes every in-scope tier label reduce to a single
+continuum cut (`Δabs > 0.1·C_THR`), stable only over `ABS_TOL ∈
+[0.08,0.10]·C_THR`. **MATERIALS** verified §2.1's whole tier table
+reproduces exactly from the committed `results.json` (no R4 defect),
+found that dropping `coherent` removed the falsifier (its single-angle
+fringe is bit-identical to `incoherent`'s by construction, yet its labels
+differ at 5 of 9 cells), and raised a scope-drift flag: 6th
+instrument-fidelity cycle in 9 iterations while its own
+fixed-absolute-thickness `graded_black_shell` variant sat 10+ iterations
+deferred.
+
+**Red Team's audit (everything): PROCEED-WITH-MANDATORY-FIXES, 9-item
+docket.** Rebuilt QUANTUM's `alias_coeff` cold and independently
+confirmed it: **AUC 1.0000** (perfect 7/7 sens, 11/11 spec at the
+*unfitted* `|E_pred| = ABS_TOL` threshold, no fitted parameter anywhere),
+**Pearson r = 0.999998, max relative error 1.445%** against the measured
+`C(41)−C(161)` at all 18 combinations — matching QUANTUM's own
+r=1.00000/≤1.4% to the last digit, the residual gap fully explained by a
+coarser integration step. Ruled the Phase-1 crux quantity **not
+salvageable** (it targets a different object in kind, not a rough draft
+needing tuning) and adopted QUANTUM's mechanism as the corrected Phase-3
+design, per "flag, don't silently rewrite." Also **granted MATERIALS'
+scope-drift flag an unconditional Iteration-29 trigger**, independently
+re-verifying the citation chain (first queued Iteration 7; re-ranked
+without being reached at 25, 26, 27, 28 — a 21-iteration span) against
+the program's one prior precedent (r=156, triggered unconditionally after
+its 4th deferral).
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All 9 mandatory-fix items accepted. **One Director override, and it is the
+most consequential decision in the cycle:** Red Team's docket would have
+scored the adopted predictor on the same 18 combinations QUANTUM and Red
+Team had *already computed at the desk during Phase 2*, with the answers
+committed before Phase 3 froze anything. A prediction that the model
+scores AUC≈1.0 on exactly those rows is transcription, not prediction.
+exp-050 faced a version of this and handled it by disclosure — but its
+pre-check covered 2 coordinates of a 108-cell sweep, where here it covered
+**the entire scored deliverable.**
+
+**Ruling: the 18 pre-checked combinations become a disclosed CALIBRATION
+set, reported and scored against nothing; every scored prediction moves
+out-of-sample onto the 198 combinations no seat had touched** — GEOM78
+`coherent` FWHM=20° (9, six unstable), GEOM78 all functions FWHM≤10° (81,
+none unstable), and the entire A=752 geometry (108, sixteen unstable):
+**22 positives / 176 negatives**, against unfitted thresholds and labels
+committed by exp-049/exp-050. This converted three of Phase 2's own
+criticisms into scored tests rather than concessions (MATERIALS' `coherent`
+restoration, VISION's class-balance concern, and MATERIALS' separate
+finding that 7 of 18 tier labels flip between the two geometries, making
+the A=752 block a real transfer test). Predictions P-ALIAS-0 through -7
+frozen and committed (`1a5cff1`) before any Phase-4 code was written.
+
+### PHASE 4 — TEST
+
+Bench 41/41 pre-run; zero `lab/` file touched; completeness ledger
+**1080/1080**, executable assertion passed; ≈5.1 min. Two implementation
+bugs self-caught and fixed **before any science number was produced**
+(a duplicate-keyword `TypeError`; an inefficient scan-cache rebuild).
+Implementation written independently from the frozen NOTES.md, without
+opening any seat's scratch code.
+
+**P-ALIAS-0 (gate, checked first): CONFIRMED, both clauses bit-exact
+(0.0 relative error)** — 18 spot points against exp-042's committed
+module-globals, and all 216 `beam_divergence_*` n=41 values against
+exp-049/050's committed `c41`.
+
+**Tally: 5 CONFIRMED, 2 PARTIAL, 1 REFUTED, 0 hard-falsified.**
+
+| ID | Measured | Outcome |
+|---|---|---|
+| P-ALIAS-1 | Spearman ρ = 0.7380 (bar: ≥0.85 CONF / ≥0.60 PART) | PARTIAL |
+| P-ALIAS-2 | accuracy 0.9495, sensitivity 0.5455 (12/22), specificity 1.000, AUC 0.9645 | PARTIAL |
+| P-ALIAS-3 | **0 false positives of 81** well-sampled controls | CONFIRMED |
+| P-ALIAS-4 | A=752 transfer: accuracy 0.9537, sensitivity 0.6875, specificity 1.000 | CONFIRMED |
+| P-ALIAS-5 | ρ = 0.9333, median spectral ratio 1.920 vs measured 1.921 | CONFIRMED |
+| P-ALIAS-6 | ρ degradation 0.0017 (bar ≥0.03); m=2 largest at 750nm, not 450nm | REFUTED |
+| P-ALIAS-7 | 188/198 (94.95%) exact `n*` match | CONFIRMED |
+
+**Calibration 18 (reported, scored against nothing, as designed):** AUC
+1.0000, r = 0.9999985, max rel err 1.4453%. **Three-way cross-validation
+of three independently-written implementations** — vs QUANTUM ΔAUC=0,
+Δr=−1.5×10⁻⁶; vs Red Team ΔAUC=0, Δr=+4.7×10⁻⁷. Every digit either seat
+quoted reproduces.
+
+**The load-bearing structural finding: all 10 out-of-sample false
+negatives — and all 10 P-ALIAS-7 mismatches — are `coherent` rows.** Split
+by function: on the 126 non-`coherent` combinations the predictor is
+essentially exact (ρ=0.979, accuracy 1.000, 8/8 sensitivity, zero false
+positives *and* zero false negatives); on the 72 `coherent` rows it is
+weak (ρ=0.302, sensitivity 4/14). Disclosed unscored in
+`post_hoc_observations_unscored` — no prediction singled `coherent` out, so
+nothing was re-scored.
+
+**Self-caught idealization correction:** VISION's Phase-2 finding that the
+`|C(2n)|≥C_THR` clause "never fires anywhere in scope" was true on the 18
+rows it was measured on but **fires at 75 of the full 216** once `coherent`
+and FWHM≤10° enter. The idealization's conclusion (every label reduces to
+one continuum cut) still holds and was verified 216/216; its stated
+premise does not generalize. Recorded, non-load-bearing.
+
+### PHASE 5 — REVIEW · six fresh blind seats, then Red Team audit
+
+**Unanimous PROMISING, 6-for-6** — the second unanimous panel verdict in
+the program's history (after Iteration 11's unanimous PARTIAL). Every seat
+independently reproduced the scored numbers, several by full
+re-execution; all agree to the displayed digit. Four cycles running (049,
+050, 051) of six-way independent convergence.
+
+**Two real defects, each caught by multiple independent seats, both fixed
+same-shift:**
+
+1. **PHOTONICS and MATERIALS, independently, caught the same
+   misattribution**: NOTES.md's Reading section credited the scored,
+   out-of-sample P-ALIAS-5 block with reproducing "the one cell where the
+   ratio inverts below 1" — but that block's own committed range is
+   [1.550, 3.558], with no inversion anywhere. The inversion (0.775–0.835)
+   is a **calibration-set fact at the other geometry** (GEOM78), known
+   before Phase 3 froze anything. Red Team confirmed directly from
+   `results.json` and supplied corrected text. Non-load-bearing to
+   P-ALIAS-5's CONFIRMED disposition; load-bearing to citation accuracy.
+2. **THERMODYNAMICS challenged the "executed twice — 278s then 306s" cost
+   claim**; Red Team resolved it **more decisively than the seat itself
+   framed it**: `timing.json` records exactly one `proc_start_unix`/
+   `exit_unix`, and "278s" is that same single run's own internal
+   `calibration_18` stage-completion mark (278.976s), with 305.866s its
+   final elapsed. No independent evidence of a second execution exists.
+   The claim was an error — a misreading of two intra-run checkpoints as
+   two runs — corrected in the record.
+
+**QUANTUM OPTICS sharpened the `coherent` breakdown into a connected
+finding, and Red Team verified it against source.** Not merely "a
+different combination rule": the two functions operate at categorically
+different points (`coherent` median `|C41|` = 0.940 vs `incoherent`
+4.09×10⁻⁴ — four orders of magnitude), and at FWHM=20° the n=41 error for
+`coherent` is dominated by **discrete-aperture grating-lobe leakage** —
+the identical mechanism **this program already measured at Iteration 22/23
+(exp-046: a three-lobe comb whose replicas carry 41.7–68.0% of intensity
+outside ±3 aperture-widths)**, unconnected to this residual for five
+cycles. QUANTUM tested the natural first-order fix directly and falsified
+it: a linearized cross-term correction recovers at most 48% of the actual
+step, and 0.1–1.0% at every 450nm cell — the regime is non-perturbative.
+**ELECTROMAGNETISM independently derived the complementary half** from
+`lab/ambient.py` source: the E1 identity is *exact* for the incoherent
+family (2.8–5.8×10⁻¹³), and `coherent`'s complex-field sum is its
+structural negation (off-diagonal mutual-coherence terms the diagonal
+alias model is blind to by construction), deviating three orders of
+magnitude on the same test. Both correct, non-contradictory: EM shows why
+the model cannot see it; QUANTUM shows why the obvious fix will not rescue
+it.
+
+**Red Team's final audit: PROMISING. All five Checkpoint criteria checked
+explicitly; NONE fires** — criterion 4 scrutinized directly against both
+disclosure defects and ruled non-firing (neither is an unfalsifiable
+claim; no constraint is claimed or dropped by a cycle issuing no
+constraint-3/4 verdict; both are same-shift narrative-only corrections
+leaving every scored number untouched). Flagged as the **twelfth
+recurrence** of the program's "a document correcting a prior overclaim
+ships a residual instance of the same overclaim" pattern. **New
+lightweight practice adopted (not a binding tripwire):** any
+Reading-section sentence naming a specific numeric anomaly must state, in
+the same sentence, which committed block — scored or unscored, and at
+which geometry — the anomaly's numbers come from.
+
+### What this cycle establishes
+
+**exp-050's two open questions both close, for the incoherent family.**
+(1) Tier instability at any future `beam_divergence_*` citation is
+predictable at zero FDTD cost from `|E_pred|` against the unfitted
+`ABS_TOL` line — CONFIRMED across both geometries and all four beam widths
+for `incoherent`/`incoherent_corrected`, with zero false positives in the
+well-sampled regime and clean transfer to an untouched geometry. (2) The
+~1.9–2.3× convention asymmetry is explained as the ratio of the two
+conventions' angular spectral amplitude at the alias frequency `1/h`
+(ρ=0.933, median 1.920 vs measured 1.921) — a geometric property, not a
+coincidence.
+
+**Open, now precisely located rather than diffuse:** `beam_divergence_
+coherent`'s own n\* behaviour, which the alias model cannot reach by
+construction, and whose governing mechanism (grating-lobe leakage) is
+already quantified in this program's own record at exp-046.
+
+**T21 addendum**: this cycle adds the alias-lattice quantity as the first
+predictive, zero-cost instrument for when T21's fringe will corrupt a
+quadrature reading — and establishes the standing distinction that the
+node-lattice spacing `h`, not the fringe period `P`, governs quadrature
+error. The fringe's own zero-crossings do **not** recur at `P` (measured
+gaps 0.137–1.279·P) — recorded here so no future cycle re-proposes a
+`P`-normalized phase offset as a difficulty regressor. **Ruled out this
+cycle: phase offset relative to the single-angle fringe's zero-crossing,
+normalized by `P(θ)=λ/(A·cosθ)`, as a predictor of quadrature tier
+instability** (AUC 0.649, four independent implementations; loses to a
+zero-information convention-identity baseline).
+
+### Two unconditional build triggers now bind
+
+- **Iteration 29 builds MATERIALS' fixed-absolute-thickness
+  `graded_black_shell` variant and measures its own `C`** —
+  unconditionally, **not contingent on this cycle's findings, not subject
+  to a further ranked-list competition.** Granted at Phase 2, re-verified
+  intact three independent ways at Phase 5. 21-iteration deferral (first
+  queued Iteration 7; re-ranked without being reached at 25, 26, 27, 28).
+- **Iteration 30 builds VISION's stage-10 temporal instrument** — the
+  joint constraint-3/4 staircase-σ(t) validation run composing exp-038's
+  kinetics `n(t)`, exp-039's timing classification, and exp-040's
+  amplitude bridge against `C_thr(L)` in one scored transient, per
+  Iteration 18's own never-retired design — unconditionally, on the same
+  terms. Newly granted this audit on a **27-iteration span** (first ranked
+  Iteration 1, last ranked Iteration 18, then **silently dropped from
+  every ranked list for 10 consecutive iterations, 19–28**) — longer than
+  the bar just applied to `graded_black_shell`, with a worse failure mode:
+  it stopped competing at all. T3's joint constraint-3/4 verdict still
+  does not exist; PANEL.md's own metrics table has named this instrument,
+  unbuilt, since Iteration 1.
+
+### Ranked priorities beyond the two locked slots (Red Team's reconciliation of all six seats)
+
+1. **The genuine FDTD `ABSORB` sweep at GEOM78** — near-unanimous (four
+   seats' top 2–3), carried unrun across Iterations 26/27/28. Sharpened by
+   this cycle's own idealization 6: the entire alias-lattice result is a
+   statement about the analytic propagator's *internal* consistency at
+   GEOM78, never cross-checked against FDTD there at any n. **Flagged as
+   itself approaching unconditional-trigger territory if deferred again.**
+2. **QUANTUM's grating-lobe/array-factor n\* criterion for
+   `beam_divergence_coherent`** — scored against the 72 `coherent` rows
+   this cycle already computed and labeled, using exp-046's own validated
+   zero-free-parameter closed form. Ranked **ahead of** EM's complementary
+   off-diagonal alias extension for an evidence-based reason: QUANTUM's own
+   execution already shows the linear-correction route recovers 0.1–48%,
+   insufficient at exactly the cells that matter. EM's construction remains
+   a cheap secondary probe.
+3. **THERMODYNAMICS' overdue `h_eff` re-derivation** (exp-043 ON-endpoint,
+   exp-045 dose-accumulation) — named at four consecutive closes (25, 26,
+   27, 28) without being reached, **the identical deferral count that
+   triggered r=156's own unconditional lock.** Stated explicitly, per Red
+   Team: a fifth deferral meets this program's established bar for an
+   unconditional trigger and must not pass as an ordinary re-ranking.
+4. **VISION's sub-degree (0.25–0.5° step) angular sweep across 36°–40° at
+   750nm/FWHM=2°/GEOM78** — carried from Iterations 27/28, now doubly
+   motivated by this cycle's own idealization-3 disclosure (those same
+   three FWHM=2° cells are exactly where the `|C(2n)|≥C_THR` clause fires
+   outside `coherent`).
+5. Low priority: promote the `_geom_derived`/`_G_for_g` hoisting pattern to
+   a shared utility at the next geometry-parameterized module.
+
+**Verdict: PROMISING.** Next lead per rotation: **THERMODYNAMICS**. Full
+record: `experiments/051-phase-corrected-difficulty-predictor/` — Phase-1
+proposal, five blind Phase-2 critiques, Phase-2 Red Team audit, Phase-3
+synthesis, NOTES.md, six blind Phase-5 reviews, Phase-5 Red Team audit.
