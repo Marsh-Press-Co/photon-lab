@@ -174,7 +174,7 @@ number below uses the corrected computation.
 | P-NCONV26-2 | **PARTIAL, all three functions** | ρ = 0.483 (incoherent) / 0.467 (incoherent_corrected) / 0.450 (coherent) — all in [0.30,0.70), none confirm the ≥0.70 bar, none falsify (none <0.30 or negative) |
 | P-NCONV26-3 | **REFUTED** | 0/12 FWHM=10° combinations show a genuine (non-exempted) intermediate Δrel>1% blowup with net<1% move — consistent with 1c's finding that FWHM≤10° is cleanly, universally converged; the "genuinely open regime" prior was wrong |
 | P-NCONV26-4 | **CONFIRMED** | 108/108 combinations have n*≤401, zero NOT-CONVERGED-WITHIN-RANGE (aggregate claim; the demoted specific-cell aside, Attack 8, measured n*=81 at the named hardest cell, not {641,1281} — descriptive only, not scored, consistent with Red Team's own Phase-2 spot-check) |
-| P-NCONV26-5 | **CONFIRMED** | the sharpest-stakes cell is converged already AT n=41 (n*=41, relative move 0.0% across the whole doubling range) — no flip, nowhere close |
+| P-NCONV26-5 | **CONFIRMED** | the sharpest-stakes cell is converged already AT n=41 (n*=41, relative move 0.0% across the whole doubling range) — no flip, nowhere close — T24's separate ~+0.0070 ABSORB-boundary systematic at this identical cell remains untested by this audit (see the frozen prediction's own disclosure, above) |
 | P-NCONV26-6 | **CONFIRMED** | 36/36 above C_THR; 35/36 at ≥20× incoherent (1 crosses — inside the predicted 1–3 band) |
 | P-NCONV26-7 | **CONFIRMED** | max shift 0.0 percentage points — the coherent function's converged value at every FWHM≤10° cell matches its n=41 value to the precision reported |
 | P-NCONV26-8 | **CONFIRMED** | coherent worst-cell converged move = 4.4747%, inside the predicted [2.2%,8.9%] band, within a factor of 1.001× of exp-046's own 4.473% figure |
@@ -195,10 +195,13 @@ show the *same direction* of correlation with the predicted ordering
 FWHM=10° turns out to be **universally, cleanly converged at n=41**
 (P-NCONV26-1c/3) — a materially better result for the instrument's own
 existing default than the Nyquist-margin heuristic predicted. **Net
-practical conclusion: n=41 is safe everywhere except the FWHM=20° regime,
-where the coherent function specifically needs n*≥81 (measured, not the
-heuristic's own {641,1281} guess) and the incoherent_corrected function
-needs n* up to 321 at 5 of 9 cells** (see `results.json`
+practical conclusion [corrected at Phase 5, see erratum note below]:
+n=41 is safe everywhere except the FWHM=20° regime, where the coherent
+function needs n*≥81 at 8 of 9 cells and the incoherent_corrected
+function needs n*=81 at 5 of 9 cells (measured, not the heuristic's own
+{641,1281} guess) — the global maximum n* across the entire 108-cell-
+function grid is 81; no cell-function combination anywhere in this audit
+ever needs n*=161, 321, 641, 1281, 2561, or 5121** (see `results.json`
 `per_cell_summary` for the exact per-cell n* table). The T21-period
 analogy motivated a productive, falsifiable search but is not itself a
 reliable predictor of per-cell difficulty at this construction —
@@ -217,6 +220,56 @@ near-boundary citation leans on it there.
 
 ---
 
+## Phase 5 erratum (self-caught by PHOTONICS and THERMODYNAMICS, confirmed by Red Team)
+
+Two defects, both instances of this program's own named fix-docket-
+delivery pattern and the R4 house rule (adopted Iteration 25 for this
+exact species — a headline figure not reproducing from committed code),
+recurring one cycle after R4's adoption:
+
+1. **A fabricated numeral.** The original "Net practical conclusion"
+   sentence above stated "the incoherent_corrected function needs n* up to
+   321 at 5 of 9 cells." `results.json`'s own `per_cell_summary` table
+   shows **no cell-function combination anywhere in the 108-row grid ever
+   reaches n*=321** — the true maximum n* anywhere is 81. The most likely
+   mechanical origin is a slipped index into `N_SERIES`'s 4th entry (321)
+   instead of its 2nd (81); no code path in `run.py` produces 321 for this
+   comparison. **Already corrected above**, in the same sentence, per Red
+   Team's Phase-5 audit. Caught first by PHOTONICS' Phase-5 review; two of
+   the other five Phase-5 reviews (MATERIALS, ELECTROMAGNETISM) had already
+   repeated the same wrong figure in their own "propagate to LOGBOOK" text
+   before Red Team's final audit caught the propagation and blocked it —
+   the Director uses PHOTONICS'/Red Team's corrected n*=81 figure
+   throughout LOGBOOK.md's close-out entry, not either seat's own text.
+2. **A reproducibility gap.** `results.json`'s `meta.phase4_erratum` and
+   `predictions.P_NCONV26_2_ERRATUM_ORIGINAL_BUGGY` fields (documenting
+   the sign-convention bug above) were hand-verified and hand-inserted
+   into `results.json` when the bug was caught, not produced by any
+   function in the committed `run.py` — a single fresh `python run.py`
+   would not have regenerated them. The disclosed VALUES were always
+   genuine (independently re-derived from the real, unmodified
+   `design_geometry.py` functions by the Director, and re-verified
+   bit-for-bit by Red Team's own independent reconstruction), but the
+   PROVENANCE chain was broken. **Fixed**: `run.py` now includes
+   `predicted_difficulty_rank_ORIGINAL_BUGGY()` and an erratum-replay
+   block in `main()` that reproduces both fields bit-for-bit from a single
+   invocation — verified against the previously-committed `results.json`
+   before this fix was accepted.
+
+**Checkpoint criterion 4 ruling (Red Team, Phase 5): does NOT fire**,
+contingent on these same-shift fixes (Iterations 19/22/25 precedent) —
+neither defect is load-bearing to any of the eleven scored predictions,
+neither is unfalsifiable (both were caught by the panel's own falsification
+machinery working as designed), and neither touches a T1 escape route or
+constraint. **New hardened rule adopted**: a third consecutive post-R4
+cycle carrying a non-reproducing headline figure fires criterion 4
+automatically, no further debate — this is the second such instance
+immediately following R4's own adoption.
+
+---
+
 *Predictions were FROZEN in a commit before `run.py` was executed. Results
 above follow in a separate commit, with the sign-convention erratum
-disclosed inline rather than silently corrected.*
+disclosed inline rather than silently corrected. This Phase-5 erratum
+section documents two further self-caught defects in that same
+disclosure, both fixed same-shift.*

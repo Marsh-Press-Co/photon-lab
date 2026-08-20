@@ -88,6 +88,26 @@ def predicted_difficulty_rank():
     return {cell: n - i for i, cell in enumerate(order)}  # hardest (i=0) -> rank n (largest)
 
 
+def predicted_difficulty_rank_ORIGINAL_BUGGY():
+    """The original (buggy) rank formula, preserved verbatim for
+    reproducibility of the disclosed Phase-4 runtime erratum -- DO NOT USE
+    for scoring. Rank 1 = hardest (ascending), which inverts the Spearman
+    sign against a magnitude-increasing measured series. See
+    predicted_difficulty_rank()'s own docstring for the full erratum
+    account. Added at Phase 5 (Red Team mandatory fix 2, phase5_redteam_
+    audit.md) to close a reproducibility gap: the disclosed
+    P_NCONV26_2_ERRATUM_ORIGINAL_BUGGY / meta.phase4_erratum values in the
+    previously-committed results.json were hand-verified and hand-inserted
+    when the bug was caught, not produced by any function then in this
+    file. This function + the erratum-replay block below reproduce those
+    values bit-for-bit from a single `python run.py` invocation."""
+    order = []
+    for lam in LAMBDAS:
+        for th in THETA0S:
+            order.append((th, lam))
+    return {cell: i + 1 for i, cell in enumerate(order)}
+
+
 def delta_step(c_n, c_2n):
     """Corrected Delta_rel: exemption, not floor, per Red Team Attack 5."""
     dabs = abs(c_2n - c_n)
@@ -233,6 +253,28 @@ def main():
             outcome="CONFIRMED" if rho >= 0.70 else ("REFUTED" if (rho < 0.30 or rho < 0) else "PARTIAL"),
         )
 
+    # ---- Erratum replay (Phase 5, Red Team mandatory fix 2): reproduces the
+    # disclosed Phase-4 runtime bug bit-for-bit from the actual committed
+    # function, for reproducibility (LOGBOOK house rule R4) -- NOT used for
+    # scoring, preserved for disclosure only. ----
+    rank_map_buggy = predicted_difficulty_rank_ORIGINAL_BUGGY()
+    p_ncov2_erratum_buggy = {}
+    for fn in FUNCS:
+        predicted = []
+        measured = []
+        for (th, fw, lam) in fwhm20_cells:
+            d = per_cell_func[(th, fw, lam, fn)]
+            step0 = d["steps"][0]
+            dabs = step0["dabs"]
+            drel = step0["drel"]
+            magnitude = drel if drel is not None else (dabs / ABS_TOL) * REL_TOL
+            predicted.append(rank_map_buggy[(th, lam)])
+            measured.append(magnitude)
+        rho, pval = spearmanr(predicted, measured)
+        p_ncov2_erratum_buggy[fn] = dict(
+            spearman_rho=float(rho), pvalue=float(pval), outcome="REFUTED",
+        )
+
     # ---- P-NCONV26-3: FWHM=10deg genuine intermediate movement, net<1%, not exempted ----
     p3_qualifying = []
     for c in fwhm10_cells:
@@ -272,6 +314,15 @@ def main():
         flips_C_THR=bool(flips5),
         margin_ratio=0.005 / abs(c41_5), margin_headroom_pct=100.0 * (0.005 / abs(c41_5) - 1.0),
         outcome="CONFIRMED" if (not flips5 and move5 <= 1.0) else ("REFUTED" if (flips5 or move5 > 5.0) else "PARTIAL"),
+        t24_caveat=(
+            "FDTD-unvalidated at this cell; LOGBOOK live thread T24's own "
+            "~+0.0070 ABSORB-boundary systematic at this identical "
+            "(lambda,theta,FWHM)=(750nm,38deg,2deg) point is untested here "
+            "-- this prediction concerns only this audit's own n-convergence "
+            "arithmetic at the cell, not T24's separate, unresolved "
+            "systematic (VISION SCIENCE, Phase 2 Attack 6; propagated to "
+            "this field at Phase 5 per Red Team mandatory fix 3)."
+        ),
     )
 
     # ---- P-NCONV26-6: 36/36 above C_THR, 20x-incoherent sub-clause ----
@@ -340,6 +391,22 @@ def main():
             elapsed_s=elapsed, n_ledger_records=len(ledger),
             n_series=list(N_SERIES), n_regression=N_REGRESSION, abs_tol=ABS_TOL,
             rel_tol_pct=REL_TOL, c_thr=C_THR,
+            phase4_erratum=(
+                "predicted_difficulty_rank() originally assigned rank 1 to "
+                "the hardest cell, inverting the Spearman correlation sign "
+                "against the measured Delta_rel magnitude series (larger = "
+                "harder). Self-caught before Phase 5 by checking against "
+                "Phase-2 informal citations (rho=+0.717/+0.600/+0.450), "
+                "which only make sense under a positive-correlation "
+                "convention. Original (buggy) run: rho="
+                "-0.450/-0.483/-0.467, scored REFUTED at all three "
+                "functions. Corrected: rho=+0.450/+0.483/+0.467, scored "
+                "PARTIAL at all three. Preserved under "
+                "P_NCONV26_2_ERRATUM_ORIGINAL_BUGGY, not deleted. Phase 5 "
+                "closed a further reproducibility gap: this block is now "
+                "produced by predicted_difficulty_rank_ORIGINAL_BUGGY() and "
+                "the erratum-replay code in main(), not hand-inserted."
+            ),
         ),
         completeness_ledger_count=len(ledger),
         predictions=dict(
@@ -348,6 +415,7 @@ def main():
             P_NCONV26_1b=p1b,
             P_NCONV26_1c=p_ncov1c,
             P_NCONV26_2=p_ncov2,
+            P_NCONV26_2_ERRATUM_ORIGINAL_BUGGY=p_ncov2_erratum_buggy,
             P_NCONV26_3=p_ncov3,
             P_NCONV26_4=p_ncov4,
             P_NCONV26_4_aside=p_ncov4_aside,
@@ -362,6 +430,15 @@ def main():
                 nstar=per_cell_func[(th, fw, lam, fn)]["nstar"],
                 c41=per_cell_func[(th, fw, lam, fn)]["values"][41],
                 c401=per_cell_func[(th, fw, lam, fn)]["n401"],
+                # converged_value is the value AT n* (the smallest N_SERIES
+                # entry passing two consecutive doublings), NOT the series'
+                # true n=5121 asymptote -- QUANTUM's Phase-5 finding. At
+                # (450nm,38deg,20deg)/incoherent_corrected, converged_value
+                # = -1.8825e-04 at n*=81 while the true n=5121 value is
+                # -1.599e-05, over an order of magnitude apart in relative
+                # terms (the absolute gap, 1.72e-4, stays under ABS_TOL --
+                # no headline is threatened, but cite n* alongside this
+                # field, not this field alone).
                 converged_value=per_cell_func[(th, fw, lam, fn)]["converged_value"],
                 not_converged_within_range=per_cell_func[(th, fw, lam, fn)]["not_converged_within_range"],
             )
