@@ -1,0 +1,19 @@
+{
+  "stage": "done",
+  "completed": true,
+  "exception": null,
+  "proc_start_unix": 1787242553.221942,
+  "stage_times": {
+    "labels_loaded": 0.0014060359999348293,
+    "C41_C81_sweep": 227.12505974599935,
+    "master_scans": 258.2017822379994,
+    "P_ALIAS_0": 258.2919490009999,
+    "E_pred_sweep": 259.5746515789997,
+    "predictions_scored": 259.5880734019993,
+    "calibration_18": 278.976198284,
+    "abs_tol_sensitivity": 278.97714979600005,
+    "step_convergence_spotcheck": 304.4487522849995
+  },
+  "elapsed_s_from_import": 305.86639585600005,
+  "exit_unix": 1787242859.0883422
+}

@@ -196,5 +196,142 @@ verified never adopted despite being recommended at Iteration 27's close).
 
 ---
 
+## Results (Phase 4)
+
+Bench re-verified 41/41 (`--only 12346789`) immediately before the run.
+Total compute: ≈5.1 min for the scored sweep (the module was executed twice
+— 278s then 306s — while adding the post-hoc block and the idealization-3
+premise disclosure below; every scored number was bit-identical between the
+two runs), plus the bench and pre-run helper checks, ≈13 minutes total,
+disclosed honestly per house discipline (the same standard exp-050's own
+Iteration-27 record was corrected against). Two implementation bugs
+self-caught and fixed **before** any science number was produced (a
+duplicate-keyword `TypeError` in the confusion-matrix assembly; an
+inefficient but not incorrect scan-cache rebuild) — zero runs were burned on
+broken code. Completeness ledger: **1080/1080**, executable assertion
+passed. `design_geometry.py`/`run.py` were written independently from this
+frozen NOTES.md spec, without opening any Phase-2 seat's scratch code (idealization 10) — the agreement reported below is a genuine cross-validation, not a copy.
+
+**P-ALIAS-0 (gate, checked first): CONFIRMED.** Both clauses bit-exact
+(0.0 relative error): (a) 18 spot points of the geometry-parameterized
+single-angle functions vs exp-042's committed module-globals; (b) all 216
+`beam_divergence_*` n=41 values vs exp-049/050's committed `c41`. A third,
+Phase-4-added self-check (batched-matmul `E_pred` path vs the scalar path
+the frozen 0a doesn't exercise) also passed, 6.2×10⁻¹² relative — disclosed
+as an addition to, not a substitute for, the frozen gate.
+
+| ID | Measured (198 out-of-sample unless noted) | Band | Outcome |
+|---|---|---|---|
+| P-ALIAS-1 | Spearman ρ = **0.7380** (Pearson on log10 = 0.762) | ≥0.85 CONF / 0.60–0.85 PART | **PARTIAL** |
+| P-ALIAS-2 | accuracy **0.9495**, sensitivity **0.5455** (12/22), specificity 1.000, AUC 0.9645 | acc≥0.90 ∧ sens≥0.75 CONF / sens 0.50–0.75 PART | **PARTIAL** |
+| P-ALIAS-3 (81 FWHM≤10°) | **0 false positives**, 100% predicted stable | ≤4 FP CONF | **CONFIRMED** |
+| P-ALIAS-4 (108, A=752) | accuracy 0.9537, sensitivity **0.6875** (11/16), specificity 1.000, AUC 0.9664 | acc≥0.85 ∧ sens≥0.60 | **CONFIRMED** |
+| P-ALIAS-5 (9, A=752 FWHM=20°) | ρ = **0.9333**, median spectral ratio **1.920** (measured Δabs-ratio median 1.921) | ρ≥0.70 ∧ median∈[1.4,2.6] | **CONFIRMED** |
+| P-ALIAS-6 | ρ(m=1) 0.7364 vs ρ(m=1+2) 0.7380, degradation 0.0017; 450nm NOT the largest m=2 contribution | drop≥0.03 ∧ 450nm>750nm | **REFUTED** |
+| P-ALIAS-7 | **188/198 (94.95%)** exact `n*` match | ≥85% CONF | **CONFIRMED** |
+
+**5 CONFIRMED, 2 PARTIAL, 1 REFUTED. 0 hard-falsified.** No prediction's
+hard-falsification clause fired anywhere, including P-ALIAS-6's own escape
+(m=2 changes `E_pred` by <1% median at every λ) — it does not escape; m=2 is
+genuinely load-bearing (450nm: 0.08–3.4% depending on FWHM; 750nm up to
+3.4%; FWHM=2° cells ~25% at every λ), just not concentrated at 450nm as
+predicted.
+
+**Calibration 18 — reported, scored against nothing, as designed.** AUC
+1.0000, Pearson r = 0.9999985, max relative error 1.4453%, median 0.018% —
+perfect separation at the unfitted threshold (min |E_pred| among unstable
+5.263×10⁻⁴, max among stable 4.247×10⁻⁴, straddling ABS_TOL cleanly). This
+is a **three-way cross-validation of three independently-written
+implementations**: vs QUANTUM's Phase-2 figures (AUC 1.000, r=1.00000, ≤1.4%)
+ΔAUC=0, Δr=−1.5×10⁻⁶; vs Red Team's Phase-2 figures (AUC 1.0000, r=0.999998,
+≤1.445%) ΔAUC=0, Δr=+4.7×10⁻⁷, max relative error 1.4453% vs their 1.445%.
+Every digit either seat quoted reproduces.
+
+## Reading
+
+**The mechanism generalizes.** P-ALIAS-3's zero-false-positive result on the
+81 well-sampled FWHM≤10° combinations is the sharpest single fact this cycle
+produces: a predictor that scored AUC 1.000 on 18 hand-picked rows could
+easily have been an artifact that fires everywhere near |C|≈0 — it does not.
+It correctly recognizes the regime (samples-per-period 1.17–10.3, comfortably
+above Nyquist) where no aliasing should occur, and stays silent there,
+**every time**. P-ALIAS-4's clean transfer to the untouched A=752 geometry
+(accuracy 0.954, using labels that MATERIALS' own Phase-2 finding showed 7 of
+18 flip against A=724) is the second: this is not a same-geometry repeat.
+
+**But P-ALIAS-1/2's PARTIAL verdicts are real, not a rounding-distance miss,
+and the reason is now identified, not just measured.** Splitting the 198 by
+function: on the **126 non-`coherent`** rows the predictor is essentially
+exact (ρ=0.979, accuracy 1.000, 8/8 sensitivity, 0 false positives/negatives)
+— every miss lives in the **72 `coherent`** rows (ρ=0.302, sensitivity 4/14).
+This is a genuine, mechanistically located finding, not a diffuse residual:
+QUANTUM's E1 identity — `beam_divergence_* ≡ Σwᵢc(θᵢ)/Σwᵢ`, the exact
+sampling relationship the alias model is built on — holds because
+`incoherent`/`incoherent_corrected`'s per-component flank normalization makes
+the quadrature a literal weighted sample of the single-angle Weber contrast
+`c(θ)`. `beam_divergence_coherent` sums the **complex field** across angle
+samples before computing a single Weber contrast on the sum — a materially
+different, and for this predictor's purposes non-identical, combination rule
+over the same single-angle building block (this is also *why* MATERIALS'
+Phase-2 restoration of `coherent` as a "degenerate-x1 control" mattered: same
+regressor, different label, and now a located reason the two diverge for
+`coherent` specifically, not a mystery). All 10 of the 198 out-of-sample
+false negatives, and all 10 of P-ALIAS-7's mismatches, are `coherent` rows —
+disclosed in `results.json`'s `post_hoc_observations_unscored` block,
+unscored (no frozen prediction singled out `coherent` separately, so nothing
+is re-scored), but load-bearing for what Iteration 29+ should do with this
+mechanism: **it is confirmed for the incoherent family the ~1.9–2.3×
+asymmetry was actually measured on (exp-050's own scope), and open for the
+coherent-sum convention specifically**, not open across the board.
+
+**P-ALIAS-5 closes exp-050's second open question cleanly.** The
+alias-frequency spectral-amplitude ratio reproduces the measured Δabs-ratio
+at the 9 out-of-sample A=752 FWHM=20° cells (ρ=0.933, median 1.920 vs
+1.921) — including, per Phase-2's own cross-seat convergence (QUANTUM,
+VISION, Red Team all independently found the same 750nm/38° anomaly by three
+different computations), the correct reproduction of the one cell where the
+ratio inverts below 1. The ~1.9–2.3× convention asymmetry exp-050 left
+unexplained is now explained: it is the ratio of the two conventions'
+spectral amplitude at the aliasing frequency `1/h`, a geometric property of
+how each convention's obliquity term shapes the single-angle fringe, not a
+coincidence.
+
+**P-ALIAS-6's refutation is informative, not a defect.** m=2 is not
+concentrated at 450nm as the shorter-wavelength-closer-to-a-second-harmonic
+argument predicted — it is instead largest at 750nm and at the narrowest
+beam widths (FWHM=2°, ~25% contribution at every λ), where `h` is smallest
+relative to the window and a single alias term under-resolves the fringe
+regardless of λ. The mechanism (aliasing against the node lattice) survives;
+the specific λ-dependence hypothesis attached to it at Phase 3 does not.
+
+**One idealization-3 correction, self-caught and disclosed, not
+load-bearing:** VISION's Phase-2 finding that `ABS_TOL=0.1·C_THR` makes the
+`|C(2n)|≥C_THR` relative-error clause "never fire anywhere in scope" was true
+on the 18-row calibration set it was measured on, but **does fire at 75 of
+the full 216 rows** (72 `coherent`, whose Weber contrast is order-unity, plus
+3 others) once the grid widens to include `coherent` and FWHM≤10°. The
+idealization's *conclusion* (every label reduces to one continuum cut) still
+holds, because `drel` is automatically satisfied whenever `|C(2n)|` is large
+— but its stated premise does not generalize past the rows it was checked
+on. Recorded here per house discipline, non-load-bearing to any scored
+prediction.
+
+**What this changes going forward:** exp-050's two open questions both
+close. (1) Tier instability at any future `beam_divergence_*` citation is
+now predictable, zero-FDTD-cost, from `|E_pred|` against the unfitted
+`ABS_TOL` line — CONFIRMED for `incoherent`/`incoherent_corrected` at every
+FWHM and both geometries tested (P-ALIAS-3/4/7), open specifically for
+`beam_divergence_coherent`, whose different angle-combination rule breaks
+the sampling identity the predictor is built on. (2) The ~1.9–2.3×
+convention asymmetry is explained as a spectral-amplitude ratio at the alias
+frequency (P-ALIAS-5), including its one measured inversion. **Unresolved,
+concretely scoped for a future cycle:** why `coherent`'s complex-field-sum
+convention breaks the E1 sampling identity in a way that specifically
+degrades the alias predictor (not merely "coherent is different" — the
+mechanism is named, the consequence for this predictor is measured, the
+reason the consequence takes this particular form is not yet derived).
+
+---
+
 *Results below this line are written only after the run. Nothing above it is
 edited after the freeze commit.*
