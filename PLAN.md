@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-20, panel Iteration 26)
+## Current state (2026-08-20, panel Iteration 27)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -1331,38 +1331,89 @@ continuous mode with checkpoints. The remaining [open] items below are
   this cycle is the second such instance. No REALIZABILITY_MEMO.md tier
   or constraint-3/4 claim touched anywhere. Verdict: PROMISING. Full
   record: LOGBOOK.md Iteration 26.
-- **[queued — panel Iteration 27, ranked per Red Team's Iteration-26
-  Phase-5 synthesis, lead: MATERIALS (rotation)]** (1) **Re-run exp-049's
-  identical n-doubling sweep at exp-048's A=724/NY=1528 fallback
-  geometry** — MATERIALS' own Phase-2 Attack-1 follow-up trigger, due
-  this cycle: exp-049's n\* findings are scoped to exp-042/046's
-  A=752/NY=1584 geometry only and must not be cited as governing the
-  A=724 fallback geometry (the one an actual near-boundary constraint-3
-  or realizability citation would use) without this cheap re-run. (2)
-  **Genuine FDTD `ABSORB` sweep** at the T21-vs-T24 geometry — sharpened
-  by exp-049's own finding that the sharpest-stakes cell's n-convergence
-  uncertainty is now ~7.7×10⁻⁹% (effectively zero), leaving T24's own
-  ~0.0070 boundary systematic as the only remaining unresolved
-  uncertainty source on this program's sharpest contamination-risk cell.
-  (3) **EM's phase-corrected difficulty-predictor test**: score
-  Δrel(41→81) against a predictor including each cell's phase offset
-  within its own local T21 fringe period, not period-vs-Nyquist-margin
-  alone — the cheap, desk-only test to resolve the ambiguity exp-049's
-  own near-parity ρ values (0.45–0.48 across all three mechanistically
-  distinct functions) leave open. (4) **Build and measure the
-  fixed-absolute-thickness `graded_black_shell` variant's own C** —
-  MATERIALS' now-nine-plus-iteration-deferred Iteration-7 pick,
-  independently re-ranked again this cycle. (5) **THERMO's witness-scale
-  `h_eff` re-derivation** for the two thinnest existing detectability
-  margins (exp-043's ON-endpoint, exp-045's dose-accumulation figure),
-  overdue since Iteration 25 close. Carried forward, not re-ranked this
-  cycle (Iteration 25's own queue, untouched by exp-049's narrow scope):
-  T8/T13/T14's sensitivity-band minimum bar (dormant 18 iterations);
-  fine (≤1° step) angular sweep around the actual ±35° fallback geometry
-  (PHOTONICS' Iteration-25 finding); fresh c*(λ) refit at the new
-  geometry; regime-stratify T2's ±0.3-log uncertainty near the
-  absolute-threshold edge; ocular-dose disposition (still cheap, still
-  not urgent).
+- [done 2026-08-20, panel Iteration 27] **exp-050 the n-convergence audit
+  at exp-048's A=724 fallback geometry** — MATERIALS' lead (rotation),
+  executing Red Team's Iteration-26 Phase-5 ranked #1 item and MATERIALS'
+  own Phase-2 Attack-1 follow-up trigger on exp-049. Zero new FDTD calls:
+  generalized exp-042's three `beam_divergence_*` functions to take a
+  geometry dict (exp-048 Block B precedent), with a mandatory regression
+  anchor against `GEOM_EXP042_OLD` — bit-exact (0.0 relative error) for
+  all three functions, including the first-ever geometry-dict
+  generalization of the obliquity-on-E convention. **Headline CONFIRMED
+  cleanly: global max n\* at GEOM78 stays 81, matching A=752 exactly
+  (P-NCONV27-1); 100% of FWHM≤10° cells converge at n=41 (P-NCONV27-5)**
+  — closes the follow-up trigger's own literal purpose: no future
+  near-boundary citation at GEOM78 needs to defer to a re-run outside the
+  FWHM=20°/`incoherent_corrected`-or-`coherent` regime. **But
+  P-NCONV27-2 REFUTED, informatively**: Red Team's own pre-registered
+  6-combination exemption zone (built from two independent mechanisms,
+  Phase 2) caught the one violation it predicted (750nm/40°) but missed
+  two more at 600nm (36°, 40°), same function, outside the zone — all
+  three violating cells sit deep in the `|C|`~10⁻⁴ "exempted" near-zero
+  regime. Six blind Phase-5 seats split 3 PROMISING / 1 PROMISING-with-
+  a-ruled-out-sub-claim (QUANTUM) / 2 PARTIAL; PHOTONICS proposed a
+  specific mechanism (the corrected convention's signed cross-term is
+  uniquely prone to near-zero crossings) that QUANTUM and EM
+  independently refuted by re-running `incoherent` at the same
+  coordinates and finding the identical pathology. **Red Team's own
+  audit resolved this by direct execution, not seat-counting**: both
+  conventions share a genuine, fast-settling destructive-interference
+  null of the same angular integral; which one trips the fixed
+  `ABS_TOL` gate is a reproducible ~1.9–2.3× magnitude coincidence,
+  unexplained — Iteration 28's own top priority. Two further real,
+  same-shift-fixed disclosure gaps: THERMODYNAMICS found the disclosed
+  runtime (~104min) likely excludes a discarded, comparably-expensive
+  buggy first run (true cost ~208min, git-timestamp-confirmed,
+  non-load-bearing); VISION SCIENCE independently found the sharpest-
+  stakes cell's immediate 2°-step angular neighbors at GEOM78 actually
+  **exceed `C_THR` outright** — a threshold breach absent at A=752,
+  undisclosed until Phase 5. **No Checkpoint criterion fires** (all five
+  explicitly checked; criterion 4 scrutinized directly against both
+  PARTIAL findings, does not fire). **No new numbered live thread** —
+  folded into T21's existing entry (same underlying fringe mechanism,
+  now shown to also govern `beam_divergence_*`'s integrated quantity at
+  a second geometry). New standing rule adopted: n-convergence CONFIRMED
+  certifies numerical stability only, never geometry-stability of the
+  underlying physical value. Verdict: PROMISING. Full record: LOGBOOK.md
+  Iteration 27.
+- **[queued — panel Iteration 28, ranked per Red Team's Iteration-27
+  Phase-5 synthesis, lead: ELECTROMAGNETISM (rotation)]** (1) **A
+  phase-corrected difficulty-predictor test across the full FWHM=20°
+  grid** (all 9 cells × the two incoherent-family functions, not just
+  the 3 cells that tripped exp-050's own tier boundary), including
+  `|C(n=81)|/ABS_TOL` as a regressor alongside each cell's phase offset
+  within its own local T21 fringe period — near-unanimous top pick
+  (PHOTONICS, ELECTROMAGNETISM, MATERIALS, QUANTUM OPTICS, Red Team);
+  aims to derive exp-050's own unexplained ~1.9–2.3× convention
+  asymmetry and, per MATERIALS' own Phase-5 argument, likely retires
+  both exp-050's own open questions at once. (2) **Genuine FDTD
+  `ABSORB` sweep** at the T21-vs-T24 geometry — sharpened further by
+  exp-050's own finding that n-convergence uncertainty at the sharpest-
+  stakes cell is now known to ~0%, leaving T24's own boundary systematic
+  as the sole remaining unresolved uncertainty source on this program's
+  sharpest contamination-risk cell family. (3) **A sub-degree
+  (0.25–0.5° step) angular sweep across 36°–40° at 750nm/FWHM=2° at
+  GEOM78** (VISION SCIENCE) — exp-050's own adjacent-cell finding shows
+  the fringe swings from a near-perfect null to a threshold breach
+  within 2° of arc on either side of the one tracked grid point; the
+  true worst angle in this band is unknown at the current resolution.
+  (4) **Build and measure the fixed-absolute-thickness
+  `graded_black_shell` variant's own C** — MATERIALS' now-ten-plus-
+  iteration-deferred Iteration-7 pick, independently re-ranked again
+  this cycle (MATERIALS' own Iteration-27 lead did not reach it). (5)
+  **THERMO's witness-scale `h_eff` re-derivation** for the two thinnest
+  existing detectability margins (exp-043's ON-endpoint, exp-045's
+  dose-accumulation figure), overdue since Iteration 25 close. (6) Low
+  priority, non-blocking: cache `_geom_derived`/`_G_for_g` per
+  `(geometry, lambda)` key before any future geometry-parameterized
+  cycle (THERMODYNAMICS' own concrete fix). Carried forward, not
+  re-ranked this cycle: T8/T13/T14's sensitivity-band minimum bar
+  (dormant 19 iterations); fine (≤1° step) angular sweep around the
+  actual ±35° fallback geometry (PHOTONICS' Iteration-25 finding —
+  partially superseded/sharpened by item 3 above, at the A=724 geometry
+  specifically); fresh c*(λ) refit at the new geometry; regime-stratify
+  T2's ±0.3-log uncertainty near the absolute-threshold edge;
+  ocular-dose disposition (still cheap, still not urgent).
 - **[queued]** stage-10 temporal instrument (VISION's Iteration-2 Phase-5
   #2): TCSF bars pinned first (de Lange/Watson, sourced) — the last
   unmeasured perceptual axis (T3), gates constraint 4.
