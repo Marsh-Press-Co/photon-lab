@@ -498,7 +498,8 @@ MIXED chain instead** (`P_abs` on `w_on`, `h_eff`/mass/area on `r_out`),
 finding: worst-case exact-vs-decoupled ratio 0.9987 (decoupled STAYS
 conservative, even closer to exact than this experiment's own 0.966–0.987
 range — dwell/τ_thermal≈194.2× at the mixed chain vs. ≈21.2× here); max
-`dT_periodic` (exact) ≈2.235×10⁻⁶ K; NETD-lo margin ≈8,955× (exact) /
+`dT_periodic` (exact) ≈2.2335×10⁻⁶ K (corrected 2026-08-21, Phase-5
+mandatory fix 6: was mistranscribed 2.235×10⁻⁶ K, ~0.07% off); NETD-lo margin ≈8,955× (exact) /
 ≈8,943× (decoupled) — still UNDETECTABLE, by a margin ~3× narrower than
 this experiment's own original ~27,080× figure, not the ~38–42× Iteration
 25's separate informal (never-run) witness-scale estimate had guessed.

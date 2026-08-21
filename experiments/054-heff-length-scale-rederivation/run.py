@@ -273,6 +273,9 @@ def main():
     print(f"P-054-4 NETD-lo margin(dose, exact)={margin_dose_exact:.2f}x  "
           f"(decoupled={margin_dose_decoupled:.2f}x)  pass={p_054_4_pass}")
     print(f"P-054-5 both UNDETECTABLE={p_054_5_pass}")
+    print("  (NETD margins above are an instrument/detector threshold, "
+          "not a human perceptual one -- see NETD_DISCLAIMER; not a "
+          "constraint-3/4 finding. Phase-5 mandatory fix 5.)")
 
 
 if __name__ == "__main__":
