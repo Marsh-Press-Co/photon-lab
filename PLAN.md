@@ -1505,6 +1505,31 @@ continuous mode with checkpoints. The remaining [open] items below are
   UNCONDITIONAL; a future shift (or Marsh, in a live session) should
   attempt Phase 1 again, ideally starting fresh rather than resuming this
   blocked thread, and report back here whether the block reproduces.
+  **BLOCK REPRODUCES (2026-08-21, second cloud panel shift, pre-Phase-1):**
+  a second, independent, fully-fresh QUANTUM OPTICS Phase-1 sub-agent
+  (new session, no memory of the first attempt) was dispatched with the
+  identical task, unreworded. It was terminated by the same upstream
+  content-policy block, same `[bio]` tag, same "start a new session"
+  message, again mid-file-read (its last visible step: reading
+  `design_geometry.py`/`fdtd2d.py` after LOGBOOK.md and the kinetics
+  module) — no experiment-directory content was written either time.
+  **This is now a confirmed, content-tied, reproducible block, not a
+  transient one** — two independent fresh sessions given the same
+  reading list (kinetics rate-equation code/prose, "population
+  fraction," "dose," "carrier lifetime" vocabulary) both failed at the
+  same stage. **Per the prior shift's own stated reasoning, a third
+  attempt at this exact task — reworded or not — would risk reading as
+  evasion of a safety control and was not made.** Director instead used
+  the remainder of this shift to attempt panel Iteration 31 (a different
+  topic, thermal heat-transfer physics, no kinetics/rate-equation
+  vocabulary) as a diagnostic: does the block generalize to this
+  program's whole vocabulary, or is it specific to the staircase-σ(t)
+  build's own reading list? Result recorded in that entry, below.
+  Iteration 30 stays LOCKED and UNCONDITIONAL, now flagged for Marsh's
+  direct attention (out-of-band + this shift's notification): the
+  routine cannot execute PANEL.md's own longest-standing mandatory
+  instrument build without human intervention (e.g. a differently-scoped
+  prompt, a different tool/session, or Marsh's own live-session attempt).
 - **[LOCKED — panel Iteration 31, UNCONDITIONAL]** **THERMODYNAMICS' own
   `h_eff` re-derivation** (exp-043 ON-endpoint, exp-045 dose-accumulation).
   Named at five consecutive closes (25, 26, 27, 28, 29) without being
