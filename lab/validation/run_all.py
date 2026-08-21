@@ -1560,7 +1560,58 @@ def stage17_glare_sidecar():
           f"{mw_cm2:.2f}", abs(mw_cm2 - 18.39) <= 0.05, "18.4 mW/cm^2 (+-0.05)")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 18))
+def stage18_length_scale_chain():
+    """h_eff/mass length-scale-consistent chain vs closed-form identities
+    (panel Iteration 31, exp-054 -- the h_eff length-scale re-derivation).
+    Desk-analytic only, zero FDTD -- PANEL.md's "new machinery => new suite
+    stage with an absolute identity gate" rule, same discipline as stages
+    15/17.
+
+      1. h_eff*L == k_air to machine epsilon, for any L (formula
+         self-consistency; float division-then-multiplication is not
+         bit-exact, so this uses a <=1e-12 relative tolerance, same
+         discipline as stage 17 gate 2).
+      2. mass_kg/L**3 == density to machine epsilon, for any L (formula
+         self-consistency, same tolerance discipline).
+      3. THE DISCRIMINATING GATE (Red Team mandatory fix 4): the ON-
+         endpoint call site's literal l_geometric value (r_out_cells*dx_m)
+         is asserted equal to the bench's own committed r_out=78 cells /
+         dx=30nm product, AND mixed_length_scale_regime's resulting
+         dt_ss_full reproduces the already-published 3.293076e-5 K
+         side-computation (LOGBOOK Iteration 23) to tight tolerance --
+         guards against the actual historical bug (wrong length passed to
+         the right formula), not merely each helper's own internal
+         arithmetic.
+    """
+    print("stage 18 — h_eff length-scale-consistent chain vs closed-form identities")
+    from lab import thermo_sidecar as ts
+
+    # --- gate 1/2: formula self-consistency, any L (relative tolerance, see docstring).
+    for L in (1e-6, 2.34e-6, 7.079002048463575e-6, 5.0e-5):
+        h = ts.gas_conduction_h_eff(0.026, L)
+        rel_h = abs(h * L - 0.026) / 0.026
+        check("length-scale-chain", f"gas_conduction_h_eff(k_air=0.026, L={L:.3e})*L == k_air",
+              f"{rel_h:.2e}", rel_h <= 1e-12, "<=1e-12 relative")
+        m = ts.lumped_cube_mass_kg(2330.0, L)
+        rel_m = abs(m / L**3 - 2330.0) / 2330.0
+        check("length-scale-chain", f"lumped_cube_mass_kg(rho=2330, L={L:.3e}) / L**3 == rho",
+              f"{rel_m:.2e}", rel_m <= 1e-12, "<=1e-12 relative")
+
+    # --- gate 3: the discriminating gate -- literal length pinned, ON-endpoint regression.
+    R_OUT_CELLS, DX_M = 78, 30.0e-9
+    R_OUT_M = R_OUT_CELLS * DX_M
+    check("length-scale-chain", "ON-endpoint l_geometric_m == r_out_cells*dx_m (literal, not asserted)",
+          f"{R_OUT_M!r}", abs(R_OUT_M - 2.34e-6) <= 1e-18, "2.34e-6 (+-1e-18)")
+    P_ABS_W_ON_CENTRAL = 2.0044347652689456e-12  # exp-043 results.json::on_endpoint_tau_3p9.p_abs_w_central
+    regime = ts.mixed_length_scale_regime(
+        p_abs_w=P_ABS_W_ON_CENTRAL, l_geometric_m=R_OUT_M, k_air=0.026,
+        density_kg_m3=2330.0, c_p_j_kgk=700.0, emissivity=0.9)
+    check("length-scale-chain", "mixed_length_scale_regime(ON-endpoint) dt_ss_full_K vs LOGBOOK Iteration-23 side-computation",
+          f"{regime['dt_ss_full_K']:.6e}",
+          abs(regime["dt_ss_full_K"] - 3.293076e-5) <= 1e-9, "3.293076e-5 K (+-1e-9)")
+
+
+_STAGE_IDS = frozenset(str(n) for n in range(1, 19))
 
 
 def _stage_selected(n, only):
@@ -1621,6 +1672,7 @@ if __name__ == "__main__":
     run_stage15 = _stage_selected(15, only)
     run_stage16 = _stage_selected(16, only)
     run_stage17 = _stage_selected(17, only)
+    run_stage18 = _stage_selected(18, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -1682,6 +1734,8 @@ if __name__ == "__main__":
         stage16_oblique_gaussian_source()
     if run_stage17:
         stage17_glare_sidecar()
+    if run_stage18:
+        stage18_length_scale_chain()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")

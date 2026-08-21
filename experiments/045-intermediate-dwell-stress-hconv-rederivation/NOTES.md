@@ -482,3 +482,28 @@ PHOTONICS' R3 recheck of exp-044's 0.45% achromatic-flatness claim;
   the bug class Attack 1 found structurally unrepresentable, not merely
   checked) replaces the two tautological assertions Red Team's Attack 10
   found inadequate.
+
+## SUPERSEDED notice (added 2026-08-21, panel Iteration 31, exp-054)
+
+This experiment's Block C dose-accumulation figures (`dT_periodic_
+decoupled_K`, `netd_periodic`, and the ~27,080× margin cited in this
+program's own carried-forward record) used the `w_on`-consistent thermal
+chain (`regime_w`) — one of the two self-consistent regimes this
+experiment computed side by side, per its own Phase-3 correction, but not
+the one Iteration 31 argues is physically licensed. **Panel Iteration 31
+(`experiments/054-heff-length-scale-rederivation/`) re-runs this exact
+Block C 8-point grid (same Host D, same 4 ratios × {5τ,0.5τ} gaps, same
+`coupled_segment_general` machinery, imported not re-derived) through the
+MIXED chain instead** (`P_abs` on `w_on`, `h_eff`/mass/area on `r_out`),
+finding: worst-case exact-vs-decoupled ratio 0.9987 (decoupled STAYS
+conservative, even closer to exact than this experiment's own 0.966–0.987
+range — dwell/τ_thermal≈194.2× at the mixed chain vs. ≈21.2× here); max
+`dT_periodic` (exact) ≈2.235×10⁻⁶ K; NETD-lo margin ≈8,955× (exact) /
+≈8,943× (decoupled) — still UNDETECTABLE, by a margin ~3× narrower than
+this experiment's own original ~27,080× figure, not the ~38–42× Iteration
+25's separate informal (never-run) witness-scale estimate had guessed.
+A future cycle citing this experiment's dose-accumulation margin should
+cite exp-054's corrected figure. This note flags, does not rewrite, per
+this program's own T10 convention (original numbers below are untouched).
+NETD is an instrument/detector threshold, not a human perceptual one;
+this note does not bear on constraint-3/4.

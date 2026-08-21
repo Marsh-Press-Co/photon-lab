@@ -1,0 +1,441 @@
+{
+  "meta": {
+    "experiment": "054-heff-length-scale-rederivation",
+    "panel_iteration": 31,
+    "lead_seat": "THERMODYNAMICS",
+    "t1_escape_route": "NONE",
+    "new_fdtd_calls": 0
+  },
+  "part_a_on_endpoint_mixed_regime": {
+    "regime": {
+      "length_convention": "mixed (p_abs on its own optical length; h_eff/mass/area on l_geometric_m)",
+      "l_geometric_m": 2.3399999999999996e-06,
+      "p_abs_w": 2.0044347652689456e-12,
+      "h_eff_w_m2k": 11111.111111111113,
+      "mass_kg": 2.985406631999999e-14,
+      "area_m2": 5.475599999999998e-12,
+      "dp_dt_w_k": 6.086815889755324e-08,
+      "dt_ss_full_K": 3.293076054169135e-05,
+      "tau_thermal_s": 0.00034332969490950116,
+      "k_air": 0.026,
+      "density_kg_m3": 2330.0,
+      "c_p_j_kgk": 700.0,
+      "emissivity": 0.9,
+      "t_ambient_k": 293.15,
+      "material_provenance": "ASSUMED -- provenance terminates unsourced (T18); see REALIZABILITY_MEMO.md and exp-054/NOTES.md idealizations",
+      "mass_fill_fraction_assumption": "mass_kg assumes 100%-fill crystalline solid at l_geometric_m -- undisclosed in the Iteration-31 Phase-1 draft, disclosed here per Red Team mandatory fix 3",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- any classification derived from this dict's dt_ss_full_K does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20 origin, reaffirmed Iteration 31)"
+    },
+    "material_provenance_note": "silicon rho=2330 kg/m^3, c_p=700 J/(kg*K), kappa=148 W/(m*K): ASSUMED -- provenance terminates unsourced (T18). REALIZABILITY_MEMO.md downgraded this identity from a plain sourced citation (exp-037/NOTES.md:828-829, which itself only says 'standard cited thermal constants' with no traceable DOI/handbook) at Iteration 25 (Red Team Attack 13 / MATERIALS M3). exp-054 restores that flag here per Phase-2 mandatory fix 3 (the Phase-1 draft had silently dropped it). mass_kg further assumes 100%-fill crystalline silicon at l_geometric_m, undisclosed in the Phase-1 draft, disclosed here.",
+    "netd_disposition": {
+      "classification": "UNDETECTABLE",
+      "effective_delta_t_k": 3.293076054169135e-05,
+      "raw_delta_t_k": 3.293076054169135e-05,
+      "netd_band_k": [
+        0.02,
+        0.05
+      ],
+      "fill_factor": 1.0,
+      "emissivity_correction": 1.0,
+      "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "netd_lo_margin": 607.3348951257713,
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix, exp-043 Red Team attack 7, reaffirmed exp-054 Phase-2 mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "p_054_1_band": [
+      2.8e-05,
+      3.6e-05
+    ],
+    "p_054_1_pass": true,
+    "p_054_2_band": [
+      500.0,
+      750.0
+    ],
+    "p_054_2_pass": true,
+    "w_on_consistent_reference_dt_ss_full_K": 1.0875240683859519e-05,
+    "r_out_consistent_reference_dt_ss_full_K": 3.5982339737222747e-06
+  },
+  "part_b_block_c_rerun": {
+    "block_c_points": {
+      "r1e-09_5tau": {
+        "r": 1e-09,
+        "gap_name": "5tau",
+        "k_f_on": 1e-08,
+        "k_r": 10.0,
+        "tau_kinetics_s": 0.0999999999,
+        "dt_gap_s": 0.49999999949999996,
+        "n_pulses": 5,
+        "dwell_central_s": 0.06666666666666667,
+        "n_first_pulse": 4.865828808231031e-10,
+        "n_periodic": 4.88271997914036e-10,
+        "dT_first_decoupled_K": 1.6023544332071948e-14,
+        "dT_periodic_decoupled_K": 1.607916824252034e-14,
+        "netd_first": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.6023544332071948e-14,
+          "raw_delta_t_k": 1.6023544332071948e-14,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "netd_periodic": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.607916824252034e-14,
+          "raw_delta_t_k": 1.607916824252034e-14,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "dT_exact_first_K": 1.5965296857419574e-14,
+        "dT_exact_periodic_K": 1.6021112399197453e-14,
+        "exact_vs_decoupled_ratio_first": 0.9963648819858295,
+        "exact_vs_decoupled_ratio_periodic": 0.9963893752184668,
+        "decoupled_is_conservative_first": true,
+        "decoupled_is_conservative_periodic": true
+      },
+      "r1e-09_0.5tau": {
+        "r": 1e-09,
+        "gap_name": "0.5tau",
+        "k_f_on": 1e-08,
+        "k_r": 10.0,
+        "tau_kinetics_s": 0.0999999999,
+        "dt_gap_s": 0.04999999995,
+        "n_pulses": 5,
+        "dwell_central_s": 0.06666666666666667,
+        "n_first_pulse": 4.865828808231031e-10,
+        "n_periodic": 7.059852609197272e-10,
+        "dT_first_decoupled_K": 1.6023544332071948e-14,
+        "dT_periodic_decoupled_K": 2.3248631573311023e-14,
+        "netd_first": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.6023544332071948e-14,
+          "raw_delta_t_k": 1.6023544332071948e-14,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "netd_periodic": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 2.3248631573311023e-14,
+          "raw_delta_t_k": 2.3248631573311023e-14,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "dT_exact_first_K": 1.5965296857419574e-14,
+        "dT_exact_periodic_K": 2.3215275427990886e-14,
+        "exact_vs_decoupled_ratio_first": 0.9963648819858295,
+        "exact_vs_decoupled_ratio_periodic": 0.998565242637402,
+        "decoupled_is_conservative_first": true,
+        "decoupled_is_conservative_periodic": true
+      },
+      "r1e-05_5tau": {
+        "r": 1e-05,
+        "gap_name": "5tau",
+        "k_f_on": 0.0001,
+        "k_r": 10.0,
+        "tau_kinetics_s": 0.09999900000999991,
+        "dt_gap_s": 0.4999950000499995,
+        "n_pulses": 5,
+        "dwell_central_s": 0.06666666666666667,
+        "n_first_pulse": 4.865814379224131e-06,
+        "n_periodic": 4.882706234468346e-06,
+        "dT_first_decoupled_K": 1.6023496816254838e-10,
+        "dT_periodic_decoupled_K": 1.6079122980270056e-10,
+        "netd_first": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.6023496816254838e-10,
+          "raw_delta_t_k": 1.6023496816254838e-10,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "netd_periodic": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.6079122980270056e-10,
+          "raw_delta_t_k": 1.6079122980270056e-10,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "dT_exact_first_K": 1.5965249727872347e-10,
+        "dT_exact_periodic_K": 1.6021067532903675e-10,
+        "exact_vs_decoupled_ratio_first": 0.9963648953127757,
+        "exact_vs_decoupled_ratio_periodic": 0.9963893896801698,
+        "decoupled_is_conservative_first": true,
+        "decoupled_is_conservative_periodic": true
+      },
+      "r1e-05_0.5tau": {
+        "r": 1e-05,
+        "gap_name": "0.5tau",
+        "k_f_on": 0.0001,
+        "k_r": 10.0,
+        "tau_kinetics_s": 0.09999900000999991,
+        "dt_gap_s": 0.049999500004999954,
+        "n_pulses": 5,
+        "dwell_central_s": 0.06666666666666667,
+        "n_first_pulse": 4.865814379224131e-06,
+        "n_periodic": 7.05982641780178e-06,
+        "dT_first_decoupled_K": 1.6023496816254838e-10,
+        "dT_periodic_decoupled_K": 2.3248545323053707e-10,
+        "netd_first": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.6023496816254838e-10,
+          "raw_delta_t_k": 1.6023496816254838e-10,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "netd_periodic": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 2.3248545323053707e-10,
+          "raw_delta_t_k": 2.3248545323053707e-10,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "dT_exact_first_K": 1.5965249727872347e-10,
+        "dT_exact_periodic_K": 2.3215189680302986e-10,
+        "exact_vs_decoupled_ratio_first": 0.9963648953127757,
+        "exact_vs_decoupled_ratio_periodic": 0.9985652589318075,
+        "decoupled_is_conservative_first": true,
+        "decoupled_is_conservative_periodic": true
+      },
+      "r1e-03_5tau": {
+        "r": 0.001,
+        "gap_name": "5tau",
+        "k_f_on": 0.01,
+        "k_r": 10.0,
+        "tau_kinetics_s": 0.0999000999000999,
+        "dt_gap_s": 0.4995004995004995,
+        "n_pulses": 5,
+        "dwell_central_s": 0.06666666666666667,
+        "n_first_pulse": 0.00048643860637304656,
+        "n_periodic": 0.0004881345729049846,
+        "dT_first_decoupled_K": 1.6018793264704853e-08,
+        "dT_periodic_decoupled_K": 1.6074642732454825e-08,
+        "netd_first": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.6018793264704853e-08,
+          "raw_delta_t_k": 1.6018793264704853e-08,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "netd_periodic": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.6074642732454825e-08,
+          "raw_delta_t_k": 1.6074642732454825e-08,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "dT_exact_first_K": 1.596058440818584e-08,
+        "dT_exact_periodic_K": 1.601662647741017e-08,
+        "exact_vs_decoupled_ratio_first": 0.9963662146357011,
+        "exact_vs_decoupled_ratio_periodic": 0.9963908214938102,
+        "decoupled_is_conservative_first": true,
+        "decoupled_is_conservative_periodic": true
+      },
+      "r1e-03_0.5tau": {
+        "r": 0.001,
+        "gap_name": "0.5tau",
+        "k_f_on": 0.01,
+        "k_r": 10.0,
+        "tau_kinetics_s": 0.0999000999000999,
+        "dt_gap_s": 0.04995004995004995,
+        "n_pulses": 5,
+        "dwell_central_s": 0.06666666666666667,
+        "n_first_pulse": 0.00048643860637304656,
+        "n_periodic": 0.0007057232319720357,
+        "dT_first_decoupled_K": 1.6018793264704853e-08,
+        "dT_periodic_decoupled_K": 2.3240002760779604e-08,
+        "netd_first": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.6018793264704853e-08,
+          "raw_delta_t_k": 1.6018793264704853e-08,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "netd_periodic": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 2.3240002760779604e-08,
+          "raw_delta_t_k": 2.3240002760779604e-08,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "dT_exact_first_K": 1.596058440818584e-08,
+        "dT_exact_periodic_K": 2.3206696838014422e-08,
+        "exact_vs_decoupled_ratio_first": 0.9963662146357011,
+        "exact_vs_decoupled_ratio_periodic": 0.9985668709634841,
+        "decoupled_is_conservative_first": true,
+        "decoupled_is_conservative_periodic": true
+      },
+      "r1e-01_5tau": {
+        "r": 0.1,
+        "gap_name": "5tau",
+        "k_f_on": 1.0,
+        "k_r": 10.0,
+        "tau_kinetics_s": 0.09090909090909091,
+        "dt_gap_s": 0.4545454545454546,
+        "n_pulses": 5,
+        "dwell_central_s": 0.06666666666666667,
+        "n_first_pulse": 0.04724497262820006,
+        "n_periodic": 0.0474870906494751,
+        "dT_first_decoupled_K": 1.5558128804180183e-06,
+        "dT_periodic_decoupled_K": 1.5637860109994549e-06,
+        "netd_first": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.5558128804180183e-06,
+          "raw_delta_t_k": 1.5558128804180183e-06,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "netd_periodic": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.5637860109994549e-06,
+          "raw_delta_t_k": 1.5637860109994549e-06,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "dT_exact_first_K": 1.5503619105473246e-06,
+        "dT_exact_periodic_K": 1.5583652668172921e-06,
+        "exact_vs_decoupled_ratio_first": 0.9964963846621265,
+        "exact_vs_decoupled_ratio_periodic": 0.9965335767528076,
+        "decoupled_is_conservative_first": true,
+        "decoupled_is_conservative_periodic": true
+      },
+      "r1e-01_0.5tau": {
+        "r": 0.1,
+        "gap_name": "0.5tau",
+        "k_f_on": 1.0,
+        "k_r": 10.0,
+        "tau_kinetics_s": 0.09090909090909091,
+        "dt_gap_s": 0.045454545454545456,
+        "n_pulses": 5,
+        "dwell_central_s": 0.06666666666666667,
+        "n_first_pulse": 0.04724497262820006,
+        "n_periodic": 0.06791082781081066,
+        "dT_first_decoupled_K": 1.5558128804180183e-06,
+        "dT_periodic_decoupled_K": 2.2363552088258394e-06,
+        "netd_first": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 1.5558128804180183e-06,
+          "raw_delta_t_k": 1.5558128804180183e-06,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "netd_periodic": {
+          "classification": "UNDETECTABLE",
+          "effective_delta_t_k": 2.2363552088258394e-06,
+          "raw_delta_t_k": 2.2363552088258394e-06,
+          "netd_band_k": [
+            0.02,
+            0.05
+          ],
+          "fill_factor": 1.0,
+          "emissivity_correction": 1.0,
+          "disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+        },
+        "dT_exact_first_K": 1.5503619105473246e-06,
+        "dT_exact_periodic_K": 2.233484136554998e-06,
+        "exact_vs_decoupled_ratio_first": 0.9964963846621265,
+        "exact_vs_decoupled_ratio_periodic": 0.9987161823580124,
+        "decoupled_is_conservative_first": true,
+        "decoupled_is_conservative_periodic": true
+      }
+    },
+    "dt_ss_full_K_used": 3.293076054169135e-05,
+    "tau_thermal_s_used": 0.00034332969490950116,
+    "dwell_over_tau_thermal_mixed": 194.17681504141214,
+    "worst_exact_vs_decoupled_ratio": 0.9987161823580124,
+    "best_exact_vs_decoupled_ratio": 0.9963648819858295,
+    "all_decoupled_conservative": true,
+    "max_dT_periodic_decoupled_K": 2.2363552088258394e-06,
+    "max_dT_periodic_exact_K": 2.233484136554998e-06,
+    "netd_lo_margin_decoupled": 8943.123132259774,
+    "netd_lo_margin_exact": 8954.61923040505,
+    "all_points_undetectable": true,
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix, exp-043 Red Team attack 7, reaffirmed exp-054 Phase-2 mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+    "p_054_3a_band": [
+      0.98,
+      1.0
+    ],
+    "p_054_3a_pass": true,
+    "p_054_3b_band": [
+      1.9e-06,
+      2.6e-06
+    ],
+    "p_054_3b_pass": true,
+    "p_054_4_band_lo": 7000.0,
+    "p_054_4_pass": true
+  },
+  "p_054_5_both_undetectable": true,
+  "p_054_6_scope_statement": "This cycle tests ONLY the bench-scale r_out-vs-w_on length-scale question and (via the mixed chain replacing the original h_conv=5.0 W/(m^2K) placeholder) the gas-phase-conduction-vs-placeholder question. It does NOT test, confirm, or refute Iteration 25's separate, informal witness-scale (T8/T13/T14 near-field->witness-scale bridge) h_eff estimate (~5.1x->~2.6x / ~27,080x->~38-42x) -- that is a different physical question, explicitly out of scope (see NOTES.md idealizations, 'Bench-scale, not witness-scale'). T8/T13's witness-scale h_eff question REMAINS OPEN AND UNADDRESSED by exp-054.",
+  "netd_disclaimer_ALL_CLAIMS": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix, exp-043 Red Team attack 7, reaffirmed exp-054 Phase-2 mandatory fix 6). This classification does NOT bear on constraint-3/4's human-eye verdict.",
+  "material_provenance_note_ALL_CLAIMS": "silicon rho=2330 kg/m^3, c_p=700 J/(kg*K), kappa=148 W/(m*K): ASSUMED -- provenance terminates unsourced (T18). REALIZABILITY_MEMO.md downgraded this identity from a plain sourced citation (exp-037/NOTES.md:828-829, which itself only says 'standard cited thermal constants' with no traceable DOI/handbook) at Iteration 25 (Red Team Attack 13 / MATERIALS M3). exp-054 restores that flag here per Phase-2 mandatory fix 3 (the Phase-1 draft had silently dropped it). mass_kg further assumes 100%-fill crystalline silicon at l_geometric_m, undisclosed in the Phase-1 draft, disclosed here."
+}

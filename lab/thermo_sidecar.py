@@ -1,6 +1,12 @@
 """THERMODYNAMICS' energy sidecar, promoted to reusable code (panel Iteration
 20, exp-043 — docket #7 + this module's own re-scoping).
 
+Panel Iteration 31 (exp-054) adds `gas_conduction_h_eff`,
+`lumped_cube_mass_kg`, and `mixed_length_scale_regime` -- the corrected,
+length-scale-consistent h_eff/mass/area chain replacing exp-045's own
+one-off `self_consistent_regime` script pattern with reusable, trust-suite-
+gated (stage 18) code. See `mixed_length_scale_regime`'s own docstring.
+
 EXPRESSIBILITY CONTRACT (PANEL.md): every function here is a POST-RUN
 ANALYTIC calculation, not an FDTD output. Nothing in this module runs a
 field solve; every input is either a pre-measured bench quantity (sigma_ext,
@@ -175,6 +181,103 @@ def transient_delta_T(p_abs_w: float, mass_kg: float, c_p: float,
     if delta_t_steady_k is None:
         raise ValueError("delta_t_steady_k required when thermal_tau_s is given")
     return delta_t_steady_k * (1.0 - math.exp(-dwell_s / thermal_tau_s))
+
+
+# -------------------------------------------- length-scale-consistent chain
+def gas_conduction_h_eff(k_air: float, l_geometric: float) -> float:
+    """Quiescent gas-phase conduction heat-transfer coefficient (Nu=2
+    limit), h_eff = k_air / l_geometric.
+
+    `l_geometric` MUST be a real geometric length of the conducting/
+    radiating SOLID body (e.g. the bench's own r_out) -- NEVER an optical/
+    extinction-derived length (e.g. w_on = sigma_ext_cells*dx_m). Panel
+    Iteration 22 (exp-045) found this module's original chain silently
+    mixed the two; Panel Iteration 31 (exp-054) argues the physical case to
+    a conclusion and promotes the corrected pair of helpers here. See
+    `mixed_length_scale_regime` for the caller-facing entry point."""
+    if l_geometric <= 0:
+        raise ValueError("l_geometric must be > 0")
+    return k_air / l_geometric
+
+
+def lumped_cube_mass_kg(density_kg_m3: float, l_geometric: float) -> float:
+    """Lumped-capacitance cube-shaped thermal mass, mass = density *
+    l_geometric**3 (mirrors exp-045's own `self_consistent_regime`
+    convention -- a stated idealization, not the module's own true-disk
+    geometric_disk_area_m2 convention used elsewhere for the weak-tau
+    branch; see exp-054/NOTES.md idealizations).
+
+    `l_geometric` MUST be the SAME geometric length passed to
+    `gas_conduction_h_eff` for the same object -- mixing lengths across the
+    h_eff/mass/area chain is the exact historical bug this pair of
+    functions exists to prevent."""
+    if density_kg_m3 <= 0 or l_geometric <= 0:
+        raise ValueError("density_kg_m3 and l_geometric must be > 0")
+    return density_kg_m3 * l_geometric ** 3
+
+
+def mixed_length_scale_regime(p_abs_w: float, l_geometric_m: float,
+                               k_air: float, density_kg_m3: float,
+                               c_p_j_kgk: float, emissivity: float,
+                               t_ambient_k: float = 293.15) -> dict:
+    """The Iteration-31/exp-054 corrected thermal chain: `p_abs_w` stays
+    whatever an UPSTREAM optical measurement produced it as (typically
+    `absorbed_power_established_ratio`'s w_on-based p_abs_w, UNCHANGED --
+    that function is not touched by this cycle), while h_eff, thermal
+    mass, and radiating/convecting area ALL derive from `l_geometric_m`
+    alone (the object's real geometric length, e.g. r_out) -- never from
+    whatever optical length p_abs_w happened to be measured at. The chain
+    is MIXED BY DESIGN (p_abs_w and the h_eff/mass/area triple can use
+    different lengths), not a bug to eliminate: they answer different
+    physical questions (how much power is absorbed, measured optically;
+    how fast the resulting heat leaves the solid, geometric). See
+    `lab/thermo_sidecar.py` module docstring and
+    `experiments/054-heff-length-scale-rederivation/phase3_synthesis.md`
+    for the full argument and Phase-2 panel debate.
+
+    `area_m2 = l_geometric_m**2` (the iso-sq convention
+    `absorbed_power_established_ratio`'s own area already uses, anchored
+    at a different length here -- NOT claimed to be more "real" bench
+    geometry than that convention; only the LENGTH differs, exp-054 Phase-2
+    Red Team attack 5's corrected wording)."""
+    h_eff = gas_conduction_h_eff(k_air, l_geometric_m)
+    mass_kg = lumped_cube_mass_kg(density_kg_m3, l_geometric_m)
+    area_m2 = l_geometric_m ** 2
+    dp_dt = area_m2 * (4.0 * emissivity * SIGMA_SB * t_ambient_k ** 3 + h_eff)
+    if dp_dt <= 0:
+        raise ValueError("area_m2, emissivity, h_eff must give dP/dT > 0")
+    dt_ss_full = p_abs_w / dp_dt
+    tau_thermal_s = mass_kg * c_p_j_kgk / dp_dt
+    return {
+        "length_convention": "mixed (p_abs on its own optical length; "
+                              "h_eff/mass/area on l_geometric_m)",
+        "l_geometric_m": l_geometric_m,
+        "p_abs_w": p_abs_w,
+        "h_eff_w_m2k": h_eff,
+        "mass_kg": mass_kg,
+        "area_m2": area_m2,
+        "dp_dt_w_k": dp_dt,
+        "dt_ss_full_K": dt_ss_full,
+        "tau_thermal_s": tau_thermal_s,
+        "k_air": k_air,
+        "density_kg_m3": density_kg_m3,
+        "c_p_j_kgk": c_p_j_kgk,
+        "emissivity": emissivity,
+        "t_ambient_k": t_ambient_k,
+        "material_provenance": "ASSUMED -- provenance terminates unsourced "
+                                "(T18); see REALIZABILITY_MEMO.md and "
+                                "exp-054/NOTES.md idealizations",
+        "mass_fill_fraction_assumption": (
+            "mass_kg assumes 100%-fill crystalline solid at l_geometric_m "
+            "-- undisclosed in the Iteration-31 Phase-1 draft, disclosed "
+            "here per Red Team mandatory fix 3"),
+        "netd_disclaimer": ("NETD is an instrument/detector threshold, not "
+                             "a human perceptual one -- any classification "
+                             "derived from this dict's dt_ss_full_K does "
+                             "NOT bear on constraint-3/4's human-eye "
+                             "verdict (panel Iteration 20 origin, "
+                             "reaffirmed Iteration 31)"),
+    }
 
 
 def wien_peak_wavelength_um(t_k: float) -> float:

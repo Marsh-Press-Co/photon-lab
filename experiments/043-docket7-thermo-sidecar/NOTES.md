@@ -564,3 +564,21 @@ extension); T21's still-untouched contamination-risk re-score and
 QUANTUM's aperture-consistent beam check (Iteration-19/20 carryovers,
 explicitly not dropped). Tier 3 (standing): VISION's own glare/adaptation
 Tier-W sidecar, self-imposed Iteration-23 tripwire.
+
+## SUPERSEDED notice (added 2026-08-21, panel Iteration 31, exp-054)
+
+This experiment's own ON-endpoint (τ=3.9) `steady_state_dT_K_central` and
+`netd_disposition` figures used `H_CONV=5.0 W/(m²K)` (a macroscopic
+placeholder, not a derived gas-phase-conduction value) and never resolved
+which characteristic length (`r_out` vs `w_on`) licenses `h_eff=k_air/L`.
+**Panel Iteration 31 (`experiments/054-heff-length-scale-rederivation/`)
+formally derives the corrected, length-scale-consistent chain and
+re-computes this article's headline figure**: `dt_ss_full`=3.293076×10⁻⁵ K,
+NETD-lo margin ≈607×, classification UNDETECTABLE (still, and by a much
+wider margin than this experiment's own original placeholder-h_conv
+figure implied). A future cycle citing this experiment's ON-endpoint
+thermal numbers should cite exp-054's corrected figure, not this file's
+own original `H_CONV=5.0` computation — this note flags, does not rewrite,
+per this program's own T10 convention (original numbers below are
+untouched). NETD is an instrument/detector threshold, not a human
+perceptual one; this note does not bear on constraint-3/4.
