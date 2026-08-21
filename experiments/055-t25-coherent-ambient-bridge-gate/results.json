@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "experiment": "exp-055",
+    "panel_iteration": 32,
+    "lead": "QUANTUM OPTICS",
+    "t1_escape_route": "NONE (instrument work)",
+    "geometry": "exp-024's own r=78 fallback geometry (NY=1584, OBJ=(170,792)), not exp-030's GEOM[78] \u2014 see design_geometry.py header",
+    "n_fdtd_calls": 20,
+    "elapsed_s": 387.3086304664612
+  },
+  "naive_incoherent": {
+    "C": -0.7211145160198583,
+    "C_empty": -3.316590819191224e-05,
+    "b_obj": 0.2810660996944805,
+    "b_flank": 1.0078190362697188
+  },
+  "joint_coherent": {
+    "C_joint": -0.7242820772284677,
+    "C_empty_joint": -0.0534252451544586,
+    "b_obj_joint_raw": 0.7971599822545178,
+    "b_flank_joint_raw": 2.8912156824678648,
+    "b_obj_joint_normalized": 0.278579815979932,
+    "empty_joint_flank_raw": 2.8615137799931016,
+    "empty_joint_obj_raw": 2.7086367047841087
+  },
+  "established_anchor": {
+    "C78_absorber_600_established": -0.7211
+  },
+  "p055_scoring": {
+    "P-055-6_reproduction": {
+      "naive_C": -0.7211145160198583,
+      "established": -0.7211,
+      "rel_dev": 2.0130383938922693e-05
+    },
+    "P-055-1_raw_flux_deviation": {
+      "b_obj_naive": 0.2810660996944805,
+      "b_obj_joint_normalized": 0.278579815979932,
+      "rel_dev": -0.008845903925272758
+    },
+    "P-055-2_weber_C_deviation": {
+      "C_naive": -0.7211145160198583,
+      "C_joint": -0.7242820772284677,
+      "abs_dev": 0.003167561208609393
+    },
+    "P-055-4_empty_scene_identity": {
+      "C_empty_naive": -3.316590819191224e-05,
+      "C_empty_joint": -0.0534252451544586,
+      "abs_dev": 0.05339207924626669
+    }
+  }
+}

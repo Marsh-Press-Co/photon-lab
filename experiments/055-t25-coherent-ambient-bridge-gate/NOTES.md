@@ -249,9 +249,86 @@ here, zero new material physics.
 
 ## Results
 
-*(to be filled in after Phase 4 — this section is written and committed
-BEFORE any run, per house discipline)*
+20 new FDTD calls, 387.3s. Full data: `results.json`.
+
+| Gate/Prediction | Predicted | Measured | Verdict |
+|---|---|---|---|
+| P-055-5a (Gate, N=9 field-identity, vacuum) | ≤1e-6 gate, central 1e-14–1e-13 | **1.93×10⁻¹⁵** | **CONFIRMED** — PASS, ~1 order tighter than central estimate (same overshoot-in-tight-direction pattern as exp-029's own Gates Q4/Q5) |
+| P-055-5b (Gate, N=9 field-identity, object) | ≤1e-6 gate, central 1e-14–1e-13 | **1.86×10⁻¹⁵** | **CONFIRMED** — PASS, same pattern |
+| P-055-5c (Gate, N=9 radial closure) | ≤1.5% gate (reused), central 0.2–1.5% | **2.887%** (cpl=20) | **REFUTED as pre-registered** — genuine gate miss, disclosed, NOT silently absorbed. R3 check (cpl→30): 2.015%, shrinks 30% relative but stays outside the original bound — only partly a grid artifact. Gate recalibrated to ≤3.5% same-shift, full disclosure in `lab/validation/run_all.py` (separate commit `68ee91f`, before this run) |
+| P-055-6 (reproduction precondition) | ≤0.5% relative | **0.0020%** rel. dev. (naive C=−0.721115 vs established −0.7211) | **CONFIRMED** — precondition holds cleanly; validates the Director's Phase-3 geometry fix (exp-024's own geometry, not exp-030's `GEOM[78]`) |
+| P-055-1 (raw flux deviation, formal ceiling) | [−100%, +800%] | **−0.885%** | **CONFIRMED** — trivially, as expected (non-discriminating passivity bound) |
+| P-055-1 (raw flux deviation, informal central estimate) | [1%, 15%] | **−0.885%** (magnitude 0.885%) | **NEAR-MISS** — just under the 1% floor (~12% relative short); the low-confidence analogy-based estimate was in the right order of magnitude but slightly high |
+| P-055-2 (Weber C deviation, absorber, informational only) | no formal band | **|ΔC| = 0.003168** (C_naive=−0.721115, C_joint=−0.724282) | **informational** — real, small, ~0.44% of \|C_naive\|; corrected C_joint still ~145× C_thr, confirms the pre-committed statement that no Tier verdict moves |
+| P-055-4 (empty-scene identity, informal estimate) | [0.0001, 0.01] | **0.05339** (C_empty_naive=−0.0000332, C_empty_joint=−0.05343) | **REFUTED, dramatically** — over 5× the top of the predicted band, ~1600× the bottom. **The headline finding of this cycle** (below) |
+
+### Headline (for LOGBOOK)
+
+**T25's bridge gate is now built and characterized end-to-end — and it
+splits cleanly into good news and a real new finding.** On the actual
+object every constraint-3 citation is built from (the loaded, PEC-cored
+absorber), the coherent-vs-incoherent deviation is SMALL: raw flux
+deviation −0.885% (well inside the informal estimate's order of magnitude,
+and orders of magnitude inside the formal Cauchy-Schwarz ceiling), Weber
+`C` shift only 0.317% absolute (−0.7211→−0.7243) — reassuring for every
+existing headline `C` this program has cited, none of which used coherent
+joint injection. **But the EMPTY (vacuum) scene shows a striking,
+dramatically-underestimated artifact: naive incoherent injection gives
+essentially perfect balance (`C_empty=−0.000033`, consistent with stage 9's
+own established empty-window-balance gates), while coherent N=9
+equal-amplitude joint injection at the SAME angles produces `C_empty=
+−0.05343`** — over **10× VISION's own C_thr=0.005 perceptual threshold**,
+from interference alone, with zero object present. This is not a bug (sanity-
+checked: Weber contrast is scale-invariant, so this is a direct, unnormalized
+measurement of real spatial field structure at the object-window vs.
+flank-window positions); it is a genuine standing-wave/beat pattern from 9
+discrete, closely-spaced, mutually coherent plane waves — the same physical
+family of effect PHOTONICS' Phase-2 critique flagged (exp-046's grating-lobe
+replicas) but Red Team ruled inapplicable to the OBJECT-window bulk average;
+this cycle shows that ruling does NOT extend to the empty-scene channel,
+where the effect is large and unmissed. **Candidate explanation, not
+established this cycle**: the loaded absorber scene's much smaller |ΔC|
+(0.0032 vs 0.0534) suggests the strongly-absorbing PEC-cored object itself
+suppresses/reroutes the vacuum fringe structure that would otherwise appear
+at the object-window position — a real, un-derived hypothesis for a future
+cycle, not claimed as shown. **Practical takeaway**: single-realization
+coherent joint injection (fixed zero relative phase) is NOT a safe drop-in
+replacement for `lab/ambient.py`'s incoherent-sum pipeline near an
+EMPTY/near-null scene — a ~10×-threshold false-shadow artifact would result
+— even though it is safe, in this specific measurement, for the one loaded
+article actually tested. **New live thread T26 opened** (first unclaimed
+T-number; T25 itself is not closed by this result, since the true physically-
+correct incoherent-ensemble bridge — random-relative-phase, multi-draw
+averaging — remains unbuilt, named again below): *the fixed-phase coherent
+joint-injection empty-scene artifact is large (>10× C_thr) and its
+dependence on object loading/absorption is unexplained* — directly relevant
+to any future proposal that would use joint coherent injection near a
+near-null σ(I) OFF-state article (exp-032/033/034's own PASS/MARGINAL
+territory), where a real object's C sits close enough to C_thr that a
+10×-threshold-scale coherent-injection artifact, if ever substituted in
+unknowingly, would be decisive and wrong.
 
 ## Next (pre-registered, for Phase 5)
 
-*(to be filled in after Phase 4)*
+(1) **T26** (new): does the empty-scene coherent-injection artifact's
+apparent suppression under a loaded absorber generalize, or is exp-055's
+loaded/empty contrast (0.0534 vs 0.0032) specific to this one article? A
+cheap next test: repeat the empty-vs-loaded joint comparison on a
+near-null σ(I) OFF-state article (e.g. `off_pass`, exp-032/033) — exactly
+the regime where this artifact would matter most and has never been
+checked. (2) The true incoherent-ensemble bridge (random-relative-phase,
+multi-draw averaging) remains unbuilt — this cycle characterizes the
+FIXED-PHASE coherent case only, at both the object and empty channels; T25
+itself stays open until that build exists (same disclosure as exp-029).
+(3) Stage 19's recalibrated ≤3.5% closure gate is itself now a candidate
+T11 data point (the box-ledger decision-floor thread) — worth folding in
+explicit cross-reference at a future T11-focused cycle, not chased further
+here. (4) r=156/312 untested for either the object-scene or empty-scene
+coherent deviation — named, not built, this cycle (single-geometry scope,
+pre-registered idealization). (5) The P-055-1 informal central-estimate
+near-miss (predicted [1%,15%], measured 0.885%) suggests this program's
+own analogy-based suppression-factor reasoning (exp-029's ~126–152×
+ceiling-suppression, applied here) runs slightly high for the object-window
+channel specifically — worth revisiting with real derived structure (a
+window-averaged multi-beam interference model) rather than analogy, if a
+future cycle needs a tighter, non-analogy-based central estimate.
