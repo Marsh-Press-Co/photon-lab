@@ -1611,7 +1611,78 @@ def stage18_length_scale_chain():
           abs(regime["dt_ss_full_K"] - 3.293076e-5) <= 1e-9, "3.293076e-5 K (+-1e-9)")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 19))
+def stage19_n9_superposition():
+    """Coherent N=9 equal-amplitude superposition gate (Panel Iteration 32,
+    T25, exp-055). Extends stage 11's own N=2 asymmetric-amplitude gate
+    (exp-029) to the actual N=9 equal-amplitude configuration `lab/ambient.py`
+    uses for every constraint-3 `C` citation this program has ever issued —
+    stage 11's own Cauchy-Schwarz ceiling (built for one strong beam + one
+    weak probe) does not bound the cross-term between 9 EQUAL-amplitude
+    sources (T25, Iteration 29 Phase-5, QUANTUM OPTICS' own catch). Two
+    ABSOLUTE identities (Gate Q4/Q5 pattern, N=2->N=9): a 9-source joint run's
+    complex Ez phasor must equal the pointwise SUM of each source's own
+    single-source phasor, in vacuum AND with a lossy object present — the
+    same LTI-recursion argument as stage 11 (fixed ca/cb, additive per-source
+    injection, fixed diagonal damping/PEC clamp), geometry- and N-independent.
+    A third, EMPIRICAL closure check (Red Team's Iteration-32 Phase-2
+    mandatory-fix docket item 7, THERMODYNAMICS' own Phase-2 catch) reuses
+    stage 10/11's own radial_absorbed_power gate on the joint (9-source)
+    object scene — stage 11's own Q6 check has no N=9 analogue before this
+    stage, and unlike stage 11's amplitude-asymmetric pair, N equal-amplitude
+    coherent sources are NOT amplitude-bounded the same way, so this check is
+    load-bearing, not decorative."""
+    print("stage 19 — N=9 equal-amplitude coherent superposition vs identities")
+    from lab import sections as sc
+
+    ANGLES9 = (-35, -25, -15, -5, 0, 5, 15, 25, 35)   # T25's own object: exp-024/030/052's FALLBACK_ANGLES
+    R_OUT = 32
+    BOX = (190, 290, 70, 170)
+    REF = (240, 120, 40)
+
+    def run_scene(build, sources):
+        sim = Sim(360, 240, cells_per_lambda=20, courant_frac=0.99, absorb=30)
+        if build:
+            build(sim)
+        for x, ang, amp in sources:
+            sim.add_line_source(x, angle_deg=ang, amplitude=amp)
+        sim.run(900)
+        return sim, sc.full_capture(sim)
+
+    def build_object(s):
+        materials.graded_black_shell(s, 240, 120, 0, R_OUT, sigma_max=0.5, eps_max=1.0)
+
+    def rms(x):
+        return float(np.sqrt(np.mean(np.abs(x) ** 2)))
+
+    caps_joint = {}
+    for label, build in (("vacuum", None), ("object", build_object)):
+        ez_sum = None
+        for ang in ANGLES9:
+            _, cap_i = run_scene(build, [(54, float(ang), 1.0)])
+            ez_i = sc.phasors(cap_i)["ez"]
+            ez_sum = ez_i.copy() if ez_sum is None else ez_sum + ez_i
+        sources_j = [(54, float(ang), 1.0) for ang in ANGLES9]
+        sim_j, cap_j = run_scene(build, sources_j)
+        caps_joint[label] = (sim_j, cap_j)
+        ez_j = sc.phasors(cap_j)["ez"]
+        resid = rms(ez_j - ez_sum) / rms(ez_j)
+        check("n9-superposition",
+              f"{label} scene: joint (N=9) Ez phasor == sum of 9 single-source phasors (RMS rel.)",
+              f"{resid:.2e}", resid <= 1e-6, "<=1e-6")
+
+    sim_j_obj, cap_j_obj = caps_joint["object"]
+    _, cap_j_vac = caps_joint["vacuum"]
+    wj = sc.widths(cap_j_obj, cap_j_vac, BOX, REF)
+    p_abs_box = wj["sigma_abs"] * wj["i_inc"]
+    _, _, total_j = sc.radial_absorbed_power(cap_j_obj, sim_j_obj.sigma_e, 240, 120, R_OUT)
+    closure = abs(total_j - p_abs_box) / abs(p_abs_box)
+    # Gate reused from stage 10/11's own calibrated bound (same closure
+    # computation, now exercised on a spatially-interfering 9-source field).
+    check("n9-superposition", "joint (9-source) scene: radial closure vs box-ledger p_abs",
+          f"{closure:.4f}", closure <= 0.015, "<=0.015")
+
+
+_STAGE_IDS = frozenset(str(n) for n in range(1, 20))
 
 
 def _stage_selected(n, only):
@@ -1673,6 +1744,7 @@ if __name__ == "__main__":
     run_stage16 = _stage_selected(16, only)
     run_stage17 = _stage_selected(17, only)
     run_stage18 = _stage_selected(18, only)
+    run_stage19 = _stage_selected(19, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -1736,6 +1808,8 @@ if __name__ == "__main__":
         stage17_glare_sidecar()
     if run_stage18:
         stage18_length_scale_chain()
+    if run_stage19:
+        stage19_n9_superposition()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
