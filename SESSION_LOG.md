@@ -2,6 +2,57 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-21 (panel shift) — Iteration 30 BLOCKED before Phase 1: sub-agent
+content-policy failure, not a physics or process finding.
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle). Read PANEL.md, LOGBOOK.md in full (10508 lines),
+PLAN.md's Current-state section, AGENTS.md, and SESSION_LOG's top two
+entries. Bench verified green: `--only 12346789` → 41/41 in 85s before any
+panel work began.
+
+**Iteration 30 — Build the stage-10 temporal instrument (LOCKED,
+UNCONDITIONAL per Iteration 28/29's own ruling).** Director read the full
+relevant record (LOGBOOK Iterations 15–18's own build of `lab/kinetics.py`,
+`lab/temporal_csf.py`, `lab/amplitude_bridge.py`; `lab/fdtd2d.py`;
+exp-040's design_geometry.py) and dispatched a fresh QUANTUM OPTICS-seat
+sub-agent (this cycle's lead per rotation) for Phase 1 — propose the
+joint constraint-3/4 staircase-σ(t) validation instrument per Iteration
+18's own pre-registered design (two absolute identity gates: a same-σ
+staircase reproduces a static run bit-exactly; a switched-at-step-0
+staircase reproduces a static run at the final σ bit-exactly).
+
+**The Phase-1 sub-agent was terminated mid-read by an upstream API content-
+policy block, tagged `[bio]`** ("Sonnet 5 can't help with this... Start a
+new session to continue," Acceptable Use Policy link attached) — before it
+had written anything (`experiments/053-staircase-sigma-t-validation/` was
+created empty and has been removed; nothing was committed, nothing broken).
+The agent had only reached the file-reading stage. The Director's own
+read of the same material (kinetics rate equations for a switched
+absorber's population fraction, temporal-CSF vision-science thresholds,
+irradiance/dynamic-range realizability figures, thermal-detectability
+NETD figures) finds no biological, chemical, or weapons content by any
+plain reading of this program's own physics — a plausible false-positive
+on kinetics/dose/irradiance vocabulary, but the Director cannot confirm
+that from inside the session. **Not retried this shift**: repeating or
+rewording the same request risks looking like an attempt to route around
+a safety control rather than a legitimate retry, with no way to tell from
+in-session whether the block is transient or content-tied.
+
+**Full blocker record and next-step recommendation**: PLAN.md, appended
+directly to the LOCKED Iteration-30 entry. Iteration 30 stays LOCKED and
+UNCONDITIONAL — unchanged, not demoted, not reworded. Marsh notified
+out-of-band per this program's checkpoint-adjacent practice (this is not
+one of PANEL.md's five numbered Checkpoint criteria — no science ran, no
+constraint was scored, no program-integrity drift was found in this
+program's own record — but a routine that cannot execute its own locked,
+unconditional next step is exactly the kind of stop worth a human knowing
+about promptly, and a future shift needs the disclosure to decide whether
+to re-attempt Phase 1 from a fresh session). No LOGBOOK.md iteration entry
+was opened (no Phase ran) — this SESSION_LOG entry and the PLAN.md note
+are the complete record. Bench still 41/41 at close; zero `lab/` file
+touched.
+
 ## 2026-08-20 (panel shift) — Iteration 29 complete (exp-052): the
 21-iteration-deferred fixed-absolute-thickness `graded_black_shell` variant
 is built and measured for the first time — it deepens toward −1 as scale

@@ -1467,7 +1467,8 @@ continuous mode with checkpoints. The remaining [open] items below are
   automatically LOCKED to Iteration 31, below, not re-ranked. Verdict:
   PROMISING. Next lead per rotation: QUANTUM OPTICS. Full record:
   LOGBOOK.md Iteration 29.
-- **[LOCKED — panel Iteration 30, UNCONDITIONAL]** **Build the stage-10
+- **[LOCKED — panel Iteration 30, UNCONDITIONAL — BLOCKED this shift,
+  2026-08-21, see note below]** **Build the stage-10
   temporal instrument** — the joint constraint-3/4 staircase-σ(t)
   validation run composing exp-038's kinetics `n(t)`, exp-039's timing
   classification, and exp-040's amplitude bridge against `C_thr(L)` in one
@@ -1481,6 +1482,29 @@ continuous mode with checkpoints. The remaining [open] items below are
   exist; PANEL.md's own metrics table has named this instrument, unbuilt,
   since Iteration 1. **Unconditional, not subject to further ranked-list
   competition.**
+  **BLOCKER (2026-08-21, cloud panel shift, pre-Phase-1):** the fresh
+  QUANTUM OPTICS Phase-1 sub-agent dispatched to propose this build was
+  terminated mid-read (before writing anything — `experiments/053-.../`
+  was never created with content, cleaned up) by an upstream API-level
+  content-policy block tagged `[bio]`, message "Sonnet 5 can't help with
+  this... Start a new session to continue" (Acceptable Use Policy link
+  attached). The agent had only reached the file-reading stage (LOGBOOK.md,
+  PANEL.md, the exp-038/039/040 record) — no cause is visible in this
+  shift's own record; the Director's own read of the same material found
+  nothing bio-related (it is 2D-FDTD photonics: rate-equation kinetics for
+  a switched absorber, temporal-CSF vision thresholds, irradiance/dynamic-
+  range realizability figures — no biological, chemical, or weapons content
+  by any plain reading). Possible false-positive on the kinetics/dose/
+  irradiance vocabulary (`n(t)`, "dose accumulation," "carrier lifetime,"
+  NETD thermal-detectability figures) pattern-matching a dual-use-research
+  classifier. **Not retried this shift** — a repeated or reworded attempt
+  to push the same request through risks looking like evasion of a safety
+  control rather than a legitimate retry, and the Director has no way to
+  confirm from inside the session whether the block is transient or
+  content-tied. Marsh notified out-of-band. Iteration 30 stays LOCKED and
+  UNCONDITIONAL; a future shift (or Marsh, in a live session) should
+  attempt Phase 1 again, ideally starting fresh rather than resuming this
+  blocked thread, and report back here whether the block reproduces.
 - **[LOCKED — panel Iteration 31, UNCONDITIONAL]** **THERMODYNAMICS' own
   `h_eff` re-derivation** (exp-043 ON-endpoint, exp-045 dose-accumulation).
   Named at five consecutive closes (25, 26, 27, 28, 29) without being
