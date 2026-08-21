@@ -204,8 +204,9 @@ fix 3):**
 - **P-055-2 (Weber `C` deviation, informational only, no formal ceiling
   derived — Red Team's mandatory fix 5):** `|C_joint − C_naive|`, no
   pre-registered band. **Explicit statement (VISION's mandatory fix 6):**
-  `C_thr(L)=0.005` is pinned in **T2**, not T24; r=78's naive `C≈−0.7211`
-  sits ~144× above `C_thr` — **no outcome this cycle is expected or able to
+  `C_thr(L)=0.005` (T2 **photopic** floor) is pinned in **T2**, not T24;
+  r=78's naive `C≈−0.7211` sits ~144× above the T2 photopic `C_thr` —
+  **no outcome this cycle is expected or able to
   change any existing Tier-A/Tier-W constraint-3 verdict**; the value here
   is validating shared bridge-gate machinery for future near-threshold
   geometries, not rescoring this one.
@@ -277,7 +278,7 @@ dramatically-underestimated artifact: naive incoherent injection gives
 essentially perfect balance (`C_empty=−0.000033`, consistent with stage 9's
 own established empty-window-balance gates), while coherent N=9
 equal-amplitude joint injection at the SAME angles produces `C_empty=
-−0.05343`** — over **10× VISION's own C_thr=0.005 perceptual threshold**,
+−0.05343`** — over **10× VISION's own T2 photopic C_thr=0.005**,
 from interference alone, with zero object present. This is not a bug (sanity-
 checked: Weber contrast is scale-invariant, so this is a direct, unnormalized
 measurement of real spatial field structure at the object-window vs.
@@ -332,3 +333,26 @@ ceiling-suppression, applied here) runs slightly high for the object-window
 channel specifically — worth revisiting with real derived structure (a
 window-averaged multi-beam interference model) rather than analogy, if a
 future cycle needs a tighter, non-analogy-based central estimate.
+
+**Phase 5 outcome:** six fresh seats + Red Team audit read these results —
+**3 PROMISING (MATERIALS, ELECTROMAGNETISM, QUANTUM OPTICS), 3 PARTIAL
+(PHOTONICS, THERMODYNAMICS, VISION SCIENCE)**. Red Team's final audit,
+independently re-verifying every load-bearing claim in all six reviews
+against source (confirmed: MATERIALS' geometry-discrepancy figures;
+EM's Cauchy-Schwarz re-derivation and its "no R3/energy check was ever run
+on the empty-scene channel specifically" finding; VISION's T2
+photopic-regime claim, with one minor pre-existing precedent softening
+noted; PHOTONICS' fringe-period arithmetic, with the "~4-5 periods" figure
+corrected to ~9 — using the object window's true full width, 2×`W_OBJ`,
+not `W_OBJ` alone — a real but non-overturning arithmetic imprecision;
+QUANTUM's zero-mean sourcing to Iteration 6's own analytic result):
+**verdict PROMISING**, adopted by the Director over the raw 3-3 seat split,
+per this program's own established precedent (verdict turns on whether a
+cycle's own open questions close, not seat-vote-counting — Red Team's audit
+adopted over a raw count at Iterations 10 and 12). One same-shift
+mandatory fix applied (VISION's T2-photopic regime qualifier, this file,
+above — not silently rewritten, disclosed here). All five Checkpoint
+criteria checked explicitly: **none fire** (criterion 4 scrutinized
+hardest against the unqualified "10× C_thr" headline phrasing — ruled a
+documentation gap, fixed same-shift, not program-integrity drift). Full
+verbatim record: `LOGBOOK.md`, Iteration 32 Phase 5.
