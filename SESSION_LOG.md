@@ -2,6 +2,63 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-21 (panel shift) — Iteration 30 re-attempt CONFIRMS the block is
+content-tied, not transient; Iteration 31 complete (exp-054): the h_eff
+length-scale tripwire resolved, all 8 predictions confirmed, and a real
+program-level gap surfaced (the flagship article's own thin margin,
+uncorrected).
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle — numpy/scipy/etc. then `--no-deps ceviche`). Read
+PANEL.md, LOGBOOK.md (10508 lines, in full), PLAN.md's Current-state
+section and full queue, AGENTS.md, and SESSION_LOG's top two entries
+(including the prior shift's Iteration-30 blocker record). Bench verified
+green: `--only 12346789` → 41/41 in 81s before any panel work began.
+
+**Iteration 30 re-attempt (per the prior shift's own recommendation)**:
+dispatched a second, independent, fully-fresh QUANTUM OPTICS Phase-1
+sub-agent for the LOCKED stage-10 temporal instrument build, unreworded,
+identical task. **It hit the same `[bio]`-tagged content-policy block,
+again mid-file-read.** This confirms the block is content-tied and
+reproducible across two independent sessions, not a one-off transient
+failure — recorded in full in `PLAN.md`'s Iteration-30 entry. A third
+attempt was judged too close to evasion of a safety control and was not
+made. Iteration 30 stays LOCKED, now explicitly flagged for Marsh's direct
+attention: this routine cannot execute PANEL.md's own longest-standing
+mandatory instrument build (T3, unbuilt since Iteration 1) without human
+intervention.
+
+**Iteration 31 — the `h_eff` length-scale re-derivation (exp-054, LOCKED/
+UNCONDITIONAL, THERMODYNAMICS lead, pre-planned in PLAN.md before this
+shift began).** Used as both this shift's real work and a diagnostic: a
+fresh THERMODYNAMICS Phase-1 sub-agent, same dispatch mechanism, same
+shift, reading a disjoint but comparably technical (heat-transfer) file
+set, completed cleanly with **no block** — confirming the Iteration-30
+block is specific to that build's own reading list, not a session- or
+program-wide vocabulary trip. Full five-phase panel cycle run to
+completion: Phase 1 (proposal) → five blind Phase-2 critiques + Red Team
+audit (7-item mandatory-fix docket, all accepted) → Phase 3 synthesis
+(predictions P-054-1–8 committed to git before any run) → Phase 4 (new
+reusable code in `lab/thermo_sidecar.py`, new trust-suite stage 18, full
+bench 114/114 with heavy stage 5 excluded) → six blind Phase-5 reviews (3
+PROMISING, 3 PARTIAL) + Red Team's final audit (PROMISING, 8-item
+same-shift mandatory-fix docket, all applied). **All 8 predictions
+CONFIRMED.** Formally resolved which characteristic length licenses
+`h_eff=k_air/L` (the object's real geometric length, not the diffraction-
+inflated optical one) — a five-cycle-deferred tripwire, now closed and
+promoted to reusable code. Two real Phase-5 findings, both disclosed and
+fixed/flagged same-shift: the corrected thermal-detectability margins are
+~3× SMALLER than the figures they replace (not larger, as the informal
+prior estimate implied); and this program's own flagship article
+(`graded_black_shell_flagship`) sits at the record's thinnest thermal
+margin (~6×) and is still on the now-twice-repudiated old chain — a real,
+uncorrected program-level gap this cycle's own contrast surfaced, ranked
+#1 for Iteration 32+, correctly not expanded into this cycle's own scope.
+No Checkpoint criterion fires. Full record: PLAN.md, LOGBOOK.md Iterations
+30/31, `experiments/054-heff-length-scale-rederivation/`. Bench 114/114 at
+Phase 4, reverified 51/51 (quick+stage-18) after Phase-5 fixes; zero
+`lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched.
+
 ## 2026-08-21 (panel shift) — Iteration 30 BLOCKED before Phase 1: sub-agent
 content-policy failure, not a physics or process finding.
 

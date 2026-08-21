@@ -22,7 +22,10 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-20, panel Iteration 29)
+## Current state (2026-08-21, panel Iteration 31 — see PANEL.md/LOGBOOK.md
+for the phenomenon-program's own current state; this section's numbered
+history stops at the pre-redesign exp-023 baseline, panel-era entries live
+in the queue below and in full in LOGBOOK.md)
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -1530,16 +1533,32 @@ continuous mode with checkpoints. The remaining [open] items below are
   routine cannot execute PANEL.md's own longest-standing mandatory
   instrument build without human intervention (e.g. a differently-scoped
   prompt, a different tool/session, or Marsh's own live-session attempt).
-- **[LOCKED — panel Iteration 31, UNCONDITIONAL]** **THERMODYNAMICS' own
-  `h_eff` re-derivation** (exp-043 ON-endpoint, exp-045 dose-accumulation).
-  Named at five consecutive closes (25, 26, 27, 28, 29) without being
-  reached — Iteration 29 (exp-052) was this program's own explicitly-
-  stated fifth-deferral trigger point (Iteration 28's own ranked-item #3
-  language: "a fifth deferral meets this program's established bar for an
-  unconditional trigger and must not pass as an ordinary re-ranking"), on
-  the identical precedent that locked r=156 (Iteration 10) and
-  `graded_black_shell` (Iteration 29 itself). **Unconditional, not subject
-  to further ranked-list competition.**
+- [done 2026-08-21, panel Iteration 31, cloud panel shift] **exp-054 the
+  `h_eff` length-scale re-derivation** — THERMODYNAMICS' own five-cycle-
+  deferred, LOCKED/UNCONDITIONAL trigger, executed this shift (rotation
+  broken for the pre-planned override, per the entry this bullet
+  replaces). Formally resolved which characteristic length licenses
+  `h_eff=k_air/L`: `h_eff`/mass/area on `r_out` (the object's real
+  geometric length), `P_abs` stays on `w_on` (the calibrated optical
+  measurement) — mixed by design, promoted to reusable, trust-suite-gated
+  code (`lab/thermo_sidecar.py`, new stage 18). Applied to exp-043's
+  ON-endpoint and exp-045's dose-accumulation article: **all 8
+  pre-registered predictions CONFIRMED**, both stay UNDETECTABLE, full
+  bench 114/114 (heavy stage 5 excluded). Two Phase-5 findings, both
+  Red-Team-elevated: (1) the corrected margins are ~3× SMALLER than the
+  standing figures they replace (607×/8,955× vs. 1,839×/27,080×), not
+  larger — a same-shift disclosure fix, not a numeric problem; (2) this
+  program's own flagship article, `graded_black_shell_flagship`, sits at
+  the THINNEST thermal margin in the entire record (~6.04×) and still
+  uses the now-twice-repudiated old chain, uncaught by stage 18 (a
+  structural property — stage 18 gates only the two call sites this cycle
+  touched) — **ranked #1 for Iteration 32+**, not fixed this cycle
+  (correctly out of scope). No Checkpoint criterion fires (criterion 4
+  scrutinized hardest — nearest miss, does not fire). Verdict: PROMISING.
+  Full record: `experiments/054-heff-length-scale-rederivation/` —
+  Phase-1 proposal, five Phase-2 blind critiques, Phase-2 Red Team audit,
+  Phase-3 synthesis, NOTES.md, run.py, results.json, six Phase-5 blind
+  reviews, Phase-5 Red Team audit. LOGBOOK.md Iteration 31.
 - **[queued — ranked for Iteration 32+ / alongside the LOCKED Iteration-31
   slot, per Red Team's Iteration-29 Phase-5 reconciliation of all six
   seats]** (1) **The coherent-vs-incoherent ambient-sum bridge-gate
@@ -1590,6 +1609,31 @@ continuous mode with checkpoints. The remaining [open] items below are
   sensitivity-band minimum bar (dormant 20+ iterations); fresh c*(λ) refit
   at the new geometry; regime-stratify T2's ±0.3-log uncertainty near the
   absolute-threshold edge; ocular-dose disposition.
+- **[queued — ranked for Iteration 32+, per Red Team's Iteration-31
+  Phase-5 reconciliation of all six seats, exp-054]** (1) **Re-run
+  `graded_black_shell_flagship` through the corrected
+  `mixed_length_scale_regime`** — this program's flagship article, at the
+  record's thinnest thermal margin (~6.04×), still on the old,
+  now-twice-repudiated `H_CONV=5.0`/hardcoded-mass/`w_on`-area chain;
+  cheapest same-pattern desk-analytic work available (THERMODYNAMICS #1,
+  Red Team's own top priority). (2) **Promote `coupled_segment_general`
+  into a real trust-suite stage** with a nonzero-initial-condition
+  numerical-integrator (RK4) cross-check — EM's Phase-5 review already did
+  the verification once outside the repo; commit it as a permanent gate
+  (EM #1). (3) **Parameterize `mixed_length_scale_regime`'s fill-fraction
+  and material-provenance strings** so a future caller with a different
+  material doesn't silently inherit exp-054's own silicon/ASSUMED-T18
+  citation (MATERIALS #1, THERMODYNAMICS #2). (4) **A desk closed-form
+  `Q_ext(x)` cylinder/disk check** bounding `w_on`'s ~3.03× excess over
+  `r_out` — diffraction vs. `iso_xsec_sq` convention artifact (PHOTONICS
+  #1, EM #2, THERMODYNAMICS #3, QUANTUM #4 — four of six seats). (5) **Run
+  the mixed chain across the standard 450/600/750nm sweep**, reusing
+  already-committed exp-026/044 per-λ data, zero new FDTD (PHOTONICS #2).
+  (6) **T8/T13/T14's near-field→witness-scale `h_eff` bridge** — the
+  largest standing gap in this thread, again explicitly left open
+  (P-054-6); named by every seat that discussed scope, ranked lowest only
+  because it is the biggest build of the six, not because it matters
+  least.
 - **[SUPERSEDED — now LOCKED to Iteration 30, see above]** stage-10
   temporal instrument (VISION's Iteration-2 Phase-5 #2): TCSF bars pinned
   first (de Lange/Watson, sourced) — the last unmeasured perceptual axis

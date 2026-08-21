@@ -10506,3 +10506,289 @@ reviews), `3ea1b71` (Phase-5 Red Team audit + mandatory disclosure fixes).
 record: `experiments/052-fixed-absolute-thickness-shell/` — Phase-1
 proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
 synthesis, NOTES.md, six Phase-5 blind reviews, Phase-5 Red Team audit.
+
+## Iteration 30 — BLOCKED before Phase 1 (twice) — 2026-08-21
+
+*Runner: cloud panel shift.* No Phase ran; no experiment directory content
+was ever created. Full record lives in `PLAN.md`'s LOCKED Iteration-30 entry
+and `SESSION_LOG.md`'s two 2026-08-21 (panel shift) entries, not duplicated
+here per this program's own "no Phase ran ⇒ no LOGBOOK entry" convention —
+this pointer exists only so the LOGBOOK's own iteration sequence doesn't
+silently skip a number with no explanation.
+
+Two independent, fully-fresh QUANTUM OPTICS Phase-1 sub-agents (separate
+shifts, separate sessions, unreworded identical task) were each terminated
+by the same upstream `[bio]`-tagged content-policy block while reading this
+program's own kinetics/temporal-CSF/amplitude-bridge record (vocabulary:
+`n(t)` population fraction, "dose accumulation," "carrier lifetime," NETD
+thermal-detectability figures) — plausible false-positive pattern-matching
+on dual-use-research vocabulary in an otherwise entirely classical-optics
+context (rate-equation kinetics for a switched absorber; no biological,
+chemical, or weapons content by any plain reading, confirmed independently
+by two different Directors reading the same source files). **The block is
+now confirmed content-tied and reproducible, not transient** — a third
+attempt was judged, per this program's own established reasoning, to risk
+reading as evasion of a safety control rather than a legitimate retry, and
+was not made this shift. Iteration 30 stays **LOCKED and UNCONDITIONAL**,
+now explicitly flagged for Marsh's direct attention: this program's own
+longest-standing mandatory instrument build (T3's joint constraint-3/4
+verdict, named unbuilt in PANEL.md's metrics table since Iteration 1)
+cannot be executed by this routine without human intervention — a
+differently-scoped prompt, a different tool/session, or a live-session
+attempt by Marsh directly. Not a Checkpoint firing (no science ran, no
+constraint scored, no program-integrity drift found) but a genuine
+routine-cannot-execute stop, reported per this program's checkpoint-
+adjacent practice. This shift used the remainder of its time on Iteration
+31 instead (below) — a different, unrelated topic, both because it was
+independently LOCKED/UNCONDITIONAL and as a diagnostic (did the block
+generalize to this program's whole vocabulary, or was it specific to
+Iteration 30's own reading list? **Result: specific** — Iteration 31's
+fresh THERMODYNAMICS Phase-1 sub-agent, same shift, same dispatch
+mechanism, completed cleanly with no block, reading a disjoint but
+comparably technical (heat-transfer/thermal-detectability) file set).
+
+## Iteration 31 — The `h_eff` Length-Scale Re-derivation (exp-054) — 2026-08-21
+
+*Runner: cloud panel shift. Lead: THERMODYNAMICS (rotation broken — this
+was the LOCKED, UNCONDITIONAL fifth-deferral trigger named at Iterations
+25/26/27/28/29 closes without being reached, pre-registered in PLAN.md
+before this shift began). Instrument/model-fidelity cycle, Iteration-20/22/
+25/27 class. T1 escape route: NONE. Zero new FDTD calls.*
+
+**Headline: the five-cycle-deferred `h_eff=k_air/L` length-scale ambiguity
+is formally resolved (h_eff/mass/area on the object's real geometric length
+`r_out`, never on the diffraction-inflated optical length `w_on`; absorbed
+power stays on `w_on`, mixed by design), promoted to reusable, trust-suite-
+gated code, and applied to exp-043's ON-endpoint and exp-045's dose-
+accumulation article — both stay UNDETECTABLE, but the corrected margins
+are ~3× SMALLER than the standing figures they replace, not larger, and
+this program's own flagship absorber (`graded_black_shell`) is found,
+by contrast, to still sit on the now-twice-repudiated chain at the
+thinnest thermal margin in the entire record.**
+
+### PHASE 1 — PROPOSE
+
+THERMODYNAMICS argued the physical case to a conclusion for the first time
+(prior cycles disclosed the ambiguity but never resolved it): `h_eff`,
+thermal mass, and radiating/convecting area must ALL derive from `r_out`
+(a real geometric length of the conducting solid) — never from `w_on` (a
+measured, diffraction-inflated extinction-cross-section width, T9-
+established to already exceed the ≤0.5 geometric-optics ceiling a real
+Q_ext=1 body would obey). `P_abs` stays on `w_on` (a separate, already-
+calibrated optical measurement) — the chain is MIXED by design, not a bug
+to eliminate. Targeted exp-043's ON-endpoint (τ=3.9) and exp-045's dose-
+accumulation article, replacing Iteration 25's informal, never-run
+~5.1×→~2.6× / ~27,080×→~38–42× estimate with real, code-computed numbers.
+Zero new FDTD calls (desk/analytic re-derivation from committed bench
+measurements, matching the Iteration-20/22/25/27 sidecar precedent).
+
+### PHASE 2 — CRITIQUE · five blind seats, then Red Team
+
+All five seats returned **support-with-changes** — no outright opposition,
+five distinct, non-overlapping concerns: PHOTONICS (the `w_on`-is-
+diffraction-inflated claim is asserted, not bounded against the
+`iso_xsec_sq` area convention's own contribution to the ~3.0× excess);
+MATERIALS (the silicon thermal identity's `REALIZABILITY_MEMO.md`
+ASSUMED-provenance downgrade, filed one cycle earlier by this same seat,
+was silently dropped in the Phase-1 draft; 100%-fill assumption
+undisclosed); ELECTROMAGNETISM (P-054-3/4's decoupled-proxy-is-
+conservative property was only ever verified at the original, 9.15×-longer
+τ_thermal — genuinely untested at the mixed chain's own shorter one);
+QUANTUM OPTICS (the Block-C `n(t)`-independence claim is scoped to an
+undisclosed `k_f`-as-exogenous idealization boundary); VISION SCIENCE (the
+NETD-is-not-a-human-threshold disclaimer, mandatory since Iteration 20, did
+not survive into the Phase-1 draft's own headline predictions — a
+documented third recurrence).
+
+**Red Team's audit (everything): PROCEED-WITH-MANDATORY-FIXES, 7-item
+docket, none rejected.** Independently verified all five seat findings as
+real and load-bearing, and caught two more, missed by all five: (1)
+P-054-6 (as originally drafted) claimed to "refute" Iteration 25's
+witness-scale estimate, but that estimate concerns a completely different
+physical question (T8/T13's near-field→witness-scale bridge) than this
+cycle's bench-scale `r_out`-vs-`w_on` question — a self-contradictory scope
+claim, since the Phase-1 draft's own idealizations explicitly disclaimed
+witness-scale work in the same document; (2) the originally-planned trust-
+suite "cross-consistency" gates (`h_eff·L==k_air`, mass-from-same-L) are
+tautologically true for ANY length passed — they guard the helper
+functions' own arithmetic, not that the CALLER chose the physically-
+licensed length, the exact failure mode Red Team struck at Iteration 22.
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All 7 mandatory-fix items accepted in full, none overridden — every one
+independently re-verified by Red Team against source, none in conflict.
+P-054-6 rescoped (not dropped) to state the correct boundary explicitly;
+Block C redesigned as a genuine `coupled_segment_general` re-run at the
+mixed chain's own `dt_ss_full`/`tau_thermal_s`, not algebraic rescaling;
+silicon identity re-flagged ASSUMED with 100%-fill disclosed; trust-suite
+stage folded into ONE new stage (18) adding a third, genuinely
+discriminating gate (the ON-endpoint call site's literal geometric length,
+pinned, reproducing the already-published 3.293076×10⁻⁵ K figure) rather
+than two separate changes; QUANTUM's scope caveat and VISION's disclaimer
+propagated; forward-pointer SUPERSEDED notices queued for exp-043/045's own
+`NOTES.md`. Predictions P-054-1 through P-054-8 frozen in `NOTES.md`,
+committed to git (`b91d856`) BEFORE any Phase-4 run.
+
+### PHASE 4 — TEST
+
+New reusable code in `lab/thermo_sidecar.py`: `gas_conduction_h_eff`,
+`lumped_cube_mass_kg`, `mixed_length_scale_regime`. New trust-suite stage
+18 (`lab/validation/run_all.py`, 10/10 own checks). `experiments/054-.../
+run.py` computes the ON-endpoint mixed regime and re-runs exp-045's own
+Block C 8-point grid (Host D, 4 ratios × {5τ,0.5τ}) through
+`coupled_segment_general` (imported via `importlib.util` from
+`experiments/045-.../run.py` under a private module name, exp-050's own
+precedent — not re-derived) at the mixed chain's own, 9.15×-shorter
+`tau_thermal_s`. Full trust-suite bench **114/114 green** (heavy stage 5
+excluded), including the new stage 18.
+
+**Results — ALL 8 PREDICTIONS CONFIRMED, 0 PARTIAL, 0 REFUTED**, the second
+cleanest prediction sweep in this program's history by that count (after
+exp-052's 5-for-5). P-054-1: `dt_ss_full`(ON, mixed)=3.293076054169135×10⁻⁵
+K, exact regression match. P-054-2: NETD-lo margin(ON)=607.33×. **P-054-3a:
+worst exact/decoupled ratio across all 16 readings (8 points × first-pulse/
+periodic)=0.998716, EVERY reading satisfies `exact≤decoupled`** — the
+physical argument (dwell/τ_thermal≈194.2× at the mixed chain vs. ≈21.2× at
+the original) held cleanly, confirmed point-by-point at Phase 5 (EM), not
+just in aggregate. P-054-3b: max `dT_periodic_decoupled`=2.2364×10⁻⁶ K.
+P-054-4: NETD-lo margin(dose, exact)=8,954.62×. P-054-5: both articles
+UNDETECTABLE. P-054-6: scope boundary held — T8/T13's witness-scale
+question stays untouched and open. P-054-7/8: trust-suite and documentation
+checks passed.
+
+### PHASE 5 — REVIEW · six fresh seats, then Red Team audit
+
+**Three PROMISING (MATERIALS, ELECTROMAGNETISM, VISION SCIENCE), three
+PARTIAL (PHOTONICS, THERMODYNAMICS, QUANTUM OPTICS)** — every finding
+independently re-verified by Red Team against source, none rejected, none
+merely cosmetic:
+
+- **PHOTONICS**: `NOTES.md`'s own hypothesis statement still asserted
+  "diffraction-inflated" unqualified even though Phase 2 had already
+  established it as asserted-not-bounded — a citation-hygiene gap, not a
+  numeric one (fixed same-shift, below).
+- **MATERIALS**: `lumped_cube_mass_kg` takes no fill-fraction parameter (a
+  capability regression vs. `REALIZABILITY_MEMO.md`'s own Amendment 5(b));
+  `mixed_length_scale_regime` re-implements the graybody formula inline
+  instead of calling `steady_state_delta_T`, dropping its idealization
+  warning; **independently computed and confirmed the corrected dose-
+  accumulation margin (8,954.6×) is SMALLER than exp-045's own originally-
+  published headline (27,080.2×), not larger** — the "2–3 OOM safer"
+  framing holds only against Iteration 25's informal never-computed guess,
+  not against the real prior headline.
+- **ELECTROMAGNETISM**: independently re-verified all 8 Block-C points'
+  raw per-reading ratios directly from `results.json` (all 16 satisfy
+  `exact≤decoupled`, [0.996365, 0.998716]) and Part A/B's arithmetic from
+  scratch, bypassing `results.json` entirely — all confirmed. Found the
+  self-check assertion in `run.py` (`coupled_segment_general` reduces to
+  `coupled_kinetics_thermal_dT` at n0=dT0=0) is an algebraic tautology,
+  mathematically guaranteed to pass regardless of correctness at the
+  nonzero-initial-condition branch Block C actually exercises 10 of 11
+  segments per point — and that `coupled_segment_general` has ZERO
+  trust-suite coverage anywhere in the codebase. Closed the gap itself via
+  an independent RK4 integration this review (not committed to the repo):
+  confirmed the formula correct to ~10⁻¹⁵ relative error.
+- **THERMODYNAMICS**: mandatory fixes genuinely implemented, not merely
+  asserted (verified in code/results directly). Found `mixed_length_scale_
+  regime` hardcodes exp-054's own silicon-specific provenance string
+  unconditionally for any future material. **Most significant finding, Red-
+  Team-elevated to this cycle's single highest-priority follow-up**:
+  `experiments/043-.../results.json::graded_black_shell_flagship` — this
+  program's own flagship absorber, and the article sitting at the THINNEST
+  thermal-detectability margin anywhere in the record (≈6.04×, independently
+  reproduced by Red Team to 4 significant figures — every other article
+  sits 500×–27,000× clear) — still uses `H_CONV=5.0` (the original
+  macroscopic placeholder, never replaced), a hardcoded `MASS_KG=1.0e-15`
+  kg (not derived from any geometric length at all — arguably a WORSE
+  instance of the bug class than either article this cycle corrected), and
+  `w_on`-based area throughout. Stage 18 cannot catch this: its one
+  discriminating gate pins only the ON-endpoint call site, a structural
+  property of the trust-suite design (Red Team's own Phase-2 attack 4
+  hypothetical, now shown non-hypothetical).
+- **QUANTUM OPTICS**: mandatory fix 5's caveat existed only in the
+  idealizations list, not propagated to the P-054-3a/3b prediction rows as
+  promised, and cited a stale pre-split ID. **Independently reproduced
+  MATERIALS' margin-direction finding at the ON-endpoint pair as well**
+  (1,839× `w_on`-consistent vs. 607× mixed — same ≈3.03× shrink), and
+  confirmed no live σ(I)/σ(x,t) mechanism thread sits close enough to a
+  NETD threshold to be affected by this shift (a different instrument,
+  Blackwell/Rose contrast, governs those threads).
+- **VISION SCIENCE**: mandatory fix 6 landed unusually thoroughly (the
+  disclaimer is now structural, living inside `netd_disposition` itself —
+  all 17 classification objects in `results.json` independently carry
+  their own copy) but `run.py`'s own console print statements carried none,
+  and two of the fix's three named loci (NOTES.md Results/Learned prose,
+  a LOGBOOK entry) did not yet exist at Phase-5 review time.
+
+**Red Team's final audit (everything): PROMISING.** All six findings
+confirmed real and load-bearing by independent re-derivation (not seat-
+counting); none rejected. Two things no seat individually named: (1) the
+`graded_black_shell` margin (≈6×) is close enough to the NETD band's own
+lower edge that a future Checkpoint-1 candidate-reproduction claim citing
+it uncorrected carries real risk, not just staleness — flagged as a
+standing program-level concern, ranked #1 for Iteration 32+, though
+correctly NOT expanded into this cycle's own scope (T1: NONE, two named
+articles only — a pre-existing gap surfaced by contrast, not created here);
+(2) the trust suite's ON-endpoint regression anchor and P-054-1's own
+prediction band both trace to the identical single historical figure
+(LOGBOOK Iteration 23's side-computation) — not two independent checks
+until EM's own from-scratch Phase-5 re-derivation confirmed it a second
+way. **All five Checkpoint criteria checked explicitly: NONE fire.**
+Criterion 4 scrutinized hardest (the margin-direction disclosure gap was
+the nearest miss this cycle produced) — ruled not a dropped constraint or
+an unfalsifiable claim, both because it is a documentation-completeness
+gap only and because the correct direction IS already stated, just not at
+every locus (exp-045's own SUPERSEDED note gets it right; exp-054's own
+files did not, until this same-shift fix). **8-item same-shift mandatory-
+fix docket, all applied this shift** (6 landed as `NOTES.md`/`run.py`/
+exp-045-`NOTES.md` edits — margin-direction disclosure stated plainly in
+two loci, the "diffraction-inflated" qualifier added, P-054-3a/3b's scope
+caveat + stale-ID fix, `run.py`'s print-statement disclaimer, exp-045's
+0.07% transcription-slip correction, and this file's own Results/Learned/
+Next sections; the remaining 2 — a `graded_black_shell` flag and this
+LOGBOOK entry itself — land here). Full bench reverified 51/51 (quick
+suite + stage 18) after the fixes.
+
+**Standing-bar flag**: none — this is the FIRST cycle of `h_eff`'s own
+five-deferral tripwire, not a repeat deferral.
+
+**Ranked priorities for Iteration 32+ (Red Team's reconciliation of all six
+seats):** (1) **Re-run `graded_black_shell_flagship` through the corrected
+`mixed_length_scale_regime`** — this program's flagship article, at the
+record's thinnest margin, on a now-twice-repudiated chain; the cheapest
+same-pattern desk-analytic work available (THERMODYNAMICS #1, this audit's
+own top priority). (2) **Promote `coupled_segment_general` into a real
+trust-suite stage** with a nonzero-IC numerical-integrator (RK4) cross-
+check — EM's Phase-5 review already did the verification once; commit it
+as a permanent gate (EM #1). (3) **Parameterize `mixed_length_scale_
+regime`'s fill-fraction and material-provenance strings** so a future
+caller with a different/sourced material doesn't silently inherit this
+cycle's own silicon/ASSUMED-T18 citation (MATERIALS #1, THERMODYNAMICS #2,
+converged). (4) **The desk closed-form `Q_ext(x)` cylinder/disk check**
+bounding `w_on`'s ~3.03× excess over `r_out` — diffraction vs. `iso_xsec_
+sq` convention artifact (PHOTONICS #1, EM #2, THERMODYNAMICS #3, QUANTUM
+#4 — four of six seats). (5) **Run the mixed chain across the standard
+450/600/750nm sweep**, reusing already-committed exp-026/044 per-λ data —
+zero new FDTD (PHOTONICS #2). (6) **T8/T13/T14's near-field→witness-scale
+`h_eff` bridge** — the largest standing gap in this thread, explicitly and
+correctly left open again this cycle (P-054-6); named by every seat that
+discussed scope. Not re-ranked below the others because it matters less,
+but because it is the biggest build of the six.
+
+Bench 114/114 at Phase 4 (heavy stage 5 excluded), 51/51 (quick+stage-18)
+reverified after Phase-5 fixes. Zero constraint-3/4 language anywhere in
+this cycle's own files, independently grep-confirmed at both Phase 2 and
+Phase 5. Commits: `b91d856` (Phase-3 synthesis + predictions frozen),
+`4d59d43` (Phase-4 results), `7473b28`/`46b755a`/`d0f76ee`/`522c797`/
+`2fcee1a`/`74a6790` (six Phase-5 blind reviews), `798c19d` (Phase-5 Red
+Team audit), `c05b7dc` (mandatory-fix docket applied). **Verdict:
+PROMISING.** Next lead per rotation: **QUANTUM OPTICS** (still owed from
+Iteration 30's block — Iteration 31 broke rotation for its own explicitly
+pre-locked trigger per PLAN.md, so the rotation pointer did not advance;
+whichever of Iteration 30 or a fresh Iteration 32 a future shift reaches
+first, QUANTUM OPTICS leads it). Full record:
+`experiments/054-heff-length-scale-rederivation/` — Phase-1 proposal, five
+Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+NOTES.md, run.py, results.json, six Phase-5 blind reviews, Phase-5 Red Team
+audit.
