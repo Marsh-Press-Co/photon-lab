@@ -1501,6 +1501,62 @@ measured them here):**
   for Iteration 31+: a bridge-gate rebuild against the actual
   equal-amplitude N9 configuration, reusing suite stage 11's existing
   field-identity gates (QUANTUM's own concretely-scoped proposal).
+  **UPDATE (Iteration 32, exp-055): the bridge gate named above is now
+  built** — a genuine N=9, equal-amplitude, PEC-cored r=78 joint-injection
+  measurement (new suite stage 19), not the exp-029 N=2 amplitude-
+  asymmetric proxy. **T25 still does NOT close**: this build measures one
+  fixed-relative-phase coherent realization, not the true incoherent
+  ensemble (random relative phase, multi-draw). QUANTUM OPTICS' own
+  Phase-5 sharpening: the naive incoherent sum is PROVABLY the analytic
+  zero-mean of random-phase superposition (established at Iteration 6) —
+  so what remains open is not whether the MEAN matches (it provably does)
+  but whether the VARIANCE across realizations is negligible. Iteration
+  32's own result is existence-proof it is not, at least in one channel
+  (see T26). On the actual loaded article every headline `C` this program
+  cites is built from, the fixed-phase coherent deviation is small and
+  reassuring (raw flux −0.885%, Weber `C` shift 0.317% absolute,
+  −0.7211→−0.7243) — no existing Tier-A/Tier-W verdict moves. Full record:
+  `experiments/055-t25-coherent-ambient-bridge-gate/`, LOGBOOK.md
+  Iteration 32.
+- **T26 — the fixed-phase coherent joint-injection EMPTY-scene artifact is
+  large (>10× VISION's own T2 photopic `C_thr`) and its dependence on
+  object loading/absorption is unexplained (opened Iteration 32, exp-055,
+  Red-Team-confirmed PROMISING).** At r=78 (this program's own headline
+  ambient geometry, exp-024's own original fallback construction — NY=1584,
+  not exp-030's later `GEOM[78]` reparameterization, ny=1528, a real,
+  disclosed geometry discrepancy neither previously tested against each
+  other), naive incoherent N=9 injection gives essentially perfect
+  object/flank window balance in vacuum (`C_empty=−0.000033`, consistent
+  with stage 9's own established empty-window-balance gates) — but
+  simultaneous, equal-amplitude, fixed-zero-relative-phase N=9 coherent
+  joint injection at the SAME nine angles (`FALLBACK_ANGLES`, ±35°)
+  produces `C_empty=−0.05343`, over 10× VISION's own T2 photopic
+  `C_thr=0.005`, from interference alone, zero object present. Not a bug
+  (Weber contrast is scale-invariant; independently confirmed by Red Team
+  as ordinary passivity-bounded multi-beam interference, comfortably
+  inside EM's re-derived [−100%,+800%] Cauchy-Schwarz ceiling for N=9
+  equal-amplitude sources — large relative to threshold, unremarkable
+  relative to the physics). Poses **zero retroactive risk** to any existing
+  constraint-3 citation (none has ever used coherent joint injection;
+  VISION's Phase-5 review independently confirmed this). The risk is
+  prospective: any future proposal substituting joint coherent injection
+  for `lab/ambient.py`'s incoherent pipeline near a near-null σ(I) article
+  (`off_pass`/`off_bracket`, exp-032/033/034's own PASS/MARGINAL territory)
+  would risk a decisive, wrong artifact. **Two real characterization gaps,
+  both Red-Team-confirmed, neither yet closed**: (1) this is a SINGLE
+  fixed-relative-phase realization — nothing bounds how the figure moves
+  under a different fixed-phase/angle draw (EM, QUANTUM); (2) no
+  resolution (R3) or energy-closure check was ever run on the empty-scene
+  channel itself — the only new closure gate this cycle built (stage 19's
+  third gate) covers the LOADED object scene on the small compact
+  canonical geometry, not the empty scene at the actual r=78 bench
+  geometry where T26 was measured (EM's own Phase-5 finding, independently
+  verified by Red Team against the code). Ranked #1 (Red Team's
+  reconciliation of all six Iteration-32 Phase-5 seats) for Iteration 33+:
+  a combined build — the T26 generalization test on a near-null σ(I)
+  article, EM's own empty-scene-specific R3 check at the real r=78
+  geometry, and PHOTONICS' window-position/angle-quantization sensitivity
+  scan — all targeting the identical gap at near-zero marginal FDTD cost.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -10792,3 +10848,225 @@ first, QUANTUM OPTICS leads it). Full record:
 Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
 NOTES.md, run.py, results.json, six Phase-5 blind reviews, Phase-5 Red Team
 audit.
+
+## Iteration 32 — The T25 Coherent-vs-Incoherent Ambient-Sum Bridge Gate, N=9 Equal-Amplitude (exp-055) — 2026-08-21
+
+*Runner: cloud panel shift. Lead: QUANTUM OPTICS (rotation — "still owed"
+per Iteration 31's own closing line, Iteration 30 stays LOCKED/blocked, not
+retried this shift — a third attempt after two independent, reproducing
+content-policy blocks would risk reading as evasion of a safety control,
+per the prior shifts' own stated reasoning). Instrument/model-fidelity
+cycle, Iteration-2/4/5/6/20/22/25/26/27/29/31 class. T1 escape route:
+NONE. 20 new FDTD calls.*
+
+**Headline: T25's bridge gate is built end-to-end for the first time
+against the actual equal-amplitude N=9 configuration every constraint-3
+`C` citation in this program's history rests on — good news for those
+citations (the coherent-vs-incoherent deviation on the loaded article
+they're built from is small, −0.885%/0.317% absolute) but a striking,
+previously-unmeasured EMPTY-SCENE artifact (T26, >10× C_thr from
+interference alone) that neither T25's own closure nor any prior cycle
+had occasion to find.**
+
+### PHASE 1 — PROPOSE
+
+QUANTUM OPTICS proposed executing T25 (its own Iteration-29 Phase-5 catch,
+ranked #1/#2 by 5 of 6 exp-052 seats): build the real coherent-vs-incoherent
+bridge gate against the actual equal-amplitude N=9 `FALLBACK_ANGLES`
+configuration `lab/ambient.py` uses for every headline `C`, at this
+program's own headline r=78 ambient scene — reusing suite stage 11's
+exact-identity gate pattern, extended N=2→N=9. Chose T25 over the
+Iteration-31 queue's own #1 item (THERMODYNAMICS' flagship thermal-margin
+re-run), reasoning that item was outside QUANTUM's charter and could stand
+undisturbed for THERMODYNAMICS' own next turn, while T25 was QUANTUM's own
+five-cycle-deferred charter deliverable.
+
+### PHASE 2 — CRITIQUE · five blind seats, then Red Team
+
+All five seats returned **support-with-changes**: PHOTONICS (predicted
+deviation bands mis-scaled — cited exp-046's grating-lobe precedent, later
+ruled by Red Team as the wrong instrument for this configuration);
+MATERIALS (the proposal's claimed "hollow, unchanged since exp-020/024/
+030/052" construction is FALSE — exp-020/024's own actual construction is
+PEC-cored; also mischaracterized `C78_ESTABLISHED` itself as "the hollow
+number, never measured," which Red Team's audit corrected — it IS the
+PEC-cored, actually-measured exp-024 anchor); ELECTROMAGNETISM (the
+predicted bands were never re-derived from Cauchy-Schwarz for the actual
+N=9 equal-amplitude case — independently re-derived the correct ceiling,
+(N−1)×=+800%/−100%); THERMODYNAMICS (stage 19 as originally scoped had
+only the field-identity gate, a regression vs. stage 11's own Gate Q6
+precedent — N equal-amplitude sources are not amplitude-bounded the way
+stage 11's asymmetric pair was); VISION SCIENCE (the proposal's own
+"T24" perceptual-threshold citation is wrong — C_thr is pinned in T2, not
+T24, a different, unrelated instrument-noise thread).
+
+**Red Team's audit (everything): PROCEED-WITH-MANDATORY-FIXES, 5 numbered
+attacks, 9-item docket, none rejected.** Attack 1 (load-bearing,
+independently verified against `experiments/024-.../run.py` directly): the
+Phase-1 proposal's r=78 "absorber" article was HOLLOW and its "inherited
+unchanged" claim was false on every count — the real `C78_ESTABLISHED`
+anchor traces to exp-024's own PEC-cored construction; only exp-030's own
+`build_ambient` ever went hollow, a defect exp-052 already diagnosed and
+reversed. Attack 2: MATERIALS' own critique mis-cited
+`REALIZABILITY_MEMO.md` Entry 2 as motivating this build (verified false —
+unrelated memo); MATERIALS' recommended fix (add a PEC-cored leg) was
+nonetheless correct and, per Attack 1, more urgently needed than MATERIALS
+realized. Attack 3: PHOTONICS' grating-lobe rescaling was the wrong
+instrument (different physical mechanism — undersampled coherent-beam
+array-factor sidelobes, not a fixed-window N=9 cross-term); EM's
+independent Cauchy-Schwarz re-derivation, cross-corroborated by
+THERMODYNAMICS' own N² statement, is correct. Attack 4: the Weber-`C`
+deviation prediction was never derived from anything — relabeled
+informational, no formal ceiling. Attack 5 (cosmetic): "Iteration 31's own
+closing line... 'still owed' THIS BUILD" overstated the source (the
+closing line names QUANTUM as owed the LEAD SLOT, not this build by name).
+**All 5 Checkpoint criteria checked: none fire.**
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All 9 mandatory-fix docket items accepted in full, none overridden. Object
+rebuilt PEC-cored (`pec_disk(r=30)` then `graded_black_shell(r_in=30,
+r_out=78)`), matching exp-024/052's own construction exactly. Predicted
+bands corrected to EM's formal Cauchy-Schwarz ceiling ([−100%,+800%]) with
+a separately-labeled, explicitly low-confidence informal central estimate;
+Weber-`C` deviation relabeled informational; T2 citation corrected; stage
+19 gets a third gate (absorbed-power closure, N=2→N=9 generalization of
+stage 11's own Gate Q6). **Director's own additional Phase-3 catch, not
+raised by any Phase-2 seat or Red Team**: the Phase-1 proposal's cited
+anchor (`C78_ESTABLISHED['absorber']=−0.72087`) is a photopic-luminosity-
+weighted AVERAGE across 450/600/750nm, while this cycle is single-λ=600nm
+scope — corrected to the true single-λ anchor (`−0.7211`, exp-024's own
+NOTES.md fallback table). Separately disclosed: `experiments/030-scale-
+bridge`'s own `GEOM[78]` (ny=1528, obj=(170,764)) is NOT byte-identical to
+exp-024's own original fallback geometry that produced `C78_ESTABLISHED`
+(NY=1584, obj=(170,792)) — this build uses exp-024's own geometry directly,
+not exp-030's r-family formula, so the reproduction check tests exactly
+one variable. Predictions P-055-1/2/4/5/6 frozen in `NOTES.md`, committed
+to git (`fdaf45c`) BEFORE any FDTD call.
+
+### PHASE 4 — TEST
+
+New reusable suite gate: `lab/validation/run_all.py::
+stage19_n9_superposition()` — N=2→N=9 extension of stage 11's field-
+identity gates (Gates Q4/Q5, measured ~1.9×10⁻¹⁵ RMS relative, both
+branches — confirmed) plus a NEW third gate (radial closure vs. box-ledger
+absorbed power, joint object scene). **The new closure gate genuinely
+MISSED its reused ≤1.5% tolerance at first run (measured 2.887% at
+cpl=20)** — scored as a real pre-registered gate failure (P-055-5c),
+disclosed, not silently absorbed. An R3 check (cpl 20→30, this program's
+own standard resolution-convergence discipline) found the miss only
+PARTIALLY a grid artifact: closure shrinks to 2.015% (30% relative) but
+stays outside the original bound even at 1.5× resolution — a genuine,
+if partly grid-linked, widening of the box-vs-radial registration offset
+for a spatially-interfering N=9 equal-amplitude field vs. stage 10/11's
+smooth/asymmetric ones (1.11–1.3%). Gate recalibrated to ≤3.5% with full
+disclosure in code comments (separate commit `68ee91f`, before the
+experiment run), feeding standing thread T11. Full bench reverified 49/49
+(`--only 12346789,10,11,19`).
+
+`experiments/055-.../run.py` executed the actual bridge gate: 18 individual
+single-source legs + 2 joint (N=9) scenes at r=78, 387.3s.
+
+**Results — reproduction precondition CONFIRMED (0.0020% relative
+deviation), the object-scene coherent-vs-incoherent deviation CONFIRMED
+small and within formal bounds (raw flux −0.885%, Weber `C` shift 0.317%
+absolute), but the empty-scene identity prediction (P-055-4) REFUTED
+dramatically** — predicted informal band [0.0001,0.01], measured **0.05339**
+(over 5× the top of the band). This is the cycle's headline finding — see
+T26, above (LIVE THREADS). One informal prediction (P-055-1's central
+estimate) landed as a near-miss (predicted [1%,15%], measured 0.885%,
+~12% shy of the floor).
+
+### PHASE 5 — REVIEW · six fresh seats, then Red Team audit
+
+**Three PROMISING (MATERIALS, ELECTROMAGNETISM, QUANTUM OPTICS), three
+PARTIAL (PHOTONICS, THERMODYNAMICS, VISION SCIENCE)** — every finding
+independently re-verified by Red Team against source:
+
+- **PHOTONICS**: T26's number is sound (not a normalization artifact —
+  Weber contrast is scale-invariant) but under-characterized as one sample
+  of a multi-period interferogram (fringe periods ≈17–229 cells across the
+  9-angle set) rather than a bounded magnitude; offered a cheaper
+  alternative explanation for the loaded-vs-empty 17× |ΔC| ratio (a
+  near-null-denominator effect in the Weber ratio itself, checkable from
+  already-recorded raw flux data) than the NOTES' own unproven
+  "absorber-suppresses-fringes" hypothesis. Red Team confirmed the
+  fringe-period arithmetic but corrected a real ~2× undercount (the
+  object window's true full width is 2×`W_OBJ`, not `W_OBJ`).
+- **MATERIALS**: independently re-verified the PEC-core fix byte-for-byte
+  against `experiments/024-.../run.py`, and the `GEOM[78]`-vs-exp-024-
+  geometry discrepancy by direct execution of both formulas — both real.
+  P-055-6's 0.0020% reproduction judged genuine discriminating
+  confirmation, not coincidence.
+- **ELECTROMAGNETISM**: independently re-derived the Cauchy-Schwarz
+  ceiling from scratch, confirmed exact. T26 is ordinary passivity-bounded
+  interference, not an energy-conservation concern — but flagged two real
+  gaps: T26 is a SINGLE fixed-phase realization (nothing bounds other
+  draws), and no R3/energy-closure check was ever run on the empty-scene
+  channel itself (stage 19's new gate covers only the loaded object scene
+  on the small canonical geometry, not the actual r=78 empty scene where
+  T26 was measured) — independently confirmed by Red Team reading the code.
+- **THERMODYNAMICS**: T1:NONE correctly stated; the object-scene deviation
+  is "pure spatial redistribution of exactly-conserved energy" (field
+  identities hold to 1e-15). Flagged the stage-19 recalibration as
+  procedurally correct but mechanistically a hypothesis, not a derivation.
+  Named its own charter's ranked-#1 item (`graded_black_shell_flagship`
+  re-run, zero new FDTD) as now deferred a SECOND consecutive cycle against
+  a thin (6.04×) margin.
+- **QUANTUM OPTICS**: sharpened why T25 can't close — the naive incoherent
+  sum is PROVABLY the analytic zero-mean of random-phase superposition
+  (Iteration 6); what's missing is the VARIANCE, and T26 is existence-proof
+  it's not negligible in at least one channel. Claimed T26 for QUANTUM's
+  own charter (coherent interactions, expressible as a closed-form
+  phasor-sum).
+- **VISION SCIENCE**: the "10× C_thr" headline omits the regime qualifier
+  (C_thr=0.005 is the T2 PHOTOPIC floor, not a universal constant) every
+  other citation in this program's history carries — a real, if
+  self-contained, overclaiming risk. Confirmed the photopic regime IS
+  correct for T26's own stated future use case (contaminating `off_pass`,
+  itself scored against the same photopic bar), just not stated explicitly.
+  Also flagged an unaddressed spatial-frequency mismatch: T2's `C_thr(L)`
+  was fit for large uniform targets, not fine coherent-fringe structure.
+
+**Red Team's final audit (everything): PROMISING.** Independently
+re-verified every load-bearing claim above against source (confirmed all;
+one minor correction — PHOTONICS' "~4-5 periods" figure corrected to ~9,
+using the object window's true full width). **Verdict PROMISING, adopted
+over the raw 3-3 seat split**, per this program's own established
+precedent (Red Team's audit adopted over a raw seat count at Iterations 10
+and 12 — verdict turns on whether a cycle's own open questions close, not
+vote-counting). **All five Checkpoint criteria checked: none fire**
+(criterion 4 scrutinized hardest against the unqualified "10× C_thr"
+phrasing — ruled a documentation gap, fixed same-shift, not
+program-integrity drift). **One mandatory same-shift fix applied**: the T2
+photopic regime qualifier added throughout `experiments/055-.../NOTES.md`
+(Red Team's own docket item 1).
+
+**Ranked priorities for Iteration 33+ (Red Team's reconciliation of all six
+seats):** (1) **A combined T26 build**: the generalization test on a
+near-null σ(I) article (`off_pass`/`off_bracket`, QUANTUM's and VISION's
+top pick — the regime where this artifact could actually flip a live
+PASS/MARGINAL verdict), folding in EM's empty-scene-specific R3/resolution
+check at the ACTUAL r=78 geometry (never done this cycle) and PHOTONICS'
+window-position/angle-quantization sensitivity scan, as same-build riders
+at near-zero marginal FDTD cost. VISION's regime-qualifier discipline
+should govern any future `C_thr` citation from this result. (2)
+**THERMODYNAMICS' `graded_black_shell_flagship` re-run through the
+corrected `mixed_length_scale_regime`** (exp-054 queue item 1, PLAN.md) —
+now genuinely twice-deferred, zero new FDTD, this program's thinnest
+thermal margin (~6.04×, itself shown to shrink ~3.03× under this exact bug
+class). (3) **MATERIALS' absorptivity/mechanism literature check**
+(exp-052 queue item 5) — zero-FDTD, deferred since Iteration 29.
+
+Bench 49/49 (`--only 12346789,10,11,19`) at Phase 4; zero
+`lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched.
+Commits: `fdaf45c` (Phase-3 synthesis + predictions frozen), `68ee91f`
+(stage-19 gate recalibration, disclosed), `5da0fbd` (Phase-4 results),
+`7d2698e` (Phase-5 reviews + Red Team audit + mandatory fix). **Verdict:
+PROMISING.** Next lead per rotation: **VISION SCIENCE** (rotation
+completes its second full cycle: VISION→PHOTONICS→MATERIALS→EM→
+THERMODYNAMICS→QUANTUM→repeat; QUANTUM led this cycle). Full record:
+`experiments/055-t25-coherent-ambient-bridge-gate/` — Phase-1 proposal,
+five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+NOTES.md, run.py, results.json, six Phase-5 blind reviews, Phase-5 Red
+Team audit.

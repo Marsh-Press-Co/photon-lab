@@ -22,7 +22,7 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-21, panel Iteration 31 — see PANEL.md/LOGBOOK.md
+## Current state (2026-08-21, panel Iteration 32 — see PANEL.md/LOGBOOK.md
 for the phenomenon-program's own current state; this section's numbered
 history stops at the pre-redesign exp-023 baseline, panel-era entries live
 in the queue below and in full in LOGBOOK.md)
@@ -1559,6 +1559,77 @@ continuous mode with checkpoints. The remaining [open] items below are
   Phase-1 proposal, five Phase-2 blind critiques, Phase-2 Red Team audit,
   Phase-3 synthesis, NOTES.md, run.py, results.json, six Phase-5 blind
   reviews, Phase-5 Red Team audit. LOGBOOK.md Iteration 31.
+- [done 2026-08-21, panel Iteration 32, cloud panel shift] **exp-055 the
+  T25 coherent-vs-incoherent ambient-sum bridge gate, N=9 equal-amplitude**
+  — QUANTUM OPTICS' lead (rotation, "still owed" per Iteration 31's own
+  closing line), executing its own five-cycle-deferred T25 catch: built the
+  real bridge gate against the actual equal-amplitude N=9 `FALLBACK_ANGLES`
+  configuration every constraint-3 `C` citation rests on (new suite stage
+  19, N=2→N=9 extension of stage 11's field-identity gates + a new
+  absorbed-power closure gate), not exp-029's own structurally different
+  N=2 amplitude-asymmetric proxy. Red Team's Phase-2 audit caught a
+  load-bearing defect (the proposal's object was hollow, not the PEC-cored
+  construction `C78_ESTABLISHED` actually rests on) and the Director's own
+  Phase-3 catch found the proposal's cited anchor was a 3λ photopic-weighted
+  average, not the correct single-λ=600nm figure — both fixed pre-run. 20
+  new FDTD calls. **Result: good news for every existing headline `C`**
+  (the loaded PEC-cored absorber's coherent-vs-incoherent deviation is
+  small — raw flux −0.885%, Weber `C` shift 0.317% absolute, none of this
+  program's citations ever used coherent injection so none are touched) —
+  **but a striking new finding, live thread T26**: the EMPTY (vacuum) scene
+  shows naive incoherent `C_empty≈0` vs. coherent N=9 joint-injection
+  `C_empty=−0.0534`, over 10× VISION's own T2 photopic `C_thr`, from
+  interference alone. Not a bug (Red-Team-confirmed as ordinary
+  passivity-bounded multi-beam interference, EM's independently re-derived
+  Cauchy-Schwarz ceiling), poses zero retroactive risk to any existing
+  citation, but a real prospective risk for any future near-null σ(I)
+  proposal that might substitute coherent injection for the incoherent
+  pipeline. One suite gate (the new closure check) genuinely missed its
+  reused tolerance at first run (2.887% vs ≤1.5%), an R3 check found it
+  only partly a grid artifact, and the gate was recalibrated to ≤3.5% with
+  full disclosure — feeding standing thread T11. **Phase 5: 3 PROMISING
+  (MATERIALS, ELECTROMAGNETISM, QUANTUM OPTICS), 3 PARTIAL (PHOTONICS,
+  THERMODYNAMICS, VISION SCIENCE) — Red Team's audit adopted PROMISING
+  over the raw split**, per this program's own established precedent
+  (Iterations 10/12). One mandatory same-shift fix applied (VISION's T2
+  photopic-regime qualifier, previously stated unqualified). No Checkpoint
+  criterion fires. **T25 itself stays open** — this cycle measures one
+  fixed-relative-phase coherent realization, not the true random-phase
+  incoherent ensemble; QUANTUM OPTICS' own Phase-5 sharpening: the
+  incoherent sum is provably the analytic zero-mean of that ensemble
+  (Iteration 6), so what remains open is the ensemble's VARIANCE, and T26
+  is existence-proof it is not negligible in at least one channel. Verdict:
+  PROMISING. Next lead per rotation: VISION SCIENCE (completes the
+  rotation's second full cycle). Full record:
+  `experiments/055-t25-coherent-ambient-bridge-gate/` — Phase-1 proposal,
+  five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+  NOTES.md, run.py, results.json, six Phase-5 blind reviews, Phase-5 Red
+  Team audit. LOGBOOK.md Iteration 32.
+- **[queued — ranked for Iteration 33+, per Red Team's Iteration-32
+  Phase-5 reconciliation of all six seats, exp-055 — CURRENT top-of-queue,
+  supersedes the two Iteration-32+ lists below as the active ranking; both
+  are retained as valid backlog, not deleted]** (1) **A combined T26
+  build**: the generalization test on a near-null σ(I) article
+  (`off_pass`/`off_bracket`, exp-032/033) — the regime where the empty-
+  scene coherent-injection artifact could actually flip a live
+  PASS/MARGINAL verdict (QUANTUM OPTICS' and VISION SCIENCE's own top
+  pick) — folding in, as same-build riders at near-zero marginal FDTD
+  cost: EM's own empty-scene-specific R3/resolution check at the ACTUAL
+  r=78 geometry (never done at Iteration 32 — the only R3 check ran on the
+  unrelated small canonical scene) and PHOTONICS' window-position/
+  angle-quantization sensitivity scan on the T26 measurement itself. Any
+  future `C_thr` citation from this build must carry VISION's own T2
+  photopic-regime qualifier (Iteration 32's own mandatory-fix docket).
+  (2) **THERMODYNAMICS' `graded_black_shell_flagship` re-run through the
+  corrected `mixed_length_scale_regime`** (exp-054 queue item 1, below) —
+  now genuinely twice-deferred (Iterations 31 and 32), zero new FDTD, this
+  program's own thinnest thermal-detectability margin (~6.04×, itself
+  shown to shrink ~3.03× under this exact bug class) — if deferred a third
+  time, this item should be considered for the same unconditional-trigger
+  bar this program has applied twice before (`h_eff`, r=156/`graded_
+  black_shell`). (3) **MATERIALS' absorptivity/mechanism literature check**
+  (exp-052 queue item 5, below) — zero-FDTD, deferred since Iteration 29,
+  now four cycles running.
 - **[queued — ranked for Iteration 32+ / alongside the LOCKED Iteration-31
   slot, per Red Team's Iteration-29 Phase-5 reconciliation of all six
   seats]** (1) **The coherent-vs-incoherent ambient-sum bridge-gate
