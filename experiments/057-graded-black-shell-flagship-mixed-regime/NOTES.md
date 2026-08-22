@@ -107,9 +107,18 @@ IN FULL.** Full record:
    SQUARES the linear width to get an area (`area_m2 = width_m**2`), so
    the correct area-domain bound implied by the ~1.54× LINEAR excess is
    **~2.37× (1.54²)**, not the originally-stated, arithmetically-wrong
-   "~1.5–2×" — even that full 2.37× correction only drops the margin to
-   **~295×** (still 2+ orders of magnitude clear), and in the SAFE
-   direction (a smaller assumed area only increases the margin).
+   "~1.5–2×" — even that full 2.37× correction only RAISES the margin to
+   **~1655×** (699.27×2.367≈1655.18×, matching Iteration 36/exp-059's own
+   code-verified `margin_slip_corrected`-style figure, `margin_ceiling`),
+   in the SAFE direction (a smaller assumed area only increases the
+   margin). **Iteration-37 erratum (2026-08-22, THERMODYNAMICS' Phase-5
+   catch at exp-059):** this entry originally read "drops the margin only
+   to ~295×" — self-contradictory with the very next clause ("a smaller
+   assumed area only increases the margin"), since 295× < 699.27× is a
+   decrease. The error was computing 699.27/2.367≈295.4 (division)
+   instead of 699.27×2.367≈1655.2 (multiplication). Corrected here; no
+   scored classification changes either way (still 2+ orders of magnitude
+   clear of NETD-lo).
 4. **[MATERIALS, two Red-Team-corrected citations] `mass_kg`/`tau_thermal_s`
    silently assume a 100%-fill SOLID disk of radius `r_out`, but
    `graded_black_shell_flagship`'s real construction is an ANNULUS —
@@ -379,7 +388,9 @@ above: two citation corrections (MATERIALS' wrong-file citation, corrected
 throughout; the silicon-provenance chain, corrected to exp-045/046→31→34,
 distinguished from the separate, correctly-stated shell-vs-solid-mass
 chain); one arithmetic correction (PHOTONICS' diffraction-inflation bound,
-~1.5–2× → the correctly-derived ~2.37×, margin ~295× not stated); one
+~1.5–2× → the correctly-derived ~2.37×, margin ~1655× not stated —
+itself corrected from an erroneous "~295×" at Iteration 37, see above);
+one
 cycle-count reconciliation (`Q_ext(x)`: three deferrals, 32/33/34, not
 four — the proposing cycle does not itself count); full disclaimer
 propagation (VISION's finding, completed on all five margin/classification

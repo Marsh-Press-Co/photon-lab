@@ -72,10 +72,15 @@ NETD_DISCLAIMER = (
 # iso_xsec_sq convention SQUARES the linear width to get an area
 # (area_m2 = width_m**2), the AREA-domain correction the ~1.54x LINEAR
 # excess implies is ~1.54^2 ~= 2.37x, not "~1.5-2x" (Red Team's Phase-5
-# arithmetic fix) -- even that full 2.37x correction only drops the margin
-# to ~295x (still 2+ orders of magnitude clear), and any DECREASE in the
-# assumed p_abs_w-supporting area only makes the margin larger, the safe
-# direction.
+# arithmetic fix) -- even that full 2.37x correction only RAISES the
+# margin to ~1655.18x (699.27*2.367, matching Iteration 36/exp-059's own
+# code-verified margin_ceiling figure), and any DECREASE in the assumed
+# p_abs_w-supporting area only makes the margin larger, the safe
+# direction. [Iteration-37 erratum, 2026-08-22: this comment and the
+# caveat string below originally read "~295x" -- computed via division
+# (699.27/2.367) instead of multiplication (699.27*2.367~=1655.2),
+# self-contradicting the very next clause's stated direction. Corrected;
+# no scored classification changes either way.]
 DIFFRACTION_INFLATION_CAVEAT = (
     "w_on (sigma_ext_cells=240.0073740162445) vs the object's real "
     "diameter (2*r_out=156 cells, ~1.54x LINEAR excess) is a diffraction-"
@@ -89,8 +94,10 @@ DIFFRACTION_INFLATION_CAVEAT = (
     "Non-load-bearing here: since the iso_xsec_sq area convention SQUARES "
     "the linear width (area_m2=width_m**2), the correctly-derived "
     "area-domain bound is ~2.37x (1.54^2), not a looser '~1.5-2x' -- even "
-    "that full correction drops the margin only to ~295x, still 2+ orders "
-    "of magnitude clear.")
+    "that full correction RAISES the margin to ~1655.18x (699.27x2.367), "
+    "still 2+ orders of magnitude clear, in the safe direction. "
+    "[Iteration-37 erratum: corrected from a self-contradictory, "
+    "division-computed '~295x' -- see run.py comment above.]")
 
 # Mandatory fix 4 (MATERIALS, Red Team-corrected citations): the flagship's
 # ACTUAL construction (experiments/020-ambient-baseline/run.py lines 44-45,
