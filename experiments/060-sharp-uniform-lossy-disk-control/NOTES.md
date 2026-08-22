@@ -282,12 +282,133 @@ the existing solver path, same class as `graded_black_shell`/
 
 ## Results
 
-*(filled in after the official run — see `results.json`)*
+Official run: 2.5 min, 3 FDTD calls (empty/graded/uniform). Full data:
+`results.json`.
+
+**Regression anchor holds to machine precision**: `graded` reproduces
+`experiments/002-cross-sections/results.json::absorber-600` exactly
+(`dQ_ext=4.4e-16`, `dback_frac=5.2e-19`, `dabs_frac=1.1e-16`) — this
+cycle's own harness is trustworthy before the new `uniform` article is
+read.
+
+| # | Quantity | Predicted | Measured | Verdict |
+|---|---|---|---|---|
+| P-1 | `Q_ext_uniform` | [1.65, 2.00] | **2.0193** | **MISSED (narrow, +0.97% over the upper bound)** |
+| P-2 | `ratio_uniform/Q_ext_PEC` | [0.78, 0.94] | **0.9535** | **MISSED (narrow, +1.4% over)** |
+| P-3 | `ratio_uniform/Q_ext_graded` | [1.07, 1.30] | **1.3125** | **MISSED (narrow, +0.96% over)** |
+| P-4 | `back_frac_uniform` | [3×10⁻³, 5×10⁻²] | **0.01156** | **CONFIRMED** |
+| P-5 | `abs_frac` | [0.45, 0.58] | **0.4686** | **CONFIRMED** |
+| P-6 | `box_dev`, both | ≤0.01 | graded 0.0019, uniform 0.0004 | **CONFIRMED** |
+| P-7 | Stage-22 gates | all 4 PASS | 4/4 PASS (pre-run) | **CONFIRMED** |
+| P-8 | `margin_uniform` | [350×, 700×] | **441.79×**, UNDETECTABLE | **CONFIRMED** |
+| P-9 | angular sum-identity | ≤0.5% | **0.0000%** both | **CONFIRMED** |
+| P-10 | excess forward-cone fraction | ≥0.50 | **0.0212** (forward); **0.5028** (backward) | **REFUTED — direction reversed** |
+
+**The committed DIRECTION (UNIFORM SUPPRESSES LESS THAN GRADED) is
+confirmed decisively** — `Q_ext_uniform=2.0193` sits at 95.4% of the exact
+PEC ceiling (`Q_ext_PEC=2.1177`) vs graded's 72.6%, and `back_frac_uniform
+=0.01156` is **5547× graded's near-null 2.08×10⁻⁶** — but P-1/P-2/P-3's
+specific numeric bands were all narrowly missed on the high side (0.96–
+1.4% over their own upper edges). The bands were too tight, not wrong in
+kind: the physics call (less suppression, more like the PEC reference)
+was right; the precision claimed for it wasn't warranted by the Phase-1/2
+reasoning behind those three bands specifically (unlike P-4, which Red
+Team's own corrected Fresnel-reflectance recalculation anchored
+correctly, and which landed inside its rebanded window with room to
+spare).
+
+**P-10 REFUTED, and informatively so.** The uniform article's excess
+scattering (relative to graded) concentrates overwhelmingly **BACKWARD**
+(50.3% of total excess within 30° of the exact backward/source direction)
+and almost NOT AT ALL in the predicted forward/grazing diffraction cone
+(2.1%). On reflection this is exactly what Red Team's own corrected
+mechanism — a genuine planar Fresnel reflectance at the sharp σ-step
+entry (R≈2.14%, cross-validated by QUANTUM's independent loss-tangent
+calculation) — predicts: a reflectance is by definition a **backward-
+going, near-specular** quantity at a planar interface, not a
+forward-peaked diffraction lobe. PHOTONICS' own Phase-2 framing ("edge
+diffraction/grazing-incidence") was the wrong lens; EM's ("Fresnel
+reflectance at the entry discontinuity") was the right one, and this
+angular measurement is the first direct confirmation of THAT mechanism,
+not the diffraction-lobe one originally proposed alongside it.
+
+**Thermal sidecar**: both articles comfortably UNDETECTABLE, both inside
+their pre-committed corners — `graded` margin=696.81× (matches the
+established 699.27× figure closely; the ~0.35% gap is `irr_central`'s own
+back-derivation rounding through exp-057's chain, non-load-bearing) and
+`uniform` margin=441.79×, squarely inside P-8's [350×,700×] band. No
+scored thermal-margin classification changes.
 
 ## Learned
 
-*(filled in after Phase 4/5)*
+1. **The mechanism question this cycle set out to answer has a real
+   answer, not a null result**: edge grading does separable, measurable
+   work beyond bulk loss alone — a sharp-edged disk of IDENTICAL total
+   optical depth suppresses substantially less (Q_ext 30.7% higher,
+   back-scatter 5547× higher) than the graded shell. `graded_black_shell`'s
+   own design claim ("the adiabatic entry is what kills the reflection")
+   is now measurement-backed, not just asserted, for the first time.
+   MATERIALS' own exp-059 Phase-2 concern (bulk loss alone might explain
+   everything) is REFUTED for this geometry/optical-depth regime.
+2. **The mechanism is Fresnel reflectance at a sharp discontinuity, not
+   edge/grazing diffraction** — the angular data (P-10) discriminates
+   between the two hypotheses proposed alongside each other at Phase 2
+   and comes down clearly on EM's corrected-Fresnel side, not PHOTONICS'
+   diffraction-lobe side. A useful correction for how this program frames
+   "edge effects" in future cycles: a sharp conductivity step is a real
+   material discontinuity with an ordinary planar reflectance, not a
+   diffraction phenomenon per se.
+3. **Pre-registered numeric bands can get the direction right and the
+   precision wrong** — P-1/P-2/P-3 all missed narrowly (<1.5% over their
+   own edges) while committing correctly to direction and to the ballpark.
+   Worth naming as a pattern for future Phase-1 drafts: a band's width
+   should reflect the actual uncertainty in the REASONING behind it, not
+   just match the format of a well-anchored band like P-4's (which had a
+   real quantitative anchor — the corrected Fresnel calculation — that
+   P-1/P-2/P-3 never had; their bands were closer to informed guesses
+   dressed as calibrated predictions).
+4. Red Team's Phase-2 correction of EM's own Fresnel-reflectance
+   calculation (16.7%→2.14%, a ~7.8× fix) is independently vindicated by
+   this run: the measured `back_frac_uniform=0.01156` (1.16%) is the same
+   order of magnitude as the corrected 2.14% reflectance anchor and
+   nowhere near EM's original, uncorrected 16.7% figure — real evidence
+   the Phase-2 correction, not the original calculation, was right.
+5. This cycle's `sigma_flat` convention caveat (raw line-integral, not
+   true attenuation-depth match, ~8.3% disclosed residual) stayed
+   non-load-bearing: the measured effect (30.7%/5547×) is far larger than
+   the ~8.3% matching uncertainty could plausibly explain, so the
+   headline finding does not hinge on which matching convention was used.
 
 ## Next
 
-*(filled in at Phase 5 close)*
+Ranked, for Phase 5's own review to confirm/reprioritize:
+1. **The angular-pattern reframe (Learned #2) deserves a follow-up
+   headline correction** across any future citation of this cycle's
+   mechanism — "edge grading suppresses reflectance at the entry
+   discontinuity," not "edge grading suppresses diffraction." Cheap:
+   a documentation-only fix, no new FDTD, but should propagate to
+   `materials.uniform_lossy_shell`'s own docstring and any LOGBOOK
+   citation the same shift it's raised (the caveat-placement discipline
+   this cycle itself was built to close).
+2. **Red Team's own recommended (not mandatory) Iteration-38+ item**: the
+   closed-form two-region (PEC core + uniform complex-ε annulus)
+   Bessel/Hankel series — would give an exact, zero-FDTD Q_ext_uniform
+   reference, the same non-tautological external-validation role MF-6
+   played at exp-059, and could independently confirm this cycle's
+   measured 2.0193 without a second FDTD run.
+3. **A genuine follow-up disentangling test**: this cycle isolated
+   "sharp vs. graded" at ONE matched optical depth; a natural next
+   question is whether a PARTIALLY graded profile (e.g. a shorter grading
+   length within the same shell thickness) shows suppression
+   interpolating monotonically between the two endpoints measured here —
+   would turn a two-point comparison into a real dose-response curve.
+4. Carried backlog, unblocked, lower urgency (Iteration 36's own queue,
+   items 2-6 not addressed this cycle): the exp-057 erratum fix (DONE,
+   Iteration 37 rider, commit `d9ed12b`); the mechanical caveat-
+   propagation-check tool (Iteration 37's #3 priority, still not built —
+   this cycle relied on hand review again, per Red Team's own Phase-2
+   observation); MATERIALS' absorptivity/mechanism literature check (now
+   EIGHT cycles deferred, approaching this program's own escalation
+   pattern); EM's TE_z companion series for `qext_theory.py`; PHOTONICS'
+   T26 λ/angle generalization + `graded_black_shell_flagship`'s own
+   450/750nm sweep.
