@@ -1836,7 +1836,77 @@ def stage20_disk_persisted_phase_reconstruction():
           f"{resid_flux:.2e}", resid_flux <= 1e-6, "<=1e-6")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 21))
+# --------------------------------------------------------------- stage 21
+def stage21_qext_theory():
+    """Closed-form PEC-cylinder Q_ext(x) reference (Panel Iteration 36,
+    `lab/qext_theory.py`) -- the LOCKED item granted unconditional by Red
+    Team's Iteration-34 Phase-5 ruling after three clean deferrals
+    (Iterations 32/33/34), bounding `thermo_sidecar.py`'s `iso_xsec_sq`
+    area convention's diffraction-inflation assumption (`w_on` vs. `r_out`)
+    for the first time against exact closed-form diffraction physics
+    instead of bare assertion. Desk-analytic only, zero FDTD -- PANEL.md's
+    "new machinery => new suite stage with an absolute identity gate" rule,
+    same discipline as stages 15/17/18.
+
+    Four gates, `lab.qext_theory._self_test()`'s own (see that function's
+    docstring for the full derivation and Phase-2 mandatory-fix record):
+      1. Energy conservation (Q_ext==Q_sca, PEC lossless) -- an absolute
+         identity, though Phase 2 (ELECTROMAGNETISM + QUANTUM OPTICS,
+         independently converged, Red-Team-reconfirmed) found it proves
+         only the overall sign convention, not TM_z-vs-TE_z discrimination
+         (MF-1, corrected wording in the module itself).
+      2. Large-x asymptote Q_ext->2 (the "extinction paradox").
+      3. Series-convergence stability at the bench's own x=ka -- valid only
+         for x<=X_CONVERGENCE_CHECK_MAX=255 (MF-2, QUANTUM OPTICS' catch:
+         the 2.2x-terms comparator itself silently underflows to NaN for
+         x>=260, a self-check-scaffolding ceiling, not a production-formula
+         bug, now guarded rather than silent).
+      4. EMPIRICAL cross-validation vs. this bench's own real Ez/Hy FDTD
+         solve (MF-6, Red Team's own new finding, the load-bearing answer
+         to gate 1's scope limit): `experiments/002-cross-sections`'s three
+         bare-PEC "reflector" scenes (R_CORE=30 cells) at 450/600/750nm,
+         zero new FDTD (already-committed data) -- theory agrees with a
+         genuinely independent, non-tautological Maxwell-solver measurement
+         to within 2.32% at three size parameters distinct from the
+         flagship's own x=24.50.
+
+    This item bounds `w_on`'s diffraction excess inside a physically sane
+    envelope (measured Q_ext=1.5385 sits at 72.6% of the exact PEC-sharp-
+    edge reference Q_ext_PEC(24.5044)=2.1177, for the flagship's own
+    geometry) -- it does NOT change any scored thermal margin (THERMODYNAMICS'
+    Phase-2 finding, MF-4: recomputed under both the conservative Q_ext=1
+    floor and the PEC ceiling, `graded_black_shell_flagship`'s margin stays
+    369x-1655x, 2+ orders of magnitude clear of NETD-lo either way), and it
+    does NOT resolve the separate, still-open `iso_xsec_sq` squaring-a-
+    width-to-get-an-area convention question (that caveat stays open, not
+    implied resolved by this stage passing)."""
+    print("stage 21 — closed-form PEC-cylinder Q_ext(x) vs identities")
+    from lab import qext_theory as qt
+
+    results = qt._self_test(verbose=False)
+    check("qext-theory", "energy conservation (Q_ext==Q_sca, PEC lossless, sign-convention scope only)",
+          f"{results['energy_conservation']['max_abs_dev']:.3e}",
+          results["energy_conservation"]["pass"], "<=1e-9 absolute")
+    check("qext-theory", "large-x asymptote Q_ext->2 (x=1e3, x=1e6)",
+          f"dev={results['large_x']['dev_from_2_at_1e3']:.3e}/{results['large_x']['dev_from_2_at_1e6']:.3e}",
+          results["large_x"]["pass"], "<=0.011 / <=1e-4")
+    check("qext-theory", "series-convergence stability @ bench x=24.5044 (valid x<=255 only)",
+          f"{results['convergence_stability_at_bench_x']['abs_diff']:.3e}",
+          results["convergence_stability_at_bench_x"]["pass"], "<=1e-10")
+    check("qext-theory", "empirical cross-validation vs. real FDTD bench data (bare PEC reflector, 3 lambda)",
+          f"max|rel_dev|={results['empirical_cross_validation']['max_abs_rel_dev']*100:.3f}%",
+          results["empirical_cross_validation"]["pass"], "<=3%")
+
+    # Discriminating regression gate (same discipline as stage 18's gate 3):
+    # the flagship's own bench evaluation, pinned to the exact committed
+    # value, not merely each gate's own internal consistency.
+    comp = qt.compare_measured_to_pec(78, 30.0e-9, 600.0e-9, 240.0073740162445)
+    check("qext-theory", "flagship bench eval Q_ext_PEC(x=ka=24.5044) vs Phase-3-committed regression anchor",
+          f"{comp.q_ext_pec_reference:.10f}",
+          abs(comp.q_ext_pec_reference - 2.1177205150608365) <= 1e-9, "2.1177205150608365 (+-1e-9)")
+
+
+_STAGE_IDS = frozenset(str(n) for n in range(1, 22))
 
 
 def _stage_selected(n, only):
@@ -1900,6 +1970,7 @@ if __name__ == "__main__":
     run_stage18 = _stage_selected(18, only)
     run_stage19 = _stage_selected(19, only)
     run_stage20 = _stage_selected(20, only)
+    run_stage21 = _stage_selected(21, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -1967,6 +2038,8 @@ if __name__ == "__main__":
         stage19_n9_superposition()
     if run_stage20:
         stage20_disk_persisted_phase_reconstruction()
+    if run_stage21:
+        stage21_qext_theory()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
