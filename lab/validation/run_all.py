@@ -1921,6 +1921,20 @@ def stage22_uniform_lossy_shell():
     new suite stage with an absolute identity gate" rule, same discipline
     as stages 8/18/21.
 
+    RESULT (exp-060, P-10): the disentangling question has an answer, and
+    it corrects the framing above -- the flagship's excess suppression
+    relative to a matched-optical-depth uniform disk is dominated by
+    Fresnel-type reflectance at the sharp conductivity discontinuity
+    (50.3% of the uniform article's excess scattering concentrates
+    within 30 deg of the exact backward/source direction, vs. only 2.1%
+    in the predicted forward/grazing diffraction cone) -- NOT by edge/
+    grazing diffraction as the "disentangle...diffraction" framing above
+    implies. See experiments/060-.../NOTES.md Learned #1/#2 (Red Team's
+    Iteration-37 Phase-5 mandatory fix 1, closing VISION SCIENCE's own
+    Phase-5 catch: this docstring is this program's single most
+    load-bearing, permanent, git-tracked site describing this control's
+    purpose, and had not been updated with its own cycle's finding).
+
     Four gates:
       1. Write-identity (zero-cost, no time-stepping): sigma_e on shell
          cells equals the pre-call value plus sigma_flat, exactly;

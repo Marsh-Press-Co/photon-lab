@@ -99,11 +99,20 @@ a code bug and not grounds to redefine `sigma_flat` this cycle** (Red
 Team's Phase-2 ruling: redefining now would invalidate every other seat's
 already-cross-checked arithmetic and force a second EM Fresnel
 recomputation; disclosure, not redefinition, is this cycle's chosen path).
-The `uniform` article is therefore, if anything, **slightly MORE
-attenuating** than the raw τ-match implies — a bias that (if it matters
-at all) would work AGAINST this cycle's own committed direction (less
-suppression in uniform), making a confirmed P-1/P-2/P-3 result more, not
-less, conservative.
+**Correction (QUANTUM OPTICS' Phase-5 catch, Red-Team-confirmed — this
+paragraph originally got the bias's DIRECTION backwards):** since
+`b_flat > I_graded` at the current `sigma_flat`, a true attenuation-match
+would require LOWERING `sigma_flat` (to `t'≈0.566`, not raising it),
+which via Learned #2's own Fresnel mechanism (below) would LOWER, not
+raise, the entry reflectance/`back_frac` — the properly-matched
+comparison would plausibly show a SMALLER back_frac gap than measured
+here, not a bigger one. This does not threaten the headline: even a
+generous 15–20% multiplicative correction on `back_frac_uniform` leaves
+a >4000× gap vs. graded, still decisive, since the dominant mechanism is
+a structural discontinuity, not a magnitude effect a convention tweak
+could erase. (The Q_ext-based P-1/P-2/P-3 channel is unaffected either
+way — that miss was already scored as directionally right with
+over-tight bands, not a claim resting on this bias's sign.)
 
 ### New trust-suite stage 22 (`lab/validation/run_all.py`)
 
@@ -334,18 +343,27 @@ not the diffraction-lobe one originally proposed alongside it.
 
 **Thermal sidecar**: both articles comfortably UNDETECTABLE, both inside
 their pre-committed corners — `graded` margin=696.81× (matches the
-established 699.27× figure closely; the ~0.35% gap is `irr_central`'s own
-back-derivation rounding through exp-057's chain, non-load-bearing) and
-`uniform` margin=441.79×, squarely inside P-8's [350×,700×] band. No
-scored thermal-margin classification changes.
+established 699.27× figure closely; **correction, THERMODYNAMICS'
+Phase-5 catch, Red-Team-confirmed: the ~0.35% gap is NOT `irr_central`'s
+back-derivation rounding** — `run.py::main()`'s own regression assertion
+pins `irr_central`'s back-derivation to `_ESTABLISHED_P_ABS_W` bit-exact,
+zero tolerance, disproving that. **The real cause is exp-057's own
+2-sig-fig hardcoded `RATIO_ABS_EXT=0.51`** vs. this cycle's full-precision
+measured `abs_frac=0.5118033079980888` — the ratio of the two `p_abs_w`
+values (1.0035359) matches `0.5118033/0.51` (also 1.0035359) to 7
+significant figures. Non-load-bearing either way) and `uniform`
+margin=441.79×, squarely inside P-8's [350×,700×] band. No scored
+thermal-margin classification changes.
 
 ## Learned
 
 1. **The mechanism question this cycle set out to answer has a real
    answer, not a null result**: edge grading does separable, measurable
    work beyond bulk loss alone — a sharp-edged disk of IDENTICAL total
-   optical depth suppresses substantially less (Q_ext 30.7% higher,
-   back-scatter 5547× higher) than the graded shell. `graded_black_shell`'s
+   optical depth suppresses substantially less (Q_ext ~31.3% higher
+   [2.0193/1.5385=1.3125, corrected from an original "30.7%" arithmetic
+   slip, VISION SCIENCE's Phase-5 catch], back-scatter 5547× higher) than
+   the graded shell. `graded_black_shell`'s
    own design claim ("the adiabatic entry is what kills the reflection")
    is now measurement-backed, not just asserted, for the first time.
    MATERIALS' own exp-059 Phase-2 concern (bulk loss alone might explain
@@ -368,47 +386,134 @@ scored thermal-margin classification changes.
    P-1/P-2/P-3 never had; their bands were closer to informed guesses
    dressed as calibrated predictions).
 4. Red Team's Phase-2 correction of EM's own Fresnel-reflectance
-   calculation (16.7%→2.14%, a ~7.8× fix) is independently vindicated by
-   this run: the measured `back_frac_uniform=0.01156` (1.16%) is the same
-   order of magnitude as the corrected 2.14% reflectance anchor and
-   nowhere near EM's original, uncorrected 16.7% figure — real evidence
-   the Phase-2 correction, not the original calculation, was right.
+   calculation (16.7%→2.14%, a ~7.8× fix) is **directionally corroborated,
+   not independently confirmed,** by this run (corrected, PHOTONICS' and
+   ELECTROMAGNETISM's independently-convergent Phase-5 catch — the
+   original wording here overclaimed): the measured
+   `back_frac_uniform=0.01156` (1.16%) rules out EM's original,
+   uncorrected 16.7% figure as clearly too large, but `back_frac` is
+   `sections.widths`' `p_back/p_scat` — normalized against **scattered**
+   power, not against **incident** power the way a planar Fresnel R is.
+   The numeric proximity to 2.14% is a coincidence of this size regime
+   (`Q_sca_uniform` sits near 1), not a generic identity between the two
+   quantities. Renormalizing to incident power (EM's own Phase-5 figure)
+   gives ~1.24%, still not precision-matching 2.14% — real evidence of
+   the right mechanism *class*, not of the specific number.
 5. This cycle's `sigma_flat` convention caveat (raw line-integral, not
    true attenuation-depth match, ~8.3% disclosed residual) stayed
-   non-load-bearing: the measured effect (30.7%/5547×) is far larger than
-   the ~8.3% matching uncertainty could plausibly explain, so the
-   headline finding does not hinge on which matching convention was used.
+   non-load-bearing: the measured effect (~31.3%/5547×) is far larger
+   than the ~8.3% matching uncertainty could plausibly explain, so the
+   headline finding does not hinge on which matching convention was used
+   (see the corrected bias-direction discussion in the sigma_flat
+   derivation section above — QUANTUM OPTICS' Phase-5 catch — the
+   residual, correctly signed, would if anything SHRINK the measured gap
+   slightly, not inflate it, reinforcing rather than undermining this
+   point).
+
+## Phase 5 outcome
+
+Six fresh blind seats + Red Team audit. **5 PROMISING (PHOTONICS,
+ELECTROMAGNETISM, MATERIALS, THERMODYNAMICS, QUANTUM OPTICS), 1 PARTIAL
+(VISION SCIENCE)** — but all six independently re-derived and confirmed
+every headline number byte-identical; nobody disputed the physics or the
+committed direction (uniform suppresses less than graded).
+
+Five real, independently-found defects, all confirmed by Red Team and
+fixed same-shift above: PHOTONICS + ELECTROMAGNETISM (convergent) —
+Learned #4's back_frac-vs-Fresnel-R "confirmation" overclaimed precision
+(different normalizations); THERMODYNAMICS — the ~0.35% graded-margin
+gap was mis-attributed to `irr_central` rounding when the real cause is
+exp-057's own rounded `RATIO_ABS_EXT=0.51`; QUANTUM OPTICS — Learned #5's
+`sigma_flat`-bias-direction claim was backwards; VISION SCIENCE — the
+"30.7%" figure was an arithmetic slip (correct: ~31.3%), AND —
+**load-bearing** — `lab/validation/run_all.py::stage22_uniform_lossy_shell`'s
+own docstring, the single most permanent, git-tracked, every-run site
+describing this control's purpose, still stated the pre-run "diffraction"
+framing with zero pointer to this cycle's own P-10 refutation of it.
+
+**Red Team's ruling: Checkpoint criterion 4 FIRES** — VISION's
+docstring finding is a third consecutive-cycle recurrence of the
+caveat-placement/propagation defect class (Iteration 35 → 36 → 37), the
+identical failure shape as Iteration 36's own firing (a scoped
+propagation promise, here NOTES.md's own original Next item 1, that
+named specific sites and missed the more load-bearing one) — one
+mitigating difference noted (this cycle's promise did not falsely claim
+completion, unlike Iteration 36's MF-3), which lowers severity but does
+not change the firing per the hardened tripwire Iteration 37's own
+Phase-2 set ("no further deliberation required"). **Overriding the raw
+5-1 PROMISING count to PARTIAL, provisional-to-PROMISING** — not on
+physics (unchallenged by any seat) but because five real defects,
+including a third consecutive recurrence of this program's own
+worst-known process failure mode, is closer to Iteration 36's own
+disposition than to a clean same-shift-fixable PROMISING (Red Team's own
+reasoning, full text in LOGBOOK.md Iteration 37). **All five mandatory
+fixes applied and shown inline above, same shift** (the `run_all.py`
+docstring fix; the "30.7%"→"~31.3%" correction, two sites; Learned #4's
+softened/corrected wording; the Results-section thermo-margin
+re-attribution; the sigma_flat bias-direction correction). Full bench
+re-verified green after (see SESSION_LOG.md/LOGBOOK.md for the exact
+`--only` invocation and count).
+
+**All five Checkpoint criteria, explicit**: criteria 1/2/3/5 do NOT fire
+(no constraint metric scored; not a proven-boundary finding; zero new
+engine physics; Iterations 36 and 37 both delivered genuine advancing
+results). **Criterion 4 FIRES**, per above.
+
+**CHECKPOINT.** Per PANEL.md's procedure: Marsh is notified. Per
+Iterations 17/36's own direct, twice-established precedent, this is a
+**notification, not a pause** — the mandatory-fix docket landed same-shift
+(above) and Red Team's own explicit ruling is that Iteration 38's queue
+proceeds unblocked. This CHECKPOINT entry is mirrored in LOGBOOK.md and
+SESSION_LOG.md.
+
+**Verdict: PARTIAL** (provisional-to-PROMISING per Red Team's own stated
+path, now that the five-item docket has landed and been re-verified this
+shift).
 
 ## Next
 
-Ranked, for Phase 5's own review to confirm/reprioritize:
-1. **The angular-pattern reframe (Learned #2) deserves a follow-up
-   headline correction** across any future citation of this cycle's
-   mechanism — "edge grading suppresses reflectance at the entry
-   discontinuity," not "edge grading suppresses diffraction." Cheap:
-   a documentation-only fix, no new FDTD, but should propagate to
-   `materials.uniform_lossy_shell`'s own docstring and any LOGBOOK
-   citation the same shift it's raised (the caveat-placement discipline
-   this cycle itself was built to close).
-2. **Red Team's own recommended (not mandatory) Iteration-38+ item**: the
-   closed-form two-region (PEC core + uniform complex-ε annulus)
-   Bessel/Hankel series — would give an exact, zero-FDTD Q_ext_uniform
-   reference, the same non-tautological external-validation role MF-6
-   played at exp-059, and could independently confirm this cycle's
-   measured 2.0193 without a second FDTD run.
-3. **A genuine follow-up disentangling test**: this cycle isolated
-   "sharp vs. graded" at ONE matched optical depth; a natural next
-   question is whether a PARTIALLY graded profile (e.g. a shorter grading
-   length within the same shell thickness) shows suppression
-   interpolating monotonically between the two endpoints measured here —
-   would turn a two-point comparison into a real dose-response curve.
-4. Carried backlog, unblocked, lower urgency (Iteration 36's own queue,
-   items 2-6 not addressed this cycle): the exp-057 erratum fix (DONE,
-   Iteration 37 rider, commit `d9ed12b`); the mechanical caveat-
-   propagation-check tool (Iteration 37's #3 priority, still not built —
-   this cycle relied on hand review again, per Red Team's own Phase-2
-   observation); MATERIALS' absorptivity/mechanism literature check (now
-   EIGHT cycles deferred, approaching this program's own escalation
-   pattern); EM's TE_z companion series for `qext_theory.py`; PHOTONICS'
-   T26 λ/angle generalization + `graded_black_shell_flagship`'s own
-   450/750nm sweep.
+**Red Team's final ranked priorities for Iteration 38+** (reconciling all
+six seats' proposals):
+1. **[DONE, this shift]** The five-item mandatory-fix docket above.
+2. **Build the mechanical caveat-propagation-check tool — now MANDATORY,
+   zero-cost rider, Iteration 38, regardless of lead seat.** Carried as
+   Iteration 37's own #3 priority and still not built this cycle (hand
+   review missed the `run_all.py` site again, per the Checkpoint-4 finding
+   above) — a fourth deferral of the one tool built specifically to catch
+   this exact defect class would itself be a criterion-4-adjacent finding
+   (Red Team's own words).
+3. **MATERIALS' absorptivity/mechanism literature check — LOCKED,
+   unconditional, Iteration 38.** Now EIGHT cycles deferred (Iteration
+   29→37), exceeding every prior unconditional-lock threshold this
+   program has ever applied (`h_eff` fired at 5; `graded_black_shell_
+   flagship` and `Q_ext(x)` both fired at 3) — granted by Red Team using
+   the identical escalation logic applied at Iteration 34, and sharpened
+   by this cycle's own finding (MATERIALS' own Phase-5 review: the
+   measured mechanism effect makes the flagship's design-claim
+   realizability MORE consequential, not less).
+4. **The closed-form two-region (PEC core + uniform complex-ε annulus)
+   Bessel/Hankel `Q_ext_uniform` series** — four-seat convergence
+   (PHOTONICS/MATERIALS/VISION/QUANTUM), zero-FDTD, the same
+   non-tautological external-validation role MF-6 played at exp-059.
+5. **The partial-grading dose-response curve** — four-seat convergence
+   (MATERIALS/EM/QUANTUM/VISION): sweep grading length within the fixed
+   48-cell/τ-matched shell, turning this cycle's two-point comparison
+   into a real interpolation.
+6. **QUANTUM's own item**: a genuinely attenuation-matched third
+   `uniform` article (`t'≈0.566`) as a measured FDTD check on the
+   corrected bias-direction claim (mandatory fix 5 above) — turns an
+   analytic correction into an empirical one.
+7. PHOTONICS' 3-λ sweep / T26 λ-angle generalization, paired with
+   `graded_black_shell_flagship`'s own 450/750nm sweep (PHOTONICS +
+   MATERIALS) — zero-new-FDTD closed-form extensions once item 4 lands.
+8. EM's TE_z companion series for `qext_theory.py` — mechanical,
+   resolves the still-open Hankel-choice documentation gap.
+9. Carried backlog, lower urgency, unblocked: shell-vs-solid thermal-mass
+   parameterization (open since Iteration 22/T23, now a fourth-
+   consecutive-cycle-plus item); R3-on-loaded-legs for
+   `off_pass_joint`/`off_bracket_joint`; a Geary-Hinkley tail-shape model
+   of `C(δ)`; P-VIS-5's angle-quantization sensitivity formula; QUANTUM's
+   convergence-guard audit pass for the "exact-threshold-from-a-wide-
+   bracket" pattern across `lab/`'s other closed-form modules;
+   `coupled_segment_general`'s trust-suite promotion. The exp-057 erratum
+   fix is DONE (Iteration 37 rider, commit `d9ed12b`).
