@@ -200,15 +200,29 @@ directly.
 **Not applicable to `off_pass`/`off_bracket` themselves** — reused
 verbatim from exp-032/033 (published-tier ordinary lossy media, ka≈24.5,
 unchanged). **Applicable to the ambient-light-analog caveat below**,
-quantified per MATERIALS' Phase-2 fix: real broadband sources (sunlight,
-incandescent/LED flashlights) have coherence lengths of order 1–10 μm;
-this scene's N=9 angular components differ in optical path length by
-tens of micrometers at λ=600nm over an r=78-cell (≈2.3 μm/cell ⇒ ~180
-μm) object — one to two orders of magnitude beyond any real broadband
-source's coherence length. This is the physical reason no real ambient
-illuminant can lock to one frozen relative phase across all 9 directions
-the way this diagnostic does, for even one draw, let alone reconstruct a
-stable ensemble of them — not merely an assertion (Iteration-32/33's own
+quantified per MATERIALS' Phase-2 fix, **corrected at Phase 5 close**
+(Red Team mandatory fix 5 — MATERIALS' own original arithmetic mislabeled
+this program's established `dx=30 nm/cell` as "2.3 μm/cell," inflating
+the operative distance ~77× and producing an internally inconsistent
+"~180 μm... tens of micrometers" claim in the same sentence): real
+broadband sources (sunlight, incandescent/LED flashlights) have
+coherence lengths of order 1–10 μm; the physically operative baseline
+for this scene's N=9 angular components is the FULL illuminated source
+aperture (`NY−2·ABSORB` = 1504 cells ≈ 45.1 μm at 30 nm/cell — path-
+length differences between angular components accumulate across the
+*launching* aperture, not the object's own much smaller 4.68 μm
+diameter, which alone would sit inside the 1–10 μm range and not support
+this caveat at all), giving a maximum inter-component path difference of
+≈45.1 μm·sin(35°) ≈ 26 μm — **roughly one order of magnitude** beyond
+any real broadband source's coherence length (revised down from the
+original, arithmetically-unsupported "one to two orders of magnitude").
+The qualitative conclusion is unchanged and standard-optics-robust to
+which reasonable baseline is chosen (even the loosest, ambient-window-
+span baseline gives ≈6–12 μm, still beyond 1 μm). This is the physical
+reason no real ambient illuminant can lock to one frozen relative phase
+across all 9 directions the way this diagnostic does, for even one draw,
+let alone reconstruct a stable ensemble of them — not merely an
+assertion (Iteration-32/33's own
 recurring caveat-strength failure, closed here with a derived bound).
 
 ## Predictions — committed before this experiment's `run.py` first run
@@ -342,7 +356,7 @@ analytic comparison, not a gated identity).
 | P-058-4 (fraction \|C\|>C_thr) | [50%,95%], central 80–90% | **98.7% / 98.35%** | **ABOVE the predicted band** — even more extreme than anticipated. See Headline for the mandatory ambient-light-analog caveat. |
 | P-058-5 (fraction flank-denominator-flagged) | <10% | **0.0% / 0.0%** | **CONFIRMED** (band satisfied) — but see Headline: this does NOT mean the ratio-sensitivity mechanism EM flagged is absent, only that it doesn't manifest as the specific ≥80%-collapse EM's threshold checks for. |
 | P-058-6 (percentile rank of \|C(0)\|, outside [25,75]) | outside [25,75] | **19.6% / 18.75%** | **CONFIRMED**, and directionally — the informal secondary note (δ=0 sits toward the LOW tail) is also borne out: ~80% of random draws are MORE extreme than the established δ=0 point. |
-| P-058-7 (`p_abs_naive`/`p_abs_joint` ratio) | [0.5,2.0], informational | **0.784 / 0.784** | **CONFIRMED** (informational) — coherent joint injection absorbs ~22% LESS power than the naive sum of independently-run legs at δ=0, a real, moderate destructive-interference effect on the absorption channel, both articles agreeing to 3 significant figures (a genuine cross-check, not coincidence — same τ-to-R_OUT geometry ratio). |
+| P-058-7 (`p_abs_naive`/`p_abs_joint` ratio) | [0.5,2.0], informational | **0.784 / 0.784** | **CONFIRMED** (informational) — **corrected at Phase 5 close (Red Team mandatory fixes 3+4 — PHOTONICS caught the direction, THERMODYNAMICS independently caught the mechanism phrase; both needed, neither alone sufficient):** `p_abs_naive/p_abs_joint=0.784<1` means naive is LESS than joint, i.e. **coherent joint injection absorbs ~28% MORE power than the naive sum of independently-run legs at δ=0 — a real, moderate CONSTRUCTIVE-interference effect** (all 9 legs' angular phase ramps are anchored at the same y₀ as the object center, so at δ=0 all 9 are in-phase exactly at the object — synthetic focusing), not destructive as originally stated. Both articles agreeing to 4 significant figures (0.78407/0.78411) is genuine, but NOT because of "the same τ-to-R_OUT geometry ratio" (numerically false: 8.33×10⁻⁵ vs 3.85×10⁻⁵, differ >2×) — the real mechanism is **leading-order-in-τ field-pattern universality**: both articles are near-null-τ, so the disk barely perturbs the incident field (`Ez_i≈E_inc,i` for both), making the cross-term/self-term ratio a property of the fixed illumination geometry alone, independent of τ to leading order. |
 
 ### Headline (for LOGBOOK)
 
@@ -375,23 +389,45 @@ article — the extreme tail is NOT explained by near-total flank
 cancellation in the narrow sense that diagnostic checks for, but by
 milder, broader flank-flux variability multiplying through the ratio.
 **A sharper, more complete version of T26's own finding**: exp-055/056's
-one arbitrary δ=0 draw is not a special, unlucky outlier — it is
-MILDER than 80% of random draws (percentile rank 19.6%/18.75% within
-`|C(δ)|`), so the ~11× `C_thr` figure this program has cited since
-Iteration 32 is, if anything, an UNDERSTATEMENT of the coherent-
-injection diagnostic's typical severity. Practically: **98.7%/98.35%
-of individual random-phase realizations would read as a false FAIL
-against `C_thr`, even though the ensemble's own central tendency
-(median) roughly recovers the true, safe incoherent value** — the
-naive-incoherent approximation's location parameter survives this
-cycle's own stress test reasonably well, but its usefulness as "what a
-single coherent draw typically looks like" does not, because the
-underlying distribution is simply too wide and too skewed by rare
-large-flux-ratio draws for "typical" and "safe" to coincide the way a
-narrow-variance intuition would suggest. `p_abs_naive`/`p_abs_joint`'s
-own clean 0.784/0.784 agreement (informational, THERMODYNAMICS' anchor)
-independently confirms the underlying interference physics is real and
-consistent across both articles, not a numerical artifact of one.
+one arbitrary δ=0 draw is not a special, unlucky outlier — it is MILDER
+than 80% of random draws (percentile rank 19.6%/18.75% within `|C(δ)|`),
+so the ~11× `C_thr` figure this program has cited since **Iteration 33**
+(corrected at Phase 5 close, Red Team mandatory fix 7 — VISION's own
+catch: Iteration 32/exp-055 measured a different, empty-scene-only
+figure, not this one) is, if anything, an UNDERSTATEMENT of the
+coherent-injection diagnostic's typical severity. Practically, **and
+this entire paragraph carries the SAME ambient-light-analog caveat
+stated at this Headline's own opening — no real ambient source ever
+produces even one draw of this hypothetical mutually-coherent
+illuminant, so nothing below is a claim about what a human observer
+would actually experience**: 98.7%/98.35% of individual random-phase
+realizations exceed `C_thr` under this program's own scoring convention
+(a number-vs-threshold comparison, not a probabilistic detection
+judgment), even though the ensemble's own median only loosely recovers
+the naive-incoherent anchor's sign and rough scale — **corrected at
+Phase 5 close (Red Team mandatory fix 6, QUANTUM's own precision
+catch)**: the median/naive ratio is 4.10× for `off_pass` and 2.77× for
+`off_bracket`, not the "roughly recovers"/"same order of magnitude"
+tightness this paragraph originally implied. **What DOES track the
+naive-incoherent anchor precisely, confirmed by a same-shift follow-up
+test (`recompute_flux_signs.py`) that finally persists the raw
+`b_obj`/`b_flank` flux draws QUANTUM's own Iteration-6 theorem needs
+(previously computed then discarded)**: the theorem's actual claim —
+that `E[b_obj]` and `E[b_flank]` over random relative phase equal the
+naive-incoherent sum EXACTLY, a Kronecker-delta cross-term cancellation
+re-derived N=2→N=9 at this cycle's own Phase 5 — is confirmed to
+0.01–0.69% relative error across both articles and both quantities
+(4 independent checks), consistent with pure Monte-Carlo sampling noise
+at N=2000. **This is the real content behind the median's own loose
+tracking**: the underlying FLUXES behave exactly as the theorem
+predicts; the RATIO `C` built from them does not, precisely because
+`E[X/Y]≠E[X]/E[Y]` for correlated random `X,Y` — not because the
+theorem fails, but because it was never a claim about ratios in the
+first place. `p_abs_naive`/`p_abs_joint`'s own clean 0.784/0.784
+agreement (informational, THERMODYNAMICS' anchor, corrected direction —
+see P-058-7) independently confirms the underlying interference physics
+is real and consistent across both articles, not a numerical artifact of
+one.
 
 ### On P-058-2's own refutation
 
@@ -407,23 +443,106 @@ per house discipline — and the reason P-058-3's std revision (which DID
 apply that lesson) survived while P-058-2 (frozen before the lesson was
 internalized) did not.
 
+## Phase 5 — six fresh seats, then Red Team audit
+
+**5 PROMISING (PHOTONICS, MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS,
+QUANTUM OPTICS), 1 PARTIAL (VISION SCIENCE)** — not unanimous. PHOTONICS
+and ELECTROMAGNETISM independently (different routes: raw-data
+reconstruction vs. algebraic cross-check) found the SAME real bug
+(`phase_lines.flux_from_lines`'s sign contradicted its own docstring, a
+false claim of matching `ambient.observer_profile`'s convention) and
+proved it mathematically inert on every ratio-based number this cycle
+reported. PHOTONICS separately found P-058-7's causal direction stated
+backwards (constructive mislabeled destructive); THERMODYNAMICS
+independently found the SAME row's mechanism justification numerically
+false ("same τ-to-R_OUT ratio" — actually differ >2×) without catching
+the direction error, requiring both fixes together. MATERIALS found the
+Realizability-bound coherence-length arithmetic inflated the object's
+scale ~77×. QUANTUM OPTICS found the "median tracks naive" framing
+oversold its own precision and that raw flux draws needed for its own
+Iteration-6 theorem test were computed then discarded. VISION SCIENCE's
+PARTIAL rested on the Headline's own most-quotable sentence not
+delivering this cycle's own Phase-3 promise (item 7) to embed the
+ambient-light-analog caveat inline, not one section away — a real,
+textually-confirmed, self-inflicted gap.
+
+**Red Team's final audit: PROMISING, adopting 5-of-6 and explicitly
+OVERRIDING VISION SCIENCE's PARTIAL** — independently re-verified every
+finding above against source and raw persisted data a further time
+(confirming the sign bug via a THIRD independent route, confirming the
+0.784 direction error, confirming the coherence-length arithmetic).
+Ruling on the override: VISION's finding is real and docketed as
+mandatory, but the caveat's SUBSTANCE is correctly present elsewhere in
+this same document (the Headline's own bracketed lead-in, Idealization
+6, and P-058-4's pre-registered Predictions-section text) — the
+identical same-shift-fixable documentation-gap class this program has
+repeatedly and correctly resolved via mandatory fix rather than a
+blocking verdict (direct Iteration-33 precedent, LOGBOOK ~11296-11324,
+an arguably worse instance on an otherwise-unanimous 6-0 cycle). **New
+binding tripwire**: this is the fourth prior instance of this caveat-
+placement failure pattern (Iterations 24, 32, 33) PLUS a same-cycle
+broken promise (this cycle's own Phase-3 item 7 not fully executed in
+its own Headline) — a further recurrence after this ruling is a
+retroactive Checkpoint-4 trigger, no further Red Team deliberation
+required to establish it as drift. **All five Checkpoint criteria
+checked explicitly: none fire** — criterion 4 scrutinized hardest given
+this cycle produced two genuine bugs plus a caveat-placement gap; ruled
+non-firing because every defect was CAUGHT by falsifiable, independently-
+checkable claims (falsifiability is what caught them, not what they
+lacked), the sign bug is proven mathematically inert and structurally
+isolated from the real constraint-3 pipeline, and no constraint is
+quietly dropped — the caveat's substantive conclusion (no Tier-W/Tier-A
+verdict moves) is correct and stated in multiple places.
+
+**Nine-item mandatory same-shift fix docket, all applied above/below,
+none requiring any new FDTD call** (all corrections to reported numbers/
+prose/persistence/suite-coverage against data already on disk): (1)
+`phase_lines.flux_from_lines`'s sign, fixed. (2) A new stage-20 raw-flux
+identity gate (Q9), added — measured 0.00e+00 (exact algebraic
+identity), closing the layer-coverage gap that let (1) ship undetected
+by machinery. (3)+(4) P-058-7's direction and mechanism corrected
+together. (5) The coherence-length arithmetic corrected. (6) The
+Headline's own numeric-claim sentence now carries its caveat inline,
+with the median-tracking claim's precision corrected per QUANTUM's own
+finding. (7) "Iteration 32"→"Iteration 33" citation fixed. (8)
+`b_obj_draws`/`b_flank_draws` persisted via `recompute_flux_signs.py`
+(zero new FDTD, reloads the already-persisted legs) — which also
+directly tested QUANTUM's own Iteration-6 theorem at the flux level for
+the first time (0.01–0.69% relative error, 4/4 checks, consistent with
+N=2000 Monte-Carlo noise) and independently re-verified (1)'s fix is
+provably inert on every `C(δ)` number already reported (bit-identical
+before/after, `max|diff|=0.00e+00` across all 4000 draws — see
+`sign_fix_verification.json`). (9) `lab/validation/VALIDATION.md`'s
+queued "Measurement lesson" line, written at this Phase 5 close (below).
+
+Bench reverified 61/61 (`--only 12346789,10,11,18,19,20`) after the
+stage-20 Q9 addition, before this cycle's own commit. **Verdict:
+PROMISING.**
+
 ## Next (pre-registered, for Phase 5)
 
 (1) If P-058-NF's disposition is FLAG or FAIL for either article, a
 follow-on cycle increasing STEPS for the affected article is queued
-immediately, ranked above other backlog. (2) A new "Measurement lesson"
-line for `lab/validation/VALIDATION.md`, capturing the settling-vs-
-material-loss finding (Director's own catch, above) — not written this
-cycle, queued for Phase 5 close alongside the results table. (3)
-`Q_ext(x)` — LOCKED for Iteration 36 (or a zero-cost desk rider to this
-cycle, per Iteration 34's own ruling) — **Director's call: NOT folded in
-here**, given this cycle's own scope (new machinery, 20 new FDTD calls,
-five tiered Phase-2/Red-Team fixes, a self-discovered settling finding)
-is already substantial; explicitly deferred to Iteration 36, not
-silently dropped. (4) R3-on-loaded-legs for exp-056's `off_pass_joint`/
-`off_bracket_joint` (ranked #1 competitive priority at Iteration 34's
-close) stays queued, unaffected by this cycle's different (phase-
-variance, not resolution) axis. (5) MATERIALS' absorptivity/mechanism
-literature check — deferred since Iteration 29, now SEVEN cycles
-running if not picked up next — approaching this program's own
-escalation pattern.
+immediately, ranked above other backlog — NOT triggered this cycle
+(both PASS). (2) `Q_ext(x)` — LOCKED for Iteration 36 (or a zero-cost
+desk rider to this cycle, per Iteration 34's own ruling) — **Director's
+call: NOT folded in here**, given this cycle's own scope (new machinery,
+20 new FDTD calls, five tiered Phase-2/Red-Team fixes, a self-discovered
+settling finding, and a nine-item Phase-5 fix docket) is already
+substantial; explicitly deferred to Iteration 36, not silently dropped.
+(3) R3-on-loaded-legs for exp-056's `off_pass_joint`/`off_bracket_joint`
+(ranked #1 competitive priority at Iteration 34's close) stays queued,
+unaffected by this cycle's different (phase-variance, not resolution)
+axis. (4) MATERIALS' absorptivity/mechanism literature check — deferred
+since Iteration 29, now SEVEN cycles running if not picked up next —
+approaching this program's own escalation pattern, flagged explicitly by
+both MATERIALS and Red Team this cycle. (5) The flank-denominator
+diagnostic (EM's own mandatory fix) should be upgraded from a binary
+`<0.20` flag to a reported distribution/correlation for a future cycle —
+EM's own Phase-5 re-analysis found a real, moderate (`corr≈0.45-0.50`,
+R²≈0.20-0.25) but only partially-explanatory correlation between flank
+suppression and `|C|`, which the binary flag alone cannot show. (6) A
+Geary-Hinkley (ratio-of-correlated-near-Gaussians) quantitative model of
+`C(δ)`'s own tail shape, proposed by QUANTUM OPTICS' Phase-5 review as a
+near-zero-cost follow-on now that `b_obj_draws`/`b_flank_draws` are
+persisted (item 8, above) — not built this cycle.

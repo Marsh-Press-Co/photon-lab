@@ -1816,6 +1816,25 @@ def stage20_disk_persisted_phase_reconstruction():
           "Q8 nonzero-phase: disk-persisted 9-leg reconstruction == real joint Sim w/ rel_phase injected (RMS rel., max of Ez/Hy)",
           f"{resid1:.2e}", resid1 <= 3e-5, "<=3e-5")
 
+    # Q9 — flux-level identity (Red Team's Iteration-35 Phase-5 mandatory
+    # fix 2): Q7/Q8 above gate only the raw Ez/Hy field reconstruction,
+    # one layer BELOW the flux/Weber-C pipeline every actual C(delta)
+    # citation this module produces depends on -- a docstring claim that
+    # phase_lines.flux_from_lines matches ambient.observer_profile's own
+    # sign convention was false at first light (caught only by two
+    # independent Phase-5 seats cross-checking raw numbers against a prior
+    # experiment's anchor, not by this suite) and survived undetected
+    # specifically because nothing gated this layer. Reuses Q7's own
+    # already-computed joint capture at zero marginal FDTD cost.
+    from lab import ambient as amb
+    ph_j0 = sc.phasors(cap_j0)
+    b_direct = amb.observer_profile(ph_j0, PLANE_X, Y_LO, Y_HI)
+    b_from_lines = pl.flux_from_lines(ez_j0, hy_j0)
+    resid_flux = rms(b_from_lines - b_direct) / rms(b_direct)
+    check("phase-reconstruction",
+          "Q9 flux-level: phase_lines.flux_from_lines == ambient.observer_profile (RMS rel.)",
+          f"{resid_flux:.2e}", resid_flux <= 1e-6, "<=1e-6")
+
 
 _STAGE_IDS = frozenset(str(n) for n in range(1, 21))
 

@@ -328,6 +328,56 @@ real observer-record datum (committed artifact,
   symmetric incoherent sums; keep analysis windows ≥ one fringe zone
   √(λD) inside the flat-lit edge (a window 21 cells from the +30° edge
   read +16% imbalance — measured, not extrapolated).
+- **Settling time to true CW steady state is governed by material loss,
+  not domain size or step count alone — a post-hoc phase-rotation
+  reconstruction (e^{+i*delta} scaling a captured phasor) needs FAR more
+  settling on a near-lossless article than a pure-additivity check does**
+  (2026-08-22, panel Iteration 35, stage 20 first light). Two structurally
+  different identities were built together: a concurrent-Sim additivity
+  check (exact regardless of settling — same species as stages 11/19,
+  measured 1.8e-15) and a phase-ROTATION reconstruction (exact only for
+  the periodic steady-state part of the response, since the turn-on
+  ramp's transient content doesn't rotate the same way a steady sinusoid
+  does — see lab/validation/run_all.py's stage-20 docstring for the full
+  derivation). On stage 20's own moderately-lossy canonical bench
+  (sigma_max=0.5), the rotation check settles to ~1.5e-5 field-relative
+  RMS at 900 steps. On off_pass/off_bracket's near-null-tau real geometry
+  (exp-058, ~10,000x less lossy) at the SAME 1400-step convention, the
+  identical technique's residual is **~100x larger** (1.06e-3
+  field-relative) — confirmed by a clean, independent N=1 single-source
+  convergence series (5.08e-5 -> 1.37e-5 -> 3.56e-6 at 900/1800/3600
+  steps), ruling out a bug. Translated into the units that actually
+  matter (Weber C, not raw field RMS), the same measurement was only
+  1.2-3.4e-4 absolute C-units (2.5-6.9% of C_thr=0.005) — window-
+  averaging over many cells substantially, though not perfectly, damps
+  the field-level residual. Any future phase-ROTATION reconstruction
+  technique (as opposed to a pure-additivity superposition check) on a
+  weakly-lossy article should carry its OWN empirical noise-floor
+  validation leg rather than reuse a settling number calibrated on a
+  more strongly-lossy bench — a pure-additivity gate's own settling
+  behavior does not transfer to a phase-rotation gate's, even on the
+  identical geometry.
+- **Ratio gates can't see SIGN convention bugs either — the "ratio gates
+  can't see convention bugs" lesson above generalizes beyond magnitude.**
+  A first-light module (lab/phase_lines.py::flux_from_lines, panel
+  Iteration 35) shipped with a docstring asserting it matched
+  lab.ambient.observer_profile's sign convention when it actually
+  implemented the opposite sign (sections.flux_profile_x's convention) —
+  confirmed numerically against an established anchor to 12+ significant
+  figures, sign flipped. It passed a 61/61-green trust suite and every
+  downstream Weber-C computation this cycle reported (C's own ratio
+  structure, (b_obj-b_flank)/b_flank, is exactly invariant under a
+  uniform sign flip of both terms together) — caught only by two
+  independent Phase-5 review seats cross-checking a RAW, non-ratio flux
+  number against a prior experiment's own established anchor, not by any
+  suite gate. Fixed with a new stage-20 gate (Q9) comparing the module's
+  raw flux output directly against ambient.observer_profile at a sample
+  point — closing the exact class of gap the original absolute-identity
+  lesson (above) was written to prevent, one layer further downstream
+  than that lesson anticipated. Any new module wrapping an EXISTING
+  measurement convention needs its own direct identity check against
+  that convention's own reference implementation — a docstring's claim of
+  equivalence is not a gate.
 
 ## Replications
 

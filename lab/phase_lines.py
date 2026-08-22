@@ -104,9 +104,34 @@ def reconstruct_profile(ez_lines, hy_lines, rel_phases):
 
 
 def flux_from_lines(ez_line, hy_line):
-    """B(y) = -0.5*Re{ez * conj(hy)} — exactly lab.ambient.observer_profile's
-    own convention (sections.flux_profile_x's -Sx: time-averaged flux
-    toward the observer, -x direction), applied to a persisted/
-    reconstructed line pair instead of a live full-2D capture. Feeds
-    lab.ambient.window_means/weber unmodified."""
-    return -0.5 * np.real(ez_line * np.conj(hy_line))
+    """B(y) = +0.5*Re{ez * conj(hy)} — exactly lab.ambient.observer_profile's
+    own convention (observer_profile = -sections.flux_profile_x, and
+    flux_profile_x itself is -0.5*Re{...}, so observer_profile's own sign
+    is +0.5*Re{...}: time-averaged flux TOWARD the observer, -x direction),
+    applied to a persisted/reconstructed line pair instead of a live
+    full-2D capture. Feeds lab.ambient.window_means/weber unmodified.
+
+    BUGFIX (Panel Iteration 35 Phase 5, PHOTONICS + ELECTROMAGNETISM,
+    independently, two different routes; Red Team's own third independent
+    reconfirmation): the ORIGINAL Iteration-35 first-light version of this
+    function returned -0.5*Re{...} -- sections.flux_profile_x's sign, not
+    observer_profile's, contradicting this exact docstring's own claim.
+    Confirmed numerically against exp-056's established b_flank_joint
+    (13 significant figures matching in magnitude, sign flipped) and
+    confirmed the bug is applied identically to every draw (100% of
+    exp-058's own persisted flank_ratio_draws were negative under the old
+    sign). PROVABLY INERT on every ratio-based number this program has
+    ever reported from this module: Weber C=(b_obj-b_flank)/b_flank is
+    exactly invariant under a uniform sign flip of both b_obj and b_flank
+    together, which is what the bug applied -- so exp-058's own C(delta)
+    statistics (mean/std/median/fraction-over-threshold/etc.) are
+    bit-identical before and after this fix, verified by direct
+    recomputation from the same persisted legs (see
+    experiments/058-t25-phase-variance-redesign/recompute_flux_signs.py).
+    Fixed here because a sign bug invisible to ratio-based checks is a
+    live landmine for any future NON-ratio consumer (a raw-flux report, a
+    directional diagnostic) -- caught only because stage 20 gated the
+    Ez/Hy field reconstruction one layer below this function, never this
+    function itself (Red Team's own house-rule finding, mandatory fix 2,
+    closed by suite stage 20's new Q9 gate)."""
+    return 0.5 * np.real(ez_line * np.conj(hy_line))
