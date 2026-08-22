@@ -2,6 +2,67 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-22 (panel shift) — Iteration 33 complete (exp-056): T26
+generalizes to the near-null σ(I) regime, confirming a real, sharpened
+risk; `graded_black_shell_flagship` LOCKED for Iteration 34 after its
+third pre-declared deferral.
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle — numpy/scipy/matplotlib/pillow/autograd/fdtd then
+`--no-deps ceviche`). Read HANDOFF.md, README.md, PANEL.md, LOGBOOK.md
+(11072 lines, in full), PLAN.md's Current-state section and the standing
+Iteration-32+/33+ queues, AGENTS.md, VALIDATION.md, and SESSION_LOG's top
+two entries. Bench verified green: `--only 12346789,10,11,19` → 49/49 in
+107s before any panel work began.
+
+**Iteration 33 — The T26 Near-Null Generalization Test (exp-056).** Lead:
+VISION SCIENCE (rotation, completing the rotation's second full cycle).
+Full five-phase panel cycle: Phase 1 (VISION SCIENCE proposes testing
+whether T26's coherent-injection empty-scene artifact — small on the
+deep-shadow absorber, exp-055 — generalizes to `off_pass`/`off_bracket`,
+the near-null σ(I) regime where it could actually flip a live PASS/
+MARGINAL verdict) → five blind Phase-2 critiques (all support-with-
+changes) + Red Team audit (proceed-with-mandatory-fixes, 6 attacks,
+7-item docket — load-bearing catch: EM's finding that Weber `C` has no
+finite passivity ceiling, only raw flux does, so a large `|C_joint|` alone
+can't rule out a denominator artifact) → Phase 3 synthesis (6 of 7 fixes
+applied; Director's own catch: PHOTONICS' proposed "phantom disk" control
+(σ=0, ε_r=1) is physically identical to vacuum — implemented at zero
+cost instead, reusing the established empty-scene reading as a free τ=0
+curve point; predictions frozen in NOTES.md, committed to git BEFORE any
+run) → Phase 4 (3 new FDTD calls: `off_pass_joint`/`off_bracket_joint`
+native + `empty_joint_cpl30` R3 leg, 111s) → six blind Phase-5 reviews
+(unanimous PROMISING, 6-for-6 — the program's second unanimous panel-era
+verdict) + Red Team's final audit (PROMISING, adopted without override,
+four mandatory same-shift fixes applied).
+
+**Results**: every scored prediction CONFIRMED. `off_pass`/`off_bracket`
+both show the coherent-injection idiom's `|C_joint|` at 11.1–11.6× VISION's
+T2 photopic `C_thr` (10.2–12.7× under a window-position sensitivity scan),
+refuting exp-055's own suppression hypothesis — the τ∈{0,0.003,0.0065}
+curve grows, not shrinks, closely tracking QUANTUM's own Born-linear-
+perturbation model (1.2%/2.4% relative miss, independently re-derived by
+five of six Phase-5 seats plus Red Team — a fifth confirmation each). Four
+of six seats independently, unprompted, found the same corroborating
+cross-check (`p_abs_joint` scales with τ to 0.13–0.14%). R3 and
+window-position checks both CONFIRMED — genuine interference physics, not
+a grid or placement artifact. No existing Tier-W/Tier-A verdict moves. A
+new gap was found this cycle (EM, QUANTUM): R3 was run only on the empty
+scene, never on the loaded legs the headline figures themselves come
+from — Iteration 34's #2 competitive priority. **THERMODYNAMICS'
+`graded_black_shell_flagship`, deferred a third time (exactly the trigger
+Red Team pre-declared in writing at Iteration 32's close), is now LOCKED,
+unconditional, breaking rotation, for Iteration 34** — this program's
+single thinnest thermal margin (~6.04×), zero new FDTD, code already
+built at exp-054. QUANTUM's own phase-variance redesign (T25's real open
+question — one fixed-phase draw characterized twice now, never the
+ensemble variance) is pre-registered for a 2nd-deferral unconditional lock
+at Iteration 35 if not built at Iteration 34. No Checkpoint criterion
+fires. Full record: PLAN.md, LOGBOOK.md Iteration 33,
+`experiments/056-t26-near-null-generalization/`. Bench 49/49
+(`--only 12346789,10,11,19`) reverified before Phase 4; zero
+`lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched.
+
 ## 2026-08-21 (panel shift) — Iteration 32 complete (exp-055): the T25
 coherent-vs-incoherent N=9 bridge gate is built, headline finding on a
 new empty-scene coherent-injection artifact (T26); Iteration 30 stays

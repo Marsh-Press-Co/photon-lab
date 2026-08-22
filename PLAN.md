@@ -22,7 +22,8 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-21, panel Iteration 32 — see PANEL.md/LOGBOOK.md
+## Current state (2026-08-22, panel Iteration 33 done, Iteration 34 LOCKED
+to `graded_black_shell_flagship` — see PANEL.md/LOGBOOK.md
 for the phenomenon-program's own current state; this section's numbered
 history stops at the pre-redesign exp-023 baseline, panel-era entries live
 in the queue below and in full in LOGBOOK.md)
@@ -1605,9 +1606,102 @@ continuous mode with checkpoints. The remaining [open] items below are
   five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
   NOTES.md, run.py, results.json, six Phase-5 blind reviews, Phase-5 Red
   Team audit. LOGBOOK.md Iteration 32.
+- [done 2026-08-22, panel Iteration 33, cloud panel shift] **exp-056 the
+  T26 near-null generalization test** — VISION SCIENCE's lead (rotation,
+  completing the rotation's second full cycle), executing Iteration 32's
+  own Red-Team-ranked #1 combined build. `off_pass`/`off_bracket`
+  (τ=0.0065/0.003, exp-032) both loaded via fixed-zero-relative-phase N=9
+  coherent joint injection, native r=78/cpl=20 + a rescaled r=117/cpl=30
+  R3 leg on the empty-scene channel — 3 new FDTD calls. Red Team's Phase-2
+  audit: 6 attacks, 7-item docket, 6 accepted + 1 (PHOTONICS' phantom-disk
+  control) implemented differently at zero cost (Director's own catch:
+  σ=0/ε_r=1 is physically identical to vacuum, so the established
+  empty_joint reading IS that control point for free — a genuine 3-point
+  τ∈{0,0.003,0.0065} curve at no extra cost). **Result: every scored
+  prediction CONFIRMED — the T26 artifact generalizes, and the mechanism
+  is sharpened.** `off_pass`/`off_bracket` both show the coherent-injection
+  idiom's `|C_joint|` at 11.1–11.6× VISION's own T2 photopic `C_thr`
+  (widening to 10.2–12.7× under a window-position sensitivity scan),
+  refuting exp-055's own suppression hypothesis (the curve grows, not
+  shrinks, with τ) and closely tracking QUANTUM's own Born-linear-
+  perturbation model (1.2%/2.4% relative miss, independently re-derived by
+  five of six Phase-5 seats plus Red Team — a fifth confirmation each).
+  Four of six Phase-5 seats independently, unprompted, found the same
+  corroborating cross-check (`p_abs_joint` scales with τ to 0.13–0.14%).
+  R3 (P-VIS-3) and window-position (P-VIS-4) checks both CONFIRMED — T26
+  is genuine interference physics, only modestly resolution/placement-
+  sensitive. **No existing Tier-W/Tier-A constraint-3 verdict moves** (no
+  citation has ever used coherent injection). Phase 5: **unanimous
+  PROMISING, 6-for-6** — the program's second unanimous panel-era verdict
+  (after Iteration 11's unanimous PARTIAL) — Red Team adopting the raw
+  seat count without override. **New gap found this cycle** (EM, QUANTUM,
+  Red-Team-confirmed): R3 was run only on the empty scene, never on the
+  loaded legs the headline figures themselves come from — Iteration 34's
+  #2 competitive priority. Four mandatory same-shift fixes applied
+  (headline reordering to lead with the instrument-substitution-artifact
+  framing; the "10–13×" figure decomposed rather than blended; the
+  ambient-light-analog caveat propagated to ALL disposition branches, not
+  only the CONFIRMED one; a new binding tripwire on the THERMO sidecar's
+  scope-down). **`graded_black_shell_flagship`'s third deferral (ranked #1
+  at Iteration 31's close, deferred at 32 and again this cycle) triggers
+  the unconditional-lock bar Red Team itself pre-declared, in writing, at
+  Iteration 32's close — GRANTED, LOCKED for Iteration 34, breaking
+  rotation.** QUANTUM's own phase-variance redesign (deferred once this
+  cycle, correctly scoped out as genuine new machinery) is pre-registered
+  for a 2nd-deferral unconditional lock at Iteration 35 if not built at
+  Iteration 34. No Checkpoint criterion fires (criterion 4 scrutinized
+  hardest against the headline-ordering/"10–13×" findings — ruled the same
+  same-shift-fixable documentation-gap class this program has repeatedly
+  and correctly ruled non-firing; criterion 5 ruled explicitly not to
+  apply). Verdict: PROMISING. Full record:
+  `experiments/056-t26-near-null-generalization/` — Phase-1 proposal, five
+  Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+  NOTES.md, design_geometry.py, run.py, results.json, six Phase-5 blind
+  reviews, Phase-5 Red Team audit. LOGBOOK.md Iteration 33.
+- **[LOCKED — panel Iteration 34, UNCONDITIONAL, breaking rotation, per
+  THERMODYNAMICS' Phase-5 escalation request granted by Red Team's
+  Iteration-33 audit]** **`graded_black_shell_flagship`'s re-run through
+  the corrected `mixed_length_scale_regime`** (exp-054's own machinery,
+  zero new FDTD) — ranked #1 at Iteration 31's close, deferred at
+  Iteration 32 (T25/T26 ran instead) and again at Iteration 33 (the T26
+  near-null build ran instead), exactly the third-deferral trigger Red
+  Team itself pre-declared in writing at Iteration 32's close. This
+  program's single thinnest thermal-detectability margin (~6.04×, itself
+  shown to shrink ~3.03× under this exact `mixed_length_scale_regime` bug
+  class). Not subject to further ranked-list competition; if time permits
+  in the same shift after this item closes, the shift may proceed directly
+  to the competitive ranked list below without waiting for a fresh
+  dispatch.
+- **[queued — ranked for Iteration 34+ (after the LOCKED item above), per
+  Red Team's Iteration-33 Phase-5 reconciliation of all six seats,
+  exp-056 — CURRENT top-of-queue, supersedes the list below as the active
+  ranking, retained as valid backlog, not deleted]** (1) **QUANTUM's
+  phase-variance redesign** (per-angle persisted complex-`Ez`/`Hy`-line
+  save format + a new trust-suite identity gate + N random relative-phase
+  draws on `off_pass`/`off_bracket`) — converged top-3 pick of 5 of 6
+  Iteration-33 seats, the clearest cross-seat convergence in that cycle's
+  packet. **Pre-registered for a 2nd-deferral unconditional lock at
+  Iteration 35 if not built here.** (2) **R3-on-loaded-legs** — resolution
+  check (cpl 20→30, exp-056's own rescaled-geometry idiom) on
+  `off_pass_joint`/`off_bracket_joint` themselves, never run at Iteration
+  33 (independently found by EM and QUANTUM) — the "over 10×" headline
+  figures have never themselves been resolution-tested; cheap, same
+  idiom, a natural same-build rider alongside (1). (3) **P-VIS-5's
+  angle-quantization sensitivity formula** (derive, not measure, per Red
+  Team's own Iteration-33 mandatory fix) — named by 3 of 6 Iteration-33
+  seats. (4) **MATERIALS' absorptivity/mechanism literature check**
+  (exp-052 queue item 5) — zero-FDTD, deferred since Iteration 29, now 5
+  cycles running. (5) **λ/angle generalization** (450nm/750nm) for the T26
+  near-null result — exp-056 tested one native geometry at one λ only. (6)
+  **THERMO sidecar's naive-incoherent absorbed-power anchor** for
+  `off_pass`/`off_bracket` (re-run the 18 individual legs with full
+  captures retained) — closes THERMODYNAMICS' still-open Iteration-33
+  Phase-2 mandatory fix, per the new binding tripwire (any future citation
+  of exp-056 calling this fix "closed" rather than "informational,
+  comparator anchor not yet built" is a retroactive Checkpoint-4 trigger).
 - **[queued — ranked for Iteration 33+, per Red Team's Iteration-32
-  Phase-5 reconciliation of all six seats, exp-055 — CURRENT top-of-queue,
-  supersedes the two Iteration-32+ lists below as the active ranking; both
+  Phase-5 reconciliation of all six seats, exp-055 — superseded by the
+  Iteration-33 list above, retained as historical backlog; both
   are retained as valid backlog, not deleted]** (1) **A combined T26
   build**: the generalization test on a near-null σ(I) article
   (`off_pass`/`off_bracket`, exp-032/033) — the regime where the empty-
