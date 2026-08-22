@@ -61,48 +61,66 @@ NETD_DISCLAIMER = (
 # Mandatory fix 3 (PHOTONICS/QUANTUM, Red Team-confirmed): the w_on-vs-
 # r_out area-shrink term rests on sigma_ext_cells=240 being genuinely
 # diffraction-inflated relative to the object's real diameter (2*r_out=156
-# cells, ~1.54x). This is ASSERTED, NOT INDEPENDENTLY BOUNDED -- exp-054's
-# own NOTES.md flagged it, queuing a Q_ext(x) closed-form check (ranked #4,
-# Iteration 31's close) that has now gone THREE full cycles (31,32,33)
-# without being run. Carried forward here, not resolved. Non-load-bearing:
-# even the widest plausible area-convention correction (~1.5-2x) cannot
-# approach the margin computed below (~700x either way, and any DECREASE
-# in the assumed p_abs_w-supporting area only makes the margin larger, the
-# safe direction).
+# cells, ~1.54x LINEAR excess). This is ASSERTED, NOT INDEPENDENTLY
+# BOUNDED -- exp-054's own NOTES.md flagged it, queuing a Q_ext(x) closed-
+# form check (ranked #4, proposed at Iteration 31's close) that has now
+# gone THREE full cycles (32,33,34 -- the proposing cycle, 31, does not
+# itself count as a deferral, per this program's own T23/h_eff convention)
+# without being run -- now LOCKED, unconditional, for a future iteration
+# per Red Team's Iteration-34 Phase-5 audit. Carried forward here, not
+# resolved. Non-load-bearing: since absorbed_power_established_ratio's own
+# iso_xsec_sq convention SQUARES the linear width to get an area
+# (area_m2 = width_m**2), the AREA-domain correction the ~1.54x LINEAR
+# excess implies is ~1.54^2 ~= 2.37x, not "~1.5-2x" (Red Team's Phase-5
+# arithmetic fix) -- even that full 2.37x correction only drops the margin
+# to ~295x (still 2+ orders of magnitude clear), and any DECREASE in the
+# assumed p_abs_w-supporting area only makes the margin larger, the safe
+# direction.
 DIFFRACTION_INFLATION_CAVEAT = (
     "w_on (sigma_ext_cells=240.0073740162445) vs the object's real "
-    "diameter (2*r_out=156 cells, ~1.54x excess) is a diffraction-inflated "
-    "optical width -- ASSERTED, NOT INDEPENDENTLY BOUNDED (exp-054/"
-    "NOTES.md). The Q_ext(x) closed-form check that would bound it (ranked "
-    "#4, Iteration 31's close) has not been run at Iterations 32, 33, or "
-    "34 -- three full cycles now. p_abs_w (this cycle's own untouched "
-    "input) inherits this open question. Non-load-bearing here: the "
-    "margin computed below clears any plausible correction to this "
-    "convention by 2+ orders of magnitude.")
+    "diameter (2*r_out=156 cells, ~1.54x LINEAR excess) is a diffraction-"
+    "inflated optical width -- ASSERTED, NOT INDEPENDENTLY BOUNDED "
+    "(exp-054/NOTES.md). The Q_ext(x) closed-form check that would bound "
+    "it (ranked #4, proposed at Iteration 31's close) has not been run at "
+    "Iterations 32, 33, or 34 -- three full deferrals (the proposing "
+    "cycle, 31, does not itself count) -- now LOCKED for a future "
+    "iteration (Red Team's Iteration-34 Phase-5 ruling). p_abs_w (this "
+    "cycle's own untouched input) inherits this open question. "
+    "Non-load-bearing here: since the iso_xsec_sq area convention SQUARES "
+    "the linear width (area_m2=width_m**2), the correctly-derived "
+    "area-domain bound is ~2.37x (1.54^2), not a looser '~1.5-2x' -- even "
+    "that full correction drops the margin only to ~295x, still 2+ orders "
+    "of magnitude clear.")
 
-# Mandatory fix 4 (MATERIALS, Red Team-corrected citation): the flagship's
-# ACTUAL construction (experiments/020-ambient-baseline/design_geometry.py,
-# confirmed by Red Team direct read) is pec_disk(r=30) THEN
-# graded_black_shell(r_in=30, r_out=78) -- an ANNULUS/SHELL, not a solid
-# disk (graded_black_shell's own docstring: solid only if r_in=0). The
-# core (r<30, ~15% of the disk area) is a PEC disk, NOT vacuum (Red Team's
-# own correction of MATERIALS' Phase-2 alternative-hypothesis citation,
-# which named exp-027 Cell B -- wrong for this specific article).
+# Mandatory fix 4 (MATERIALS, Red Team-corrected citations): the flagship's
+# ACTUAL construction (experiments/020-ambient-baseline/run.py lines 44-45,
+# NOT design_geometry.py -- that file is a pure ray-trace/coverage script
+# with zero materials calls; Red Team's own Phase-5 audit caught this
+# citation error) is pec_disk(r=30) THEN graded_black_shell(r_in=30,
+# r_out=78) -- an ANNULUS/SHELL, not a solid disk (graded_black_shell's
+# own docstring: solid only if r_in=0). The core (r<30, ~15% of the disk
+# area) is a PEC disk, NOT vacuum (Red Team's own correction of MATERIALS'
+# Phase-2 alternative-hypothesis citation, which named exp-027 Cell B --
+# wrong for this specific article).
 # lumped_cube_mass_kg nonetheless computes mass = density * r_out^3 as if
 # the ENTIRE r_out volume were solid silicon. THIRD CONSECUTIVE CITATION
 # CYCLE of this exact unresolved defect: Iteration 20 (exp-043) ->
-# Iteration 31 (exp-054) -> Iteration 34 (this cycle). Confirmed
-# NON-LOAD-BEARING for the SCORED predictions below: mixed_length_scale_
-# regime's own dt_ss_full_K formula has NO mass_kg term (steady-state has
-# no mass dependence) -- verified directly against lab/thermo_sidecar.py's
-# source. mass_kg/tau_thermal_s land in results.json as UNSCORED
-# byproducts of this cycle's own computation; a future citer of either
-# figure must not silently assume a solid-disk reading of a shell object.
+# Iteration 31 (exp-054) -> Iteration 34 (this cycle) -- distinct from the
+# SEPARATE silicon-material-provenance chain (exp-045/046, Iteration
+# 22/23 -> 31 -> 34; NOT Iteration 20, which used an unidentified
+# placeholder material, Red Team's own Phase-5 correction of a conflation
+# in an earlier draft of this file). Confirmed NON-LOAD-BEARING for the
+# SCORED predictions below: mixed_length_scale_regime's own dt_ss_full_K
+# formula has NO mass_kg term (steady-state has no mass dependence) --
+# verified directly against lab/thermo_sidecar.py's source. mass_kg/
+# tau_thermal_s land in results.json as UNSCORED byproducts of this
+# cycle's own computation; a future citer of either figure must not
+# silently assume a solid-disk reading of a shell object.
 SHELL_VS_SOLID_MASS_CAVEAT = (
     "THIRD CONSECUTIVE CITATION CYCLE (Iteration 20 -> 31 -> 34) of an "
     "unresolved defect: graded_black_shell_flagship's real construction "
     "is an ANNULUS (pec_disk(r=30) then graded_black_shell(r_in=30, "
-    "r_out=78), experiments/020-ambient-baseline/design_geometry.py), not "
+    "r_out=78), experiments/020-ambient-baseline/run.py lines 44-45), not "
     "a solid disk. lumped_cube_mass_kg computes mass=density*r_out^3 as "
     "if the entire r_out volume is solid silicon, ignoring the PEC core "
     "(r<30, ~15% of the disk area). CONFIRMED NON-LOAD-BEARING for this "
@@ -191,6 +209,7 @@ def main():
                       "never replaced), MASS_KG=1.0e-15 kg (hardcoded, "
                       "untethered to any geometric length), area from w_on "
                       "(diffraction-inflated optical width). The repudiated chain.",
+            "netd_disclaimer": NETD_DISCLAIMER,
         },
         "mixed_regime": regime,
         "netd_disposition": netd_disp,
@@ -227,6 +246,7 @@ def main():
             "note": "First-order slip correction, identical r_out regime "
                     "as exp-046's own B4 result -- reused, not re-derived. "
                     "No verdict risk: margin stays >>1x either way.",
+            "netd_disclaimer": NETD_DISCLAIMER,
         },
         "comparison_to_standing_figure": {
             "old_dt_K": OLD_DT_K, "old_margin": OLD_MARGIN,
@@ -239,12 +259,14 @@ def main():
                          "(placeholder-H_CONV AND w_on-vs-r_out length) in "
                          "one step, and the placeholder-replacement effect "
                          "dominates.",
+            "netd_disclaimer": NETD_DISCLAIMER,
         },
     }
 
     with open(os.path.join(HERE, "results.json"), "w") as f:
         json.dump(out, f, indent=2)
 
+    print(NETD_DISCLAIMER)
     print(f"graded_black_shell_flagship, corrected mixed_length_scale_regime:")
     print(f"  dt_ss_full_K = {dt_ss:.6e} K  (old: {OLD_DT_K:.6e} K)")
     print(f"  NETD-lo margin = {margin:.2f}x  (old: {OLD_MARGIN:.2f}x, ratio {margin/OLD_MARGIN:.2f}x)")

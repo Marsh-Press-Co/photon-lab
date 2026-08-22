@@ -91,20 +91,35 @@ IN FULL.** Full record:
    diffraction-inflation assumption underlying `p_abs_w`'s own area
    convention is ASSERTED, NOT INDEPENDENTLY BOUNDED — exp-054's own
    NOTES.md flagged this, queuing a `Q_ext(x)` closed-form check (ranked
-   #4, Iteration 31's close) that has now gone THREE full cycles (31, 32,
-   33) without being run.** **Fixed:** the caveat is restored verbatim
-   (`DIFFRACTION_INFLATION_CAVEAT`, `run.py`/`results.json`), explicitly
-   cross-referencing the still-open `Q_ext(x)` check. Non-load-bearing:
-   even the widest plausible area-convention correction (~1.5–2×) — and in
-   the SAFE direction, since a smaller assumed `p_abs_w`-supporting area
-   only increases the margin — cannot approach threatening the ~700×
-   margin computed here.
-4. **[MATERIALS, Red-Team-corrected citation] `mass_kg`/`tau_thermal_s`
+   #4, proposed at Iteration 31's close) that has now gone THREE full
+   deferrals (32, 33, 34 — the proposing cycle, 31, does not itself count
+   as a deferral, per this program's own T23/`h_eff` convention; a Phase-5
+   PHOTONICS re-read of this file mis-stated this as "31, 32, 33" — a
+   citation slip corrected here, no substance change) without being run —
+   as of this cycle's own Phase-5 close, this hits the same 3-deferral
+   threshold that triggered `graded_black_shell_flagship`'s own
+   unconditional lock, and Red Team's Iteration-34 audit has now LOCKED
+   `Q_ext(x)` for a future iteration on that basis (see Next).** **Fixed:**
+   the caveat is restored verbatim (`DIFFRACTION_INFLATION_CAVEAT`,
+   `run.py`/`results.json`), explicitly cross-referencing the still-open
+   `Q_ext(x)` check. **Non-load-bearing, with a Red-Team-corrected bound**:
+   `absorbed_power_established_ratio`'s own `iso_xsec_sq` convention
+   SQUARES the linear width to get an area (`area_m2 = width_m**2`), so
+   the correct area-domain bound implied by the ~1.54× LINEAR excess is
+   **~2.37× (1.54²)**, not the originally-stated, arithmetically-wrong
+   "~1.5–2×" — even that full 2.37× correction only drops the margin to
+   **~295×** (still 2+ orders of magnitude clear), and in the SAFE
+   direction (a smaller assumed area only increases the margin).
+4. **[MATERIALS, two Red-Team-corrected citations] `mass_kg`/`tau_thermal_s`
    silently assume a 100%-fill SOLID disk of radius `r_out`, but
    `graded_black_shell_flagship`'s real construction is an ANNULUS —
    `pec_disk(r=30)` then `graded_black_shell(r_in=30, r_out=78)`
-   (`experiments/020-ambient-baseline/design_geometry.py`, confirmed by
-   Red Team's direct read) — not a solid disk (solid only if `r_in=0`,
+   (`experiments/020-ambient-baseline/run.py` lines 44–45 — **NOT**
+   `design_geometry.py` as originally cited in this document and in
+   `run.py`'s own comments; Red Team's Phase-5 audit caught this file
+   citation was wrong on all four original loci — `design_geometry.py` is
+   a pure ray-trace/coverage script with zero materials calls, and has
+   been corrected throughout) — not a solid disk (solid only if `r_in=0`,
    per `graded_black_shell`'s own docstring).** MATERIALS' own cited
    alternative core composition ("possibly bare vacuum per exp-027 Cell
    B") was itself wrong for this specific article — **corrected here**:
@@ -112,22 +127,47 @@ IN FULL.** Full record:
    **PEC disk**, per exp-020's own build. **THIRD CONSECUTIVE CITATION
    CYCLE of this exact defect** (Iteration 20/exp-043 → Iteration 31/
    exp-054 → Iteration 34/this cycle), now explicitly tracked as such
-   (`SHELL_VS_SOLID_MASS_CAVEAT`). **Confirmed non-load-bearing**:
-   `mixed_length_scale_regime`'s own `dt_ss_full_K` formula has NO
-   `mass_kg` term (steady-state has no mass dependence) — verified
-   directly against `lab/thermo_sidecar.py`'s source, independently by
-   both MATERIALS and Red Team. `mass_kg`/`tau_thermal_s` land in
-   `results.json` as unscored byproducts; no future citer of either figure
-   should assume a solid-disk reading of a shell object.
+   (`SHELL_VS_SOLID_MASS_CAVEAT`) — **distinct from, and NOT to be
+   conflated with, the SEPARATE silicon material-provenance chain**
+   (ρ=2330 kg/m³ etc.), whose correct lineage is **exp-045/046
+   (Iteration 22/23) → 31 → 34**, not "Iteration 20" — grepped directly:
+   `experiments/043-.../run.py`/`NOTES.md` contain zero mentions of
+   "silicon"/"2330"; Iteration 20's `MASS_KG=1.0e-15` was an unidentified
+   material placeholder, not silicon (a conflation in this document's own
+   original Realizability-bound draft, caught and corrected by Red Team's
+   Phase-5 audit — see Realizability bound, below). **Confirmed
+   non-load-bearing**: `mixed_length_scale_regime`'s own `dt_ss_full_K`
+   formula has NO `mass_kg` term (steady-state has no mass dependence) —
+   verified directly against `lab/thermo_sidecar.py`'s source,
+   independently by both MATERIALS and Red Team. `mass_kg`/`tau_thermal_s`
+   land in `results.json` as unscored byproducts; no future citer of
+   either figure should assume a solid-disk reading of a shell object.
 5. **[VISION, confirmed by Red Team against exp-054's own binding
-   precedent] The NETD disclaimer was stated once, generically, in
-   Idealizations — not attached per-row to the predicted-outcomes table,
-   unlike exp-054's own P-054-2/4/5, which each individually restate it
-   (Iteration 20's Red Team attack 7, "elevated to load-bearing").**
-   **Fixed:** the disclaimer is propagated to every row of the Results
-   table below (the `dt_ss_full_K` row, the margin row, and the
-   classification row individually), matching exp-054's own binding
-   pattern, not left in a shared footnote.
+   precedent — and against the LIVE table, not just the promise] The NETD
+   disclaimer was stated once, generically, in Idealizations — not
+   attached per-row to the predicted-outcomes table, unlike exp-054's own
+   P-054-2/4/5, which each individually restate it (Iteration 20's Red
+   Team attack 7, "elevated to load-bearing").** **Fixed, completely this
+   time**: Red Team's own audit checked the Phase-3 draft's claim
+   ("propagated to every row") against the actual table and found only 2
+   of 5 margin/classification-bearing rows (P-057-2, P-057-3) carried it —
+   P-057-1 (`dt_ss_full_K`, explicitly named in the original promise) did
+   not, and P-057-4/P-057-6 (added beyond the three originally named)
+   inherited nothing. The Results table below now carries the disclaimer
+   on every row that states a margin, classification, or the ΔT feeding
+   them (P-057-1, 2, 3, 4, 6). `results.json`'s `old_chain`,
+   `knudsen_slip_flow`, and `comparison_to_standing_figure` sub-objects
+   each now carry their own `netd_disclaimer` field (previously only the
+   file-level sibling key covered them — invisible to a consumer
+   extracting just that sub-object). `run.py`'s own print block now prints
+   `NETD_DISCLAIMER` before any numeric line — closing an EXACT RECURRENCE
+   of a finding VISION SCIENCE made against this identical code pattern at
+   Iteration 31 Phase 5, never structurally fixed for ad hoc dicts built
+   directly in an experiment's own `run.py` (only `thermo_sidecar.py`'s
+   own helper-function return dicts got the Iteration-31 fix). Flagged as
+   a standing structural gap for a future cycle (see Next): the
+   Iteration-31 fix should be extended to cover this recurring pattern
+   generally, not patched per-cycle.
 6. **[Red Team, new this cycle] No same-shift regression assertion existed
    pinning this cycle's own inputs against `experiments/043-.../
    results.json`'s committed values — Iteration-31 Phase-5 THERMODYNAMICS
@@ -153,11 +193,20 @@ it travels with the number regardless of narrative discipline.
 Not applicable in the constraint-1/2/3/4 sense — no new material or
 mechanism is proposed. The silicon material-provenance figure this cycle
 reuses (ρ=2330 kg/m³, c_p=700 J/(kg·K)) is, per `REALIZABILITY_MEMO.md`'s
-own standing downgrade, **ASSUMED, not independently sourced** (T18) — this
-is its third consecutive citation cycle without a primary-source fix
-(Iteration 20 → 31 → 34), carried forward unresolved, not addressed here
-(out of scope: this cycle corrects the length-scale chain, not the
-material citation).
+own standing downgrade, **ASSUMED, not independently sourced** (T18) —
+this is its third consecutive citation cycle without a primary-source fix,
+with lineage **exp-045/046 (Iteration 22/23) → exp-054 (Iteration 31) →
+this cycle (Iteration 34)** — **corrected here, per Red Team's Phase-5
+audit**: an earlier draft of this section wrongly named "Iteration 20" as
+the first citation; Iteration 20/exp-043's own `MASS_KG=1.0e-15` was an
+unidentified-material hardcoded placeholder (grep-confirmed: zero mentions
+of "silicon"/"2330" anywhere in `experiments/043-.../`), not silicon —
+that is a SEPARATE, correctly-stated defect (the shell-vs-solid mass
+model, whose own lineage genuinely IS Iteration 20 → 31 → 34, see Phase-3
+fix 4 above). The two chains were conflated in this section's own
+first-draft text; kept distinct here. Carried forward unresolved, not
+addressed this cycle (out of scope: this cycle corrects the length-scale
+chain, not the material citation).
 
 ## Predictions — committed before this cycle's `run.py`
 
@@ -240,12 +289,12 @@ Zero new FDTD calls. Full data: `results.json`.
 
 | Prediction | Predicted | Measured | Verdict |
 |---|---|---|---|
-| P-057-1 (`dt_ss_full_K`) | [2.5e-5, 3.2e-5] K | **2.8601275372385233e-05 K** | **CONFIRMED** |
+| P-057-1 (`dt_ss_full_K`) | [2.5e-5, 3.2e-5] K | **2.8601275372385233e-05 K** — feeds every downstream margin; NETD is an instrument threshold, not human-perceptual, does NOT bear on constraint-3/4's verdict | **CONFIRMED** |
 | P-057-2 (NETD-lo margin) | [600×, 800×] | **699.27×** — instrument-threshold reading, NOT a constraint-3 finding | **CONFIRMED** |
 | P-057-3 (classification) | UNDETECTABLE | **UNDETECTABLE** — instrument-threshold classification, NOT a constraint-3 finding | **CONFIRMED** |
-| P-057-4 (direction) | GROWS, not below ~50×/1× | **GROWS to 699.27×, ~115.76× larger than the standing 6.04× figure** | **CONFIRMED** — well clear of the falsification thresholds |
+| P-057-4 (direction) | GROWS, not below ~50×/1× | **GROWS to 699.27×, ~115.76× larger than the standing 6.04× figure** — instrument-threshold margins, NOT a constraint-3 finding | **CONFIRMED** — well clear of the falsification thresholds |
 | P-057-5 (mechanism, code-verified) | computed directly, not hand-typed | `dp_dt_ratio=115.757×` (real); naive two-factor product `=234.71×` (WRONG, do not cite) — the gap is the radiative term's share collapsing from 50.70% to 0.046% of `dP/dT` | **CONFIRMED** — matches Red Team's independent re-derivation exactly |
-| P-057-6 (Kn/slip-flow) | Kn≈0.028, margin ≫1× | **Kn=0.02808, slip-corrected margin=662.09×** | **CONFIRMED** — matches Red Team's independent recomputation (≈662.1×) exactly |
+| P-057-6 (Kn/slip-flow) | Kn≈0.028, margin ≫1× | **Kn=0.02808, slip-corrected margin=662.09×** — instrument-threshold margin, NOT a constraint-3 finding | **CONFIRMED** — matches Red Team's independent recomputation (≈662.1×) exactly |
 
 ### Headline (for LOGBOOK)
 
@@ -274,27 +323,79 @@ itself remains asserted-not-bounded (`Q_ext(x)`, unrun for a third
 consecutive cycle), and the lumped-mass model's 100%-fill-solid assumption
 is now a third-consecutive-citation-cycle-unresolved mismatch against the
 article's real annulus construction (confirmed non-load-bearing: no mass
-term in the scored quantity). This closes the program's own
-longest-standing (three-deferral) LOCKED item cleanly.
+term in the scored quantity). This closes this program's own three-
+deferral-triggered LOCKED item cleanly (`h_eff`'s own lock, by contrast,
+fired at five deferrals — a longer chain; "three-deferral" names this
+item's own trigger count, not a claim to program-history primacy).
 
 ## Next (pre-registered, for Phase 5)
 
-(1) The `Q_ext(x)` closed-form check bounding `w_on`'s diffraction excess
-over `r_out` — now unrun for four cycles (31, 32, 33, 34), and the item
-every seat that touches this thermal chain keeps deferring. (2) Resolve
-the shell-vs-solid mass mismatch properly (parameterize
-`lumped_cube_mass_kg`/`mixed_length_scale_regime` for a two-region — PEC
-core + shell — thermal mass, or explicitly bound the error this
-simplification introduces) — third-consecutive-cycle carried item, still
-non-load-bearing today but a real debt. (3) Promote `coupled_segment_
-general` into a real trust-suite stage with an RK4 cross-check (exp-054's
-own carried item, still unbuilt). (4) `graded_black_shell_flagship`'s
+**LOCKED for Iteration 35, unconditional (Red Team's Iteration-34 Phase-5
+ruling)**: Iteration 33's own pre-registered condition — "if QUANTUM's
+phase-variance redesign is not built at Iteration 34, it becomes a LOCKED,
+unconditional, non-competing trigger for Iteration 35" — has fired.
+Iteration 34 was entirely consumed by this cycle's own, separately-LOCKED
+flagship item and did not touch QUANTUM's redesign; the condition's own
+language ("non-competing trigger") fires on the simple fact of
+non-construction, independent of why. **QUANTUM's phase-variance redesign
+leads Iteration 35.**
+
+**LOCKED for a future iteration, unconditional (Red Team's Iteration-34
+Phase-5 ruling, new this cycle)**: (1) **The `Q_ext(x)` closed-form check**
+bounding `w_on`'s diffraction excess over `r_out` — now unrun for THREE
+full deferrals (32, 33, 34; the proposing cycle, 31, does not itself
+count, per this program's own T23/`h_eff` convention) — the same
+3-deferral threshold that triggered this cycle's own lock. Red Team ruled
+this is not "approaching" the bar, it already meets it, and pre-declared
+the lock now rather than waiting for a retroactive discovery (as happened
+with `h_eff`). **Scheduling note**: since QUANTUM's redesign also leads
+Iteration 35, `Q_ext(x)` becomes Iteration 36's LOCKED item unless
+Iteration 35's own Director finds capacity to fold it in as a genuine
+zero-marginal-cost desk rider (it is itself zero-new-FDTD) — worth
+checking before deferring a fourth time. (2) Resolve the shell-vs-solid
+mass mismatch properly (parameterize `lumped_cube_mass_kg`/
+`mixed_length_scale_regime` for a two-region — PEC core + shell — thermal
+mass, or explicitly bound the error this simplification introduces) —
+third-consecutive-cycle carried item, still non-load-bearing today but a
+real, growing debt (a live landmine for the first future transient/
+`tau_thermal_s`-dependent prediction off this chain, per THERMODYNAMICS'
+own Phase-5 framing). (3) Promote `coupled_segment_general` into a real
+trust-suite stage with an RK4 cross-check (exp-054's own carried item,
+still unbuilt). (4) `graded_black_shell_flagship`'s
 own re-run across the standard 450/600/750nm sweep, reusing already-
 committed per-λ data, zero new FDTD (exp-054's own carried item). (5) The
-program's competitive queue from Iteration 33's close (QUANTUM's
-phase-variance redesign — pre-registered for a 2nd-deferral lock at
-Iteration 35 if not built next; R3-on-loaded-legs for exp-056's own
-off_pass/off_bracket articles; P-VIS-5's angle-quantization formula;
-MATERIALS' literature check) resumes now that this LOCKED item is closed.
+remaining competitive queue behind the two LOCKED items above:
+R3-on-loaded-legs for exp-056's own off_pass/off_bracket articles;
+P-VIS-5's angle-quantization formula; MATERIALS' literature check
+(zero-FDTD, deferred since Iteration 29, now six cycles running — itself
+approaching this program's own escalation pattern).
 
-**Phase 5 outcome:** pending — see LOGBOOK.md Iteration 34.
+**Phase 5 outcome:** six fresh seats + Red Team audit read these results —
+**unanimous PROMISING, 6-for-6** (PHOTONICS, MATERIALS, ELECTROMAGNETISM,
+THERMODYNAMICS, QUANTUM OPTICS, VISION SCIENCE) — the third unanimous
+panel-era verdict, Red Team's final audit adopting the raw seat count
+without override. Six mandatory same-shift fixes required and applied
+above: two citation corrections (MATERIALS' wrong-file citation, corrected
+throughout; the silicon-provenance chain, corrected to exp-045/046→31→34,
+distinguished from the separate, correctly-stated shell-vs-solid-mass
+chain); one arithmetic correction (PHOTONICS' diffraction-inflation bound,
+~1.5–2× → the correctly-derived ~2.37×, margin ~295× not stated); one
+cycle-count reconciliation (`Q_ext(x)`: three deferrals, 32/33/34, not
+four — the proposing cycle does not itself count); full disclaimer
+propagation (VISION's finding, completed on all five margin/classification
+-bearing rows plus three `results.json` sub-objects plus `run.py`'s print
+block, closing an exact recurrence of an Iteration-31 finding). **Two new
+unconditional LOCKs issued this cycle's own Phase-5 close**: QUANTUM's
+phase-variance redesign for Iteration 35 (Iteration 33's own pre-
+registered condition fired) and `Q_ext(x)`'s closed-form check for a
+future iteration (newly met its own 3-deferral bar, declared now rather
+than awaiting a retroactive discovery). All five Checkpoint criteria
+checked explicitly: **none fire** — criterion 4 scrutinized hardest given
+this cycle's own density of findings (two citation errors, one arithmetic
+imprecision, one cycle-count inconsistency, one disclaimer-propagation
+gap), ruled the same same-shift-fixable documentation/precision-gap class
+this program has repeatedly and correctly ruled non-firing (Iterations 28,
+29, 31, 32, 33), with the disclaimer-propagation gap named explicitly as
+the closest call (a genuine second recurrence) and flagged for structural
+attention if it recurs a third time. Full verbatim record: `LOGBOOK.md`,
+Iteration 34 Phase 5.

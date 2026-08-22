@@ -16,7 +16,8 @@
     "dp_dt_w_k": 5.258254234845024e-10,
     "radiative_share_of_dp_dt": 0.5070304391103286,
     "mass_kg_hardcoded": 1e-15,
-    "caveat": "H_CONV=5.0 (macroscopic natural-convection placeholder, never replaced), MASS_KG=1.0e-15 kg (hardcoded, untethered to any geometric length), area from w_on (diffraction-inflated optical width). The repudiated chain."
+    "caveat": "H_CONV=5.0 (macroscopic natural-convection placeholder, never replaced), MASS_KG=1.0e-15 kg (hardcoded, untethered to any geometric length), area from w_on (diffraction-inflated optical width). The repudiated chain.",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix, exp-043 Red Team attack 7, reaffirmed exp-054 Phase-2 mandatory fix 6, reaffirmed again here per Red Team's Iteration-34 mandatory fix 5). This classification does NOT bear on constraint-3/4's human-eye verdict."
   },
   "mixed_regime": {
     "length_convention": "mixed (p_abs on its own optical length; h_eff/mass/area on l_geometric_m)",
@@ -58,8 +59,8 @@
     "new_radiative_share_of_dp_dt": 0.000462621148121851,
     "note": "The Phase-1 draft's mechanism narrative implied dp_dt_ratio ~= (h_eff jump)*(area shrink) ~= 234.71x -- WRONG, per Red Team's Iteration-34 mandatory fix 1. The REAL, code-verified ratio is 115.757x. The gap: the OLD chain's radiative term is CO-EQUAL with H_CONV=5.0 (50.7% of dp_dt, not convection-dominated as the naive story implies); in the NEW chain radiation collapses to 0.046% of dp_dt because h_eff swamps it. This dilution of the radiative term from co-equal to negligible -- not a clean two-factor product -- is what the real ratio reflects."
   },
-  "diffraction_inflation_caveat": "w_on (sigma_ext_cells=240.0073740162445) vs the object's real diameter (2*r_out=156 cells, ~1.54x excess) is a diffraction-inflated optical width -- ASSERTED, NOT INDEPENDENTLY BOUNDED (exp-054/NOTES.md). The Q_ext(x) closed-form check that would bound it (ranked #4, Iteration 31's close) has not been run at Iterations 32, 33, or 34 -- three full cycles now. p_abs_w (this cycle's own untouched input) inherits this open question. Non-load-bearing here: the margin computed below clears any plausible correction to this convention by 2+ orders of magnitude.",
-  "shell_vs_solid_mass_caveat": "THIRD CONSECUTIVE CITATION CYCLE (Iteration 20 -> 31 -> 34) of an unresolved defect: graded_black_shell_flagship's real construction is an ANNULUS (pec_disk(r=30) then graded_black_shell(r_in=30, r_out=78), experiments/020-ambient-baseline/design_geometry.py), not a solid disk. lumped_cube_mass_kg computes mass=density*r_out^3 as if the entire r_out volume is solid silicon, ignoring the PEC core (r<30, ~15% of the disk area). CONFIRMED NON-LOAD-BEARING for this cycle's own scored predictions (dt_ss_full_K has no mass term, verified against lab/thermo_sidecar.py source) -- mass_kg/tau_thermal_s below are unscored byproducts, not falsifiable predictions. Any future citer of mass_kg or tau_thermal_s from this results.json must not read them as a solid-disk quantity.",
+  "diffraction_inflation_caveat": "w_on (sigma_ext_cells=240.0073740162445) vs the object's real diameter (2*r_out=156 cells, ~1.54x LINEAR excess) is a diffraction-inflated optical width -- ASSERTED, NOT INDEPENDENTLY BOUNDED (exp-054/NOTES.md). The Q_ext(x) closed-form check that would bound it (ranked #4, proposed at Iteration 31's close) has not been run at Iterations 32, 33, or 34 -- three full deferrals (the proposing cycle, 31, does not itself count) -- now LOCKED for a future iteration (Red Team's Iteration-34 Phase-5 ruling). p_abs_w (this cycle's own untouched input) inherits this open question. Non-load-bearing here: since the iso_xsec_sq area convention SQUARES the linear width (area_m2=width_m**2), the correctly-derived area-domain bound is ~2.37x (1.54^2), not a looser '~1.5-2x' -- even that full correction drops the margin only to ~295x, still 2+ orders of magnitude clear.",
+  "shell_vs_solid_mass_caveat": "THIRD CONSECUTIVE CITATION CYCLE (Iteration 20 -> 31 -> 34) of an unresolved defect: graded_black_shell_flagship's real construction is an ANNULUS (pec_disk(r=30) then graded_black_shell(r_in=30, r_out=78), experiments/020-ambient-baseline/run.py lines 44-45), not a solid disk. lumped_cube_mass_kg computes mass=density*r_out^3 as if the entire r_out volume is solid silicon, ignoring the PEC core (r<30, ~15% of the disk area). CONFIRMED NON-LOAD-BEARING for this cycle's own scored predictions (dt_ss_full_K has no mass term, verified against lab/thermo_sidecar.py source) -- mass_kg/tau_thermal_s below are unscored byproducts, not falsifiable predictions. Any future citer of mass_kg or tau_thermal_s from this results.json must not read them as a solid-disk quantity.",
   "knudsen_slip_flow": {
     "lambda_air_m_sourced": 6.57e-08,
     "l_geometric_m": 2.3399999999999996e-06,
@@ -67,7 +68,8 @@
     "regime": "slip-flow (0.01 < Kn < 0.1), not strict continuum",
     "slip_correction_fraction_reused_from_exp046_B4": -0.053168,
     "margin_slip_corrected": 662.0907548159017,
-    "note": "First-order slip correction, identical r_out regime as exp-046's own B4 result -- reused, not re-derived. No verdict risk: margin stays >>1x either way."
+    "note": "First-order slip correction, identical r_out regime as exp-046's own B4 result -- reused, not re-derived. No verdict risk: margin stays >>1x either way.",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix, exp-043 Red Team attack 7, reaffirmed exp-054 Phase-2 mandatory fix 6, reaffirmed again here per Red Team's Iteration-34 mandatory fix 5). This classification does NOT bear on constraint-3/4's human-eye verdict."
   },
   "comparison_to_standing_figure": {
     "old_dt_K": 0.0033108079151108792,
@@ -75,6 +77,7 @@
     "new_dt_K": 2.8601275372385233e-05,
     "new_margin": 699.2695164674427,
     "margin_ratio_new_over_old": 115.75735249580833,
-    "direction": "GROWS (opposite exp-054's own ~3.03x SHRINK for the two articles it corrected) -- the flagship never had H_CONV corrected even once, unlike those two, so this cycle applies two corrections (placeholder-H_CONV AND w_on-vs-r_out length) in one step, and the placeholder-replacement effect dominates."
+    "direction": "GROWS (opposite exp-054's own ~3.03x SHRINK for the two articles it corrected) -- the flagship never had H_CONV corrected even once, unlike those two, so this cycle applies two corrections (placeholder-H_CONV AND w_on-vs-r_out length) in one step, and the placeholder-replacement effect dominates.",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one (VISION SCIENCE's standing mandatory fix, exp-043 Red Team attack 7, reaffirmed exp-054 Phase-2 mandatory fix 6, reaffirmed again here per Red Team's Iteration-34 mandatory fix 5). This classification does NOT bear on constraint-3/4's human-eye verdict."
   }
 }
