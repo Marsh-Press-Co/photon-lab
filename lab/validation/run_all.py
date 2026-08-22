@@ -1697,7 +1697,127 @@ def stage19_n9_superposition():
           f"{closure:.4f}", closure <= 0.035, "<=0.035")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 20))
+# --------------------------------------------------------------- stage 20
+def stage20_disk_persisted_phase_reconstruction():
+    """Disk-persisted, line-only phase reconstruction gate (Panel
+    Iteration 35, T25's phase-variance redesign, exp-058). Verifies the
+    LTI phasor law (a constant drive-phase offset delta multiplies a
+    source's own steady-state Ez/Hy phasor by exp(+i*delta) — derived and
+    independently re-derived THREE separate ways at Phase 2: PHOTONICS,
+    ELECTROMAGNETISM, Red Team, identical sign/factor every time) survives
+    BOTH a disk round trip through lab.phase_lines' bespoke line-only
+    format AND recombination at an ARBITRARY nonzero relative phase — not
+    just the zero-phase, in-memory case stage 11/19 already prove. Two
+    ABSOLUTE identities, object-loaded branch only: persistence fidelity
+    (npz serialization + the LTI recombination law) is scene-content-
+    independent, and the harder physics case here (PEC-cored,
+    inhomogeneous sigma_e) subsumes the vacuum case stage 19 already
+    separately covers — a scope economization stated explicitly per Red
+    Team's Iteration-35 Phase-2 mandatory-fix docket, mirroring the
+    Director's own Iteration-33 phantom-disk precedent, not left implicit.
+
+      Q7: zero relative phase, reconstructed FROM 9 SEPARATELY-RUN,
+          DISK-PERSISTED single-source legs == a real joint 9-source Sim
+          call (rel_phase=0 for all), RMS relative on the observation
+          line (max of the Ez/Hy residuals). This is a pure ADDITIVITY
+          identity (same species as stage 11/19), exact regardless of
+          settling — measured ~1e-15, gated tight.
+      Q8: a fixed, arbitrary NONZERO relative-phase draw, same
+          reconstruction route == a real joint 9-source Sim call with
+          each source's OWN rel_phase actually injected in the FDTD
+          update loop — the genuinely new claim over stage 11/19 (which
+          never varied relative phase at all). Unlike Q7, this is NOT a
+          pure algebraic identity: the e^{+i*delta} phasor law is exact
+          for the periodic steady-state part of the response only (proven
+          two independent ways at Phase 2 via the exact real-quadrature
+          decomposition sin(wn-phi-delta)=cos(delta)*sin(wn-phi)-
+          sin(delta)*cos(wn-phi), itself exact at every step including
+          the turn-on transient) — the single captured phasor this
+          reconstruction actually uses implicitly assumes BOTH the
+          sin-drive and a never-separately-measured cos-drive response
+          have themselves already reached true periodic steady state.
+          Residual transient content (from the turn-on ramp, which decays
+          at a rate set by the SCENE's own material+boundary damping, not
+          by this identity) leaks into Q8 but not Q7. Measured directly:
+          900 steps on this stage's own moderately-lossy canonical bench
+          (sigma_max=0.5) gives ~1e-5 field-relative RMS — small but real,
+          gated with margin below, NOT machine-epsilon like Q7. (Panel
+          Iteration 35 Phase 3: on off_pass/off_bracket's near-null,
+          far-more-weakly-lossy real articles this same effect is ~100x
+          larger at the SAME step count — material loss is what damps the
+          turn-on transient, and off_pass/off_bracket have almost none by
+          design — so exp-058 carries its OWN empirical noise-floor
+          validation leg per article rather than reusing this stage's
+          number; see lab/validation/VALIDATION.md's measurement-lessons
+          section.)"""
+    print("stage 20 — disk-persisted phase reconstruction vs identities")
+    import tempfile
+
+    from lab import phase_lines as pl
+    from lab import sections as sc
+
+    ANGLES9 = (-35, -25, -15, -5, 0, 5, 15, 25, 35)
+    R_OUT = 32
+    SRC_X = 54
+    PLANE_X = 193
+    Y_LO, Y_HI = 30, 210   # = absorb, ny - absorb (nx=360, ny=240, absorb=30)
+
+    def build_object(s):
+        materials.graded_black_shell(s, 240, 120, 0, R_OUT, sigma_max=0.5, eps_max=1.0)
+
+    def run_scene(sources):
+        sim = Sim(360, 240, cells_per_lambda=20, courant_frac=0.99, absorb=30)
+        build_object(sim)
+        for ang, rp in sources:
+            sim.add_line_source(SRC_X, angle_deg=float(ang), rel_phase=float(rp))
+        sim.run(900)
+        return sim, sc.full_capture(sim)
+
+    def rms(x):
+        return float(np.sqrt(np.mean(np.abs(x) ** 2)))
+
+    # 9 individually-run legs, genuinely round-tripped through disk (each
+    # rel_phase=0 at capture time — the baseline every reconstruction draws
+    # its per-angle e^{i*delta} factor against).
+    ez_lines, hy_lines = {}, {}
+    with tempfile.TemporaryDirectory() as tmp:
+        for ang in ANGLES9:
+            _, cap_i = run_scene([(ang, 0.0)])
+            ph_i = sc.phasors(cap_i)
+            ez_i, hy_i = pl.line_phasor(ph_i, PLANE_X, Y_LO, Y_HI)
+            path = os.path.join(tmp, f"leg_{ang}.npz")
+            pl.save_leg(path, ez_i, hy_i, angle_deg=ang, plane_x=PLANE_X)
+            ez_lines[ang], hy_lines[ang], _ = pl.load_leg(path)   # real disk read
+
+    # Q7 — zero relative phase
+    zero_phases = {ang: 0.0 for ang in ANGLES9}
+    ez_recon0, hy_recon0 = pl.reconstruct_profile(ez_lines, hy_lines, zero_phases)
+    _, cap_j0 = run_scene([(ang, 0.0) for ang in ANGLES9])
+    ez_j0, hy_j0 = pl.line_phasor(sc.phasors(cap_j0), PLANE_X, Y_LO, Y_HI)
+    resid0 = max(rms(ez_recon0 - ez_j0) / rms(ez_j0), rms(hy_recon0 - hy_j0) / rms(hy_j0))
+    check("phase-reconstruction",
+          "Q7 zero-phase: disk-persisted 9-leg reconstruction == real joint Sim (RMS rel., max of Ez/Hy)",
+          f"{resid0:.2e}", resid0 <= 1e-6, "<=1e-6")
+
+    # Q8 — a fixed, arbitrary nonzero relative-phase draw (seeded, reproducible)
+    rng = np.random.default_rng(20)
+    deltas = {ang: float(d) for ang, d in zip(ANGLES9, rng.uniform(0.0, 2.0 * np.pi, len(ANGLES9)))}
+    ez_recon1, hy_recon1 = pl.reconstruct_profile(ez_lines, hy_lines, deltas)
+    _, cap_j1 = run_scene([(ang, deltas[ang]) for ang in ANGLES9])
+    ez_j1, hy_j1 = pl.line_phasor(sc.phasors(cap_j1), PLANE_X, Y_LO, Y_HI)
+    resid1 = max(rms(ez_recon1 - ez_j1) / rms(ez_j1), rms(hy_recon1 - hy_j1) / rms(hy_j1))
+    # Gate recalibrated on first run (Panel Iteration 35), NOT reused from
+    # Q7/stage 11/19's ~1e-15 additivity-identity precedent -- this check
+    # additionally requires settling (see docstring). Measured 1.45e-5 at
+    # this stage's own 900-step canonical bench; bar set to <=3e-5, ~2x
+    # margin above the measured value, same calibration convention stage
+    # 10/19's own first-light recalibrations used.
+    check("phase-reconstruction",
+          "Q8 nonzero-phase: disk-persisted 9-leg reconstruction == real joint Sim w/ rel_phase injected (RMS rel., max of Ez/Hy)",
+          f"{resid1:.2e}", resid1 <= 3e-5, "<=3e-5")
+
+
+_STAGE_IDS = frozenset(str(n) for n in range(1, 21))
 
 
 def _stage_selected(n, only):
@@ -1760,6 +1880,7 @@ if __name__ == "__main__":
     run_stage17 = _stage_selected(17, only)
     run_stage18 = _stage_selected(18, only)
     run_stage19 = _stage_selected(19, only)
+    run_stage20 = _stage_selected(20, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -1825,6 +1946,8 @@ if __name__ == "__main__":
         stage18_length_scale_chain()
     if run_stage19:
         stage19_n9_superposition()
+    if run_stage20:
+        stage20_disk_persisted_phase_reconstruction()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")

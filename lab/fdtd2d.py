@@ -131,7 +131,7 @@ class Sim:
     # ------------------------------------------------------------- sources
     def add_line_source(self, x, y_lo=None, y_hi=None, profile="plane",
                         width=None, ramp_periods=3.0, amplitude=1.0, edge=24,
-                        angle_deg=0.0):
+                        angle_deg=0.0, rel_phase=0.0):
         """Soft source on the vertical line at x.
         profile: 'plane' (tapered top-hat) or 'gauss' (beam, needs width =
         1/e half-width in cells).
@@ -140,7 +140,20 @@ class Sim:
         positive θ it walks toward +y as it propagates toward the observer
         side — the ambient-instrument convention (suite stage 9 gates the
         sign and the λ/cosθ geometry). angle_deg=0 keeps the original
-        scalar-sin arithmetic path bit-exact (stage-1 regression)."""
+        scalar-sin arithmetic path bit-exact (stage-1 regression).
+        rel_phase: constant (y-independent) extra phase offset, radians,
+        added on top of the angle_deg geometric ramp -- Panel Iteration 35's
+        phase-variance machinery (lab/phase_lines.py). Per
+        emit._phasor's f(n)=Re{F e^{-i*omega*n}} convention, injecting
+        sin(omega*n - phase_geom(y) - rel_phase) multiplies this source's
+        own steady-state Ez/Hy phasor by exp(+i*rel_phase) relative to
+        rel_phase=0 (derived and independently re-derived three ways —
+        PHOTONICS, ELECTROMAGNETISM, Red Team — at Panel Iteration 35
+        Phase 2; gated by suite stage 20's Q7/Q8). rel_phase=0.0 (default)
+        is bit-exact identical to pre-Iteration-35 behavior at every call
+        site: the angle_deg=0/rel_phase=0 fast path still hits phase=None,
+        and adding scalar 0.0 to an existing phase-ramp array is exact in
+        float64."""
         y_lo = self.absorb if y_lo is None else y_lo
         y_hi = self.ny - self.absorb if y_hi is None else y_hi
         n = y_hi - y_lo
@@ -155,10 +168,11 @@ class Sim:
             p = np.exp(-(((yy - yc) / width) ** 2))
         else:
             raise ValueError(profile)
-        if angle_deg:
+        if angle_deg or rel_phase:
             k = 2.0 * np.pi / self.lam
             yy = np.arange(y_lo, y_hi, dtype=float)
-            phase = k * np.sin(np.radians(angle_deg)) * (yy - 0.5 * (y_lo + y_hi))
+            phase = (k * np.sin(np.radians(angle_deg)) * (yy - 0.5 * (y_lo + y_hi))
+                     + rel_phase)
         else:
             phase = None
         self.sources.append(
@@ -167,7 +181,7 @@ class Sim:
         )
         spec = dict(profile=profile, x=x, y_lo=y_lo, y_hi=y_hi,
                     ramp_periods=ramp_periods, amplitude=amplitude,
-                    angle_deg=angle_deg)
+                    angle_deg=angle_deg, rel_phase=rel_phase)
         spec["width" if profile == "gauss" else "edge"] = width if profile == "gauss" else edge
         self.source_specs.append(spec)
 
