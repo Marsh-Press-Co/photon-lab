@@ -330,7 +330,82 @@ analytic comparison, not a gated identity).
 
 ## Results
 
-*(filled after `run.py`)*
+20 new FDTD calls, 427 s. Full data: `results.json`, persisted legs under
+`artifacts/legs/`, raw 2000-draw arrays under `artifacts/draws_*.npz`.
+
+| Prediction | Predicted | Measured (off_pass / off_bracket) | Verdict |
+|---|---|---|---|
+| P-058-1 (zero-phase reconstruction vs established) | ≤0.01% rel. | **2.4×10⁻⁷% / 4.7×10⁻⁶%** rel. | **CONFIRMED**, far inside band — `C(0)`=−0.058148985930206114/−0.055608736046099706 vs established −0.058149/−0.055609. |
+| P-058-NF (noise-floor validation leg) | [1e-6,2e-3] abs., central ~1e-4 | **1.238×10⁻⁴ / 3.443×10⁻⁴** abs. (2.48% / 6.89% of `C_thr`) | **PASS** both — well under the 0.5 flag bar. The N=2000 ensemble statistics below are trustworthy at face value. |
+| P-058-2 (draw mean vs `C_naive`±20%) | [−0.0054,−0.0036] / [−0.0025,−0.0017] | **+0.02994 / +0.04405** | **REFUTED — wrong sign AND ~6–20× the predicted magnitude.** Not a finite-sample fluctuation; see Headline. |
+| P-058-3 (draw std, revised band) | [0.02, 0.30] | **0.2310 / 0.2412** | **CONFIRMED** inside the Phase-3-revised band — vindicates the revision (original Phase-1 0.035–0.045 estimate would have been refuted by 5–7×). |
+| P-058-4 (fraction \|C\|>C_thr) | [50%,95%], central 80–90% | **98.7% / 98.35%** | **ABOVE the predicted band** — even more extreme than anticipated. See Headline for the mandatory ambient-light-analog caveat. |
+| P-058-5 (fraction flank-denominator-flagged) | <10% | **0.0% / 0.0%** | **CONFIRMED** (band satisfied) — but see Headline: this does NOT mean the ratio-sensitivity mechanism EM flagged is absent, only that it doesn't manifest as the specific ≥80%-collapse EM's threshold checks for. |
+| P-058-6 (percentile rank of \|C(0)\|, outside [25,75]) | outside [25,75] | **19.6% / 18.75%** | **CONFIRMED**, and directionally — the informal secondary note (δ=0 sits toward the LOW tail) is also borne out: ~80% of random draws are MORE extreme than the established δ=0 point. |
+| P-058-7 (`p_abs_naive`/`p_abs_joint` ratio) | [0.5,2.0], informational | **0.784 / 0.784** | **CONFIRMED** (informational) — coherent joint injection absorbs ~22% LESS power than the naive sum of independently-run legs at δ=0, a real, moderate destructive-interference effect on the absorption channel, both articles agreeing to 3 significant figures (a genuine cross-check, not coincidence — same τ-to-R_OUT geometry ratio). |
+
+### Headline (for LOGBOOK)
+
+**[Ambient-light-analog caveat stated first, per this program's own
+binding pattern (Red Team/VISION, Iterations 24/32/33, and this cycle's
+own Idealization 6, quantified above): nothing below characterizes real
+ambient-light appearance. Every draw is a mutually-coherent,
+single-frequency, 9-component injection requiring a coherence length
+1–2 orders of magnitude beyond any real broadband illuminant. No
+existing Tier-W/Tier-A constraint-3 verdict moves.]**
+
+With that framing fixed first: **T25's variance question is answered,
+and the answer is sharper and more interesting than any seat's Phase-1
+prediction anticipated.** The Weber-contrast ratio `C(δ)` across
+N=2000 genuine random relative-phase draws is **heavy-tailed and
+mean-unstable** — the empirical MEAN (+0.030/+0.044) is wildly
+different in sign and magnitude from the naive-incoherent anchor
+(−0.0045/−0.0021), but the **MEDIAN** (−0.0185/−0.0058) sits on the
+SAME side of zero and within the same order of magnitude as that
+anchor. This is not a contradiction: `C=(b_obj−b_flank)/b_flank` is a
+RATIO of two flux-like quantities, and Iteration 6's own zero-mean
+cross-term theorem is a statement about the (better-behaved, additive)
+flux itself, not about this nonlinear ratio — exactly the distinction
+EM's Iteration-32 finding drew (Cauchy-Schwarz bounds raw flux, never
+the `C` ratio, which has no finite passivity ceiling) and now empirically
+confirmed at scale: this build's own draw range spans −0.35 to +0.94,
+and EM's own flank-denominator diagnostic (mandatory fix 3) recorded
+**zero** of 2000 draws below its 0.20 collapse threshold for either
+article — the extreme tail is NOT explained by near-total flank
+cancellation in the narrow sense that diagnostic checks for, but by
+milder, broader flank-flux variability multiplying through the ratio.
+**A sharper, more complete version of T26's own finding**: exp-055/056's
+one arbitrary δ=0 draw is not a special, unlucky outlier — it is
+MILDER than 80% of random draws (percentile rank 19.6%/18.75% within
+`|C(δ)|`), so the ~11× `C_thr` figure this program has cited since
+Iteration 32 is, if anything, an UNDERSTATEMENT of the coherent-
+injection diagnostic's typical severity. Practically: **98.7%/98.35%
+of individual random-phase realizations would read as a false FAIL
+against `C_thr`, even though the ensemble's own central tendency
+(median) roughly recovers the true, safe incoherent value** — the
+naive-incoherent approximation's location parameter survives this
+cycle's own stress test reasonably well, but its usefulness as "what a
+single coherent draw typically looks like" does not, because the
+underlying distribution is simply too wide and too skewed by rare
+large-flux-ratio draws for "typical" and "safe" to coincide the way a
+narrow-variance intuition would suggest. `p_abs_naive`/`p_abs_joint`'s
+own clean 0.784/0.784 agreement (informational, THERMODYNAMICS' anchor)
+independently confirms the underlying interference physics is real and
+consistent across both articles, not a numerical artifact of one.
+
+### On P-058-2's own refutation
+
+Flagged, not buried: the original Phase-1 mean-band prediction rested on
+an unstated, incorrect assumption (that a RATIO's empirical mean would
+track the naive value the way its numerator/denominator fluxes
+individually do) — no Phase-2 seat or Red Team caught this specific gap,
+though EM's own general "C has no finite passivity ceiling" finding was
+the exact tool that would have predicted it, had it been applied to the
+MEAN prediction specifically rather than only to the per-draw flag. This
+is this cycle's own genuine miss, disclosed rather than smoothed over
+per house discipline — and the reason P-058-3's std revision (which DID
+apply that lesson) survived while P-058-2 (frozen before the lesson was
+internalized) did not.
 
 ## Next (pre-registered, for Phase 5)
 

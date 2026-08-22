@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "experiment": "exp-058",
+    "panel_iteration": 35,
+    "lead": "QUANTUM OPTICS",
+    "t1_escape_route": "NONE (instrument work)",
+    "n_draws": 2000,
+    "draw_seed": 2035,
+    "noise_floor_seed": 58,
+    "n_fdtd_calls": 20,
+    "elapsed_s": 427.0269236564636
+  },
+  "per_article": {
+    "off_pass": {
+      "c_established_native_joint": -0.058149,
+      "c_zero_phase_reconstructed": -0.058148985930206114,
+      "zero_phase_relative_error": 2.41961063569766e-07,
+      "p_abs_naive": 2.189682885019647,
+      "p_abs_joint_established": 2.7927,
+      "p_abs_naive_over_joint_ratio": 0.7840737941847126,
+      "noise_floor_abs_c_error": 0.00012377148369405178,
+      "noise_floor_over_c_thr": 0.024754296738810355,
+      "draws": {
+        "n": 2000,
+        "mean": 0.029937433547354366,
+        "std": 0.23098405303633537,
+        "median": -0.018451523398615825,
+        "min": -0.35318829439934324,
+        "max": 0.9371148668295645,
+        "c_naive_established": -0.004502830238451187,
+        "mean_minus_c_naive_abs": 0.03444026378580555,
+        "fraction_over_c_thr": 0.987,
+        "fraction_flank_denominator_flagged": 0.0,
+        "percentile_rank_of_delta0_within_abs_c": 19.6,
+        "draws_file": "artifacts/draws_off_pass.npz"
+      }
+    },
+    "off_bracket": {
+      "c_established_native_joint": -0.055609,
+      "c_zero_phase_reconstructed": -0.055608736046099706,
+      "zero_phase_relative_error": 4.746603972242535e-06,
+      "p_abs_naive": 1.0121303899353875,
+      "p_abs_joint_established": 1.2908,
+      "p_abs_naive_over_joint_ratio": 0.7841109311553979,
+      "noise_floor_abs_c_error": 0.0003443007424081268,
+      "noise_floor_over_c_thr": 0.06886014848162536,
+      "draws": {
+        "n": 2000,
+        "mean": 0.04404644495152542,
+        "std": 0.24123180346496537,
+        "median": -0.0058158636635313905,
+        "min": -0.3807745178105403,
+        "max": 1.1878405542561241,
+        "c_naive_established": -0.0020992636423987046,
+        "mean_minus_c_naive_abs": 0.046145708593924126,
+        "fraction_over_c_thr": 0.9835,
+        "fraction_flank_denominator_flagged": 0.0,
+        "percentile_rank_of_delta0_within_abs_c": 18.75,
+        "draws_file": "artifacts/draws_off_bracket.npz"
+      }
+    }
+  }
+}
