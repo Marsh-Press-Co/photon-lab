@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "experiment": "exp-056",
+    "panel_iteration": 33,
+    "lead": "VISION SCIENCE",
+    "t1_escape_route": "NONE (instrument work)",
+    "n_fdtd_calls": 3,
+    "elapsed_s": 111.074143409729
+  },
+  "native_joint": {
+    "off_pass": {
+      "C_joint": -0.05814898593020686,
+      "b_obj_joint": 2.69522582676872,
+      "b_flank_joint": 2.8616265062161923,
+      "C_naive_established": -0.004502830238451187,
+      "flank_ratio_vs_empty_joint": 1.0000393939123686,
+      "flank_denominator_flag": false,
+      "window_position_sensitivity": {
+        "13": {
+          "plane_x": 79,
+          "b_obj": 2.69129415508777,
+          "b_flank": 2.8434736705125014,
+          "C": -0.053518876226240256
+        },
+        "15": {
+          "plane_x": 77,
+          "b_obj": 2.69522582676872,
+          "b_flank": 2.8616265062161923,
+          "C": -0.05814898593020686
+        },
+        "17": {
+          "plane_x": 75,
+          "b_obj": 2.7006302879138953,
+          "b_flank": 2.884042511826837,
+          "C": -0.06359553410215267
+        }
+      },
+      "p_abs_joint_measured": 2.7927080775568967
+    },
+    "off_bracket": {
+      "C_joint": -0.055608736046099415,
+      "b_obj_joint": 2.70243774730279,
+      "b_flank_joint": 2.861565804821662,
+      "C_naive_established": -0.0020992636423987046,
+      "flank_ratio_vs_empty_joint": 1.0000181808764732,
+      "flank_denominator_flag": false,
+      "window_position_sensitivity": {
+        "13": {
+          "plane_x": 79,
+          "b_obj": 2.6985172052333555,
+          "b_flank": 2.8434227374474546,
+          "C": -0.05096165628336398
+        },
+        "15": {
+          "plane_x": 77,
+          "b_obj": 2.70243774730279,
+          "b_flank": 2.861565804821662,
+          "C": -0.055608736046099415
+        },
+        "17": {
+          "plane_x": 75,
+          "b_obj": 2.7078338979874133,
+          "b_flank": 2.883971728117253,
+          "C": -0.06107474231199487
+        }
+      },
+      "p_abs_joint_measured": 1.2908027756695828
+    }
+  },
+  "rescaled_r3": {
+    "C_empty_joint_cpl30": -0.04571836780322546,
+    "C_empty_joint_cpl20_established": -0.0534252451544586,
+    "C_empty_naive_cpl30_established": -0.00011647923213709,
+    "window_position_sensitivity": {
+      "20": {
+        "plane_x": 118,
+        "b_obj": 2.686715825264654,
+        "b_flank": 2.806853034292269,
+        "C": -0.04280138915713014
+      },
+      "22": {
+        "plane_x": 116,
+        "b_obj": 2.688865312811247,
+        "b_flank": 2.8176852850257923,
+        "C": -0.04571836780322546
+      },
+      "24": {
+        "plane_x": 114,
+        "b_obj": 2.6917318324682156,
+        "b_flank": 2.8305714081650057,
+        "C": -0.04905001700232557
+      }
+    }
+  },
+  "phantom_control_zero_cost": {
+    "note": "sigma=0/eps_r=1 'phantom' disk is physically identical to vacuum -- the established native empty_joint value below IS that control point (tau=0), reused at zero cost (Director's Phase-3 override of Red Team docket item 3).",
+    "tau_0_C_joint": -0.0534252451544586,
+    "tau_0_C_naive": -3.316590819191224e-05
+  }
+}
