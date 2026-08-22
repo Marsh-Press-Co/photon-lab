@@ -1518,6 +1518,28 @@ measured them here):**
   −0.7211→−0.7243) — no existing Tier-A/Tier-W verdict moves. Full record:
   `experiments/055-t25-coherent-ambient-bridge-gate/`, LOGBOOK.md
   Iteration 32.
+  **UPDATE (Iteration 35, exp-058): the variance question is now
+  answered — QUANTUM's own phase-variance redesign is built, gated
+  (trust-suite stage 20, Q7/Q8/Q9), and run, N=2000 genuine random-
+  relative-phase draws per article (`off_pass`/`off_bracket`).** The
+  MEAN does not track the naive-incoherent anchor (wrong sign, 6–20×
+  off) — but this is now understood, not merely observed: Weber `C` is a
+  RATIO, and this program's own Iteration-6 zero-mean-cross-term theorem
+  is a statement about the underlying (additive, bilinear-in-field) flux
+  quantities, not about a nonlinear ratio built from them. Directly
+  tested for the first time at this exact N=9 instrument (re-derived
+  N=2→N=9 at this cycle's own Phase 5, QUANTUM's own review seat): the
+  theorem's actual claim — `E[b_obj]`, `E[b_flank]` over random phase
+  equal the naive-incoherent sum exactly — is CONFIRMED to 0.01–0.69%
+  relative error, both quantities, both articles (4/4 checks, consistent
+  with N=2000 Monte-Carlo noise). The theorem is vindicated at the level
+  it actually governs; the ratio's own mean instability is a separate,
+  correctly-diagnosed phenomenon (Jensen's-inequality-style ratio-of-
+  correlated-variables bias), not a complication of the theorem. T25 is
+  now CLOSED as an open question — the mean matches provably (flux
+  level) and empirically (this cycle); the variance is large and now
+  characterized, not merely suspected. Full record:
+  `experiments/058-t25-phase-variance-redesign/`, LOGBOOK.md Iteration 35.
 - **T26 — the fixed-phase coherent joint-injection EMPTY-scene artifact is
   large (>10× VISION's own T2 photopic `C_thr`) and its dependence on
   object loading/absorption is unexplained (opened Iteration 32, exp-055,
@@ -1592,6 +1614,26 @@ measured them here):**
   unconditional lock at Iteration 35 if not built at Iteration 34. Full
   record: `experiments/056-t26-near-null-generalization/`, LOGBOOK.md
   Iteration 33.
+  **UPDATE (Iteration 35, exp-058): Gap 1 (single fixed-phase
+  realization) CLOSES — generalized across N=2000 genuine random-phase
+  draws per article, not just one.** The established δ=0 point this
+  program has cited since Iteration 33 (11.1–11.6× `C_thr`) is now shown
+  to be MILDER than 80% of random draws (percentile rank 19.6%/18.75%
+  within `|C(δ)|`) — an UNDERSTATEMENT of the artifact's typical
+  severity, not an overstatement or an unlucky outlier. 98.7%/98.35% of
+  individual random-phase realizations exceed `C_thr`. The naive-
+  incoherent approximation's flux-level mean is independently confirmed
+  correct (see T25's own update, above) even as the `C`-ratio's
+  distribution is shown heavy-tailed — the two findings are complementary,
+  not in tension. Ambient-light-analog caveat unchanged and reconfirmed
+  quantitatively (coherence-length argument, ~1 order of magnitude, this
+  cycle's own Realizability-bound section): no Tier-W/Tier-A verdict
+  moves. **T26 is now substantively CLOSED** — every gap this thread
+  named (single-realization, empty-vs-loaded R3, geometry/τ
+  generalization) has been addressed across Iterations 33–35; only the
+  R3-on-loaded-legs item (Iteration 34's own #2 competitive priority)
+  remains outstanding, tracked in the queue, not blocking. Full record:
+  `experiments/058-t25-phase-variance-redesign/`, LOGBOOK.md Iteration 35.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -11618,3 +11660,257 @@ breaking rotation; `Q_ext(x)`'s closed-form check LOCKED for Iteration 36
 proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
 synthesis, NOTES.md, run.py, results.json, six Phase-5 blind reviews,
 Phase-5 Red Team audit.
+
+## Iteration 35 — QUANTUM OPTICS' Phase-Variance Redesign (T25, exp-058) — 2026-08-22
+
+*Runner: cloud panel shift. Lead: QUANTUM OPTICS, by UNCONDITIONAL LOCK,
+breaking rotation — Red Team's Iteration-33 Phase-5 ruling ("if not built
+at Iteration 34, it becomes a LOCKED, unconditional, non-competing
+trigger for Iteration 35"), fired at Iteration 34's close since that
+cycle was consumed by the separately-LOCKED `graded_black_shell_flagship`
+fix. T1 escape route: NONE. Phase 1 required two dispatches: the first
+QUANTUM OPTICS sub-agent was terminated mid-read by the same upstream
+`[bio]`-tagged content-policy false positive this program has now hit
+five times (Iterations 30 ×2, 34 ×2, and this one), with near-zero usable
+content; retried once, unreworded, per Iteration-30's own established
+precedent, and completed cleanly. 20 new native FDTD calls
+(18 single-source legs + 2 noise-floor validation legs) + 11 new small-
+canonical-bench FDTD calls (trust-suite stage 20) + 4000 zero-marginal-
+cost post-hoc reconstructions (N=2000 draws × 2 articles).*
+
+**Headline: T25's variance question is answered, and closes — the Weber-
+contrast `C(δ)` distribution across N=2000 genuine random-relative-phase
+draws is heavy-tailed and mean-unstable (Weber `C` is an unbounded
+ratio, not the bounded, additive flux quantity this program's own
+Iteration-6 zero-mean-cross-term theorem concerns), but that theorem's
+actual flux-level claim is independently confirmed for the first time at
+the real N=9 instrument, to <0.7% relative error. The established δ=0
+point this program has cited since Iteration 33 turns out to be MILDER
+than 80% of random draws — an understatement of the diagnostic's typical
+severity, not an outlier. 98.7%/98.35% of draws exceed `C_thr`, no
+Tier-W/Tier-A verdict moves. Five genuine defects (one code bug, proven
+inert; two causal/mechanism errors; one arithmetic error; one incomplete
+same-cycle documentation promise) caught and fixed same-shift by
+independent Phase-5 seats before publication.**
+
+### PHASE 1 — PROPOSE
+
+QUANTUM OPTICS proposed building the machinery its own Iteration-33
+critique named and Red Team's own Iteration-33 audit ruled genuine new
+machinery (not a same-cycle drop-in): a `rel_phase` extension to
+`Sim.add_line_source` (backward-compatible, default 0.0), a new bespoke
+module `lab/phase_lines.py` persisting per-angle complex Ez/Hy-line
+phasors to disk, a reconstruction law `F(δ)=F(0)·e^{+iδ}` (derived from
+`emit._phasor`'s stated convention), a new trust-suite stage (20) gating
+a zero-phase and a nonzero-phase disk round trip, and N=2000 i.i.d.
+Uniform(0,2π) relative-phase draws per article (`off_pass`, `off_bracket`)
+reconstructed from 18 individually-run, disk-persisted legs at zero
+marginal FDTD cost. Falsifiable central claim: 50–95% of draws (central
+80–90%) would exceed VISION's T2 photopic `C_thr` even though the
+underlying incoherent-sum approximation's mean should hold (informal,
+low-confidence band on both the mean and the std).
+
+### PHASE 2 — CRITIQUE · five blind seats, then Red Team
+
+All five seats returned **support-with-changes**, zero opposes — though
+EM's and THERMODYNAMICS' fixes were each explicitly conditional ("would
+move to/toward OPPOSE without the fix"), a sharper split than the raw
+count implied. PHOTONICS (found the `e^{+iδ}` phasor law correct via
+independent re-derivation; sharpest attack: `FALLBACK_ANGLES`' mirror
+symmetry makes δ=0 a stationary point of window-integrated intensity —
+the T26 δ=0 anchor used to informally calibrate the std prediction is
+not a generic sample, direction unresolved); MATERIALS (T1:NONE and
+construction correctly claimed unchanged from exp-032/033; sharpest
+attack: the ambient-light-analog caveat needed a derived coherence-length
+bound, not an assertion); ELECTROMAGNETISM (**load-bearing**:
+independently re-derived the `e^{+iδ}` law two ways, including a time-
+delay sanity check; **mandatory**: Cauchy-Schwarz bounds raw flux, never
+the Weber `C` ratio — a per-draw flank-denominator diagnostic is required
+across all N=2000 draws, else verdict moves to OPPOSE); THERMODYNAMICS
+(**mandatory**: the 18 legs this cycle needs anyway make a
+`p_abs_naive` anchor — THERMODYNAMICS' own still-open Iteration-33
+mandatory fix — free; without it, verdict escalates toward OPPOSE);
+QUANTUM OPTICS' own critique agent [N/A — QUANTUM led this cycle, did
+not also critique]; VISION SCIENCE (`C_thr=0.005` correctly cited as the
+T2 photopic lab bar; sharpest attack: the falsifiable-claim sentence
+needs the ambient-light-analog caveat in the SAME sentence, not just
+Idealizations, per the exact pattern Red Team has caught four times).
+
+**Red Team's audit (everything): PROCEED-WITH-MANDATORY-FIXES, 5-item
+docket.** Independently confirmed the `e^{+iδ}` law a fourth way;
+independently confirmed `rel_phase`'s harmlessness against
+`artifacts.py::validate_groups`'s actual source-key validation (only
+missing required keys are rejected, never unknown extras — closing the
+proposal's own flagged open item). **Load-bearing catch**: stage 20 was
+about to be wired without bumping `_STAGE_IDS` past `range(1,20)` —
+the IDENTICAL bug species this program has hit three times before
+(Iterations 15, 17, 23) — caught before first light, not after. Docket:
+(1) bump `_STAGE_IDS`; (2) tier the Phase-2 fixes explicitly (MANDATORY:
+EM's flank diagnostic, THERMO's `p_abs_naive` anchor; RECOMMENDED:
+PHOTONICS' percentile-rank report, MATERIALS' coherence-length citation,
+VISION's caveat-forward language); (3) disclose the flank-denominator
+0.20 threshold is reused unmodified from its single-realization
+(exp-056) calibration; (4) state explicitly why stage 20 tests the
+object-loaded branch only; (5) mark the `rel_phase`/`lab.artifacts`
+question CLOSED. **All five Checkpoint criteria checked: none fire.**
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All 5 Phase-2 fixes + all 5 Red Team docket items applied in full — no
+overrides. **Director's own Phase-3 catch, not raised by any Phase-2 seat
+or Red Team**: direct execution (not reasoning alone) found stage 20's
+Q8 gate settles far more slowly on a near-lossless article than on its
+own moderately-lossy canonical bench — off_pass's own native geometry, at
+the SAME step count, showed a field-relative reconstruction residual
+~100× larger than stage 20's own bench (1.06×10⁻³ vs 1.45×10⁻⁵),
+confirmed via an independent N=1 single-source convergence series
+(ruling out a bug) and translated into the units that matter (Weber `C`,
+not raw field RMS: only 1.24×10⁻⁴ absolute — 2.5% of `C_thr`). Rather
+than brute-force ~40× more FDTD steps or trust the assumption untested,
+exp-058 was given its own empirical noise-floor validation leg per
+article (P-058-NF), STEPS kept at exp-056's established 1400. Predictions
+P-058-1/NF/2/3(revised)/4/5/6/7 frozen in `NOTES.md`, committed to git
+(`7f8bb3b`) BEFORE any FDTD call. Full bench reverified 61/61
+(`--only 12346789,10,11,18,19,20`) before the commit.
+
+### PHASE 4 — TEST
+
+20 new FDTD calls (18 legs + 2 noise-floor validation), 427s.
+`experiments/058-.../run.py` executed: for each article, 9 individual-
+angle legs captured, persisted to disk via `lab/phase_lines.py`, and
+reloaded (genuine round trip); zero-phase reconstruction checked against
+exp-056's established `C_joint`; one noise-floor validation leg (fixed,
+seeded nonzero relative-phase draw, direct joint Sim vs reconstruction);
+N=2000 random-phase draws reconstructed purely post-hoc.
+
+**Results — most predictions CONFIRMED, one instructively REFUTED.**
+P-058-1 (zero-phase reconstruction): CONFIRMED, 2.4×10⁻⁷%/4.7×10⁻⁶%
+relative error, far inside band. P-058-NF (noise floor): PASS both
+articles (2.48%/6.89% of `C_thr`) — the N=2000 statistics are
+trustworthy. **P-058-2 (draw mean vs `C_naive`±20%): REFUTED — wrong
+sign, 6–20× the predicted magnitude** — disclosed, not smoothed over, as
+this cycle's own genuine miss: an unstated assumption that a RATIO's
+empirical mean tracks its components' individual means, which it need
+not (`E[X/Y]≠E[X]/E[Y]`). P-058-3 (std, Director-revised at Phase 3 after
+the original narrow Phase-1 band was flagged suspect by a diagnostic
+run): CONFIRMED, vindicating the self-correction. P-058-4 (fraction
+`|C|>C_thr`): 98.7%/98.35%, ABOVE the predicted [50,95]% band — even
+more extreme than anticipated. P-058-5 (flank-denominator flagged
+fraction): 0.0%/0.0%, CONFIRMED, though not for the reason initially
+assumed (see Phase 5). P-058-6 (percentile rank of `|C(δ=0)|` outside
+[25,75]): CONFIRMED, 19.6%/18.75% — the LOW tail, directionally matching
+the informal secondary hedge. P-058-7 (`p_abs_naive`/`p_abs_joint`
+ratio, informational): 0.784/0.784, CONFIRMED as a band member (later
+corrected in direction/mechanism at Phase 5 — see below).
+
+### PHASE 5 — REVIEW · six fresh seats, then Red Team audit
+
+**5 PROMISING (PHOTONICS, MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS,
+QUANTUM OPTICS), 1 PARTIAL (VISION SCIENCE)** — not unanimous, the
+program's first split verdict since Iteration 32's 3/3.
+
+- **PHOTONICS**: independently re-verified everything from raw persisted
+  data, not `results.json`. **Load-bearing find**: `lab/phase_lines.py`'s
+  `flux_from_lines()` had the OPPOSITE sign from
+  `lab.ambient.observer_profile()`, contradicting its own docstring —
+  confirmed numerically against exp-056's established anchor to 12+
+  significant figures, sign-flipped. Proven mathematically inert on every
+  ratio-based number this cycle reported (`C`'s own invariance under a
+  uniform sign flip), but stage 20 never gated this layer, only the raw
+  field reconstruction beneath it. **Separately found P-058-7's causal
+  direction backwards**: `ratio=0.784<1` means naive < joint, i.e.
+  coherent injection is CONSTRUCTIVE (absorbs MORE), not destructive as
+  stated — a synthetic-focusing effect from all 9 legs' phase ramps
+  sharing the object's own y-center.
+- **MATERIALS**: confirmed no material/construction changed this cycle.
+  **Found the coherence-length arithmetic mislabeled this program's own
+  established 30nm/cell dose as a per-cell rate, inflating the object's
+  physical scale ~77× and self-contradicting its own adjacent "tens of
+  micrometers" claim.**
+- **ELECTROMAGNETISM**: independently found the SAME sign bug PHOTONICS
+  found, via a different route (raw draw-array reconstruction), and
+  proved it inert a second, independent way. Actively hunted for a bug
+  that could explain the heavy tail besides "C is an unbounded ratio" and
+  found none — confirmed the ratio-structure explanation is correct.
+  Quantified what EM's own binary flank flag (0/2000 flagged) couldn't
+  show: a real, moderate (`corr≈0.45–0.50`, R²≈0.20–0.25) but only
+  partially-explanatory correlation between flank suppression and `|C|`.
+- **THERMODYNAMICS**: verified its own Iteration-33 mandatory fix
+  genuinely closed (apples-to-apples call sites, correct convention).
+  **Independently found the 0.784/0.784 cross-article agreement's stated
+  mechanism ("same τ-to-R_OUT ratio") is numerically false** (differ
+  >2×) — proposed the correct leading-order-in-τ field-pattern-
+  universality explanation (did not itself catch PHOTONICS' direction
+  error — both fixes needed together). Explicitly confirmed ZERO thermal/
+  NETD stakes from any finding this cycle.
+- **QUANTUM OPTICS**: found the "median tracks `C_naive`" framing
+  oversold its own precision (actual ratio 2.77×/4.10×, not "same order
+  of magnitude" tightness) and — most consequentially — that the raw
+  `b_obj`/`b_flank` draws needed to directly test its own Iteration-6
+  theorem at the real instrument were computed then discarded, the
+  single cheapest fix this cycle left undone.
+- **VISION SCIENCE — PARTIAL**: `C_thr` citation and regime match
+  confirmed correct. Found the Headline's own most-quotable sentence
+  ("98.7%/98.35%... false FAIL") did not deliver this cycle's own Phase-3
+  promise (item 7) to embed the ambient-light-analog caveat in the SAME
+  sentence — a real, textually-confirmed, self-inflicted gap, the
+  identical failure pattern Red Team has caught four times (Iterations
+  24, 32, 33, and now this cycle's own broken same-cycle promise).
+
+**Red Team's final audit (everything): PROMISING, explicitly OVERRIDING
+VISION SCIENCE's PARTIAL to align with the other five seats.**
+Independently re-verified every finding above a further time (a third
+independent confirmation of the sign bug, direct arithmetic confirmation
+of the 0.784 direction error and the coherence-length inflation).
+**Ruling on the override**: VISION's finding is real and docketed as
+mandatory, but the caveat's substance is correctly present elsewhere in
+the same document (Headline lead-in, Idealization 6, P-058-4's own
+pre-registered Predictions text) — the identical same-shift-fixable
+documentation-gap class this program has repeatedly and correctly
+resolved via mandatory fix rather than a blocking verdict (direct
+Iteration-33 precedent, an arguably worse instance on an otherwise-
+unanimous 6-0 cycle). **New binding tripwire**: this is the fourth prior
+instance of this exact pattern plus a same-cycle broken promise — a
+further recurrence after this ruling is a retroactive Checkpoint-4
+trigger, no further deliberation required to establish it as drift. **All
+five Checkpoint criteria checked explicitly: none fire** — criterion 4
+scrutinized hardest (two genuine bugs plus a caveat gap this cycle),
+ruled non-firing because every defect was CAUGHT by falsifiable,
+independently-checkable claims, the sign bug is proven inert and
+structurally isolated from the real constraint-3 pipeline, and no
+constraint is quietly dropped.
+
+**Nine-item mandatory same-shift fix docket, all applied, none requiring
+new FDTD**: (1) `flux_from_lines`'s sign fixed. (2) New stage-20 gate Q9
+(flux-level identity vs `ambient.observer_profile`) added, measured
+0.00e+00 exact. (3)+(4) P-058-7's direction and mechanism corrected
+together. (5) Coherence-length arithmetic corrected (~1 order of
+magnitude, not 1–2, on the illuminated-aperture baseline). (6) Headline's
+numeric-claim sentence now carries its caveat inline; median-tracking
+precision corrected. (7) Citation year fixed. (8) `b_obj_draws`/
+`b_flank_draws` persisted via a new script (`recompute_flux_signs.py`,
+zero new FDTD, reloads already-persisted legs) — which ALSO
+independently confirmed fix (1) is provably inert (bit-identical `C`
+values, `max|diff|=0.00e+00` across all 4000 draws) and directly
+confirmed QUANTUM's own Iteration-6 theorem at the flux level for the
+first time (0.01–0.69% relative error, 4/4 checks, consistent with
+N=2000 Monte-Carlo sampling noise). (9) `lab/validation/VALIDATION.md`'s
+two queued "Measurement lesson" entries written (settling-vs-material-
+loss; ratio gates can't see sign bugs either).
+
+Bench 62/62 (`--only 12346789,10,11,18,19,20`) at Phase 5 close (new
+stage-20 Q9 gate included); zero `lab/ARTIFACTS.md`/`lab/artifacts.py`/
+`AGENTS.md`/`lab/viz.py` touched. Commits: `7f8bb3b` (Phase-3 synthesis,
+predictions, new machinery), `0b95bff` (Phase-4 results), `73a87e2`
+(Phase-5 reviews + Red Team audit + 9 mandatory fixes). **Verdict:
+PROMISING.** Next lead: rotation resumes at PHOTONICS for whichever
+cycle follows (rotation: VISION→PHOTONICS→MATERIALS→EM→THERMODYNAMICS→
+QUANTUM→repeat; QUANTUM led this cycle by LOCK, breaking rotation) —
+competing against `Q_ext(x)`'s own LOCKED item (Iteration 34's ruling:
+leads Iteration 36 unless folded in as a zero-cost desk rider, Director's
+call this cycle: NOT folded in, explicitly deferred) and the ranked
+queue below. Full record: `experiments/058-t25-phase-variance-redesign/`
+— Phase-1 proposal, five Phase-2 blind critiques, Phase-2 Red Team audit,
+Phase-3 synthesis, NOTES.md, design_geometry.py, run.py, results.json,
+`recompute_flux_signs.py`, `sign_fix_verification.json`, six Phase-5
+blind reviews, Phase-5 Red Team audit.

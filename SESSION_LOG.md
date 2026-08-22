@@ -2,6 +2,89 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-22 (panel shift) — Iteration 35 complete (exp-058): T25's
+variance question closes — `C(δ)` is heavy-tailed/mean-unstable across
+N=2000 genuine random-phase draws, but the underlying flux means confirm
+QUANTUM's own Iteration-6 theorem for the first time at the real N=9
+instrument; the established δ=0 point is milder than 80% of random
+draws, not an outlier; five genuine defects caught and fixed same-shift.
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle). Read HANDOFF.md, README.md, PANEL.md,
+LOGBOOK.md (11620 lines, in full — via targeted full reads of Iterations
+30–34 plus the T25/T26 live-thread text and full-file grep for cross-
+references, given this shift's own scale), PLAN.md's Current-state
+section and the standing Iteration-35+ queue, AGENTS.md, VALIDATION.md,
+and SESSION_LOG's top two entries. Bench verified green:
+`--only 12346789,10,11,18,19` → 59/59 in 136s before any panel work
+began.
+
+**Iteration 35 — QUANTUM OPTICS' phase-variance redesign (exp-058).**
+Lead: QUANTUM OPTICS, by UNCONDITIONAL LOCK, breaking rotation (Red
+Team's Iteration-33 ruling, fired at Iteration 34's close). Phase 1
+required two dispatches — the first sub-agent hit the identical `[bio]`
+content-policy false positive this program has now seen five times
+(Iterations 30 ×2, 34 ×2, this one), near-zero usable content; retried
+once, unreworded, per Iteration-30's own precedent, completed cleanly.
+Full five-phase panel cycle: Phase 1 (new machinery — a `rel_phase`
+source parameter, a disk-persisted per-angle line-phasor module, a new
+trust-suite stage, N=2000 random-phase draws) → five blind Phase-2
+critiques (all support-with-changes, though EM's and THERMODYNAMICS'
+were each explicitly conditional) + Red Team audit (PROCEED-WITH-
+MANDATORY-FIXES, 5-item docket — load-bearing catch: `_STAGE_IDS` was
+never bumped for the new stage 20, the identical bug species this
+program has hit three times before, caught before first light) →
+Phase 3 synthesis (all fixes applied; Director's own catch, found by
+direct execution: the new machinery settles ~100× slower on a near-
+lossless article than on its own trust-suite bench, given its own
+empirical noise-floor validation leg rather than trusted untested;
+predictions committed to git BEFORE any run) → Phase 4 (20 new native
+FDTD calls + 11 new small-bench FDTD calls + 4000 zero-cost post-hoc
+draws, 427s) → six blind Phase-5 reviews (5 PROMISING/1 PARTIAL — the
+program's first split verdict since Iteration 32) + Red Team's final
+audit (PROMISING, explicitly overriding the PARTIAL, with a new binding
+tripwire on a fourth-plus recurrence of a caveat-placement pattern).
+
+**Results**: the Weber-contrast `C(δ)` distribution across N=2000
+genuine random-relative-phase draws is heavy-tailed and mean-unstable
+(the empirical mean is wrong-sign, 6–20× off the naive-incoherent
+anchor — a REFUTED, honestly-disclosed prediction) — but this is now
+understood, not merely observed: `C` is an unbounded ratio, not the
+bounded flux quantity QUANTUM's own Iteration-6 theorem concerns.
+Directly tested for the first time at the real N=9 instrument (a
+same-shift follow-up script, `recompute_flux_signs.py`, persisting raw
+flux draws the original run discarded): the theorem's actual claim is
+CONFIRMED to <0.7% relative error, 4/4 checks. The established δ=0
+point this program has cited since Iteration 33 turns out to be MILDER
+than 80% of random draws (percentile rank 19.6%/18.75%) — an
+understatement of the diagnostic's typical severity, not an unlucky
+outlier; 98.7%/98.35% of individual random-phase realizations exceed
+`C_thr`. No existing Tier-W/Tier-A constraint-3 verdict moves — every
+draw is a hypothetical mutually-coherent illuminant no real ambient
+source produces (a coherence-length bound, corrected at Phase 5 close
+from a ~77×-inflated original, now stands at ~1 order of magnitude
+beyond any real broadband source). **Five genuine defects caught and
+fixed same-shift by independent Phase-5 seats before publication**: a
+real sign-convention bug in the new `lab/phase_lines.py` module (found
+independently by two seats via different routes, proven mathematically
+inert on every number this cycle reported via a same-shift verification
+script, but a real landmine for future non-ratio consumers — fixed, plus
+a new trust-suite gate closing the coverage gap that let it ship
+undetected); a backwards causal-direction error and a false mechanism
+phrase on an absorbed-power finding (needed two independent seats'
+catches together); the coherence-length arithmetic error; and an
+incomplete same-cycle documentation promise (VISION SCIENCE's PARTIAL
+verdict, overridden by Red Team per direct Iteration-33 precedent, with
+a new tripwire for any further recurrence). Both T25 and T26 (live
+threads since Iteration 29/32) are now substantively CLOSED. `Q_ext(x)`
+— LOCKED, unconditional, per Iteration 34's ruling — was NOT folded in
+as a zero-cost rider this cycle (Director's call, explicitly deferred,
+not silently dropped) and now leads Iteration 36. No Checkpoint
+criterion fires. Full record: PLAN.md, LOGBOOK.md Iteration 35,
+`experiments/058-t25-phase-variance-redesign/`. Bench 62/62
+(`--only 12346789,10,11,18,19,20`) at Phase 5 close; zero
+`lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched.
+
 ## 2026-08-22 (panel shift, same shift as Iteration 33 below) — Iteration 34
 complete (exp-057): `graded_black_shell_flagship`'s thermal margin
 corrects from 6.04× to 699.27× — this program's longest-pending LOCKED
