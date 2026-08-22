@@ -22,8 +22,9 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-22, panel Iteration 33 done, Iteration 34 LOCKED
-to `graded_black_shell_flagship` — see PANEL.md/LOGBOOK.md
+## Current state (2026-08-22, panel Iteration 34 done, Iteration 35 LOCKED
+to QUANTUM's phase-variance redesign (Q_ext(x) LOCKED behind it, Iteration
+35 rider or Iteration 36) — see PANEL.md/LOGBOOK.md
 for the phenomenon-program's own current state; this section's numbered
 history stops at the pre-redesign exp-023 baseline, panel-era entries live
 in the queue below and in full in LOGBOOK.md)
@@ -1658,47 +1659,89 @@ continuous mode with checkpoints. The remaining [open] items below are
   Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
   NOTES.md, design_geometry.py, run.py, results.json, six Phase-5 blind
   reviews, Phase-5 Red Team audit. LOGBOOK.md Iteration 33.
-- **[LOCKED — panel Iteration 34, UNCONDITIONAL, breaking rotation, per
-  THERMODYNAMICS' Phase-5 escalation request granted by Red Team's
-  Iteration-33 audit]** **`graded_black_shell_flagship`'s re-run through
-  the corrected `mixed_length_scale_regime`** (exp-054's own machinery,
-  zero new FDTD) — ranked #1 at Iteration 31's close, deferred at
-  Iteration 32 (T25/T26 ran instead) and again at Iteration 33 (the T26
-  near-null build ran instead), exactly the third-deferral trigger Red
-  Team itself pre-declared in writing at Iteration 32's close. This
-  program's single thinnest thermal-detectability margin (~6.04×, itself
-  shown to shrink ~3.03× under this exact `mixed_length_scale_regime` bug
-  class). Not subject to further ranked-list competition; if time permits
-  in the same shift after this item closes, the shift may proceed directly
-  to the competitive ranked list below without waiting for a fresh
-  dispatch.
-- **[queued — ranked for Iteration 34+ (after the LOCKED item above), per
-  Red Team's Iteration-33 Phase-5 reconciliation of all six seats,
-  exp-056 — CURRENT top-of-queue, supersedes the list below as the active
-  ranking, retained as valid backlog, not deleted]** (1) **QUANTUM's
-  phase-variance redesign** (per-angle persisted complex-`Ez`/`Hy`-line
-  save format + a new trust-suite identity gate + N random relative-phase
-  draws on `off_pass`/`off_bracket`) — converged top-3 pick of 5 of 6
-  Iteration-33 seats, the clearest cross-seat convergence in that cycle's
-  packet. **Pre-registered for a 2nd-deferral unconditional lock at
-  Iteration 35 if not built here.** (2) **R3-on-loaded-legs** — resolution
-  check (cpl 20→30, exp-056's own rescaled-geometry idiom) on
-  `off_pass_joint`/`off_bracket_joint` themselves, never run at Iteration
-  33 (independently found by EM and QUANTUM) — the "over 10×" headline
-  figures have never themselves been resolution-tested; cheap, same
-  idiom, a natural same-build rider alongside (1). (3) **P-VIS-5's
+- [done 2026-08-22, panel Iteration 34, cloud panel shift] **exp-057
+  closing the flagship's `H_CONV`/`MASS_KG`/`w_on`-area gap** —
+  THERMODYNAMICS' lead, by UNCONDITIONAL LOCK breaking rotation (Red
+  Team's Iteration-33 escalation ruling, executed). Zero new FDTD:
+  `graded_black_shell_flagship`'s thermal margin, corrected through
+  `mixed_length_scale_regime`, corrects from **6.04× to 699.27×**
+  (UNDETECTABLE by a wide margin) — **~116× LARGER**, the OPPOSITE
+  direction from exp-054's own ~3.03× shrink, because the flagship never
+  had `H_CONV` corrected even once. Mechanism code-verified (not
+  hand-typed): the radiative term's share of `dP/dT` collapses from
+  co-equal-with-`H_CONV` (50.70%) to negligible (0.046%) once the
+  physically-derived `h_eff≈11,111 W/m²K` swamps it — the Phase-1 draft's
+  own naive two-factor story (`~235×`) was wrong even though its final
+  number (`~116×`) was right, caught by EM's Phase-2 critique. Phase 5:
+  **unanimous PROMISING, 6-for-6** — the program's third unanimous
+  panel-era verdict — with six mandatory same-shift fixes (two citation
+  errors — a wrong-file citation for the shell construction, and the
+  silicon-provenance chain wrongly attributed to Iteration 20 rather than
+  exp-045/046; a diffraction-inflation bound corrected from `~1.5–2×` to
+  the correctly-derived `~2.37×`; a `Q_ext(x)` cycle-count reconciliation;
+  full NETD-disclaimer propagation, closing an exact recurrence of an
+  Iteration-31 finding). **Two new unconditional LOCKs fired at this
+  cycle's own Phase-5 close** (below). No Checkpoint criterion fires.
+  Verdict: PROMISING. Full record:
+  `experiments/057-graded-black-shell-flagship-mixed-regime/` — Phase-1
+  proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
+  synthesis, NOTES.md, run.py, results.json, six Phase-5 blind reviews,
+  Phase-5 Red Team audit. LOGBOOK.md Iteration 34.
+- **[LOCKED — panel Iteration 35, UNCONDITIONAL, breaking rotation, per
+  Iteration 33's own pre-registered condition, fired at Iteration 34's
+  close (Red Team's Iteration-34 Phase-5 ruling)]** **QUANTUM's phase-
+  variance redesign** — per-angle persisted complex-`Ez`/`Hy`-line save
+  format + a new trust-suite identity gate + N random relative-phase draws
+  on `off_pass`/`off_bracket` (exp-056's own T25 open question). Iteration
+  34 was consumed entirely by the separately-LOCKED flagship item above,
+  so the "if not built at Iteration 34" condition fires — leads Iteration
+  35, not subject to further ranked-list competition.
+- **[LOCKED — for a future iteration (Iteration 35 as a zero-cost rider,
+  or Iteration 36), UNCONDITIONAL, per Red Team's Iteration-34 Phase-5
+  ruling, newly declared this cycle]** **The `Q_ext(x)` closed-form
+  cylinder/disk check** bounding `w_on`'s diffraction excess over `r_out`
+  — proposed at Iteration 31's close, three clean deferrals since (32, 33,
+  34 — the proposing cycle does not itself count, per this program's own
+  T23/`h_eff` convention), meeting the same 3-deferral bar that triggered
+  `graded_black_shell_flagship`'s own lock. Structurally more consequential
+  than that fix was — underlies every article's `p_abs_w` in the thermal
+  ledger, not one. Declared now rather than awaiting a retroactive
+  discovery, per THERMODYNAMICS' own Phase-5 recommendation. Zero new
+  FDTD (desk-analytic).
+- **[queued — ranked for Iteration 35+ (behind the two LOCKED items
+  above), per Red Team's Iteration-34 Phase-5 reconciliation of all six
+  seats, exp-057 — CURRENT top-of-queue, supersedes the list below as the
+  active ranking, retained as valid backlog, not deleted]** (1)
+  **R3-on-loaded-legs** — resolution check (cpl 20→30, exp-056's own
+  rescaled-geometry idiom) on `off_pass_joint`/`off_bracket_joint`
+  themselves, never run at Iteration 33 (independently found by EM and
+  QUANTUM) — the "over 10×" headline figures have never themselves been
+  resolution-tested; cheap, same idiom, a natural same-build rider
+  alongside QUANTUM's own Iteration-35 LOCKED build. (2) **P-VIS-5's
   angle-quantization sensitivity formula** (derive, not measure, per Red
   Team's own Iteration-33 mandatory fix) — named by 3 of 6 Iteration-33
-  seats. (4) **MATERIALS' absorptivity/mechanism literature check**
-  (exp-052 queue item 5) — zero-FDTD, deferred since Iteration 29, now 5
-  cycles running. (5) **λ/angle generalization** (450nm/750nm) for the T26
-  near-null result — exp-056 tested one native geometry at one λ only. (6)
-  **THERMO sidecar's naive-incoherent absorbed-power anchor** for
-  `off_pass`/`off_bracket` (re-run the 18 individual legs with full
-  captures retained) — closes THERMODYNAMICS' still-open Iteration-33
-  Phase-2 mandatory fix, per the new binding tripwire (any future citation
-  of exp-056 calling this fix "closed" rather than "informational,
-  comparator anchor not yet built" is a retroactive Checkpoint-4 trigger).
+  seats. (3) **MATERIALS' absorptivity/mechanism literature check**
+  (exp-052 queue item 5) — zero-FDTD, deferred since Iteration 29, now SIX
+  cycles running — itself approaching this program's own escalation
+  pattern (Red Team's Iteration-34 own observation). (4) **λ/angle
+  generalization** (450nm/750nm) for the T26 near-null result — exp-056
+  tested one native geometry at one λ only. (5) **THERMO sidecar's
+  naive-incoherent absorbed-power anchor** for `off_pass`/`off_bracket`
+  (re-run the 18 individual legs with full captures retained) — closes
+  THERMODYNAMICS' still-open Iteration-33 Phase-2 mandatory fix, per the
+  binding tripwire (any future citation of exp-056 calling this fix
+  "closed" rather than "informational, comparator anchor not yet built"
+  is a retroactive Checkpoint-4 trigger). (6) **Shell-vs-solid thermal-
+  mass parameterization** (`lumped_cube_mass_kg`/`mixed_length_scale_
+  regime` for a two-region PEC-core+shell mass) — third-consecutive-cycle
+  open item (Iteration 20→31→34), confirmed non-load-bearing for every
+  steady-state prediction to date but "a live landmine" (THERMODYNAMICS'
+  own framing) for the first future transient/`tau_thermal_s`-dependent
+  prediction off this chain. (7) **`graded_black_shell_flagship`'s own
+  450/750nm sweep** through the corrected chain, reusing already-committed
+  per-λ data, zero new FDTD. (8) **`coupled_segment_general`'s promotion**
+  to a real trust-suite stage with an RK4 cross-check — exp-054's own
+  carried item, still unbuilt across four cycles now.
 - **[queued — ranked for Iteration 33+, per Red Team's Iteration-32
   Phase-5 reconciliation of all six seats, exp-055 — superseded by the
   Iteration-33 list above, retained as historical backlog; both

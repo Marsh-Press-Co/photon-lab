@@ -11382,3 +11382,239 @@ THERMODYNAMICS→QUANTUM→repeat; VISION led this cycle). Full record:
 Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
 NOTES.md, design_geometry.py, run.py, results.json, six Phase-5 blind
 reviews, Phase-5 Red Team audit.
+
+## Iteration 34 — Closing the Flagship's H_CONV/MASS_KG/w_on-Area Gap (exp-057) — 2026-08-22
+
+*Runner: cloud panel shift. Lead: THERMODYNAMICS, by UNCONDITIONAL LOCK,
+breaking rotation — Red Team's Iteration-33 Phase-5 audit granted
+THERMODYNAMICS' own escalation request: `graded_black_shell_flagship`'s
+re-run through the corrected `mixed_length_scale_regime` had been deferred
+three times, meeting the unconditional-lock bar Red Team pre-declared at
+Iteration 32's close. T1 escape route: NONE. Zero new FDTD calls.*
+
+**Headline: `graded_black_shell_flagship`'s thermal-detectability margin —
+this program's single thinnest, at ~6.04× — corrects to 699.27×
+(UNDETECTABLE by a wide margin), ~116× LARGER, the OPPOSITE direction from
+exp-054's own ~3.03× shrink for the two articles it already corrected,
+because the flagship never had its H_CONV placeholder replaced even once.
+Closes the program's longest-pending LOCKED item cleanly. Two new
+unconditional LOCKs fire at this cycle's own close: QUANTUM's phase-
+variance redesign for Iteration 35, and Q_ext(x)'s closed-form check for a
+future iteration.**
+
+### PHASE 1 — PROPOSE
+
+THERMODYNAMICS proposed applying `lab.thermo_sidecar.mixed_length_scale_
+regime` to `graded_black_shell_flagship` exactly as exp-054's own Part A
+applied it to the ON-endpoint: `p_abs_w` stays on the already-measured
+optical quantity (`1.7409069740390205e-12` W, exp-043's own established
+figure via `absorbed_power_established_ratio`); `h_eff`, thermal mass, and
+radiating area re-derived from `r_out` alone (78 cells × 30nm). Predicted,
+by direct code execution before freeze: `dt_ss_full_K` in
+[2.5×10⁻⁵,3.2×10⁻⁵] K (central `2.8601275372385233e-05` K), NETD-lo margin
+in [600×,800×] (central `699.27×`), classification UNDETECTABLE, and the
+DIRECTION explicitly predicted to GROW (not shrink, unlike exp-054's two
+corrected articles) because the flagship's `H_CONV=5.0` placeholder had
+never been corrected even once.
+
+### PHASE 2 — CRITIQUE · five blind seats, then Red Team
+
+All five seats returned **support-with-changes**. VISION SCIENCE's
+critique agent was independently terminated mid-response by the same
+upstream `[bio]`-tagged content-policy false positive that blocked
+Iteration 30's build (a second occurrence this shift, following Red
+Team's own audit hitting the identical block later in the same cycle) —
+both truncations delivered ~95–98% of a coherent, independently-
+verifiable critique before cutting off, a different signature from
+Iteration 30's zero-content, twice-reproduced block; both ruled usable.
+PHOTONICS and QUANTUM OPTICS, independently, flagged the still-open
+`w_on`-vs-`r_out` diffraction-inflation caveat (`Q_ext(x)`, ranked #4 at
+Iteration 31's close, unrun for three cycles). MATERIALS flagged the
+shell-vs-solid thermal-mass mismatch as a third-consecutive-citation-cycle
+open item. VISION flagged the NETD disclaimer's per-row propagation
+(exp-054's own binding pattern). **ELECTROMAGNETISM's critique was
+load-bearing**: the Phase-1 draft's own mechanism narrative ("h_eff jump
+~2200× dominates ~9.47× area shrink," implying a ~235× product) is WRONG
+attribution even though the final ~116× number is right — the real
+mechanism is the radiative term's share of `dP/dT` collapsing from
+co-equal-with-`H_CONV` (50.70%) to negligible (0.046%) once the
+physically-derived `h_eff` swamps it; also flagged a Kn/slip-flow citation
+drift (a generic "68nm" figure vs. this program's own sourced 65.7nm).
+
+**Red Team's audit (everything, also interrupted by the identical `[bio]`
+false positive, ~98% complete, independently re-verified and ruled
+usable): PROCEED-WITH-MANDATORY-FIXES, no numbered attacks of the
+`[unfalsifiable]`/`[inexpressible]`/constraint-#N kind, 6-item docket.**
+Independently confirmed `graded_black_shell`'s annulus construction
+(`pec_disk(30)` then `graded_black_shell(30,78)`) directly against source,
+and corrected MATERIALS' own cited alternative core composition ("possibly
+vacuum") — the core is unambiguously PEC. Independently re-derived EM's
+mechanism-decomposition to the decimal, confirmed correct and load-bearing.
+Independently confirmed the Kn drift and the true sourced figure
+(65.7nm/exp-046, `Kn=0.0281`, slip-corrected margin `≈662×`, no verdict
+risk). **All 5 Checkpoint criteria checked: none fire.**
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All 6 docket items accepted in full: (1) mechanism narrative replaced with
+the code-verified `115.757×` figure and the radiative-dilution mechanism,
+not the wrong naive `~235×` product; (2) Kn/slip-flow disclosure corrected
+to `65.7nm`/`0.0281`, slip-corrected margin `662.09×`; (3) the diffraction-
+inflation caveat restored, cross-referencing the still-open `Q_ext(x)`
+check; (4) the shell-vs-solid mass mismatch tracked explicitly as a
+third-consecutive-citation-cycle item, PEC core (not vacuum) correctly
+cited; (5) NETD disclaimer propagated per-row; (6) a same-shift regression
+assert added pinning `p_abs_w`/`dt_ss_full_K` against exp-043's committed
+values, closing the exact gap Iteration-31 Phase-5 pre-flagged. Predictions
+P-057-1 through P-057-6 frozen in `NOTES.md`, committed to git (`48c305c`)
+before the deterministic desk computation.
+
+### PHASE 4 — TEST
+
+Zero new FDTD calls — pure desk/analytic re-derivation, `lab.thermo_
+sidecar.mixed_length_scale_regime`/`netd_disposition`, unmodified since
+exp-054, no new engine solves. `experiments/057-.../run.py` executed the
+computation with its own regression asserts passing clean.
+
+**Results — all six predictions CONFIRMED.** `dt_ss_full_K=2.8601275372
+385233e-05` K, NETD-lo margin `699.27×`, classification UNDETECTABLE,
+direction GROWS (`115.757×` larger than the standing `6.04×` figure),
+mechanism code-verified (`115.757×` real vs `234.71×` naive-wrong, the
+radiative-share collapse from 50.70% to 0.046% explaining the gap), Kn/
+slip-flow disclosure confirmed (`0.02808`, slip-corrected margin
+`662.09×`).
+
+### PHASE 5 — REVIEW · six fresh seats, then Red Team audit
+
+**Unanimous PROMISING, 6-for-6** — the third unanimous panel-era verdict
+(after Iteration 11's PARTIAL and Iteration 33's PROMISING). All six seats
+independently re-derived the mechanism decomposition and reproduced it to
+the decimal; four independently found the same unremarked cross-check
+(`p_abs_w_ratio == margin_ratio` exactly, since `p_abs_w` is untouched).
+
+- **PHOTONICS**: clean re-verification; found the `~1.5–2×` diffraction-
+  inflation bound conflates a LINEAR width ratio with the AREA-domain bound
+  the `iso_xsec_sq` convention actually needs — correct figure `~2.37×`
+  (1.54²), margin still `~295×` even at that correction. Contextualized
+  with `ka≈24.5` (large-x/geometric-optics regime, `Q_ext≈1.54` unsurprising
+  physics, not evidence of a defect).
+- **MATERIALS**: confirmed the annulus/PEC-core construction byte-for-byte.
+  Found TWO citation errors: (1) the shell construction was cited to
+  `design_geometry.py` (a pure ray-trace script, zero materials calls) —
+  the real construction is in `run.py` lines 44–45, a different file; (2)
+  the "Iteration 20→31→34" silicon-provenance chain is wrong — grepped
+  exp-043 directly, zero hits for "silicon"/"2330"; Iteration 20's
+  `MASS_KG=1e-15` was an unidentified-material placeholder, not silicon —
+  the correct silicon chain is exp-045/046 (Iteration 22/23)→31→34,
+  conflated with the separate (correctly-stated) shell-vs-solid-mass chain.
+- **ELECTROMAGNETISM**: independently re-derived every figure from scratch
+  in a fresh script (not importing the module), confirmed the mechanism-
+  decomposition identity algebraically. Flagged `Q_ext(x)` now unrun for
+  four consecutive cycles, approaching the escalation bar.
+- **QUANTUM OPTICS**: independent full re-derivation, plus the `p_abs_w`/
+  margin ratio cross-check nobody else stated explicitly. Found a real
+  inconsistency: `run.py` says `Q_ext(x)` unrun "three full cycles,"
+  NOTES.md says "four cycles" — flagged for reconciliation. **Argued
+  Iteration 33's own pre-registered condition for locking QUANTUM's own
+  phase-variance redesign at Iteration 35 has now fired**, since Iteration
+  34 was consumed entirely by this separately-LOCKED item.
+- **VISION SCIENCE**: found NOTES.md's own mandatory-fix-5 claim
+  ("propagated to every row") didn't match the actual table — only 2 of 5
+  margin-bearing rows carried the disclaimer; `run.py`'s print statements
+  carried none — an EXACT RECURRENCE of a finding VISION SCIENCE made
+  against this identical code pattern at Iteration 31, never structurally
+  fixed for ad hoc dicts built directly in an experiment's own `run.py`.
+- **THERMODYNAMICS**: actually RAN THE FULL TRUST SUITE (59/59 green) as
+  part of its own check. Confirmed the escalation is cleanly discharged for
+  the specific item, but named two items that must NOT be folded into
+  "discharged": `Q_ext(x)` (now more consequential than the flagship fix
+  was, since it underlies every article's `p_abs_w` in the ledger) and the
+  shell-vs-solid mass mismatch. **Recommended pre-registering an
+  unconditional-lock trigger for `Q_ext(x)` NOW, rather than waiting for a
+  retroactive discovery as happened with `h_eff`.**
+
+**Red Team's final audit (everything): PROMISING, 6-0 seat count adopted
+without override.** Independently spot-checked every load-bearing claim
+against source: confirmed the wrong-file citation (`design_geometry.py`
+has zero materials calls; the real construction is `run.py` lines 44–45);
+confirmed the silicon-provenance chain error (grep-confirmed zero
+"silicon"/"2330" hits in exp-043); confirmed PHOTONICS' `~2.37×`
+area-domain arithmetic exactly; **reconciled the `Q_ext(x)` cycle-count
+question definitively**: the item was first *proposed* at Iteration 31's
+close (not itself a deferral, per this program's own established T23/
+`h_eff` convention — the proposing cycle never counts), so the correct
+count is **three clean deferrals (32, 33, 34)**, matching `run.py`'s own
+caveat text; NOTES.md's "four cycles" was the error, corrected. **Six
+mandatory same-shift fixes required and applied**: (1) MATERIALS' wrong-
+file citation, corrected in all four loci; (2) the silicon-provenance
+chain, corrected and distinguished from the separate shell-vs-solid-mass
+chain; (3) the diffraction-inflation bound, corrected to `~2.37×`/`~295×`;
+(4) the `Q_ext(x)` cycle count, corrected to three; (5) full NETD-
+disclaimer propagation across all five margin/classification rows, three
+`results.json` sub-objects, and `run.py`'s print block; (6) a standing
+recommendation to extend Iteration 31's structural disclaimer fix beyond
+`thermo_sidecar.py`'s own helper functions to any ad hoc dict an
+experiment's own `run.py` builds directly. **All five Checkpoint criteria
+checked explicitly: none fire** — criterion 4 scrutinized hardest given
+this cycle's own density of findings, ruled the same same-shift-fixable
+documentation/precision-gap class this program has repeatedly and
+correctly ruled non-firing (Iterations 28, 29, 31, 32, 33); the
+disclaimer-propagation gap named explicitly as the closest call (a genuine
+second recurrence) — a third recurrence would warrant a harder look.
+
+**Ruling on THERMODYNAMICS' `Q_ext(x)` escalation: GRANTED, and stronger
+than requested — LOCKED, unconditional, for a future iteration, effective
+now.** Three clean deferrals (32, 33, 34) already equals the lowest
+unconditional-lock threshold this program has ever applied
+(`graded_black_shell_flagship` itself, at exactly 3). No seat pre-declared
+this trigger in writing before now — this audit is that declaration,
+executed against a threshold already met, mirroring how `h_eff` and
+`graded_black_shell_flagship`'s own locks fired the moment their
+pre-declared conditions were satisfied. `Q_ext(x)` is structurally MORE
+consequential than the flagship fix was — it underlies every article's
+`p_abs_w` in the thermal ledger, not one. **Scheduling note**: since
+QUANTUM's redesign also locks for Iteration 35 (below), both cannot lead
+the same cycle — QUANTUM's redesign leads Iteration 35 (its precommitment
+matured one cycle earlier and carries PASS-flip stakes); `Q_ext(x)`
+becomes Iteration 36's LOCKED item unless Iteration 35 finds capacity to
+fold it in as a genuine zero-marginal-cost desk rider (it is itself
+zero-new-FDTD).
+
+**Ruling on QUANTUM's escalation: FIRES.** Iteration 33's own ruling was
+explicit and conditional: "if not built at Iteration 34, it becomes a
+LOCKED, unconditional, non-competing trigger for Iteration 35." Confirmed:
+exp-057 touches no σ(I)/σ(x,t)/coherent apparatus anywhere. The condition's
+own language ("non-competing trigger") fires on the simple fact of
+non-construction, independent of why (here, because Iteration 34 was
+itself consumed by a separately, earlier-LOCKED item) — Iteration 33's
+ruling anticipated exactly this scenario and set the condition anyway.
+**QUANTUM's phase-variance redesign is LOCKED, unconditional, leading
+Iteration 35.**
+
+**Ranked competitive priorities for Iteration 35+ (behind the two LOCKED
+items above)**: (1) R3-on-loaded-legs for exp-056's off_pass/off_bracket
+(the still-outstanding gap behind its own "resolution-robust" framing,
+natural same-build rider alongside QUANTUM's own R3 work). (2) P-VIS-5's
+angle-quantization formula (derive, not measure). (3) MATERIALS'
+absorptivity/mechanism literature check — zero-FDTD, deferred since
+Iteration 29, now SIX cycles running, itself approaching this program's
+own escalation pattern. (4) Shell-vs-solid mass parameterization
+(two-region PEC-core+shell thermal mass) — third-consecutive-cycle open,
+confirmed non-load-bearing today, "a live landmine" for any future
+transient prediction off this chain. (5) `graded_black_shell_flagship`'s
+own 450/750nm sweep, zero new FDTD. (6) `coupled_segment_general`'s
+promotion to a real trust-suite RK4-gated stage, carried unbuilt since
+Iteration 31.
+
+Bench 59/59 (`--only 12346789,10,11,18,19`) at Phase 5 close (THERMODYNAMICS'
+own full re-run); zero `lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/
+`lab/viz.py` touched. Commits: `48c305c` (Phase 3+4 synthesis, predictions,
+results — zero new FDTD, deterministic), `55af791` (Phase 5 reviews + Red
+Team audit + 6 mandatory fixes + 2 new LOCKs). **Verdict: PROMISING.**
+Next lead: QUANTUM's phase-variance redesign LOCKED for Iteration 35,
+breaking rotation; `Q_ext(x)`'s closed-form check LOCKED for Iteration 36
+(or folded into 35 as a zero-cost rider, Director's call). Full record:
+`experiments/057-graded-black-shell-flagship-mixed-regime/` — Phase-1
+proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
+synthesis, NOTES.md, run.py, results.json, six Phase-5 blind reviews,
+Phase-5 Red Team audit.

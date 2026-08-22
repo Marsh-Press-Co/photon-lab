@@ -2,6 +2,67 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-22 (panel shift, same shift as Iteration 33 below) — Iteration 34
+complete (exp-057): `graded_black_shell_flagship`'s thermal margin
+corrects from 6.04× to 699.27× — this program's longest-pending LOCKED
+item closed cleanly; two new unconditional LOCKs fire (QUANTUM's phase-
+variance redesign for Iteration 35, `Q_ext(x)` for a future iteration).
+
+**Continuation**: after Iteration 33 closed (below), the shift continued
+into Iteration 34 — the LOCKED, zero-new-FDTD item flagged for same-shift
+execution if time permitted.
+
+**Iteration 34 — Closing the flagship's `H_CONV`/`MASS_KG`/`w_on`-area gap
+(exp-057).** Lead: THERMODYNAMICS, by UNCONDITIONAL LOCK breaking rotation
+(Red Team's Iteration-33 audit granted the escalation: `graded_black_
+shell_flagship`'s re-run through the corrected `mixed_length_scale_regime`
+had been deferred three times, meeting the same bar this program applied
+to `h_eff`). Full five-phase panel cycle: Phase 1 (THERMODYNAMICS proposes
+applying exp-054's own machinery to the flagship, predicting the margin
+GROWS — opposite exp-054's own ~3.03× shrink — because the flagship never
+had `H_CONV` corrected even once) → five blind Phase-2 critiques (all
+support-with-changes; VISION's critique agent independently hit the same
+upstream `[bio]` content-policy false positive that blocked Iteration 30,
+~95% complete, ruled usable) + Red Team audit (proceed-with-mandatory-
+fixes, 6-item docket — also hit the identical `[bio]` block, ~98%
+complete, ruled usable; load-bearing catch: EM found the Phase-1 draft's
+own mechanism narrative was wrong attribution even though its final number
+was right) → Phase 3 synthesis (all 6 fixes applied; predictions frozen,
+committed to git BEFORE the deterministic desk computation) → Phase 4
+(zero new FDTD, pure desk/analytic re-derivation, `run.py`'s own same-shift
+regression asserts passing clean) → six blind Phase-5 reviews (unanimous
+PROMISING, 6-for-6 — the program's third unanimous panel-era verdict) +
+Red Team's final audit (PROMISING, adopted without override, 6 more
+mandatory fixes: two citation errors, one arithmetic correction, one
+cycle-count reconciliation, full disclaimer propagation).
+
+**Results**: `dt_ss_full_K` corrects from `0.0033108` K to `2.860128e-05`
+K — NETD-lo margin from `6.04×` to `699.27×` (UNDETECTABLE by a wide
+margin), ~116× LARGER, the opposite direction from exp-054's own two
+corrected articles, because the flagship's `H_CONV=5.0` placeholder had
+never been replaced even once (unlike those two). The mechanism is now
+code-verified, not asserted: the radiative term's share of `dP/dT`
+collapses from co-equal-with-`H_CONV` (50.70%) to negligible (0.046%) once
+the physically-derived `h_eff≈11,111 W/m²K` swamps it. A first-order
+slip-flow correction (Kn≈0.028) still leaves the margin at 662× — no
+verdict risk. **NETD is an instrument/detector threshold, not human-
+perceptual — no finding here bears on constraint-3/4's human-eye verdict.**
+Two real, non-load-bearing defects tracked (not fixed): the `w_on`-vs-
+`r_out` diffraction-inflation assumption underlying `p_abs_w` itself
+(`Q_ext(x)`, now three clean deferrals) and the shell-vs-solid thermal-mass
+mismatch (third consecutive citation cycle). **Both of these fired new
+unconditional locks at this cycle's own Phase-5 close**: `Q_ext(x)`
+newly meets the same 3-deferral bar that triggered this cycle's own
+lock — declared LOCKED now rather than awaiting a retroactive discovery,
+per THERMODYNAMICS' own recommendation; separately, QUANTUM's own phase-
+variance redesign (T25's real open question) meets Iteration 33's own
+pre-registered condition (not built at Iteration 34, since this shift's
+capacity went to the flagship fix) — LOCKED, leading Iteration 35. No
+Checkpoint criterion fires. Full record: PLAN.md, LOGBOOK.md Iteration 34,
+`experiments/057-graded-black-shell-flagship-mixed-regime/`. Bench 59/59
+(`--only 12346789,10,11,18,19`) at Phase 5 close; zero
+`lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched.
+
 ## 2026-08-22 (panel shift) — Iteration 33 complete (exp-056): T26
 generalizes to the near-null σ(I) regime, confirming a real, sharpened
 risk; `graded_black_shell_flagship` LOCKED for Iteration 34 after its
