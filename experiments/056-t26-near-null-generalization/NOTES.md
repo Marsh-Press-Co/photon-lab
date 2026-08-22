@@ -204,21 +204,28 @@ ambient-illumination analog exists for fixed-relative-phase N=9 injection).
 headline question.** Predicted band **|C_joint| ∈ [0.020, 0.11]** — the
 ladder bucket would flip from established PASS (naive |C|=0.0045) to
 MARGINAL-or-FAIL. Informal central estimate (low-confidence, by analogy,
-same register as exp-055's own P-055-1): **≈0.045–0.065**. Disposition:
+same register as exp-055's own P-055-1): **≈0.045–0.065**. **Every branch
+below establishes NOTHING about `off_pass`'s appearance under real ambient
+light — fixed-zero-relative-phase N=9 injection has no ambient-illumination
+analog (real illumination is never phase-locked across 9 discrete
+directions) — and moves no Tier-W/Tier-A verdict, regardless of which
+branch fires** (Red Team mandatory fix 3, Phase-5 audit: this caveat must
+propagate to every disposition branch, not only branch (a)). Disposition:
 (a) |C_joint| ≥ 0.02 AND `flank_denominator_flag` is False → CONFIRMED,
-artifact unsuppressed at this τ — but this establishes NOTHING about
-`off_pass`'s appearance under real ambient light (no phase-locked-injection
-analog exists), only that this bench's fixed-zero-relative-phase joint
-idiom is unsafe for scoring future near-null articles; moves no Tier-W/
-Tier-A verdict. If `flank_denominator_flag` is True instead, relabel
-"denominator-artifact-consistent, not scored," per Red Team's mandatory
-fix 1. (b) 0.005 ≤ |C_joint| < 0.02 → PARTIAL, partial suppression.
-(c) |C_joint| < 0.005 → REFUTED, weak τ=0.0065 absorption suppresses the
-artifact nearly as well as the deep-shadow article does.
+artifact unsuppressed at this τ — this bench's fixed-zero-relative-phase
+joint idiom is unsafe for scoring future near-null articles. If
+`flank_denominator_flag` is True instead, relabel "denominator-artifact-
+consistent, not scored," per Red Team's mandatory fix 1. (b) 0.005 ≤
+|C_joint| < 0.02 → PARTIAL, partial suppression of the instrument artifact
+— not a statement about real absorption suppressing anything an eye would
+see. (c) |C_joint| < 0.005 → REFUTED, weak τ=0.0065 absorption suppresses
+the INSTRUMENT ARTIFACT nearly as well as the deep-shadow article does —
+not a claim about real ambient-light behavior.
 
 **P-VIS-2 (`off_bracket` coherent joint C, informational discriminator).**
 Predicted band **|C_joint| ∈ [0.020, 0.10]**, central ≈0.045–0.060. Same
-three-way disposition and ambient-light-analog caveat as P-VIS-1.
+three-way disposition as P-VIS-1, including the caveat now attached to
+ALL THREE branches, not only (a).
 
 **P-DIR-1 (the zero-cost τ=0 "phantom" point, Director's Phase-3
 correction).** Not a prediction — a fact verifiable by construction:
@@ -293,10 +300,67 @@ verified against the docstring/code, not re-derived here.
 
 ### Headline (for LOGBOOK)
 
-**T26's near-null generalization test CONFIRMS the practical risk it was built to check, and sharpens the mechanism.** `off_pass` (τ=0.0065, this program's only-ever constraint-3 PASS) and `off_bracket` (τ=0.003) both show coherent-injection `|C_joint|` in the 0.056–0.058 range — over **10–13× VISION's own T2 photopic `C_thr=0.005`**, squarely inside the predicted band and central estimate, with a clean (non-denominator-artifact) flank check. **The suppression hypothesis exp-055 raised — that strong absorption tames the coherent-injection artifact, and by extension weak absorption might too — is REFUTED for this regime, and refuted in the informative direction**: read against the zero-cost τ=0 "phantom" point (exact, by construction: the object-free empty scene, `C=−0.05343`), the three-point curve τ∈{0, 0.003, 0.0065} → `|C|`∈{0.05343, 0.05561, 0.05815} is **not flat** (ruling out pure geometric/edge-driven suppression, PHOTONICS' alternative hypothesis) and **not shrinking** (ruling out bulk-absorption suppression at this τ) — it **grows slightly and monotonically with τ**, closely tracking QUANTUM's own Phase-2 steel-man first-order Born-linear-perturbation model, `C_joint ≈ C_empty_joint − τ·(1+C_empty_joint)`: predicts −0.056265/−0.059578 at τ=0.003/0.0065 against measured −0.055609/−0.058149 (1.2%/2.4% relative miss — the model captures ~75–85% of the total shift, a real but secondary residual). **Exp-055's own small deviation on the deep-shadow article (τ≈3.9) is now understood as a property of that saturated, near-total-extinction regime specifically — not evidence that absorption generally tames this artifact.** Practical conclusion, unchanged in direction from exp-055 but now generalized and quantified: single-realization fixed-phase coherent joint injection is **not** a safe substitute for `lab/ambient.py`'s incoherent pipeline anywhere on the σ(I) OFF-state territory this program has built, near-null or deep-shadow alike — every regime tested shows a >10×-threshold false-shadow risk if ever substituted. No existing Tier-W/Tier-A verdict moves (all citations use the incoherent pipeline). R3 (P-VIS-3) and window-position (P-VIS-4) checks both confirm the artifact is genuine interference physics, modestly but not alarmingly sensitive to resolution or exact window placement, at both geometries tested.
+**[Reordered per Red Team's Phase-5 mandatory fix 1 — this is a
+substitute-instrument artifact finding, not a constraint-3 result, and
+that must lead, not trail.]** This cycle characterizes a risk in ONE
+diagnostic joint-injection idiom (`lab/ambient.py` is never modified and no
+existing citation ever used coherent injection) — it is **not** a
+re-scoring of `off_pass`/`off_bracket` under real ambient light, and **no
+existing Tier-W/Tier-A constraint-3 verdict moves**. Fixed-zero-relative-
+phase N=9 injection has no ambient-illumination analog: real light is never
+phase-locked across 9 discrete directions the way this diagnostic scene is.
+With that framing fixed first: **T26's near-null generalization test
+CONFIRMS the practical risk it was built to check, and sharpens the
+mechanism.** `off_pass` (τ=0.0065, this program's only-ever constraint-3
+PASS under the real, incoherent pipeline) and `off_bracket` (τ=0.003) both
+show this diagnostic idiom's `|C_joint|` at the primary measurement plane
+in the **11.1–11.6×** range against VISION's own T2 photopic `C_thr=0.005`
+(off_pass 11.63×, off_bracket 11.12×), widening to **10.2–12.7×** across
+the ±2-cell window-position sensitivity scan (reported separately, not
+blended into one figure, per Red Team's mandatory fix 2) — squarely inside
+the predicted band and central estimate, with a clean (non-denominator-
+artifact) flank check. **The suppression hypothesis exp-055 raised — that
+strong absorption tames the coherent-injection artifact, and by extension
+weak absorption might too — is REFUTED for this regime, and refuted in the
+informative direction**: read against the zero-cost τ=0 "phantom" point
+(exact, by construction: the object-free empty scene, `C=−0.05343`), the
+three-point curve τ∈{0, 0.003, 0.0065} → `|C|`∈{0.05343, 0.05561, 0.05815}
+is **not flat** (ruling out pure geometric/edge-driven suppression,
+PHOTONICS' alternative hypothesis) and **not shrinking** (ruling out
+bulk-absorption suppression at this τ) — it **grows slightly and
+monotonically with τ**, closely tracking QUANTUM's own Phase-2 steel-man
+first-order Born-linear-perturbation model, `C_joint ≈ C_empty_joint −
+τ·(1+C_empty_joint)`: predicts −0.056265/−0.059578 at τ=0.003/0.0065
+against measured −0.055609/−0.058149 (1.2%/2.4% relative miss — the model
+captures ~77% of the total shift at both points, a tight, real but
+secondary residual, independently re-derived by five of six Phase-5 seats
+plus Red Team's own audit, all converging on identical figures). **Exp-055's
+own small deviation on the deep-shadow article (τ≈3.9) is now understood as
+a property of that saturated, near-total-extinction regime specifically —
+not evidence that absorption generally tames this artifact.** Practical
+conclusion, unchanged in direction from exp-055 but now generalized and
+quantified: single-realization fixed-phase coherent joint injection is
+**not** a safe substitute for `lab/ambient.py`'s incoherent pipeline
+anywhere on the σ(I) OFF-state territory this program has built, near-null
+or deep-shadow alike — every regime tested shows an >10×-threshold false-
+shadow risk if ever substituted. R3 (P-VIS-3) and window-position (P-VIS-4)
+checks both confirm the artifact is genuine interference physics, modestly
+but not alarmingly sensitive to resolution or exact window placement — but
+**R3 was run only on the empty scene, never on the loaded `off_pass_joint`/
+`off_bracket_joint` legs the headline figures above actually come from**
+(Red Team-confirmed gap, independently found by EM and QUANTUM at Phase 5)
+— named as Iteration 34's #2 competitive priority, below. Four independent
+seats (PHOTONICS, MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS) plus this
+Director's own synthesis independently found an unscored corroborating
+check: `p_abs_joint_measured` ratios to 2.164 against the τ ratio's 2.167
+(0.13–0.14% agreement across all five derivations) — confirming both new
+legs sit in the expected weak/linear-absorption regime from a completely
+different (absorbed-power) channel than the one the Born model was fit to.
 
 ## Next (pre-registered, for Phase 5)
 
-(1) **QUANTUM's deferred redesign (Red Team's Iteration-34 ranked-#1 follow-on, Phase-3 fix 7)**: build the per-angle complex-`Ez`/`Hy`-line save format plus a dedicated trust-suite identity gate (disk-round-tripped zero-phase reconstruction must match this cycle's own single-`Sim` joint calls to a tight tolerance), then draw N random relative-phase realizations to measure the true T25 variance this program has never characterized — this cycle's single fixed-zero-phase draw stays exactly that, one sample. (2) The THERMO sidecar's naive-incoherent absorbed-power anchor (Phase-3 fix 4, not built this cycle) — would need the 18 individual off_pass/off_bracket legs re-run with full captures retained (currently discarded after use in exp-032's own harness); cheap in FDTD terms but real new plumbing. (3) P-VIS-5 (angle-quantization sensitivity) stays a genuinely open, unscored question — a real formula (not an analogy) converting fringe structure into a quantization-sensitivity number, ideally derived rather than measured, would resolve it. (4) The Born-linear-perturbation model's own ~75–85%-of-shift fit quality invites a sharper derivation of the residual (a second-order term, or a rim/edge correction) if a future cycle wants to close it analytically rather than leave it as a measured near-fit. (5) r=156/312 and 450/750nm untested for this generalization (single native geometry + one rescaled R3 leg, single λ=600nm — pre-registered scope, not chased here). (6) THERMODYNAMICS' own `graded_black_shell_flagship` re-run (now three-times-deferred) and MATERIALS' absorptivity/mechanism literature check (deferred since Iteration 29) remain queued, unaffected by this cycle, and are now the program's longest-standing deferred items after this build's own new follow-ons.
+(1) **QUANTUM's deferred redesign** — build the per-angle complex-`Ez`/`Hy`-line save format plus a dedicated trust-suite identity gate (disk-round-tripped zero-phase reconstruction must match this cycle's own single-`Sim` joint calls to a tight tolerance), then draw N random relative-phase realizations to measure the true T25 variance this program has never characterized — this cycle's single fixed-zero-phase draw stays exactly that, one sample. **Red Team's Phase-5 ruling: pre-registered for a 2nd-deferral lock at Iteration 35 if not built at Iteration 34** (a lower bar than `h_eff`'s 5 or `graded_black_shell_flagship`'s 3, justified by the PASS-flip stakes this cycle's own result sharpens, but not zero, since the item is genuinely new machinery deserving one real competitive cycle first). (2) **R3-on-loaded-legs** — resolution check (cpl 20→30, same rescaled-geometry idiom as this cycle's own R3 leg) on `off_pass_joint`/`off_bracket_joint` themselves, never run this cycle (Red Team-confirmed gap, independently found by EM and QUANTUM) — the headline's "over 10×" figures have never themselves been resolution-tested; Iteration 34's #2 competitive priority. (3) **THERMO sidecar's naive-incoherent absorbed-power anchor** (Phase-3 fix 4, not built this cycle) — would need the 18 individual off_pass/off_bracket legs re-run with full captures retained (currently discarded after use in exp-032's own harness); cheap in FDTD terms but real new plumbing. **Binding tripwire (Red Team mandatory fix 4, Phase-5 audit): any future citation of this cycle characterizing THERMODYNAMICS' own Phase-2 mandatory fix as CLOSED or RESOLVED — rather than "a bare informational number, comparator anchor not yet built" — is a retroactive Checkpoint-4 trigger.** (4) P-VIS-5 (angle-quantization sensitivity) stays a genuinely open, unscored question — a real formula (not an analogy) converting fringe structure into a quantization-sensitivity number, ideally derived rather than measured, would resolve it. (5) The Born-linear-perturbation model's own ~77%-of-shift fit quality (both articles land within 0.1pp of each other, tighter than originally described) invites a sharper derivation of the residual (a second-order term, or a rim/edge correction) if a future cycle wants to close it analytically rather than leave it as a measured near-fit. (6) r=156/312 and 450/750nm untested for this generalization (single native geometry + one rescaled R3 leg, single λ=600nm — pre-registered scope, not chased here). (7) MATERIALS' absorptivity/mechanism literature check (deferred since Iteration 29, now 5 cycles running) remains queued, unaffected by this cycle.
 
-**Phase 5 outcome:** pending — see LOGBOOK.md Iteration 33.
+**LOCKED, unconditional, breaking rotation for Iteration 34 (Red Team's Phase-5 ruling on THERMODYNAMICS' escalation request)**: `graded_black_shell_flagship`'s re-run through the corrected `mixed_length_scale_regime` (exp-054's own machinery, zero new FDTD) has now been deferred a THIRD time (ranked #1 at Iteration 31's close, deferred at Iteration 32 for T25/T26, deferred again this cycle for the T26 near-null build) — exactly the trigger Red Team itself pre-declared, in writing, at Iteration 32's close ("if deferred a third time, this item should be considered for the same unconditional-trigger bar this program has applied twice before"). Granted: LOCKED for Iteration 34, ahead of and not subject to the competitive ranked list above, mirroring `h_eff` and the stage-10 temporal instrument's own lock precedent.
+
+**Phase 5 outcome:** six fresh seats + Red Team audit read these results — **unanimous PROMISING, 6-for-6** (PHOTONICS, MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS, VISION SCIENCE), Red Team's final audit adopting the raw seat count without override, the second unanimous panel-era verdict (after Iteration 11's unanimous PARTIAL). Four mandatory same-shift fixes required and applied above (headline reordering; the "10–13×" figure decomposed into its primary-plane reading, 11.1–11.6×, and its separately-reported sensitivity-scan range, 10.2–12.7×, rather than blended; the ambient-light-analog caveat propagated to disposition branches (b)/(c), not only (a); the THERMO-sidecar-stays-open tripwire). All five Checkpoint criteria checked explicitly: **none fire** — criterion 4 scrutinized hardest against the headline-ordering and "10–13×" imprecision findings (four seats independently caught pieces of this), ruled the same class of same-shift-fixable documentation gap this program has repeatedly and correctly ruled non-firing (Iterations 28, 29, 31, 32); criterion 5 checked and explicitly ruled not to apply (Iteration 30's block was a singular event, not part of a consecutive no-result pair — Iterations 31, 32, and this cycle each produced real results). Full verbatim record: `LOGBOOK.md`, Iteration 33 Phase 5.
