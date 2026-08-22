@@ -1911,7 +1911,143 @@ def stage21_qext_theory():
           abs(comp.q_ext_pec_reference - 2.1177205150608365) <= 1e-9, "2.1177205150608365 (+-1e-9)")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 22))
+def stage22_uniform_lossy_shell():
+    """`materials.uniform_lossy_shell` (Panel Iteration 37, exp-060) --
+    the sharp-edged, spatially-flat conductivity control for
+    `graded_black_shell`, built to disentangle "edge grading suppresses
+    diffraction" from "any bulk loss damps PEC's resonance ripple"
+    (MATERIALS' Phase-2 critique, exp-059; six-way seat convergence,
+    Iteration-36 Phase-5 reconciliation). PANEL.md's "new machinery =>
+    new suite stage with an absolute identity gate" rule, same discipline
+    as stages 8/18/21.
+
+    Four gates:
+      1. Write-identity (zero-cost, no time-stepping): sigma_e on shell
+         cells equals the pre-call value plus sigma_flat, exactly;
+         sigma_e is unmodified outside the shell; eps_r == eps_max
+         everywhere (no index step anywhere, matching graded_black_
+         shell's own default eps_max=1.0 so only sigma(r)'s SHAPE
+         differs between the two builders).
+      2. Optical-depth line-integral match (empirical, from the ACTUAL
+         written sigma_e arrays of both builders at matched sigma_max,
+         Iteration-37 Phase-1's own convention: equal radial line-
+         integral of sigma across the shell) -- an IMPLEMENTATION-
+         FIDELITY check (Red Team's Iteration-37 Phase-2 relabeling,
+         mandatory fix 6): it certifies the code correctly implements
+         the chosen convention, NOT that the convention matches true
+         field attenuation (see gate 4).
+      3. Energy-conservation cross-check, reusing stage 8's own
+         identities unmodified (box independence, two-route extinction
+         agreement, <=0.12 both) on a small FDTD scene built with the
+         new material.
+      4. Attenuation-depth disclosure gate (desk-analytic, Red Team's
+         Iteration-37 Phase-2 mandatory fix 4, from QUANTUM OPTICS'
+         Phase-2 finding): matching the raw conductivity line-integral
+         does NOT match true field attenuation once loss is order-unity
+         -- Im(n(sigma)) is concave in sigma at this bench's own grid
+         normalization (t = sigma_e*cpl/(2*pi), the physical loss
+         tangent; the naive t=sigma_e/sim.omega used in Iteration-37
+         Phase-2 by ELECTROMAGNETISM's first attempt is off by a factor
+         of 1/S, corrected and independently reconfirmed by Red Team).
+         By Jensen's inequality the graded profile's TRUE attenuation-
+         weighted depth sits measurably below the flat profile's uniform
+         value despite identical raw line integrals by construction --
+         a real, known, disclosed ~8.3% residual, pinned here as a
+         regression anchor, not a pass/fail physics defect."""
+    print("stage 22 — uniform_lossy_shell builder identity vs graded_black_shell")
+    from lab import sections as sc
+
+    # ---- gate 1: write-identity, zero-cost (no time-stepping) ----------
+    sim0 = Sim(200, 200, cells_per_lambda=20, courant_frac=0.32, absorb=20)
+    sigma_before = sim0.sigma_e.copy()
+    # Same annulus as exp-060's real flagship-scale geometry (r_in=R_CORE=30,
+    # r_out=R_COAT=78) so gate 2's discretization residual below matches what
+    # the real experiment actually sees, not a different-thickness proxy.
+    r_in0, r_out0, sigma_flat0 = 30, 78, 0.1958874458874459
+    materials.uniform_lossy_shell(sim0, 100, 100, r_in0, r_out0, sigma_flat0)
+    x = np.arange(sim0.nx)[:, None] - 100
+    y = np.arange(sim0.ny)[None, :] - 100
+    rr0 = np.hypot(x, y)
+    shell0 = (rr0 >= r_in0) & (rr0 <= r_out0)
+    write_dev = float(np.max(np.abs(
+        sim0.sigma_e[shell0] - (sigma_before[shell0] + sigma_flat0))))
+    outside_dev = float(np.max(np.abs(sim0.sigma_e[~shell0] - sigma_before[~shell0])))
+    eps_dev = float(np.max(np.abs(sim0.eps_r - 1.0)))
+    check("uniform-lossy-shell", "write-identity: shell sigma_e == pre + sigma_flat",
+          f"{write_dev:.3e}", write_dev <= 1e-12, "<=1e-12 (machine precision)")
+    check("uniform-lossy-shell", "write-identity: outside-shell sigma_e unmodified",
+          f"{outside_dev:.3e}", outside_dev <= 1e-12, "<=1e-12")
+    check("uniform-lossy-shell", "write-identity: eps_r==eps_max everywhere (no index step)",
+          f"{eps_dev:.3e}", eps_dev <= 1e-12, "<=1e-12")
+
+    # ---- gate 2: optical-depth line-integral match (empirical, actual
+    # written arrays, both builders at matched sigma_max) ----------------
+    sim_g = Sim(200, 200, cells_per_lambda=20, courant_frac=0.32, absorb=20)
+    materials.graded_black_shell(sim_g, 100, 100, r_in0, r_out0, sigma_max=0.5)
+    sim_u = Sim(200, 200, cells_per_lambda=20, courant_frac=0.32, absorb=20)
+    materials.uniform_lossy_shell(sim_u, 100, 100, r_in0, r_out0, sigma_flat0)
+    # radial line-integral, one ray along +x through the center (dr=1 cell)
+    row_g = sim_g.sigma_e[100:100 + r_out0 + 1, 100]
+    row_u = sim_u.sigma_e[100:100 + r_out0 + 1, 100]
+    tau_g, tau_u = float(np.sum(row_g)), float(np.sum(row_u))
+    tau_dev = abs(tau_u - tau_g) / abs(tau_g)
+    # Tolerance widened from the Phase-1 draft's 0.5% to 1.0%: at this
+    # exact 48-cell shell thickness a genuine ~0.5-0.6% discrete-grid
+    # residual is EXPECTED (the 49-point circular-mask sum over both
+    # endpoints r_in and r_out is a coarse Riemann approximation of the
+    # continuous quintic-squared integral, distinct in kind from a code
+    # bug) -- verified stable and explainable before loosening, not a
+    # blind widen-until-it-passes fix.
+    check("uniform-lossy-shell", "optical-depth line-integral match (implementation-fidelity, not a physics-matching gate)",
+          f"tau_graded={tau_g:.4f}  tau_uniform={tau_u:.4f}  rel_dev={tau_dev * 100:.3f}%",
+          tau_dev <= 0.01, "<=1.0% (0.5-0.6% discrete-grid residual expected at this thickness)")
+
+    # ---- gate 3: energy-conservation cross-check, stage-8's own bars ---
+    def run_scene(build):
+        sim = Sim(360, 240, cells_per_lambda=20, courant_frac=0.99, absorb=30)
+        if build:
+            build(sim)
+        sim.add_line_source(54)
+        sim.run(900)
+        return sc.full_capture(sim)
+
+    BOX_A = (190, 290, 70, 170)
+    BOX_B = (170, 310, 50, 190)
+    REF = (240, 120, 40)
+    cap_e = run_scene(None)
+    cap_u = run_scene(lambda s: materials.uniform_lossy_shell(s, 240, 120, 10, 32, sigma_flat0))
+    wu_a = sc.widths(cap_u, cap_e, BOX_A, REF)
+    wu_b = sc.widths(cap_u, cap_e, BOX_B, REF)
+    bi_u = abs(wu_a["sigma_ext"] - wu_b["sigma_ext"]) / abs(wu_a["sigma_ext"])
+    xi_u = abs(wu_a["sigma_ext_cross"] - wu_a["sigma_ext"]) / abs(wu_a["sigma_ext"])
+    check("uniform-lossy-shell", "box independence (uniform_lossy_shell)", f"{bi_u:.3f}",
+          bi_u <= 0.12, "<=0.12")
+    check("uniform-lossy-shell", "extinction: two routes agree (uniform_lossy_shell)", f"{xi_u:.3f}",
+          xi_u <= 0.12, "<=0.12")
+
+    # ---- gate 4: attenuation-depth disclosure (desk-analytic, pinned) --
+    def s_smooth(d):
+        return d ** 3 * (10.0 - 15.0 * d + 6.0 * d * d)
+
+    def b_of_t(t):
+        n = np.sqrt(1.0 - 1j * t)
+        return float(abs(n.imag))
+
+    cpl, sigma_max = 20.0, 0.5
+    sigma_flat_anchor = sigma_max * (181.0 / 462.0)
+    dd = np.linspace(0.0, 1.0, 200001)
+    t_graded_dd = sigma_max * s_smooth(dd) ** 2 * cpl / (2.0 * np.pi)
+    b_graded_vals = np.array([b_of_t(t) for t in t_graded_dd])
+    i_graded = float(np.trapezoid(b_graded_vals, dd))
+    t_flat = sigma_flat_anchor * cpl / (2.0 * np.pi)
+    b_flat = b_of_t(t_flat)
+    gap_pct = (b_flat - i_graded) / b_flat * 100.0
+    check("uniform-lossy-shell", "attenuation-depth disclosure: b(sigma)-weighted gap (graded below flat, Jensen/concavity)",
+          f"b_flat={b_flat:.6f}  I_graded={i_graded:.6f}  gap={gap_pct:.3f}%",
+          abs(gap_pct - 8.326) <= 0.05, "8.326%+-0.05% (regression anchor, pinned)")
+
+
+_STAGE_IDS = frozenset(str(n) for n in range(1, 23))
 
 
 def _stage_selected(n, only):
@@ -1976,6 +2112,7 @@ if __name__ == "__main__":
     run_stage19 = _stage_selected(19, only)
     run_stage20 = _stage_selected(20, only)
     run_stage21 = _stage_selected(21, only)
+    run_stage22 = _stage_selected(22, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -2045,6 +2182,8 @@ if __name__ == "__main__":
         stage20_disk_persisted_phase_reconstruction()
     if run_stage21:
         stage21_qext_theory()
+    if run_stage22:
+        stage22_uniform_lossy_shell()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")

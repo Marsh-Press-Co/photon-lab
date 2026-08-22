@@ -100,6 +100,47 @@ def graded_black_shell(sim, cx, cy, r_in, r_out, sigma_max=0.5, eps_max=1.0):
                                    "sigma_max": sigma_max, "eps_max": eps_max}})
 
 
+def uniform_lossy_shell(sim, cx, cy, r_in, r_out, sigma_flat, eps_max=1.0):
+    """The sharp-uniformly-lossy control (panel Iteration 37, exp-060) --
+    `graded_black_shell` with the grading removed: a spatially FLAT,
+    sharp-Heaviside-edged conductivity over the same annulus, no
+    smoothstep, no radial dependence, no eps ramp. Exists to disentangle
+    two mechanisms `graded_black_shell`'s own docstring conflates ("the
+    adiabatic entry is what kills the reflection"): does the flagship's
+    measured sub-PEC Q_ext suppression come from the graded profile's C2-
+    smooth entry specifically, or from any sufficiently lossy disk,
+    sharp-edged or not (MATERIALS' Phase-2 critique, exp-059)?
+
+    `sigma_flat` is the CALLER's responsibility to derive (this function
+    does not compute a "matched" value itself) -- exp-060's own
+    convention: equal radial line-integral of sigma across the shell,
+    sigma_flat = sigma_max * (181/462) for graded_black_shell's default
+    sigma_max=0.5, giving sigma_flat=0.5*181/462~=0.19589 (see
+    experiments/060-.../NOTES.md/run.py for the derivation). CAVEAT,
+    disclosed at every site this convention is cited (Iteration-37 Red
+    Team mandatory fix, VISION SCIENCE's catch): matching the raw
+    conductivity line-integral does NOT match true field attenuation
+    depth once loss is order-unity (Im[n(sigma)] is concave in sigma at
+    this bench's grid normalization, QUANTUM OPTICS' Iteration-37 finding)
+    -- the two profiles' true attenuation-weighted depths differ by
+    ~8-9%, a known, disclosed residual, not a bug. eps_max default 1.0
+    matches graded_black_shell's own default (no index step in either
+    construction) so the comparison isolates sigma(r)'s SHAPE alone.
+
+    Gates (trust suite stage 22, written before first run): a write-
+    identity check (sigma_e on shell cells equals pre-call value plus
+    sigma_flat exactly; eps_r==eps_max everywhere; nothing written
+    outside the shell) and an optical-depth line-integral-match check
+    against graded_black_shell at matched sigma_max/geometry."""
+    rr, _ = _grids(sim, cx, cy)["ez"]
+    shell = (rr >= r_in) & (rr <= r_out)
+    sim.sigma_e[shell] += sigma_flat
+    sim.eps_r[shell] = eps_max
+    sim.objects.append({"type": "uniform_lossy_shell",
+                        "params": {"cx": cx, "cy": cy, "r_in": r_in, "r_out": r_out,
+                                   "sigma_flat": sigma_flat, "eps_max": eps_max}})
+
+
 def schurig_reduced_cloak_tm(sim, cx, cy, r1, r2, mu_r_floor=0.10):
     """Cylindrical transformation-optics cloak, REDUCED parameter set for
     TMz (Ez) polarization — the set used in the field's founding papers:
