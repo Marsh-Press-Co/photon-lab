@@ -1873,7 +1873,12 @@ def stage21_qext_theory():
     This item bounds `w_on`'s diffraction excess inside a physically sane
     envelope (measured Q_ext=1.5385 sits at 72.6% of the exact PEC-sharp-
     edge reference Q_ext_PEC(24.5044)=2.1177, for the flagship's own
-    geometry) -- it does NOT change any scored thermal margin (THERMODYNAMICS'
+    geometry -- REFERENCE/BOUNDING only, NOT a literal model of the
+    graded_black_shell profile, MF-3; the comparison is consistent with,
+    NOT diagnostic of, edge grading specifically -- a sharp but uniformly
+    lossy disk would plausibly show the same qualitative pattern, MF-5,
+    Checkpoint-4-firing recurrence fixed same-shift, panel Iteration 36
+    Phase 5) -- it does NOT change any scored thermal margin (THERMODYNAMICS'
     Phase-2 finding, MF-4: recomputed under both the conservative Q_ext=1
     floor and the PEC ceiling, `graded_black_shell_flagship`'s margin stays
     369x-1655x, 2+ orders of magnitude clear of NETD-lo either way), and it

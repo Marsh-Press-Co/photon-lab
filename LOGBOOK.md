@@ -11914,3 +11914,283 @@ queue below. Full record: `experiments/058-t25-phase-variance-redesign/`
 Phase-3 synthesis, NOTES.md, design_geometry.py, run.py, results.json,
 `recompute_flux_signs.py`, `sign_fix_verification.json`, six Phase-5
 blind reviews, Phase-5 Red Team audit.
+
+## Iteration 36 — The LOCKED `Q_ext(x)` Closed-Form Cylinder/Disk Check (exp-059) — 2026-08-22
+
+**Runner: cloud panel shift.** Lead: **PHOTONICS**, by **UNCONDITIONAL
+LOCK, breaking rotation** — Red Team's Iteration-34 Phase-5 ruling granted
+this item unconditional-lock status after three clean deferrals
+(Iterations 32/33/34), this program's lowest-ever lock-trigger count
+(`h_eff` fired at 5, `graded_black_shell_flagship` at 3). Confirmed as
+Iteration 36's lead at Iteration 35's own close (not folded in as a
+zero-cost rider, explicitly deferred). PHOTONICS was also next-in-rotation
+regardless — a clean coincidence, not a scheduling conflict. T1 escape
+route: NONE (sidecar/validation cycle, not a mechanism proposal).
+
+**Pre-flight**: fresh container onboarding. Deps installed per the
+documented pip wrinkle (pyMKL wheel failure → numpy/scipy/matplotlib/
+pillow/autograd/fdtd first, then `pip install --no-deps ceviche`). Read
+HANDOFF.md, README.md, PANEL.md, LOGBOOK.md in full (via a dedicated
+sub-agent full read + digest, given the file's own scale — 11916 lines —
+covering the complete ruled-out registry R1–R5, all live threads T1–T26,
+`Q_ext(x)`'s full history, Iteration 35's full verbatim record, and every
+established house convention), PLAN.md, AGENTS.md, VALIDATION.md, and
+SESSION_LOG's top two entries. Bench verified green:
+`--only 12346789,10,11,18,19,20` → 62/62 in 150s before any panel work
+began.
+
+### PHASE 1 — PROPOSE (PHOTONICS)
+
+**The task**: close the physics gap opened at Iteration 20 (exp-043) and
+sharpened at Iteration 31 (exp-054) — `thermo_sidecar.
+absorbed_power_established_ratio`'s `iso_xsec_sq` convention treats the
+flagship absorber's absorbing area as `(sigma_ext_cells*dx)^2`, taking the
+object's MEASURED, diffraction-inflated extinction width `w_on` as if it
+were the object's true geometric radius `r_out`. That inflation
+(`w_on/(2*r_out)~=1.54`, implied `Q_ext~=1.54`) sat as an unbounded
+empirical number since Iteration 31.
+
+**New module: `lab/qext_theory.py`** — the exact closed-form Bessel/Hankel
+partial-wave (Mie-cylinder) series for the extinction efficiency
+`Q_ext(x)` of a normally-illuminated, perfectly-conducting (PEC) infinite
+cylinder, TM_z polarization (this bench's own 2D convention), `c_n(x) =
+-J_n(x)/H_n^(1)(x)`, `Q_ext=(2/x)*Re[c_0+2*sum c_n]`. Sourced to Bohren &
+Huffman Ch.8 §8.4 (WebFetch blocked, T18's standing condition —
+WebSearch-snippet sourcing only, disclosed). Zero new FDTD calls. Three
+self-test gates in the Phase-1 draft: (1) energy conservation
+(`Q_ext==Q_sca` for lossless PEC, absolute identity), (2) large-x
+asymptote `Q_ext->2` (the extinction paradox), (3) series-convergence
+stability at the bench's own `x=ka~=24.5044` (code-verified, sharpening
+PHOTONICS' own informal Iteration-34 estimate).
+
+**Headline result**: `Q_ext_PEC(24.5044)=2.1177205150608365` — the bench's
+own measured `Q_ext_measured=1.5385088077964393` (exactly matching
+`experiments/002-cross-sections/results.json::absorber-600.q_ext`) sits at
+**72.6%** of the exact PEC-sharp-edge reference, inside `[1.0, 2.1177]`.
+Recommended trust-suite promotion to stage 21.
+
+### PHASE 2 — CRITIQUE · five seats blind, Red Team last with everything
+
+All five: **support-with-changes**, zero opposes.
+
+- **MATERIALS**: independently swept `q_ext_pec_cylinder` at x=20…200,
+  confirmed `x=24.5` sits in the resonance-ripple regime (still ~6% above
+  the x→∞ limit), not the asymptotic shadow-diffraction regime the
+  directional claim invoked — a sharp but uniformly LOSSY disk would also
+  damp this ripple, no grading required; the proposal's "softer edge
+  diffracts less... confirmed" language conflates two undisentangled
+  mechanisms.
+- **ELECTROMAGNETISM**: independently re-derived the formula two ways
+  (Jacobi-Anger BC derivation + confirmed TM_z against `fdtd2d.py`'s
+  actual `Sx=-Ez*Hy`/PEC clamp); **load-bearing**: proved algebraically
+  that `-Re(c_n)==|c_n|^2` for ANY `c_n=-A/(A+iB)` — gate 1's docstring
+  claim ("independent numerical proof this sign/coefficient choice is
+  right") is a tautology, catching only a global sign flip, not TM_z vs
+  TE_z discrimination.
+- **THERMODYNAMICS**: recomputed the flagship's thermal margin under both
+  a conservative `Q_ext=1` floor (1655×) and the new PEC ceiling (369×) —
+  both 2+ orders of magnitude clear of NETD-lo either way; the "closes a
+  physics gap" framing overstated what changes (nothing scored).
+- **QUANTUM OPTICS**: independently converged with EM on the gate-1
+  tautology (via a different method — deliberately nonsense A(x),B(x)
+  functions also pass); found gate 3's own 2.2×-n_terms comparator
+  silently returns NaN via Bessel/Hankel underflow at `x>=260` (255
+  finite), undisclosed, only ~10× past the bench's own x.
+- **VISION SCIENCE**: found the Phase-1 draft's headline "26.9% BELOW...
+  consistent with that direction" and "confirmed (1.5385<2.1177)" both
+  stated bare, caveat only once elsewhere — the exact caveat-placement
+  pattern Red Team has now caught at Iterations 17/24/32/33/34/35.
+
+**RED TEAM** (everything): **PROCEED-WITH-MANDATORY-FIXES**, 6-item
+docket. Independently re-verified all five seats' catches (a third
+confirmation of the gate-1 tautology; reproduced the NaN threshold
+exactly at x=260). **New load-bearing finding of its own (MF-6)**: nobody
+exploited a free, already-committed, genuinely non-tautological empirical
+cross-check sitting in the repo — `experiments/002-cross-sections`'s
+three bare-PEC "reflector" scenes (`materials.pec_disk`, R_CORE=30, no
+shell) at 450/600/750nm, real FDTD-measured Q_ext at three size
+parameters distinct from the flagship's own x=24.50. Comparing the
+closed-form series against those gives the actual polarization check gate
+1's tautology cannot — measured agreement +2.32%/-0.60%/-1.72%. All
+Checkpoint criteria checked: none fire at this stage.
+
+### PHASE 3 — SYNTHESIZE (Director)
+
+All six mandatory fixes (MF-1 through MF-6) accepted, MF-5 accepted in
+part (its FDTD-requiring control-run half explicitly OVERRIDDEN by Red
+Team as outside this LOCKED item's own zero-new-FDTD scope, queued
+instead for Iteration 37+ — adopting it here would have violated the
+cycle's own procedural constraint). New trust-suite **stage 21** (4 gates
++ discriminating regression anchor), `_STAGE_IDS` bumped `range(1,21)` →
+`range(1,22)` correctly on first wiring. Predictions P-059-1 through
+P-059-5 committed to git (`9f982f7`) **before** the official, git-recorded
+`run.py`/trust-suite execution — disclosed honestly that the underlying
+closed-form code is fully deterministic (no stochastic element to "blind"
+a prediction against), so the house discipline that matters here is
+commit-order, not ignorance of the answer. Bench 67/67 reverified
+pre-commit.
+
+### PHASE 4 — TEST
+
+Zero new FDTD calls. `run.py` executes the 4-gate self-test + the
+flagship comparison + THERMODYNAMICS' MF-4 margin-sensitivity recompute,
+with regression asserts pinning every headline number. **All five
+predictions CONFIRMED exactly** — zero deviation from Phase 1/2's own
+informal verification (expected for deterministic code). MF-4 margin
+sensitivity independently re-derived in closed form
+(`margin(q_hyp)=margin_established*(q_ext_measured/q_hyp)^2`): established
+699.27×, floor 1655.18×, ceiling 369.07× — confirms no scored
+classification changes. Commit `e1d7b48`.
+
+### PHASE 5 — REVIEW · six fresh seats, then Red Team audit
+
+**4 PROMISING (PHOTONICS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM
+OPTICS), 2 PARTIAL (MATERIALS, VISION SCIENCE)** — every seat independently
+re-ran the code and confirmed every gate/regression-anchor number
+byte-identical; the physics content was never in question from any seat.
+
+- **PHOTONICS**: re-ran everything byte-identical; traced the polarization/
+  geometry chain independently against `fdtd2d.py` and `experiments/002`'s
+  real construction. New (minor) finding: gate 4's reflector data is
+  hand-pinned with no staleness tripwire against a future `experiments/002`
+  engine touch.
+- **MATERIALS — PARTIAL**: confirmed MF-5's wording fix genuinely present
+  and correct at every site checked — a real fix, not a paper-over. But
+  the edge-grading-vs-bulk-loss-damping question remains a substantive,
+  undisentangled realizability unknown (not a footnote, given the founding
+  phenomenon needs "no bright reflection" to be a property of the graded
+  construction specifically) — hence PARTIAL. New finding: `qext_theory.py`'s
+  own `__main__` demo block cited MF-3/MF-4 but never MF-5's caveat at all.
+- **ELECTROMAGNETISM**: re-derived MF-1's tautology algebraically AND
+  showed it's equivalent to S-matrix unitarity `|1+2c_n|=1` (gate 1
+  correctly certifies passivity, just not the specific boundary
+  condition). New finding: the same tautology is ALSO insensitive to the
+  outgoing- vs incoming-wave Hankel-function choice (`H^(1)` vs `H^(2)`) —
+  Q_ext is invariant under that conjugation, though a future near-field/
+  phase reuse of `c_n_pec` would not be.
+- **THERMODYNAMICS**: independently re-derived the MF-4 sensitivity
+  formula in closed form via a standalone script bypassing `run.py`'s own
+  asserts, matching to float precision. **Major new finding**: a DIFFERENT,
+  already-closed cycle's record (`experiments/057-.../NOTES.md`) contains a
+  live, self-contradictory arithmetic error — asserts "a smaller assumed
+  area only increases the margin" then computes via the wrong operation
+  (division, `699.27/2.367≈295.4×`, a decrease) instead of multiplication
+  (`699.27*2.367≈1655.2×`, matching its own stated direction and exp-059's
+  own code-verified figure).
+- **QUANTUM OPTICS**: independently re-derived MF-1's tautology (8 random
+  A,B pairs) and confirmed `hankel1==jv+1j*yv` to machine precision.
+  Verified MF-2's guard control-flow sound (monkeypatched the threshold,
+  confirmed clean `ValueError`). **New finding**: the "exact threshold
+  x=260 (255 finite)" claim is imprecise — binary search found true NaN
+  onset at x≈258.45 (x=259 at integer resolution), not 260; the record
+  only ever checked the 255/260 bracket. Functionally harmless (255 stays
+  safely under the true boundary) but a live precision-overclaim,
+  especially poor given its own "Red-Team-reconfirmed at the exact
+  threshold" label.
+- **VISION SCIENCE — PARTIAL, the verdict that controlled the final
+  call**. A repo-wide grep sweep (not just the two sites MF-3 named) found
+  MF-3's own fix was itself incomplete: `lab/validation/run_all.py`'s
+  `stage21_qext_theory` docstring — the single most load-bearing,
+  permanent, git-tracked site — carried zero MF-3/MF-5 caveat language.
+  **Independently, MF-1's fix was ALSO only half-applied**:
+  `qext_theory.py`'s TOP-LEVEL MODULE docstring still carried the exact
+  disproven "independent numerical proof" claim verbatim; only
+  `_self_test`'s own docstring got the corrected wording.
+
+**Red Team's final audit — CHECKPOINT CRITERION 4 FIRES, without
+qualification.** Independently re-verified both of VISION's findings
+(direct file reads, not just grep) and THERMODYNAMICS' exp-057 finding
+(direct arithmetic re-derivation) — all three confirmed exactly as
+reported. **Ruling on the tripwire**: Iteration 35's own binding,
+pre-declared language ("a further recurrence... is a retroactive
+Checkpoint-4 trigger, no further deliberation required") is triggered —
+this is the program's 7th–9th confirmed instance of the caveat-placement
+pattern (Iterations 17/24/32/33/34/35, now 36 TWICE, independently), and
+the first time it has recurred *inside the very cycle whose mandatory fix
+was written to close it*. Red Team's reasoning: this aggravates rather
+than mitigates — a scoped, itemized fix (MF-3's own text named exactly two
+sites) that still misses a third, more load-bearing site is stronger
+evidence the panel's remedy mechanism itself is unreliable than a
+recurrence from a cycle that never engaged with the pattern. **Overall
+verdict: PARTIAL, explicitly OVERRIDING the raw 4-2 PROMISING seat count**
+— not on physics (every gate, the regression anchor, and all six seats'
+independent re-derivations stand unchallenged) but because the cycle's own
+closing claim (MF-3 "now travels inline at both bare-result sites") was
+false as documented, in exactly the load-bearing-document class the
+tripwire existed to catch. **Verdict explicitly provisional on Tier-1
+fixes landing same-shift** — applied immediately (below); Red Team's own
+stated position is the verdict "should read PROMISING going forward" once
+applied and re-verified.
+
+**Tier-1 mandatory fixes, applied same-shift, all zero-new-FDTD** (all
+three independently confirmed present and correct after application, full
+bench 67/67 green): (1) `run_all.py::stage21_qext_theory`'s docstring —
+MF-3/MF-5 caveats now inline at the 72.6% figure. (2) `qext_theory.py`'s
+top-level module docstring — corrected to the sign-convention-scope-only
+wording, matching `_self_test`'s own. (3) `qext_theory.py`'s `__main__`
+demo block — MF-5's caveat added. A full repo-wide re-sweep confirmed
+every remaining bare-claim hit is either fixed-with-caveat or an
+appropriate historical quotation inside a mandatory-fix's own writeup.
+
+**exp-057 erratum (Red Team-ruled a SEPARATE, non-blocking item)**: three
+string edits (`NOTES.md`, `run.py`, `results.json`), queued as a zero-cost
+rider at the START of Iteration 37, not part of exp-059's own docket — a
+different, already-closed cycle's record; folding it in would blur which
+cycle owns which fix. No scored classification changes either way.
+
+**All five Checkpoint criteria, explicit**: criteria 1/2/3/5 do NOT fire
+(no constraint metric scored; bounds not closes; confirmed zero new FDTD;
+both Iteration 35 and 36 delivered genuine results). **Criterion 4
+FIRES** — process, not physics; constraint #3 is the constraint MF-3/MF-5's
+caveats gate (they exist precisely to stop the 72.6%/PEC-reference
+comparison from being read, bare, as a stronger blackness/no-bright-
+reflection claim than the cycle actually established), the load-bearing
+reason this is a criterion-4 matter and not merely cosmetic.
+
+**CHECKPOINT.** Per PANEL.md's checkpoint procedure: Marsh is notified.
+Per Iteration 17's own direct precedent this is a notification, not a
+pause — the Tier-1 fixes landed same-shift (above) and Red Team's own
+explicit ruling is that this does not block Iteration 37's unblocked
+proposal work. This CHECKPOINT entry is mirrored in SESSION_LOG.md.
+
+**Verdict: PARTIAL** (provisional-to-PROMISING per Red Team's own stated
+path, now that Tier-1 fixes have landed and re-verified this shift). Bench
+67/67 (`--only 12346789,10,11,18,19,20,21`) at Phase 5 close, new stage 21
+included; zero `lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/
+`lab/viz.py` touched. Commits: `9f982f7` (Phase-3 synthesis, predictions,
+new machinery), `e1d7b48` (Phase-4 results) — Phase-5 review + Red Team
+audit + Tier-1 mandatory fixes committed alongside this LOGBOOK entry.
+
+**Ranked priorities for Iteration 37+** (Red Team's reconciliation of all
+six seats — a rare six-way convergence on item 1): (1) **The
+sharp-uniformly-lossy-disk FDTD control run** — all six seats named this
+in their top-3, five as #1; directly resolves MATERIALS' PARTIAL-driving
+concern (MF-5), cheap, already scoped, reuses `materials.pec_disk` at
+`R_COAT` with uniform non-graded sigma matched to the shell's own optical
+depth. (2) The exp-057 erratum fix. (3) The Tier-1 doc fixes (already
+applied this shift) plus building the mechanical caveat-propagation-check
+remedy Red Team authorized (an Iteration-37-scoped deliverable — a
+lint-style grep-every-caveat-across-every-touched-file tool, not just this
+cycle's hand-applied patch; a fifth wording-only fix would not distinguish
+this closure from the six that already preceded and failed to hold). (4)
+MATERIALS' absorptivity/mechanism literature check — now SEVEN cycles
+deferred, approaching this program's own escalation pattern; pin it to one
+checkable question before an eighth deferral forces an unconditional
+lock. (5) EM's TE_z companion series for `qext_theory.py` (mechanical,
+demonstrates gate 1's polarization-agnostic tautology numerically,
+resolves the Hankel-choice documentation gap). (6) PHOTONICS' T26
+lambda/angle generalization / oblique-incidence Q_ext extension, paired
+with `graded_black_shell_flagship`'s own 450/750nm sweep. (7) Carried
+backlog, unblocked, lower urgency: shell-vs-solid thermal-mass
+parameterization (3rd consecutive cycle open); P-VIS-5's angle-
+quantization sensitivity formula; QUANTUM's convergence-guard audit pass
+across `lab/`'s other closed-form modules for the "exact-threshold-from-a-
+wide-bracket" pattern (Tier-2, non-blocking); EM's flank-denominator
+distribution upgrade. Next lead: rotation continues at **MATERIALS**
+(VISION→PHOTONICS→MATERIALS→EM→THERMODYNAMICS→QUANTUM→repeat; PHOTONICS
+led this cycle both by LOCK and by rotation, a coincidence) — no new
+LOCK fires (the sharp-lossy-disk control run has zero deferrals to date).
+Full record: `experiments/059-qext-x-cylinder-disk-check/` — Phase-1
+proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
+synthesis, NOTES.md, run.py, results.json, six Phase-5 blind reviews,
+Phase-5 Red Team audit, Tier-1 mandatory-fix diffs.

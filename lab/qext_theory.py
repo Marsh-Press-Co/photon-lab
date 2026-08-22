@@ -53,12 +53,29 @@ E_z^inc + E_z^sca = 0 at rho=a term-by-term in n gives EXACTLY
 
 -- confirmed against the general search-returned formula pattern
 ("b_n = -J_n(...)/H_n(...)" boundary-condition form for the TM/soft
-cylinder). This module's own self-test (`_self_test`, below) is the
-independent numerical proof that this sign/coefficient choice is right:
-a PEC cylinder is LOSSLESS, so Q_ext must equal Q_sca EXACTLY (no
-absorption channel exists) -- this is an energy-conservation identity, not
-an assumption, and the code checks it to ~1e-13 at eight x values spanning
-seven decades before any Q_ext(x) number here is trusted.
+cylinder). This module's own self-test (`_self_test`, below) checks
+`Q_ext(x)==Q_sca(x)` for a PEC (lossless) cylinder to ~1e-13 at eight x
+values spanning seven decades -- a genuine energy-conservation identity,
+not an assumption. **CORRECTED, panel Iteration 36 Phase 5 (MF-1; the
+original wording here, "the independent numerical proof that this sign/
+coefficient choice is right," was itself found FALSE, and this docstring's
+own failure to carry the correction was a same-cycle recurrence of this
+program's caveat-placement pattern -- fixed same-shift):** ELECTROMAGNETISM
+and QUANTUM OPTICS independently proved `-Re(c_n)==|c_n|^2` is an algebraic
+tautology for ANY coefficient of the form `c_n=-A/(A+iB)`, real A,B -- it
+holds identically for this module's TM_z (non-derivative Bessel)
+coefficients AND for the different TE_z (derivative-Bessel) polarization's
+coefficients alike. The energy-conservation check therefore proves only
+the overall SIGN convention (it did catch a real first-draft bug,
+`Q_ext->-2`) -- it does NOT discriminate TM_z from TE_z, nor (ELECTROMAGNETISM's
+own Phase-5 finding) the choice of outgoing- vs incoming-wave Hankel
+function (`H_n^(1)` vs `H_n^(2)`; Q_ext is invariant under that
+conjugation, though near-field/phase quantities would not be).
+Polarization-specific correctness rests on the boundary-condition
+derivation above (independently re-derived by both seats from Jacobi-Anger
++ `E_z(a)=0`) plus `_self_test`'s own gate 4 (`empirical_cross_validation`,
+MF-6) -- a genuinely independent, non-tautological check against this
+bench's own real Ez/Hy FDTD solve, not the tautological identity alone.
 
 Q_ext -> 2 as x -> infinity is the "extinction paradox" (see e.g.
 Wikipedia "Extinction paradox", citing the general result that the
@@ -426,5 +443,8 @@ if __name__ == "__main__":
     print(f"  ratio is {comp.ratio_measured_over_pec*100:.1f}% of the PEC reference -- "
           f"REFERENCE/BOUNDING comparison only, NOT a literal model of the "
           f"graded_black_shell profile (MF-3, panel Iteration 36 Phase 2); "
-          f"bounds w_on's diffraction excess inside a physically sane "
-          f"envelope, does NOT change any scored thermal margin (MF-4).")
+          f"consistent with, NOT diagnostic of, edge grading specifically -- "
+          f"a sharp but uniformly lossy disk would plausibly show the same "
+          f"qualitative pattern (MF-5); bounds w_on's diffraction excess "
+          f"inside a physically sane envelope, does NOT change any scored "
+          f"thermal margin (MF-4).")

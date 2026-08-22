@@ -22,11 +22,33 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-22, panel Iteration 35 done (exp-058, PROMISING,
-T25/T26 substantively CLOSED); Q_ext(x) LOCKED leading Iteration 36 — see
+## Current state (2026-08-22, panel Iteration 36 done (exp-059, PARTIAL —
+Checkpoint criterion 4 fired and was remediated same-shift, Marsh notified,
+see CHECKPOINT below — provisional-to-PROMISING per Red Team's own stated
+path now that the Tier-1 fixes have landed and re-verified); rotation
+continues at MATERIALS for Iteration 37, no new LOCK fires — see
 PANEL.md/LOGBOOK.md for the phenomenon-program's own current state; this
 section's numbered history stops at the pre-redesign exp-023 baseline,
 panel-era entries live in the queue below and in full in LOGBOOK.md)
+
+**CHECKPOINT (Iteration 36, 2026-08-22, criterion 4 — program-integrity
+drift).** Red Team's Phase-5 audit ruled Checkpoint criterion 4 FIRES,
+without qualification: the caveat-placement/propagation defect pattern
+(Iterations 17/24/32/33/34/35) recurred TWICE, independently, inside
+Iteration 36 itself — the first time it has recurred inside the very
+cycle whose own mandatory fix (MF-3) was written to close it. Not a
+physics finding — all four `Q_ext(x)` gates, the regression anchor, and
+every one of six Phase-5 seats' independent re-derivations stand
+unchallenged. Three Tier-1 doc fixes applied same-shift (`lab/qext_theory.py`
+×2 sites, `lab/validation/run_all.py`'s stage-21 docstring), full bench
+67/67 reverified after. Per Iteration 17's own direct precedent this is a
+notification, not a pause: Marsh is convened (this entry + LOGBOOK.md
+Iteration 36 + SESSION_LOG.md), unblocked Iteration 37 work continues. A
+mechanical, lint-style caveat-propagation-check tool (not another
+hand-applied wording patch) is queued as Iteration 37's own #3 priority,
+per Red Team's own ruling that a fifth wording-only fix would not
+distinguish this closure from the six that already preceded and failed to
+hold. Full record: LOGBOOK.md Iteration 36 Phase 5.
 
 - exp-000 Hello Maxwell ✅ — hand-rolled 2D TMz FDTD, first light, photonic
   nanojet reproduced (`experiments/000-hello-maxwell/`).
@@ -1723,18 +1745,84 @@ continuous mode with checkpoints. The remaining [open] items below are
   synthesis, NOTES.md, design_geometry.py, run.py, results.json,
   `recompute_flux_signs.py`, `sign_fix_verification.json`, six Phase-5
   blind reviews, Phase-5 Red Team audit. LOGBOOK.md Iteration 35.
-- **[LOCKED — panel Iteration 36, UNCONDITIONAL, breaking rotation, per
-  Red Team's Iteration-34 Phase-5 ruling; Director's Iteration-35 call:
-  NOT folded in as a zero-cost rider, given Iteration 35's own scope
-  (new machinery, 20 new FDTD calls, a nine-item Phase-5 fix docket) was
-  already substantial — explicitly deferred, not silently dropped]**
-  **The `Q_ext(x)` closed-form cylinder/disk check** bounding `w_on`'s
-  diffraction excess over `r_out` — proposed at Iteration 31's close,
-  three clean deferrals since (32, 33, 34), meeting the same 3-deferral
-  bar that triggered `graded_black_shell_flagship`'s own lock.
-  Structurally more consequential than that fix was — underlies every
-  article's `p_abs_w` in the thermal ledger, not one. Zero new FDTD
-  (desk-analytic).
+- [done 2026-08-22, panel Iteration 36, cloud panel shift] **exp-059 the
+  LOCKED `Q_ext(x)` closed-form cylinder/disk check** — PHOTONICS' lead
+  (by LOCK, Red Team's Iteration-34 ruling after 3 deferrals, this
+  program's lowest-ever lock-trigger count, and by rotation coincidence).
+  New module `lab/qext_theory.py` — the exact PEC-infinite-cylinder
+  Bessel/Hankel partial-wave `Q_ext(x)` series, TM_z, zero new FDTD,
+  trust-suite stage 21 (4 gates + regression anchor). **Result:** the
+  flagship's measured `Q_ext=1.5385` sits at **72.6%** of the exact
+  PEC-sharp-edge reference `Q_ext_PEC(ka=24.5044)=2.1177` — bounds, for
+  the first time since Iteration 31, `w_on`'s diffraction-inflation
+  assumption inside a physically sane envelope. **Does NOT change any
+  scored thermal margin** (369×–1655× clear of NETD-lo either way,
+  THERMODYNAMICS' own code-verified sensitivity check) and does NOT
+  resolve the separate, still-open `iso_xsec_sq` squaring-convention
+  question. Phase 2: five blind support-with-changes + Red Team
+  (PROCEED-WITH-MANDATORY-FIXES, 6-item docket, plus its own new
+  load-bearing finding — an empirical cross-check against already-
+  committed bare-PEC FDTD data, 2.32% max deviation, the real answer to
+  a gate-1 self-test tautology two seats independently caught). **Phase
+  5: 4 PROMISING / 2 PARTIAL** — Red Team's audit found Checkpoint
+  criterion 4 FIRES (two independent within-cycle recurrences of the
+  caveat-placement pattern Iteration 35 pre-declared a tripwire on),
+  **overriding the raw 4-2 count to PARTIAL**, provisional-to-PROMISING
+  once three same-shift Tier-1 doc fixes landed (they did, re-verified,
+  bench 67/67 green). CHECKPOINT entry filed (see Current-state note
+  above); Marsh notified; Iteration 37 proceeds unblocked per Red Team's
+  own explicit ruling. exp-057's own separate, self-contradictory
+  "~295×" arithmetic error (THERMODYNAMICS' new Phase-5 catch) queued as
+  a zero-cost Iteration-37 rider, not part of this cycle's docket.
+  Verdict: PARTIAL (provisional-to-PROMISING). Full record:
+  `experiments/059-qext-x-cylinder-disk-check/`, LOGBOOK.md Iteration 36.
+- **[queued — ranked for Iteration 37+, per Red Team's Iteration-36
+  Phase-5 reconciliation of all six seats — a rare six-way convergence
+  on item 1, exp-059 — CURRENT top-of-queue, supersedes the list below as
+  the active ranking, retained as valid backlog, not deleted]** (1) **The
+  sharp-uniformly-lossy-disk FDTD control run** — all six Phase-5 seats
+  named this in their top-3, five as #1; disentangles "edge grading
+  reduces diffraction" from "any bulk loss damps PEC's resonance
+  ripple," directly resolving MATERIALS' own PARTIAL-driving concern
+  (MF-5) — cheap, one new scene, reuses `materials.pec_disk` at
+  `R_COAT` with uniform non-graded sigma matched to the shell's own
+  optical depth. (2) **The exp-057 erratum fix** — three string edits
+  (`NOTES.md`/`run.py`/`results.json`), zero new FDTD, corrects the
+  self-contradictory "~295×" figure to the code-verified 1655.18×,
+  execute as a zero-cost rider before Iteration 37's own proposal work.
+  (3) **Build the mechanical caveat-propagation-check tool** Red Team
+  authorized at Iteration 36's Checkpoint-4 ruling — grep every
+  mandatory-fix caveat's own key phrase across every file touched by
+  that fix's cited sites, not just the sites the fix draft names by
+  hand; a sixth hand-applied wording patch would not distinguish this
+  closure from the ones that already preceded and failed to hold. (4)
+  **MATERIALS' absorptivity/mechanism literature check** — now SEVEN
+  cycles deferred (Iteration 29→36), approaching this program's own
+  escalation pattern; pin it to one checkable question before an eighth
+  deferral forces an unconditional lock. (5) **EM's TE_z companion
+  series** for `qext_theory.py` — mechanical, zero new FDTD, would let
+  gate 1's polarization-agnostic tautology claim be numerically
+  demonstrated rather than argued, and resolves the Hankel-choice
+  (`H^(1)` vs `H^(2)`) documentation gap EM's own Phase-5 review flagged.
+  (6) **PHOTONICS' T26 λ/angle generalization** (oblique-incidence
+  `Q_ext` extension, still a closed-form Bessel/Hankel series, zero new
+  FDTD), paired with **`graded_black_shell_flagship`'s own 450/750nm
+  sweep** (both PHOTONICS and MATERIALS named this). (7) Carried
+  backlog, unblocked, lower urgency: R3-on-loaded-legs for
+  `off_pass_joint`/`off_bracket_joint`; the flank-denominator
+  distribution upgrade; a Geary-Hinkley tail-shape model of `C(δ)`;
+  P-VIS-5's angle-quantization sensitivity formula; shell-vs-solid
+  thermal-mass parameterization (3rd consecutive cycle open); QUANTUM's
+  convergence-guard audit pass across `lab/`'s other closed-form modules
+  for the "exact-threshold-from-a-wide-bracket" pattern (QUANTUM's own
+  new Phase-5 finding: the `Q_ext(x)` module's own "x=260 exact
+  threshold" claim is itself imprecise, true NaN onset ≈x=259 — Tier-2,
+  non-blocking); `coupled_segment_general`'s RK4-cross-checked
+  trust-suite promotion.
+- **[superseded — the original locked-item bullet, retained only as a
+  pointer to the LOCK's own history; the binding record is the [done]
+  entry above]** ~~The `Q_ext(x)` closed-form cylinder/disk check~~ —
+  now closed by exp-059, see above.
 - **[queued — ranked for Iteration 36+ (behind the LOCKED item above),
   per Red Team's Iteration-35 Phase-5 reconciliation of all six seats,
   exp-058 — CURRENT top-of-queue, supersedes the list below as the

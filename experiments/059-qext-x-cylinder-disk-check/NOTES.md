@@ -339,6 +339,124 @@ promotion.
 
 ## Phase 5 outcome
 
-*(To be completed after Phase 5 review — six fresh seats + Red Team audit —
-per PANEL.md's loop. See LOGBOOK.md Iteration 36 for the full verbatim
-record once Phase 5 closes.)*
+Six fresh blind seats + Red Team audit. **4 PROMISING (PHOTONICS,
+ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS), 2 PARTIAL (MATERIALS,
+VISION SCIENCE).** All six independently re-ran the code and confirmed
+every gate/regression-anchor number byte-identical to this document's
+Results table — the physics content was never in question from any seat.
+
+**MATERIALS' PARTIAL**: confirmed MF-5's wording fix genuinely present and
+correct everywhere checked, but the underlying edge-grading-vs-bulk-loss-
+damping question (MF-5) remains a substantive, undisentangled realizability
+unknown, not a footnote — a legitimate open question, not disqualifying on
+its own.
+
+**VISION SCIENCE's PARTIAL — the one that controlled the final verdict.**
+A repo-wide sweep (not just the two sites MF-3 named) found MF-3's own fix
+was itself incomplete: `lab/validation/run_all.py`'s `stage21_qext_theory`
+docstring — the single most load-bearing, permanent, git-tracked site of
+all — stated the 72.6%/PEC-reference comparison with zero MF-3/MF-5 caveat
+language. **Independently, MF-1's fix was ALSO only half-applied**:
+`lab/qext_theory.py`'s TOP-LEVEL MODULE docstring still carried the exact
+disproven "independent numerical proof that this sign/coefficient choice
+is right" claim verbatim — only `_self_test`'s own docstring got the
+corrected wording. Both findings independently confirmed by the Director
+and by Red Team's own re-verification before this ruling.
+
+**Red Team's audit: Checkpoint criterion 4 FIRES, without qualification.**
+Iteration 35's own pre-declared, binding tripwire ("a further recurrence
+of the caveat-placement pattern is a retroactive Checkpoint-4 trigger, no
+further deliberation required") is triggered by this cycle's own two
+independent, partial-fix recurrences — the program's 7th-9th confirmed
+instance of this defect class (Iterations 17/24/32/33/34/35, now 36
+twice), and the FIRST time it has recurred *inside the very cycle whose
+mandatory fix was written to close it*. Red Team's ruling: this aggravates
+rather than mitigates — a scoped, itemized fix that still misses a site is
+stronger evidence the panel's remedy mechanism itself is unreliable than a
+cycle that never engaged with the pattern at all. **Overall verdict:
+PARTIAL, explicitly OVERRIDING the raw 4-2 PROMISING count** — not on
+physics (all four gates, the regression anchor, and every seat's
+independent re-derivation stand unchallenged), but because the cycle's own
+closing claim (that MF-3 closed the caveat-propagation defect) was false
+as documented, in exactly the load-bearing-document class the tripwire
+existed to catch. **Verdict is explicitly provisional on Tier-1 fixes
+landing same-shift** — applied immediately following this ruling (see
+below); once applied and re-verified, Red Team's own stated position is
+the verdict "should read PROMISING going forward."
+
+**Tier-1 mandatory fixes, applied same-shift, all zero-new-FDTD**: (1)
+`run_all.py::stage21_qext_theory`'s docstring — MF-3/MF-5 caveats now
+inline at the 72.6% figure. (2) `qext_theory.py`'s top-level module
+docstring — the disproven "independent numerical proof" claim replaced
+with the corrected sign-convention-scope-only wording (matching
+`_self_test`'s own, now-consistent). (3) `qext_theory.py`'s `__main__`
+demo block — MF-5's caveat added alongside the existing MF-3/MF-4
+citations. A full repo-wide re-sweep (`grep -rn "72.6%\|independent
+numerical proof\|softer edge diffracts less"`) confirms every remaining
+hit is either a fixed-with-caveat site or an appropriate historical
+quotation inside a mandatory-fix's own writeup (this document's own MF-1/
+MF-3/MF-5 paragraphs, quoting the original defect for the record). Full
+bench 67/67 green after all three fixes (`--only 12346789,10,11,18,19,20,21`).
+
+**Tier-1 remedy authorized, not yet built (queued, Iteration 37+ scope,
+not blocking)**: a mechanical, lint-style caveat-propagation check — grep
+every mandatory-fix caveat's own key phrase across every file touched by
+that fix's cited sites, not just the sites the fix draft names by hand —
+Red Team's own ruling that a fifth wording-only patch would not
+distinguish this closure from the six that already preceded and failed to
+hold.
+
+**exp-057 erratum (THERMODYNAMICS' new finding, Red Team-ruled a SEPARATE,
+non-blocking item)**: `experiments/057-.../NOTES.md` contains a live,
+self-contradictory arithmetic error — it asserts "a smaller assumed area
+only increases the margin" then computes `699.27/2.367≈295.4x` (division,
+decreases) instead of `699.27*2.367≈1655.2x` (multiplication, increases,
+matching its own stated direction and this cycle's own independently
+code-verified 1655.18x figure). No scored classification changes either
+way (both 2+ orders of magnitude clear of NETD-lo). **Directive: a
+same-program erratum, three string edits (`NOTES.md`, `run.py`,
+`results.json`), executed as a zero-cost rider at the START of Iteration
+37, not part of exp-059's own docket** (a different, already-closed
+cycle's record; folding it in would blur which cycle owns which fix).
+
+**Checkpoint criteria, all five checked explicitly**: criterion 1 (all
+constraint metrics pass) does not fire — no constraint metric scored this
+cycle. Criterion 2 (proven boundary) does not fire — this bounds, does not
+close, and isn't an unsatisfiability finding. Criterion 3 (engine physics
+beyond validated bench classes) does not fire — confirmed zero new FDTD.
+**Criterion 4 FIRES** (see above — process, not physics; constraint #3 is
+the constraint MF-3/MF-5's caveats gate, the load-bearing reason this is a
+criterion-4 matter). Criterion 5 (two consecutive no-result iterations)
+does not fire — both Iteration 35 and 36 delivered genuine results.
+
+**CHECKPOINT entry**: written to `LOGBOOK.md` and `SESSION_LOG.md` per
+PANEL.md's checkpoint procedure — Marsh is notified. Per Iteration 17's own
+direct precedent, this is a notification, not a pause: the Tier-1 fixes
+landed same-shift (above), and per Red Team's own explicit ruling this
+does not block Iteration 37's unblocked proposal work from continuing.
+
+**Ranked priorities for Iteration 37+** (Red Team's reconciliation of all
+six seats — six-way convergence on item 1, a rare unanimity): (1) **The
+sharp-uniformly-lossy-disk FDTD control run** — all six seats named this
+in their top-3, five as #1; directly resolves MATERIALS' PARTIAL-driving
+concern (MF-5), cheap, already scoped. (2) The exp-057 erratum fix (above).
+(3) The Tier-1 doc fixes (already applied this shift) plus building the
+mechanical propagation-check remedy (an Iteration-37-scoped deliverable,
+not just this cycle's hand-applied patch). (4) MATERIALS' absorptivity/
+mechanism literature check — now SEVEN cycles deferred, approaching this
+program's own escalation pattern; pin it to one checkable question before
+an eighth deferral forces an unconditional lock. (5) EM's TE_z companion
+series for `qext_theory.py` (mechanical, demonstrates gate 1's
+polarization-agnostic tautology numerically, resolves the Hankel-choice
+documentation gap). (6) PHOTONICS' T26 lambda/angle generalization /
+oblique-incidence Q_ext extension, paired with `graded_black_shell_flagship`'s
+own 450/750nm sweep. (7) Carried backlog, unblocked, lower urgency:
+shell-vs-solid thermal-mass parameterization (3rd consecutive cycle open);
+P-VIS-5's angle-quantization sensitivity formula; QUANTUM's
+convergence-guard audit pass across `lab/`'s other closed-form modules for
+the "exact-threshold-from-a-wide-bracket" pattern (QUANTUM's own new
+Phase-5 finding: the "x=260 exact threshold" claim is itself imprecise,
+true NaN onset ≈x=259 — queued, Tier-2, non-blocking); EM's
+flank-denominator distribution upgrade.
+
+Full verbatim record: `LOGBOOK.md`, Iteration 36.

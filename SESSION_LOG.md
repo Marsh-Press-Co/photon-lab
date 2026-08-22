@@ -2,6 +2,71 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-22 (panel shift) — Iteration 36 complete (exp-059): the LOCKED
+`Q_ext(x)` closed-form cylinder check bounds w_on's diffraction-inflation
+assumption for the first time since Iteration 31; Checkpoint criterion 4
+fires and is remediated same-shift; Marsh notified.
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle). Read HANDOFF.md, README.md, PANEL.md, LOGBOOK.md
+(11916 lines, in full — via a dedicated sub-agent full read + digest
+covering the complete ruled-out registry, all live threads T1–T26,
+`Q_ext(x)`'s full history, and Iteration 35's full verbatim record),
+PLAN.md's Current-state section and the standing Iteration-36+ queue,
+AGENTS.md, VALIDATION.md, and SESSION_LOG's top two entries. Bench
+verified green: `--only 12346789,10,11,18,19,20` → 62/62 in 150s before
+any panel work began.
+
+**Iteration 36 — PHOTONICS' LOCKED `Q_ext(x)` closed-form cylinder/disk
+check (exp-059).** Lead: PHOTONICS, by UNCONDITIONAL LOCK (Red Team's
+Iteration-34 ruling, 3 clean deferrals, this program's lowest-ever
+lock-trigger count) — and by rotation coincidence. Full five-phase panel
+cycle: Phase 1 (new module `lab/qext_theory.py` — the exact PEC-infinite-
+cylinder Bessel/Hankel partial-wave `Q_ext(x)` series, TM_z, zero new
+FDTD, three self-test gates) → five blind Phase-2 critiques (all
+support-with-changes) + Red Team audit (PROCEED-WITH-MANDATORY-FIXES,
+6-item docket — load-bearing new finding of its own, MF-6: an empirical
+cross-check against already-committed bare-PEC FDTD bench data nobody else
+exploited, the real answer to a gate-1 self-test tautology two seats
+independently caught) → Phase 3 synthesis (all fixes applied, MF-5's
+FDTD-requiring half explicitly overridden as out of scope and queued;
+new trust-suite stage 21; predictions committed to git BEFORE the
+official run) → Phase 4 (zero new FDTD, all five predictions CONFIRMED
+exactly) → six blind Phase-5 reviews (4 PROMISING/2 PARTIAL) + Red Team's
+final audit.
+
+**Results**: the flagship absorber's measured `Q_ext=1.5385` sits at
+**72.6%** of the exact PEC-sharp-edge reference
+`Q_ext_PEC(ka=24.5044)=2.1177` — bounds, for the first time since
+Iteration 31, an assumption that had sat as bare assertion in
+`thermo_sidecar.py`'s `iso_xsec_sq` convention. Does NOT change any scored
+thermal margin (369×–1655× clear of NETD-lo either way, THERMODYNAMICS'
+own code-verified sensitivity check) and does NOT resolve the separate,
+still-open squaring-convention question. **Checkpoint criterion 4 FIRES**:
+Red Team's Phase-5 audit found two independent, within-cycle recurrences
+of the caveat-placement/propagation defect pattern (Iterations
+17/24/32/33/34/35) — the first time it has recurred inside the very cycle
+whose own mandatory fix (MF-3) was written to close it (VISION SCIENCE's
+repo-wide sweep found MF-3's fix missed a third, more load-bearing site;
+MF-1's fix was independently found only half-applied too). Red Team ruled
+this AGGRAVATES rather than mitigates and fires the tripwire Iteration 35
+pre-declared, **overriding the raw 4-2 PROMISING seat count to PARTIAL**
+— not on physics (every gate, the regression anchor, and all six seats'
+independent re-derivations stand unchallenged) but on the cycle's own
+false closing claim. **Three Tier-1 doc fixes applied and re-verified
+same-shift** (bench 67/67 green after), making the verdict
+provisional-to-PROMISING per Red Team's own stated path. A separate,
+unrelated arithmetic error in a DIFFERENT, already-closed cycle's record
+(exp-057's self-contradictory "~295×" figure, found by THERMODYNAMICS)
+was ruled a non-blocking erratum, queued for Iteration 37. **CHECKPOINT
+entry filed** (LOGBOOK.md + PLAN.md + this entry) per PANEL.md's
+procedure — Marsh notified. Per Iteration 17's own direct precedent this
+is a notification, not a pause: Iteration 37's unblocked work continues.
+No other Checkpoint criterion fires. Full record: PLAN.md, LOGBOOK.md
+Iteration 36, `experiments/059-qext-x-cylinder-disk-check/`. Bench 67/67
+(`--only 12346789,10,11,18,19,20,21`) at Phase 5 close; zero
+`lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched.
+
 ## 2026-08-22 (panel shift) — Iteration 35 complete (exp-058): T25's
 variance question closes — `C(δ)` is heavy-tailed/mean-unstable across
 N=2000 genuine random-phase draws, but the underlying flux means confirm
