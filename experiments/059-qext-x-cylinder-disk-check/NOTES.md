@@ -272,3 +272,73 @@ exact omitted-bump bug class this program has hit three times before
 (both the proposer's own recommendation and Red Team's audit flagged it
 explicitly before any commit).
 
+## Results
+
+Zero new FDTD calls (confirmed: `git grep -c "Sim(" lab/qext_theory.py` is
+empty). Official trust-suite invocation: `python3 lab/validation/run_all.py
+--only 21` and the full fast bench `--only 12346789,10,11,18,19,20,21`.
+Full data: `results.json`.
+
+| Prediction | Predicted | Measured (official run) | Verdict |
+|---|---|---|---|
+| P-059-1 (gate 1) | <=1e-9 | **1.688e-13** | **CONFIRMED** |
+| P-059-2 (gate 2) | <=0.011 / <=1e-4 | **9.960e-3 / 9.962e-5** | **CONFIRMED** |
+| P-059-3 (gate 3, x<=255 only) | <=1e-10 | **0.000e+00** | **CONFIRMED** |
+| P-059-4 (gate 4, NEW) | <=3% | **-1.716% / -0.605% / +2.324%** (450/600/750nm) | **CONFIRMED** |
+| P-059-5 (regression anchor) | 2.1177205150608365 +-1e-9 | **2.1177205150608365** | **CONFIRMED** |
+| MF-4 margin sensitivity (informational, not a falsifiable prediction) | established ~699.27x; floor/ceiling 2+ orders of magnitude clear | **established=699.27x, Q_ext=1 floor=1655.18x, PEC ceiling=369.07x** | **CONFIRMS MF-4**: no scored classification changes under either bounding extreme |
+
+### Headline (for LOGBOOK)
+
+**All four gates and the regression anchor CONFIRM under the official,
+git-recorded trust-suite execution — zero deviation from Phase-1/2's own
+informal verification, as expected for fully deterministic closed-form
+code.** The LOCKED `Q_ext(x)` item — three clean deferrals (Iterations
+32/33/34), the program's lowest-ever lock-trigger threshold — closes this
+cycle with a genuine, gate-clean, honestly-scoped bound: the flagship
+absorber's measured `Q_ext=1.5385` sits at **72.6%** of the exact
+PEC-sharp-edge reference `Q_ext_PEC(ka=24.5044)=2.1177`, inside the
+physically sane envelope `[1.0, 2.1177]` — bounding, for the first time,
+an assumption that had sat as bare assertion since Iteration 31. **This
+does NOT change any scored thermal margin** (`graded_black_shell_flagship`
+stays 369x-1655x clear of NETD-lo under either bounding extreme, MF-4) and
+does NOT resolve the separate, still-open `iso_xsec_sq`
+squaring-a-width-to-get-an-area convention question. The directional
+comparison (measured below the sharp-edge reference) is **consistent
+with, not diagnostic of, edge-grading specifically** (MF-5) — a sharp but
+lossy disk would plausibly show the same qualitative pattern, and this
+cycle does not disentangle the two mechanisms. **Red Team's own new
+finding (MF-6), independently exploiting already-committed
+`experiments/002-cross-sections` bare-PEC bench data nobody else used,
+supplies the load-bearing, non-tautological validation MF-1 showed gate 1
+alone cannot provide**: the closed-form series agrees with this bench's
+own real Ez/Hy FDTD solve to within 2.32% at three independent size
+parameters — genuine cross-validation between an exact partial-wave series
+and a full discretized Maxwell solve, now a permanent stage-21 gate.
+
+## Next (pre-registered, for Phase 5)
+
+Queued, not run this cycle (Red Team's own MF-5 override: out of this
+LOCKED item's zero-new-FDTD scope): **(1)** the sharp-uniformly-lossy-disk
+FDTD control run MATERIALS proposed, to actually disentangle "edge
+grading reduces diffraction" from "any bulk loss damps PEC's resonance
+ripple" — cheap (one new scene, reusing `materials.pec_disk` at `R_COAT`
+with a uniform, non-graded sigma matched to the shell's own optical
+depth), a natural Iteration 37+ candidate, not LOCKED. **(2)** The
+remaining competitive queue from Iteration 35's own close (superseded
+list retained as valid backlog, not deleted): R3-on-loaded-legs for
+`off_pass_joint`/`off_bracket_joint`; the flank-denominator distribution
+upgrade; a Geary-Hinkley tail-shape model of `C(delta)`; P-VIS-5's
+angle-quantization sensitivity formula; MATERIALS' absorptivity/mechanism
+literature check (now SEVEN cycles deferred, approaching this program's
+own escalation pattern — flagged again); the T26 lambda/angle
+generalization; the shell-vs-solid thermal-mass parameterization (third
+consecutive cycle open); `graded_black_shell_flagship`'s own 450/750nm
+sweep; `coupled_segment_general`'s RK4-cross-checked trust-suite
+promotion.
+
+## Phase 5 outcome
+
+*(To be completed after Phase 5 review — six fresh seats + Red Team audit —
+per PANEL.md's loop. See LOGBOOK.md Iteration 36 for the full verbatim
+record once Phase 5 closes.)*

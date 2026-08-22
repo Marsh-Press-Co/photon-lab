@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "experiment": "exp-059",
+    "panel_iteration": 36,
+    "lead": "PHOTONICS (LOCKED, unconditional, breaking rotation)",
+    "t1_escape_route": "NONE (sidecar/validation cycle)",
+    "n_new_fdtd_calls": 0,
+    "module": "lab/qext_theory.py (new, this cycle)",
+    "trust_suite_stage": 21
+  },
+  "self_test_gates": {
+    "energy_conservation": {
+      "xs": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        5.0,
+        24.504422698000383,
+        100.0,
+        1000.0
+      ],
+      "max_abs_dev": 1.687538997430238e-13,
+      "tolerance": 1e-09,
+      "pass": true
+    },
+    "large_x": {
+      "Q_ext(x=1e3)": 2.0099596656646788,
+      "dev_from_2_at_1e3": 0.009959665664678763,
+      "Q_ext(x=1e6)": 2.0000996189032816,
+      "dev_from_2_at_1e6": 9.961890328158418e-05,
+      "pass": true
+    },
+    "convergence_stability_at_bench_x": {
+      "x": 24.504422698000383,
+      "n_terms_default": 84,
+      "n_terms_2x": 184,
+      "Q_ext_default": 2.1177205150608365,
+      "Q_ext_2x_terms": 2.1177205150608365,
+      "abs_diff": 0.0,
+      "pass": true
+    },
+    "empirical_cross_validation": {
+      "rows": [
+        {
+          "lambda_nm": 450.0,
+          "x_ka": 12.566370614359172,
+          "q_ext_pec_theory": 2.18336740941569,
+          "q_ext_measured_fdtd": 2.145908482382741,
+          "rel_dev": -0.017156492705446114,
+          "source": "experiments/002-cross-sections/results.json::reflector-450.q_ext"
+        },
+        {
+          "lambda_nm": 600.0,
+          "x_ka": 9.424777960769378,
+          "q_ext_pec_theory": 2.221845236026112,
+          "q_ext_measured_fdtd": 2.2084076980980476,
+          "rel_dev": -0.006047918059359619,
+          "source": "experiments/002-cross-sections/results.json::reflector-600.q_ext"
+        },
+        {
+          "lambda_nm": 750.0,
+          "x_ka": 7.5398223686155035,
+          "q_ext_pec_theory": 2.2571057933674497,
+          "q_ext_measured_fdtd": 2.309554004858993,
+          "rel_dev": 0.023236930960730134,
+          "source": "experiments/002-cross-sections/results.json::reflector-750.q_ext"
+        }
+      ],
+      "max_abs_rel_dev": 0.023236930960730134,
+      "tolerance": 0.03,
+      "pass": true,
+      "note": "bare PEC disk, R_CORE=30 cells, this bench's own real Ez/Hy FDTD solve (experiments/002-cross-sections), NOT this module's own code, at 3 size parameters distinct from the flagship's x=24.50 -- the actual formula/polarization check gate 1's tautology cannot provide."
+    },
+    "small_x_observation": {
+      "note": "NOT an asserted gate -- an honest, code-computed observation: Q_ext_PEC DIVERGES (grows) as x->0 for this TM/E-parallel polarization rather than vanishing (unlike the familiar 3D Rayleigh Q_ext->0 sphere limit). This is the known thin-wire asymmetry (axial E-field drives free current along a thin conductor even as ka->0; the orthogonal H-parallel/TE polarization does NOT show this and was not computed here -- out of scope for this bench's TMz convention). Reported, not treated as an error.",
+      "Q_ext(x=1e-3)": 95.26723563125142,
+      "Q_ext(x=1e-2)": 19.93379190845718
+    },
+    "all_gates_pass": true
+  },
+  "flagship_comparison": {
+    "x_ka": 24.504422698000383,
+    "q_ext_pec_reference": 2.1177205150608365,
+    "q_ext_measured": 1.5385088077964393,
+    "ratio_measured_over_pec": 0.7264928477836661,
+    "q_ext_measured_sq_area_domain": 2.367009351667221,
+    "q_ext_pec_reference_sq_area_domain": 4.484740179909535,
+    "source_note": "q_ext_measured = sigma_ext_cells/(2*r_out_cells), same formula as experiments/002-cross-sections/run.py's own r['q_ext'] field; q_ext_pec_reference is the EXACT sharp-edge PEC partial-wave series at the SAME x, NOT a model of the graded_black_shell profile",
+    "diffraction_caveat": "Q_ext_PEC is a REFERENCE/BOUNDING comparison only (MF-3), NOT a literal model of the graded_black_shell profile. The directional comparison (measured < PEC reference) is consistent with, not diagnostic of, edge-grading specifically (MF-5) -- a sharp but uniformly lossy disk would plausibly show the same qualitative pattern; no control case in this cycle disentangles the two mechanisms (queued, NOTES.md Next). This item bounds a previously-unbounded assumption; it does NOT change any scored thermal margin (MF-4) and does NOT resolve the separate, still-open iso_xsec_sq squaring-a-width-to-get-an-area convention question."
+  },
+  "margin_sensitivity_MF4": {
+    "established_margin_r_out_based_UNCHANGED": 699.2695164674427,
+    "conservative_q_ext1_floor_margin": 1655.1774848142534,
+    "pec_ceiling_margin": 369.068757255775,
+    "note": "MF-4 verification: substituting either bounding extreme this item motivates into the AREA term only (p_abs_w/h_eff/mass stay on the established r_out convention, T23/exp-054) still leaves the margin 369x-1655x, both 2+ orders of magnitude clear of NETD-lo -- confirms THERMODYNAMICS' Phase-2 finding that NO scored thermal classification changes. This is a SENSITIVITY probe, not a claim that either bounding area is the correct convention -- the established r_out-based area (T23) stands unmodified.",
+    "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one. This item's margin recompute (below) does NOT bear on constraint-3/4's human-eye verdict -- included only to verify MF-4's claim that no scored margin changes, not as a new thermal finding."
+  }
+}
