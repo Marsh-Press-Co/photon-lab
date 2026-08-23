@@ -1,0 +1,113 @@
+[
+  {
+    "id": "exp060-p10-fresnel-not-diffraction",
+    "description": "exp-060's P-10 result refuted the pre-run 'edge/grazing diffraction' framing for why the uniform-lossy-shell control excess-scatters more than the graded shell; the corrected mechanism (Fresnel-type reflectance at the sharp conductivity discontinuity) must appear at every permanent, git-tracked site describing this control's purpose -- most load-bearing: run_all.py's own stage-22 docstring, the exact site that MISSED this propagation and fired Checkpoint criterion 4 at Iteration 37 (a third consecutive-cycle recurrence).",
+    "source": "LOGBOOK.md Iteration 37 Phase-5 (VISION SCIENCE's catch, Red-Team-confirmed Checkpoint-4 firing); experiments/060-sharp-uniform-lossy-disk-control/NOTES.md Learned #2 and Phase-5-outcome section",
+    "phrase_patterns": [
+      "Fresnel-type reflectance at the sharp conductivity\\s*discontinuity",
+      "Fresnel reflectance at (the )?(a )?sharp( conductivity)? (step|discontinuity|entry)",
+      "NOT by edge/\\s*grazing diffraction"
+    ],
+    "required_sites": [
+      "lab/validation/run_all.py",
+      "experiments/060-sharp-uniform-lossy-disk-control/NOTES.md"
+    ],
+    "trigger_terms": [
+      "uniform_lossy_shell",
+      "sharp-edged.{0,20}conductivity",
+      "P-10"
+    ]
+  },
+  {
+    "id": "exp060-sigma-flat-convention-caveat",
+    "description": "The 'matched optical depth' (equal raw sigma line-integral) convention behind uniform_lossy_shell's own sigma_flat does NOT match true field-attenuation depth once loss is order-unity (~8.3% disclosed residual, QUANTUM OPTICS' Iteration-37 finding). Red Team's Iteration-37 mandatory fix 5 (VISION SCIENCE's Phase-2 catch) required this caveat propagated to every site the number/claim is USED, not stated once in an Idealizations section alone -- the exact pattern that fired Checkpoint-4 one cycle earlier (Iteration 36).",
+    "source": "LOGBOOK.md Iteration 37 (mandatory fix 5); experiments/060-sharp-uniform-lossy-disk-control/NOTES.md sigma_flat-derivation section and Idealizations",
+    "phrase_patterns": [
+      "does NOT match true field.attenuation depth",
+      "does not match true field attenuation",
+      "true attenuation.weighted depth"
+    ],
+    "required_sites": [
+      "experiments/060-sharp-uniform-lossy-disk-control/NOTES.md",
+      "lab/materials.py"
+    ],
+    "trigger_terms": [
+      "sigma_flat",
+      "matched optical depth"
+    ]
+  },
+  {
+    "id": "exp052-alpha-60nm-absorptivity-open",
+    "description": "The graded_black_shell fixed-absolute-thickness variant's own implied absorption e-folding rate (alpha=1/60nm, tau_shell=24 over 1.44um) has NEVER been checked against a primary CNT-forest absorption-coefficient citation (T18's WebFetch block). Every site that cites this number MUST disclose that the absorptivity question, not just the thickness question, remains open -- this is the exact standing caveat exp-061 (Iteration 38) exists to finally close or sharpen. Registered here so exp-061's own Phase-1/Phase-3 sites are checked for propagation once written.",
+    "source": "REALIZABILITY_MEMO.md Entry 2 (CLOSED-on-thickness/OPEN-on-absorptivity, Iteration 29); experiments/052-fixed-absolute-thickness-shell/design_geometry.py Fix 6",
+    "phrase_patterns": [
+      "no primary CNT-forest absorption-coefficient",
+      "absorptivity, not thickness",
+      "absorptivity unchecked"
+    ],
+    "required_sites": [
+      "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md",
+      "experiments/052-fixed-absolute-thickness-shell/design_geometry.py"
+    ],
+    "trigger_terms": [
+      "alpha.{0,10}1/60nm",
+      "e-fold(ing)? (length|rate)",
+      "tau_shell"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/*.py",
+      "experiments/061-absorptivity-mechanism-literature-check/*.md"
+    ]
+  },
+  {
+    "id": "exp061-t18-evidentiary-tier-propagation",
+    "description": "Iteration-38 Phase-2 Red Team mandatory fix 2 (VISION SCIENCE's own live catch: this cycle's own Phase-1 proposal stated the T18 WebSearch-snippet-only evidentiary tier in its search-plan and Idealizations sections but NOT at the specific table rows a Phase-4 verdict is actually cited from). Any site stating exp-061's own literature-check verdict (PUBLISHED/PLAUSIBLE/UNOBTANIUM for the graded_black_shell absorptivity question) must disclose the WebSearch-snippet-only sourcing tier AT THE VERDICT ITSELF, not only in a general methodology section elsewhere in the same document.",
+    "source": "LOGBOOK.md Iteration 38 Phase-2 Red Team audit, mandatory fix 2 (VISION SCIENCE's Phase-2 catch: the tool itself, run live against its own introducing document, WARNed on this exact gap)",
+    "phrase_patterns": [
+      "WebSearch.snippet",
+      "not (primary.source|PDF/DOI).verified",
+      "T18"
+    ],
+    "required_sites": [
+      "experiments/061-absorptivity-mechanism-literature-check/NOTES.md"
+    ],
+    "trigger_terms": [
+      "PUBLISHED.{0,10}PLAUSIBLE.{0,10}UNOBTANIUM",
+      "alpha.{0,15}(1\\.66|1\\.667|5\\.7|5\\.73|5\\.74)",
+      "graded_black_shell.{0,30}absorptivity"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md"
+    ]
+  },
+  {
+    "id": "exp060-sigma-flat-corrected-bias-direction",
+    "description": "QUANTUM OPTICS' own Iteration-37 finding: the sigma_flat/Im(n(sigma)) concavity residual's BIAS DIRECTION was originally stated backwards at that cycle's own Phase 2 (fixed only at Phase 5) -- 'b_flat > I_graded', i.e. a true attenuation-match would require LOWERING sigma_flat (to t'~=0.566), not raising it. The registry's own sibling entry (exp060-sigma-flat-convention-caveat) checks only that the residual's EXISTENCE propagated, not that this specific corrected DIRECTION survives -- a future edit could silently reintroduce the reversed claim undetected without this entry.",
+    "source": "LOGBOOK.md Iteration 38 Phase-2 Red Team audit, mandatory fix 5 (QUANTUM OPTICS' own Phase-2 self-catch); experiments/060-sharp-uniform-lossy-disk-control/NOTES.md sigma_flat-derivation section",
+    "phrase_patterns": [
+      "LOWERING\\s*`?sigma_flat`?",
+      "b_flat\\s*>\\s*I_graded",
+      "not raising it"
+    ],
+    "required_sites": [
+      "experiments/060-sharp-uniform-lossy-disk-control/NOTES.md"
+    ],
+    "trigger_terms": [
+      "sigma_flat",
+      "t'\\s*[~=]"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/*.py",
+      "lab/*.py"
+    ]
+  }
+]
