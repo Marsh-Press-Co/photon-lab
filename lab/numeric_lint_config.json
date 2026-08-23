@@ -42,5 +42,16 @@
     "basis_pattern": "R\\s*[=≈<]\\s*[\\d.]+%",
     "requires_pattern": "reflectance\\)?\\s*figure|halv(ed|ing)|(no|without)\\s+(the\\s+)?(÷|/)?\\s*2\\s*correction",
     "window_chars": 3000
+  },
+  {
+    "kind": "derivation_consistency",
+    "id": "exp063-cf-bench-vs-witness-derivation",
+    "description": "exp-063 applies ONE formula (thermo_sidecar.front_surface_conduction_correction) at two length scales in NOTES.md's own predictions table -- the bench-scale flagship geometry (TD-3/TD-4, L=2.34um) and the witness-scale MP-5/730x point (TD-5, L=1051.2um) -- each reported as a bracket (front-colocated-loss endpoint, correction_factor=1, vs the rear-only-loss worst-case endpoint). This is a structural twin of exp-062's own EM-6/EM-7 R-vs-T drop (this module's own self-test regression case): a future edit to one application (e.g. dropping the front-colocated bracket endpoint, or the NETD disclaimer, at ONE length scale while leaving the other's own row unchanged) would be exactly the kind of same-methodology-applied-two-inconsistent-ways defect this check exists to catch. Registered pre-freeze at Phase 3 (mandatory-fix docket item 3, VISION SCIENCE's flip condition).",
+    "source": "LOGBOOK.md Iteration 40 Phase 2 (VISION SCIENCE's catch); experiments/063-cnt-forest-thermal-conductivity-biot-check/phase3_synthesis.md section 3 item 3",
+    "site": "experiments/063-cnt-forest-thermal-conductivity-biot-check/NOTES.md",
+    "window_patterns": ["^\\| \\*\\*TD-3\\*\\*", "^\\| \\*\\*TD-5\\*\\*"],
+    "basis_pattern": "front-colocated",
+    "requires_pattern": "NETD is an instrument.{0,20}threshold|human.eye/constraint-3 verdict",
+    "window_chars": 1000
   }
 ]

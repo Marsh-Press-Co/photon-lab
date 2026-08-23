@@ -141,5 +141,56 @@
       "experiments/*/phase*.md",
       "experiments/061-absorptivity-mechanism-literature-check/*.md"
     ]
+  },
+  {
+    "id": "exp063-biot-correction-machinery",
+    "description": "exp-063 (Iteration 40) sources the CNT-forest candidate material's real through-thickness thermal conductivity for the first time and derives a front-surface Biot-number conduction-correction factor (lab/thermo_sidecar.py::biot_number, front_surface_conduction_correction), with a named falsification boundary kappa_critical~=0.0897 W/(m*K) at which the rear-only-loss bracket endpoint drives exp-061's own MP-5/730x witness-scale margin to exactly 1.0x. Any site stating this machinery's own numbers/verdict must carry the NETD/human-eye disclaimer at the point of the claim, not only in a general setup section (Phase-2 mandatory fix 1, VISION SCIENCE's catch; Red Team's Iteration-40 Phase-2 audit, attack 1). Registered pre-freeze at Phase 3, before Phase 4 writes phase4_results.md -- that required_site legitimately FAILs until Phase 4 lands, matching exp-061/062's own precedent for a site registered before its file exists.",
+    "source": "LOGBOOK.md Iteration 40 Phase 2 (VISION SCIENCE's catch, Red Team's mandatory-fix docket item 1/2); experiments/063-cnt-forest-thermal-conductivity-biot-check/phase3_synthesis.md section 3",
+    "phrase_patterns": [
+      "NETD is an instrument.{0,20}threshold",
+      "human.eye/constraint-3 verdict",
+      "does NOT bear on constraint-3/4"
+    ],
+    "required_sites": [
+      "experiments/063-cnt-forest-thermal-conductivity-biot-check/NOTES.md",
+      "experiments/063-cnt-forest-thermal-conductivity-biot-check/phase4_results.md"
+    ],
+    "trigger_terms": [
+      "biot_number",
+      "front_surface_conduction_correction",
+      "kappa_critical",
+      "0\\.0897"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/*.py",
+      "experiments/*/phase*.md",
+      "lab/*.py"
+    ]
+  },
+  {
+    "id": "exp063-thermo-disposition-netd-disclaimer",
+    "description": "exp-063's own TD-3/TD-4/TD-5 predictions restate UNDETECTABLE/DETECTABLE-adjacent classifications (correction factors and corrected margins) at their own table rows -- the NETD/human-eye disclaimer (this program's oldest continuously-enforced caveat, panel Iteration 17/20 origin) must appear AT those claim points, not only once in a generic methodology section (Red Team's Iteration-40 Phase-2 audit, attack 1 -- 'it matters more this cycle than any prior one: TD-5 is billed as this program's first-ever thermal-detectability classification flip, exactly the framing under which a reader is likeliest to conflate instrument-DETECTABLE with eye-visible'). Distinct from exp063-biot-correction-machinery above: this entry checks the DISCLAIMER's own presence at THIS cycle's specific claim points; the disclaimer rule's own general, program-wide registry entry (closing a 20-iteration-old gap) is a separate, larger, explicitly non-blocking standing item queued in PLAN.md, not built this cycle.",
+    "source": "LOGBOOK.md Iteration 40 Phase 2 (VISION SCIENCE's catch, mandatory fix 1); experiments/063-cnt-forest-thermal-conductivity-biot-check/phase2_redteam_audit.md attack 1",
+    "phrase_patterns": [
+      "NETD is an instrument.{0,20}threshold",
+      "human.eye/constraint-3 verdict"
+    ],
+    "required_sites": [
+      "experiments/063-cnt-forest-thermal-conductivity-biot-check/NOTES.md"
+    ],
+    "trigger_terms": [
+      "TD-3|TD-4|TD-5",
+      "correction factor",
+      "corrected .{0,10}margin"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md"
+    ]
   }
 ]

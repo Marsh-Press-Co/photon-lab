@@ -1,9 +1,41 @@
 # Bench validation — lab/ engine trust suite
 
+**2026-08-23 · driver: Clyde (panel Iteration 40 pre-flight, exp-063 Phase 3)
+· status: 🟢 78/78 checks green** (`--only 12346789,10,11,18,19,20,21,22,23`,
+ubuntu cloud bench, python 3.11.15 / numpy 2.4.6 — this is the program's own
+"fast" invocation; stages 12–17 are separately gated, not part of it, per
+the `--only 12346789,10,11,12,13,14,15` + `--only 16` + `--only 5` combo the
+2026-08-19 status line below records). Stage 23 (front-surface Biot
+conduction correction, `lab/thermo_sidecar.py`) added this cycle — see its
+own paragraph below.
+
 **2026-08-19 · driver: Clyde (panel Iteration 23, Phase-5 mandatory-fix close)
 · status: 🟢 89/89 checks green** (`--only 12346789,10,11,12,13,14,15`
 [82/82] + `--only 16` [5/5] + `--only 5` [2/2], ubuntu cloud bench, python
 3.11.15 / numpy 2.4.6)
+
+Stage 23 (front-surface Biot conduction correction) added with exp-063
+(panel Iteration 40, THERMODYNAMICS lead) — `thermo_sidecar.biot_number`/
+`front_surface_conduction_correction`, promoting the informal Biot-number
+arithmetic run by hand at Iteration 22 (Attack 6) and Iteration 23 (the
+Maxwell-Garnett fill-fraction table) to trust-suite-gated code, and sourcing
+kappa_solid for the actual candidate material class (CNT-forest/Vantablack-
+type) for the first time — every prior Biot check used silicon's kappa=148
+W/(m*K), ASSUMED/unsourced since Iteration 25. Three gates: the absolute
+identity (kappa_solid -> infinity recovers `mixed_length_scale_regime`'s
+own `dt_ss_full_K` unmodified, correction_factor -> 1 exactly, measured to
+1e-15); a regression anchor against exp-063 Phase-1's own committed
+script-output block (kappa=2.0 W/(m*K) at both the bench-scale flagship
+geometry and the witness-scale MP-5/730x point); and the falsification-
+boundary identity (a bisection search for kappa_critical, the kappa_solid
+at which the witness-scale correction factor drives TD-5's margin to
+exactly 1.0x, reproduces exp-063's own committed 0.0897 W/(m*K) to 1e-4).
+See exp-063/NOTES.md and phase3_synthesis.md for the full Phase-2/3 panel
+debate this code closes (PHOTONICS/MATERIALS/EM's independent Phase-2
+attacks on the underlying model's boundary conditions and length
+legitimacy — NOT gated by this suite, which checks only that the code
+correctly implements the formula it claims to, see those documents for the
+open physical-model caveats a clean trust-suite pass does not resolve).
 
 Stage 16 (oblique Gaussian line source) added with exp-046 — the first
 trust-gating of `add_line_source(profile="gauss")`, an engine path declared

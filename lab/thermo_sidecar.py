@@ -7,6 +7,16 @@ length-scale-consistent h_eff/mass/area chain replacing exp-045's own
 one-off `self_consistent_regime` script pattern with reusable, trust-suite-
 gated (stage 18) code. See `mixed_length_scale_regime`'s own docstring.
 
+Panel Iteration 40 (exp-063) adds `biot_number` and
+`front_surface_conduction_correction` -- promoting the informal Biot-
+number arithmetic run by hand at Iteration 22 (Attack 6) and Iteration 23
+(the Maxwell-Garnett fill-fraction table) to trust-suite-gated code
+(stage 23), and sourcing kappa_solid for the actual candidate material
+class (CNT-forest/Vantablack-type) for the first time -- every prior Biot
+check used silicon's kappa=148 W/(m*K), ASSUMED/unsourced since Iteration
+25. See `front_surface_conduction_correction`'s own docstring for the
+worst-case model and its disclosed, unresolved caveats.
+
 EXPRESSIBILITY CONTRACT (PANEL.md): every function here is a POST-RUN
 ANALYTIC calculation, not an FDTD output. Nothing in this module runs a
 field solve; every input is either a pre-measured bench quantity (sigma_ext,
@@ -277,6 +287,103 @@ def mixed_length_scale_regime(p_abs_w: float, l_geometric_m: float,
                              "NOT bear on constraint-3/4's human-eye "
                              "verdict (panel Iteration 20 origin, "
                              "reaffirmed Iteration 31)"),
+    }
+
+
+# --------------------------------------- front-surface conduction correction
+def biot_number(k_air: float, k_solid: float) -> float:
+    """Biot number for gas-phase-conduction-limited vs. solid-conduction-
+    limited heat transport, Bi = k_air / k_solid (dimensionless).
+
+    Panel Iteration 40 (exp-063), promoting the informal Iteration-22
+    Attack-6 / Iteration-23 desk arithmetic to trust-suite-gated code.
+    Bi << 1: the solid conducts heat internally much faster than gas
+    removes it externally -- the LUMPED (uniform-temperature) assumption
+    every `mixed_length_scale_regime` call to date has silently made is
+    self-consistent. Bi ~ 1 or larger: internal conduction is the
+    bottleneck, not external gas/radiative loss -- a lumped-capacitance
+    dT UNDERSTATES the true peak (front-surface) temperature rise. This
+    function returns the bare ratio; `front_surface_conduction_correction`
+    below turns it into an actual dT correction factor."""
+    if k_air <= 0 or k_solid <= 0:
+        raise ValueError("k_air and k_solid must be > 0")
+    return k_air / k_solid
+
+
+def front_surface_conduction_correction(k_air: float, l_geometric_m: float,
+                                         k_solid: float, emissivity: float,
+                                         t_ambient_k: float = 293.15) -> dict:
+    """Worst-case front-surface conduction correction factor for a lumped
+    steady-state dT estimate, panel Iteration 40 (exp-063).
+
+    MODEL (deliberately worst-case, an idealization every caller must
+    disclose): absorbed power enters uniformly over the illuminated FRONT
+    surface (area = l_geometric_m**2, matching `mixed_length_scale_regime`'s
+    own area convention) and must conduct across the full l_geometric_m
+    through k_solid before it can leave via the already-established
+    combined gas-conduction + radiation channel, idealized as acting ONLY
+    at the far (rear) boundary. This is an UPPER BOUND on the true
+    front-vs-lumped gap, not a measurement -- a real object loses some
+    heat locally near the front too (exp-063 NOTES.md's own front-
+    colocated-loss bracket endpoint is exactly `mixed_length_scale_regime`'s
+    own unmodified `dt_ss_full_K`, i.e. correction_factor=1 identically --
+    not a separate function here, since it needs none).
+
+    correction_factor = 1 + Bi_gas + Bi_rad(l_geometric_m), where
+    Bi_gas = k_air/k_solid (length-invariant) and
+    Bi_rad(L) = 4*emissivity*SIGMA_SB*t_ambient_k**3 * L / k_solid
+    (length-dependent -- negligible at bench scale, non-negligible at
+    witness scale, exp-063 Section 4).
+
+    ABSOLUTE IDENTITY (trust-suite gate, stage 23): as k_solid -> infinity,
+    both Bi terms -> 0 and correction_factor -> 1 exactly, recovering
+    `mixed_length_scale_regime`'s own dt_ss_full_K unmodified -- an
+    infinitely-conductive solid is, by construction, indistinguishable
+    from the lumped-capacitance idealization every prior call implicitly
+    assumed.
+
+    CAVEATS THIS FUNCTION DOES NOT RESOLVE, disclosed at every call site
+    per exp-063's own mandatory-fix docket (NOT internal to this function):
+    (1) `l_geometric_m` here plays a generation-side role (front-surface
+    absorption) `mixed_length_scale_regime`'s own docstring never licenses
+    for the bench-scale flagship, whose established radial absorption
+    profile peaks near r_in, not r_out (T9); (2) the rear-only-loss
+    boundary condition is asserted, not derived, as this geometry's worst
+    case -- a real coating-on-substrate deployment may lose heat closer to
+    the front, which would push correction_factor toward 1, not away from
+    it; (3) at witness scale, `l_geometric_m` may be an optical-extinction-
+    derived length (t=tau_true/alpha), which `gas_conduction_h_eff`'s own
+    docstring explicitly bars from a conduction-length role -- unresolved,
+    T23-adjacent (see exp-063 NOTES.md)."""
+    if k_air <= 0 or l_geometric_m <= 0 or k_solid <= 0 or emissivity <= 0:
+        raise ValueError(
+            "k_air, l_geometric_m, k_solid, emissivity must be > 0")
+    bi_gas = biot_number(k_air, k_solid)
+    bi_rad = (4.0 * emissivity * SIGMA_SB * t_ambient_k ** 3
+              * l_geometric_m / k_solid)
+    correction_factor = 1.0 + bi_gas + bi_rad
+    return {
+        "correction_factor": correction_factor,
+        "bi_gas": bi_gas,
+        "bi_rad": bi_rad,
+        "k_air": k_air,
+        "l_geometric_m": l_geometric_m,
+        "k_solid": k_solid,
+        "emissivity": emissivity,
+        "t_ambient_k": t_ambient_k,
+        "model_note": (
+            "worst-case, rear-only-loss, front-surface-generation 1D "
+            "planar conduction resistance -- an UPPER BOUND on the true "
+            "correction, not a measurement; see exp-063 NOTES.md for the "
+            "front-colocated-loss bracket endpoint (correction_factor=1, "
+            "mixed_length_scale_regime's own dt_ss_full_K unmodified) and "
+            "the generation-geometry / length-legitimacy caveats"),
+        "netd_disclaimer": (
+            "NETD is an instrument/detector threshold, not a human "
+            "perceptual one -- any classification derived from "
+            "correction_factor * dt_ss_full_K does NOT bear on "
+            "constraint-3/4's human-eye verdict (panel Iteration 20 "
+            "origin, reaffirmed Iteration 40)"),
     }
 
 

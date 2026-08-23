@@ -2061,7 +2061,75 @@ def stage22_uniform_lossy_shell():
           abs(gap_pct - 8.326) <= 0.05, "8.326%+-0.05% (regression anchor, pinned)")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 23))
+_STAGE_IDS = frozenset(str(n) for n in range(1, 24))
+
+
+def stage23_front_surface_biot_correction():
+    """`thermo_sidecar.biot_number` / `front_surface_conduction_correction`
+    (Panel Iteration 40, exp-063) -- promotes the informal Biot-number
+    arithmetic run by hand at Iteration 22 (Attack 6) and Iteration 23
+    (the Maxwell-Garnett fill-fraction table) to trust-suite-gated code.
+    PANEL.md's "new machinery => new suite stage with an absolute identity
+    gate" rule, same discipline as stages 8/18/21/22.
+
+    Three gates:
+      1. THE ABSOLUTE IDENTITY: as k_solid -> infinity, both Bi terms -> 0
+         and correction_factor -> 1 exactly, recovering
+         mixed_length_scale_regime's own dt_ss_full_K unmodified -- an
+         infinitely-conductive solid is, by construction, indistinguishable
+         from the lumped-capacitance idealization every prior call
+         implicitly assumed. Checked with k_solid=1e30 (not literal
+         infinity -- float division still terminates, and any finite
+         k_solid this large is already far beyond any physical material).
+      2. REGRESSION ANCHOR against exp-063 Phase-1's own committed
+         script-output block (Section 4): four (k_solid, geometry) cells --
+         the bench-scale flagship (L=2.34um) and the witness-scale MP-5/
+         730x point (L=1051.2um) -- at k_solid=2.0 W/(m*K), the
+         proposal's own central predicted value (TD-1).
+      3. THE FALSIFICATION-BOUNDARY IDENTITY: k_critical (the k_solid at
+         which the MP-5/730x correction factor exactly equals TD-5's own
+         predicted band width, driving the corrected margin to exactly
+         1.0x) reproduces exp-063's own committed kappa_critical~=0.0897
+         W/(m*K) (Section 4) -- the single number TD-5's "first-ever
+         DETECTABLE flip" falsification condition is scored against.
+    """
+    print("stage 23 — front-surface Biot conduction correction vs identities")
+    from lab import thermo_sidecar as ts
+
+    K_AIR = 0.026
+    EMISSIVITY = 0.9
+    L_BENCH_M = 2.34e-6
+    L_MP5_730X_M = 1051.2e-6
+
+    # --- gate 1: absolute identity, k_solid -> infinity.
+    huge = ts.front_surface_conduction_correction(K_AIR, L_BENCH_M, 1.0e30, EMISSIVITY)
+    check("front-surface-biot", "correction_factor(k_solid=1e30) == 1 (k_solid->infinity limit)",
+          f"{huge['correction_factor']!r}", abs(huge["correction_factor"] - 1.0) <= 1e-15,
+          "1.0 (+-1e-15)")
+
+    # --- gate 2: regression anchor, exp-063 Phase-1's own committed values (kappa=2.0 W/mK).
+    bench = ts.front_surface_conduction_correction(K_AIR, L_BENCH_M, 2.0, EMISSIVITY)
+    mp5 = ts.front_surface_conduction_correction(K_AIR, L_MP5_730X_M, 2.0, EMISSIVITY)
+    check("front-surface-biot", "CF(kappa=2.0 W/mK, L=bench=2.34um) vs exp-063 Phase-1 script output",
+          f"{bench['correction_factor']:.6f}", abs(bench["correction_factor"] - 1.013006) <= 1e-5,
+          "1.013006 (+-1e-5)")
+    check("front-surface-biot", "CF(kappa=2.0 W/mK, L=MP5-730x=1051.2um) vs exp-063 Phase-1 script output",
+          f"{mp5['correction_factor']:.6f}", abs(mp5["correction_factor"] - 1.015703) <= 1e-5,
+          "1.015703 (+-1e-5)")
+
+    # --- gate 3: the falsification-boundary identity, kappa_critical.
+    def _cf_mp5(k_solid):
+        return ts.front_surface_conduction_correction(K_AIR, L_MP5_730X_M, k_solid, EMISSIVITY)["correction_factor"]
+    lo, hi = 1.0e-6, 10.0
+    for _ in range(200):
+        mid = (lo + hi) / 2.0
+        if _cf_mp5(mid) > 1.35:
+            lo = mid
+        else:
+            hi = mid
+    k_critical = (lo + hi) / 2.0
+    check("front-surface-biot", "kappa_critical (CF(MP5-730x)==1.35 bisection) vs exp-063 Phase-1 Section 4",
+          f"{k_critical:.6f}", abs(k_critical - 0.089731) <= 1e-4, "0.089731 W/(m*K) (+-1e-4)")
 
 
 def _stage_selected(n, only):
@@ -2127,6 +2195,7 @@ if __name__ == "__main__":
     run_stage20 = _stage_selected(20, only)
     run_stage21 = _stage_selected(21, only)
     run_stage22 = _stage_selected(22, only)
+    run_stage23 = _stage_selected(23, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -2198,6 +2267,8 @@ if __name__ == "__main__":
         stage21_qext_theory()
     if run_stage22:
         stage22_uniform_lossy_shell()
+    if run_stage23:
+        stage23_front_surface_biot_correction()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
