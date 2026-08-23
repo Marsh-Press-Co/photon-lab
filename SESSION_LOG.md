@@ -2,6 +2,100 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-23 (panel shift) — Iteration 41 complete (exp-064): an
+enforced `length_provenance` guard closes live thread T23 (deferred
+three cycles under disclosure alone); no Checkpoint fires; cycle closes
+unblocked, no Marsh convening needed.
+
+**Pre-flight**: fresh container onboarding, deps installed per the
+documented pip wrinkle (numpy/scipy/matplotlib/pillow/autograd/fdtd then
+`pip install --no-deps ceviche`). Read HANDOFF.md, README.md, PANEL.md,
+LOGBOOK.md (13,115 lines at session start), PLAN.md's Current-state and
+Iteration-41 queue, AGENTS.md, VALIDATION.md, SESSION_LOG's top entries.
+Bench verified green: `--only 12346789,10,11,18,19,20,21,22,23` → 78/78
+in 169s before any panel work began.
+
+**Iteration 41 — QUANTUM OPTICS' rotation-lead cycle (exp-064).**
+Executes Iteration 40's binding forward commitment: resolve live thread
+T23's witness-scale length-legitimacy question this cycle or a fourth
+deferral is itself a program-integrity finding. Full five-phase panel
+cycle, zero FDTD (T1 escape route: N/A, code-architecture/instrument-
+trust class): Phase 1 (proposes an enforced `length_provenance` guard —
+allow-list `bench_construction`/`measured_geometric` plus a
+`diagnostic_only` escape hatch, argued via the optical theorem) → five
+blind Phase-2 critiques (all support-with-changes; ELECTROMAGNETISM
+found the load-bearing defect — the proposed gates would not have
+enforced anything against the real committed call sites; PHOTONICS and
+MATERIALS independently converged on Phase-1's own §6 needing a fix) +
+Red Team audit (PROCEED-WITH-MANDATORY-FIXES; no Checkpoint criterion
+fires — a Phase-2 catch before Phase-3 freeze is the mechanism working
+as designed) → Phase 3 synthesis (4-item blocking mandatory-fix docket
+applied in full, no criticism overridden: EM's fifth gate — a text-scan
+of `run_all.py`'s own committed source — built and verified live via a
+deliberate-break test; §6 struck entirely, not restated; VISION's
+caveat-string-preservation gate; THERMODYNAMICS' `geometric_
+realizability` field; full bench 107/107) → Phase 4 (official run,
+107/107 in 175s; RT-1 deliberate-break test executed against the actual
+committed commit) → six blind Phase-5 reviews (all six PROMISING) + Red
+Team's final audit.
+
+**Results**: T23 is genuinely closed — a required, keyword-only,
+no-default `length_provenance` contract on all four `thermo_sidecar.py`
+length-consuming functions, backed by a 12-case zero-tolerance refusal
+gate and a source-inspection gate whose "it actually catches the
+mistake" claim was independently executed by FOUR separate parties
+(Phase 4, two Phase-5 seats, Red Team's final audit), each getting
+FAIL-then-PASS live against the real committed repo, not an assertion.
+Zero physics changed anywhere (every pre-existing regression number
+bit-identical). Genuine unplanned find: one of stage 18's own
+pre-existing test values IS `w_on_m` (exp-046's own extinction-derived
+length), silently used as an "arbitrary" test point since Iteration 31,
+harmless, now correctly tagged. Phase-1's own §6 (a claimed new
+24×–75× realizability gap) did not survive Phase 2 — independently
+confirmed to contradict this program's own already-established exp-061
+MP-2/MP-5 record — and was struck entirely per Red Team's own process
+argument (no falsification band was ever given, unlike every other
+claim this cycle).
+
+**No Checkpoint criterion fires — all five explicitly ruled, twice.**
+ELECTROMAGNETISM's fresh Phase-5 review found gate 4's own regex has
+real, concretely-demonstrated parsing fragility (nested-parenthesis
+truncation) and a file-scope limit (only `run_all.py` scanned, not the
+four experiment `run.py` files) — independently reproduced by Red Team
+via a from-scratch standalone script, confirmed real but describing
+**zero live violations** (every real call site in the repo is correctly
+tagged today). Matches the Iteration-38 non-firing shape (a same-cycle
+tool's own robustness limit found fresh by review, no live violation),
+not the Iteration-36/37/39×2/40 firing shape. A new, explicit, binding
+forward tripwire is set on this specific exposure for Iteration 42+.
+**Verdict: PROMISING** (Red Team concurring with, not overriding, all
+six blind seats). Full record: PLAN.md (Current-state + queue),
+LOGBOOK.md Iteration 41, `experiments/064-length-provenance-guard/`.
+Full bench 107/107 (`--only 12346789,10,11,18,19,20,21,22,23,24`)
+reconfirmed throughout; zero `lab/ARTIFACTS.md`/`lab/artifacts.py`/
+`AGENTS.md`/`lab/viz.py` touched; only `lab/thermo_sidecar.py`
+(non-FDTD analytic) and `lab/validation/run_all.py`/`lab/
+caveat_lint_config.json` (gate + registry) among `lab/` files touched,
+plus 4 experiment `run.py` files retagged (bench_construction, zero
+physics change).
+
+Ranked top-3 for Iteration 42 (Red Team's reconciliation of all six
+reviews, near-unanimous on item 1): (1) source or formally model the
+CNT-forest root-to-substrate thermal contact resistance as a new
+`R_contact` series term — the only carried item that can actually move
+TD-5's own 7.8× margin, this program's thinnest safety factor of any
+kind, not merely relabel it; (2) harden/extend the `length_provenance`
+guard itself (EM's `ast`-based regex fix + file-scope extension, VISION's
+value-based trigger widening, MATERIALS' realizability-tier field); (3)
+pin CNT-forest pitch/diameter + κ together, bundled with recovering the
+struck §6 comparison into `REALIZABILITY_MEMO.md`. PLAN.md's standing
+queue items reinforced, not superseded. Recommendation (not a ruling):
+Iterations 38–41 are four straight non-FDTD cycles (three forced by
+binding integrity commitments) — Iteration 42's lead (VISION SCIENCE,
+next in rotation, constraint-3's own least-recently-exercised owner)
+should scope its item to close into an actual constraint-scored FDTD
+run. Cycle closes unblocked; no Marsh convening required.
+
 ## 2026-08-23 (panel shift) — Iteration 40 complete (exp-063): the
 program's first sourced CNT-forest thermal conductivity confirms the
 lumped-capacitance assumption every THERMO-sidecar margin rests on; the

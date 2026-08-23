@@ -13113,3 +13113,171 @@ phase4_results.md, six Phase-5 blind reviews, Phase-5 Red Team audit;
 `lab/thermo_sidecar.py`/`lab/validation/run_all.py` stage 23 (new,
 trust-suite-gated); `lab/caveat_lint_config.json`/`lab/numeric_lint_
 config.json` widened (four new/widened entries total across the cycle).
+
+## Iteration 41 — An Enforced `length_provenance` Guard, Closing T23 (exp-064) — 2026-08-23
+
+**Lead: QUANTUM OPTICS, by rotation.** Executes Iteration 40's binding
+forward commitment (Red Team's Phase-5 final audit): resolve live thread
+T23's witness-scale length-legitimacy question this cycle — deferred at
+Iterations 38, 39, and 40 (disclosure only, three consecutive cycles) —
+or a fourth deferral is itself a program-integrity finding at Iteration
+42. Full five-phase panel cycle, zero FDTD throughout (T1 escape route:
+N/A, a code-architecture/instrument-trust cycle, the exp-054/060/061/
+062/063 class): Phase 1 (proposes an enforced, keyword-only
+`length_provenance` guard on `gas_conduction_h_eff`/`lumped_cube_mass_kg`/
+`mixed_length_scale_regime`/`front_surface_conduction_correction`,
+allow-list `bench_construction`/`measured_geometric` plus a
+`diagnostic_only` escape hatch for extinction-derived lengths, argued
+from QUANTUM's own charter via the optical theorem — σ_ext-inflation-
+past-geometric-size as a general wave-optics property, not one specific
+to `w_on`/`L=τ/α`; a bounded 2-query route-(a) diligence pass also
+flagged, not resolved, a new candidate realizability gap, §6) → five
+blind Phase-2 critiques (all support-with-changes; PHOTONICS and
+MATERIALS independently converged on Phase-1's own §6 as needing a fix;
+ELECTROMAGNETISM found the load-bearing defect — the proposed stage-24
+gates would not have enforced anything against the real committed call
+sites; THERMODYNAMICS and VISION each found distinct additional gaps) +
+Red Team audit (PROCEED-WITH-MANDATORY-FIXES; no Checkpoint criterion
+fires — Phase 2 catching a design flaw before Phase 3 freeze is the
+mechanism working as designed; independently re-verified MATERIALS'
+contradiction claim by reading exp-061's own MP-2/MP-5 record directly,
+and EM's catch by reading `run_all.py`'s actual committed source) → Phase
+3 synthesis (4-item blocking mandatory-fix docket applied in full, no
+criticism overridden: EM's fifth gate — a text-scan of `run_all.py`'s own
+committed source, not merely fresh in-memory calls — built and verified
+live via a deliberate-break test; §6 STRUCK entirely per Red Team's own
+option (b), not restated at a corrected number; VISION's caveat-string-
+preservation gate; THERMODYNAMICS' `geometric_realizability` field
+distinguishing provenance-honesty from buildability; new `caveat_lint_
+config.json` entry `exp064-length-provenance-disclosure`, `required_sites`
+covering `phase4_results.md` from the start; full bench 107/107) → Phase
+4 (official run, 107/107 in 175s; the RT-1 deliberate-break test executed
+against the actual committed commit, not hypothetically — a witness-scale
+call site hand-mistagged, gate 4 FAILs 27/28, reverted clean 28/28) → six
+blind Phase-5 reviews (all six PROMISING — PHOTONICS, MATERIALS,
+ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS, VISION SCIENCE; several
+independently re-ran the deliberate-break test themselves) + Red Team's
+final audit.
+
+**Results.** T23 — open since Iteration 22, closed BY ARGUMENT (never by
+code) at Iteration 23/31, violated in the open for three consecutive
+cycles under disclosure alone — is now genuinely closed: a required,
+keyword-only, no-default `length_provenance` contract on all four
+functions, a 12-case zero-tolerance refusal gate, and a source-inspection
+gate whose "it actually catches the mistake" claim was independently
+executed by **four separate parties** (Phase 4, PHOTONICS' Phase-5
+review, QUANTUM's Phase-5 review, Red Team's final audit), each getting
+FAIL-then-PASS live, not an assertion of it. `biot_number` correctly left
+unguarded (no length argument). All 5 pre-existing bench-scale call sites
+(experiments 054/057/059×2/060) retagged `bench_construction` cleanly,
+zero raise; stage 23/24's witness-scale calls retagged
+`extinction_derived_diagnostic_only`/`diagnostic_only=True`. Zero physics
+changed anywhere — every pre-existing regression number (699.27×/674.22×
+flagship margins, 1.013006/1.015703/0.089731 exp-063 figures) reproduces
+bit-identical. **Genuine, unplanned find**: one of stage 18's own
+pre-existing formula-identity test values (`7.079002048463575e-6`) IS
+`w_on_m` from exp-046/`results.json` — a real, literal instance of the
+exact extinction-derived length T23 forbids, silently used as an
+"arbitrary" test point since Iteration 31 and never previously flagged;
+harmless (a pure math identity), now correctly tagged diagnostic.
+
+Section 6 of the Phase-1 proposal (a claimed new 24×–75× realizability
+gap against an uncited "~14µm" figure) did NOT survive Phase 2: MATERIALS
+independently confirmed it contradicts this program's own already-
+established, sourced exp-061 record (MP-2 CONFIRMED 100–500µm; MP-5's own
+table already computes the 332–1056µm witness-need figures §6
+re-derived; correct existing gap ≈1×–10.5×, not 24×–75×) — most plausibly
+duplicating an already-excluded MP-2 outlier; PHOTONICS separately found
+even a corrected version would silently equate forest height with
+single-pass Beer-Lambert path length with no oblique-incidence/scattering
+disclosure. **Struck entirely, not restated at a corrected number**, per
+Red Team's own option (b) — Red Team's Phase-5 final audit adds a third,
+process-level argument beyond the arithmetic dispute: §6 was never given
+its own falsification band, unlike every other claim this cycle
+(QP-1..5, RT-1, RT-2), so even a corrected restatement would be a claim
+smuggled past PANEL.md's own Phase-1 discipline. The underlying thickness
+question is routed to `REALIZABILITY_MEMO.md` via the standing PLAN.md
+queue item (below), not reopened inside exp-064's own now-closed record.
+
+**No Checkpoint criterion fires — all five explicitly ruled, twice (Red
+Team's Phase-2 audit and Phase-5 final audit).** Criterion 4 is the
+load-bearing one, argued at length by the Phase-5 final audit: ELECTRO-
+MAGNETISM's fresh Phase-5 review found gate 4's own regex has real,
+concretely-demonstrated parsing fragility (nested-parenthesis truncation,
+distinct from the already-disclosed "declaration not detection"/
+"unrecognized-name" gaps) and a file-scope limit (only `run_all.py` is
+scanned, not the four experiment `run.py` files) — independently
+reproduced by Red Team via a from-scratch standalone script outside the
+repo, confirmed real. But it describes **zero live violations**: every
+one of the ten real call sites in this repo, across all five files, is
+correctly tagged today, confirmed by direct read by multiple independent
+parties. Red Team's own Phase-2 tripwire's stated condition ("ships
+without the fifth-gate remedy... and a real call site is later found
+mistagged") did not occur — matching the Iteration-38 non-firing shape
+(a same-cycle tool's own robustness limit, found fresh by review, no live
+violation), not the Iteration-36/37/39×2/40 firing shape (a violated
+propagation promise against an already-merged artifact). **A new,
+explicit, binding forward tripwire is set**: if Iteration 42 or later
+adds/edits a guarded call site that goes undetected by gate 4 by any of
+the mechanisms named above, that is a program-integrity finding for Red
+Team's own ruling at the cycle that finds it, no further deliberation —
+the same disposition already applied to the `exp061-t18-evidentiary-
+tier-propagation` and `exp063-thermo-disposition-netd-disclaimer`
+lineages. **Verdict: PROMISING** (Red Team concurring with, not
+overriding, all six blind seats' unanimous PROMISING). Full record:
+`experiments/064-length-provenance-guard/` — Phase-1 proposal, five
+Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+NOTES.md, phase4_results.md, six Phase-5 blind reviews, Phase-5 Red Team
+final audit; `lab/thermo_sidecar.py` (new guard machinery)/`lab/
+validation/run_all.py` stage 24 (new, trust-suite-gated, 4 gates)/`lab/
+caveat_lint_config.json` (one new entry) — full bench 107/107.
+
+Also newly surfaced this cycle, neither scored nor live, correctly
+queued for Iteration 42: (1) MATERIALS — `geometric_realizability` only
+populates a real signal for `diagnostic_only=True` calls; a future
+honestly-sourced `measured_geometric` length would pass licensed with a
+flat "N/A," no realizability-tier distinction. (2) THERMODYNAMICS/VISION
+— the new `caveat_lint_config.json` entry and `numeric_lint.py` are both
+name/term-based, not value-based; a future document quoting
+`correction_factor=1.015703` in bare prose would not be caught by either
+tool. (3) PHOTONICS — the `w_on_m`-as-test-value find, elevated to a
+pattern-of-patterns (three separate sub-systems where a new gate found an
+old, undetected violating instance): `caveat_lint.py`, `numeric_lint.py`,
+now `thermo_sidecar.py`'s own test fixtures.
+
+**Ranked top-3 for Iteration 42** (Red Team's reconciliation of all six
+reviews, near-unanimous on item 1): (1) **Source, or at minimum formally
+model as a new series thermal-resistance term, the CNT-forest
+root-to-substrate contact resistance** — named at or near #1 by five of
+six seats; the ONLY carried Iteration-41 item that can actually move
+TD-5's own margin (this program's thinnest safety factor of any kind,
+7.8× over κ_critical), not merely relabel it — exp-064 was a pure
+labeling cycle by construction and moved zero numbers, independently
+reconfirmed. Build as a genuinely new `R_contact` series term, gated by
+an `R_contact→0` absolute-identity limit recovering the current bracket
+exactly — not a `κ_solid` reparameterization. (2) **Harden and extend the
+`length_provenance` guard's own reach** — bundle EM's `ast`-based
+regex-fix + file-scope extension (the single highest-value item, directly
+discharging this cycle's own new forward tripwire), VISION's value-based
+`trigger_terms` widening, and MATERIALS' `material_realizability_tier`
+field into one Iteration-42 item; PHOTONICS' broader codebase-wide
+extinction-derived-length sweep folds in if scope allows, else defers one
+more cycle. (3) **Pin the record-blackness/Vantablack-class CNT forest's
+own pitch/diameter AND through-thickness thermal conductivity together,
+in one query set** — now carrying three sub-questions (near-field
+coupling, PHOTONICS' optical/thermal material-provenance mismatch, and
+the struck-§6 thickness question); bundle MATERIALS' own recommended
+recovery of the struck §6 comparison into `REALIZABILITY_MEMO.md` as part
+of the same query cycle, explicitly captioned as a restatement of
+already-scored exp-061 numbers, carrying PHOTONICS' idealization caveat
+verbatim — not a reopening of exp-064's own closed record. **PLAN.md's
+standing queue items are REINFORCED, not superseded** — nothing in
+exp-064 answers, preempts, or narrows either. **Recommendation, not a
+ruling** (Red Team, §9 of the Phase-5 final audit): Iterations 38–41 are
+four straight cycles with zero constraint-scored FDTD (three of the four
+forced by binding integrity commitments, not optional) — does not fire
+Checkpoint criterion 5 on the criterion's own text (every iteration
+individually advanced the logbook), but Iteration 42's own lead (VISION
+SCIENCE, next in rotation, constraint-3's own least-recently-exercised
+owner) should scope its chosen item to close into, or directly feed, an
+actual constraint-scored FDTD run.
