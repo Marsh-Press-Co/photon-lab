@@ -53,5 +53,16 @@
     "basis_pattern": "front-colocated",
     "requires_pattern": "NETD is an instrument.{0,20}threshold|human.eye/constraint-3 verdict",
     "window_chars": 1000
+  },
+  {
+    "kind": "derivation_consistency",
+    "id": "exp063-cf-bench-vs-witness-derivation-phase4",
+    "description": "Sibling of exp063-cf-bench-vs-witness-derivation above, scoped to phase4_results.md instead of NOTES.md -- Red Team's Phase-5 audit (Iteration 40) found the original entry's single `site` field never covered phase4_results.md at all, the same narrow-scoping shape that fired Checkpoint criterion 4 that cycle (lab/numeric_lint.py's derivation_consistency check currently takes one site path, not a list -- a second, distinct entry id is the zero-schema-change fix Red Team's own audit named). Checks the same bracket/NETD-disclaimer pair at phase4_results.md's own ### TD-3 / ### TD-5 section headers (not NOTES.md's table rows -- a different document structure, same methodology-consistency question).",
+    "source": "LOGBOOK.md Iteration 40 Phase 5 (VISION SCIENCE's catch; Red Team's Phase-5 audit, Checkpoint criterion 4 ruling, mandatory-fix item 3)",
+    "site": "experiments/063-cnt-forest-thermal-conductivity-biot-check/phase4_results.md",
+    "window_patterns": ["^### TD-3", "^### TD-5"],
+    "basis_pattern": "front-colocated",
+    "requires_pattern": "NETD is an instrument.{0,20}threshold|human.eye/constraint-3 verdict",
+    "window_chars": 1500
   }
 ]

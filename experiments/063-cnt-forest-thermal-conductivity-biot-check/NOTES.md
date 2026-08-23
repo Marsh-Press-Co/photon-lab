@@ -234,12 +234,61 @@ directly for the entries; not reproduced here.
 
 ---
 
+## Result
+
+κ_CNT-forest sourced for the first time, geometry-class-dependent:
+0.7–9.62 W/(m·K) for as-grown/bulk-aggregate forest forms (the program's
+own actual candidate geometry class), ≈40–50 W/(m·K) for densified/
+drawn-sheet forms (a different, better-contacted processing class,
+flagged not scored as the primary figure). TD-1 through TD-5 all
+CONFIRMED; the worst sourced κ (0.7 W/(m·K)) tightens the flagship bench
+margin 699.27×→674.22× and exp-061's own thinnest witness margin
+1.35×→1.2920×, both nowhere near their own falsification bars (100× and
+1.0× respectively); κ_critical=0.0897 W/(m·K) sits 7.8× below the lowest
+κ this cycle found. This program's "first-ever thermal-detectability
+classification flip" scenario does not materialize against any real
+figure sourced this cycle. Full record: `phase4_results.md`.
+
+## Learned
+
+(1) The correct candidate material's own κ does license the
+lumped-capacitance idealization every prior THERMO-sidecar margin rests
+on — a real, decisive, first-of-its-kind confirmation, not merely "not
+yet falsified." (2) The correction is real and worth carrying forward (a
+3.6–4.3% tightening at the worst sourced κ) but small next to either
+margin's own remaining headroom. (3) Two structural questions this cycle
+deliberately left open — which boundary condition (front-colocated vs.
+rear-only loss) is physically real for the actual coating-on-substrate
+deployment, and whether the witness-scale conduction length `L=τ_true/α`
+is a licensed `h=k/L` input at all (T23, deferred three cycles running:
+Iterations 38, 39, 40) — remain genuinely unresolved and are NOT closed
+by how comfortably this cycle's own found κ values clear both brackets;
+a future cycle finding a materially lower κ, a materially longer L, or
+resolving either open question in the less favorable direction could
+still move the picture even though nothing in this cycle's own data
+does. (4) Phase 5 (six blind reviews + Red Team) surfaced two further,
+genuinely new open items: MATERIALS' finding that the CNT-forest root's
+own bond to a mounting substrate could itself be a third, worse-than-
+either-bracket contact-resistance regime (TD-5's headroom on κ_solid
+alone is only 7.8×, this program's thinnest safety factor on record);
+and PHOTONICS' finding that TD-5 multiplies an optical constant
+(α_true) and a thermal constant (κ_solid) sourced from different,
+unconfirmed-common CNT-forest geometry classes. Neither is scored this
+cycle; both are queued for Iteration 41+.
+
 ## Next
 
-Phase 4 sources κ_CNT-forest per the ten committed queries. The two
-open, disclosed-not-resolved threads from this synthesis (the substrate-
-interface boundary-condition question, MATERIALS; the witness-scale
-length-legitimacy question, EM/T23) are explicitly NOT this cycle's job
-to close — Red Team's own ruling: "no defect found here requires
-abandoning the cycle's scope." They stand as queued follow-ups
-regardless of what Phase 4 finds for κ_solid itself.
+Phase 4 executed (see `phase4_results.md`); this cycle closes at Phase 5
+(all six blind reviews PROMISING; Red Team's final audit: PARTIAL,
+provisional-to-PROMISING, Checkpoint criterion 4 fires on this cycle's
+own self-declared forward tripwire — see `phase5_redteam_audit.md` and
+`LOGBOOK.md` Iteration 40). Ranked top-3 for Iteration 41 (Red Team's
+reconciliation of all six reviews): (1) resolve T23's witness-scale
+length-legitimacy question with a binding forward commitment — a fourth
+deferral past Iteration 41 is to be treated as a program-integrity
+finding; (2) source or formally model the CNT-forest root-to-substrate
+thermal contact resistance as a third disclosed scenario; (3) pin the
+record-blackness/Vantablack-class CNT forest's own pitch/diameter AND
+through-thickness κ together, in one query set, closing both the
+standing near-field-coupling question and the optical/thermal
+material-provenance mismatch.

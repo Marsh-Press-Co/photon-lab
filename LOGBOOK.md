@@ -12905,3 +12905,211 @@ NOTES.md, phase4_results.md, six Phase-5 blind reviews, Phase-5 Red Team
 audit; `lab/caveat_lint.py`/`lab/caveat_lint_config.json` widened;
 `REALIZABILITY_MEMO.md` Amendment 7; `experiments/061-.../
 phase5_review_materials.md` corrected.
+
+## Iteration 40 — The CNT-Forest Thermal Conductivity / Front-Surface Biot Correction (exp-063) — 2026-08-23
+
+**Pre-flight (Director, before Phase 1).** Bench verified green
+(`--only 12346789,10,11,18,19,20,21,22`, 74/74, 132s) before any panel
+work began. Executed the Iteration-39 ranked queue's item 0
+(process-mandatory, precedes the physics queue): re-verified exp-062's
+own 10-item mandatory-fix docket live (`python3 lab/caveat_lint.py`, all
+6 registry entries, 0 required-site failures) and audited every
+remaining `caveat_lint_config.json` entry for the same `candidate_globs`
+blind-spot shape that fired Checkpoint criterion 4 twice at Iteration 39.
+Found two more: `exp052-alpha-60nm-absorptivity-open` and
+`exp060-sigma-flat-corrected-bias-direction` both still carried the old,
+hand-curated, named-filename `candidate_globs` list predating the
+systemic `experiments/*/phase*.md` pattern. Widened both, consistent
+with the other four entries — no live violation underneath, a coverage
+gap, not a broken promise. Commit `6507616`.
+
+Then executed Red Team's Iteration-38 mandatory-fix item 6, re-filed at
+Iteration 39 with the Director as owner regardless of lead seat (after
+ELECTROMAGNETISM declined it at Iteration 39 Phase 1 as charter-mismatched
+scope): built `lab/numeric_lint.py`, the numeric/derivation-consistency-
+check tool, a sibling to `lab/caveat_lint.py` with two new check kinds
+neither `caveat_lint.py` nor `run_all.py` can express — `numeric_drift`
+(a captured number must read the same value at every registered sibling
+site) and `derivation_consistency` (within one document, wherever a
+registered BASIS condition holds in a window, a registered disclosure/
+treatment pattern must ALSO appear, or it FAILs). Self-tested
+(`--selftest`) against a real historical near-miss — exp-062's own EM-6/
+EM-7 R-vs-T disclosure gap (Iteration 39 Phase-5 mandatory fix 5) —
+checked against two real git revisions (`4fb7f95` pre-fix, both windows
+correctly FAIL; `967a726` post-fix, both correctly PASS). Seeded with a
+live `numeric_drift` entry cross-checking exp-062's own 1.20× headline
+ratio across its six sibling citation sites (all agree exactly). Commit
+`2d6e5e7`.
+
+**Iteration 40 — THERMODYNAMICS' rotation-lead cycle (exp-063).** Lead:
+THERMODYNAMICS, by rotation. Full five-phase panel cycle, zero FDTD
+throughout: Phase 1 (sources the CNT-forest/Vantablack-class candidate
+material's real through-thickness thermal conductivity for the first
+time — every prior Biot-number check this program has run used silicon's
+κ=148 W/(m·K), `ASSUMED`/unsourced since Iteration 25 — and derives a
+closed-form Biot-number front-surface conduction-correction factor,
+applied to both the flagship's bench-scale 699.27× margin and exp-061's
+own thinnest-ever witness-scale margin, 1.35×, with a named falsification
+boundary κ_critical≈0.0897 W/(m·K) that would flip a THERMO disposition
+to DETECTABLE for the first time in program history; commit `9c60b05`)
+→ five blind Phase-2 critiques (all support-with-changes; PHOTONICS,
+MATERIALS, and ELECTROMAGNETISM independently triangulate on Section 4's
+boundary-condition/length-scale model — three different variables,
+confirmed by Red Team not to duplicate — while QUANTUM and VISION catch
+an unstated η_thermal≡1 assumption and a missing NETD disclaimer/registry
+entries respectively; commits `339cfb3`/`f813329`/`62d7e2f`/committed
+incrementally) + Red Team audit (PROCEED-WITH-MANDATORY-FIXES; no
+Checkpoint criterion fires — ruled against the Iteration-38 precedent, a
+self-caught pre-freeze registration gap in a tool built that same cycle,
+not the Iteration-39 precedent, an already-hardened grace-spent tripwire;
+commit `8b7e595`) → Phase 3 synthesis (8-item mandatory-fix docket
+applied: TD-3/4/5 restructured as an explicit bracket — front-colocated-
+loss endpoint (correction_factor≡1, the ORIGINAL unmodified margin) and
+rear-only-loss worst-case endpoint — rather than a single corrected
+number, with both the generation-geometry contradiction (PHOTONICS) and
+the witness-scale length-legitimacy gap (EM, T23, deferred at Iterations
+38 and 39, deferred again here) disclosed as open, unresolved caveats;
+TD-5's escalation language relabeled away from Checkpoint criteria 1/2
+(Red Team's own new finding); new code built and gated same-shift —
+`lab/thermo_sidecar.py::biot_number`/`front_surface_conduction_
+correction`, `lab/validation/run_all.py` stage 23 (4 gates: the
+κ_solid→∞ absolute identity, two regression anchors, the κ_critical
+falsification-boundary bisection identity), full bench 78/78 green; two
+new `caveat_lint_config.json` entries and one new `numeric_lint_config.json`
+entry, all verified live; predictions frozen in `NOTES.md` before Phase
+4 ran; commit `feed6ea`) → Phase 4 (ten committed WebSearch queries; T18
+re-confirmed blocked, 2/2 WebFetch attempts, arxiv.org + NCBI both
+`EGRESS_BLOCKED`; commit `c2de14a`) → six blind Phase-5 reviews (all six
+PROMISING — PHOTONICS, MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS,
+QUANTUM OPTICS, VISION SCIENCE) + Red Team's final audit.
+
+**Results.** TD-1 through TD-5 all CONFIRMED. κ_CNT-forest sourced for
+the first time, geometry-class-dependent: 0.7–9.62 W/(m·K) for
+as-grown/bulk-aggregate forest forms (the program's own actual candidate
+geometry class — a bulk nanotube mat at 0.7 W/(m·K) is the single
+cleanest hit), ≈40 (a derived estimate from an interfacial-resistance
+breakdown) to 50±5 W/(m·K) for densified/drawn-sheet forms (a different,
+better-contacted processing class, mirroring the Iteration-39/exp-062
+spin-capable/yarn-precursor distinction, flagged not scored as the
+primary figure). Query 10 directly confirms the predicted mechanism:
+inter-tube van der Waals junction thermal contact resistance is ~3
+orders of magnitude worse than a covalent junction, junction thermal
+conductance <1% of a single tube's own axial conductance. **The
+program's own "first-ever thermal-detectability classification flip"
+scenario does not materialize against any real figure this cycle
+found**: even at the single lowest sourced κ (0.7 W/(m·K), the most
+conservative real number in the whole search), the corrected witness-
+scale margin is 1.2920×, comfortably clear of 1.0× and 7.8× above
+κ_critical=0.0897 W/(m·K); the flagship bench margin tightens only
+699.27×→674.22× (3.6%), 6.7× above its own falsification bar. **Bottom
+line: the correct candidate material's own thermal conductivity DOES
+still license the lumped-capacitance assumption every committed
+THERMO-sidecar margin in this program's history rests on** — a real,
+decisive, first-of-its-kind confirmation, not merely "not yet
+falsified."
+
+**Checkpoint criterion 4 FIRES at Phase 5 — a notification, not a
+pause, per unbroken precedent (Iterations 17/36/37/38/39×2).** Red
+Team's final audit overrode the raw 6-0 PROMISING seat count (explicitly
+distinguishing this from Iteration 38's own non-firing precedent, where
+two self-caught registration gaps in a same-cycle-built tool did NOT
+override a clean consensus) on a narrow, textually-argued ground: VISION
+SCIENCE's Phase-5 finding that the new `numeric_lint_config.json` entry
+`exp063-cf-bench-vs-witness-derivation`'s own `site` field covered only
+`NOTES.md`, never `phase4_results.md` — is exactly the fact pattern
+this cycle's OWN Phase-2 Red Team audit pre-declared, in writing,
+Director-accepted without override, WOULD fire without further
+deliberation if found again at this cycle's own Phase 5 ("a materially
+similar gap in either of THESE specific new entries... found again at
+Phase 5 or any later iteration"). Red Team's audit independently found a
+second, identical scoping gap no blind seat caught — the sibling
+`caveat_lint_config.json` entry `exp063-thermo-disposition-netd-
+disclaimer` also covered only `NOTES.md` — reinforcing the ruling: two of
+the cycle's three brand-new registry entries carried the same
+narrow-scoping defect. Neither gap concealed a live rule violation
+(`phase4_results.md` already carried both the disclaimer and the bracket
+structure correctly) — but VISION also independently caught a genuine,
+if small (0.06–0.10%, always safe-directioned), live numeric-accuracy
+defect in `phase4_results.md`'s own Summary table ("inside band" claims
+inaccurate for 2 of 4 sourced κ values, since TD-3/4/5's predicted bands
+were computed over TD-1's PREDICTED κ range, not the found range) — the
+strongest evidence a wider-scoped registry reach would have caught
+something real, not merely closed a hypothetical gap. **5-item
+mandatory-fix docket, all applied and independently re-verified live
+same-shift**: (1) corrected the Summary-table/Bottom-line numeric
+claims, disclosing the found-vs-predicted-κ-range artifact; (2) added
+the NETD/human-eye disclaimer to the Summary table and Bottom-line
+paragraph; (3) added a sibling `numeric_lint` entry
+(`exp063-cf-bench-vs-witness-derivation-phase4`) scoped to
+`phase4_results.md`'s own `### TD-3`/`### TD-5` headers; (4) widened the
+`caveat_lint` sibling entry's `required_sites` to include
+`phase4_results.md`; (5) added `NOTES.md`'s missing `Result`/`Learned`
+sections (THERMODYNAMICS' own Phase-5 finding — a real gap against house
+convention, not itself Checkpoint-4-shaped). Full bench 78/78 reconfirmed
+unaffected throughout (no `lab/` engine file touched beyond
+`thermo_sidecar.py`, non-FDTD analytic); `caveat_lint.py`/`numeric_lint.py`
+both re-run clean (8/8 and 4/4 entries, 0 failures). **Verdict: PARTIAL,
+provisional-to-PROMISING** (Red Team overriding the raw 6-0 seat count on
+this cycle's own self-declared, Director-accepted forward tripwire — the
+physics itself, independently re-derived FIVE times over across this
+record with no defect found anywhere, was never in question; the
+override is entirely a process-completeness finding about this cycle's
+own registry-building discipline). All five Checkpoint criteria
+explicitly checked: criterion 4 fires; none of 1/2/3/5 fire. Marsh
+notified.
+
+**Two new, genuinely open physics findings surfaced at Phase 5, neither
+scored this cycle:** (1) MATERIALS — the CNT-forest root's own bond to a
+mounting substrate could itself be a THIRD, worse-than-either-bracket
+contact-resistance regime (query 10's own van der Waals finding
+plausibly governs the root-substrate interface too, not just the
+inter-tube contacts already modeled) — TD-5's headroom on κ_solid alone
+is only 7.8×, this program's thinnest safety factor of any kind on
+record. (2) PHOTONICS — TD-5's single correction factor multiplies an
+optical constant (α_true, sourced from exp-061/062's own CNT-forest
+comparator classes) and a thermal constant (κ_solid, sourced this cycle
+from three different, none-of-them-pinned CNT-forest classes) with no
+established common material provenance between them.
+
+**Ranked top-3 for Iteration 41** (Red Team's reconciliation of all six
+reviews, four of which independently named item 1): (1) **Resolve T23's
+witness-scale length-legitimacy question — with a binding forward
+commitment, not another disclosure sentence.** Deferred at Iteration 38
+(THERMO), Iteration 39 (EM/Red Team), and again this cycle (mandatory
+fix 6, disclosure only) — three consecutive cycles against an
+already-decided rule (`gas_conduction_h_eff`'s own docstring, closed by
+argument at Iteration 23) and an already-identified violation (`L=τ_true/α`
+is, on that rule's own plain text, unambiguously an "optical/extinction-
+derived length"). Red Team's audit adopts EM's own Phase-5 recommendation
+as a binding forward commitment: if this specific question is deferred
+again past Iteration 41 without either a real geometric length sourced
+for the actual candidate class, or an enforced `length_provenance`
+code-level guard, that FOURTH deferral is to be treated as a
+program-integrity finding for Red Team's own ruling at Iteration 42 —
+the same disposition this program gave the `exp061-t18-evidentiary-
+tier-propagation` lineage after its second self-catch. (2) **Source, or
+at minimum formally model as a third disclosed scenario, the CNT-forest
+root-to-substrate thermal contact resistance** (MATERIALS' new finding)
+— a dedicated 3–5 query dispatch plus a new `thermo_sidecar.py` function
+(gated by an `R_contact→0` identity limit) would convert the flagged
+mechanism into a scored, falsifiable prediction, directly relevant given
+TD-5's own thinnest-in-program-history 7.8× headroom. (3) **Pin the
+record-blackness/Vantablack-class CNT forest's own parameters — pitch/
+diameter (Iteration 39's still-open #1 item) AND through-thickness
+thermal conductivity (PHOTONICS' new finding) — together, in one query
+set**, closing both the standing near-field-coupling question and the
+optical/thermal material-provenance mismatch at once; query 8's own
+honest null this cycle (the already-pinned *Carbon* 2018 paper reports
+geometry but not a thermal figure) makes this a natural single follow-up.
+Carried, lower priority: QUANTUM's own low-urgency flag (a
+non-thermalized-energy re-emission channel, confirmed one-sided-safe,
+not urgent for the current candidate identity); the disclaimer rule's
+own general `caveat_lint_config.json` registry entry (non-blocking,
+already PLAN.md-queued); CNT-forest ρ/C_p sourcing (explicitly scoped
+out this cycle). Full record: `experiments/063-cnt-forest-thermal-
+conductivity-biot-check/` — Phase-1 proposal, five Phase-2 blind
+critiques, Phase-2 Red Team audit, Phase-3 synthesis, NOTES.md,
+phase4_results.md, six Phase-5 blind reviews, Phase-5 Red Team audit;
+`lab/thermo_sidecar.py`/`lab/validation/run_all.py` stage 23 (new,
+trust-suite-gated); `lab/caveat_lint_config.json`/`lab/numeric_lint_
+config.json` widened (four new/widened entries total across the cycle).

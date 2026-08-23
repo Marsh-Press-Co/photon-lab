@@ -173,13 +173,14 @@
   {
     "id": "exp063-thermo-disposition-netd-disclaimer",
     "description": "exp-063's own TD-3/TD-4/TD-5 predictions restate UNDETECTABLE/DETECTABLE-adjacent classifications (correction factors and corrected margins) at their own table rows -- the NETD/human-eye disclaimer (this program's oldest continuously-enforced caveat, panel Iteration 17/20 origin) must appear AT those claim points, not only once in a generic methodology section (Red Team's Iteration-40 Phase-2 audit, attack 1 -- 'it matters more this cycle than any prior one: TD-5 is billed as this program's first-ever thermal-detectability classification flip, exactly the framing under which a reader is likeliest to conflate instrument-DETECTABLE with eye-visible'). Distinct from exp063-biot-correction-machinery above: this entry checks the DISCLAIMER's own presence at THIS cycle's specific claim points; the disclaimer rule's own general, program-wide registry entry (closing a 20-iteration-old gap) is a separate, larger, explicitly non-blocking standing item queued in PLAN.md, not built this cycle.",
-    "source": "LOGBOOK.md Iteration 40 Phase 2 (VISION SCIENCE's catch, mandatory fix 1); experiments/063-cnt-forest-thermal-conductivity-biot-check/phase2_redteam_audit.md attack 1",
+    "source": "LOGBOOK.md Iteration 40 Phase 2 (VISION SCIENCE's catch, mandatory fix 1); experiments/063-cnt-forest-thermal-conductivity-biot-check/phase2_redteam_audit.md attack 1. WIDENED at Iteration 40 Phase 5 close: Red Team's Phase-5 audit independently found (not raised by any of the six blind seats) that required_sites covered only NOTES.md, never phase4_results.md -- the identical narrow-scoping shape as the sibling numeric_lint entry VISION's own Phase-5 finding 2 caught, and one of the two facts that jointly fired Checkpoint criterion 4 on this cycle's own self-declared forward tripwire (phase5_redteam_audit.md section 3.2). No live violation was hiding underneath (phase4_results.md already carried the disclaimer correctly) -- fixed same-shift regardless, per the tripwire's own text.",
     "phrase_patterns": [
       "NETD is an instrument.{0,20}threshold",
       "human.eye/constraint-3 verdict"
     ],
     "required_sites": [
-      "experiments/063-cnt-forest-thermal-conductivity-biot-check/NOTES.md"
+      "experiments/063-cnt-forest-thermal-conductivity-biot-check/NOTES.md",
+      "experiments/063-cnt-forest-thermal-conductivity-biot-check/phase4_results.md"
     ],
     "trigger_terms": [
       "TD-3|TD-4|TD-5",

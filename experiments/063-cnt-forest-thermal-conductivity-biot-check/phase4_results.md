@@ -195,17 +195,35 @@ candidate-material figures sourced**, not merely "not yet falsified."
 
 ## Summary table
 
+**Mandatory-fix note (Red Team's Phase-5 audit, item 1): two of the four
+sourced κ values (40.0, 50.0 W/(m·K)) sit slightly OUTSIDE TD-3/4/5's own
+PREDICTED bands below — because those bands were computed by propagating
+TD-1's own PREDICTED κ range ([0.1,20], the only thing Phase 3 had before
+Phase 4 ran), not the FOUND κ range, which Phase 4's own search showed
+extends slightly higher (TD-1's own text above discloses this: "the
+derived ≈40 W/(m·K) estimate sits just above the band's own upper edge").
+The "Found" column's rear-only endpoints at κ=40/50 are therefore
+correct, live numbers — 0.06–0.10% outside the row's own PREDICTED
+column, always in the SAFE direction (less correction at bench scale,
+more margin at witness scale, no falsification condition approached).
+"CONFIRMED" below means the falsification CONDITION is not triggered, not
+that every found value sits inside the originally-predicted numeric
+range.** NETD is an instrument/detector threshold, not a human perceptual
+one — nothing in this table bears on constraint-3/4's human-eye verdict.
+
 | Prediction | Predicted | Found | Verdict |
 |---|---|---|---|
 | TD-1 (κ_CNT-forest) | [0.1,20] W/(m·K), central ≈2 | 0.7–9.62 W/(m·K) for as-grown/bulk-aggregate forms (query 1/5); ≈40 (derived) to 50±5 W/(m·K) for densified/drawn forms (query 2/6) — geometry-class-dependent spread, falsification bar (>50 clustering) not crossed | **CONFIRMED** |
 | TD-2 (Bi_gas) | [0.0013,0.26], central ≈0.013 | 0.00052–0.03714 across sourced κ, all inside [0.0005,1.0] | **CONFIRMED** |
-| TD-3 (CF, bench, bracket) | [1.0, 1.001–1.26] | rear-only endpoint 1.00052–1.03716 across sourced κ, inside predicted band | **CONFIRMED** |
-| TD-4 (corrected flagship margin, bracket) | [554.92×–698.36×, 699.27×] | rear-only endpoint 674.22×–698.91×, inside band, >6.7× above the 100× bar | **CONFIRMED** |
-| TD-5 (corrected MP-5/730× margin, bracket) | [1.0274×–1.3479×, 1.35×] | rear-only endpoint 1.2920×–1.3492×, inside band; κ_critical=0.0897 never approached (nearest sourced κ is 8× above it) | **CONFIRMED — DETECTABLE-flip scenario does not materialize** |
+| TD-3 (CF, bench, bracket) | [1.0, 1.001–1.26] | rear-only endpoint 1.00052–1.03716 across sourced κ — **at κ=40/50, 1.000650/1.000520 sit ~0.06% below the predicted-band floor (1.001301), a found-vs-predicted-κ-range artifact, not a falsification** | **CONFIRMED** |
+| TD-4 (corrected flagship margin, bracket) | [554.92×–698.36×, 699.27×] | rear-only endpoint 674.22×–698.91× — **at κ=40/50, 698.82×/698.91× sit ~0.06% above the predicted-band ceiling (698.36×), same artifact** — >6.7× above the 100× bar throughout | **CONFIRMED** |
+| TD-5 (corrected MP-5/730× margin, bracket) | [1.0274×–1.3479×, 1.35×] | rear-only endpoint 1.2920×–1.3492× — **at κ=40/50, 1.3489×/1.3492× sit ~0.07–0.10% above the predicted-band ceiling (1.3479×), same artifact** — inside band otherwise; κ_critical=0.0897 never approached (nearest sourced κ is 8× above it) | **CONFIRMED — DETECTABLE-flip scenario does not materialize** |
 
-**Bottom line: the correct candidate material's own thermal conductivity
-DOES still license the lumped-capacitance assumption every committed
-THERMO-sidecar margin in this program's history rests on.** The worst
+**Bottom line (NETD is an instrument/detector threshold, not a human
+perceptual one — nothing in this paragraph bears on constraint-3/4's
+human-eye verdict): the correct candidate material's own thermal
+conductivity DOES still license the lumped-capacitance assumption every
+committed THERMO-sidecar margin in this program's history rests on.** The worst
 real figure found (0.7 W/(m·K), the bulk-aggregate bulk figure) moves the
 flagship's bench-scale margin from 699.27× to 674.22× (a 3.6% tightening)
 and exp-061's own thinnest-ever witness-scale margin from 1.35× to
