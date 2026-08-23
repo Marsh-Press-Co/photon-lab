@@ -73,6 +73,14 @@ be queried before this axis is called closed.
 
 ## Verdict: **PARTIAL**
 
+*[T18 evidentiary tier, disclosed at this verdict per registry entry
+`exp061-t18-evidentiary-tier-propagation`'s own propagation requirement —
+added Iteration 39 Phase 5, closing a live violation Red Team's audit
+found in this file (`phase5_redteam_audit.md` §1 Finding 3): every
+figure this verdict rests on is **WebSearch-snippet synthesis, not
+primary-source PDF/DOI-verified reading (T18)** — this file predates and
+did not originally carry that disclosure at its own restated verdict.]*
+
 The UNOBTANIUM-WITH-PARAMETERS tier itself is not overturned — no
 numeric defect found that flips it. But this cycle's own flagged open
 question (the mechanism-class judgment call, explicitly kicked to Phase

@@ -133,6 +133,7 @@ DEFAULT_CANDIDATE_GLOBS = [
     "experiments/*/NOTES.md",
     "experiments/*/REALIZABILITY_MEMO.md",
     "experiments/*/phase4_results.md",
+    "experiments/*/phase*.md",
     "experiments/*/*.py",
     "lab/*.py",
     "lab/validation/run_all.py",
