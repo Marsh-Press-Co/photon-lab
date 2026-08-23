@@ -207,33 +207,59 @@ below.)
 ---
 
 ## THERMO disposition (Phase-2 mandatory fix 4, THERMODYNAMICS' demand,
-Red Team's unconditional ruling — full derivation: `phase3_synthesis.md`)
+Red Team's unconditional ruling — full derivation: `phase3_synthesis.md`;
+**scale corrected at Phase-5 close, Red Team mandatory-fix docket item
+1 — THERMODYNAMICS' own Phase-5 catch: the Phase-3 box anchored to
+MP-2's pre-search PREDICTED thickness band, not MP-5's own POST-SEARCH
+FOUND multiple, which is what this section now reports**)
 
 Desk-only, `lab/thermo_sidecar.py`, post-run analytic (expressibility
 contract). Question: under MP-5's own fallback (a real coating supplies
-the required optical depth, but only at 15–150µm rather than 1.44µm), is
-the resulting object still thermally UNDETECTABLE at witness scale?
+the required optical depth, but only at greater thickness than the
+1.44µm this construction builds), is the resulting object still
+thermally UNDETECTABLE at witness scale — **evaluated at the actual
+range MP-5's own Phase-4 search found (~230–730× the 1.44µm
+construction, i.e. ~331µm–1.05mm), not the Phase-3 prediction (15–150µm)
+this box originally used.**
 
 **Worst-case, deliberately conservative in every free choice**
-(`l_geometric_m`=150µm — MP-2's own predicted upper thickness bound taken
-as the object's full outer radius; `ratio_abs_ext`=1.0 — a 100% ceiling,
-above the established 0.51–0.61 measured family; silicon thermal
-identity, `ASSUMED — provenance terminates unsourced (T18)`, reused
-verbatim from Iteration 23's own disclosed convention; two sourced
-irradiance points from `WitnessScenario`, docket #7):
+(`ratio_abs_ext`=1.0 — a 100% ceiling, above the established 0.51–0.61
+measured family; silicon thermal identity, `ASSUMED — provenance
+terminates unsourced (T18)`, reused verbatim from Iteration 23's own
+disclosed convention; the sourced worst-case irradiance point from
+`WitnessScenario`, docket #7, 4.414×10⁻⁵ W/cm² — the central point,
+6.58×10⁻⁶ W/cm², is omitted below since it is dominated by the
+worst-case point at every scale and added no new information at the
+original 150µm point either):
 
-| Irradiance | `p_abs` ceiling (W) | `ΔT_ss` (K) | Margin vs NETD-lo (0.020K) | Classification |
+| MP-5 multiple | `l_geometric_m` | `ΔT_ss` (K) | Margin vs NETD-lo (0.020K) | Classification |
 |---|---|---|---|---|
-| central, 6.58×10⁻⁶ W/cm² | 1.4805×10⁻⁹ | 3.6868×10⁻⁴ | **54.2×** | UNDETECTABLE |
-| worst-case, 4.414×10⁻⁵ W/cm² | 9.9315×10⁻⁹ | 2.4732×10⁻³ | **8.1×** | UNDETECTABLE |
+| 230× (mid-IR-derived, low end of MP-5's range) | 331.2µm | 5.277×10⁻³ | **3.79×** | UNDETECTABLE |
+| 298× | 429.1µm | 6.715×10⁻³ | **2.98×** | UNDETECTABLE |
+| 374× | 538.6µm | 8.263×10⁻³ | **2.42×** | UNDETECTABLE |
+| 730× (MP-5's own "most plausibly several hundred×" upper figure) | 1051.2µm | 1.4774×10⁻² | **1.35×** | UNDETECTABLE |
 
-**Result: UNDETECTABLE at both points, even stacking a 100%-absorption
-ceiling, the worst sourced irradiance, and MP-2's own upper thickness
-bound simultaneously.** Wien peak ≈9.88µm (deep thermal-IR), consistent
-with every prior UNDETECTABLE finding this program has logged since
-Iteration 20. Per `thermo_sidecar.py`'s own standing disclaimer, NETD is
-an instrument/detector threshold — this classification does **not** bear
-on constraint-3/4's human-eye verdict.
+**Result: UNDETECTABLE at every point across MP-5's own found range —
+the classification is robust — but the margin is far more fragile than
+the superseded 150µm/8.1× figure suggested.** At MP-5's own most
+plausible upper figure (730×), the margin is **1.35×**, not
+"comfortably clear" — a ~35% adjustment to any one free assumption in
+this chain (emissivity, `k_air`, the 100%→realistic absorption-ratio
+ceiling, or the NETD band's own stated uncertainty) would move this cell
+into MARGINAL. This is a materially different risk posture than the
+150µm point's 8× headroom, and the correct one to report given this
+cycle's own later, more authoritative Phase-4 finding (Red Team's
+Phase-5 ruling: shipping the stale 150µm figure after MP-5's own result
+was already known in the same document would repeat this program's own
+established `TAU_SHELL=24`-class failure pattern). Wien peak ≈9.88µm
+(deep thermal-IR) at every scale tested, consistent with every prior
+UNDETECTABLE finding this program has logged since Iteration 20. Per
+`thermo_sidecar.py`'s own standing disclaimer, NETD is an instrument/
+detector threshold — this classification does **not** bear on
+constraint-3/4's human-eye verdict. **New registry entry**
+(`exp061-thermo-length-scale-staleness`, `lab/caveat_lint_config.json`):
+any future citation of this disposition must use MP-5's own found
+range, never the superseded 150µm/8.1× figure.
 
 ---
 
@@ -318,7 +344,7 @@ on constraint-3/4's human-eye verdict.
 | MP-2 | Published CNT-forest coating thickness reported at genuinely near-total blackness (reflectance ≲0.05%, comparable optical density to real record-holder coatings — an independent, general domain-knowledge estimate, NOT re-derived from τ_true; Red Team's own ruling: this axis is anchor-invariant under any of the 24/9.40/8.26 τ candidates considered at Phase 2) | **15–150 µm** | vs. this program's own 1.44 µm — a ~10–100× thickness gap; this is the dominant, anchor-invariant falsification axis for MP-4 |
 | MP-3 | Any single primary source reporting α ≥ 1×10⁵ cm⁻¹ (i.e. within ~2× of the corrected target, 5.74×10⁴ cm⁻¹) at ANY visible wavelength for a genuinely broadband, non-resonant, non-metallic-interface coating, **found via WebSearch-snippet search (T18's evidentiary tier)** | **NOT FOUND via WebSearch-snippet search** (predicted null result) | no mechanism in MP-1's own reasoning supports it; a hit here would be the single most falsifying possible outcome for MP-4 |
 | MP-4 | **Predicted tier verdict** for α≈5.74×10⁴ cm⁻¹ / 174nm e-folding, at 1.44 µm physical thickness, sourced via **WebSearch-snippet synthesis only (T18)** | **UNOBTANIUM-WITH-PARAMETERS** (not PUBLISHED; not PLAUSIBLE at THIS specific thickness) — driven primarily by MP-2's thickness gap, not by an implausible absorption rate (the corrected α is only 1.9–57× above MP-1's own predicted literature band, not the 5.6–167× the uncorrected figure implied) | thickness, not rate, is the harder ask for this specific construction |
-| MP-5 | **Conditional plausibility restatement** — if MP-1/MP-2 confirm, is τ_true=8.26 achievable AT ALL for this construction class, just not at 1.44 µm? **[T1 escape route: NONE — zero constraint-1/2/3/4 metric is scored by this row or by any resolution of this question (Phase-2 mandatory fix 6).]** | **YES, PLAUSIBLE at ~15–100× the thickness** | reframes the verdict from "impossible" to "the specific thickness-vs-optical-depth combination is the unobtainium part," consistent with Entry 2's own closed thickness-only finding at Iteration 29. **THERMO disposition (above): even under this fallback, at deliberately worst-case assumptions, the object stays thermally UNDETECTABLE (8.1–54.2× margin) — this row does not open a new detectability risk.** |
+| MP-5 | **Conditional plausibility restatement** — if MP-1/MP-2 confirm, is τ_true=8.26 achievable AT ALL for this construction class, just not at 1.44 µm? **[T1 escape route: NONE — zero constraint-1/2/3/4 metric is scored by this row or by any resolution of this question (Phase-2 mandatory fix 6).]** | **YES, PLAUSIBLE at ~15–100× the thickness** | reframes the verdict from "impossible" to "the specific thickness-vs-optical-depth combination is the unobtainium part," consistent with Entry 2's own closed thickness-only finding at Iteration 29. **THERMO disposition (above): even under this fallback, at deliberately worst-case assumptions, the object stays thermally UNDETECTABLE (8.1–54.2× margin) — this row does not open a new detectability risk.** *[Phase-5 mandatory fix, Red Team docket item 1 — THERMODYNAMICS' own catch: this pre-run prediction cell is left as originally frozen, per house convention (errata flagged, not rewritten), but the "8.1–54.2×" figure it cites was superseded the same shift once MP-5 itself resolved (below) — the THERMO disposition section above now reports the corrected range (1.35×–3.79× at MP-5's own found 230–730× multiple, not the 150µm/8.1× point this frozen cell still names). Classification (UNDETECTABLE) is unchanged at every scale; the margin this frozen cell implies is not.]* |
 
 **Falsification, pre-registered:** MP-4 is falsified toward PLAUSIBLE or
 PUBLISHED if Phase 4 turns up a primary-or-best-available source
@@ -362,21 +388,55 @@ REFUTED.**
   suppressed**: an LCD organic black-matrix film claims OD≥3.0 at ≤1µm
   (α≈6.91×10⁴ cm⁻¹, 1.20× the corrected target, at 1.44× the construction's
   thickness) — numerically inside the falsification band on both axes.
-- **MP-4 (tier verdict): CONFIRMED — UNOBTANIUM-WITH-PARAMETERS.** The
-  MP-3 near-miss does **not** trigger MP-4's own pre-registered
-  falsification condition: the condition's own wording requires a "CNT-
-  forest (or comparable broadband **graded near-ε=1 absorber**)" — the
-  black-matrix film is a discrete-pigment-loaded Beer-Lambert dye/carbon-
-  black film in a polymer matrix, a structurally different `eps(r)` shape
-  than `graded_black_shell` codes (no radial index grading at all). This
-  is a mechanism-class exclusion applied from the condition's own
+- **MP-4 (tier verdict): CONFIRMED — UNOBTANIUM-WITH-PARAMETERS**
+  (Phase-5 reaffirmed — Red Team's audit: overdetermined by MP-2's
+  thickness axis alone, 70–350×, anchor-invariant, unanimous across all
+  six Phase-5 seats, independent of every finding below). The MP-3
+  near-miss does **not** trigger MP-4's own pre-registered falsification
+  condition: the condition's own wording requires a "CNT-forest (or
+  comparable broadband **graded near-ε=1 absorber**)" — the black-matrix
+  film is a discrete-pigment-loaded Beer-Lambert dye/carbon-black film in
+  a polymer matrix, a structurally different `eps(r)` shape than
+  `graded_black_shell` codes (no radial index grading at all). This is a
+  mechanism-class exclusion applied from the condition's own
   pre-registered text, not a post-hoc reinterpretation — **but it is a
   judgment call, flagged explicitly for Phase 5 to weigh independently,
-  not a clean numeric miss.** The coherence/localization scope-caveat
-  fallback did not trigger either (sources used effective-medium/
-  Beer-Lambert framing throughout, not localization language). Net:
-  **thickness, not rate, is confirmed as the harder ask**, exactly as
-  Phase 3's synthesis predicted.
+  not a clean numeric miss**, and Phase 5 did not close it cleanly (see
+  below). **The coherence/localization scope-caveat fallback's own
+  status is downgraded from CONFIRMED-not-triggered to OPEN** (Phase-5
+  mandatory fix, Red Team docket item 4, QUANTUM OPTICS' catch): the
+  fallback tested whether WebSearch snippets *used* localization/
+  coherence vocabulary, not whether the underlying near-field-coupling
+  physics (VACNT inter-tube pitches run tens of nm, deeply sub-λ at
+  visible wavelengths) was actually screened for — Bruggeman/effective-
+  medium framing is this subfield's universal *reporting* convention
+  regardless of true physical origin, so the test as executed is close
+  to unfalsifiable and should not be read as a clean non-trigger. Does
+  **not** change MP-4's tier (QUANTUM's own explicit finding, adopted by
+  Red Team) — queued for a proper physical-coupling-threshold rebuild,
+  Iteration 39.
+
+  **Net (Phase-5 corrected framing, Red Team docket item 3 —
+  PHOTONICS'/MATERIALS' catch): "thickness, not rate, is the harder ask"
+  is true only in the narrow sense that MP-2's own gap alone already
+  decides the tier — it is NOT true that the rate axis is broadly
+  healthy for the class this construction actually targets.** The
+  ~1.9–57× α gap Phase 3 predicted applies to the EXCLUDED black-matrix
+  candidate only; for the actual in-class CNT-forest comparator, the
+  best visible-band α figure (2.28×10³ cm⁻¹) misses the corrected target
+  by **>25×**, not ~2×. **A second, previously undisclosed pattern**
+  (Red Team's own Phase-5 attack, independently converging with
+  PHOTONICS'/MATERIALS' reviews): this cycle's two mechanism-class
+  exclusions run in OPPOSITE directions — the black-matrix film is
+  excluded for being "not graded enough," while black-silicon/moth-eye
+  (Idealization 4) is excluded for being "too graded" — and both
+  exclusions happen to preserve the predicted UNOBTANIUM-WITH-PARAMETERS
+  tier. Each is individually defensible on its own pre-registered text
+  (EM's Phase-5 review: the black-matrix exclusion is physically sound
+  on impedance-matching grounds specifically), but the PATTERN was never
+  disclosed as a pattern until this Phase-5 close, and a future reader
+  relying only on "thickness, not rate" would draw a materially
+  over-confident conclusion about the rate axis.
 - **MP-5 (achievable at some thickness): PARTIAL.** Direction confirmed
   (yes) — the darkest reported CNT-forest figures (τ≈7.7) sit almost
   exactly at τ_true≈8.26. Magnitude undershot: visible-band figures need
@@ -387,18 +447,37 @@ REFUTED.**
   escape route: NONE — no constraint-3/4 claim is made or implied by this
   row's resolution.
 
-**THERMO disposition (Phase 3, reconfirmed, not re-run — MP-5's own
-resolution here only widens the multiple, which does not change the
-worst-case bound already computed against MP-2's own upper thickness
-predicted band):** UNDETECTABLE, 8.1–54.2× margin, stands.
+**THERMO disposition — corrected at Phase-5 close (Red Team mandatory-fix
+docket item 1, THERMODYNAMICS' own catch), see the THERMO disposition
+section above.** The claim originally here — "MP-5's own resolution
+here only widens the multiple, which does not change the worst-case
+bound already computed" — was asserted, not re-derived, and turned out
+to be wrong on the margin (though not on the classification): re-run at
+MP-5's own found range (230–730×, not the stale 150µm/15–100× Phase-3
+prediction), the margin ranges **1.35×–3.79×**, not 8.1–54.2× — still
+UNDETECTABLE at every point, but far more fragile than originally
+reported. This paragraph is corrected in place rather than left to repeat
+the error a second time in the same document (same rationale as the
+THERMO disposition section's own correction, above).
 
-Every verdict above discloses its evidentiary tier (WebSearch-snippet
-synthesis, not primary-source PDF/DOI-verified reading — T18) at the
-verdict itself, per registry entry
-`exp061-t18-evidentiary-tier-propagation` — live-verified 0 required-site
-failures, 5/5 caveats, immediately after `phase4_results.md` was written
-(re-confirmed by the Director, independently, after the Phase-4 agent's
-own claim).
+**Evidentiary-tier disclosure (T18):** every MP-1 through MP-5 verdict
+in `phase4_results.md` discloses WebSearch-snippet-only sourcing inline,
+adjacent to its own verdict (verified: MP-3/MP-4/MP-5 explicitly, MP-1/
+MP-2 via the file's own header disclosure covering the whole document).
+This document's own bullets above do not each repeat the T18 tag inline
+(unlike `phase4_results.md`'s) — the disclosure governing THIS section
+is the document-level one in the Setup section above, plus this
+paragraph. **Registry entry `exp061-t18-evidentiary-tier-propagation` is
+widened at this Phase-5 close (Red Team mandatory-fix docket item 2,
+VISION's own catch) to also require `phase4_results.md`** — its original
+`required_sites=[NOTES.md]` never covered the file where the Phase-4
+verdicts are actually rendered in full, a gap self-caught, live, by this
+cycle's own Phase-5 review (not a "never-registered" gap — a
+`required_sites`-scoping gap on an already-registered entry; Red Team's
+full ruling, including why this does not itself fire Checkpoint
+criterion 4: `phase5_redteam_audit.md` §3). Live-verified 0 required-site
+failures, 5/5 caveats, after this widening (re-confirmed by the
+Director, independently).
 
 ## Learned
 
@@ -432,22 +511,48 @@ own claim).
    seeing an inconvenient number. The house discipline (predictions
    before runs) did real work here, not just procedural work.
 3. **CNT-forest-class real materials are not simply "worse" than this
-   construction on every axis — they are worse on thickness and BETTER
-   (i.e. lower, more achievable) on absorption rate than originally
-   computed.** This is the opposite of the naive expectation (that a
-   wrong, inflated target number would make the realizability picture
-   look uniformly too pessimistic) — correcting the number sharpened,
-   rather than softened, the finding.
+   construction on every axis — they are worse on thickness, and the
+   correction to α_true made the RATE axis a closer call than originally
+   computed, though not a healthy one for the actual in-class comparator.**
+   [Phase-5 correction, Red Team mandatory-fix docket item 3 —
+   PHOTONICS'/MATERIALS' catch: the original wording here overclaimed
+   "BETTER... on absorption rate" without qualification. Precisely: the
+   corrected target (5.74×10⁴cm⁻¹, down from 1.667×10⁵) is within ~2× of
+   ONE excluded, out-of-class candidate (the black-matrix film) — but for
+   the actual CNT-forest/Vantablack comparator this construction targets,
+   the best visible-band α figure found (2.28×10³cm⁻¹) still misses by
+   **>25×**, not ~2×. The rate axis did not become healthy; one
+   unanticipated candidate outside the target class came close.] This is
+   still the opposite of the naive expectation (that a wrong, inflated
+   target number would make the realizability picture look uniformly too
+   pessimistic on both axes) — correcting the number sharpened, rather
+   than softened, the finding, but not as broadly as first stated.
 
 ## Next
 
 **Program-level (feeds `REALIZABILITY_MEMO.md`, `PLAN.md`'s queue):**
 1. `REALIZABILITY_MEMO.md` Entry 2 should be updated (Phase 5 permitting)
    to record this cycle's own closure of the absorptivity axis:
-   UNOBTANIUM-WITH-PARAMETERS, driven by thickness (70–500× short), not
-   rate (rate is within ~2× of at least one real, if out-of-class, dense
-   organic absorber film) — sharper than the memo's own prior "absorptivity
-   unchecked" placeholder.
+   UNOBTANIUM-WITH-PARAMETERS, driven by thickness (70–350× short for the
+   actual CNT-forest/Vantablack comparator class) — sharper than the
+   memo's own prior "absorptivity unchecked" placeholder. **[Phase-5
+   correction, Red Team mandatory-fix docket item 3]**: the rate axis is
+   NOT broadly healthy and must not be memo'd as "not rate" without
+   qualification — it is within ~2× of target only for ONE excluded,
+   out-of-class candidate (a discrete-pigment LCD black-matrix film,
+   flagged not suppressed at MP-3/MP-4); for the actual in-class
+   CNT-forest comparator, the best visible-band α figure misses by >25×.
+   The memo update should state both: the tier is thickness-overdetermined
+   regardless, AND the rate axis remains a genuine, separate miss for the
+   target class — not a settled "rate is fine" finding. **Also disclose
+   explicitly**: this cycle's two mechanism-class exclusions (the
+   black-matrix film excluded for being "not graded enough"; black-silicon/
+   moth-eye, Idealization 4, excluded for being "too graded") run in
+   opposite directions, and both happen to preserve the predicted tier —
+   each is individually defensible (EM's Phase-5 review: the black-matrix
+   exclusion holds on impedance-matching grounds), but the pattern itself
+   was undisclosed until this Phase-5 close and should be named in the
+   memo update, not silently carried forward.
 2. The MP-3/MP-4 mechanism-class judgment call (does a discrete-pigment
    film count against a "graded near-ε=1 absorber" falsification
    condition) is flagged explicitly for Phase 5's own independent

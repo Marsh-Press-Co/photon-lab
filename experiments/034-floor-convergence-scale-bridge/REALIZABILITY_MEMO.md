@@ -526,3 +526,55 @@ thread T25) — this entry's own CLOSED status is not contingent on that
 open instrument-trust question, but any future citation of exp-052's own
 numbers should carry it. Full record: `experiments/052-fixed-absolute-
 thickness-shell/`; LOGBOOK.md Iteration 29.
+
+**AMENDMENT 6 (panel Iteration 38, exp-061, 2026-08-23) — the
+absorptivity axis this entry named above as its own sharpened, still-open
+question is CLOSED this cycle, at the same evidentiary standard as every
+other WITH-PARAMETERS row in this memo (a sourced literature check —
+exp-036/exp-037 — not an informal desk tier-call, Red Team's own
+Iteration-26 standing rule, honored here).** LOCKED, unconditional
+(8-cycle deferral, Iteration 29→37 — exceeding every prior unconditional-
+lock threshold this program has applied before it). The implied
+absorption e-folding rate was itself corrected first (Phase 2, two
+independent seat catches + a Red Team adjudication using a number already
+sitting in exp-060's own record at zero marginal cost): not `α≈1/60nm`
+(1.667×10⁵ cm⁻¹, a peak-conductivity×thickness bookkeeping artifact) but
+**α≈1/174nm (5.74×10⁴ cm⁻¹)**, an `Im(n)`-weighted figure honestly
+integrating the graded profile.
+
+**Verdict: UNOBTANIUM-WITH-PARAMETERS, overdetermined by the THICKNESS
+axis, not the rate axis** — read this precisely, per Red Team's own
+Phase-5 mandatory correction of this entry's own first-drafted language:
+real CNT-forest/Vantablack-class record-blackness coatings run
+**100–500µm** (WebSearch-snippet-sourced, T18 — 41+ consecutive blocked
+WebFetch attempts, primary-source verification unavailable), **70–350×**
+this construction's own 1.44µm shell, for every well-corroborated
+visible-band figure — this gap alone decides the tier and does not
+depend on which of two candidate `α` anchors is used. **The rate axis is
+NOT broadly healthy for the target class and must not be read as "solved
+by the correction above"**: the best visible-band CNT-forest α figure
+found (2.28×10³ cm⁻¹) still misses the corrected target by **>25×**. One
+out-of-class candidate — a discrete-pigment-loaded LCD organic black-
+matrix photoresist (patent-sourced, `OD≥3.0` at `≤1µm`) — numerically
+approaches the corrected target (within ~1.2×, at ~1.4× the construction's
+own thickness) but is excluded from the CNT-forest/Vantablack comparison
+class by this cycle's own pre-registered falsification condition (no
+radial index grading — a structurally different `eps(r)` shape than
+`graded_black_shell` codes), a judgment call Phase 5 affirmed on physical
+impedance-matching grounds (independently, EM) but flagged as one half of
+an undisclosed pattern: this cycle's OTHER mechanism-class exclusion
+(black-silicon/moth-eye, Idealization 4, `experiments/061-.../NOTES.md`)
+runs in the OPPOSITE direction (excluded for being "too graded"), and
+both exclusions happen to preserve this tier. Neither exclusion is
+individually wrong; the pattern deserves a reader's own scrutiny, not
+silent inheritance.
+
+**Not yet checked, queued** (Iteration 39+, per the Phase-5 Red Team
+audit): electroless nickel-phosphorus "NiP black" coatings and carbon/
+graphene-aerogel absorbers — genuinely graded-porosity real materials
+neither this entry's original search (informal, Iteration 9/11) nor
+exp-061's own 15+3-query search ever named, flagged by MATERIALS'
+Phase-5 review as arguably closer in spirit to `graded_black_shell`'s
+coded mechanism than either class actually searched. Full record:
+`experiments/061-absorptivity-mechanism-literature-check/`; LOGBOOK.md
+Iteration 38.

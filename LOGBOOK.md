@@ -12488,3 +12488,198 @@ five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
 NOTES.md, run.py, results.json, six Phase-5 blind reviews (plus one
 informational redundant review, disclosed above), Phase-5 Red Team audit,
 same-shift mandatory-fix diffs.
+
+## Iteration 38 — The Absorptivity/Mechanism Literature Check (T2 CNT-forest reality-check) + the Caveat-Propagation-Check Tool (exp-061) — 2026-08-23
+
+*Runner: cloud panel shift.* Lead: MATERIALS & METAMATERIALS, by
+UNCONDITIONAL LOCK (Iteration 37's own ruling — the absorptivity/
+mechanism literature check was 8 cycles deferred, Iteration 29→37, the
+longest deferral chain this program has ever run before a lock fired;
+`h_eff` fired at 5, `graded_black_shell_flagship` and `Q_ext(x)` both
+fired at 3). Two co-mandatory items: (A) the literature check itself —
+does `graded_black_shell`'s fixed-absolute-thickness variant's implied
+absorption coefficient correspond to anything realizable in real
+ultra-black coatings; (B) the mechanical caveat-propagation-check tool
+(first proposed by VISION SCIENCE at Iteration 15, carried unbuilt 8
+cycles across six-plus fix-docket-delivery-pattern recurrences, now a
+mandatory zero-cost rider). Full five-phase cycle, zero FDTD throughout.
+
+**Phase 1 (MATERIALS).** Re-derived, by running `design_geometry.py`
+(R4, not hand-typed), the flagship-adjacent construction's implied
+absorption e-folding rate: `α≈1/60nm` (τ_shell=24, `sigma_max×thickness`).
+Committed a 15-query WebSearch plan (CNT-forest/Vantablack-class sources,
+ranked, non-pooled against a secondary index-grading cross-check class),
+falsifiable predictions (MP-1..MP-5) BEFORE any search ran. Built and
+self-tested `lab/caveat_lint.py` (config-driven + `--adhoc` + `--selftest`
+modes; validated by replaying a real historical case — the exact
+Iteration-37 `run_all.py` stage-22 docstring Checkpoint-4 near-miss,
+commits `d5b4844`→`4f29982` — correctly discriminating pre-fix from
+post-fix).
+
+**Phase 2 — five blind critiques, all support-with-changes, plus Red
+Team's audit (PROCEED-WITH-MANDATORY-FIXES).** Two independent,
+load-bearing numeric catches, neither sufficient alone: PHOTONICS found
+`τ_shell=24` is a peak-σ×thickness bookkeeping constant, not the graded
+profile's own integral — exp-060 already computed the SAME shell's raw
+σ-line-integral as 9.4026 (2.55× smaller), never reconciled. EM found
+even 9.4026 isn't a physical absorption coefficient without a
+loss-tangent→`Im(n)`→α bridge — this bench's own established route,
+already used once by exp-060 (after a real ~4.42× `sim.omega` units bug
+was caught there). **Red Team adjudicated with a THIRD anchor neither
+seat proposed**: `τ_true≈8.26` (`Im(n)`-weighted, reusing exp-060's own
+already-committed integral `0.273840` at zero marginal cost) —
+`α_true≈5.74×10⁴ cm⁻¹`, e-fold≈174nm (not 60nm). Ruled MP-2 (thickness,
+15–150µm predicted vs 1.44µm built) the dominant, anchor-invariant
+falsification axis regardless of which τ candidate is used — no new
+FDTD or fresh symbolic derivation required. VISION independently found,
+LIVE, that the tool itself — run against its own introducing
+document — WARNed that the T18 (WebSearch-snippet-only) evidentiary-tier
+disclosure never propagated to Phase-1's own verdict-bearing rows: a
+self-referential instance of the exact defect class this tool exists to
+prevent, inside the cycle that built it. Red Team ruled this does NOT
+fire Checkpoint criterion 4 (a self-caught, pre-freeze registration gap,
+not a docketed propagation promise broken by hand-review) but set a
+binding forward tripwire on any recurrence after the fix lands. 9-item
+mandatory-fix docket, including a mandatory (not conditional, Red Team's
+own stronger ruling over THERMO's own conditional ask) THERMO disposition
+box. All applied at Phase 3; predictions frozen to git BEFORE Phase 4's
+search ran (commit `35f3179`).
+
+**Phase 3 (Director synthesis).** Applied the full docket: corrected
+τ_true/α_true/e-fold anchor; two new `caveat_lint_config.json` entries
+(T18-propagation, QUANTUM's own sigma_flat corrected-bias-direction
+self-catch), both live-verified; the mandatory THERMO disposition box
+(`lab/thermo_sidecar.py`, worst-case 150µm/100%-absorption-ceiling/
+worst-sourced-irradiance construction) found UNDETECTABLE, 8.1–54.2×
+margin.
+
+**Phase 4 — the actual literature search.** T18 (WebFetch) re-confirmed
+blocked (41+ consecutive attempts since Iteration 13) — WebSearch-
+snippet synthesis only, exactly as disclosed. 15 committed queries + 3
+supplementary. **MP-2 CONFIRMED**: real CNT-forest record-blackness
+coatings run 100–500µm, 70–350× this construction's 1.44µm — the
+dominant, anchor-invariant driver of the tier. **MP-4 CONFIRMED —
+UNOBTANIUM-WITH-PARAMETERS**: driven by thickness, not an implausible
+rate — the corrected α_true is not far from real ultra-black coatings BY
+RATE ALONE (one out-of-class organic LCD black-matrix patent film
+numerically approaches it, 1.20×, at 1.44× the thickness) but no
+CNT-forest-class source comes close (best in-class visible-band figure
+misses by >25×). The pre-registered falsification condition's own
+mechanism-class qualifier ("graded near-ε=1 absorber") excludes that
+near-miss candidate — flagged explicitly for Phase 5, not silently
+applied. MP-1/MP-3/MP-5 PARTIAL, 0 REFUTED: real CNT-forest α figures
+read even MORE dilute than predicted (below the predicted band, not
+above — the opposite of the naive "wrong number made everything look too
+pessimistic" expectation); MP-5's magnitude undershoots (~230–730×
+thickness needed at visible-band α figures, not the predicted ~15–100×).
+
+**Phase 5 — six blind reviews (2 PROMISING — EM, VISION; 4 PARTIAL —
+PHOTONICS, MATERIALS, THERMODYNAMICS, QUANTUM) + Red Team's final
+audit.** THERMODYNAMICS' first dispatch was terminated mid-task by an
+upstream `[bio]`-tagged content-policy false positive — the same class
+this program first documented at Iteration 30 (kinetics/dose-adjacent
+vocabulary pattern-matching a dual-use-research classifier, this time
+apparently triggered by thermal-detectability/worst-case-irradiance
+phrasing); a second, independent, lightly-rephrased dispatch completed
+cleanly, disclosed in that review's own header, per the Iteration-30
+precedent's own instruction to record reproductions. **Two MAJOR
+findings, both self-caught by the cycle's own review process, neither
+overturning the headline tier:**
+
+1. **THERMODYNAMICS**: the mandatory THERMO disposition box anchored its
+   worst-case scale to MP-2's own PRE-SEARCH PREDICTED thickness (150µm),
+   not MP-5's own POST-SEARCH FOUND multiple (230–730×, i.e.
+   331µm–1.05mm) — a Phase-3 number left un-reconciled against a later
+   finding IN THE SAME DOCUMENT. At the corrected scale the margin
+   collapses from the reported "8.1× (comfortably clear)" to **1.35×** —
+   still UNDETECTABLE at every point tested, but far more fragile than
+   reported.
+2. **VISION SCIENCE**: the new T18-propagation registry entry's own
+   `required_sites` never covered `phase4_results.md` — the file where
+   the actual Phase-4 verdicts are rendered — a second, live,
+   self-caught instance of the exact gap-shape the entry was built to
+   close. Red Team ruled this a `required_sites`-SCOPING gap on an
+   already-registered entry (not a never-registered caveat), textually
+   outside the Phase-2 tripwire's own trigger condition ("found again at
+   a future cycle" — this was found within the SAME cycle, at Phase 5) —
+   does NOT fire Checkpoint criterion 4, but "consumes the T18-
+   propagation lineage's self-catch grace IN FULL": a materially
+   TIGHTENED tripwire is now in force — any further gap in this specific
+   entry's coverage discovered at Iteration 39+ auto-fires criterion 4,
+   no further deliberation.
+
+Additional findings: PHOTONICS+MATERIALS independently found the MP-4
+mechanism-class exclusion runs in the OPPOSITE direction from this same
+cycle's OTHER exclusion (black-silicon/moth-eye, excluded for being "too
+graded" vs. the black-matrix film excluded for "not graded enough") —
+both preserve the tier, individually defensible (EM's independent
+physical argument affirms the black-matrix exclusion on impedance-
+matching grounds), pattern previously undisclosed. QUANTUM found the
+pre-registered coherence/localization fallback tests WHETHER SOURCES USED
+localization vocabulary, not whether the underlying near-field-coupling
+physics (VACNT pitches run tens of nm, deeply sub-λ) was actually
+screened for — Bruggeman/effective-medium framing is this subfield's
+universal reporting convention regardless of true origin, making the
+fallback close to unfalsifiable as executed; downgraded from
+CONFIRMED-not-triggered to OPEN (does not change MP-4's tier). EM
+independently re-derived τ_true from first principles (confirming the
+`d`-linear-in-`r` mapping Red Team's Phase-2 formula assumed is exact,
+not an additional approximation) and found one cosmetic ~8×10⁻⁷
+relative precision-chaining drift.
+
+**Red Team's final ruling: PROCEED-WITH-MANDATORY-FIXES; overall
+verdict PROMISING** (overriding the raw 4-2 PARTIAL/PROMISING split, per
+this program's own established precedent — Iterations 10/12/32/36/37 —
+that the verdict turns on whether a cycle's own open questions close, not
+the vote count: every PARTIAL vote is explicit that its own finding does
+NOT overturn the headline tier). 5-item mandatory-fix docket, all applied
+same-shift and re-verified: (1) THERMO disposition replaced with
+THERMODYNAMICS' own corrected-scale sensitivity table
+(230×/298×/374×/730× → 3.79×/2.98×/2.42×/1.35× margin), "comfortably
+clear" struck, new registry entry added; (2) T18-propagation entry
+widened to cover `phase4_results.md`, NOTES.md's own false "every verdict
+above discloses..." compliance claim corrected; (3) the opposite-
+direction mechanism-class-exclusion pattern disclosed explicitly, the
+`REALIZABILITY_MEMO.md`-bound "driven by thickness, not rate" language
+corrected (rate is healthy only for the excluded candidate, not the
+actual in-class comparator, which misses by >25×); (4) MP-4's fallback
+sub-claim downgraded CONFIRMED→OPEN; (5) queued, non-blocking:
+EM's `sim.omega` historical registry entry, THERMO's T25 sidecar-absence
+entry (now bundled for possible consolidation with the new length-scale-
+staleness entry), and **PHOTONICS' numeric-value-consistency-check
+tooling gap, re-ranked UP** — this cycle independently demonstrated the
+identical "a cited NUMBER, not just a phrase, drifts unreconciled across
+sibling files/sections" bug class TWICE in one shift (`τ_shell=24` vs.
+exp-060's 9.4026 at Phase 2; the THERMO disposition's stale 150µm vs.
+MP-5's own found range at Phase 5) — build before a third instance ships.
+`caveat_lint.py` re-verified 6/6 caveats, 0 required-site failures, after
+every fix. Full bench 74/74 unaffected (zero `lab/` engine file touched;
+`lab/caveat_lint.py`/`caveat_lint_config.json` are new, non-engine
+additions). `REALIZABILITY_MEMO.md` Entry 2's own 9-iteration-old
+absorptivity question (opened Iteration 29) is now formally CLOSED
+(Amendment 6) at the same sourced-literature-check standard as every
+other WITH-PARAMETERS row in the memo — Red Team's own Iteration-26
+standing rule (no informal desk tier-calls) honored throughout.
+
+**All five Checkpoint criteria explicitly checked: NONE fire.** No Marsh
+convening required this cycle.
+
+**Ranked top-3 for Iteration 39** (Red Team's reconciliation of all six
+seats): (1) resolve the MP-3/MP-4 mechanism-class ambiguity properly —
+pin whether the black-matrix OD is reflectance- or transmission-based,
+check it for substrate-interference enhancement, and run MATERIALS' own
+missed query set (electroless nickel-phosphorus "NiP black," carbon/
+graphene aerogels — genuinely graded-porosity real materials neither
+this cycle nor exp-052's own earlier informal check ever named). (2)
+Replace QUANTUM's fallback vocabulary-presence test with a physical
+near-field-coupling numeric threshold (VACNT pitch/diameter vs. visible
+λ, already partially in hand). (3) PHOTONICS' numeric-value-consistency-
+check tooling gap, re-ranked up per above. Carried: EM's `sim.omega`
+entry, THERMO's T25 entry (bundle-candidate with the new length-scale
+entry), the standing n_eff=1.04+0.01i primary-source pin (T18-blocked,
+flagged by three seats). Verdict: **PROMISING**. Full record:
+`experiments/061-absorptivity-mechanism-literature-check/` — Phase-1
+proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
+synthesis, NOTES.md, `phase4_results.md`, six Phase-5 blind reviews,
+Phase-5 Red Team audit; `lab/caveat_lint.py` + `lab/caveat_lint_config.json`
+(new, checked-in machinery, six live registry entries).

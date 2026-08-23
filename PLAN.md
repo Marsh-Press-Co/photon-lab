@@ -22,16 +22,34 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-22, panel Iteration 37 done (exp-060, PARTIAL —
-Checkpoint criterion 4 fired AGAIN and was remediated same-shift, Marsh
-notified, see CHECKPOINT below — provisional-to-PROMISING per Red Team's
-own stated path now that the five-item docket has landed and re-verified);
-Iteration 38 LOCKED to MATERIALS (unconditional, the 8-cycle-deferred
-absorptivity/mechanism literature check) with the mechanical caveat-
-propagation-check tool as a mandatory zero-cost rider — see PANEL.md/
-LOGBOOK.md for the phenomenon-program's own current state; this section's
-numbered history stops at the pre-redesign exp-023 baseline, panel-era
-entries live in the queue below and in full in LOGBOOK.md)
+## Current state (2026-08-23, panel Iteration 38 done (exp-061,
+PROMISING — MATERIALS' 8-cycle-deferred absorptivity/mechanism
+literature check closes `REALIZABILITY_MEMO.md` Entry 2's own standing
+question: UNOBTANIUM-WITH-PARAMETERS, overdetermined by a 70–350×
+thickness gap against real CNT-forest/Vantablack-class coatings, not by
+an implausible absorption rate; the mandatory caveat-propagation-check
+tool — `lab/caveat_lint.py`, first proposed Iteration 15 — is built,
+self-tested against a real historical Checkpoint-4 near-miss, and live
+with 6 registry entries. Two MAJOR Phase-5 self-catches (a stale THERMO
+disposition scale, a registry required_sites gap on the very entry
+built to prevent that class of gap) were both found by this cycle's own
+review process and fixed same-shift; neither overturned the tier; no
+Checkpoint criterion fires. See CHECKPOINT-adjacent tripwire note below);
+Iteration 39 queued per Red Team's Iteration-38 ranked top-3, no lock —
+see PANEL.md/LOGBOOK.md for the phenomenon-program's own current state;
+this section's numbered history stops at the pre-redesign exp-023
+baseline, panel-era entries live in the queue below and in full in
+LOGBOOK.md)
+
+**Standing tripwire (Iteration 38 close, binding on Iteration 39+):** the
+`exp061-t18-evidentiary-tier-propagation` caveat-lint registry entry has
+now self-caught two coverage gaps in one cycle (an un-propagated
+disclosure at Phase 2; an under-scoped `required_sites` list at Phase 5).
+Red Team ruled neither fires Checkpoint criterion 4 (different defect
+species / same-cycle self-catch, both pre-close), but the lineage's
+self-catch grace is now fully used — any FURTHER gap in this specific
+entry's own coverage, discovered at Iteration 39 or later, auto-fires
+criterion 4 with no further deliberation.
 
 **CHECKPOINT (Iteration 37, 2026-08-22, criterion 4 — program-integrity
 drift, THIRD CONSECUTIVE CYCLE).** Red Team's Phase-5 audit ruled
@@ -1827,23 +1845,110 @@ continuous mode with checkpoints. The remaining [open] items below are
   Verdict: PARTIAL (provisional-to-PROMISING). Full record:
   `experiments/060-sharp-uniform-lossy-disk-control/`, LOGBOOK.md
   Iteration 37.
-- **[LOCKED — panel Iteration 38, UNCONDITIONAL, per Red Team's
-  Iteration-37 Phase-5 ruling]** MATERIALS' absorptivity/mechanism
-  literature check (now EIGHT cycles deferred, Iteration 29→37 —
-  exceeding every prior unconditional-lock threshold this program has
-  applied: `h_eff` fired at 5, `graded_black_shell_flagship` and
-  `Q_ext(x)` both fired at 3) — breaks normal rotation (which would
-  otherwise continue at ELECTROMAGNETISM). Sharpened by exp-060's own
-  result: the measured mechanism effect makes the flagship's design-claim
-  realizability MORE consequential, not less (MATERIALS' own Phase-5
-  finding). Paired, mandatory, zero-cost rider: **build the mechanical
-  caveat-propagation-check tool** (Red-Team-authorized at Iteration 36,
-  carried unbuilt through Iteration 37, a fourth deferral would itself be
-  a criterion-4-adjacent finding).
-- **[queued — ranked for Iteration 38+, per Red Team's Iteration-37
-  Phase-5 reconciliation of all six seats, exp-060 — CURRENT top-of-queue
-  (behind the two LOCKED/mandatory items above), supersedes the list
-  below as the active ranking, retained as valid backlog, not deleted]**
+- [done 2026-08-23, panel Iteration 38, cloud panel shift] **exp-061 the
+  absorptivity/mechanism literature check + the caveat-propagation-check
+  tool** — MATERIALS' lead, by UNCONDITIONAL LOCK (8-cycle deferral,
+  Iteration 29→37, this program's longest deferral chain before a lock
+  fired). Zero FDTD. Phase 2's two independent, load-bearing catches
+  (PHOTONICS: `τ_shell=24` is a bookkeeping constant, not the graded
+  profile's own integral, vs. exp-060's own already-committed 9.4026 for
+  the identical shell; EM: even that raw integral isn't a physical α
+  without a loss-tangent→`Im(n)`→α bridge) were adjudicated by Red Team
+  with a third anchor neither seat proposed — `τ_true≈8.26`, reusing
+  exp-060's own `Im(n)` integral at zero marginal cost — `α_true≈5.74×10⁴
+  cm⁻¹`, e-fold≈174nm (not the originally-proposed 1.667×10⁵cm⁻¹/60nm).
+  **Result: MP-2 (thickness) CONFIRMED and MP-4 (tier) CONFIRMED —
+  UNOBTANIUM-WITH-PARAMETERS, overdetermined by a 70–350× thickness gap**
+  against real CNT-forest/Vantablack-class record-blackness coatings
+  (100–500µm vs. this construction's 1.44µm), not by an implausible
+  absorption rate — the corrected α_true is not far from real ultra-black
+  coatings by rate alone (one out-of-class organic LCD black-matrix
+  patent film numerically approaches it, 1.20×, flagged not suppressed;
+  excluded from the CNT-forest comparison class by the falsification
+  condition's own pre-registered mechanism-class wording, a judgment call
+  Phase 5 affirmed but flagged as running opposite this same cycle's OTHER
+  mechanism-class exclusion, both preserving the tier). `REALIZABILITY_
+  MEMO.md` Entry 2's own 9-iteration-old absorptivity question (opened
+  Iteration 29) is formally CLOSED (Amendment 6), same evidentiary
+  standard as every other WITH-PARAMETERS row. **The mechanical caveat-
+  propagation-check tool** (`lab/caveat_lint.py` + `caveat_lint_config.json`,
+  first proposed by VISION SCIENCE at Iteration 15, 8 cycles deferred) is
+  built, self-tested against a REAL historical Checkpoint-4 near-miss
+  (commits `d5b4844`→`4f29982`), and exercised live across the entire
+  cycle by all six Phase-2 and six Phase-5 review seats plus Red Team
+  (12+ independent executions, 0 required-site failures throughout — now
+  6 registry entries). **Phase 5 (2 PROMISING, 4 PARTIAL, Red Team's own
+  PROMISING override per this program's established precedent) found two
+  MAJOR, both self-caught by the cycle's own review process, neither
+  overturning the tier**: THERMODYNAMICS found the mandatory THERMO
+  disposition box anchored its worst-case scale to a PRE-SEARCH
+  prediction (150µm) rather than the cycle's own POST-SEARCH found
+  multiple (230–730×, i.e. 331µm–1.05mm) — corrected same-shift, margin
+  1.35×–3.79× (was reported 8.1×, still UNDETECTABLE at every point).
+  VISION found the new T18-propagation registry entry's own
+  `required_sites` never covered `phase4_results.md` — the second
+  self-caught instance of the exact gap-shape the entry exists to
+  prevent, inside the same cycle. Red Team ruled this does NOT fire
+  Checkpoint criterion 4 (textually outside the Phase-2 tripwire's own
+  trigger — a same-cycle self-catch, not a future-cycle recurrence — and
+  a `required_sites`-scoping gap on an already-registered entry, not a
+  never-registered caveat) but set a materially TIGHTENED forward
+  tripwire: any further gap in this entry's own coverage at Iteration
+  39+ auto-fires criterion 4, no further deliberation (see PLAN.md's own
+  Current-state note, above). 5-item mandatory-fix docket, all applied
+  and re-verified same-shift (bench 74/74 unaffected — zero `lab/`
+  engine file touched). No Checkpoint criterion fires. Verdict:
+  **PROMISING**. Full record:
+  `experiments/061-absorptivity-mechanism-literature-check/`, LOGBOOK.md
+  Iteration 38.
+- **[queued — ranked for Iteration 39+, per Red Team's Iteration-38
+  Phase-5 reconciliation of all six seats, exp-061 — CURRENT top-of-queue,
+  no LOCK, supersedes the list below as the active ranking, retained as
+  valid backlog, not deleted]** (1) **Resolve the MP-3/MP-4 mechanism-
+  class ambiguity properly** (PHOTONICS #1 + MATERIALS #1 + QUANTUM #2,
+  converging): pin whether the black-matrix patent's `OD≥3.0` figure is
+  reflectance- or transmission-based (a units/methodology question left
+  open, T18-blocked to resolve directly but worth a targeted search
+  attempt); check it for substrate-interference enhancement (a coherent
+  thin-film effect QUANTUM's own Phase-5 review flagged as unchecked,
+  would only reinforce the existing mechanism-class exclusion); run
+  MATERIALS' own missed query set — electroless nickel-phosphorus "NiP
+  black" coatings and carbon/graphene-aerogel absorbers, genuinely
+  graded-porosity real materials neither exp-061 nor exp-052's own
+  earlier informal check ever named, arguably closer in spirit to
+  `graded_black_shell`'s coded mechanism than either class actually
+  searched. (2) **Replace QUANTUM's coherence/localization fallback
+  vocabulary-presence test with a physical near-field-coupling numeric
+  threshold** — estimate VACNT inter-tube pitch/diameter vs. visible λ
+  from already-in-hand packing-density figures (exp-061's own query 9)
+  and pre-register a coupling-regime threshold, closing the fallback's
+  near-unfalsifiability (does not touch MP-4's tier either way, but
+  closes an OPEN sub-claim). (3) **PHOTONICS' numeric-value-consistency-
+  check tooling gap, re-ranked UP** (no longer single-instance — this
+  same cycle independently demonstrated the identical "a cited NUMBER,
+  not just a phrase, drifts unreconciled across sibling files/sections"
+  bug class TWICE in one shift: `τ_shell=24` vs. exp-060's 9.4026 at
+  Phase 2; the THERMO disposition's stale 150µm vs. MP-5's own found
+  range at Phase 5, both self-caught and fixed same-shift but only by
+  luck of a fresh-context review reading the whole document — a third,
+  silent instance is the realistic failure mode this tool would close).
+  Build `lab/caveat_lint.py`'s own numeric-cross-check extension (a
+  registered NUMBER, not just a phrase, checked for consistency across
+  named sibling sites) before a third instance ships uncaught. **Carried,
+  lower urgency**: EM's `sim.omega` historical units-bug registry entry
+  (no live reintroduction vector, still correct to defer); THERMO's T25
+  sidecar-absence entry (bundle-candidate with the new `exp061-thermo-
+  length-scale-staleness` entry — both staleness/length-scale-adjacent,
+  may consolidate); the standing n_eff=1.04+0.01i primary-source pin
+  (T18-blocked, flagged independently by MATERIALS/QUANTUM/VISION as
+  MP-1's single strongest in-band figure, currently un-pinnable to an
+  originating title). **Standing tripwire, restated from Current-state
+  above**: any further coverage gap in `exp061-t18-evidentiary-tier-
+  propagation`'s own `required_sites`, discovered at Iteration 39+,
+  auto-fires Checkpoint criterion 4 — no further deliberation.
+- **[superseded — the exp-060-era queue, retained only as a pointer to
+  its own history; the binding record is the Iteration-38 [done] entry
+  above and the CURRENT top-of-queue block immediately above this one]**
   (1) **The closed-form two-region (PEC core + uniform complex-ε
   annulus) Bessel/Hankel `Q_ext_uniform` series** — four-seat convergence
   (PHOTONICS/MATERIALS/VISION/QUANTUM), zero-FDTD, the same non-

@@ -2,6 +2,88 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-23 (panel shift) — Iteration 38 complete (exp-061): the
+8-cycle-deferred absorptivity/mechanism literature check closes
+`REALIZABILITY_MEMO.md` Entry 2 (UNOBTANIUM-WITH-PARAMETERS, driven by a
+70–350× thickness gap, not rate); the mechanical caveat-propagation-check
+tool (VISION's own 8-cycle-deferred Iteration-15 idea) is finally built
+and self-tested; two MAJOR Phase-5 self-catches fixed same-shift; no
+Checkpoint criterion fires.
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle). Read HANDOFF.md, README.md, PANEL.md, LOGBOOK.md
+(12490 lines — via a dedicated sub-agent full read + digest covering the
+complete ruled-out registry R1–R5, all live threads T1–T26, the
+absorptivity-check's full 8-cycle deferral history, and the caveat-
+propagation-tool's own authorization history), PLAN.md's Current-state
+section and the standing Iteration-38+ queue, AGENTS.md, VALIDATION.md,
+and SESSION_LOG's top two entries. Bench verified green:
+`--only 12346789,10,11,18,19,20,21,22` → 74/74 in 167s before any panel
+work began.
+
+**Iteration 38 — MATERIALS' LOCKED absorptivity/mechanism literature
+check + the mandatory caveat-propagation-check tool (exp-061).** Lead:
+MATERIALS, by UNCONDITIONAL LOCK (8-cycle deferral, Iteration 29→37, this
+program's longest deferral chain before a lock fired). Full five-phase
+panel cycle, zero FDTD throughout: Phase 1 (search plan + falsifiable
+predictions MP-1..MP-5 for the literature check; `lab/caveat_lint.py`
+built and self-tested against a real historical Checkpoint-4 near-miss,
+commits `d5b4844`→`4f29982`) → five blind Phase-2 critiques (all
+support-with-changes) + Red Team audit (PROCEED-WITH-MANDATORY-FIXES —
+two independent seat catches on the headline α figure adjudicated with a
+third, better anchor neither proposed, `τ_true≈8.26`/`α_true≈5.74×10⁴
+cm⁻¹`, reusing an already-committed exp-060 number at zero marginal
+cost; VISION caught the tool missing its own document's T18-propagation
+gap, live, inside the cycle that built it — ruled non-firing, a forward
+tripwire set) → Phase 3 synthesis (9-item mandatory-fix docket applied,
+including a mandatory THERMO disposition box; predictions frozen to git
+BEFORE Phase 4's search, commit `35f3179`) → Phase 4 (15+3 WebSearch
+queries, T18/WebFetch re-confirmed blocked 41+ consecutive attempts; MP-2/
+MP-4 CONFIRMED, MP-1/MP-3/MP-5 PARTIAL, 0 REFUTED, commit `ce1fe5f`) →
+six blind Phase-5 reviews (2 PROMISING, 4 PARTIAL) + Red Team's final
+audit.
+
+**Results**: **UNOBTANIUM-WITH-PARAMETERS, overdetermined by a 70–350×
+thickness gap** against real CNT-forest/Vantablack-class record-blackness
+coatings (100–500µm vs. this construction's own 1.44µm) — not by an
+implausible absorption rate (the corrected α is within ~2× of one
+out-of-class organic black-matrix patent film, flagged not suppressed;
+excluded from the target comparison class by the falsification
+condition's own pre-registered mechanism-class wording, a judgment call
+Phase 5 affirmed but flagged as running opposite this cycle's OTHER
+mechanism-class exclusion). `REALIZABILITY_MEMO.md` Entry 2's own
+9-iteration-old open question is formally CLOSED (Amendment 6). The
+caveat-propagation-check tool (`lab/caveat_lint.py` +
+`caveat_lint_config.json`) is real, working infrastructure — exercised
+live by 12+ independent seat executions across the whole cycle, 6
+registry entries, 0 required-site failures after every fix.
+
+**Phase 5 found two MAJOR issues, both self-caught by the cycle's own
+review process, neither overturning the tier**: THERMODYNAMICS found the
+mandatory THERMO disposition box used a stale, pre-search predicted scale
+(150µm) instead of the cycle's own post-search found multiple
+(230–730×) — corrected same-shift, margin 1.35×–3.79× (was reported
+8.1×), still UNDETECTABLE at every point. VISION found the new
+T18-propagation registry entry's own coverage gap (missing
+`phase4_results.md`) — a second self-caught instance of the exact defect
+class the entry exists to prevent, inside the same cycle. **Red Team
+ruled this does NOT fire Checkpoint criterion 4** (a same-cycle self-
+catch, textually outside the Phase-2 tripwire's trigger condition; a
+`required_sites`-scoping gap on an already-registered entry, not a
+never-registered caveat) but set a **materially tightened forward
+tripwire**: any further gap in this entry's own coverage at Iteration
+39+ auto-fires criterion 4, no further deliberation — carried into
+PLAN.md's own Current-state section as a standing note. 5-item
+mandatory-fix docket applied and re-verified same-shift (bench 74/74
+unaffected — zero `lab/` engine file touched). **No Checkpoint criterion
+fires this cycle.** Verdict: **PROMISING** (Red Team overriding the raw
+4-2 PARTIAL/PROMISING split, per this program's own established
+precedent). Full record: PLAN.md, LOGBOOK.md Iteration 38,
+`experiments/061-absorptivity-mechanism-literature-check/`. Bench 74/74
+(`--only 12346789,10,11,18,19,20,21,22`) reconfirmed at Phase 5 close;
+zero `lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py`
+touched.
+
 ## 2026-08-22 (panel shift) — Iteration 37 complete (exp-060): the
 sharp-uniformly-lossy-disk control decisively refutes "bulk loss alone
 explains the flagship's suppression" and reframes the mechanism as

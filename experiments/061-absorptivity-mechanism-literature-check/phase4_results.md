@@ -246,19 +246,53 @@ turns on a mechanism-class judgment call (discrete-pigment vs.
 index-graded), not on a numeric threshold.
 
 **Coherence/localization scope-caveat fallback (also pre-registered):
-does NOT trigger.** The sources found this cycle characterize CNT-forest
-blackness via structural/diffuse multiple-scattering and effective-
-medium-index language (Bruggeman model, n_eff=1.04+0.01i, Beer-Lambert-
-Bouguer attenuation fits) — a homogenizable, reflectance-vs-thickness-
-reducible framing, not predominantly coherence-length, Anderson-
-localization, or near-field-coupling language. No source snippet this
-cycle used those specific terms. MP-4 is therefore scoreable as a
-scalar-α comparison, as MP-1/MP-2 above already did.
+status downgraded from CONFIRMED-not-triggered to OPEN** *(Phase-5
+mandatory fix, Red Team docket item 4 — QUANTUM OPTICS' own Phase-5
+catch; does not change MP-4's tier)*. The sources found this cycle
+characterize CNT-forest blackness via structural/diffuse multiple-
+scattering and effective-medium-index language (Bruggeman model,
+n_eff=1.04+0.01i, Beer-Lambert-Bouguer attenuation fits) — a
+homogenizable, reflectance-vs-thickness-reducible framing, not
+predominantly coherence-length, Anderson-localization, or near-field-
+coupling language; no source snippet this cycle used those specific
+terms, which is what this document originally read as "does not
+trigger." **QUANTUM OPTICS' Phase-5 review found that test measures
+vocabulary, not mechanism**: Bruggeman/effective-medium fitting is this
+subfield's universal *reporting convention* regardless of whether
+near-field coupling actually shaped the measured response — VACNT
+inter-tube pitches run tens of nanometers, deeply sub-wavelength at
+visible λ, a textbook near-field-coupling geometry that an
+effective-medium fit is silent on, not evidence against. As executed,
+the fallback is close to unfalsifiable (almost any source in this field
+reports effective-medium numbers by convention, regardless of true
+origin). MP-4 is scored as a scalar-α comparison, as MP-1/MP-2 above
+already did, but this specific sub-claim should be read as OPEN, not
+independently confirmed classical — queued for a physical near-field-
+coupling numeric threshold (not a vocabulary test) at Iteration 39.
 
-**Net: thickness, not rate, is confirmed as the harder ask**, exactly as
-predicted — MP-1's α figures for CNT forests sit at-or-below the
-predicted band (not dramatically above it), while MP-2's thickness gap is
-70–350× for every well-corroborated visible-band figure.
+**Net: thickness is the dominant, anchor-invariant driver of the tier**
+*(Phase-5 corrected framing, Red Team docket item 3 — PHOTONICS'/
+MATERIALS' catch)* — MP-2's thickness gap (70–350× for every well-
+corroborated visible-band figure) alone overdetermines
+UNOBTANIUM-WITH-PARAMETERS, independent of the rate axis or the
+mechanism-class exclusion above. **"Thickness, not rate" should NOT be
+read as "rate is fine"**: MP-1's α figures for CNT forests (the actual
+in-class comparator) sit AT OR BELOW the predicted band — the best
+visible-band figure (2.28×10³cm⁻¹) still misses the corrected target by
+**>25×**. The corrected target's apparent closeness to real ultra-black
+coatings (within ~2×) is a property of the one excluded, out-of-class
+black-matrix candidate specifically, not of the CNT-forest class this
+construction is meant to represent. **A second, previously undisclosed
+finding** (Red Team's own Phase-5 attack, independently converging with
+PHOTONICS'/MATERIALS' reviews): this cycle's two mechanism-class
+exclusions run in OPPOSITE directions — the black-matrix film excluded
+for being "not graded enough" (this section, above), black-silicon/
+moth-eye excluded for being "too graded" (NOTES.md Idealization 4) —
+and both exclusions happen to preserve the predicted tier. Each is
+individually defensible on its own pre-registered terms (EM's Phase-5
+review affirms the black-matrix exclusion specifically, on
+impedance-matching grounds), but the pattern was undisclosed until this
+Phase-5 close.
 
 ---
 
@@ -308,7 +342,7 @@ constraint-3/4 claim (T1 escape route: NONE, per above).
 | MP-1 (CNT-forest effective α) | 1×10³–3×10⁴ cm⁻¹ | ≈78–3.1×10³ cm⁻¹ across sources (one figure inside the band, several below it); nothing near 5.74×10⁴ | **PARTIAL** — directionally right (well below target), band itself only partly matched |
 | MP-2 (CNT-forest thickness at near-total blackness) | 15–150µm | 100–500µm (well-corroborated, visible); one 3–8µm diffuse-only outlier flagged, not pooled | **CONFIRMED** |
 | MP-3 (any source within ~2× of 5.74×10⁴ cm⁻¹, any visible λ, broadband non-resonant) | NOT FOUND | NOT FOUND for CNT-forest class; one weak, patent-sourced, out-of-class (non-CNT, discrete-pigment) candidate numerically clears the raw threshold | **PARTIAL** |
-| MP-4 (tier verdict) | UNOBTANIUM-WITH-PARAMETERS | Same — falsification condition's own mechanism-class qualifier excludes the one near-miss candidate (not a CNT-forest / graded near-ε=1 absorber); coherence/localization fallback did not trigger | **CONFIRMED** (T18: WebSearch-snippet synthesis, not primary-source PDF/DOI-verified reading) |
+| MP-4 (tier verdict) | UNOBTANIUM-WITH-PARAMETERS | Same, overdetermined by MP-2's thickness axis alone — falsification condition's own mechanism-class qualifier excludes the one near-miss candidate (not a CNT-forest / graded near-ε=1 absorber, a Phase-5-flagged judgment call, not overturned); coherence/localization fallback **downgraded CONFIRMED→OPEN at Phase 5** (vocabulary-test, not mechanism-test — does not change the tier) | **CONFIRMED** (T18: WebSearch-snippet synthesis, not primary-source PDF/DOI-verified reading) |
 | MP-5 (achievable at all, some thickness) | YES, ~15–100× thickness | YES, but visible-band figures cluster at ~230–730×, not 15–100× (T1 escape route: NONE) | **PARTIAL** — direction confirmed, magnitude undershot |
 
 **Bottom line:** the corrected construction's α (5.74×10⁴ cm⁻¹) is not
