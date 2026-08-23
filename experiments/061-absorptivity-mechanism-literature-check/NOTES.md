@@ -336,6 +336,137 @@ folded into either tier.
 
 ---
 
-*Result / Learned / Next sections appended after Phase 4 runs and Phase 5
-review completes — not written yet, per house discipline (predictions
-frozen before the run).*
+---
+
+## Result (Phase 4 — full record: `phase4_results.md`, this directory)
+
+T18 (WebFetch block) re-confirmed standing (2 fresh attempts, both
+`EGRESS_BLOCKED` — now 41+ consecutive blocked attempts since Iteration
+13). All 15 committed queries run verbatim, plus 3 supplementary. **1
+CONFIRMED (MP-2), 1 CONFIRMED (MP-4), 3 PARTIAL (MP-1, MP-3, MP-5), 0
+REFUTED.**
+
+- **MP-1 (α): PARTIAL.** Real CNT-forest-class α figures cluster at
+  78–3.1×10³ cm⁻¹ (one single-source figure, n_eff=1.04+0.01i-derived, at
+  2.28×10³ cm⁻¹, lands inside the predicted 1×10³–3×10⁴ band; several
+  cross-query-paired figures fall below it). **Nothing in the CNT-forest
+  class approaches the corrected target (5.74×10⁴ cm⁻¹)** — real forests
+  read as even more dilute/diffuse-dominated than predicted, not less.
+- **MP-2 (thickness): CONFIRMED.** Well-corroborated visible-band
+  record-blackness CNT forests run 100–500µm — at or above the predicted
+  15–150µm band. Gap from this construction's 1.44µm: **70–350×** for
+  every well-sourced figure.
+- **MP-3 (any α≥1×10⁵cm⁻¹-class hit): PARTIAL.** NOT FOUND within the
+  intended CNT-forest/Vantablack class, confirmed as predicted. **One
+  out-of-class, patent-sourced candidate was found and disclosed, not
+  suppressed**: an LCD organic black-matrix film claims OD≥3.0 at ≤1µm
+  (α≈6.91×10⁴ cm⁻¹, 1.20× the corrected target, at 1.44× the construction's
+  thickness) — numerically inside the falsification band on both axes.
+- **MP-4 (tier verdict): CONFIRMED — UNOBTANIUM-WITH-PARAMETERS.** The
+  MP-3 near-miss does **not** trigger MP-4's own pre-registered
+  falsification condition: the condition's own wording requires a "CNT-
+  forest (or comparable broadband **graded near-ε=1 absorber**)" — the
+  black-matrix film is a discrete-pigment-loaded Beer-Lambert dye/carbon-
+  black film in a polymer matrix, a structurally different `eps(r)` shape
+  than `graded_black_shell` codes (no radial index grading at all). This
+  is a mechanism-class exclusion applied from the condition's own
+  pre-registered text, not a post-hoc reinterpretation — **but it is a
+  judgment call, flagged explicitly for Phase 5 to weigh independently,
+  not a clean numeric miss.** The coherence/localization scope-caveat
+  fallback did not trigger either (sources used effective-medium/
+  Beer-Lambert framing throughout, not localization language). Net:
+  **thickness, not rate, is confirmed as the harder ask**, exactly as
+  Phase 3's synthesis predicted.
+- **MP-5 (achievable at some thickness): PARTIAL.** Direction confirmed
+  (yes) — the darkest reported CNT-forest figures (τ≈7.7) sit almost
+  exactly at τ_true≈8.26. Magnitude undershot: visible-band figures need
+  **~230–730×** the 1.44µm thickness (not the predicted ~15–100×) to
+  reach τ_true; only the one wavelength-mismatched mid-IR figure falls
+  inside the predicted band. Restated: **~20–700×, most plausibly several
+  hundred×**, for visible-wavelength CNT-forest-class coatings. T1
+  escape route: NONE — no constraint-3/4 claim is made or implied by this
+  row's resolution.
+
+**THERMO disposition (Phase 3, reconfirmed, not re-run — MP-5's own
+resolution here only widens the multiple, which does not change the
+worst-case bound already computed against MP-2's own upper thickness
+predicted band):** UNDETECTABLE, 8.1–54.2× margin, stands.
+
+Every verdict above discloses its evidentiary tier (WebSearch-snippet
+synthesis, not primary-source PDF/DOI-verified reading — T18) at the
+verdict itself, per registry entry
+`exp061-t18-evidentiary-tier-propagation` — live-verified 0 required-site
+failures, 5/5 caveats, immediately after `phase4_results.md` was written
+(re-confirmed by the Director, independently, after the Phase-4 agent's
+own claim).
+
+## Learned
+
+1. **The corrected τ_true/α_true anchor (Phase 3's own mandatory fix)
+   mattered for more than cosmetics — it changed which axis carries the
+   UNOBTANIUM verdict.** Under the original, uncorrected α (1.667×10⁵
+   cm⁻¹), the literature search would have found the target
+   implausible on BOTH the rate and thickness axes at once, an
+   undifferentiated "everything is too extreme" result. Under the
+   corrected anchor (5.74×10⁴ cm⁻¹), the rate axis turns out to be much
+   closer to real ultra-black coatings than originally framed (a
+   real, if out-of-class, material comes within 1.2× of it) — the
+   verdict is now sharply, specifically about THICKNESS, not about
+   absorptivity in general. This is a materially more informative,
+   more falsifiable finding than the cycle would have produced without
+   Phase 2's own catch — a direct, concrete payoff of the panel's
+   independence mechanics working as designed (two different seats
+   catching two different halves of the same numeric defect, neither
+   sufficient alone, Red Team synthesizing a third, better-yet anchor
+   neither proposed).
+2. **A pre-registered falsification condition earns its keep exactly
+   when a real near-miss shows up.** MP-3/MP-4's own mechanism-class
+   qualifier ("graded near-ε=1 absorber") was written into `NOTES.md`
+   before any search ran, for a reason that seemed abstract at the time
+   (QUANTUM's own Phase-2 concern about coherence/localization framing).
+   It turned out to matter for a different, unanticipated reason (a
+   discrete-pigment LCD black-matrix film, a sixth source class none of
+   NOTES.md's five ranked classes named) — and because the exclusion
+   criterion was written down first, applying it to an unexpected
+   candidate is a mechanical check, not a rationalization invented after
+   seeing an inconvenient number. The house discipline (predictions
+   before runs) did real work here, not just procedural work.
+3. **CNT-forest-class real materials are not simply "worse" than this
+   construction on every axis — they are worse on thickness and BETTER
+   (i.e. lower, more achievable) on absorption rate than originally
+   computed.** This is the opposite of the naive expectation (that a
+   wrong, inflated target number would make the realizability picture
+   look uniformly too pessimistic) — correcting the number sharpened,
+   rather than softened, the finding.
+
+## Next
+
+**Program-level (feeds `REALIZABILITY_MEMO.md`, `PLAN.md`'s queue):**
+1. `REALIZABILITY_MEMO.md` Entry 2 should be updated (Phase 5 permitting)
+   to record this cycle's own closure of the absorptivity axis:
+   UNOBTANIUM-WITH-PARAMETERS, driven by thickness (70–500× short), not
+   rate (rate is within ~2× of at least one real, if out-of-class, dense
+   organic absorber film) — sharper than the memo's own prior "absorptivity
+   unchecked" placeholder.
+2. The MP-3/MP-4 mechanism-class judgment call (does a discrete-pigment
+   film count against a "graded near-ε=1 absorber" falsification
+   condition) is flagged explicitly for Phase 5's own independent
+   scrutiny — if any seat judges the exclusion wrong, MP-4's own tier
+   verdict is directly at stake, not a side issue.
+3. **Queued, non-blocking** (Phase-2 Red Team ruling, `phase2_redteam_audit.md`
+   §6): EM's `sim.omega` historical units-bug registry entry; THERMO's
+   T25 sidecar-absence registry entry; PHOTONICS' numeric-value-
+   consistency-check tooling gap (the caveat-lint tool checks phrase
+   presence, not that a cited NUMBER stays consistent across sibling
+   files — the exact gap that let `TAU_SHELL=24` ship unreconciled
+   against exp-060's own 9.4026 for two cycles). All Iteration 39+.
+4. A genuinely primary-source-verified recheck of the n_eff=1.04+0.01i
+   figure (MP-1's single strongest in-band data point, currently
+   un-pinnable to an originating title) — blocked on T18 exactly like
+   every other primary-source read this program has ever attempted.
+5. The caveat-propagation-check tool itself (Item B) is now validated
+   against one real historical case and used live across this entire
+   cycle (6+ independent executions, 0 required-site failures at every
+   check). A natural Iteration 39+ item: extend the registry to cover
+   this cycle's own new findings (e.g. the mechanism-class-exclusion
+   judgment call in item 2, above) as they get cited forward.
