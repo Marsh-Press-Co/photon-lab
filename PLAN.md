@@ -22,7 +22,13 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-23, panel Iteration 38 done (exp-061,
+## Current state (2026-08-23, panel Iteration 39 in progress (exp-062,
+Phase 3 synthesis complete, Phase 4 next — ELECTROMAGNETISM lead by
+rotation, thin-film-interference/R-vs-T bound + near-field-coupling
+threshold for the MP-3/MP-4 mechanism-class ambiguity; **CHECKPOINT
+criterion 4 FIRED at Phase 2** — see new CHECKPOINT block below, a
+notification not a pause, same-shift mandatory fixes applied, cycle
+proceeds unblocked); panel Iteration 38 done (exp-061,
 PROMISING — MATERIALS' 8-cycle-deferred absorptivity/mechanism
 literature check closes `REALIZABILITY_MEMO.md` Entry 2's own standing
 question: UNOBTANIUM-WITH-PARAMETERS, overdetermined by a 70–350×
@@ -41,15 +47,46 @@ this section's numbered history stops at the pre-redesign exp-023
 baseline, panel-era entries live in the queue below and in full in
 LOGBOOK.md)
 
-**Standing tripwire (Iteration 38 close, binding on Iteration 39+):** the
-`exp061-t18-evidentiary-tier-propagation` caveat-lint registry entry has
-now self-caught two coverage gaps in one cycle (an un-propagated
-disclosure at Phase 2; an under-scoped `required_sites` list at Phase 5).
-Red Team ruled neither fires Checkpoint criterion 4 (different defect
-species / same-cycle self-catch, both pre-close), but the lineage's
-self-catch grace is now fully used — any FURTHER gap in this specific
-entry's own coverage, discovered at Iteration 39 or later, auto-fires
-criterion 4 with no further deliberation.
+**Standing tripwire (Iteration 38 close) — FIRED at Iteration 39, see
+CHECKPOINT block immediately below.** The
+`exp061-t18-evidentiary-tier-propagation` caveat-lint registry entry had
+already self-caught two coverage gaps in one cycle at Iteration 38 (an
+un-propagated disclosure at Phase 2; an under-scoped `required_sites`
+list at Phase 5). Red Team ruled neither fired Checkpoint criterion 4
+then (different defect species / same-cycle self-catch, both pre-close),
+but declared the lineage's self-catch grace fully used — any FURTHER gap
+in this specific entry's own coverage, discovered at Iteration 39 or
+later, would auto-fire criterion 4 with no further deliberation. One did.
+
+**CHECKPOINT (Iteration 39, 2026-08-23, criterion 4 — program-integrity
+drift, on the tripwire above).** VISION SCIENCE's blind Phase-2 critique
+of exp-062 (ELECTROMAGNETISM's thin-film-interference/near-field-coupling
+proposal) found that the `exp061-t18-evidentiary-tier-propagation`
+entry's own `required_sites`/`candidate_globs` could not discover
+exp-062's own forthcoming NOTES.md/phase4_results.md, even though
+exp-062's Phase-1 proposal already trips the entry's `trigger_terms`
+(`graded_black_shell…absorptivity`, `alpha…5.74`). Red Team's Phase-2
+audit (`experiments/062-.../phase2_redteam_audit.md` §3) ruled this
+fires: the tripwire's own hardened wording ("discovered at Iteration 39
+or later, auto-fires criterion 4, no further deliberation") dropped the
+sibling `exp060-sigma-flat-*` tripwire's explicit phase-based safe harbor
+("surviving into THIS cycle's own published Phase-3/5 artifact") — so a
+gap surfacing at Phase 2, before Phase 3 freeze, still fires; there is no
+textual room left for a "caught before freeze" defense on this specific
+lineage, its grace already spent twice over at Iteration 38. The Director
+accepted this ruling without override (`phase3_synthesis.md` §2). Per
+unbroken precedent (Iterations 17/36/37/38) this is a **notification, not
+a pause**: the registry was widened same-shift (`required_sites` and
+`candidate_globs` in `lab/caveat_lint_config.json`, plus
+`lab/caveat_lint.py`'s own `DEFAULT_CANDIDATE_GLOBS`, now cover exp-062
+by literal path and any future experiment by a generic
+`experiments/*/phase4_results.md` pattern), Marsh is notified (this
+entry + LOGBOOK.md Iteration 39 + SESSION_LOG.md), and exp-062 proceeds
+unblocked to Phase 4. Not a physics finding — no engine/FDTD result is
+affected; the gap was in registry scoping for files that did not yet
+exist. Full record: `experiments/062-thin-film-interference-and-near-
+field-coupling-bound/phase2_redteam_audit.md` §3, `phase3_synthesis.md`
+§2, LOGBOOK.md Iteration 39.
 
 **CHECKPOINT (Iteration 37, 2026-08-22, criterion 4 — program-integrity
 drift, THIRD CONSECUTIVE CYCLE).** Red Team's Phase-5 audit ruled
@@ -1934,7 +1971,20 @@ continuous mode with checkpoints. The remaining [open] items below are
   silent instance is the realistic failure mode this tool would close).
   Build `lab/caveat_lint.py`'s own numeric-cross-check extension (a
   registered NUMBER, not just a phrase, checked for consistency across
-  named sibling sites) before a third instance ships uncaught. **Carried,
+  named sibling sites) before a third instance ships uncaught.
+  **RE-FILED WITH AN OWNER (Iteration 39 close, Red Team's exp-062
+  mandatory-fix docket item 6):** EM's Iteration-39 proposal declined this
+  item as charter-mismatched scope for an EM-led cycle (correctly, per
+  five-of-five Phase-2 concurrence) but the resulting "recommendation, not
+  a commitment" left it with no owner — the exact way this program's own
+  caveat-propagation failures have recurred before. Named owner: **the
+  Director, as a mandatory zero-cost rider at Iteration 40, regardless of
+  that cycle's lead seat** — the same pattern `lab/caveat_lint.py` itself
+  used at Iteration 38 (a mandatory rider alongside that cycle's own lead
+  item, not gated on any one seat's rotation turn). A second deferral past
+  Iteration 40 would itself be a criterion-4-adjacent finding, per this
+  program's own established language for exactly this failure shape.
+  **Carried,
   lower urgency**: EM's `sim.omega` historical units-bug registry entry
   (no live reintroduction vector, still correct to defer); THERMO's T25
   sidecar-absence entry (bundle-candidate with the new `exp061-thermo-

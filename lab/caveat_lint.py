@@ -132,6 +132,7 @@ DEFAULT_CANDIDATE_GLOBS = [
     "PANEL.md",
     "experiments/*/NOTES.md",
     "experiments/*/REALIZABILITY_MEMO.md",
+    "experiments/*/phase4_results.md",
     "experiments/*/*.py",
     "lab/*.py",
     "lab/validation/run_all.py",

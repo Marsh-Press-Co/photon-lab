@@ -64,8 +64,8 @@
   },
   {
     "id": "exp061-t18-evidentiary-tier-propagation",
-    "description": "Iteration-38 Phase-2 Red Team mandatory fix 2 (VISION SCIENCE's own live catch: this cycle's own Phase-1 proposal stated the T18 WebSearch-snippet-only evidentiary tier in its search-plan and Idealizations sections but NOT at the specific table rows a Phase-4 verdict is actually cited from). Any site stating exp-061's own literature-check verdict (PUBLISHED/PLAUSIBLE/UNOBTANIUM for the graded_black_shell absorptivity question) must disclose the WebSearch-snippet-only sourcing tier AT THE VERDICT ITSELF, not only in a general methodology section elsewhere in the same document. WIDENED at Phase-5 close (mandatory-fix docket item 2, VISION's own second live catch): the original required_sites list, written before Phase 4 ran, did not name phase4_results.md -- the file where the Phase-4 verdicts are actually rendered in full, created only after this entry was authored. A required_sites-scoping gap on an already-registered entry, not a never-registered caveat -- ruled NOT a Checkpoint-4 firing (phase5_redteam_audit.md section 3), but the T18-propagation lineage's self-catch grace is now fully used; a further gap in this entry's own coverage discovered at Iteration 39+ auto-fires criterion 4, no further deliberation.",
-    "source": "LOGBOOK.md Iteration 38 Phase-2 Red Team audit, mandatory fix 2 (VISION SCIENCE's Phase-2 catch); Phase-5 Red Team audit, mandatory-fix docket item 2 (VISION SCIENCE's Phase-5 catch)",
+    "description": "Iteration-38 Phase-2 Red Team mandatory fix 2 (VISION SCIENCE's own live catch: this cycle's own Phase-1 proposal stated the T18 WebSearch-snippet-only evidentiary tier in its search-plan and Idealizations sections but NOT at the specific table rows a Phase-4 verdict is actually cited from). Any site stating exp-061's own literature-check verdict (PUBLISHED/PLAUSIBLE/UNOBTANIUM for the graded_black_shell absorptivity question) must disclose the WebSearch-snippet-only sourcing tier AT THE VERDICT ITSELF, not only in a general methodology section elsewhere in the same document. WIDENED at Phase-5 close (mandatory-fix docket item 2, VISION's own second live catch): the original required_sites list, written before Phase 4 ran, did not name phase4_results.md -- the file where the Phase-4 verdicts are actually rendered in full, created only after this entry was authored. A required_sites-scoping gap on an already-registered entry, not a never-registered caveat -- ruled NOT a Checkpoint-4 firing (phase5_redteam_audit.md section 3), but the T18-propagation lineage's self-catch grace is now fully used; a further gap in this entry's own coverage discovered at Iteration 39+ auto-fires criterion 4, no further deliberation. **CHECKPOINT CRITERION 4 FIRED, Iteration 39 (exp-062, Phase 2)**: VISION SCIENCE's blind critique found this entry's own required_sites/candidate_globs could not discover exp-062's forthcoming NOTES.md/phase4_results.md, despite exp-062's Phase-1 proposal already tripping this entry's own trigger_terms; Red Team's Phase-2 audit ruled the tightened tripwire's own text (no phase-based safe harbor, unlike the sibling exp060-sigma-flat lineage's tripwire) fires on discovery alone, regardless of Phase-2-vs-Phase-3 timing (phase2_redteam_audit.md section 3, full argument). WIDENED same-shift, mandatory-fix docket item 1: required_sites and candidate_globs below now cover exp-062 by literal path plus a generic pattern for any future experiment.",
+    "source": "LOGBOOK.md Iteration 38 Phase-2 Red Team audit, mandatory fix 2 (VISION SCIENCE's Phase-2 catch); Phase-5 Red Team audit, mandatory-fix docket item 2 (VISION SCIENCE's Phase-5 catch); LOGBOOK.md Iteration 39 CHECKPOINT (criterion 4), exp-062 phase2_redteam_audit.md section 3",
     "phrase_patterns": [
       "WebSearch.snippet",
       "not (primary.source|PDF/DOI).verified",
@@ -73,7 +73,9 @@
     ],
     "required_sites": [
       "experiments/061-absorptivity-mechanism-literature-check/NOTES.md",
-      "experiments/061-absorptivity-mechanism-literature-check/phase4_results.md"
+      "experiments/061-absorptivity-mechanism-literature-check/phase4_results.md",
+      "experiments/062-thin-film-interference-and-near-field-coupling-bound/NOTES.md",
+      "experiments/062-thin-film-interference-and-near-field-coupling-bound/phase4_results.md"
     ],
     "trigger_terms": [
       "PUBLISHED.{0,10}PLAUSIBLE.{0,10}UNOBTANIUM",
@@ -84,6 +86,7 @@
       "LOGBOOK.md",
       "PLAN.md",
       "experiments/*/NOTES.md",
+      "experiments/*/phase4_results.md",
       "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md"
     ]
   },
