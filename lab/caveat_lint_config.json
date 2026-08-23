@@ -193,5 +193,30 @@
       "experiments/*/NOTES.md",
       "experiments/*/phase*.md"
     ]
+  },
+  {
+    "id": "exp064-length-provenance-disclosure",
+    "description": "exp-064 (Panel Iteration 41) closes live thread T23 (opened Iteration 22/exp-045, closed BY ARGUMENT -- never by code -- at Iteration 23/exp-046, violated in the open for three consecutive cycles: Iterations 38, 39, 40) by requiring a length_provenance argument on gas_conduction_h_eff/lumped_cube_mass_kg/mixed_length_scale_regime/front_surface_conduction_correction. Any document restating exp-063's own witness-scale correction-factor numbers must disclose that they are now diagnostic_only=True (extinction_derived_diagnostic_only) rather than licensed, and that a green diagnostic-path gate answers a provenance-honesty question only, never a buildability question (Red Team's Iteration-41 Phase-2 mandatory-fix 4, THERMODYNAMICS' own attack).",
+    "source": "LOGBOOK.md Iteration 41 Phase 2 (Red Team audit, exp-064 mandatory-fix docket items 1 and 4); experiments/064-length-provenance-guard/phase2_redteam_audit.md.",
+    "phrase_patterns": [
+      "diagnostic.only",
+      "provenance.honesty",
+      "buildability"
+    ],
+    "required_sites": [
+      "experiments/064-length-provenance-guard/NOTES.md",
+      "experiments/064-length-provenance-guard/phase4_results.md"
+    ],
+    "trigger_terms": [
+      "length_provenance",
+      "front_surface_conduction_correction",
+      "T23"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md"
+    ]
   }
 ]

@@ -1587,12 +1587,30 @@ def stage18_length_scale_chain():
     from lab import thermo_sidecar as ts
 
     # --- gate 1/2: formula self-consistency, any L (relative tolerance, see docstring).
-    for L in (1e-6, 2.34e-6, 7.079002048463575e-6, 5.0e-5):
-        h = ts.gas_conduction_h_eff(0.026, L)
+    # Panel Iteration 41 (exp-064): each test L now carries an honest
+    # length_provenance. Three (1e-6, 2.34e-6, 5.0e-5) are bench_construction
+    # -- 2.34e-6 is the real R_OUT_M below, the other two are synthetic
+    # order-of-magnitude test points, not claims about one specific committed
+    # geometry, disclosed as such. The third, 7.079002048463575e-6, IS
+    # `w_on_m` from exp-046/results.json (`sigma_ext_cells*dx_m`) -- a real,
+    # literal instance of the exact extinction-derived length T23 forbids in
+    # a conduction role, found while wiring this guard through (not a
+    # hypothetical example): correctly tagged extinction_derived_diagnostic_
+    # only/diagnostic_only=True. This is a pure formula-identity check
+    # (h*L==k_air for ANY L, independent of what L represents), so the guard
+    # exercising its own diagnostic path here is itself part of the gate.
+    _L_PROVENANCE = {
+        1e-6: ("bench_construction", False),
+        2.34e-6: ("bench_construction", False),
+        7.079002048463575e-6: ("extinction_derived_diagnostic_only", True),
+        5.0e-5: ("bench_construction", False),
+    }
+    for L, (prov, diag) in _L_PROVENANCE.items():
+        h = ts.gas_conduction_h_eff(0.026, L, length_provenance=prov, diagnostic_only=diag)
         rel_h = abs(h * L - 0.026) / 0.026
         check("length-scale-chain", f"gas_conduction_h_eff(k_air=0.026, L={L:.3e})*L == k_air",
               f"{rel_h:.2e}", rel_h <= 1e-12, "<=1e-12 relative")
-        m = ts.lumped_cube_mass_kg(2330.0, L)
+        m = ts.lumped_cube_mass_kg(2330.0, L, length_provenance=prov, diagnostic_only=diag)
         rel_m = abs(m / L**3 - 2330.0) / 2330.0
         check("length-scale-chain", f"lumped_cube_mass_kg(rho=2330, L={L:.3e}) / L**3 == rho",
               f"{rel_m:.2e}", rel_m <= 1e-12, "<=1e-12 relative")
@@ -1605,7 +1623,8 @@ def stage18_length_scale_chain():
     P_ABS_W_ON_CENTRAL = 2.0044347652689456e-12  # exp-043 results.json::on_endpoint_tau_3p9.p_abs_w_central
     regime = ts.mixed_length_scale_regime(
         p_abs_w=P_ABS_W_ON_CENTRAL, l_geometric_m=R_OUT_M, k_air=0.026,
-        density_kg_m3=2330.0, c_p_j_kgk=700.0, emissivity=0.9)
+        density_kg_m3=2330.0, c_p_j_kgk=700.0, emissivity=0.9,
+        length_provenance="bench_construction")
     check("length-scale-chain", "mixed_length_scale_regime(ON-endpoint) dt_ss_full_K vs LOGBOOK Iteration-23 side-computation",
           f"{regime['dt_ss_full_K']:.6e}",
           abs(regime["dt_ss_full_K"] - 3.293076e-5) <= 1e-9, "3.293076e-5 K (+-1e-9)")
@@ -2061,7 +2080,7 @@ def stage22_uniform_lossy_shell():
           abs(gap_pct - 8.326) <= 0.05, "8.326%+-0.05% (regression anchor, pinned)")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 24))
+_STAGE_IDS = frozenset(str(n) for n in range(1, 25))
 
 
 def stage23_front_surface_biot_correction():
@@ -2101,25 +2120,44 @@ def stage23_front_surface_biot_correction():
     L_BENCH_M = 2.34e-6
     L_MP5_730X_M = 1051.2e-6
 
+    # Panel Iteration 41 (exp-064): L_BENCH_M is a real bench geometric
+    # length (bench_construction); L_MP5_730X_M is exp-063's own witness-
+    # scale L=tau_true/alpha figure -- an extinction-derived length, T23's
+    # own forbidden category -- now honestly tagged diagnostic_only=True
+    # rather than silently passed unlabeled. QP-3 (exp-064 Phase-1) / Red
+    # Team mandatory-fix 1: stage 24 gate 5 below source-inspects THIS
+    # file to independently confirm these literal kwargs, not merely that
+    # this function accepts them.
+
     # --- gate 1: absolute identity, k_solid -> infinity.
-    huge = ts.front_surface_conduction_correction(K_AIR, L_BENCH_M, 1.0e30, EMISSIVITY)
+    huge = ts.front_surface_conduction_correction(
+        K_AIR, L_BENCH_M, 1.0e30, EMISSIVITY, length_provenance="bench_construction")
     check("front-surface-biot", "correction_factor(k_solid=1e30) == 1 (k_solid->infinity limit)",
           f"{huge['correction_factor']!r}", abs(huge["correction_factor"] - 1.0) <= 1e-15,
           "1.0 (+-1e-15)")
 
     # --- gate 2: regression anchor, exp-063 Phase-1's own committed values (kappa=2.0 W/mK).
-    bench = ts.front_surface_conduction_correction(K_AIR, L_BENCH_M, 2.0, EMISSIVITY)
-    mp5 = ts.front_surface_conduction_correction(K_AIR, L_MP5_730X_M, 2.0, EMISSIVITY)
+    bench = ts.front_surface_conduction_correction(
+        K_AIR, L_BENCH_M, 2.0, EMISSIVITY, length_provenance="bench_construction")
+    mp5 = ts.front_surface_conduction_correction(
+        K_AIR, L_MP5_730X_M, 2.0, EMISSIVITY,
+        length_provenance="extinction_derived_diagnostic_only", diagnostic_only=True)
     check("front-surface-biot", "CF(kappa=2.0 W/mK, L=bench=2.34um) vs exp-063 Phase-1 script output",
           f"{bench['correction_factor']:.6f}", abs(bench["correction_factor"] - 1.013006) <= 1e-5,
           "1.013006 (+-1e-5)")
     check("front-surface-biot", "CF(kappa=2.0 W/mK, L=MP5-730x=1051.2um) vs exp-063 Phase-1 script output",
           f"{mp5['correction_factor']:.6f}", abs(mp5["correction_factor"] - 1.015703) <= 1e-5,
           "1.015703 (+-1e-5)")
+    check("front-surface-biot", "MP5-730x diagnostic call: geometric_realizability field correctly UNGROUNDED (not silently licensed)",
+          mp5["geometric_realizability"][:9], mp5["geometric_realizability"].startswith("UNGROUNDED"),
+          "starts with 'UNGROUNDED'")
 
     # --- gate 3: the falsification-boundary identity, kappa_critical.
     def _cf_mp5(k_solid):
-        return ts.front_surface_conduction_correction(K_AIR, L_MP5_730X_M, k_solid, EMISSIVITY)["correction_factor"]
+        return ts.front_surface_conduction_correction(
+            K_AIR, L_MP5_730X_M, k_solid, EMISSIVITY,
+            length_provenance="extinction_derived_diagnostic_only", diagnostic_only=True
+        )["correction_factor"]
     lo, hi = 1.0e-6, 10.0
     for _ in range(200):
         mid = (lo + hi) / 2.0
@@ -2130,6 +2168,172 @@ def stage23_front_surface_biot_correction():
     k_critical = (lo + hi) / 2.0
     check("front-surface-biot", "kappa_critical (CF(MP5-730x)==1.35 bisection) vs exp-063 Phase-1 Section 4",
           f"{k_critical:.6f}", abs(k_critical - 0.089731) <= 1e-4, "0.089731 W/(m*K) (+-1e-4)")
+
+
+def stage24_length_provenance_guard():
+    """`thermo_sidecar._validate_length_provenance` and the required
+    `length_provenance` argument it gates on `gas_conduction_h_eff`,
+    `lumped_cube_mass_kg`, `mixed_length_scale_regime`, and
+    `front_surface_conduction_correction` (Panel Iteration 41, exp-064) --
+    closes live thread T23 (opened Iteration 22/exp-045, closed BY
+    ARGUMENT -- never by code -- at Iteration 23/exp-046, violated in the
+    open for three consecutive cycles: Iterations 38, 39, 40).
+    PANEL.md's "new machinery => new suite stage with an absolute identity
+    gate" rule, same discipline as stages 8/18/21/22/23.
+
+    Four gates:
+      1. THE REFUSAL IDENTITY (zero tolerance): all four guarded functions
+         raise ValueError for every one of 3 forbidden (length_provenance,
+         diagnostic_only) combinations -- 12 checks total.
+      2. `inspect.signature` IDENTITY: `length_provenance` is present,
+         keyword-only, and has NO default on all four functions -- a
+         caller cannot omit it and keep compiling.
+      3. LICENSED-CALL IDENTITY: a `bench_construction`-tagged call to
+         `mixed_length_scale_regime`/`front_surface_conduction_correction`
+         reproduces its pre-guard committed number exactly (QP-5), AND
+         every pre-existing return-dict string key (`netd_disclaimer`
+         specifically -- lost twice before, Iterations 17 and 40) survives
+         the guard's own dict-literal edit byte-identical (Iteration 41
+         Phase-2, VISION SCIENCE / Red Team mandatory-fix 3), AND
+         `geometric_realizability` reads correctly for both the licensed
+         (N/A) and diagnostic (UNGROUNDED, checked in stage 23 gate 2)
+         cases (Red Team mandatory-fix 4).
+      4. THE SOURCE-INSPECTION GATE (Red Team mandatory-fix 1, EM's
+         catch): re-invoking the guarded functions in isolation, as gates
+         1-3 do, proves the GUARD behaves correctly but proves nothing
+         about whether Phase 3 actually tagged the real, committed
+         `stage23_front_surface_biot_correction`/`stage18_length_scale_
+         chain` call sites correctly -- a Phase-3 author could tag the
+         witness-scale `L_MP5_730X_M` calls `bench_construction` (a false
+         but syntactically valid declaration) and gates 1-3 would still
+         pass green. This gate instead TEXT-SCANS this file's own
+         just-read source (`open(__file__)`, not `inspect.getsource` on
+         a function object, so it also survives a future refactor that
+         moves these calls into a new function) for every
+         `front_surface_conduction_correction`/`mixed_length_scale_regime`
+         call site anywhere in the file: any call mentioning the
+         witness-scale `L_MP5_730X_M` variable MUST also literally carry
+         `length_provenance="extinction_derived_diagnostic_only"` and
+         `diagnostic_only=True`; any call mentioning `L_BENCH_M`/`R_OUT_M`
+         must carry `length_provenance="bench_construction"`. This is what
+         makes exp-064's QP-3 an ENFORCED code gate, not a Phase-3-author
+         promise -- without it, this whole guard would recreate T23's own
+         "disclosure nothing checks" failure pattern one level up, inside
+         the very mechanism built to end it (Red Team's Phase-2 audit,
+         `experiments/064-.../phase2_redteam_audit.md` §"the load-bearing
+         question, answered directly")."""
+    print("stage 24 — length_provenance guard (T23 enforcement) vs identities")
+    from lab import thermo_sidecar as ts
+    import inspect as _inspect
+
+    # ---- gate 1: absolute identity, zero-tolerance refusal ----
+    funcs = {
+        "gas_conduction_h_eff": lambda prov, diag: ts.gas_conduction_h_eff(
+            0.026, 1e-6, length_provenance=prov, diagnostic_only=diag),
+        "lumped_cube_mass_kg": lambda prov, diag: ts.lumped_cube_mass_kg(
+            2330.0, 1e-6, length_provenance=prov, diagnostic_only=diag),
+        "mixed_length_scale_regime": lambda prov, diag: ts.mixed_length_scale_regime(
+            p_abs_w=1e-12, l_geometric_m=1e-6, k_air=0.026, density_kg_m3=2330.0,
+            c_p_j_kgk=700.0, emissivity=0.9, length_provenance=prov, diagnostic_only=diag),
+        "front_surface_conduction_correction": lambda prov, diag: ts.front_surface_conduction_correction(
+            0.026, 1e-6, 2.0, 0.9, length_provenance=prov, diagnostic_only=diag),
+    }
+    forbidden = [
+        ("extinction_derived_diagnostic_only", False),  # diagnostic tag, but diagnostic_only not set
+        ("bogus_provenance", False),                     # unrecognized tag
+        ("", False),                                     # empty tag
+    ]
+    n_refused = n_total = 0
+    for fname, call in funcs.items():
+        for prov, diag in forbidden:
+            n_total += 1
+            try:
+                call(prov, diag)
+                refused = False
+            except ValueError:
+                refused = True
+            n_refused += 1 if refused else 0
+            check("length-provenance-guard",
+                  f"{fname}(length_provenance={prov!r}, diagnostic_only={diag}) raises ValueError",
+                  "raised" if refused else "DID NOT RAISE (BUG)", refused, "raised")
+    check("length-provenance-guard", "refusal gate: all forbidden-tag cases raised (zero tolerance)",
+          f"{n_refused}/{n_total}", n_refused == n_total == 12, "12/12")
+
+    # ---- gate 2: inspect.signature identity ----
+    for fname, fn in (("gas_conduction_h_eff", ts.gas_conduction_h_eff),
+                       ("lumped_cube_mass_kg", ts.lumped_cube_mass_kg),
+                       ("mixed_length_scale_regime", ts.mixed_length_scale_regime),
+                       ("front_surface_conduction_correction", ts.front_surface_conduction_correction)):
+        p = _inspect.signature(fn).parameters.get("length_provenance")
+        ok = bool(p is not None and p.default is _inspect.Parameter.empty
+                  and p.kind == _inspect.Parameter.KEYWORD_ONLY)
+        check("length-provenance-guard",
+              f"{fname}: length_provenance required, keyword-only, no default",
+              "OK" if ok else "MISSING/has default/not keyword-only", ok,
+              "present, KEYWORD_ONLY, no default")
+
+    # ---- gate 3: licensed-call identity (numeric + caveat-string preservation) ----
+    netd_mlsr = ("NETD is an instrument/detector threshold, not "
+                 "a human perceptual one -- any classification "
+                 "derived from this dict's dt_ss_full_K does "
+                 "NOT bear on constraint-3/4's human-eye "
+                 "verdict (panel Iteration 20 origin, "
+                 "reaffirmed Iteration 31)")
+    regime = ts.mixed_length_scale_regime(
+        p_abs_w=2.0044347652689456e-12, l_geometric_m=78 * 30.0e-9, k_air=0.026,
+        density_kg_m3=2330.0, c_p_j_kgk=700.0, emissivity=0.9,
+        length_provenance="bench_construction")
+    check("length-provenance-guard", "mixed_length_scale_regime licensed call: dt_ss_full_K unchanged (QP-5)",
+          f"{regime['dt_ss_full_K']:.6e}", abs(regime["dt_ss_full_K"] - 3.293076e-5) <= 1e-9,
+          "3.293076e-5 K (+-1e-9), matches stage 18 gate 3")
+    check("length-provenance-guard", "mixed_length_scale_regime licensed call: netd_disclaimer byte-identical to pre-guard string",
+          "match" if regime["netd_disclaimer"] == netd_mlsr else "MISMATCH",
+          regime["netd_disclaimer"] == netd_mlsr, "byte-identical")
+    check("length-provenance-guard", "mixed_length_scale_regime licensed call: geometric_realizability correctly N/A",
+          regime["geometric_realizability"][:3], regime["geometric_realizability"].startswith("N/A"),
+          "starts with 'N/A'")
+
+    netd_fscc = ("NETD is an instrument/detector threshold, not a human "
+                 "perceptual one -- any classification derived from "
+                 "correction_factor * dt_ss_full_K does NOT bear on "
+                 "constraint-3/4's human-eye verdict (panel Iteration 20 "
+                 "origin, reaffirmed Iteration 40)")
+    fscc = ts.front_surface_conduction_correction(
+        0.026, 2.34e-6, 2.0, 0.9, length_provenance="bench_construction")
+    check("length-provenance-guard", "front_surface_conduction_correction licensed call: netd_disclaimer byte-identical to pre-guard string",
+          "match" if fscc["netd_disclaimer"] == netd_fscc else "MISMATCH",
+          fscc["netd_disclaimer"] == netd_fscc, "byte-identical")
+    check("length-provenance-guard", "front_surface_conduction_correction licensed call: model_note key still present",
+          "present" if "model_note" in fscc else "MISSING", "model_note" in fscc, "present")
+
+    # ---- gate 4: source-inspection -- Red Team mandatory-fix 1 ----
+    with open(__file__, "r", encoding="utf-8") as f:
+        own_source = f.read()
+    call_re = re.compile(
+        r"(front_surface_conduction_correction|mixed_length_scale_regime)\(\s*(.*?)\)",
+        re.DOTALL)
+    n_witness, n_bench = 0, 0
+    for fname, argtext in call_re.findall(own_source):
+        norm = " ".join(argtext.split())
+        if "L_MP5_730X_M" in norm:
+            n_witness += 1
+            ok = ('length_provenance="extinction_derived_diagnostic_only"' in norm
+                  and "diagnostic_only=True" in norm)
+            check("length-provenance-guard",
+                  f"source-scan: live {fname}(L_MP5_730X_M, ...) call site carries the diagnostic tag",
+                  "tagged diagnostic_only=True + extinction_derived_diagnostic_only" if ok else "MISTAGGED OR MISSING",
+                  ok, "both markers present in the same call")
+        elif "L_BENCH_M" in norm or "R_OUT_M" in norm:
+            n_bench += 1
+            ok = 'length_provenance="bench_construction"' in norm
+            check("length-provenance-guard",
+                  f"source-scan: live {fname}(L_BENCH_M/R_OUT_M, ...) call site carries bench_construction",
+                  "tagged bench_construction" if ok else "MISTAGGED OR MISSING", ok,
+                  "bench_construction present")
+    check("length-provenance-guard",
+          "source-scan: gate is non-vacuous (>=1 witness-scale AND >=1 bench-scale live call site found)",
+          f"{n_witness} witness-scale, {n_bench} bench-scale call sites scanned",
+          n_witness >= 1 and n_bench >= 1, ">=1 of each")
 
 
 def _stage_selected(n, only):
@@ -2196,6 +2400,7 @@ if __name__ == "__main__":
     run_stage21 = _stage_selected(21, only)
     run_stage22 = _stage_selected(22, only)
     run_stage23 = _stage_selected(23, only)
+    run_stage24 = _stage_selected(24, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -2269,6 +2474,8 @@ if __name__ == "__main__":
         stage22_uniform_lossy_shell()
     if run_stage23:
         stage23_front_surface_biot_correction()
+    if run_stage24:
+        stage24_length_provenance_guard()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")

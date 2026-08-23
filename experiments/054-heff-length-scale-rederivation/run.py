@@ -96,7 +96,10 @@ def main():
     regime = ts.mixed_length_scale_regime(
         p_abs_w=P_ABS_W_ON_CENTRAL, l_geometric_m=R_OUT_M, k_air=K_AIR,
         density_kg_m3=DENSITY_SI_KG_M3, c_p_j_kgk=C_P_SI_J_KGK,
-        emissivity=EMISSIVITY, t_ambient_k=T_AMBIENT_K)
+        emissivity=EMISSIVITY, t_ambient_k=T_AMBIENT_K,
+        # Panel Iteration 41 (exp-064): R_OUT_M is the bench's own real
+        # geometric radius -- licensed, not extinction-derived (T23).
+        length_provenance="bench_construction")
     netd_on = ts.netd_disposition(regime["dt_ss_full_K"], NETD_BAND_K)
     margin_on = NETD_BAND_K[0] / regime["dt_ss_full_K"]
 

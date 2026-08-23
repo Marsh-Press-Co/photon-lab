@@ -128,7 +128,10 @@ def thermo_chain(sigma_ext_cells, ratio_abs_ext):
                                             DX_M, ratio_abs_ext)
     regime = ts.mixed_length_scale_regime(
         p["p_abs_w"], R_OUT_M, K_AIR, DENSITY_SI_KG_M3, C_P_SI_J_KGK, EMISSIVITY,
-        T_AMBIENT_K)
+        T_AMBIENT_K,
+        # Panel Iteration 41 (exp-064): R_OUT_M is this scene's own real
+        # geometric radius -- licensed, not extinction-derived (T23).
+        length_provenance="bench_construction")
     disp = ts.netd_disposition(regime["dt_ss_full_K"], NETD_BAND_K)
     margin = NETD_BAND_K[0] / regime["dt_ss_full_K"]
     return {"p_abs_w": p["p_abs_w"], "dt_ss_full_K": regime["dt_ss_full_K"],

@@ -17,6 +17,18 @@ check used silicon's kappa=148 W/(m*K), ASSUMED/unsourced since Iteration
 25. See `front_surface_conduction_correction`'s own docstring for the
 worst-case model and its disclosed, unresolved caveats.
 
+Panel Iteration 41 (exp-064) closes live thread T23 (opened Iteration 22/
+exp-045, closed BY ARGUMENT -- never by code -- at Iteration 23/exp-046;
+violated in the open, disclosed but not enforced, for three consecutive
+cycles: Iterations 38, 39, 40): every length-consuming function below
+(`gas_conduction_h_eff`, `lumped_cube_mass_kg`, `mixed_length_scale_regime`,
+`front_surface_conduction_correction`) now REQUIRES a keyword-only,
+no-default `length_provenance` argument, validated by
+`_validate_length_provenance` against an explicit allow-list -- converting
+`gas_conduction_h_eff`'s own docstring rule from a promise a caller must
+remember into a contract the interpreter enforces. `biot_number` is
+correctly unguarded (see its own docstring): it takes no length argument.
+
 EXPRESSIBILITY CONTRACT (PANEL.md): every function here is a POST-RUN
 ANALYTIC calculation, not an FDTD output. Nothing in this module runs a
 field solve; every input is either a pre-measured bench quantity (sigma_ext,
@@ -193,8 +205,87 @@ def transient_delta_T(p_abs_w: float, mass_kg: float, c_p: float,
     return delta_t_steady_k * (1.0 - math.exp(-dwell_s / thermal_tau_s))
 
 
+# ------------------------------------------------- length-provenance guard
+# Panel Iteration 41 (exp-064). `gas_conduction_h_eff`'s own docstring
+# (below) requires a real geometric length of the conducting/radiating
+# SOLID body -- NEVER an optical/extinction-derived length -- but that rule
+# was, for three cycles (38, 39, 40), enforced by nothing but a docstring
+# a caller had to remember and re-disclose by hand. This converts it into
+# a required, validated declaration every caller must make.
+LICENSED_LENGTH_PROVENANCE = frozenset({
+    "bench_construction",   # a length built directly into the FDTD/bench
+                             # scene geometry (e.g. r_out = cells * dx_m) --
+                             # a real, directly-specified physical dimension
+                             # of the modeled solid body, not derived from
+                             # any absorption/scattering measurement.
+    "measured_geometric",   # a directly-measured physical dimension from a
+                             # sourced primary/snippet reference (e.g. an
+                             # SEM-reported forest height) -- NOT back-
+                             # calculated from tau, alpha, sigma_ext, or any
+                             # other optical/extinction quantity.
+})
+DIAGNOSTIC_ONLY_PROVENANCE = frozenset({
+    "extinction_derived_diagnostic_only",  # an explicitly-acknowledged
+                             # optical/extinction-derived length (e.g.
+                             # L=tau_true/alpha, w_on=sigma_ext_cells*dx_m).
+                             # Permitted ONLY with diagnostic_only=True --
+                             # never silently treated as licensed.
+})
+
+
+def _validate_length_provenance(length_provenance, diagnostic_only):
+    """Shared guard, called first thing inside every length-consuming
+    function below -- the check cannot be forgotten at one call site and
+    remembered at another. The ALLOW-list shape (not a deny-list of today's
+    two known-bad lengths) is deliberate (exp-064 Phase-1 proposal Section
+    7, QUANTUM OPTICS): an extinction cross-section can generically exceed
+    a scatterer's real geometric cross-section (the optical theorem ties
+    sigma_ext to Im[f(0)], a coherent/diffractive quantity, not a
+    ray-geometric one) -- a general wave-optics fact, not one specific to
+    w_on or L=tau/alpha, so a deny-list would stay blind to the next bad
+    length a future proposal invents, exactly how T23 itself stayed open
+    for three cycles against a prose-only rule nothing checked."""
+    if length_provenance in LICENSED_LENGTH_PROVENANCE:
+        return
+    if length_provenance in DIAGNOSTIC_ONLY_PROVENANCE and diagnostic_only:
+        return
+    raise ValueError(
+        f"length_provenance={length_provenance!r} (diagnostic_only="
+        f"{diagnostic_only}) is not licensed for a conduction-length role. "
+        "l_geometric MUST be a real geometric length of the conducting/"
+        "radiating SOLID body -- NEVER an optical/extinction-derived "
+        "length used unflagged (T23, closed by argument at Iteration "
+        "23/31, enforced in code at Iteration 41/exp-064). Licensed: "
+        f"{sorted(LICENSED_LENGTH_PROVENANCE)}. Diagnostic-only (requires "
+        f"diagnostic_only=True): {sorted(DIAGNOSTIC_ONLY_PROVENANCE)}.")
+
+
+def _geometric_realizability_note(length_provenance, diagnostic_only):
+    """The buildability-vs-provenance-honesty distinction (Iteration 41
+    Phase-2, THERMODYNAMICS' attack, Red Team mandatory fix 4): a
+    diagnostic_only=True call is correctly TAGGED, but tagging says nothing
+    about whether an object of that length has ever been shown to exist.
+    Populated into every guarded function's own return dict so a green gate
+    reading it cannot be misread as a buildability endorsement."""
+    if diagnostic_only:
+        return (
+            "UNGROUNDED -- this length is an extinction-derived diagnostic "
+            "value (diagnostic_only=True), not a real geometric length "
+            "confirmed to exist at this scale for the actual candidate "
+            "material class. A green PASS on any gate reading this dict "
+            "answers a provenance-HONESTY question only (the length is "
+            "correctly labeled diagnostic) -- NEVER a buildability question "
+            "(whether an object of this length has been grown/shown to "
+            "exist). See exp-064 NOTES.md, live thread T23.")
+    return (f"N/A -- length_provenance={length_provenance!r} is a licensed "
+            "real-geometric-length category; this field only qualifies "
+            "diagnostic_only=True calls.")
+
+
 # -------------------------------------------- length-scale-consistent chain
-def gas_conduction_h_eff(k_air: float, l_geometric: float) -> float:
+def gas_conduction_h_eff(k_air: float, l_geometric: float, *,
+                          length_provenance: str,
+                          diagnostic_only: bool = False) -> float:
     """Quiescent gas-phase conduction heat-transfer coefficient (Nu=2
     limit), h_eff = k_air / l_geometric.
 
@@ -204,13 +295,21 @@ def gas_conduction_h_eff(k_air: float, l_geometric: float) -> float:
     Iteration 22 (exp-045) found this module's original chain silently
     mixed the two; Panel Iteration 31 (exp-054) argues the physical case to
     a conclusion and promotes the corrected pair of helpers here. See
-    `mixed_length_scale_regime` for the caller-facing entry point."""
+    `mixed_length_scale_regime` for the caller-facing entry point.
+
+    `length_provenance` (required, keyword-only, Panel Iteration 41/
+    exp-064): declares where `l_geometric` came from; see
+    `LICENSED_LENGTH_PROVENANCE`/`DIAGNOSTIC_ONLY_PROVENANCE` above. Raises
+    `ValueError` if not licensed (or diagnostic-flagged)."""
+    _validate_length_provenance(length_provenance, diagnostic_only)
     if l_geometric <= 0:
         raise ValueError("l_geometric must be > 0")
     return k_air / l_geometric
 
 
-def lumped_cube_mass_kg(density_kg_m3: float, l_geometric: float) -> float:
+def lumped_cube_mass_kg(density_kg_m3: float, l_geometric: float, *,
+                         length_provenance: str,
+                         diagnostic_only: bool = False) -> float:
     """Lumped-capacitance cube-shaped thermal mass, mass = density *
     l_geometric**3 (mirrors exp-045's own `self_consistent_regime`
     convention -- a stated idealization, not the module's own true-disk
@@ -220,7 +319,12 @@ def lumped_cube_mass_kg(density_kg_m3: float, l_geometric: float) -> float:
     `l_geometric` MUST be the SAME geometric length passed to
     `gas_conduction_h_eff` for the same object -- mixing lengths across the
     h_eff/mass/area chain is the exact historical bug this pair of
-    functions exists to prevent."""
+    functions exists to prevent.
+
+    `length_provenance` (required, keyword-only, Panel Iteration 41/
+    exp-064): same contract as `gas_conduction_h_eff`'s own; pass the
+    IDENTICAL tag used for that call on the same object."""
+    _validate_length_provenance(length_provenance, diagnostic_only)
     if density_kg_m3 <= 0 or l_geometric <= 0:
         raise ValueError("density_kg_m3 and l_geometric must be > 0")
     return density_kg_m3 * l_geometric ** 3
@@ -229,7 +333,9 @@ def lumped_cube_mass_kg(density_kg_m3: float, l_geometric: float) -> float:
 def mixed_length_scale_regime(p_abs_w: float, l_geometric_m: float,
                                k_air: float, density_kg_m3: float,
                                c_p_j_kgk: float, emissivity: float,
-                               t_ambient_k: float = 293.15) -> dict:
+                               t_ambient_k: float = 293.15, *,
+                               length_provenance: str,
+                               diagnostic_only: bool = False) -> dict:
     """The Iteration-31/exp-054 corrected thermal chain: `p_abs_w` stays
     whatever an UPSTREAM optical measurement produced it as (typically
     `absorbed_power_established_ratio`'s w_on-based p_abs_w, UNCHANGED --
@@ -249,9 +355,21 @@ def mixed_length_scale_regime(p_abs_w: float, l_geometric_m: float,
     `absorbed_power_established_ratio`'s own area already uses, anchored
     at a different length here -- NOT claimed to be more "real" bench
     geometry than that convention; only the LENGTH differs, exp-054 Phase-2
-    Red Team attack 5's corrected wording)."""
-    h_eff = gas_conduction_h_eff(k_air, l_geometric_m)
-    mass_kg = lumped_cube_mass_kg(density_kg_m3, l_geometric_m)
+    Red Team attack 5's corrected wording).
+
+    `length_provenance` (required, keyword-only, Panel Iteration 41/
+    exp-064): validated ONCE here, then forwarded UNCHANGED to this
+    function's own internal `gas_conduction_h_eff`/`lumped_cube_mass_kg`
+    calls -- one length, one provenance, never re-declared per sub-call,
+    matching this module's own "mixing lengths is the historical bug"
+    discipline."""
+    _validate_length_provenance(length_provenance, diagnostic_only)
+    h_eff = gas_conduction_h_eff(k_air, l_geometric_m,
+                                  length_provenance=length_provenance,
+                                  diagnostic_only=diagnostic_only)
+    mass_kg = lumped_cube_mass_kg(density_kg_m3, l_geometric_m,
+                                   length_provenance=length_provenance,
+                                   diagnostic_only=diagnostic_only)
     area_m2 = l_geometric_m ** 2
     dp_dt = area_m2 * (4.0 * emissivity * SIGMA_SB * t_ambient_k ** 3 + h_eff)
     if dp_dt <= 0:
@@ -287,6 +405,10 @@ def mixed_length_scale_regime(p_abs_w: float, l_geometric_m: float,
                              "NOT bear on constraint-3/4's human-eye "
                              "verdict (panel Iteration 20 origin, "
                              "reaffirmed Iteration 31)"),
+        "length_provenance": length_provenance,
+        "diagnostic_only": diagnostic_only,
+        "geometric_realizability": _geometric_realizability_note(
+            length_provenance, diagnostic_only),
     }
 
 
@@ -312,7 +434,9 @@ def biot_number(k_air: float, k_solid: float) -> float:
 
 def front_surface_conduction_correction(k_air: float, l_geometric_m: float,
                                          k_solid: float, emissivity: float,
-                                         t_ambient_k: float = 293.15) -> dict:
+                                         t_ambient_k: float = 293.15, *,
+                                         length_provenance: str,
+                                         diagnostic_only: bool = False) -> dict:
     """Worst-case front-surface conduction correction factor for a lumped
     steady-state dT estimate, panel Iteration 40 (exp-063).
 
@@ -353,8 +477,21 @@ def front_surface_conduction_correction(k_air: float, l_geometric_m: float,
     the front, which would push correction_factor toward 1, not away from
     it; (3) at witness scale, `l_geometric_m` may be an optical-extinction-
     derived length (t=tau_true/alpha), which `gas_conduction_h_eff`'s own
-    docstring explicitly bars from a conduction-length role -- unresolved,
-    T23-adjacent (see exp-063 NOTES.md)."""
+    docstring explicitly bars from a conduction-length role.
+
+    **T23 CLOSED, Panel Iteration 41/exp-064**: caveat (3) above is no
+    longer merely disclosed prose. `length_provenance` is now a required,
+    keyword-only, no-default argument, validated by
+    `_validate_length_provenance` before any arithmetic runs -- an
+    extinction-derived `l_geometric_m` (e.g. `L=tau_true/alpha`) can still
+    be computed for diagnostic/bracket purposes, but ONLY via
+    `length_provenance="extinction_derived_diagnostic_only"` paired with
+    `diagnostic_only=True`; anything else raises `ValueError`. See
+    `_geometric_realizability_note` and this dict's own
+    `geometric_realizability` key for the buildability-vs-provenance-
+    honesty distinction a green diagnostic-path call still does NOT
+    resolve (Iteration 41 Phase-2, THERMODYNAMICS)."""
+    _validate_length_provenance(length_provenance, diagnostic_only)
     if k_air <= 0 or l_geometric_m <= 0 or k_solid <= 0 or emissivity <= 0:
         raise ValueError(
             "k_air, l_geometric_m, k_solid, emissivity must be > 0")
@@ -384,6 +521,10 @@ def front_surface_conduction_correction(k_air: float, l_geometric_m: float,
             "correction_factor * dt_ss_full_K does NOT bear on "
             "constraint-3/4's human-eye verdict (panel Iteration 20 "
             "origin, reaffirmed Iteration 40)"),
+        "length_provenance": length_provenance,
+        "diagnostic_only": diagnostic_only,
+        "geometric_realizability": _geometric_realizability_note(
+            length_provenance, diagnostic_only),
     }
 
 

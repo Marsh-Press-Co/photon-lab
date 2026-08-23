@@ -96,7 +96,10 @@ def main():
         regime_hyp = ts.mixed_length_scale_regime(
             p_abs_w=p_abs_hyp, l_geometric_m=r_out_m, k_air=K_AIR,
             density_kg_m3=DENSITY_SI_KG_M3, c_p_j_kgk=C_P_SI_J_KGK,
-            emissivity=EMISSIVITY, t_ambient_k=T_AMBIENT_K)
+            emissivity=EMISSIVITY, t_ambient_k=T_AMBIENT_K,
+            # Panel Iteration 41 (exp-064): r_out_m is the bench's own real
+            # geometric radius -- licensed, not extinction-derived (T23).
+            length_provenance="bench_construction")
         return NETD_BAND_K[0] / regime_hyp["dt_ss_full_K"], regime_hyp["dt_ss_full_K"]
 
     margin_floor, dt_floor = margin_for_hypothetical_q_ext(1.0)              # conservative Q_ext=1 floor
@@ -107,7 +110,8 @@ def main():
     regime_established = ts.mixed_length_scale_regime(
         p_abs_w=P_ABS_W_FLAGSHIP_CENTRAL, l_geometric_m=r_out_m,
         k_air=K_AIR, density_kg_m3=DENSITY_SI_KG_M3, c_p_j_kgk=C_P_SI_J_KGK,
-        emissivity=EMISSIVITY, t_ambient_k=T_AMBIENT_K)
+        emissivity=EMISSIVITY, t_ambient_k=T_AMBIENT_K,
+        length_provenance="bench_construction")
     margin_established = NETD_BAND_K[0] / regime_established["dt_ss_full_K"]
     assert abs(margin_established - 699.27) < 0.5, \
         f"margin_established={margin_established} does not reproduce exp-057's own committed ~699.27x"

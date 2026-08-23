@@ -152,7 +152,10 @@ def main():
     regime = ts.mixed_length_scale_regime(
         p_abs_w=P_ABS_W_FLAGSHIP_CENTRAL, l_geometric_m=R_OUT_M,
         k_air=K_AIR, density_kg_m3=DENSITY_SI_KG_M3, c_p_j_kgk=C_P_SI_J_KGK,
-        emissivity=EMISSIVITY, t_ambient_k=T_AMBIENT_K)
+        emissivity=EMISSIVITY, t_ambient_k=T_AMBIENT_K,
+        # Panel Iteration 41 (exp-064): R_OUT_M is the flagship's own real
+        # geometric radius -- licensed, not extinction-derived (T23).
+        length_provenance="bench_construction")
 
     dt_ss = regime["dt_ss_full_K"]
     margin = NETD_BAND_K[0] / dt_ss
