@@ -131,12 +131,82 @@ paragraph itself carries, satisfying the registry entry at this site.
 
 ## Result
 
-TBD — filled after Phase 4's official run (`phase4_results.md`).
+**T23 is CLOSED.** All predictions confirmed: QP-1 (required/keyword-only/
+no-default on all 4 functions), QP-2 (5/5 committed bench-scale call
+sites retag cleanly), QP-3 (stage 23/24's witness-scale calls become
+diagnostic-only, now code-enforced not merely disclosed), QP-4 (12/12
+forbidden-tag refusals, zero tolerance), QP-5 (zero physics change —
+full bench 107/107, all pre-existing 78 checks unaffected). The two
+Phase-3-added predictions also confirmed: RT-1 (a deliberate-break test
+against the actual committed commit `b9323bb` — mistagging one witness-
+scale call site FAILs the source-inspection gate 27/28; reverting passes
+28/28 clean) and RT-2 (pre-existing `netd_disclaimer` strings survive the
+guard's edit byte-identical on both guarded functions). Full transcript:
+`phase4_results.md`.
+
+Section 6 of the Phase-1 proposal (a claimed new 24×–75× realizability
+gap) did NOT survive Phase 2 — struck entirely per Red Team's own
+ruling, not restated at a corrected number. See `phase3_synthesis.md`
+§1 item 2 and `phase4_results.md`'s own "§6 disposition" section.
 
 ## Learned
 
-TBD — filled after Phase 4's official run.
+1. **A "code-level enforcement" claim needs its own enforcement check.**
+   The Phase-1 proposal's stage-24 gate suite, as originally specified,
+   would have shipped an "enforced" guard that never actually inspected
+   the one call site that motivated the entire cycle — the identical
+   "disclosure nothing checks" shape T23 itself instantiated for three
+   cycles, one level up, inside the very mechanism built to end it. Caught
+   by ELECTROMAGNETISM's blind Phase-2 critique, independently confirmed
+   by Red Team via direct source read, before any code shipped. The fix
+   (gate 4, source-inspecting the actual committed file) is now this
+   cycle's single most load-bearing deliverable, verified live by
+   deliberately breaking it.
+2. **A number that "sounds new" should be checked against the record
+   before it's written down, not after.** Phase 1's §6 presented a
+   realizability comparison as a fresh finding; it was, in fact, a
+   restatement of an already-established number computed wrong, against
+   an uncited figure that plausibly duplicates an already-excluded
+   outlier from exp-061's own record. Two independent blind seats
+   (MATERIALS, PHOTONICS) caught two independent problems with the same
+   three sentences — a reminder that a "bonus finding" tacked onto a
+   proposal deserves the same record-check discipline as the proposal's
+   own central claim, this program's standing R4 rule.
+3. **Wiring a new guard through old code surfaces old irregularities for
+   free.** Retagging stage 18's four pre-existing formula-identity test
+   values required looking at what each one actually was — and one of
+   them (`7.079002048463575e-6`) turned out to already BE `w_on_m`, the
+   canonical forbidden extinction-derived length, silently used as an
+   "arbitrary" test point since Iteration 31 with nobody flagging it. It
+   was harmless (a pure math identity, not a physical claim), but the
+   guard's own declaration requirement is what surfaced it — a small,
+   concrete demonstration of why "declare, don't just document" catches
+   more than it costs.
 
 ## Next
 
-TBD — filled after Phase 5.
+Ranked top-3 from Iteration 40's own queue (items 2 and 3 below were NOT
+this cycle's job and remain exactly where they were, undisturbed by this
+cycle's §6 strike):
+
+1. **Source, or at minimum formally model as a third disclosed scenario,
+   the CNT-forest root-to-substrate thermal contact resistance**
+   (MATERIALS' Iteration-40 finding) — TD-5's own headroom on κ_solid
+   alone is only 7.8×, this program's thinnest safety factor on record.
+2. **Pin the record-blackness/Vantablack-class CNT forest's own pitch/
+   diameter AND through-thickness thermal conductivity together, in one
+   query set** (Iteration 39's still-open item + PHOTONICS' Iteration-40
+   finding) — now also the natural home for the thickness/realizability
+   question this cycle's own struck §6 did NOT resolve.
+3. **A future cycle wanting to relax `LICENSED_LENGTH_PROVENANCE`** (e.g.
+   adding a real `measured_geometric` witness-scale length, should one be
+   sourced by item 2 above) needs zero code change to the guard itself —
+   only a new, honestly-tagged call site. Not urgent; noted so a future
+   Director doesn't mistake the guard's existence for a reason to avoid
+   sourcing a real length.
+
+Carried, non-blocking (Red Team's Phase-2 audit, attacks 5/7/8): the
+provenance-ROLE vs. provenance-TIER structural gap; material-identity
+coherence across `measured_geometric` sources from different CNT-forest
+process classes; PLAN.md queue item 3 above already subsumes both the
+thickness and the pitch/diameter/κ questions.
