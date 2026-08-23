@@ -59,6 +59,7 @@
       "PLAN.md",
       "experiments/*/NOTES.md",
       "experiments/*/*.py",
+      "experiments/*/phase*.md",
       "experiments/061-absorptivity-mechanism-literature-check/*.md"
     ]
   },
@@ -112,6 +113,7 @@
       "PLAN.md",
       "experiments/*/NOTES.md",
       "experiments/*/*.py",
+      "experiments/*/phase*.md",
       "lab/*.py"
     ]
   },
