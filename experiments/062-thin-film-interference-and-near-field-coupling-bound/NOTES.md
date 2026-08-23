@@ -286,12 +286,119 @@ possibility this table is built to catch.
 
 ## Result (Phase 4 — full record: `phase4_results.md`, this directory)
 
-*[to be filled after Phase 4 runs]*
+EM-1/EM-2/EM-3/EM-4 CONFIRMED (EM-3 more decisively than predicted); EM-5
+FALSIFIED as a universal claim (read literally against its own
+pre-registered condition — 2 of 3 sourced geometries give ratio≥1 at
+every bench λ), reported as PARTIAL/geometry-class-dependent as the more
+informative characterization; EM-5b CONFIRMED UNDECIDABLE (as executed,
+not as a dedicated search); EM-6/EM-7 CONFIRMED-band/PARTIAL-band-miss
+respectively, falsification NOT triggered by either. 0 constraint-1/2/3/4
+metric scored throughout (T1 escape route: NONE, as declared).
 
 ## Learned
 
-*[to be filled at Phase 5 close]*
+1. **Both open MP-3/MP-4 sub-claims from exp-061 close in the direction
+   that reinforces, not threatens, the UNOBTANIUM-WITH-PARAMETERS
+   tier — more decisively than predicted.** The black-matrix OD is
+   transmission-based (two independent sourced conventions) and its
+   measurement geometry (transmission through an unbacked substrate)
+   rules out the strong-resonance/Salisbury-screen mechanism specifically
+   — not merely disfavors it by a broadband reading. `REALIZABILITY_MEMO.md`
+   Amendment 7 records this and the two new comparator classes below.
+2. **EM-6/EM-7 (NiP-black, carbon/graphene aerogel) both fail the joint
+   2×/2× falsification bar decisively, at opposite ends of the gap range
+   this program has ever measured** — NiP-black is now the CLOSEST real
+   comparator by thickness (6.9×–31×) this program has found, but its
+   rate gap (11×–56×) is comparable, breaking the "thickness dominates,
+   rate is fine" pattern CNT-forest set; carbon/graphene aerogel is the
+   WORST comparator found on either axis (694×–3472× thickness). Four
+   independently-sourced real-material classes now checked; zero clear
+   the bar — the tier is more robustly overdetermined than at any prior
+   point in this program's history.
+3. **EM-5's near-field-coupling question is genuinely, honestly left
+   open — not resolved, sharpened.** Confirmed for one real CNT-forest
+   application class (spin-capable/yarn-precursor forests, directly-
+   sourced gap 47–64nm) and refuted for two others (a general
+   characterization study and a directly co-sourced density figure) —
+   but none of the three sourced geometries this cycle or exp-061's own
+   query 9 ever found belongs to the record-blackness/Vantablack-class
+   literature this program's own α_true/n_eff figures actually cite. The
+   standing homogenization-validity question every one of THERMODYNAMICS',
+   QUANTUM's, and EM's own Phase-5 reviews traces back to this exact
+   unpinned geometry remains open, now measured more precisely at
+   adjacent-but-wrong geometries rather than closed.
+4. **A genuine, useful, tier-independent deliverable**: the standing
+   `n_eff=1.04+0.01i` citation — flagged un-pinnable across three-plus
+   cycles (MATERIALS/QUANTUM/VISION, Iteration 38 and earlier) — is
+   pinned to a specific title/journal/volume/year (*Carbon*, 2018, vol.
+   129, pp. 8–14), making a targeted follow-up search against the actual
+   comparison class tractable for the first time.
+5. **This cycle's own review process caught real, self-referential
+   process defects a third and fourth time, at Phase 2 and Phase 5
+   both** — a false internal citation (EM-5's "see Phase 1/3's own
+   NOTES.md table," which does not contain the cited row); a silent
+   R-vs-T conversion-convention drop between Item A's own methodology and
+   Item C's application of it (EM-6/EM-7 used the undivided, T-based τ
+   formula on reflectance-sourced figures); and — the most consequential
+   — **Checkpoint criterion 4 fired TWICE in this single iteration**, an
+   unprecedented event in this program's history: once at Phase 2 (the
+   `exp061-t18-evidentiary-tier-propagation` registry entry's
+   `required_sites` couldn't discover this cycle's own forthcoming
+   verdict-bearing files) and again at Phase 5, on the SAME entry, after
+   its own same-shift Phase-3 widening was itself shown incomplete (its
+   `candidate_globs` still couldn't discover any `phase2_critique_*`/
+   `phase5_review_*`/`phase5_redteam_audit.md` file, for any experiment
+   — demonstrated live on a pre-existing, already-merged exp-061 file
+   that had been silently non-compliant since Iteration 38). Both firings
+   are notifications, not pauses, per unbroken program precedent; both
+   are remediated same-shift (see `phase5_redteam_audit.md`'s 10-item
+   mandatory-fix docket, all applied). This is the strongest evidence yet
+   that the caveat-propagation-check tool's own registry needs
+   systemic, not per-entry, hardening — see Next #3.
 
 ## Next
 
-*[to be filled at Phase 5 close]*
+Ranked per Red Team's Phase-5 reconciliation of all six reviews
+(`phase5_redteam_audit.md` §5):
+
+1. **Pin the record-blackness/Vantablack-class CNT forest's own
+   inter-tube pitch/diameter** — every one of the six Phase-5 reviews
+   independently names this as a top priority. Query 13's own success
+   this cycle (pinning the n_eff citation to *Carbon* 2018, vol. 129, pp.
+   8–14) makes a targeted follow-up search against that specific paper's
+   own reported density/pitch figures the natural, highest-yield next
+   step — it would close (not merely sharpen) the standing
+   `l_geometric_m` homogenization-validity question every one of
+   THERMODYNAMICS', QUANTUM's, and EM's own Phase-5 dispositions traces
+   back to this exact geometry.
+2. **Resolve EM-5b's near-field-coupling direction with an actually
+   dedicated query set** (`coupled dipole near field correction
+   absorption cross section carbon nanotube array`, `subradiant
+   superradiant collective absorption sub-wavelength scatterer array`)
+   — QUANTUM's own Phase-5 review found none of this cycle's 18 queries
+   ever targeted this specific question; "CONFIRMED UNDECIDABLE" is an
+   honestly-disclosed null result, not yet a genuine search for it.
+3. **Build the numeric/derivation-consistency-check tooling**, already
+   re-filed with a named owner (the Director, mandatory zero-cost rider
+   at Iteration 40, per Red Team's Iteration-38 mandatory-fix item 6) —
+   widened per EM's own Phase-5 recommendation to catch not just a NUMBER
+   drifting unreconciled across sibling files (`τ_shell=24` vs. 9.4026;
+   the stale 150µm vs. the found range) but the SAME derivation
+   methodology applied two inconsistent ways within one document (this
+   cycle's own EM-6/EM-7 R-vs-T drop). This cycle's own two fresh
+   instances are ready-made regression test cases.
+4. **Registry-wide `candidate_globs` hardening**, applied same-shift this
+   cycle (a generic `experiments/*/phase*.md` pattern added to both
+   affected entries and to `lab/caveat_lint.py`'s own
+   `DEFAULT_CANDIDATE_GLOBS`) — re-verify at Iteration 40's own pre-flight
+   that every registry entry, not just the two found this cycle, is
+   covered by a broad per-experiment glob rather than a named-filename
+   list, per the systemic (not per-entry) root cause Red Team's audit
+   identified.
+
+**Carried, lower priority**: EM's `sim.omega` historical registry entry;
+THERMO's T25 sidecar-absence entry (bundle-candidate with the
+length-scale-staleness entries); MATERIALS' own follow-up on whether a
+NiP-black-style graded-porosity homogenization-validity check is owed
+the same scrutiny this cycle gave VACNT forests, if a future cycle
+elevates NiP-black's own standing further.

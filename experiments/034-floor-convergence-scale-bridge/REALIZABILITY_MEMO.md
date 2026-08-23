@@ -578,3 +578,49 @@ Phase-5 review as arguably closer in spirit to `graded_black_shell`'s
 coded mechanism than either class actually searched. Full record:
 `experiments/061-absorptivity-mechanism-literature-check/`; LOGBOOK.md
 Iteration 38.
+
+**AMENDMENT 7 (panel Iteration 39, exp-062, 2026-08-23) — the "not yet
+checked" line above is CLOSED this cycle; both named classes are now
+checked, scored against pre-registered falsifiable bands, and neither
+clears the joint falsification bar (within ~2× of α_true AND thickness,
+together).** Also resolves exp-061's own MP-3/MP-4 numeric-proximity
+open sub-claim (the black-matrix patent film's OD-to-α conversion) more
+decisively than predicted. Full record: `experiments/062-thin-film-
+interference-and-near-field-coupling-bound/`; LOGBOOK.md Iteration 39.
+
+**Electroless NiP-black** (cross-query-paired: R≈0.5–1.0%, WebSearch-
+snippet, T18, with typical thickness figures 10–45µm — not one source's
+own paired measurement, a disclosed weakness): α≈1.0×10³–5.3×10³cm⁻¹,
+**11×–56× below α_true on rate, 6.9×–31× above 1.44µm on thickness**.
+Neither axis clears 2×. **This is the closest real-material comparator
+this program has found for `graded_black_shell`'s construction, by
+thickness alone** — but read that precisely, per Red Team's own Phase-5
+correction: unlike CNT-forest (where thickness, 70–350×, dominates a
+comparatively healthy 25× rate gap), NiP-black's own rate gap
+(11×–56×) is *comparable to or larger than* its thickness gap
+(6.9×–31×) at three of its four benchmark points. **Amendment 6's
+"overdetermined by thickness, not rate" sentence is a CNT-forest-specific
+finding, not a general property of every checked comparator class** —
+NiP-black is the concrete counter-example. (R-vs-T note: these are
+reflectance figures; the analysis did not apply the round-trip ÷2
+correction Amendment 6's own R-vs-T bridge established, nor a proper
+diffuse-transport treatment for what is physically a porous scattering
+medium, not a coherent thin film — applying either correction only
+widens this gap, never narrows it.)
+
+**Carbon/graphene aerogel** (cross-query-paired: R<0.24%, WebSearch-
+snippet, T18, with 1–5mm monolith thicknesses): α≈12–60cm⁻¹, **~950×–
+4760× below α_true on rate, 694×–3472× above 1.44µm on thickness — the
+WORST real-material comparator this program has ever measured on either
+axis**, both figures missing the general α/thickness band predicted for
+this class, the same direction of surprise CNT-forest's own MP-1 figures
+showed against exp-061's own prediction. Same R-vs-T/diffuse-transport
+caveat as NiP-black applies, with more force given the mm-scale
+thickness.
+
+**Net: four independently-sourced real-material comparator classes are
+now on the record (CNT-forest/Vantablack, the LCD black-matrix film,
+NiP-black, carbon/graphene aerogel) — zero clear the joint 2×/2× bar.**
+`graded_black_shell`'s UNOBTANIUM-WITH-PARAMETERS verdict is not merely
+unmoved by this cycle; it is more robustly overdetermined than at any
+prior point in this program's history.
