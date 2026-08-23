@@ -96,14 +96,28 @@ measurement-geometry conditioning added at Phase 3 (mandatory fix 2)
 resolves cleanly, not merely "specular, so evidence stands":** query 14
 establishes the LCD-era OD convention is measured in **transmission**
 through a transparent, unbacked substrate — there is no reflective
-backing in this measurement geometry at all, so the entire Salisbury-
-screen/critically-coupled-resonance mechanism (which REQUIRES a reflective
-backing to interfere against) is **structurally inapplicable**, not just
-disfavored by a broadband reading. This is a stronger resolution than
-Phase 1/3 anticipated: the falsification condition's own angle-
-integration concern (mandatory fix 2) turns out not to bind, because the
-measurement is transmission-mode on an unbacked substrate, not
-reflectance-mode on a backed one.
+backing in this measurement geometry at all, so the *strong-resonance*
+Salisbury-screen/critical-coupling mechanism of Section 4.4 specifically
+(which needs a near-unity-magnitude backing reflectance to null the
+front-surface term) **cannot operate here**, not just "disfavored" by a
+broadband reading. **[Wording tightened, Phase 5 Red Team audit, mandatory-
+fix item 6 — correction of an overstatement.]** This does NOT mean zero
+coherent contribution is possible in principle: any multi-interface
+dielectric stack supports a weak Fabry–Pérot ripple regardless of backing
+strength. What is actually established is narrower and still sufficient:
+the *strong*-resonance mechanism specifically cannot form (a bare
+low-index photoresist-on-glass interface gives `|r₂₃|` at most a few
+percent, nowhere near the `|r₂₃|→1` the mechanism needs), and whatever
+residual weak coherent correction this geometry does support is exactly
+the regime EM-1's own passivity bound already covers — governed BY, not
+separate from, the ≤0.2% (τ=6.91) figure computed in Section 4.3, not an
+independently-ruled-in-or-out effect. This does not change EM-4's
+headline 1.20× figure either way (the maximum possible correction under
+any reading is negligible against this program's ~2× falsification bar).
+This is a stronger resolution than Phase 1/3 anticipated: the
+falsification condition's own angle-integration concern (mandatory fix
+2) turns out not to bind, because the measurement is transmission-mode
+on an unbacked substrate, not reflectance-mode on a backed one.
 
 ## EM-4 — net effect on the numeric-proximity axis
 
@@ -134,8 +148,8 @@ sourced geometries, computed by direct invocation:
 | Source | D or gap | f (if derived) | ratio@450 | ratio@550 | ratio@600 | ratio@750 |
 |---|---|---|---|---|---|---|
 | Phase-1 placeholder (illustrative, not sourced this cycle) | D=20nm | 5% | 0.828 | 0.677 | 0.621 | 0.497 |
-| Query 11 (stainless-steel VACNT characterization) | D=65nm | 5% (assumed, not co-sourced) | 2.689 | 2.200 | — | 1.614 |
-| Query 11, upper D | D=93nm | 5% (assumed) | 3.848 | 3.148 | — | 2.309 |
+| Query 11 (stainless-steel VACNT characterization) | D=65nm | 5% (assumed, not co-sourced) | 2.689 | 2.200 | 2.017 | 1.614 |
+| Query 11, upper D | D=93nm | 5% (assumed) | 3.848 | 3.148 | 2.886 | 2.309 |
 | Query 12 (directly co-sourced: r=60nm, 10 tubes/µm², f=11%) | D=120nm | 11% (stated) | 2.740 | 2.242 | 2.055 | 1.644 |
 | Query 12 (spin-capable forests, directly-stated gap) | gap=47nm | — | 0.656 | 0.537 | 0.492 | 0.394 |
 | Query 12 (spin-capable forests, directly-stated gap) | gap=64nm | — | 0.894 | 0.731 | 0.670 | 0.536 |
@@ -148,8 +162,14 @@ REFUTED for the two other, independently-sourced dense-forest geometries**
 reasonable packing fraction, and the directly co-sourced r=60nm/11%
 figure) at every bench wavelength except a near-unity crossing at 750nm
 for the most favorable dense-forest combination (D=65nm, f=10%,
-ratio=0.982 — see Phase 1/3's own `NOTES.md` table, not reproduced here
-since f=10% at D=65nm was not itself directly co-sourced this cycle).
+ratio=0.982 — **computed directly here, using the gap/packing-fraction
+relation established in this cycle's own Section 4 [`phase1_proposal.md`]:
+`p=D√(π/4f)`, `gap=p−D`; f=10% at D=65nm was not itself directly co-sourced
+this cycle, and this specific 750nm/f=10% cell is a same-shift sensitivity
+computation, not a value drawn from any pre-existing table** — corrected
+at Phase 5, Red Team's audit, mandatory-fix item 1: the original text
+falsely pointed to "Phase 1/3's own `NOTES.md` table," which does not
+contain this row).
 **Neither this cycle's own searches, nor exp-061's own query 9, ever
 pinned the specific pitch/diameter of a record-blackness/Vantablack-class
 forest** (the comparison class this program's own α figures actually
@@ -161,6 +181,24 @@ drew from. **This is a real, disclosed evidentiary gap, not resolved by
 this cycle's search — the near-field classification is geometry-class-
 dependent, not universal, and remains genuinely open for the specific
 comparison class this program cares about.**
+
+**[Mandatory fix, Phase 5 Red Team audit, item 7 — the pre-registered
+falsification condition, read literally, IS met.]** `NOTES.md`'s own
+EM-5 falsification condition states, unconditionally: "Falsified if
+sourced pitch/diameter give ratio≥1 at any bench λ." Two of the three
+sourced geometry classes above (the stainless-steel-characterization
+diameters and the directly co-sourced r=60nm/f=11% figure) give
+`ratio≥1` at **every** bench wavelength. Under the letter of the
+pre-committed bar, the textually correct verdict for EM-5 **as a
+universal claim across all sourced geometries is FALSIFIED**, not
+PARTIAL. "PARTIAL, geometry-class-dependent" (as scored above) is a
+disclosed, more scientifically informative POST-HOC recharacterization —
+real and worth keeping — but it is not what the pre-registered condition
+itself says, and this document should not let a reader infer otherwise.
+Any future multi-geometry near-field prediction must pre-specify its own
+cross-geometry scoring rule (e.g. "FALSIFIED only if the record-blackness
+comparator class itself gives ratio≥1") before Phase 4 runs, rather than
+default to a discretionary softer read after the fact.
 
 ## EM-5b — near-field-coupling direction (enhance vs. suppress)
 
@@ -201,6 +239,26 @@ interpretation is owed at Phase 5**, per `NOTES.md`'s explicit assignment
 — this Phase-4 record reports the raw finding and its falsification
 status only.
 
+**[Mandatory fix, Phase 5 Red Team audit, item 5 — R-vs-T methodology
+disclosure.]** R above is a **reflectance** figure (queries 7/15). Section
+4.2's own R-vs-T analysis established that a reflectance-based reading
+implies a round-trip through the layer, so the physically consistent
+single-pass α would use `τ_R=OD·ln10/2` (halved), not the undivided
+`τ=OD·ln10` used above. **No ÷2 correction was applied here** — an
+undisclosed inconsistency with Section 4's own methodology, caught
+independently by two Phase-5 reviews. Applying it would only WIDEN the
+gap (halved α: ≈511–2649cm⁻¹, ratio-to-target 22×–112× short instead of
+11×–56×) — it does not change the "falsification NOT triggered"
+verdict, and if anything strengthens it. Separately: NiP-black is a
+rough, porous, multiply-scattering surface, not a coherent thin film on a
+defined backing — neither the T-based nor the R-based-halved planar Airy
+convention this section borrows from Section 4 is a rigorous model for
+that geometry class (a Kubelka–Munk-style diffuse-transport treatment
+would be the physically appropriate tool, and Red Team's own audit notes
+the true mean photon path in a diffuse scatterer generally *exceeds* a
+simple double-pass estimate — meaning the true single-pass α is likely
+smaller still, reinforcing rather than narrowing the gap further).
+
 ## EM-7 — carbon/graphene-aerogel effective α / thickness
 
 **Predicted band:** thickness 5–500µm, α 10²–10⁴cm⁻¹.
@@ -227,6 +285,17 @@ program's history for this construction, exceeding even CNT-forest's own
 70–350× figure. **Falsification NOT triggered** (nowhere close). Same
 Phase-5 tier-interpretation assignment as EM-6.
 
+**[Mandatory fix, Phase 5 Red Team audit, item 5 — same R-vs-T
+disclosure as EM-6.]** R above (<0.24%) is also a **reflectance** figure
+(query 10), also converted with the undivided `τ=OD·ln10`, also without
+the ÷2 correction Section 4.2 established for reflectance readings.
+Halving gives α≈6–30cm⁻¹ — the gap only widens further (already 3–4
+orders of magnitude short; halving does not change the qualitative
+conclusion). The same diffuse-transport caveat as EM-6 applies with even
+more force here: a several-mm-thick aerogel monolith is far from any
+coherent-thin-film limit, and neither Airy-stack convention this section
+borrows is a rigorous model for it.
+
 ---
 
 ## Overall summary table
@@ -235,12 +304,12 @@ Phase-5 tier-interpretation assignment as EM-6.
 |---|---|---|---|
 | EM-1 (interference bound) | ≤0.2%/≤6.3% | Unchanged theoretical bound, re-verified twice (Phase 1, Phase 2) | **CONFIRMED** |
 | EM-2 (R-vs-T basis) | Conditional on convention | Transmission-based, confirmed by 2 independent queries — 1.20× stands | **CONFIRMED** |
-| EM-3 (bandwidth discriminator) | Broadband, no stack (specular case) | Broadband confirmed; no stack for this patent's class; measurement is transmission-mode on an UNBACKED substrate — resonance mechanism structurally inapplicable | **CONFIRMED**, more decisively than predicted |
+| EM-3 (bandwidth discriminator) | Broadband, no stack (specular case) | Broadband confirmed; no stack for this patent's class; transmission-mode/unbacked-substrate measurement rules out the STRONG-resonance (Salisbury-screen) mechanism specifically — any residual weak coherent effect is governed by EM-1's own bound, not separately ruled out | **CONFIRMED**, more decisively than predicted (wording tightened, Phase 5) |
 | EM-4 (net numeric effect) | [0.60×,1.20×], reinforces exclusion | 1.20× stands exactly; exclusion reinforced by a checked, not assumed, R-vs-T/resonance analysis | **CONFIRMED** |
-| EM-5 (near-field existence) | ratio<1 at all 3 bench λ | Confirmed for ONE sourced geometry class (spin-capable forests); refuted for TWO others (dense stainless-steel-class and directly co-sourced r=60nm/11% forests); the record-blackness-class forest's own pitch remains unpinned | **PARTIAL** — falsified as a universal claim; geometry-class-dependent |
-| EM-5b (near-field direction) | UNDECIDABLE | UNDECIDABLE — no direction-bearing literature surfaced | **CONFIRMED UNDECIDABLE** |
-| EM-6 (NiP-black) | 10–200µm, 10²–10⁴cm⁻¹ | 10–45µm, ~1.0–5.3×10³cm⁻¹ — inside predicted band; NOT within 2× of target on either axis | **CONFIRMED** (band), falsification NOT triggered |
-| EM-7 (carbon/graphene aerogel) | 5–500µm, 10²–10⁴cm⁻¹ | 1–5mm, ~12–60cm⁻¹ — BOTH outside predicted band (thinner-band-miss on α, thicker-band-miss on thickness); largest realizability gap found this program's history | **PARTIAL** (band miss, same direction of surprise as exp-061's MP-1) |
+| EM-5 (near-field existence) | ratio<1 at all 3 bench λ | Confirmed for ONE sourced geometry class (spin-capable forests); REFUTED (ratio≥1 at every bench λ) for TWO others (dense stainless-steel-class and directly co-sourced r=60nm/11% forests); the record-blackness-class forest's own pitch remains unpinned | Read literally against the pre-registered condition: **FALSIFIED** (as a universal claim, Phase 5 correction — 2 of 3 geometries give ratio≥1 at all bench λ); reported as **PARTIAL/geometry-class-dependent** as the more informative post-hoc characterization |
+| EM-5b (near-field direction) | UNDECIDABLE | UNDECIDABLE — no direction-bearing literature surfaced (QUANTUM's own Phase-5 review found the 18 queries never actually targeted superradiant/subradiant/coupled-dipole terms — an honestly-disclosed but not dedicatedly-searched-for null result) | **CONFIRMED UNDECIDABLE** (as executed; not yet a genuinely dedicated search) |
+| EM-6 (NiP-black) | 10–200µm, 10²–10⁴cm⁻¹ | 10–45µm, ~1.0–5.3×10³cm⁻¹ — inside predicted band; NOT within 2× of target on either axis; R-vs-T ÷2 correction not applied (Phase 5 disclosure — widens gap further, doesn't narrow it) | **CONFIRMED** (band), falsification NOT triggered |
+| EM-7 (carbon/graphene aerogel) | 5–500µm, 10²–10⁴cm⁻¹ | 1–5mm, ~12–60cm⁻¹ — BOTH outside predicted band (thinner-band-miss on α, thicker-band-miss on thickness); largest realizability gap found this program's history; R-vs-T ÷2 correction not applied (Phase 5 disclosure — widens gap further) | **PARTIAL** (band miss, same direction of surprise as exp-061's MP-1) |
 
 **Bottom line: exp-061's UNOBTANIUM-WITH-PARAMETERS tier is untouched and,
 if anything, further reinforced.** The two open numeric/mechanism
