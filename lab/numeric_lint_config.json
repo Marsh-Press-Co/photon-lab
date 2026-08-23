@@ -1,0 +1,46 @@
+[
+  {
+    "kind": "numeric_drift",
+    "id": "exp062-em4-r-vs-t-ratio",
+    "description": "exp-062's own headline numeric-proximity ratio (the black-matrix patent's alpha_true vs the corrected, transmission-based reading) is cited verbatim at six sibling sites across two experiments' own records plus LOGBOOK.md/PLAN.md/SESSION_LOG.md. A future edit to any one site (a rebase of the underlying OD figure, a re-derivation) that fails to update all six would be exactly the 'a NUMBER drifting unreconciled across sibling files' failure this entry exists to catch.",
+    "source": "LOGBOOK.md Iteration 39 (exp-062 EM-2/EM-4); Red Team's Iteration-38 mandatory-fix item 6 (original numeric-drift framing, before Iteration-39 Phase-5 widened the item to also cover derivation-methodology consistency, see exp062-em6-em7-r-vs-t-methodology below)",
+    "sites": [
+      {
+        "path": "experiments/062-thin-film-interference-and-near-field-coupling-bound/NOTES.md",
+        "pattern": "ratio to α_true:\\s*([\\d.]+)×\\)"
+      },
+      {
+        "path": "experiments/062-thin-film-interference-and-near-field-coupling-bound/phase4_results.md",
+        "pattern": "exp-061's own original \\*\\*([\\d.]+)×\\*\\*"
+      },
+      {
+        "path": "experiments/062-thin-film-interference-and-near-field-coupling-bound/phase4_results.md",
+        "pattern": "confirmed by 2 independent queries — ([\\d.]+)× stands"
+      },
+      {
+        "path": "LOGBOOK.md",
+        "pattern": "ratio stands at exactly exp-061's own\\s*([\\d.]+)×\\."
+      },
+      {
+        "path": "PLAN.md",
+        "pattern": "ratio stands at exp-061's own\\s*([\\d.]+)×\\."
+      },
+      {
+        "path": "SESSION_LOG.md",
+        "pattern": "ratio stands at exp-061's own\\s*([\\d.]+)×\\."
+      }
+    ],
+    "tolerance_rel": 1e-9
+  },
+  {
+    "kind": "derivation_consistency",
+    "id": "exp062-em6-em7-r-vs-t-methodology",
+    "description": "exp-062 Section 4.2 establishes that a REFLECTANCE-basis OD figure implies a round-trip through the layer, so the physically consistent single-pass alpha uses tau_R = OD*ln10/2 (halved), not the undivided tau = OD*ln10 used for transmission-basis figures. EM-6 (NiP-black) and EM-7 (carbon/graphene aerogel) both feed an R=<percent>-labeled figure into that same alpha calculation -- the SAME derivation methodology (OD-to-alpha conversion) applied to the SAME reflectance-basis condition Section 4.2 defines -- and both must disclose the reflectance basis and its halving treatment at the point the formula is actually applied, not only in a general methodology section elsewhere. Iteration 39 Phase-4 shipped both without the disclosure; caught independently by two blind Phase-5 reviews (PHOTONICS, ELECTROMAGNETISM), fixed same-shift (mandatory fix 5).",
+    "source": "LOGBOOK.md Iteration 39 Phase-5 (PHOTONICS + ELECTROMAGNETISM independent catches, mandatory-fix docket item 5); Red Team's Iteration-38 mandatory-fix item 6 (this tool's own mandate, widened at Iteration 39 Phase-5 from pure numeric-drift to derivation-methodology consistency, re-filed with the Director as owner at Iteration 40)",
+    "site": "experiments/062-thin-film-interference-and-near-field-coupling-bound/phase4_results.md",
+    "window_patterns": ["^## EM-6", "^## EM-7"],
+    "basis_pattern": "R\\s*[=≈<]\\s*[\\d.]+%",
+    "requires_pattern": "reflectance\\)?\\s*figure|halv(ed|ing)|(no|without)\\s+(the\\s+)?(÷|/)?\\s*2\\s*correction",
+    "window_chars": 3000
+  }
+]
