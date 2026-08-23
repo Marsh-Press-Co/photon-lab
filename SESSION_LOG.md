@@ -2,6 +2,118 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-23 (panel shift) — Iteration 39 complete (exp-062): the
+thin-film-interference/R-vs-T bound and near-field-coupling threshold
+close both open exp-061 sub-claims in the tier-reinforcing direction,
+more decisively than predicted; Checkpoint criterion 4 fires TWICE in
+one iteration — unprecedented — on the same registry entry at two
+different phases; Marsh notified.
+
+**Pre-flight**: fresh container onboarding (deps installed per the
+documented pip wrinkle). Read HANDOFF.md, README.md, PANEL.md, LOGBOOK.md
+(12685 lines — via a dedicated sub-agent full read + digest covering the
+complete ruled-out registry R1–R5, all live threads T1–T26, the
+REALIZABILITY_MEMO.md entry/amendment history, the caveat_lint.py
+registry, and every standing "still owed" item), PLAN.md's Current-state
+section and the standing Iteration-39 queue, AGENTS.md, VALIDATION.md,
+and SESSION_LOG's top two entries. Bench verified green:
+`--only 12346789,10,11,18,19,20,21,22` → 74/74 in 132s before any panel
+work began.
+
+**Iteration 39 — ELECTROMAGNETISM's rotation-lead thin-film-interference/
+near-field-coupling cycle (exp-062).** Lead: ELECTROMAGNETISM, by
+rotation (the slot deferred since Iteration 36's LOCK chain; resumes
+here, no new lock fired at Iteration 38's close). Full five-phase panel
+cycle, zero FDTD throughout: Phase 1 (closed-form Airy-stack/passivity
+analysis of the black-matrix patent's disputed OD figure — R-vs-T
+geometric factor, a bounded coherent-interference correction, a
+falsifiable resonant-absorber discriminator — plus a near-field-coupling
+numeric-threshold rider replacing QUANTUM's own vocabulary-presence
+fallback; explicitly declined Red Team's own ranked item 3 as
+charter-mismatched scope, flagged for ruling rather than decided
+unilaterally, commit `98a8f49`) → five blind Phase-2 critiques (all
+support-with-changes) + Red Team audit (PROCEED-WITH-MANDATORY-FIXES;
+**Checkpoint criterion 4 FIRES** — the `exp061-t18-evidentiary-tier-
+propagation` registry entry's own hardened tripwire, drafted one cycle
+ago after its self-catch grace was ruled fully spent, fires on a
+`required_sites` gap discovered at Phase 2, before Phase 3 froze —
+argued from the tripwire's own text dropping a phase-based safe harbor
+its sibling tripwire keeps; commit `c64d8f1`) → Phase 3 synthesis
+(7-item mandatory-fix docket applied, registry widened same-shift,
+predictions EM-1..EM-7/EM-5b frozen before the search, commit `9e73b45`)
+→ Phase 4 (14+4 WebSearch queries; T18 re-confirmed blocked 43+
+consecutive attempts, commit `4fb7f95`) → six blind Phase-5 reviews (3
+PROMISING/3 PARTIAL) + Red Team's final audit.
+
+**Results**: **both open exp-061 sub-claims close in the tier-
+reinforcing direction, more decisively than predicted.** The black-matrix
+OD is transmission-based (two independent sourced conventions) and
+measured through an unbacked substrate — structurally ruling out the
+strong-resonance/Salisbury-screen mechanism, not merely disfavoring it by
+a broadband reading; the numeric-proximity ratio stands at exp-061's own
+1.20×. Two new real-material comparators (NiP-black, carbon/graphene
+aerogel — MATERIALS' own Iteration-38-missed query set, finally scored
+with falsifiable bands) both fail the joint 2×/2× falsification bar:
+NiP-black is now the closest real comparator this program has found by
+thickness (6.9×–31×), though its own rate gap (11×–56×) is comparable —
+breaking CNT-forest's "thickness not rate" pattern, formalized as
+`REALIZABILITY_MEMO.md` Amendment 7; carbon/graphene aerogel is the worst
+comparator found on either axis (694×–3472× thickness). The near-field-
+coupling question (replacing QUANTUM's own vocabulary-presence fallback)
+is honestly left open: confirmed for one real CNT-forest application
+class, refuted for two others, and the program's own actual record-
+blackness/Vantablack comparator geometry remains unpinned — read
+literally against its own pre-registered condition, FALSIFIED as a
+universal claim, reported as the more informative PARTIAL/geometry-
+class-dependent finding (a Phase-5 disclosure, not a re-score). A
+tier-independent deliverable: the standing `n_eff=1.04+0.01i` citation,
+flagged un-pinnable across 3+ cycles, is pinned to a named paper
+(*Carbon*, 2018, vol. 129, pp. 8–14).
+
+**Checkpoint criterion 4 fires a SECOND time this same iteration — the
+first same-iteration double firing in this program's history.** Red
+Team's Phase-5 audit found (independently re-verified by VISION SCIENCE's
+own live tool execution) that CHECKPOINT #1's own same-shift fix — a
+"generic pattern for any future experiment" added to the fired entry's
+`candidate_globs` — only ever covered `phase4_results.md`-class files,
+never `phase2_critique_*`/`phase3_synthesis`/`phase5_review_*`/
+`phase5_redteam_audit.md` files, for any experiment. Demonstrated live on
+a PRE-EXISTING, already-merged exp-061 file
+(`phase5_review_materials.md`) that had silently carried zero T18
+disclosure at its own restated verdict since Iteration 38. Red Team ruled
+this fires (a textually distinct sub-defect, not the same argument
+re-offered; the tripwire's temporal test is a floor not a ceiling; the
+prior fix demonstrably did not close what it claimed to close) and folded
+a sibling gap (`exp061-thermo-length-scale-staleness`, independently
+found by both THERMODYNAMICS and ELECTROMAGNETISM) into the same event as
+a systemic aggravating fact. Also self-caught and disclosed: a missing
+Phase-5 review (`phase5_review_photonics.md` — received in full from its
+own sub-agent but not written/committed by the Director before Red Team's
+audit ran) was found missing by Red Team's own audit and remediated
+same-shift, verbatim, before this record closed. **10-item mandatory-fix
+docket, all applied and independently re-verified live** (a systemic
+`experiments/*/phase*.md` `candidate_globs` pattern, not another
+named-filename patch, applied to both affected registry entries and to
+`lab/caveat_lint.py`'s own `DEFAULT_CANDIDATE_GLOBS`; the live violation
+closed directly in the pre-existing file; a corrected citation; a
+disclosed R-vs-T methodology gap in EM-6/EM-7; tightened EM-3 wording; a
+disclosed literal-FALSIFIED reading for EM-5; `REALIZABILITY_MEMO.md`
+Amendment 7; `NOTES.md`'s Learned/Next filled; the missing table cells
+filled). None of the ten items changes any tier, verdict, or headline
+number. **Verdict: PARTIAL, provisional-to-PROMISING** (Red Team
+overriding the raw 3-3 seat split, per this program's own Iteration-36/37
+precedent — a live, unresolved caveat-propagation gap surviving Phase 5
+overrides a clean split; this cycle's own fact pattern — a second firing
+on a lineage whose grace was already ruled fully spent, found live in an
+already-merged file — is textually stronger than either precedent case).
+Full record: PLAN.md (two distinct CHECKPOINT blocks), LOGBOOK.md
+Iteration 39, `experiments/062-thin-film-interference-and-near-field-
+coupling-bound/`. Bench 74/74 (`--only 12346789,10,11,18,19,20,21,22`)
+reconfirmed unaffected throughout; zero `lab/ARTIFACTS.md`/
+`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched; the only `lab/`
+engine-adjacent file touched (`lab/caveat_lint.py`) is explicitly
+non-engine, documentation-tooling machinery.
+
 ## 2026-08-23 (panel shift) — Iteration 38 complete (exp-061): the
 8-cycle-deferred absorptivity/mechanism literature check closes
 `REALIZABILITY_MEMO.md` Entry 2 (UNOBTANIUM-WITH-PARAMETERS, driven by a
