@@ -6,32 +6,33 @@ exp-065 -- T24 ABSORB boundary sweep: geometry and desk arithmetic
       cfg     ABS     PAD      NX      NY   SRC_X PLANE_X   OBJ_Y    y_lo    y_hi       A    aper   clrPl  clrSrc clrSpan    D_SP
       C40      40       0     360    1584     300      77     792      40    1544     752    1504      37      20       0     223
       C60      60      20     400    1624     320      97     812      60    1564     752    1504      37      20       0     223
+      C70      70      30     420    1644     330     107     822      70    1574     752    1504      37      20       0     223
       C80      80      40     440    1664     340     117     832      80    1584     752    1504      37      20       0     223
       G40      40      40     440    1664     340     117     832      80    1584     752    1504      77      60      40     223
       N60      60       0     360    1584     300      77     792      60    1524     732    1464      17       0       0     223
-    congruent series holds               A = 752 across ABSORB in (40, 60, 80)  [OK]
-    congruent series holds     clear_plane = 37 across ABSORB in (40, 60, 80)  [OK]
-    congruent series holds       clear_src = 20 across ABSORB in (40, 60, 80)  [OK]
-    congruent series holds    clear_span_y = 0 across ABSORB in (40, 60, 80)  [OK]
-    congruent series holds            d_sp = 223 across ABSORB in (40, 60, 80)  [OK]
-    congruent series holds           lever = 93 across ABSORB in (40, 60, 80)  [OK]
-    congruent series holds  aperture_cells = 1504 across ABSORB in (40, 60, 80)  [OK]
+    congruent series holds               A = 752 across ABSORB in (40, 60, 70, 80)  [OK]
+    congruent series holds     clear_plane = 37 across ABSORB in (40, 60, 70, 80)  [OK]
+    congruent series holds       clear_src = 20 across ABSORB in (40, 60, 70, 80)  [OK]
+    congruent series holds    clear_span_y = 0 across ABSORB in (40, 60, 70, 80)  [OK]
+    congruent series holds            d_sp = 223 across ABSORB in (40, 60, 70, 80)  [OK]
+    congruent series holds           lever = 93 across ABSORB in (40, 60, 70, 80)  [OK]
+    congruent series holds  aperture_cells = 1504 across ABSORB in (40, 60, 70, 80)  [OK]
     NAIVE N60 breaks it: A=732 (-20 cells, 2.66%), clear_plane=17, aperture=1464
 
 [2] DESK PROPAGATOR (exp-048 `edge_diffraction_c_empty_corrected`,
     a boundary-FREE Huygens-Fresnel sum -- zero free parameters)
-    lam  theta |        C40        C60        C80        G40        N60 |  N60-C40
-    450    35  |  +0.002134  +0.002134  +0.002134  +0.002134  -0.002949 | -0.005083
-    450    38  |  +0.003527  +0.003527  +0.003527  +0.003527  -0.001785 | -0.005312
-    450    40  |  -0.010329  -0.010329  -0.010329  -0.010329  +0.008654 | +0.018983
-    600    35  |  -0.002598  -0.002598  -0.002598  -0.002598  -0.003899 | -0.001301
-    600    38  |  -0.003031  -0.003031  -0.003031  -0.003031  +0.000783 | +0.003815
-    600    40  |  -0.004650  -0.004650  -0.004650  -0.004650  -0.007437 | -0.002788
-    750    35  |  +0.005327  +0.005327  +0.005327  +0.005327  +0.000042 | -0.005286
-    750    38  |  -0.003749  -0.003749  -0.003749  -0.003749  +0.001803 | +0.005553
-    750    40  |  -0.006421  -0.006421  -0.006421  -0.006421  +0.005157 | +0.011578
+    lam  theta |        C40        C60        C70        C80        G40        N60 |  N60-C40
+    450    35  |  +0.002134  +0.002134  +0.002134  +0.002134  +0.002134  -0.002949 | -0.005083
+    450    38  |  +0.003527  +0.003527  +0.003527  +0.003527  +0.003527  -0.001785 | -0.005312
+    450    40  |  -0.010329  -0.010329  -0.010329  -0.010329  -0.010329  +0.008654 | +0.018983
+    600    35  |  -0.002598  -0.002598  -0.002598  -0.002598  -0.002598  -0.003899 | -0.001301
+    600    38  |  -0.003031  -0.003031  -0.003031  -0.003031  -0.003031  +0.000783 | +0.003815
+    600    40  |  -0.004650  -0.004650  -0.004650  -0.004650  -0.004650  -0.007437 | -0.002788
+    750    35  |  +0.005327  +0.005327  +0.005327  +0.005327  +0.005327  +0.000042 | -0.005286
+    750    38  |  -0.003749  -0.003749  -0.003749  -0.003749  -0.003749  +0.001803 | +0.005553
+    750    40  |  -0.006421  -0.006421  -0.006421  -0.006421  -0.006421  +0.005157 | +0.011578
 
-    max |desk(C60/C80) - desk(C40)| over all 9 cells = 0.000e+00
+    max |desk(C60/C70/C80) - desk(C40)| over all 12 cells = 0.000e+00
       -> the congruent series is EXACTLY degenerate in the
          boundary-free model: every FDTD difference C60/C80 vs C40
          is boundary physics by construction.
@@ -45,11 +46,45 @@ exp-065 -- T24 ABSORB boundary sweep: geometry and desk arithmetic
     600nm: P(A=752)=1.989 deg  P(A=732)=2.044 deg   |delta phase| at theta=40 = 0.643 cycles
     750nm: P(A=752)=2.487 deg  P(A=732)=2.554 deg   |delta phase| at theta=40 = 0.514 cycles
 
+[1b] ALIASING CHECK (Phase-3 fix 1 / Red Team attack 1, PHOTONICS' catch)
+    ABSORB / cpl at each (absorb, lambda) -- an exact integer means that leg
+    sits on a resonant boundary-electrical-thickness point:
+    ABSORB= 40:  450nm= 2.667 600nm= 2.000 750nm= 1.600   <-- INTEGER at 600nm
+    ABSORB= 60:  450nm= 4.000 600nm= 3.000 750nm= 2.400   <-- INTEGER at 450,600nm
+    ABSORB= 70:  450nm= 4.667 600nm= 3.500 750nm= 2.800
+    ABSORB= 80:  450nm= 5.333 600nm= 4.000 750nm= 3.200   <-- INTEGER at 600nm
+    -> C40/C60/C80 are ALL integer at 600nm (2/3/4 lambda) -- the
+       one wavelength Block ARTICLE scores. C70 (added this Phase-3
+       fix) is non-integer at all three: 70/15=4.667, 70/20=3.5, 70/25=2.8.
+
 [4] CAUSAL-IDENTITY GATE STEP (pad construction, C40 vs G40)
-    Courant S = 0.700036 cells/step
+    Courant S = 0.700036 cells/step (PHYSICAL wavefront speed only)
     first-arrival step at the plane (direct, D_SP=223) = 319
-    guaranteed-identical up to step n = 359
-    -> a usable window of 40 steps AFTER first light, BEFORE any boundary can matter.
+    guaranteed-identical up to step n = 247  (Phase-3 fix 2: derived at 1 cell/step, the stencil's TRUE
+    numerical domain of dependence -- NOT at S. Old, over-stated bound (EM's catch) would have been n = 359 (45.3% too generous).
+
+    *** THE CORRECTED BOUND KILLS THE DYNAMIC GATE. ***
+    Corrected causal bound n = 247; direct source->plane arrival = 319.
+    247 < 319: there is NO window in which real signal has reached the
+    plane AND the boundary-difference region provably cannot have. The dynamic
+    field-snapshot gate (P-VIS42-1b as originally written) is VOID at this
+    geometry -- and was only ever 'valid' under the overstated n=359 bound.
+    Caught at the DESK stage, zero FDTD cost, per the proposal's own halt
+    condition. G-2 is REPLACED by a strictly stronger static check (below).
+
+[4b] G-2 REPLACEMENT — STATIC CONSTRUCTION IDENTITY (zero FDTD steps)
+    Sim.__init__ alone builds damp_e/damp_hx/damp_hy; compared bit-for-bit at
+    the SCORED window cells (obj, flank_lo, flank_hi) on the observation plane,
+    C40 vs G40 offset by pad=40:
+      flank_hi/damp_e      max|diff| = 0.000e+00
+      flank_hi/damp_hx     max|diff| = 0.000e+00
+      flank_lo/damp_e      max|diff| = 0.000e+00
+      flank_lo/damp_hx     max|diff| = 0.000e+00
+      obj/damp_e           max|diff| = 0.000e+00
+      obj/damp_hx          max|diff| = 0.000e+00
+    max over all = 0.000e+00  (scored window is pure vacuum: True)
+    -> holds at EVERY time step, not merely before a causal horizon. Strictly
+       stronger than the gate it replaces, and it actually has a valid domain.
 
 [5] FROZEN PERCEPTUAL BARS (invoked from lab/glare_sidecar.py)
     C_thr lab   (cued,   L=3 cd/m2, p=0.4) = 0.005000
@@ -63,18 +98,25 @@ exp-065 -- T24 ABSORB boundary sweep: geometry and desk arithmetic
 
 [6] ARTICLE (Block ARTICLE)
     off_pass-equivalent uniform disk: tau_center = 0.0065, r_out = 78 -> sigma_e = 4.1666666666666665e-05
+    descriptive-only central estimate (Phase-3 fix 5, code-produced, NOT scored):
+      g=0.69 * tau=0.0065 = 0.00448
+      caveat: REALIZABILITY_MEMO.md names tau_off=0.0065 (exp-032 off_pass) as the basis of its UNOBTANIUM-WITH-PARAMETERS verdict (D_req~540-600x); its own Amendment (Iteration 12) states this tau 'no longer clears the bar at EITHER geometry it has ever been checked at' and that D_req should be read as a LOWER bound, not an achieved PASS reference. Block ARTICLE reuses this tau as an instrument-uncertainty probe ONLY -- it is not a new realizability claim and does not re-open or re-score the memo's own verdict.
+      caveat: g=0.69 is T1's established OFF-state transfer constant (multiple confirmations at OTHER geometries), NOT re-derived at this cycle's own geometry. T15 (LIVE THREADS) found this constant is geometry-specific, not portable -- this estimate is descriptive context only, never scored as a prediction.
+      caveat: Block ARTICLE's tau=0.0065 uniform disk shares tau and construction idiom with the OFF-state article class T5/Iteration-20 (exp-043) established as UNDETECTABLE, >100x below sourced microbolometer NETD. Only the far-boundary padding changes between C40 and C80 (same sigma, same r_out) -- that disposition is inherited unchanged here; no new thermal question is opened by this cycle.
 
 [7] FDTD BUDGET
-    Block SWEEP    {'C40': 18, 'C60': 18, 'C80': 18, 'N60': 18}
+    Block SWEEP    {'C40': 18, 'C60': 18, 'C70': 18, 'C80': 18, 'N60': 18}
     Block PAD      {'G40': 9}
     Block ARTICLE  {'C40': 16, 'C80': 16}
     Block BEAM     {'C40': 2, 'C60': 2, 'N60': 2}
-    per-configuration totals: {'C40': 36, 'C60': 20, 'C80': 34, 'N60': 20, 'G40': 9}
-    TOTAL FDTD calls = 119
-    measured cost basis (4-way parallel, this container): {'C40': 25.0, 'N60': 25.0, 'C60': 31.1, 'C80': 34.8, 'G40': 34.8}
-    projected CPU  = 3518 s = 58.6 min
-    projected WALL = 1032 s = 17.2 min (4 workers at 98% efficiency)
-    3x safety envelope = 51.6 min
+    Block MINI     {'C40': 3, 'C80': 3}
+    Block SETTLE   {'C80_settle': 2}
+    per-configuration totals: {'C40': 39, 'C60': 20, 'C70': 18, 'C80': 37, 'N60': 20, 'G40': 9}
+    TOTAL FDTD calls = 144
+    measured cost basis (4-way parallel, this container): {'C40': 25.0, 'N60': 25.0, 'C60': 31.1, 'C80': 34.8, 'G40': 34.8, 'C70': 32.95}
+    projected CPU  = 4360 s = 72.7 min
+    projected WALL = 1279 s = 21.3 min (4 workers at 98% efficiency)
+    3x safety envelope = 64.0 min
 
 [8] T24's PUBLISHED BEAM-CHANNEL NUMBERS (Block BEAM must reproduce)
     A-v4: 750nm theta0=38.0 FWHM=2.0  C(40)=+0.154376  C(60)=+0.161333  dC=+0.00696  |dC|/|C| = 0.0451
