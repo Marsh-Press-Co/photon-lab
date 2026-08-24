@@ -155,4 +155,44 @@ idiom reused verbatim). Binding stages: 1 (angle_deg=0 bit-exactness), 6
 
 ## Result
 
-*(filled in after Phase 4 — see `phase4_results.md`)*
+100 FDTD calls, 885.8s (14.76 min), zero `lab/` diff. **P-069-G1 PASSED**
+(4/4 exact). P-069-1 **REFUTE** (`ptp/|mean|=16.20`, decisively rejecting
+the flat/additive-systematic null). P-069-2 **NEITHER** (`R²=0.2016`, gray
+zone). P-069-3 **NEITHER** (best-fit `P*=2.84°`, 45% off `P(39°)=1.96°`,
+but `R²=0.63` — a real, different period, not noise). P-069-4 **CONFIRM**
+(settled cleanly). P-069-5 **CONFIRM** (survives cpl 20→30 resolution
+refinement). **Combined Verdict: `FORMAL_RETIREMENT_NON_DECISIVE`**, per
+the pre-committed rule — `P-VIS42-10`'s period-match test (Block MINI) is
+formally retired as of this close, not deferred again. Full detail:
+`phase4_results.md`.
+
+## Learned
+
+1. The `C80−C40` padding delta is a real, resolution-robust, settled
+   periodic signal — not the flat additive systematic this program has
+   defaulted to for T24 since Iteration 23 (P-069-1's decisive REFUTE,
+   corroborated by P-069-4/5 ruling out the two obvious artifact
+   explanations).
+2. Its period (~2.84° at 600nm) does NOT match T21's own established
+   `P(θ)=λ/(A·cosθ)≈1.96°` — a genuine, unexplained mismatch, not
+   attributable to noise (`R²=0.63` at the free-fit period) or to
+   under-powering (31 points/~3 predicted periods was enough to resolve
+   *a* period cleanly, just not the predicted one).
+3. Properly powering a chronically-deferred test can produce a clean,
+   honest NON-result on its own original question while still surfacing
+   a genuine new finding — the pre-committed non-decisive-outcome rule
+   (mandatory fix 4) did its job: no relabeling, no argued-around
+   ambiguity, a stated formal retirement plus a disclosed new thread
+   (T28) rather than a fifth deferral dressed as rigor.
+
+## Next
+
+- **Block MINI / `P-VIS42-10` is formally retired.** No future cycle
+  should re-open it as "still pending" — it was built to the mandate's
+  own spec and answered honestly.
+- **New live thread T28** (LOGBOOK.md): the ~2.84°-period `C80−C40`
+  oscillation's own mechanism is open — candidates and next steps are in
+  `phase4_results.md`'s own "New live thread" section. Not scheduled to
+  any rotation slot; queued as ordinary backlog, not locked.
+- R_contact (PLAN.md queue item #2) remains untouched, still blocked on
+  WebSearch/WebFetch tooling.
