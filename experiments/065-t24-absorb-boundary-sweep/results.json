@@ -1,0 +1,1574 @@
+{
+  "experiment": "exp-065-t24-absorb-boundary-sweep",
+  "panel_iteration": 42,
+  "lead_seat": "VISION SCIENCE",
+  "t1_escape_route": "N/A -- instrument/model-fidelity class",
+  "configs": {
+    "C40": {
+      "naive": false,
+      "absorb": 40,
+      "pad": 0,
+      "nx": 360,
+      "ny": 1584,
+      "src_x": 300,
+      "plane_x": 77,
+      "obj_x": 170,
+      "obj_y": 792,
+      "y_lo": 40,
+      "y_hi": 1544,
+      "A": 752,
+      "aperture_cells": 1504,
+      "clear_plane": 37,
+      "clear_src": 20,
+      "clear_span_y": 0,
+      "d_sp": 223,
+      "lever": 93,
+      "cells": 570240
+    },
+    "C60": {
+      "naive": false,
+      "absorb": 60,
+      "pad": 20,
+      "nx": 400,
+      "ny": 1624,
+      "src_x": 320,
+      "plane_x": 97,
+      "obj_x": 190,
+      "obj_y": 812,
+      "y_lo": 60,
+      "y_hi": 1564,
+      "A": 752,
+      "aperture_cells": 1504,
+      "clear_plane": 37,
+      "clear_src": 20,
+      "clear_span_y": 0,
+      "d_sp": 223,
+      "lever": 93,
+      "cells": 649600
+    },
+    "C70": {
+      "naive": false,
+      "absorb": 70,
+      "pad": 30,
+      "nx": 420,
+      "ny": 1644,
+      "src_x": 330,
+      "plane_x": 107,
+      "obj_x": 200,
+      "obj_y": 822,
+      "y_lo": 70,
+      "y_hi": 1574,
+      "A": 752,
+      "aperture_cells": 1504,
+      "clear_plane": 37,
+      "clear_src": 20,
+      "clear_span_y": 0,
+      "d_sp": 223,
+      "lever": 93,
+      "cells": 690480
+    },
+    "C80": {
+      "naive": false,
+      "absorb": 80,
+      "pad": 40,
+      "nx": 440,
+      "ny": 1664,
+      "src_x": 340,
+      "plane_x": 117,
+      "obj_x": 210,
+      "obj_y": 832,
+      "y_lo": 80,
+      "y_hi": 1584,
+      "A": 752,
+      "aperture_cells": 1504,
+      "clear_plane": 37,
+      "clear_src": 20,
+      "clear_span_y": 0,
+      "d_sp": 223,
+      "lever": 93,
+      "cells": 732160
+    },
+    "G40": {
+      "naive": false,
+      "absorb": 40,
+      "pad": 40,
+      "nx": 440,
+      "ny": 1664,
+      "src_x": 340,
+      "plane_x": 117,
+      "obj_x": 210,
+      "obj_y": 832,
+      "y_lo": 80,
+      "y_hi": 1584,
+      "A": 752,
+      "aperture_cells": 1504,
+      "clear_plane": 77,
+      "clear_src": 60,
+      "clear_span_y": 40,
+      "d_sp": 223,
+      "lever": 93,
+      "cells": 732160
+    },
+    "N60": {
+      "naive": true,
+      "absorb": 60,
+      "pad": 0,
+      "nx": 360,
+      "ny": 1584,
+      "src_x": 300,
+      "plane_x": 77,
+      "obj_x": 170,
+      "obj_y": 792,
+      "y_lo": 60,
+      "y_hi": 1524,
+      "A": 732,
+      "aperture_cells": 1464,
+      "clear_plane": 17,
+      "clear_src": 0,
+      "clear_span_y": 0,
+      "d_sp": 223,
+      "lever": 93,
+      "cells": 570240
+    }
+  },
+  "steps": 1400,
+  "steps_settle": 2800,
+  "sweep_angles": [
+    -40.0,
+    -38.0,
+    -35.0,
+    35.0,
+    38.0,
+    40.0
+  ],
+  "mini_sweep_angles": [
+    38.0,
+    38.5,
+    39.0,
+    39.5,
+    40.0
+  ],
+  "fallback_angles": [
+    -35.0,
+    -25.0,
+    -15.0,
+    -5.0,
+    0.0,
+    5.0,
+    15.0,
+    25.0,
+    35.0
+  ],
+  "gates": {
+    "GATE_HARD": 0.001,
+    "C_THR_LAB": 0.005,
+    "C_THR_FIELD": 0.02,
+    "MARGINAL_BAND": [
+      0.5,
+      2.0
+    ]
+  },
+  "article": {
+    "tau_center": 0.0065,
+    "sigma_e": 4.1666666666666665e-05,
+    "r_out": 78
+  },
+  "caveats": {
+    "realizability_memo": "REALIZABILITY_MEMO.md names tau_off=0.0065 (exp-032 off_pass) as the basis of its UNOBTANIUM-WITH-PARAMETERS verdict (D_req~540-600x); its own Amendment (Iteration 12) states this tau 'no longer clears the bar at EITHER geometry it has ever been checked at' and that D_req should be read as a LOWER bound, not an achieved PASS reference. Block ARTICLE reuses this tau as an instrument-uncertainty probe ONLY -- it is not a new realizability claim and does not re-open or re-score the memo's own verdict.",
+    "g_transfer_t15": "g=0.69 is T1's established OFF-state transfer constant (multiple confirmations at OTHER geometries), NOT re-derived at this cycle's own geometry. T15 (LIVE THREADS) found this constant is geometry-specific, not portable -- this estimate is descriptive context only, never scored as a prediction.",
+    "t5_thermal": "Block ARTICLE's tau=0.0065 uniform disk shares tau and construction idiom with the OFF-state article class T5/Iteration-20 (exp-043) established as UNDETECTABLE, >100x below sourced microbolometer NETD. Only the far-boundary padding changes between C40 and C80 (same sigma, same r_out) -- that disposition is inherited unchanged here; no new thermal question is opened by this cycle."
+  },
+  "block_sweep": {
+    "n_new_runs": 90,
+    "elapsed_s": 509.4459216594696,
+    "rows": [
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.011335069410266185,
+        "abs_C_empty": 0.011335069410266185,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.006255949209561075,
+        "abs_C_empty": 0.006255949209561075,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0029708330326561052,
+        "abs_C_empty": 0.0029708330326561052,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0029095325682495505,
+        "abs_C_empty": 0.0029095325682495505,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.005950227236979797,
+        "abs_C_empty": 0.005950227236979797,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.011012017132851715,
+        "abs_C_empty": 0.011012017132851715,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.01160545044577854,
+        "abs_C_empty": 0.01160545044577854,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.007563064296448594,
+        "abs_C_empty": 0.007563064296448594,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0011195299988888685,
+        "abs_C_empty": 0.0011195299988888685,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0017616024956372822,
+        "abs_C_empty": 0.0017616024956372822,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.007304790833964625,
+        "abs_C_empty": 0.007304790833964625,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.010964794540566314,
+        "abs_C_empty": 0.010964794540566314,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.023311207345655727,
+        "abs_C_empty": 0.023311207345655727,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -38.0,
+        "lambda_nm": 750,
+        "C_empty": -0.009095086633416627,
+        "abs_C_empty": 0.009095086633416627,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": -35.0,
+        "lambda_nm": 750,
+        "C_empty": -0.0009475919743929806,
+        "abs_C_empty": 0.0009475919743929806,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 35.0,
+        "lambda_nm": 750,
+        "C_empty": -0.0011910369235361706,
+        "abs_C_empty": 0.0011910369235361706,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 38.0,
+        "lambda_nm": 750,
+        "C_empty": -0.009262640989200597,
+        "abs_C_empty": 0.009262640989200597,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C40",
+        "absorb": 40,
+        "theta": 40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.02366812812938001,
+        "abs_C_empty": 0.02366812812938001,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.013068794094357128,
+        "abs_C_empty": 0.013068794094357128,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.006784790430715892,
+        "abs_C_empty": 0.006784790430715892,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.003290185592116135,
+        "abs_C_empty": 0.003290185592116135,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0032389240600969593,
+        "abs_C_empty": 0.0032389240600969593,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.006464864394279847,
+        "abs_C_empty": 0.006464864394279847,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.012716688931782794,
+        "abs_C_empty": 0.012716688931782794,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.008428878895234804,
+        "abs_C_empty": 0.008428878895234804,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.005484112737338731,
+        "abs_C_empty": 0.005484112737338731,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0006558488517269812,
+        "abs_C_empty": 0.0006558488517269812,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0013367803020538638,
+        "abs_C_empty": 0.0013367803020538638,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.0051289484405555585,
+        "abs_C_empty": 0.0051289484405555585,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.007721290595824937,
+        "abs_C_empty": 0.007721290595824937,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.020951962793045228,
+        "abs_C_empty": 0.020951962793045228,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -38.0,
+        "lambda_nm": 750,
+        "C_empty": -0.006389221974593351,
+        "abs_C_empty": 0.006389221974593351,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": -35.0,
+        "lambda_nm": 750,
+        "C_empty": 0.0005236196621454249,
+        "abs_C_empty": 0.0005236196621454249,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 35.0,
+        "lambda_nm": 750,
+        "C_empty": 0.0002848835343789436,
+        "abs_C_empty": 0.0002848835343789436,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 38.0,
+        "lambda_nm": 750,
+        "C_empty": -0.006658924652751974,
+        "abs_C_empty": 0.006658924652751974,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C60",
+        "absorb": 60,
+        "theta": 40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.021057690063537533,
+        "abs_C_empty": 0.021057690063537533,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.013540841500178313,
+        "abs_C_empty": 0.013540841500178313,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.007161224748083894,
+        "abs_C_empty": 0.007161224748083894,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0035775085456999367,
+        "abs_C_empty": 0.0035775085456999367,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0035296239686055655,
+        "abs_C_empty": 0.0035296239686055655,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.006834896524655409,
+        "abs_C_empty": 0.006834896524655409,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.01318133119270648,
+        "abs_C_empty": 0.01318133119270648,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.007509042660610586,
+        "abs_C_empty": 0.007509042660610586,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.004827953672399411,
+        "abs_C_empty": 0.004827953672399411,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0005910338041599239,
+        "abs_C_empty": 0.0005910338041599239,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0012573654166179171,
+        "abs_C_empty": 0.0012573654166179171,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.004455732250779554,
+        "abs_C_empty": 0.004455732250779554,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.006820209648006113,
+        "abs_C_empty": 0.006820209648006113,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.017317286123416986,
+        "abs_C_empty": 0.017317286123416986,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -38.0,
+        "lambda_nm": 750,
+        "C_empty": -0.006289322272026054,
+        "abs_C_empty": 0.006289322272026054,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": -35.0,
+        "lambda_nm": 750,
+        "C_empty": 0.0016034833995894897,
+        "abs_C_empty": 0.0016034833995894897,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 35.0,
+        "lambda_nm": 750,
+        "C_empty": 0.0013542511467037333,
+        "abs_C_empty": 0.0013542511467037333,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 38.0,
+        "lambda_nm": 750,
+        "C_empty": -0.006594336203460616,
+        "abs_C_empty": 0.006594336203460616,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C70",
+        "absorb": 70,
+        "theta": 40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.017428746735341005,
+        "abs_C_empty": 0.017428746735341005,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.013747399429644425,
+        "abs_C_empty": 0.013747399429644425,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.007524876842917916,
+        "abs_C_empty": 0.007524876842917916,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0038004993165170475,
+        "abs_C_empty": 0.0038004993165170475,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.003749336146919635,
+        "abs_C_empty": 0.003749336146919635,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0071938042820931525,
+        "abs_C_empty": 0.0071938042820931525,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.013387785668187772,
+        "abs_C_empty": 0.013387785668187772,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.007230722295318293,
+        "abs_C_empty": 0.007230722295318293,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.00439797000184905,
+        "abs_C_empty": 0.00439797000184905,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0005292132636987024,
+        "abs_C_empty": 0.0005292132636987024,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0011793349357057674,
+        "abs_C_empty": 0.0011793349357057674,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.004024196435408968,
+        "abs_C_empty": 0.004024196435408968,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.006562356131550208,
+        "abs_C_empty": 0.006562356131550208,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.015135779520624948,
+        "abs_C_empty": 0.015135779520624948,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -38.0,
+        "lambda_nm": 750,
+        "C_empty": -0.006243557151938249,
+        "abs_C_empty": 0.006243557151938249,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": -35.0,
+        "lambda_nm": 750,
+        "C_empty": 0.0023816156971576685,
+        "abs_C_empty": 0.0023816156971576685,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 35.0,
+        "lambda_nm": 750,
+        "C_empty": 0.002109598242949762,
+        "abs_C_empty": 0.002109598242949762,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 38.0,
+        "lambda_nm": 750,
+        "C_empty": -0.006542153596525213,
+        "abs_C_empty": 0.006542153596525213,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "C80",
+        "absorb": 80,
+        "theta": 40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.015307259110832305,
+        "abs_C_empty": 0.015307259110832305,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -40.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0028678487913729165,
+        "abs_C_empty": 0.0028678487913729165,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0032975173999032483,
+        "abs_C_empty": 0.0032975173999032483,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -35.0,
+        "lambda_nm": 450,
+        "C_empty": -0.0007060734323212081,
+        "abs_C_empty": 0.0007060734323212081,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 35.0,
+        "lambda_nm": 450,
+        "C_empty": -0.000523355727328978,
+        "abs_C_empty": 0.000523355727328978,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 38.0,
+        "lambda_nm": 450,
+        "C_empty": 0.00401901405139471,
+        "abs_C_empty": 0.00401901405139471,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 40.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0017072785112584037,
+        "abs_C_empty": 0.0017072785112584037,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.016492070348376853,
+        "abs_C_empty": 0.016492070348376853,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.007488462012792185,
+        "abs_C_empty": 0.007488462012792185,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -35.0,
+        "lambda_nm": 600,
+        "C_empty": 1.2546777565569656e-05,
+        "abs_C_empty": 1.2546777565569656e-05,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 35.0,
+        "lambda_nm": 600,
+        "C_empty": -0.00034654946523238195,
+        "abs_C_empty": 0.00034654946523238195,
+        "pass_gate_hard": true
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 38.0,
+        "lambda_nm": 600,
+        "C_empty": -0.007901584907004211,
+        "abs_C_empty": 0.007901584907004211,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.016822392986547974,
+        "abs_C_empty": 0.016822392986547974,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.009570342468081638,
+        "abs_C_empty": 0.009570342468081638,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -38.0,
+        "lambda_nm": 750,
+        "C_empty": 0.008641625181419643,
+        "abs_C_empty": 0.008641625181419643,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": -35.0,
+        "lambda_nm": 750,
+        "C_empty": -0.005169937475460129,
+        "abs_C_empty": 0.005169937475460129,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 35.0,
+        "lambda_nm": 750,
+        "C_empty": -0.004516596602395671,
+        "abs_C_empty": 0.004516596602395671,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 38.0,
+        "lambda_nm": 750,
+        "C_empty": 0.008244681073017235,
+        "abs_C_empty": 0.008244681073017235,
+        "pass_gate_hard": false
+      },
+      {
+        "config": "N60",
+        "absorb": 60,
+        "theta": 40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.010333838714024818,
+        "abs_C_empty": 0.010333838714024818,
+        "pass_gate_hard": false
+      }
+    ]
+  },
+  "block_pad": {
+    "n_new_runs": 9,
+    "elapsed_s": 91.61352777481079,
+    "rows": [
+      {
+        "config": "G40",
+        "theta": -35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.0028740554236033043
+      },
+      {
+        "config": "G40",
+        "theta": 35.0,
+        "lambda_nm": 450,
+        "C_empty": 0.00280690218970836
+      },
+      {
+        "config": "G40",
+        "theta": 40.0,
+        "lambda_nm": 450,
+        "C_empty": -0.014439859972738556
+      },
+      {
+        "config": "G40",
+        "theta": -35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.0027974805450035056
+      },
+      {
+        "config": "G40",
+        "theta": 35.0,
+        "lambda_nm": 600,
+        "C_empty": 0.003373929942934506
+      },
+      {
+        "config": "G40",
+        "theta": 40.0,
+        "lambda_nm": 600,
+        "C_empty": -0.012657284695401505
+      },
+      {
+        "config": "G40",
+        "theta": -35.0,
+        "lambda_nm": 750,
+        "C_empty": 0.0036078100001659674
+      },
+      {
+        "config": "G40",
+        "theta": 35.0,
+        "lambda_nm": 750,
+        "C_empty": 0.0032931237876479003
+      },
+      {
+        "config": "G40",
+        "theta": 40.0,
+        "lambda_nm": 750,
+        "C_empty": -0.010086136339553799
+      }
+    ],
+    "angles": [
+      -35.0,
+      35.0,
+      40.0
+    ]
+  },
+  "block_article": {
+    "n_new_runs": 32,
+    "elapsed_s": 241.2698791027069,
+    "per_config": {
+      "C40": {
+        "C": -0.004502830238451187,
+        "C_empty": -3.316590819191224e-05,
+        "abs_C": 0.004502830238451187
+      },
+      "C80": {
+        "C": -0.004601868074217839,
+        "C_empty": -0.00013442815032804758,
+        "abs_C": 0.004601868074217839
+      }
+    },
+    "n9_angles": [
+      -35.0,
+      -25.0,
+      -15.0,
+      -5.0,
+      0.0,
+      5.0,
+      15.0,
+      25.0,
+      35.0
+    ]
+  },
+  "block_beam": {
+    "n_new_runs": 6,
+    "elapsed_s": 44.69771146774292,
+    "rows": [
+      {
+        "cell": "A-v4",
+        "lambda_nm": 750,
+        "theta0_deg": 38.0,
+        "fwhm_deg": 2.0,
+        "published_C_absorb40": 0.154376,
+        "published_C_absorb60": 0.161333,
+        "published_delta": 0.00696,
+        "C_C40": 0.1543757153934217,
+        "width_C40": 340.6264410442357,
+        "C_C60": 0.16160432635577668,
+        "width_C60": 340.6264410442357,
+        "C_N60": 0.16146292500838855,
+        "width_N60": 340.6264410442357,
+        "delta_congruent_C60_C40": 0.00722861096235497,
+        "delta_naive_N60_C40": 0.007087209614966838
+      },
+      {
+        "cell": "A-v1",
+        "lambda_nm": 600,
+        "theta0_deg": 40.0,
+        "fwhm_deg": 2.0,
+        "published_C_absorb40": -0.125698,
+        "published_C_absorb60": -0.127896,
+        "published_delta": -0.0022,
+        "C_C40": -0.12569767481489572,
+        "width_C40": 280.31511844171644,
+        "C_C60": -0.12792001682953585,
+        "width_C60": 280.31511844171644,
+        "C_N60": -0.12789132224052388,
+        "width_N60": 280.31511844171644,
+        "delta_congruent_C60_C40": -0.0022223420146401385,
+        "delta_naive_N60_C40": -0.0021936474256281646
+      }
+    ]
+  },
+  "block_mini": {
+    "n_new_runs": 6,
+    "elapsed_s": 52.33219051361084,
+    "rows": [
+      {
+        "theta": 38.0,
+        "C_empty_C40": -0.007304790833964625,
+        "C_empty_C80": -0.004024196435408968,
+        "delta": 0.0032805943985556568,
+        "reused_from_sweep": true
+      },
+      {
+        "theta": 38.5,
+        "C_empty_C40": 0.0016058932986999785,
+        "C_empty_C80": 0.0019356380281987384,
+        "delta": 0.0003297447294987599,
+        "reused_from_sweep": false
+      },
+      {
+        "theta": 39.0,
+        "C_empty_C40": 0.012443324626619349,
+        "C_empty_C80": 0.008672925872595494,
+        "delta": -0.003770398754023855,
+        "reused_from_sweep": false
+      },
+      {
+        "theta": 39.5,
+        "C_empty_C40": 0.0020205471272025655,
+        "C_empty_C80": 0.001224433158105498,
+        "delta": -0.0007961139690970676,
+        "reused_from_sweep": false
+      },
+      {
+        "theta": 40.0,
+        "C_empty_C40": -0.010964794540566314,
+        "C_empty_C80": -0.006562356131550208,
+        "delta": 0.0044024384090161055,
+        "reused_from_sweep": true
+      }
+    ]
+  },
+  "block_settle": {
+    "n_new_runs": 1,
+    "elapsed_s": 60.92869687080383,
+    "config": "C80",
+    "theta": 40.0,
+    "lambda_nm": 600,
+    "steps_base": 1400,
+    "steps_long": 2800,
+    "C_empty_1400": -0.006562356131550208,
+    "C_empty_2800": -0.002635039227171343,
+    "abs_delta": 0.003927316904378865,
+    "rel_delta": 0.5984614101476882
+  },
+  "scored": {
+    "P-VIS42-1": {
+      "n_checked": 12,
+      "all_exact": true,
+      "max_abs_delta": 0.0,
+      "checks": [
+        {
+          "theta": -40.0,
+          "lambda_nm": 450,
+          "ours": -0.011335069410266185,
+          "exp041": -0.011335069410266185,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": -38.0,
+          "lambda_nm": 450,
+          "ours": 0.006255949209561075,
+          "exp041": 0.006255949209561075,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": 38.0,
+          "lambda_nm": 450,
+          "ours": 0.005950227236979797,
+          "exp041": 0.005950227236979797,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 450,
+          "ours": -0.011012017132851715,
+          "exp041": -0.011012017132851715,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": -40.0,
+          "lambda_nm": 600,
+          "ours": -0.01160545044577854,
+          "exp041": -0.01160545044577854,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": -38.0,
+          "lambda_nm": 600,
+          "ours": -0.007563064296448594,
+          "exp041": -0.007563064296448594,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": 38.0,
+          "lambda_nm": 600,
+          "ours": -0.007304790833964625,
+          "exp041": -0.007304790833964625,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 600,
+          "ours": -0.010964794540566314,
+          "exp041": -0.010964794540566314,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": -40.0,
+          "lambda_nm": 750,
+          "ours": -0.023311207345655727,
+          "exp041": -0.023311207345655727,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": -38.0,
+          "lambda_nm": 750,
+          "ours": -0.009095086633416627,
+          "exp041": -0.009095086633416627,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": 38.0,
+          "lambda_nm": 750,
+          "ours": -0.009262640989200597,
+          "exp041": -0.009262640989200597,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 750,
+          "ours": -0.02366812812938001,
+          "exp041": -0.02366812812938001,
+          "delta": 0.0,
+          "exact": true
+        }
+      ],
+      "note": "+-35 legs have NO exp-041 anchor at this geometry (Phase-3 fix 10, disclosed idealization 11)"
+    },
+    "P-VIS42-1b": {
+      "max_diff": 0.0,
+      "by_window": {
+        "obj/damp_e": 0.0,
+        "obj/damp_hx": 0.0,
+        "flank_lo/damp_e": 0.0,
+        "flank_lo/damp_hx": 0.0,
+        "flank_hi/damp_e": 0.0,
+        "flank_hi/damp_hx": 0.0
+      },
+      "all_vacuum": true,
+      "pass": true
+    },
+    "P-VIS42-2": {
+      "n_cells_C80": 18,
+      "median": 0.002786008437076881,
+      "max": 0.008360869018547705,
+      "confirm": false,
+      "refute": true,
+      "verdict": "REFUTED (absolute transfer)"
+    },
+    "P-VIS42-2a": {
+      "cells": [
+        {
+          "theta": -40.0,
+          "d_C60": 0.003176571550543737,
+          "d_C70": 0.004096407785167955,
+          "d_C80": 0.004374728150460248,
+          "interp": 0.0037756498505019925,
+          "rel_dev": 0.08495436477599104,
+          "within_40pct": true,
+          "in_bracket": true
+        },
+        {
+          "theta": -38.0,
+          "d_C60": 0.0020789515591098633,
+          "d_C70": 0.0027351106240491837,
+          "d_C80": 0.0031650942945995447,
+          "interp": 0.002622022926854704,
+          "rel_dev": 0.0431299421664997,
+          "within_40pct": true,
+          "in_bracket": true
+        },
+        {
+          "theta": -35.0,
+          "d_C60": -0.00046368114716188735,
+          "d_C70": -0.0005284961947289446,
+          "d_C80": -0.0005903167351901661,
+          "interp": -0.0005269989411760267,
+          "rel_dev": 0.0028410940439019703,
+          "within_40pct": true,
+          "in_bracket": true
+        },
+        {
+          "theta": 35.0,
+          "d_C60": -0.00042482219358341844,
+          "d_C70": -0.0005042370790193651,
+          "d_C80": -0.0005822675599315148,
+          "interp": -0.0005035448767574666,
+          "rel_dev": 0.0013746585336263354,
+          "within_40pct": true,
+          "in_bracket": true
+        },
+        {
+          "theta": 38.0,
+          "d_C60": 0.0021758423934090665,
+          "d_C70": 0.002849058583185071,
+          "d_C80": 0.0032805943985556568,
+          "interp": 0.0027282183959823616,
+          "rel_dev": 0.04429271035656884,
+          "within_40pct": true,
+          "in_bracket": true
+        },
+        {
+          "theta": 40.0,
+          "d_C60": 0.003243503944741377,
+          "d_C70": 0.004144584892560201,
+          "d_C80": 0.0044024384090161055,
+          "interp": 0.0038229711768787413,
+          "rel_dev": 0.08412663888929461,
+          "within_40pct": true,
+          "in_bracket": true
+        }
+      ],
+      "n_all_within_40pct": 6,
+      "n_departing_2x": 0,
+      "n_out_of_bracket": 0,
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED (smooth, non-aliased)"
+    },
+    "P-VIS42-3": {
+      "rho": 0.5624355005159958,
+      "verdict": "CONFIRMED (scales with reading -> relative)"
+    },
+    "P-VIS42-4": {
+      "n_exceed": 16,
+      "n_cells": 18,
+      "median_abs": 0.003949625983022231,
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED"
+    },
+    "P-VIS42-5": {
+      "cells": [
+        {
+          "theta": -35.0,
+          "lambda_nm": 450,
+          "abs_dev": 9.677760905280096e-05
+        },
+        {
+          "theta": 35.0,
+          "lambda_nm": 450,
+          "abs_dev": 0.0001026303785411904
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 450,
+          "abs_dev": 0.003427842839886841
+        },
+        {
+          "theta": -35.0,
+          "lambda_nm": 600,
+          "abs_dev": 0.0016779505461146371
+        },
+        {
+          "theta": 35.0,
+          "lambda_nm": 600,
+          "abs_dev": 0.0016123274472972238
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 600,
+          "abs_dev": 0.0016924901548351912
+        },
+        {
+          "theta": -35.0,
+          "lambda_nm": 750,
+          "abs_dev": 0.004555401974558948
+        },
+        {
+          "theta": 35.0,
+          "lambda_nm": 750,
+          "abs_dev": 0.004484160711184071
+        },
+        {
+          "theta": 40.0,
+          "lambda_nm": 750,
+          "abs_dev": 0.013581991789826211
+        }
+      ],
+      "max": 0.013581991789826211,
+      "confirm": false,
+      "refute": true,
+      "verdict": "REFUTED (instrument is padding-sensitive)"
+    },
+    "P-VIS42-6": {
+      "C_empty_C40": -3.316590819191224e-05,
+      "C_empty_C80": -0.00013442815032804758,
+      "delta": -0.00010126224213613535,
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED"
+    },
+    "P-VIS42-7": {
+      "C_C40": -0.004502830238451187,
+      "C_C80": -0.004601868074217839,
+      "delta": -9.90378357666518e-05,
+      "bucket_C40": "MARGINAL",
+      "bucket_C80": "MARGINAL",
+      "descriptive_central_estimate": 0.004484999999999999,
+      "caveats": [
+        "REALIZABILITY_MEMO.md names tau_off=0.0065 (exp-032 off_pass) as the basis of its UNOBTANIUM-WITH-PARAMETERS verdict (D_req~540-600x); its own Amendment (Iteration 12) states this tau 'no longer clears the bar at EITHER geometry it has ever been checked at' and that D_req should be read as a LOWER bound, not an achieved PASS reference. Block ARTICLE reuses this tau as an instrument-uncertainty probe ONLY -- it is not a new realizability claim and does not re-open or re-score the memo's own verdict.",
+        "g=0.69 is T1's established OFF-state transfer constant (multiple confirmations at OTHER geometries), NOT re-derived at this cycle's own geometry. T15 (LIVE THREADS) found this constant is geometry-specific, not portable -- this estimate is descriptive context only, never scored as a prediction.",
+        "Block ARTICLE's tau=0.0065 uniform disk shares tau and construction idiom with the OFF-state article class T5/Iteration-20 (exp-043) established as UNDETECTABLE, >100x below sourced microbolometer NETD. Only the far-boundary padding changes between C40 and C80 (same sigma, same r_out) -- that disposition is inherited unchanged here; no new thermal question is opened by this cycle."
+      ],
+      "tier_label": "BENCH-SCALE SURROGATE ONLY -- no Tier-W/Tier-A verdict is issued by this cycle, pending the T8/T13/T14 witness-scale bridge (exp-047 TIER_W_HEADLINE_LABEL discipline)",
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED"
+    },
+    "P-VIS42-8": {
+      "rows": [
+        {
+          "cell": "A-v4",
+          "ours_C40": 0.1543757153934217,
+          "published_C40": 0.154376,
+          "rel_dev_C40": 1.843593423230599e-06,
+          "ours_delta_congruent": 0.00722861096235497,
+          "ours_delta_naive": 0.007087209614966838,
+          "published_delta": 0.00696,
+          "rel_dev_delta": 0.03859352907398993,
+          "within_1pct": true,
+          "within_25pct": true
+        },
+        {
+          "cell": "A-v1",
+          "ours_C40": -0.12569767481489572,
+          "published_C40": -0.125698,
+          "rel_dev_C40": 2.5870348318069685e-06,
+          "ours_delta_congruent": -0.0022223420146401385,
+          "ours_delta_naive": -0.0021936474256281646,
+          "published_delta": -0.0022,
+          "rel_dev_delta": 0.010155461200062882,
+          "within_1pct": true,
+          "within_25pct": true
+        }
+      ],
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED (T24's figures reproduce from committed code)"
+    },
+    "P-VIS42-9": {
+      "median_plane": 0.0017191982415110107,
+      "median_beam": 0.004725476488497554,
+      "ratio": 0.3638147911000659,
+      "confirm": false,
+      "refute": false,
+      "verdict": "PARTIAL"
+    },
+    "P-VIS42-10": {
+      "rows": [
+        {
+          "theta": 38.0,
+          "C_empty_C40": -0.007304790833964625,
+          "C_empty_C80": -0.004024196435408968,
+          "delta": 0.0032805943985556568,
+          "reused_from_sweep": true
+        },
+        {
+          "theta": 38.5,
+          "C_empty_C40": 0.0016058932986999785,
+          "C_empty_C80": 0.0019356380281987384,
+          "delta": 0.0003297447294987599,
+          "reused_from_sweep": false
+        },
+        {
+          "theta": 39.0,
+          "C_empty_C40": 0.012443324626619349,
+          "C_empty_C80": 0.008672925872595494,
+          "delta": -0.003770398754023855,
+          "reused_from_sweep": false
+        },
+        {
+          "theta": 39.5,
+          "C_empty_C40": 0.0020205471272025655,
+          "C_empty_C80": 0.001224433158105498,
+          "delta": -0.0007961139690970676,
+          "reused_from_sweep": false
+        },
+        {
+          "theta": 40.0,
+          "C_empty_C40": -0.010964794540566314,
+          "C_empty_C80": -0.006562356131550208,
+          "delta": 0.0044024384090161055,
+          "reused_from_sweep": true
+        }
+      ],
+      "mean_delta": 0.00068925296278992,
+      "peak_to_trough": 0.00817283716303996,
+      "ptp_over_mean": 11.857529244355227,
+      "t21_period_deg": 1.989,
+      "span_deg": 2.0,
+      "confirm": false,
+      "refute": true,
+      "verdict": "REFUTED (oscillating -- coherent-fringe perturbation)"
+    },
+    "P-VIS42-11": {
+      "n_new_runs": 1,
+      "elapsed_s": 60.92869687080383,
+      "config": "C80",
+      "theta": 40.0,
+      "lambda_nm": 600,
+      "steps_base": 1400,
+      "steps_long": 2800,
+      "C_empty_1400": -0.006562356131550208,
+      "C_empty_2800": -0.002635039227171343,
+      "abs_delta": 0.003927316904378865,
+      "rel_delta": 0.5984614101476882,
+      "confirm": false,
+      "refute": true,
+      "verdict": "REFUTED (settling is a live confound)"
+    }
+  },
+  "total_new_runs": 144,
+  "total_elapsed_s": 1000.5049271583557
+}
