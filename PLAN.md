@@ -22,7 +22,35 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-23, panel Iteration 41 done (exp-064,
+## Current state (2026-08-24, panel Iteration 42 done (exp-065,
+PARTIAL — VISION SCIENCE lead by rotation, finally running live thread
+T24's own nineteen-iteration-deferred `ABSORB` boundary sweep, scoped per
+Red Team's Iteration-41 recommendation to close into an actual
+constraint-scored FDTD run. The congruent-geometry construction worked
+cleanly (both absolute gates PASSED; the causal-identity gate's corrected
+derivation VOIDED the original design entirely — caught at the desk
+stage, zero FDTD cost — and was replaced with a strictly stronger
+zero-step static-array check), but T24's own headline question came back
+genuinely undecided: the frozen STEPS=1400 data says "absolute transfer,"
+a same-shift settling follow-up (a clean 4-point convergence trend plus a
+full settled STEPS=2800 re-sweep, both committed as reproducible code)
+shrinks it 5.4× and says otherwise. **The real finding is bigger than
+T24**: STEPS=1400 is confirmed NOT settled on the plane/ambient channel at
+±35°/±38°/±40° — not padding-specific, reproduced on the UNPADDED
+`experiments/041-t20-angle-audit` (Iteration 18) anchor geometry itself —
+implicating this program's own established angle standard and every T20/
+T21/T24-adjacent citation for nineteen iterations (new live thread T27).
+Six blind Phase-5 reviews split 3-3 on whether this fires Checkpoint
+criterion 4; Red Team's final audit ruled **does not fire, conditional on
+a 3-item mandatory-fix docket**, which landed same-shift (mirrors
+Iteration 23's own conditional-non-firing precedent) — including
+correcting a scorecard-table propagation gap and relabeling a verdict
+string (`P-VIS42-10`) that had asserted an untested causal mechanism,
+both caught by Red Team's own final audit after the blind seats' three
+same-shift corrections closed 70% of what Phase 5 found. Verdict PARTIAL,
+a rare 6-for-6 agreement across all seven seats. Cycle closes unblocked,
+Iteration 43 queued, ranked #1: re-verify exp-041's own MAIN-block rows at
+settled STEPS — see queue below); panel Iteration 41 done (exp-064,
 PROMISING — QUANTUM OPTICS lead by rotation, an enforced
 `length_provenance` guard closing live thread T23 (open since Iteration
 22, closed BY ARGUMENT — never by code — at Iteration 23/31, violated in
@@ -2220,10 +2248,67 @@ continuous mode with checkpoints. The remaining [open] items below are
   (nested-paren parsing; single-file scope) for Iteration 42+. Verdict:
   PROMISING. Full record: `experiments/064-length-provenance-guard/`,
   LOGBOOK.md Iteration 41.
-- **[queued — ranked for Iteration 42+, per Red Team's Iteration-41
-  Phase-5 reconciliation of all six seats, exp-064 — CURRENT top-of-queue,
-  no LOCK, supersedes the list below as the active ranking, retained as
-  valid backlog, not deleted]** (1) **Source, or at minimum formally
+- [done 2026-08-24, panel Iteration 42, cloud panel shift] **exp-065 the
+  T24 `ABSORB` boundary sweep, and a 19-iteration-old settling gap** —
+  VISION SCIENCE's lead by rotation, finally running T24's own
+  nineteen-iteration-deferred design. Both absolute gates PASSED (G-1
+  exp-041 anchor bit-exact; G-2 the causal gate's corrected derivation
+  VOIDED the original design entirely — caught at the desk stage, zero
+  FDTD cost, replaced with a strictly stronger zero-step static-array
+  check). T24's own headline is genuinely undecided: frozen STEPS=1400
+  data says "absolute transfer" (REFUTED), a same-shift settling
+  follow-up (4-point convergence trend + a full settled STEPS=2800
+  re-sweep, both committed as reproducible code) shrinks the median delta
+  5.4× and says otherwise. **New live thread T27, bigger than T24**:
+  STEPS=1400 is confirmed unsettled on the plane/ambient channel at
+  ±35°/±38°/±40°, not padding-specific (reproduced on the UNPADDED
+  `experiments/041-t20-angle-audit`/Iteration-18 anchor geometry itself),
+  implicating every T20/T21/T24-adjacent citation for nineteen
+  iterations. Six blind Phase-5 reviews split 3-3 on Checkpoint criterion
+  4; Red Team's final audit ruled **does not fire, conditional on a
+  3-item mandatory-fix docket**, landed same-shift (Iteration-23
+  precedent) — including a scorecard-table propagation fix and relabeling
+  a verdict string (`P-VIS42-10`) that had asserted an untested causal
+  mechanism (QUANTUM's own Phase-5 self-catch on its own Phase-2
+  proposal). **Verdict: PARTIAL** — a rare 6-for-6 across all seven
+  seats. Full record: `experiments/065-t24-absorb-boundary-sweep/`,
+  LOGBOOK.md Iteration 42.
+- **[queued — ranked for Iteration 43+, per Red Team's Iteration-42
+  Phase-5 final-audit reconciliation of all six seats, exp-065 — CURRENT
+  top-of-queue, no LOCK, supersedes the list below as the active ranking,
+  retained as valid backlog, not deleted]** (1) **Re-verify
+  `experiments/041-t20-angle-audit`'s own MAIN-block ±35°/±38°/±40° rows
+  at STEPS≥2800, and scope exactly how many downstream citations are
+  affected** — the single highest-stakes, most-converged item across the
+  entire packet; upstream of T21's fringe model, T16's quadrature deltas,
+  T20/T24's own citations, and every near-threshold constraint-3
+  τ-bucket call since Iteration 18. Reuse exp-065's own construction
+  (`static_construction_identity`'s gate pattern,
+  `settling_trend_diagnostic.py`). (2) **Close exp-065's own settling-
+  characterization gap in full**: extend STEPS=2800 to the four untested
+  interior `FALLBACK_ANGLES` (0°/±5°/±15°/±25°), re-run Block ARTICLE's
+  article-PRESENT legs (not just the empty floor) at settled STEPS,
+  complete the 750nm/C80 four-point convergence trend, and either
+  implement or formally retire the period-match test for Block MINI
+  (`P-VIS42-10`). Ranked #2, not tied with #1, because narrower in
+  downstream stakes — though MATERIALS, VISION, and QUANTUM each rank
+  pieces of it first from their own charters. (3) **Source, or formally
+  model, the CNT-forest root-to-substrate thermal contact resistance
+  (`R_contact`)** — this program's still-standing top-of-queue item since
+  Iteration 40, untouched by exp-064 or exp-065, now deferred for a
+  second consecutive cycle. The only queued item that can MOVE TD-5's own
+  margin (this program's thinnest safety factor of any kind, 7.8× over
+  κ_critical) rather than relabel or disclose one; a third consecutive
+  deferral would itself be worth flagging at Iteration 44. Full record:
+  `experiments/065-t24-absorb-boundary-sweep/` — Phase-1 proposal, five
+  Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+  NOTES.md, `phase4_results.md`, six Phase-5 blind reviews, Phase-5 Red
+  Team final audit; `lab/caveat_lint_config.json` widened (one new
+  entry).
+- **[superseded — the exp-064-era queue, retained only as a pointer to
+  its own history; the binding record is the Iteration-42 [done] entry
+  above and the CURRENT top-of-queue block immediately above this one]**
+  (1) **Source, or at minimum formally
   model as a new series thermal-resistance term, the CNT-forest
   root-to-substrate thermal contact resistance** — named at or near #1 by
   five of six Iteration-41 Phase-5 seats; the ONLY carried item that can
