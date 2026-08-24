@@ -1,0 +1,281 @@
+{
+  "experiment": "exp-068-t27-block-article-settled-steps",
+  "panel_iteration": 45,
+  "lead_seat": "ELECTROMAGNETISM",
+  "t1_escape_route": "N/A -- instrument/model-fidelity class",
+  "steps_base": 1400,
+  "steps_long": 2800,
+  "steps_stress": 4200,
+  "gates": {
+    "GATE_HARD": 0.001,
+    "C_THR_LAB": 0.005,
+    "C_THR_FIELD": 0.02,
+    "MARGINAL_BAND": [
+      0.5,
+      2.0
+    ]
+  },
+  "deferral_disclosure": "This is the FOURTH consecutive cycle (Iterations 42->43->44->45) Block ARTICLE's article-present legs have not been closed at settled STEPS -- exp-065 (144 calls) and exp-066 (39 calls) each fully dedicated a cycle to the surrounding T27 thread without reaching it; exp-067 explicitly deferred it a third time. This cycle (exp-068) is the first of the four in which it is the cycle's own primary, dedicated FDTD work -- closing the deferral streak at three misses if it completes. A failure to complete the mandatory floor (Tier0+Tier2) must be disclosed as a FIFTH consecutive miss, per Red Team's Phase-2 adjudication against PLAN.md/LOGBOOK.md's own Iteration-44 close text (corrected from the Phase-1 proposal's own miscount of '3 cycles / 4th miss').",
+  "t5_thermal_caveat": "Block ARTICLE's tau=0.0065 uniform disk shares tau and construction idiom with the OFF-state article class T5/Iteration-20 (exp-043) established as UNDETECTABLE, >100x below sourced microbolometer NETD. Only the far-boundary padding changes between C40 and C80 (same sigma, same r_out) -- that disposition is inherited unchanged here; no new thermal question is opened by this cycle.",
+  "realizability_memo_caveat": "REALIZABILITY_MEMO.md names tau_off=0.0065 (exp-032 off_pass) as the basis of its UNOBTANIUM-WITH-PARAMETERS verdict (D_req~540-600x); its own Amendment (Iteration 12) states this tau 'no longer clears the bar at EITHER geometry it has ever been checked at' and that D_req should be read as a LOWER bound, not an achieved PASS reference. Block ARTICLE reuses this tau as an instrument-uncertainty probe ONLY -- it is not a new realizability claim and does not re-open or re-score the memo's own verdict.",
+  "g_transfer_t15_caveat": "g=0.69 is T1's established OFF-state transfer constant (multiple confirmations at OTHER geometries), NOT re-derived at this cycle's own geometry. T15 (LIVE THREADS) found this constant is geometry-specific, not portable -- this estimate is descriptive context only, never scored as a prediction.",
+  "gate_hard_m3_note": "GATE_HARD is not VISION's own perceptual bar, and this result does not by itself move any constraint-3 verdict. GATE_HARD=0.001 (exp-024/041's per-angle instrument-floor decision rule) is five times stricter than C_THR_LAB=0.005, which is never the bar scored here. (exp-066 Phase-5 mandatory fix M3, Red Team's final audit / VISION SCIENCE's catch -- carried forward verbatim per this cycle's own mandatory fix 5.)",
+  "block_mini_tripwire_note": "The 14 new interior-angle (0,+-5,+-15,+-25 deg) empty-scene settling-delta cells produced by this cycle's Tier1b may NOT be cited as bearing on T21's mechanism-vs-artifact question (whether the edge-diffraction fringe is a genuine optical effect or a settling artifact) until Block MINI's own properly-powered dense angular scan (>=2-3 T21 periods at ~0.2deg spacing, settled STEPS) runs -- these 14 cells are at 5deg spacing, the same statistical underpowering QUANTUM's own Phase-5 self-catch relabeled P-VIS42-10 UNDECIDED over. (QUANTUM OPTICS' Phase-2 flip, Iteration 45, applied as a forward tripwire per Red Team's docket.)",
+  "gate_p068_0_harness_continuity": {
+    "config": "C40",
+    "theta": -35.0,
+    "lambda_nm": 600,
+    "steps": 2800,
+    "ours": -0.0043973199443986255,
+    "settled_sweep_2800": -0.0043973199443986255,
+    "delta": 0.0,
+    "exact": true
+  },
+  "block_tier0": {
+    "n_new_runs": 8,
+    "elapsed_s": 64.10217189788818
+  },
+  "block_tier0b": {
+    "n_new_runs": 4,
+    "elapsed_s": 46.01573181152344
+  },
+  "block_tier1a": {
+    "n_new_runs": 14,
+    "elapsed_s": 124.1448655128479
+  },
+  "block_tier1b": {
+    "n_new_runs": 14,
+    "elapsed_s": 120.80659461021423
+  },
+  "block_tier2": {
+    "n_new_runs": 4,
+    "elapsed_s": 69.06527304649353
+  },
+  "scored": {
+    "P-068-1": {
+      "rows": {
+        "C40": {
+          "C_empty_N9": -0.001138433537618888,
+          "abs": 0.001138433537618888,
+          "pass_gate_hard": false
+        },
+        "C80": {
+          "C_empty_N9": -0.0007888218110077005,
+          "abs": 0.0007888218110077005,
+          "pass_gate_hard": true
+        }
+      },
+      "note": "GATE_HARD is not VISION's own perceptual bar, and this result does not by itself move any constraint-3 verdict. GATE_HARD=0.001 (exp-024/041's per-angle instrument-floor decision rule) is five times stricter than C_THR_LAB=0.005, which is never the bar scored here. (exp-066 Phase-5 mandatory fix M3, Red Team's final audit / VISION SCIENCE's catch -- carried forward verbatim per this cycle's own mandatory fix 5.)",
+      "confirm": false,
+      "refute": true,
+      "verdict": "REFUTED"
+    },
+    "P-068-2": {
+      "rows": {
+        "C40": {
+          "C_2800": -0.00560111299329484,
+          "C_1400": -0.004502830238451187,
+          "delta": -0.0010982827548436528,
+          "abs_delta": 0.0010982827548436528,
+          "sign_negative": true,
+          "bucket": "MARGINAL"
+        },
+        "C80": {
+          "C_2800": -0.005253216576307566,
+          "C_1400": -0.004601868074217839,
+          "delta": -0.0006513485020897269,
+          "abs_delta": 0.0006513485020897269,
+          "sign_negative": true,
+          "bucket": "MARGINAL"
+        }
+      },
+      "caveats": [
+        "REALIZABILITY_MEMO.md names tau_off=0.0065 (exp-032 off_pass) as the basis of its UNOBTANIUM-WITH-PARAMETERS verdict (D_req~540-600x); its own Amendment (Iteration 12) states this tau 'no longer clears the bar at EITHER geometry it has ever been checked at' and that D_req should be read as a LOWER bound, not an achieved PASS reference. Block ARTICLE reuses this tau as an instrument-uncertainty probe ONLY -- it is not a new realizability claim and does not re-open or re-score the memo's own verdict.",
+        "g=0.69 is T1's established OFF-state transfer constant (multiple confirmations at OTHER geometries), NOT re-derived at this cycle's own geometry. T15 (LIVE THREADS) found this constant is geometry-specific, not portable -- this estimate is descriptive context only, never scored as a prediction.",
+        "Block ARTICLE's tau=0.0065 uniform disk shares tau and construction idiom with the OFF-state article class T5/Iteration-20 (exp-043) established as UNDETECTABLE, >100x below sourced microbolometer NETD. Only the far-boundary padding changes between C40 and C80 (same sigma, same r_out) -- that disposition is inherited unchanged here; no new thermal question is opened by this cycle."
+      ],
+      "tier_label": "BENCH-SCALE SURROGATE ONLY -- no Tier-W/Tier-A verdict is issued by this cycle, pending the T8/T13/T14 witness-scale bridge (exp-047/exp-065's own TIER_W_HEADLINE_LABEL discipline)",
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED",
+      "realizability_memo_amendment_needed": false,
+      "realizability_flip_detail": {}
+    },
+    "P-068-3": {
+      "rows": {
+        "C40": true,
+        "C80": true
+      },
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED"
+    },
+    "P-068-4": {
+      "rows": {
+        "C40": {
+          "abs_delta_600": 3.171438288668976e-07,
+          "abs_delta_750": 1.0417277223062626e-06,
+          "750_exceeds_600": true
+        },
+        "C80": {
+          "abs_delta_600": 1.3139809995621476e-07,
+          "abs_delta_750": 4.1037280684719235e-08,
+          "750_exceeds_600": false
+        }
+      },
+      "note": "Reformulated per build-time correction 2 -- see module docstring: compares Tier0/Tier2's own within-cycle STEPS=4200-vs-2800 deltas between wavelengths, NOT a cross-STEPS delta at 750nm (no STEPS=1400 article-present baseline exists at 750nm anywhere in this program's history).",
+      "confirm": false,
+      "refute": false,
+      "verdict": "PARTIAL"
+    },
+    "P-068-5": {
+      "rows": [
+        {
+          "config": "C40",
+          "theta": -25,
+          "C_empty": -0.0006388585525548551,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C40",
+          "theta": -15,
+          "C_empty": -0.0002516640895555699,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C40",
+          "theta": -5,
+          "C_empty": 1.755336827846676e-05,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C40",
+          "theta": 0,
+          "C_empty": -2.770102679505726e-05,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C40",
+          "theta": 5,
+          "C_empty": 8.141681326234718e-06,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C40",
+          "theta": 15,
+          "C_empty": -0.0002589282864141618,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C40",
+          "theta": 25,
+          "C_empty": -0.0007244449125850538,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C80",
+          "theta": -25,
+          "C_empty": -0.00044516872715250067,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C80",
+          "theta": -15,
+          "C_empty": -0.00022861753771419302,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C80",
+          "theta": -5,
+          "C_empty": 2.3714342280767298e-05,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C80",
+          "theta": 0,
+          "C_empty": 2.8779518563837323e-06,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C80",
+          "theta": 5,
+          "C_empty": 1.1590107519499071e-05,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C80",
+          "theta": 15,
+          "C_empty": -0.00025192827005249274,
+          "pass_gate_hard": true
+        },
+        {
+          "config": "C80",
+          "theta": 25,
+          "C_empty": -0.0005492521248493529,
+          "pass_gate_hard": true
+        }
+      ],
+      "n_pass": 14,
+      "n_total": 14,
+      "note": "GATE_HARD is not VISION's own perceptual bar, and this result does not by itself move any constraint-3 verdict. GATE_HARD=0.001 (exp-024/041's per-angle instrument-floor decision rule) is five times stricter than C_THR_LAB=0.005, which is never the bar scored here. (exp-066 Phase-5 mandatory fix M3, Red Team's final audit / VISION SCIENCE's catch -- carried forward verbatim per this cycle's own mandatory fix 5.)",
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED"
+    },
+    "P-068-6": {
+      "rows": {
+        "C40_600": {
+          "config": "C40",
+          "lambda_nm": 600,
+          "C_2800": -0.00809987336736673,
+          "C_4200": -0.008099556223537863,
+          "abs_delta": 3.171438288668976e-07,
+          "ratio": 3.9154171242309325e-05
+        },
+        "C40_750": {
+          "config": "C40",
+          "lambda_nm": 750,
+          "C_2800": 0.0018049060456029054,
+          "C_4200": 0.001803864317880599,
+          "abs_delta": 1.0417277223062626e-06,
+          "ratio": 0.0005771645149309072
+        },
+        "C80_600": {
+          "config": "C80",
+          "lambda_nm": 600,
+          "C_2800": -0.006728275991691457,
+          "C_4200": -0.006728407389791413,
+          "abs_delta": 1.3139809995621476e-07,
+          "ratio": 1.952923752213409e-05
+        },
+        "C80_750": {
+          "config": "C80",
+          "lambda_nm": 750,
+          "C_2800": 0.002444695255474416,
+          "C_4200": 0.0024446542181937314,
+          "abs_delta": 4.1037280684719235e-08,
+          "ratio": 1.678625611630909e-05
+        }
+      },
+      "confirm": true,
+      "refute": false,
+      "verdict": "CONFIRMED"
+    },
+    "n9": {
+      "C40": {
+        "C": -0.00560111299329484,
+        "C_empty": -0.001138433537618888
+      },
+      "C80": {
+        "C": -0.005253216576307566,
+        "C_empty": -0.0007888218110077005
+      }
+    }
+  },
+  "total_new_runs": 44,
+  "total_elapsed_s": 424.13870906829834,
+  "build_time_corrections": [
+    "1: Tier0b (4 calls) added -- N9 aggregate needs raw empty profiles, not the cited scalar C_empty; a scalar citation cannot reconstruct a raw profile for incoherent_sum's per-component flank normalization.",
+    "2: P-068-4 reformulated -- no STEPS=1400 article-present baseline exists at 750nm (or at any single angle, at any wavelength) anywhere in this program's history; exp-065's own results.json stores only the N9-aggregate baseline."
+  ]
+}

@@ -253,6 +253,68 @@ precedent) — reproduced here verbatim for the git record:
 
 Full text with exact CONFIRM/REFUTE bands: `run.py::FROZEN_PREDICTIONS`.
 
-## Result / Learned / Next
+## Result
 
-*(filled at Phase 4 close — see `phase4_results.md`)*
+44/44 FDTD calls, 7.1 min wall-clock. P-068-0 (harness continuity) PASSED
+bit-exact. **P-068-1 REFUTED**: the settled empty N9 floor breaches
+GATE_HARD for C40 (0.001138 vs 0.001 bar) — extends exp-066's own
+"GATE_HARD gets worse, not better, at settled STEPS" finding to the
+N9-aggregate level for the first time; per mandatory fix 5, this does not
+move any constraint-3 verdict. **P-068-2/3 CONFIRMED — the headline
+result**: Block ARTICLE's own scored article-row C is re-certified at
+settled STEPS≥2800 for both configs, shift bounded (15–24% relative, both
+inside the pre-registered band), bucket unchanged at MARGINAL, sign
+unchanged at negative — the four-cycle-old retraction (P-VIS42-6/7) is
+resolved, not merely re-attempted. P-068-4 PARTIAL (config-dependent, both
+values tiny in absolute terms). **P-068-5 CONFIRMED 14/14**: interior
+angles show none of the grazing-angle settling defect. **P-068-6
+CONFIRMED 4/4**: STEPS=2800 independently verified converged for the
+article-present channel at the highest-stakes cell, both wavelengths, both
+configs — the assumption every other number in this cycle rests on is no
+longer merely asserted. Full detail: `phase4_results.md`.
+
+## Learned
+
+1. The instrument-floor settling defect exp-066 found on individual
+   grazing-angle empty-scene cells (GATE_HARD worse at 2800 than 1400)
+   **generalizes to the incoherent N9 aggregate** — summing 9 angles does
+   not average it away, at least not fully (C40 breaches, C80 does not).
+2. **The article-present channel is more robust to the settling
+   correction than the empty-floor-alone headline suggested.** The
+   scored, constraint-3-relevant quantity (article row C) shifted by a
+   bounded amount and did not change disposition — EM's passivity
+   argument (settling shift tracks the boundary's own passive character,
+   proportionate not catastrophic) held up as a genuine, falsifiable
+   prediction, not just a plausible-sounding hope.
+3. **STEPS=2800 is confirmed settled for the article-present channel** at
+   the one cell this program's whole T27 thread has been most uncertain
+   about (θ=−35°, both wavelengths) — a load-bearing assumption this
+   cycle inherited from the empty-channel-only exp-065/066 record is now
+   independently checked on the channel that actually matters for
+   constraint 3.
+4. **Process lesson (both build-time corrections):** a proposal endorsed
+   by five blind critiques and a Red Team audit can still contain a
+   materially wrong resource-citation claim (Tier0b) and an ill-posed
+   comparison against nonexistent data (original P-068-4) — neither is a
+   physics error, both are the kind of implementation-detail gap that
+   only surfaces when someone actually builds the code, not when six
+   independent readers review its prose description. Building the
+   harness IS a review pass, not merely execution of an already-settled
+   design.
+
+## Next
+
+1. **T27 is now substantially closed** for Block ARTICLE's own
+   article-present legs at 600nm (full N9) and the ±35°/750nm pair. The
+   only remaining named T27 sub-item is Block MINI's period-match test
+   (queue item 3), explicitly out of scope here (mandatory fix 8's
+   tripwire).
+2. P-068-4's split result (750nm worse than 600nm at C40, opposite at
+   C80) is a minor open point — not urgent given P-068-6's own strong
+   absolute-convergence confirmation, but worth a one-line note in any
+   future cycle that revisits 750nm settling behavior.
+3. The C40 GATE_HARD N9-aggregate breach (P-068-1) is a genuine new
+   instrument-characterization data point, not previously measured at
+   this aggregation level — worth folding into any future write-up of
+   this channel's own settling-defect scope (T27's own closure summary),
+   though it does not itself require action per mandatory fix 5.
