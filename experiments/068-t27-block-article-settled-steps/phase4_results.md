@@ -92,10 +92,13 @@ defect that makes GATE_HARD fail at ±35°–40° (exp-066's own headline) does
 ## P-068-6 (Tier2 convergence-generalization stress): CONFIRMED, 4/4
 
 All four cells (θ=−35°, {600,750}nm × {C40,C80}, STEPS=4200 vs 2800) show
-`ratio ≤ 6×10⁻⁴` — two orders of magnitude inside the ≤0.01 CONFIRM bar.
-**STEPS=2800 is genuinely settled for the article-present channel at the
-highest-stakes cell**, at both wavelengths, both configs — the load-bearing
-assumption behind every other number in this cycle is now independently
+`ratio ≤ 6×10⁻⁴` — a ~17× (≈1.2 orders of magnitude, corrected from an
+originally-cited "two orders of magnitude," VISION SCIENCE's Phase-5 catch
+F3) margin inside the ≤0.01 CONFIRM bar at the worst cell, three of four
+cells closer to two orders. **STEPS=2800 is genuinely settled for the
+article-present channel at the highest-stakes cell**, at both wavelengths,
+both configs — the load-bearing assumption behind every other number in
+this cycle is now independently
 verified, not merely asserted.
 
 ## Mandatory-fix docket: fully applied, verified in the output above

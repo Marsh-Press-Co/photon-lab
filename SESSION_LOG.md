@@ -2,6 +2,86 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-24 (panel shift) — Iteration 45 complete (exp-068): Block
+ARTICLE re-certified at settled STEPS — the four-cycle-old P-VIS42-6/7
+retraction resolved, disposition unchanged (MARGINAL); Checkpoint
+criterion 4 fires on an unrelated finding — Block MINI's period-match
+test caught, by two independent blind Phase-5 seats, on its third (or
+fourth, by this program's own more literal count) consecutive cycle of
+deferral-behind-relabeling, crossing a pre-committed integrity threshold
+this cycle's own mid-cycle Red Team pass nearly let slide. Notification,
+not a pause; Block MINI LOCKED unconditional for Iteration 46.
+
+**Pre-flight**: continuation of an already-running autonomous shift. Full
+trust suite reconfirmed green (195/195) before any panel work began.
+
+**Iteration 45 — ELECTROMAGNETISM's rotation-lead cycle (exp-068).**
+Executed Red Team's Iteration-44 ranked queue item 2 in full: VISION's
+Block-ARTICLE settled-STEPS FDTD leg, deferred four consecutive cycles.
+Full five-phase cycle: Phase 1 proposal (42-call 3-tier design) → five
+blind Phase-2 critiques (all support-with-changes) + Red Team's Phase-2
+audit (PROCEED-WITH-MANDATORY-FIXES, self-found a 4-call double-count) →
+Phase 3 synthesis (all seven mandatory items accepted, zero overrides) →
+Phase 4 build, where the Director/implementer self-caught and disclosed
+two further design defects the whole panel record missed (a missing
+raw-profile block for the N9 aggregate's empty companions; an ill-posed
+750nm comparison against a nonexistent STEPS=1400 baseline) — corrected
+design landed at 44 calls, ceiling 45 → six blind Phase-5 reviews (3
+PROMISING, 3 PARTIAL) → Red Team's Phase-5 final audit.
+
+**Headline (P-068-2/3 CONFIRMED)**: Block ARTICLE's own scored
+article-row C — the only construction in this program's history to ever
+produce a scored constraint-3 number — is re-certified at settled
+STEPS≥2800 for both configs (C40 −0.004503→−0.005601, C80
+−0.004602→−0.005253), bucket unchanged MARGINAL, sign unchanged negative.
+ELECTROMAGNETISM's own Phase-5 self-review found the passivity
+hypothesis's strongest confirmation — an absolute-shift match to <1%
+between the article-row and empty-floor N9 aggregates — sitting
+uncomputed in the cycle's own already-committed data. Also: P-068-1
+REFUTED (settled empty N9 floor breaches GATE_HARD for C40, extending
+exp-066's own "gets worse at settled STEPS" finding to the aggregate
+level, does not move any constraint-3 verdict); P-068-5/6 CONFIRMED
+(interior angles clean; STEPS=2800 independently verified converged on
+the article-present channel via a genuine within-cycle stress test);
+P-068-4 PARTIAL (minor).
+
+**CHECKPOINT criterion 4 FIRES** — the load-bearing event this shift,
+found independently by two of six blind Phase-5 seats (QUANTUM, VISION
+SCIENCE) and confirmed/sharpened by Red Team's final audit: Block MINI's
+period-match test has been deferred-behind-relabeling for a third
+consecutive cycle at minimum (Iterations 43, 44, 45), a fourth under this
+program's own more literal cycle-inclusive counting convention (the same
+convention this cycle's own Block-ARTICLE deferral count uses), crossing
+this program's own pre-committed T23 threshold — stated in writing at two
+prior iteration closes that a third occurrence would be
+"Checkpoint-4-adjacent." The sharper finding: this cycle's own Phase 2
+was handed a zero-cost path to close it (QUANTUM's proposed desk check)
+and this cycle's own mid-cycle Red Team audit silently kept only the
+cheapest half (a citation tripwire), with no argued reason recorded
+anywhere. Unlike this program's non-firing precedents (all found-and-
+fixed before close by the cycle's own process), this gap was not caught
+by exp-068's own five phases — it took outside review to surface it,
+matching the shape of every prior firing precedent. **Ruled a
+notification, not a pause** (this program's unbroken precedent, zero
+exceptions). Mandatory-fix docket landed same-shift: a new
+`lab/caveat_lint_config.json` entry closing a two-cycle-overdue caveat-
+propagation gap (independently flagged by MATERIALS and THERMODYNAMICS);
+a self-contradictory deferral-count arithmetic corrected in place
+(original left standing, labeled); five cosmetic findings from VISION
+SCIENCE's own exhaustive Phase-5 pass fixed, none load-bearing.
+
+**Verdict: PARTIAL** (Red Team's synthesis, not an average) — the
+headline is real progress on a four-cycle-stalled thread, but the
+instrument floor under that same number got worse at settled STEPS (a
+pattern now seen twice), and the cycle's own integrity-drift charter
+(Red Team's) is exactly what nearly slid on Block MINI. **Block MINI is
+LOCKED, unconditional, for Iteration 46** (THERMODYNAMICS by rotation,
+irrespective of lead seat) — Red Team's own ranked #1, matching this
+program's lowest-ever lock-trigger precedent. R_contact's own literature
+search carries forward unchanged as ranked #2, still ungated. Full
+record: `experiments/068-t27-block-article-settled-steps/`, LOGBOOK.md
+Iteration 45.
+
 ## 2026-08-24 (panel shift) — Iteration 44 complete (exp-067): R_contact's
 new instrument built correctly, but its own headline second endpoint
 shipped with a passivity-violating formula authored by Red Team's own

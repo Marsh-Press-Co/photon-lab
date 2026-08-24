@@ -22,7 +22,48 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-24, panel Iteration 44 done (exp-067,
+## Current state (2026-08-24, panel Iteration 45 done (exp-068,
+PARTIAL — ELECTROMAGNETISM lead by rotation, executing Red Team's
+Iteration-44 ranked queue item 2: VISION's Block-ARTICLE settled-STEPS
+FDTD leg (T27), four consecutive cycles without being a cycle's own
+primary FDTD work. 44 FDTD calls (corrected from a 42-call Phase-1
+design after the Director self-caught, mid-build, two defects the whole
+panel record missed: a missing raw-profile block for the N9 aggregate's
+empty-scene companions, and an ill-posed comparison against a
+non-existent 750nm/STEPS=1400 baseline). **Headline (P-068-2/3
+CONFIRMED): Block ARTICLE's own scored article-row C — the only
+construction in this program's history to produce a scored constraint-3
+number, retracted since Iteration 42 — is re-certified at settled
+STEPS≥2800 for both configs, bucket unchanged MARGINAL, sign unchanged
+negative.** ELECTROMAGNETISM's own Phase-5 self-review found a stronger,
+previously-uncomputed confirmation: the article-row and empty-floor N9
+aggregates' ABSOLUTE settling shifts match to <1% at both configs — the
+cycle's own passivity hypothesis, verified with already-committed data
+no one had checked. Also: P-068-1 REFUTED (settled empty N9 floor
+breaches GATE_HARD for C40, extending exp-066's own "gets worse at
+settled STEPS" finding to the aggregate level — does not move any
+constraint-3 verdict); P-068-5/6 CONFIRMED (interior angles clean;
+STEPS=2800 independently verified converged on the article-present
+channel); P-068-4 PARTIAL (minor, config-dependent, three orders below
+C_THR_LAB). Mandatory-fix docket applied same-shift: a new
+`lab/caveat_lint_config.json` entry closing a two-cycle-overdue
+caveat-propagation gap; a self-contradictory deferral-count arithmetic
+corrected in place (original left standing, labeled); five cosmetic
+findings (VISION SCIENCE's own exhaustive Phase-5 pass) fixed, none
+load-bearing. **CHECKPOINT criterion 4 FIRES** — not on Block ARTICLE's
+own physics, but on Block MINI's period-match test: independently found
+by two blind Phase-5 seats (QUANTUM, VISION) to be on its third (or, by
+this program's own more literal counting convention, fourth) consecutive
+cycle of deferral-behind-relabeling, crossing this program's own
+pre-committed T23 threshold, and — the sharper finding — this cycle's
+own mid-cycle Red Team audit was handed a zero-cost path to close it and
+silently narrowed it to a citation tripwire with no argued reason. Ruled
+a **notification, not a pause** (this program's unbroken precedent);
+**Block MINI is LOCKED, unconditional, for Iteration 46**. Verdict
+PARTIAL (Red Team's synthesis: the headline is real, but the cycle
+nearly let its own integrity tripwire slide). Full record:
+`experiments/068-t27-block-article-settled-steps/`, LOGBOOK.md Iteration
+45); panel Iteration 44 done (exp-067,
 PARTIAL — MATERIALS lead by rotation, executing R_contact's LOCKED,
 unconditional Iteration-44 mandate (Red Team's Iteration-43 escalation
 ruling, granting THERMODYNAMICS after three consecutive deferrals). New
@@ -2407,6 +2448,44 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
+- **[ACTIVE — Iteration 46 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-068's six seats; supersedes the Iteration-45
+  queue below as the active ranking, that block retained as valid
+  backlog, not deleted]** (1) **Block MINI's period-match test — LOCKED,
+  unconditional.** T21's own mechanism-vs-artifact question, deferred-
+  behind-relabeling for a third consecutive cycle at minimum (Iterations
+  43, 44, 45; a fourth under this program's own more literal
+  cycle-inclusive counting convention), crossing this program's own
+  pre-committed T23 threshold — Checkpoint criterion 4 fired at
+  Iteration 45 close on this exact finding (LOGBOOK.md Iteration 45).
+  Either build the properly-powered FDTD version (≥2–3 T21 periods at
+  ~0.2° spacing, settled STEPS≥2800, desk-first per QUANTUM's own
+  zero-cost check on the existing settling-delta dataset before any FDTD
+  spend) or formally retire the test with a stated reason — no further
+  relabeling, no further citation-tripwire-only treatment. Matches this
+  program's lowest-ever lock-trigger precedent (`Q_ext(x)`/exp-059,
+  `R_contact`/exp-067, both 3-deferral locks). Iteration 46 is
+  THERMODYNAMICS' turn by rotation regardless; this item is locked
+  irrespective of lead seat. (2) **A real, dedicated literature search
+  for a `measured_direct` root/substrate contact-resistance figure**
+  (R_contact, carried forward unchanged from Iteration 45's queue) —
+  still blocked only by WebSearch/WebFetch tooling availability, not
+  gated to any rotation slot; pick up whenever tooling clears, in
+  parallel with item 1 if capacity allows (orthogonal, zero resource
+  competition). (3) **P-068-4's minor config-dependent 750nm/600nm
+  convergence-ordering split** (exp-068) — low-urgency, three orders of
+  magnitude below any decision threshold; fold into a future cycle that
+  revisits 750nm settling behavior, not worth a dedicated cycle on its
+  own. Full record: `experiments/068-t27-block-article-settled-steps/` —
+  Phase-1 proposal, five Phase-2 blind critiques, Phase-2 Red Team
+  audit, Phase-3 synthesis, NOTES.md (+ Erratum), `phase4_results.md`
+  (+ corrections), six Phase-5 blind reviews, Phase-5 Red Team final
+  audit; `lab/caveat_lint_config.json` (new
+  `exp065-block-article-caveat-propagation` entry); LOGBOOK.md Iteration
+  45 (+ CHECKPOINT block).
+- **[superseded by the Iteration-46 queue above — exp-068's own docket,
+  retained as a pointer to its own history, not deleted]** the
+  Iteration-45 queue that follows this note.
 - **[ACTIVE — Iteration 45 queue, Red Team's Phase-5 final-audit
   reconciliation of exp-067's six seats; supersedes the Iteration-44
   LOCKED block below as the active ranking, that block retained as valid

@@ -321,5 +321,37 @@
       "experiments/063-cnt-forest-thermal-conductivity-biot-check/*.md",
       "experiments/061-absorptivity-mechanism-literature-check/*.md"
     ]
+  },
+  {
+    "id": "exp065-block-article-caveat-propagation",
+    "description": "Block ARTICLE's tau=0.0065 off_pass-analog article (exp-065, Iteration 42) carries three standing caveats that must accompany any citation of its C value/bucket: T5_THERMAL_CAVEAT (UNDETECTABLE, >100x below sourced microbolometer NETD, exp-043/Iteration 20), REALIZABILITY_MEMO_CAVEAT (this tau no longer clears the realizability bar at either geometry checked, D_req is a LOWER bound not an achieved PASS reference), and G_TRANSFER_T15_CAVEAT (g=0.69 is not portable across geometries, descriptive only). Registered at Iteration 45 (exp-068, Red Team's Phase-5 final-audit mandatory fix 1) closing a gap first recommended at exp-065's own Phase-5 Red Team audit ('recommended before any future cycle cites this article's caveats without the automated backstop') and independently re-flagged, still open, by both MATERIALS and THERMODYNAMICS at exp-068's own Phase 5 -- two cycles overdue. KNOWN PRE-EXISTING GAP found while registering this entry (disclosed, not fixed retroactively): exp-065's OWN phase4_results.md never cites any of the three caveats despite being the file this program's own citations of Block ARTICLE's retracted/re-certified C values most often point to -- required_sites below covers exp-065's NOTES.md (which does carry them) and exp-068's own files (verified carrying them); exp-065's phase4_results.md is left as a forward item, not required-gated here, since retroactively editing an already-closed prior cycle's results file is out of this docket's scope.",
+    "source": "experiments/065-t24-absorb-boundary-sweep/phase5_redteam_audit.md (original recommendation); experiments/068-t27-block-article-settled-steps/phase5_review_materials.md, phase5_review_thermodynamics.md (independent re-flags); experiments/068-t27-block-article-settled-steps/phase5_redteam_audit.md Attack 4/5 item 1 (mandatory fix)",
+    "phrase_patterns": [
+      "T5_THERMAL_CAVEAT",
+      "REALIZABILITY_MEMO_CAVEAT",
+      "G_TRANSFER_T15_CAVEAT",
+      "UNDETECTABLE.{0,40}microbolometer NETD",
+      "no longer clears the (realizability )?bar at (EITHER|either)"
+    ],
+    "required_sites": [
+      "experiments/065-t24-absorb-boundary-sweep/NOTES.md",
+      "experiments/068-t27-block-article-settled-steps/NOTES.md",
+      "experiments/068-t27-block-article-settled-steps/phase4_results.md"
+    ],
+    "trigger_terms": [
+      "off_pass",
+      "tau.{0,5}0\\.0065",
+      "Block ARTICLE",
+      "P-VIS42-6",
+      "P-VIS42-7",
+      "P-068-2"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md",
+      "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md"
+    ]
   }
 ]

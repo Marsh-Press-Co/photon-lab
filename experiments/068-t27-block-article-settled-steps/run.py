@@ -180,7 +180,8 @@ def _c_self(profile, cfg):
     normalization cancels exactly in the Weber ratio for a single-profile
     call, verified directly from `lab/ambient.py`'s own `incoherent_sum`/
     `weber` definitions before this file was written -- see NOTES.md
-    Idealization 10). Applied to an ARTICLE profile, this yields that
+    Idealization 9 (corrected from an original mis-citation of Idealization
+    10, VISION SCIENCE's Phase-5 catch F4). Applied to an ARTICLE profile, this yields that
     angle's own single-run article contrast; applied to an EMPTY profile,
     it yields the instrument-floor reading GATE_HARD scores."""
     return R._c_empty(profile, cfg)

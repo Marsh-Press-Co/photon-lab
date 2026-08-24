@@ -133,6 +133,20 @@ EXP065_SETTLED_JSON = os.path.join(
 
 # --------------------------------------------------------------- deferral disposition
 DEFERRAL_DISCLOSURE = (
+    "ERRATUM (Iteration 45 Phase-5 close, Red Team's final audit, Attack "
+    "3): the text below as originally frozen at predict-commit time "
+    "self-contradicted its own arithmetic (three misses enumerated, a "
+    "hypothetical fourth-cycle failure labeled a 'FIFTH miss'). Left "
+    "standing below for the historical record (this string was already "
+    "baked into the committed results.json output before the error was "
+    "found -- not silently rewritten); corrected count, enumerated: "
+    "Block ARTICLE's article-present legs were NOT closed at settled "
+    "STEPS for three consecutive cycles (Iterations 42, 43, 44 -- three "
+    "misses). Iteration 45 (this cycle, exp-068) is the FOURTH cycle in "
+    "the sequence (42,43,44,45) and the first to make it the cycle's own "
+    "primary FDTD work; had it also failed to complete the mandatory "
+    "floor, that would have been the FOURTH miss, not a fifth. ORIGINAL "
+    "TEXT: "
     "This is the FOURTH consecutive cycle (Iterations 42->43->44->45) "
     "Block ARTICLE's article-present legs have not been closed at settled "
     "STEPS -- exp-065 (144 calls) and exp-066 (39 calls) each fully "

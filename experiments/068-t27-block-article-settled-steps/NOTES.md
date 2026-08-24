@@ -1,7 +1,11 @@
 # exp-068 — Block ARTICLE Settled-STEPS Re-Verification (T27 closure, part 2) (panel Iteration 45)
 
-**2026-08-24 · driver: Clyde as panel Director · status: predictions
-committed, run not yet executed**
+**2026-08-24 · driver: Clyde as panel Director · status: CLOSED — Phase 5
+complete (six blind reviews + Red Team final audit), verdict PARTIAL,
+Checkpoint criterion 4 fires (notification, not pause) on an unrelated
+Block-MINI deferral finding, see phase5_redteam_audit.md** (status line
+corrected from a stale "run not yet executed" header, VISION SCIENCE's
+Phase-5 catch F1)
 
 Forty-fifth experiment of the panel program (PANEL.md / LOGBOOK.md). Lead
 seat: **ELECTROMAGNETISM** (rotation — VISION SCIENCE → PHOTONICS →
@@ -262,8 +266,11 @@ GATE_HARD for C40 (0.001138 vs 0.001 bar) — extends exp-066's own
 N9-aggregate level for the first time; per mandatory fix 5, this does not
 move any constraint-3 verdict. **P-068-2/3 CONFIRMED — the headline
 result**: Block ARTICLE's own scored article-row C is re-certified at
-settled STEPS≥2800 for both configs, shift bounded (15–24% relative, both
-inside the pre-registered band), bucket unchanged at MARGINAL, sign
+settled STEPS≥2800 for both configs, shift bounded (14.15–24.39% relative
+— corrected from an originally-cited "15–24%" band, VISION SCIENCE's
+Phase-5 catch F2; the scored quantity, the absolute delta, was unaffected
+either way), both inside the pre-registered band, bucket unchanged at
+MARGINAL, sign
 unchanged at negative — the four-cycle-old retraction (P-VIS42-6/7) is
 resolved, not merely re-attempted. P-068-4 PARTIAL (config-dependent, both
 values tiny in absolute terms). **P-068-5 CONFIRMED 14/14**: interior
@@ -318,3 +325,60 @@ longer merely asserted. Full detail: `phase4_results.md`.
    this aggregation level — worth folding into any future write-up of
    this channel's own settling-defect scope (T27's own closure summary),
    though it does not itself require action per mandatory fix 5.
+
+## Phase 5 — six blind reviews + Red Team final audit (verdict: PARTIAL)
+
+Full record: `phase5_review_{photonics,materials,thermodynamics,quantum,
+vision,em}.md`, `phase5_redteam_audit.md`. Three PROMISING (MATERIALS,
+THERMODYNAMICS, ELECTROMAGNETISM self-review), three PARTIAL (PHOTONICS,
+QUANTUM, VISION SCIENCE) — Red Team's own synthesis, not an average:
+**PARTIAL**.
+
+**A genuinely stronger confirmation of the headline, found at Phase 5 and
+not computed anywhere before it** (ELECTROMAGNETISM's self-review): the
+ABSOLUTE settling shift of the article-row N9 aggregate matches the
+empty-floor N9 aggregate's own absolute shift to <1% at both configs
+(C40: 0.0010983 vs 0.0011053, 0.6% apart; C80: 0.0006513 vs 0.0006544,
+0.5% apart) — a decisive test of the cycle's own central passivity
+hypothesis, using data already sitting in this cycle's own committed
+`results.json`, that went uncomputed through five Phase-2 critiques, Red
+Team's Phase-2 audit, and Phase 3/4. Recorded here so it is not lost.
+
+**Mandatory-fix docket applied same-shift** (Red Team's Phase-5 final
+audit, Attack 4/5): (1) `lab/caveat_lint_config.json` new entry
+`exp065-block-article-caveat-propagation`, closing a gap first
+recommended at exp-065's own Phase-5 close, independently re-flagged by
+MATERIALS and THERMODYNAMICS, two cycles overdue — registered, verified
+0 required-site failures; discloses as a known pre-existing gap (not
+retroactively fixed) that exp-065's own `phase4_results.md` never cited
+these caveats. (2) The FOUR-cycles/FIFTH-miss arithmetic
+self-contradiction in `design_geometry.py::DEFERRAL_DISCLOSURE`
+(VISION's F6, Red Team's Attack 3) — corrected in place, original text
+left standing and labeled, per this program's own erratum convention.
+(3) Cosmetic fixes F1 (stale status header, this file), F2/F3 (prose
+percentage/margin figures, this file and `phase4_results.md`), F4 (wrong
+Idealization cross-reference, `run.py`) — all applied above; none touched
+a scored number. F5 (two of 44 committed FDTD calls, the +35°/750nm
+article-present legs, compute a value never persisted to `results.json`)
+and F8 (`results.json::gates` mixes absolute/multiplier values with no
+label) are logged as forward items, not blocking this close.
+
+**CHECKPOINT criterion 4 FIRES this cycle — on a finding orthogonal to
+Block ARTICLE's own physics.** Red Team's final audit, independently
+confirmed by QUANTUM and VISION SCIENCE at Phase 5: Block MINI's
+period-match test (T21 mechanism-vs-artifact question, queue item 3) has
+now been deferred-behind-relabeling for a third consecutive cycle at
+minimum (Iterations 43, 44, 45 — a fourth under this program's own more
+literal cycle-inclusive counting convention, applied consistently to
+Block ARTICLE's own count above), crossing this program's own
+pre-committed T23 threshold ("a third would be worth flagging as
+Checkpoint-4-adjacent"), and — the sharper finding — this cycle's own
+Phase 2 was offered a zero-cost path to close it (QUANTUM's proposed desk
+check on the existing settling-delta dataset, to run before any FDTD
+spend) and silently narrowed it down to a citation tripwire only, with no
+argued reason recorded anywhere in `phase2_redteam_audit.md` or
+`phase3_synthesis.md`. Ruled a **notification, not a pause** — matching
+this program's unbroken precedent — full detail and the corrected,
+enumerated deferral count in `phase5_redteam_audit.md`'s Attack 1/7, and
+in LOGBOOK.md's own Iteration-45 CHECKPOINT entry. Block MINI is LOCKED,
+unconditional, for Iteration 46 (Red Team's own ranked #1).
