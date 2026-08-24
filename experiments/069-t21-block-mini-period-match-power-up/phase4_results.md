@@ -24,8 +24,8 @@ everything below is trusted.
 | P-069-2 (fixed period, primary) | `R²=0.2016` at `T=cpl/A=0.026596` | **NEITHER** — lands in the gray zone (0.15 < R² < 0.50); the fixed-period model is not decisively supported or rejected |
 | P-069-3 (free period, secondary) | best-fit `P*=2.8421°`, `R²=0.6272`; `rel_dev=44.95%` from `P(39°,600nm)=1.9608°` | **NEITHER** — `rel_dev` (45%) sits between the 20% within-tolerance and 50% out-of-tolerance lines; `R²=0.63` clears the 0.30 floor comfortably, so this is a real, well-fit periodic structure — just not at T21's own predicted period |
 | P-069-4 (settling) | `rel` = 2.7×10⁻⁵ / 1.7×10⁻⁵ at θ=39°/40° (STEPS 4200 vs 2800, both ≪ the 1% bar) | **CONFIRM** — `C80` is genuinely settled by STEPS=2800; the 2800-vs-1400 shift (0.0034/0.0039 absolute) is real transient decay, fully resolved by 4200 |
-| P-069-5 (R3/resolution) | same sign at both angles; ratio `delta_r3/delta_native` = 1.97 (θ=39°) / 2.50 (θ=40°), both inside `[0.3,3.0]` | **CONFIRM** — the oscillation survives cpl 20→30 (geometry ×1.5, mirrors exp-033's own idiom): a real physical feature, not Yee-grid discretization structure at the coincident scale (closes QUANTUM's R3 attack, Phase 2) |
-| P-069-6 (750nm, disclosed) | `ratio=2.89`, `R²(fixed T)=0.348` over 16 points (~1.22 periods — under-powered by design) | context only, not gated — same qualitative shape as 600nm (large amplitude, partial-but-incomplete period match), suggestive of a shared mechanism across λ, not scored |
+| P-069-5 (R3/resolution) | same sign at both angles; ratio `delta_r3/delta_native` = 1.97 (θ=39°) / 2.50 (θ=40°), both inside `[0.3,3.0]` | **CONFIRM** — the oscillation does not sign-flip or collapse under cpl 20→30 (geometry ×1.5, mirrors exp-033's own idiom) at these two cells, ruling out the crudest artifact hypotheses. **Correction (Phase-5 audit, three independent seats — PHOTONICS, QUANTUM, EM/Red-Team-confirmed): the "real physical feature, not Yee-grid discretization structure" language above overstates what this specific pass shows.** Both R3 cells (39°/40°) sit within an order of magnitude of `delta(θ)`'s own zero-crossing (`delta(39.0°)=1.2e-4`, `delta(39.2°)=3.3e-5` vs. the window's peak `ptp=4.0e-3`), a phase-sensitive location where an ordinary resolution-driven phase shift produces a large *relative* change; this program's own historical R3 "survives resolution" precedent (exp-005, exp-015) shrank by ~7% under an identical cpl 20→30 step, not the 97–150% observed here, and the CONFIRM band itself (`[0.3,3.0]`) is correspondingly ~10× wider than any prior R3 pass this program has cited as decisive. **Correct reading: rules out sign-flip/order-of-magnitude collapse at 2 of 31 angles; does not establish that the fringe's location/amplitude across the window is resolution-converged, nor does it distinguish T21's coherent mechanism from Yee-grid discretization structure at the identical characteristic scale (both derive from the same discretized edge — QUANTUM's Phase-2 Attack 3, never closed by a peak-cell or whole-window R3 leg).** A peak-cell recheck (θ≈37.2°/41.4°, zero marginal cost) is Iteration 47's queued fix. |
+| P-069-6 (750nm, disclosed) | `ratio=2.89`, `R²(fixed T)=0.348` over 16 points (~1.22 periods — under-powered by design) | context only, not gated — same qualitative shape as 600nm (large amplitude, partial-but-incomplete period match). **Correction (Phase-5 audit, PHOTONICS' independent re-analysis, verified by Red Team directly from `results.json`): T21's OWN period is the wrong null to test the 750nm leg against — its own free-period search degenerately hits its own search-range boundary here (window too narrow, ~1.22 periods, to resolve any interior optimum), which `phase4_results.md` does not disclose.** The right cross-λ test — does the 600nm free-fit's own implied effective aperture (`A_eff≈518.8` cells, back-solved from `P*=2.8421°` at θ=39°) predict the 750nm delta series via simple λ-scaling (`T_750=CPL[750]/A_eff`) — was not run this cycle but is independently reproducible from committed data and gives **R²=0.767**, more than double T21's own-model fit to the same 750nm data (R²=0.348, the number reported here). This is a materially stronger, undisclosed cross-wavelength signal pointing toward T28 being a genuine, λ-scaling-consistent coherent effect with its own characteristic length scale (≈519 cells, distinct from T21's A=752) — not proof (post-hoc, not pre-registered — an R4-adjacent risk if ever cited as a confirmed result rather than a suggestive re-analysis), but stronger support for "suggestive of a shared mechanism across λ" than the number this table originally cited. See `phase5_redteam_audit.md` §on PHOTONICS' finding for the full independent re-derivation. |
 
 ## Combined Verdict
 
@@ -73,10 +73,20 @@ than being argued around.
    geometry (two configs differenced, not one read alone) — this cycle is
    the first time that assumption was actually tested, and it does not
    hold cleanly.
-3. **Not a resolution artifact** (P-069-5 CONFIRM) and **not an unsettled
-   transient** (P-069-4 CONFIRM) — both of the two most likely
-   "artifact" explanations are independently ruled out for this specific
-   effect, at these two representative angles.
+3. **Not an unsettled transient** (P-069-4 CONFIRM, both cells ≪0.01%
+   relative shift 4200-vs-2800 — decisively ruled out). **Not a
+   sign-flip/order-of-magnitude resolution artifact at the two tested
+   angles** (P-069-5 CONFIRM). **Correction, Phase-5 audit (see the P-069-5
+   table row above): "not a resolution artifact" overstated the second
+   claim** — the two R3 cells sit near the fringe's own zero-crossing, not
+   a peak, and the measured ratios (1.97×/2.50×) are far outside this
+   program's own historical R3 "survives resolution cleanly" range (~7%,
+   exp-005/exp-015). P-069-5 rules out the crudest artifact hypotheses; it
+   does not establish resolution convergence of the fringe's location or
+   amplitude, nor does it separate T21's coherent mechanism from
+   Yee-grid discretization structure at the identical characteristic scale
+   (both derive from the same discretized taper edge — never tested this
+   cycle). A peak-cell R3 recheck is queued for Iteration 47.
 
 ## New live thread — T28 (opened this cycle)
 
