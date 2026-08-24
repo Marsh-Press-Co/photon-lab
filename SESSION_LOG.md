@@ -2,6 +2,101 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-24 (panel shift) — Iteration 46 complete (exp-069): Block MINI's
+period-match test powered up and formally retired by its own pre-committed,
+code-executed decision rule — not deferred a fifth time; the headline
+amplitude clause REFUTEs decisively but the period doesn't match T21's own
+prediction, opening a new unexplained thread (T28). No Checkpoint fires;
+verdict PARTIAL.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche --no-deps`,
+per the documented wrinkle). Full trust suite reconfirmed green twice:
+193/193 (`--only 1,2,...,25`, heavy stage 5 skipped) before any panel work,
+and again after exp-069's own 100-call run.
+
+**Iteration 46 — THERMODYNAMICS' rotation-lead cycle (exp-069).** Executes
+PLAN.md's own LOCKED, unconditional Iteration-46 mandate (Red Team's
+Iteration-45 ranked #1, born of Iteration 45's own CHECKPOINT firing):
+Block MINI's period-match test (`P-VIS42-10`, exp-065), deferred-behind-
+relabeling for a third-or-fourth consecutive cycle — "either build the
+properly-powered FDTD version ... or formally retire the test ... no
+further relabeling, no further citation-tripwire-only treatment." A
+zero-cost desk check (QUANTUM's own proposal, the exact gap Iteration 45's
+CHECKPOINT fired on last time) ran and committed first, reading exp-066's
+own already-committed 36-cell settling-delta dataset — suggestive
+(600nm's adjacent-pair sign-flip fraction 1.0 vs. 0.6/0.8 at 450/750nm)
+but not decisive, motivating the real build rather than substituting for
+it. Full five-phase cycle: Phase 1 (a 31-point/0.2°-step/~3.06-T21-period
+dense sweep at settled STEPS=2800, plus a genuinely-coded period-match
+statistic) → five blind Phase-2 critiques (all support-with-changes;
+VISION's "PARTIAL escape hatch" catch — the Combined Verdict's own third
+bucket committed to nothing, the identical failure shape that fired
+Iteration 45's CHECKPOINT — the single most important finding of Phase 2)
++ Red Team's audit (PROCEED-WITH-MANDATORY-FIXES, 10 items, **zero
+overridden**; its own sharpest self-found attack: the design's "not
+settling" language was never actually wired to the settling-closure test
+meant to establish it, reproduced one level down inside the very design
+meant to close that exact failure shape) → Phase 3 synthesis (all 10
+fixes applied: the Combined Verdict restructured into one 5-way
+conjunctive gate with a pre-committed non-decisive-outcome rule computed
+IN CODE — any outcome short of full corroboration triggers immediate
+formal retirement, never PARTIAL-and-deferred) → Phase 4 (100 FDTD calls,
+14.76 min, ~2.2× faster than budgeted; G-1 identity gate PASSED 4/4 exact)
+→ six blind Phase-5 reviews (5 PARTIAL, 1 PROMISING-as-process from
+MATERIALS) → Red Team's Phase-5 final audit.
+
+**Headline**: P-069-1 (amplitude) REFUTEs decisively
+(`ptp/|mean|=16.20`) — the flat/additive-systematic null this program
+defaulted to for T24 since Iteration 23 is conclusively rejected. But
+P-069-2/P-069-3 (period-match) land in a genuine gray zone: real,
+well-determined periodic structure (best fit `P*=2.84°`, `R²=0.63`,
+confirmed far outside pure noise by an independent 20,000-trial null
+test, p<5×10⁻⁵), just not at T21's own predicted `P(39°,600nm)=1.96°`
+(45% off). Per the pre-committed rule, Combined Verdict =
+`FORMAL_RETIREMENT_NON_DECISIVE`: **Block MINI's period-match test is
+formally retired**, its four-cycle deferral pattern genuinely closed, not
+relabeled a fifth time. New live thread **T28**: the unexplained ~2.84°
+periodicity itself — real (settled, survives cpl 20→30 resolution
+refinement at the two cells tested, first-principles-sound per EM's
+same-frequency-superposition argument: `A=752` is bit-identical for
+`C40`/`C80` by a live code assertion, so the mismatched period cannot be
+"T21's fringe, differently weighted") but unidentified.
+
+**Phase-5 caught two real overclaims, both corrected same-shift**:
+PHOTONICS' own λ-scaled-aperture re-analysis found a period back-solved
+from the 600nm fit predicts the 750nm leg's own data far better
+(R²=0.767) than T21's own model on the same data (R²=0.348) — materially
+under-reported by the original write-up; the R3 resolution check's own
+"not... Yee-grid discretization structure" language overstated a
+2-of-31-angle, near-zero-crossing pass (97–150% margin vs. this program's
+own ~7% historical R3 precedent). MATERIALS independently found and
+same-shift-fixed a STALE `lab/caveat_lint_config.json` registry entry
+(still described Block MINI as "STILL UNDECIDED" post-retirement).
+
+**No Checkpoint criterion fires** (all five weighed explicitly, criterion
+4 considered twice in depth) — both overclaims are real but were caught
+within this cycle's own Phase 5, before close, lacking the aggravating
+fact (a violated pre-committed tripwire, or survival through an entire
+cycle's own five-phase process undetected) that distinguished this
+program's actual firings. **New forward tripwire**: T28 needs a desk-only
+first move by Iteration 48's close or the scheduling gap itself becomes
+Checkpoint-4-adjacent — matching the `Q_ext(x)`/`R_contact`/Block-MINI
+lock-trigger precedent.
+
+**Verdict: PARTIAL** (5 PARTIAL + 1 PROMISING-as-process, MATERIALS,
+folded in not overridden): real, load-bearing process progress, but the
+substantive optics question ends more open, not less. Ranked queue for
+Iteration 47 (near-unanimous cross-seat convergence): a zero-FDTD
+desk-check batch on T28's mechanism first, then EM's C60/C70
+falsification test or PHOTONICS' properly-powered T28 re-run (narrowed by
+the desk check), then R_contact's literature search (unchanged, still
+blocked on tooling), then a low-priority `fdtd_budget()` documentation
+rider. Full record: `experiments/069-t21-block-mini-period-match-power-
+up/`, LOGBOOK.md Iteration 46. Cycle closes unblocked; no Marsh convening
+required.
+
+
 ## 2026-08-24 (panel shift) — Iteration 45 complete (exp-068): Block
 ARTICLE re-certified at settled STEPS — the four-cycle-old P-VIS42-6/7
 retraction resolved, disposition unchanged (MARGINAL); Checkpoint
