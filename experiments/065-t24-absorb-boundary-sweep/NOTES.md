@@ -193,12 +193,47 @@ Block BEAM), 17 (`c_thr`). Two local **absolute-identity** gates, G-1
 
 ## Result
 
-*(written at Phase 4 — see `phase4_results.md` for the full record)*
+Both absolute-identity gates PASSED. Of 11 scored predictions, 4 REFUTED
+(P-VIS42-2 headline, -5, -10, -11), 5 CONFIRMED, 1 PARTIAL, 1 (2a)
+CONFIRMED. **But P-VIS42-11's REFUTE (a 59.8% settling shift at STEPS=1400
+vs 2800, ~400× past its own bar) reopens the whole cycle**: a same-shift
+follow-up (4-point convergence trend + a full settled STEPS=2800 re-sweep,
+disclosed and unscored) shows STEPS=1400 is not settled on this program's
+plane/empty-scene channel at ±38°/±40°, general to the channel (confirmed
+on the UNPADDED C40 anchor geometry too, not padding-specific), and that
+correcting for it shrinks the headline median 5.4× (0.00279→0.00052, now
+clearing its own CONFIRM band) with a residual concentrated at 750nm, not
+yet shown fully converged. **T24's own inheritance question is undecided
+by this cycle.** Full record, all numbers: `phase4_results.md`.
 
 ## Learned
 
-*(written at Phase 4/5)*
+**The cycle's real finding is not about T24.** `experiments/041-t20-angle-
+audit` (Iteration 18) established this program's ±38°/±40° angle standard
+at STEPS=1400 on this identical channel — the same channel just shown to
+read ~3.9× off its converged value at that step count. Every T21/T24
+citation since Iteration 18 (nineteen iterations) may rest on an unsettled
+transient. A settling check calibrated on one channel (exp-046's Gaussian
+beam) does not transfer to a structurally different channel (tapered
+plane source, empty scene) at the same angles — settling is per-channel,
+not per-geometry. The desk propagator's exact degeneracy proves steady-
+state identity, not that STEPS reaches it. Full discussion:
+`phase4_results.md`.
 
 ## Next
 
-*(written at Phase 5, from the six blind reviews + Red Team's ranked top-3)*
+Not a ruling — for Phase 5 to weigh:
+1. Re-verify exp-041's own MAIN-block ±38°/±40° rows at STEPS≥2800 and
+   scope how many downstream citations (T21, T24, near-threshold
+   constraint-3 numbers) are affected.
+2. A matching 4-point convergence trend at 750nm/C80 (or another high-cpl,
+   large-padding cell) — Diagnostic 3's residual may itself be unsettled,
+   not yet shown otherwise.
+3. Re-score T24's own inheritance question cleanly at a verified-settled
+   STEPS value — this cycle's construction (congruent ABSORB series, the
+   C70 non-aliased point, the static construction identity gate) is
+   reusable as-is; only STEPS needs correcting.
+
+Whether this constitutes a Checkpoint-criterion-4 finding is explicitly
+left to Phase 5 / Red Team's ruling, not pre-empted here (see
+`phase4_results.md`'s closing section).
