@@ -203,8 +203,12 @@ plane/empty-scene channel at ±38°/±40°, general to the channel (confirmed
 on the UNPADDED C40 anchor geometry too, not padding-specific), and that
 correcting for it shrinks the headline median 5.4× (0.00279→0.00052, now
 clearing its own CONFIRM band) with a residual concentrated at 750nm, not
-yet shown fully converged. **T24's own inheritance question is undecided
-by this cycle.** Full record, all numbers: `phase4_results.md`.
+yet shown fully converged. **Phase 5 (MATERIALS, VISION SCIENCE) found the
+gap is wider than first reported: ±35° — inside Block ARTICLE's own N9
+angle set — sign-flips under the same correction, so P-VIS42-6/7's
+CONFIRMED verdicts are also unconfirmed, not just the headline.** T24's
+own inheritance question is undecided by this cycle. Full record, all
+numbers: `phase4_results.md`.
 
 ## Learned
 

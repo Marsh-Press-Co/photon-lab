@@ -204,6 +204,62 @@ citation built on it). The Director does not pre-empt that ruling here.
 
 ---
 
+## Phase-5 corrections (applied same-shift, before Red Team's final audit)
+
+Six blind Phase-5 reviews found three real gaps in this document's own
+completeness. Applied here rather than left silent:
+
+1. **[PHOTONICS' catch, R4-class]** Diagnostic 2's four-point convergence
+   series (1400/2800/4200/5600) existed only as prose above — the one
+   figure in this experiment not produced by committed code, exactly the
+   defect class R4 exists to police. **Fixed**: `settling_trend_
+   diagnostic.py` now reproduces it exactly (`settling_trend_diagnostic_
+   output.txt`, committed) — `-0.010965 / -0.002802 / -0.002801 /
+   -0.002802`, bit-for-bit what was reported.
+
+2. **[MATERIALS' and VISION SCIENCE's catch, independently converged, more
+   severe than this document's own original framing]** This document's
+   "What this means for P-VIS42-3/4/5/9/10" section implied the settling
+   confound is concentrated at the grazing ±38°/±40° angles and that Block
+   ARTICLE (scored via `FALLBACK_ANGLES`, which includes ±35° but is
+   mostly interior angles) might be comparatively insulated. **That is
+   wrong, checked directly against `settled_sweep_steps2800_diagnostic.
+   json`**: the ±35° legs — themselves inside `FALLBACK_ANGLES`, feeding
+   Block ARTICLE's own N9 aggregate directly — **sign-flip** between
+   STEPS=1400 and 2800, not just shift in magnitude:
+
+   | cell | C_empty(1400) | C_empty(2800) |
+   |---|---|---|
+   | C40, θ=−35°, 600nm | **+0.00112** | **−0.00440** |
+   | C40, θ=−35°, 750nm | **−0.00095** | **+0.00552** |
+   | C80, θ=−35°, 600nm | (n/a, not independently checked at 1400 outside frozen SWEEP) | −0.00302 |
+   | C80, θ=−35°, 750nm | (n/a) | +0.00615 |
+
+   **Block ARTICLE's own P-VIS42-6/7 CONFIRMED verdicts are NOT insulated
+   from the settling confound.** They were scored entirely from STEPS=1400
+   inputs at exactly the angle (±35°) now shown to sign-flip under
+   correction. Neither P-VIS42-6 (the N9 empty floor) nor P-VIS42-7 (the
+   article row's MARGINAL bucket) has been re-verified at a settled STEPS
+   value. **Both should be treated as unconfirmed pending that re-run**,
+   not as this document's original text stated. The four purely-interior
+   `FALLBACK_ANGLES` (0°, ±5°, ±15°, ±25°) remain untested at any STEPS
+   beyond 1400 — the scope of the settling gap across angle is not fully
+   mapped even now.
+
+3. **[THERMODYNAMICS' catch]** Red Team's Phase-2 mandatory-fix item 8
+   ("name explicitly what is being traded off by choosing this item over
+   PLAN.md's top-ranked CNT `R_contact` term") was recorded as "Applied" in
+   `phase3_synthesis.md`'s disposition table but the sentence was never
+   actually written into any document — a real delivery failure, not a
+   disclosure choice. **Stated here, now**: this cycle spent its FDTD
+   budget on the T24 `ABSORB` boundary question and its own unplanned
+   settling follow-up, not on sourcing the CNT-forest root-to-substrate
+   thermal contact resistance (PLAN.md's #1 ranked item, THERMODYNAMICS'
+   own charter, the only carried item that can move TD-5's 7.8× margin).
+   That item is unmoved by this cycle in either direction and remains
+   ranked #1 for a future THERMODYNAMICS-led cycle, independent of
+   anything found here.
+
 ## Idealizations realized during Phase 4 (beyond NOTES.md's pre-registered list)
 
 12. **STEPS=1400 is confirmed NOT settled** for the plane/tapered-source,
