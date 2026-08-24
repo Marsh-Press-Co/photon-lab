@@ -238,7 +238,12 @@
       "MAIN-block",
       "P-VIS42-10",
       "P-VIS42-6",
-      "P-VIS42-7"
+      "P-VIS42-7",
+      "off_pass",
+      "N17",
+      "D_req",
+      "537",
+      "540.{0,5}600"
     ],
     "candidate_globs": [
       "LOGBOOK.md",
@@ -246,7 +251,8 @@
       "experiments/*/NOTES.md",
       "experiments/*/phase*.md",
       "experiments/041-t20-angle-audit/*.md",
-      "experiments/042-t21-magnitude-bridge/*.md"
+      "experiments/042-t21-magnitude-bridge/*.md",
+      "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md"
     ]
   }
 ]
