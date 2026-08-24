@@ -624,3 +624,81 @@ NiP-black, carbon/graphene aerogel) — zero clear the joint 2×/2× bar.**
 `graded_black_shell`'s UNOBTANIUM-WITH-PARAMETERS verdict is not merely
 unmoved by this cycle; it is more robustly overdetermined than at any
 prior point in this program's history.
+
+## Entry 3 — CNT-forest root-to-substrate thermal contact resistance (`R_contact`)
+
+Panel Iteration 44 (exp-067), MATERIALS lead. Added at Phase-5 close per
+MATERIALS' own self-review (`experiments/067-r-contact-bonded-substrate-
+correction/phase5_review_materials.md` §3), which found this document —
+the canonical home for exactly this MATERIALS-charter tier question — had
+never been touched despite the cycle's entire justification being "the
+only queued item that can move a number, not just relabel or disclose
+one." Recorded here per Red Team's own Phase-5 final audit docket item H
+(`phase5_redteam_audit.md`).
+
+**Construction.** `bonded_substrate_conduction_correction`
+(`lab/thermo_sidecar.py`, Iteration 44) models the CNT-forest's root-to-
+substrate contact interface as a third thermal-resistance term,
+`r_contact_m2k_w`, entering the existing front-surface-conduction chain
+via two complementary endpoints (`correction_factor_series`,
+`correction_factor_replace_rear` — see `lab/thermo_sidecar.py`'s own
+section-header comment for the full derivation, corrected at this same
+Phase-5 close per the passivity-violation erratum, see
+`phase5_redteam_audit.md` R1).
+
+**Tier disposition: UNANSWERED — pending a real `measured_direct`
+measurement.** Not published, not plausible, not unobtainium-with-
+parameters — genuinely unscored, for three independently-sufficient
+reasons (MATERIALS' own self-review, verified directly against the
+committed record):
+
+1. **Zero `measured_direct` values exist.** Every R_contact value this
+   cycle tested is `analogy_proxy_diagnostic` — a proxy for a DIFFERENT
+   physical interface (query 10's inter-tube van der Waals junction,
+   4×10⁻⁸ m²K/W; query 2's forest/TIM-boundary interfacial figure,
+   6×10⁻⁵–7×10⁻⁵ m²K/W), never a direct measurement of an actual
+   CNT-forest root bonded to a mounting substrate. An analogy-based proxy
+   is a legitimate placeholder for the sensitivity study this cycle
+   actually delivered; it cannot itself support a published/plausible/
+   unobtainium call, which requires a number describing the interface
+   actually being modeled.
+2. **The primary anchor's own units-legitimacy flag is unresolved and
+   architecturally serious.** Query 10's `4×10⁻⁸ m²K/W` figure most
+   plausibly describes a nanoscale per-junction contact patch (its own
+   companion figure, ≈12 pW/K junction conductance, is a per-junction
+   quantity), not a macroscopically-averaged areal density across a real
+   root/substrate footprint — the same reason bulk forest κ sits orders
+   of magnitude below single-tube κ. Query 2's macroscopically-reported
+   forest/TIM-boundary figure is architecturally the closer analogy
+   (Red Team's own Phase-2 A7 finding), meaning this cycle's own
+   "primary"/"second" anchor labeling risked implying an unearned
+   ranking — disclosed, not resolved, in `NOTES.md`.
+3. **The model itself has not converged, independent of the number.**
+   The two endpoints — series (worst-case, contact stacks beneath the
+   rear-loss channel) and replace-rear (contact replaces the rear-loss
+   channel entirely) — diverge materially at the decision-relevant Stress
+   B test point even after the Phase-5 formula correction: witness margin
+   1.0047× (series, "nearly erased") vs. 3.9286× (replace-rear, "very
+   comfortable"). Until a real interface is characterized well enough to
+   know which topology it resembles (a partially-sealed bond vs. an
+   effectively-infinite heat-sink substrate), a sourced R_contact number
+   alone would not settle whether TD-5's 7.8× headroom is actually at
+   risk.
+
+**Not RULED-OUT**: nothing in this cycle's record shows R_contact is
+impossible to source, or that any mechanism class is jointly
+unsatisfiable. The sensitivity-analysis machinery (both endpoints,
+correctly gated after the Phase-5 formula fix) is real, reusable
+progress, independent of this tier question.
+
+**Open, ranked**: (1) a real, dedicated literature search for a
+`measured_direct` root/substrate contact-resistance figure, scoped to
+resolve BOTH the units-legitimacy flag (per-junction vs. macroscopic-
+areal) and enough about real bonded-CNT-forest interfaces (CVD-grown
+chemical bonding vs. transferred/pressed van der Waals contact) to make
+an informed topology call — queued, unblocked the moment WebSearch/
+WebFetch tooling clears; (2) a first-principles two-resistor-network
+re-derivation of the replace-rear endpoint's own normalization, promoted
+by the Phase-5 formula-error episode from "non-blocking" to a genuine
+open item — see `experiments/067-r-contact-bonded-substrate-correction/
+NOTES.md`'s own Idealization 5 and `phase5_redteam_audit.md`.

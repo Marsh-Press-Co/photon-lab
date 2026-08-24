@@ -14,6 +14,83 @@ all support-with-changes), `phase2_redteam_audit.md`
 `phase3_synthesis.md` (this cycle's Director synthesis, all in this
 directory).
 
+---
+
+## ERRATUM (Panel Iteration 44 Phase 5, applied at close)
+
+**The `correction_factor_replace_rear` formula shipped at Phase 4 was
+wrong — a passivity violation, not a defensible normalization choice.**
+Caught by ELECTROMAGNETISM's blind Phase-5 review, confirmed by Red
+Team's Phase-5 final audit (`phase5_redteam_audit.md` R1), which also
+identified that the broken formula originated in Red Team's own Phase-2
+audit (`phase2_redteam_audit.md` §A1/§2.1) and shipped unquestioned
+through Phase 3, Phase 4's 23/23 stage-25 gates, `run.py`'s own
+independent reproduction, and four of six Phase-5 reviews' own
+"independent verification" — none of which tested the one property
+(limiting behavior as `R_contact→0`, sign of the derivative) that would
+have caught it.
+
+**What was wrong**: the first shipped formula, `correction_factor_
+replace_rear = 1 + (l_geometric_m/k_solid)/r_contact_m2k_w`, normalized
+against `R_contact` itself rather than the SAME `R_rear` baseline every
+other `correction_factor_*` field in this module uses. It diverged to
+infinity as `R_contact→0` (reporting a near-perfect bond as
+catastrophic) and DECREASED as `R_contact` increased (reporting a worse
+bond as better) — the opposite of physically sound, dissipative-network
+behavior.
+
+**The fix**: both endpoints share the same `R_rear` baseline as bracket
+B, giving the exact identity `correction_factor_replace_rear =
+correction_factor_series - 1.0`. Well-defined and finite everywhere
+`R_contact≥0`, including exactly 0 (where it now correctly recovers
+`correction_factor_bracket_b_only - 1.0`, a small finite floor, not
+`inf`). Applied to `lab/thermo_sidecar.py`; two new stage-25 gates
+((3g) the exact identity at all 7 test points/both scales, (3h) a
+strict-monotonicity check) permanently guard against this regression
+class; the falsification-boundary bisection's search direction and
+frozen literal were corrected (`0.004291` → `0.043685` m²K/W — the
+corrected value is ~10× larger, since a correctly-normalized good bond
+is far more forgiving than the first formula reported). Full docket:
+`phase5_redteam_audit.md` §2.
+
+**Corrected prediction table** (replaces the "Falsifiable predictions"
+table below for `correction_factor_replace_rear` and every margin/
+r_contact_critical figure derived from it; `correction_factor_series`
+and everything derived from it is UNCHANGED and was never wrong):
+
+| Point | R_contact (m²K/W) | CF_bench,replace | bench margin,replace | CF_witness,replace | witness margin,replace |
+|---|---|---|---|---|---|
+| Gate | 0 | 0.037160 | 18817.9× | 0.044866 | 30.089× |
+| Band, low | 4×10⁻⁹ | 0.037205 | 18795.4× | 0.044866 | 30.089× |
+| **Primary anchor** | **4×10⁻⁸** | 0.037605 | 18595.4× | 0.044867 | 30.088× |
+| Band, high | 4×10⁻⁶ | 0.081625 | 8566.9× | 0.044985 | 30.009× |
+| Second anchor | 6.5×10⁻⁵ | 0.759717 | 920.4× | 0.046808 | 28.841× |
+| Stress A | 1×10⁻³ | 11.153414 | 62.7× | 0.074742 | 18.062× |
+| **Stress B** | **1×10⁻²** | 111.199697 | 6.3× | **0.343628** | **3.9286×** |
+
+**P-067-3, corrected**: at Stress B, `correction_factor_replace_rear`
+(0.343628) is still `<` `correction_factor_series` (1.343628) — EM's
+Phase-2 topology attack still holds, and the corrected divergence is
+LARGER than first reported, not smaller: series reads witness margin
+1.0047× ("margin nearly erased"); replace-rear reads **3.9286×** ("very
+comfortable"), not the first-reported 1.1737×. The two endpoints still
+disagree about whether the target constraint is even at risk at
+Stress B — the corrected physics strengthens, not weakens, the case that
+model-topology choice (not R_contact-value uncertainty) dominates at the
+decision-relevant regime.
+
+**P-067-5, corrected**: `r_contact_critical`, replace-rear endpoint
+(witness scale, κ=0.70) = **0.043685 m²K/W** (not 0.004291 — the
+corrected crossing is ~10× larger, matching the corrected formula's own
+far-more-forgiving behavior at small R_contact).
+
+**Checkpoint criterion 4 (program-integrity drift) FIRES** on this
+finding, per Red Team's Phase-5 final audit §3 — as a notification, not
+a pause (this program's standing precedent). See LOGBOOK.md Iteration 44
+and SESSION_LOG.md for the full disclosure.
+
+---
+
 **Operational disclosure, stated up front**: this cycle ran without
 WebSearch/WebFetch. The dedicated literature-query dispatch Red Team's
 own Iteration-40 audit specified as the correct remedy for sourcing a

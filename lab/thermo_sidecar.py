@@ -556,8 +556,7 @@ def front_surface_conduction_correction(k_air: float, l_geometric_m: float,
 # never a direct measurement of the actual root/substrate interface.
 #
 # TWO ENDPOINTS, not one (Panel Iteration 44 Phase 2, ELECTROMAGNETISM's
-# load-bearing catch, independently confirmed and quantified by Red Team's
-# own Phase-2 audit): `front_surface_conduction_correction`'s own R_rear
+# load-bearing catch): `front_surface_conduction_correction`'s own R_rear
 # (loss to quiescent air + radiation at an EXPOSED rear face) and a bonded
 # substrate's own R_contact describe MUTUALLY EXCLUSIVE boundary conditions
 # at the SAME face -- a face is either covered by a substrate or exposed to
@@ -565,15 +564,32 @@ def front_surface_conduction_correction(k_air: float, l_geometric_m: float,
 # cycle's own proposal did) forces correction_factor_series >= CF_bracket_B
 # for every R_contact >= 0, structurally forbidding the physically-plausible
 # case where a GOOD bond (small R_contact into an effectively infinite
-# substrate heat sink) outperforms free-standing rear-air loss. Red Team's
-# own Phase-2 audit built and numerically confirmed this is not a marginal
-# concern: at this cycle's own "Stress B" test point (R_contact=1e-2 m^2K/W,
-# witness geometry), the series endpoint reads witness margin ~1.0047x
-# ("margin nearly erased") while the replace-rear endpoint reads ~1.174x
-# ("comfortably clear") -- the two endpoints disagree about whether the
-# target constraint is even at risk. BOTH endpoints are therefore computed
-# and returned by every call, neither asserted as the true deployment
-# physics (see `model_note` below).
+# substrate heat sink) outperforms free-standing rear-air loss.
+#
+# ERRATUM (Panel Iteration 44 Phase 5, ELECTROMAGNETISM's catch, Red Team's
+# own Phase-5 final audit R1 confirming and owning the origin): the FIRST
+# shipped `correction_factor_replace_rear` formula (Red Team's own Phase-2
+# audit construction, `1 + R_cond/R_contact`) was normalized against
+# R_contact itself rather than the SAME R_rear baseline every other
+# correction_factor_* field in this module uses -- a passivity violation
+# (it diverged to infinity as r_contact_m2k_w->0, i.e. reported a
+# near-perfect bond as catastrophic, and DECREASED with r_contact_m2k_w,
+# i.e. reported a worse bond as better). Caught independently by four of
+# six Phase-5 reviewers' own headline-number re-derivations, none of which
+# tested the one property (limiting behavior / sign of the derivative)
+# that would have shown it. Corrected below: both endpoints now share the
+# SAME R_rear baseline as bracket B, giving the exact identity
+# `correction_factor_replace_rear = correction_factor_series - 1.0`. Under
+# the corrected formula, at this cycle's own "Stress B" test point
+# (R_contact=1e-2 m^2K/W, witness geometry), the series endpoint reads
+# witness margin ~1.0047x ("margin nearly erased") while the corrected
+# replace-rear endpoint reads ~3.9286x ("very comfortable") -- the two
+# endpoints still disagree about whether the target constraint is even at
+# risk, and the corrected divergence is LARGER than the first shipped
+# (wrong) numbers implied, not smaller. See exp-067 NOTES.md's Erratum
+# section and phase5_redteam_audit.md for the full derivation. BOTH
+# endpoints are computed and returned by every call, neither asserted as
+# the true deployment physics (see `model_note` below).
 LICENSED_R_CONTACT_PROVENANCE = frozenset({
     "measured_direct",       # a real, sourced measurement of the ACTUAL
                               # root/substrate contact interface. Licensed
@@ -666,14 +682,22 @@ def bonded_substrate_conduction_correction(
 
     ENDPOINT 2 -- `correction_factor_replace_rear` (the complementary
     endpoint, Panel Iteration 44 Phase 2, ELECTROMAGNETISM's mandatory
-    addition): R_contact REPLACES the rear-boundary loss channel entirely
-    (a well-bonded bulk substrate acting as an effectively infinite heat
-    sink, not an additional series resistance on top of free-air loss):
-        correction_factor_replace_rear = 1 + (l_geometric_m/k_solid) / r_contact_m2k_w
-    (undefined at r_contact_m2k_w=0; returns float('inf') there -- a zero-
-    resistance bond replacing an already-finite rear-loss channel is a
-    different, non-continuous limit from ENDPOINT 1's own r_contact->0
-    case, disclosed not silently handled).
+    addition; formula CORRECTED at Phase 5, see the ERRATUM in this
+    module's own section header above): R_contact REPLACES the
+    rear-boundary loss channel entirely (a well-bonded bulk substrate
+    acting as an effectively infinite heat sink, not an additional series
+    resistance on top of free-air loss). Normalized against the SAME
+    R_rear baseline as bracket B and ENDPOINT 1 (the only baseline this
+    module's own margin bars are pegged to):
+        correction_factor_replace_rear = correction_factor_series - 1.0
+    an exact identity, because both endpoints share R_cond and h_combined
+    and differ only in whether R_rear is ADDED (series) or DROPPED
+    entirely (replace-rear) from the same R_rear-normalized total. Well
+    defined and finite everywhere r_contact_m2k_w>=0, including exactly 0
+    (where it recovers `correction_factor_bracket_b_only - 1.0`, the
+    small, physically-sensible floor of "conduction-only drop, no rear
+    loss at all" -- NOT the undefined/infinite limit the first Phase-2-
+    audit-authored formula incorrectly produced there).
 
     Neither endpoint is asserted as the true deployment physics -- both are
     returned, unlabeled as "the" answer (see `model_note`).
@@ -694,10 +718,11 @@ def bonded_substrate_conduction_correction(
     h_combined = k_air / l_geometric_m + 4.0 * emissivity * SIGMA_SB * t_ambient_k ** 3
     bi_contact = r_contact_m2k_w * h_combined
     correction_factor_series = base["correction_factor"] + bi_contact
-    if r_contact_m2k_w > 0:
-        correction_factor_replace_rear = 1.0 + (l_geometric_m / k_solid) / r_contact_m2k_w
-    else:
-        correction_factor_replace_rear = float("inf")
+    # ERRATUM (Iteration 44 Phase 5, ELECTROMAGNETISM's catch): both
+    # endpoints share the SAME R_rear baseline as bracket B, giving this
+    # exact identity -- see this module's own section-header ERRATUM and
+    # this function's own ENDPOINT 2 docstring above.
+    correction_factor_replace_rear = correction_factor_series - 1.0
     return {
         "correction_factor_series": correction_factor_series,
         "correction_factor_replace_rear": correction_factor_replace_rear,

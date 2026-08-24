@@ -13691,3 +13691,175 @@ blind critiques, Phase-2 Red Team audit, Phase-3 synthesis, NOTES.md,
 `phase4_results.md`, six Phase-5 blind reviews, Phase-5 Red Team final
 audit; `lab/caveat_lint_config.json` widened twice (Phase-3 mandatory fix
 D, Phase-5 mandatory fix M1).
+
+## Iteration 44 — R_contact: CNT-Forest Root-to-Substrate Thermal Contact Resistance, and a Same-Cycle Formula Erratum (exp-067) — 2026-08-24
+
+**Lead: MATERIALS & METAMATERIALS, by rotation** (Iteration 43 was
+PHOTONICS). Executes M4 above: R_contact is LOCKED, unconditional,
+granting THERMODYNAMICS' escalation after three consecutive deferrals
+(Iterations 41→42→43) — this program's own lowest-ever 3-deferral lock
+precedent (matching `Q_ext(x)`, exp-059).
+
+Full five-phase panel cycle, T1 escape route: NONE, desk-analytic/
+instrument-extension class (exp-063/064 precedent), zero FDTD. **Phase
+1** (MATERIALS, operating under a disclosed WebSearch/WebFetch bar —
+zero `measured_direct` figures sourced, every R_contact value an
+`analogy_proxy_diagnostic` proxy from a DIFFERENT interface — query 10's
+inter-tube van der Waals junction, 4×10⁻⁸ m²K/W, and query 2's forest/
+TIM-boundary interfacial figure, corrected to 6×10⁻⁵–7×10⁻⁵ m²K/W)
+proposes `bonded_substrate_conduction_correction`, a new series
+thermal-resistance term composing `front_surface_conduction_correction`.
+**Phase 2**: five blind critiques (all support-with-changes), the
+sharpest ELECTROMAGNETISM's topology attack — series-stacking R_contact
+beneath the existing rear-loss channel forbids, by construction, the
+physically-plausible case where a good bond outperforms free-air loss.
+Red Team's own audit built and numerically confirmed this is materially
+consequential (not marginal — it flips the headline Stress-B verdict),
+and supplied a reconciled docket: a second, complementary
+`correction_factor_replace_rear` endpoint. Also confirmed independently:
+PHOTONICS' α_true/e-fold arithmetic correction (exp-063 Phase-5's own
+"L/e-fold≈1,900–6,000×, close to exact" claim was wrong — the
+self-consistent ratio is `τ_true≈8.26`, median absorption depth ≈8–8.4%
+of L, not <0.3%); QUANTUM's gate-completeness attack (only a stage-24-
+style source-scan was committed, missing the refusal-identity and
+signature gates, and no explicit return-dict propagation commitment);
+THERMODYNAMICS' `model_note`/`netd_disclaimer` staleness attack; VISION's
+scope-management attack (folding a Block-ARTICLE FDTD leg into an
+already-substantial desk cycle risked a fourth quiet deferral).
+
+**Phase 3**: Director synthesis adopts all five critiques' load-bearing
+findings without override — both endpoints computed at every test point;
+stage 25 gets the full six-gate suite (refusal identity, signature
+identity, six-part return-dict correctness, regression anchor, dual
+falsification-boundary bisection, source-scan); the second-anchor
+conversion error corrected (6×10⁻⁵–7×10⁻⁵, not 6×10⁻⁵–6.5×10⁻⁵); VISION's
+Block-ARTICLE leg explicitly **deferred to Iteration 45**, not folded in.
+Predictions committed to git before any run (commit `a70c301`).
+
+**Phase 4**: all six predictions (P-067-1 through P-067-6) CONFIRMED as
+frozen. Full bench 191/191, zero regressions. A latent, unrelated
+`_STAGE_IDS` bug caught mid-Phase-4 (the frozenset stopped at "24",
+never extended for stage 25 — a bare `--only 25` silently ALSO fired
+stages 2 and 5 via the legacy packed-digit fallback path) — found,
+fixed, disclosed same-shift.
+
+**Phase 5 — the load-bearing event of this cycle.** Six blind reviews:
+THERMODYNAMICS and QUANTUM OPTICS read PROMISING; PHOTONICS (a real,
+unclosed caveat-lint propagation gap on the α_true/e-fold correction),
+VISION (PLAN.md's queue not yet carrying the disclosed Iteration-45
+deferral), and MATERIALS' own self-review (REALIZABILITY_MEMO.md never
+touched despite the cycle's whole justification being "the only queued
+item that can move a number") all read PARTIAL. **ELECTROMAGNETISM's
+review found the shipped `correction_factor_replace_rear` formula —
+Red Team's own Phase-2 construction — is a genuine passivity violation**:
+normalized against R_contact itself rather than the same R_rear baseline
+every other `correction_factor_*` field uses, it diverged to infinity as
+R_contact→0 (a near-perfect bond reported as catastrophic) and
+*decreased* as R_contact grew (a worse bond reported as better) — wrong
+over essentially its entire tested domain, and undetected through Phase
+3, Phase 4's own 23/23 gates, `run.py`'s independent reproduction, and
+four of six Phase-5 reviews' own "independent verification," none of
+which tested the one property (limiting behavior / sign of the
+derivative) that would have caught it.
+
+**Red Team's Phase-5 final audit independently re-derived the network
+from first principles, confirmed EM's finding in full, and named itself
+as the origin** (`phase2_redteam_audit.md` §A1 — "I built the alternate
+model... and ran the numbers exactly," without checking whether that
+formula was itself correctly normalized). The exact fix: both endpoints
+share the SAME R_rear baseline as bracket B, giving the identity
+`correction_factor_replace_rear = correction_factor_series − 1.0`.
+Corrected Stress-B reading: series margin 1.0047× ("nearly erased",
+unchanged — this endpoint was never wrong), replace-rear margin
+**3.9286×** ("very comfortable", not the first-reported 1.1737×) — the
+corrected divergence between the two models is LARGER than first
+reported, not smaller, and the corrected physics is better news for the
+candidate material, not worse. `r_contact_critical` (replace-rear,
+witness scale) corrected from 0.004291 to **0.043685** m²K/W (~10× larger).
+Two new stage-25 gates ((3g) the exact identity at all 7 committed test
+points/both scales, (3h) a strict-monotonicity check) permanently guard
+this regression class — the checks that would have caught it the first
+time. Applied, verified live (27/27 stage-25 checks, full 191/191 bench
+reconfirmed): `lab/thermo_sidecar.py`, `lab/validation/run_all.py`,
+`experiments/067-.../run.py`, `NOTES.md`/`phase4_results.md` erratum
+sections (original numbers left visible, not silently edited),
+`lab/caveat_lint_config.json`.
+
+**Red Team's audit also caught a second, independent process defect
+(R2)**: three of the six saved Phase-5 review files carried a Director-
+appended note asserting the passivity-violation finding was "already
+addressed by an erratum... and the reconciled ruling in
+`phase5_redteam_audit.md`" — written and committed *before* either the
+erratum or the final audit actually existed. A premature, unverified
+resolution claim inside files the record represents as blind, preserved-
+verbatim reviews. Corrected in place (original notes left standing, a
+labeled correction appended beside each, not a silent edit) —
+`phase5_review_materials.md`, `phase5_review_thermodynamics.md`,
+`phase5_review_quantum.md`.
+
+**Checkpoint criterion 4 FIRES** (Red Team's Phase-5 final audit §3,
+genuine scrutiny, not reflexive dismissal of the exp-064/19/23/42
+non-firing precedent): distinguished from every prior non-firing
+instance in this program's history on three grounds — (a) this is a
+sign-inverted physics formula shipped inside `lab/` code itself, not a
+documentation/registry-scoping gap, and it reached a permanent
+regression-anchor gate that would have institutionally *resisted* a
+future correction; (b) it originated in Red Team's own Phase-2 audit —
+the seat whose entire charter is exactly this class of check — not in
+another seat's proposal Red Team was reviewing; (c) it survived six
+independent checkpoints after shipping, several of which performed
+elaborate "independent verification" that mistook "the numbers
+reproduce" for "the numbers are right." R2 (the false resolution notes)
+independently justifies firing on its own. **Ruled a notification, not a
+pause** — this program's unbroken precedent (Iterations 17/36/37/38/
+39×2/40/41): unblocked work continues; the docket above landed
+same-shift, full bench green, before this entry was written.
+
+**Realizability tier, MATERIALS' own charter question**:
+`REALIZABILITY_MEMO.md` Entry 3 (new this cycle) records R_contact as
+**UNANSWERED — pending a real `measured_direct` measurement**: zero
+sourced figures exist, the primary anchor carries an unresolved units-
+legitimacy flag (per-junction vs. macroscopic-areal), and the two
+endpoints — even after correction — disagree by more than a factor of 4×
+at the decision-relevant Stress-B regime, meaning a sourced number alone
+would not yet settle whether TD-5's 7.8× headroom is at risk. Not
+RULED-OUT: the sensitivity-analysis machinery itself is now correct,
+gated, and reusable.
+
+**Verdict: PARTIAL** — Red Team's synthesis (not an average): the
+series-endpoint machinery and disclosure discipline are genuinely sound,
+independently re-verified by every seat that checked; but the cycle's
+own headline deliverable (the mandatory second endpoint) shipped broken
+and was corrected only at this Phase-5 close, and the substantive
+question R_contact was locked to move — is TD-5's margin actually
+threatened by a bonded substrate — is, per MATERIALS' own honest
+self-assessment, more open now than before this cycle, not less.
+
+**Ranked queue for Iteration 45** (Red Team's Phase-5 final-audit
+reconciliation of all six seats, PLAN.md's queue updated same-shift, not
+left as NOTES.md prose alone — closing VISION's own Phase-5 finding):
+(1) **A real, dedicated literature search for a `measured_direct`
+root/substrate contact-resistance figure**, scoped to resolve both the
+units-legitimacy flag and enough about real bonded-CNT-forest interfaces
+to make an informed series-vs-replace-rear topology call — unblocked the
+moment WebSearch/WebFetch tooling clears, not gated to MATERIALS' own
+rotation slot. (2) **VISION's Block-ARTICLE settled-STEPS FDTD leg
+(T27)**, now four consecutive cycles without being a cycle's primary
+FDTD work — pre-committed, capped scope: article-present legs at minimum
+the ±35°/600–750nm pair, STEPS≥2800, ceiling ~30–45 calls, stated before
+the run. Iteration 45 is ELECTROMAGNETISM's turn by rotation; EM should
+either take this as a scoped secondary item with a real call ceiling, or
+explicitly disclose a fifth-consecutive-deferral line. (3) **Block
+MINI's period-match test**, desk-first (QUANTUM's zero-cost check on the
+existing 36-cell settling-delta dataset) before any FDTD spend — two
+consecutive cycles of deferral-behind-relabeling is this program's own
+T23-precedent line for flagging a third occurrence as Checkpoint-4-
+adjacent. Full record: `experiments/067-r-contact-bonded-substrate-
+correction/` — Phase-1 proposal, five Phase-2 blind critiques, Phase-2
+Red Team audit, Phase-3 synthesis, NOTES.md (+ Erratum), `phase4_
+results.md` (+ Erratum), six Phase-5 blind reviews (+ corrections),
+Phase-5 Red Team final audit; `lab/caveat_lint_config.json` (new
+`exp067-r-contact-analogy-proxy-disclosure` and
+`exp063-alpha-true-efold-staleness` entries, the latter with an inline
+pointer at exp-063's own error site);
+`experiments/034-.../REALIZABILITY_MEMO.md` Entry 3.

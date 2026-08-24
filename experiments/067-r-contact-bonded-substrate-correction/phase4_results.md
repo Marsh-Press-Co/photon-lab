@@ -6,6 +6,28 @@ route N/A, a pure desk-analytic/trust-suite cycle.
 
 ---
 
+## ERRATUM (Panel Iteration 44 Phase 5, applied at close)
+
+**Everything below this line reports the FIRST-shipped
+`correction_factor_replace_rear` numbers, which were wrong** — a
+passivity-violating formula, caught by ELECTROMAGNETISM's blind Phase-5
+review and confirmed by Red Team's Phase-5 final audit (which also
+traced the error to its own Phase-2 audit). Left below **unedited**, as
+the honest record of what Phase 4 actually reported and what the first
+five independent checks (Phase 3 adoption, Phase 4's own 23/23 gates,
+`run.py`'s reproduction, and four of six Phase-5 reviews) failed to
+catch — not silently corrected in place. **See `NOTES.md`'s own Erratum
+section for the corrected formula, corrected table, and corrected
+P-067-3/P-067-5 dispositions**; the short version: `correction_factor_
+series` and everything derived from it (P-067-1, P-067-2, P-067-4, the
+series half of P-067-3/P-067-5) was **never wrong** and needs no
+correction. Only `correction_factor_replace_rear` and everything
+downstream of it below is superseded. The corrected code is committed;
+re-running this file's own transcript today would reproduce the
+corrected numbers, not the ones printed below.
+
+---
+
 ## Full bench — 191/191, no regressions
 
 ```

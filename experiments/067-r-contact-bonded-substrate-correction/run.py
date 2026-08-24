@@ -61,12 +61,18 @@ def witness(r_contact, r_contact_prov="analogy_proxy_diagnostic", r_contact_diag
 def bisect_r_contact_critical(endpoint_key, target, lo, hi, tol=1e-12, iters=200):
     """Bisection for the witness-scale R_contact that drives `endpoint_key`
     (`correction_factor_series` or `correction_factor_replace_rear`) to
-    `target`. `correction_factor_series` is monotone INCREASING in
-    r_contact_m2k_w (more series resistance -> worse CF); `correction_
-    factor_replace_rear` is monotone DECREASING (1 + R_cond/r_contact ->
-    a SMALLER r_contact means a bigger CF under this endpoint's own
-    formula) -- direction is detected from the endpoints themselves
-    rather than assumed, so both cases bisect correctly."""
+    `target`. ERRATUM (Iteration 44 Phase 5, ELECTROMAGNETISM's catch,
+    Red Team's Phase-5 final audit R1): both endpoints are now monotone
+    INCREASING in r_contact_m2k_w -- `correction_factor_replace_rear`
+    was, before this cycle's Phase-5 correction, computed from a
+    passivity-violating formula (1 + R_cond/r_contact) that was monotone
+    DECREASING; the corrected formula (`correction_factor_series - 1.0`,
+    sharing the SAME R_rear baseline as the series endpoint) increases
+    with r_contact_m2k_w exactly like the series endpoint, offset by a
+    constant -1.0. Direction is still detected from the endpoints
+    themselves rather than assumed, so this function needs no code
+    change for the fix -- only this docstring's own claim about which
+    direction replace-rear moves was wrong and is corrected here."""
     def f(r):
         d = witness(r)
         return d[endpoint_key] - target
@@ -112,12 +118,17 @@ def main():
     for label, r, basis in TEST_POINTS:
         b = bench(r)
         w = witness(r)
+        # ERRATUM (Iteration 44 Phase 5): the r>0 special-case below (margin
+        # forced to inf at r_contact=0) was a workaround for the first
+        # shipped correction_factor_replace_rear formula, which was
+        # undefined/inf at r_contact=0. The corrected formula
+        # (correction_factor_series - 1.0) is well-defined and finite at
+        # r_contact=0 too, so the margin is now computed uniformly, no
+        # special case needed.
         bench_margin_series = (BASE_BENCH["correction_factor"] / b["correction_factor_series"]) * BASELINE_BENCH_MARGIN
-        bench_margin_replace = (BASE_BENCH["correction_factor"] / b["correction_factor_replace_rear"]) * BASELINE_BENCH_MARGIN \
-            if r > 0 else float("inf")
+        bench_margin_replace = (BASE_BENCH["correction_factor"] / b["correction_factor_replace_rear"]) * BASELINE_BENCH_MARGIN
         witness_margin_series = (BASE_WITNESS["correction_factor"] / w["correction_factor_series"]) * BASELINE_WITNESS_MARGIN
-        witness_margin_replace = (BASE_WITNESS["correction_factor"] / w["correction_factor_replace_rear"]) * BASELINE_WITNESS_MARGIN \
-            if r > 0 else float("inf")
+        witness_margin_replace = (BASE_WITNESS["correction_factor"] / w["correction_factor_replace_rear"]) * BASELINE_WITNESS_MARGIN
         row = (label, r, b["correction_factor_series"], b["correction_factor_replace_rear"],
                bench_margin_series, bench_margin_replace,
                w["correction_factor_series"], w["correction_factor_replace_rear"],

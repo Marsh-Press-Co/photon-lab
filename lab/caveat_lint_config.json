@@ -261,7 +261,7 @@
   },
   {
     "id": "exp067-r-contact-analogy-proxy-disclosure",
-    "description": "exp-067 (Panel Iteration 44) added bonded_substrate_conduction_correction() to lab/thermo_sidecar.py, modeling the CNT-forest root-to-substrate thermal contact resistance R_contact. Every R_contact value this cycle is an analogy-based proxy (r_contact_provenance='analogy_proxy_diagnostic'), NOT a directly-measured root/substrate figure -- WebSearch/WebFetch were barred this cycle, so the dedicated literature search Red Team's own Iteration-40 audit specified was never attempted. The function returns TWO endpoints -- correction_factor_series (worst-case, contact resistance stacks in series beneath the rear-loss channel) and correction_factor_replace_rear (contact replaces the rear-loss channel entirely) -- which diverge materially at high R_contact and disagree about whether the witness-scale (TD-5) margin is at risk at the proposal's own Stress-B test point (series: ~1.0047x, 'nearly erased'; replace-rear: ~1.1737x, 'comfortably clear'). Any citation of this cycle's R_contact-corrected numbers must disclose (a) the analogy-proxy provenance, and (b) which endpoint (series vs. replace-rear) is being cited -- citing correction_factor_series alone as 'the' R_contact correction, without the replace-rear endpoint and its Stress-B divergence, is itself a Checkpoint criterion-4-relevant finding at whichever cycle it recurs (per Red Team's own forward tripwire, phase2_redteam_audit.md and phase3_synthesis.md).",
+    "description": "exp-067 (Panel Iteration 44) added bonded_substrate_conduction_correction() to lab/thermo_sidecar.py, modeling the CNT-forest root-to-substrate thermal contact resistance R_contact. Every R_contact value this cycle is an analogy-based proxy (r_contact_provenance='analogy_proxy_diagnostic'), NOT a directly-measured root/substrate figure -- WebSearch/WebFetch were barred this cycle, so the dedicated literature search Red Team's own Iteration-40 audit specified was never attempted. The function returns TWO endpoints -- correction_factor_series (worst-case, contact resistance stacks in series beneath the rear-loss channel) and correction_factor_replace_rear (contact replaces the rear-loss channel entirely) -- which diverge materially at high R_contact and disagree about whether the witness-scale (TD-5) margin is at risk at the proposal's own Stress-B test point. IMPORTANT (Phase-5 erratum, Iteration 44 close): the FIRST-shipped correction_factor_replace_rear formula was a passivity-violating normalization error, caught by ELECTROMAGNETISM's Phase-5 review and confirmed by Red Team's Phase-5 final audit -- do NOT cite the original 'replace-rear ~1.1737x' figure; see NOTES.md's own Erratum section for the corrected numbers (Stress B replace-rear margin is ~3.9286x, not ~1.1737x) rather than a hardcoded decimal here, since a second hardcoded number in this description would itself be liable to go stale the same way. Any citation of this cycle's R_contact-corrected numbers must disclose (a) the analogy-proxy provenance, and (b) which endpoint (series vs. replace-rear) is being cited -- citing correction_factor_series alone as 'the' R_contact correction, without the replace-rear endpoint and its Stress-B divergence, is itself a Checkpoint criterion-4-relevant finding at whichever cycle it recurs (per Red Team's own forward tripwire, phase2_redteam_audit.md and phase3_synthesis.md).",
     "source": "experiments/067-r-contact-bonded-substrate-correction/phase2_redteam_audit.md SS2.1 (reconciled docket); experiments/067-r-contact-bonded-substrate-correction/phase3_synthesis.md (forward tripwire); experiments/067-r-contact-bonded-substrate-correction/NOTES.md",
     "phrase_patterns": [
       "R_contact",
@@ -290,6 +290,34 @@
       "experiments/*/phase*.md",
       "lab/thermo_sidecar.py",
       "lab/validation/run_all.py"
+    ]
+  },
+  {
+    "id": "exp063-alpha-true-efold-staleness",
+    "description": "exp-063 Phase-5 (Iteration 40, PHOTONICS' own review, phase5_review_photonics.md line 23) claimed the witness-scale ratio L/e-fold is approx 1,900-6,000x, 'close to exact' support for front-surface generation. Corrected at Iteration 44 (exp-067) Phase 2 (PHOTONICS' own catch this cycle) and independently re-derived by Red Team's Phase-2 audit (A2): from exp-061's own committed tau_true=8.2588, thickness=1440nm, MP-5's witness L is constructed as L=tau_true/alpha_real BY CONSTRUCTION, so the self-consistent ratio L/e-fold_real = tau_true ~= 8.26 at every witness point -- NOT 1,900-6,000x. The disputed figure traces to dividing an alpha_real-built L by an alpha_true-built e-fold, mixing two different absorption rates. Median absorption depth is therefore ~8-8.4% of L (inside the '8-12%' band later cited, not the '<0.3%' figure the old ratio implied), not a negligible fraction. Harmless to R_contact's own arithmetic (R_contact enters via h_combined(L), independent of where within L absorption is generated) but load-bearing for any citation of exp-063 Phase-5's own witness-scale generation-location defense. Any future citation of exp-063's phase5_review_photonics.md on this point must carry the corrected tau_true~=8.26/8-12% framing, never the superseded 1,900-6,000x/<0.3% figures.",
+    "source": "experiments/067-r-contact-bonded-substrate-correction/phase2_critique_photonics.md (this cycle's own catch); experiments/067-r-contact-bonded-substrate-correction/phase2_redteam_audit.md A2 (independent re-derivation); experiments/067-r-contact-bonded-substrate-correction/phase5_review_photonics.md SS1 (Phase-5 catch that this correction still lacked a durable registry guard); experiments/063-cnt-forest-thermal-conductivity-biot-check/phase5_review_photonics.md line 23 (the original, superseded claim); experiments/061-absorptivity-mechanism-literature-check/NOTES.md (tau_true/thickness source)",
+    "phrase_patterns": [
+      "1,?900.{0,15}6,?000",
+      "close to exact",
+      "tau_true\\s*(~=|approx|=|≈)\\s*8\\.2",
+      "8(\\.[0-9])?\\s*[-–]\\s*12\\s*%"
+    ],
+    "required_sites": [
+      "experiments/063-cnt-forest-thermal-conductivity-biot-check/phase5_review_photonics.md"
+    ],
+    "trigger_terms": [
+      "L/e-fold",
+      "e-fold",
+      "tau_true",
+      "front-surface generation"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md",
+      "experiments/063-cnt-forest-thermal-conductivity-biot-check/*.md",
+      "experiments/061-absorptivity-mechanism-literature-check/*.md"
     ]
   }
 ]

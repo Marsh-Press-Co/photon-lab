@@ -2384,23 +2384,45 @@ def stage25_bonded_substrate_conduction_correction():
          (r_contact=1e-2, witness scale), `correction_factor_replace_rear`
          < `correction_factor_series` -- the numeric confirmation that the
          two endpoints genuinely diverge (ELECTROMAGNETISM's Phase-2
-         catch, independently confirmed and quantified by Red Team's own
-         audit: series reads witness margin ~1.0047x, "margin nearly
-         erased"; replace reads ~1.174x, "comfortably clear" -- the two
-         endpoints disagree about whether the target constraint is even
-         at risk).
+         catch). ERRATUM (Iteration 44 Phase 5): the FIRST shipped
+         replace-rear numbers cited here ("~1.0047x... ~1.174x") were
+         computed from a passivity-violating formula (see the ERRATUM in
+         `thermo_sidecar.py`'s own section header, and (g)/(h) below);
+         CORRECTED reading: series reads witness margin ~1.0047x, "margin
+         nearly erased"; replace-rear reads ~3.9286x, "very comfortable"
+         -- the two endpoints still disagree about whether the target
+         constraint is even at risk, and disagree by MORE than the first
+         shipped numbers indicated, not less. (g)/(h): Phase-5 mandatory
+         additions (Red Team's Phase-5 final audit R1/docket item C) --
+         the exact identity `correction_factor_replace_rear ==
+         correction_factor_series - 1.0` at all 7 committed test points,
+         both scales, and a discrete strict-monotonicity check across the
+         same 7 points. These are the checks that would have caught the
+         first formula's passivity violation; gate (f) alone did not,
+         because it is a single-point ordering check the wrong formula
+         happened to also satisfy at Stress B.
       4. mirrors stage23 gate2: REGRESSION ANCHOR against this cycle's own
          committed script output (NOTES.md) -- bench/witness
          `correction_factor_series` at the primary anchor
          (r_contact=4e-8 m^2K/W, kappa_solid=0.70 W/(m*K), the worst
          sourced figure this program has for the actual candidate
-         material).
+         material). Only `correction_factor_series` is regression-anchored
+         directly here; `correction_factor_replace_rear` is pinned by the
+         exact identity in gate 3(g) instead, which is the stronger and
+         self-updating form of the same guarantee.
       5. mirrors stage23 gate3: THE FALSIFICATION-BOUNDARY IDENTITY,
          computed for BOTH endpoints -- `r_contact_critical` (the
          r_contact_m2k_w, series endpoint, at kappa=0.70/witness scale,
          that drives the corrected margin to exactly 1.0x) AND its
          `_replace_rear` companion, both reproducing this cycle's own
-         committed bisection output.
+         committed bisection output. ERRATUM (Iteration 44 Phase 5): the
+         replace-rear companion's frozen literal was `0.004291` under the
+         first (wrong) formula; CORRECTED to `0.043684` (~10x larger,
+         since a correctly-normalized good bond is far more forgiving
+         than the first formula reported) -- and the bisection's own
+         search-direction logic was flipped to match, since the corrected
+         formula is monotone INCREASING like the series endpoint, not
+         DECREASING.
       6. mirrors stage24 gate4: THE SOURCE-INSPECTION GATE -- text-scans
          this file's own just-read source for every REAL (`ts.`-qualified,
          `K_AIR`-bearing) `bonded_substrate_conduction_correction` call
@@ -2518,6 +2540,52 @@ def stage25_bonded_substrate_conduction_correction():
           stress_b["correction_factor_replace_rear"] < stress_b["correction_factor_series"],
           "replace_rear strictly less than series (EM's Phase-2 catch)")
 
+    # (3g)/(3h): Iteration 44 Phase-5 mandatory fix (ELECTROMAGNETISM's
+    # passivity-violation catch, Red Team's Phase-5 final audit R1/docket
+    # item C) -- the FIRST shipped correction_factor_replace_rear formula
+    # was undetected by any gate above because none tested its own
+    # limiting/monotonic behavior (gate 3f alone, a single-point ordering
+    # check at Stress B, is satisfied by the wrong formula too, by
+    # coincidence of where the two pathological curves happened to
+    # cross). These two checks are the ones that would have caught it,
+    # and now permanently guard against a regression: (g) the exact
+    # identity replace_rear == series - 1.0, at every one of this
+    # cycle's own 7 committed test points (both bench and witness scale);
+    # (h) replace_rear is strictly increasing in r_contact_m2k_w across
+    # those same 7 points (a dissipative linear network cannot get BETTER
+    # as its own series resistance grows -- the passivity property the
+    # first formula violated).
+    r_contact_test_points = [0.0, 4.0e-9, R_CONTACT_PRIMARY, 4.0e-6, 6.5e-5, 1.0e-3, R_CONTACT_STRESS_B]
+    n_identity_ok = 0
+    bench_replace_series = []
+    witness_replace_series = []
+    for r in r_contact_test_points:
+        b = ts.bonded_substrate_conduction_correction(
+            K_AIR, L_BENCH_M, KAPPA_WORST_SOURCED, EMISSIVITY, r,
+            length_provenance="bench_construction",
+            r_contact_provenance="analogy_proxy_diagnostic", r_contact_diagnostic_only=True)
+        w = ts.bonded_substrate_conduction_correction(
+            K_AIR, L_MP5_730X_M, KAPPA_WORST_SOURCED, EMISSIVITY, r,
+            length_provenance="extinction_derived_diagnostic_only", diagnostic_only=True,
+            r_contact_provenance="analogy_proxy_diagnostic", r_contact_diagnostic_only=True)
+        if b["correction_factor_replace_rear"] == b["correction_factor_series"] - 1.0:
+            n_identity_ok += 1
+        if w["correction_factor_replace_rear"] == w["correction_factor_series"] - 1.0:
+            n_identity_ok += 1
+        bench_replace_series.append(b["correction_factor_replace_rear"])
+        witness_replace_series.append(w["correction_factor_replace_rear"])
+    check("r-contact-guard",
+          "(3g) correction_factor_replace_rear == correction_factor_series - 1.0, exact, at all 7 test points (bench+witness)",
+          f"{n_identity_ok}/14", n_identity_ok == 14, "14/14 (7 points x 2 scales)")
+    bench_monotone = all(bench_replace_series[i] < bench_replace_series[i + 1]
+                          for i in range(len(bench_replace_series) - 1))
+    witness_monotone = all(witness_replace_series[i] < witness_replace_series[i + 1]
+                            for i in range(len(witness_replace_series) - 1))
+    check("r-contact-guard",
+          "(3h) correction_factor_replace_rear strictly increasing in r_contact_m2k_w (passivity), bench+witness",
+          f"bench monotone={bench_monotone}, witness monotone={witness_monotone}",
+          bench_monotone and witness_monotone, "both strictly increasing across all 7 test points")
+
     # ---- gate 4: regression anchor, this cycle's own committed script output ----
     bench_primary = primary   # gate 3's own primary-anchor call, bench scale, reused (identical inputs)
     witness_primary = ts.bonded_substrate_conduction_correction(
@@ -2565,18 +2633,25 @@ def stage25_bonded_substrate_conduction_correction():
           f"{r_crit_series:.6f}", abs(r_crit_series - 0.010213) <= 1e-4,
           "0.010213 m^2K/W (+-1e-4)")
 
+    # ERRATUM (Iteration 44 Phase 5, ELECTROMAGNETISM's catch): before the
+    # Phase-5 formula fix, correction_factor_replace_rear was DECREASING
+    # in r_contact_m2k_w (the passivity violation), so this bisection's
+    # search direction was flipped (`> MARGIN_BAR_WITNESS: lo=mid`) to
+    # match. The corrected formula is INCREASING, identically in
+    # direction to the series endpoint -- this loop now mirrors the
+    # series-endpoint loop above exactly.
     lo, hi = 1.0e-12, 1.0
     for _ in range(200):
         mid = (lo + hi) / 2.0
-        if _cf_replace_mp5(mid) > MARGIN_BAR_WITNESS:
+        if _cf_replace_mp5(mid) < MARGIN_BAR_WITNESS:
             lo = mid
         else:
             hi = mid
     r_crit_replace = (lo + hi) / 2.0
     check("r-contact-guard",
           "r_contact_critical, replace-rear endpoint (CF_replace(MP5-730x)==1.35 bisection) vs exp-067 NOTES.md",
-          f"{r_crit_replace:.6f}", abs(r_crit_replace - 0.004291) <= 1e-4,
-          "0.004291 m^2K/W (+-1e-4)")
+          f"{r_crit_replace:.6f}", abs(r_crit_replace - 0.043684) <= 1e-4,
+          "0.043684 m^2K/W (+-1e-4)")
 
     # ---- gate 6: source-inspection ----
     with open(__file__, "r", encoding="utf-8") as f:
