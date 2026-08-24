@@ -1714,6 +1714,86 @@ measured them here):**
   no longer need the settling disclaimer; Block ARTICLE/Block MINI
   citations still do. Full record: `experiments/066-t27-block-main-
   settling-reverification/`, LOGBOOK.md Iteration 43.
+  **Block ARTICLE's article-PRESENT legs CLOSED, Iteration 45 (exp-068)**:
+  re-certified at settled STEPS≥2800 for both padding configs, bucket
+  unchanged MARGINAL — see Iteration 45, below. **Block MINI's period-
+  match test FORMALLY RETIRED, Iteration 46 (exp-069) — not resolved
+  UNDECIDED, not relabeled a fifth time: retired by its own pre-committed,
+  code-executed decision rule on a genuinely non-decisive, properly-
+  powered result.** See **T28**, below, for what replaced it. T27 itself
+  is now fully closed — every sub-item it opened (Block MAIN settling,
+  Block ARTICLE settling, the four interior `FALLBACK_ANGLES` — closed as
+  a byproduct of exp-066's own 36-cell coverage — and Block MINI) has a
+  disposition on the record.
+
+- **T28 (opened Iteration 46, exp-069) — the `C80−C40` padding delta at
+  θ∈[36°,42°]/600nm carries a real, resolution-robust-at-two-points,
+  settled ~2.84° periodic oscillation that does NOT match T21's own
+  established fringe period `P(θ)=λ/(A·cosθ)≈1.96°` — mechanism
+  unidentified.** Discovered as the direct output of Block MINI's own
+  properly-powered retirement test (31 points/0.2° step/~3.0 T21 periods,
+  settled STEPS=2800, plus a settling-closure leg at STEPS=4200 and a
+  resolution leg at cpl 20→30): the flat/additive-systematic null is
+  decisively REFUTED (`ptp/|mean|=16.20` vs a 2.5 bar), and the signal is
+  neither an unsettled transient (STEPS 4200-vs-2800 shift ≤3×10⁻⁵
+  relative, both test cells) nor — with an important caveat below — a
+  crude grid artifact (survives cpl 20→30 without sign-flip or order-of-
+  magnitude collapse at the two cells tested), but its own best-fit
+  period (`P*=2.8421°`, `R²=0.6272`, independently confirmed by a
+  20,000-trial null-distribution test, QUANTUM's Phase-5 review, to be
+  far outside anything pure noise produces, p<5×10⁻⁵) sits 45% away from
+  T21's own predicted period — a real, different, comparably
+  well-determined periodicity, not a failed detection of T21's own.
+  **First-principles reason this is not simply "T21's fringe, differently
+  weighted between configs" (ELECTROMAGNETISM's Phase-5 finding,
+  independently verified): `A=752` cells is bit-identical for `C40`/`C80`
+  by construction (a live code assertion, not an assumption) — two
+  sinusoids sharing one frequency sum to a third sinusoid at that SAME
+  frequency regardless of relative amplitude/phase, so a 45%-off best-fit
+  period in the difference is positive evidence of a second, physically
+  distinct oscillatory contributor, most likely tied to the one thing
+  that actually differs between the two configs: `ABSORB` depth (40 vs 80
+  cells).** **Important caveat, independently converged on by three blind
+  Phase-5 seats (QUANTUM, PHOTONICS, EM) and confirmed by Red Team's final
+  audit**: the resolution check (above) tested only 2 of the 31 dense-
+  sweep angles, both sitting near `delta(θ)`'s own zero-crossing rather
+  than a peak, with a CONFIRM band an order of magnitude wider than this
+  program's own historical R3 "survives resolution" precedent (~7% at
+  exp-005/exp-015 vs. 97–150% observed here) — the correct, defensible
+  claim is "rules out sign-flip/order-of-magnitude collapse; does not
+  establish resolution convergence of the fringe's own location/
+  amplitude, nor separate T21's coherent mechanism from Yee-grid
+  discretization structure at the identical characteristic scale." A
+  peak-cell R3 recheck (θ≈37.2°/41.4°, 2 calls, zero marginal `lab/` diff)
+  is queued, cheap, Iteration 47. **A second, independently-verified,
+  materially under-reported finding (PHOTONICS' Phase-5 review, confirmed
+  bit-exact by Red Team)**: a period back-solved from the 600nm free-fit
+  (`A_eff≈518.8` cells, vs T21's own `A=752`) fits the disclosed 750nm
+  confirmatory leg's own data at **R²=0.7666** — more than double T21's
+  own model's fit to the identical 750nm data (R²=0.3480, the only number
+  the original write-up reported) — suggestive of a genuine,
+  λ-scaling-consistent coherent effect with its own characteristic length
+  scale, though POST-HOC (derived from the same 600nm dataset it is
+  partly validated against; only the 16-point 750nm leg is a genuinely
+  held-out test) and explicitly not yet a pre-registered, gated finding.
+  **Checkpoint-criterion-2 candidacy explicitly declined** (a real,
+  unresolved mechanism question, not yet a proven mechanism-class
+  boundary) — this is instrument/model-fidelity work, T1 route N/A,
+  constraint 3 not engaged. **Standing forward tripwire, Red Team's own
+  Phase-5 final audit**: T28 must receive at least one cheap, desk-only
+  first move by the close of Iteration 48; if it has not, that is itself
+  a Checkpoint-4-adjacent finding, matching this program's own established
+  lock-trigger phrasing (`Q_ext(x)`/exp-059, `R_contact`/exp-067, Block
+  MINI/T23 itself). Ranked #1 for Iteration 47 (near-unanimous, all six
+  seats independently converged unprompted): a single zero-FDTD desk-check
+  batch — per-config decomposition (does the signature already live in
+  `C40` or `C80` alone?), a beat-frequency reconstruction (`1/P_beat =
+  |1/P_a−1/P_b|` solved for the second period against every named
+  geometric length scale), a taper-as-second-aperture check (`TAPER=40`
+  cells as its own diffracting sub-aperture), and a systematic `A_eff`
+  trace against `design_geometry.py`'s own named constants — before any
+  new FDTD spend. Full record: `experiments/069-t21-block-mini-period-
+  match-power-up/`, LOGBOOK.md Iteration 46.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -14034,3 +14114,172 @@ its own pre-committed integrity tripwires when they come due mid-cycle,
 not at cycle-close review. **Ruled a notification, not a pause** — cycle
 closes unblocked, Block MINI locked for Iteration 46 as the concrete,
 actionable remedy.
+
+## Iteration 46 — Block MINI's Period-Match Test, Powered Up and Formally Retired; A New Unexplained Periodicity (T28) (exp-069) — 2026-08-24
+
+**Lead: THERMODYNAMICS, by rotation.** Executes PLAN.md's Iteration-46
+LOCKED, unconditional mandate (Red Team's Iteration-45 Phase-5 final-audit
+ranking #1, born of Iteration 45's own CHECKPOINT firing): Block MINI's
+period-match test (`P-VIS42-10`, exp-065), deferred-behind-relabeling for
+a third (or fourth, by this program's own more literal count) consecutive
+cycle — "either build the properly-powered FDTD version (≥2–3 T21 periods
+at ~0.2° spacing, settled STEPS≥2800, desk-first per QUANTUM's own
+zero-cost check on the existing settling-delta dataset before any FDTD
+spend) or formally retire the test with a stated reason — no further
+relabeling, no further citation-tripwire-only treatment."
+
+**Pre-flight**: continuation of an already-running autonomous shift.
+Dependencies (`numpy`/`scipy`/`matplotlib`/`pillow`/`autograd`/`fdtd`/
+`ceviche --no-deps`) reinstalled fresh in this container per SESSION_LOG's
+own documented wrinkle. Full trust suite reconfirmed green twice this
+shift: 193/193 (`--only 1,2,...,25`, heavy stage 5 skipped per house
+convention) before any panel work began, and again after exp-069's own
+run.
+
+**Desk-first check, run and committed BEFORE Phase 1** (closing the exact
+gap that fired Iteration 45's own CHECKPOINT — QUANTUM's own proposed
+zero-cost check, silently dropped mid-cycle last time): a standalone
+script read exp-066's own already-committed 36-cell Block MAIN
+settling-delta dataset (`delta(θ)=C_2800−C_1400`, fixed padding) and found
+the adjacent-pair sign-flip fraction is 1.0/0.6/0.8 at 600/450/750nm —
+suggestive but NOT Block MINI's own scored quantity (a different delta:
+STEPS-settling, not the padding delta `C80−C40`).
+
+**Full five-phase panel cycle**: Phase 1 (THERMODYNAMICS proposes a
+31-point/0.2°-step/~3.06-period dense sweep at settled STEPS=2800, plus a
+genuinely-coded period-match statistic §4's own conjunctive REFUTE clause
+had always promised but never implemented) → five blind Phase-2 critiques
+(all support-with-changes — PHOTONICS caught the 600nm-scoping
+justification was Nyquist-backward; MATERIALS caught a silent R_contact
+omission; ELECTROMAGNETISM caught an epistemic overclaim treating T21's
+own fitted stationary-phase-limit model as an exact/independent period;
+QUANTUM caught a missing R3 resolution check per this program's own
+standing meta-rule; VISION caught a "PARTIAL escape hatch" — the Combined
+Verdict's own third bucket committed to nothing, structurally identical
+to the failure shape that fired Iteration 45's CHECKPOINT) + Red Team's
+Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 10 items, **zero
+overridden** — its own sharpest, self-found attack: the design's
+"not settling" language was never actually WIRED to the settling-closure
+test meant to establish it, the identical failure shape reproduced one
+level down inside the very design meant to close it) → Phase 3 synthesis
+(all 10 mandatory fixes applied: the Combined Verdict restructured into
+one 5-way conjunctive gate — P-069-1 AND P-069-2 AND P-069-3 AND P-069-4
+AND P-069-5 — with a pre-committed non-decisive-outcome rule computed IN
+CODE, not prose, that any other combination triggers immediate formal
+retirement, never PARTIAL-and-deferred; a bounded 750nm confirmatory leg
+added; a minimal R3 resolution check added, mirroring exp-033's own
+established cpl 20→30 rescale idiom; budget recomputed to 100 calls, hard
+stop restated to 100 min) → Phase 4 (100 FDTD calls, 14.76 min, ~2.2×
+faster than budgeted — G-1 identity gate PASSED 4/4 exact, independently
+spot-verified bit-exact against exp-065's own committed data before the
+full run) → six blind Phase-5 reviews (5 PARTIAL: PHOTONICS, EM, QUANTUM,
+VISION, THERMODYNAMICS' own self-review; 1 PROMISING-as-process:
+MATERIALS) → Red Team's Phase-5 final audit.
+
+**Headline result**: P-069-1 (amplitude) REFUTEs decisively
+(`ptp/|mean|=16.20`, far past the 2.5 bar) — the flat/additive-systematic
+null this program has defaulted to for T24 since Iteration 23 is
+conclusively rejected. But P-069-2 (fixed T21 period, `R²=0.2016`) and
+P-069-3 (free period, best fit `P*=2.8421°`, `R²=0.6272`, 45% off T21's
+own `P(39°,600nm)=1.9608°`) both land in a genuine gray zone — real,
+well-determined periodic structure, just not at T21's own predicted
+period. P-069-4 (settling) and P-069-5 (resolution/R3) both CONFIRM
+cleanly at the two cells tested. Per the pre-committed, code-executed
+rule, the Combined Verdict is **`FORMAL_RETIREMENT_NON_DECISIVE`** —
+**Block MINI's period-match test is formally retired, not deferred a
+fifth time**, and this program's own new live thread **T28** (see LIVE
+THREADS, above) records what replaced it: a real, unexplained ~2.84°
+periodicity in the padding delta itself.
+
+**Phase-5 findings, independently re-verified by Red Team's final audit
+from raw data/code, not seat prose**: (1) PHOTONICS' λ-scaled-aperture
+finding — a period back-solved from the 600nm free-fit (`A_eff≈518.8`
+cells) fits the 750nm leg at **R²=0.7666**, more than double T21's own
+model's fit to the same data (R²=0.3480) — real, materially
+under-reported by the original write-up, now disclosed with its post-hoc-
+fit caveat carried forward; (2) QUANTUM's (and, convergently, PHOTONICS'/
+EM's) R3-overclaim critique — the resolution check's own "not... Yee-grid
+discretization structure" language overstated what a 2-of-31-angle,
+near-zero-crossing pass (97–150% margin vs. this program's own ~7%
+historical R3 precedent, exp-005/015) actually shows — corrected in place
+(erratum convention, original scored values untouched); (3) EM's
+same-frequency-superposition argument — `A=752` is bit-identical for
+`C40`/`C80` by a live code assertion, so a 45%-off best-fit period cannot
+be "T21's fringe, differently weighted" — confirmed sound, first-
+principles evidence for a second, `ABSORB`-depth-tied mechanism; (4)
+MATERIALS' two process findings — `fdtd_budget()`'s wall-clock formula
+breaks down for small batches (documented, queued) and a genuinely STALE
+`lab/caveat_lint_config.json` registry entry (still described Block MINI
+as "STILL UNDECIDED" post-retirement) — **fixed same-shift**, widened
+`required_sites`/`trigger_terms`/`candidate_globs`, `lab/caveat_lint.py`
+reruns clean; (5) VISION's "PARTIAL escape hatch" closure — confirmed at
+the code level: `run.py::score()`'s Combined Verdict is a strict
+three-branch `if/elif/else` with no reachable `PARTIAL` string anywhere.
+
+**Checkpoint determination (Red Team's Phase-5 final audit, all five
+criteria checked explicitly): NONE fire.** The R3-language overclaim and
+the stale registry entry are both real defects of a species this program
+has fired criterion 4 on before (Iterations 36–40), but neither carries
+the aggravating fact that distinguished those firings — a violated
+pre-committed forward tripwire, or a defect surviving an entire cycle's
+own five-phase process undetected until a later cycle. Both were caught
+within THIS cycle's own Phase 5, by its own blind review process, before
+close — the mechanism designed to catch exactly this working as intended,
+matching this program's own non-firing precedent (Iterations 19/23/38/
+42/43), not the firing pattern. A new forward tripwire is set instead:
+T28 must receive at least one cheap, desk-only first move by Iteration
+48's close, or that scheduling gap itself becomes Checkpoint-4-adjacent
+(matching the T23/Block MINI/`Q_ext(x)`/`R_contact` lock-trigger
+precedent).
+
+**Verdict: PARTIAL** — Red Team's own synthesis, not a vote average
+(5 PARTIAL / 1 PROMISING-as-process, folded in not overridden): real,
+verified, load-bearing process progress (a four-cycle-deferred,
+Checkpoint-4-flagged citation-tripwire pattern is genuinely closed,
+independently confirmed at the code level, not the prose level) but the
+substantive optics question ends MORE open, not less — T28 is real,
+resolution-robust-at-two-points, settled, and unexplained. Not PROMISING
+(the phenomenon program's own constraint-3 ledger gained zero ground this
+cycle, by design — T1 route N/A throughout); not RULED OUT (nothing here
+forecloses a mechanism class or proves joint unsatisfiability).
+
+**Mandatory-fix docket (6 items — 2 applied same-shift, 4 queued for
+Iteration 47, none blocking this cycle's close)**: (1) the stale
+`caveat_lint_config.json` entry, fixed and re-verified live; (2) the
+overclaimed R3 language in `phase4_results.md`, corrected in place with
+PHOTONICS' λ-scaling finding disclosed alongside it; (3) a peak-cell R3
+recheck (θ≈37.2°/41.4°, 2 calls, near-zero cost); (4) the T28
+forward-tripwire itself; (5) an `fdtd_budget()` small-batch documentation
+caveat, folding in THERMODYNAMICS' own independently-derived cross-cycle
+pattern (1.28×/2.70×/2.20× overestimate at exp-065/066/069 — a recurring
+property of the formula's contention assumption, not one-off variance);
+(6) R_contact, carried forward unchanged, correctly disclosed this cycle.
+
+**Ranked queue for Iteration 47** (Red Team's Phase-5 final-audit
+reconciliation of all six seats — a genuine, unprompted cross-seat
+convergence, all six blind reviews independently proposing some form of
+"characterize T28's mechanism, desk-first"): (1) **a single zero-FDTD-cost
+desk-check batch on T28's mechanism** — per-config decomposition (QUANTUM:
+does the signature already live in `C40` or `C80` alone, or only in the
+difference?), a beat-frequency reconstruction (EM: solve for a second
+period `P_b` against every named geometric length scale), a
+taper-as-second-aperture check (MATERIALS: does `TAPER=40` cells alone
+predict ~2.84°?), and a systematic `A_eff≈519`-cell trace against
+`design_geometry.py`'s own named constants (PHOTONICS) — before any new
+FDTD spend; (2) EM's C60/C70 falsification test (already-built congruent
+configs, testing whether the period tracks `ABSORB` depth) or PHOTONICS'
+properly-powered T28 re-run at 750nm/450nm, whichever (1)'s own result
+sharpens toward — folding in item 3's cheap peak-cell R3 recheck at
+near-zero marginal cost; (3) R_contact's `measured_direct` literature
+search, unchanged ranking, still the only item across five cycles that
+can move a real materials number, still blocked purely on WebSearch/
+WebFetch tooling; (4) THERMODYNAMICS' desk-only WKB/adiabatic
+boundary-reflectance rider for the graded-loss `ABSORB` band, foldable
+into (1)'s own batch if capacity allows. Full record:
+`experiments/069-t21-block-mini-period-match-power-up/` — Phase-1
+proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
+synthesis, NOTES.md, `design_geometry.py`/`run.py`, `phase4_results.md`
+(+ Phase-5 corrections), `results.json`, six Phase-5 blind reviews,
+Phase-5 Red Team final audit; `lab/caveat_lint_config.json` (updated
+`exp065-steps1400-unsettled-plane-channel` entry); LOGBOOK.md LIVE
+THREADS (T27 closed, T28 opened).
