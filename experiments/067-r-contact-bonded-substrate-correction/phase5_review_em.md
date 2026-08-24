@@ -1,0 +1,77 @@
+# Phase 5 Review — ELECTROMAGNETISM — Panel Iteration 44 (exp-067)
+
+*Fresh sub-agent, blind to the other six seats' Phase-5 outputs this cycle. All numbers below were independently recomputed by direct invocation of the actual committed `lab/thermo_sidecar.py::bonded_substrate_conduction_correction` (commit `a70c301`), not taken from prose. Preserved verbatim as delivered.*
+
+## 1. Independent verification — and whether the "replace-rear" fix actually resolves my own Phase-2 topology attack
+
+**Short answer: no. It ships a second endpoint that is itself wrong — a genuine passivity violation, not a resolved ambiguity — and the error is more consequential than the one it was built to fix.**
+
+### 1.1 Re-deriving the shared network
+
+`front_surface_conduction_correction` defines everything relative to one baseline: `dt_ss_full_K = p_abs_w / (area·h_combined)` (`mixed_length_scale_regime`, lines 374–377), i.e. `ΔT_lumped = P''·R_rear` where `R_rear = 1/h_combined(L)`, `h_combined(L) = k_air/L + 4εσT_amb³`. Bracket B's own `correction_factor = 1 + Bi_gas + Bi_rad = 1 + R_cond/R_rear` where `R_cond = L/κ_solid` — confirmed directly from `biot_number`'s docstring (`Bi = k_air/k_solid`, length-invariant because `h_gas·L/k_solid = (k_air/L)·L/k_solid`) and from `front_surface_conduction_correction`'s own formula (lines 456–501). This is the single baseline every margin bar (TD-4's 100×, TD-5's 1.0×) in this program is pegged to.
+
+The **series** endpoint stacks three resistors — `R_cond + R_contact + R_rear` — and correctly reports `CF_series = 1 + (R_cond+R_contact)/R_rear = CF_bracket_B + Bi_contact`. I confirmed this algebraically and numerically at every one of the six test points; it recovers bracket B exactly at `R_contact=0` (P-067-1, CONFIRMED, gate 3a) and is monotonically increasing in `R_contact` — physically sound.
+
+The **replace-rear** endpoint is supposed to model the *complementary*, physically real case my own Phase-2 attack named: the substrate fully replaces the rear-loss channel (`R_rear` gone entirely), leaving `ΔT_replace = P''·(R_cond + R_contact)`. On the SAME baseline (`R_rear`) everything else uses, this is:
+
+```
+CF_replace_rear_CORRECT = (R_cond + R_contact) / R_rear = (CF_bracket_B − 1) + Bi_contact  =  CF_series − 1   (exact identity)
+```
+
+**What actually shipped** (`thermo_sidecar.py` line 698): `correction_factor_replace_rear = 1.0 + (l_geometric_m/k_solid) / r_contact_m2k_w = 1 + R_cond/R_contact`. This normalizes against **`R_contact` itself**, not `R_rear` — a completely different, uncalibrated reference scale that happens to coincide with the shared-baseline formula's own structure (`1 + R_cond/R_boundary`) only because `R_boundary` was swapped from `R_rear` to `R_contact` without re-deriving what "1" means for that swap. `run.py` line 118 then divides `BASE_WITNESS["correction_factor"]` (an `R_rear`-anchored number) by this `R_contact`-anchored `CF_replace_rear` to produce "margin_replace" — a mixed-baseline computation, propagated into `phase4_results.md`'s table verbatim.
+
+### 1.2 The consequence: a passivity violation, not an open normalization question
+
+I recomputed all six test points from the live module (`python3` against `lab/thermo_sidecar.py` directly):
+
+| R_contact (witness) | CF_series (correct, matches shipped) | CF_replace, **SHIPPED** | CF_replace, **CORRECT** (`=CF_series−1`) |
+|---|---|---|---|
+| 4×10⁻⁹ | 1.044866 | **375429.6** | 0.044866 |
+| 4×10⁻⁸ (primary anchor) | 1.044867 | **37543.9** | 0.044867 |
+| 6.5×10⁻⁵ (second anchor, the one A7 calls "the closer physical analogy") | 1.046808 | **24.10** | 0.046808 |
+| 1×10⁻³ (Stress A) | 1.074742 | **2.502** | 0.074742 |
+| 1×10⁻² (Stress B) | 1.343628 | **1.150171** | 0.343628 |
+
+`R_contact → 0` recovers `CF_bracket_B` **exactly** for the series endpoint (P-067-1 holds). Under the shipped replace-rear formula, `R_contact → 0` **diverges to infinity** — the shipped code reports that a *near-perfect bond* to the substrate is catastrophic (a 37544× correction factor at the primary, sourced-analogy anchor). Under the correctly-normalized formula, `R_contact → 0` converges to a small, finite floor (`CF_bracket_B − 1`) — a near-perfect bond is enormously *good* (margin ≈ 30× at the primary anchor, vs. the shipped code's implied margin ≈ 0×). **The shipped formula is inverted over essentially its entire tested domain.**
+
+This is not merely "not independently re-derived from first principles" (NOTES.md's own Idealization 5 framing) — it is a **passivity violation**, squarely inside my own charter. For a fixed replace-rear topology, adding more series resistance (`R_contact`) can never *reduce* the steady-state ΔT; the shipped `1 + R_cond/R_contact` is monotonically **decreasing** in `R_contact` (confirmed directly: `bisect_r_contact_critical`'s own docstring in `run.py`, lines 66–71, states this direction explicitly and treats it as an accepted feature of "this endpoint's own formula" rather than diagnosing it as a sign error). A dissipative linear network cannot behave this way. The correct formula (`CF_series − 1`) is monotonically increasing in `R_contact`, as required.
+
+**A directly citable, non-hypothetical symptom already visible in the shipped table**: at Stress A (witness scale), `CF_witness,series = 1.074742` (margin 1.2561×, PASS) vs. `CF_witness,replace = 2.502` (margin **0.540×, FAIL** — worse than bracket B's own 1.2920× baseline!). The endpoint whose entire purpose is to represent "a good bond outperforming free air" reports a *worse-than-no-contact-modeled-at-all* outcome at this point. Gate 3f only checks the ordering `replace < series` at the single Stress-B point, where the two pathological curves happen to cross — it does not, and by construction cannot, catch that the ordering flips at Stress A, or that the endpoint diverges the wrong way as `R_contact→0`. **No stage-25 gate tests replace-rear's own limiting/monotonic behavior** — the exact class of check `P-067-1`/gate 3a gives the series endpoint. This is the load-bearing gap: the mandatory-fix docket (Red Team's §2.1, applied verbatim at Phase 3) added a second *number*, correctly per Phase 2's ask, but never added a second *identity gate*, and the number that shipped fails the identity a correct one would trivially satisfy.
+
+### 1.3 Does the corrected physics still support the headline "Stress-B divergence"?
+
+Directionally, my own Phase-2 topology attack is *still* correct and, if anything, **more decisively vindicated** by the correct math: a well-bonded substrate genuinely can and does outperform free-air rear loss — at the primary/second sourced-analogy anchors, `CF_replace_correct ≈ 0.045–0.047`, meaning the corrected ΔT is roughly 22–23× *smaller* than bracket B's own baseline, not the ~24×–375,000× *worse* the shipped code reports. But the specific "verdict flip" language this cycle bet on ("series: margin nearly erased 1.0047× vs. replace: comfortably clear 1.174×" at Stress B) does not survive either: under corrected physics, Stress B's replace-rear margin is **≈3.93×**, not 1.174× — over 3× more comfortable than reported, and no PASS/FAIL boundary sits anywhere near it. The claim that a real risk exists at Stress B under *either* honest reading is itself weaker than phase4_results.md states — the shipped number was accidentally in the right ballpark of "safe," but for the wrong reason and by the wrong margin.
+
+**Conclusion on the central question**: the mandatory second endpoint EM asked for at Phase 2 was the right fix in shape (a genuinely new, non-series topology), and Red Team's audit was right that it is "fixable, not fatal." But what shipped is not that fix — it is a differently-broken number that happened to survive six gates because none of them tested the one property (limiting behavior / sign of the R_contact-derivative) that would have caught it. My own Phase-2 critique bears some responsibility here too: I asked for "a second endpoint... e.g., R_contact replacing R_rear... or a parallel combination," but did not supply the exact formula, and Red Team's own audit (§A1) built and "numerically confirmed" the same broken formula I am now flagging, without checking its own limiting behavior. **Do not go easy on this because it is my own critique's lineage: the topology ambiguity is not resolved, and the record should not treat P-067-3 as confirming a genuine physical resolution until the formula is corrected.**
+
+---
+
+## 2. Next-change argument for Iteration 45 — ranked top-3, from ELECTROMAGNETISM
+
+1. **Correct `correction_factor_replace_rear`'s formula to `CF_series − 1` (equivalently `(CF_bracket_B−1) + Bi_contact`), and re-run the full stage-25 gate suite plus `run.py` before any further citation of this cycle's replace-rear numbers.** Mandatory, not optional — the current numbers (P-067-3, P-067-5's replace-rear crossing 0.004291, and every "witness margin (replace)" cell in the table) are wrong, in the physically dangerous direction at small/realistic `R_contact` (reports catastrophic failure where the correct physics says comfortable safety). This should block further citation the same way this cycle's own registry entry (`exp067-r-contact-analogy-proxy-disclosure`) already blocks citation without provenance disclosure — a sibling registry entry or an explicit erratum is needed either way.
+
+2. **Add an absolute-identity gate for the replace-rear endpoint mirroring gate 3a's own bracket-B-recovery check for the series endpoint** — e.g. `R_contact → 0` gives a finite value `≤ CF_bracket_B` (not `inf`), and `d(CF_replace_rear)/d(R_contact) ≥ 0` sampled across the test-point range (a discrete monotonicity check, cheap, zero-FDTD). This is the concrete gap that let the passivity violation ship: six gates, and none tests replace-rear's own limiting/monotonic behavior — only a single-point ordering check at Stress B, which the broken formula happens to pass by construction of where the two pathological curves cross.
+
+3. **Re-examine every downstream claim that assumed replace-rear was correctly normalized** — specifically, whether P-067-2's "bench more sensitive than witness" framing, and the `r_contact_critical` bisection's replace-rear companion (0.004291), still hold once corrected (they will not: the corrected replace-rear crossing point is roughly an order of magnitude larger, since a correctly-normalized good bond is far more forgiving than the shipped formula reports). This is squarely the work NOTES.md's own Idealization 5 flagged as "a future cycle may want to re-derive... from a genuine two-resistor-network solve" — I have now done that re-derivation and found it *reverses* the shipped conclusion at small `R_contact`, which promotes this from "non-blocking, flagged for scrutiny" to a binding forward item, not a nice-to-have.
+
+---
+
+## 3. Verdict: **PARTIAL**
+
+Not PROMISING: the specific deliverable built to resolve my own Phase-2 topology attack — the mandatory second endpoint — does not actually resolve it. It ships a differently, more severely broken number (a passivity-violating formula that diverges the wrong way as the bond quality improves, confirmed decisively by direct execution of the committed code, not by reading prose), undetected through Phase 2, Red Team's own independent numerical build, Phase 3, Phase 4's 23/23 stage-25 gates, and `run.py`'s independent reproduction — six independent checkpoints, none of which tested the one property that would have caught it.
+
+Not RULED OUT: nothing here forecloses the R_contact mechanism or the underlying physical question. If anything, the correct re-derivation *strengthens* the case that a well-bonded substrate is a materially favorable regime worth taking seriously (margins ≈ 22–30× more favorable than bracket B at the sourced-analogy anchors, not the shipped code's implied catastrophic failure) — this is good news for the candidate material's real-world prospects, just not news this cycle's own record currently states correctly.
+
+PARTIAL because: the series endpoint (P-067-1, P-067-2, P-067-4, gate design for it) is sound, independently re-verified, and correctly resolves the recovery identity; the disclosure/provenance discipline (both R_contact provenance guard and A7's anchor-relevance framing) is genuinely good work. But the cycle's own headline deliverable — the fix for a materially-consequential defect this program's own Red Team ruled "not marginal... flips the headline verdict" — does not survive independent re-derivation on my own seat's own bookkeeping standard (passivity), and that standard is exactly what this seat exists to police.
+
+---
+
+## 4. Flags on `phase4_results.md`
+
+**Numeric/physics defect (load-bearing, not caught by any of the six stage-25 gates or by `run.py`'s own independent re-run):** every `correction_factor_replace_rear` value and every "margin (replace)" cell in the Phase-4 table (lines 89–96 of `phase4_results.md`, reproducing `run.py`'s printed table) is computed from a formula (`1 + R_cond/R_contact`) that is not normalized against the same baseline (`R_rear`) as `correction_factor_series`/`correction_factor_bracket_b_only`, and is monotonically **decreasing** in `R_contact` — the opposite direction from a physically sound "contact resistance as an added series/limiting element" model. This is a passivity violation, confirmed by direct re-derivation and by direct execution of the committed code, not a matter of interpretation.
+
+**Overclaim:** "P-067-3 (EM/A1's endpoint divergence): CONFIRMED, exactly as Red Team's own independent Phase-2 computation predicted" (line 122–125) overstates what was actually shown. Both the Phase-2 audit's own computation and the Phase-4 confirmation used the same uncorrected formula; "confirmed" here means "the buggy number reproduces the buggy prediction," not that the physical divergence claim is sound. The 1.0047×-vs-1.174× framing should not be cited as a resolved physical finding until the formula is corrected.
+
+**Things done well:** the series-endpoint machinery (`correction_factor_series`, gate 3a's bracket-B recovery, the regression anchor, the refusal-identity and signature gates) is correct, independently reproduced bit-for-bit by both `run.py` and stage 25, and the bonus fix caught mid-Phase-4 (the `_STAGE_IDS` off-by-one silently pulling in stages 2/5 on `--only 25`) is a genuine, well-disclosed catch of the exact "false-positive N/N passed" failure class this program's own R4 discipline exists to prevent — good instinct, correctly generalized. The provenance-guard design (`_validate_r_contact_provenance`, the licensed/diagnostic-only split) is a clean, correctly-argued reuse of the `length_provenance` precedent. A7's anchor-relevance disclosure (which of the two analogy figures is architecturally closer to a root/substrate bond) is honest and useful, and not undermined by the finding above.
+
+**Files referenced**: `/home/user/photon-lab/lab/thermo_sidecar.py` (lines 333–432, 435–528, 577–743), `/home/user/photon-lab/lab/validation/run_all.py` (lines 2339–2570), `/home/user/photon-lab/experiments/067-r-contact-bonded-substrate-correction/run.py` (lines 63–75, 100–140), `/home/user/photon-lab/experiments/067-r-contact-bonded-substrate-correction/phase4_results.md`, `/home/user/photon-lab/experiments/067-r-contact-bonded-substrate-correction/NOTES.md` (Idealization 5), `/home/user/photon-lab/experiments/067-r-contact-bonded-substrate-correction/phase2_redteam_audit.md` (§A1).
