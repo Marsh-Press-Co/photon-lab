@@ -528,6 +528,221 @@ def front_surface_conduction_correction(k_air: float, l_geometric_m: float,
     }
 
 
+# --------------------------------------------- bonded-substrate contact term
+# Panel Iteration 44 (exp-067). PLAN.md's `R_contact` item, LOCKED
+# unconditional for this iteration (Red Team's Phase-5 final audit at
+# Iteration 43, granting THERMODYNAMICS' escalation request after three
+# consecutive deferrals -- Iterations 41, 42, 43 -- matching this program's
+# own lowest-ever 3-deferral lock precedent, exp-059/Q_ext(x)). Models the
+# CNT-forest root-to-substrate thermal CONTACT resistance as a genuinely new
+# thermal-resistance term, distinct from `front_surface_conduction_
+# correction`'s own already-modeled solid-conduction/rear-boundary-loss pair
+# -- see MATERIALS' own Iteration-40 Phase-5 finding (exp-063 phase5_review_
+# materials.md): the same weak, sparse van-der-Waals-type contact physics
+# that makes inter-tube junctions poor thermal conductors (query 10,
+# exp-063 phase4_results.md: inter-tube contact resistance ~4e-8 m^2K/W,
+# ~3 orders of magnitude worse than a covalent junction) plausibly ALSO
+# governs the forest ROOT's own bond to whatever substrate it is grown or
+# mounted on -- a real fabrication interface never previously sourced or
+# modeled here.
+#
+# NO NEW LITERATURE SEARCH THIS CYCLE (disclosed, not silent -- WebSearch/
+# WebFetch were unavailable this run; the dedicated 3-5 query dispatch
+# Iteration-40's own audit specified as the correct remedy stays queued for
+# a future cycle). Every R_contact test value this cycle uses is an
+# ANALOGY-BASED PROXY (query 10's inter-tube figure, or query 2's own
+# already-committed "interfacial ~0.6-0.7 cm^2*K/W" TIM-boundary figure --
+# see NOTES.md for which is judged the closer physical analogy and why) --
+# never a direct measurement of the actual root/substrate interface.
+#
+# TWO ENDPOINTS, not one (Panel Iteration 44 Phase 2, ELECTROMAGNETISM's
+# load-bearing catch, independently confirmed and quantified by Red Team's
+# own Phase-2 audit): `front_surface_conduction_correction`'s own R_rear
+# (loss to quiescent air + radiation at an EXPOSED rear face) and a bonded
+# substrate's own R_contact describe MUTUALLY EXCLUSIVE boundary conditions
+# at the SAME face -- a face is either covered by a substrate or exposed to
+# free air, not both. Stacking them in SERIES (as a first draft of this
+# cycle's own proposal did) forces correction_factor_series >= CF_bracket_B
+# for every R_contact >= 0, structurally forbidding the physically-plausible
+# case where a GOOD bond (small R_contact into an effectively infinite
+# substrate heat sink) outperforms free-standing rear-air loss. Red Team's
+# own Phase-2 audit built and numerically confirmed this is not a marginal
+# concern: at this cycle's own "Stress B" test point (R_contact=1e-2 m^2K/W,
+# witness geometry), the series endpoint reads witness margin ~1.0047x
+# ("margin nearly erased") while the replace-rear endpoint reads ~1.174x
+# ("comfortably clear") -- the two endpoints disagree about whether the
+# target constraint is even at risk. BOTH endpoints are therefore computed
+# and returned by every call, neither asserted as the true deployment
+# physics (see `model_note` below).
+LICENSED_R_CONTACT_PROVENANCE = frozenset({
+    "measured_direct",       # a real, sourced measurement of the ACTUAL
+                              # root/substrate contact interface. Licensed
+                              # unconditionally -- no cycle has produced one
+                              # yet (T18's own WebFetch block; see above).
+})
+DIAGNOSTIC_ONLY_R_CONTACT_PROVENANCE = frozenset({
+    "analogy_proxy_diagnostic",  # a value borrowed from a DIFFERENT (but
+                              # mechanistically similar) interface as a
+                              # stand-in estimate -- NOT a direct measurement
+                              # of the interface actually being modeled.
+                              # Permitted ONLY with
+                              # r_contact_diagnostic_only=True.
+})
+
+
+def _validate_r_contact_provenance(r_contact_provenance, r_contact_diagnostic_only):
+    """Shared guard for `r_contact_provenance`, called first thing inside
+    `bonded_substrate_conduction_correction` -- same allow-list-not-deny-
+    list shape, and the same reason, as `_validate_length_provenance`
+    (Iteration 41/exp-064, QUANTUM OPTICS): a future cycle's own analogy
+    source is not enumerable in advance, so refusing everything not
+    explicitly licensed (rather than denying only today's known proxy) is
+    the durable form of this guard."""
+    if r_contact_provenance in LICENSED_R_CONTACT_PROVENANCE:
+        return
+    if (r_contact_provenance in DIAGNOSTIC_ONLY_R_CONTACT_PROVENANCE
+            and r_contact_diagnostic_only):
+        return
+    raise ValueError(
+        f"r_contact_provenance={r_contact_provenance!r} "
+        f"(r_contact_diagnostic_only={r_contact_diagnostic_only}) is not "
+        "licensed for a contact-resistance role. r_contact_m2k_w MUST be "
+        "either a real measured root/substrate interface figure, or an "
+        "explicitly-flagged analogy-based proxy from a different interface "
+        "-- NEVER passed unflagged (Panel Iteration 44/exp-067, modeled on "
+        "T23's length_provenance precedent). Licensed: "
+        f"{sorted(LICENSED_R_CONTACT_PROVENANCE)}. Diagnostic-only "
+        "(requires r_contact_diagnostic_only=True): "
+        f"{sorted(DIAGNOSTIC_ONLY_R_CONTACT_PROVENANCE)}.")
+
+
+def _r_contact_realizability_note(r_contact_provenance, r_contact_diagnostic_only):
+    """The provenance-honesty-vs-buildability distinction, mirrored from
+    `_geometric_realizability_note` (Iteration 41 Phase-2, THERMODYNAMICS'
+    attack): a diagnostic_only=True call is correctly TAGGED, but tagging
+    says nothing about whether the actual root/substrate interface has ever
+    been measured to have this resistance."""
+    if r_contact_diagnostic_only:
+        return (
+            "UNGROUNDED -- this r_contact_m2k_w is an analogy-based proxy "
+            "value (r_contact_diagnostic_only=True), borrowed from a "
+            "DIFFERENT interface's own measurement, not a direct "
+            "measurement of the actual CNT-forest root/substrate bond. A "
+            "green PASS on any gate reading this dict answers a "
+            "provenance-HONESTY question only (the value is correctly "
+            "labeled as an analogy) -- NEVER a measurement question "
+            "(whether the real interface has ever been shown to have this "
+            "resistance). See exp-067 NOTES.md.")
+    return (f"N/A -- r_contact_provenance={r_contact_provenance!r} is a "
+            "licensed direct-measurement category; this field only "
+            "qualifies r_contact_diagnostic_only=True calls.")
+
+
+def bonded_substrate_conduction_correction(
+        k_air: float, l_geometric_m: float, k_solid: float, emissivity: float,
+        r_contact_m2k_w: float, t_ambient_k: float = 293.15, *,
+        length_provenance: str, r_contact_provenance: str,
+        diagnostic_only: bool = False,
+        r_contact_diagnostic_only: bool = False) -> dict:
+    """Bonded-substrate thermal correction: composes
+    `front_surface_conduction_correction` (does not reimplement it) and adds
+    a root/substrate CONTACT resistance term, `r_contact_m2k_w` (units
+    m^2*K/W, matching the sourced analogy figures' own units exactly -- no
+    conversion needed). See this module's own section header above for the
+    two-endpoint design and why a single series-stacked number is not
+    sufficient.
+
+    ENDPOINT 1 -- `correction_factor_series` (a ONE-SIDED WORST-CASE bound,
+    NOT a general bonded-substrate model): R_contact stacks IN SERIES
+    beneath `front_surface_conduction_correction`'s own rear-boundary loss
+    channel (as if the bond is imperfect/partial and the quiescent-air+
+    radiation channel still operates near the contact zone too):
+        h_combined = k_air/l_geometric_m + 4*emissivity*SIGMA_SB*t_ambient_k**3
+        Bi_contact = r_contact_m2k_w * h_combined
+        correction_factor_series = CF_bracket_B + Bi_contact
+    `r_contact_m2k_w -> 0` recovers `front_surface_conduction_correction`'s
+    own `correction_factor` (bracket B) EXACTLY, by construction (trust-
+    suite gate 3a below).
+
+    ENDPOINT 2 -- `correction_factor_replace_rear` (the complementary
+    endpoint, Panel Iteration 44 Phase 2, ELECTROMAGNETISM's mandatory
+    addition): R_contact REPLACES the rear-boundary loss channel entirely
+    (a well-bonded bulk substrate acting as an effectively infinite heat
+    sink, not an additional series resistance on top of free-air loss):
+        correction_factor_replace_rear = 1 + (l_geometric_m/k_solid) / r_contact_m2k_w
+    (undefined at r_contact_m2k_w=0; returns float('inf') there -- a zero-
+    resistance bond replacing an already-finite rear-loss channel is a
+    different, non-continuous limit from ENDPOINT 1's own r_contact->0
+    case, disclosed not silently handled).
+
+    Neither endpoint is asserted as the true deployment physics -- both are
+    returned, unlabeled as "the" answer (see `model_note`).
+
+    `r_contact_provenance` (required, keyword-only, no default): declares
+    where `r_contact_m2k_w` came from; see `LICENSED_R_CONTACT_PROVENANCE`/
+    `DIAGNOSTIC_ONLY_R_CONTACT_PROVENANCE` above. `length_provenance` is
+    the SAME argument `front_surface_conduction_correction` already
+    requires, forwarded unchanged -- two independent provenance
+    declarations for two independent quantities, neither substitutes for
+    the other."""
+    _validate_r_contact_provenance(r_contact_provenance, r_contact_diagnostic_only)
+    if r_contact_m2k_w < 0:
+        raise ValueError("r_contact_m2k_w must be >= 0")
+    base = front_surface_conduction_correction(
+        k_air, l_geometric_m, k_solid, emissivity, t_ambient_k,
+        length_provenance=length_provenance, diagnostic_only=diagnostic_only)
+    h_combined = k_air / l_geometric_m + 4.0 * emissivity * SIGMA_SB * t_ambient_k ** 3
+    bi_contact = r_contact_m2k_w * h_combined
+    correction_factor_series = base["correction_factor"] + bi_contact
+    if r_contact_m2k_w > 0:
+        correction_factor_replace_rear = 1.0 + (l_geometric_m / k_solid) / r_contact_m2k_w
+    else:
+        correction_factor_replace_rear = float("inf")
+    return {
+        "correction_factor_series": correction_factor_series,
+        "correction_factor_replace_rear": correction_factor_replace_rear,
+        "correction_factor_bracket_b_only": base["correction_factor"],
+        "bi_contact": bi_contact,
+        "h_combined_w_m2k": h_combined,
+        "r_contact_m2k_w": r_contact_m2k_w,
+        "k_air": k_air,
+        "l_geometric_m": l_geometric_m,
+        "k_solid": k_solid,
+        "emissivity": emissivity,
+        "t_ambient_k": t_ambient_k,
+        "model_note": (
+            "TWO ENDPOINTS, neither asserted as the true deployment "
+            "physics. correction_factor_series: R_contact stacks IN "
+            "SERIES beneath front_surface_conduction_correction's own "
+            "rear-boundary (quiescent-air + radiation) loss channel -- a "
+            "ONE-SIDED WORST-CASE bound (monotonically >= bracket B for "
+            "any r_contact_m2k_w>=0), appropriate if the bond is imperfect "
+            "and rear-channel loss still operates near the contact zone. "
+            "correction_factor_replace_rear: R_contact REPLACES the "
+            "rear-boundary channel entirely -- appropriate for a "
+            "well-bonded, effectively-infinite substrate heat sink, and "
+            "can read BETTER than bracket B (a good bond outperforming "
+            "free-air loss is physically real, not excluded here). See "
+            "exp-067 NOTES.md, live thread T5, and "
+            "front_surface_conduction_correction's own model_note for "
+            "bracket B's own worst-case/front-colocated framing, which "
+            "this function's bracket-B-only component still carries."),
+        "netd_disclaimer": (
+            "NETD is an instrument/detector threshold, not a human "
+            "perceptual one -- any classification derived from either "
+            "correction_factor_* field does NOT bear on constraint-3/4's "
+            "human-eye verdict (panel Iteration 20 origin, reaffirmed "
+            "Iteration 40, Iteration 44)"),
+        "length_provenance": length_provenance,
+        "diagnostic_only": diagnostic_only,
+        "geometric_realizability": base["geometric_realizability"],
+        "r_contact_provenance": r_contact_provenance,
+        "r_contact_diagnostic_only": r_contact_diagnostic_only,
+        "r_contact_realizability": _r_contact_realizability_note(
+            r_contact_provenance, r_contact_diagnostic_only),
+    }
+
+
 def wien_peak_wavelength_um(t_k: float) -> float:
     """Wien's displacement law: peak blackbody emission wavelength (um)."""
     if t_k <= 0:

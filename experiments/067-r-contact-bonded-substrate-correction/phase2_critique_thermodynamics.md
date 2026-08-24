@@ -1,0 +1,27 @@
+# THERMODYNAMICS — Phase 2 Critique, Panel Iteration 44 (exp-067 candidate)
+
+## Scrutiny notes (all three assigned questions)
+
+**1. Series-network algebra.** I independently re-derived it from `front_surface_conduction_correction`'s own model: `dT = (P_abs/A)·[L/κ_solid + R_contact + 1/h_combined(L)]`, which factors exactly to `dT_ss(lumped)·[1 + Bi_gas + Bi_rad(L) + R_contact·h_combined(L)]` = `dT_ss(lumped)·[CF_bracket_B + Bi_contact]`. This matches the proposal's stated `CF_with_contact = CF_bracket_B + R_contact·h_combined(L)` exactly, and I checked every cell of the predictions table against it (bench/witness CF, both margins, and the κ_critical monotone-increase sequence 0.089731→0.09023→0.09811→0.61295 with headroom 7.80×→7.76×→7.14×→1.14×) — all internally consistent, no arithmetic defect found. The `R_contact→0` identity holds exactly by construction. **But composing rather than reimplementing raises exactly the risk the task brief names, and Section 3's gates don't cover it** — see sharpest attack below.
+
+**2. `r_contact_provenance` rigor vs. `length_provenance`.** Structurally it mirrors T23's pattern (allow-list + diagnostic escape hatch + source-inspection gate), and since every value this cycle genuinely is analogy-derived, a two-category scheme is honestly scoped, not thinned for convenience. What's missing is `length_provenance`'s own **`_geometric_realizability_note` analog** — the field Iteration 41 added specifically so a green diagnostic-path gate couldn't be misread as a buildability endorsement. `r_contact_diagnostic_only=True` alone doesn't carry that same honesty-vs-buildability distinction into the return dict; nothing in Section 3 proposes it.
+
+**3. The TD-4-more-sensitive claim.** Not a new finding — it's a direct corollary of structure this program established at Iteration 40. `Bi_gas = k_air/κ_solid = h_gas(L)·L/κ_solid` already encodes that `h_gas(L)=k_air/L` is huge at bench's µm scale; that's *why* `Bi_rad(L)` (∝L) was shown negligible at bench and non-negligible at witness. `Bi_contact = R_contact·h_combined(L)` inherits the identical `1/L` scaling as `h_gas`, so it *must* be bench-dominant for the same reason `Bi_gas` dominates `Bi_rad` at bench scale — already on the record. Framing this as "counter-intuitive" overclaims novelty I should have flagged as a predictable corollary, not a surprise.
+
+---
+
+## 1. Steel-man (140 words)
+
+The series algebra is correct — independently re-derived from `front_surface_conduction_correction`'s own model and verified against every cell of the predictions table, including the non-obvious κ_critical monotone shift and the 7.80×→1.14× headroom sequence. The `R_contact→0` identity holds exactly by construction, not by tuning. The primary-anchor scale-legitimacy self-flag (nanoscale-junction figure vs. macroscopic areal application) is precisely the self-scrutiny discipline T23 was built to enforce, and carrying query 2's own already-committed interfacial figure as a second anchor — rather than inventing a new number under a WebSearch bar — is honest reuse of this program's own record, not a substitution dressed as new evidence. This finally executes my own Iteration-43 escalation with a real, falsifiable series term instead of another disclosure sentence.
+
+## 2. Sharpest attack (149 words)
+
+Section 3's four gates omit exactly the check this program has needed twice before (stage 24 gate 3: caveat strings "lost twice, Iterations 17 and 40"). Here the risk is sharper than that precedent: T23's guard only ever preserved strings byte-identical because it changed *zero* physics — but R_contact is a genuine new term, so `front_surface_conduction_correction`'s `model_note` ("worst-case, rear-only-loss... front-surface-generation") describing bracket B alone becomes actively wrong once wrapped, not merely stale. If `bonded_substrate_conduction_correction` copies that dict and only bumps `correction_factor`/`bi_contact`, a misleading `model_note` ships silently — invisible to the numeric identity gate, which checks only `correction_factor`. Neither "preserve verbatim" nor "update and gate the update" is specified for `model_note`/`netd_disclaimer`/an R_contact-analog of `geometric_realizability`. Given this module's documented recurring failure class, shipping without a fifth gate checking disclosure-string *correctness* (not just presence) is foreseeable, not hypothetical.
+
+## 3. Verdict: **support-with-changes**
+
+Also mandatory, cheaper: fix the second-anchor conversion in Section 2 — 0.6–0.7 cm²·K/W is 6×10⁻⁵–**7**×10⁻⁵ m²·K/W, not "6×10⁻⁵–6.5×10⁻⁵" (the tested point, 6.5×10⁻⁵, happens to sit inside the correct band anyway, so no downstream number is wrong — but a locked, high-stakes desk cycle citing its own primary sourced figure should get the unit conversion right in the prose that states it).
+
+## 4. Flip condition
+
+Add a fifth stage-25 gate that verifies `model_note`/`netd_disclaimer`/an added realizability-honesty field in `bonded_substrate_conduction_correction`'s return dict is **correctly updated**, not silently stale or silently dropped, when R_contact&gt;0 — landed, this flips me to full support; shipped without it, given this exact failure class's own two-time recurrence in this codebase, flips me to oppose.

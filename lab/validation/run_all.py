@@ -2080,7 +2080,7 @@ def stage22_uniform_lossy_shell():
           abs(gap_pct - 8.326) <= 0.05, "8.326%+-0.05% (regression anchor, pinned)")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 25))
+_STAGE_IDS = frozenset(str(n) for n in range(1, 26))
 
 
 def stage23_front_surface_biot_correction():
@@ -2336,6 +2336,290 @@ def stage24_length_provenance_guard():
           n_witness >= 1 and n_bench >= 1, ">=1 of each")
 
 
+def stage25_bonded_substrate_conduction_correction():
+    """`thermo_sidecar.bonded_substrate_conduction_correction` (Panel
+    Iteration 44, exp-067) -- PLAN.md's `R_contact` item, LOCKED
+    unconditional for this iteration (Red Team's Phase-5 final audit at
+    Iteration 43, granting THERMODYNAMICS' escalation request after three
+    consecutive deferrals). PANEL.md's "new machinery => new suite stage
+    with an absolute identity gate" rule, same discipline as stages
+    8/18/21/22/23/24.
+
+    Six gates, reconciling all five Phase-2 seats' Iteration-44 critiques
+    plus Red Team's own Phase-2 audit (`experiments/067-.../
+    phase2_redteam_audit.md` SS2.1) into one docket -- nothing duplicated:
+      1. mirrors stage24 gate1: refusal identity on `r_contact_provenance`
+         (zero tolerance, 3 forbidden cases).
+      2. mirrors stage24 gate2: `inspect.signature` identity --
+         `r_contact_provenance` required, keyword-only, no default.
+      3. mirrors stage23 gate1 + stage24 gate3, SIX sub-checks: (a)
+         `r_contact_m2k_w=0` recovers `front_surface_conduction_
+         correction`'s own `correction_factor` in `correction_factor_
+         series`, bit-for-bit -- ENDPOINT 1's own absolute identity; (b)
+         `model_note` is NOT byte-identical to the wrapped
+         `front_surface_conduction_correction` call's own `model_note`, at
+         BOTH r_contact=0 and the primary anchor -- confirms this
+         function's own return dict carries a real, function-specific note
+         rather than a silently-copied-stale one from the wrapped call
+         (THERMODYNAMICS' Phase-2 attack: composing must not silently
+         inherit a now-wrong description). NOTE, disclosed: this deviates
+         from Red Team's own literal Phase-2 audit text (which asked
+         `model_note` to textually DIFFER between the two r_contact
+         values) -- this function's own `model_note` deliberately reads
+         IDENTICALLY at every r_contact value (a general, always-correct
+         two-endpoint description, not a per-value one), which closes the
+         SAME staleness risk Red Team's gate targeted by construction
+         (there is no copied-then-partially-edited string to go stale) --
+         a Director's Phase-3 judgment call, flagged here for Phase-5
+         scrutiny rather than silently substituted; (c) `model_note`
+         mentions both `correction_factor_series` and `correction_factor_
+         replace_rear` by name, at the primary anchor -- confirms it
+         actually documents the two-endpoint design, not just some note;
+         (d) `netd_disclaimer` byte-identical between r_contact=0 and the
+         primary anchor (this string is unrelated to R_contact physics,
+         unlike `model_note` -- the mirror-image check); (e) the dict
+         literally carries `r_contact_provenance`/`r_contact_diagnostic_
+         only`/`r_contact_realizability`, with correct UNGROUNDED/N/A
+         values at the primary (diagnostic) anchor; (f) at Stress B
+         (r_contact=1e-2, witness scale), `correction_factor_replace_rear`
+         < `correction_factor_series` -- the numeric confirmation that the
+         two endpoints genuinely diverge (ELECTROMAGNETISM's Phase-2
+         catch, independently confirmed and quantified by Red Team's own
+         audit: series reads witness margin ~1.0047x, "margin nearly
+         erased"; replace reads ~1.174x, "comfortably clear" -- the two
+         endpoints disagree about whether the target constraint is even
+         at risk).
+      4. mirrors stage23 gate2: REGRESSION ANCHOR against this cycle's own
+         committed script output (NOTES.md) -- bench/witness
+         `correction_factor_series` at the primary anchor
+         (r_contact=4e-8 m^2K/W, kappa_solid=0.70 W/(m*K), the worst
+         sourced figure this program has for the actual candidate
+         material).
+      5. mirrors stage23 gate3: THE FALSIFICATION-BOUNDARY IDENTITY,
+         computed for BOTH endpoints -- `r_contact_critical` (the
+         r_contact_m2k_w, series endpoint, at kappa=0.70/witness scale,
+         that drives the corrected margin to exactly 1.0x) AND its
+         `_replace_rear` companion, both reproducing this cycle's own
+         committed bisection output.
+      6. mirrors stage24 gate4: THE SOURCE-INSPECTION GATE -- text-scans
+         this file's own just-read source for every REAL (`ts.`-qualified,
+         `K_AIR`-bearing) `bonded_substrate_conduction_correction` call
+         site: every one must carry a LICENSED r_contact tag -- either
+         `r_contact_provenance="analogy_proxy_diagnostic"` +
+         `r_contact_diagnostic_only=True` (every nonzero-r_contact call
+         this cycle -- zero `measured_direct` root/substrate figures were
+         sourced, see NOTES.md), or `r_contact_provenance="measured_direct"`
+         at the one legitimate exception (gate 3a's own `r_contact=0.0`
+         identity-limit call, which tests the licensed-tag acceptance path
+         itself); non-vacuous (>=1 call site found).
+    """
+    print("stage 25 — bonded-substrate R_contact conduction correction vs identities")
+    from lab import thermo_sidecar as ts
+    import inspect as _inspect
+
+    K_AIR = 0.026
+    EMISSIVITY = 0.9
+    L_BENCH_M = 2.34e-6
+    L_MP5_730X_M = 1051.2e-6
+    KAPPA_WORST_SOURCED = 0.70          # exp-063's own worst sourced kappa_solid
+    R_CONTACT_PRIMARY = 4.0e-8           # query 10 (exp-063), inter-tube vdW proxy
+    R_CONTACT_STRESS_B = 1.0e-2
+
+    # ---- gate 1: absolute identity, zero-tolerance refusal ----
+    # Dummy (non-named) length/kappa, mirroring stage24 gate1's own
+    # convention (`0.026, 1e-6`, never L_BENCH_M/L_MP5_730X_M) -- this
+    # deliberately-invalid-tag test is not a "real" call site and must not
+    # be caught by gate 6's source-scan below.
+    forbidden = [
+        ("analogy_proxy_diagnostic", False),  # diagnostic tag, but r_contact_diagnostic_only not set
+        ("bogus_provenance", False),           # unrecognized tag
+        ("", False),                           # empty tag
+    ]
+    n_refused = 0
+    for prov, diag in forbidden:
+        try:
+            ts.bonded_substrate_conduction_correction(
+                0.026, 1.0e-6, 2.0, 0.9, 4.0e-8,
+                length_provenance="bench_construction",
+                r_contact_provenance=prov, r_contact_diagnostic_only=diag)
+            refused = False
+        except ValueError:
+            refused = True
+        n_refused += 1 if refused else 0
+        check("r-contact-guard",
+              f"bonded_substrate_conduction_correction(r_contact_provenance={prov!r}, "
+              f"r_contact_diagnostic_only={diag}) raises ValueError",
+              "raised" if refused else "DID NOT RAISE (BUG)", refused, "raised")
+    check("r-contact-guard", "refusal gate: all forbidden-tag cases raised (zero tolerance)",
+          f"{n_refused}/3", n_refused == 3, "3/3")
+
+    # ---- gate 2: inspect.signature identity ----
+    p = _inspect.signature(ts.bonded_substrate_conduction_correction).parameters.get(
+        "r_contact_provenance")
+    ok = bool(p is not None and p.default is _inspect.Parameter.empty
+              and p.kind == _inspect.Parameter.KEYWORD_ONLY)
+    check("r-contact-guard",
+          "bonded_substrate_conduction_correction: r_contact_provenance required, keyword-only, no default",
+          "OK" if ok else "MISSING/has default/not keyword-only", ok,
+          "present, KEYWORD_ONLY, no default")
+
+    # ---- gate 3: licensed-call identities (6 sub-checks) ----
+    # r_contact_provenance="measured_direct" here tests the LICENSED-tag
+    # acceptance path (mirrors stage24 gate3's own purpose) -- R_contact=0
+    # is the one value this cycle can honestly call "measured" in the
+    # trivial sense (a mathematical corner case, not a physical claim about
+    # the real interface); every OTHER call in this stage uses
+    # analogy_proxy_diagnostic, per NOTES.md's own disclosure that no real
+    # root/substrate figure was sourced this cycle.
+    zero = ts.bonded_substrate_conduction_correction(
+        K_AIR, L_BENCH_M, KAPPA_WORST_SOURCED, EMISSIVITY, 0.0,
+        length_provenance="bench_construction", r_contact_provenance="measured_direct")
+    bracket_b = ts.front_surface_conduction_correction(
+        K_AIR, L_BENCH_M, KAPPA_WORST_SOURCED, EMISSIVITY,
+        length_provenance="bench_construction")
+    check("r-contact-guard", "(3a) r_contact=0: correction_factor_series == bracket-B correction_factor",
+          f"{zero['correction_factor_series']!r}",
+          zero["correction_factor_series"] == bracket_b["correction_factor"], "exact match")
+
+    primary = ts.bonded_substrate_conduction_correction(
+        K_AIR, L_BENCH_M, KAPPA_WORST_SOURCED, EMISSIVITY, R_CONTACT_PRIMARY,
+        length_provenance="bench_construction",
+        r_contact_provenance="analogy_proxy_diagnostic", r_contact_diagnostic_only=True)
+    check("r-contact-guard", "(3b) model_note NOT silently copied from bracket-B (r_contact=0 call)",
+          "differs" if zero["model_note"] != bracket_b["model_note"] else "IDENTICAL (BUG)",
+          zero["model_note"] != bracket_b["model_note"], "differs from wrapped call's own model_note")
+    check("r-contact-guard", "(3b) model_note NOT silently copied from bracket-B (primary-anchor call)",
+          "differs" if primary["model_note"] != bracket_b["model_note"] else "IDENTICAL (BUG)",
+          primary["model_note"] != bracket_b["model_note"], "differs from wrapped call's own model_note")
+    check("r-contact-guard", "(3c) model_note names both correction_factor_series and _replace_rear",
+          "both present" if ("correction_factor_series" in primary["model_note"]
+                              and "correction_factor_replace_rear" in primary["model_note"])
+          else "MISSING",
+          "correction_factor_series" in primary["model_note"]
+          and "correction_factor_replace_rear" in primary["model_note"], "both field names present")
+    check("r-contact-guard", "(3d) netd_disclaimer byte-identical (r_contact=0 vs primary anchor)",
+          "match" if zero["netd_disclaimer"] == primary["netd_disclaimer"] else "MISMATCH",
+          zero["netd_disclaimer"] == primary["netd_disclaimer"], "byte-identical")
+    check("r-contact-guard", "(3e) primary-anchor call: r_contact_realizability correctly UNGROUNDED",
+          primary["r_contact_realizability"][:9], primary["r_contact_realizability"].startswith("UNGROUNDED"),
+          "starts with 'UNGROUNDED'")
+
+    # Direct (unwrapped) call -- NOT via `_bscc` -- so gate 6's source-scan
+    # below has a real, literal call site to inspect (mirrors stage23/24's
+    # own convention: the scanned calls are written out in full, never
+    # hidden behind a private helper).
+    stress_b = ts.bonded_substrate_conduction_correction(
+        K_AIR, L_MP5_730X_M, KAPPA_WORST_SOURCED, EMISSIVITY, R_CONTACT_STRESS_B,
+        length_provenance="extinction_derived_diagnostic_only", diagnostic_only=True,
+        r_contact_provenance="analogy_proxy_diagnostic", r_contact_diagnostic_only=True)
+    check("r-contact-guard",
+          "(3f) Stress B (witness, r_contact=1e-2): correction_factor_replace_rear < correction_factor_series",
+          f"replace={stress_b['correction_factor_replace_rear']:.4f} < series={stress_b['correction_factor_series']:.4f}",
+          stress_b["correction_factor_replace_rear"] < stress_b["correction_factor_series"],
+          "replace_rear strictly less than series (EM's Phase-2 catch)")
+
+    # ---- gate 4: regression anchor, this cycle's own committed script output ----
+    bench_primary = primary   # gate 3's own primary-anchor call, bench scale, reused (identical inputs)
+    witness_primary = ts.bonded_substrate_conduction_correction(
+        K_AIR, L_MP5_730X_M, KAPPA_WORST_SOURCED, EMISSIVITY, R_CONTACT_PRIMARY,
+        length_provenance="extinction_derived_diagnostic_only", diagnostic_only=True,
+        r_contact_provenance="analogy_proxy_diagnostic", r_contact_diagnostic_only=True)
+    check("r-contact-guard", "CF_series(r_contact=4e-8, kappa=0.70, L=bench) vs exp-067 NOTES.md script output",
+          f"{bench_primary['correction_factor_series']:.6f}",
+          abs(bench_primary["correction_factor_series"] - 1.037605) <= 1e-5, "1.037605 (+-1e-5)")
+    check("r-contact-guard", "CF_series(r_contact=4e-8, kappa=0.70, L=MP5-730x) vs exp-067 NOTES.md script output",
+          f"{witness_primary['correction_factor_series']:.6f}",
+          abs(witness_primary["correction_factor_series"] - 1.044867) <= 1e-5, "1.044867 (+-1e-5)")
+
+    # ---- gate 5: falsification-boundary identity, both endpoints ----
+    MARGIN_BAR_WITNESS = 1.35   # exp-063's own front-colocated (uncorrected) witness margin
+
+    # Direct calls (bisection helpers), same reason as above -- the bisection
+    # itself does not need to be source-scanned (it runs a synthetic sweep,
+    # not a fixed committed test point), so these stay as helper closures,
+    # but they still call the real function directly, not via `_bscc`.
+    def _cf_series_mp5(r):
+        return ts.bonded_substrate_conduction_correction(
+            K_AIR, L_MP5_730X_M, KAPPA_WORST_SOURCED, EMISSIVITY, r,
+            length_provenance="extinction_derived_diagnostic_only", diagnostic_only=True,
+            r_contact_provenance="analogy_proxy_diagnostic", r_contact_diagnostic_only=True
+            )["correction_factor_series"]
+
+    def _cf_replace_mp5(r):
+        return ts.bonded_substrate_conduction_correction(
+            K_AIR, L_MP5_730X_M, KAPPA_WORST_SOURCED, EMISSIVITY, r,
+            length_provenance="extinction_derived_diagnostic_only", diagnostic_only=True,
+            r_contact_provenance="analogy_proxy_diagnostic", r_contact_diagnostic_only=True
+            )["correction_factor_replace_rear"]
+
+    lo, hi = 1.0e-12, 1.0
+    for _ in range(200):
+        mid = (lo + hi) / 2.0
+        if _cf_series_mp5(mid) < MARGIN_BAR_WITNESS:
+            lo = mid
+        else:
+            hi = mid
+    r_crit_series = (lo + hi) / 2.0
+    check("r-contact-guard",
+          "r_contact_critical, series endpoint (CF_series(MP5-730x)==1.35 bisection) vs exp-067 NOTES.md",
+          f"{r_crit_series:.6f}", abs(r_crit_series - 0.010213) <= 1e-4,
+          "0.010213 m^2K/W (+-1e-4)")
+
+    lo, hi = 1.0e-12, 1.0
+    for _ in range(200):
+        mid = (lo + hi) / 2.0
+        if _cf_replace_mp5(mid) > MARGIN_BAR_WITNESS:
+            lo = mid
+        else:
+            hi = mid
+    r_crit_replace = (lo + hi) / 2.0
+    check("r-contact-guard",
+          "r_contact_critical, replace-rear endpoint (CF_replace(MP5-730x)==1.35 bisection) vs exp-067 NOTES.md",
+          f"{r_crit_replace:.6f}", abs(r_crit_replace - 0.004291) <= 1e-4,
+          "0.004291 m^2K/W (+-1e-4)")
+
+    # ---- gate 6: source-inspection ----
+    with open(__file__, "r", encoding="utf-8") as f:
+        own_source = f.read()
+    # NOTE: the regex below is intentionally anchored on "ts."/"K_AIR" so it
+    # matches only REAL call sites (starting `ts.bonded_substrate_
+    # conduction_correction(K_AIR, ...`), not this stage's own prose
+    # (e.g. a check()'s descriptive message string that happens to name the
+    # function) -- a bare-name regex self-matched this stage's own
+    # diagnostic text on first light, caught before commit.
+    call_re = re.compile(
+        r"ts\.bonded_substrate_conduction_correction\(\s*(.*?)\)", re.DOTALL)
+    n_call_sites = 0
+    for argtext in call_re.findall(own_source):
+        norm = " ".join(argtext.split())
+        if "K_AIR" not in norm:
+            continue   # not a real call site (e.g. a docstring/prose echo)
+        n_call_sites += 1
+        is_witness = "L_MP5_730X_M" in norm
+        is_diagnostic = ('r_contact_provenance="analogy_proxy_diagnostic"' in norm
+                          and "r_contact_diagnostic_only=True" in norm)
+        # r_contact=0.0 tagged "measured_direct" is the ONE legitimate
+        # exception (gate 3a's own identity-limit call, testing the
+        # licensed-tag acceptance path -- see that gate's own comment);
+        # every OTHER call this cycle uses an analogy proxy for R_contact
+        # (no direct root/substrate measurement exists yet, see NOTES.md),
+        # so every non-zero-r_contact call site must carry the diagnostic
+        # tag. A call is licensed either way, never bare/untagged.
+        is_zero_measured_direct = ('r_contact_provenance="measured_direct"' in norm
+                                    and ", 0.0," in norm)
+        licensed = is_diagnostic or is_zero_measured_direct
+        check("r-contact-guard",
+              f"source-scan: live call site ({'witness' if is_witness else 'bench'}-scale) "
+              "carries a licensed r_contact tag",
+              ("tagged analogy_proxy_diagnostic + r_contact_diagnostic_only=True" if is_diagnostic
+               else "tagged measured_direct (r_contact=0.0 identity call)" if is_zero_measured_direct
+               else "MISTAGGED OR MISSING"),
+              licensed, "either the diagnostic pair, or measured_direct at r_contact=0.0")
+    check("r-contact-guard",
+          "source-scan: gate is non-vacuous (>=1 real call site found)",
+          f"{n_call_sites} call sites scanned", n_call_sites >= 1, ">=1")
+
+
 def _stage_selected(n, only):
     """Stage selection, aware of ALL THREE of this suite's `--only` idioms.
 
@@ -2401,6 +2685,7 @@ if __name__ == "__main__":
     run_stage22 = _stage_selected(22, only)
     run_stage23 = _stage_selected(23, only)
     run_stage24 = _stage_selected(24, only)
+    run_stage25 = _stage_selected(25, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -2476,6 +2761,8 @@ if __name__ == "__main__":
         stage23_front_surface_biot_correction()
     if run_stage24:
         stage24_length_provenance_guard()
+    if run_stage25:
+        stage25_bonded_substrate_conduction_correction()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
