@@ -1458,6 +1458,13 @@ measured them here):**
   channel. Queued for a dedicated ABSORB sweep (Iteration-24 Tier-2 #4,
   `SRC_X` moved clear of the x-damping band so the confound EM's own two
   legs exposed does not recur) — not urgent, no verdict threatened.
+  **UPDATE Iteration 42 (exp-065): the dedicated sweep was finally run,
+  nineteen iterations after being queued.** Its own inheritance question
+  (does the beam-channel systematic transfer to the plane channel as
+  absolute or relative) is NOT resolved — the measurement is dominated by
+  a newly-discovered, much larger confound (**T27**, below) that this
+  cycle's own follow-up shows swamps the effect T24 set out to measure.
+  T24 stays open, gated on T27's closure before any future re-attempt.
 - **T25 — the ambient-sum instrument's coherent-vs-incoherent bridge gate
   has never validated the configuration it is actually used in, at any
   geometry this program has run (opened Iteration 29, exp-052, QUANTUM
@@ -1634,6 +1641,40 @@ measured them here):**
   R3-on-loaded-legs item (Iteration 34's own #2 competitive priority)
   remains outstanding, tracked in the queue, not blocking. Full record:
   `experiments/058-t25-phase-variance-redesign/`, LOGBOOK.md Iteration 35.
+- **T27 (opened Iteration 42, exp-065) — `STEPS=1400` is NOT settled on
+  `lab/ambient.py`'s plane/tapered-source, empty-scene channel at
+  near-grazing angles (±35°/±38°/±40°), general to the channel, not
+  specific to any one geometry — implicating `experiments/041-t20-angle-
+  audit` (Iteration 18)'s own established angle-standard numbers, cited
+  across every T20/T21/T24-adjacent citation and every `FALLBACK_ANGLES`-
+  scored constraint-3 reading for nineteen iterations.** Confirmed two
+  ways, both committed as reproducible code: a 4-point convergence trend
+  (`settling_trend_diagnostic.py`: −0.010965/−0.002802/−0.002801/−0.002802
+  at STEPS=1400/2800/4200/5600, C40/40°/600nm — clean convergence by 2800,
+  real transient decay not noise) and a full settled STEPS=2800 re-sweep
+  of the ±38°/±40° headline cells (`settled_sweep_steps2800_diagnostic.
+  json`), which shrinks the median boundary-systematic delta 5.4× and max
+  2.2×. **Not padding-specific**: the UNPADDED anchor geometry itself
+  shows the larger of two tested settling shifts. Phase 5 (MATERIALS,
+  VISION SCIENCE) found the exposure is wider than exp-065's own Phase-4
+  framing: ±35° — inside `FALLBACK_ANGLES`, feeding Block ARTICLE's own N9
+  aggregate — sign-flips under the same correction, not just shifts in
+  magnitude. **Open, unmapped**: the four interior `FALLBACK_ANGLES`
+  (0°/±5°/±15°/±25°) untested beyond STEPS=1400; 750nm's own residual not
+  shown fully converged even at 2800; Block ARTICLE's article-PRESENT legs
+  (only the empty floor settling-checked); Block MINI's period-match test
+  for T21-fringe-vs-settling-artifact undecided (`P-VIS42-10`, relabeled
+  `UNDECIDED`, not resolved). **Forward tripwire, adopted verbatim from
+  QUANTUM's own Phase-5 proposal, Red-Team-ratified**: no future citation
+  of `experiments/041-t20-angle-audit`'s MAIN-block rows, T21's fringe
+  model, T24's inheritance claim, or exp-065's own P-VIS42-6/7/10 may
+  treat them as settled without disclosing this gap — `lab/caveat_lint_
+  config.json` entry `exp065-steps1400-unsettled-plane-channel` enforces
+  it mechanically (self-tested, 0 required-site failures). Ranked #1 for
+  Iteration 43, near-unanimous across the panel: re-verify exp-041's own
+  MAIN-block rows at STEPS≥2800 and scope exactly how many downstream
+  citations are affected. Full record: `experiments/065-t24-absorb-
+  boundary-sweep/`, LOGBOOK.md Iteration 42.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -13281,3 +13322,193 @@ individually advanced the logbook), but Iteration 42's own lead (VISION
 SCIENCE, next in rotation, constraint-3's own least-recently-exercised
 owner) should scope its chosen item to close into, or directly feed, an
 actual constraint-scored FDTD run.
+
+## Iteration 42 — The T24 `ABSORB` Boundary Sweep, and a 19-Iteration-Old Settling Gap (exp-065) — 2026-08-24
+
+**Lead: VISION SCIENCE, by rotation.** Executes live thread T24's own
+never-run design (opened Iteration 23/exp-046, designed Iteration 24
+Tier-2 #4, re-ranked at Iterations 25/26/28, never run in nineteen
+iterations), scoped per Red Team's Iteration-41 §9 recommendation to
+close into an actual constraint-scored FDTD run after four consecutive
+zero-FDTD cycles. Full five-phase panel cycle: Phase 1 (a congruent-
+geometry `ABSORB∈{40,60,80}` sweep — pad the domain, hold A/clearances/
+D_SP/aperture identical by construction, verified a second way via
+exp-048's boundary-free desk propagator's exact degeneracy — plus G40
+pad-only and N60 naive-protocol controls; T1 route N/A, instrument/
+model-fidelity class; 119 FDTD calls, 17.2 min projected) → five blind
+Phase-2 critiques (all support-with-changes; PHOTONICS caught that
+ABSORB∈{40,60,80} are ALL exact integer multiples of λ at 600nm — the one
+wavelength Block ARTICLE scores; EM caught that the causal-identity gate's
+step derivation used the wave's Courant phase speed S instead of the
+leapfrog stencil's true 1-cell/step numerical domain of dependence) + Red
+Team audit (PROCEED-WITH-MANDATORY-FIXES; no Checkpoint fires — Phase 2
+catching defects before Phase 3 freeze is the designed mechanism) → Phase
+3 synthesis (11-item mandatory-fix docket applied in full, zero
+overridden: `ABSORB=70` added as the non-aliased fourth point, checked
+against all 3λ; the causal-step recomputation **VOIDED the original gate
+entirely** — `n=247` (corrected) < `n=319` (direct signal arrival), so no
+valid causal window exists at this geometry and never did (the old `n=359`
+only "worked" because it was wrong) — caught at the desk stage, zero FDTD
+cost, firing the proposal's own pre-registered halt condition; G-2
+replaced by `static_construction_identity()`, a strictly stronger
+zero-FDTD-step static array check on `damp_e`/`damp_hx`, PASSED at
+0.000e+00; three new predictions added — P-VIS42-2a (aliasing
+discriminator), -10 (dense mini-sweep falsifying "matched-angle
+differencing cancels to first order"), -11 (settling check at the largest
+padded domain, Red Team's own attack 7, T10's precedent); revised budget
+144 calls, 21.3 min) → Phase 4 (144 FDTD calls, 16.7 min; both absolute
+gates PASSED — G-1 all 12 anchor rows bit-exact vs exp-041's committed
+`block_main`, G-2 at 0.000e+00) → six blind Phase-5 reviews (all six
+PARTIAL, a rare 6-for-6) + Red Team's final audit.
+
+**The headline question is genuinely undecided.** As frozen (STEPS=1400):
+P-VIS42-2 REFUTED — median|Δ(C80−C40)|=0.00279, max=0.00836, reading
+"absolute transfer," alarming. But P-VIS42-11 (the settling check)
+REFUTED ~400× past its own bar: STEPS 1400→2800 moves C80/40°/600nm by
+**59.8%** relative. Followed up same-shift (disclosed, unscored, R3-class,
+this program's own standing precedent): a 4-point convergence trend
+(1400/2800/4200/5600 → −0.010965/−0.002802/−0.002801/−0.002802 at
+C40/40°/600nm) shows clean, decisive convergence by 2800 steps — real
+transient decay, not noise — and is **not padding-specific**: the
+UNPADDED C40 anchor geometry itself (exp-041's own, Iteration 18) shows
+the *larger* of two tested shifts (74.4% vs C60's 68.4%). A full 90-call
+settled STEPS=2800 re-sweep shrinks the headline median 5.4× (→0.00052,
+now clearing its own CONFIRM band) and max 2.2× (→0.00383), residual
+concentrated at 750nm, not yet shown fully converged there. **T24's own
+19-iteration-deferred inheritance question is not decided by this cycle —
+both readings of the same construction cannot be right, and the settling
+evidence is far stronger than the single-STEPS headline it corrects.**
+
+**The bigger finding is not about T24 at all.** `experiments/041-t20-
+angle-audit` (Iteration 18) established this program's own ±38°/±40°
+angle standard, at STEPS=1400, on this identical plane/tapered-source
+empty-scene channel — now shown to read ~3.9× off its converged value at
+that step count. Phase 5 (MATERIALS, VISION SCIENCE, independently
+converged, more severe than the Director's own Phase-4 framing) found the
+gap is wider than first reported: ±35° — inside `FALLBACK_ANGLES`, feeding
+Block ARTICLE's own N9 aggregate directly — **sign-flips** under the same
+correction (C40/−35°/600nm: +0.00112→−0.00440; /750nm: −0.00095→+0.00552).
+P-VIS42-6/7's CONFIRMED verdicts are therefore **retracted**, not merely
+caveated — neither has been re-verified at settled STEPS. Every T20/T21/
+T24 citation and every `FALLBACK_ANGLES`-scored constraint-3 reading since
+Iteration 18 (nineteen iterations) inherits an instrument-floor reading
+never before tested for settling on this specific channel.
+
+**Checkpoint criterion 4 — does not fire, conditional on a 3-item
+mandatory-fix docket, landed same-shift (mirrors Iteration 23's own
+conditional-non-firing precedent).** Six blind Phase-5 reviews split 3-3
+(MATERIALS/THERMODYNAMICS/VISION: fires; PHOTONICS/EM/QUANTUM: does not).
+Red Team's final audit reconciled on the merits, not vote count: MATERIALS'
+firing vote conflates an honestly-disclosed 19-iteration-old blind spot
+with active drift (finding an old gap and reporting it loudly is Phase 5
+working, not failing); THERMODYNAMICS' vote targeted a real gap (Red
+Team's own Phase-2 mandatory-fix item 8, "name the CNT `R_contact`
+trade-off," recorded "Applied" in `phase3_synthesis.md` but never actually
+written) already substantively closed by the Director's same-shift
+correction by the time the audit read it; VISION's vote was strongest
+("the drift is live in this cycle's own committed record, not just
+historical") but named the wrong remedy — a mandatory fix, not an
+automatic firing. Red Team's own audit then found **two live, unfixed
+defects the three same-shift corrections had missed**: (1) `phase4_
+results.md`'s own scorecard table still listed P-VIS42-6/7 as plain
+CONFIRMED with no pointer to the correction 180 lines below; (2) `results.
+json`'s P-VIS42-10 verdict asserted "coherent-fringe perturbation" as an
+established mechanism, but `run.py` only ever coded the pre-registered
+REFUTE condition's amplitude clause, never the conjunctive period-match
+clause — QUANTUM's own Phase-5 self-catch on its own Phase-2 proposal, an
+unfalsifiable-claim-class defect that slipped past five blind Phase-2
+reviews, Red Team's own Phase-2 audit, Phase 3/4, and five of six Phase-5
+reviews. Both fixed before close: the table now shows struck-through
+`CONFIRMED`/`RETRACTED` with an inline pointer; P-VIS42-10's verdict is
+relabeled `UNDECIDED (mechanism undetermined, confounded by the settling
+defect)` in both `run.py` and `results.json` (no raw number changed — a
+period-match fit from 5 points spanning ~1 T21 period was judged too
+statistically underpowered to trust, an honest relabel over a fabricated
+test). Plus an erratum in `phase3_synthesis.md` for the false "Applied"
+claim, and two recommended fixes (Diagnostic 3's summary stats committed
+as code; a new `caveat_lint_config.json` entry,
+`exp065-steps1400-unsettled-plane-channel`, requiring any future citation
+of the affected numbers to disclose the settling gap — self-tested, 0
+required-site failures). Criteria 1/2/3 do not fire (no constraint verdict
+issued, no mechanism-class boundary, zero `lab/` diff beyond the
+registry). **Criterion 5 is the strongest non-firing case this program has
+seen**: this cycle unambiguously advances the logbook regardless of its
+own headline's fate — the first time the plane/ambient channel's STEPS
+value has been directly tested for settling at these angles since the
+channel was built (Iteration 1).
+
+**Verdict: PARTIAL** — concurring 6-for-6 with all blind Phase-5 seats
+plus Red Team's own final audit, a rare full agreement. Not PROMISING
+(the pre-registered headline is honestly left undecided); not RULED OUT
+(nothing here forecloses a mechanism class or shows a jointly-
+unsatisfiable constraint set — this is instrument-fidelity work, and its
+own question remains open pending Iteration 43). Full record:
+`experiments/065-t24-absorb-boundary-sweep/` — Phase-1 proposal, five
+Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+NOTES.md, `run.py`/`design_geometry.py`, `phase4_results.md`, `results.
+json`, `settled_sweep_steps2800_diagnostic.json`,
+`settling_trend_diagnostic.py` + output, six Phase-5 blind reviews,
+Phase-5 Red Team final audit. Full bench 107/107
+(`--only 12346789,10,11,18,19,20,21,22,23,24`) reconfirmed throughout,
+including after the `caveat_lint_config.json` edit; zero `lab/ARTIFACTS.
+md`/`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched; the only `lab/`
+file touched all shift was `lab/caveat_lint_config.json` (one new
+registry entry, non-code, self-tested).
+
+**New live thread T27 — STEPS=1400 is unsettled on the plane/tapered-
+source, empty-scene ambient channel at ±35°/±38°/±40°, general to the
+channel, discovered exp-065/Iteration 42, implicating `experiments/041-
+t20-angle-audit` (Iteration 18) and every T20/T21/T24-adjacent citation
+since.** Confirmed via a 4-point convergence trend (converges cleanly by
+STEPS=2800, both a script and its output committed) and a full settled
+STEPS=2800 re-sweep of the ±38°/±40° headline cells (both committed).
+NOT yet mapped: the four interior `FALLBACK_ANGLES` (0°/±5°/±15°/±25°)
+untested at any STEPS beyond 1400; 750nm's own residual not shown fully
+converged even at 2800; Block ARTICLE's article-PRESENT legs (only the
+empty floor was settling-checked); Block MINI's period-match test
+undecided. Ranked #1 for Iteration 43 (near-unanimous across the packet):
+re-verify exp-041's own MAIN-block rows at STEPS≥2800 and scope exactly
+how many downstream citations (T21's fringe fit, T16's quadrature deltas,
+every near-threshold constraint-3 τ-bucket call since Iteration 18) are
+affected. No future cycle may cite exp-041's MAIN-block rows, T21's
+fringe model, T24's inheritance claim, or exp-065's own P-VIS42-6/7/10
+as settled without disclosing this gap (`caveat_lint_config.json` entry
+`exp065-steps1400-unsettled-plane-channel`, adopted verbatim from
+QUANTUM's own proposed forward tripwire, extended to cover P-VIS42-6/7 in
+the same terms).
+
+**T24 status update**: the dedicated `ABSORB` sweep T24 called for since
+Iteration 23 has now been run (exp-065). Its own inheritance question
+(does the beam-channel boundary systematic transfer to the plane channel
+as absolute or relative) is **not resolved** — superseded in practical
+terms by T27, which this cycle's own follow-up shows dominates the
+measurement at STEPS=1400. T24 stays open, now explicitly gated on T27's
+own closure (Iteration 43's ranked #1 item) before any future re-attempt.
+
+**Ranked top-3 for Iteration 43** (Red Team's final-audit reconciliation
+of all six reviews plus its own independent read, near-unanimous on item
+1): (1) **Re-verify `experiments/041-t20-angle-audit`'s own MAIN-block
+±35°/±38°/±40° rows at STEPS≥2800, and scope exactly how many downstream
+citations are affected** — the single highest-stakes, most-converged item
+across the entire packet; upstream of T21's fringe model, T16's
+quadrature deltas, T20/T24's own citations, and every near-threshold
+constraint-3 τ-bucket call since Iteration 18. This cycle's own
+construction (`static_construction_identity`'s gate pattern,
+`settling_trend_diagnostic.py`) is directly reusable. (2) **Close exp-
+065's own settling-characterization gap in full**: extend STEPS=2800 to
+the four untested interior `FALLBACK_ANGLES`, re-run Block ARTICLE's
+article-PRESENT legs (not just the empty floor) at settled STEPS,
+complete the 750nm/C80 four-point convergence trend, and either implement
+or formally retire the period-match test for Block MINI. Ranked #2, not
+tied with #1, because narrower in downstream stakes (this cycle's own
+predictions, not the whole T16/T20/T21 lineage) — though MATERIALS,
+VISION, and QUANTUM each rank pieces of it first from their own charters.
+(3) **Source, or formally model, the CNT-forest root-to-substrate contact
+resistance (`R_contact`)** — PLAN.md's still-standing top-of-queue item,
+untouched by this cycle, now deferred for a second consecutive cycle
+(Iteration 41 chose `length_provenance` hardening; Iteration 42 chose
+T24). Ranked #3 because T27 is now more urgent and more consequential
+(nineteen iterations of citations vs. one margin number), but it is the
+only queued item that can *move* a number rather than relabel or disclose
+one, and a third consecutive deferral would itself be worth flagging at
+Iteration 44.
