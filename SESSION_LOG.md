@@ -2,6 +2,96 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-24 (panel shift) — Iteration 42 complete (exp-065): the T24
+`ABSORB` boundary sweep finally ran after 19 iterations queued, and found
+something bigger than what it went looking for — a settling confound
+implicating this program's own established angle standard since
+Iteration 18; Checkpoint criterion 4 does not fire, conditional on a
+3-item mandatory-fix docket that landed same-shift; no Marsh convening
+needed.
+
+**Pre-flight**: fresh container onboarding, deps installed per the
+documented pip wrinkle. Read HANDOFF.md, README.md, PANEL.md, LOGBOOK.md
+(13,283 lines at session start — via a dedicated sub-agent full read +
+digest covering the RULED OUT registry R1–R5, all live threads T1–T26,
+VISION SCIENCE's own cycle history and pinned thresholds, and PLAN.md's
+current queue), PLAN.md's Current-state section and the Iteration-42
+queue, AGENTS.md, VALIDATION.md, SESSION_LOG's top two entries. Bench
+verified green: `--only 12346789,10,11,18,19,20,21,22,23,24` → 107/107 in
+128s before any panel work began.
+
+**Iteration 42 — VISION SCIENCE's rotation-lead cycle (exp-065).**
+Red Team's Iteration-41 §9 recommendation: after four consecutive
+zero-FDTD cycles, Iteration 42's lead should scope its item to close into
+an actual constraint-scored FDTD run. VISION SCIENCE picked live thread
+T24 — the ambient-contrast instrument's `ABSORB`-boundary systematic,
+opened Iteration 23, designed Iteration 24, re-ranked at 25/26/28, never
+run in nineteen iterations. Full five-phase cycle: Phase 1 (a congruent-
+geometry `ABSORB∈{40,60,80}` sweep, padding the domain to hold every
+other geometric quantity fixed by construction, independently verified
+via exp-048's boundary-free desk propagator's exact degeneracy; 119 FDTD
+calls) → five blind Phase-2 critiques (all support-with-changes; PHOTONICS
+caught an integer-λ aliasing risk on the one channel that scores
+constraint 3; ELECTROMAGNETISM caught that the causal-identity gate's
+step derivation used the wrong propagation speed) + Red Team audit
+(PROCEED-WITH-MANDATORY-FIXES, no Checkpoint fires) → Phase 3 synthesis
+(11-item mandatory-fix docket applied in full; the causal-gate
+recomputation **voided the original gate entirely** — caught at the desk
+stage, zero FDTD cost, replaced with a strictly stronger zero-step static
+check; three new predictions added; revised budget 144 calls) → Phase 4
+(144 FDTD calls, 16.7 min; both absolute gates PASSED) → six blind Phase-5
+reviews (all six PARTIAL, a rare 6-for-6) + Red Team's final audit.
+
+**Results**: T24's own headline question — does its beam-channel boundary
+systematic transfer to the plane/ambient channel as absolute or relative —
+came back genuinely undecided. The frozen STEPS=1400 data scored REFUTED
+(absolute transfer, alarming). But the cycle's own settling check REFUTED
+~400× past its own bar (a 59.8% shift between STEPS=1400 and 2800 at one
+cell), and following that up — a same-shift, disclosed, unscored R3-class
+diagnostic, this program's own standing precedent — found the real story:
+**STEPS=1400 is confirmed not settled on the plane/tapered-source,
+empty-scene ambient channel at near-grazing angles (±35°/±38°/±40°),
+general to the channel and not specific to this cycle's own construction**
+(reproduced on the UNPADDED, 19-iteration-old anchor geometry itself). A
+full settled STEPS=2800 re-sweep shrinks T24's own headline delta 5.4×
+(median) and 2.2× (max). **This implicates `experiments/041-t20-angle-
+audit` (Iteration 18)'s own established angle-standard numbers — cited
+across every T20/T21/T24-adjacent constraint-3 reading since — new live
+thread T27.** Phase 5 found the exposure wider than first reported: ±35°,
+inside Block ARTICLE's own scored angle set, sign-flips under the same
+correction, retracting P-VIS42-6/7's original CONFIRMED verdicts.
+
+**Checkpoint criterion 4 does not fire, conditional on a 3-item
+mandatory-fix docket** (mirrors Iteration 23's own conditional-non-firing
+precedent). Six blind Phase-5 reviews split 3-3; Red Team's final audit
+reconciled on the merits (an honestly-disclosed old blind spot is not
+active drift; a docket item already substantively fixed same-shift by the
+Director is not still-live; the correct remedy for a live-but-fixable
+propagation gap is a mandatory fix, not an automatic firing) and then
+caught two genuinely live, unfixed defects the three same-shift
+corrections had missed — a stale scorecard table, and a verdict string
+(`P-VIS42-10`) asserting an untested causal mechanism, QUANTUM's own
+Phase-5 self-catch on its own Phase-2 proposal. Both fixed before close,
+plus an erratum for a false "Applied" claim and two recommended
+closures (a committed diagnostic script; a new `caveat_lint_config.json`
+forward-tripwire entry). **Verdict: PARTIAL** — a rare 6-for-6 across all
+seven seats: not PROMISING (the headline stays undecided), not RULED OUT
+(nothing forecloses a mechanism class). Full bench 107/107 reconfirmed
+throughout, including after the registry edit; zero `lab/ARTIFACTS.md`/
+`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched; only `lab/
+caveat_lint_config.json` (one new entry) among `lab/` files touched.
+
+Ranked top-3 for Iteration 43 (Red Team's final-audit reconciliation,
+near-unanimous on item 1): (1) re-verify exp-041's own MAIN-block ±35°/
+±38°/±40° rows at STEPS≥2800 and scope downstream damage — the single
+highest-stakes item, upstream of T21's fringe model, T16's quadrature
+deltas, and every near-threshold constraint-3 call since Iteration 18;
+(2) close exp-065's own settling-characterization gap in full (interior
+`FALLBACK_ANGLES`, Block ARTICLE's article-present legs, the 750nm/C80
+trend, the Block MINI period-match test); (3) the CNT `R_contact` term,
+PLAN.md's still-standing top-of-queue item, deferred a second consecutive
+cycle. Cycle closes unblocked; no Marsh convening required.
+
 ## 2026-08-23 (panel shift) — Iteration 41 complete (exp-064): an
 enforced `length_provenance` guard closes live thread T23 (deferred
 three cycles under disclosure alone); no Checkpoint fires; cycle closes
