@@ -10,6 +10,13 @@ conduction_correction` — nothing here is hand-recomputed or hand-typed.
 This is the same script (same constants, same call shape) stage 25's own
 gates 4/5 in `lab/validation/run_all.py` reproduce independently.
 """
+import os
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+sys.path.insert(0, REPO_ROOT)
+
 from lab import thermo_sidecar as ts
 
 K_AIR = 0.026
@@ -54,18 +61,25 @@ def witness(r_contact, r_contact_prov="analogy_proxy_diagnostic", r_contact_diag
 def bisect_r_contact_critical(endpoint_key, target, lo, hi, tol=1e-12, iters=200):
     """Bisection for the witness-scale R_contact that drives `endpoint_key`
     (`correction_factor_series` or `correction_factor_replace_rear`) to
-    `target`. Both endpoints are monotone increasing in r_contact_m2k_w."""
+    `target`. `correction_factor_series` is monotone INCREASING in
+    r_contact_m2k_w (more series resistance -> worse CF); `correction_
+    factor_replace_rear` is monotone DECREASING (1 + R_cond/r_contact ->
+    a SMALLER r_contact means a bigger CF under this endpoint's own
+    formula) -- direction is detected from the endpoints themselves
+    rather than assumed, so both cases bisect correctly."""
     def f(r):
         d = witness(r)
         return d[endpoint_key] - target
     flo, fhi = f(lo), f(hi)
-    assert flo < 0 < fhi, (flo, fhi)
+    increasing = flo < 0 < fhi
+    decreasing = flo > 0 > fhi
+    assert increasing or decreasing, (flo, fhi)
     for _ in range(iters):
         mid = 0.5 * (lo + hi)
         fm = f(mid)
         if abs(fm) < tol:
             return mid
-        if fm < 0:
+        if (fm < 0) == increasing:
             lo = mid
         else:
             hi = mid
@@ -116,11 +130,18 @@ def main():
               f"{witness_margin_series:>25.4f}{witness_margin_replace:>26.4f}")
 
     print()
-    # Falsification-boundary bisections (witness scale, kappa=0.70), both endpoints.
+    # Falsification-boundary bisections (witness scale, kappa=0.70), both
+    # endpoints. Target is the CF value at which witness margin ==
+    # WITNESS_MARGIN_BAR (1.0x): margin = BASELINE_WITNESS_MARGIN *
+    # BASE_WITNESS['correction_factor']/CF, so CF_target =
+    # BASE_WITNESS['correction_factor'] * BASELINE_WITNESS_MARGIN
+    # (~1.044866 * 1.2920 ~= 1.34996, i.e. the "CF==1.35" figure this
+    # cycle's own docket cites).
+    cf_target = BASE_WITNESS["correction_factor"] * BASELINE_WITNESS_MARGIN
     r_crit_series = bisect_r_contact_critical(
-        "correction_factor_series", BASELINE_WITNESS_MARGIN, 1e-12, 1.0)
+        "correction_factor_series", cf_target, 1e-12, 1.0)
     r_crit_replace = bisect_r_contact_critical(
-        "correction_factor_replace_rear", BASELINE_WITNESS_MARGIN, 1e-12, 1.0)
+        "correction_factor_replace_rear", cf_target, 1e-12, 1.0)
     print(f"r_contact_critical, series endpoint (witness margin -> 1.0x): {r_crit_series:.6f} m^2K/W")
     print(f"r_contact_critical, replace-rear endpoint (witness margin -> 1.0x): {r_crit_replace:.6f} m^2K/W")
 

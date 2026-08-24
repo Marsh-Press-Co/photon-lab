@@ -258,5 +258,38 @@
       "experiments/042-t21-magnitude-bridge/*.md",
       "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md"
     ]
+  },
+  {
+    "id": "exp067-r-contact-analogy-proxy-disclosure",
+    "description": "exp-067 (Panel Iteration 44) added bonded_substrate_conduction_correction() to lab/thermo_sidecar.py, modeling the CNT-forest root-to-substrate thermal contact resistance R_contact. Every R_contact value this cycle is an analogy-based proxy (r_contact_provenance='analogy_proxy_diagnostic'), NOT a directly-measured root/substrate figure -- WebSearch/WebFetch were barred this cycle, so the dedicated literature search Red Team's own Iteration-40 audit specified was never attempted. The function returns TWO endpoints -- correction_factor_series (worst-case, contact resistance stacks in series beneath the rear-loss channel) and correction_factor_replace_rear (contact replaces the rear-loss channel entirely) -- which diverge materially at high R_contact and disagree about whether the witness-scale (TD-5) margin is at risk at the proposal's own Stress-B test point (series: ~1.0047x, 'nearly erased'; replace-rear: ~1.1737x, 'comfortably clear'). Any citation of this cycle's R_contact-corrected numbers must disclose (a) the analogy-proxy provenance, and (b) which endpoint (series vs. replace-rear) is being cited -- citing correction_factor_series alone as 'the' R_contact correction, without the replace-rear endpoint and its Stress-B divergence, is itself a Checkpoint criterion-4-relevant finding at whichever cycle it recurs (per Red Team's own forward tripwire, phase2_redteam_audit.md and phase3_synthesis.md).",
+    "source": "experiments/067-r-contact-bonded-substrate-correction/phase2_redteam_audit.md SS2.1 (reconciled docket); experiments/067-r-contact-bonded-substrate-correction/phase3_synthesis.md (forward tripwire); experiments/067-r-contact-bonded-substrate-correction/NOTES.md",
+    "phrase_patterns": [
+      "R_contact",
+      "bonded_substrate_conduction_correction",
+      "correction_factor_series",
+      "correction_factor_replace_rear",
+      "analogy_proxy_diagnostic.{0,40}r_contact",
+      "r_contact.{0,40}analogy_proxy_diagnostic"
+    ],
+    "required_sites": [
+      "experiments/067-r-contact-bonded-substrate-correction/NOTES.md",
+      "experiments/067-r-contact-bonded-substrate-correction/phase4_results.md"
+    ],
+    "trigger_terms": [
+      "R_contact",
+      "r_contact_m2k_w",
+      "r_contact_provenance",
+      "bonded_substrate_conduction_correction",
+      "root-to-substrate",
+      "root/substrate"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md",
+      "lab/thermo_sidecar.py",
+      "lab/validation/run_all.py"
+    ]
   }
 ]
