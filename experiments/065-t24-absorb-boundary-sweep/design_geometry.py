@@ -82,6 +82,7 @@ in NOTES.md / phase3_synthesis.md, not here.
 Pure geometry + desk arithmetic -- NO FDTD in this file.
 """
 
+import importlib.util
 import os
 import sys
 
@@ -89,10 +90,23 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(HERE, "..", "..")))
-sys.path.insert(0, os.path.abspath(os.path.join(HERE, "..",
-                                                "048-evidentiary-chord-closure")))
 
-import design_geometry as dg048          # noqa: E402  (exp-048's propagator)
+
+def _load_exp048():
+    """exp-048's propagator module is ALSO called `design_geometry`, so a
+    plain `import design_geometry` collides with this file (and, when this
+    file is imported as a module rather than run as __main__, resolves to a
+    partially-initialized self). Load it explicitly under a distinct name."""
+    path = os.path.abspath(os.path.join(
+        HERE, "..", "048-evidentiary-chord-closure", "design_geometry.py"))
+    spec = importlib.util.spec_from_file_location("_exp048_design_geometry", path)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules["_exp048_design_geometry"] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+dg048 = _load_exp048()                    # exp-048's committed desk propagator
 from lab import glare_sidecar as gs      # noqa: E402
 from lab.fdtd2d import Sim as _Sim       # noqa: E402  (G-2 replacement, zero-step)
 
