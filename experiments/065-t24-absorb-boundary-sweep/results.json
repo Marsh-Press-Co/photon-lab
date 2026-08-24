@@ -1548,9 +1548,12 @@
       "ptp_over_mean": 11.857529244355227,
       "t21_period_deg": 1.989,
       "span_deg": 2.0,
+      "period_match_tested": false,
+      "period_match_note": "NOT TESTED -- 5 points over ~1.0 T21 period is insufficient to fit periodicity distinctly from noise/settling. The pre-registered REFUTE clause is conjunctive (amplitude AND period match); only the amplitude clause is evaluated. The verdict is deliberately NOT phrased as a mechanism claim -- see phase5_redteam_audit.md attack 2.",
       "confirm": false,
-      "refute": true,
-      "verdict": "REFUTED (oscillating -- coherent-fringe perturbation)"
+      "amplitude_clause_only_refute": true,
+      "refute": false,
+      "verdict": "UNDECIDED (large amplitude oscillation, ptp/mean=11.9 -- mechanism undetermined: period-match clause not tested (insufficient points), and confounded by the settling defect found elsewhere this cycle; NOT confirmed as coherent-fringe perturbation)"
     },
     "P-VIS42-11": {
       "n_new_runs": 1,
@@ -1570,5 +1573,11 @@
     }
   },
   "total_new_runs": 144,
-  "total_elapsed_s": 1000.5049271583557
+  "total_elapsed_s": 1000.5049271583557,
+  "phase5_mandatory_fix_2_applied": {
+    "description": "P-VIS42-10 verdict corrected post-Red-Team-audit attack 2",
+    "old_verdict": "REFUTED (oscillating -- coherent-fringe perturbation)",
+    "new_verdict": "UNDECIDED (large amplitude oscillation, ptp/mean=11.9 -- mechanism undetermined: period-match clause not tested (insufficient points), and confounded by the settling defect found elsewhere this cycle; NOT confirmed as coherent-fringe perturbation)",
+    "raw_data_changed": false
+  }
 }

@@ -218,5 +218,35 @@
       "experiments/*/NOTES.md",
       "experiments/*/phase*.md"
     ]
+  },
+  {
+    "id": "exp065-steps1400-unsettled-plane-channel",
+    "description": "exp-065 (Panel Iteration 42) found STEPS=1400 is NOT settled on lab/ambient.py's plane/tapered-source, empty-scene channel at near-grazing angles (+-35/38/40deg) -- confirmed via a 4-point convergence trend (settling_trend_diagnostic.py: -0.010965/-0.002802/-0.002801/-0.002802 at STEPS=1400/2800/4200/5600) and a full settled STEPS=2800 re-sweep (settled_sweep_steps2800_diagnostic.json), general to the channel (reproduced on the UNPADDED exp-041 anchor geometry, not specific to exp-065's own padding construction). This implicates experiments/041-t20-angle-audit (Iteration 18)'s own established MAIN-block +-38/+-40deg rows, cited across every T20/T21/T24-adjacent constraint-3 near-threshold reading since. exp-065's own P-VIS42-6/7 (Block ARTICLE) and P-VIS42-10 (Block MINI) verdicts are RETRACTED/relabeled pending re-verification at settled STEPS (Red Team's Phase-5 final audit, mandatory-fix docket items 1-2). Any site citing exp-041's MAIN-block C_empty values, exp-042's T21 fringe fit, T24's own inheritance claim, or exp-065's own P-VIS42-6/7/10 numbers as settled/trustworthy MUST disclose this unresolved settling gap until Iteration 43 (or later) closes it -- per the forward tripwire QUANTUM proposed and Red Team adopted: citing P-VIS42-10 as 'confirmed coherent-fringe perturbation' without this caveat is itself a retroactive Checkpoint criterion-4 finding.",
+    "source": "LOGBOOK.md Iteration 42 (panel shift); experiments/065-t24-absorb-boundary-sweep/phase4_results.md ('THE LOAD-BEARING FINDING' section); experiments/065-t24-absorb-boundary-sweep/phase5_redteam_audit.md (Checkpoint-4 ruling and mandatory-fix docket)",
+    "phrase_patterns": [
+      "STEPS\\s*=\\s*1400.{0,20}(not settled|unsettled)",
+      "settling (confound|defect|gap)",
+      "coherent-fringe perturbation"
+    ],
+    "required_sites": [
+      "experiments/065-t24-absorb-boundary-sweep/NOTES.md",
+      "experiments/065-t24-absorb-boundary-sweep/phase4_results.md"
+    ],
+    "trigger_terms": [
+      "STEPS\\s*=\\s*1400",
+      "T24",
+      "MAIN-block",
+      "P-VIS42-10",
+      "P-VIS42-6",
+      "P-VIS42-7"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md",
+      "experiments/041-t20-angle-audit/*.md",
+      "experiments/042-t21-magnitude-bridge/*.md"
+    ]
   }
 ]

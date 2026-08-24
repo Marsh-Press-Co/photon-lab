@@ -5,3 +5,10 @@ committed reproduction of phase4_results.md Diagnostic 2
   STEPS= 2800  C_empty=-0.002802  (25.9s)
   STEPS= 4200  C_empty=-0.002801  (40.2s)
   STEPS= 5600  C_empty=-0.002802  (53.1s)
+
+exp-065 -- Diagnostic 3 summary statistics (settled STEPS=2800 sweep)
+committed reproduction of phase4_results.md Diagnostic 3
+------------------------------------------------------------
+  settled median|Delta(C80-C40)| = 0.000517  (unsettled was 0.002786)
+  settled max   |Delta(C80-C40)| = 0.003826  (unsettled was 0.008361)
+  cross-channel ratio (settled plane / beam) = 0.1095  (unsettled ratio was 0.3638)

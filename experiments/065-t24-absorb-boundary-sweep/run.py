@@ -560,20 +560,62 @@ def score(sweep, pad, article, beam, mini, settle, g1, g2):
                      "REFUTED" if p9["refute"] else "PARTIAL")
 
     # ---- P-VIS42-10: the 'cancels to first order' falsifier
+    #
+    # PHASE-5 MANDATORY FIX (Red Team's final audit, attack 2 / QUANTUM's own
+    # Phase-5 self-catch): the pre-registered REFUTE condition in NOTES.md/
+    # phase3_synthesis.md is CONJUNCTIVE -- amplitude (ptp/mean>2x) AND a
+    # period matching P(theta)=lambda/(A*cos theta) within 20%. The code
+    # below previously computed and checked ONLY the amplitude clause, then
+    # shipped a verdict string asserting "coherent-fringe perturbation" as an
+    # established causal mechanism the second clause was supposed to test
+    # for. Red Team's audit confirmed this live and required a fix before
+    # close. Remedy taken (of the two Red Team offered): RELABEL, not force
+    # a period-match fit -- MINI_SWEEP_ANGLES has only 5 points spanning
+    # ~1.0 T21 period (2.0deg span vs P(40)=1.989deg); a period fit from 5
+    # samples over one cycle cannot reliably distinguish "genuine coherent
+    # oscillation at THIS period" from "five points that happen to differ"
+    # (Nyquist-adjacent, same class of aliasing risk this cycle's own
+    # ABSORB=70 fix was built to avoid). Fabricating a period-match verdict
+    # from underpowered data would repeat, not fix, the defect. QUANTUM's own
+    # Phase-5 alternative reading is independently plausible and unrefuted:
+    # the settling artifact at one cell (0.0082 absolute) is comparable to
+    # or larger than the measured peak-to-trough (0.00817), so an
+    # UNSETTLED-TRANSIT reading is at least as consistent with these data as
+    # a coherent-fringe one. The honest verdict is "large, oscillating,
+    # mechanism undetermined, confounded by the settling defect" -- stated
+    # as such, not as a specific mechanism this cycle did not establish.
     deltas = [r["delta"] for r in mini["rows"]]
     mean_d = float(np.mean(deltas))
     ptp = float(max(deltas) - min(deltas))
     within = [abs(d - mean_d) <= 0.30 * abs(mean_d) for d in deltas] if mean_d else []
+    amplitude_refute = (ptp / abs(mean_d) > 2.0) if mean_d else False
     p10 = {"rows": mini["rows"], "mean_delta": mean_d, "peak_to_trough": ptp,
            "ptp_over_mean": ptp / abs(mean_d) if mean_d else float("inf"),
            "t21_period_deg": 1.989, "span_deg": max(dg.MINI_SWEEP_ANGLES)
                                                  - min(dg.MINI_SWEEP_ANGLES),
+           "period_match_tested": False,
+           "period_match_note": (
+               "NOT TESTED -- 5 points over ~1.0 T21 period is insufficient "
+               "to fit periodicity distinctly from noise/settling. The "
+               "pre-registered REFUTE clause is conjunctive (amplitude AND "
+               "period match); only the amplitude clause is evaluated. "
+               "The verdict below is therefore deliberately NOT phrased as "
+               "a mechanism claim -- see phase5_redteam_audit.md attack 2."),
            "confirm": bool(within) and all(within),
-           "refute": (ptp / abs(mean_d) > 2.0) if mean_d else False}
-    p10["verdict"] = ("CONFIRMED (flat -- additive-systematic framing holds)"
-                      if p10["confirm"] else
-                      "REFUTED (oscillating -- coherent-fringe perturbation)"
-                      if p10["refute"] else "PARTIAL")
+           "amplitude_clause_only_refute": amplitude_refute,
+           "refute": False}   # the full conjunctive REFUTE is UNDECIDABLE, not False -- see verdict string
+    if p10["confirm"]:
+        p10["verdict"] = "CONFIRMED (flat -- additive-systematic framing holds)"
+    elif amplitude_refute:
+        p10["verdict"] = ("UNDECIDED (large amplitude oscillation, "
+                          "ptp/mean={:.1f} -- mechanism undetermined: "
+                          "period-match clause not tested (insufficient "
+                          "points), and confounded by the settling defect "
+                          "found elsewhere this cycle; NOT confirmed as "
+                          "coherent-fringe perturbation)").format(
+                              p10["ptp_over_mean"])
+    else:
+        p10["verdict"] = "PARTIAL"
 
     # ---- P-VIS42-11: settling
     p11 = dict(settle)

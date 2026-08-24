@@ -23,6 +23,19 @@ all six scored-window×array combinations between C40 and G40, offset by
 
 ## Scored predictions, as frozen (STEPS=1400 throughout, per the committed design)
 
+**[Phase-5 mandatory fix, Red Team attack 1 — read this before the table.]**
+The table below is the AS-FROZEN scoring. **P-VIS42-6 and P-VIS42-7's
+`CONFIRMED` entries are RETRACTED by the "Phase-5 corrections" section
+further down this document** — both were scored entirely from STEPS=1400
+inputs at angles (including ±35°) now shown to sign-flip under settling
+correction, and neither has been re-verified at a settled STEPS value.
+**Do not cite either as a settled CONFIRMED finding.** Likewise
+**P-VIS42-10's verdict string below is the ORIGINAL, now-corrected text —
+see the Phase-5 mandatory-fix update after this table**: the code never
+tested the pre-registered period-match clause, and the verdict has been
+changed from "REFUTED (coherent-fringe perturbation)" to "UNDECIDED
+(mechanism undetermined)" in `results.json`, effective this shift.
+
 | ID | Verdict | Key number(s) |
 |---|---|---|
 | P-VIS42-2 (HEADLINE) | **REFUTED** (absolute transfer) | median 0.00279, max 0.00836 (bands: confirm ≤1.0e-3/≤3.0e-3; refute ≥2.0e-3/≥7.0e-3) |
@@ -30,11 +43,11 @@ all six scored-window×array combinations between C40 and G40, offset by
 | P-VIS42-3 (scaling) | CONFIRMED (scales with reading) | Spearman ρ = 0.562 |
 | P-VIS42-4 (naive dominates) | CONFIRMED | N60 exceeds C60 at 16/18 cells, median\|Δ(N60−C40)\| = 0.00395 |
 | P-VIS42-5 (pad-only null) | **REFUTED** | max abs_dev = 0.01358 (750nm/+40°); bar was ≤5e-4 |
-| P-VIS42-6 (N9 floor) | CONFIRMED | C_empty,N9 = −3.3e-5 (C40) / −1.3e-4 (C80), both ≪ GATE_HARD |
-| P-VIS42-7 (article row) | CONFIRMED | C = −0.00450 (C40) / −0.00460 (C80), both bucket **MARGINAL**, Δ=1.0e-4 |
+| P-VIS42-6 (N9 floor) | ~~CONFIRMED~~ **RETRACTED — see Phase-5 correction 2 below** | C_empty,N9 = −3.3e-5 (C40) / −1.3e-4 (C80); inputs unverified at settled STEPS |
+| P-VIS42-7 (article row) | ~~CONFIRMED~~ **RETRACTED — see Phase-5 correction 2 below** | C = −0.00450 (C40) / −0.00460 (C80), bucket **MARGINAL**; inputs unverified at settled STEPS |
 | P-VIS42-8 (T24 provenance) | CONFIRMED | both cells reproduce to ≤1% (C40) and ≤25% (Δ40→60) |
 | P-VIS42-9 (cross-channel ratio) | PARTIAL | ratio 0.364 (bands: confirm [0.02,0.30], refute ≥0.6 or ≤0.005) |
-| P-VIS42-10 (mini-sweep, falsifies "cancels to first order") | **REFUTED** | peak-to-trough/mean = 11.9 (bar: confirm ≤2× as flat) |
+| P-VIS42-10 (mini-sweep, falsifies "cancels to first order") | **UNDECIDED** (was REFUTED — see Phase-5 mandatory fix below) | peak-to-trough/mean = 11.9; period-match clause never coded, mechanism NOT established |
 | P-VIS42-11 (settling) | **REFUTED, LOAD-BEARING** | STEPS 1400→2800 moves C80/40°/600nm by **59.8%** relative (bar: confirm ≤0.15%) |
 
 **These verdicts are reported exactly as scored against the pre-registered
@@ -204,10 +217,14 @@ citation built on it). The Director does not pre-empt that ruling here.
 
 ---
 
-## Phase-5 corrections (applied same-shift, before Red Team's final audit)
+## Phase-5 corrections (applied same-shift, before AND after Red Team's final audit)
 
-Six blind Phase-5 reviews found three real gaps in this document's own
-completeness. Applied here rather than left silent:
+Six blind Phase-5 reviews, then Red Team's own final audit, found five real
+gaps in this document's own completeness (two caught by the blind seats and
+closed before the audit; two more caught BY the audit itself, since two of
+the blind-seat catches — this section's own items 2 and 3 — turned out to
+be incompletely propagated when Red Team checked them independently). All
+five are applied here rather than left silent:
 
 1. **[PHOTONICS' catch, R4-class]** Diagnostic 2's four-point convergence
    series (1400/2800/4200/5600) existed only as prose above — the one
@@ -259,6 +276,48 @@ completeness. Applied here rather than left silent:
    That item is unmoved by this cycle in either direction and remains
    ranked #1 for a future THERMODYNAMICS-led cycle, independent of
    anything found here.
+
+4. **[Red Team's own final-audit catch, attack 1]** Item 2 above (the ±35°
+   sign-flip finding) was added as a NEW SECTION but the scorecard table
+   at the top of this document was never edited to match — a reader who
+   stopped at the table would see plain `CONFIRMED` on P-VIS42-6/7 with no
+   cue that a correction exists 180 lines further down. **Fixed**: the
+   table itself now shows `~~CONFIRMED~~ RETRACTED` with an inline pointer,
+   per Red Team's own required remedy (this program's Iteration-23/40
+   precedent: a stale claim gets struck through and flagged in place, not
+   superseded silently by a later section).
+
+5. **[Red Team's own final-audit catch, attack 2 — QUANTUM's own Phase-5
+   self-catch, independently confirmed by Red Team]** `results.json`'s
+   `P-VIS42-10` verdict shipped as `"REFUTED (oscillating — coherent-fringe
+   perturbation)"`, naming a specific causal mechanism. But the
+   pre-registered REFUTE condition (`NOTES.md`, `phase3_synthesis.md`) is
+   **conjunctive** — amplitude (ptp/mean>2×) **and** a period matching
+   `P(θ)=λ/(A·cosθ)` within 20% — and `run.py` only ever computed the
+   amplitude clause; the period-match test was never coded. **Fixed,
+   same-shift**: rather than force a period fit from `MINI_SWEEP_ANGLES`'
+   5 points spanning only ~1.0 T21 period (statistically underpowered to
+   distinguish a real oscillation from noise — the same aliasing-adjacent
+   risk this cycle's own `ABSORB=70` fix exists to avoid), the verdict is
+   **relabeled** to what the code actually establishes: `run.py` and
+   `results.json` now both read `"UNDECIDED (large amplitude oscillation,
+   ptp/mean=11.9 — mechanism undetermined: period-match clause not tested
+   (insufficient points), and confounded by the settling defect found
+   elsewhere this cycle; NOT confirmed as coherent-fringe perturbation)"`.
+   No raw measured number changes — only the derived verdict string. **No
+   future cycle may cite P-VIS42-10 as "confirmed coherent-fringe
+   perturbation"** — QUANTUM's own alternative reading (an unsettled-
+   transit artifact) is at least as consistent with the data (the settling
+   shift at one cell, 0.0082 absolute, is comparable to or larger than the
+   measured peak-to-trough, 0.00817) and is unrefuted.
+
+**Erratum, per this program's own T10 convention (flag, don't silently
+rewrite)**: `phase3_synthesis.md`'s mandatory-fix disposition table row 8
+states item 8 was "Applied." That entry is **inaccurate as literally
+stated** — the promised §0 sentence was never written into
+`phase1_proposal.md`. Item 3 above is where the underlying obligation was
+actually discharged, in this document instead. The disposition table entry
+itself is left unedited (historical record) with this note as the flag.
 
 ## Idealizations realized during Phase 4 (beyond NOTES.md's pre-registered list)
 

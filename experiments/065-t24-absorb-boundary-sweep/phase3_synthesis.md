@@ -35,6 +35,16 @@ rigorous step is `floor(263/1) − 16 = 247`, not 359.
 
 ## Mandatory-fix docket — disposition (all 11 accepted, applied at Phase 3)
 
+**ERRATUM (Phase 5, Red Team's final audit, attack 3 — flagged per this
+program's own T10 convention, not silently rewritten):** row 8 below reads
+"Applied," but the promised §0 sentence was never actually written into
+`phase1_proposal.md` — checked directly by both THERMODYNAMICS' Phase-5
+review and Red Team's final audit (grep, both confirm absent). The
+underlying disclosure obligation WAS discharged, but in `phase4_results.md`
+("Phase-5 corrections," item 3) rather than here as this table claims. This
+row is left unedited below as the historical record of what Phase 3 itself
+believed; this note is the correction.
+
 | # | Fix | Applied as |
 |---|---|---|
 | 1 | 4th `ABSORB` point, non-aliased at all 3λ | `ABSORB=70`, added to Block SWEEP, 18 more calls |
