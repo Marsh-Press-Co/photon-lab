@@ -201,4 +201,83 @@ not expected to move; the one `lab/` file touched this cycle,
 
 ## PHASE 4 — RESULTS
 
-*(to be filled in after the run — see `phase4_results.md`)*
+Run 2026-08-24, 39 new FDTD calls, 3.7 min wall-clock. Full data:
+`phase4_results.md`, `results.json`. Gate P-066-G1 PASSED (18/18
+bit-exact vs exp-041's committed Block MAIN). All six predictions
+(P-066-G1/1/2/3a/3b/4) CONFIRMED.
+
+---
+
+## Result
+
+All 36 mandate-scope cells (±35°/36°/37°/38°/39°/40°×3λ) are now covered
+at both STEPS=1400 and STEPS=2800 — 18 new FDTD calls, 18 already-
+committed cells cited from exp-065's own data (mandatory fix A). The
+settling correction's magnitude and sign-flip prevalence on the 18 new
+cells match pre-registered bands exactly (P-066-1 median 0.005767,
+P-066-2 3/18 flips). Both new settling-generalization stress tests —
+along λ (40°/750nm) and along θ (37°/600nm, mandatory fix B) — converge
+~100–1000× tighter than their own 1% bar; STEPS=2800 is settled at three
+independently-tested (θ,λ) coordinates now, not one. **Headline: GATE_HARD
+(0.001) pass/fail count goes from 31/36 fail at STEPS=1400 to 34/36 fail
+at STEPS=2800 — the settling correction makes the instrument's own
+per-angle floor look worse, not better** (ELECTROMAGNETISM's Phase-5
+review supplies the reason: a passive, graded-damping-bounded channel's
+converged residual has no physical reason to trend toward zero — the
+STEPS=1400 reading was a large transient riding on top of, and sometimes
+coincidentally cancelling, the true T21 fringe). The T21 fringe-fit refit
+(P-066-4, strictly statistical per mandatory fix C) improves on every
+metric at settled STEPS (sign_agree 27/30→30/30, r²(c*) 0.7852→0.8271) —
+reported as fit-quality recovery only, explicitly not a mechanism claim;
+Block MINI's period-match test (P-VIS42-10) remains UNDECIDED. Full
+numbers: `phase4_results.md`.
+
+## Learned
+
+**Closing Block MAIN doesn't close T27 — it sharpens what's left.** The
+19-iteration-old settling gap is now resolved for its highest-stakes
+36-cell subset, with disciplined, independently-verified statistics
+throughout (all six Phase-5 seats independently recomputed every headline
+number from `results.json` directly; zero errors found). But the
+headline itself is double-edged: a "worse, not better" GATE_HARD result
+is genuinely informative (and, per EM's Phase-5 finding, physically
+predictable in hindsight via passivity) rather than a simple confirmation.
+Three sub-items of the same T27 thread — Block ARTICLE's article-present
+legs, the interior `FALLBACK_ANGLES`, Block MINI's period-match test —
+remain open, and per VISION SCIENCE's Phase-5 finding, Block ARTICLE is
+the *only* construction in this program's history that has ever produced
+a scored constraint-3 PASS/MARGINAL number, still unverified for
+settling. A process lesson, independently caught by three of six blind
+Phase-5 seats (PHOTONICS, QUANTUM, VISION): closing a caveat-lint
+registry entry's `trigger_terms`/`candidate_globs` (this cycle's own
+mandatory fix D) is not the same as updating its *description* to reflect
+what the cycle actually closed — the two are separate maintenance tasks,
+and Red Team's Phase-5 final audit's own mandatory fix M1 closes that gap
+here.
+
+## Next
+
+Not a ruling — Red Team's Phase-5 final audit reconciled all six seats'
+rankings into one ordered queue for Iteration 44 (`phase5_redteam_
+audit.md` §3):
+1. **R_contact — LOCKED, unconditional** (Red Team's own escalation
+   ruling, §6 of the final audit; matches this program's lowest-ever
+   3-deferral lock precedent, exp-059).
+2. Close T27's remaining settling gap in full: interior
+   `FALLBACK_ANGLES` at STEPS=2800, Block ARTICLE's article-present legs
+   at settled STEPS, Block EXTEND if budget allows — prioritize
+   39–40°/450nm as the next convergence-check point (EM's Phase-5
+   finding: zero direct multi-STEPS data exists at 450nm anywhere in this
+   record, and it is both the coarsest grid and the most grazing angle
+   still untested).
+3. Block MINI's period-match test: run QUANTUM's proposed zero-cost desk
+   check first (does this cycle's own 36-cell settling-delta dataset show
+   `A·cosθ`-periodic structure?), then build the properly-powered FDTD
+   version or formally retire it — not a third deferral.
+
+Checkpoint criterion 4 does **not** fire, conditional on Red Team's M1–M3
+mandatory-fix docket landing before close (`phase5_redteam_audit.md` §4–5
+— all applied, verified live). Final verdict: **PARTIAL** (5 of 6 blind
+Phase-5 seats concurred; MATERIALS alone read PROMISING; Red Team's final
+audit concurred with the 5-seat majority on structural grounds, not vote
+count — see `phase5_redteam_audit.md` §7).

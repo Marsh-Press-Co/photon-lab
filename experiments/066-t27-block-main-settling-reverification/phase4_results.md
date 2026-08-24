@@ -31,7 +31,8 @@ generalization along λ (750nm, the residual-concentrated wavelength) and θ
 (37°, an interior angle none of exp-065's own construction had tested).
 STEPS=2800 is settled at both.
 
-## Closure summary — the concrete answer to "how many citations are affected"
+## Closure summary — cell coverage and the GATE_HARD bucket table (the
+citation-scope ENUMERATION itself is the next section, below)
 
 All **36** mandate-scope cells (`±35°/36°/37°/38°/39°/40°×{450,600,750}nm`)
 are now covered at both STEPS=1400 and STEPS=2800 — 18 new FDTD calls
@@ -43,6 +44,22 @@ the same way.
 at STEPS=2800.** The settling correction makes the instrument's own
 per-angle floor look **worse**, not better, over this cell set — the
 opposite of what an "unsettled = noisy/inflated" prior might suggest.
+
+**Mandatory fix M3 (Red Team's Phase-5 final audit, VISION SCIENCE's
+catch): GATE_HARD is not VISION's own perceptual bar, and this result does
+not by itself move any constraint-3 verdict.** `GATE_HARD=0.001` (this
+section's own gate) is exp-024/041's per-angle **instrument-floor**
+decision rule — five times stricter than `C_THR_LAB=0.005`
+(`results.json::gates`), which is never the bar scored here. Block MAIN's
+own 36–40° window also sits **outside** `FALLBACK_ANGLES` (the N9
+aggregate that actually sums into every scored constraint-3 PASS/MARGINAL/
+FAIL citation) — only the ±35° leg cited under mandatory fix A overlaps
+that aggregate, and that single cell's sign-flip (−35°/750nm, see table
+below) was already known and disclosed at Iteration 42. So: this result
+characterizes Block MAIN's own excluded fringe zone at settled STEPS: it
+does not itself move any constraint-3 PASS/MARGINAL/FAIL verdict, and if
+anything reinforces exp-041's original rationale for excluding this
+angular window from the scored N9/N17 aggregate in the first place.
 
 **5 of 36 cells flip GATE_HARD bucket; 4 of the 5 flip PASS→FAIL, only 1
 flips FAIL→PASS:**
@@ -62,7 +79,12 @@ GATE_HARD floor) that turn out to be genuinely larger once settled
 a sign-change of the oscillation at exactly those cells, not because the
 instrument floor was actually that tight there. The single FAIL→PASS flip
 (+38°/600nm) is the cell already reported in exp-065's own headline (T27's
-opening finding).
+opening finding); the fourth PASS→FAIL cell (−35°/750nm) is likewise a
+restatement, not a new finding — its C(1400)=−0.00095/C(2800)=+0.00552
+values are the exact sign-flip Iteration 42's own T27 entry already
+disclosed (`design_geometry.py`'s citation, mandatory fix A), given the
+same provenance credit here for symmetry (Red Team's Phase-5 recommended
+fix R1).
 
 ## Fringe-fit refit (P-066-4) — full detail, strictly statistical
 
@@ -129,7 +151,15 @@ many downstream citations are affected")
 this cycle only in the sense that its reachability gap (mandatory fix D) is
 closed, not that its own number moved; the memo's UNOBTANIUM-WITH-
 PARAMETERS verdict rests on grounds independent of this channel's precise
-value (RSA/TPA gaps), unchanged.
+value (RSA/TPA gaps), unchanged. **Narrowed per Red Team's Phase-5 finding
+F4**: MATERIALS' own Phase-5 review read the GATE_HARD-fails-increase
+(31/36→34/36) as directionally "evidence-consistent with" the memo's own
+D_req-as-lower-bound framing — true, but grounded in only **one** of the 5
+bucket-flip cells (−35°/750nm, the single flip inside the `FALLBACK_ANGLES`
+aggregate D_req is actually calibrated from), not the aggregate GATE_HARD
+count, which is dominated by cells (36–39°) outside that aggregate
+entirely. Any future memo amendment citing this cycle should ground the
+claim in that one cell, not the 31→34 headline.
 
 ## Bench trust suite
 

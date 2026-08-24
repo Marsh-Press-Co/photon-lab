@@ -1465,6 +1465,16 @@ measured them here):**
   a newly-discovered, much larger confound (**T27**, below) that this
   cycle's own follow-up shows swamps the effect T24 set out to measure.
   T24 stays open, gated on T27's closure before any future re-attempt.
+  **UPDATE Iteration 43 (exp-066): T27's own highest-stakes sub-item
+  (Block MAIN, the empty-scene angle standard) is now closed at settled
+  STEPS — see T27 below. T24's own inheritance question is STILL not
+  resolved**: closing Block MAIN's settling gap does not itself re-run
+  T24's own beam-channel-vs-plane-channel comparison, which used a
+  different source profile (Gaussian, not tapered-plane) and remains
+  unre-attempted. T24 stays open, now gated only on a fresh re-attempt
+  being scheduled — no further blocking confound remains once PLAN.md's
+  queued item #2 (Block ARTICLE/interior angles, ranked #2 for Iteration
+  44) also lands.
 - **T25 — the ambient-sum instrument's coherent-vs-incoherent bridge gate
   has never validated the configuration it is actually used in, at any
   geometry this program has run (opened Iteration 29, exp-052, QUANTUM
@@ -1675,6 +1685,35 @@ measured them here):**
   MAIN-block rows at STEPS≥2800 and scope exactly how many downstream
   citations are affected. Full record: `experiments/065-t24-absorb-
   boundary-sweep/`, LOGBOOK.md Iteration 42.
+  **CLOSED, Iteration 43 (exp-066), for its highest-stakes sub-item: all
+  36 mandate-named cells (±35°/36°/37°/38°/39°/40°×3λ) now settled-
+  verified at STEPS≥2800** — G-1-prime 18/18 bit-exact vs exp-041's
+  committed Block MAIN, all six predictions CONFIRMED (magnitude, sign-
+  flip prevalence, and — closing EM's own Phase-2 attack — settling-
+  generalization independently verified along BOTH the λ axis (40°/750nm)
+  and the θ axis (37°/600nm, mandatory fix B), both ~100–1000× inside
+  their own 1% bar). **Headline: GATE_HARD (0.001) pass/fail count gets
+  WORSE at settled STEPS, not better — 31/36 fail at 1400 → 34/36 fail at
+  2800** — explained post hoc by ELECTROMAGNETISM's Phase-5 passivity
+  argument (a graded-damping-bounded passive channel's converged residual
+  has no reason to trend toward zero; the STEPS=1400 reading was a large
+  transient coincidentally cancelling the true T21 fringe at some cells).
+  The T21 fringe-fit refit (P-066-4, exp-042's own propagator re-scored
+  against the settled 30-row Block MAIN set, reported strictly as a
+  fit-quality statistic per mandatory fix C) improves on every metric
+  (sign_agree 27/30→30/30, r²(c*) 0.7852→0.8271) — explicitly NOT a
+  mechanism claim; Block MINI's period-match test (P-VIS42-10) stays
+  UNDECIDED. **Still open, NOT closed by exp-066**: Block ARTICLE's
+  article-PRESENT legs (P-VIS42-6/7 — the only construction in this
+  program's history that has ever produced a scored constraint-3
+  PASS/MARGINAL number), the four interior `FALLBACK_ANGLES`, and Block
+  MINI's period-match test — PLAN.md's own queued item #2, ranked #2 for
+  Iteration 44. `lab/caveat_lint_config.json`'s
+  `exp065-steps1400-unsettled-plane-channel` entry updated to reflect
+  this split (Red Team's Phase-5 mandatory fix M1) — Block MAIN citations
+  no longer need the settling disclaimer; Block ARTICLE/Block MINI
+  citations still do. Full record: `experiments/066-t27-block-main-
+  settling-reverification/`, LOGBOOK.md Iteration 43.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -13512,3 +13551,143 @@ T24). Ranked #3 because T27 is now more urgent and more consequential
 only queued item that can *move* a number rather than relabel or disclose
 one, and a third consecutive deferral would itself be worth flagging at
 Iteration 44.
+
+## Iteration 43 — Closing T27's Block MAIN: The Settling Standard, Re-Verified (exp-066) — 2026-08-24
+
+**Lead: PHOTONICS, by rotation** (VISION SCIENCE → PHOTONICS →
+MATERIALS → ELECTROMAGNETISM → THERMODYNAMICS → QUANTUM OPTICS → repeat;
+Iteration 42 was VISION SCIENCE). Executes Red Team's Iteration-42
+ranked-#1 item: re-verify `experiments/041-t20-angle-audit`'s own
+MAIN-block ±35°/±38°/±40° rows at STEPS≥2800 and scope exactly how many
+downstream citations are affected — the single highest-stakes item on
+the board, upstream of T21's fringe model, T16's quadrature deltas, and
+every T20/T24-adjacent citation since Iteration 18.
+
+Full five-phase panel cycle, zero FDTD budget beyond the re-verification
+itself (T1 escape route: NONE, instrument/model-fidelity class, exp-041/
+exp-064 precedent): **Phase 1** (PHOTONICS proposes closing exp-041's
+18-row gap — {36,37,39}°×{±}×3λ, the only Block MAIN cells with no
+committed data beyond STEPS=1400 — reusing exp-065's own `CONFIGS["C40"]`
+harness verbatim; resolves the "Block MAIN vs. ±35°" scope ambiguity by
+excluding ±35° as textually outside exp-041's own naming) → **five blind
+Phase-2 critiques** (all support-with-changes — MATERIALS caught
+`REALIZABILITY_MEMO.md` unreachable by the caveat-lint tool; ELECTROMAGNETISM
+caught that zero of the 18 new cells had any θ-axis settling-convergence
+check, only the original λ-axis one; THERMODYNAMICS caught an undisclosed
+third consecutive `R_contact` deferral; QUANTUM OPTICS caught that
+P-066-4's desk refit risked repeating QUANTUM's own exp-065 Block MINI
+self-catch one level up; VISION SCIENCE caught that the proposal's own
+"cost is trivial" argument was never applied to fold in ±35° at zero
+marginal cost) + **Red Team's Phase-2 audit** (PROCEED-WITH-MANDATORY-
+FIXES; independently corrected VISION's own costing — ±35° was already
+committed at both STEPS in exp-065's own data, so EM's and VISION's asks
+compose rather than compete for budget; corrected its own prior citation
+of EM's "two orders of magnitude" ramp-vs-transit arithmetic to ~10.5×,
+one order of magnitude; found the Phase-1 draft's scope-narrowing
+departed from the mandate's own committed text, which names ±35°
+explicitly three times over) → **Phase 3 synthesis** (5-item docket A–E
+applied in full, zero overrides: A folds ±35° in at $0 marginal cost; B
+adds a genuine θ-axis stress cell, 37°/600nm; C relabels P-066-4 strictly
+statistical with an extended forward tripwire; D widens
+`lab/caveat_lint_config.json` to make `REALIZABILITY_MEMO.md` reachable,
+verified live before/after; E discloses R_contact's third consecutive
+deferral) → **Phase 4** (39 FDTD calls, 3.7 min; gate P-066-G1 PASSED,
+18/18 bit-exact vs exp-041's committed Block MAIN; all six predictions
+CONFIRMED) → **six blind Phase-5 reviews** (5 PARTIAL, 1 PROMISING —
+MATERIALS) + **Red Team's final audit**.
+
+**Results.** All 36 mandate-named cells (±35°/36°/37°/38°/39°/40°×3λ) are
+now covered at both STEPS=1400 and STEPS=2800. The settling correction's
+magnitude and sign-flip prevalence on the 18 new cells match pre-
+registered bands (median |ΔC|=0.005767, 3/18 flips). Both settling-
+generalization stress tests converge ~100–1000× tighter than their own
+1% bar, along λ (40°/750nm) and — closing EM's own Phase-2 attack — along
+θ (37°/600nm) for the first time. **Headline, unanticipated: GATE_HARD
+(0.001) pass/fail count gets WORSE at settled STEPS, not better — 31/36
+fail at 1400 → 34/36 fail at 2800.** ELECTROMAGNETISM's Phase-5 review
+supplies the explanation, independently re-derived: the channel is fully
+passive with lossy graded-damping boundaries on all four domain edges
+(`lab/fdtd2d.py::_damping`), so the converged steady-state residual has
+no physical reason to trend toward zero; the STEPS=1400 reading was a
+large transient (74–89% of the settled magnitude at several cells) that
+happened to cancel the true T21 fringe at some phase points (spurious
+PASSes) and reinforce it at others. The T21 fringe-fit refit (P-066-4,
+exp-042's own propagator re-scored against the settled 30-row Block MAIN
+set, reported strictly as a fit-quality statistic, no causal language,
+per mandatory fix C) improves on every metric — sign_agree 27/30→30/30,
+r²(c*) 0.7852→0.8271 — explicitly **not** a mechanism claim; all six
+blind Phase-5 seats independently verified this discipline held
+completely, including inside `results.json`'s own machine-readable
+verdict string (QUANTUM OPTICS' Phase-5 finding: a genuine improvement in
+citation-safety over exp-065's own failure mode, where the defect lived
+IN the verdict string itself).
+
+**Still open, NOT closed by this cycle**: Block ARTICLE's article-PRESENT
+legs (P-VIS42-6/7 — per VISION SCIENCE's Phase-5 finding, the only
+construction in this program's history that has ever produced a scored
+constraint-3 PASS/MARGINAL number, still unverified for settling), the
+four interior `FALLBACK_ANGLES`, and Block MINI's period-match test
+(P-VIS42-10, UNDECIDED, now two consecutive cycles deferred behind
+relabeling rather than built).
+
+**Checkpoint criterion 4 does not fire, conditional on a 3-item mandatory-
+fix docket landing same-shift** (M1–M3, Red Team's Phase-5 final audit):
+three independent blind seats (PHOTONICS, QUANTUM OPTICS, VISION SCIENCE)
+converged on the same live gap — `lab/caveat_lint_config.json`'s
+`exp065-steps1400-unsettled-plane-channel` entry had its `trigger_terms`/
+`candidate_globs` widened (mandatory fix D) but its own *description* was
+never updated to reflect that Block MAIN is now closed while Block
+ARTICLE/interior angles/Block MINI remain open — `phase4_results.md`
+itself had explicitly deferred that update to this exact close. Red
+Team's audit ruled this a "found before close, fixed same-shift"
+non-firing precedent (Iterations 19/23/42), not drift: Phase 5 is the
+stage designed to catch this class of gap, the gap was disclosed not
+missed, and the implicated entry carries no prior hardened auto-fire
+tripwire. M1 (registry description + `phrase_patterns` widened), M2
+(a mislabeled section header fixed), and M3 (a GATE_HARD-vs-`C_THR_LAB`
+clarifying sentence added, per VISION SCIENCE's finding that the
+"GATE_HARD got worse" headline does not itself move any constraint-3
+verdict) all applied and verified live before this entry was written.
+
+**Verdict: PARTIAL** — 5 of 6 blind Phase-5 seats concurred (PHOTONICS,
+ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS, VISION SCIENCE);
+MATERIALS alone read PROMISING (nothing here was left undecided by its
+own design, unlike exp-065). Red Team's final audit concurred with the
+5-seat majority on structural grounds: T27 is only partially closed
+(three sub-items remain explicitly open, not by omission), the headline
+finding is double-edged rather than a clean confirmation, and real
+citation-hygiene work was explicitly left for this exact close.
+
+**M4 — R_contact LOCKED, unconditional, for Iteration 44** (Red Team's
+Phase-5 final audit, granting THERMODYNAMICS' escalation request). Three
+consecutive deferrals (Iterations 41→42→43) now matches this program's
+own lowest-ever lock-trigger precedent (`Q_ext(x)`, exp-059, locked after
+exactly 3 deferrals) and the `graded_black_shell_flagship` precedent
+(exp-057, THERMODYNAMICS' own unconditional rotation-breaking lock). It
+is the only queued item that can *move* TD-5's margin (7.8× over
+κ_critical, this program's thinnest safety factor of any kind) rather
+than relabel or disclose one; desk/literature work, structurally
+orthogonal to any FDTD budget. Iteration 44 is MATERIALS' turn by
+rotation regardless, so the lock costs nothing procedurally.
+
+**Ranked queue for Iteration 44** (Red Team's Phase-5 final-audit
+reconciliation of all six seats): (1) **R_contact — LOCKED** (M4, above).
+(2) **Close T27's remaining settling gap in full**: interior
+`FALLBACK_ANGLES` at STEPS=2800, Block ARTICLE's article-PRESENT legs at
+settled STEPS, Block EXTEND if budget allows — prioritize 39–40°/450nm as
+the next convergence-check point (ELECTROMAGNETISM's Phase-5 finding:
+zero direct multi-STEPS convergence data exists at 450nm anywhere in
+this record, and it is both the coarsest grid, cpl=15, and the most
+grazing angle still untested). (3) **Block MINI's period-match test**:
+run QUANTUM OPTICS' proposed zero-cost desk check first (does this
+cycle's own 36-cell settling-delta dataset already show `A·cosθ`-periodic
+structure matching T21's period?), then build the properly-powered FDTD
+version (≥2–3 T21 periods at ~0.2° spacing, at settled STEPS) or formally
+retire it — two consecutive cycles of deferral-behind-relabeling is
+enough; per this program's own T23 precedent, a third would be worth
+flagging as Checkpoint-4-adjacent. Full record: `experiments/066-t27-
+block-main-settling-reverification/` — Phase-1 proposal, five Phase-2
+blind critiques, Phase-2 Red Team audit, Phase-3 synthesis, NOTES.md,
+`phase4_results.md`, six Phase-5 blind reviews, Phase-5 Red Team final
+audit; `lab/caveat_lint_config.json` widened twice (Phase-3 mandatory fix
+D, Phase-5 mandatory fix M1).

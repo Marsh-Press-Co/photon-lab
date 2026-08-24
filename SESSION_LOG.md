@@ -2,6 +2,103 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-24 (panel shift) — Iteration 43 complete (exp-066): T27's
+highest-stakes sub-item (exp-041's Block MAIN angle standard) closed at
+settled STEPS≥2800 — the headline came back the opposite of expected
+(the instrument floor gets WORSE, not better, once settled); R_contact
+LOCKED unconditional for Iteration 44; Checkpoint criterion 4 does not
+fire, conditional on a 3-item mandatory-fix docket that landed
+same-shift; no Marsh convening needed.
+
+**Pre-flight**: fresh container onboarding, deps installed per the
+documented pip wrinkle (numpy/scipy/matplotlib/pillow/autograd/fdtd then
+`pip install --no-deps ceviche`). Read HANDOFF.md, README.md, PANEL.md,
+LOGBOOK.md (13,514 lines at session start — via a dedicated sub-agent
+full read + digest covering the RULED OUT registry, all live threads
+T1–T27, VISION SCIENCE's own pinned thresholds, and PLAN.md's current
+queue, cross-checked directly against exp-041/exp-065's own committed
+files), PLAN.md's Current-state section and the Iteration-43 queue,
+AGENTS.md, VALIDATION.md, SESSION_LOG's top two entries. Bench verified
+green: `--only 12346789,10,11,18,19,20,21,22,23,24` → 107/107 in 144s
+before any panel work began.
+
+**Iteration 43 — PHOTONICS' rotation-lead cycle (exp-066).** Executes Red
+Team's Iteration-42 ranked-#1 item: re-verify exp-041's own Block MAIN
+angle standard (±35°/36°/37°/38°/39°/40°, 3λ) at STEPS≥2800 — T27's own
+highest-stakes sub-item, upstream of T21's fringe model, T16's quadrature
+deltas, and every T20/T24-adjacent citation since Iteration 18. Full
+five-phase cycle, zero mechanism (T1 route N/A, instrument-trust class):
+Phase 1 (PHOTONICS proposes closing exp-041's 18-cell gap — the only
+Block MAIN cells with no committed data beyond STEPS=1400 — reusing
+exp-065's own harness verbatim) → five blind Phase-2 critiques (all
+support-with-changes; MATERIALS caught `REALIZABILITY_MEMO.md`
+unreachable by the caveat-lint tool; ELECTROMAGNETISM caught zero θ-axis
+settling-convergence testing on the 18 new cells; THERMODYNAMICS caught
+an undisclosed third consecutive `R_contact` deferral; QUANTUM OPTICS
+caught P-066-4's desk refit risking a repeat of its own exp-065 Block
+MINI self-catch one level up; VISION SCIENCE caught that ±35° was never
+folded in despite costing $0 marginal) + Red Team audit
+(PROCEED-WITH-MANDATORY-FIXES; corrected VISION's own costing — EM's and
+VISION's asks compose, not compete) → Phase 3 synthesis (5-item docket
+A–E applied in full, zero overrides) → Phase 4 (39 FDTD calls, 3.7 min;
+gate P-066-G1 PASSED 18/18 bit-exact; all six predictions CONFIRMED) →
+six blind Phase-5 reviews (5 PARTIAL, 1 PROMISING) + Red Team's final
+audit.
+
+**Results**: all 36 mandate-named cells now settled-verified at
+STEPS≥2800. Both new settling-generalization stress tests (λ-axis
+40°/750nm, θ-axis 37°/600nm) converge ~100–1000× tighter than their own
+1% bar. **Headline, unanticipated: GATE_HARD pass/fail count gets WORSE
+at settled STEPS, not better — 31/36 fail at 1400 → 34/36 fail at
+2800.** ELECTROMAGNETISM's Phase-5 review supplied the explanation,
+independently re-derived from first principles: the channel is fully
+passive with lossy graded-damping boundaries, so the converged residual
+has no physical reason to trend toward zero — the unsettled reading was
+a large transient that happened to cancel the true T21 fringe at some
+cells. The T21 fringe-fit refit (exp-042's own propagator, re-scored
+against the settled data, reported strictly as a fit-quality statistic
+per mandatory fix C) improved on every metric (sign_agree 27/30→30/30,
+r²(c*) 0.7852→0.8271) — all six blind Phase-5 seats independently
+verified the no-mechanism-claim discipline held completely, including
+inside `results.json`'s own machine-readable verdict string. Still open,
+not closed by this cycle: Block ARTICLE's article-present legs (the only
+construction in this program's history that has ever produced a scored
+constraint-3 PASS/MARGINAL number), the four interior FALLBACK_ANGLES,
+and Block MINI's period-match test.
+
+**Checkpoint criterion 4 does not fire, conditional on a 3-item
+mandatory-fix docket** (mirrors Iterations 19/23/42's own conditional-
+non-firing precedent). Three independent blind Phase-5 seats (PHOTONICS,
+QUANTUM OPTICS, VISION SCIENCE) converged on the same live gap: a
+caveat-lint registry entry's `trigger_terms`/`candidate_globs` were
+correctly widened at Phase 3 (mandatory fix D) but its own *description*
+was never updated to reflect what the cycle actually closed —
+`phase4_results.md` itself had explicitly deferred that update to this
+exact close. Red Team's final audit ruled this "found before close,
+fixed same-shift," not drift. All three fixes (M1: registry description
++ phrase-pattern widening; M2: a mislabeled section header; M3: a
+GATE_HARD-vs-C_thr clarifying sentence) applied and verified live before
+this entry was written. **Verdict: PARTIAL** — 5 of 6 blind seats
+concurred (MATERIALS alone read PROMISING); Red Team's final audit
+concurred with the 5-seat majority on structural grounds (T27 only
+partially closed; the headline is double-edged, not a clean win). Full
+bench 107/107 reconfirmed after Phase 4; zero `lab/ARTIFACTS.md`/
+`lab/artifacts.py`/`AGENTS.md`/`lab/viz.py` touched; only `lab/
+caveat_lint_config.json` (widened twice, data registry only, zero engine
+diff) among `lab/` files touched.
+
+**New ruling: R_contact — PLAN.md's still-standing top-of-queue item,
+deferred three consecutive cycles (Iterations 41→42→43) — is LOCKED,
+unconditional, for Iteration 44** (Red Team's Phase-5 final audit,
+granting THERMODYNAMICS' escalation request; matches this program's own
+lowest-ever 3-deferral lock precedent, `Q_ext(x)`/exp-059). Ranked queue
+for Iteration 44: (1) R_contact — LOCKED; (2) close T27's remaining
+settling gap in full (interior FALLBACK_ANGLES, Block ARTICLE
+article-present legs, prioritizing 39–40°/450nm — EM's Phase-5 finding
+that 450nm has zero direct multi-STEPS convergence data anywhere in this
+record); (3) Block MINI's period-match test, built properly or formally
+retired. Cycle closes unblocked; no Marsh convening required.
+
 ## 2026-08-24 (panel shift) — Iteration 42 complete (exp-065): the T24
 `ABSORB` boundary sweep finally ran after 19 iterations queued, and found
 something bigger than what it went looking for — a settling confound
