@@ -1,0 +1,86 @@
+==============================================================================
+exp-065 -- T24 ABSORB boundary sweep: geometry and desk arithmetic
+==============================================================================
+
+[1] CONFIGURATIONS (congruence check)
+      cfg     ABS     PAD      NX      NY   SRC_X PLANE_X   OBJ_Y    y_lo    y_hi       A    aper   clrPl  clrSrc clrSpan    D_SP
+      C40      40       0     360    1584     300      77     792      40    1544     752    1504      37      20       0     223
+      C60      60      20     400    1624     320      97     812      60    1564     752    1504      37      20       0     223
+      C80      80      40     440    1664     340     117     832      80    1584     752    1504      37      20       0     223
+      G40      40      40     440    1664     340     117     832      80    1584     752    1504      77      60      40     223
+      N60      60       0     360    1584     300      77     792      60    1524     732    1464      17       0       0     223
+    congruent series holds               A = 752 across ABSORB in (40, 60, 80)  [OK]
+    congruent series holds     clear_plane = 37 across ABSORB in (40, 60, 80)  [OK]
+    congruent series holds       clear_src = 20 across ABSORB in (40, 60, 80)  [OK]
+    congruent series holds    clear_span_y = 0 across ABSORB in (40, 60, 80)  [OK]
+    congruent series holds            d_sp = 223 across ABSORB in (40, 60, 80)  [OK]
+    congruent series holds           lever = 93 across ABSORB in (40, 60, 80)  [OK]
+    congruent series holds  aperture_cells = 1504 across ABSORB in (40, 60, 80)  [OK]
+    NAIVE N60 breaks it: A=732 (-20 cells, 2.66%), clear_plane=17, aperture=1464
+
+[2] DESK PROPAGATOR (exp-048 `edge_diffraction_c_empty_corrected`,
+    a boundary-FREE Huygens-Fresnel sum -- zero free parameters)
+    lam  theta |        C40        C60        C80        G40        N60 |  N60-C40
+    450    35  |  +0.002134  +0.002134  +0.002134  +0.002134  -0.002949 | -0.005083
+    450    38  |  +0.003527  +0.003527  +0.003527  +0.003527  -0.001785 | -0.005312
+    450    40  |  -0.010329  -0.010329  -0.010329  -0.010329  +0.008654 | +0.018983
+    600    35  |  -0.002598  -0.002598  -0.002598  -0.002598  -0.003899 | -0.001301
+    600    38  |  -0.003031  -0.003031  -0.003031  -0.003031  +0.000783 | +0.003815
+    600    40  |  -0.004650  -0.004650  -0.004650  -0.004650  -0.007437 | -0.002788
+    750    35  |  +0.005327  +0.005327  +0.005327  +0.005327  +0.000042 | -0.005286
+    750    38  |  -0.003749  -0.003749  -0.003749  -0.003749  +0.001803 | +0.005553
+    750    40  |  -0.006421  -0.006421  -0.006421  -0.006421  +0.005157 | +0.011578
+
+    max |desk(C60/C80) - desk(C40)| over all 9 cells = 0.000e+00
+      -> the congruent series is EXACTLY degenerate in the
+         boundary-free model: every FDTD difference C60/C80 vs C40
+         is boundary physics by construction.
+    NAIVE artifact predicted by the SAME model, zero FDTD:
+      |desk(N60) - desk(C40)|  min 1.301e-03  median 5.286e-03  max 1.898e-02
+      (compare T24's published beam-channel systematic 0.0022-0.0070 absolute)
+    G40 (pad-only) vs C40 in the desk model: 0.000e+00
+
+[3] T21 FRINGE PERIOD at each A (exp-048 `ripple_period_deg`)
+    450nm: P(A=752)=1.492 deg  P(A=732)=1.533 deg   |delta phase| at theta=40 = 0.857 cycles
+    600nm: P(A=752)=1.989 deg  P(A=732)=2.044 deg   |delta phase| at theta=40 = 0.643 cycles
+    750nm: P(A=752)=2.487 deg  P(A=732)=2.554 deg   |delta phase| at theta=40 = 0.514 cycles
+
+[4] CAUSAL-IDENTITY GATE STEP (pad construction, C40 vs G40)
+    Courant S = 0.700036 cells/step
+    first-arrival step at the plane (direct, D_SP=223) = 319
+    guaranteed-identical up to step n = 359
+    -> a usable window of 40 steps AFTER first light, BEFORE any boundary can matter.
+
+[5] FROZEN PERCEPTUAL BARS (invoked from lab/glare_sidecar.py)
+    C_thr lab   (cued,   L=3 cd/m2, p=0.4) = 0.005000
+    C_thr field (uncued, L=3 cd/m2, p=0.4) = 0.020000
+    MARGINAL band convention = [0.5, 2.0] x bar
+    C_thr(L=0.1 cd/m2, lab) = 0.0195 (p=0.4) .. 0.0274 (p=0.5)
+    C_thr(L=0.01 cd/m2, lab) = 0.0490 (p=0.4) .. 0.0866 (p=0.5)
+    C_thr(L=0.001 cd/m2, lab) = 0.1230 (p=0.4) .. 0.2739 (p=0.5)
+    C_thr(L=0.0001 cd/m2, lab) = 0.3089 (p=0.4) .. 0.8660 (p=0.5)
+    INSTRUMENT-FLOOR gate (scores every empty row): GATE_HARD = 0.001
+
+[6] ARTICLE (Block ARTICLE)
+    off_pass-equivalent uniform disk: tau_center = 0.0065, r_out = 78 -> sigma_e = 4.1666666666666665e-05
+
+[7] FDTD BUDGET
+    Block SWEEP    {'C40': 18, 'C60': 18, 'C80': 18, 'N60': 18}
+    Block PAD      {'G40': 9}
+    Block ARTICLE  {'C40': 16, 'C80': 16}
+    Block BEAM     {'C40': 2, 'C60': 2, 'N60': 2}
+    per-configuration totals: {'C40': 36, 'C60': 20, 'C80': 34, 'N60': 20, 'G40': 9}
+    TOTAL FDTD calls = 119
+    measured cost basis (4-way parallel, this container): {'C40': 25.0, 'N60': 25.0, 'C60': 31.1, 'C80': 34.8, 'G40': 34.8}
+    projected CPU  = 3518 s = 58.6 min
+    projected WALL = 1032 s = 17.2 min (4 workers at 98% efficiency)
+    3x safety envelope = 51.6 min
+
+[8] T24's PUBLISHED BEAM-CHANNEL NUMBERS (Block BEAM must reproduce)
+    A-v4: 750nm theta0=38.0 FWHM=2.0  C(40)=+0.154376  C(60)=+0.161333  dC=+0.00696  |dC|/|C| = 0.0451
+    A-v1: 600nm theta0=40.0 FWHM=2.0  C(40)=-0.125698  C(60)=-0.127896  dC=-0.00220  |dC|/|C| = 0.0175
+    -> T24's systematic is 1.8-4.5% RELATIVE on the beam channel.
+       Whether it transfers to the plane/ambient channel as an
+       ABSOLUTE 0.002-0.007 or as a RELATIVE 2-5% is exactly what
+       this cycle measures -- and the two hypotheses differ by
+       ~30x on a |C_empty| ~ 0.01 row.
