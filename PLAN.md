@@ -22,7 +22,73 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-24, panel Iteration 46 done (exp-069,
+## Current state (2026-08-25, panel Iteration 47 done (exp-070,
+PARTIAL — QUANTUM OPTICS lead by rotation, executing the Iteration-46-
+queue's own item 1 (near-unanimous six-seat convergence, itself Red
+Team's own standing exp-069 forward tripwire): a single zero-FDTD-cost
+desk-check batch on live thread T28 (the settled, resolution-robust
+~2.84° periodicity in the `C80−C40` padding delta that does not match
+T21's own established `P(θ)≈1.96°` fringe), discharged one cycle ahead of
+its own Iteration-48 deadline. Full five-phase cycle, zero `lab/` diff,
+zero FDTD calls throughout — pure desk arithmetic over already-committed
+data. Phase-2 Red Team's audit (PROCEED-WITH-MANDATORY-FIXES, 10 items,
+zero overridden) independently EXECUTED, not merely argued, two of the
+five blind critiques' own proposed checks: PHOTONICS'/MATERIALS' proposed
+null-permutation control (found, at N=10,000 scratch scale, 100% of
+random targets clear the batch's own 1% CONFIRM band) and
+ELECTROMAGNETISM's "item (a) will fire regardless of the true signal"
+prediction (ran the original design's own logic on real data: it
+CONFIRMS today via a spurious third period). **Headline: P-070-3 REFUTEs
+cleanly** (`TAPER=40` cells alone as a diffracting sub-aperture misses the
+observed period by 1197%) — **one T28 sub-hypothesis is now dead.**
+**P-070-1 CONFIRMs, softer than its own first-draft prose claimed**
+(Phase-5, ELECTROMAGNETISM, Red-Team-confirmed): the ~2.8°-family signal
+lives in `C40(θ)` and `C80(θ)` individually (recovered periods 2.44°/
+2.53°, 3.93% apart from each other), genuinely disfavoring an
+`ABSORB`-depth-tied mechanism over a shared-geometry one, but each
+config's own period sits 11–14% from the padding-delta's own free-fit
+period with a non-trivial residual fit to T21's own fringe — more
+consistent with a compromise fit than a clean independent confirmation;
+the pre-registered gate stands (house discipline: scored as committed,
+not re-scored after a later review sharpens the read) but licenses less
+than first claimed. **P-070-2/P-070-4 NEITHER — this cycle's own real
+methodological headline**: a formal `N=20,000` null-permutation control
+(mandated by Red Team's Phase-2 audit, implemented in code) showed that
+BOTH the beat-frequency reconstruction's and the `A_eff` systematic
+trace's own sub-0.1%-deviation named-constant matches — which cleared
+every raw threshold, including a 750nm cross-validation `R²=0.7663` — are
+statistically indistinguishable from chance (`null_p=0.50/0.20/0.81`).
+**The clearest demonstration in this program's history that a dense
+small-integer bookkeeping-constant search finds a plausible match
+regardless of ground truth** — generalized into a new standing house
+rule, appended to LOGBOOK's own RULED OUT R5 entry: any future proposal
+searching more than a handful of named-constant/parameter combinations
+for a match must include a pre-registered null-permutation control before
+a match counts as evidence. **No mechanism identified for T28.** Phase 5
+(six blind reviews + Red Team's final audit, all independently
+re-verified live, not from prose) found: PHOTONICS'/MATERIALS'
+independently-converging caveat-lint registry gap for this cycle's own
+headline near-misses (fixed same-shift, new entry, re-verified 0
+required-site failures); EM's "CONFIRM weaker than claimed" finding
+(language corrected same-shift, verdict unchanged per pre-registration
+discipline); QUANTUM's R5-precedent argument (a `null_p` this high
+carries REFUTE-grade weight in substance though the schema has no such
+label — ruled forward-only, the R5 addendum above); and the Director's
+own mid-edit arithmetic self-catch (the `A_eff` six-way tie at 519 is
+actually only 3 independent coincidences once the
+`{TAPER,ABSORB40,PAD80}=40` cluster's full degeneracy is traced, not 6 —
+caught and corrected before commit, verify-before-claim discipline
+working as intended). **No Checkpoint criterion fires** (all five
+explicitly ruled; the caveat-lint gap matches this program's own
+established same-shift, found-before-close non-firing precedent, lacking
+either aggravating fact — a violated pre-committed tripwire, or undetected
+survival through the process — that distinguishes an actual firing).
+Verdict PARTIAL: real, load-bearing process progress (the exp-069 forward
+tripwire discharged a cycle early, one sub-hypothesis cleanly killed, a
+genuine generalizable house rule established) but the substantive
+question — what actually produces T28's periodicity — ends narrowed, not
+answered. Full record: `experiments/070-t28-mechanism-desk-check-batch/`,
+LOGBOOK.md Iteration 47); panel Iteration 46 done (exp-069,
 PARTIAL — THERMODYNAMICS lead by rotation, executing PLAN.md's own
 LOCKED, unconditional Iteration-46 mandate (Red Team's Iteration-45
 ranked #1, born of Iteration 45's own CHECKPOINT firing): Block MINI's
@@ -2500,6 +2566,45 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
+- **[ACTIVE — Iteration 48 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-070's six seats — a genuine, independently-
+  confirmed 6-for-6 blind-seat convergence on item 1; supersedes the
+  Iteration-47 queue below as the active ranking, that block retained as
+  valid backlog, not deleted]** (1) **ELECTROMAGNETISM's C60/C70
+  `ABSORB`-depth falsification test** — the already-built congruent
+  configs (zero new `lab/` diff), varying `ABSORB` directly across all
+  four points (40/60/70/80) while holding everything else fixed, the
+  causal manipulation T28's own desk-check batch (exp-070) could not
+  provide. Per Red Team's own Phase-5 final-audit strengthening: (a)
+  include EM's own direct cross-config consistency metric
+  (`|P*(Ca)−P*(Cb)|/mean`) at every `ABSORB` pair, not only against a
+  derived reference — the metric exp-070's own Phase-5 review showed was
+  missing and is what would actually distinguish "genuine shared
+  component" from "compromise fit" at four points instead of two; (b)
+  fold in the already-queued, near-zero-cost peak-cell R3 resolution
+  recheck (θ≈37.2°/41.4°, 2 calls, exp-069's own residual resolution-scope
+  gap) at no extra cost. Score on the RECOVERED PERIOD at each `ABSORB`
+  depth (exp-070's own Attack-1 lesson: bare R² alone is not a
+  discriminator), and disclose the cross-config spread explicitly rather
+  than only a binary CONFIRM/REFUTE. (2) **`R_contact`'s `measured_direct`
+  literature search** — unchanged ranking from five prior cycles'
+  queues, converging across 4 of 6 exp-070 blind reviews
+  (PHOTONICS/MATERIALS/THERMODYNAMICS/VISION), zero resource competition
+  with item 1 (desk/literature vs. FDTD), still the only item across
+  eight cycles now (Iterations 44–48) that can move a real, sourced
+  materials number for TD-5's still-UNANSWERED tier
+  (`REALIZABILITY_MEMO.md` Entry 3), blocked purely on WebSearch/WebFetch
+  tooling availability. Full record:
+  `experiments/070-t28-mechanism-desk-check-batch/` — Phase-1 proposal,
+  five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+  NOTES.md, `design_geometry.py`/`desk_check_mechanism.py`,
+  `results.json`, `phase4_results.md`, six Phase-5 blind reviews, Phase-5
+  Red Team final audit; `lab/caveat_lint_config.json` (new
+  `exp070-t28-named-constant-null-control` entry); LOGBOOK.md Iteration
+  47 (RULED OUT R5 addendum, LIVE THREADS T28 updated).
+- **[superseded by the Iteration-48 queue above — exp-070's own docket,
+  retained as a pointer to its own history, not deleted]** the
+  Iteration-47 queue that follows this note.
 - **[ACTIVE — Iteration 47 queue, Red Team's Phase-5 final-audit
   reconciliation of exp-069's six seats; supersedes the Iteration-46
   queue below as the active ranking, that block retained as valid
