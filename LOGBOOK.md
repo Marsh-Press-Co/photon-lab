@@ -95,6 +95,25 @@ top. Protocol: PANEL.md.*
   `experiments/070-.../phase4_results.md`). Full record:
   `experiments/070-t28-mechanism-desk-check-batch/phase5_redteam_audit.md`
   §3, LOGBOOK.md Iteration 47.
+- **R6 — `G0-e`, a synthetic ground-truth recovery gate, is standing
+  mandatory machinery for any future cycle that fits a carrier- or
+  phase-conditioned coefficient (not a ruled-out idea; a standing
+  house-discipline rule, adopted Iteration 49, on the R4 model).**
+  exp-072's differential/beat-fit estimator shipped a carrier-phase sign
+  bug (`_amp_phase_at`) that rotated every published coefficient by an
+  angle set by a nuisance parameter (the carrier phase itself) — invisible
+  to `cond5`, R², residuals, fitted values, four phases of review, and an
+  independent Phase-5 re-implementation built from the same specification,
+  because all of those are rotation-invariant. It was found only by three
+  independent seats forward-simulating known ground truth against the
+  actual committed pipeline. **Rule: any future estimator that conditions
+  on a fitted carrier or phase parameter must ship a pre-registered
+  synthetic ground-truth recovery test — inject a KNOWN effect at a swept
+  nuisance-parameter value, HALT unless recovered/true is within a stated
+  tolerance — before any real data is scored.** A cycle that ships such an
+  estimator without one fires Checkpoint criterion 4 automatically, no
+  further deliberation. Full record: `experiments/072-t28-differential-
+  beat-fit/phase5_redteam_audit.md` §1, §6, LOGBOOK.md Iteration 49.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -1891,6 +1910,33 @@ measured them here):**
   survive undetected into a published causal claim). Verdict PARTIAL. Full
   record: `experiments/071-t28-absorb-depth-causal-test/`, LOGBOOK.md
   Iteration 48.
+
+  **Iteration 49 (exp-072) — the differential/beat-fit instrument built to
+  answer T28's own resolution problem, Combined Verdict NEITHER, doubly
+  verified.** Merged EM's and QUANTUM's exp-071 Phase-5 proposals: fit
+  `delta_AB(θ)` between adjacent `ABSORB` pairs directly instead of
+  independently fitting absolute periods, converting the Rayleigh-limited
+  problem into a coefficient-detection problem at the window's own
+  well-resolved common-mode carrier. **Zero of four pairs `RESOLVED`.**
+  The result shipped with a carrier-phase sign bug (found at Phase 5 by
+  three independent seats, three different methods; CHECKPOINT criterion
+  4 fired on the process, not the physics — full ruling in this
+  iteration's own entry above) and the corrected re-run confirms the
+  headline: `R_q`'s sensitivity to the carrier phase is exact and free
+  (`dR_q/dψ̄ ≡ R_i`, `|R_i|≥|R_q|` at 3 of 4 pairs), the carrier rotation
+  that zeroes `R_q` sits inside the carrier's own bootstrap uncertainty at
+  every pair, and the phase-invariant version of the whole test (`‖R‖`,
+  untouched by the sign bug throughout) is null everywhere. **A data-free
+  leakage calculation generalizes T28's own resolution problem**: `R_q` is
+  non-identifiable not specifically against T21's 1.9608° fringe but
+  against essentially any periodic contributor from ~1.8° to ~5.0°
+  (leakage 15–36 per unit amplitude, peaking at 3.48–3.54°) — sharper and
+  more falsifiable than "T21's fringe contaminates it." No mechanism
+  identified; the differential instrument itself is now well-characterized
+  (sound but window-limited) rather than merely proposed. New standing
+  house tripwire: `G0-e`, a synthetic ground-truth recovery gate, mandatory
+  for any future carrier/phase-conditioned coefficient fit. Full record:
+  `experiments/072-t28-differential-beat-fit/`, LOGBOOK.md Iteration 49.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -14761,3 +14807,251 @@ synthesis, NOTES.md, `design_geometry.py`/`run.py`, `results.json`,
 audit; `lab/caveat_lint_config.json` (new
 `exp071-t28-absorb-pad-confound-and-resolution-floor` entry); LOGBOOK.md
 LIVE THREADS (T28 updated, still open).
+
+## Iteration 49 — The Differential/Beat Fit Ships With a Carrier-Phase Sign Bug, Caught at Phase 5 by Three Independent Seats; CHECKPOINT Criterion 4 Fires (exp-072) — 2026-08-25
+
+**Lead: PHOTONICS, by rotation.** Executes PLAN.md's Iteration-49 queue
+item 1 (Red Team's Phase-5 final-audit merge of ELECTROMAGNETISM's and
+QUANTUM OPTICS' exp-071 Phase-5 differential/beat-fit proposals): a
+zero-FDTD-cost desk re-analysis of the 124 already-collected exp-069/071
+dense-sweep points, fitting `delta_AB(θ) = C_B(θ) − C_A(θ)` between
+adjacent `ABSORB` pairs (C40–C60, C60–C70, C70–C80, plus the
+already-analyzed C40–C80) instead of independently fitting absolute
+periods per config — converting the Rayleigh-limited absolute-frequency
+problem (established at exp-071 Phase 5: the window supplies <10% of the
+resolving power needed to separate C60's and C70's periods) into a
+better-conditioned coefficient-detection problem at the window's own
+well-resolved common-mode carrier.
+
+**Pre-flight**: fresh container onboarding this shift, dependencies
+installed per the documented wrinkle. Fast-subset trust suite green,
+41/41 (`--only 12346789`), before any panel work began, and again after
+this cycle's close (zero `lab/` diff throughout — the entire cycle is
+desk-only).
+
+### Phases 1–2: proposal and blind critique, exceptionally rigorous
+
+Phase 1 (PHOTONICS) formalized the queue item into a fully pre-registered
+design: a 5-column ramped-differential estimator (common-mode carrier fit
++ ramp-in-quadrature coefficient `R_q`), an a-priori power table correctly
+predicting the two 10-cell `ABSORB` steps would likely be underpowered, a
+pre-registered surrogate-null control (satisfying LOGBOOK's own R5
+addendum though not technically triggered), and nine stated idealizations.
+
+Phase 2's five blind critiques were the most rigorous this program has
+produced to date — two seats (QUANTUM OPTICS, VISION SCIENCE)
+**independently executed the proposed estimator on the real committed
+data** rather than reasoning from prose alone, and found the design's
+carrier-choice conditioning was far weaker than claimed: VISION found the
+sign, magnitude and significance of every pair's recovered period
+difference flipped depending on which carrier (among several the design's
+own gates admitted as consistent) was used; QUANTUM found the design's
+own null construction inverted its a-priori power ranking (the pair
+predicted "underpowered" was the one pair whose effect cleared its own
+significance gate). EM found a real sign/formula error in a coefficient
+table; MATERIALS and THERMODYNAMICS independently converged on a
+saturating-vs-linear model mismatch in the `ABSORB`-depth reference slope,
+and MATERIALS caught a hand-transcribed slope constant (R4-class defect).
+
+Red Team's Phase-2 audit **independently re-implemented and re-verified
+nearly every numerical claim** (not merely adjudicated prose), found three
+additional defects no seat caught, adjudicated QUANTUM's and VISION's
+findings as compatible-and-both-required (not the same defect, not in
+conflict — verified that adopting QUANTUM's fix alone would deliver
+false-positive-grade significance on a quantity VISION showed was
+carrier-arbitrary), ruled explicitly on Phase-2 pre-registration
+contamination (two seats had computed real numbers mid-critique) with four
+binding conditions including a new `CONFIRM_UNCERTIFIED` override, and
+issued a 15-item PROCEED-WITH-MANDATORY-FIXES docket, overriding three
+seats' specific proposed remedies with independently-derived corrections
+(documented explicitly, e.g. EM's own proposed fix for a real coefficient
+error was itself shown to manufacture a worse artifact).
+
+### Phase 3: synthesis, predictions frozen, and the first self-catch
+
+Director's synthesis accepted Red Team's audit in full, independently
+re-derived and confirmed all three of Red Team's overrides before coding
+them (not merely restated), and implemented the 15-item docket in
+`run.py`. **One implementation bug was found and disclosed during
+development**: the carrier phase was fit in raw `sin θ` coordinates and
+reused directly as the `u`-centered phase the ramped design matrix needs,
+without the connecting `w·x̄` shift — caught by comparing the tool's own
+`T_mean` outputs (which matched independently-computed values) against its
+`ΔP` outputs (which did not), and fixed by fitting amplitude and phase
+directly in `u`-space.
+
+### Phase 4: official run — Combined Verdict NEITHER, as Red Team forecast
+
+Zero pairs `RESOLVED`; `NEITHER` on every gate. Bottom line as first
+published: the differential instrument's carrier resolves as well as
+Iteration 48's absolute-period route (R²≈0.43–0.45 at every pair) but its
+recovered period-difference is not identifiable against the window's own
+unresolved second contributor (T21's fringe) and against carrier-choice
+uncertainty. This matched Red Team's own advance forecast, stated in the
+Phase-2 audit before any run.
+
+### Phase 5: three independent seats catch a critical sign bug the Phase-3 self-catch missed
+
+Six blind reviews (all seats, fresh contexts) each independently
+re-verified the run against `run.py` and `results.json`, not just prose.
+**Three of six — PHOTONICS, MATERIALS, ELECTROMAGNETISM, using three
+different methods (forward simulation on synthetic ground truth, direct
+cross-checks against Red Team's own Phase-2 numbers, and closed-form
+re-derivation) — independently found the same critical defect**: the
+carrier-phase hand-off in `_amp_phase_at` (`psi = math.atan2(fit["b"],
+fit["a"])`) returned the wrong sign, rotating every published `R_q`/ΔP
+coefficient by an angle set by a **nuisance parameter** — the common-mode
+carrier phase itself — not by the intended period difference. On
+synthetic ground truth the buggy estimator's recovered/true ΔP ratio
+wandered over the *entire* `[−1,+1]` range, tracking `cos(2ψ̄)`, as the
+carrier phase swept. The defect was invisible to every gate in the
+design (`cond5`, R², residuals, fitted values — all rotation-invariant)
+and to an independent Phase-5 re-implementation built from the same
+ambiguous specification (VISION's own re-implementation reproduced the
+*buggy* numbers and briefly, incorrectly, retracted a correct Phase-2
+finding as a result — Red Team later ruled this "the most instructive
+item in the cycle": an independent implementation that agrees with a
+buggy one is not a validation when both are built from the same ambiguous
+spec; only a ground-truth recovery test discriminates).
+
+THERMODYNAMICS and QUANTUM OPTICS independently found the injection-
+recovery power test cancelled the very effect it injected
+(`Rq_recovered = Rq_observed + Rq_predicted`, not `Rq_predicted` alone),
+inverting which pair the published write-up blamed for the power
+shortfall. PHOTONICS, MATERIALS and QUANTUM OPTICS independently found the
+displaced "wrong-carrier" comparator (3.60°) sat at only ~0.75 Rayleigh
+widths from the true carrier — not the ≥1.5 the docket claimed — and,
+QUANTUM sharpened, within 2% of the *global maximum* of the leakage
+function it was meant to be clean of.
+
+The Director independently re-derived the sign bug from scratch (verified
+numerically that `atan2(b,a)` recovers the carrier's own phase exactly for
+the fitting convention used, and that `design_matrix`'s phase hand-off
+needed the negation) before applying any fix, and confirmed the composite
+fix (negated `psi` plus matching sign corrections in three downstream
+formulas) recovers known synthetic ΔP to `1.0000 ± 0.0007` uniformly
+across 16 carrier phases × 7 effect sizes, versus the unpatched chain's
+exact `−cos(2ψ₀)`.
+
+### Red Team's Phase-5 final audit — independent re-verification, not adjudication from prose
+
+Red Team re-executed fifteen load-bearing computations independently
+(not accepted from the six reviews' authority), confirming the Director's
+fix from scratch, cross-validating it against **five Phase-2 ledger
+quantities that reproduce post-fix and did not pre-fix** (`|R_i/R_q|`
+exactly matching docket item 11's own pre-registered values; `A_i`
+matching a directly-measured amplitude difference to 6.5%; the closure
+statistic `ρ_c` matching VISION's own Phase-2 figure; ΔP sign agreement
+with the `n_grid=3000` absolute-period differences restored from 3/4 to
+4/4). Adjudicated all 29 distinct findings across six seats: 25 CONFIRMED
+(many independently re-executed), 2 CONFIRMED-BUT-RETIRED (true of the
+buggy run, dissolved by the fix — most consequentially a four-seat
+convergent claim that the wrong carrier's significance was "7–334× the
+true carrier's," which inverts at both wide pairs post-fix and survives
+at exactly one pair), 6 OVERRULED with reproduced counter-evidence
+(including VISION's own self-retraction, ruled wrong in the direction it
+retracted — its original Phase-2 numbers were the correct ones).
+
+Red Team's own independent attacks found three further defects no seat
+had: **docket item 8's mandated calibration (a "3.79% telescoping
+residual") is not merely unimplemented — it is mathematically vacuous,
+always exactly 0.0%**, by G0-b's own arithmetic identity (the raw series
+telescope bit-exactly) combined with linearity of OLS on a fixed design
+matrix; the wrong-carrier gate simultaneously certified one comparator as
+both carrier-consistent and carrier-wrong at one pair; two of the docket's
+own gates were silently scored against undisclosed departures from their
+own frozen thresholds, in opposite directions. Verified the Combined
+Verdict `NEITHER` is robust to the *entire* correction set, not only the
+sign fix — every accepted fix either left the evidence unmoved or moved it
+further from `RESOLVED`.
+
+### CHECKPOINT (Iteration 49, 2026-08-25, criterion 4 — program-integrity drift).
+
+Red Team's Phase-5 final audit ruled criterion 4 **FIRES**, on four
+grounds, weighed explicitly against the strongest available
+non-firing argument (the bug was caught at Phase 5, by the mechanism
+designed to catch it, before anything false reached this file). (1) This
+is this program's own established firing shape, not its non-firing one —
+Iteration 45's own precedent distinguishes defects "found-and-fixed by the
+cycle's own process before close" (non-firing) from defects that "took
+blind Phase-5 seats plus the final audit to surface" (firing); this cycle
+took three of six blind seats using three different methods, plus a
+Director self-re-derivation, plus the final audit. (2) A written
+verification claim in a frozen pre-registration document — `phase3_
+synthesis.md`'s "All 15 docket items are implemented in `run.py`,
+verbatim to the audit's specification… ZERO items un-adopted" — was
+**verified false on eight separate counts** (items 1, 4, 7, 8, 10, 12, 13,
+15). (3) Aggravation on this program's own Iteration-36 precedent: the
+**same function**, `_amp_phase_at`, had already carried one Director-
+caught, honestly-disclosed bug at Phase 3, and the diagnostic that found
+it (comparing tool outputs against independently-computed Phase-2 values)
+was retired after the patch instead of re-run as an acceptance test — the
+second half of the same defect class then shipped, in the same function,
+in the same cycle. (4) Two supporting instances: a third recurrence of the
+R4 hand-typed-figure pattern, and a false Rayleigh-width constant that
+entered a frozen pre-registration unchecked.
+
+**Ruled a notification, not a pause** — this program's unbroken
+precedent. No engine physics is implicated, zero `lab/` diff, the Combined
+Verdict is unaffected and independently verified robust to the full fix
+set. **New standing house tripwire, adopted here**: a synthetic
+ground-truth recovery gate (`G0-e`) is now **mandatory machinery for any
+future cycle that fits a carrier- or phase-conditioned coefficient** — a
+cycle that ships such an estimator without one fires criterion 4
+automatically, no further deliberation, per the same precedent-setting
+convention as prior hardened tripwires (`Q_ext(x)`/exp-059, the
+propagation-check tool/Iteration 37–38). Justification: the defect this
+cycle shipped was invisible to every other gate in the design and to an
+independent re-implementation, and detectable in under one second by a
+test that asks the estimator to recover a number it was given. Same-shift
+docket (10 items, all zero-FDTD, all justified by arguments independent of
+any observed value) applied and independently re-verified live: the
+frozen `-sin` basis restored (provably ΔP- and p-value-neutral — only
+coefficient *signs* moved, now reading true against their own
+pre-registered definitions); `G0-e` added and passing (worst-case
+recovery error 0.15% against a 2% HALT threshold); the injection-recovery
+test rebuilt on an H₀-clean base and scored against the docket's own
+frozen Holm-adjusted rule (power_demonstrated=False either way — verdict
+unchanged, per-pair story inverted: C70–C80 is now the strongest-signal
+pair, not the weakest); the wrong-carrier comparator corrected from 3.60°
+to a data-free leakage-minimizing 1.2591° (a genuine ≥1.5-Rayleigh-width,
+36×-lower-leakage displacement); a design-respecting residual bootstrap
+replacing a case-resampling one that had treated a deterministic 31-point
+design grid as an iid sample; `dR_q/dψ̄` and `R_i/R_q` published (the
+former is an exact algebraic identity, `= R_i`, meaning item 7's "never
+computed" diagnostic had been present under another name all along); the
+ΔP-by-carrier normalization bug fixed (the two wrong-carrier columns had
+been understated 4.7–7.8×); the REFUTE-blocking pair counter corrected to
+exclude the algebraically-derived C40–C80 pair; `phase4_results.md`
+**wholly republished, not annotated** (per Red Team's own ruling that a
+reader handed an annotated version cannot tell which figures survived);
+`NOTES.md`'s four silently-dropped idealizations restored; `phase3_
+synthesis.md` corrected via an erratum block, history left standing.
+Marsh is notified (this entry + PLAN.md + SESSION_LOG.md). Full record:
+`experiments/072-t28-differential-beat-fit/phase5_redteam_audit.md`.
+
+### Final headline finding, post-all-corrections
+
+**Combined Verdict: `NEITHER`** — zero of four `ABSORB` pairs `RESOLVED`,
+verified robust to the complete correction set. The substantive reason,
+sharper than what the cycle first published: `R_q`'s sensitivity to the
+common-mode carrier phase is **exact and free** — `dR_q/dψ̄ ≡ R_i` — with
+`|R_i| ≥ |R_q|` at three of four pairs, and the carrier rotation that
+zeroes `R_q` entirely sits **inside the carrier's own bootstrap
+uncertainty** at every pair. The **phase-invariant** version of the same
+test (`‖R‖ = √(R_i²+R_q²)`, untouched by the sign bug throughout) is null
+everywhere. The cause is the window (36°–42°, 2.4 carrier cycles), not the
+noise floor originally anticipated: a data-free leakage calculation shows
+`R_q` is non-identifiable not specifically against T21's 1.9608° fringe
+but against **essentially any periodic contributor from ~1.8° to ~5.0°**
+— a stronger, more general, and more falsifiable statement than the
+originally-published one. **No Checkpoint criterion fires on the physics**
+(criteria 1/2/3/5 all explicitly ruled non-firing); criterion 4 fires on
+the process finding above, independent of and not affecting the physics
+verdict. Full record: `experiments/072-t28-differential-beat-fit/` —
+Phase-1 proposal, five Phase-2 blind critiques, Phase-2 Red Team audit,
+Phase-3 synthesis (+ erratum), NOTES.md (restored idealizations),
+`run.py` (post-fix, post-docket), `results.json`, `phase4_results.md`
+(republished), six Phase-5 blind reviews, Phase-5 Red Team final audit;
+LIVE THREADS (T28 updated, still open — this cycle narrowed but did not
+close the mechanism question).
