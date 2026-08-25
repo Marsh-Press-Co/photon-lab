@@ -22,7 +22,58 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-25, panel Iteration 48 done (exp-071,
+## Current state (2026-08-25, panel Iteration 49 done (exp-072,
+PARTIAL, CHECKPOINT criterion 4 FIRED (process, notification not a
+pause) — PHOTONICS lead by rotation, executing the Iteration-49 queue's
+own item 1: the differential/beat-fit instrument (fit `delta_AB(θ)`
+between adjacent `ABSORB` pairs directly, converting T28's own
+Rayleigh-resolution problem into a coefficient-detection problem at the
+window's well-resolved common-mode carrier). Full five-phase cycle: Phase
+1 proposal → five exceptionally rigorous blind Phase-2 critiques (two
+seats independently EXECUTED the estimator on real data, not just
+reasoned from prose) → Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-
+FIXES, 15 items, three seats' specific remedies overridden with
+independently-derived corrections) → Phase 3 synthesis (all 15 items
+implemented, one self-caught implementation bug fixed and disclosed) →
+Phase 4 (zero FDTD, Combined Verdict NEITHER, matching Red Team's own
+advance forecast) → six blind Phase-5 reviews, **three of which
+independently found a critical carrier-phase sign bug** in the committed
+estimator (via three different methods) that the Phase-3 self-catch had
+missed — every published coefficient was a rotation by a nuisance
+parameter (the carrier phase itself), invisible to every gate in the
+design — → Director independent re-derivation and fix, verified against
+synthetic ground truth (recovered/true ΔP = 1.0000±0.0007) and five
+Phase-2 ledger quantities that reproduce post-fix and did not pre-fix →
+Red Team's Phase-5 final audit (independent re-verification of the fix,
+adjudication of all 29 cross-seat findings, three NEW defects found
+including a docket item mandating a mathematically vacuous calibration,
+a 10-item same-shift docket). **Headline, post-all-corrections: Combined
+Verdict NEITHER stands, verified robust to the complete correction set.**
+The substantive reason is sharper than first published: `R_q`'s
+sensitivity to the common-mode carrier phase is exact and free
+(`dR_q/dψ̄ ≡ R_i`, `|R_i|≥|R_q|` at 3 of 4 pairs), the carrier rotation
+that zeroes `R_q` sits inside the carrier's own bootstrap uncertainty at
+every pair, and a data-free leakage calculation shows `R_q` is
+non-identifiable against essentially ANY periodic contributor from
+~1.8°–5.0° (not specifically T21's 1.9608° fringe as first claimed — a
+stronger, more general, more falsifiable statement). **CHECKPOINT
+criterion 4 FIRES** (process-integrity: a written "all 15 items
+implemented verbatim, zero un-adopted" claim verified false on eight
+counts; the same function that carried one Director-caught bug at Phase 3
+shipped a second half of the same defect class after the diagnostic that
+found the first half was retired instead of re-run as an acceptance
+test) — see CHECKPOINT block below, a notification not a pause, 10-item
+same-shift docket applied and independently re-verified live,
+`phase4_results.md` wholly republished (not annotated). **New standing
+house rule R6/tripwire `G0-e`**: a synthetic ground-truth recovery gate is
+now mandatory machinery for any future cycle fitting a carrier- or
+phase-conditioned coefficient — a cycle that ships one without it fires
+Checkpoint criterion 4 automatically. Verdict PARTIAL: the instrument
+itself is now well-characterized (sound but window-limited, not merely
+proposed), the estimator-integrity finding is real and load-bearing, but
+T28's own substantive mechanism question ends narrowed, not answered.
+Full record: `experiments/072-t28-differential-beat-fit/`, LOGBOOK.md
+Iteration 49); panel Iteration 48 done (exp-071,
 PARTIAL — VISION SCIENCE lead by rotation, executing PLAN.md's own
 Iteration-48 queue item 1 (a genuine 6-for-6 blind-seat convergence at
 exp-070's Phase-5 final audit): ELECTROMAGNETISM's C60/C70 `ABSORB`-depth
@@ -2625,10 +2676,79 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
-- **[ACTIVE — Iteration 49 queue, Red Team's Phase-5 final-audit
-  reconciliation of exp-071's six seats; supersedes the Iteration-48 queue
-  below as the active ranking, that block retained as valid backlog, not
-  deleted]** (1) **Merge ELECTROMAGNETISM's differential/beat-fit and
+- **[ACTIVE — Iteration 50 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-072's six seats (`phase5_redteam_audit.md` §7.2);
+  supersedes the Iteration-49 queue below as the active ranking, that
+  block retained as valid backlog, not deleted]** All six seats converge,
+  unanimously, that item (1) must run first; they split three ways below
+  that (widen the window / decorrelate `PAD` / model the contaminant),
+  reconciled here rather than vote-averaged. (1) **A corrected zero-FDTD
+  re-issue of exp-072's own differential/beat-fit instrument, behind the
+  new `G0-e` ground-truth recovery gate** — nothing downstream of exp-072's
+  own step 2 is fully clean until this lands as a freshly pre-registered
+  cycle (the contamination ruling's own condition 3 explicitly
+  contemplates this); folds in EM's `A_q = 2a_cbar·tan χ` table correction,
+  QUANTUM's sign-flip/residual-permutation null replacing the phase-
+  randomised H₀-residual one, and VISION's reinstated sign-invariance
+  admissibility condition over the gate-admitted carrier set (all deferred
+  from exp-072's own same-shift docket as new-gate additions, not
+  same-shift-safe). (2) **Price the differential/beat window before
+  spending in it — a data-free feasibility calculation, zero FDTD**:
+  EM's Cramér–Rao/conditioning pricing (`cond=529`, 6× SE inflation, on a
+  two-tone joint fit in the current window) and QUANTUM's leakage-function
+  budget (`|L(T)|` computable for any candidate θ span with no data) decide
+  whether 36°–42° can ever support a carrier-conditioned discriminator at
+  all — rank above both FDTD builds below since it determines which is
+  worth the spend; if the window cannot reach 2σ on `R_q` at achievable
+  SNR, publish that as the closing bound on the differential route in this
+  window, a real result in its own right. (3) **G40 / `PAD` decorrelation**
+  (~31 calls if MATERIALS' geometry-reuse claim verifies against
+  `experiments/065-.../design_geometry_output.txt` — PLAN's prior 62–93
+  estimate assumed a fresh build; G40 vs. C80 = pure `ABSORB` at fixed
+  `PAD`, G40 vs. C40 = pure `PAD` at fixed `ABSORB`, both already-built
+  configs) — the cheapest confound relief on the board, closing the
+  `ABSORB`-or-`PAD`-or-frequency-or-fringe-weight caveat that now binds
+  every T28 deliverable under every verdict; readout on the
+  phase-invariant amplitude channel `√(A_i²+A_q²)/a` (exp-072 baseline
+  0.161/0.041/0.020/0.166), which conditions on no carrier at all. **Must
+  pre-register up front**: the 2×2 is not completable (`config(80,0)`
+  gives `clear_span_y=−40`), so main effects are identifiable only under
+  additivity; the interaction is not identifiable at all. (4) **Window
+  extension to `θ_max≈46°`** (EM: 40 calls, C40/C80 two-config; VISION:
+  64–156 calls for 1.0–1.5 Rayleigh widths across all four configs) — the
+  only change attacking T28's resolution problem at its cause; **VISION's
+  window-discipline constraint now generalizes** to any carrier-
+  conditioned T28 estimator (differential and two-tone alike), not only
+  absolute-period ones. Binding precondition: the curvature column must be
+  promoted from disclosed to fitted, or an envelope-agreement check
+  pre-registered across sub-windows, before the extension runs — `cos θ`
+  varies 8.1–14.1% across the current-vs-extended span, and `R_i` is
+  already the larger coefficient at 3 of 4 exp-072 pairs. (5) **Explicitly
+  subordinate**: MATERIALS' mask-functional-form ablation (item 3 below,
+  carries no `PAD` confound by construction — run inside whichever window
+  wins from item 4) and PHOTONICS' two-tone joint fit (item 4 below,
+  re-deferred with a stated reason this cycle — EM's pricing and R5/
+  Iteration-47 look-elsewhere discipline both argue against running it
+  until item 2 says the window supports it; its `ABSORB≈120` FDTD half is
+  separately weak, MATERIALS' own covariate finding — `ABSORB`/λ is
+  integer at 40/60/80 and would be integer again at 120 — means it
+  preserves rather than breaks an uncontrolled covariate). **PHOTONICS'
+  measured second-tone period (1.824–1.837°, exp-072 Phase 5) is
+  UNQUOTABLE** without a null-permutation control first (R5/Iteration-47
+  discipline — a free-period search on the same governed continuum).
+  `R_contact`'s literature search (unchanged ranking, 10 consecutive
+  cycles now, tooling-blocked) stays orthogonal, capacity permitting. Full
+  record: `experiments/072-t28-differential-beat-fit/` — Phase-1 proposal,
+  five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis
+  (+erratum), NOTES.md, `run.py`, `results.json`, `phase4_results.md`
+  (republished), six Phase-5 blind reviews, Phase-5 Red Team final audit;
+  LOGBOOK.md Iteration 49 (CHECKPOINT criterion 4, new standing rule R6
+  `G0-e`, LIVE THREADS T28 updated).
+- **[superseded by the Iteration-50 queue above — exp-072's own docket,
+  retained as a pointer to its own history, not deleted]** the
+  Iteration-49 queue that follows this note.
+- **[superseded by the Iteration-50 queue above — exp-071's own docket,
+  retained as valid backlog, not deleted]** (1) **Merge ELECTROMAGNETISM's differential/beat-fit and
   QUANTUM OPTICS' matching Phase-5 proposal into one item** — zero new
   FDTD cost, fit `delta_AB(θ)=C_B(θ)−C_A(θ)` directly between adjacent
   `ABSORB` pairs (C40–C60, C60–C70, C70–C80, plus the already-analyzed
