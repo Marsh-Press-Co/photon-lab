@@ -37,7 +37,7 @@ design — for a third time, now on the real design's own official run.
 | **G0-b** (telescoping identity) | **PASS** | `delta_40_60+delta_60_70+delta_70_80−delta_40_80`, max abs residual `0.0` exactly |
 | **G0-c** (column provenance) | **PASS** | exp-069's committed `delta` column ≡ `C_empty_C80−C_empty_C40`, max abs Δ `0.0` exactly |
 | **G0-d** (conditioning) | not reached as a per-pair exclusion — no pair was scored (see below) | `cond(X5)` was not computed for any pair since `G0-e` HALTed first, per the pre-registered gate order (§7, `phase1_proposal.md`: identity/integrity gates evaluated first, in order) |
-| **G0-e(i)** (recovery accuracy) | **PASS** | worst-cell `\|ΔP_est/ΔP_true−1\| = 1.10%` over the full widened 5,760-cell synthetic sweep (docket items 1–2), inside the 2% bar. Both tripwires clean: identity tripwire (`dR_q/dψ̄≡R_i`) worst error `9.4×10⁻¹¹`; `A_i` tripwire, now genuinely live (768 qualifying cells via the `δa`/`Δψ` legs, docket item 1), 0 failures at 1% tolerance. |
+| **G0-e(i)** (recovery accuracy) | **PASS** | worst-cell `\|ΔP_est/ΔP_true−1\| = 1.10%` over the full widened 5,760-cell synthetic sweep (docket items 1–2), inside the 2% bar. Both tripwires clean: identity tripwire (`dR_q/dψ̄≡−R_i` — **sign corrected at Phase 5, see erratum below; the numerical check itself was already sign-agnostic and its own worst error is unchanged by the correction**) worst error `9.4×10⁻¹¹`; `A_i` tripwire, now genuinely live (768 qualifying cells via the `δa`/`Δψ` legs, docket item 1), 0 failures at 1% tolerance. |
 | **G0-e(ii)** (null calibration) | **FAIL → HALT** | see below |
 
 **`G0-e(i)`'s own per-leg breakdown** (all inside the 2% bar):
@@ -69,8 +69,9 @@ docket item 4) — each swept over `ψ₀` (8 phases) × `σ`-grid (24 cells/leg
 empirical rejection rate inside `α±3√(α(1−α)/K)` (a 3σ Monte-Carlo band at
 `K=500`).
 
-**Result: both legs fail every single cell-α combination — 72/72 (i.i.d.)
-and 72/72 (residual-structure).**
+**Result: the i.i.d. leg fails every single cell-α combination (72/72);
+the residual-structure leg fails 71 of its own 72 (one cell passes) —
+combined 143/144, not 144/144 (erratum below).**
 
 | Nominal α | i.i.d. leg: mean rejection rate | i.i.d. range | ×nominal | Residual-structure leg: mean | range | ×nominal |
 |---|---|---|---|---|---|---|
@@ -94,6 +95,34 @@ Neither leg passes, so `G0-e(ii)` fails on either the disjunctive OR the
 conjunctive reading of "both legs must pass" — the outcome is not sensitive
 to that construction choice.
 
+> **Caveat (Phase 5 erratum, THERMODYNAMICS' review, independently confirmed
+> by Red Team's final audit): "residual-structure leg" does not mean what
+> the name and the paragraph above imply.** `build_residual_pool()` pools
+> the four configs' own fitted residuals into one flat, θ-order-discarded
+> 124-value array; `null_calibration_check()` then draws each synthetic
+> dataset as `rng.choice(residual_pool, size=n, replace=True)` — an i.i.d.
+> bootstrap over pooled values, exactly as point-to-point independent as the
+> Gaussian leg it is meant to be a harder companion to. It changes the
+> noise's **marginal shape** (empirical vs. Gaussian), not its
+> **correlation structure**; nothing in this construction can expose
+> θ-correlated real-FDTD-residual structure, the specific failure mode
+> Attack 7/docket item 4 was written to close. The committed numbers confirm
+> this directly: the two legs' cell-by-cell rejection rates correlate at
+> **Pearson r = 0.907** across the 72 paired cells (mean difference
+> ≈0.0003, indistinguishable from Monte-Carlo noise at `K=500`) —
+> statistically indistinguishable, exactly what the leverage mechanism above
+> predicts for any i.i.d. leg regardless of marginal shape, not confirmation
+> that a harder case was tested. **Docket item 4 is not delivered as
+> specified.** This does not change the Combined Verdict — the i.i.d. leg
+> alone already fails all 72 of its own cells, decisively, with no
+> dependence on the residual-structure leg at all — but any future
+> null-construction fix that clears a `G0-e(ii)`-style gate built this way
+> has still not been shown robust to genuine point-to-point correlation, the
+> exact hazard R6 exists to close before real data is scored. A genuinely
+> order-preserving leg (resample whole per-config 31-point residual vectors,
+> or a circular-block bootstrap preserving θ-adjacency) is queued for
+> Iteration 51 — see `phase5_redteam_audit.md`.
+
 **This independently reproduces, for a third time, on the real design's
 own official run**: (1) Red Team's Phase-2 audit's own from-scratch Monte
 Carlo (`phase2_redteam_audit.md` Attack 4: 5.5×/2.3×/1.7× at α=0.01/0.05/
@@ -112,6 +141,49 @@ Per docket item 3(b), the Combined Verdict emits the named branch
 `HALT_NULL_MISCALIBRATED`, not a generic `HALT` — distinguishing this from
 `HALT_GRID_MISMATCH`/`HALT_TELESCOPE_MISMATCH`/`HALT_PROVENANCE_MISMATCH`/
 `HALT_RECOVERY_FAILED`, none of which fired.
+
+---
+
+## Phase-5 erratum (Red Team's final audit — corrections, not a rewrite; original figures below left for the record, per house convention)
+
+Two defects, independently confirmed by multiple blind Phase-5 seats and
+verified directly against the committed data/code by Red Team's own final
+audit (`phase5_redteam_audit.md`):
+
+1. **The "72/72 (residual-structure)"/"144/144" claim above is false.**
+   Directly counted from `results["scored"]["g0e_ii"]["residual_structure_
+   leg"]["table"]`: **71 of 72 cells fail; one passes** (`σ=0.0005,
+   ψ₀=270°, α=0.10`, rejection rate 0.132, inside its own band
+   `[0.0598, 0.1402]`). Combined across both legs: **143/144 fail, not
+   144/144.** Independently caught by PHOTONICS and MATERIALS at Phase 5;
+   independently confirmed here directly against `results.json`. Does
+   **not** change the Combined Verdict — `null_calibration_check`'s own
+   `pool_pass = all(...)` is correctly `False` whether 71 or 72 of 72 cells
+   fail, so `HALT_NULL_MISCALIBRATED` fires exactly as reported either way.
+2. **The identity-tripwire label `dR_q/dψ̄≡R_i` above is the wrong sign.**
+   The correct identity, independently re-derived from scratch by
+   ELECTROMAGNETISM's Phase-5 review (three methods) and confirmed by Red
+   Team's own from-scratch finite-difference check against exp-072's real,
+   published `(T_x, ψ, R_i)` values at all four pairs, is
+   **`dR_q/dψ̄ ≡ −R_i`**. `phase3_synthesis.md`'s own "Ambiguity 4"
+   resolution (which produced the `+R_i` claim by asserting `design_matrix`'s
+   `psi` argument is "the negative of the symbol ψ̄ the write-up's own
+   trigonometric derivations use") is itself wrong: §2b.1–2b.2 of
+   `phase1_proposal.md` define ψ̄ as exactly the phase fed into
+   `θ_c = 2πu/T_mean + ψ̄`, with no other candidate referent anywhere in
+   the document — `ψ̄` **is** `design_matrix`'s `psi` argument, not its
+   negative. `run.py` is corrected (`dRq_dpsi = -R_i`, and the G0-e(i)
+   identity tripwire's finite-difference formula, which no longer applies
+   an unjustified extra negation); re-run and verified: **the Combined
+   Verdict, every gate outcome, and every numeric value in `results.json`
+   are bit-identical to the pre-fix run except `elapsed_s`** — the
+   tripwire's own numerical check was already sign-agnostic (an
+   absolute-value comparison), so only the *labeled sign* and the
+   never-populated (this run: `per_pair={}`) `dRq_dpsi` field were wrong,
+   not any gate decision. **Non-gating this cycle** (no pair was ever
+   scored), but the bug lived in machinery every future carrier/phase-fit
+   cycle is instructed to reuse verbatim — see `phase5_redteam_audit.md`
+   for the full derivation and Checkpoint ruling.
 
 ---
 

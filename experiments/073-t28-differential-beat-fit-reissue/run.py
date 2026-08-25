@@ -527,7 +527,26 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
     SE_Rq_ols = float(np.sqrt(np.sum((delta_ab - X5 @ coef5) ** 2) / (n - 5) *
                                np.linalg.inv(X5.T @ X5)[4, 4]))
     SE_deltaP_Tmean = abs(dP_Tmean / R_q) * SE_Rq_bootstrap if R_q != 0 else float("nan")
-    dRq_dpsi = R_i        # exact algebraic identity of the OLS rotation
+    # CORRECTED at Panel Iteration 50 Phase-5 (Red Team's final audit,
+    # phase5_redteam_audit.md, confirming EM's independent phase-5 review):
+    # dR_q/dpsi_bar == -R_i, NOT +R_i. phase3_synthesis.md's own "Ambiguity 4"
+    # asserted design_matrix's `psi` argument is "the negative of the symbol
+    # psi_bar the write-up's own trigonometric derivations use" -- this is
+    # false: Sec 2b.1-2b.2 define psi_bar as EXACTLY the phase fed into
+    # theta_c = 2*pi*u/T_mean + psi_bar, with no other candidate referent
+    # anywhere in the document, i.e. psi_bar IS design_matrix's own `psi`
+    # argument, not its negative. The raw, un-negated finite difference
+    # dR_q/d(design_matrix psi) = -R_i (verified independently three ways:
+    # EM's phase-5 review, this audit's own from-scratch finite-difference
+    # against exp-072's real published (T_x,psi,R_i) values at all four
+    # pairs, and a closed-form algebraic re-derivation via the design
+    # matrix's own psi-rotation structure) IS dR_q/dpsi_bar -- no further
+    # sign flip is licensed. The prior "+R_i" claim traced to exp-072's own
+    # THERMODYNAMICS Phase-5 review, which asserted the identity but never
+    # independently re-derived it with the sign tracked; a magnitude-only
+    # check (|dR_q/dpsi|==|R_i|) cannot distinguish the two signs, and none
+    # ever did until this audit.
+    dRq_dpsi = -R_i        # exact algebraic identity of the OLS rotation
     R_i_over_Rq = abs(R_i / R_q) if R_q != 0 else float("nan")
 
     return dict(
@@ -792,29 +811,36 @@ def ground_truth_recovery_check(theta_deg):
         dP_est = -(delta_f_est / f_bar) * P_mean_deg
         err = abs(dP_est / dP_true - 1.0) if dP_true != 0 else abs(dP_est)
 
-        # tripwire 1: dR_q/dpsi_bar == R_i -- an identity of the FITTED
-        # design matrix's own psi argument, holding the DATA fixed (this is
-        # what exp-072's own Phase-5 verification actually checked, "5
-        # decimals," item K/C19 in phase5_redteam_audit.md -- NOT a
-        # perturbation of this synthetic generator's own psi_bar, which
-        # conflates the derivative with _amp_phase_at's own re-estimation
-        # noise on a genuinely two-tone Cbar and gives only ~1e-4-level
-        # agreement, not 1e-6; verified independently during this cycle's
-        # own development, see phase3_synthesis.md). Sign convention:
-        # design_matrix()'s own `psi` argument is `_amp_phase_at`'s
-        # `-atan2(b,a)`, i.e. the NEGATIVE of the symbol "psi_bar" used in
-        # the write-up's own formulas -- so dR_q/d(psi_bar_symbol) =
-        # -dR_q/d(design_matrix psi), independently re-verified this cycle
-        # against exp-072's own real, published per-pair R_i/psi/T_x values
-        # (ratio -1.0000000000 to 10 decimals at all four pairs before this
-        # sign correction; +1.0000000000 after it).
+        # tripwire 1: dR_q/dpsi_bar == -R_i -- an identity of the FITTED
+        # design matrix's own psi argument, holding the DATA fixed. CORRECTED
+        # at Panel Iteration 50 Phase-5 (Red Team's final audit, confirming
+        # EM's independent phase-5 review, phase5_review_em.md Sec 2): the
+        # write-up's "psi_bar" (Sec 2b.1-2b.2: the phase fed directly into
+        # theta_c = 2*pi*u/T_mean + psi_bar) IS design_matrix's own `psi`
+        # argument -- there is no second, independently-defined "psi_bar"
+        # symbol anywhere in this document for it to secretly be the negative
+        # of. The raw finite difference on design_matrix's literal `psi`
+        # argument, taken WITHOUT any extra sign flip, IS dR_q/dpsi_bar. The
+        # prior code here applied an unjustified extra negation (see erratum,
+        # phase3_synthesis.md Sec 3 Ambiguity 4, and phase5_redteam_audit.md)
+        # specifically to force agreement with exp-072's own inherited,
+        # never-independently-sign-derived "+R_i" claim -- which is itself
+        # wrong (that claim traces to exp-072's THERMODYNAMICS Phase-5 review,
+        # which asserted the identity without tracking the sign; a
+        # magnitude-only check, |dR_q/dpsi|==|R_i|, cannot distinguish +R_i
+        # from -R_i, and none ever did until this correction). Independently
+        # re-verified against exp-072's own real, published per-pair
+        # R_i/psi/T_x values: raw finite-difference ratio to R_i is exactly
+        # -1.0000000000 to 10 decimals at all four pairs (Red Team's audit;
+        # matches EM's own from-scratch re-derivation, three independent
+        # methods, phase5_review_em.md Sec 2).
         eps = 1e-6
         X5p = design_matrix(theta_deg, T_mean_x, psi + eps, xbar)
         X5m = design_matrix(theta_deg, T_mean_x, psi - eps, xbar)
         Rqp = np.linalg.lstsq(X5p, delta_true, rcond=None)[0][4]
         Rqm = np.linalg.lstsq(X5m, delta_true, rcond=None)[0][4]
-        dRq_dpsi_num = -(float(Rqp) - float(Rqm)) / (2 * eps)
-        identity_err = abs(dRq_dpsi_num - R_i_est)
+        dRq_dpsi_num = (float(Rqp) - float(Rqm)) / (2 * eps)
+        identity_err = abs(dRq_dpsi_num - (-R_i_est))
 
         # tripwire 2: A_i vs delta_a*cos(chi0_true), live whenever non-tiny
         target_Ai = (a_B - a_A) * math.cos(chi0)

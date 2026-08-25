@@ -40,6 +40,20 @@ with the resolution chosen and why.
    `Δψ ∈ {±0.3, ±0.8}` rad (1,536 cells) respectively, each still crossed
    against the full `ΔP` (12 signed values) and `ψ_bar` (32 phases) axes for
    genuine coverage. Total G0-e(i): 5,760 cells (3,456 primary + 768 + 1,536).
+   **Erratum (Phase 5, PHOTONICS' F2, independently confirmed):**
+   `phase1_proposal.md` §4's own frozen text computes the primary leg as
+   "3×3×6×32 = 1,728 cells," undercounting its own 12-value signed `ΔP` list
+   (six magnitudes × two signs) by exactly 2×. The implemented code
+   correctly uses all 12 signed values (3,456 primary cells, matching this
+   item's own total above), so the gate itself is unaffected — but this
+   reconciliation lived only in `run.py`'s own inline comment
+   (`ground_truth_recovery_check`'s docstring) and was not previously listed
+   among this section's own numbered corrections, the exact class of gap
+   this document's own disclosure apparatus exists to hold. Flagged here,
+   not rewritten: `phase1_proposal.md`'s "1,728" stands as the frozen
+   record's own (incorrect) arithmetic; the implemented, correct total is
+   5,760 (3,456 primary + 768 `δa` + 1,536 `Δψ`), as stated throughout this
+   document.
 2. **`A_i` tripwire disambiguated as option (a)**: kept purely synthetic,
    labelled class (c), now genuinely live (768 cells qualify at
    `|target_A_i| ≥ 1e-4` once `δa≠0`; dev-run: 0 failures at 1% tolerance).
@@ -246,6 +260,37 @@ match the write-up's own `ψ̄` convention; post-fix worst-cell identity error
 is `9.4×10⁻¹¹` (dev run), five orders of magnitude inside the 1e-6 bar. Both
 this and Ambiguity 3 are disclosed in `run.py`'s own comments at the
 tripwire's definition, in addition to here.
+
+> **ERRATUM (Panel Iteration 50, Phase 5, Red Team's final audit —
+> confirming ELECTROMAGNETISM's independent Phase-5 review; original text
+> above left standing, per house convention, flagged not rewritten).** This
+> resolution is WRONG. The claim that "`design_matrix`'s code-level `psi` is
+> the negative of the `φ=atan2(b,a)` symbol the write-up's own trigonometric
+> derivations use as `ψ̄`" is not supported anywhere in this document: §2b.1–
+> 2b.2 define `ψ̄` as exactly the phase fed into `θ_c = 2πu/T_mean + ψ̄`, and
+> that is precisely `design_matrix`'s own `psi` argument — there is no
+> second, independently-defined symbol for it to be the negative of. The raw
+> finite difference computed just above this note (`dRq_dpsi_num` before the
+> "sign correction," `= −R_i` to 10 decimals against exp-072's own real
+> published values) **is already `dR_q/dψ̄`, correctly signed, with no
+> further negation required.** The negation applied here converted a
+> correct answer into a wrong one, specifically to force agreement with
+> exp-072's own inherited "`dR_q/dψ̄ ≡ +R_i`" claim (`phase5_redteam_
+> audit.md` [exp-072] item K/C19) — a claim that traces to exp-072's own
+> THERMODYNAMICS Phase-5 review asserting `R_q(ψ+δ)=R_q·cosδ+R_i·sinδ`
+> without independently re-deriving the sign, then "confirmed" only by a
+> magnitude-only check (`|dR_q/dψ|==|R_i|`) that cannot distinguish `+R_i`
+> from `−R_i` — and which is *also* wrong, never before independently
+> re-derived by explicit sign-tracked algebra. The correct identity is
+> **`dR_q/dψ̄ ≡ −R_i`**. Corrected in `run.py` (`dRq_dpsi = -R_i`; the
+> G0-e(i) identity tripwire's finite-difference formula no longer applies
+> the erroneous extra negation) and re-run: the Combined Verdict and every
+> numeric value in `results.json` are bit-identical to the pre-fix run
+> (the tripwire's own numerical check was already sign-agnostic — an
+> absolute-value comparison — so only the *labeled* sign and the
+> never-populated `dRq_dpsi` field were wrong, not any gate decision). Full
+> derivation: `phase5_redteam_audit.md`, and `phase5_review_em.md`
+> (independent origin of this finding).
 
 ## 4. Development validation (permitted per house discipline; NOT the official Phase-4 result)
 

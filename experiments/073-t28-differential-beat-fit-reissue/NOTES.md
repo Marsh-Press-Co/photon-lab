@@ -72,9 +72,16 @@ implementation-level judgment calls in `phase3_synthesis.md` §2–3. Summary:
   independent amplitude (`δa`) and phase (`Δψ`) axes so the `A_i` tripwire
   is live, not dead code (docket items 1–2); (ii) a brand-new null
   **calibration** check (`G0-e(ii)`) that tests whether T2-3's own null is
-  correctly sized under pure H₀ noise, at every (σ, ψ, α) cell, plus a
-  residual-structure robustness leg using real per-config residuals instead
-  of i.i.d. Gaussian (docket items 3–4).
+  correctly sized under pure H₀ noise, at every (σ, ψ, α) cell, plus a leg
+  drawing from real per-config residuals instead of i.i.d. Gaussian (docket
+  items 3–4). **Erratum (Phase 5, THERMODYNAMICS' finding, confirmed by Red
+  Team): item 4's own leg is NOT the "residual-structure" robustness test
+  it is labelled — it bootstraps pooled, θ-order-discarded residual VALUES
+  (i.i.d. by construction), not correlated residual STRUCTURE, and is
+  empirically indistinguishable from the i.i.d. leg (paired-cell r=0.907
+  across 72 cells). Does not change the Combined Verdict (the i.i.d. leg
+  alone already fails everywhere); does mean docket item 4 is not actually
+  delivered — see `phase4_results.md` and `phase5_redteam_audit.md`.**
 - **T2-1 (sign-invariance) is reinstated with a self-contained
   admissibility gate and a non-emptiness floor** (docket items 7–8): a
   carrier only counts toward the sign-invariance test if it independently
@@ -121,12 +128,15 @@ implementation-level judgment calls in `phase3_synthesis.md` §2–3. Summary:
    multi-component signal — a limitation shared with, and not closed
    relative to, exp-072.
 5. **~2.4 carrier cycles in the window.** Not asymptotic; edge effects on
-   the ramp coefficient are real — `dR_q/dψ̄ ≡ R_i` exactly (an algebraic
-   identity, independently re-verified this cycle against exp-072's own
-   real, published `(T_x, ψ, R_i)` values to 10 decimals — see
-   `phase3_synthesis.md` §3, Ambiguity 4, for the sign-convention subtlety
-   this required getting right), and `|R_i| ≥ |R_q|` at three of four pairs
-   in exp-072's own already-closed record.
+   the ramp coefficient are real — `dR_q/dψ̄ ≡ −R_i` exactly (an algebraic
+   identity; **corrected at Phase 5** — `phase3_synthesis.md` §3's own
+   "Ambiguity 4" resolution asserted `+R_i` via an unjustified sign
+   distinction between `design_matrix`'s `psi` argument and the write-up's
+   own `ψ̄` symbol that the document itself does not support; independently
+   re-derived and corrected against exp-072's own real, published
+   `(T_x, ψ, R_i)` values to 10 decimals — see `phase5_redteam_audit.md`),
+   and `|R_i| ≥ |R_q|` at three of four pairs in exp-072's own already-closed
+   record.
 6. **`n_grid=3000` adds no resolving power** — it only removes the
    `n_grid=400` node-collision quantization that reversed C70/C80's free-
    period order. The linear-fit `m0_resolved` used as this cycle's
@@ -252,12 +262,16 @@ and P-073-3 CONFIRM and P-073-4 CONFIRM → NEITHER ⟺ everything else.
 (this exact `run.py`, unmodified, executed after these predictions were
 committed) HALTs at `G0-e(ii)`: the sign-flip null (T2-3) is anti-
 conservative by ~2–6× nominal across α∈{0.01,0.05,0.10}, on **both** the
-i.i.d. and residual-structure calibration legs, at **every** one of 72
-cell-α combinations per leg (144/144 fail). No real pair was scored;
-`per_pair` is empty. Full detail, including the leverage mechanism
-(`mean diag(M5)=(n−p)/n=0.8387`) and the three-way independent
-reproduction (QUANTUM's Phase-2 critique, Red Team's Phase-2 audit, this
-official run): `phase4_results.md`.
+i.i.d. and residual-structure calibration legs — the i.i.d. leg fails all 72
+of its own cell-α combinations; the residual-structure leg fails 71 of 72
+(one cell passes, non-load-bearing — the gate requires every cell on
+**both** legs to pass, so `HALT_NULL_MISCALIBRATED` fires regardless;
+**erratum, Phase 5** — the original "144/144 fail" claim here was wrong,
+independently caught by PHOTONICS and MATERIALS, see `phase5_redteam_
+audit.md`). No real pair was scored; `per_pair` is empty. Full detail,
+including the leverage mechanism (`mean diag(M5)=(n−p)/n=0.8387`) and the
+three-way independent reproduction (QUANTUM's Phase-2 critique, Red Team's
+Phase-2 audit, this official run): `phase4_results.md`.
 
 ## Learned
 
