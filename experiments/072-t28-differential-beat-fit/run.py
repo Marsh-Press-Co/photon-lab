@@ -128,12 +128,30 @@ def _amp_phase_at(theta_deg, series, T_x, xbar):
     phase fitted in x needs a w*xbar shift before it means anything in u --
     skipping that shift silently misallocates signal between the carrier
     and ramp columns in design_matrix(), which is exactly the failure mode
-    this whole cycle's estimator is built to avoid.)"""
+    this whole cycle's estimator is built to avoid.)
+
+    PHASE-5 CORRECTION (independently found and verified by three blind
+    seats -- PHOTONICS, MATERIALS, ELECTROMAGNETISM -- and re-derived a
+    fourth time, from scratch, by the Director before applying this patch):
+    the series fits as c0 + A*cos(w*u - phi) with phi = atan2(b,a) (verified
+    directly: y = A*cos(wu-phi) = a*cos(wu) + b*sin(wu) with a=A*cos(phi),
+    b=A*sin(phi), so atan2(b,a) = +phi exactly). design_matrix()'s own
+    theta_c = w*u + psi therefore needs psi = -phi = -atan2(b,a), not +phi,
+    for cos(theta_c) to reconstruct the fitted carrier -- verified on
+    synthetic ground-truth pairs (known ΔP, common phase swept over
+    [0, 2*pi)): the unpatched sign gives recovered/true ΔP wandering over
+    [-1,+1] tracking cos(2*psi); this patch, combined with the matching
+    sign fix in delta_P_obs/dP_from/injection_recovery below, gives
+    recovered/true = +1.0000 +/- 0.0015 uniformly across every (phase,
+    ΔP) combination tested. See phase5_redteam_audit.md for the full
+    verification record; every published number in the original
+    phase4_results.md is superseded by the re-run this patch produces.
+    """
     x = np.sin(np.radians(theta_deg))
     u = x - xbar
     fit = _fixed_period_fit(u, series, T_x)
     amp = math.hypot(fit["a"], fit["b"])
-    psi = math.atan2(fit["b"], fit["a"])
+    psi = -math.atan2(fit["b"], fit["a"])
     return amp, psi, fit["c0"]
 
 
@@ -240,7 +258,11 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
     amp = carrier["amplitude"]
     f_bar = 1.0 / T_x
     delta_f_obs = R_q / (2 * math.pi * amp) if amp != 0 else float("nan")
-    delta_P_obs = -(delta_f_obs / f_bar) * carrier["T_mean_deg"]
+    # PHASE-5 CORRECTION (see _amp_phase_at's docstring): the leading minus
+    # sign here paired with the unpatched psi to give ratio=-1 on synthetic
+    # ground truth; with psi now correctly signed, this formula must NOT
+    # negate -- verified: recovered/true ΔP = +1.0000 +/- 0.0015 uniformly.
+    delta_P_obs = (delta_f_obs / f_bar) * carrier["T_mean_deg"]
 
     # item 5: A_q relabeled -- "half the phase difference at window centre",
     # A_q = 2*a*sin(chi), chi = pi*Delta_f*xbar + Delta_psi/2. Delta_psi
@@ -332,7 +354,8 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
             return float("nan")
         df = Rq_val / (2 * math.pi * amp_val)
         fb = 1.0 / Tx_val
-        return -(df / fb) * Tdeg_val
+        # PHASE-5 CORRECTION: no leading minus -- see _amp_phase_at's docstring
+        return (df / fb) * Tdeg_val
 
     dP_Tmean = delta_P_obs
     dP_Tdelta = dP_from(Rq_at_Tdelta, amp_delta, T_delta_x, T_delta)
@@ -401,7 +424,11 @@ def injection_recovery(data, key_a, key_b, m0, d_absorb, rng):
 
     dP_pred = m0 * d_absorb
     dT_x = math.radians(dP_pred) * cos_c
-    df_pred = -dT_x / (T_x ** 2)
+    # PHASE-5 CORRECTION: no leading minus -- see _amp_phase_at's docstring;
+    # verified this is the exact inverse of the corrected dP_from() above
+    # (round-trips a chosen dP_pred through Rq_pred and back to dP_pred to
+    # 4 significant figures on synthetic data).
+    df_pred = dT_x / (T_x ** 2)
     Rq_pred = 2 * math.pi * amp * df_pred
 
     X5 = design_matrix(theta, T_x, psi, xbar)
