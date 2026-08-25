@@ -2,6 +2,89 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-25 (panel shift) — Iteration 48 complete (exp-071): the C60/C70
+`ABSORB`-depth causal test for T28 lands NEITHER, doubly secured on raw
+pre-registered thresholds alone independent of the resolution-floor gate;
+Phase 5 surfaces a genuine saturating-mechanism candidate (R²=0.998 vs.
+0.866 linear, at equal parameter count) and a three-cycle-old PAD/ABSORB
+confound in the congruent series itself, both independently confirmed by
+Red Team's final audit. No Checkpoint fires; verdict PARTIAL.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche --no-deps`,
+per the documented wrinkle). Fast-subset trust suite reconfirmed green
+twice: 41/41 checks (`--only 12346789`, heavy stage 5 skipped) before any
+panel work began, and again after this cycle's Phase-5 mandatory-fix
+docket.
+
+**Iteration 48 — VISION SCIENCE's rotation-lead cycle (exp-071).**
+Executes PLAN.md's own Iteration-48 queue item 1 (a genuine 6-for-6
+blind-seat convergence at exp-070's Phase-5 final audit): ELECTROMAGNETISM's
+C60/C70 `ABSORB`-depth causal falsification test for T28 — the causal
+manipulation T28 never had, since `C40`/`C80` (exp-069) were only two
+points on the `ABSORB` axis and `C60`/`C70` are also congruent members of
+exp-065's `A=752`-fixed series. Full five-phase cycle: Phase 1 (VISION
+SCIENCE proposes the causal test) → five blind Phase-2 critiques (all
+support-with-changes; PHOTONICS found 600nm-only scope can't license
+mechanism language; MATERIALS/THERMODYNAMICS independently found the
+proposal dropped exp-070's own mandatory "ABSORB is not a material"
+caveat; ELECTROMAGNETISM found no settling-closure check had ever run on
+C60/C70; QUANTUM OPTICS found the free-period search sits at/below the
+window's own Rayleigh resolution floor) + Red Team's Phase-2 audit
+(PROCEED-WITH-MANDATORY-FIXES, 7 items, **zero overridden** — extended
+QUANTUM's resolution-floor finding to the CONFIRM band too) → Phase 3
+synthesis (all 7 fixes implemented in code, budget recomputed to 78
+calls/100-min hard stop) → Phase 4 (78 FDTD calls, 15.43 min; G1 PASSED
+4/4 exact; both binding preconditions CONFIRM) → six blind Phase-5 reviews
+(all PARTIAL, exceptional cross-seat convergence) + Red Team's Phase-5
+final audit (independently re-verified every finding live, including its
+own re-fit of the saturating-model claim).
+
+**Headline**: Combined Verdict **NEITHER, doubly secured** — per-config
+free periods rise smoothly with `ABSORB` depth (`C40=2.4361°→C80=
+2.5338°`, `R²=0.8664`) but `spread_40_80=3.90%` misses the 30% CONFIRM
+floor AND `R²=0.8664` misses the `≤0.30` REFUTE ceiling, **both
+independently, on raw pre-registered thresholds alone** — the
+resolution-floor gate is real and prospectively load-bearing but was NOT
+the proximate cause of this run's verdict, per Red Team's correction of an
+initial overclaim in `phase4_results.md`/`NOTES.md` (also caught in a git
+commit message, corrected as an erratum, not rewritten). **Two genuine new
+findings, Red-Team-confirmed**: (1) a saturating-exponential model fits
+the same four points at `R²=0.998` vs. linear's `0.866`, mechanistically
+well-motivated, not an R5-family over-read; (2) `PAD=ABSORB−40` exactly at
+all four congruent configs — independently found by three blind Phase-5
+seats (THERMODYNAMICS, ELECTROMAGNETISM, QUANTUM OPTICS) — a three-cycle-old
+compound-axis confound, unflagged since Iteration 46. **Standing forward
+constraint, not a Checkpoint firing**: any future CONFIRM on this series
+must read ABSORB-*or*-PAD-tied until a PAD-decorrelated config exists.
+Same-shift docket (7 items, Red Team's Phase-5 final audit, all applied
+and re-verified live): resolution-floor narrative corrected, a latent
+`resolved=True` tie-handling bug patched, `FROZEN_PREDICTIONS` text
+reconciled with actual code, caveats wired uniformly into every
+Combined-Verdict branch, a new `caveat_lint_config.json` entry, a new
+`PAD_CONFOUND_CAVEAT`, and a cost-estimate slip corrected.
+
+**No Checkpoint criterion fires** (all five explicitly ruled by Red Team's
+Phase-5 final audit — the PAD confound is the closest call on criterion 4,
+ruled non-firing since it did not survive undetected into a published
+causal claim). **Verdict PARTIAL** — the settling-closure gap closed
+cleanly for the first time, the resolution floor proved prospectively
+sound, a genuine mechanism candidate and a genuine confound both
+surfaced — but T28's own substantive causal question ends narrowed, not
+answered. Iteration-49 queue: (1) merge EM's/QUANTUM's differential
+beat-fit proposals (zero-cost, highest value, reuses the exact methodology
+that discovered T28); (2) merge THERMO's/QUANTUM's PAD-decorrelation
+config (~62–93 calls, closes the confound directly); (3) MATERIALS' mask-
+functional-form ablation; (4) PHOTONICS' two-tone fit + EM's ABSORB≈120
+config, testing the saturating-mechanism candidate; (5) VISION's window-
+discipline as a binding constraint on 2–4. `R_contact`'s literature search
+(PLAN.md queue item 2, 9 cycles blocked on WebSearch/WebFetch tooling)
+remains unchanged in ranking — **this shift's own environment has both
+tools available**, flagged for the Director to act on independently of
+T28's own queue, capacity permitting. Full record:
+`experiments/071-t28-absorb-depth-causal-test/`, LOGBOOK.md Iteration 48,
+PLAN.md's own updated current state + queue.
+
 ## 2026-08-25 (panel shift) — Iteration 47 complete (exp-070): T28's own
 desk-check batch delivered a cycle ahead of its own forward tripwire —
 one sub-hypothesis (taper-as-sub-aperture) cleanly REFUTEd, one
