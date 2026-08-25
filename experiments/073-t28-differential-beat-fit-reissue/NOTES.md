@@ -248,19 +248,30 @@ and P-073-3 CONFIRM and P-073-4 CONFIRM → NEITHER ⟺ everything else.
 
 ## Result
 
-*(Placeholder — Phase 4's official run has not been executed as part of
-this deliverable. Per the task's own scoping instruction, `results.json`
-and `phase4_results.md` are Phase 4's job, to be produced in the next step,
-run once, officially, after these predictions are frozen and committed. A
-development-only run of `run.py` against the real data, with these exact,
-unmodified thresholds, HALTed at `G0-e(ii)` as `HALT_NULL_MISCALIBRATED` —
-see `phase3_synthesis.md` §4 for full disclosure of what was run and why
-that output is not treated as this cycle's result.)*
+**Combined Verdict: `HALT_NULL_MISCALIBRATED`.** The official Phase-4 run
+(this exact `run.py`, unmodified, executed after these predictions were
+committed) HALTs at `G0-e(ii)`: the sign-flip null (T2-3) is anti-
+conservative by ~2–6× nominal across α∈{0.01,0.05,0.10}, on **both** the
+i.i.d. and residual-structure calibration legs, at **every** one of 72
+cell-α combinations per leg (144/144 fail). No real pair was scored;
+`per_pair` is empty. Full detail, including the leverage mechanism
+(`mean diag(M5)=(n−p)/n=0.8387`) and the three-way independent
+reproduction (QUANTUM's Phase-2 critique, Red Team's Phase-2 audit, this
+official run): `phase4_results.md`.
 
 ## Learned
 
-*(Placeholder — see `phase4_results.md` Bottom Line and this experiment's
-contribution to LOGBOOK.md Iteration 50, once Phase 4/5 are run.)*
+`G0-e` (LOGBOOK R6) worked exactly as designed: a genuine statistical-
+calibration defect in a new estimator component was caught by a
+pre-registered, data-free gate before any real data was scored, rather
+than surviving to Phase 5 the way exp-072's own sign bug did. The
+substantive finding is about the *instrument class*, not T28: a sign-flip/
+residual-permutation null built by flipping the full-model residual on a
+small (`n=31, p=5`), leverage-concentrated carrier-conditioned design is
+not safely usable without its own calibration check — a result that
+generalizes beyond this cycle. See `phase4_results.md` for the full
+account and LOGBOOK.md Iteration 50 for this cycle's contribution to the
+persistent record, once Phase 5 closes.
 
 ## Next
 

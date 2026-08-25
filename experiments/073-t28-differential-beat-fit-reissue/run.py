@@ -1233,10 +1233,18 @@ def main():
         elapsed_s=time.time() - t0,
     )
 
-    out_path = os.path.join(HERE, "dev_results.json")
+    # Phase 3 (development) wrote this to dev_results.json, deliberately kept
+    # separate from the official Phase-4 deliverable per house discipline
+    # (predictions frozen before the run). The official Phase-4 run (this
+    # exact code, unmodified, executed after Phase 3's commit c771a7e) is
+    # committed as results.json; this script now writes there directly so a
+    # future re-run reproduces the committed artifact by name, not just by
+    # content. See phase3_synthesis.md Sec 4 and phase4_results.md for the
+    # dev-vs-official distinction and why this run is bit-reproducible.
+    out_path = os.path.join(HERE, "results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=float)
-    print(f"[DEV RUN -- not the official Phase-4 deliverable; see task instructions]")
+    print(f"[official Phase-4 run]")
     print(f"Combined Verdict: {scored['combined_verdict']}")
     if scored["combined_verdict"] not in (
             "HALT_GRID_MISMATCH", "HALT_TELESCOPE_MISMATCH",

@@ -1,0 +1,1772 @@
+{
+  "experiment": "073-t28-differential-beat-fit-reissue",
+  "panel_iteration": 50,
+  "lead_seat": "MATERIALS",
+  "t1_escape_route": null,
+  "m0_native": 0.0025563909774436134,
+  "m0_resolved": 0.002463678368980155,
+  "m0_resolved_r2": 0.832803568626572,
+  "exp072_disclosure": {
+    "C40-C60": {
+      "A_q": -0.00020785605239195896,
+      "amplitude": 0.0052760101090952695,
+      "chi0_real": -0.019695676301729453,
+      "tan_over_sin": 1.0001939911877848
+    },
+    "C60-C70": {
+      "A_q": -0.00023275302803344523,
+      "amplitude": 0.005724601254655279,
+      "chi0_real": -0.02032639147087206,
+      "tan_over_sin": 1.000206616664214
+    },
+    "C70-C80": {
+      "A_q": -7.070586648218096e-05,
+      "amplitude": 0.005702899221180286,
+      "chi0_real": -0.006199036493665697,
+      "tan_over_sin": 1.0000192143343787
+    },
+    "C40-C80": {
+      "A_q": -0.0004554654842036821,
+      "amplitude": 0.005245197989845833,
+      "chi0_real": -0.043390126909780176,
+      "tan_over_sin": 1.0009420905747328
+    }
+  },
+  "a_priori_disclosure": {
+    "C40-C60": {
+      "d_absorb": 20.0,
+      "dP_pred_naive": 0.0492735673796031,
+      "chi0_naive_a_priori": -1.1583959391075898,
+      "chi0_real_exp072": -0.019695676301729453,
+      "tan_over_sin_real": 1.0001939911877848,
+      "note": "The naive a-priori chi0 estimate assumes the true effect matches m0's predicted size; exp-072's own already-closed, non-contaminating chi0 (class-b disclosure, never used to set any threshold here) shows the realized value is 1-2 orders of magnitude smaller on this exact substrate -- the tan-vs-sin correction (T2-4) is therefore expected to remain numerically inert on real data, though it is still the exact, non-approximate relation (docket item 5, phase2_redteam_audit.md Attack 2)."
+    },
+    "C60-C70": {
+      "d_absorb": 10.0,
+      "dP_pred_naive": 0.02463678368980155,
+      "chi0_naive_a_priori": -0.5791979695537949,
+      "chi0_real_exp072": -0.02032639147087206,
+      "tan_over_sin_real": 1.000206616664214,
+      "note": "The naive a-priori chi0 estimate assumes the true effect matches m0's predicted size; exp-072's own already-closed, non-contaminating chi0 (class-b disclosure, never used to set any threshold here) shows the realized value is 1-2 orders of magnitude smaller on this exact substrate -- the tan-vs-sin correction (T2-4) is therefore expected to remain numerically inert on real data, though it is still the exact, non-approximate relation (docket item 5, phase2_redteam_audit.md Attack 2)."
+    },
+    "C70-C80": {
+      "d_absorb": 10.0,
+      "dP_pred_naive": 0.02463678368980155,
+      "chi0_naive_a_priori": -0.5791979695537949,
+      "chi0_real_exp072": -0.006199036493665697,
+      "tan_over_sin_real": 1.0000192143343787,
+      "note": "The naive a-priori chi0 estimate assumes the true effect matches m0's predicted size; exp-072's own already-closed, non-contaminating chi0 (class-b disclosure, never used to set any threshold here) shows the realized value is 1-2 orders of magnitude smaller on this exact substrate -- the tan-vs-sin correction (T2-4) is therefore expected to remain numerically inert on real data, though it is still the exact, non-approximate relation (docket item 5, phase2_redteam_audit.md Attack 2)."
+    },
+    "C40-C80": {
+      "d_absorb": 40.0,
+      "dP_pred_naive": 0.0985471347592062,
+      "chi0_naive_a_priori": -2.3167918782151795,
+      "chi0_real_exp072": -0.043390126909780176,
+      "tan_over_sin_real": 1.0009420905747328,
+      "note": "The naive a-priori chi0 estimate assumes the true effect matches m0's predicted size; exp-072's own already-closed, non-contaminating chi0 (class-b disclosure, never used to set any threshold here) shows the realized value is 1-2 orders of magnitude smaller on this exact substrate -- the tan-vs-sin correction (T2-4) is therefore expected to remain numerically inert on real data, though it is still the exact, non-approximate relation (docket item 5, phase2_redteam_audit.md Attack 2)."
+    }
+  },
+  "g0": {
+    "a": {
+      "n_checked": 3,
+      "all_identical": true
+    },
+    "b": {
+      "max_abs_residual": 0.0
+    },
+    "c": {
+      "max_abs_delta": 0.0
+    }
+  },
+  "saturating_vs_linear": {
+    "absorb": [
+      40.0,
+      60.0,
+      70.0,
+      80.0
+    ],
+    "periods_n_grid3000": [
+      2.437479159719907,
+      2.5205068356118705,
+      2.535511837279093,
+      2.5305101700566857
+    ],
+    "linear": {
+      "intercept": 2.35202210260563,
+      "slope": 0.002463678368980155,
+      "r_squared": 0.832803568626572
+    },
+    "saturating": {
+      "P_inf": 2.541696840364619,
+      "amplitude": -2.080654320319186,
+      "decay_L": 0.075,
+      "r_squared": 0.9901443913525779
+    },
+    "matches_exp072_slope": true
+  },
+  "scored": {
+    "per_pair": {},
+    "injection": {},
+    "power_demonstrated": null,
+    "p073_2": null,
+    "p073_3": null,
+    "rho_c": null,
+    "rho_c_common_carrier_residual": null,
+    "p073_4": null,
+    "combined_verdict": "HALT_NULL_MISCALIBRATED",
+    "g0a_pass": true,
+    "g0b_pass": true,
+    "g0c_pass": true,
+    "g0e_i": {
+      "pass_": true,
+      "worst_abs_ratio_error": 0.011012056785155266,
+      "n_cells": 5760,
+      "legs": {
+        "primary": {
+          "n_cells": 3456,
+          "worst_recovery_ratio_error": 0.003506508081928983,
+          "worst_identity_error": 9.444524387547653e-11,
+          "n_ai_checked": 0,
+          "n_ai_fail": 0,
+          "worst_ai_rel_error": 0.0
+        },
+        "delta_a": {
+          "n_cells": 768,
+          "worst_recovery_ratio_error": 0.002769840756743136,
+          "worst_identity_error": 5.666781725364599e-11,
+          "n_ai_checked": 768,
+          "n_ai_fail": 0,
+          "worst_ai_rel_error": 0.005802590712466673
+        },
+        "delta_psi": {
+          "n_cells": 1536,
+          "worst_recovery_ratio_error": 0.011012056785155266,
+          "worst_identity_error": 4.274220780369105e-11,
+          "n_ai_checked": 0,
+          "n_ai_fail": 0,
+          "worst_ai_rel_error": 0.0
+        }
+      },
+      "identity_tripwire": {
+        "pass_": true,
+        "worst_error": 9.444524387547653e-11
+      },
+      "ai_tripwire": {
+        "pass_": true,
+        "n_checked": 768,
+        "n_fail": 0,
+        "note": "Vacuous under exp-072's original delta_a=Delta_psi=0 generator (0 cells ever qualified); now live via the delta_a/Delta_psi legs (docket item 1) -- n_checked>0 confirms the tripwire is no longer dead code (docket item 2, PHOTONICS' Attack 1, phase2_redteam_audit.md)."
+      }
+    },
+    "g0e_ii": {
+      "pass_": false,
+      "iid_leg": {
+        "pass_": false,
+        "table": [
+          {
+            "sigma": 0.0005,
+            "psi0": 0.0,
+            "alpha": 0.01,
+            "rejection_rate": 0.054,
+            "nominal": 0.01,
+            "deviation": 0.044,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.0,
+            "alpha": 0.05,
+            "rejection_rate": 0.116,
+            "nominal": 0.05,
+            "deviation": 0.066,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.0,
+            "alpha": 0.1,
+            "rejection_rate": 0.172,
+            "nominal": 0.1,
+            "deviation": 0.07199999999999998,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.01,
+            "rejection_rate": 0.066,
+            "nominal": 0.01,
+            "deviation": 0.056,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.05,
+            "rejection_rate": 0.12,
+            "nominal": 0.05,
+            "deviation": 0.06999999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.1,
+            "rejection_rate": 0.176,
+            "nominal": 0.1,
+            "deviation": 0.07599999999999998,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.01,
+            "rejection_rate": 0.062,
+            "nominal": 0.01,
+            "deviation": 0.052,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.05,
+            "rejection_rate": 0.132,
+            "nominal": 0.05,
+            "deviation": 0.082,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.1,
+            "rejection_rate": 0.192,
+            "nominal": 0.1,
+            "deviation": 0.092,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 2.356194490192345,
+            "alpha": 0.01,
+            "rejection_rate": 0.042,
+            "nominal": 0.01,
+            "deviation": 0.032,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 2.356194490192345,
+            "alpha": 0.05,
+            "rejection_rate": 0.102,
+            "nominal": 0.05,
+            "deviation": 0.05199999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 2.356194490192345,
+            "alpha": 0.1,
+            "rejection_rate": 0.15,
+            "nominal": 0.1,
+            "deviation": 0.04999999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.141592653589793,
+            "alpha": 0.01,
+            "rejection_rate": 0.044,
+            "nominal": 0.01,
+            "deviation": 0.033999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.141592653589793,
+            "alpha": 0.05,
+            "rejection_rate": 0.098,
+            "nominal": 0.05,
+            "deviation": 0.048,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.141592653589793,
+            "alpha": 0.1,
+            "rejection_rate": 0.152,
+            "nominal": 0.1,
+            "deviation": 0.05199999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.01,
+            "rejection_rate": 0.044,
+            "nominal": 0.01,
+            "deviation": 0.033999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.05,
+            "rejection_rate": 0.116,
+            "nominal": 0.05,
+            "deviation": 0.066,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.1,
+            "rejection_rate": 0.178,
+            "nominal": 0.1,
+            "deviation": 0.07799999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 4.71238898038469,
+            "alpha": 0.01,
+            "rejection_rate": 0.05,
+            "nominal": 0.01,
+            "deviation": 0.04,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 4.71238898038469,
+            "alpha": 0.05,
+            "rejection_rate": 0.114,
+            "nominal": 0.05,
+            "deviation": 0.064,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 4.71238898038469,
+            "alpha": 0.1,
+            "rejection_rate": 0.164,
+            "nominal": 0.1,
+            "deviation": 0.064,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 5.497787143782138,
+            "alpha": 0.01,
+            "rejection_rate": 0.054,
+            "nominal": 0.01,
+            "deviation": 0.044,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 5.497787143782138,
+            "alpha": 0.05,
+            "rejection_rate": 0.104,
+            "nominal": 0.05,
+            "deviation": 0.05399999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 5.497787143782138,
+            "alpha": 0.1,
+            "rejection_rate": 0.176,
+            "nominal": 0.1,
+            "deviation": 0.07599999999999998,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.0,
+            "alpha": 0.01,
+            "rejection_rate": 0.07,
+            "nominal": 0.01,
+            "deviation": 0.060000000000000005,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.0,
+            "alpha": 0.05,
+            "rejection_rate": 0.122,
+            "nominal": 0.05,
+            "deviation": 0.072,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.0,
+            "alpha": 0.1,
+            "rejection_rate": 0.196,
+            "nominal": 0.1,
+            "deviation": 0.096,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.01,
+            "rejection_rate": 0.03,
+            "nominal": 0.01,
+            "deviation": 0.019999999999999997,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.05,
+            "rejection_rate": 0.086,
+            "nominal": 0.05,
+            "deviation": 0.03599999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.1,
+            "rejection_rate": 0.148,
+            "nominal": 0.1,
+            "deviation": 0.04799999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.01,
+            "rejection_rate": 0.064,
+            "nominal": 0.01,
+            "deviation": 0.054,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.05,
+            "rejection_rate": 0.124,
+            "nominal": 0.05,
+            "deviation": 0.074,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.1,
+            "rejection_rate": 0.176,
+            "nominal": 0.1,
+            "deviation": 0.07599999999999998,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 2.356194490192345,
+            "alpha": 0.01,
+            "rejection_rate": 0.062,
+            "nominal": 0.01,
+            "deviation": 0.052,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 2.356194490192345,
+            "alpha": 0.05,
+            "rejection_rate": 0.122,
+            "nominal": 0.05,
+            "deviation": 0.072,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 2.356194490192345,
+            "alpha": 0.1,
+            "rejection_rate": 0.152,
+            "nominal": 0.1,
+            "deviation": 0.05199999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.141592653589793,
+            "alpha": 0.01,
+            "rejection_rate": 0.06,
+            "nominal": 0.01,
+            "deviation": 0.049999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.141592653589793,
+            "alpha": 0.05,
+            "rejection_rate": 0.12,
+            "nominal": 0.05,
+            "deviation": 0.06999999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.141592653589793,
+            "alpha": 0.1,
+            "rejection_rate": 0.17,
+            "nominal": 0.1,
+            "deviation": 0.07,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.05,
+            "rejection_rate": 0.112,
+            "nominal": 0.05,
+            "deviation": 0.062,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.1,
+            "rejection_rate": 0.15,
+            "nominal": 0.1,
+            "deviation": 0.04999999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 4.71238898038469,
+            "alpha": 0.01,
+            "rejection_rate": 0.078,
+            "nominal": 0.01,
+            "deviation": 0.068,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 4.71238898038469,
+            "alpha": 0.05,
+            "rejection_rate": 0.13,
+            "nominal": 0.05,
+            "deviation": 0.08,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 4.71238898038469,
+            "alpha": 0.1,
+            "rejection_rate": 0.19,
+            "nominal": 0.1,
+            "deviation": 0.09,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 5.497787143782138,
+            "alpha": 0.01,
+            "rejection_rate": 0.044,
+            "nominal": 0.01,
+            "deviation": 0.033999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 5.497787143782138,
+            "alpha": 0.05,
+            "rejection_rate": 0.092,
+            "nominal": 0.05,
+            "deviation": 0.041999999999999996,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 5.497787143782138,
+            "alpha": 0.1,
+            "rejection_rate": 0.15,
+            "nominal": 0.1,
+            "deviation": 0.04999999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.0,
+            "alpha": 0.01,
+            "rejection_rate": 0.044,
+            "nominal": 0.01,
+            "deviation": 0.033999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.0,
+            "alpha": 0.05,
+            "rejection_rate": 0.12,
+            "nominal": 0.05,
+            "deviation": 0.06999999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.0,
+            "alpha": 0.1,
+            "rejection_rate": 0.19,
+            "nominal": 0.1,
+            "deviation": 0.09,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.05,
+            "rejection_rate": 0.114,
+            "nominal": 0.05,
+            "deviation": 0.064,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.1,
+            "rejection_rate": 0.182,
+            "nominal": 0.1,
+            "deviation": 0.08199999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.01,
+            "rejection_rate": 0.042,
+            "nominal": 0.01,
+            "deviation": 0.032,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.05,
+            "rejection_rate": 0.108,
+            "nominal": 0.05,
+            "deviation": 0.057999999999999996,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.1,
+            "rejection_rate": 0.168,
+            "nominal": 0.1,
+            "deviation": 0.068,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 2.356194490192345,
+            "alpha": 0.01,
+            "rejection_rate": 0.052,
+            "nominal": 0.01,
+            "deviation": 0.041999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 2.356194490192345,
+            "alpha": 0.05,
+            "rejection_rate": 0.1,
+            "nominal": 0.05,
+            "deviation": 0.05,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 2.356194490192345,
+            "alpha": 0.1,
+            "rejection_rate": 0.164,
+            "nominal": 0.1,
+            "deviation": 0.064,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.141592653589793,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.141592653589793,
+            "alpha": 0.05,
+            "rejection_rate": 0.124,
+            "nominal": 0.05,
+            "deviation": 0.074,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.141592653589793,
+            "alpha": 0.1,
+            "rejection_rate": 0.168,
+            "nominal": 0.1,
+            "deviation": 0.068,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.01,
+            "rejection_rate": 0.066,
+            "nominal": 0.01,
+            "deviation": 0.056,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.05,
+            "rejection_rate": 0.146,
+            "nominal": 0.05,
+            "deviation": 0.09599999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.1,
+            "rejection_rate": 0.218,
+            "nominal": 0.1,
+            "deviation": 0.118,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 4.71238898038469,
+            "alpha": 0.01,
+            "rejection_rate": 0.054,
+            "nominal": 0.01,
+            "deviation": 0.044,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 4.71238898038469,
+            "alpha": 0.05,
+            "rejection_rate": 0.112,
+            "nominal": 0.05,
+            "deviation": 0.062,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 4.71238898038469,
+            "alpha": 0.1,
+            "rejection_rate": 0.16,
+            "nominal": 0.1,
+            "deviation": 0.06,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 5.497787143782138,
+            "alpha": 0.01,
+            "rejection_rate": 0.054,
+            "nominal": 0.01,
+            "deviation": 0.044,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 5.497787143782138,
+            "alpha": 0.05,
+            "rejection_rate": 0.108,
+            "nominal": 0.05,
+            "deviation": 0.057999999999999996,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 5.497787143782138,
+            "alpha": 0.1,
+            "rejection_rate": 0.16,
+            "nominal": 0.1,
+            "deviation": 0.06,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          }
+        ]
+      },
+      "residual_structure_leg": {
+        "pass_": false,
+        "table": [
+          {
+            "sigma": 0.0005,
+            "psi0": 0.0,
+            "alpha": 0.01,
+            "rejection_rate": 0.052,
+            "nominal": 0.01,
+            "deviation": 0.041999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.0,
+            "alpha": 0.05,
+            "rejection_rate": 0.108,
+            "nominal": 0.05,
+            "deviation": 0.057999999999999996,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.0,
+            "alpha": 0.1,
+            "rejection_rate": 0.162,
+            "nominal": 0.1,
+            "deviation": 0.062,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.01,
+            "rejection_rate": 0.064,
+            "nominal": 0.01,
+            "deviation": 0.054,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.05,
+            "rejection_rate": 0.116,
+            "nominal": 0.05,
+            "deviation": 0.066,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.1,
+            "rejection_rate": 0.178,
+            "nominal": 0.1,
+            "deviation": 0.07799999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.01,
+            "rejection_rate": 0.058,
+            "nominal": 0.01,
+            "deviation": 0.048,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.05,
+            "rejection_rate": 0.104,
+            "nominal": 0.05,
+            "deviation": 0.05399999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.1,
+            "rejection_rate": 0.166,
+            "nominal": 0.1,
+            "deviation": 0.066,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 2.356194490192345,
+            "alpha": 0.01,
+            "rejection_rate": 0.06,
+            "nominal": 0.01,
+            "deviation": 0.049999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 2.356194490192345,
+            "alpha": 0.05,
+            "rejection_rate": 0.114,
+            "nominal": 0.05,
+            "deviation": 0.064,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 2.356194490192345,
+            "alpha": 0.1,
+            "rejection_rate": 0.174,
+            "nominal": 0.1,
+            "deviation": 0.07399999999999998,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.141592653589793,
+            "alpha": 0.01,
+            "rejection_rate": 0.06,
+            "nominal": 0.01,
+            "deviation": 0.049999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.141592653589793,
+            "alpha": 0.05,
+            "rejection_rate": 0.15,
+            "nominal": 0.05,
+            "deviation": 0.09999999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.141592653589793,
+            "alpha": 0.1,
+            "rejection_rate": 0.194,
+            "nominal": 0.1,
+            "deviation": 0.094,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.01,
+            "rejection_rate": 0.076,
+            "nominal": 0.01,
+            "deviation": 0.066,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.05,
+            "rejection_rate": 0.134,
+            "nominal": 0.05,
+            "deviation": 0.084,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.1,
+            "rejection_rate": 0.176,
+            "nominal": 0.1,
+            "deviation": 0.07599999999999998,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 4.71238898038469,
+            "alpha": 0.01,
+            "rejection_rate": 0.046,
+            "nominal": 0.01,
+            "deviation": 0.036,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 4.71238898038469,
+            "alpha": 0.05,
+            "rejection_rate": 0.098,
+            "nominal": 0.05,
+            "deviation": 0.048,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 4.71238898038469,
+            "alpha": 0.1,
+            "rejection_rate": 0.132,
+            "nominal": 0.1,
+            "deviation": 0.032,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": true
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 5.497787143782138,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 5.497787143782138,
+            "alpha": 0.05,
+            "rejection_rate": 0.096,
+            "nominal": 0.05,
+            "deviation": 0.046,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.0005,
+            "psi0": 5.497787143782138,
+            "alpha": 0.1,
+            "rejection_rate": 0.15,
+            "nominal": 0.1,
+            "deviation": 0.04999999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.0,
+            "alpha": 0.01,
+            "rejection_rate": 0.052,
+            "nominal": 0.01,
+            "deviation": 0.041999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.0,
+            "alpha": 0.05,
+            "rejection_rate": 0.102,
+            "nominal": 0.05,
+            "deviation": 0.05199999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.0,
+            "alpha": 0.1,
+            "rejection_rate": 0.166,
+            "nominal": 0.1,
+            "deviation": 0.066,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.01,
+            "rejection_rate": 0.048,
+            "nominal": 0.01,
+            "deviation": 0.038,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.05,
+            "rejection_rate": 0.092,
+            "nominal": 0.05,
+            "deviation": 0.041999999999999996,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.1,
+            "rejection_rate": 0.148,
+            "nominal": 0.1,
+            "deviation": 0.04799999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.05,
+            "rejection_rate": 0.106,
+            "nominal": 0.05,
+            "deviation": 0.055999999999999994,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.1,
+            "rejection_rate": 0.184,
+            "nominal": 0.1,
+            "deviation": 0.08399999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 2.356194490192345,
+            "alpha": 0.01,
+            "rejection_rate": 0.048,
+            "nominal": 0.01,
+            "deviation": 0.038,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 2.356194490192345,
+            "alpha": 0.05,
+            "rejection_rate": 0.094,
+            "nominal": 0.05,
+            "deviation": 0.044,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 2.356194490192345,
+            "alpha": 0.1,
+            "rejection_rate": 0.16,
+            "nominal": 0.1,
+            "deviation": 0.06,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.141592653589793,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.141592653589793,
+            "alpha": 0.05,
+            "rejection_rate": 0.098,
+            "nominal": 0.05,
+            "deviation": 0.048,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.141592653589793,
+            "alpha": 0.1,
+            "rejection_rate": 0.152,
+            "nominal": 0.1,
+            "deviation": 0.05199999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.01,
+            "rejection_rate": 0.072,
+            "nominal": 0.01,
+            "deviation": 0.06199999999999999,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.05,
+            "rejection_rate": 0.134,
+            "nominal": 0.05,
+            "deviation": 0.084,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.1,
+            "rejection_rate": 0.182,
+            "nominal": 0.1,
+            "deviation": 0.08199999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 4.71238898038469,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 4.71238898038469,
+            "alpha": 0.05,
+            "rejection_rate": 0.136,
+            "nominal": 0.05,
+            "deviation": 0.08600000000000001,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 4.71238898038469,
+            "alpha": 0.1,
+            "rejection_rate": 0.188,
+            "nominal": 0.1,
+            "deviation": 0.088,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 5.497787143782138,
+            "alpha": 0.01,
+            "rejection_rate": 0.05,
+            "nominal": 0.01,
+            "deviation": 0.04,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 5.497787143782138,
+            "alpha": 0.05,
+            "rejection_rate": 0.11,
+            "nominal": 0.05,
+            "deviation": 0.06,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.002,
+            "psi0": 5.497787143782138,
+            "alpha": 0.1,
+            "rejection_rate": 0.166,
+            "nominal": 0.1,
+            "deviation": 0.066,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.0,
+            "alpha": 0.01,
+            "rejection_rate": 0.068,
+            "nominal": 0.01,
+            "deviation": 0.058,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.0,
+            "alpha": 0.05,
+            "rejection_rate": 0.134,
+            "nominal": 0.05,
+            "deviation": 0.084,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.0,
+            "alpha": 0.1,
+            "rejection_rate": 0.21,
+            "nominal": 0.1,
+            "deviation": 0.10999999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.01,
+            "rejection_rate": 0.036,
+            "nominal": 0.01,
+            "deviation": 0.025999999999999995,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.05,
+            "rejection_rate": 0.104,
+            "nominal": 0.05,
+            "deviation": 0.05399999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 0.7853981633974483,
+            "alpha": 0.1,
+            "rejection_rate": 0.168,
+            "nominal": 0.1,
+            "deviation": 0.068,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.01,
+            "rejection_rate": 0.062,
+            "nominal": 0.01,
+            "deviation": 0.052,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.05,
+            "rejection_rate": 0.144,
+            "nominal": 0.05,
+            "deviation": 0.09399999999999999,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 1.5707963267948966,
+            "alpha": 0.1,
+            "rejection_rate": 0.198,
+            "nominal": 0.1,
+            "deviation": 0.098,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 2.356194490192345,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 2.356194490192345,
+            "alpha": 0.05,
+            "rejection_rate": 0.116,
+            "nominal": 0.05,
+            "deviation": 0.066,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 2.356194490192345,
+            "alpha": 0.1,
+            "rejection_rate": 0.192,
+            "nominal": 0.1,
+            "deviation": 0.092,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.141592653589793,
+            "alpha": 0.01,
+            "rejection_rate": 0.056,
+            "nominal": 0.01,
+            "deviation": 0.046,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.141592653589793,
+            "alpha": 0.05,
+            "rejection_rate": 0.11,
+            "nominal": 0.05,
+            "deviation": 0.06,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.141592653589793,
+            "alpha": 0.1,
+            "rejection_rate": 0.142,
+            "nominal": 0.1,
+            "deviation": 0.04199999999999998,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.01,
+            "rejection_rate": 0.052,
+            "nominal": 0.01,
+            "deviation": 0.041999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.05,
+            "rejection_rate": 0.092,
+            "nominal": 0.05,
+            "deviation": 0.041999999999999996,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 3.9269908169872414,
+            "alpha": 0.1,
+            "rejection_rate": 0.154,
+            "nominal": 0.1,
+            "deviation": 0.05399999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 4.71238898038469,
+            "alpha": 0.01,
+            "rejection_rate": 0.058,
+            "nominal": 0.01,
+            "deviation": 0.048,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 4.71238898038469,
+            "alpha": 0.05,
+            "rejection_rate": 0.1,
+            "nominal": 0.05,
+            "deviation": 0.05,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 4.71238898038469,
+            "alpha": 0.1,
+            "rejection_rate": 0.182,
+            "nominal": 0.1,
+            "deviation": 0.08199999999999999,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 5.497787143782138,
+            "alpha": 0.01,
+            "rejection_rate": 0.06,
+            "nominal": 0.01,
+            "deviation": 0.049999999999999996,
+            "band_lo": -0.003349157276772192,
+            "band_hi": 0.02334915727677219,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 5.497787143782138,
+            "alpha": 0.05,
+            "rejection_rate": 0.122,
+            "nominal": 0.05,
+            "deviation": 0.072,
+            "band_lo": 0.02075961696557311,
+            "band_hi": 0.0792403830344269,
+            "pass_": false
+          },
+          {
+            "sigma": 0.008,
+            "psi0": 5.497787143782138,
+            "alpha": 0.1,
+            "rejection_rate": 0.174,
+            "nominal": 0.1,
+            "deviation": 0.07399999999999998,
+            "band_lo": 0.059750776405003786,
+            "band_hi": 0.14024922359499623,
+            "pass_": false
+          }
+        ],
+        "pool_std": 0.004364498107467418,
+        "pool_n": 124
+      },
+      "K": 500,
+      "N": 20000,
+      "n_cells_per_leg": 24
+    },
+    "n_resolved_holm10": null,
+    "contamination": {
+      "pre_registration_paragraph": "During Phase 2, EM's critique independently computed exp-072's own real chi0/A_q/amplitude values for all four pairs (a real, previously-closed, non-contaminating number, per Red Team's audit Sec 3) while diagnosing the chi0-regime a-priori claim. Red Team's audit generalized this: because exp-073's machinery is bit-identical to exp-072's own on unchanged data, ALL of this cycle's real point estimates were already computable from exp-072's own results.json before Phase 1. Ruled NOT outcome-determining for the Combined Verdict as specified: none of the three new-machinery items (T2-1, T2-3, T2-4) were tuned in response to these numbers; every threshold traces to a data-free argument (algebraic identity, leakage-minimization, window geometry). See phase2_redteam_audit.md Sec 3 for the full ruling this cycle operates under.",
+      "forward_lock_statement": "Any change to a gate, band, or threshold made from Red Team's Phase-2 audit forward, for any reason traceable to exp-072's known real numbers, must be treated as a fresh Phase-1/2 pre-registration decision -- never folded into a same-cycle Phase-3 correction. No such change was made in this file.",
+      "confirm_disclosure_required": false,
+      "confirm_disclosure_text": null
+    }
+  },
+  "elapsed_s": 128.68052124977112
+}
