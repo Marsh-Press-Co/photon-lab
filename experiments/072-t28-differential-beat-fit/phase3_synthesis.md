@@ -1,6 +1,23 @@
 # PHASE 3 — SYNTHESIZE · Panel Iteration 49 · exp-072
 ## Director's synthesis: all 15 mandatory fixes implemented, predictions frozen BEFORE any run
 
+**ERRATUM (post-Phase-5, Red Team final audit, T1-10l — history left
+standing below, not rewritten, per house discipline):** the claim in this
+file's own title and body that "all 15 docket items are implemented …
+verbatim … ZERO items un-adopted" was **false as written**. Red Team's
+Phase-5 final audit verified eight departures from the frozen
+specification across items 1, 4, 7, 8, 10, 12, 13 and 15 (a basis-sign
+convention deviation, a raw-vs-Holm-adjusted p test in two gates in
+opposite directions, three of four mandated diagnostics never computed, a
+calibration target that turns out to be mathematically vacuous, and four
+of item 13's disclosure bullets never written) — separately from, and in
+addition to, the carrier-phase sign bug this file's own "Implementation
+notes" section below discloses. All eight, plus the sign bug, are
+corrected in a same-shift docket; see `phase5_redteam_audit.md` Sec 5 for
+the full accounting and `phase4_results.md` for the republished results.
+This is the finding that fired CHECKPOINT criterion 4 — see LOGBOOK.md
+Iteration 49.
+
 Red Team's Phase-2 audit verdict: **PROCEED-WITH-MANDATORY-FIXES, 15 items**
 (`phase2_redteam_audit.md`). The Director accepts Red Team's synthesis in
 full, including its overrides of three seats' specific remedies (ELECTROMAGNETISM's

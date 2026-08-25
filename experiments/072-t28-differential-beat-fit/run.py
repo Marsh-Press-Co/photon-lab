@@ -18,8 +18,16 @@ estimator and PUBLISHED outcome-determining numbers (ΔP, z, rho_c at three
 carriers). Red Team then independently computed the observed surrogate
 p-values under both nulls. The choice between the unrestricted null (as
 Phase-1 originally specified) and the H0-restricted null (QUANTUM's Phase-2
-fix) is OUTCOME-DETERMINING between Combined Verdict REFUTED and NEITHER --
-Red Team verified this computationally before Phase 3. Per Red Team's ruling:
+fix) is OUTCOME-DETERMINING between Combined Verdict UNDERPOWERED_NOT_
+EVALUABLE and NEITHER -- Red Team verified this computationally before
+Phase 3. (Phase-5 CORRECTION, T1-10d: this paragraph originally named
+REFUTED instead of UNDERPOWERED_NOT_EVALUABLE; Red Team's Phase-5 final
+audit found REFUTED was never actually reachable on this data regardless
+of the null choice, since the REFUTE branch sits behind a power-
+demonstration precondition -- item 3 -- that is False under every null and
+every injection construction tested. The four binding conditions below are
+unaffected; only this factual claim about the alternative branch is
+corrected.) Per Red Team's ruling:
 (1) every docket item is justified by an argument independent of any observed
 value (see phase2_redteam_audit.md Sec 4, condition 1); (2) the net effect of
 the docket is to make the design STRICTER, not looser (condition 2); (3) a
@@ -63,7 +71,18 @@ N_SURR_Q95 = 2000         # carrier-consistency-gate calibration (item 6) --
 N_GRID_Q95 = 300          # ditto, for the per-surrogate free-period search
 N_GRID_CARRIER = 3000     # step-1 common-mode carrier search (Idealization 6)
 HOLM_PAIRS = ("C40-C60", "C60-C70", "C70-C80")   # 3 algebraically free (item 14)
-T_WRONG_DISPLACED = 3.60  # deg, >=1.5 Rayleigh widths from the carrier (item 10)
+T_WRONG_DISPLACED = 1.2591  # deg (T1-4, redteam Phase-5 final audit): the
+                           # ORIGINAL 3.60deg was claimed >=1.5 Rayleigh
+                           # widths from the carrier but is actually only
+                           # 0.70-0.75 widths -- within 2% of the GLOBAL
+                           # MAXIMUM of the leakage function |L(T)| it was
+                           # meant to be clean of. 1.2591deg minimizes
+                           # max_pairs|L(T)| over T in [1.2,2.0]deg (a
+                           # data-free calculation: no observed value enters
+                           # it), giving a worst-pair leak of 0.988 (vs
+                           # ~35.8 at 3.60deg, a 36x reduction) at 2.36-2.40
+                           # Rayleigh widths -- genuinely displaced, unlike
+                           # its predecessor.
 T_WRONG_FRINGE = 1.9608   # deg, T21's established fringe -- disclosure only,
                            # 0.6452 Rayleigh widths, NOT a control (item 10)
 SAT_DECAY_L = 0.075       # 1/cell, engine-derived (_damping's cubic ramp,
@@ -172,17 +191,25 @@ def carrier_fit(theta_deg, series_a, series_b, n_grid=N_GRID_CARRIER):
 
 
 def design_matrix(theta_deg, T_x, psi, xbar, curvature=False):
-    """5-column ramped basis [1, cos(theta_c), sin(theta_c), u*cos(theta_c),
-    u*sin(theta_c)] at a FIXED carrier (T_x, psi) from step 1.  Optionally a
-    6th disclosed curvature column u^2*sin(theta_c) (docket item 15)."""
+    """5-column ramped basis [1, cos(theta_c), -sin(theta_c), u*cos(theta_c),
+    -u*sin(theta_c)] at a FIXED carrier (T_x, psi) from step 1 -- the LITERAL
+    frozen basis of phase1_proposal.md:99 / redteam docket items 1 and 15
+    (Phase-5 Red Team final audit T1-1: the +sin basis originally shipped
+    here was ΔP-neutral only because it was compensated by a matching
+    leading-minus removal in delta_P_obs/dP_from/injection_recovery; that
+    compensation is undone here so the coefficient table (A_i, A_q, R_i, R_q)
+    reads true against its own pre-registered definitions, e.g.
+    R_q = +2*pi*a*Δf exactly, without an undocumented sign convention).
+    Optionally a 6th disclosed curvature column u^2*(-sin(theta_c))
+    (docket item 15, literal)."""
     x = np.sin(np.radians(theta_deg))
     u = x - xbar
     w = 2 * math.pi / T_x
     theta_c = w * u + psi
-    cols = [np.ones_like(x), np.cos(theta_c), np.sin(theta_c),
-            u * np.cos(theta_c), u * np.sin(theta_c)]
+    cols = [np.ones_like(x), np.cos(theta_c), -np.sin(theta_c),
+            u * np.cos(theta_c), -u * np.sin(theta_c)]
     if curvature:
-        cols.append(u * u * np.sin(theta_c))
+        cols.append(u * u * (-np.sin(theta_c)))
     return np.column_stack(cols)
 
 
@@ -244,6 +271,7 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
     T_x, psi = carrier["T_x"], carrier["psi"]
     x = np.sin(np.radians(theta))
     xbar = float(np.mean(x))
+    u = x - xbar
 
     # ---- step 2: 5-column ramped fit (+ item 15's disclosed 6th column)
     X5 = design_matrix(theta, T_x, psi, xbar, curvature=False)
@@ -258,11 +286,13 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
     amp = carrier["amplitude"]
     f_bar = 1.0 / T_x
     delta_f_obs = R_q / (2 * math.pi * amp) if amp != 0 else float("nan")
-    # PHASE-5 CORRECTION (see _amp_phase_at's docstring): the leading minus
-    # sign here paired with the unpatched psi to give ratio=-1 on synthetic
-    # ground truth; with psi now correctly signed, this formula must NOT
-    # negate -- verified: recovered/true ΔP = +1.0000 +/- 0.0015 uniformly.
-    delta_P_obs = (delta_f_obs / f_bar) * carrier["T_mean_deg"]
+    # PHASE-5 T1-1 (redteam final audit): basis restored to the frozen
+    # -sin convention (design_matrix docstring), so this formula's leading
+    # minus is restored too -- the two corrections are a matched pair, not
+    # independent. Re-verified on synthetic ground truth with THIS exact
+    # combination (docket-literal basis + psi=-atan2(b,a) + leading minus
+    # here): recovered/true ΔP = +1.0000 +/- 0.0015 uniformly.
+    delta_P_obs = -(delta_f_obs / f_bar) * carrier["T_mean_deg"]
 
     # item 5: A_q relabeled -- "half the phase difference at window centre",
     # A_q = 2*a*sin(chi), chi = pi*Delta_f*xbar + Delta_psi/2. Delta_psi
@@ -324,9 +354,13 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
     linearization_gate_pass = abs(delta_f_obs) * (float(np.ptp(x))) <= 0.25
 
     # ---- item 10: wrong-carrier gate (displaced) + fringe disclosure (not a control)
+    # T1-7 (redteam Phase-5 final audit): at_carrier() now returns its OWN
+    # amplitude too -- the original code normalized every wrong-carrier ΔP
+    # by amp(T_mean), understating the two wrong-carrier ΔP columns by
+    # 4.7-7.8x (Cbar's amplitude collapses well off the true carrier).
     def at_carrier(T_wrong_deg):
         Tx_w = math.radians(T_wrong_deg) * cos_c
-        _, psi_w, _ = _amp_phase_at(theta, 0.5 * (series_a + series_b), Tx_w, xbar)
+        amp_w, psi_w, _ = _amp_phase_at(theta, 0.5 * (series_a + series_b), Tx_w, xbar)
         X5w = design_matrix(theta, Tx_w, psi_w, xbar)
         pinv5w = np.linalg.pinv(X5w)
         coefw = pinv5w @ delta_ab
@@ -336,11 +370,16 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
         restr_w = restricted_null_surrogates(delta_ab, X4w, N_SURR, rng_w)
         R_q_w_surr = (pinv5w @ restr_w)[4, :]
         p_w = two_sided_p(R_q_w, R_q_w_surr)
-        return R_q_w, p_w
+        return R_q_w, p_w, amp_w
 
-    R_q_wrong_disp, p_wrong_disp = at_carrier(T_WRONG_DISPLACED)
-    R_q_fringe, p_fringe = at_carrier(T_WRONG_FRINGE)
-    wrong_carrier_gate_pass = (abs(R_q_wrong_disp) <= 0.5 * abs(R_q)) and (p_wrong_disp > 0.01)
+    R_q_wrong_disp, p_wrong_disp, amp_wrong_disp = at_carrier(T_WRONG_DISPLACED)
+    R_q_fringe, p_fringe, amp_fringe = at_carrier(T_WRONG_FRINGE)
+    # T1-4/RT-4 (redteam): item 10 froze a HOLM-ADJUSTED p-clause; the
+    # as-coded gate tested raw p. Holm adjustment is applied in score_all()
+    # (needs all pairs); `wrong_carrier_gate_pass` here uses the RAW p as a
+    # provisional/diagnostic value and is overwritten by score_all() with
+    # the Holm-adjusted verdict once available.
+    wrong_carrier_gate_pass_raw = (abs(R_q_wrong_disp) <= 0.5 * abs(R_q)) and (p_wrong_disp > 0.01)
 
     # ---- item 12: DeltaP at all four carriers, T_mean's own SE too
     # ΔP at T_delta's own carrier: refit the 5-column model with theta_c
@@ -354,34 +393,58 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
             return float("nan")
         df = Rq_val / (2 * math.pi * amp_val)
         fb = 1.0 / Tx_val
-        # PHASE-5 CORRECTION: no leading minus -- see _amp_phase_at's docstring
-        return (df / fb) * Tdeg_val
+        # PHASE-5 T1-1: leading minus restored -- matched pair with the
+        # frozen -sin basis, see design_matrix()'s docstring.
+        return -(df / fb) * Tdeg_val
 
     dP_Tmean = delta_P_obs
     dP_Tdelta = dP_from(Rq_at_Tdelta, amp_delta, T_delta_x, T_delta)
-    dP_wrong = dP_from(R_q_wrong_disp, amp, math.radians(T_WRONG_DISPLACED) * cos_c, T_WRONG_DISPLACED)
-    dP_fringe = dP_from(R_q_fringe, amp, math.radians(T_WRONG_FRINGE) * cos_c, T_WRONG_FRINGE)
+    # T1-7: use each carrier's OWN amplitude, not amp(T_mean)
+    dP_wrong = dP_from(R_q_wrong_disp, amp_wrong_disp, math.radians(T_WRONG_DISPLACED) * cos_c, T_WRONG_DISPLACED)
+    dP_fringe = dP_from(R_q_fringe, amp_fringe, math.radians(T_WRONG_FRINGE) * cos_c, T_WRONG_FRINGE)
 
-    # ---- item 7: bootstrap step-1 uncertainty into SE(R_q)
+    # ---- item 7 / T1-5 (redteam): DESIGN-RESPECTING residual bootstrap.
+    # The original case-resampling bootstrap (draw 31 (theta,C_A,C_B)
+    # triples WITH REPLACEMENT) treats a deterministic, uniformly-spaced
+    # design grid as an iid sample -- it duplicates/drops angles and
+    # destroys the free-period search's own resolving power, inflating SE
+    # 3.8-6.9x. This bootstrap instead holds the theta DESIGN fixed and
+    # resamples residuals (both the common-mode carrier fit's residual and
+    # the ramp fit's residual), refitting the free period and phase on
+    # each perturbed common mode -- genuinely propagating step-1
+    # (T_mean, psi) uncertainty as item 7 specified. Verified: gives
+    # 1.6-1.9x OLS SE, not 3.8-6.9x (redteam Phase-5 final audit, T1-5).
     rng_boot = np.random.default_rng(rng.integers(0, 2**63 - 1))
-    n_boot = 500
-    boot_idx = rng_boot.integers(0, n, size=(n_boot, n))
+    n_boot = 300
+    cbar = 0.5 * (series_a + series_b)
+    cbar_fit0 = _fixed_period_fit(u, cbar, T_x)
+    cbar_resid0 = cbar - (X5[:, :3] @ np.array([cbar_fit0["c0"], cbar_fit0["a"], cbar_fit0["b"]]))
+    ramp_resid0 = delta_ab - X5 @ coef5
     Rq_boot = np.empty(n_boot)
     for bi in range(n_boot):
-        idx = boot_idx[bi]
-        th_b, a_b, b_b = theta[idx], series_a[idx], series_b[idx]
+        cbar_star = (X5[:, :3] @ np.array([cbar_fit0["c0"], cbar_fit0["a"], cbar_fit0["b"]])
+                     + cbar_resid0[rng_boot.permutation(n)])
         try:
-            car_b = carrier_fit(th_b, a_b, b_b, n_grid=400)  # coarser: bootstrap-only
-            x_b = np.sin(np.radians(th_b))
-            xbar_b = float(np.mean(x_b))
-            Xb = design_matrix(th_b, car_b["T_x"], car_b["psi"], xbar_b)
-            coefb = np.linalg.pinv(Xb) @ (b_b - a_b)
+            free_b = exp069_run._free_period_search(theta, cbar_star, center_deg=CENTER_DEG,
+                                                      n_grid=400)
+            Tx_b = math.radians(free_b["p_star_deg"]) * cos_c
+            amp_b, psi_b, _ = _amp_phase_at(theta, cbar_star, Tx_b, xbar)
+            Xb = design_matrix(theta, Tx_b, psi_b, xbar)
+            y_star = delta_ab - ramp_resid0 + ramp_resid0[rng_boot.permutation(n)]
+            coefb = np.linalg.pinv(Xb) @ y_star
             Rq_boot[bi] = coefb[4]
         except Exception:
             Rq_boot[bi] = np.nan
     SE_Rq_bootstrap = float(np.nanstd(Rq_boot))
     SE_Rq_ols = float(np.sqrt(np.sum((delta_ab - X5 @ coef5) ** 2) / (n - 5) *
                                np.linalg.inv(X5.T @ X5)[4, 4]))
+    # T1-6: SE(deltaP) propagated from SE(R_q); dR_q/dpsi = R_i exactly
+    # (an algebraic identity of the rotation -- verified to 5 decimals,
+    # redteam Phase-5 final audit K), so this is item 7's "never computed"
+    # diagnostic, already present under another name.
+    SE_deltaP_Tmean = abs(dP_Tmean / R_q) * SE_Rq_bootstrap if R_q != 0 else float("nan")
+    dRq_dpsi = R_i
+    R_i_over_Rq = abs(R_i / R_q) if R_q != 0 else float("nan")
 
     # NOTE: `resolved` is NOT decided here -- it needs the Holm-adjusted p
     # across all pairs (item 14: 3 free pairs), computed once by the caller
@@ -392,9 +455,11 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
         T_mean_deg=carrier["T_mean_deg"], T_x=T_x, amplitude=amp, psi=psi,
         carrier_r_squared=carrier["r_squared"],
         c0=c0, A_i=A_i, A_q=A_q, R_i=R_i, R_q=R_q,
+        dRq_dpsi=dRq_dpsi, R_i_over_Rq=R_i_over_Rq,
         cond5=cond5, cond6=cond6, curvature_coef=float(coef6[5]),
         ill_conditioned=ill_conditioned,
         delta_f_obs=delta_f_obs, delta_P_obs=delta_P_obs,
+        SE_deltaP_Tmean=SE_deltaP_Tmean,
         phase_channel=phase_channel, freq_channel=freq_channel,
         strain_channel=strain_channel, strain_flag=strain_flag,
         p_unrestricted=p_unrestricted, p_restricted=p_restricted,
@@ -402,7 +467,8 @@ def analyze_pair(data, key_a, key_b, d_absorb, rng):
         carrier_gate_q95=q95, carrier_gate_pass=bool(carrier_gate_pass),
         linearization_gate_pass=bool(linearization_gate_pass),
         R_q_wrong_displaced=R_q_wrong_disp, p_wrong_displaced=p_wrong_disp,
-        wrong_carrier_gate_pass=bool(wrong_carrier_gate_pass),
+        wrong_carrier_gate_pass_raw=bool(wrong_carrier_gate_pass_raw),
+        wrong_carrier_magnitude_pass=bool(abs(R_q_wrong_disp) <= 0.5 * abs(R_q)),
         R_q_fringe=R_q_fringe, p_fringe=p_fringe,
         deltaP_by_carrier=dict(T_mean=dP_Tmean, T_delta=dP_Tdelta,
                                 T_wrong_displaced=dP_wrong, T_fringe=dP_fringe),
@@ -424,22 +490,29 @@ def injection_recovery(data, key_a, key_b, m0, d_absorb, rng):
 
     dP_pred = m0 * d_absorb
     dT_x = math.radians(dP_pred) * cos_c
-    # PHASE-5 CORRECTION: no leading minus -- see _amp_phase_at's docstring;
-    # verified this is the exact inverse of the corrected dP_from() above
-    # (round-trips a chosen dP_pred through Rq_pred and back to dP_pred to
-    # 4 significant figures on synthetic data).
-    df_pred = dT_x / (T_x ** 2)
+    # T1-1 companion: leading minus restored, matched pair with the frozen
+    # -sin basis (design_matrix docstring) -- round-trips a chosen dP_pred
+    # through Rq_pred and back to dP_pred to 4 significant figures.
+    df_pred = -dT_x / (T_x ** 2)
     Rq_pred = 2 * math.pi * amp * df_pred
 
     X5 = design_matrix(theta, T_x, psi, xbar)
     X4 = X5[:, :4]
-    pinv4 = np.linalg.pinv(X4)
-    coef0 = pinv4 @ delta_ab
-    yhat0 = X4 @ coef0
-    resid0 = delta_ab - yhat0
-    synthetic = yhat0 + resid0 + Rq_pred * X5[:, 4]
-
     pinv5 = np.linalg.pinv(X5)
+
+    # T1-3 (redteam Phase-5 final audit): the ORIGINAL construction was
+    # synthetic = yhat0 + resid0 + Rq_pred*X5[:,4], but yhat0+resid0 IS
+    # delta_ab exactly -- the test injected on top of the OBSERVED ramp,
+    # so Rq_recovered = Rq_obs + Rq_pred (verified: machine-zero identity
+    # at all three pairs). At C70-C80 the observed R_q is opposite in sign
+    # to the injected ramp, so the test recovered only 44% of what it
+    # injected -- destructive interference, not a power measurement.
+    # H0-CLEAN construction: strip the pair's OWN fitted R_q first, so the
+    # injected amplitude is exactly Rq_pred by construction.
+    coef_obs = pinv5 @ delta_ab
+    Rq_obs = float(coef_obs[4])
+    synthetic = delta_ab - Rq_obs * X5[:, 4] + Rq_pred * X5[:, 4]
+
     coef_syn = pinv5 @ synthetic
     Rq_syn = float(coef_syn[4])
 
@@ -447,7 +520,8 @@ def injection_recovery(data, key_a, key_b, m0, d_absorb, rng):
     restr = restricted_null_surrogates(synthetic, X4, N_SURR, rng_inj)
     Rq_surr = (pinv5 @ restr)[4, :]
     p_syn = float((1 + np.sum(np.abs(Rq_surr) >= abs(Rq_syn))) / (len(Rq_surr) + 1))
-    return dict(pair=f"{key_a}-{key_b}", Rq_pred=Rq_pred, Rq_recovered=Rq_syn, p_recovered=p_syn)
+    return dict(pair=f"{key_a}-{key_b}", Rq_pred=Rq_pred, Rq_obs=Rq_obs,
+                Rq_recovered=Rq_syn, p_recovered=p_syn)
 
 
 # ===================================================== saturating vs linear (item 9, disclosed)
@@ -479,6 +553,52 @@ def saturating_vs_linear(theta, data):
                                  decay_L=SAT_DECAY_L, r_squared=float(r2_s)))
 
 
+# ===================================================== T1-2: G0-e ground-truth recovery gate
+def ground_truth_recovery_check(theta_deg):
+    """Docket item G0-e (redteam Phase-5 final audit, mandatory machinery
+    for any cycle fitting a carrier- or phase-conditioned coefficient,
+    henceforth a standing house tripwire): push synthetic congruent pairs
+    with a KNOWN period difference through the exact committed
+    carrier_fit -> design_matrix -> delta_P_obs chain, at a sweep of
+    carrier phases spanning [0, 2*pi) -- a nuisance parameter the estimator
+    must be invariant to -- and HALT unless every recovered/true ratio is
+    within 2% of 1. This is the single test that would have caught the
+    Iteration-49 sign bug in under a second (the bug was invisible to
+    cond5, R^2, residuals and fitted values, all rotation-invariant)."""
+    x = np.sin(np.radians(theta_deg))
+    xbar = float(np.mean(x))
+    u = x - xbar
+    cos_c = math.cos(math.radians(CENTER_DEG))
+    P_A_deg = 2.49
+    T_A = math.radians(P_A_deg) * cos_c
+    a0 = 0.005
+    worst = 0.0
+    cells = []
+    for psi0 in np.linspace(0, 2 * math.pi, 16, endpoint=False):
+        for dP_true in (0.005, -0.005, 0.01, -0.01, 0.02, -0.02, 0.04, -0.04, 0.08, -0.08):
+            P_B_deg = P_A_deg + dP_true
+            T_B = math.radians(P_B_deg) * cos_c
+            w_A, w_B = 2 * math.pi / T_A, 2 * math.pi / T_B
+            C_A = a0 * np.cos(w_A * u - psi0)
+            C_B = a0 * np.cos(w_B * u - psi0)
+            delta = C_B - C_A
+            Cbar = 0.5 * (C_A + C_B)
+            T_mean_x = 0.5 * (T_A + T_B)
+            amp, psi, _ = _amp_phase_at(theta_deg, Cbar, T_mean_x, xbar)
+            f_bar = 1.0 / T_mean_x
+            P_mean_deg = 0.5 * (P_A_deg + P_B_deg)
+            X5 = design_matrix(theta_deg, T_mean_x, psi, xbar)
+            coef = np.linalg.lstsq(X5, delta, rcond=None)[0]
+            R_q = coef[4]
+            delta_f = R_q / (2 * math.pi * amp)
+            dP_est = -(delta_f / f_bar) * P_mean_deg
+            err = abs(dP_est / dP_true - 1.0)
+            worst = max(worst, err)
+            cells.append(err)
+    return {"pass": bool(worst <= 0.02),
+            "worst_abs_ratio_error": float(worst), "n_cells": len(cells)}
+
+
 # ===================================================== full scoring + Combined Verdict
 def score_all(data):
     rng = np.random.default_rng(SEED)
@@ -501,6 +621,18 @@ def score_all(data):
     per_pair["C40-C80"]["p_unrestricted_holm"] = per_pair["C40-C80"]["p_unrestricted"]
     per_pair["C40-C80"]["p_derived_unadjusted"] = True
 
+    # T1-4/RT-4 (redteam Phase-5 final audit): item 10 froze a HOLM-ADJUSTED
+    # p-clause for the wrong-carrier gate; the as-coded gate tested raw p.
+    # Apply Holm over the 3 free pairs here, same convention as item 14.
+    p_wrong_free = {k: per_pair[k]["p_wrong_displaced"] for k in HOLM_PAIRS}
+    holm_wrong = holm_adjust(p_wrong_free, m=3)
+    for k in HOLM_PAIRS:
+        per_pair[k]["p_wrong_displaced_holm"] = holm_wrong[k]
+    per_pair["C40-C80"]["p_wrong_displaced_holm"] = per_pair["C40-C80"]["p_wrong_displaced"]
+    for k, p in per_pair.items():
+        p["wrong_carrier_gate_pass"] = bool(
+            p["wrong_carrier_magnitude_pass"] and p["p_wrong_displaced_holm"] > 0.01)
+
     # RESOLVED (docket items 3, 6, 9(sign-clause n/a here), 10)
     for k, p in per_pair.items():
         p["resolved"] = bool(
@@ -512,21 +644,28 @@ def score_all(data):
         )
 
     # item 4: injection-recovery power test, the 3 adjacent pairs (m0-scaled
-    # predicted effect at each pair's own d_absorb)
+    # predicted effect at each pair's own d_absorb). T1-3: item 4 froze a
+    # HOLM-ADJUSTED p<=0.01 rule; the as-coded test used raw p.
     injection = {}
     for key_a, key_b, d_absorb in PAIRS[:3]:
         injection[f"{key_a}-{key_b}"] = injection_recovery(
             data, key_a, key_b, data["m0_committed"], d_absorb, rng)
-    power_demonstrated = all(
-        injection[k]["p_recovered"] <= 0.01 for k in injection)
+    p_injection = {k: injection[k]["p_recovered"] for k in injection}
+    holm_injection = holm_adjust(p_injection, m=3)
+    for k in injection:
+        injection[k]["p_recovered_holm"] = holm_injection[k]
+    power_demonstrated = all(v <= 0.01 for v in holm_injection.values())
 
-    # ---- P-072-2
+    # ---- P-072-2. T1-9 (redteam): the REFUTE-blocking counter runs over the
+    # 3 algebraically-free pairs ONLY -- C40-C80 is their exact arithmetic
+    # sum (G0-b) and item 14 already forbids treating it as an independent
+    # test; counting it here double-weighted one pair's evidence.
     n_resolved_holm10_restricted = sum(
         1 for k in HOLM_PAIRS if per_pair[k]["p_restricted_holm"] <= 0.10
-    ) + (1 if per_pair["C40-C80"]["p_restricted"] <= 0.10 else 0)
+    )
     n_resolved_holm10_unrestricted = sum(
         1 for k in HOLM_PAIRS if per_pair[k]["p_unrestricted_holm"] <= 0.10
-    ) + (1 if per_pair["C40-C80"]["p_unrestricted"] <= 0.10 else 0)
+    )
 
     c4080 = per_pair["C40-C80"]["resolved"]
     c4060 = per_pair["C40-C60"]["resolved"]
@@ -540,7 +679,27 @@ def score_all(data):
     else:
         p072_2 = "NEITHER"
 
-    # ---- P-072-3 (item 8: relabeled basis-stability, NOT gating CONFIRMED)
+    # ---- P-072-3. T1-6/RT-1 (redteam Phase-5 final audit): item 8's
+    # mandated calibration ("the R_q telescoping residual AT A COMMON
+    # CARRIER") is not merely unimplemented -- it is mathematically vacuous
+    # and always exactly 0: G0-b proves the raw series telescope bit-exactly,
+    # and OLS on a FIXED design matrix is a linear functional of y, so R_q
+    # telescopes identically at any shared carrier, always. rho_c (below) is
+    # therefore NOT a basis-stability check -- it is entirely an artifact of
+    # each pair choosing its OWN T_mean, and is this cycle's cleanest single
+    # measurement of carrier sensitivity, not item 8's calibration target.
+    # Demonstrated here, once, for the record (not gating):
+    _common_Tx, _common_psi = per_pair["C40-C80"]["T_x"], per_pair["C40-C80"]["psi"]
+    _common_xbar = float(np.mean(np.sin(np.radians(data["theta"]))))
+    _Rq_common = {}
+    for key_a, key_b, _ in PAIRS:
+        _Xc = design_matrix(data["theta"], _common_Tx, _common_psi, _common_xbar)
+        _delta_c = data[key_b] - data[key_a]
+        _Rq_common[f"{key_a}-{key_b}"] = float((np.linalg.pinv(_Xc) @ _delta_c)[4])
+    rho_c_common_carrier_residual = abs(
+        sum(_Rq_common[k] for k in HOLM_PAIRS) - _Rq_common["C40-C80"]
+    ) / max(abs(_Rq_common["C40-C80"]), 1e-12)
+
     adj_resolved = [per_pair[k]["resolved"] for k in HOLM_PAIRS]
     if not all(adj_resolved):
         p072_3 = "NOT_EVALUABLE"
@@ -571,10 +730,12 @@ def score_all(data):
         p072_4 = "NEITHER"
 
     # ---- Combined Verdict
+    g0e = ground_truth_recovery_check(data["theta"])
     g0_pass = (
         data["g0a"]["all_identical"]
         and data["g0b"]["max_abs_residual"] <= 1e-12
         and data["g0c"]["max_abs_delta"] <= 1e-12
+        and g0e["pass"]
     )
     if not g0_pass:
         combined = "HALT"
@@ -593,9 +754,11 @@ def score_all(data):
 
     return dict(
         per_pair=per_pair, injection=injection, power_demonstrated=power_demonstrated,
-        p072_2=p072_2, p072_3=p072_3, rho_c=rho_c, p072_4=p072_4,
+        p072_2=p072_2, p072_3=p072_3, rho_c=rho_c,
+        rho_c_common_carrier_residual=rho_c_common_carrier_residual,
+        p072_4=p072_4,
         combined_verdict=combined,
-        g0_pass=g0_pass,
+        g0_pass=g0_pass, g0e=g0e,
         n_resolved_holm10_restricted=n_resolved_holm10_restricted,
         n_resolved_holm10_unrestricted=n_resolved_holm10_unrestricted,
     )

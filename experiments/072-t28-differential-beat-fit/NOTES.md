@@ -16,7 +16,10 @@ OPTICS' Phase-5 differential/beat-fit proposals from exp-071 into one
 zero-FDTD-cost item on live thread **T28** — the real, unexplained ~2.84°
 periodicity in a congruent 4-config `ABSORB`-depth series (C40/C60/C70/C80,
 600nm, θ∈[36°,42°]) whose per-config free periods rise smoothly with
-`ABSORB` depth (Iteration 48, exp-071) but whose Combined Verdict came back
+`ABSORB` depth at Iteration 48's original `n_grid=400` resolution (exp-071)
+— **a framing that does not survive this cycle's own `n_grid=3000`
+refinement, which reverses the C70/C80 order (Idealization 6 below)** — but
+whose Combined Verdict came back
 NEITHER — `spread_40_80` missed the 30% CONFIRM floor and `R²=0.8664` missed
 the `≤0.30` REFUTE ceiling, both independently, before QUANTUM's own
 established finding that the window is fundamentally Rayleigh-underpowered
@@ -89,36 +92,79 @@ Phase-1 proposal (full detail in `phase3_synthesis.md`):
   reported unadjusted and explicitly labeled *derived* (Red Team Attack 12,
   `G0-b` proves it is the exact sum of the other three).
 
-## Idealizations (unchanged from the Phase-1 proposal, `phase1_proposal.md` §6, still binding)
+## Idealizations
+
+*Corrected post-Phase-5 (Red Team final audit, T1-10e): this list is NOT
+"unchanged from the Phase-1 proposal, still binding" as originally
+claimed here — four of the proposal's own nine idealizations (items 4, 5,
+6, 9 below) had been silently dropped, which is what let "the carrier
+itself resolves cleanly" into the Bottom Line against a frozen limitation
+citing the identical R² numbers (PHOTONICS' Phase-5 finding). All nine
+are restored below, renumbered, plus the items added post-Phase-2.*
 
 1. **600nm only** — no wavelength-general claim licensed.
-2. **The `ABSORB`/`PAD` compound-axis confound is NOT relieved.** Any
-   CONFIRM-shaped language from this cycle must read `ABSORB`-or-`PAD`-tied,
-   never cleanly `ABSORB`-tied — and per Red Team's docket item 13, must
-   additionally read "-or-frequency-or-fringe-weight-change", since `R_q` is
-   shown non-identifiable against T21's own unresolved fringe contributor
-   (QUANTUM's Attack 5a finding). This binds every deliverable — P-072-1 and
+2. **The `ABSORB`/`PAD` compound-axis confound is NOT relieved, and the
+   mixture is non-identifiable against a frequency-or-fringe-weight
+   change, not merely present.** Any CONFIRM-shaped language from this
+   cycle must read `ABSORB`-or-`PAD`-or-frequency-or-fringe-weight-tied,
+   never cleanly `ABSORB`-tied. This binds every deliverable — P-072-1 and
    the disclosed P-072-6 channels included — under EVERY verdict, not only
-   CONFIRM (THERMODYNAMICS' finding, closing a gap in the original text).
+   CONFIRM, and P-072-6 supplies only the confounded arm of Iteration-49
+   queue item 2; it does not substitute for that item's dedicated build.
 3. **`ABSORB` is not a material.** A numerical boundary-condition
-   parameter; no realizability claim is licensed by any result here.
-4. **Window provenance, disclosed, not previously stated**: the 31-point
-   36.0°–42.0° grid is inherited from Block MINI (exp-069); T28 was
-   discovered inside it. All p-values in this cycle are conditional on this
-   window and are not corrected for the roughly dozen statistics already
-   computed on these same 31 points across exp-069/071/072 (VISION's
-   finding).
-5. `C_empty` is a dimensionless field ratio, not a Michelson/Weber
+   parameter (a graded damping mask — no permittivity, conductivity,
+   dispersion, or impedance to match); no realizability claim is licensed
+   by any result here.
+4. **Single-carrier model (restored, proposal Idealization 4).** The
+   estimator assumes each config's response is one sinusoid plus noise.
+   The window demonstrably contains ≥2 contributors: a data-free leakage
+   calculation (Red Team's Phase-5 final audit) shows `R_q` is
+   non-identifiable against essentially ANY periodic contributor from
+   ~1.8° to ~5.0° (not specifically T21's 1.9608° fringe, which is one
+   named, non-worst member of that band), and per-config/per-pair carrier
+   fits reach only R²≈0.43–0.45. The window's own second-tone residual
+   measures at 1.824–1.837°, R²≈0.33–0.38 — but this figure is a free-period
+   search on the same governed continuum and is UNQUOTABLE without a
+   null-permutation control (R5/Iteration-47 discipline).
+5. **~2.4 carrier cycles in the window (restored, proposal Idealization
+   5).** Not asymptotic; edge effects on the ramp coefficient are real —
+   `dR_q/dψ̄ ≡ R_i` exactly (an algebraic identity), and `|R_i| ≥ |R_q|` at
+   three of four pairs, meaning the target coefficient's sensitivity to
+   the (uncertain) carrier phase dominates the coefficient itself.
+6. **`n_grid=3000` refinement (restored, proposal Idealization 6) adds no
+   resolving power — it only removes a `n_grid=400` quantization
+   artifact.** At this resolution the C70/C80 free-period order REVERSES
+   relative to Iteration 48's own headline (2.53551° vs. 2.53051°, a
+   5-grid-step / 0.5%-of-Rayleigh-floor effect) — Iteration 48's "periods
+   rise smoothly with `ABSORB` depth" framing rests on a broken tie, and
+   this reversal is what underlies the saturating-vs-linear model's own
+   curvature (§ disclosed in `phase4_results.md`'s P-072-4 section).
+7. **Window provenance**: the 31-point 36.0°–42.0° grid is inherited from
+   Block MINI (exp-069); T28 was discovered inside it. All p-values in
+   this cycle are conditional on this window and are not corrected for
+   the roughly dozen statistics already computed on these same 31 points
+   across exp-069/071/072 (VISION's finding).
+8. `C_empty` is a dimensionless field ratio, not a Michelson/Weber
    perceptual contrast; `ptp/mean`-style figures are fit-conditioning
    statistics, never photometric ones (VISION's finding).
-6. No new FDTD, no new identity gate against the engine — trust is
+9. No new FDTD, no new identity gate against the engine — trust is
    inherited from exp-069's/exp-071's own already-passed gates; this cycle
-   adds only arithmetic-integrity gates (G0-a/b/c/d).
-7. 2D TMz, positive-θ branch only, bench scale (`R_OUT=78` cells), no
-   witness-scale claim.
-8. The energy sidecar is explicitly N/A this cycle — no absorbed-power
-   number is produced anywhere in the design (THERMODYNAMICS' scoping,
-   confirmed clean).
+   adds only arithmetic-integrity gates (G0-a/b/c/d) plus a NEW standing
+   ground-truth recovery gate, G0-e (Red Team's Phase-5 final audit,
+   mandatory machinery henceforth for any cycle fitting a carrier- or
+   phase-conditioned coefficient — the class of defect that caused this
+   cycle's own CHECKPOINT firing was invisible to every OTHER gate here).
+10. **A-priori power caveat (restored, proposal Idealization 9).**
+    Statistical power was estimated a-priori in the Phase-1 proposal from
+    Iteration 48's own slope; the true effect at some pairs is smaller
+    than that estimate implied, and the pre-registered fallback (report
+    sign and p, quote no period for unresolved pairs) covers that case —
+    it fired at all four pairs this cycle.
+11. 2D TMz, single polarization, positive-θ branch only (36°–42°), not a
+    symmetry test; bench scale (`R_OUT=78` cells), no witness-scale claim.
+12. The energy sidecar is explicitly N/A this cycle — no absorbed-power
+    number is produced anywhere in the design (THERMODYNAMICS' scoping,
+    confirmed clean).
 
 ## Pre-registration contamination (binding, see `phase3_synthesis.md` for the full ruling)
 
