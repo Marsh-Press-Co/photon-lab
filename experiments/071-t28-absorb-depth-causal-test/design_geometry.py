@@ -1,0 +1,316 @@
+"""exp-071 design constants -- ELECTROMAGNETISM's C60/C70 `ABSORB`-depth
+causal falsification test for live thread T28 (LOGBOOK.md).
+
+Panel Iteration 48, PHASE 1 (lead: VISION SCIENCE, by rotation). Executes
+PLAN.md's Iteration-48 queue item 1, LOCKED by a genuine 6-for-6 blind-seat
+convergence at exp-070's Phase-5 final audit: does the ~2.84 deg-family
+periodicity in the `C80-C40` padding delta (T28, opened exp-069) track
+`ABSORB` depth (a genuine causal, ABSORB-tied mechanism) or stay ~constant
+across all four already-built congruent depths (a shared-geometry origin,
+NOT ABSORB-tied)?
+
+THE CAUSAL MANIPULATION exp-070's own desk-check batch could not provide:
+C40/C80 (already run, exp-069) are only TWO points on the ABSORB axis.
+C60 (ABSORB=60,PAD=20) and C70 (ABSORB=70,PAD=30) are ALSO congruent
+members of the SAME series (exp-065's design_geometry.py, `A=752` cells
+fixed for all four -- CONGRUENT_KEYS). Running the identical period-recovery
+analysis exp-069/070 ran on C40/C80 (dense 31-point/0.2deg sweep, free-period
+grid search) on C60/C70 too gives FOUR points on the ABSORB-depth axis
+instead of two.
+
+WHAT THIS FILE DOES: pure geometry + desk arithmetic + config reuse
+(house convention, mirrors experiments/069-.../design_geometry.py's own
+structure). Imports exp-065's design_geometry.py (`CONFIGS`,
+`CONGRUENT_KEYS`, `CPU_S_PER_CALL`, `CPL`) and exp-069's design_geometry.py
+(`DENSE_ANGLES`, `P_deg`, `r3_config`, `R3_RATIO`, `R3_STEPS`, `R3_CPL`,
+`STEPS_SETTLED`, `STEPS_NATIVE`) UNCHANGED -- zero new `lab/` diff, zero
+redefinition of geometry already established elsewhere (house rule).
+NO FDTD stepping happens in this file.
+
+Red Team's Iteration-47 Phase-5 final-audit strengthening requirements,
+each addressed by a specific block/metric below (see phase1_proposal.md
+for the full falsifiable-bands table):
+  (a) a direct cross-config consistency metric |P*(Ca)-P*(Cb)|/mean at
+      EVERY ABSORB pair (all 6 pairs among {C40,C60,C70,C80}), not only
+      against a derived reference -- Block DENSE-CAUSAL supplies the
+      per-config series this is computed from at run.py/Phase 4.
+  (b) fold in the already-queued, near-zero-cost peak-cell R3 resolution
+      recheck (theta~=37.2/41.4 deg, exp-069's own residual resolution-
+      scope gap -- only 2 of 31 angles were ever resolution-checked, both
+      near a zero-crossing, not a peak) -- Block R3-PEAK, EXTENDED here
+      to all four configs (C40_R3/C60_R3/C70_R3/C80_R3), not only the
+      originally-queued C40/C80 pair, since this cycle's own causal claim
+      needs resolution-robustness established across the whole ABSORB
+      axis, not just the two legacy points. De-scope order (below) can
+      retract this extension back to the literal C40/C80-only minimum if
+      budget is breached.
+  (c) score on the RECOVERED PERIOD at each ABSORB depth, not bare R^2
+      alone -- Block DENSE-CAUSAL is sized (31 pts/0.2deg step, same
+      window as exp-069's own Block DENSE) so the SAME free-period grid
+      search (`_free_period_search`, exp-069's run.py, reused verbatim at
+      Phase 4) can run on C60/C70 exactly as it already ran on C40/C80.
+  (d) disclose the cross-config spread explicitly, not only a binary
+      CONFIRM/REFUTE -- the full 6-pair table from (a) is a required,
+      non-optional output row (see phase1_proposal.md Predictions table).
+
+Pure geometry + desk arithmetic -- NO FDTD in this file.
+"""
+
+import importlib.util
+import math
+import os
+import sys
+
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+sys.path.insert(0, ROOT)
+
+
+def _load_module(rel_path, mod_name):
+    """Load another experiment's design_geometry.py under a distinct module
+    name -- a plain `import design_geometry` would collide with THIS file
+    (mirrors exp-069's own `_load_exp065` idiom exactly)."""
+    path = os.path.abspath(os.path.join(HERE, "..", rel_path))
+    spec = importlib.util.spec_from_file_location(mod_name, path)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[mod_name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+dg065 = _load_module("065-t24-absorb-boundary-sweep/design_geometry.py",
+                      "_exp065_design_geometry")
+dg069 = _load_module("069-t21-block-mini-period-match-power-up/design_geometry.py",
+                      "_exp069_design_geometry")
+
+# ------------------------------------------------------- reused verbatim
+CONFIGS = dg065.CONFIGS                 # C40, C60, C70, C80, G40, N60
+CONGRUENT_KEYS = dg065.CONGRUENT_KEYS   # ("C40","C60","C70","C80")
+CPL = dg065.CPL                         # {450:15, 600:20, 750:25}
+CPU_S_PER_CALL_1400 = dg065.CPU_S_PER_CALL   # measured, exp-065
+
+P_deg = dg069.P_deg                     # T21's established fringe period model
+DENSE_ANGLES = dg069.DENSE_ANGLES       # 31 pts, 36.0-42.0deg, 0.2deg step, 600nm
+STEPS_NATIVE = dg069.STEPS_NATIVE       # 1400
+STEPS_SETTLED = dg069.STEPS_SETTLED     # 2800 -- this program's settled floor
+R3_RATIO = dg069.R3_RATIO               # 1.5
+R3_CPL = dg069.R3_CPL                   # {600: 30}
+R3_STEPS = dg069.R3_STEPS               # 4200 -- settled-equivalent at cpl=30
+r3_config = dg069.r3_config             # generic R3-rescaled congruent-config builder
+
+A_HALF_APERTURE = dg069.A_HALF_APERTURE  # 752
+assert CONFIGS["C40"]["A"] == CONFIGS["C60"]["A"] == CONFIGS["C70"]["A"] \
+    == CONFIGS["C80"]["A"] == A_HALF_APERTURE, \
+    "congruent construction: A must be held fixed across all four ABSORB depths"
+
+ABSORB_DEPTHS = {"C40": 40, "C60": 60, "C70": 70, "C80": 80}
+
+# ---------------------------------------------------- already-committed data
+EXP069_RESULTS = os.path.join(
+    ROOT, "experiments", "069-t21-block-mini-period-match-power-up", "results.json")
+
+
+def load_exp069_dense():
+    """C40(theta)/C80(theta) at the 31-pt Block DENSE window are ALREADY
+    committed (exp-069, Block DENSE, 62 calls) -- reused, not re-run.
+    Zero-cost desk read; used both for the G1 identity gate (below) and as
+    two of the four per-config series scored at Phase 4."""
+    import json
+    with open(EXP069_RESULTS) as f:
+        d = json.load(f)
+    rows = d["block_dense"]["rows"]
+    assert len(rows) == 31
+    return rows
+
+
+# -------------------------------------------------- Block G1 (identity gate)
+# Mirrors P-069-G1's own construction exactly: a near-zero-cost re-run of
+# already-committed cells, checked bit-exact BEFORE any reused data is
+# trusted (house rule, exp-069 precedent). 39.0/40.0deg are dense-grid
+# points already present in DENSE_ANGLES (step 0.2deg from 36.0) -- reruns
+# them at C40/C80 (600nm, STEPS=2800) and diffs against exp-069's own
+# committed block_dense rows.
+G1_ANGLES = (39.0, 40.0)
+assert all(a in DENSE_ANGLES for a in G1_ANGLES)
+
+# ------------------------------------------------- Block DENSE-CAUSAL (new)
+# THE causal manipulation: run the IDENTICAL 31-point/0.2deg/600nm/
+# STEPS=2800 sweep exp-069 ran on C40/C80, now on C60/C70 -- the two
+# congruent, already-built, never-densely-swept points on the ABSORB axis.
+DENSE_CAUSAL_CONFIGS = ("C60", "C70")
+N_DENSE = len(DENSE_ANGLES)
+assert N_DENSE == 31
+
+# ------------------------------------------------------- Block R3-PEAK (new)
+# Mandatory-fix (b): the peak-cell R3 recheck exp-069's own resolution leg
+# never ran (it tested only 2 of 31 angles, both near delta(theta)'s own
+# zero-crossing -- see LOGBOOK T28 entry). Verified below, from exp-069's
+# own committed data, that 37.2/41.4deg sit near local extrema of
+# delta(theta)=C80(theta)-C40(theta), NOT near a zero-crossing (the
+# defect this recheck exists to close).
+PEAK_ANGLES = (37.2, 41.4)
+
+
+def verify_peak_angles_are_extrema():
+    rows = load_exp069_dense()
+    by_theta = {round(r["theta"], 4): r["delta"] for r in rows}
+    deltas = np.array([r["delta"] for r in rows])
+    ptp = float(np.ptp(deltas))
+    out = {}
+    for a in PEAK_ANGLES:
+        assert a in by_theta, f"{a} not in committed dense grid"
+        out[a] = dict(delta=by_theta[a], frac_of_ptp=abs(by_theta[a]) / (ptp / 2))
+    zero_cross_deltas = [by_theta[39.0], by_theta[40.0]]
+    return dict(peak=out, window_ptp=ptp,
+                zero_crossing_deltas=zero_cross_deltas)
+
+
+# R3-rescaled configs for ALL FOUR congruent depths (extends the
+# originally-queued C40/C80-only R3 pair -- mandatory-fix (b), extended
+# per this file's own docstring rationale). Reuses dg069.r3_config()
+# UNCHANGED -- only new (absorb, pad) arguments, zero new machinery.
+R3_CONFIGS = {
+    "C40_R3": dg069.R3_CONFIGS["C40_R3"],     # already built, exp-069
+    "C60_R3": r3_config(round(60 * R3_RATIO), round(20 * R3_RATIO)),   # 90, 30
+    "C70_R3": r3_config(round(70 * R3_RATIO), round(30 * R3_RATIO)),   # 105, 45
+    "C80_R3": dg069.R3_CONFIGS["C80_R3"],     # already built, exp-069
+}
+for k, cfg in R3_CONFIGS.items():
+    assert cfg["A"] == round(A_HALF_APERTURE * R3_RATIO), \
+        f"{k}: R3 congruent construction must hold A fixed"
+
+# --------------------------------------------------------- decision bars
+# Cross-config consistency / ABSORB-depth-trend bands (P-071-2, HEADLINE)
+# -- see phase1_proposal.md for the full pre-committed table and rationale.
+TREND_CONFIRM_MIN_SPREAD = 0.30    # |ΔP* over ABSORB 40->80| / mean(P*) >= 30%
+TREND_CONFIRM_MIN_R2 = 0.50        # linear fit P*(ABSORB), R^2 >= 0.50
+TREND_REFUTE_MAX_PAIR_SPREAD = 0.15   # max pairwise |P*(Ca)-P*(Cb)|/mean <=15%
+TREND_REFUTE_MAX_R2 = 0.30            # linear fit P*(ABSORB), R^2 <= 0.30
+
+# Peak-cell R3 bands (P-071-4) -- IDENTICAL convention to P-069-5 (exp-069),
+# now scored at peak angles instead of zero-crossing angles.
+R3_CONFIRM_RATIO_BAND = (0.3, 3.0)
+R3_REFUTE_RATIO_BAND = (0.1, 10.0)
+
+# ------------------------------------------------------------- cost basis
+# CPU_S_PER_CALL reused verbatim from dg065 (measured, this container,
+# 4-worker ProcessPoolExecutor contention included). C70's own entry is
+# disclosed in dg065 as a LINEAR INTERPOLATION between measured C60/C80
+# figures, not itself measured -- inherited unchanged, not re-measured
+# (task instruction: reuse exp-065's CPU_S_PER_CALL table, do not
+# re-measure).
+CPU_S_PER_CALL = CPU_S_PER_CALL_1400
+
+
+def _cost(cfg_key, steps, cell_ratio=1.0):
+    base = CPU_S_PER_CALL[cfg_key]
+    return base * (steps / STEPS_NATIVE) * cell_ratio
+
+
+def fdtd_budget():
+    """Call counts and wall-clock, block by block. No leg double-counted;
+    C40(theta)/C80(theta) at the 31-pt dense window are REUSED from
+    exp-069's own committed results.json (0 new calls) -- only C60/C70
+    are new FDTD spend for Block DENSE-CAUSAL."""
+    n_g1 = len(G1_ANGLES)
+    n_causal_cfgs = len(DENSE_CAUSAL_CONFIGS)
+    n_peak = len(PEAK_ANGLES)
+    n_r3_cfgs = len(R3_CONFIGS)
+
+    # Block G1: 2 theta x {C40,C80} x 600nm x STEPS=2800 -- identity gate,
+    # reruns already-committed cells to certify reuse of exp-069's data.
+    g1_calls = n_g1 * 2
+    g1_cpu = n_g1 * (_cost("C40", STEPS_SETTLED) + _cost("C80", STEPS_SETTLED))
+
+    # Block DENSE-CAUSAL: 31 theta x {C60,C70} x 600nm x STEPS=2800 --
+    # THE causal manipulation. C40/C80 at these same 31 angles are reused
+    # from exp-069, zero new cost.
+    dense_calls = N_DENSE * n_causal_cfgs
+    dense_cpu = N_DENSE * sum(_cost(k, STEPS_SETTLED) for k in DENSE_CAUSAL_CONFIGS)
+
+    # Block R3-PEAK: 2 theta x {C40_R3,C60_R3,C70_R3,C80_R3} x cpl=30 x
+    # STEPS=4200(r3). cell_ratio = R3_RATIO^2 (both nx,ny scale by RATIO).
+    r3_calls = n_peak * n_r3_cfgs
+    r3_cell_ratio = R3_RATIO ** 2
+    r3_cpu = n_peak * sum(_cost(k[:3], R3_STEPS, r3_cell_ratio) for k in R3_CONFIGS)
+
+    total_calls = g1_calls + dense_calls + r3_calls
+    total_cpu = g1_cpu + dense_cpu + r3_cpu
+
+    overhead_factor = 1.15
+    n_workers = 4
+    parallel_efficiency = 0.98
+    wall_s = overhead_factor * total_cpu / (n_workers * parallel_efficiency)
+
+    return dict(
+        g1=dict(calls=g1_calls, cpu_s=g1_cpu),
+        dense_causal=dict(calls=dense_calls, cpu_s=dense_cpu),
+        r3_peak=dict(calls=r3_calls, cpu_s=r3_cpu),
+        total_calls=total_calls, total_cpu_s=total_cpu, wall_s=wall_s,
+        wall_min=wall_s / 60.0, envelope3x_min=3 * wall_s / 60.0,
+    )
+
+
+def fdtd_budget_minimum():
+    """De-scope floor: R3-PEAK retracted to the LITERALLY-queued C40/C80-
+    only pair (the minimum Red Team's tripwire named), dropping C60_R3/
+    C70_R3 (this file's own extension). Block DENSE-CAUSAL and Block G1
+    are never de-scoped -- they gate the headline causal claim directly."""
+    n_peak = len(PEAK_ANGLES)
+    r3_min_calls = n_peak * 2   # C40_R3, C80_R3 only
+    r3_min_cpu = n_peak * sum(_cost(k[:3], R3_STEPS, R3_RATIO ** 2)
+                               for k in ("C40_R3", "C80_R3"))
+    full = fdtd_budget()
+    total_calls = full["g1"]["calls"] + full["dense_causal"]["calls"] + r3_min_calls
+    total_cpu = full["g1"]["cpu_s"] + full["dense_causal"]["cpu_s"] + r3_min_cpu
+    wall_s = 1.15 * total_cpu / (4 * 0.98)
+    return dict(total_calls=total_calls, total_cpu_s=total_cpu,
+                wall_min=wall_s / 60.0)
+
+
+if __name__ == "__main__":
+    print(f"A_HALF_APERTURE = {A_HALF_APERTURE}")
+    print(f"CONGRUENT_KEYS = {CONGRUENT_KEYS}")
+    print("\n[1] Congruent-series geometry (dg065.CONFIGS, verified congruent)")
+    hdr = ("cfg", "ABSORB", "PAD", "NX", "NY", "A", "aperture_cells")
+    print("  " + " ".join(f"{h:>9}" for h in hdr))
+    for k in CONGRUENT_KEYS:
+        c = CONFIGS[k]
+        row = (k, c["absorb"], c["pad"], c["nx"], c["ny"], c["A"], c["aperture_cells"])
+        print("  " + " ".join(f"{v:>9}" for v in row))
+
+    print(f"\n[2] P(39deg, 600nm) = {P_deg(39.0, 600):.4f} deg  "
+          f"(T21's established model, cited context)")
+    print(f"    DENSE_ANGLES ({len(DENSE_ANGLES)} pts): "
+          f"{DENSE_ANGLES[0]}..{DENSE_ANGLES[-1]} step 0.2deg (reused verbatim, exp-069)")
+
+    print("\n[3] Peak-angle verification (against exp-069's committed data)")
+    pv = verify_peak_angles_are_extrema()
+    print(f"    window ptp(delta) = {pv['window_ptp']:.6e}")
+    for a, v in pv["peak"].items():
+        print(f"    theta={a}: delta={v['delta']:+.6e}  "
+              f"|delta|/(ptp/2) = {v['frac_of_ptp']:.3f}  (near 1.0 = near extremum)")
+    print(f"    zero-crossing angles (39.0,40.0) delta values = "
+          f"{pv['zero_crossing_deltas']}  (near 0 -- the ORIGINAL R3 leg's cells)")
+
+    print("\n[4] R3-rescaled configs (all four ABSORB depths)")
+    for k, cfg in R3_CONFIGS.items():
+        print(f"    {k}: absorb={cfg['absorb']} pad={cfg['pad']} "
+              f"A={cfg['A']} nx={cfg['nx']} ny={cfg['ny']}")
+
+    print("\n[5] FDTD BUDGET (full design)")
+    b = fdtd_budget()
+    for name in ("g1", "dense_causal", "r3_peak"):
+        print(f"    Block {name.upper():<14} calls={b[name]['calls']:3d}  "
+              f"cpu_s={b[name]['cpu_s']:.1f}")
+    print(f"    TOTAL calls = {b['total_calls']}")
+    print(f"    TOTAL cpu_s = {b['total_cpu_s']:.1f}")
+    print(f"    wall = {b['wall_min']:.2f} min")
+    print(f"    3x envelope = {b['envelope3x_min']:.2f} min")
+
+    print("\n[6] FDTD BUDGET (de-scoped floor: R3-PEAK retracted to C40/C80 only)")
+    bm = fdtd_budget_minimum()
+    print(f"    TOTAL calls = {bm['total_calls']}  "
+          f"TOTAL cpu_s = {bm['total_cpu_s']:.1f}  wall = {bm['wall_min']:.2f} min")
