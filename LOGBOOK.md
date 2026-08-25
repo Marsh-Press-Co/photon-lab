@@ -71,6 +71,30 @@ top. Protocol: PANEL.md.*
   `h = 2·half_width_factor·FWHM/(n−1)`, not the fringe period** — see the
   T21 addendum and Iteration 28's record. Do not re-propose a
   `P`-normalized phase offset as a difficulty regressor.
+  **Addendum (Iteration 47, exp-070) — the same look-elsewhere discipline
+  applied to a dense small-integer named-constant search.** T28's own
+  desk-check batch searched 36,680 single/pair combinations of 14 named
+  FDTD-bookkeeping constants for a match to two recovered length scales
+  (`A_eff≈518.81`, `A_alt≈233.19`); both found sub-0.1% matches that LOOKED
+  decisive by raw closeness alone. A mandatory null-permutation control
+  (20,000 random targets over the same search space) showed both matches
+  are statistically indistinguishable from chance (`null_p=0.497`/
+  `0.204`/`0.806` — the worst case beaten by over 80% of pure-chance
+  targets) — the identical R5 failure shape (a dense, unconstrained search
+  space finds *something* regardless of ground truth) in a new
+  instrument class. **Standing house rule, generalized from R5: any future
+  proposal that searches a named-constant/parameter space of more than a
+  handful of combinations for a match to a target value MUST include a
+  pre-registered null-permutation (or equivalent look-elsewhere) control
+  before a match counts as evidence — a tight raw deviation alone is not
+  sufficient, exactly as R5 already established for a phase-offset
+  regressor.** Named dead ends, not to be re-proposed as T28 mechanism
+  candidates without new information: `A_alt≈3·R_OUT` (233/234) and
+  `A_eff≈` the `519`-cluster (itself only 3 independent coincidences once
+  the `{TAPER,ABSORB40,PAD80}=40` degeneracy is accounted for, not 6 — see
+  `experiments/070-.../phase4_results.md`). Full record:
+  `experiments/070-t28-mechanism-desk-check-batch/phase5_redteam_audit.md`
+  §3, LOGBOOK.md Iteration 47.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -1794,6 +1818,43 @@ measured them here):**
   trace against `design_geometry.py`'s own named constants — before any
   new FDTD spend. Full record: `experiments/069-t21-block-mini-period-
   match-power-up/`, LOGBOOK.md Iteration 46.
+
+  **Iteration 47 (exp-070) — the desk-check batch delivered, forward
+  tripwire discharged. Result: narrowed, not solved.** All five sub-items
+  engaged. **P-070-1 CONFIRM (softer than first read):** the ~2.8°-family
+  signal lives in `C40(θ)` and `C80(θ)` individually (recovered periods
+  2.44°/2.53°, 3.93% apart from each other), genuinely disfavoring an
+  `ABSORB`-depth-tied mechanism relative to a shared-geometry one — but
+  each config's own recovered period sits 11–14% from `P*_delta=2.8421°`
+  itself and carries a non-trivial fixed-period fit to T21's own
+  1.9608° fringe (`R²=0.30/0.26`), which ELECTROMAGNETISM's own Phase-5
+  review (Red-Team-confirmed) argues is more consistent with a compromise
+  fit between two nearby, imperfectly-separated frequencies than a clean
+  independent confirmation — the pre-registered gate is honestly cleared
+  and stands, but licenses less than its first-draft prose claimed.
+  **P-070-3 REFUTE, clean**: `TAPER` alone as a sub-aperture misses by
+  1197% — one T28 sub-hypothesis is now cleanly dead. **P-070-2/P-070-4
+  NEITHER — the batch's own headline finding is methodological, not
+  physical**: both the beat-frequency reconstruction and the `A_eff`
+  systematic trace found sub-0.1% named-constant matches that LOOKED like
+  strong evidence, but a mandatory null-permutation control (this cycle's
+  own new house-rule addition — see R5 addendum, RULED OUT) showed both
+  are statistically indistinguishable from chance. **This program's own
+  clearest demonstration yet that a dense small-integer bookkeeping-
+  constant search finds a plausible match regardless of ground truth** —
+  see the R5 addendum for the generalized house rule this forces.
+  **No mechanism identified for T28.** Ranked next step (6-for-6 seat
+  convergence, independently confirmed by Red Team's Phase-5 final
+  audit): ELECTROMAGNETISM's own C60/C70 `ABSORB`-varying causal test
+  (PLAN.md queue item 2), strengthened with a cross-config consistency
+  metric at all four `ABSORB` depths and the already-queued peak-cell R3
+  recheck. Verdict PARTIAL; **no Checkpoint criterion fires** (a real
+  same-shift-fixed caveat-lint registry gap, found by two independently
+  converging blind seats — PHOTONICS, MATERIALS — matches this program's
+  own non-firing precedent, not a firing one; full ruling in
+  `phase5_redteam_audit.md` §1). Full record:
+  `experiments/070-t28-mechanism-desk-check-batch/`, LOGBOOK.md Iteration
+  47.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -14283,3 +14344,173 @@ synthesis, NOTES.md, `design_geometry.py`/`run.py`, `phase4_results.md`
 Phase-5 Red Team final audit; `lab/caveat_lint_config.json` (updated
 `exp065-steps1400-unsettled-plane-channel` entry); LOGBOOK.md LIVE
 THREADS (T27 closed, T28 opened).
+
+## Iteration 47 — T28's Mechanism, Desk-Checked: One Sub-Hypothesis Dead, One Weakly Confirmed, and a New Null-Control House Rule (exp-070) — 2026-08-25
+
+**Lead: QUANTUM OPTICS, by rotation.** Executes PLAN.md's Iteration-47
+queue item 1, itself Red Team's own standing forward tripwire from
+exp-069's Phase-5 final audit: live thread T28 (the real, resolution-
+robust-at-two-points, settled ~2.84° periodicity in the `C80−C40` padding
+delta that does not match T21's own established `P(θ)≈1.96°` fringe)
+must receive at least one cheap, desk-only first move by Iteration 48's
+close, or the gap itself becomes Checkpoint-4-adjacent. Delivered at
+Iteration 47, one cycle ahead of the tripwire's own deadline.
+
+**Pre-flight**: fresh container this shift — `numpy`/`scipy`/`matplotlib`/
+`pillow`/`autograd`/`fdtd`/`ceviche --no-deps` reinstalled per the
+documented wrinkle (SESSION_LOG.md 2026-08-12). Fast-subset trust suite
+(`--only 12346789`, heavy stage 5 skipped) reconfirmed green: 41/41
+checks. Zero `lab/` diff this entire cycle — no engine-physics gate is
+touched at any phase.
+
+**Full five-phase panel cycle**: Phase 1 (QUANTUM OPTICS proposes a
+zero-FDTD desk-check batch engaging all four mandate items — per-config
+decomposition, beat-frequency reconstruction, taper-as-sub-aperture
+check, `A_eff` systematic trace — plus an added convergence check (e);
+disclosed desk reconnaissance up front, not smuggled into the falsifiable
+bands, already finding candidate matches at `A−3·R_OUT=518` and
+`3·R_OUT=234`) → five blind Phase-2 critiques (all support-with-changes —
+PHOTONICS computed the named-constant search space exactly, 36,680
+expressions, and found 140/85 land within 1% of the two disclosed
+targets, a severe unquantified look-elsewhere risk; MATERIALS
+independently converged on the same concern and separately argued the
+entire NAMED space is FDTD bookkeeping, not material parameters;
+ELECTROMAGNETISM found item (a)'s discriminator would trivially CONFIRM
+regardless of the true signal, since raw `C(θ)` is already dominated by
+T21's own known fringe; THERMODYNAMICS found PLAN.md's own suggested WKB
+fold-in silently dropped; VISION found no pre-committed gray-zone
+disposition, the identical failure shape that fired Checkpoint criterion
+4 one cycle ago) → Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES,
+10 items, **zero overridden** — independently EXECUTED, not merely
+argued, both PHOTONICS'/MATERIALS' proposed null-permutation check
+(N=10,000 scratch run: 100% of random targets clear the 1% band, median
+deviation TIGHTER than either real match) and EM's "will fire" prediction
+(ran item (a)'s own logic on real data: it CONFIRMS today via a third,
+spurious period) → Phase 3 synthesis (Director accepts in full, no
+override; all 10 fixes implemented in code — item (a) rescored on
+recovered period, not bare R²; a formal `N=20,000` null-permutation
+control gates every named-constant match; tie-break well-definedness
+fixed; an explicit NEITHER catch-all added per item; a mandatory
+numerical-construction-artifact caveat ships regardless of outcome) →
+Phase 4 (zero FDTD calls, pure desk arithmetic, deterministic and
+independently reproduced bit-exact by four separate parties before this
+cycle even closed) → six blind Phase-5 reviews (PHOTONICS and MATERIALS
+independently converge on a new caveat-lint registry gap; ELECTROMAGNETISM
+finds P-070-1's CONFIRM softer than its own prose claims; QUANTUM finds
+the `N=20,000` justification imprecise and argues P-070-2/4's NEITHER
+carries REFUTE-grade weight by this program's own R5 precedent; VISION
+and THERMODYNAMICS find no load-bearing defect in their own lanes) →
+Red Team's Phase-5 final audit (independently re-verified every finding
+live — re-ran the script a fifth time, ran `lab/caveat_lint.py` live to
+confirm the registry gap for real, independently recomputed EM's and
+QUANTUM's own cited figures).
+
+**Headline results**: **P-070-3 REFUTE, clean** — `TAPER=40` cells alone
+as a diffracting sub-aperture predicts 36.86°, 1197% off the observed
+~2.84°; one T28 sub-hypothesis is now cleanly dead. **P-070-1 CONFIRM,
+softer than first read** — the ~2.8°-family signal lives in `C40(θ)` and
+`C80(θ)` individually (recovered periods 2.44°/2.53°, only 3.93% apart
+from each other), genuinely disfavoring an `ABSORB`-depth-tied mechanism
+over a shared-geometry one, but each config's own period sits 11–14% from
+`P*_delta` itself with a non-trivial residual fit to T21's own fringe —
+Phase-5 (EM, Red-Team-confirmed) argues this is more consistent with a
+compromise fit than a clean independent confirmation; the pre-registered
+gate stands (house discipline: scored as committed, not re-scored after a
+later review sharpens the read) but licenses less than the first-draft
+prose claimed. **P-070-2/P-070-4 NEITHER — the cycle's own real
+methodological headline**: both the beat-frequency reconstruction
+(`A_alt≈233.19`, matching `3·R_OUT` at 0.08%) and the `A_eff` systematic
+trace (`≈518.81`, matching a `519`-cluster at 0.04%, its 750nm
+cross-validation clearing `R²=0.70`) found matches that looked decisive
+by every raw threshold — but the mandatory null-permutation control
+(20,000 random targets, identical 36,680-expression search space) showed
+both are statistically indistinguishable from chance (`null_p=0.50/0.20/
+0.81`). **The single clearest demonstration in this program's history
+that a dense small-integer named-constant search finds a plausible match
+regardless of ground truth** — exactly what Red Team's Phase-2
+null-control mandate was built to catch, now proven on the actual gated
+run. **P-070-5 REFUTE** — no named expression is shared between (b)'s and
+(d)'s tie-sets. **No mechanism identified for T28.**
+
+**Phase-5 findings, independently re-verified by Red Team's final audit
+live, not from seat prose**: (1) PHOTONICS'/MATERIALS' independently-
+converging caveat-lint gap — no registry entry protected this cycle's own
+headline near-misses from a future citation quoting the raw match without
+its disqualifying `null_p` — confirmed real via a live `caveat_lint.py`
+run, **fixed same-shift** (new entry `exp070-t28-named-constant-null-
+control`, re-verified 0 required-site failures); (2) EM's "CONFIRM weaker
+than claimed" finding — independently reproduced (3.93% cross-config
+spread; fixed-period `R²=0.2988`/`0.2645` against T21's own fringe) —
+NOTES.md/`phase4_results.md` language corrected same-shift, verdict
+unchanged (pre-registration discipline); (3) QUANTUM's R5-precedent
+argument (a `null_p` this high carries REFUTE-grade evidentiary weight in
+substance, though the schema has no label for it) — ruled forward-only,
+not retroactive, and generalized into a new standing house rule appended
+to R5 (RULED OUT, above): any future proposal searching more than a
+handful of named-constant/parameter combinations for a match MUST include
+a pre-registered null-permutation control before a match counts as
+evidence; (4) VISION's own tie-count arithmetic check (Idealization 4
+widened to name both degenerate clusters) led the Director to catch and
+correct a genuine own-arithmetic error mid-edit — the `A_eff` six-way tie
+at 519 is actually only **3** independent coincidences, not 6 or the
+first-corrected 4, once the `{TAPER,ABSORB40,PAD80}=40` cluster's full
+degeneracy (`ABSORB80=2×` that cluster, not a member of it) is properly
+traced — verified by direct computation before commit, the exact
+verify-before-claim discipline this program's own R4 rule exists to
+enforce, caught by the Director's own re-check rather than surviving into
+the committed record.
+
+**Checkpoint determination (Red Team's Phase-5 final audit, all five
+criteria checked explicitly): NONE fire.** The caveat-lint gap is real
+but matches this program's own established same-shift, found-before-close
+non-firing precedent (Iteration 38's own exact shape) — no violated
+pre-committed tripwire named this specific gap, and no live registry
+violation survived undetected into a permanent artifact (`caveat_lint.py`
+showed 0 required-site failures at the moment of discovery). EM's and
+QUANTUM's findings are real, substantive corrections, each closed by a
+same-shift docket item or a forward-only house-rule note — the process
+catching real things before they became load-bearing, which is the
+discipline working as designed, not a defect in it.
+
+**Verdict: PARTIAL** — Red Team's own synthesis: real, load-bearing
+process progress (the exp-069 forward tripwire discharged one cycle
+early; one T28 sub-hypothesis cleanly killed; a genuine, generalizable
+null-permutation-control house rule established, independently
+reproduced by every reviewing seat and Red Team's audit alike; a Director
+arithmetic error caught and corrected before it reached the permanent
+record) but the substantive question — what actually produces T28's
+~2.84°-family periodicity — ends narrowed, not answered.
+
+**Same-shift mandatory-fix docket (9 items, Red Team's Phase-5 final
+audit, all applied and independently re-verified live)**: (1) new
+`lab/caveat_lint_config.json` entry protecting this cycle's own headline
+numbers; (2)-(4) NOTES.md/`phase4_results.md` language softened per EM's
+finding, with the cross-config figures added directly to the results
+document, not only the narrative; (5) this R5 addendum itself; (6)
+Idealization 4 widened, tie-table arithmetic corrected; (7) the
+`N=20,000` rationale corrected (Monte Carlo resolution at the decision
+boundary, not a false "matches T28's founding test" claim); (8) a
+QUANTUM-proposed disclosure that the beat-frequency algebra is classical,
+not quantum-optical, despite the lead-seat byline; (9) live re-verification
+(`caveat_lint.py` 0 failures; `desk_check_mechanism.py` bit-identical,
+zero code change from text-only edits).
+
+**Ranked queue for Iteration 48** (Red Team's Phase-5 final-audit
+reconciliation, confirming a genuine 6-for-6 blind-seat convergence): (1)
+**ELECTROMAGNETISM's C60/C70 `ABSORB`-depth falsification test** (PLAN.md
+queue item 2, already-built congruent configs, zero new `lab/` diff),
+strengthened with a direct cross-config consistency metric
+(`|P*(Ca)−P*(Cb)|/mean`) at every `ABSORB` pair and the already-queued
+peak-cell R3 resolution recheck (θ≈37.2°/41.4°, 2 calls) folded in at
+near-zero marginal cost; (2) `R_contact`'s `measured_direct` literature
+search — unchanged ranking, 4-of-6 review convergence, still the only
+item across seven cycles that can move a real, sourced materials number
+for TD-5's still-UNANSWERED tier, blocked purely on WebSearch/WebFetch
+tooling; (3) this cycle's own same-shift docket, already landed. Full
+record: `experiments/070-t28-mechanism-desk-check-batch/` — Phase-1
+proposal, five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
+synthesis, NOTES.md, `design_geometry.py`/`desk_check_mechanism.py`,
+`results.json`, `phase4_results.md`, six Phase-5 blind reviews, Phase-5
+Red Team final audit; `lab/caveat_lint_config.json` (new
+`exp070-t28-named-constant-null-control` entry); LOGBOOK.md RULED OUT (R5
+addendum) and LIVE THREADS (T28 updated, still open).
