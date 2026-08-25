@@ -142,12 +142,66 @@ of every run. P-071-G1 is the one local absolute-identity gate.
 
 ## Result
 
-*(filled in after Phase 4 — see `phase4_results.md` and `results.json`)*
+78 FDTD calls, 925.7s (15.43 min), zero `lab/` diff. **P-071-G1 PASSED**
+(4/4 exact). **Both binding preconditions CONFIRM**: Block SETTLE-C60C70
+(2800-vs-4200 shift 2–4 orders of magnitude below `GATE_HARD` at all 4
+cells — C60/C70 genuinely settled) and P-071-4 (peak-cell R3, `C80−C40`
+survives cpl 20→30 at both peaks, ratios 1.234/1.047). Per-config free
+periods rise smoothly and monotonically with `ABSORB`: C40=2.4361°→
+C60=2.5188°→C70=2.5338°→C80=2.5338° (linear fit R²=0.8664), but the total
+spread is only 3.90% — far below the 30% CONFIRM threshold, while R²=0.87
+sits far above REFUTE's own R²≤0.30 ceiling, so the raw statistic clears
+neither band. **The Rayleigh resolution-floor gate (mandatory fix 2)
+resolves the ambiguity**: the window supplies only 9.5% of the frequency
+resolution needed to distinguish P*(40) from P*(80) — `trend_resolved=
+False`, and 5 of 6 pairwise comparisons are independently `UNRESOLVED`
+(the 6th is an exact C70/C80 grid-search tie, likely a discretization
+artifact of the 400-point search grid, not independent confirmation).
+**Combined Verdict: NEITHER** — an explicit, computed branch, not a silent
+PARTIAL escape hatch. Full detail: `phase4_results.md`.
 
 ## Learned
 
-*(filled in after Phase 4/5)*
+1. **The mandatory-fix docket did its job.** Both of Red Team's Phase-2
+   load-bearing concerns (EM's settling-closure gap, QUANTUM's/Red Team's
+   resolution-floor risk) were real, testable claims — and both came back
+   informative: settling was fine (a genuine close on EM's gap), while the
+   resolution floor caught exactly the failure shape it was built to catch
+   (a small, monotonic, high-R² 4-point trend that the window cannot
+   actually resolve). Without the resolution-floor gate, this cycle would
+   likely have reported a spurious REFUTE (max_pair_spread clears 15%) or
+   at minimum an unqualified "trend not significant" reading that
+   obscured the real reason: the test lacked the resolving power to
+   distinguish the hypotheses in the first place, not that the periods are
+   flat.
+2. **T28's causal question remains genuinely open**, narrowed rather than
+   answered: the per-config periods DO rise smoothly with `ABSORB` depth
+   (a real, well-fit shape), but the magnitude (3.9% over a 2× `ABSORB`
+   range) is too small for this window to distinguish from four noisy
+   estimates of one shared, non-ABSORB-tied period. This is a genuine
+   instrument-power limit, not a hedge: the fix is a wider angular window
+   (more T21 periods) or a discriminator that does not depend on
+   frequency-resolving the difference between four close periods.
+3. The exact C70/C80 free-period tie (2.5338° to all printed digits) is a
+   useful, disclosed caveat for any future reuse of this per-config
+   free-period table: with `n_grid=400` over `[1°,4°]` (step 0.0075°), an
+   exact match this precise is plausibly a grid-search discretization
+   coincidence, not evidence the two configs share an identical period —
+   consistent with (not contradicted by) the resolution-floor finding.
 
 ## Next
 
-*(filled in after Phase 5)*
+- T28's causal question (does the ~2.8°-family period genuinely track
+  `ABSORB` depth?) remains open. A properly-powered follow-up needs EITHER
+  a wider angular window (more T21 periods, improving the Rayleigh
+  resolution) OR a discriminator that does not require frequency-resolving
+  four close periods against each other — e.g. a direct beat-frequency or
+  phase-tracking measurement between adjacent-ABSORB configs, rather than
+  four independent free-period fits compared post hoc.
+- PHOTONICS' confirmatory 750nm leg (recommended, not run this cycle —
+  Red Team's scope ruling) remains a live fast-follow candidate,
+  independent of the resolution-floor question above.
+- `R_contact`'s literature search (PLAN.md queue item 2) remains
+  untouched by this cycle's own locked mandate — see
+  `phase3_synthesis.md`'s tooling disclosure for the Director's own
+  capacity note.

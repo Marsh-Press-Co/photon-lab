@@ -1,0 +1,570 @@
+{
+  "experiment": "071-t28-absorb-depth-causal-test",
+  "panel_iteration": 48,
+  "lead_seat": "VISION SCIENCE",
+  "t1_escape_route": "N/A (instrument/mechanism-identification class)",
+  "steps_settled": 2800,
+  "steps_stress": 4200,
+  "r3_steps": 4200,
+  "r3_ratio": 1.5,
+  "dense_angles": [
+    36.0,
+    36.2,
+    36.4,
+    36.6,
+    36.8,
+    37.0,
+    37.2,
+    37.4,
+    37.6,
+    37.8,
+    38.0,
+    38.2,
+    38.4,
+    38.6,
+    38.8,
+    39.0,
+    39.2,
+    39.4,
+    39.6,
+    39.8,
+    40.0,
+    40.2,
+    40.4,
+    40.6,
+    40.8,
+    41.0,
+    41.2,
+    41.4,
+    41.6,
+    41.8,
+    42.0
+  ],
+  "peak_angles": [
+    37.2,
+    41.4
+  ],
+  "g1": {
+    "n_new_runs": 4,
+    "elapsed_s": 42.978739500045776,
+    "gate": {
+      "n_checked": 4,
+      "all_exact": true,
+      "max_abs_delta": 0.0,
+      "checks": [
+        {
+          "config": "C40",
+          "theta": 39.0,
+          "ours": 0.005174448791089414,
+          "ref": 0.005174448791089414,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "config": "C40",
+          "theta": 40.0,
+          "ours": -0.0028016354383217923,
+          "ref": -0.0028016354383217923,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "config": "C80",
+          "theta": 39.0,
+          "ours": 0.00529122733977605,
+          "ref": 0.00529122733977605,
+          "delta": 0.0,
+          "exact": true
+        },
+        {
+          "config": "C80",
+          "theta": 40.0,
+          "ours": -0.002635039227171343,
+          "ref": -0.002635039227171343,
+          "delta": 0.0,
+          "exact": true
+        }
+      ]
+    }
+  },
+  "dense_causal": {
+    "n_new_runs": 62,
+    "elapsed_s": 510.994099855423,
+    "rows": {
+      "C60": [
+        {
+          "theta": 36.0,
+          "C_empty": -0.009702885725798471
+        },
+        {
+          "theta": 36.2,
+          "C_empty": -0.009300374522518862
+        },
+        {
+          "theta": 36.4,
+          "C_empty": -0.006733305542001024
+        },
+        {
+          "theta": 36.6,
+          "C_empty": -0.002308435785068675
+        },
+        {
+          "theta": 36.8,
+          "C_empty": 0.0028928835473411856
+        },
+        {
+          "theta": 37.0,
+          "C_empty": 0.007359706873621308
+        },
+        {
+          "theta": 37.2,
+          "C_empty": 0.00972617764163619
+        },
+        {
+          "theta": 37.4,
+          "C_empty": 0.009340505612967176
+        },
+        {
+          "theta": 37.6,
+          "C_empty": 0.006552179375683307
+        },
+        {
+          "theta": 37.8,
+          "C_empty": 0.0025653175523197014
+        },
+        {
+          "theta": 38.0,
+          "C_empty": -0.0010627170025204746
+        },
+        {
+          "theta": 38.2,
+          "C_empty": -0.0030292886128885366
+        },
+        {
+          "theta": 38.4,
+          "C_empty": -0.0027467840991334262
+        },
+        {
+          "theta": 38.6,
+          "C_empty": -0.0005061612001455718
+        },
+        {
+          "theta": 38.8,
+          "C_empty": 0.0026856820980492024
+        },
+        {
+          "theta": 39.0,
+          "C_empty": 0.0055230708207036905
+        },
+        {
+          "theta": 39.2,
+          "C_empty": 0.006911825744155832
+        },
+        {
+          "theta": 39.4,
+          "C_empty": 0.0063612302974618284
+        },
+        {
+          "theta": 39.6,
+          "C_empty": 0.004094257588658445
+        },
+        {
+          "theta": 39.8,
+          "C_empty": 0.0008573687770938587
+        },
+        {
+          "theta": 40.0,
+          "C_empty": -0.002441552297338112
+        },
+        {
+          "theta": 40.2,
+          "C_empty": -0.005085099914728054
+        },
+        {
+          "theta": 40.4,
+          "C_empty": -0.006752545714291845
+        },
+        {
+          "theta": 40.6,
+          "C_empty": -0.007531037925474271
+        },
+        {
+          "theta": 40.8,
+          "C_empty": -0.007760029349087927
+        },
+        {
+          "theta": 41.0,
+          "C_empty": -0.007793628057584878
+        },
+        {
+          "theta": 41.2,
+          "C_empty": -0.007794444182493639
+        },
+        {
+          "theta": 41.4,
+          "C_empty": -0.007655715809024133
+        },
+        {
+          "theta": 41.6,
+          "C_empty": -0.007081743048097722
+        },
+        {
+          "theta": 41.8,
+          "C_empty": -0.005774779710041811
+        },
+        {
+          "theta": 42.0,
+          "C_empty": -0.0036300068920841477
+        }
+      ],
+      "C70": [
+        {
+          "theta": 36.0,
+          "C_empty": -0.010040776507147185
+        },
+        {
+          "theta": 36.2,
+          "C_empty": -0.009802341195462194
+        },
+        {
+          "theta": 36.4,
+          "C_empty": -0.0072423742709744054
+        },
+        {
+          "theta": 36.6,
+          "C_empty": -0.002678205383043419
+        },
+        {
+          "theta": 36.8,
+          "C_empty": 0.002744119392394495
+        },
+        {
+          "theta": 37.0,
+          "C_empty": 0.007422949021558489
+        },
+        {
+          "theta": 37.2,
+          "C_empty": 0.009914592440772863
+        },
+        {
+          "theta": 37.4,
+          "C_empty": 0.009534729493273053
+        },
+        {
+          "theta": 37.6,
+          "C_empty": 0.00665419930906852
+        },
+        {
+          "theta": 37.8,
+          "C_empty": 0.002533533810829214
+        },
+        {
+          "theta": 38.0,
+          "C_empty": -0.0012104243701273054
+        },
+        {
+          "theta": 38.2,
+          "C_empty": -0.003238469279139844
+        },
+        {
+          "theta": 38.4,
+          "C_empty": -0.002959163747197291
+        },
+        {
+          "theta": 38.6,
+          "C_empty": -0.0006866433264861582
+        },
+        {
+          "theta": 38.8,
+          "C_empty": 0.00253814542543429
+        },
+        {
+          "theta": 39.0,
+          "C_empty": 0.005384428021423915
+        },
+        {
+          "theta": 39.2,
+          "C_empty": 0.006756651729780129
+        },
+        {
+          "theta": 39.4,
+          "C_empty": 0.00618773388314775
+        },
+        {
+          "theta": 39.6,
+          "C_empty": 0.003935426135089794
+        },
+        {
+          "theta": 39.8,
+          "C_empty": 0.0007712484076052295
+        },
+        {
+          "theta": 40.0,
+          "C_empty": -0.00239739149483531
+        },
+        {
+          "theta": 40.2,
+          "C_empty": -0.004882449277872402
+        },
+        {
+          "theta": 40.4,
+          "C_empty": -0.006412184388393194
+        },
+        {
+          "theta": 40.6,
+          "C_empty": -0.0071248008518589555
+        },
+        {
+          "theta": 40.8,
+          "C_empty": -0.007393213666128105
+        },
+        {
+          "theta": 41.0,
+          "C_empty": -0.0075730829467971494
+        },
+        {
+          "theta": 41.2,
+          "C_empty": -0.007794636838605928
+        },
+        {
+          "theta": 41.4,
+          "C_empty": -0.007897207145642125
+        },
+        {
+          "theta": 41.6,
+          "C_empty": -0.007530931510829841
+        },
+        {
+          "theta": 41.8,
+          "C_empty": -0.006363409266302191
+        },
+        {
+          "theta": 42.0,
+          "C_empty": -0.004284467702762695
+        }
+      ]
+    }
+  },
+  "r3_peak": {
+    "n_new_runs": 8,
+    "elapsed_s": 300.71204948425293,
+    "values": {
+      "C40_R3|37.2": 0.007853835403810018,
+      "C40_R3|41.4": -0.00586263017609534,
+      "C60_R3|37.2": 0.009746381170834264,
+      "C60_R3|41.4": -0.006929251320797913,
+      "C70_R3|37.2": 0.010069284645088163,
+      "C70_R3|41.4": -0.007785750112641043,
+      "C80_R3|37.2": 0.01021100198712821,
+      "C80_R3|41.4": -0.00793667132061726
+    }
+  },
+  "settle_c60c70": {
+    "n_new_runs": 4,
+    "elapsed_s": 70.95981740951538,
+    "scored": {
+      "cells": [
+        {
+          "config": "C60",
+          "theta": 37.2,
+          "C_2800": 0.00972617764163619,
+          "C_4200": 0.009725928716399324,
+          "abs_delta_4200_2800": 2.489252368658573e-07,
+          "rel_to_gate_hard": 0.0002489252368658573
+        },
+        {
+          "config": "C60",
+          "theta": 41.4,
+          "C_2800": -0.007655715809024133,
+          "C_4200": -0.007655672481369778,
+          "abs_delta_4200_2800": 4.332765435495489e-08,
+          "rel_to_gate_hard": 4.332765435495489e-05
+        },
+        {
+          "config": "C70",
+          "theta": 37.2,
+          "C_2800": 0.009914592440772863,
+          "C_4200": 0.009914441175597588,
+          "abs_delta_4200_2800": 1.5126517527441763e-07,
+          "rel_to_gate_hard": 0.00015126517527441763
+        },
+        {
+          "config": "C70",
+          "theta": 41.4,
+          "C_2800": -0.007897207145642125,
+          "C_4200": -0.007897247470498248,
+          "abs_delta_4200_2800": 4.032485612266712e-08,
+          "rel_to_gate_hard": 4.032485612266712e-05
+        }
+      ],
+      "gate_hard": 0.001,
+      "confirm": true,
+      "refute": false
+    }
+  },
+  "per_config_free_periods": {
+    "C40": {
+      "p_star_deg": 2.43609022556391,
+      "r_squared": 0.43266132104636423
+    },
+    "C80": {
+      "p_star_deg": 2.533834586466165,
+      "r_squared": 0.4337258161233949
+    },
+    "C60": {
+      "p_star_deg": 2.518796992481203,
+      "r_squared": 0.44826762084139093
+    },
+    "C70": {
+      "p_star_deg": 2.533834586466165,
+      "r_squared": 0.4421571103013672
+    }
+  },
+  "trend": {
+    "per_config": {
+      "C40": {
+        "p_star_deg": 2.43609022556391,
+        "r_squared": 0.43266132104636423
+      },
+      "C80": {
+        "p_star_deg": 2.533834586466165,
+        "r_squared": 0.4337258161233949
+      },
+      "C60": {
+        "p_star_deg": 2.518796992481203,
+        "r_squared": 0.44826762084139093
+      },
+      "C70": {
+        "p_star_deg": 2.533834586466165,
+        "r_squared": 0.4421571103013672
+      }
+    },
+    "absorb": [
+      40.0,
+      60.0,
+      70.0,
+      80.0
+    ],
+    "p_star": [
+      2.43609022556391,
+      2.518796992481203,
+      2.533834586466165,
+      2.533834586466165
+    ],
+    "linear_fit": {
+      "intercept": 2.3458646616541357,
+      "slope": 0.0025563909774436134,
+      "r_squared": 0.866381156316916
+    },
+    "spread_40_80": 0.03900975243810938,
+    "trend_resolution_ratio": 0.09496703390535606,
+    "trend_resolved": false,
+    "max_pair_spread": 0.039334341906202566,
+    "all_pairs_resolved": false,
+    "pairs": [
+      {
+        "pair": "C40-C60",
+        "p_a": 2.43609022556391,
+        "p_b": 2.518796992481203,
+        "spread": 0.03338391502276174,
+        "resolution_ratio": 0.08083646261473129,
+        "resolved": false
+      },
+      {
+        "pair": "C40-C70",
+        "p_a": 2.43609022556391,
+        "p_b": 2.533834586466165,
+        "spread": 0.039334341906202566,
+        "resolution_ratio": 0.09496703390535606,
+        "resolved": false
+      },
+      {
+        "pair": "C40-C80",
+        "p_a": 2.43609022556391,
+        "p_b": 2.533834586466165,
+        "spread": 0.039334341906202566,
+        "resolution_ratio": 0.09496703390535606,
+        "resolved": false
+      },
+      {
+        "pair": "C60-C70",
+        "p_a": 2.518796992481203,
+        "p_b": 2.533834586466165,
+        "spread": 0.00595238095238082,
+        "resolution_ratio": 0.014130571290624769,
+        "resolved": false
+      },
+      {
+        "pair": "C60-C80",
+        "p_a": 2.518796992481203,
+        "p_b": 2.533834586466165,
+        "spread": 0.00595238095238082,
+        "resolution_ratio": 0.014130571290624769,
+        "resolved": false
+      },
+      {
+        "pair": "C70-C80",
+        "p_a": 2.533834586466165,
+        "p_b": 2.533834586466165,
+        "spread": 0.0,
+        "resolution_ratio": Infinity,
+        "resolved": true
+      }
+    ],
+    "raw_confirm": false,
+    "raw_refute": false,
+    "confirm": false,
+    "refute": false,
+    "unresolved_only": false
+  },
+  "p071_4_peak_r3": {
+    "cells": [
+      {
+        "theta": 37.2,
+        "delta_native": 0.001909638792794821,
+        "delta_r3": 0.0023571665833181914,
+        "same_sign": true,
+        "ratio": 1.2343520629199192
+      },
+      {
+        "theta": 41.4,
+        "delta_native": -0.0019804566207357608,
+        "delta_r3": -0.002074041144521919,
+        "same_sign": true,
+        "ratio": 1.0472540134463488
+      }
+    ],
+    "confirm": true,
+    "refute": false
+  },
+  "p071_5_peak_r3_interior": {
+    "cells": [
+      {
+        "theta": 37.2,
+        "delta_native": 0.0001884147991366731,
+        "delta_r3": 0.0003229034742538994,
+        "same_sign": true,
+        "ratio": 1.713790401462416
+      },
+      {
+        "theta": 41.4,
+        "delta_native": -0.0002414913366179921,
+        "delta_r3": -0.0008564987918431299,
+        "same_sign": true,
+        "ratio": 3.5467060799700643
+      }
+    ],
+    "confirm": false,
+    "refute": false
+  },
+  "combined_verdict": "NEITHER",
+  "combined_reason": "Explicit NEITHER branch (not a silent PARTIAL escape hatch): raw trend statistic (spread/R^2) landed in the gray zone between the CONFIRM and REFUTE bands. THERMO energy-sidecar metric row does NOT apply this cycle: no absorbing article is run (Block ARTICLE not re-run, idealizations 4/8), and all four congruent configs are near-total absorbers at their own boundary by construction (that is what makes them congruent) regardless of ABSORB depth -- there is no absorbed-energy TREND for a sidecar to characterize, and no witness-scene material for power to re-radiate from (THERMODYNAMICS' Phase-2 finding).",
+  "caveats": {
+    "absorb_not_material": "ABSORB is lab/fdtd2d.py::Sim._damping's own numerical domain-truncation boundary depth (a cubic-ramp PML-analog, exp(-0.30*d), applied to all four box edges) -- NOT a material or physical-optics parameter, real or hypothetical. Any CONFIRM below describes a numerical-boundary-construction effect, never a physical absorbing mechanism (exp-070's own mandatory fix 5, MATERIALS' Phase-2 catch this cycle -- reinstated per the identical rule).",
+    "thermo_scope": "THERMO energy-sidecar metric row does NOT apply this cycle: no absorbing article is run (Block ARTICLE not re-run, idealizations 4/8), and all four congruent configs are near-total absorbers at their own boundary by construction (that is what makes them congruent) regardless of ABSORB depth -- there is no absorbed-energy TREND for a sidecar to characterize, and no witness-scene material for power to re-radiate from (THERMODYNAMICS' Phase-2 finding).",
+    "wavelength_scope": "600nm-only scope (idealization 2): the same ABSORB cell count is a different optical depth at other wavelengths (e.g. 80 cells = 4.0 lambda at 600nm/cpl20 but 3.2 lambda at 750nm/cpl25, PHOTONICS' Phase-2 finding) -- a CONFIRM at 600nm alone cannot distinguish a lambda-scaled physical coupling from a cell-count/discretization artifact; the CONFIRM label below is scoped to 600nm only, not to an optical mechanism generally. A confirmatory lambda leg is queued as a fast-follow (Iteration 49), not run this cycle (mandate scope)."
+  },
+  "total_new_runs": 78,
+  "total_elapsed_s": 925.7233054637909,
+  "r_contact_disposition": "UNTOUCHED this cycle -- PLAN.md's Iteration-48 queue item #2 remains blocked on WebSearch/WebFetch tooling per this cycle's own scope (item 1 is the locked mandate); Phase 1's tooling-availability disclosure is carried forward to phase3_synthesis.md for the Director to act on, not acted on here."
+}
