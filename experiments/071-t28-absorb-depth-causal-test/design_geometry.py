@@ -54,6 +54,40 @@ for the full falsifiable-bands table):
       non-optional output row (see phase1_proposal.md Predictions table).
 
 Pure geometry + desk arithmetic -- NO FDTD in this file.
+
+=============================================================================
+PHASE 3 SYNTHESIS (Director) -- Red Team's Phase-2 audit verdict:
+PROCEED-WITH-MANDATORY-FIXES, 7 items, ZERO overridden (see
+phase3_synthesis.md for the full accepted/overridden record; full audit in
+phase2_redteam_audit.md). Mandatory fixes implemented in THIS file:
+  1. Block SETTLE-C60C70 added (EM's finding) -- C60/C70 at the PEAK angles
+     (37.2/41.4deg, not the original P-069-4 zero-crossing angles -- a
+     stronger test), STEPS=4200 vs the already-planned STEPS=2800 reading,
+     native geometry. Binding precondition on P-071-2, exactly as P-071-4
+     already is. +4 calls.
+  2. Rayleigh/Fourier resolution-floor computation added (QUANTUM's finding,
+     EXTENDED by Red Team to gate BOTH the CONFIRM and REFUTE branches, not
+     only REFUTE as originally proposed -- Red Team's own unprompted finding,
+     phase2_redteam_audit.md Sec 1: the CONFIRM band's 30% threshold sits at
+     only 75% of full Rayleigh resolving power, i.e. UNDER the floor too).
+     Zero FDTD cost -- desk arithmetic on already-planned data.
+  5. `_free_period_search`/`_fixed_period_fit` now imported BY REFERENCE from
+     exp-069's run.py (not re-derived), with an explicit assertion that its
+     default grid `(lo_deg, hi_deg, n_grid) == (1.0, 4.0, 400)` matches
+     exp-069/070's own values -- closes QUANTUM's "prose promise, not a code
+     fact" finding.
+  6. De-scope docket (fdtd_budget_minimum) updated to name Block
+     SETTLE-C60C70 and the resolution-floor computation as never-de-scoped,
+     alongside Block G1 and Block DENSE-CAUSAL (Red Team's own attack 7).
+  7. Hard stop restated 90->100 min in NOTES.md/phase3_synthesis.md (text
+     only, no code here) -- preserves this program's "a few minutes past the
+     3x envelope" convention under the revised (78-call) budget.
+Fixes 3/4 (MATERIALS'/THERMODYNAMICS' language-only findings -- reinstating
+the "ABSORB is not a material" caveat, renaming the CONFIRM branch's
+parenthetical, and adding the THERMO scope-inapplicability sentence) are
+implemented in run.py's Combined Verdict text and NOTES.md, not here (no
+code artifact backs a pure-language fix).
+=============================================================================
 """
 
 import importlib.util
@@ -84,6 +118,20 @@ dg065 = _load_module("065-t24-absorb-boundary-sweep/design_geometry.py",
                       "_exp065_design_geometry")
 dg069 = _load_module("069-t21-block-mini-period-match-power-up/design_geometry.py",
                       "_exp069_design_geometry")
+run069 = _load_module("069-t21-block-mini-period-match-power-up/run.py",
+                       "_exp069_run")
+
+# Mandatory fix 5 (QUANTUM/Red Team): import the period-recovery methodology
+# BY REFERENCE, never re-derived, and assert its defaults match exp-069/070's
+# own values -- "identical methodology" is now a code fact, not prose.
+_fixed_period_fit = run069._fixed_period_fit
+_free_period_search = run069._free_period_search
+import inspect as _inspect
+_fps_defaults = dict(zip(
+    ("center_deg", "lo_deg", "hi_deg", "n_grid"),
+    (p.default for p in list(_inspect.signature(_free_period_search).parameters.values())[2:])))
+assert _fps_defaults == dict(center_deg=39.0, lo_deg=1.0, hi_deg=4.0, n_grid=400), \
+    f"_free_period_search defaults drifted from exp-069/070's own values: {_fps_defaults}"
 
 # ------------------------------------------------------- reused verbatim
 CONFIGS = dg065.CONFIGS                 # C40, C60, C70, C80, G40, N60
@@ -167,6 +215,19 @@ def verify_peak_angles_are_extrema():
                 zero_crossing_deltas=zero_cross_deltas)
 
 
+# --------------------------------------------- Block SETTLE-C60C70 (new,
+# mandatory fix 1 -- EM's Phase-2 finding). STEPS=2800 was certified
+# "settled" only for C40 (exp-065's own 4-point asymptotic series) and C80
+# (exp-069's Block SETTLE-C80) -- NEVER for C60/C70, which change
+# NX/NY/the damping profile (the geometry) relative to both. Scored at the
+# PEAK angles (37.2/41.4deg), a stronger test than P-069-4's original
+# zero-crossing angles (39/40deg), mirroring Block SETTLE-C80's own
+# construction exactly (STEPS_STRESS=4200 vs STEPS_SETTLED=2800, native
+# geometry, cell_ratio=1.0).
+STEPS_STRESS = dg069.STEPS_STRESS   # 4200 -- native-geometry stress step
+SETTLE_C60C70_CONFIGS = ("C60", "C70")
+SETTLE_C60C70_ANGLES = PEAK_ANGLES   # (37.2, 41.4) -- reuse, not re-pick
+
 # R3-rescaled configs for ALL FOUR congruent depths (extends the
 # originally-queued C40/C80-only R3 pair -- mandatory-fix (b), extended
 # per this file's own docstring rationale). Reuses dg069.r3_config()
@@ -194,6 +255,47 @@ TREND_REFUTE_MAX_R2 = 0.30            # linear fit P*(ABSORB), R^2 <= 0.30
 R3_CONFIRM_RATIO_BAND = (0.3, 3.0)
 R3_REFUTE_RATIO_BAND = (0.1, 10.0)
 
+# --------------------------------------------------- Rayleigh resolution floor
+# Mandatory fix 2 (QUANTUM's Phase-2 finding, EXTENDED by Red Team to gate
+# BOTH the CONFIRM and REFUTE branches -- phase2_redteam_audit.md Sec 1: the
+# CONFIRM band's own 30% threshold sits at only 75% of full Rayleigh
+# resolving power at this window/period scale, i.e. UNDER the floor, not
+# over it). The 31-point Block DENSE window (36.0-42.0deg) supplies a fixed
+# frequency resolution in sin(theta) space; two periods closer together than
+# that resolution cannot be reliably distinguished by ANY fit over this
+# window, however good its R^2 looks.
+DENSE_WINDOW_LO, DENSE_WINDOW_HI = float(DENSE_ANGLES[0]), float(DENSE_ANGLES[-1])
+DENSE_WINDOW_DSIN = (math.sin(math.radians(DENSE_WINDOW_HI))
+                      - math.sin(math.radians(DENSE_WINDOW_LO)))   # 0.081345...
+RESOLUTION_CENTER_DEG = 39.0   # matches _free_period_search's own default
+
+
+def _T_sin(period_deg, center_deg=RESOLUTION_CENTER_DEG):
+    """Convert a period in theta-degrees to a period in sin(theta) units at
+    the window's own reference angle -- exactly `_free_period_search`'s own
+    internal convention (Tc = radians(P*) * cos(center_deg))."""
+    return math.radians(period_deg) * math.cos(math.radians(center_deg))
+
+
+def rayleigh_resolution_ratio(p_a_deg, p_b_deg, center_deg=RESOLUTION_CENTER_DEG,
+                               window_dsin=DENSE_WINDOW_DSIN):
+    """Ratio of (window's available frequency resolution) to (frequency
+    separation needed to resolve two periods p_a/p_b). >=1.0 means the
+    window CAN resolve the pair; <1.0 means it cannot -- any comparison
+    built from p_a/p_b (a pairwise spread, or a CONFIRM/REFUTE trend
+    verdict) is UNRESOLVED at that scale, regardless of how clean the raw
+    statistic looks. Two periods identical returns +inf (trivially
+    unresolvable AND uninformative -- treated as unresolved by the caller,
+    never as a false REFUTE)."""
+    if p_a_deg == p_b_deg:
+        return float("inf")
+    inv_diff = abs(1.0 / _T_sin(p_a_deg, center_deg) - 1.0 / _T_sin(p_b_deg, center_deg))
+    required_dsin = 1.0 / inv_diff
+    return window_dsin / required_dsin
+
+
+RESOLUTION_FLOOR_RATIO_THRESHOLD = 1.0   # ratio >= 1.0 => resolved; < 1.0 => UNRESOLVED
+
 # ------------------------------------------------------------- cost basis
 # CPU_S_PER_CALL reused verbatim from dg065 (measured, this container,
 # 4-worker ProcessPoolExecutor contention included). C70's own entry is
@@ -213,11 +315,14 @@ def fdtd_budget():
     """Call counts and wall-clock, block by block. No leg double-counted;
     C40(theta)/C80(theta) at the 31-pt dense window are REUSED from
     exp-069's own committed results.json (0 new calls) -- only C60/C70
-    are new FDTD spend for Block DENSE-CAUSAL."""
+    are new FDTD spend for Block DENSE-CAUSAL. Includes mandatory fix 1
+    (Block SETTLE-C60C70, Red Team's Phase-2 docket item 1)."""
     n_g1 = len(G1_ANGLES)
     n_causal_cfgs = len(DENSE_CAUSAL_CONFIGS)
     n_peak = len(PEAK_ANGLES)
     n_r3_cfgs = len(R3_CONFIGS)
+    n_settle_cfgs = len(SETTLE_C60C70_CONFIGS)
+    n_settle_ang = len(SETTLE_C60C70_ANGLES)
 
     # Block G1: 2 theta x {C40,C80} x 600nm x STEPS=2800 -- identity gate,
     # reruns already-committed cells to certify reuse of exp-069's data.
@@ -236,8 +341,14 @@ def fdtd_budget():
     r3_cell_ratio = R3_RATIO ** 2
     r3_cpu = n_peak * sum(_cost(k[:3], R3_STEPS, r3_cell_ratio) for k in R3_CONFIGS)
 
-    total_calls = g1_calls + dense_calls + r3_calls
-    total_cpu = g1_cpu + dense_cpu + r3_cpu
+    # Block SETTLE-C60C70 (mandatory fix 1, EM): 2 theta(peak) x {C60,C70} x
+    # 600nm x STEPS=4200(stress), native geometry -- closes the settling-
+    # closure gap EM's Phase-2 critique found (only C40/C80 ever certified).
+    settle_calls = n_settle_ang * n_settle_cfgs
+    settle_cpu = n_settle_ang * sum(_cost(k, STEPS_STRESS) for k in SETTLE_C60C70_CONFIGS)
+
+    total_calls = g1_calls + dense_calls + r3_calls + settle_calls
+    total_cpu = g1_cpu + dense_cpu + r3_cpu + settle_cpu
 
     overhead_factor = 1.15
     n_workers = 4
@@ -248,23 +359,31 @@ def fdtd_budget():
         g1=dict(calls=g1_calls, cpu_s=g1_cpu),
         dense_causal=dict(calls=dense_calls, cpu_s=dense_cpu),
         r3_peak=dict(calls=r3_calls, cpu_s=r3_cpu),
+        settle_c60c70=dict(calls=settle_calls, cpu_s=settle_cpu),
         total_calls=total_calls, total_cpu_s=total_cpu, wall_s=wall_s,
         wall_min=wall_s / 60.0, envelope3x_min=3 * wall_s / 60.0,
     )
 
 
 def fdtd_budget_minimum():
-    """De-scope floor: R3-PEAK retracted to the LITERALLY-queued C40/C80-
-    only pair (the minimum Red Team's tripwire named), dropping C60_R3/
-    C70_R3 (this file's own extension). Block DENSE-CAUSAL and Block G1
-    are never de-scoped -- they gate the headline causal claim directly."""
+    """De-scope floor (mandatory fix 6, Red Team attack 7): R3-PEAK
+    retracted to the LITERALLY-queued C40/C80-only pair, dropping C60_R3/
+    C70_R3 (this file's own extension). Block DENSE-CAUSAL, Block G1, Block
+    SETTLE-C60C70, and the resolution-floor computation are NEVER
+    de-scoped -- they gate the headline causal claim's interpretation
+    directly (settling-closure and resolution-floor are the two mandatory
+    fixes Red Team's Phase-2 audit found load-bearing; a future
+    budget-pressured shift must not silently drop them under the pre-
+    existing 'retract R3-PEAK first' logic, which predates these fixes)."""
     n_peak = len(PEAK_ANGLES)
     r3_min_calls = n_peak * 2   # C40_R3, C80_R3 only
     r3_min_cpu = n_peak * sum(_cost(k[:3], R3_STEPS, R3_RATIO ** 2)
                                for k in ("C40_R3", "C80_R3"))
     full = fdtd_budget()
-    total_calls = full["g1"]["calls"] + full["dense_causal"]["calls"] + r3_min_calls
-    total_cpu = full["g1"]["cpu_s"] + full["dense_causal"]["cpu_s"] + r3_min_cpu
+    total_calls = (full["g1"]["calls"] + full["dense_causal"]["calls"]
+                   + r3_min_calls + full["settle_c60c70"]["calls"])
+    total_cpu = (full["g1"]["cpu_s"] + full["dense_causal"]["cpu_s"]
+                 + r3_min_cpu + full["settle_c60c70"]["cpu_s"])
     wall_s = 1.15 * total_cpu / (4 * 0.98)
     return dict(total_calls=total_calls, total_cpu_s=total_cpu,
                 wall_min=wall_s / 60.0)
@@ -300,9 +419,9 @@ if __name__ == "__main__":
         print(f"    {k}: absorb={cfg['absorb']} pad={cfg['pad']} "
               f"A={cfg['A']} nx={cfg['nx']} ny={cfg['ny']}")
 
-    print("\n[5] FDTD BUDGET (full design)")
+    print("\n[5] FDTD BUDGET (full design, mandatory fixes applied)")
     b = fdtd_budget()
-    for name in ("g1", "dense_causal", "r3_peak"):
+    for name in ("g1", "dense_causal", "r3_peak", "settle_c60c70"):
         print(f"    Block {name.upper():<14} calls={b[name]['calls']:3d}  "
               f"cpu_s={b[name]['cpu_s']:.1f}")
     print(f"    TOTAL calls = {b['total_calls']}")
@@ -314,3 +433,21 @@ if __name__ == "__main__":
     bm = fdtd_budget_minimum()
     print(f"    TOTAL calls = {bm['total_calls']}  "
           f"TOTAL cpu_s = {bm['total_cpu_s']:.1f}  wall = {bm['wall_min']:.2f} min")
+
+    print("\n[7] Rayleigh resolution floor (mandatory fix 2, Red Team-extended "
+          "to both CONFIRM and REFUTE)")
+    print(f"    window Delta(sin theta) = {DENSE_WINDOW_DSIN:.6f} "
+          f"({DENSE_WINDOW_LO}-{DENSE_WINDOW_HI}deg)")
+    pairs = [
+        ("T21 vs P*_delta(exp-069)", 1.9608, 2.8421),
+        ("T21 vs C40-free(exp-070)", 1.9608, 2.4361),
+        ("C40-free vs C80-free (exp-070)", 2.4361, 2.5338),
+    ]
+    for label, pa, pb in pairs:
+        r = rayleigh_resolution_ratio(pa, pb)
+        print(f"    {label:<32} P_a={pa} P_b={pb}  ratio={r:.4f}  "
+              f"{'RESOLVED' if r >= RESOLUTION_FLOOR_RATIO_THRESHOLD else 'UNRESOLVED'}")
+    print("    CONFIRM band break-even (Red Team Sec 1): spread=30.0% -> "
+          f"ratio={rayleigh_resolution_ratio(2.45*(1-0.15), 2.45*(1+0.15)):.4f}  "
+          f"(< 1.0 = under the floor); spread=39.3% -> ratio="
+          f"{rayleigh_resolution_ratio(2.45*(1-0.1965), 2.45*(1+0.1965)):.4f} (break-even)")
