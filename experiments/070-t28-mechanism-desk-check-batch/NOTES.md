@@ -165,12 +165,79 @@ batch refits already-gated `results.json` data, it does not re-derive it.
 
 ## Result
 
-*(filled in Phase 4 — see `phase4_results.md`)*
+Zero FDTD calls, pure desk arithmetic. **P-070-1 CONFIRM** — both `C40`
+and `C80`'s own free-fit periods (2.4361°, 2.5338°) sit within 20% of
+`P*_delta=2.8421°` (14.29%, 10.85% deviation), and neither config's R² is
+disqualifying (0.4327, 0.4337) — the ~2.8°-family signature genuinely
+lives in each config **individually**, not only in their difference.
+**P-070-2 NEITHER** — both beat-frequency branches find a sub-1% named-
+constant match (`A_alt=233.19`→`233` at 0.081%; `A_alt=1270.81`→`1271` at
+0.015%), but neither clears the null-permutation gate (`p=0.806`, `p=0.204`
+— worse than or comparable to a majority of random targets in the same
+search space). **P-070-3 REFUTE** — `P_taper(39°,600nm)=36.86°`, 1197% off
+`P*_delta`, an order-of-magnitude clean rejection. **P-070-4 NEITHER** —
+`A_eff=518.81` matches `519` (six-way tie) at 0.036%, and the candidate's
+750nm cross-validation R²=0.7663 clears the 0.70 bar, **but** `null_p
+=0.497` — statistically indistinguishable from a coin flip, decisively
+failing the null-controlled gate despite passing every raw-threshold
+component. **P-070-5 REFUTE** — no NAMED expression is shared between
+either (b) branch's tie-set and (d)'s tie-set. Full detail:
+`phase4_results.md`.
 
 ## Learned
 
-*(filled in Phase 4)*
+1. **T28's ~2.84°-family signal is config-invariant (P-070-1), which
+   disfavors an `ABSORB`-depth-tied mechanism relative to a geometry-
+   invariant one.** `A=752` is bit-identical across `C40`/`C80` by
+   construction (exp-069); this cycle adds that the recovered periods
+   inside `C40(θ)` and `C80(θ)` alone (2.44°/2.53°) both independently
+   land close to the padding-delta's own free-fit period, something an
+   `ABSORB`-depth-specific mechanism (the one thing that differs between
+   configs) offers no obvious reason to produce. This does not identify a
+   mechanism — it narrows the *class* of viable ones toward something
+   present in both configs' shared geometry (candidates: `R_OUT`/`W_OBJ`,
+   degenerate at 78 cells here, per Idealization 4).
+2. **The named-constant search (items b/d/e) has essentially zero power
+   to discriminate a real geometric mechanism from chance, exactly as
+   Red Team's Phase-2 audit predicted and the mandatory null control now
+   demonstrates on the actual gated run, not a scratch check.** Every raw
+   "match" this batch found (0.015–0.081% deviation) looked, before the
+   null control, like strong evidence; after it, every one lands at or
+   above the 20th percentile of a 20,000-trial random-target null — not
+   even close to the `p≤0.05` bar. This is the single clearest
+   demonstration in this program's own history that PHOTONICS'/MATERIALS'
+   general worry (a dense small-integer search over many named constants
+   finds *something* regardless of ground truth) was not theoretical.
+3. **Taper-as-second-aperture (item c) is cleanly, decisively dead** — an
+   order of magnitude off, zero ambiguity, the one item this batch
+   resolves with no caveats attached.
+4. A mandatory-fix docket built entirely from Phase-2 critique + Red Team
+   ruling — with the Director adding zero new judgment calls at Phase 3 —
+   changed three of five headline verdicts from what a naive read of the
+   Phase-1 proposal's own disclosed recon numbers would have suggested
+   (P-070-2 and P-070-4 both looked pre-confirmed at Phase 1; both are
+   NEITHER once null-controlled). This is the process working as
+   intended, not a failure of Phase 1 — VISION's own Phase-2 HARKing flag
+   and Red Team's own executed proof are exactly what caught it before
+   either number reached PLAN.md as a load-bearing claim.
 
 ## Next
 
-*(filled in Phase 4/5)*
+- **T28's own forward tripwire (Red Team, exp-069 Phase-5 final audit) is
+  discharged**: this cycle is the cheap, desk-only first move required by
+  Iteration 48's close, delivered at Iteration 47.
+- **PLAN.md queue item 2 (EM's C60/C70 falsification test, or PHOTONICS'
+  properly-powered 750/450nm re-run) should be narrowed by P-070-1's
+  CONFIRM, not by P-070-2/4's raw (pre-null) numbers**, per docket item
+  10: EM's own C60/C70 test — which actually varies `ABSORB` while holding
+  everything else fixed — is now the more direct next step, since P-070-1
+  positively disfavors the `ABSORB`-tied hypothesis it was designed to
+  test, while items (b)/(d)/(e) contribute no surviving candidate length
+  scale to narrow a re-run's own target period toward.
+- **This batch does NOT identify a mechanism** for T28 — it establishes
+  that the signal is config-invariant (a real, if partial, narrowing) and
+  that this program's own dense small-integer named-constant search
+  methodology needs a null-permutation control by default going forward
+  whenever a future cycle proposes a similar search (a general process
+  lesson, not scoped to T28 alone — candidate for a standing house-rule
+  note, Red Team's/Phase-5's call).

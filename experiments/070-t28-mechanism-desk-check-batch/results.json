@@ -1,0 +1,155 @@
+{
+  "experiment": "070-t28-mechanism-desk-check-batch",
+  "panel_iteration": 47,
+  "lead_seat": "QUANTUM OPTICS",
+  "source": "experiments/069-t21-block-mini-period-match-power-up/results.json",
+  "named_constants": {
+    "A": 752,
+    "TAPER": 40,
+    "R_OUT": 78,
+    "W_OBJ": 78,
+    "GUARD_OUT": 185,
+    "W_FLANK": 78,
+    "D_SP": 223,
+    "LEVER": 93,
+    "aperture_cells": 1504,
+    "clear_plane": 37,
+    "clear_src": 20,
+    "ABSORB40": 40,
+    "ABSORB80": 80,
+    "PAD80": 40
+  },
+  "search_space_size": 36680,
+  "search_space_distinct_values": 7179,
+  "p_070_1_per_config": {
+    "cells": {
+      "C40": {
+        "r_squared_fixed": 0.29877077107988004,
+        "p_star_free": 2.43609022556391,
+        "r_squared_free": 0.43266132104636423,
+        "rel_dev_from_delta_period": 0.14285714285714282,
+        "config_confirms": true,
+        "config_refutes": false
+      },
+      "C80": {
+        "r_squared_fixed": 0.2645317405627635,
+        "p_star_free": 2.533834586466165,
+        "r_squared_free": 0.4337258161233949,
+        "rel_dev_from_delta_period": 0.10846560846560856,
+        "config_confirms": true,
+        "config_refutes": false
+      }
+    },
+    "confirm": true,
+    "refute": false,
+    "neither": false
+  },
+  "p_070_2_beat_frequency": {
+    "branches": {
+      "plus": {
+        "valid": true,
+        "P_b_deg": 1.1602959671970559,
+        "A_alt": 1270.8118352227866,
+        "best_rel": 0.00014806659176289476,
+        "n_ties": 3,
+        "tied": [
+          [
+            1271.0,
+            "+2*R_OUT+5*D_SP"
+          ],
+          [
+            1271.0,
+            "+2*W_FLANK+5*D_SP"
+          ],
+          [
+            1271.0,
+            "+2*W_OBJ+5*D_SP"
+          ]
+        ],
+        "null_p": 0.20385,
+        "null_n_trials": 20000,
+        "confirm": false,
+        "refute": false
+      },
+      "minus": {
+        "valid": true,
+        "P_b_deg": 6.323296248263871,
+        "A_alt": 233.18816477721307,
+        "best_rel": 0.0008069225013750015,
+        "n_ties": 2,
+        "tied": [
+          [
+            233.0,
+            "+1*LEVER+7*clear_src"
+          ],
+          [
+            233.0,
+            "+9*clear_plane-5*clear_src"
+          ]
+        ],
+        "null_p": 0.8055,
+        "null_n_trials": 20000,
+        "confirm": false,
+        "refute": false
+      }
+    },
+    "confirm": false,
+    "refute": false,
+    "neither": true
+  },
+  "p_070_3_taper": {
+    "P_taper_deg": 36.86294618688222,
+    "P_star_delta_deg": 2.8421052631578947,
+    "rel_dev": 11.970295880569669,
+    "confirm": false,
+    "refute": true,
+    "neither": false
+  },
+  "p_070_4_aeff": {
+    "A_eff": 518.8118352227868,
+    "best_rel": 0.00036268404928033074,
+    "n_ties": 6,
+    "tied": [
+      [
+        519.0,
+        "+1*D_SP+8*clear_plane"
+      ],
+      [
+        519.0,
+        "+2*LEVER+9*clear_plane"
+      ],
+      [
+        519.0,
+        "+3*LEVER+3*ABSORB80"
+      ],
+      [
+        519.0,
+        "+3*LEVER+6*ABSORB40"
+      ],
+      [
+        519.0,
+        "+3*LEVER+6*PAD80"
+      ],
+      [
+        519.0,
+        "+6*TAPER+3*LEVER"
+      ]
+    ],
+    "null_p": 0.4969,
+    "null_n_trials": 20000,
+    "candidate_value": 519.0,
+    "r_squared_750": 0.7663363853795837,
+    "confirm": false,
+    "refute": false,
+    "neither": true
+  },
+  "p_070_5_convergence": {
+    "overlap_by_branch": {
+      "plus": [],
+      "minus": []
+    },
+    "confirm": false,
+    "refute": true,
+    "neither": false
+  }
+}
