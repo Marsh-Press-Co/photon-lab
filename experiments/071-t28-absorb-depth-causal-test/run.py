@@ -88,6 +88,23 @@ WAVELENGTH_SCOPE_CAVEAT = (
     "artifact; the CONFIRM label below is scoped to 600nm only, not to "
     "an optical mechanism generally. A confirmatory lambda leg is queued "
     "as a fast-follow (Iteration 49), not run this cycle (mandate scope).")
+PAD_CONFOUND_CAVEAT = (
+    "PAD = ABSORB - 40 EXACTLY at all four congruent configs (dg065."
+    "CONFIGS) -- every absolute position (NX/NY/SRC_X/PLANE_X/OBJ_X/OBJ_Y) "
+    "shifts in lockstep with ABSORB; only RELATIVE quantities (A=752, "
+    "aperture_cells=1504, clearances) are genuinely held fixed. This ONE "
+    "axis is therefore a COMPOUND axis: ABSORB (damping-ramp depth/"
+    "strength) and PAD (round-trip path length to the boundary) move "
+    "together by construction, with no config in this series holding one "
+    "fixed while varying the other. A CONFIRM on this series describes an "
+    "ABSORB-OR-PAD-tied effect, NOT specifically an ABSORB-tied one, until "
+    "a PAD-decorrelated config exists (Red Team's Phase-5 final audit, "
+    "independently confirmed by THERMODYNAMICS/ELECTROMAGNETISM/QUANTUM "
+    "OPTICS' Phase-5 reviews -- a genuine gap in this congruent series' own "
+    "causal-inference logic, unflagged across three consecutive T28 cycles "
+    "using it, Iterations 46-48, until this cycle's Phase 5. A REFUTE is "
+    "NOT equally compromised: a flat trend on the compound axis validly "
+    "rules out sensitivity to both candidate quantities together.)")
 
 FROZEN_PREDICTIONS = f"""
 P-071-G1  absolute identity gate: theta in {{39,40}} x {{C40,C80}} x 600nm x
@@ -97,12 +114,17 @@ P-071-G1  absolute identity gate: theta in {{39,40}} x {{C40,C80}} x 600nm x
           the cycle before anything else is trusted.
 
 Block SETTLE-C60C70  (mandatory fix 1, EM) |dC(4200-2800)| at theta in
-          {{37.2,41.4}}deg, 600nm, C60/C70, relative to |dC(2800-1400)| at
-          the same cells (1400 values reused from exp-065's own committed
-          Block SWEEP -- loaded programmatically). BINDING PRECONDITION on
-          P-071-2, identical bands to P-069-4/exp-069:
-          CONFIRM (settled) <= 1% relative at ALL FOUR cells (2 theta x 2
-          configs) | REFUTE (unsettled) >= 5% relative at ANY cell.
+          {{37.2,41.4}}deg, 600nm, C60/C70, relative to GATE_HARD (the
+          instrument-floor scale -- idealization 10: 37.2/41.4deg are OFF
+          exp-065's coarse STEPS=1400 angle grid, so there is no 1400-STEPS
+          comparator at these exact cells; this is NOT a 1400-anchored
+          relative percentage, corrected here per Red Team's Phase-5 final
+          audit mandatory fix 3 -- score_settle_c60c70()'s own docstring
+          and implementation always used this convention; this text
+          originally described the wrong one). BINDING PRECONDITION on
+          P-071-2:
+          CONFIRM (settled) <= 1x GATE_HARD at ALL FOUR cells (2 theta x 2
+          configs) | REFUTE (unsettled) >= 5x GATE_HARD at ANY cell.
 
 P-071-1   (descriptive, feeds -2/-3) Free-period grid search -- IDENTICAL
           methodology to exp-069/070's `_free_period_search` (imported by
@@ -151,10 +173,12 @@ P-071-5   (disclosed, non-gating extension) Same peak-cell R3 check,
           resolution-robustness evidence into the interior of the ABSORB
           series.
 
-CAVEATS (mandatory fixes 3, 4; disclosed regardless of outcome):
+CAVEATS (mandatory fixes 3, 4, plus Phase-5 mandatory fix 4/6; disclosed
+regardless of outcome, appended UNIFORMLY to every Combined-Verdict branch):
   {ABSORB_NOT_MATERIAL_CAVEAT}
   {THERMO_SCOPE_CAVEAT}
   {WAVELENGTH_SCOPE_CAVEAT}
+  {PAD_CONFOUND_CAVEAT}
 
 COMBINED VERDICT (computed in code, not prose):
   HALT <=> P-071-G1 fails. No other item is scored.
@@ -377,7 +401,14 @@ def score_trend_and_pairs(per_config):
     spread_40_80 = abs(p_star[keys.index("C80")] - p_star[keys.index("C40")]) / np.mean(p_star)
     trend_resolution_ratio = dg.rayleigh_resolution_ratio(
         p_star[keys.index("C40")], p_star[keys.index("C80")])
-    trend_resolved = trend_resolution_ratio >= dg.RESOLUTION_FLOOR_RATIO_THRESHOLD
+    # Mandatory fix 2 (Red Team's Phase-5 final audit): rayleigh_resolution_
+    # ratio()'s own docstring promises an exact-tie pair (+inf) is "treated
+    # as unresolved by the caller, never as a false REFUTE" -- the original
+    # `ratio >= THRESHOLD` comparison did not special-case infinity
+    # (`float("inf") >= 1.0` is True in Python), the documented-opposite
+    # value. isfinite() guard applied here and below, matching the contract.
+    trend_resolved = math.isfinite(trend_resolution_ratio) and \
+        trend_resolution_ratio >= dg.RESOLUTION_FLOOR_RATIO_THRESHOLD
 
     # pairwise table, all 6 pairs, each with its own resolution ratio
     pairs = []
@@ -389,7 +420,8 @@ def score_trend_and_pairs(per_config):
             ratio = dg.rayleigh_resolution_ratio(pa, pb)
             pairs.append(dict(pair=f"{ka}-{kb}", p_a=pa, p_b=pb, spread=spread,
                               resolution_ratio=ratio,
-                              resolved=bool(ratio >= dg.RESOLUTION_FLOOR_RATIO_THRESHOLD)))
+                              resolved=bool(math.isfinite(ratio)
+                                           and ratio >= dg.RESOLUTION_FLOOR_RATIO_THRESHOLD)))
     max_pair_spread = max(p["spread"] for p in pairs)
     all_pairs_resolved = all(p["resolved"] for p in pairs)
 
@@ -512,20 +544,30 @@ def main():
 
     preconditions_pass = (g1_gate["all_exact"] and settle_scored["confirm"]
                           and p071_4["confirm"])
+    # Mandatory fix 4 (Red Team's Phase-5 final audit): all three caveats
+    # are appended UNIFORMLY to every branch's combined_reason, not just a
+    # partial subset per branch (the original wiring gave CONFIRMED 1-of-3,
+    # REFUTED 0-of-3, NEITHER 1-of-3 -- non-load-bearing for what actually
+    # printed this run, since it landed NEITHER, but a real gap for any
+    # future CONFIRMED/REFUTED outcome reusing this file).
+    ALL_CAVEATS = " ".join((ABSORB_NOT_MATERIAL_CAVEAT, THERMO_SCOPE_CAVEAT,
+                            WAVELENGTH_SCOPE_CAVEAT, PAD_CONFOUND_CAVEAT))
     if trend["confirm"] and preconditions_pass:
         combined = "CONFIRMED_ABSORB_TIED_NUMERICAL_BOUNDARY_EFFECT"
         combined_reason = (
             "All binding preconditions hold (G1 identity gate, Block "
             "SETTLE-C60C70 settled, P-071-4 resolution-robust) AND the "
             "P*(ABSORB) trend clears the CONFIRM band above its own "
-            "Rayleigh resolution floor. " + ABSORB_NOT_MATERIAL_CAVEAT)
+            "Rayleigh resolution floor. " + ALL_CAVEATS)
     elif trend["refute"] and preconditions_pass:
         combined = "REFUTED_SHARED_GEOMETRY_NOT_ABSORB_TIED"
         combined_reason = (
             "All binding preconditions hold AND the pairwise spread "
             "clears the REFUTE band with every pair independently above "
-            "its own Rayleigh resolution floor -- genuine evidence of "
-            "flatness, not floor-limited indistinguishability.")
+            "its own Rayleigh resolution floor -- genuine evidence the "
+            "compound ABSORB/PAD axis (PAD=ABSORB-40 exactly across this "
+            "congruent series -- see the PAD-confound caveat) is flat, "
+            "not floor-limited indistinguishability. " + ALL_CAVEATS)
     else:
         combined = "NEITHER"
         reasons = []
@@ -541,9 +583,13 @@ def main():
                           f"all_pairs_resolved={trend['all_pairs_resolved']})")
         if not reasons:
             reasons.append("raw trend statistic (spread/R^2) landed in the gray zone "
-                          "between the CONFIRM and REFUTE bands")
+                          "between the CONFIRM and REFUTE bands, on the pre-registered "
+                          "thresholds ALONE -- independent of the resolution-floor gate "
+                          "below, which was correctly computed but was NOT the proximate "
+                          "cause of this branch firing (Red Team's Phase-5 final audit, "
+                          "mandatory fix 1: raw_confirm/raw_refute both already False)")
         combined_reason = ("Explicit NEITHER branch (not a silent PARTIAL escape "
-                          "hatch): " + "; ".join(reasons) + ". " + THERMO_SCOPE_CAVEAT)
+                          "hatch): " + "; ".join(reasons) + ". " + ALL_CAVEATS)
 
     total_calls = (g1["n_new_runs"] + dense_causal["n_new_runs"]
                   + r3_peak["n_new_runs"] + settle["n_new_runs"])
@@ -574,7 +620,8 @@ def main():
         "combined_reason": combined_reason,
         "caveats": {"absorb_not_material": ABSORB_NOT_MATERIAL_CAVEAT,
                    "thermo_scope": THERMO_SCOPE_CAVEAT,
-                   "wavelength_scope": WAVELENGTH_SCOPE_CAVEAT},
+                   "wavelength_scope": WAVELENGTH_SCOPE_CAVEAT,
+                   "pad_confound": PAD_CONFOUND_CAVEAT},
         "total_new_runs": total_calls,
         "total_elapsed_s": total_elapsed,
         "r_contact_disposition": ("UNTOUCHED this cycle -- PLAN.md's Iteration-48 "

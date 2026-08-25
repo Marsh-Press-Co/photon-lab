@@ -65,21 +65,48 @@ four points — a real, well-determined *shape* to the trend. But:
   the two pre-committed bands, exactly the disposition the pre-committed
   rule exists to catch rather than paper over.
 
-**Resolution-floor gate (mandatory fix 2) — decisive.**
-`trend_resolution_ratio(P*(40), P*(80)) = 0.095`: the 31-point/36–42°
-window supplies under **10%** of the frequency resolution needed to
-distinguish these two periods. **`trend_resolved = False`.** Every one of
-the five non-trivial pairwise comparisons (all except the exact C70–C80
-tie) is independently `UNRESOLVED` (`all_pairs_resolved = False`) — see
-the full table below. **This is exactly the failure mode Red Team's own
-extension of QUANTUM's finding predicted**: a small monotonic trend
-across four points, fit with a deceptively high R², sitting entirely
-inside the window's own frequency-resolution floor. The mandatory
-resolution-floor gate did its job — it prevented this cycle from reporting
-either a false CONFIRM (a "genuine ABSORB-tied mechanism" the window
-cannot actually establish) or a false REFUTE (a "flat, shared-geometry"
-verdict the window cannot rule out either, since it can't resolve periods
-this close in the first place).
+**ERRATUM (Red Team's Phase-5 final audit, mandatory fix 1) — the
+paragraph originally here called the resolution-floor gate "decisive" and
+claimed it "prevented a false CONFIRM or REFUTE." That is wrong, not
+merely imprecise: `results.json["trend"]` shows `raw_confirm=False`
+(`spread_40_80=3.90%` already misses the 30% CONFIRM floor on its own) and
+`raw_refute=False` (`R²=0.8664` already misses the REFUTE ceiling of
+`≤0.30` on its own) — BOTH pre-registered raw bands already fail on their
+own thresholds, with or without the resolution-floor gate. `run.py`'s own
+`combined_reason` logic confirms this precisely: the branch that actually
+fired is the plain gray-zone catch-all, not the resolution-floor branch
+(`unresolved_only=False` — that code path was never reached). This
+overclaim also propagated into the Phase-4 git commit message (`d5fe629`)
+and is corrected there only by this erratum, not by rewriting history —
+see LOGBOOK.md Iteration 48 for the authoritative corrected account.
+Corrected paragraph follows.**
+
+**Resolution-floor gate — real, correctly computed, but NOT the proximate
+cause of this run's NEITHER.** `trend_resolution_ratio(P*(40), P*(80)) =
+0.095`: the 31-point/36–42° window supplies under **10%** of the frequency
+resolution needed to distinguish these two periods. `trend_resolved =
+False`, and (after a second erratum below) all six pairwise comparisons are
+independently `UNRESOLVED`. This *would* have been load-bearing had either
+raw band cleared its own threshold — Red Team's own Phase-2 extension
+already showed the CONFIRM band's 30% minimum sits at only 75% of full
+Rayleigh resolving power, under the floor even at its own boundary — but
+for *this specific run*, both raw bands missed independently first, on the
+pre-registered thresholds alone. The resolution floor is prospectively
+load-bearing for any future run whose raw statistic lands closer to either
+band; it did not decide this one.
+
+**Second erratum (mandatory fix 2, same audit) — a code bug, now fixed.**
+`rayleigh_resolution_ratio()`'s own docstring specifies an exact-tie pair
+(`p_a == p_b`, ratio `+inf`) should be "treated as unresolved by the
+caller, never as a false REFUTE"; the original caller code did not guard
+against infinity (`float("inf") >= 1.0` is `True` in Python), so the
+C70–C80 exact tie was originally flagged `resolved: true` — the
+documented-opposite value. Patched in `run.py` (an `isfinite()` guard) and
+in the committed `results.json` (re-derived, not re-run — the underlying
+FDTD data is unchanged, only this scoring field). **Non-load-bearing for
+this cycle's Combined Verdict either way**: `all_pairs_resolved` requires
+all six pairs `True`; the other five were already independently `False`
+before this fix.
 
 ## P-071-3 — full pairwise table (all 6 pairs, required disclosure)
 
@@ -90,11 +117,39 @@ this close in the first place).
 | C40–C80 | 2.4361 | 2.5338 | 3.93% | 0.095 | NO |
 | C60–C70 | 2.5188 | 2.5338 | 0.60% | 0.014 | NO |
 | C60–C80 | 2.5188 | 2.5338 | 0.60% | 0.014 | NO |
-| C70–C80 | 2.5338 | 2.5338 | 0.00% | ∞ (exact tie) | trivially YES |
+| C70–C80 | 2.5338 | 2.5338 | 0.00% | ∞ (exact tie) | **NO** (corrected — see erratum above; originally mistabled YES) |
 
-Five of six pairs are unresolved at this window; the sixth is a
-discretization tie carrying no independent information (see P-071-1's own
-caveat above).
+**All six pairs are unresolved at this window** — the C70–C80 exact tie
+carries no independent information (a discretization coincidence at this
+resolution, see P-071-1's own caveat above), not evidence of resolution.
+
+## Standing forward constraint (Red Team's Phase-5 final audit, mandatory fix 6) — the PAD/ABSORB confound
+
+**`PAD = ABSORB − 40` exactly at all four congruent configs** (`dg065.
+CONFIGS` — independently verified by three blind Phase-5 seats,
+THERMODYNAMICS/ELECTROMAGNETISM/QUANTUM OPTICS, and confirmed by Red
+Team's own re-derivation). Every absolute position (`NX/NY/SRC_X/PLANE_X/
+OBJ_X/OBJ_Y`) shifts in lockstep with `ABSORB`; only *relative* quantities
+(`A=752`, `aperture_cells=1504`, clearances) are genuinely held fixed. The
+single `ABSORB` axis this cycle manipulates is therefore a **compound
+axis**: `ABSORB` (damping-ramp depth/strength) and `PAD` (round-trip path
+length to the boundary) move together by construction — no config in this
+series holds one fixed while varying the other. **A hypothetical CONFIRM
+on this series would have been mislabeled** "ABSORB-tied" when it could
+equally be PAD/path-length-tied; **a hypothetical REFUTE is not equally
+compromised** — a flat trend on the compound axis validly rules out
+sensitivity to both candidate quantities together, even though it does not
+positively establish the specific "shared-geometry"/edge-diffraction
+alternative. This did not affect this cycle's own NEITHER verdict (which
+makes no causal attribution in either direction), but it is a genuine,
+previously undetected gap in this exact congruent series' own
+causal-inference logic — reused unmodified for T28 causal-adjacent work
+across three consecutive cycles (Iterations 46/47/48) before three
+independent blind seats converged on it unprompted this cycle. **Standing
+forward constraint**: any future CONFIRM on this exact series (`C40/C60/
+C70/C80`) must be read as ABSORB-*or*-PAD-tied, not specifically
+ABSORB-tied, until a PAD-decorrelated config exists (queued, Iteration 49
+— see `NOTES.md`'s Next section).
 
 ## P-071-5 (disclosed, non-gating) — peak-cell R3, C70−C60
 
@@ -111,20 +166,25 @@ own 0.0019/−0.0020).
 ## Combined Verdict: **NEITHER**
 
 Per the pre-committed rule (`run.py::main`, computed in code): G1 PASSED,
-both binding preconditions CONFIRM, but P-071-2's raw trend statistic
-lands in the gray zone between the CONFIRM and REFUTE bands, **and** the
-resolution-floor gate independently confirms the trend test cannot be
-trusted in either direction at this window's own resolving power. This is
-an **explicit, computed NEITHER — not a silent PARTIAL escape hatch**: the
-underlying `C80−C40` signal (settled, resolution-robust at the peaks) is
-real, and the four per-config periods do rise smoothly and monotonically
-with `ABSORB` depth, but the magnitude of that rise (3.9%) sits entirely
-inside the window's own frequency-resolution floor — this causal
-manipulation, run properly with both mandatory preconditions passing,
-**could not distinguish a genuine small ABSORB-depth dependence from
-four noisy period estimates of a single underlying (non-ABSORB-tied)
-period**, which is the honest finding, not a null result to be explained
-away.
+both binding preconditions CONFIRM, and P-071-2's raw trend statistic
+lands in the gray zone between the CONFIRM and REFUTE bands **on the
+pre-registered thresholds alone** (`raw_confirm=False`: `spread_40_80=
+3.90%` misses the 30% CONFIRM floor; `raw_refute=False`: `R²=0.8664`
+misses the `≤0.30` REFUTE ceiling) — doubly secured by, but not decided
+by, the resolution-floor finding above (corrected per the erratum:
+neither raw band cleared its own threshold in the first place, so the
+resolution-floor gate's own branch of the verdict logic was never
+reached this run). This is an **explicit, computed NEITHER — not a
+silent PARTIAL escape hatch**: the underlying `C80−C40` signal (settled,
+resolution-robust at the peaks) is real, and the four per-config periods
+do rise smoothly and monotonically with `ABSORB` depth, but the magnitude
+of that rise (3.9%) is too small to clear either pre-committed band, and
+— independently, prospectively — sits entirely inside the window's own
+frequency-resolution floor, so even a differently-thresholded rescoring of
+this same data could not distinguish a genuine small ABSORB(-or-PAD)-depth
+dependence (see the standing PAD-confound constraint above) from four
+noisy period estimates of a single underlying, non-ABSORB-tied period.
+That is the honest finding, not a null result to be explained away.
 
 Caveats (mandatory fixes 3/4/5, disclosed unconditionally, printed with
 every result regardless of outcome): `ABSORB` is

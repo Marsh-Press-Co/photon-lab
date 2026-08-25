@@ -65,6 +65,19 @@ phenomenon's four constraints; constraint 3 is not engaged.
 3. Positive θ branch only (36°–42°), matching Block DENSE's own window.
 4. All four congruent `ABSORB` depths engaged; `G40`/`N60` (pad-only/naive
    controls) are T24's own separate question, not re-run here.
+4b. **ADDED (Red Team's Phase-5 final audit, mandatory fix 6, independently
+   confirmed by three blind Phase-5 seats — THERMODYNAMICS, ELECTROMAGNETISM,
+   QUANTUM OPTICS): `PAD = ABSORB − 40` exactly at all four congruent
+   configs.** Every absolute position shifts in lockstep with `ABSORB`;
+   only relative quantities (`A=752`, clearances) are held fixed. This
+   ONE axis is a compound `ABSORB`/`PAD` axis, not a pure `ABSORB` axis —
+   a hypothetical CONFIRM on this series describes an ABSORB-*or*-PAD-tied
+   effect, not specifically ABSORB-tied (a hypothetical REFUTE is not
+   equally compromised — it validly rules out both together). Does not
+   affect this cycle's own NEITHER verdict, but is a standing forward
+   constraint on any future causal use of this exact congruent series,
+   unflagged across three prior cycles (46/47) that reused it. See
+   `phase4_results.md`'s own "Standing forward constraint" section.
 5. The free-period grid search fits a fixed sinusoidal form in `sin θ`; a
    4-point linear `P*(ABSORB)` trend has only 2 residual degrees of
    freedom — mitigated, not eliminated, by the resolution-floor gating
@@ -162,18 +175,28 @@ PARTIAL escape hatch. Full detail: `phase4_results.md`.
 
 ## Learned
 
-1. **The mandatory-fix docket did its job.** Both of Red Team's Phase-2
-   load-bearing concerns (EM's settling-closure gap, QUANTUM's/Red Team's
-   resolution-floor risk) were real, testable claims — and both came back
-   informative: settling was fine (a genuine close on EM's gap), while the
-   resolution floor caught exactly the failure shape it was built to catch
-   (a small, monotonic, high-R² 4-point trend that the window cannot
-   actually resolve). Without the resolution-floor gate, this cycle would
-   likely have reported a spurious REFUTE (max_pair_spread clears 15%) or
-   at minimum an unqualified "trend not significant" reading that
-   obscured the real reason: the test lacked the resolving power to
-   distinguish the hypotheses in the first place, not that the periods are
-   flat.
+1. **The mandatory-fix docket did its job — and Phase 5 caught a real
+   overclaim about exactly how.** ERRATUM (Red Team's Phase-5 final audit,
+   independently confirmed by VISION SCIENCE and QUANTUM OPTICS' blind
+   Phase-5 reviews): the sentence originally here — "without the
+   resolution-floor gate, this cycle would likely have reported a spurious
+   REFUTE" — is a checkable, false counterfactual. `results.json["trend"]`
+   shows `raw_refute=False` on the pre-registered `R²≤0.30` ceiling ALONE
+   (`R²=0.8664`), with no resolution floor involved at all; re-scoring the
+   identical data against the unmodified REFUTE band, with the
+   resolution-floor gate removed entirely, still yields NEITHER. Corrected
+   account: both of Red Team's Phase-2 load-bearing concerns (EM's
+   settling-closure gap, QUANTUM's/Red Team's resolution-floor risk) were
+   real, testable claims, and both came back informative — settling was
+   genuinely fine (closing EM's gap), and the resolution floor is real,
+   correctly computed, and prospectively load-bearing for any future run
+   whose raw statistic lands closer to either band — but for *this* run,
+   the raw CONFIRM/REFUTE bands already missed independently, on their own
+   pre-registered thresholds, before the resolution floor even entered the
+   decision. The mandatory-fix docket still did its job: it built a gate
+   that would have caught a false CONFIRM/REFUTE had one nearly fired, and
+   it happened not to be the deciding factor this particular run — that is
+   a more precise, and more honest, statement than the original claim.
 2. **T28's causal question remains genuinely open**, narrowed rather than
    answered: the per-config periods DO rise smoothly with `ABSORB` depth
    (a real, well-fit shape), but the magnitude (3.9% over a 2× `ABSORB`
@@ -191,17 +214,39 @@ PARTIAL escape hatch. Full detail: `phase4_results.md`.
 
 ## Next
 
-- T28's causal question (does the ~2.8°-family period genuinely track
-  `ABSORB` depth?) remains open. A properly-powered follow-up needs EITHER
-  a wider angular window (more T21 periods, improving the Rayleigh
-  resolution) OR a discriminator that does not require frequency-resolving
-  four close periods against each other — e.g. a direct beat-frequency or
-  phase-tracking measurement between adjacent-ABSORB configs, rather than
-  four independent free-period fits compared post hoc.
-- PHOTONICS' confirmatory 750nm leg (recommended, not run this cycle —
-  Red Team's scope ruling) remains a live fast-follow candidate,
-  independent of the resolution-floor question above.
-- `R_contact`'s literature search (PLAN.md queue item 2) remains
-  untouched by this cycle's own locked mandate — see
-  `phase3_synthesis.md`'s tooling disclosure for the Director's own
-  capacity note.
+Ranked queue for Iteration 49, per Red Team's Phase-5 final-audit
+reconciliation of all six Phase-5 seats' proposals (full reasoning in
+`phase5_redteam_audit.md` §6):
+
+1. **Merge EM's differential/beat-fit and QUANTUM's item (b) proposals —
+   zero new FDTD cost.** Fit `delta_AB(θ)=C_B(θ)−C_A(θ)` directly for every
+   adjacent ABSORB pair (reusing all 124 already-collected points), instead
+   of independently fitting absolute periods and subtracting — converts an
+   unresolvable absolute-frequency problem (QUANTUM: the C60–C70 pair needs
+   `Δsinθ≥5.76`, exceeding the maximum achievable 2.0) into a
+   phase-accumulation/beat-detection problem, and reuses the exact
+   methodology that discovered T28 in the first place.
+2. **Merge THERMODYNAMICS' matched-PAD amplitude probe and QUANTUM's item
+   (a) into one new-config build** (~62–93 calls) — the only way to
+   directly close the PAD/ABSORB confound (idealization 4b above): hold
+   `PAD` fixed while `ABSORB` varies, scoring both THERMO's
+   resolution-floor-free amplitude discriminator (primary) and the period
+   fit (secondary, floor-caveated) on the same run.
+3. **MATERIALS' mask-functional-form ablation** — cheap, answers whether
+   the periodicity is tied to a length scale at all vs. the damping mask's
+   numerical decay profile.
+4. **PHOTONICS' two-tone joint fit** (zero-cost, desk-only) **+ EM's new
+   ABSORB≈120 config** (31 calls) — direct tests of the saturating-mechanism
+   candidate independently confirmed real this cycle (R²=0.998 saturating
+   vs. 0.866 linear, at equal parameter count — see `phase5_redteam_audit.md`
+   §1.5), run together, informed by item 1's result.
+5. **VISION's window-discipline guidance** — do not reuse the 36°–42°
+   window a third time for an absolute-period discriminator; a binding
+   constraint on items 2–4's new FDTD spend, not a standalone item, already
+   substantially satisfied by item 1's shift to differential/beat fitting.
+
+`R_contact`'s literature search (PLAN.md queue item 2, 9 consecutive
+cycles blocked on WebSearch/WebFetch tooling) remains unchanged in ranking
+relative to T28 work — still untouched by this cycle's own locked
+mandate; see `phase3_synthesis.md`'s tooling disclosure for the Director's
+own capacity note.

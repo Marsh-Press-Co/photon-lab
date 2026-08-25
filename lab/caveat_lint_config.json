@@ -390,5 +390,37 @@
       "experiments/*/NOTES.md",
       "experiments/*/phase*.md"
     ]
+  },
+  {
+    "id": "exp071-t28-absorb-pad-confound-and-resolution-floor",
+    "description": "exp-071 (Panel Iteration 48) found the P*(ABSORB) causal trend test's headline numbers -- linear fit R^2=0.8664, spread_40_80=3.90%, per-config free periods C40=2.4361/C60=2.5188/C70=2.5338/C80=2.5338deg -- look like a real, well-fit monotonic trend by raw R^2 alone, but the Combined Verdict is NEITHER (not CONFIRM, not REFUTE) for two independent, jointly disqualifying reasons: (1) both raw pre-registered bands miss on their own thresholds (raw_confirm=False: 3.90% < 30% CONFIRM floor; raw_refute=False: R^2=0.8664 > 0.30 REFUTE ceiling); (2) all six pairwise period comparisons are independently below the window's own Rayleigh resolution floor (trend_resolution_ratio=0.095, i.e. under 10% of the resolving power needed), so even a differently-thresholded rescoring could not trust either direction. A DISTINCT, independently-confirmed finding (a 2-parameter saturating-exponential model fits the same four points at R^2=0.998 vs the linear model's R^2=0.866, at equal parameter count) is real and well-supported but does NOT rescue the unresolved input data -- it says which shape the (still-unresolved) points trace more smoothly, not that ABSORB-tying is established. SEPARATELY: PAD=ABSORB-40 EXACTLY at all four congruent configs (dg065.CONFIGS) means this whole series is a COMPOUND ABSORB/PAD axis -- any future CONFIRM on this exact series (C40/C60/C70/C80) describes an ABSORB-OR-PAD-tied effect, not specifically an ABSORB-tied one, until a PAD-decorrelated config exists. Any future citation of the R^2=0.8664/spread=3.90% trend numbers, the saturating-model R^2=0.998 comparison, or a CONFIRM/REFUTE verdict on this congruent series MUST carry the resolution-floor and/or PAD-confound disqualifying context alongside the raw number -- citing either in isolation would misrepresent an unresolved, confound-compromised trend as decisive evidence.",
+    "source": "experiments/071-t28-absorb-depth-causal-test/phase5_redteam_audit.md SS1 (adjudications 1.1-1.5), SS3, SS4; phase5_review_thermodynamics.md, phase5_review_em.md, phase5_review_quantum.md, phase5_review_vision.md, phase5_review_photonics.md (independently-converging Phase-5 findings); results.json[\"trend\"]",
+    "phrase_patterns": [
+      "resolution[_ ]ratio",
+      "Rayleigh resolution floor",
+      "PAD\\s*=\\s*ABSORB",
+      "PAD/ABSORB confound",
+      "ABSORB-or-PAD-tied",
+      "saturating",
+      "unresolved input data"
+    ],
+    "required_sites": [
+      "experiments/071-t28-absorb-depth-causal-test/NOTES.md",
+      "experiments/071-t28-absorb-depth-causal-test/phase4_results.md"
+    ],
+    "trigger_terms": [
+      "0\\.8664",
+      "3\\.90%",
+      "spread_40_80",
+      "P-071-2",
+      "P\\*\\(ABSORB\\)",
+      "T28"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md"
+    ]
   }
 ]
