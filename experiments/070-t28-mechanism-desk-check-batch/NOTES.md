@@ -71,7 +71,11 @@ between a recovered length scale and some combination of these constants
 is at least as consistent with a numerical-boundary-construction artifact
 of this engine's own graded-loss absorbing boundary as with a physically
 real diffracting edge (MATERIALS' Phase-2 finding, Red Team-adopted in
-full).
+full). **Separately (QUANTUM OPTICS' Phase-5 finding, docket item 8):**
+despite this cycle's QUANTUM-OPTICS-lead byline, the beat-frequency
+algebra in item (b) is ordinary classical linear superposition of two
+sinusoids — it carries no photon-statistics, coherence-time, or
+non-classical content, and should not be read as a quantum-optical claim.
 
 ## Disclosed pre-registration caveat (docket item 7)
 
@@ -108,11 +112,17 @@ Checkpoint-criterion-2 candidacy explicitly declined for every outcome.
 3. Reuses only the 600nm DENSE block's 31 points and the 750nm LEG750's
    16 points — no new angles, λ, resolution, or settling checks (P-069-4/5
    already CONFIRMED, carried forward unchanged).
-4. `R_OUT` and `W_OBJ` are numerically degenerate at this bench's own
-   geometry (both 78 cells) — any match against `R_OUT` is equally a
-   match against `W_OBJ`; this batch cannot distinguish "object radius"
-   from "measurement-window half-width" as the physically loaded
-   quantity, if either is real at all (see mandatory caveat, above).
+4. **Two named-constant clusters are internally degenerate at this
+   bench's own geometry** (VISION's Phase-5 finding, widened per Red
+   Team's docket item 6): `{R_OUT, W_OBJ, W_FLANK}=78` (a three-way tie,
+   not merely `R_OUT`/`W_OBJ` as originally stated) and
+   `{TAPER, ABSORB40, PAD80}=40`; additionally `aperture_cells=2·A` is a
+   structural redundancy, not an independent length. This batch cannot
+   distinguish members of either cluster from one another as the
+   physically loaded quantity, if any is real at all (see mandatory
+   caveat, above) — some of the "N-way ties" reported in `phase4_results.md`
+   collapse to fewer independent coincidences than their raw count
+   suggests once these clusters are accounted for.
 5. The NAMED search space is bounded to single terms and pairs with
    `|c|≤10` — a three-or-more-term combination, or a non-integer physical
    ratio, is out of scope and would not be found even if real.
@@ -147,6 +157,16 @@ Checkpoint-criterion-2 candidacy explicitly declined for every outcome.
 | **P-070-3** | Item (c). `TAPER=40` cells alone predicts `P_taper(39°,600nm)` near `P*_delta`. | `\|P_taper−P*_delta\|/P*_delta ≤ 20%` | `≥ 100%` | NEITHER, disclosed |
 | **P-070-4** | Item (d). `A_eff` (back-solved from `P*_delta`) matches a NAMED combination, **null-controlled**, and that candidate's implied period fits the held-out 750nm leg. | best match ≤1% **AND** `p≤0.05` **AND** `R²(750nm)≥0.70` | best match ≥10%, **OR** `R²(750nm)<0.40` | NEITHER, disclosed |
 | **P-070-5** | Item (e). The tie-sets from (b)'s branches and (d) share ANY common NAMED expression (docket fix 3 — no single arbitrary "best pick"). | any shared expression | no shared expression | — (binary by construction) |
+
+**`N=20,000` rationale (corrected, docket item 7, QUANTUM's Phase-5
+finding):** chosen for adequate Monte Carlo resolution at the `p≤0.05`
+decision boundary against this batch's own 36,680-expression search
+space — not, as Red Team's Phase-2 audit stated when first specifying it,
+because it "matches T28's own founding permutation test." T28's founding
+test (exp-069) drew noise realizations over a 400-point period grid, a
+structurally different null test over a much smaller per-trial space;
+`N=2,000` independently reproduces identical conclusions here (QUANTUM's
+Phase-5 check), so `N=20,000`'s specific value is not doing hidden work.
 
 **No Combined Verdict gate** (unchanged from Phase 1 — these five items are
 diagnostic and largely independent; each is reported individually).
@@ -186,17 +206,32 @@ either (b) branch's tie-set and (d)'s tie-set. Full detail:
 
 ## Learned
 
-1. **T28's ~2.84°-family signal is config-invariant (P-070-1), which
+1. **T28's ~2.84°-family signal is config-invariant (P-070-1, CONFIRMED
+   under its own pre-registered gate), but the result is softer than a
+   first read suggests (Phase-5 correction, ELECTROMAGNETISM, Red-Team-
+   confirmed).** `C40` and `C80`'s own recovered periods (2.4361°,
+   2.5338°) sit close to **each other** (3.93% cross-config spread,
+   `|P*(C80)−P*(C40)|/mean`) — genuinely supporting a shared, config-
+   invariant component — but each individually sits 11–14% off the actual
+   anchor, `P*_delta=2.8421°`, and each carries a non-negligible
+   fixed-period fit to T21's own established 1.9608° fringe
+   (`R²=0.2988`/`0.2645` at C40/C80, against a free-fit `R²=0.43`/`0.43`).
+   By EM's own same-frequency-superposition argument — the identical tool
+   that opened T28 in exp-069 — this pattern is **more consistent with a
+   compromise fit** between two nearby, imperfectly-separated frequencies
+   (T21's own strong ~1.96° fringe and a weaker second component) **than
+   with a tightly-matching independent confirmation** of a signal at
+   2.84° specifically. The pre-registered CONFIRM gate is honestly
+   cleared (house discipline: scored as committed, not re-scored after a
+   later review sharpens the interpretation — Red Team's Phase-5 final
+   audit ruling) — but this CONFIRM licenses "a real, config-invariant
+   component exists and is not clearly ABSORB-tied," not "C40 and C80
+   each independently reproduce the 2.84° period cleanly." It still
    disfavors an `ABSORB`-depth-tied mechanism relative to a geometry-
-   invariant one.** `A=752` is bit-identical across `C40`/`C80` by
-   construction (exp-069); this cycle adds that the recovered periods
-   inside `C40(θ)` and `C80(θ)` alone (2.44°/2.53°) both independently
-   land close to the padding-delta's own free-fit period, something an
-   `ABSORB`-depth-specific mechanism (the one thing that differs between
-   configs) offers no obvious reason to produce. This does not identify a
-   mechanism — it narrows the *class* of viable ones toward something
-   present in both configs' shared geometry (candidates: `R_OUT`/`W_OBJ`,
-   degenerate at 78 cells here, per Idealization 4).
+   invariant one (`A=752` is bit-identical across configs by
+   construction), just not decisively — candidates for the shared
+   geometry: `R_OUT`/`W_OBJ`/`W_FLANK`, a three-way degenerate cluster at
+   78 cells here (Idealization 4).
 2. **The named-constant search (items b/d/e) has essentially zero power
    to discriminate a real geometric mechanism from chance, exactly as
    Red Team's Phase-2 audit predicted and the mandatory null control now
@@ -230,10 +265,18 @@ either (b) branch's tie-set and (d)'s tie-set. Full detail:
   properly-powered 750/450nm re-run) should be narrowed by P-070-1's
   CONFIRM, not by P-070-2/4's raw (pre-null) numbers**, per docket item
   10: EM's own C60/C70 test — which actually varies `ABSORB` while holding
-  everything else fixed — is now the more direct next step, since P-070-1
-  positively disfavors the `ABSORB`-tied hypothesis it was designed to
-  test, while items (b)/(d)/(e) contribute no surviving candidate length
-  scale to narrow a re-run's own target period toward.
+  everything else fixed — is now the more direct next step. **P-070-1's
+  disfavoring of the `ABSORB`-tied hypothesis is real but not decisive**
+  (see Learned #1's own Phase-5 correction — the config-invariant reading
+  survives its own compromise-fit caveat, it does not erase it), which is
+  exactly why a causal manipulation test (C60/C70, varying `ABSORB`
+  directly across four points) is the correct next step rather than more
+  desk arithmetic — items (b)/(d)/(e) contribute no surviving candidate
+  length scale to narrow a re-run's own target period toward. Per Red
+  Team's Phase-5 final audit, the C60/C70 test should also carry EM's own
+  direct cross-config consistency metric (`|P*(Ca)−P*(Cb)|/mean`) at every
+  `ABSORB` pair, and fold in the already-queued peak-cell R3 resolution
+  recheck (θ≈37.2°/41.4°, 2 calls) at near-zero marginal cost.
 - **This batch does NOT identify a mechanism** for T28 — it establishes
   that the signal is config-invariant (a real, if partial, narrowing) and
   that this program's own dense small-integer named-constant search

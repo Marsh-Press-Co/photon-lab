@@ -18,6 +18,27 @@ neither config's `R²` is disqualifying (`<0.15`) nor its deviation `≥50%`.
 individually**, not only in their difference — the config-invariant
 hypothesis this item was built to test.
 
+**Cross-config consistency (Phase-5 addition, ELECTROMAGNETISM's finding,
+docket item 4 — computed from the fields already reported above, no
+re-run):** `|P*(C80)−P*(C40)|/mean = |2.5338−2.4361|/2.4850 = 3.93%` — the
+two configs' own recovered periods sit close to *each other*, a real
+point for the config-invariant reading. But each individually sits
+14.29%/10.85% from `P*_delta` itself, and each carries a non-negligible
+fixed-period fit to T21's own established `T_SINTHETA_600` period
+(`R²_fixed=0.2988` for C40, `0.2645` for C80 — both already present in
+`results.json::p_070_1_per_config.cells.{C40,C80}.r_squared_fixed`, only
+newly highlighted here) alongside the higher free-fit `R²=0.4327/0.4337`.
+Per EM's own same-frequency-superposition argument (the tool that
+originally opened T28 in exp-069), this pattern is more consistent with a
+**compromise fit** between T21's own strong ~1.96° fringe and a weaker,
+imperfectly-separated second component than with each config cleanly
+reproducing an independent 2.84° signal. **This does not change the
+CONFIRM verdict** (the pre-registered gate is honestly cleared on both
+configs, scored as committed per house discipline) — it recalibrates what
+the CONFIRM licenses: a real, config-invariant component, not a clean,
+tightly-matching independent confirmation at 2.84° specifically. Ruled by
+Red Team's Phase-5 final audit: correct, does not warrant a re-score.
+
 Contrast with the ORIGINAL (uncorrected) item-(a) design, which Red
 Team's Phase-2 audit ran against this same data: bare `R²≥0.30` alone
 would also have fired (0.4327/0.4337 both clear it), but via periods
@@ -63,7 +84,22 @@ Phase-1 proposal's own disclosed recon number exactly.
 match: a **six-way tie at 519** —
 `D_SP+8·clear_plane`, `2·LEVER+9·clear_plane`, `3·LEVER+3·ABSORB80`,
 `3·LEVER+6·ABSORB40`, `3·LEVER+6·PAD80`, `6·TAPER+3·LEVER` — at
-`best_rel=0.0363%`. The 750nm cross-validation using this candidate value
+`best_rel=0.0363%`. **Caveat on the raw tie count (docket item 6,
+VISION's Phase-5 finding — corrected here after an arithmetic check, see
+below):** `TAPER=ABSORB40=PAD80=40` is a three-way degenerate cluster
+(Idealization 4), and `ABSORB80=80` is exactly `2×` that cluster's value
+by construction (`C80`'s own congruent geometry: `absorb=80, pad=40`) —
+so `3·LEVER+3·ABSORB80`, `3·LEVER+6·ABSORB40`, `3·LEVER+6·PAD80`, **and**
+`6·TAPER+3·LEVER` all reduce to the identical numeric statement
+(`3·LEVER+240`), not four independent coincidences. Verified directly:
+`3·93+3·80 = 3·93+6·40 = 6·40+3·93 = 519` in every case. **The six-way
+tie is actually only 3 independent coincidences** (`D_SP+8·clear_plane`,
+`2·LEVER+9·clear_plane`, and the collapsed `3·LEVER+240` group) — a
+sharper density reduction than the docket's own first-pass estimate
+found, though still a null-control-relevant one (`null_p` was computed
+against the raw 36,680-expression space directly, not a deduplicated one,
+so this caveat does not change the reported `p=0.497`). The 750nm
+cross-validation using this candidate value
 (519) gives `R²=0.7663` — clears the 0.70 bar, matching the Phase-1
 proposal's disclosed post-hoc figure (`R²=0.7666`, PHOTONICS' own Phase-5
 finding from exp-069) almost exactly. **Every raw-threshold component of

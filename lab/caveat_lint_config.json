@@ -132,7 +132,7 @@
     "trigger_terms": [
       "l_geometric_m",
       "THERMO disposition",
-      "150.{0,3}(u|µ)m"
+      "150.{0,3}(u|\u00b5)m"
     ],
     "candidate_globs": [
       "LOGBOOK.md",
@@ -307,8 +307,8 @@
     "phrase_patterns": [
       "1,?900.{0,15}6,?000",
       "close to exact",
-      "tau_true\\s*(~=|approx|=|≈)\\s*8\\.2",
-      "8(\\.[0-9])?\\s*[-–]\\s*12\\s*%"
+      "tau_true\\s*(~=|approx|=|\u2248)\\s*8\\.2",
+      "8(\\.[0-9])?\\s*[-\u2013]\\s*12\\s*%"
     ],
     "required_sites": [
       "experiments/063-cnt-forest-thermal-conductivity-biot-check/phase5_review_photonics.md"
@@ -358,6 +358,37 @@
       "experiments/*/NOTES.md",
       "experiments/*/phase*.md",
       "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md"
+    ]
+  },
+  {
+    "id": "exp070-t28-named-constant-null-control",
+    "description": "exp-070 (Panel Iteration 47) found that a dense small-integer named-constant search over T28's own ~2.84deg-family periodicity (A_eff~=518.81 matching a 6-way tie at 519, best_rel=0.036%; A_alt~=233.19 matching a 2-way tie at 233/234, best_rel=0.081%) looks like strong evidence by raw closeness alone, but a mandatory null-permutation control (N=20,000 random targets, T~Uniform(100,1600) cells, identical 36,680-expression search space) shows BOTH matches are statistically indistinguishable from chance (null_p=0.4969 for A_eff, null_p=0.2039/0.8055 for A_alt's two beat branches -- the 'minus' branch is beaten by over 80% of pure-chance targets). Per Red Team's Phase-5 final audit ruling, these are correctly scored NEITHER (not CONFIRM, not REFUTE under the pre-committed schema), and per QUANTUM OPTICS' independently-converging Phase-5 finding, this program's own RULED-OUT R5 precedent means a null_p this high carries REFUTE-grade evidentiary weight in substance even though the schema has no path to a REFUTE label. Any future citation of A_eff~=518.81/A_alt~=233.19/the 519 or 233/234 named-constant matches MUST carry the null-permutation context (null_p, or the plain-language 'statistically indistinguishable from chance' framing) alongside the raw closeness number -- citing the raw match alone (e.g. 'a candidate length scale within 0.04%') without disclosing it failed the null control would misrepresent a NEITHER as a CONFIRM, the exact caveat-propagation failure class this program has repeatedly fired Checkpoint criterion 4 on.",
+    "source": "experiments/070-t28-mechanism-desk-check-batch/phase5_redteam_audit.md SS1/SS7 item 1 (PHOTONICS'/MATERIALS' independently-converging Phase-5 finding, Red-Team-confirmed non-firing but same-shift-mandatory registry entry); experiments/070-t28-mechanism-desk-check-batch/phase5_review_photonics.md, phase5_review_materials.md; experiments/070-t28-mechanism-desk-check-batch/results.json (p_070_2_beat_frequency, p_070_4_aeff)",
+    "phrase_patterns": [
+      "null[_ ]p",
+      "null-permutation",
+      "statistically indistinguishable from chance",
+      "worse than 80\\.6% of pure-chance",
+      "REFUTE-grade evidentiary weight"
+    ],
+    "required_sites": [
+      "experiments/070-t28-mechanism-desk-check-batch/NOTES.md",
+      "experiments/070-t28-mechanism-desk-check-batch/phase4_results.md"
+    ],
+    "trigger_terms": [
+      "A_eff",
+      "A_alt",
+      "518\\.8",
+      "233\\.19",
+      "P-070-2",
+      "P-070-4",
+      "T28"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md"
     ]
   }
 ]
