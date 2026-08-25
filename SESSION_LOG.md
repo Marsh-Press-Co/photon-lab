@@ -2,6 +2,105 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-25 (panel shift) — Iteration 50 complete (exp-073): the
+corrected differential/beat-fit re-issue HALTs on its own new
+null-calibration gate before scoring a single T28 pair; a second,
+independent sign-convention defect is caught at Phase 5, one cycle after
+exp-072's own Checkpoint-4-firing sign bug. **CHECKPOINT criterion 4
+fires a second consecutive cycle** (process-integrity, notification not
+a pause). R4 and R6 both extended as standing house rules.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite
+confirmed green: 41/41 checks (`--only 12346789`, heavy stage 5 skipped)
+before any panel work began. Zero `lab/` diff this entire cycle — pure
+desk re-analysis of already-collected data.
+
+**Iteration 50 — MATERIALS' rotation-lead cycle (exp-073).** Executes
+PLAN.md's own Iteration-50 queue item 1 (unanimous across all six of
+exp-072's Phase-5 seats): a corrected, zero-FDTD re-issue of exp-072's
+differential/beat-fit instrument for T28, behind the new `G0-e`
+ground-truth recovery gate (LOGBOOK R6), as a clean, uncontaminated
+pre-registration per exp-072's own contamination ruling's condition 3.
+Full five-phase cycle: Phase 1 proposal (an explicit a/b/c evidentiary-
+class taxonomy, folding in exp-072's own deferred T2-1/T2-3/T2-4 items)
+→ five blind Phase-2 critiques, all support-with-changes, each
+independently re-executing a real defect (PHOTONICS: `G0-e(i)`'s own
+`A_i` tripwire was dead code; ELECTROMAGNETISM: the `A_q` "binds hard"
+claim falsified 30–100× by exp-072's own already-closed values;
+THERMODYNAMICS: `m0` anchored to the wrong-resolution fit, a third
+recurrence; QUANTUM OPTICS: an independent Monte Carlo found the
+sign-flip null anti-conservative by 2.2–6× nominal; VISION: a
+cross-reference to a nonexistent "§5 G-gate table") → Red Team's
+Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 12 items, **zero
+overridden** — a rare unanimous confirmation, plus a new structural
+contamination finding: exp-073's real point estimates were already
+computable from exp-072's own published `results.json` before Phase 1
+was proposed, ruled not outcome-determining) → Phase 3 synthesis (all
+12 items implemented, zero overrides, four implementation-level
+judgment calls disclosed) → Phase 4 (Combined Verdict
+`HALT_NULL_MISCALIBRATED` — `G0-e(ii)`, the new null-calibration gate,
+fires on both legs at every one of 144 cell-α combinations; zero of
+four real pairs was ever scored) → six blind Phase-5 reviews, all
+PARTIAL, exceptional convergence (PHOTONICS/MATERIALS independently
+caught a false "72/72"/"144/144" claim, the true count 71/72/143-144;
+THERMODYNAMICS found the "residual-structure" leg doesn't actually test
+correlated residuals; **ELECTROMAGNETISM found the cycle's own
+`dR_q/dψ̄` sign-convention "fix" was itself backwards**; VISION found
+T2-1's own `carrier_q95` threshold shares `G0-e(ii)`'s own
+anti-conservative construction) → Red Team's Phase-5 final audit
+(independently re-verified every finding, confirmed EM's sign claim
+correct via three further independent methods, fixed `run.py`, re-ran
+end-to-end and diffed the full output bit-for-bit against the pre-fix
+artifact — zero difference except elapsed time).
+
+**CHECKPOINT criterion 4 FIRES**, on the corrected sign-convention
+defect (the 72/72 overclaim folded in as a supporting, non-
+independently-firing instance): a near-miss self-catch at Phase 3
+reached the wrong conclusion — inverting a correctly-computed sign to
+force agreement with an inherited, never-independently-sign-derived
+exp-072 claim — and was then defended, not re-derived, surviving Phase
+3/4 and five of six Phase-5 seats. **Ruled a notification, not a
+pause** — this program's unbroken precedent, now ten firings deep.
+Ten-item same-shift docket (six applied and re-verified live, four
+bound forward to Iteration 51). **R4 and R6 both extended as standing
+house rules** (LOGBOOK.md RULED OUT), rather than a new tripwire
+created: R6 now requires any significance test against a constructed
+null to also ship its own calibration test, not merely a ground-truth
+recovery test; R4 now covers a Phase-5 reviewer's own re-checking of a
+prior claim, and requires sign corrections specifically to be
+independently re-derived by an external method, never adopted because
+they make two numbers agree. **Checkpoint criterion 5 does NOT fire**
+(both exp-072 and exp-073 delivered genuine, independently-verifiable
+narrowing) but Iteration 51 is bound, in writing, to rule what a sixth
+non-advancing cycle on this exact sub-thread would mean — the fifth
+consecutive non-decisive T28 cycle now, the third consecutive cycle of
+the differential-fit sub-thread with zero pairs ever resolved.
+
+**Headline, post-all-corrections: the substantive methodological result
+is confirmed independently five times over** — a Freedman–Lane-style
+sign-flip null is correctly centered (`E[R_q^surr]=0` exactly) but
+anti-conservative by ~2–6× nominal on a small (`n=31,p=5`), leverage-
+concentrated carrier-conditioned design (`mean diag(M5)=(n−p)/n=0.8387`
+exactly, window-width-independent by algebra), directly generalizable
+to any future cycle fitting a similar coefficient. T28's own
+substantive mechanism question is exactly where exp-072 left it —
+bounded by window identifiability, not advanced, not narrowed. Verdict
+PARTIAL: `G0-e` (R6) worked exactly as designed, converting what could
+have been a second silent contamination event into a genuine,
+quantified, reusable instrument-class finding, but the substantive
+question ends unmoved and a second, independent sign-convention defect
+was caught only at Phase 5. Near-unanimous Iteration-51 queue (all six
+seats converge at or near #1): (1) price the window (EM's Cramér–Rao
+pricing + QUANTUM's `L(T)` leakage budget, zero FDTD, decisive either
+way); (2) G40/`PAD` decorrelation (~31 calls); (3) a properly-
+calibrated null construction, gated on (1); (4) PHOTONICS' new
+WKB/adiabatic boundary-reflectance model — the first candidate in this
+five-cycle sub-thread to engage a seat's own charter physics directly.
+Full record: `experiments/073-t28-differential-beat-fit-reissue/`,
+LOGBOOK.md Iteration 50, PLAN.md's own updated current state + queue.
+
 ## 2026-08-25 (panel shift) — Iteration 49 complete (exp-072): the
 differential/beat-fit instrument lands NEITHER after a critical
 carrier-phase sign bug was caught at Phase 5 by three independent seats;

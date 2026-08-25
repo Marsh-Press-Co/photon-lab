@@ -52,6 +52,31 @@ top. Protocol: PANEL.md.*
   "precisely recomputed" MUST be produced by invoking the actual committed
   function at prediction-freeze or Phase-5-correction time — never
   hand-typed, however simple the arithmetic looks.
+  **Addendum (Iteration 50, exp-073) — extended to a Phase-5 reviewer's own
+  re-checking of a prior claim, and to sign corrections specifically.**
+  Two of six blind Phase-5 seats (QUANTUM, VISION) independently re-ran the
+  pipeline and still repeated a false "144/144 cell-α combinations fail"
+  claim (the true count was 143/144 — one cell genuinely passed); both
+  trusted an aggregate `pass_` boolean and a mean-rate table, neither of
+  which can distinguish 71/72 from 72/72 on the residual-structure leg.
+  **Rule, extended: an aggregate flag or a mean/range table is not
+  sufficient to certify an "every single X" claim — the resolution the
+  claim is made at (here, the individual per-cell array) must be
+  independently checked, by the cycle that first publishes the claim AND
+  by any later Phase-5 reviewer re-verifying it.** Separately, the same
+  cycle's own Phase-3 synthesis asserted a sign identity (`dR_q/dψ̄≡+R_i`)
+  that inverted the correct one (`≡−R_i`) by defending an inherited,
+  never-independently-sign-derived exp-072 claim against a freshly and
+  correctly computed contradicting number — a magnitude-only check
+  (`|dR_q/dψ|=|R_i|`) could not distinguish the two signs and so could not
+  catch it. **Rule: a "sign correction" applied to reconcile a freshly
+  computed number against an inherited claim must itself be independently
+  re-derived by an external method (direct substitution into the write-up's
+  own formula, or a from-scratch closed-form derivation) before it is
+  trusted — never adopted merely because it makes two numbers agree.**
+  Full record: `experiments/073-t28-differential-beat-fit-reissue/
+  phase5_redteam_audit.md` §1.1, §3 (RT-1), §5 item 10, LOGBOOK.md
+  Iteration 50.
 - **R5 — Phase offset relative to the single-angle fringe's own
   zero-crossing, normalized by the T21 period `P(θ)=λ/(A·cosθ)`, as a
   predictor of quadrature tier instability** (ruled out Iteration 28,
@@ -114,6 +139,32 @@ top. Protocol: PANEL.md.*
   estimator without one fires Checkpoint criterion 4 automatically, no
   further deliberation. Full record: `experiments/072-t28-differential-
   beat-fit/phase5_redteam_audit.md` §1, §6, LOGBOOK.md Iteration 49.
+  **Addendum (Iteration 50, exp-073) — generalized from ground-truth
+  *recovery* to null *calibration*.** exp-073's own corrected re-issue
+  shipped `G0-e(ii)`, a second gate testing whether its new sign-flip/
+  residual-permutation null (replacing exp-072's own) is correctly sized
+  under pure H₀ noise — not required by R6's original text, which only
+  mandates recovering a KNOWN injected effect. `G0-e(ii)` caught a real,
+  independently-confirmed-five-times-over defect (a Freedman–Lane-style
+  sign-flip null, correctly centered but anti-conservative by ~2–6×
+  nominal on a small, `n=31, p=5`, leverage-concentrated carrier-
+  conditioned design — `mean diag(M5)=(n−p)/n`, exact) that R6's original
+  ground-truth-recovery gate alone would NOT have caught (a miscalibrated
+  null can still recover a known injected effect's *point estimate*
+  correctly on average; what it gets wrong is the *significance* attached
+  to it). **Rule, generalized: any future estimator whose `RESOLVED`-class
+  verdict rests on a significance test against a constructed null
+  (sign-flip, residual-permutation, bootstrap, or equivalent) must ALSO
+  ship a pre-registered null-*calibration* test — draw synthetic pure-noise
+  data at swept nuisance-parameter values, run the actual null construction
+  on each, and HALT unless the empirical rejection rate is correctly sized
+  (inside a stated Monte-Carlo tolerance band) at every stated significance
+  level — before any real data is scored.** A cycle that ships a
+  significance test against a constructed null without this second gate
+  fires Checkpoint criterion 4 automatically, no further deliberation,
+  matching R6's own original standard. Full record: `experiments/073-t28-
+  differential-beat-fit-reissue/phase5_redteam_audit.md` §5 item 9, §6,
+  LOGBOOK.md Iteration 50.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -1937,6 +1988,79 @@ measured them here):**
   house tripwire: `G0-e`, a synthetic ground-truth recovery gate, mandatory
   for any future carrier/phase-conditioned coefficient fit. Full record:
   `experiments/072-t28-differential-beat-fit/`, LOGBOOK.md Iteration 49.
+
+  **Iteration 50 (exp-073) — the corrected re-issue HALTs on its own new
+  safety gate before scoring a single pair; a second, independent
+  sign-convention defect is caught one cycle later, inside the very cycle
+  built to close that class.** MATERIALS' lead-by-rotation cycle executed
+  PLAN.md's Iteration-50 queue item 1: a clean, data-free-justified
+  pre-registration of the corrected differential/beat-fit instrument
+  (folding in T2-1/T2-3/T2-4, exp-072's own deferred Tier-2 items), behind
+  a sharpened `G0-e` carrying a brand-new null-*calibration* sub-gate
+  (`G0-e(ii)`). **Combined Verdict: `HALT_NULL_MISCALIBRATED`** — the
+  Freedman–Lane-style sign-flip null (T2-3) is correctly centered
+  (`E[R_q^surr]=0` exactly) but anti-conservative by ~2–6× nominal across
+  α∈[0.01,0.10], independently confirmed five times over (QUANTUM's Phase-2
+  critique, Red Team's Phase-2 audit, the official Phase-4 run, EM's
+  Phase-5 review, Red Team's Phase-5 final audit), on a small (`n=31,p=5`),
+  leverage-concentrated carrier-conditioned design — `mean diag(M5)=
+  (n−p)/n=0.8387` exactly, window-width-independent by algebra. **Zero of
+  four `ABSORB` pairs was ever scored** — `G0-e(ii)` fired before
+  `analyze_pair()` ran on real data, exactly as Red Team's own Phase-2
+  audit forecast in writing before the run. This is R6 working as designed:
+  a real statistical-calibration defect converted into a genuine, reusable
+  instrument-class finding instead of a second silent contamination event.
+  **A second, independently-caught defect, of comparable weight**:
+  ELECTROMAGNETISM's Phase-5 review found `phase3_synthesis.md`'s own
+  self-catch (`dR_q/dψ̄≡+R_i`) had the sign backwards — the correct identity
+  is `≡−R_i`, confirmed four further independent ways (Red Team's own
+  closed-form re-derivation, a finite-difference reconstruction against
+  exp-072's real published data, a live bit-exact re-run diff, and the
+  Director's own fifth, independent rotation-of-basis derivation at close).
+  The `+R_i` claim traced to exp-072's own THERMODYNAMICS Phase-5 review,
+  asserted without a sign-tracked derivation and passed only by a
+  magnitude-only check that cannot distinguish `+R_i` from `−R_i` — the
+  same defect *shape*, one cycle later, inside the cycle whose own §0
+  states its entire premise is never trusting an exp-072 claim without
+  independent re-derivation. Non-outcome-determining (the field was never
+  populated with real data this cycle) but corrected in `run.py`, re-run,
+  and verified bit-identical except timing. **CHECKPOINT criterion 4
+  FIRES** (a near-miss self-catch that reached the wrong conclusion and was
+  then defended, not re-derived, surviving Phase 3/4 and five of six
+  Phase-5 seats — this program's own established firing shape, not its
+  non-firing one) — ruled a notification, not a pause, ten-item docket (six
+  applied same-shift, four bound forward), ***R4 and R6 both extended***
+  (see their own addenda, above) rather than a new tripwire created. A
+  third, minor, independently-confirmed erratum (two of six Phase-5 seats
+  caught it blind): `phase4_results.md`/`NOTES.md` overstated a
+  null-calibration failure count as "144/144"; the true count is 143/144
+  (one cell genuinely passes), non-load-bearing, corrected in place. A
+  fourth, disclosed, unclosed gap: the "residual-structure" calibration leg
+  (THERMODYNAMICS' own Phase-5 finding) does not actually test correlated
+  residual structure — it bootstraps pooled, order-discarded values,
+  empirically indistinguishable from the i.i.d. leg it was meant to be a
+  harder companion to (paired-cell r=0.907) — bound as mandatory forward
+  work, Iteration 51. **Checkpoint criterion 5 does NOT fire** (both
+  exp-072 and exp-073 delivered genuine, independently-verifiable
+  narrowing) but Iteration 51 is bound, in writing, to rule what a sixth
+  non-advancing cycle on this exact sub-thread (five consecutive
+  non-decisive T28 cycles now: Iterations 46–50) would mean, rather than
+  let non-firing apply by inertia a sixth time. T28's own substantive
+  mechanism question is exactly where exp-072 left it — bounded by window
+  identifiability, not advanced, not narrowed. Near-unanimous six-seat
+  Iteration-51 ranking: (1) price the window (EM's Cramér–Rao pricing +
+  QUANTUM's `L(T)` leakage budget, zero FDTD, decisive either way — if it
+  shows 36°–42° cannot support a carrier-conditioned discriminator at any
+  achievable SNR under any correctly-calibrated null, that IS the honest
+  closing bound and the sub-thread is formally retired in this window);
+  (2) G40/`PAD` decorrelation (~31 calls, the only queued item that
+  actually relieves rather than discloses the confound); (3) a
+  properly-calibrated null construction, gated on (1)'s result, not built
+  in parallel; (4) PHOTONICS' new WKB/adiabatic boundary-reflectance model
+  for the graded-loss `ABSORB` band — zero FDTD, genuinely new to this
+  ranking, the first candidate to engage a seat's own charter physics
+  directly rather than re-verify statistics. Full record: `experiments/073-
+  t28-differential-beat-fit-reissue/`, LOGBOOK.md Iteration 50.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -15055,3 +15179,342 @@ Phase-3 synthesis (+ erratum), NOTES.md (restored idealizations),
 (republished), six Phase-5 blind reviews, Phase-5 Red Team final audit;
 LIVE THREADS (T28 updated, still open — this cycle narrowed but did not
 close the mechanism question).
+
+## Iteration 50 — The Corrected Re-Issue HALTs on Its Own Null-Calibration Gate; a Second Sign-Convention Defect Caught at Phase 5; CHECKPOINT Criterion 4 Fires Again (exp-073) — 2026-08-25
+
+**Lead: MATERIALS, by rotation.** Executes PLAN.md's Iteration-50 queue
+item 1 (unanimous across all six of exp-072's Phase-5 seats,
+`experiments/072-t28-differential-beat-fit/phase5_redteam_audit.md` §7.2,
+which names this cycle `exp-073` explicitly): a corrected, zero-FDTD
+re-issue of exp-072's differential/beat-fit instrument, behind the new
+`G0-e` ground-truth recovery gate (LOGBOOK R6), as a **clean, uncontaminated
+pre-registration** — the contamination ruling exp-072's own Phase-2 Red
+Team audit issued (`phase2_redteam_audit.md` §4, condition 3: "CONFIRM is
+unavailable this cycle... re-run as a fresh pre-registered cycle before
+entering LOGBOOK") explicitly contemplates this cycle as its resolution.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite confirmed
+green: 41/41 checks (`--only 12346789`, heavy stage 5 skipped) before any
+panel work began. Zero `lab/` diff this entire cycle — pure desk
+re-analysis of already-collected data.
+
+### Phase 1 — MATERIALS' proposal, folding in exp-072's own Tier-2 deferrals
+
+Formalized the corrected re-issue as a fresh pre-registration, explicit
+about which of exp-072's own findings it may and may not lean on: every
+design choice tagged by evidentiary class (a) pure structural/geometric
+fact, (b) a previously-closed, non-contaminated finding from a cycle that
+predates exp-072, or (c) inherited machinery re-verified from first
+principles, never (d) an exp-072 *outcome*. Folded in the three items
+exp-072's own same-shift docket explicitly deferred as "new-gate additions,
+not same-shift-safe" (`phase5_redteam_audit.md` §5 Tier 2): **T2-1**
+(VISION's sign-invariance admissibility condition over the gate-admitted
+carrier set), **T2-3** (QUANTUM's sign-flip/residual-permutation null,
+replacing exp-072's phase-randomized H₀-residual one), **T2-4** (EM's exact
+`A_q=2a_cbar·tanχ` coefficient-table correction). Sharpened `G0-e` on two
+axes: a widened synthetic ground-truth recovery sweep (`G0-e(i)`, now with
+independent amplitude-difference and phase-offset axes) and a brand-new
+null-*calibration* sub-gate (`G0-e(ii)`) testing whether the new sign-flip
+null is correctly sized under pure H₀ noise, on both an i.i.d. and a
+"residual-structure" leg. Reused the 124 already-collected exp-069/071
+points and exp-072's own corrected estimator machinery unchanged. Full
+record: `experiments/073-t28-differential-beat-fit-reissue/
+phase1_proposal.md`.
+
+### Phase 2 — five blind critiques, each independently re-executing a real defect; Red Team confirms all five, unanimous
+
+**PHOTONICS**: `G0-e(i)`'s synthetic generator held `δa≡0` and `Δψ≡0`
+identically in every one of its 1,728 cells (verified directly against the
+generator's own construction) — the `A_i` tripwire's own qualifying
+condition (`|a_B−a_A|≥1e-4`) could never fire, dead code, and the
+phase-dominated regime a real graded-boundary-depth difference is at least
+as likely to produce as a period shift was never exercised. **EM**:
+independently re-derived `A_q=2a_cbar·tanχ` from scratch (correct), but
+found the proposal's own "binds hard this cycle" claim about it (`χ₀`
+order 0.5–1.2 rad) is falsified 30–100× by exp-072's own already-closed,
+published `χ₀` values (−0.006 to −0.043 rad) on the identical substrate
+this cycle re-fits. **THERMODYNAMICS**: `m₀` is loaded correctly (never
+hand-typed, R4-compliant) but is the wrong-resolution reference — the
+carrier search moved to `n_grid=3000` specifically to remove a node-
+collision quantization, but the power table and rate reference still
+anchor to the unresolved `n_grid=400` slope, the third recurrence of a
+named defect class. **QUANTUM OPTICS**: built an independent Monte Carlo
+stress test on the real 31-point design and found the sign-flip null
+(T2-3) anti-conservative by 2.2–6× nominal at α∈{0.01,0.05,0.10} — a
+leverage effect (`mean diag(M5)=(n−p)/n=0.8387`), not a coding defect;
+tested both obvious textbook fixes and found neither reliably closes the
+gap. **VISION**: clause (vi)'s cross-reference to "clause (iv) at its own
+carrier" for the sign-invariance admissibility test has no actual
+antecedent — no "§5 G-gate table" exists in the document — and the natural
+completion would exclude the deliberately-maximally-displaced wrong-carrier
+comparator (1.2591°) from the admissibility test at all four pairs,
+collapsing T2-1 to a single-carrier check.
+
+**Red Team's Phase-2 audit**: **PROCEED-WITH-MANDATORY-FIXES, 12 items,
+zero overridden** — a rare unanimous confirmation of all five critiques'
+diagnoses and (with one narrow exception) remedies, independently
+re-executed rather than adjudicated from prose (own from-scratch Monte
+Carlo reproducing QUANTUM's 5.5×/2.3×/1.7× figures; own re-derivation of
+EM's `χ₀` values, exact; own confirmation of THERMO's `n_grid=3000` slope
+and VISION's missing cross-reference). Ruled explicitly on QUANTUM's own
+two candidate null fixes: neither reliably clears the calibration bands in
+the audit's own wider testing, so **`G0-e(ii)` stays a binding,
+non-relaxable HALT** rather than adopting a same-cycle patch under false
+confidence. **New finding, no seat made it**: because exp-073's carrier-fit
+machinery is bit-identical to exp-072's own already-published code on
+identical data, exp-073's own real per-pair point estimates (not only the
+`A_q`/`χ₀` channel EM's critique touched) were already computable from
+exp-072's `results.json` before Phase 1 was even proposed — a genuine
+escalation of the contamination question beyond exp-072's own §4 ruling's
+own scope (which addressed only within-cycle Phase-2 computation). Ruled
+**not outcome-determining** (no threshold anywhere was tuned in response to
+these numbers — every one traces to a data-free argument), with three
+binding conditions attached: extended disclosure, a forward lock (any
+future threshold change traceable to exp-072's known numbers must be a
+fresh Phase-1/2 decision, never a same-cycle Phase-3 correction), and a
+mandatory CONFIRM-outcome disclosure requirement. Full record:
+`phase2_redteam_audit.md`.
+
+### Phase 3 — Director's synthesis: docket accepted in full, four implementation-level judgment calls disclosed, predictions frozen before any run
+
+Accepted Red Team's 12-item docket verbatim, zero overrides. Implemented
+in `run.py` (built from exp-072's own post-fix `run.py` as base, per
+scoping instruction, reusing `_amp_phase_at`/`carrier_fit`/`design_matrix`/
+the design-respecting bootstrap/`holm_adjust` unmodified): the widened
+`G0-e(i)` sweep (5,760 cells, now genuinely live `A_i`/phase-dominated
+coverage); `G0-e(ii)` kept as a binding HALT with a new residual-structure
+robustness leg and full calibration-table reporting regardless of outcome;
+T2-1 implemented with a self-contained, in-run-computed per-carrier
+admissibility statistic and a non-emptiness floor; the `A_q` "binds hard"
+prose corrected with exp-072's own real, non-gating numbers; the power
+table re-anchored to exp-072's own `n_grid=3000`-resolved slope
+(`0.002463678368980155`), loaded at runtime; the extended contamination
+disclosure wired automatically into `results.json`'s own `contamination`
+block. **Four implementation-level judgment calls disclosed in the open**
+(matching exp-072's own precedent of disclosing, not silently patching,
+a self-caught bug): two genuine self-caught bugs during development (a
+wrong `χ0` baseline in the widened `G0-e(i)` generator, giving a false 78%
+recovery-error HALT before it was traced and fixed to 0.35–1.10%; an
+identity-tripwire sign convention — see below, the load-bearing miss of
+this cycle) and two disclosed specification ambiguities (what "that
+candidate's own" surrogate ensemble means for T2-1's second carrier,
+resolved as a single shared `q95`; whether the residual-structure leg
+shares `G0-e(ii)`'s σ-grid, resolved as rescaled-and-matched). Dev-time
+validation against exp-072's own real, published numbers (permitted per
+the contamination ruling — a regression check, not a threshold tune)
+reproduced bit-exact/<1e-9 throughout, and a dev run with unmodified
+thresholds HALTed at `G0-e(ii)`, matching Red Team's own §6 forecast
+exactly. Predictions committed to git (commit `c771a7e`) **before** the
+official Phase-4 run. Full record: `phase3_synthesis.md`, `NOTES.md`.
+
+### Phase 4 — official run: Combined Verdict `HALT_NULL_MISCALIBRATED`
+
+`run.py`, unmodified, executed after Phase 3's git-frozen predictions.
+`G0-a`/`G0-b`/`G0-c` all PASS (exact-zero identities). `G0-e(i)` PASSES —
+worst-cell recovery-ratio error 1.10% over the full widened 5,760-cell
+sweep, both tripwires clean and the `A_i` tripwire now genuinely live
+(768 qualifying cells, 0 failures). **`G0-e(ii)` FAILS on both legs, at
+every one of 144 cell-α combinations tested** (i.i.d. leg: 72/72;
+residual-structure leg originally reported 72/72, corrected at Phase 5 to
+71/72 — see below): empirical rejection rates 5.4×/2.3×/1.7× nominal at
+α=0.01/0.05/0.10, matching Red Team's Phase-2 forecast and QUANTUM's own
+Phase-2 figures closely. **No real pair (`C40–C60`, `C60–C70`, `C70–C80`,
+`C40–C80`) was ever scored** — `per_pair={}`, `p073_2`/`p073_3`/`p073_4`
+all `None`. This is `G0-e` (R6) working exactly as designed: a
+pre-registered, data-free gate caught a genuine statistical-calibration
+defect before any real point was scored. Full record: `phase4_results.md`,
+`results.json`.
+
+### Phase 5 — six blind reviews, exceptional cross-seat convergence, two independently-caught defects
+
+All six seats returned **PARTIAL** (one, VISION, "leaning
+PROMISING-as-process"). **PHOTONICS and MATERIALS independently caught the
+same defect**: `phase4_results.md`/`NOTES.md` claimed the residual-
+structure leg failed "72/72" cells (144/144 combined); the committed
+`results.json` actually shows 71/72 (one cell, at the loosest tested
+significance level, genuinely passes) — 143/144, not 144/144. Non-load-
+bearing (the gate's own conjunctive logic is unaffected either way) but a
+real, quotable "every single X" claim that did not reproduce — precisely
+the R4-class defect this cycle's own THERMODYNAMICS Phase-2 critique had
+just caught a third recurrence of on a different number. **THERMODYNAMICS**
+found the "residual-structure" leg does not actually test correlated
+residuals: `build_residual_pool()` pools the four configs' residuals into
+one flat, θ-order-discarded array and bootstraps i.i.d. from it — empirically
+indistinguishable from the plain i.i.d. Gaussian leg it was meant to be a
+harder companion to (paired-cell Pearson r=0.907 across 72 cells). Does not
+change the Combined Verdict (the i.i.d. leg alone already fails everywhere)
+but means docket item 4 was not actually delivered as specified.
+**VISION** confirmed T2-1's own machinery correctly implemented (the
+non-emptiness floor works; the gates-stubbed debug pattern — `T_wrong`
+excluded at all four pairs, `T_delta` admitted at three of four — was
+independently reproduced bit-exact) but found `carrier_q95()`'s own
+threshold is built from the identical `sign_flip_surrogates()` construction
+`G0-e(ii)` independently proved anti-conservative — an untested leverage
+risk for T2-1's own gate, live today in the committed machinery regardless
+of whether any future cycle ever reaches real `RESOLVED` scoring. **QUANTUM
+OPTICS** independently reproduced the calibration failure a fourth way
+(a fresh from-scratch Monte Carlo, plus a live execution of the real
+`run.py` reproducing the committed artifact bit-for-bit) and flagged that
+T28's substantive question has now gone two consecutive cycles (exp-072,
+exp-073) without advancing — recommending the Director rule explicitly on
+Checkpoint criterion 5 rather than let precedent apply by inertia.
+**ELECTROMAGNETISM's finding is the cycle's single most consequential**:
+`phase3_synthesis.md`'s own "Ambiguity 4" (the `dR_q/dψ̄` sign-convention
+resolution) is wrong. Three independent derivations — direct symbolic
+substitution into the write-up's own formulas, a from-scratch closed-form
+OLS-rotation derivation, and a numerical finite-difference check — all
+converge: the correct identity is `dR_q/dψ̄≡−R_i`, not `+R_i`. The code had
+*correctly* computed `−R_i` via finite difference during development, then
+applied an unjustified extra negation to force agreement with an inherited,
+never-independently-sign-derived exp-072 claim (traced to exp-072's own
+THERMODYNAMICS Phase-5 review, asserted without a sign-tracked derivation,
+passed only by a magnitude-only check — `|dR_q/dψ|=|R_i|` — that cannot
+distinguish the two signs by construction).
+
+### Red Team's Phase-5 final audit — independent re-verification, five ways on the load-bearing finding
+
+Re-executed every load-bearing numeric claim across all six reviews (§0 of
+the audit: 11 independent checks, direct against `results.json`/`run.py`,
+not adjudicated from prose). **Confirmed the 71/72 finding exactly** (both
+seats that caught it correctly ruled it non-load-bearing; the audit also
+named, without penalizing, that two other seats — QUANTUM, VISION —
+independently re-ran the pipeline and still repeated the false "144/144"
+figure, trusting an aggregate boolean/mean-rate table that cannot
+distinguish 71/72 from 72/72 — this program's own R4 discipline applies to
+a Phase-5 *reviewer* re-checking a number exactly as much as to the cycle
+that first published it, folded into R4's addendum above). **Confirmed
+ELECTROMAGNETISM's sign claim correct**, independently, a fourth way (own
+from-scratch closed-form re-derivation via the design matrix's own
+psi-rotation structure, plus a from-scratch finite-difference check against
+exp-072's real published `(T_x,ψ,R_i,R_q)` data, reconstructing exp-072's
+own coefficients exactly as a pipeline-fidelity check before trusting the
+new number). Applied the fix to `run.py` (two sites: the coefficient-table
+field and the `G0-e(i)` identity tripwire's own comparison target), re-ran
+`run.py` end-to-end, and diffed the complete output JSON tree field-by-field
+against the pre-fix committed artifact: **zero difference except
+`elapsed_s`** — the tripwire's own numerical PASS/FAIL was always
+sign-agnostic (an absolute-value comparison of algebraically identical
+expressions before and after the fix), so the Combined Verdict
+(`HALT_NULL_MISCALIBRATED`) and every gate outcome are independently
+verified unchanged.
+
+**CHECKPOINT criterion 4 FIRES** on the sign-convention defect (§1.2 of
+the audit, in full below), the 72/72 overclaim folded in as a supporting,
+non-independently-firing instance. **Criteria 1/2/3 explicitly ruled
+non-firing.** **Criterion 5 explicitly ruled non-firing** — per QUANTUM's
+own request that this not apply by inertia, Red Team ruled in writing that
+both exp-072 and exp-073 delivered independently-verifiable, load-bearing
+narrowing (exp-073's own: a five-times-confirmed methodological result
+about an entire instrument class, plus this very audit's own two
+corrections) — but bound Iteration 51, explicitly, to rule what a sixth
+non-advancing cycle in this exact sub-thread would mean, rather than let
+non-firing apply by inertia a sixth time.
+
+Ten-item same-shift docket: six applied and independently re-verified live
+(the `run.py` sign fix + full re-run diff; `phase3_synthesis.md`'s
+Ambiguity-4 erratum; `phase4_results.md`'s and `NOTES.md`'s 71/72
+correction and full erratum sections; PHOTONICS' own minor arithmetic-slip
+disclosure); four bound forward to Iteration 51 (a genuinely order-
+preserving residual-structure leg; a mandatory `carrier_q95()`-own
+calibration check before any future real `RESOLVED` test trusts it; R6
+generalized to require null-calibration testing as standing machinery, not
+merely ground-truth recovery — adopted, see R6's own addendum above; R4
+extended to cover Phase-5 reviewers and sign corrections specifically —
+adopted, see R4's own addendum above).
+
+### CHECKPOINT (Iteration 50, 2026-08-25, criterion 4 — program-integrity drift, second consecutive T28-differential-fit cycle).
+
+Red Team's Phase-5 final audit ruled criterion 4 **FIRES**, weighed against
+the strongest available non-firing argument and found insufficient, for
+reasons tracking this program's own established tests closely. **(1) This
+is the program's own established firing shape.** The Director *did* notice
+a contradiction during Phase-3 development — a genuine attempt at the
+self-catch discipline exp-072's own Director used correctly — but here the
+self-catch's own *resolution* was wrong: it discarded a correctly-computed
+number by inventing an unsupported symbol distinction, then declared the
+wrong answer "Fixed" and "independently re-verified" in a frozen document.
+That wrong resolution survived Phase 3, Phase 4, and five of six Phase-5
+seats; it took one blind seat using three independent methods, plus the
+final audit's own fourth re-derivation, to correct it — the "took Phase 5
+to surface" shape, not the "cycle's own process caught it" shape. **(2) A
+written verification claim in a frozen document is false**: `phase3_
+synthesis.md`'s Ambiguity 4 states the fix was "independently re-verified"
+against exp-072's own real data, true about the arithmetic performed, false
+about which of the two results is correct. **(3) Aggravation, applied
+across cycles rather than within one**: this program's own Iteration-36
+precedent (a defect recurring inside the very cycle whose own fix was
+written to close it, aggravates rather than mitigates) applies one level
+up — `dR_q/dψ̄`'s sign was asserted once, in exp-072, passed a check that
+structurally could not distinguish the two signs, and was then *defended*
+rather than *re-derived* inside exp-073, the cycle whose entire mandate
+(stated in its own §0) is never trusting an exp-072 claim without
+independent re-derivation. **(4) A supporting instance**: the independently
+-confirmed 72/72 overclaim, real, quotable, non-gating, caught blind by two
+of six seats before the final audit — not independently firing on its own,
+but real supporting texture for the broader finding.
+
+**Mitigating, recorded in full because real**: `G0-e(ii)` — this cycle's
+own Red-Team-authored second safety net, beyond R6's original mandate —
+worked exactly as intended, catching a real, load-bearing statistical
+defect before any real data was scored, independently confirmed five times
+over. The Combined Verdict is unaffected by both this section's findings.
+No engine physics is implicated, zero `lab/` diff. The defect this section
+rules on was found and corrected before it reached this file.
+
+**Ruled a notification, not a pause — this program's unbroken precedent,
+zero exceptions across ten prior firings** (Iterations 17, 36, 37, 39×2,
+40, 44, 45, 49, and now 50). No `lab/` diff, the Combined Verdict stands
+unchanged and independently verified robust to both corrections, and the
+remedy (the ten-item same-shift docket) is actionable without halting any
+other thread. **No new standing tripwire required beyond R6's/R4's own
+generalization** (see their addenda above) — this finding is a violation
+of R6's existing standard, not a gap in it. Marsh is notified (this entry +
+PLAN.md + SESSION_LOG.md). Full record: `experiments/073-t28-differential-
+beat-fit-reissue/phase5_redteam_audit.md`.
+
+### Final headline finding, post-all-corrections
+
+**Combined Verdict: `HALT_NULL_MISCALIBRATED`** — verified robust to both
+Phase-5 corrections. No real T28 pair (`C40–C60`, `C60–C70`, `C70–C80`,
+`C40–C80`) was ever scored. **The substantive methodological result,
+confirmed independently five times over**: a Freedman–Lane-style sign-flip
+null (sign-flip the full-model 5-column OLS residual, add it back to the
+null-model 4-column prediction, refit) is correctly centered
+(`E[R_q^surr]=0` exactly, an algebraic consequence of the null-model
+prediction lying in the full model's own column span) but **anti-
+conservative by ~2–6× nominal across α∈[0.01,0.10]** on a small
+(`n=31,p=5`), leverage-concentrated, carrier-conditioned angular-sweep
+design — an exact, not data-dependent, mechanism (`mean diag(M5)=(n−p)/n=
+26/31=0.8387`), directly generalizable to any future cycle fitting a
+similar coefficient on a comparably-sized design, on this window or a
+different one. **CHECKPOINT criterion 4 fires**, independent of and not
+affecting this physics result, on a corrected sign-convention defect
+(`dR_q/dψ̄≡−R_i`, not `+R_i`) — the same defect *shape*, one cycle later,
+that fired exp-072's own Checkpoint 4, this time caught before it reached
+this file. **T28's own substantive mechanism question is exactly where
+exp-072 left it — bounded by window identifiability, not advanced, not
+narrowed by this cycle** — the fifth consecutive non-decisive T28 cycle,
+the third consecutive cycle of the differential-fit sub-thread with zero
+pairs ever resolved. Checkpoint criterion 5 does not fire, but Iteration
+51 is bound to rule explicitly on a sixth non-advancing cycle's meaning.
+Near-unanimous Iteration-51 ranking (all six seats converge at or near #1):
+(1) price the window (EM's Cramér–Rao pricing + QUANTUM's `L(T)` leakage
+budget, zero FDTD, decisive either way — a real closing bound if the
+window cannot support a carrier-conditioned discriminator at any
+achievable SNR under any correctly-calibrated null); (2) G40/`PAD`
+decorrelation (~31 calls, the only queued item that relieves rather than
+discloses the standing confound); (3) a properly-calibrated null
+construction, gated on (1)'s result; (4) PHOTONICS' new WKB/adiabatic
+boundary-reflectance model for the graded-loss `ABSORB` band — the first
+candidate in this five-cycle sub-thread to engage a seat's own charter
+physics directly. Full record: `experiments/073-t28-differential-beat-fit-
+reissue/` — Phase-1 proposal, five Phase-2 blind critiques, Phase-2 Red
+Team audit, Phase-3 synthesis, `NOTES.md`, `run.py` (post-fix), `results.
+json`, `phase4_results.md` (with Phase-5 erratum section), six Phase-5
+blind reviews, Phase-5 Red Team final audit; RULED OUT (R4 and R6 both
+extended, see their own addenda), LIVE THREADS (T28 updated, still open —
+this cycle neither advanced nor closed the mechanism question, but closed
+three of exp-072's own deferred process gaps and surfaced two new,
+independently-confirmed process findings of its own).
