@@ -2,6 +2,105 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-25 (panel shift) — Iteration 49 complete (exp-072): the
+differential/beat-fit instrument lands NEITHER after a critical
+carrier-phase sign bug was caught at Phase 5 by three independent seats;
+**CHECKPOINT criterion 4 fires** (process-integrity, notification not a
+pause). Combined Verdict verified robust to the full same-shift
+correction set. New standing house rule: `G0-e`, a synthetic
+ground-truth recovery gate, is now mandatory for any future cycle fitting
+a carrier- or phase-conditioned coefficient.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite
+confirmed green: 41/41 checks (`--only 12346789`, heavy stage 5 skipped)
+before any panel work began, and again after the full same-shift docket
+landed — zero `lab/` diff throughout, this entire cycle is desk-only.
+
+**Iteration 49 — PHOTONICS' rotation-lead cycle (exp-072).** Executes
+PLAN.md's own Iteration-49 queue item 1: a zero-FDTD differential/beat-fit
+re-analysis of exp-069/071's 124 already-collected points, fitting
+`delta_AB(θ)` between adjacent `ABSORB` pairs directly instead of
+independently fitting absolute periods — converting T28's own established
+Rayleigh-resolution problem into a coefficient-detection problem at the
+window's well-resolved common-mode carrier. Full five-phase cycle: Phase
+1 proposal → five exceptionally rigorous blind Phase-2 critiques (two
+seats independently executed the estimator on real data mid-critique,
+triggering a formal pre-registration-contamination ruling) → Red Team's
+Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 15 items, three seats'
+specific remedies overridden with independently-derived corrections,
+including one seat's own proposed fix shown to manufacture a worse
+artifact than the defect it named) → Phase 3 synthesis (all 15 items
+implemented; one self-caught implementation bug found and fixed during
+development) → Phase 4 (Combined Verdict NEITHER, matching Red Team's own
+advance forecast).
+
+**Phase 5 — the critical catch.** Six blind reviews, all seats, fresh
+contexts. **Three of six — PHOTONICS, MATERIALS, ELECTROMAGNETISM, using
+three different methods — independently found a carrier-phase sign bug**
+in the committed estimator that the Phase-3 self-catch had missed: every
+published coefficient was a rotation by a nuisance parameter (the
+common-mode carrier phase itself, not the intended period difference),
+invisible to every gate in the design (`cond5`, R², residuals, fitted
+values are all rotation-invariant) and to an independent Phase-5
+re-implementation built from the same specification. The Director
+independently re-derived the bug from scratch and applied a fix, verified
+against synthetic ground truth (recovered/true ΔP = 1.0000±0.0007 across
+16 carrier phases × 7 effect sizes) and five Phase-2 ledger quantities
+that reproduce post-fix and did not pre-fix. Red Team's Phase-5 final
+audit independently re-verified the fix, adjudicated all 29 cross-seat
+findings (25 confirmed, 2 confirmed-but-retired by the fix, 6 overruled
+with reproduced counter-evidence — including one seat's own self-
+retraction of a correct Phase-2 finding, ruled the most instructive item
+in the cycle), and found three further defects no seat caught, including
+a docket item mandating a calibration that is mathematically vacuous
+(always exactly 0.0%, by an arithmetic identity).
+
+**CHECKPOINT criterion 4 FIRES**, on four grounds (full ruling in
+LOGBOOK.md Iteration 49): this is the program's own established firing
+shape (a defect surfaced only via blind Phase-5 seats plus the final
+audit, not caught-and-fixed before close); a written verification claim
+in a frozen pre-registration document ("all 15 items implemented
+verbatim… ZERO un-adopted") was verified false on eight counts; the same
+function that carried one Director-caught bug at Phase 3 shipped a second
+half of the same defect class after the diagnostic that found the first
+half was retired instead of re-run as an acceptance test; two supporting
+instances (an R4 hand-typed-figure recurrence, a false Rayleigh-width
+constant that entered a frozen pre-registration unchecked). **Ruled a
+notification, not a pause** — Combined Verdict unaffected, zero `lab/`
+diff, no engine physics implicated. A 10-item same-shift docket landed
+and was independently re-verified live: the frozen estimator basis
+restored (verdict-neutral, coefficient signs corrected), a new
+ground-truth recovery gate `G0-e` added and passing, the injection-
+recovery power test rebuilt on a clean base, the wrong-carrier comparator
+corrected from a value that was actually AT the leakage function's
+maximum to a genuinely displaced one, a design-respecting bootstrap
+replacing a case-resampling one that had treated a deterministic design
+grid as an iid sample, and `phase4_results.md` wholly republished (not
+annotated, per Red Team's own ruling).
+
+**Headline, post-all-corrections: Combined Verdict `NEITHER` stands,
+verified robust to the complete correction set.** The substantive reason
+is sharper than first published: `R_q`'s sensitivity to the carrier phase
+is exact and free (`dR_q/dψ̄ ≡ R_i`), the carrier rotation that zeroes it
+sits inside the carrier's own uncertainty at every pair, and a data-free
+leakage calculation shows `R_q` is non-identifiable against essentially
+any periodic contributor from ~1.8°–5.0° — not specifically T21's fringe
+as first claimed. **New standing house rule R6**: `G0-e` is now mandatory
+machinery for any future cycle fitting a carrier- or phase-conditioned
+coefficient; a cycle that ships one without it fires Checkpoint criterion
+4 automatically. Iteration-50 queue (all six seats converge on item 1):
+(1) a corrected zero-FDTD re-issue of the instrument behind `G0-e`; (2) a
+data-free window-feasibility pricing calculation, ranked above both FDTD
+builds since it decides which is worth the spend; (3) G40/`PAD`
+decorrelation, cost revised down to ~31 calls pending geometry
+verification; (4) window extension to `θ_max≈46°` with a binding
+curvature-fitting precondition; mask-form ablation and the two-tone joint
+fit explicitly subordinated. Full record:
+`experiments/072-t28-differential-beat-fit/`, LOGBOOK.md Iteration 49,
+PLAN.md's own updated current state + queue.
+
 ## 2026-08-25 (panel shift) — Iteration 48 complete (exp-071): the C60/C70
 `ABSORB`-depth causal test for T28 lands NEITHER, doubly secured on raw
 pre-registered thresholds alone independent of the resolution-floor gate;
