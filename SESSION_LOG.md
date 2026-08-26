@@ -2,6 +2,103 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-26 (panel shift) — Iteration 53 complete (exp-076): the
+G40/`PAD` decorrelation build resolves T28's five-cycle-deep `ABSORB`-
+or-`PAD` confound the wrong (but honest) way — `OUTCOME=PAD_TIED`, and
+the dominant axis is proven excluded from an entire class of physical
+mechanisms. No Checkpoint criterion fires.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`). Fast-subset trust suite confirmed green: 41/41 checks
+(`--only 12346789`) before any panel work began.
+
+**Iteration 53 — QUANTUM OPTICS' rotation-lead cycle (exp-076).**
+Executes PLAN.md's own Iteration-53 queue item 1 (near-unanimous #1
+across all six of exp-075's Phase-5 seats): build and run `G40`
+(`ABSORB=40, PAD=40`, already specified in `experiments/065-.../
+design_geometry.py` but never run at T28's own dense window) to
+decorrelate `ABSORB` boundary depth from the `PAD`/domain-geometry
+confound that has run through every congruent `{C40,C60,C70,C80}`
+`ABSORB`-series causal claim since Iteration 48. Full five-phase cycle:
+Phase 1 (31-call proposal, `amp_ratio` scoring reused verbatim from
+exp-072, a dedicated `G0-e` synthetic recovery check PASSED) → five
+blind Phase-2 critiques, unanimous support-with-changes (PHOTONICS: an
+aliasing gap identical to the one `C70` was added to guard against in
+this sub-thread's own precedent cycle; MATERIALS: broken `ABSORB`/`PAD`
+symmetry in the decision language; ELECTROMAGNETISM + VISION SCIENCE,
+independently converging: `G40`'s own thin-boundary/large-domain
+combination had never been settling-tested; THERMODYNAMICS: a silently-
+dropped energy-sidecar disposition) → Red Team's Phase-2 audit
+(PROCEED-WITH-MANDATORY-FIXES, 8 items, zero overridden, plus two NEW
+load-bearing defects of its own: gapped/non-exclusive outcome bands, and
+an "interaction" diagnostic contradicting its own cited precedent) →
+Phase 3 synthesis (all 8 adopted; rebuilt an exhaustive/mutually-
+exclusive 9-cell/5-outcome scheme; added a HALT-if-fails settling
+precondition and a 16-call 750nm advisory leg, budget 31→50 calls;
+FROZEN PREDICTIONS committed before any run) → Phase 4 (50 FDTD calls;
+two disclosed pure engineering/serialization bugs, zero physics impact,
+bit-identical results across crashed and clean runs; settling
+precondition PASSED ~500-666x inside its bar).
+
+**Official result: `x=amp_ratio(PAIR_PAD)=0.119366` (HIGH) >
+`y=amp_ratio(PAIR_ABSORB40)=0.071616` (MED) → `OUTCOME=PAD_TIED`.** The
+pure-`PAD` effect at fixed `ABSORB=40` is LARGER than the pure-`ABSORB`
+effect at fixed `PAD=40` — the confound is NOT relieved in the
+reassuring direction five prior T28 cycles' causal framing implicitly
+hoped for. A 750nm advisory leg shows the OPPOSITE ordering, disclosed,
+non-decisive.
+
+**Phase 5 — the load-bearing formalization.** Six blind reviews, all
+PARTIAL — an unusually clean crop, Red Team's own from-scratch
+re-derivation found no defect in any of them. **ELECTROMAGNETISM's
+finding, independently re-derived by Red Team from `lab/fdtd2d.py`'s
+primitive source code, not merely a gate's summary line: `PAD` is
+provably lossless vacuum** (the graded-loss damping array depends only
+on `absorb`, never on `nx`/`ny`/`pad`) — so `PAIR_PAD`'s entire signal,
+the largest reading this cycle produced, can only be a coherent
+propagation-phase/round-trip-timing effect, never a change in absorbed
+power. Combined with MATERIALS' own realizability finding (`PAD` has no
+witness-scene/realizable-structure analog, unlike `ABSORB`'s at-least-
+depth-shaped profile), this is the cleanest negative signal this
+six-cycle T28 sub-thread has produced: the axis that now best explains
+T28's history is structurally excluded from an entire class of physical
+mechanisms, not merely unconfirmed. Three small process/documentation
+gaps surfaced (VISION's own disclosed-then-dropped Phase-2 finding on
+the `amp`/`C_thr` numerical coincidence; QUANTUM's `G0-e` promise-vs-
+implementation gap; PHOTONICS' discarded 750nm carrier diagnostic), all
+independently verified inert or closable, all closed same-shift via
+Red Team's 6-item mandatory-fix docket — zero change to `PAD_TIED` or
+any frozen prediction.
+
+**No Checkpoint criterion fires.** Red Team's final audit ruled
+explicitly on all five: three small, non-outcome-determining gaps
+caught by the review layer in one cycle, immediately following R8's
+adoption last cycle, read as evidence the layer is working at high
+sensitivity, not as drift. One procedural recommendation offered (log
+every disclosed Phase-2 secondary finding's disposition explicitly),
+not a new numbered rule.
+
+**Headline: T28's own substantive mechanism question — the ~2.84°
+periodicity's ultimate origin — remains unidentified, but this cycle
+narrows it on two fronts at once: which construction axis the signal
+tracks (`PAD`, not `ABSORB`, the less convenient but honestly reported
+direction), and which mechanism classes remain physically permitted for
+that axis (phase/interference only — absorption is now structurally
+excluded).** Reconciled Iteration-54 ranking (Red Team's Phase-5 final
+audit, all six seats, 4 tiers, 8 items): (1) zero-FDTD refit of
+exp-075's own passivity-gated transfer-matrix echo model against
+`PAD`'s round-trip distance — the only mechanism class now physically
+permitted, using code already built and validated; (2) zero-FDTD
+fixed-carrier re-score of the already-collected 750nm leg data; (3)
+score the already-built two-wall model at 750nm (PLAN's own carried-
+over Iteration-53 item 2, still unexecuted); (4) a `PAD`-depth causal
+sweep at fixed `ABSORB=40` (~30 calls); plus broadband reflectance
+spectroscopy, the standing full-width non-aliased leg, a loaded-article
+test, and a record-hygiene bundle. Full record: `experiments/076-t28-
+g40-pad-decorrelation/`, LOGBOOK.md Iteration 53, PLAN.md's own
+Iteration-54 queue.
+
 ## 2026-08-26 (panel shift) — Iteration 52 complete (exp-075): two
 boundary-reflectance-echo mechanisms (single-wall and a correctly-derived
 two-wall cavity) both REFUTE against T28's real data; two independent
