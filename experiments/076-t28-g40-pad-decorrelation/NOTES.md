@@ -146,8 +146,23 @@ Summary of what changed from the raw Phase-1 proposal:
    (Phase 1, already run) gives Case 1 worst `|recovered/true−1|=1.03×10⁻⁴`
    (PASS, ≤2%) and Case 2 worst `=8.35×10⁻³` (PASS, ≤5%, relaxed only for
    the disclosed first-order-in-`u` term present exclusively in the mixed
-   case). `G0-e OVERALL: PASS`. Re-confirmed unchanged (not merely cited
-   forward) before any real-data `amp_ratio` is reported.
+   case). `G0-e OVERALL: PASS`. *Corrected post-Phase-5 (Red Team final
+   audit, docket item 3, F6/QUANTUM's finding): the phrase below was
+   originally "re-confirmed unchanged... matching exp-072's own `g0_pass`
+   precondition structure," which overclaimed an inline, data-conditioned
+   gate that `run.py` never actually implements (it imports
+   `g0e_amplitude_channel_check.py`'s already-verified functions but never
+   re-invokes `g0e.main()` against real `G40` data at Phase 4). Verified
+   at Phase 5, not merely asserted: this check is a synthetic, data-
+   independent code-correctness test — its PASS/FAIL cannot depend on
+   what the real `G40` FDTD data turns out to be — and the real fitted
+   carrier parameters (θ headline and leg750) were independently confirmed
+   to land comfortably interior to the synthetic sweep's validated
+   envelope (QUANTUM's and Red Team's own Phase-5 re-derivations,
+   `phase5_review_quantum.md`/`phase5_redteam_audit.md` §2a). The gap was
+   real (a documentation/implementation-fidelity defect) but provably
+   inert (could not have changed `PAD_TIED`); does not fire Checkpoint
+   criterion 4 (§2a of the Red Team final audit).*
 6. **cpl=20 (native resolution) only.** No R3 resolution check on the new
    `G40` legs this cycle — a natural Iteration-54+ follow-up if either new
    `amp_ratio` reading comes back large enough to be load-bearing.
@@ -170,6 +185,30 @@ Summary of what changed from the raw Phase-1 proposal:
    instrument cycle since exp-071.
 10. 2D TMz, single polarization, positive-θ branch only (36°–42°/38°–41°),
     bench scale (`R_OUT=78` cells), no witness-scale claim.
+11. **`amp_ratio`/`delta_P_obs`/`rho_pad_absorb`/`C_empty(θ)` in this
+    instrument family are dimensionless field-ratio fit-diagnostics, never
+    Michelson/Weber perceptual-contrast quantities** (added post-Phase-5,
+    Red Team final audit docket item 2, closing VISION's Phase-2
+    "Secondary finding" — drafted at Phase 2, never adopted, modified, or
+    explicitly rejected in either the Phase-2 disposition table or this
+    document's own original idealization list; independently re-confirmed
+    at Phase 5, both by VISION's own review and by Red Team, that the
+    committed prose never actually conflated the two — this item closes
+    the latent risk, not a realized error). Flagged because `amp` — the
+    fitted carrier amplitude every `amp_ratio` value is normalized by —
+    measures `0.005155`/`0.005514` for `PAIR_PAD`/`PAIR_ABSORB40`
+    respectively, within 3–10% of VISION's own pinned lab detection bar
+    `C_thr=0.005` (T2, LOGBOOK.md, frozen Iteration 1) — a coincidence of
+    this bench geometry's own vacuum-floor scale, not evidence of any
+    shared mechanism, and no basis for reading any `amp_ratio` figure
+    (e.g. `x=0.119`) as a multiple of a perceptual threshold. Mirrors
+    exp-072's own Idealization 8, extended to this cycle's own derived
+    diagnostics.
+12. **Both Phase-4 implementation bugs found and fixed this cycle were
+    pure serialization/indexing defects, disclosed in full in
+    `phase4_results.md`** — neither touched any frozen prediction,
+    threshold, or scored value; all FDTD results are bit-identical across
+    the crashed and clean runs.
 
 ## FROZEN PREDICTIONS (committed here, before `run.py`'s first execution)
 
@@ -244,16 +283,45 @@ cycle — the docket above lands before this §4 language freezes.
 
 ## Result
 
-See `phase4_results.md` (not yet written — Phase 4 execution pending
-Director authorization; this cycle's FROZEN PREDICTIONS above were
-committed before `run.py`'s first execution, per house discipline).
+**`OUTCOME = PAD_TIED`** (50 FDTD calls, all gates passed). Headline:
+`x=amp_ratio(PAIR_PAD)=0.119366` (HIGH), `y=amp_ratio(PAIR_ABSORB40)=
+0.071616` (MED) — the pure-`PAD` effect is LARGER than the pure-`ABSORB`
+effect, the opposite of the reassuring "confound relieved" direction.
+Settling precondition PASSED with a wide margin (~500–666× inside the
+bar). The 750nm advisory leg shows the opposite ordering (non-decisive;
+Phase 5 found its own carrier fit lands on an unexplained ~1.78°
+periodicity, under-powered to adjudicate wavelength-generality either
+way). Full numbers: `phase4_results.md`, `results.json`.
 
 ## Learned
 
-See `phase4_results.md` Bottom Line and this experiment's contribution to
-LOGBOOK.md Iteration 53 (not yet written).
+Two findings elevate this beyond a bare classification. **(1) `PAD` is
+provably lossless vacuum** (EM's Phase-5 finding, independently
+re-derived by Red Team from `lab/fdtd2d.py`'s own damping-array
+construction, which depends only on `absorb`, never on `pad`/`nx`/`ny`)
+— so `PAIR_PAD`'s entire signal, the largest reading this cycle produced,
+can only be a propagation-phase/interference effect, never an
+absorbed-power effect. **(2) Combined with MATERIALS' realizability
+reading** (`PAD` has no witness-scene/realizable-structure analog, unlike
+`ABSORB`'s at-least-depth-shaped profile), this is the cleanest negative
+signal T28 has produced: the axis that now best explains T28's
+`{C40,C60,C70,C80}` congruent-series history is structurally excluded
+from an entire class of physical mechanisms (anything acting through
+absorption). T28's own substantive mechanism question — the ~2.84°
+periodicity's ultimate origin — remains open, doubly narrowed this cycle:
+toward `PAD`/domain-geometry rather than `ABSORB` depth, and toward a
+phase/interference mechanism specifically. **No Checkpoint criterion
+fires** — three small, non-outcome-determining process/documentation gaps
+surfaced at Phase 5 (all caught by the review layer working as designed,
+none surviving into a defended claim), closed same-shift via the
+mandatory-fix docket. Full record: `phase5_redteam_audit.md` §§1–6.
 
 ## Next
 
-See PLAN.md's Iteration-54 queue (Director's update, post Phase 5, not yet
-written).
+See PLAN.md's Iteration-54 queue (Director's update, post Phase 5): Red
+Team's reconciled ranking (`phase5_redteam_audit.md` §7) leads with two
+zero-FDTD desk items — refitting exp-075's passivity-gated transfer-
+matrix echo model against `PAD`'s round-trip distance instead of
+`ABSORB` depth (the only mechanism class now physically permitted for
+this signal), and a fixed-carrier re-score of the already-collected
+750nm leg data — before any new FDTD spend.

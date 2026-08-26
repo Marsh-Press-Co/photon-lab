@@ -552,9 +552,28 @@
     "decisive": false,
     "window_deg": 3.0,
     "headline_window_deg": 6.0,
-    "note": "advisory / narrow-window (3deg vs the 600nm window's 6deg) -- NOT decisive, and does not license any wavelength-general citation of this cycle's headline verdict (Red Team Attack 4 disposition, docket item 5)"
+    "note": "advisory / narrow-window (3deg vs the 600nm window's 6deg) -- NOT decisive, and does not license any wavelength-general citation of this cycle's headline verdict (Red Team Attack 4 disposition, docket item 5)",
+    "carrier_diagnostics_PAIR_PAD": {
+      "A_i": -0.00042582362032884263,
+      "A_q": -0.0014444021102206024,
+      "R_i": -0.312281506589529,
+      "R_q": 0.35509655208365043,
+      "amp": 0.0035865145997483324,
+      "T_mean_deg": 1.7802600866955651,
+      "r_squared": 0.510591732863095
+    },
+    "carrier_diagnostics_PAIR_ABSORB40": {
+      "A_i": -0.0011974545384911064,
+      "A_q": 0.0013193677961628918,
+      "R_i": 0.13373570628058995,
+      "R_q": -0.3267319515296382,
+      "amp": 0.002891832953534021,
+      "T_mean_deg": 1.761253751250417,
+      "r_squared": 0.5838482681091837
+    }
   },
   "R_q_disclosure": "R_q is NOT used in the gating amp_ratio statistic (A_i/A_q only); R_q IS used, via delta_P_obs, in the disclosed-only, uncalibrated rho_pad_absorb diagnostic, without null-calibration (docket item 3).",
   "total_new_runs": 50,
-  "total_elapsed_s": 1011.6648578643799
+  "total_elapsed_s": 1011.6648578643799,
+  "_docket_backfill_note": "Phase-5 Red Team mandatory-fix docket item 1 (F1, PHOTONICS): carrier_diagnostics_PAIR_PAD/PAIR_ABSORB40 backfilled from the already-committed leg750_scored theta/C40/G40/C80 arrays via _amp_ratio_recover (zero new FDTD, no change to any scored amp_ratio value -- x750/y750 re-verified bit-identical to the original committed values before this patch was applied)."
 }
