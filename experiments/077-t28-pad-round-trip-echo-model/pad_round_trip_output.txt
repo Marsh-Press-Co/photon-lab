@@ -57,7 +57,37 @@ exp-077 -- PAD round-trip-distance refit of exp-075's single-wall echo model
     PAIR_PAD     : period band rel_dev=1.8798 -> REFUTE   shape band r^2=0.0444 -> REFUTE   COMBINED: REFUTE
     PAIR_ABSORB40: period band rel_dev=0.9642 -> INCONCLUSIVE   shape band r^2=0.1997 -> INCONCLUSIVE   COMBINED: INCONCLUSIVE
 
-    PRIMARY TARGET (PAIR_PAD, the dominant signal this cycle was tasked to explain): COMBINED = REFUTE
-    SECONDARY CHECK (PAIR_ABSORB40): COMBINED = INCONCLUSIVE
+    single-wall PRIMARY TARGET (PAIR_PAD): COMBINED = REFUTE
+    single-wall SECONDARY CHECK (PAIR_ABSORB40): COMBINED = INCONCLUSIVE
+
+[9] MANDATORY FIX 1 -- TWO-WALL RETARGET (co-primary result, not a deferred idealization; reuses two_wall_cavity.py verbatim)
+    [two-wall model PAIR_PAD]  narrow[1,4]: P*=  4.0000deg  R^2=0.4772  [AT BOUNDARY -- widening]
+    [two-wall model PAIR_PAD]   wide[1,15]: P*=  8.6677deg  R^2=0.8904  [interior optimum]
+    [two-wall model PAIR_ABSORB40]  narrow[1,4]: P*=  4.0000deg  R^2=0.5382  [AT BOUNDARY -- widening]
+    [two-wall model PAIR_ABSORB40]   wide[1,15]: P*=  7.0372deg  R^2=0.8727  [interior optimum]
+
+    two-wall PAIR_PAD:      P*_real=4.6113deg  P*_model=8.6677deg  rel_dev=0.8797   shape r=+0.0097 r^2=0.0001
+    two-wall PAIR_ABSORB40: P*_real=4.1761deg  P*_model=7.0372deg  rel_dev=0.6851   shape r=+0.2043 r^2=0.0418
+    two-wall PAIR_PAD     : period band rel_dev=0.8797 -> INCONCLUSIVE   shape band r^2=0.0001 -> REFUTE   COMBINED: REFUTE
+    two-wall PAIR_ABSORB40: period band rel_dev=0.6851 -> INCONCLUSIVE   shape band r^2=0.0418 -> REFUTE   COMBINED: REFUTE
+
+    SIDE-BY-SIDE, PAIR_PAD (the primary target): single-wall=REFUTE (period-driven)  |  two-wall=REFUTE (shape-driven)
+    SIDE-BY-SIDE, PAIR_ABSORB40 (the control):  single-wall=INCONCLUSIVE  |  two-wall=REFUTE
+    PAIR_PAD Combined REFUTE robust across both cuts: True (via DIFFERENT tests -- single-wall: period; two-wall: shape)
+    PAIR_ABSORB40 verdict robust across both cuts: False (FLIPS INCONCLUSIVE -> REFUTE)
+
+[10] MANDATORY FIX 3 -- +x WALL REALIZABILITY (verified in code, not cited)
+     -x edge vs +x edge damp_e column, worst |diff| = 0.000e+00  identical=True  (MATERIALS/Red Team: both walls are the SAME unrealizable matched-eps=mu admittance class -- a two-wall SUPPORT would not be materials progress in either direction)
+
+[11] MANDATORY FIX 4 -- ENERGY SIDECAR, corrected reasoning
+     PAIR_PAD: r_for['C40'] IS r_for['G40'] (same array object) -> absorbed-power fraction is common-mode BY CONSTRUCTION, not because PAD itself is lossless (PAD *is* also lossless vacuum, independently, but that is not the operative reason for THIS pair's N/A disposition)
+     ABSORB=40 absorbed fraction 1-|r|^2: 99.9959%-99.9992%
+     ABSORB=80 absorbed fraction 1-|r|^2: 100.0000%-100.0000%
+     PAIR_ABSORB40: Delta(absorbed fraction) = 8.4098e-06-4.1247e-05 (real, non-common-mode, but ~4-5 orders of magnitude below any energy scale this program has ever treated as thermodynamically significant -- T5/exp-043's own microbolometer-NETD floor is ~100x ABOVE readings orders of magnitude larger than this)
+
+[12] MANDATORY FIX 5 -- NULL-CALIBRATION APPENDIX (20,000-trial pure-noise null + 20,000-trial bootstrap ground-truth recovery, PAIR_PAD's real curve)
+     pure-noise null (N=20000): P(R^2>=0.70)=0.00000  max R^2 over all trials=0.5609  mean=0.1921
+     real PAIR_PAD's own R^2=0.8165 (far outside the pure-noise distribution above)
+     bootstrap ground-truth recovery (N=20000): true P*=4.6126deg  recovered mean=4.6145deg +/- 0.1409deg  frac within 20% of true=1.0000
 
 wrote /home/user/photon-lab/experiments/077-t28-pad-round-trip-echo-model/pad_round_trip_results.json

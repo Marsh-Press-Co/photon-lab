@@ -435,5 +435,236 @@
     "shape_support": false,
     "shape_refute": false,
     "combined_verdict": "INCONCLUSIVE"
+  },
+  "pred_two_wall_delta_pad": [
+    0.00023119168724905145,
+    0.0002640257859444304,
+    0.0002817928934601621,
+    0.00027310320323422797,
+    0.00022973977047215967,
+    0.0001504232540615602,
+    4.188927998158114e-05,
+    -8.403561441247195e-05,
+    -0.00021586961788013382,
+    -0.0003467561367489345,
+    -0.0004748141930624285,
+    -0.0005997295521839832,
+    -0.0007179549329211258,
+    -0.0008192668337333503,
+    -0.0008866285853063819,
+    -0.000899803778818941,
+    -0.0008411830181090695,
+    -0.0007009210653189987,
+    -0.00047909938750962506,
+    -0.00018488472336206942,
+    0.00016553930812151455,
+    0.0005505833682437527,
+    0.0009442014683399072,
+    0.0013173442792519911,
+    0.0016411680365624069,
+    0.0018918099057022185,
+    0.0020546273756191806,
+    0.0021252824754858946,
+    0.002106781066387237,
+    0.0020041861323739137,
+    0.0018200811770885219
+  ],
+  "pred_two_wall_delta_absorb40": [
+    -0.0002113964899315389,
+    -0.00024736751907449353,
+    -0.00026513178194558125,
+    -0.00025704705596022327,
+    -0.00021901151757540514,
+    -0.00015214833433678347,
+    -6.250717700600691e-05,
+    4.148885712472374e-05,
+    0.00015240155186063697,
+    0.00026562260917369383,
+    0.00037847988296134784,
+    0.0004873839446551346,
+    0.0005850025968369419,
+    0.0006593658239174511,
+    0.0006957818809284,
+    0.000680859764590115,
+    0.0006065126836292791,
+    0.0004717754716815573,
+    0.0002819489996912228,
+    4.6535513414774346e-05,
+    -0.0002220866109259468,
+    -0.0005084276010554421,
+    -0.0007928907292924425,
+    -0.0010518550649608847,
+    -0.0012604558882917715,
+    -0.0013979712400180293,
+    -0.0014533960697033811,
+    -0.0014278640400021804,
+    -0.0013322842944393162,
+    -0.0011815693320368888,
+    -0.0009886524131967735
+  ],
+  "test_a_two_wall_pair_pad": {
+    "real": {
+      "stages": [
+        {
+          "window": "narrow[1,4]",
+          "lo_deg": 1.0,
+          "hi_deg": 4.0,
+          "p_star_deg": 4.0,
+          "r_squared": 0.6824352476365169,
+          "at_boundary": true
+        },
+        {
+          "window": "wide[1,15]",
+          "lo_deg": 1.0,
+          "hi_deg": 15.0,
+          "p_star_deg": 4.611289746337977,
+          "r_squared": 0.8164836481103196,
+          "at_boundary": false
+        }
+      ],
+      "chosen": {
+        "window": "wide[1,15]",
+        "lo_deg": 1.0,
+        "hi_deg": 15.0,
+        "p_star_deg": 4.611289746337977,
+        "r_squared": 0.8164836481103196,
+        "at_boundary": false
+      }
+    },
+    "model": {
+      "stages": [
+        {
+          "window": "narrow[1,4]",
+          "lo_deg": 1.0,
+          "hi_deg": 4.0,
+          "p_star_deg": 4.0,
+          "r_squared": 0.47719705020547354,
+          "at_boundary": true
+        },
+        {
+          "window": "wide[1,15]",
+          "lo_deg": 1.0,
+          "hi_deg": 15.0,
+          "p_star_deg": 8.667738478027868,
+          "r_squared": 0.8904262851496427,
+          "at_boundary": false
+        }
+      ],
+      "chosen": {
+        "window": "wide[1,15]",
+        "lo_deg": 1.0,
+        "hi_deg": 15.0,
+        "p_star_deg": 8.667738478027868,
+        "r_squared": 0.8904262851496427,
+        "at_boundary": false
+      }
+    }
+  },
+  "test_a_two_wall_pair_absorb40": {
+    "real": {
+      "stages": [
+        {
+          "window": "narrow[1,4]",
+          "lo_deg": 1.0,
+          "hi_deg": 4.0,
+          "p_star_deg": 4.0,
+          "r_squared": 0.7092910809975224,
+          "at_boundary": true
+        },
+        {
+          "window": "wide[1,15]",
+          "lo_deg": 1.0,
+          "hi_deg": 15.0,
+          "p_star_deg": 4.176134333690603,
+          "r_squared": 0.715638364085476,
+          "at_boundary": false
+        }
+      ],
+      "chosen": {
+        "window": "wide[1,15]",
+        "lo_deg": 1.0,
+        "hi_deg": 15.0,
+        "p_star_deg": 4.176134333690603,
+        "r_squared": 0.715638364085476,
+        "at_boundary": false
+      }
+    },
+    "model": {
+      "stages": [
+        {
+          "window": "narrow[1,4]",
+          "lo_deg": 1.0,
+          "hi_deg": 4.0,
+          "p_star_deg": 4.0,
+          "r_squared": 0.5382408618324093,
+          "at_boundary": true
+        },
+        {
+          "window": "wide[1,15]",
+          "lo_deg": 1.0,
+          "hi_deg": 15.0,
+          "p_star_deg": 7.037156127188282,
+          "r_squared": 0.8727247460718904,
+          "at_boundary": false
+        }
+      ],
+      "chosen": {
+        "window": "wide[1,15]",
+        "lo_deg": 1.0,
+        "hi_deg": 15.0,
+        "p_star_deg": 7.037156127188282,
+        "r_squared": 0.8727247460718904,
+        "at_boundary": false
+      }
+    }
+  },
+  "rel_period_deviation_two_wall_pad": 0.8796776942744251,
+  "rel_period_deviation_two_wall_absorb40": 0.6850885447856961,
+  "shape_r_squared_two_wall_pad": 9.41133146361924e-05,
+  "shape_r_squared_two_wall_absorb40": 0.04175687418321844,
+  "verdict_two_wall_pad": {
+    "period_support": false,
+    "period_refute": false,
+    "shape_support": false,
+    "shape_refute": true,
+    "combined_verdict": "REFUTE"
+  },
+  "verdict_two_wall_absorb40": {
+    "period_support": false,
+    "period_refute": false,
+    "shape_support": false,
+    "shape_refute": true,
+    "combined_verdict": "REFUTE"
+  },
+  "pair_pad_refute_robust_across_cuts": true,
+  "pair_absorb40_verdict_robust_across_cuts": false,
+  "symmetric_damping_check": {
+    "worst_abs_diff": 0.0,
+    "identical": true
+  },
+  "thermo_sidecar": {
+    "absorbed_frac_40_min": 0.9999587397839939,
+    "absorbed_frac_40_max": 0.9999915893711646,
+    "absorbed_frac_80_min": 0.9999999866586731,
+    "absorbed_frac_80_max": 0.9999999991432829,
+    "delta_absorbed_frac_min": 8.409772118245229e-06,
+    "delta_absorbed_frac_max": 4.124687467921273e-05,
+    "pair_pad_common_mode": true
+  },
+  "null_calibration_appendix": {
+    "pure_noise_null": {
+      "n_trials": 20000,
+      "sigma": 0.0014412437379508784,
+      "p_r2_ge_070": 0.0,
+      "max_r2_over_trials": 0.5608835067568139,
+      "mean_r2_over_trials": 0.19214861094769778
+    },
+    "bootstrap_recovery": {
+      "n_trials": 20000,
+      "true_p_star_deg": 4.612580414581844,
+      "recovered_mean_p_star_deg": 4.614498784846319,
+      "recovered_std_p_star_deg": 0.14087926673621404,
+      "frac_within_20pct_of_true": 1.0
+    }
   }
 }

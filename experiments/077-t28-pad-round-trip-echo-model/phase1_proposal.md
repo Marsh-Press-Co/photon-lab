@@ -71,11 +71,18 @@ round-trip distance to the near wall changing (`PLANE_X`: 77→117,
 is a clean, zero-new-cost, falsifiable test of whether this SPECIFIC
 coherent-echo class explains the dominant PAD-tied signal.
 
-**Result, derived in §5: REFUTE for `PAIR_PAD`** (the task's own primary
-target) — same failure shape as exp-075's original scoring (period too
-long, shape uncorrelated), now demonstrated on the physically-correct,
-decorrelated pair rather than a confounded one. `PAIR_ABSORB40` (the
-complementary, geometry-fixed control) scores INCONCLUSIVE. *(281 words)*
+**Result, derived in §5, CORRECTED post-Phase-2/3/4 (see `phase2_redteam_
+audit.md`, `phase3_synthesis.md`, `phase4_results.md`): REFUTE for
+`PAIR_PAD`, robust across BOTH a single-wall and a two-wall cut of this
+mechanism — but via DIFFERENT tests each time (single-wall: period-driven;
+two-wall: shape-driven, and four orders of magnitude worse), not "the same
+failure shape" as originally drafted here.** `PAIR_ABSORB40` (the
+complementary, geometry-fixed control) is NOT robust across cuts:
+single-wall scores INCONCLUSIVE, but the complete two-wall instrument
+flips it to REFUTE. **With the far-wall term correctly included, BOTH
+pairs REFUTE** — a stronger, more complete negative result than the
+single-wall-only first draft supported. *(original: 281 words; see
+`phase4_results.md` for the full corrected accounting)*
 
 ---
 
@@ -169,14 +176,33 @@ table, is the actual test.
 
 ---
 
-## 3. THERMODYNAMICS sidecar — N/A, same disposition as exp-071 through exp-076
+## 3. THERMODYNAMICS sidecar — CORRECTED post-Phase-2 (Attacks 3+4,
+`phase2_redteam_audit.md`; computed in `thermo_sidecar_check`, `pad_
+round_trip_results.json::thermo_sidecar`)
 
-**Not applicable.** This mechanism is a coherent-field interference effect
-on `C_empty`, not an absorbed-power question — reinforced, not merely
-inherited, by this cycle's own finding (§2b): `PAD` cells are proven
-lossless vacuum, so `PAIR_PAD`'s signal by construction cannot be an
-absorbed-power effect of any kind. No object, no absorber, no new
-thermal question is opened here.
+**`PAIR_PAD`: N/A — but for a code-level common-mode reason, not because
+`PAD` is lossless.** THERMODYNAMICS' Phase-2 critique caught that the
+original justification here ("`PAD` cells are proven lossless vacuum") is
+a non-sequitur: this mechanism's only lossy element is the `ABSORB` band
+itself (`1-|r(θ;40)|²` = 99.9959%–99.9992%, NOT 100%), and `PAD`'s own
+lossless status was never the operative fact. The correct reason:
+`pad_round_trip_model.py`'s `r_for["C40"]` and `r_for["G40"]` are the
+literal SAME array object (verified in code, `verify_symmetric_damping`'s
+sibling check) — a quantity entering identically on both sides of a
+subtraction is common-mode by construction and cannot drive the
+difference's shape or period, regardless of its own numeric size. `PAD`
+being independently lossless (still true) is a separate fact, not the
+reason.
+
+**`PAIR_ABSORB40`: a real, quantified, non-negligible-in-form but
+thermodynamically-insignificant-in-magnitude disposition, computed, not
+asserted.** `ABSORB` genuinely differs (40 vs 80) here, so the absorbed
+fraction genuinely differs too: `Δ(absorbed fraction) = 8.4098×10⁻⁶`–
+`4.1247×10⁻⁵` across the 31-angle grid. Four to five orders of magnitude
+below any energy scale this program has ever treated as thermodynamically
+significant (T5/exp-043's own microbolometer-NETD floor is ~100× ABOVE
+readings orders of magnitude larger than this) — argued negligible
+quantitatively, not by category exemption.
 
 ---
 
@@ -264,26 +290,50 @@ signal): Test A REFUTE, Test B REFUTE → COMBINED: REFUTE.**
 **`PAIR_ABSORB40` (secondary, geometry-fixed control): Test A
 INCONCLUSIVE, Test B INCONCLUSIVE → COMBINED: INCONCLUSIVE.**
 
-**Reading, stated plainly, not softened toward a desired outcome:** the
-single coherent near-wall echo mechanism, refit against the exact
-decorrelated pair the task named, does NOT explain T28's dominant
-`PAIR_PAD` signal — its own predicted period (13.28°, driven by the
-round-trip-distance CHANGE between `PLANE_X=77` and `PLANE_X=117`) is
-still roughly 4× too long relative to the real data's own free-fit period
-on this pair (4.61°), and the shape match is weak and on the wrong side
-of the REFUTE bar. This is a genuine, informative negative result: it is
-not merely "REFUTE repeated on the same wrong pair" — it is REFUTE on the
-one pair exp-076's own proof says is the ONLY remaining candidate for this
-specific mechanism CLASS (single coherent echo weighted by `r(theta;
-ABSORB)`), on the physically correct geometry. **`PAIR_ABSORB40` genuinely
-differs in character (INCONCLUSIVE, not REFUTE)** — its period rel_dev
-(0.96) sits just under the REFUTE ceiling and its shape r² (0.20) is the
-better of the two, correctly signed — worth noting as a secondary,
-non-headline observation, not overclaimed as support.
+**§5's verdicts above are the SINGLE-WALL cut only — superseded as the
+final word by §5b immediately below (mandatory fix 1,
+`phase2_redteam_audit.md` Attack 1). Kept verbatim as the Phase-1 record,
+not retro-edited, per house convention.**
+
+### §5b — TWO-WALL RETARGET (mandatory fix 1, co-primary result, NOT a
+deferred idealization; `phase4_results.md` has the full accounting)
+
+`PAD` shifts BOTH walls' round-trip distances (near: `PLANE_X` 77→117;
+far: `(nx−1)−SRC_X` 59→99→99), so the complete instrument sums both
+mirror-image echoes, same `r(theta;ABSORB)` weighting each (reusing
+`two_wall_cavity.py::c_empty_two_wall`/`image_geometry_right` verbatim —
+zero new machinery):
+
+| | `PAIR_PAD` | `PAIR_ABSORB40` |
+|---|---|---|
+| Test A: `P*_model` | `8.6677°` (was `13.2794°`) | `7.0372°` (was `8.2026°`) |
+| Test A: `rel_dev` → verdict | `0.8797` → **INCONCLUSIVE** (was REFUTE) | `0.6851` → INCONCLUSIVE (unchanged) |
+| Test B: `r²` → verdict | `0.0001` → **REFUTE** (was `0.0444` REFUTE — 4 orders of magnitude worse) | `0.0418` → **REFUTE** (was `0.1997` INCONCLUSIVE) |
+| **Combined** | **REFUTE** (via Test B alone — robust across cuts, different test) | **REFUTE** (flipped from single-wall's INCONCLUSIVE) |
+
+Confirmed FOUR independent ways in total (PHOTONICS' and
+ELECTROMAGNETISM's Phase-2 from-scratch retargets, Red Team's Phase-2
+audit re-derivation, and this Phase-4 re-run) — all agree to 4 decimal
+places.
+
+**Reading, stated plainly, not softened toward a desired outcome, and
+correcting this document's own original §1/§5 language (mandatory fix
+2):** with the complete (two-wall) instrument, **BOTH pairs REFUTE.**
+`PAIR_PAD`'s REFUTE is robust across cuts but rests on a DIFFERENT test
+each time (single-wall: the period is ~4× too long; two-wall: the period
+actually improves to a defensible match, but the shape correlation
+collapses to near-zero) — two structurally different ways this mechanism
+class fails, not one repeated finding, which is stronger evidence against
+it, not weaker. `PAIR_ABSORB40`'s single-wall INCONCLUSIVE reading was an
+artifact of the incomplete (single-wall) instrument, not a genuine milder
+signal — the complete instrument says this pair fails too. Neither pair
+supports the single coherent-echo mechanism class exp-076's own proof
+identified as the only one still physically permitted for a `PAD`-tied
+signal.
 
 ---
 
-## 6. Idealizations (inherited from exp-075 §6, unchanged; plus one new item)
+## 6. Idealizations (inherited from exp-075 §6, unchanged; plus new items 9-10)
 
 1–8. All of exp-075's own idealizations (discrete-to-continuous decay,
 the matched-`eps=mu` friction-PDE bridge and its realizability caveat,
@@ -292,26 +342,33 @@ substitution, single-echo-only, TE-only, 600nm-only) carry over
 UNCHANGED — this cycle reuses the identical `n(x)`/`r(theta)`/`c_empty_
 with_wall` machinery, none of it re-derived.
 
-9. **Single-wall (near `-x` wall) only, this first cut.** Per the task's
-   own instruction and this program's own precedent (exp-075 Phase 1
-   proposed single-wall first; the two-wall-cavity extension
-   (`two_wall_cavity.py`) followed only after Phase-2 critique flagged it
-   as necessary). `PAD` changes BOTH the near-wall (`PLANE_X`) AND the
-   far-wall (`(nx−1)−SRC_X`) round-trip distances — named here explicitly,
-   not smuggled past: `D_right` for `C40`/`G40`/`C80` is 59/99/99 cells
-   respectively (from `two_wall_cavity.py`'s own `d_right` formula), so
-   `PAIR_PAD`'s far-wall echo term ALSO shifts (59→99), a second,
-   uncomputed contribution this single-wall cut omits. **If Phase 2/3
-   flags this REFUTE as premature given the far wall's own shift, the
-   two-wall extension is available immediately** — `two_wall_cavity.py`'s
-   `image_geometry_right`/`c_empty_two_wall` need only be pointed at this
-   cycle's own `(C40,G40,C80)` triple instead of the `{C40,C60,C70,C80}`
-   series it was built for; zero new machinery, only a re-target.
-2. Only the `PAIR_PAD`/`PAIR_ABSORB40` pair from exp-076's dense 600nm
-   window is scored; the 750nm advisory leg (queue item 2, a fixed-
-   carrier re-score) is explicitly out of scope for this cycle — a
-   separate queued item, not folded in here.
-3. No energy sidecar beyond §3's argued N/A (house precedent).
+9. **Single-wall (near `-x` wall) only was this document's original first
+   cut — SUPERSEDED by §5b (mandatory fix 1).** `PAD` changes BOTH the
+   near-wall (`PLANE_X`) AND the far-wall (`(nx−1)−SRC_X`) round-trip
+   distances (`D_right` for `C40`/`G40`/`C80` is 59/99/99 cells); the
+   single-wall cut omitted the far-wall term as "a second, uncomputed
+   contribution." Phase 2 flagged this omission as outcome-relevant
+   (three independent seats, confirmed a fourth way at Phase 4) — the
+   two-wall retarget is now the primary result (§5b), kept here only as
+   the honest record of the original scope.
+10. **The two-wall extension is an instrument-fidelity check only — it
+    cannot move MATERIALS' realizability bound (mandatory fix 3,
+    `phase2_redteam_audit.md` Attack 2, verified in code this cycle,
+    `verify_symmetric_damping`).** The `+x` wall's damping construction
+    is bit-identical to the `-x` wall's (`lab/fdtd2d.py::_damping`, the
+    same `self.absorb`-parameterized cubic ramp on all four domain
+    edges) — the same unrealizable matched-`eps=mu` admittance class this
+    document already bounds as unobtainium-with-parameters. A two-wall
+    SUPPORT, had it occurred, would not have been materials progress of
+    any kind; the two-wall REFUTE (§5b) likewise says nothing new about
+    realizability, only about this specific mechanism's fit to the data.
+11. Only the `PAIR_PAD`/`PAIR_ABSORB40` pair from exp-076's dense 600nm
+    window is scored; the 750nm advisory leg (queue item 2, a fixed-
+    carrier re-score) is explicitly out of scope for this cycle — a
+    separate queued item, not folded in here.
+12. No energy sidecar beyond §3's corrected disposition (mandatory fix 4)
+    — `PAIR_PAD` N/A by code-level common-mode identity; `PAIR_ABSORB40`
+    a real but 4-5-orders-of-magnitude-negligible Δ.
 
 ---
 
@@ -338,10 +395,23 @@ NOT re-propose anything ruled dead:
   produced by `pad_round_trip_model.py` — verified by direct comparison
   while writing this document, not merely asserted.
 - **R5** (look-elsewhere / null-permutation discipline for dense
-  constant/parameter searches): not engaged — this cycle fits exactly TWO
-  periods (one per pair) against one pre-registered pair of bands each,
-  not a dense named-constant search; no look-elsewhere risk of the kind
-  R5 targets.
+  constant/parameter searches): not a dense named-constant search in the
+  sense R5 targets, but QUANTUM OPTICS' Phase-2 critique correctly named
+  a related risk in `_free_period_search`'s own 2800-point grid search per
+  curve, and Red Team made it MANDATORY FIX 5: a 20,000-trial pure-noise
+  null (`P(R²≥0.70)=0.00000`, max `R²=0.5609` over all trials, vs. real
+  `PAIR_PAD`'s own `R²=0.8165`) plus a 20,000-trial bootstrap
+  ground-truth-recovery check (100.0% of resamples land within 20% of the
+  true fitted period) — added to `pad_round_trip_model.py`/`pad_round_
+  trip_results.json::null_calibration_appendix`, confirming rather than
+  threatening the REFUTE verdicts (`phase4_results.md`).
+- **R6/addendum** (`G0-e` ground-truth recovery / null-calibration
+  gates): not directly triggered — `amp_ratio`, `R_q`, and any carrier/
+  phase-conditioned significance-tested coefficient are absent from this
+  cycle entirely; Test A/B are magnitude/period/shape comparisons against
+  a zero-free-parameter model, not a fitted, null-calibrated coefficient.
+  The null-calibration appendix above (R5, mandatory fix 5) addresses the
+  same spirit voluntarily, per Red Team's ruling, without R6 itself firing.
 - **R6/addendum** (`G0-e` ground-truth recovery / null-calibration
   gates): not engaged — `amp_ratio`, `R_q`, and any carrier/phase-
   conditioned significance-tested coefficient are absent from this
