@@ -2163,6 +2163,146 @@ measured them here):**
   Full record: `experiments/074-t28-window-pricing-cramer-rao-bound/`,
   LOGBOOK.md Iteration 51.
 
+  **Iteration 52 (exp-075) — PHOTONICS' own queued analytic model,
+  executed: two boundary-reflectance-echo mechanisms, both REFUTEd, on a
+  convention independently confirmed correct at Phase 5.** THERMODYNAMICS
+  (lead by rotation) built an exact recursive transfer-matrix reflectance
+  `r(theta;ABSORB)` for the `-x`-edge graded-loss band (backed by the
+  domain's PEC wall), tested zero-cost against the real 31-point dense
+  sweep: self-scored REFUTE (period ~4.3x too long, wrong-signed shape
+  match). Five blind Phase-2 critiques (unanimous support-with-changes)
+  found PHOTONICS' own two-wall-cavity variant — the domain's OTHER PEC
+  wall, never priced — lands inside the proposal's own SUPPORT band on a
+  naive `nx`-substitution; Red Team's Phase-2 audit confirmed this exactly
+  but ran its own look-elsewhere check (2 of 11 named geometric constants
+  also land in-band) and ruled PROCEED-WITH-MANDATORY-FIXES, five items,
+  zero overridden. The Director built and PRE-REGISTERED the actual
+  two-wall model (correct wall distances, not the `nx` substitution)
+  BEFORE running it — frozen prediction: Test A REFUTEs again, since both
+  walls' own correctly-derived periods (7.8-15.4°) sit far from
+  `P*=2.8421°`. **Confirmed with margin**: the two-wall model's Test A
+  REFUTEs identically (`P_model=15.0000°`, bit-identical to the
+  single-wall model), closing the gap Red Team's look-elsewhere check left
+  open — PHOTONICS' `nx`-match is confirmed to be the look-elsewhere
+  artifact it was suspected of being. A mandatory circular-shift
+  null-calibration check found the two-wall model's own nominal Test-B
+  SUPPORT (`r²=0.30`) is NOT significant against the real data's known
+  autocorrelation (`p=0.20`).
+
+  **Phase 5's own load-bearing finding**: two independent blind seats
+  (PHOTONICS, ELECTROMAGNETISM), neither aware of the other, found and
+  confirmed the SAME defect — Test A's REFUTE is convention-dependent.
+  Under an untested alternate reflection-phase convention (`r→conj(r)`,
+  algebraically indistinguishable by the program's own G-PASSIVITY gate),
+  REFUTE collapses to INCONCLUSIVE for BOTH mechanisms. Red Team's final
+  audit independently reproduced this from scratch (three independent
+  computations now agree), then RESOLVED it: a disclosed static-analysis
+  attempt did not cleanly settle the question, so Red Team built a NEW,
+  owned empirical FDTD tie-breaker (`phase5_redteam_phase_convention_
+  check.py`, reusing `lab.emit`'s own already-gated angular-spectrum
+  machinery) — a handful of real `Sim.run()` calls on a truncated analogue
+  of the real band, calibrated against a lossless energy-conservation
+  identity, with a corner-damping bug found and fixed and a `K≥8`
+  reliability degradation found and honestly NOT fully diagnosed. At its
+  one calibration-confirmed reliable point (`K=5`, three angles, lossless
+  + lossy, 6/6 sub-tests), the committed convention wins by 2.8x-6.7x
+  margins, never `conj(r)`. **RESOLVED, moderate-to-high confidence: the
+  committed convention is correct. Combined Verdict REFUTE STANDS for
+  both mechanisms.**
+
+  **CHECKPOINT criterion 4 FIRES** (11th time this program, unbroken
+  notification-not-pause precedent) — see the CHECKPOINT block below,
+  this iteration.
+
+  Other Phase-5 findings, all adopted, none changing the Combined Verdict:
+  VISION independently re-confirmed (a third time, against the raw JSON
+  array) that the `ABSORB`-depth cross-config correlation count is 4-of-6
+  negative, not the 3-of-6 Red Team's own Phase-2 audit prose stated —
+  correcting Red Team's own restated figure, exactly the class of gap R4
+  exists to close, applied here one level further than usual, to a Red
+  Team audit's own number. QUANTUM found the new `circular_shift_null`
+  check is itself anti-conservative against synthetic AR(1)/phase-
+  randomized null data (1.3x-16x nominal depending on alpha) — a genuine,
+  disclosed gap bound forward, not load-bearing here since Test A alone
+  determines the Combined Verdict. MATERIALS confirmed `lab/materials.py::
+  graded_black_shell` (the bench's real physical absorber) is a code path
+  fully disjoint from this cycle's matched-`eps=mu` numerical construct —
+  this REFUTE says nothing about physically realizable absorber coatings.
+  THERMODYNAMICS caught a minor sidecar rounding slip
+  (`>99.996%`→`>99.995%`) and flagged an undocumented sidecar-disposition
+  gap for the two-wall extension.
+
+  **Verdict PARTIAL.** T28's own substantive mechanism question — the
+  ~2.84° periodicity's origin — is not answered by this cycle. Two
+  boundary-reflectance-echo mechanism classes are now REFUTEd, on a
+  convention independently confirmed correct, closing the specific gap
+  Red Team's Phase-2 audit left open. Reconciled Iteration-53 ranking (Red
+  Team's Phase-5 final audit, all six seats): (1) G40/`PAD` decorrelation
+  — near-unanimous #1, the only queued item that relieves rather than
+  discloses the standing confound, now the single most information-dense
+  open question on T28's board; (2) score the already-built two-wall
+  model against the already-collected 750nm leg (`block_leg750`, zero new
+  FDTD); (3) harden the phase-convention resolution to this program's own
+  R6/G0-e standard (extend the new check to the real `ABSORB` depths,
+  diagnose the `K≥8` degradation); (4) record-hygiene bundle (six items).
+  Full record: `experiments/075-t28-absorb-boundary-wkb-reflectance/` —
+  Phase-1 proposal, `boundary_reflectance.py`, five Phase-2 blind
+  critiques, Phase-2 Red Team audit, Phase-3 synthesis, `two_wall_
+  cavity.py`, Phase-4 results, `NOTES.md`, six Phase-5 blind reviews,
+  Phase-5 Red Team final audit + its own owned verification script.
+
+### CHECKPOINT (Iteration 52, 2026-08-26, criterion 4 — program-integrity drift).
+
+Red Team's Phase-5 final audit ruled criterion 4 **FIRES**, on a narrower
+basis than the Iteration 49/50 precedent this same criterion fired on
+twice before, weighed explicitly against the strongest available
+non-firing argument. **Non-firing argument, stated in full**: no false
+verification claim was made about a specific, checked computation (unlike
+Iterations 49/50's verifiably-false "ZERO items un-adopted"/"independently
+re-verified"); the underlying Test A REFUTE conclusion is, per this
+audit's own independent resolution, actually correct — nothing about the
+final answer needed correcting; every phase of this cycle's own record
+disclosed the phase-convention gap's existence honestly, at every turn.
+**Firing argument, weighed as stronger**: an UNVERIFIED robustness
+argument — EM's own Phase-2 text, "Test A's REFUTE... is robust to
+everything below [the phase-convention issue]" — was adopted verbatim by
+Red Team's own Phase-2 audit ("EM's own robustness argument, which I did
+not find any reason to overturn") and by Phase 3, WITHOUT independently
+testing it, even though EM's own Phase-2 critique had already named the
+exact check needed ("re-derive `r(theta)`... compare PHASE, not just
+magnitude... If it fails... the framing... would need to soften"). That
+claim then supported an uncaveated headline (`NOTES.md`'s own "Result"/
+"Learned" sections stated flatly "Combined Verdict: REFUTE, both
+mechanisms," no phase-convention caveat anywhere) that survived Phase 3
+and Phase 4 unchallenged until two independent blind Phase-5 seats
+(PHOTONICS, EM), using a newly-built check neither had run before, found
+it outcome-determining — this program's own established firing shape
+("took blind Phase-5 seats plus the final audit to surface"), not its
+non-firing one ("caught by blind critics before Phase 3 adopted it").
+**This is the same failure class R7 was adopted to prevent, one cycle
+earlier** (Iteration 51: a conditioning/pricing number is not sufficient
+evidence for a closure claim, the design must be fit to real data) —
+generalized here from a quantitative pricing number substituting for a
+fit, to a qualitative independence argument substituting for a test, the
+same underlying discipline gap recurring in adjacent form, in the very
+next cycle after the rule meant to close it was adopted.
+
+**Ruled a notification, not a pause** — this program's unbroken
+precedent, now 11 for 11. No `lab/` diff to the original cycle's own
+machinery; the Combined Verdict is confirmed correct and unaffected; the
+remedy is actionable without halting any other thread. **New standing
+rule, R8, adopted**: an unverified robustness/independence *argument*
+about a flagged verification gap is not itself sufficient to file that
+gap as "informational only" ahead of a headline verdict, when a specific,
+affordable check that would resolve it has already been named — the
+argument must be independently verified, by actually computing the
+alternate case, not by re-reasoning about it, before the gap is filed as
+non-blocking. A cycle that files such a gap as informational-only on an
+untested argument, when the gap later proves outcome-determining, fires
+Checkpoint criterion 4 automatically if the named check was affordable
+and not run — matching R6's/R7's own standard. Full record:
+`experiments/075-.../phase5_redteam_audit.md` §2–§6.
+
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
 - ~~Is the 3λ shell-thickness feature specific to r2=90?~~ **ANSWERED
@@ -15812,3 +15952,160 @@ blind reviews, Phase-5 Red Team final audit; RULED OUT (R7 adopted; R4
 addendum recommended), LIVE THREADS (T28 updated — sub-thread formally
 retired on this instrument class, thread itself stays open pending
 PHOTONICS' analytic model).
+
+## Iteration 52 — Two Boundary-Reflectance-Echo Mechanisms, Both REFUTEd; a Convention-Dependent Verdict Caught by Two Blind Phase-5 Seats and Resolved by a New Empirical Tie-Breaker; CHECKPOINT Criterion 4 Fires, R8 Adopted (exp-075) — 2026-08-26
+
+*Runner: cloud panel shift.* **Lead: THERMODYNAMICS, by rotation**
+(VISION→PHOTONICS→MATERIALS→EM→THERMO→QUANTUM; 48=VISION, 49=PHOTONICS,
+50=MATERIALS, 51=EM, 52=THERMODYNAMICS). Executes PLAN.md's Iteration-52
+queue item 1 (near-unanimous #1 across all six of exp-074's Phase-5
+seats, `phase5_redteam_audit.md` §8): PHOTONICS' own queued WKB/adiabatic
+boundary-reflectance analytic model for the graded-loss `ABSORB` band —
+zero new FDTD, the explicit "qualitatively different strategy"
+exp-074's own seventh-cycle rule requires before any further T28 work.
+Per house precedent (Iteration 44), the rotation lead formalizes the
+queue's own #1 regardless of whose charter it fits most naturally.
+
+**Phase 1** (THERMODYNAMICS): derived an effective complex index from
+`lab/fdtd2d.py::Sim._damping`'s own per-cell arrays (a per-timestep
+multiplicative field-damping mask at the domain edges, NOT the bench's
+physical absorber — `lab/materials.py::graded_black_shell` is a disjoint
+code path), resolved a genuine sign/branch ambiguity via a passivity
+requirement (`|r|<=1`), built an EXACT recursive transfer-matrix
+reflectance `r(theta;ABSORB)` (not a truncated WKB/Born integral — the
+band is only 2-4λ thick, checked and flagged marginal), and extended
+exp-048's own committed Huygens-Fresnel propagator with a mirror-image
+term to predict a coherent single-echo interference term in `C_empty`.
+Tested zero-cost against experiments/069's already-collected real
+31-point dense sweep. Self-scored Combined Verdict: **REFUTE** (period
+~4.3x too long — `P_model=15.0000°` vs `P*=2.8421°`; wrong-signed,
+inconclusive shape match).
+
+**Phase 2** (five blind critiques, unanimous support-with-changes, zero
+oppose + Red Team's audit): PHOTONICS found a same-cost, same-machinery
+TWO-WALL-CAVITY variant (the domain's OTHER PEC wall, behind the source,
+never priced) lands INSIDE the proposal's own SUPPORT band on a naive
+`nx`-substitution into the existing closed-form formula. MATERIALS
+confirmed the model describes a matched-`eps=mu` medium — the engine's
+own numerical construct, unobtainium-with-parameters at optical
+wavelengths, not a statement about realizable coatings. ELECTROMAGNETISM
+found no gate tests cross-module phase-convention consistency between
+`r(theta)` and the propagator it's coherently summed against, and tested
+`r->conj(r)` directly (did not flip Test B's sign) — concluding, in
+Phase-2 text later shown wrong at Phase 5, that Test A was "robust to"
+this gap. QUANTUM found Test A's headline number is a boundary-search
+artifact (R² rises monotonically to whatever grid boundary is set) and
+Test B's wrong-signed `r²` is a statistically significant
+anti-correlation (`p~0.0035`), not merely inconclusive. VISION flagged an
+un-run `ABSORB`-depth residual cross-check against exp-074's own
+established near-identical-residual-shape finding. Red Team's audit
+independently re-derived every claim computationally (six routes),
+confirmed all five (sharpening two), ran its own look-elsewhere check (2
+of 11 named geometric constants also land in-band under the naive
+substitution — suggestive, not decisive), and ruled
+PROCEED-WITH-MANDATORY-FIXES, five items, **zero overridden**.
+
+**Phase 3** (Director): adopted all five items, zero overrides. Executed
+mandatory fixes 2-4 as committed code/in-place doc edits — including
+catching a same-cycle arithmetic slip in Red Team's OWN Phase-2 audit
+prose while doing so (its "3 of 6 pairs negative" is actually 4 of 6, R4
+applied one level further than usual, to a Red Team audit's own restated
+number). Designed and PRE-REGISTERED the actual two-wall-cavity model
+(mandatory fix 1) — the physically correct wall distances (interferometer-
+arm path differences `2*PLANE_X` and `2*((nx-1)-SRC_X)`, not PHOTONICS'
+`nx` substitution), both walls' own closed-form periods computed
+(7.8-15.4°, far from target) — BEFORE running it, with a frozen primary
+prediction (Test A REFUTEs again) and a new circular-shift
+null-calibration robustness check (R6-style, order-preserving) per Red
+Team's own mandatory instruction.
+
+**Phase 4** (official run): frozen prediction **CONFIRMED, with margin**
+— the two-wall model's Test A REFUTEs identically to the single-wall
+model's own boundary-search-artifact result (`P_model=15.0000°`,
+bit-identical). PHOTONICS' `nx`-match confirmed, as predicted, to be the
+look-elsewhere artifact Red Team's own audit flagged it as being at risk
+of. Test B's raw `r²=0.3042` nominally clears the pre-registered SUPPORT
+band (unlike the single-wall model's `0.2586`) but the circular-shift
+null-calibration check shows this is NOT statistically significant
+against the real data's own known autocorrelation (`p=0.1953`).
+
+**Phase 5** (six blind reviews, all PARTIAL + Red Team's final audit —
+the load-bearing phase of this cycle). Two independent blind seats
+(PHOTONICS, ELECTROMAGNETISM), neither aware of the other, found and
+confirmed the SAME defect: under the untested `r->conj(r)` alternate
+convention — algebraically indistinguishable by the program's own
+G-PASSIVITY gate (`|conj(r)|=|r|` trivially) — Test A's REFUTE collapses
+to INCONCLUSIVE for BOTH mechanisms (`rel_dev` 4.28→0.38/0.45); EM's own
+Phase-2 "robust to everything" claim is shown false (its own Phase-5
+self-correction: it had conflated the closed-form diagnostic with the
+actual scored numeric fit). A `r->-r` control leaves REFUTE untouched,
+isolating conjugation specifically. Red Team's final audit independently
+reproduced this from scratch (three independent computations now agree
+to 4 significant figures), attempted a static-analysis resolution
+(disclosed honestly as NOT cleanly settling the question — the audit's
+own hand-derived reasoning initially pointed the wrong way), then built a
+NEW, owned empirical FDTD tie-breaker
+(`phase5_redteam_phase_convention_check.py`) — real `Sim.run()` calls on
+a truncated analogue of the real band, reusing `lab.emit`'s own
+already-gated angular-spectrum machinery, calibrated against a lossless
+energy-conservation identity. Debugging disclosed in full: a corner-
+damping bug found and fixed via the calibration check; a `K>=8`
+reliability degradation found and honestly NOT fully diagnosed within
+audit scope. At its one calibration-confirmed reliable point (`K=5`,
+three incidence angles, lossless + lossy, 6/6 sub-tests), the committed
+convention wins by 2.8x-6.7x margins, never `conj(r)`. **RESOLVED,
+moderate-to-high confidence: the committed convention is correct.
+Combined Verdict REFUTE STANDS for both mechanisms.**
+
+Other Phase-5 findings, all adopted, none changing the Combined Verdict:
+VISION independently re-confirmed the 4-of-6 correction a third way
+(against the raw JSON array directly); QUANTUM found the new
+`circular_shift_null` check is itself anti-conservative against
+synthetic AR(1)/phase-randomized null data (1.3x-16x nominal depending on
+alpha — a genuine, disclosed gap, non-load-bearing since Test A alone
+determines the verdict); MATERIALS confirmed `graded_black_shell`'s code-
+path disjointness from this cycle's construct; THERMODYNAMICS caught a
+minor sidecar rounding slip (`>99.996%`→`>99.995%`) and an undocumented
+sidecar-disposition gap for the two-wall extension; VISION proposed
+scoring the two-wall model against the already-collected 750nm leg.
+
+**CHECKPOINT criterion 4 FIRES** (see the CHECKPOINT block above, in this
+file's LIVE THREADS T28 entry, for the full ruling) — ruled a
+notification, not a pause, this program's unbroken precedent, 11 for 11.
+**New standing rule R8 adopted**, generalizing R7 one level further: an
+unverified robustness/independence argument about a flagged verification
+gap is not sufficient to file it informational-only when an affordable
+named check exists — the argument must be tested, not reasoned about.
+
+**Verdict PARTIAL.** T28's own substantive mechanism question — the
+~2.84° periodicity's origin — is not answered by this cycle, exactly as
+five of the last six T28 cycles also could not answer it. Two
+boundary-reflectance-echo mechanism classes are now REFUTEd, on a
+convention independently confirmed correct, closing the specific gap Red
+Team's Phase-2 audit left open — a genuine, if narrow, advance following
+Iteration 51's own genuine advance (the differential/two-tone
+instrument-class formal retirement): two consecutive advancing
+iterations. Reconciled Iteration-53 ranking (Red Team's Phase-5 final
+audit, all six seats, `phase5_redteam_audit.md` §7): (1) **G40/`PAD`
+decorrelation** (~31 FDTD calls) — near-unanimous #1, the only queued
+item that relieves rather than discloses the standing `ABSORB`-or-`PAD`
+confound, now the single most information-dense open question on T28's
+board with the boundary-reflectance-echo class doubly REFUTEd; (2)
+**score the two-wall model at 750nm** (`block_leg750`, already collected,
+zero new FDTD) — cheap, decisive, stress-tests this cycle's own REFUTE
+before it is cited elsewhere as wavelength-general; (3) **harden the
+phase-convention resolution to this program's own R6/G0-e standard**
+(extend the new check to the real `ABSORB` depths directly, diagnose the
+`K>=8` degradation this audit disclosed but did not fully resolve); (4)
+**record-hygiene bundle** (six items: the rounding fix, the sidecar
+documentation gap, exact-enumeration + synthetic-noise sizing for
+`circular_shift_null`, the `graded_black_shell` disjointness note,
+`caveat_lint_config.json` entries for this cycle's own headline scope
+caveats, and folding R8's phase-convention caveat language into the
+permanent record). Full record: `experiments/075-t28-absorb-boundary-wkb-
+reflectance/` — Phase-1 proposal + `boundary_reflectance.py`, five
+Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
+`two_wall_cavity.py`, Phase-4 results, `NOTES.md`, six Phase-5 blind
+reviews, Phase-5 Red Team final audit + its own owned verification
+script; LIVE THREADS (T28 updated, above — both tested mechanism classes
+now RULED OUT, thread itself stays open).
