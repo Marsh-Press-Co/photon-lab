@@ -96,16 +96,20 @@ own scope, the `N_SURR_CAL` vs `N_SURR` cost tradeoff).
 
 ## Result
 
-**Combined Verdict: `HALT_NULL_MISCALIBRATED_9COL`.** Both frozen
-predictions confirmed. The i.i.d. leg fails 8.7×–11.2× nominal at
-α=0.01 (worse than exp-073's 5-column 5.4×, as predicted from the lower
-`lev9_Rq`). The new, genuinely order-preserving circular-shift leg fails
-far worse still — 38.9×–46.1× nominal at α=0.01, 3.5×–5.9× worse than the
-i.i.d. leg at every α — the first test in this five-cycle sub-thread to
-show a real, structure-preserving null leg is NOT statistically
-indistinguishable from an i.i.d. one (exp-073's own pooled leg was,
-`r=0.907`; this one measurably is not). No pair's `R_q`-within-the-two-
-tone-fit significance was ever scored. Full detail: `phase4_results.md`.
+**Combined Verdict: `HALT_NULL_MISCALIBRATED_9COL`, confirmed robust by
+Phase 5.** Both frozen predictions confirmed. The i.i.d. leg fails
+8.7×–11.2× nominal at α=0.01 (worse than exp-073's 5-column 5.4×, correct
+in direction though not in absolute magnitude, per the `lev9_Rq`
+prediction). The new, genuinely order-preserving circular-shift leg fails
+far worse still — 38.9×–46.1× nominal at α=0.01 — the first test in this
+five-cycle sub-thread to show a real, structure-preserving null leg is
+NOT statistically indistinguishable from an i.i.d. one (exp-073's own
+pooled leg was, `r=0.907`; this one measurably is not). No pair's
+`R_q`-within-the-two-tone-fit significance was ever scored. Two small
+arithmetic slips (a 72-vs-36 cell miscount; an "at every α" ratio range
+that doesn't hold at α=0.10) were caught by four of six blind Phase-5
+seats and corrected in place in `phase4_results.md`, non-load-bearing.
+Full detail: `phase4_results.md`.
 
 ## Learned
 
@@ -118,16 +122,48 @@ than on idealized (i.i.d.) noise. R7 (adopted this cycle) is directly,
 empirically confirmed on its first application: a design-only
 conditioning bound (`lev9_Rq≈0.59`, computed in Phase 1/3 before any
 calibration Monte Carlo ran) correctly predicted the DIRECTION of this
-failure but could not have predicted its MAGNITUDE, particularly the
-5× additional degradation on genuinely correlated noise — only actually
-fitting and calibrating exposed that. Per the pre-committed seventh-cycle
-decision rule (`phase3_synthesis.md` §6): this is the sixth consecutive
-non-decisive T28 differential/two-tone cycle (Iterations 46–51), and no
-seventh cycle on the same instrument class (a sign-flip/permutation null
-on this ramped-quadrature OLS basis, any window, single- or multi-tone)
-is authorized without a qualitatively different calibration strategy.
+failure but could not have predicted its MAGNITUDE — only actually
+fitting and calibrating exposed that.
+
+**Phase 5's own genuinely new finding** (unavailable at Phase 2, since
+`fit_and_calibrate.py` didn't exist yet): the four `ABSORB` configs' own
+per-config residuals are near-identical (r=0.992–1.000) and strongly
+θ-autocorrelated (lag-1≈0.92–0.94) — a shared curvature misspecification
+(Idealization 7), not `ABSORB`-differential noise. Two seats proposed
+that independently decorrelating this shared structure (rather than the
+structure itself) explained the circular-shift leg's extra severity; two
+others falsified that mechanism (a rigorous scale-invariance proof; a
+coupled-shift counterfactual that fails just as badly) and isolated
+genuine autocorrelation as the real cause — confirmed, three independent
+ways, not to change the Combined Verdict. The panel's own self-correction
+machinery working one level deeper than Phase 2 could reach: this is
+exactly PANEL.md's independence mechanics doing their job, not a defect
+in the program.
+
+Per the pre-committed seventh-cycle decision rule (`phase3_synthesis.md`
+§6, triggered as written): this is the sixth consecutive non-decisive
+T28 differential/two-tone cycle (Iterations 46–51), and no seventh cycle
+on the same instrument class (a sign-flip/permutation null on this
+ramped-quadrature OLS basis, any window, single- or multi-tone) is
+authorized without a qualitatively different calibration strategy. The
+underlying pricing/fitting machinery (R6, R7, both scripts) is NOT
+retired — it remains available to any future carrier/phase-conditioned
+fit in this program, on different data.
 
 ## Next
 
-*(Placeholder — see PLAN.md's Iteration-52 queue, Director's update, post
-Phase 5.)*
+See PLAN.md's Iteration-52 queue (Red Team's Phase-5 final-audit
+reconciliation of all six seats, `phase5_redteam_audit.md` §8): (1)
+PHOTONICS' WKB/adiabatic boundary-reflectance analytic model for the
+graded-loss `ABSORB` band — zero FDTD, the explicit "qualitatively
+different strategy" this cycle's own seventh-cycle rule requires for any
+further T28 differential-thread work, strengthened by this cycle's own
+finding that the leftover residual shape is `ABSORB`-depth-independent;
+(2) G40/`PAD` decorrelation (~31 calls) — the only queued item that
+relieves rather than discloses the confound, explicitly not barred by the
+seventh-cycle rule (a genuinely different instrument class); (3) bundle
+this cycle's own record-hygiene corrections (the two erratum items above,
+the "Iteration 5, exp-027" mislabel) with a disclosure patch to
+`fit_and_calibrate.py`'s reusable calibration machinery (a cross-config
+correlation table, a documented coupled-shift alternative leg) before it
+is pointed at different data in a future cycle.

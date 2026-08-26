@@ -17,12 +17,26 @@ zero FDTD, zero `lab/` diff. Full data: `fit_and_calibrate_results.json`.*
 predictions confirmed, with margin.
 
 **Primary prediction confirmed.** The 9-column null-calibration gate
-fails at **every one of 72 cell combinations** (3 free pairs × 24 cells:
-3 sigmas × 3 alphas for the i.i.d. leg, plus 3 alphas for the
-circular-shift leg). The i.i.d. leg's worst inflation is **8.7×–11.2×**
+fails at **every one of 36 cell combinations** (3 free pairs × 12 cells:
+3 sigmas × 3 alphas = 9 cells for the i.i.d. leg, plus 3 alphas for the
+circular-shift leg). *(Erratum, Phase 5: this originally read "72 cell
+combinations (3 pairs × 24 cells)" — a 2× miscount, independently caught
+by THERMODYNAMICS and VISION, confirmed against the committed JSON by Red
+Team's final audit; the substantive claim, "every cell fails," is
+unaffected.)* The i.i.d. leg's worst inflation is **8.7×–11.2×**
 nominal at α=0.01 — WORSE than exp-073's own 5-column finding (5.4×
-worst, at the same α) — exactly as predicted from the lower `lev9_Rq`
-(0.586–0.596 vs. exp-073's 0.79–0.80).
+worst, at the same α). The lower `lev9_Rq` (0.586–0.596 vs. exp-073's
+0.79–0.80) correctly predicted the *direction* of this worsening before
+the run, but *not* its magnitude: the naive Gaussian-quantile translation
+of `lev9_Rq` predicts only ≈4.79× at α=0.01, so the observed 8.7×–11.2×
+still exceeds that prediction by a real, consistent ≈1.8×–2.6× — a
+heavier-than-Gaussian-tails effect of leverage-weight concentration
+(participation ratio ≈10 of 31 points), independently identified and
+quantified by QUANTUM's Phase-5 review and confirmed by Red Team's final
+audit. *(Erratum: this originally read "exactly as predicted from the
+lower `lev9_Rq`," overclaiming precision the design-time number does not
+have — `NOTES.md`'s own "Learned" section already stated the correct,
+direction-only version.)*
 
 **Secondary prediction confirmed, dramatically.** The circular-shift
 (genuinely order-preserving) leg fails far worse than the i.i.d. leg at
@@ -42,9 +56,46 @@ structure**, closing the exact gap exp-073's own Phase-5 erratum named:
 its own pooled/flattened "residual-structure" leg was, by construction,
 statistically indistinguishable from its own i.i.d. leg (`r=0.907`); this
 cycle's circular-shift leg is **not** indistinguishable from its own
-i.i.d. leg — it is 3.5×–5.9× worse at every α, meaning the real
-per-config residuals carry genuine, exploitable θ-adjacent correlation
-structure that an i.i.d.-of-any-marginal-shape null cannot represent.
+i.i.d. leg — it is worse at every individual (pair, α) cell, by a factor
+that itself ranges ≈2.2×–6.7× depending on which i.i.d. cell is used as
+the comparator (worst at α=0.01, smallest at α=0.10 — it does not hold at
+a flat "3.5×–5.9× at every α", an erratum below).
+
+*(Erratum, Phase 5: this originally stated the ratio as "3.5×–5.9× worse
+at every α" and attributed the difference directly to "genuine,
+exploitable θ-adjacent correlation structure" as though the
+independent-per-config shift itself were what exposed it. Two of six
+Phase-5 seats (MATERIALS, VISION) independently found the ratio claim
+does not reproduce at α=0.10 under any convention (true range
+≈2.2×–6.7×) — non-outcome-determining, corrected above. More
+substantively, four of six Phase-5 seats (PHOTONICS, EM, THERMODYNAMICS,
+QUANTUM) independently found and Red Team's final audit confirmed: the
+four `ABSORB` configs' own per-config residuals are, to within 0.05–0.8%,
+the SAME shared curve (cross-config Pearson r=0.992–1.000), and
+EM's rigorous scale-invariance proof (a sign-flip p-value cannot depend
+on the null data's overall amplitude, verified algebraically and
+numerically) together with THERMODYNAMICS' coupled-shift (`sA=sB`)
+counterfactual — which respects that shared structure and STILL fails
+comparably-or-worse (35.9×–52.3× nominal at α=0.01) — together rule out
+"independent decorrelation of two near-identical signals" as the
+mechanism. The real driver, isolated against a matched-scale white-noise
+control: genuine lag-1 autocorrelation (≈0.92–0.94) in the real
+per-config residuals themselves — a sign-flip/permutation null assumes
+exchangeability under H₀, which strongly autocorrelated real FDTD
+residuals violate, independent of how the two series being differenced
+are recombined. This does NOT change the Combined Verdict (confirmed
+three independent ways: the i.i.d. leg alone already fails decisively;
+the coupled-shift counterfactual still fails; `E[R_q^surr]=0` holds
+exactly, ruling out a location bias) — full derivation:
+`phase5_redteam_audit.md` §1. Per QUANTUM's Phase-5 recommendation,
+adopted as record language and revised per the mechanism finding above:
+this leg's own severity should NOT be read as evidence of a genuine
+second, T28-relevant contributor in `delta_ab` — the shared residual
+shape is common-mode across all four `ABSORB` depths (not
+config-differential), has its own characteristic scale (≈6.3–6.7°,
+matching neither T21's 1.9608° fringe nor the ~2.5° T28 family), and its
+own construction (an unregistered, dense per-config shift search) is a
+textbook R5 look-elsewhere shape.)*
 
 **No pair's `R_q`-within-the-two-tone-fit significance was ever scored.**
 `scored={}`; `combined_verdict` is the named `HALT` branch, computed
@@ -118,3 +169,54 @@ run's own outcome.
 No idealization changes. Both predicted failure directions were
 confirmed; no idealization was found wrong or in need of revision by this
 run.
+
+---
+
+## Phase-5 summary (six blind reviews + Red Team's final audit)
+
+Six blind reviews (PHOTONICS, MATERIALS, THERMODYNAMICS, QUANTUM OPTICS,
+VISION SCIENCE, ELECTROMAGNETISM), then Red Team's final audit with
+everything. Full record: `phase5_review_{photonics,materials,
+thermodynamics,quantum,vision,em}.md`, `phase5_redteam_audit.md`.
+
+**Independently reconfirmed by all six**: bit-exact reproduction of both
+scripts; `E[R_q^surr]=0` exactly (an algebraic identity, `row9·X8=0`);
+`lev9_Rq`'s formula and values; the Combined Verdict.
+
+**Two erratum corrections above** (the "72 cells" miscount, the
+"3.5×–5.9× at every α" ratio claim), independently caught by two-to-four
+of six seats each, confirmed by Red Team, applied in place per R4.
+
+**One genuinely new finding**, available only at Phase 5 because
+`fit_and_calibrate.py` did not exist during Phase 2: the four `ABSORB`
+configs' own per-config residuals are near-identical (r=0.992–1.000) and
+strongly θ-autocorrelated (lag-1≈0.92–0.94) — a shared curvature
+misspecification (Idealization 7), not `ABSORB`-differential noise. Four
+seats converged on the fact; two (PHOTONICS, QUANTUM) proposed one causal
+story (independent shifting destroys cancellation) that two others (EM,
+THERMODYNAMICS) falsified with a rigorous scale-invariance proof and a
+coupled-shift counterfactual, isolating the real mechanism (genuine
+autocorrelation). **Three independent tests confirm this does not change
+the Combined Verdict.** Full derivation and the corrected causal
+attribution: incorporated above; complete adjudication:
+`phase5_redteam_audit.md` §1.
+
+**Verdict: PARTIAL** (Red Team's synthesis, matching PHOTONICS/MATERIALS/
+EM/QUANTUM; THERMODYNAMICS/VISION scored PROMISING but scoped identically
+as an instrument-level, not T28-mechanism, result). **No Checkpoint
+criterion fires** — explicitly compared against and distinguished from
+the exp-072/073 Checkpoint-4 precedent (`phase5_redteam_audit.md` §5).
+One recurring non-firing pattern flagged: two of six blind Phase-5 seats
+restated the false "72 cells" figure without independently recomputing
+it — a third instance of a named R4 failure shape (after exp-073's
+"144/144"), recommended as an R4 addendum tightening, not a new rule.
+
+**R7 stands, unmodified, confirmed on its first application.**
+
+**Per the pre-committed seventh-cycle rule** (`phase3_synthesis.md` §6,
+triggered as written): this is the sixth consecutive non-decisive T28
+differential/two-tone cycle (Iterations 46–51); no seventh cycle on the
+same instrument class (a sign-flip/permutation null on this
+ramped-quadrature OLS basis, any window, single- or multi-tone) is
+authorized without a qualitatively different calibration strategy. The
+underlying pricing/fitting machinery is NOT retired.
