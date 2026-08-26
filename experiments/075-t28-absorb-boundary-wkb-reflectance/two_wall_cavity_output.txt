@@ -1,0 +1,40 @@
+==============================================================================
+exp-075 Phase 4 -- the two-wall-cavity model (mandatory fix 1)
+==============================================================================
+
+[1] CLOSED-FORM PERIODS, BOTH WALLS, CORRECTLY DERIVED (zero data,
+    reproduces phase3_synthesis.md Sec 3.2's table)
+    ABSORB= 40  D_left=  77  D_right=  59  P_left(39deg)=11.824deg  P_right(39deg)=15.431deg
+    ABSORB= 60  D_left=  97  D_right=  79  P_left(39deg)=9.386deg  P_right(39deg)=11.525deg
+    ABSORB= 70  D_left= 107  D_right=  89  P_left(39deg)=8.509deg  P_right(39deg)=10.230deg
+    ABSORB= 80  D_left= 117  D_right=  99  P_left(39deg)=7.782deg  P_right(39deg)=9.196deg
+
+[2] TWO-WALL PREDICTED DELTA(theta) = C_two_wall(80) - C_two_wall(40)
+    predicted delta(theta): min=-2.346703e-04  max=8.314288e-04  ptp=1.066099e-03
+    REAL delta(theta) (exp-069 block_dense):    min=-2.116618e-03  max=1.909639e-03  ptp=4.026256e-03
+
+[3] FREE-PERIOD FIT (exp-069's own methodology, imported not reimplemented)
+    REAL data      P*=2.8421deg  R^2=0.6272 (established citation: P*=2.8421deg, R^2=0.6272)
+    MODEL predicted P*=15.0000deg  R^2=0.9062
+    MODEL predicted, WIDENED search (1-60deg): P*=60.0000deg  R^2=0.9178  [RUNS TO SEARCH BOUNDARY]
+    relative period deviation |P_model - P*_real| / P*_real = 4.2778
+
+[4] SHAPE MATCH: Pearson r^2(model predicted delta, real delta) = 0.3042 (sign of correlation = -)
+
+[5] PRE-REGISTERED FALSIFIABLE BANDS -- scored (reused from phase1_proposal.md Sec 5)
+    period band: SUPPORT<=0.30 REFUTE>1.00 rel_dev=4.2778 -> REFUTE
+    shape  band: SUPPORT>=0.30 REFUTE<=0.05 r^2=0.3042 -> SUPPORT
+    COMBINED VERDICT: REFUTE
+
+[6] CIRCULAR-SHIFT NULL-CALIBRATION ROBUSTNESS CHECK (mandatory, Red Team)
+    observed r = -0.5516  |r| = 0.5516
+    null (circular-shift, N=20000): mean|r|=0.2989  95th pct |r|=0.6800
+    p-value (P[null |r| >= observed |r|]) = 0.1953
+    robustness verdict: NOT significant vs circular-shift null
+
+[7] PRE-REGISTERED PREDICTION CHECK (phase3_synthesis.md Sec 3.6)
+    Predicted (frozen, prior commit): Test A REFUTEs again.
+    Observed: Test A REFUTE
+    Frozen prediction: CONFIRMED
+
+wrote /home/user/photon-lab/experiments/075-t28-absorb-boundary-wkb-reflectance/two_wall_cavity_results.json
