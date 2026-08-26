@@ -1,0 +1,179 @@
+
+exp-076 -- G40/PAD Decorrelation -- FROZEN before any FDTD call this cycle.
+
+HEADLINE STATISTICS (identical formula to the confounded series, exp-072's
+own `amp_ratio = sqrt(A_i^2+A_q^2)/amp`, reused verbatim via
+`_amp_ratio_recover`):
+  x = amp_ratio(PAIR_PAD)      = amp_ratio(C40, G40)   [pure PAD effect]
+  y = amp_ratio(PAIR_ABSORB40) = amp_ratio(G40, C80)   [pure ABSORB effect]
+
+BIN EDGES (re-derived at run time from the real committed baseline
+amp_ratio(C40,C80), NEVER hand-typed -- R4; ~0.050/~0.116 at this program's
+already-committed baseline, exact values printed and stored in results.json):
+  THRESH_LOW  = 0.3 x amp_ratio(C40,C80)
+  THRESH_HIGH = 0.7 x amp_ratio(C40,C80)
+  LOW  = [0, THRESH_LOW)
+  MED  = [THRESH_LOW, THRESH_HIGH)
+  HIGH = [THRESH_HIGH, inf)
+
+9-CELL -> 5-OUTCOME MAPPING (exhaustive, mutually exclusive by construction
+-- a direct lookup table over the full x_bin x y_bin partition; see
+`classify_outcome()`/`OUTCOME_TABLE` and phase3_synthesis.md's printed 3x3
+table for the by-hand verification Red Team's Attack 1 asked for):
+  (LOW,  LOW)  -> BOTH_LOW_NULL
+  (LOW,  MED)  -> ABSORB_LEANING
+  (LOW,  HIGH) -> ABSORB_TIED
+  (MED,  LOW)  -> PAD_TIED
+  (MED,  MED, x<y)  -> ABSORB_LEANING
+  (MED,  MED, x>=y) -> PAD_TIED           [tie x==y: conservatively PAD_TIED]
+  (MED,  HIGH) -> ABSORB_LEANING
+  (HIGH, LOW)  -> PAD_TIED
+  (HIGH, MED)  -> PAD_TIED
+  (HIGH, HIGH) -> BOTH_HIGH_SUPER_ADDITIVE   [carved out of the (x=HIGH, any
+                                               y) PAD_TIED catch-all as its
+                                               own named cell -- see
+                                               phase3_synthesis.md's docket-
+                                               item-1/2 resolution note]
+
+SETTLING PRECONDITION (docket item 4, MANDATORY, HALT-if-fails, checked
+BEFORE Block DENSE's remaining 29 points run or any real amp_ratio is
+scored -- see `settling_gate_check()`):
+  forward (EM's fix):  |C_G40(4200,theta) - C_G40(2800,theta)| / amp_ref
+                        < THRESH_LOW, at BOTH theta in {39,40}deg, where
+                        amp_ref = the C40-C80 baseline's own fitted carrier
+                        amplitude (the SAME denominator amp_ratio uses) --
+                        i.e. the shift, expressed in the identical units
+                        amp_ratio's numerator is measured in, must not by
+                        itself be able to move an amp_ratio reading across
+                        the smallest live band edge (THRESH_LOW). Bar cited
+                        exactly: THRESH_LOW itself (not a separately-chosen
+                        number), per the Director's own instruction to use
+                        "the smallest live threshold, 0.050". If this fails:
+                        HALT, write a partial results.json flagged for
+                        Director review, do not run the remaining 45 calls.
+  backward (VISION's fix, DISCLOSED, non-gating): |C_G40(2800,39) -
+                        C_G40(1400,39)|, relative to C_G40(1400,39) --
+                        bounds how wrong exp-065's own unsettled Block PAD
+                        G40 reading was. Reported, never gates.
+
+DIAGNOSTICS (disclosed-only, NEVER gating, docket items 2/3):
+  rho_pad_absorb = |delta_P_obs(PAIR_PAD) + delta_P_obs(PAIR_ABSORB40) -
+                    delta_P_obs(C40,C80)| / max(|delta_P_obs(C40,C80)|,
+                    0.005), delta_P_obs(C40,C80) LOADED from exp-072's
+                    committed results.json, not re-fit. This is an
+                    uncalibrated magnitude signal indistinguishable, by this
+                    design, from an artifact of each pair's independently-
+                    fit carrier (exp-072's own run.py documents the
+                    identical `rho_c` construction as NOT a basis-stability
+                    or interaction test). NO interaction claim is drawn from
+                    it anywhere in this file.
+
+750nm LEG (docket item 5, advisory/narrow-window, NOT decisive): raw
+  amp_ratio(PAIR_PAD)/amp_ratio(PAIR_ABSORB40) at the LEG750_ANGLES window,
+  reported with a same-direction/opposite-direction qualitative comparison
+  against the 600nm headline ordering (x<=y or x>y) ONLY -- the 9-cell band
+  machinery is NOT applied at 750nm (the bins were calibrated for the 6deg
+  600nm window; this window is 3deg).
+
+None of this is a RESOLVED/CONFIRMED-class significance claim on R_q or any
+carrier/phase-conditioned coefficient -- amp_ratio is null-free and R_q-free
+(exp-076 phase1_proposal.md Sec7); rho_pad_absorb carries no null-calibration
+and is explicitly non-gating.
+
+lab/ clean: clean
+
+[G0-desk-1] GEOMETRY CONGRUENCE CHECK (zero FDTD)
+  G40 shares C80's full padded domain (nx/ny/src_x/plane_x/obj_y/y_lo/y_hi/A/aperture/D_SP): {'nx': True, 'ny': True, 'src_x': True, 'plane_x': True, 'obj_y': True, 'y_lo': True, 'y_hi': True, 'A': True, 'aperture_cells': True, 'd_sp': True}
+  G40.absorb == C40.absorb: True   G40.pad == C80.pad: True
+  [PASS]
+
+[G0-desk-2] BASELINE amp_ratio REPRODUCTION CHECK (zero FDTD)
+  C40-C60: recovered=0.161063 stored=0.161063 rel_err=5.33e-15 [PASS]
+  C60-C70: recovered=0.040671 stored=0.040671 rel_err=0.00e+00 [PASS]
+  C70-C80: recovered=0.019764 stored=0.019764 rel_err=2.00e-15 [PASS]
+  C40-C80: recovered=0.165873 stored=0.165873 rel_err=4.44e-16 [PASS]
+  [PASS]
+
+  THRESH_LOW  = 0.3 x 0.165873 = 0.049762
+  THRESH_HIGH = 0.7 x 0.165873 = 0.116111
+  (docket item 6: THRESH_LOW is well ABOVE the smallest established adjacent-pair reading C70-C80=0.020, not 'at or below' it)
+
+[G0-desk-3] 9-CELL OUTCOME TABLE VERIFICATION (zero FDTD): exhaustive=True, 5 named outcomes=True
+    LOW/LOW: BOTH_LOW_NULL
+    LOW/MED: ABSORB_LEANING
+    LOW/HIGH: ABSORB_TIED
+    MED/LOW: PAD_TIED
+    MED/MED: PAD_TIED
+    MED/HIGH: ABSORB_LEANING
+    HIGH/LOW: PAD_TIED
+    HIGH/MED: PAD_TIED
+    HIGH/HIGH: BOTH_HIGH_SUPER_ADDITIVE
+  [PASS]
+
+=== SETTLE_PRECONDITION: 5 calls ===
+  [SETTLE_PRECONDITION   1/5] theta=+39.00 600nm STEPS=2800 C_empty=+0.004544 ( 90.8s)
+  [SETTLE_PRECONDITION   2/5] theta=+40.00 600nm STEPS=2800 C_empty=-0.004552 ( 94.8s)
+  [SETTLE_PRECONDITION   3/5] theta=+39.00 600nm STEPS=4200 C_empty=+0.004543 (140.4s)
+  [SETTLE_PRECONDITION   4/5] theta=+40.00 600nm STEPS=4200 C_empty=-0.004551 (138.8s)
+  [SETTLE_PRECONDITION   5/5] theta=+39.00 600nm STEPS=1400 C_empty=+0.011863 ( 29.9s)
+
+[SETTLING GATE] forward: shift_39=5.426536e-07 frac_39=0.0001  shift_40=3.919148e-07 frac_40=0.0001  bar=0.0498  PASSED=True
+  backward (disclosed, non-gating): 39deg rel_shift=0.6170  40deg (bonus, reused) rel_shift=0.6404
+  [PASS] -- proceeding to Block DENSE / Block LEG750
+
+=== DENSE_REMAINING: 29 calls ===
+  [DENSE_REMAINING   1/29] theta=+36.00 600nm STEPS=2800 C_empty=-0.010497 (101.8s)
+  [DENSE_REMAINING   2/29] theta=+36.20 600nm STEPS=2800 C_empty=-0.010494 ( 95.9s)
+  [DENSE_REMAINING   3/29] theta=+36.40 600nm STEPS=2800 C_empty=-0.007991 ( 97.3s)
+  [DENSE_REMAINING   4/29] theta=+36.60 600nm STEPS=2800 C_empty=-0.003332 ( 91.3s)
+  [DENSE_REMAINING   5/29] theta=+36.80 600nm STEPS=2800 C_empty=+0.002283 ( 68.6s)
+  [DENSE_REMAINING   6/29] theta=+37.00 600nm STEPS=2800 C_empty=+0.007206 ( 69.5s)
+  [DENSE_REMAINING   7/29] theta=+37.20 600nm STEPS=2800 C_empty=+0.009974 ( 70.4s)
+  [DENSE_REMAINING   8/29] theta=+37.40 600nm STEPS=2800 C_empty=+0.009903 ( 68.0s)
+  [DENSE_REMAINING   9/29] theta=+37.60 600nm STEPS=2800 C_empty=+0.007356 ( 72.3s)
+  [DENSE_REMAINING  10/29] theta=+37.80 600nm STEPS=2800 C_empty=+0.003550 ( 67.1s)
+  [DENSE_REMAINING  11/29] theta=+38.00 600nm STEPS=2800 C_empty=+0.000025 ( 69.1s)
+  [DENSE_REMAINING  12/29] theta=+38.20 600nm STEPS=2800 C_empty=-0.001970 ( 74.8s)
+  [DENSE_REMAINING  13/29] theta=+38.40 600nm STEPS=2800 C_empty=-0.001906 ( 66.7s)
+  [DENSE_REMAINING  14/29] theta=+38.60 600nm STEPS=2800 C_empty=-0.000107 ( 69.6s)
+  [DENSE_REMAINING  15/29] theta=+38.80 600nm STEPS=2800 C_empty=+0.002446 ( 58.4s)
+  [DENSE_REMAINING  16/29] theta=+39.20 600nm STEPS=2800 C_empty=+0.005235 ( 69.2s)
+  [DENSE_REMAINING  17/29] theta=+39.40 600nm STEPS=2800 C_empty=+0.004173 ( 60.8s)
+  [DENSE_REMAINING  18/29] theta=+39.60 600nm STEPS=2800 C_empty=+0.001670 ( 70.1s)
+  [DENSE_REMAINING  19/29] theta=+39.80 600nm STEPS=2800 C_empty=-0.001519 ( 68.2s)
+  [DENSE_REMAINING  20/29] theta=+40.20 600nm STEPS=2800 C_empty=-0.006812 ( 69.7s)
+  [DENSE_REMAINING  21/29] theta=+40.40 600nm STEPS=2800 C_empty=-0.008072 ( 69.3s)
+  [DENSE_REMAINING  22/29] theta=+40.60 600nm STEPS=2800 C_empty=-0.008467 ( 68.6s)
+  [DENSE_REMAINING  23/29] theta=+40.80 600nm STEPS=2800 C_empty=-0.008325 ( 60.4s)
+  [DENSE_REMAINING  24/29] theta=+41.00 600nm STEPS=2800 C_empty=-0.007940 ( 67.0s)
+  [DENSE_REMAINING  25/29] theta=+41.20 600nm STEPS=2800 C_empty=-0.007404 ( 64.9s)
+  [DENSE_REMAINING  26/29] theta=+41.40 600nm STEPS=2800 C_empty=-0.006572 ( 60.6s)
+  [DENSE_REMAINING  27/29] theta=+41.60 600nm STEPS=2800 C_empty=-0.005175 ( 65.4s)
+  [DENSE_REMAINING  28/29] theta=+41.80 600nm STEPS=2800 C_empty=-0.003025 ( 64.8s)
+  [DENSE_REMAINING  29/29] theta=+42.00 600nm STEPS=2800 C_empty=-0.000185 ( 65.1s)
+
+=== LEG750: 16 calls ===
+  [LEG750   1/16] theta=+38.00 750nm STEPS=2800 C_empty=-0.010672 ( 89.8s)
+  [LEG750   2/16] theta=+38.20 750nm STEPS=2800 C_empty=-0.007749 ( 90.5s)
+  [LEG750   3/16] theta=+38.40 750nm STEPS=2800 C_empty=-0.004698 ( 91.3s)
+  [LEG750   4/16] theta=+38.60 750nm STEPS=2800 C_empty=-0.002065 ( 91.0s)
+  [LEG750   5/16] theta=+38.80 750nm STEPS=2800 C_empty=-0.000191 ( 71.8s)
+  [LEG750   6/16] theta=+39.00 750nm STEPS=2800 C_empty=+0.000857 ( 74.8s)
+  [LEG750   7/16] theta=+39.20 750nm STEPS=2800 C_empty=+0.001272 ( 70.0s)
+  [LEG750   8/16] theta=+39.40 750nm STEPS=2800 C_empty=+0.001402 ( 69.0s)
+  [LEG750   9/16] theta=+39.60 750nm STEPS=2800 C_empty=+0.001621 ( 62.0s)
+  [LEG750  10/16] theta=+39.80 750nm STEPS=2800 C_empty=+0.002184 ( 64.1s)
+  [LEG750  11/16] theta=+40.00 750nm STEPS=2800 C_empty=+0.003154 ( 65.6s)
+  [LEG750  12/16] theta=+40.20 750nm STEPS=2800 C_empty=+0.004380 ( 66.3s)
+  [LEG750  13/16] theta=+40.40 750nm STEPS=2800 C_empty=+0.005557 ( 60.9s)
+  [LEG750  14/16] theta=+40.60 750nm STEPS=2800 C_empty=+0.006336 ( 63.2s)
+  [LEG750  15/16] theta=+40.80 750nm STEPS=2800 C_empty=+0.006447 ( 65.3s)
+  [LEG750  16/16] theta=+41.00 750nm STEPS=2800 C_empty=+0.005809 ( 62.0s)
+
+[HEADLINE] x=amp_ratio(PAIR_PAD)=0.119366  y=amp_ratio(PAIR_ABSORB40)=0.071616
+  bins: x_bin=HIGH  y_bin=MED  OUTCOME = PAD_TIED
+[DIAGNOSTIC, disclosed-only, non-gating] rho_pad_absorb=0.2108  (dp_pad=-0.05013deg dp_absorb40=+0.13105deg dp_c40_c80=+0.06684deg, loaded not re-fit)
+[750nm LEG, advisory] x750=0.419868  y750=0.616131  same_direction_as_600nm_headline=False
+
+=== DONE: 50 new FDTD calls, 1011.7s (16.86 min) ===
+OUTCOME: PAD_TIED

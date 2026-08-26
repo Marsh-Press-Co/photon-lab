@@ -607,7 +607,7 @@ def main():
 
     # -------------------------------------------------- (a) settling precondition
     pre = block_settle_precondition()
-    gate = settling_gate_check(pre, amp_ref=baseline_c40_c80_amplitude,
+    gate = settling_gate_check(pre["by_key"], amp_ref=baseline_c40_c80_amplitude,
                                 thresh_low=THRESH_LOW)
     print(f"\n[SETTLING GATE] forward: shift_39={gate['forward']['shift_39']:.6e} "
           f"frac_39={gate['forward']['frac_39']:.4f}  "
@@ -625,9 +625,17 @@ def main():
         out = dict(experiment="076-t28-g40-pad-decorrelation", panel_iteration=53,
                    lead_seat="QUANTUM OPTICS", halted=True,
                    halt_reason="settling precondition (docket item 4a) FAILED",
-                   geometry_congruence=geom, baseline_reproduction=baseline,
+                   geometry_congruence={k: v for k, v in geom.items()
+                                        if k not in ("c40", "c80", "g40")},
+                   baseline_reproduction={k: v for k, v in baseline.items()
+                                          if k not in ("data", "committed72")},
                    thresh_low=THRESH_LOW, thresh_high=THRESH_HIGH,
-                   settle_precondition=pre, settling_gate=gate)
+                   settle_precondition={
+                       "n_new_runs": pre["n_new_runs"], "elapsed_s": pre["elapsed_s"],
+                       "by_key": {f"{k[0]}_{k[1]}nm_STEPS{k[2]}": v
+                                  for k, v in pre["by_key"].items()},
+                   },
+                   settling_gate=gate)
         with open(os.path.join(HERE, "results.json"), "w") as f:
             json.dump(out, f, indent=2, default=float)
         return out
@@ -683,7 +691,12 @@ def main():
         baseline_reproduction={k: v for k, v in baseline.items() if k not in ("data", "committed72")},
         thresh_low=THRESH_LOW, thresh_high=THRESH_HIGH,
         outcome_table_verification=verify,
-        settle_precondition=pre, settling_gate=gate,
+        settle_precondition={
+            "n_new_runs": pre["n_new_runs"], "elapsed_s": pre["elapsed_s"],
+            "by_key": {f"{k[0]}_{k[1]}nm_STEPS{k[2]}": v
+                       for k, v in pre["by_key"].items()},
+        },
+        settling_gate=gate,
         dense_angles=list(DENSE_ANGLES), leg750_angles=list(LEG750_ANGLES),
         block_dense_remaining={"n_new_runs": remaining["n_new_runs"],
                                 "elapsed_s": remaining["elapsed_s"]},
