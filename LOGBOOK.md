@@ -77,6 +77,24 @@ top. Protocol: PANEL.md.*
   Full record: `experiments/073-t28-differential-beat-fit-reissue/
   phase5_redteam_audit.md` §1.1, §3 (RT-1), §5 item 10, LOGBOOK.md
   Iteration 50.
+  **Second addendum (Iteration 51, exp-074) — a third instance of the
+  same "aggregate figure not independently recomputed" shape.** Two of
+  six blind Phase-5 seats (PHOTONICS, MATERIALS) restated exp-074's own
+  false "72 cell combinations" figure (true: 36) in their own
+  reproduction sections without independently recomputing the count —
+  the identical failure shape as this rule's first addendum's own
+  "144/144" instance, now recurring a second time after the rule was
+  already on the books. Non-load-bearing (the other two of six seats,
+  VISION and THERMODYNAMICS, did independently recompute and catch it,
+  so the correction still reached the record). Red Team's own ruling:
+  not yet a fresh rule, but the existing "must be independently checked"
+  language is evidently not sufficient on its own — **tightened
+  requirement: a Phase-5 reviewer's own reproduction/verification section
+  must RECOMPUTE, not merely restate, any cell-count or combinatorial
+  total it cites from a document under review, held to the same standard
+  already applied to the substantive claim being reviewed.** Full record:
+  `experiments/074-t28-window-pricing-cramer-rao-bound/
+  phase5_redteam_audit.md` §5, LOGBOOK.md Iteration 51.
 - **R5 — Phase offset relative to the single-angle fringe's own
   zero-crossing, normalized by the T21 period `P(θ)=λ/(A·cosθ)`, as a
   predictor of quadrature tier instability** (ruled out Iteration 28,
@@ -165,6 +183,40 @@ top. Protocol: PANEL.md.*
   matching R6's own original standard. Full record: `experiments/073-t28-
   differential-beat-fit-reissue/phase5_redteam_audit.md` §5 item 9, §6,
   LOGBOOK.md Iteration 50.
+- **R7 — a conditioning/VIF-based pricing of an UN-FIT multi-tone or
+  multi-parameter design is necessary, not sufficient, evidence for a
+  closure or detection claim (not a ruled-out idea; a standing
+  house-discipline rule, adopted Iteration 51, generalizing R6 one level
+  upstream).** exp-074's Phase-1 proposal priced a 9-column two-tone
+  design's Gram-matrix conditioning (`cond9=529`, `VIF_Rq=36.6`) without
+  ever fitting it to real data, and claimed this alone decisively closed
+  T28's differential-fit route "independent of which null eventually
+  gates it." Two of five blind Phase-2 critics, independently, showed
+  this was false: PHOTONICS found the closure claim non-monotonic across
+  the contaminant-period space the same pricing's own `L(T)` function
+  flags as dangerous; THERMODYNAMICS actually fit the real 9-column
+  design and found the true joint-fit significance EXCEEDS the
+  conditioning-only "optimistic upper bound" at 3 of 4 pairs, by up to
+  9.3× — a collinear design's realized residual variance is not bounded
+  below by a VIF-only rescaling, a fact about linear algebra, not luck.
+  **Rule: a design's conditioning/VIF number, however decisive it looks,
+  may not be used to certify EITHER a closure ("this cannot work") or a
+  detection ("this found something") claim. The design must be fit to
+  real data, and the resulting estimate must pass its own null-calibration
+  test (R6), before either verdict is drawn.** A cycle that ships a
+  closure or detection claim resting only on an un-fit design's
+  conditioning fires Checkpoint criterion 4 automatically if it survives
+  to Phase 3 unchanged, matching R6's own standard. Confirmed on its own
+  first application (Iteration 51, same cycle): `lev9_Rq`, a design-time
+  quantity computed BEFORE any real fit, correctly predicted the
+  DIRECTION of a worse null-calibration failure than exp-073's 5-column
+  case but underpredicted its MAGNITUDE by a real, consistent
+  ~1.6×–2.7× — exactly the gap R7 exists to prevent anyone from treating
+  a conditioning number as a substitute for the fit-and-calibrate step
+  that alone measured the true severity. Full record: `experiments/074-
+  t28-window-pricing-cramer-rao-bound/phase2_redteam_audit.md` §6,
+  `phase3_synthesis.md` §2, `phase5_redteam_audit.md` §6, LOGBOOK.md
+  Iteration 51.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -2061,6 +2113,55 @@ measured them here):**
   ranking, the first candidate to engage a seat's own charter physics
   directly rather than re-verify statistics. Full record: `experiments/073-
   t28-differential-beat-fit-reissue/`, LOGBOOK.md Iteration 50.
+
+  **Iteration 51 (exp-074) — the actual 9-column fit + a genuinely
+  order-preserving null-calibration test, `HALT_NULL_MISCALIBRATED_9COL`,
+  confirmed robust by Phase 5; the sub-thread is FORMALLY RETIRED on this
+  instrument class, at any window.** Phase 1 (EM) priced the two-tone
+  design's conditioning without fitting it and claimed CLOSURE-CONFIRM;
+  two of five blind Phase-2 critics (PHOTONICS, THERMODYNAMICS), by two
+  independent methods, showed this claim does not survive — confirmed by
+  Red Team, which adopted new standing rule **R7** (a conditioning-only
+  bound is necessary, not sufficient; the design must be fit and
+  null-calibrated). The Director withdrew the closure claim and built
+  `fit_and_calibrate.py`: the actual fit of `R_q`, gated behind an
+  i.i.d.-plus-circular-shift (genuinely order-preserving) calibration
+  test. **Both legs fail** — the i.i.d. leg 8.7×–11.2× nominal at
+  α=0.01 (worse than exp-073's 5.4×), the circular-shift leg far worse
+  (38.9×–46.1×). `z9=5.03` at C60–C70 remains genuinely unresolved: no
+  valid null yet exists to test it. Six blind Phase-5 reviews found a
+  genuinely new fact unavailable at Phase 2: the four `ABSORB` configs'
+  own residuals are near-identical (r=0.992–1.000) and strongly
+  θ-autocorrelated (lag-1≈0.92–0.94) — a shared curvature
+  misspecification, not `ABSORB`-differential noise; two seats'
+  candidate causal story for this (independent-shift amplitude artifact)
+  was falsified by two others (a scale-invariance proof; a coupled-shift
+  counterfactual that fails just as badly), isolating genuine
+  autocorrelation as the real driver — confirmed, three independent
+  ways, NOT to change the Combined Verdict. **This is the sixth
+  consecutive non-decisive T28 differential/two-tone cycle (Iterations
+  46–51). Per the pre-committed seventh-cycle rule (stated in writing,
+  Iteration 51, matching the Block-MINI/exp-069 formal-retirement
+  precedent): no seventh cycle on the same instrument class — a
+  sign-flip/permutation null on this ramped-quadrature OLS basis, at any
+  window width, single- or multi-tone — is authorized without a
+  qualitatively different calibration strategy.** The underlying
+  pricing/fitting machinery (`desk_check_pricing.py`,
+  `fit_and_calibrate.py`, R6, R7) is NOT retired — it remains available
+  to any future carrier/phase-conditioned fit in this program, on
+  different data. No Checkpoint criterion fires (explicitly distinguished
+  from the exp-072/073 Checkpoint-4 precedent: the Phase-1 overclaim was
+  caught pre-synthesis with zero overrides, and the Phase-5 finding is
+  genuinely new information, shown non-load-bearing by three independent
+  tests, not a defended wrong claim). Verdict PARTIAL. **T28's own
+  substantive mechanism question — the ~2.84° periodicity's origin — is
+  exactly where five prior cycles left it; the program's live next move
+  is PHOTONICS' queued WKB/adiabatic boundary-reflectance analytic model
+  (queued twice before, Iterations 46/47, dropped without execution both
+  times), the first candidate in this six-cycle sub-thread to engage a
+  seat's own charter physics directly rather than re-verify statistics.**
+  Full record: `experiments/074-t28-window-pricing-cramer-rao-bound/`,
+  LOGBOOK.md Iteration 51.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -15518,3 +15619,196 @@ extended, see their own addenda), LIVE THREADS (T28 updated, still open —
 this cycle neither advanced nor closed the mechanism question, but closed
 three of exp-072's own deferred process gaps and surfaced two new,
 independently-confirmed process findings of its own).
+
+## Iteration 51 — Pricing the Window, then the Actual Fit: a Withdrawn Closure Claim, a New Standing Rule (R7), and the T28 Differential/Two-Tone Sub-Thread's Own Formal Retirement (exp-074) — 2026-08-26
+
+**Lead: ELECTROMAGNETISM, by rotation.** Executes PLAN.md's Iteration-51
+queue item 1 (near-unanimous #1 across all six of exp-073's Phase-5
+seats, `phase5_redteam_audit.md` §6.2): "price the window" — decide, at
+zero FDTD cost, whether θ∈[36°,42°] can ever support a carrier-conditioned
+discriminator for T28's `C80−C40` padding-delta periodicity, for any
+correctly-calibrated null.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite
+confirmed green: 41/41 checks (`--only 12346789`, heavy stage 5 skipped)
+before any panel work began. Zero `lab/` diff this entire cycle — pure
+desk analysis, real numpy/scipy code, zero FDTD calls throughout.
+
+### Phase 1 — ELECTROMAGNETISM formalizes two informal, uncommitted exp-072 figures into real code, claims CLOSURE-CONFIRM
+
+Turned EM's own predecessor's hand-computed `cond(X9)=529`/36.6× VIF
+two-tone conditioning pricing and QUANTUM's `L(T)` leakage-function table
+(both `experiments/072-.../phase5_review_{em,quantum}.md`, never
+committed to code) into `desk_check_pricing.py`, run against the REAL
+fitted carriers of all four `ABSORB` pairs (not the one pair either
+predecessor checked). Reproduced both prior figures exactly
+(`cond9∈[478,529]`, `VIF_Rq∈[31,37]`); extended to widened-window
+candidates (~46°, ~51°). Claimed **CLOSURE-CONFIRM**: the differential/
+two-tone route is priced shut at 36°–42° "independent of which null
+eventually gates it," with a binding decision rule to formally retire the
+sub-thread in this window (queue item 5). Full record:
+`experiments/074-t28-window-pricing-cramer-rao-bound/phase1_proposal.md`.
+
+### Phase 2 — two of five blind critics independently show the closure claim does not survive; Red Team confirms both, adopts a new standing rule (R7)
+
+**PHOTONICS**: scanning the assumed-contaminant period across `L(T)`'s
+own claimed 1.8°–5.0° danger band (reusing the script's own
+`design_matrix`, not hand-derived) shows CLOSURE-CONFIRM fails from
+T≈3.7° onward, and `z_joint` clears 2σ itself by 4.6°–5.0° — in the
+CURRENT, unwidened window — exposing that `L(T)` (omitted-variable
+leakage) and `cond9`/`VIF` (collinearity from an explicitly modeled
+contaminant) are different linear-algebra objects that do not covary
+monotonically. **THERMODYNAMICS**: actually FIT the real 9-column design
+to real `delta_ab` data (never done by the pricing-only script) and found
+the true joint-fit `z` EXCEEDS the proposal's own "optimistic upper
+bound" at 3 of 4 pairs, by up to 9.3× at C60–C70 — itself clearing 2σ, on
+the unwidened window — showing `z_joint(optimistic)`'s "cannot do better
+even in principle" claim is false as linear algebra (a collinear design's
+realized residual variance is not bounded below by a VIF-only rescaling),
+not merely unlucky. **QUANTUM OPTICS** (support-with-changes):
+independently found the widened-window "4/4 pairs clear 2σ" recommendation
+never applies an already-established SE-inflation correction (exp-072's
+own bootstrap/OLS ratios); applying the record's real, current figures
+drops it to **0 of 4**. **MATERIALS**: the widened-window FDTD-cost
+citation (~45 calls) understates the proposal's own scope ~4× (real:
+~90–180 calls). **VISION**: three of five falsifiable bars
+(`cond9≥300`/`VIF_Rq≥15`/`lev_ratio≥0.90`) are asserted, not derived from
+a stated error-rate formula. Red Team's audit independently
+re-derived every one of these attacks computationally (its own
+contaminant-period scan, its own real 9-column fit, the real committed
+exp-072 bootstrap ratios, direct grid arithmetic) and **confirmed all
+five in full, zero overridden** — verdict PROCEED-WITH-MANDATORY-FIXES —
+and added a sixth finding of its own: a new standing rule, **R7** (see
+RULED OUT). Full record: `experiments/074-.../phase2_critique_
+{photonics,materials,thermodynamics,quantum,vision}.md`,
+`phase2_redteam_audit.md`.
+
+### Phase 3 — Director synthesis: adopt R7, withdraw §5/§6, design the actual fit + a genuinely order-preserving calibration test
+
+All ten of Red Team's Phase-2 docket items accepted, **zero overridden**
+— the audit had already independently re-derived every load-bearing
+claim from all five blind critiques before reaching the Director.
+Adopted R7. Withdrew Phase 1's CLOSURE-CONFIRM/formal-retirement claims
+as written (left standing in the record, superseded, per house
+convention). Designed `fit_and_calibrate.py` per Red Team's own docket
+item 7: the actual 9-column fit of `R_q` (does the mechanism-relevant
+coefficient survive once T21's fringe is fit jointly, not merely priced?)
+gated behind a mandatory two-leg null-calibration test — i.i.d. Gaussian,
+and a NEW, genuinely order-preserving circular-shift leg (a circular
+shift of each config's own real per-config residual, preserving 100% of
+its θ-adjacent autocorrelation structure) — closing the exact gap
+exp-073's own Phase-5 erratum flagged as queued for Iteration 51 (its own
+pooled/flattened leg was statistically indistinguishable from i.i.d.,
+`r=0.907`). **Frozen predictions, committed before the run**: primary,
+`HALT_NULL_MISCALIBRATED_9COL` expected, and worse than exp-073's
+5-column case — justified in advance by a pure design-time computation
+(`lev9_Rq=0.586–0.596`, lower/worse than exp-073's `0.79–0.80`), not
+fit to any outcome; secondary, the circular-shift leg fails worse than
+the i.i.d. leg. **Seventh-cycle decision rule stated in writing**, per
+queue item 5: HALT or NEITHER here makes six consecutive non-decisive
+T28 differential/two-tone cycles (Iterations 46–51), and no seventh cycle
+on the same instrument class is authorized without a qualitatively
+different calibration strategy — the underlying machinery itself is not
+retired. Full record: `experiments/074-.../phase3_synthesis.md`,
+`NOTES.md`.
+
+### Phase 4 — official run: both frozen predictions confirmed, with margin
+
+`Combined Verdict: HALT_NULL_MISCALIBRATED_9COL`. The i.i.d. leg fails
+8.7×–11.2× nominal at α=0.01 (worse than exp-073's 5.4×, correct in
+direction per `lev9_Rq`, though the naive Gaussian-quantile translation
+underpredicts the absolute magnitude by a real ~1.8×–2.6×, a
+heavier-tail leverage-concentration effect). The circular-shift leg fails
+far worse (38.9×–46.1× nominal at α=0.01). `z9=5.03` at C60–C70 remains
+genuinely unresolved: this cycle establishes WHY it cannot currently be
+resolved with this instrument (the null needed to test it is itself
+badly miscalibrated on both idealized and realistic noise), not which
+answer is right. Full record: `experiments/074-.../phase4_results.md`,
+`fit_and_calibrate.py`, `fit_and_calibrate_results.json`.
+
+### Phase 5 — six blind reviews converge on a genuinely new finding Phase 2 could not have caught; Red Team's audit resolves the mechanism, confirms the verdict is robust
+
+Six blind reviews (PHOTONICS/MATERIALS/EM/QUANTUM: PARTIAL;
+THERMODYNAMICS/VISION: PROMISING, scoped identically as instrument-level
+not mechanism-level) independently reconfirmed every load-bearing number
+bit-exact, and four of six (PHOTONICS, EM, THERMODYNAMICS, QUANTUM)
+independently found a genuinely new fact — unavailable at Phase 2, since
+`fit_and_calibrate.py` did not exist yet: the four `ABSORB` configs' own
+per-config residuals are near-identical (cross-config Pearson
+`r=0.992–1.000`) and strongly θ-autocorrelated (lag-1≈0.92–0.94) — a
+shared curvature-misspecification artifact (Idealization 7), not
+`ABSORB`-differential noise. Two seats (PHOTONICS, QUANTUM) proposed one
+causal story for the circular-shift leg's extra severity (independent
+per-config shifting destroys a real cross-config cancellation,
+manufacturing an inflated null); two others (EM, THERMODYNAMICS)
+independently falsified that specific mechanism — EM with a rigorous
+proof that a sign-flip p-value is exactly invariant to the null data's
+overall amplitude (verified algebraically and numerically), THERMODYNAMICS
+with a coupled-shift (`sA=sB`) counterfactual, which respects the
+cross-config correlation and STILL fails comparably-or-worse
+(35.9×–52.3× nominal at α=0.01) — isolating genuine lag-1 autocorrelation,
+confirmed against a matched-scale white-noise control, as the real
+driver. Red Team's Phase-5 final audit independently re-ran every piece
+(its own coupled-shift re-derivation, its own scale-invariance test, its
+own exhaustive shift-combination enumeration) and ruled: the mechanism
+claim is **partially overridden** (autocorrelation, not amplitude
+mismatch, drives the failure) but **the Combined Verdict does not
+change**, confirmed three independent ways (the i.i.d. leg alone already
+fails decisively, independent of any circular-shift construction choice;
+the coupled-shift counterfactual still fails; `E[R_q^surr]=0` holds
+exactly with no location bias). Per QUANTUM's recommendation, adopted
+with its mechanism argument revised: the circular-shift leg's own
+severity should NOT be read as evidence of a genuine second, T28-relevant
+contributor (wrong signature — common-mode, not config-differential;
+wrong scale — ≈6.3–6.7° matches neither T21's fringe nor the T28 family;
+a textbook R5 look-elsewhere shape). Two small arithmetic slips
+(`phase4_results.md`'s "72 cell combinations," true 36; its "3.5×–5.9×
+worse... at every α," true range ≈2.2×–6.7× depending on method) were
+independently caught by four of six seats and corrected in place per R4
+— **one recurring pattern flagged**: two of six blind seats (PHOTONICS,
+MATERIALS) restated the false "72 cells" figure without independently
+recomputing it, a third instance (after exp-073's "144/144") of a named
+R4 failure shape, recommended as a tightened R4 addendum, not a new rule.
+**No Checkpoint criterion fires** — explicitly distinguished from the
+exp-072/073 Checkpoint-4 precedent: this cycle's Phase-1 overclaim was
+caught by two blind critics before Phase 3 ever adopted it (zero
+overrides), and the Phase-5 finding is genuinely new information a prior
+phase structurally could not have seen, shown non-load-bearing by three
+independent robustness tests rather than defended against contradicting
+evidence. **R7 stands, unmodified, confirmed on its first application.**
+Full record: `experiments/074-.../phase5_review_{photonics,materials,
+thermodynamics,quantum,vision,em}.md`, `phase5_redteam_audit.md`.
+
+**Headline: the T28 differential/two-tone-fit sub-thread is formally
+retired on this instrument class, at any window, as pre-committed —
+the honest, decisive outcome this program's own seventh-cycle rule
+exists to produce, not a sixth deferral.** T28's substantive mechanism
+question (the ~2.84° periodicity's origin) gained no ground this cycle —
+exactly as five prior cycles left it — but the sub-thread now closes on
+defensible terms: the underlying reusable instrument (`desk_check_
+pricing.py`, `fit_and_calibrate.py`, R6, R7) is sound, independently
+re-verified more than a dozen times across two Phase-2 and six Phase-5
+reviews plus two Red Team audits, and stays available to any future
+carrier/phase-conditioned fit in this program on different data. Verdict
+**PARTIAL** (Red Team's synthesis). Near-unanimous Iteration-52 ranking
+(Red Team's reconciliation of all six seats): (1) PHOTONICS' WKB/
+adiabatic boundary-reflectance analytic model for the graded-loss
+`ABSORB` band — zero FDTD, the explicit "qualitatively different
+strategy" the seventh-cycle rule requires, strengthened by this cycle's
+own finding that the leftover residual shape is `ABSORB`-depth-
+independent; (2) G40/`PAD` decorrelation (~31 calls) — the only queued
+item that relieves rather than discloses the confound, explicitly not
+barred by the seventh-cycle rule; (3) bundle this cycle's own
+record-hygiene corrections with a disclosure patch to the reusable
+calibration machinery (a committed cross-config-correlation table, a
+documented coupled-shift alternative leg) before it is pointed at
+different data. Full record: `experiments/074-t28-window-pricing-
+cramer-rao-bound/` — Phase-1 proposal, five Phase-2 blind critiques,
+Phase-2 Red Team audit, Phase-3 synthesis, `NOTES.md`, both scripts +
+results (with Phase-5 erratum corrections applied in place), six Phase-5
+blind reviews, Phase-5 Red Team final audit; RULED OUT (R7 adopted; R4
+addendum recommended), LIVE THREADS (T28 updated — sub-thread formally
+retired on this instrument class, thread itself stays open pending
+PHOTONICS' analytic model).
