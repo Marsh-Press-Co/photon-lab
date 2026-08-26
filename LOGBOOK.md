@@ -914,6 +914,23 @@ measured them here):**
   to directly test whether the r=156 interaction recurs there (VISION's
   own proposed closing test).**
 
+  **Iteration 53 (exp-076) — a third, independently-confirmed driver of
+  this channel's own floor uncertainty (VISION's Phase-5 finding, cross-
+  referenced here per Red Team's final-audit docket).** T28's own
+  `PAD_TIED` result (the padded-domain construction, not `ABSORB` boundary
+  depth, dominates a real signal on this same `C_empty(θ)` channel) shows
+  a domain-padding choice ALONE — nothing to do with resolution, settling,
+  or angle sampling, this thread's own three previously-known uncertainty
+  sources — can move this channel's signal by `x=amp_ratio(PAIR_PAD)=
+  0.119` at a fixed `ABSORB` depth, ~24× VISION's own pinned lab detection
+  bar (`C_thr=0.005`). Joins T21's edge-diffraction fringe (mechanism
+  identified, magnitude not fully validated) and T27's settling-transient
+  (mechanism identified and closed for the tested geometries) as the third
+  confirmed contributor to this thread's own standing caution: no
+  near-threshold constraint-3 citation on this channel should be read as
+  floor-clean without disclosing all three. Full record: `experiments/076-
+  t28-g40-pad-decorrelation/`, LOGBOOK.md Iteration 53 (T28 entry below).
+
 - **T17 — hysteretic σ(I)-with-memory: a constraint-3-at-rest risk class
   distinct from T1's other three escape routes (opened Iteration 13,
   exp-036, ELECTROMAGNETISM's Phase-2 catch, sharpened Phase 5).**
@@ -2302,6 +2319,144 @@ untested argument, when the gap later proves outcome-determining, fires
 Checkpoint criterion 4 automatically if the named check was affordable
 and not run — matching R6's/R7's own standard. Full record:
 `experiments/075-.../phase5_redteam_audit.md` §2–§6.
+
+  **Iteration 53 (exp-076) — the G40/`PAD` decorrelation build. Result:
+  `PAD_TIED` — the confound is NOT relieved in the reassuring direction,
+  and the axis that dominates is now proven excluded from an entire class
+  of physical mechanisms.** Executed the near-unanimous #1 item from
+  exp-075's own Phase-5 reconciliation: built and ran `G40` (`ABSORB=40,
+  PAD=40`, geometrically identical to `C80` except boundary-band
+  thickness — already specified in `experiments/065-.../design_
+  geometry.py` but never run at T28's own dense window before this cycle)
+  at the same 31-point/600nm/settled-`STEPS=2800` window `C40`/`C80`'s
+  own committed dense sweep uses, scoring `PAIR_PAD≡(C40,G40)` and
+  `PAIR_ABSORB40≡(G40,C80)` with the identical phase-invariant amplitude
+  channel (`amp_ratio=√(A_i²+A_q²)/amp`) exp-072's confounded-series
+  baseline (0.161/0.041/0.020/0.166) used. Full five-phase cycle: Phase 1
+  (QUANTUM OPTICS lead by rotation; pre-registered a 31-call budget, an
+  exhaustive-on-paper but ultimately gapped `(a)/(b)/(c1)/(c2)` outcome
+  scheme, and a dedicated `G0-e` synthetic ground-truth recovery check
+  for the fitted-carrier `amp_ratio` channel, PASSED cleanly) → five blind
+  Phase-2 critiques, unanimous support-with-changes (PHOTONICS: every
+  config this cycle runs sits at an exact integer-λ boundary thickness at
+  600nm — the same aliased condition `C70` was added, in this identical
+  sub-thread's own precedent cycle, to guard against, absent here;
+  MATERIALS: the proposal breaks `ABSORB`/`PAD` symmetry, implicitly
+  granting `ABSORB` physical standing `PAD` doesn't have; ELECTROMAGNETISM
+  + VISION SCIENCE, independently converging from opposite directions
+  (forward-settling argument vs. citation-provenance argument): `G40`'s
+  own thin-boundary/large-domain geometry — decoupling two variables that
+  had always co-varied in every prior settling check — was never
+  settling-tested at `STEPS≥2800`; THERMODYNAMICS: the energy-sidecar N/A
+  disposition, stated by every T28 instrument cycle since exp-071, was
+  silently dropped) → Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-
+  FIXES, 8 items, zero overridden; found two NEW load-bearing defects
+  neither the proposal nor any critique caught: the outcome bands were
+  neither mutually exclusive nor exhaustive, and the `rho_pad_absorb`
+  "interaction" diagnostic directly contradicted its own cited exp-072
+  precedent, which was never evaluated on real data anywhere in this
+  program's history; also upgraded PHOTONICS' fix by finding an already-
+  committed, better-matched non-aliased 750nm leg — `experiments/069-...
+  /results.json::block_leg750` — nobody else had cited) → Phase 3
+  synthesis (all 8 items adopted, zero overridden: rebuilt the outcome
+  scheme as an exhaustive, mutually-exclusive 9-cell/5-outcome table,
+  downgraded `rho_pad_absorb` to disclosed-only, added a HALT-if-fails
+  settling precondition and the 16-call 750nm advisory leg; revised
+  budget 31→50 calls; FROZEN PREDICTIONS committed to git before any run)
+  → Phase 4 (50 FDTD calls; two pure engineering/serialization bugs found
+  and fixed mid-execution, disclosed in full, verified bit-identical
+  across crashed and clean runs, touching zero frozen predictions —
+  settling precondition PASSED with ~500–666× margin; **official result:
+  `x=amp_ratio(PAIR_PAD)=0.119366` HIGH, `y=amp_ratio(PAIR_ABSORB40)=
+  0.071616` MED → `OUTCOME=PAD_TIED`** — the pure-`PAD` effect is LARGER
+  than the pure-`ABSORB` effect; a 750nm advisory leg shows the OPPOSITE
+  ordering, non-decisive) → six blind Phase-5 reviews, unanimous PARTIAL,
+  an unusually clean crop (Red Team's own from-scratch re-derivation
+  found no defect in any of the six) → Red Team's Phase-5 final audit.
+
+  **The load-bearing Phase-5 finding: `PAD` is provably lossless vacuum**
+  (ELECTROMAGNETISM's finding, independently re-derived by Red Team from
+  the primitive engine source, not merely the gate's summary line):
+  `lab/fdtd2d.py`'s graded-loss damping array is built as a pure function
+  of the `absorb` parameter alone, with zero dependence on `nx`/`ny`/
+  `pad` — `PAD` cells only extend the domain and shift scene coordinates,
+  never touching the damping-mask construction. Since `G40` and `C40`
+  share `absorb=40` bit-identically, the boundary's reflectance MAGNITUDE
+  is structurally guaranteed identical between them, not merely measured
+  close — so `PAIR_PAD`'s entire signal, the largest reading this cycle
+  produced and the one driving `PAD_TIED`, can only be a coherent
+  propagation-phase/round-trip-timing effect. **It cannot, by this proof,
+  be a change in absorbed power.** Combined with MATERIALS' own
+  realizability finding (`PAD` has zero witness-scene/realizable-
+  structure analog, unlike `ABSORB`'s at-least-depth-shaped profile,
+  sharpened by the 750nm leg's ordering reversal, which a real material's
+  dispersion would not produce): **the axis that now best explains T28's
+  `{C40,C60,C70,C80}` congruent-series history (Iterations 48–52) is
+  structurally excluded from an entire class of physical mechanisms —
+  anything acting through absorption — not merely unconfirmed.** This is
+  the cleanest negative signal this six-cycle sub-thread has produced.
+
+  Two small, independently-verified-as-inert process gaps surfaced at
+  Phase 5 alongside PHOTONICS' own genuine record gap (the 750nm leg's
+  fitted carrier — an unexplained ~1.78°/1.76° periodicity, r²≈0.51/0.58,
+  matching neither T28's own established band nor T21's own 750nm
+  prediction, resolving only ~1.7 cycles on a window worse-conditioned
+  than the already-marginal 600nm one — was computed then discarded,
+  never persisted): VISION's own disclosed-then-dropped Phase-2 finding
+  (the `amp_ratio` normalizer sits within 3–10% of `C_thr=0.005`, a
+  future conflation risk, never adjudicated in either disposition table
+  though the committed prose itself is clean) and QUANTUM's promise-vs-
+  implementation gap (`NOTES.md` promised an inline `G0-e` re-confirmation
+  at Phase 4 that `run.py` never actually invokes — retroactively
+  confirmed harmless, since the check is provably data-independent and
+  the real fitted-carrier parameters land comfortably inside the already-
+  validated synthetic envelope). All three closed same-shift via Red
+  Team's 6-item mandatory-fix docket (zero new FDTD, zero change to
+  `PAD_TIED` or any frozen prediction): the 750nm carrier diagnostics
+  backfilled into `results.json`; a `C_empty`-not-perceptual disclaimer
+  (mirroring exp-072's own Idealization 8) added; the `G0-e` promise
+  language corrected; this thread's own T16 cross-reference and the
+  lossless-vacuum constraint recorded (above and here).
+
+  **No Checkpoint criterion fires** — Red Team's final audit ruled on all
+  five explicitly: three small process gaps in one cycle, immediately
+  following R8's adoption, is read as evidence the Phase-5 review layer
+  is working at high sensitivity, not as drift (all three caught by the
+  design, none survived into a defended headline claim, none outcome-
+  determining on independent re-verification) — offered one procedural
+  recommendation (Phase 3's acceptance table should log every disclosed
+  Phase-2 secondary finding's disposition explicitly, even "deferred, not
+  adopted"), not a new numbered rule. **Verdict PARTIAL.** T28's own
+  substantive mechanism question — the ~2.84° periodicity's ultimate
+  origin — remains open, doubly narrowed this cycle: toward `PAD`/
+  domain-geometry rather than `ABSORB` depth, and toward a phase/
+  interference mechanism specifically, never an absorbed-power one.
+  Reconciled Iteration-54 ranking (Red Team's Phase-5 final audit, 4
+  tiers, 8 items — full detail `phase5_redteam_audit.md` §7): Tier 0,
+  zero-FDTD desk work first — (1) refit exp-075's own already passivity-
+  gated transfer-matrix echo model against `PAD`'s round-trip distance
+  instead of `ABSORB` depth (the only mechanism class now physically
+  permitted for this signal, per the proof above), (2) a fixed-carrier
+  re-score of the already-collected 750nm leg data (tests whether
+  PHOTONICS' unexplained periodicity is a free-period-fit artifact), (3)
+  score the already-built two-wall cavity model against the 750nm leg
+  (PLAN.md's own carried-over Iteration-53 queue item 2, still unexecuted
+  after this cycle); Tier 1, cheap FDTD — (4) a `PAD`-depth causal sweep
+  at fixed `ABSORB=40` (the direct causal-trend analog of exp-071's own
+  `ABSORB` finding, on the axis now shown to dominate), (5) broadband
+  pulsed reflectance spectroscopy of the `ABSORB` boundary (~3 calls, an
+  orthogonal instrument class); Tier 2, the standing precondition + the
+  charter-relevant test — (6) the full-width non-aliased second-
+  wavelength leg (near-unanimous across five of six seats, ranked here
+  not first since items 1–2 should decide which configuration is worth
+  the spend), (7) test whether the PAD-sensitivity survives with a real
+  absorbing article loaded (VISION's own charter-relevant question, this
+  cycle's empty-scene-only scope could not reach); Tier 3, record hygiene
+  (bundle, zero cost). Full record: `experiments/076-t28-g40-pad-
+  decorrelation/` — Phase-1 proposal + `g0e_amplitude_channel_check.py`,
+  five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
+  synthesis, `NOTES.md`, `run.py`, Phase-4 results, `results.json`, six
+  Phase-5 blind reviews, Phase-5 Red Team final audit.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -16109,3 +16264,183 @@ Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3 synthesis,
 reviews, Phase-5 Red Team final audit + its own owned verification
 script; LIVE THREADS (T28 updated, above — both tested mechanism classes
 now RULED OUT, thread itself stays open).
+
+## Iteration 53 — G40/PAD Decorrelation: PAD_TIED, and PAD Proven Lossless — the Confound Not Relieved, and the Dominant Axis Excluded from an Entire Mechanism Class (exp-076) — 2026-08-26
+
+**Lead: QUANTUM OPTICS, by rotation** (VISION SCIENCE → PHOTONICS →
+MATERIALS → ELECTROMAGNETISM → THERMODYNAMICS → QUANTUM OPTICS → repeat;
+Iteration 52 was THERMODYNAMICS). Runner: `photonlab-shift` cloud
+routine (panel shift). Executes PLAN.md's Iteration-53 queue item 1
+(near-unanimous #1 across all six of exp-075's Phase-5 seats,
+`phase5_redteam_audit.md` §7): the G40/`PAD` decorrelation build —
+the only queued item that *relieves*, rather than discloses or prices,
+the `ABSORB`-or-`PAD` confound running under every T28 causal claim on
+the congruent `{C40,C60,C70,C80}` series since Iteration 48.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite
+confirmed green: 41/41 checks (`--only 12346789`, heavy stage 5 skipped)
+before any panel work began.
+
+**Full five-phase cycle.** Phase 1 (QUANTUM OPTICS, by rotation):
+proposed a fresh 31-FDTD-call build of `G40` (`ABSORB=40, PAD=40`,
+already specified in `experiments/065-.../design_geometry.py` — bit-
+identical to `C80`'s entire padded domain/clearances/aperture/`D_SP`
+except boundary-band thickness — but never run at T28's own dense,
+settled-`STEPS` window) at the same 31-point/600nm/`STEPS=2800` grid
+`C40`/`C80`'s own committed `block_dense` uses, decomposing
+`PAIR_PAD≡(C40,G40)` and `PAIR_ABSORB40≡(G40,C80)` with exp-072's own
+phase-invariant amplitude channel (`amp_ratio=√(A_i²+A_q²)/amp`),
+directly comparable to the confounded-series baseline
+(0.161/0.041/0.020/0.166). Pre-registered falsifiable `(a)/(b)/(c1)/
+(c2)` outcome bands and a dedicated `G0-e` synthetic ground-truth
+recovery check for the fitted-carrier `amp_ratio` channel (built and
+run this cycle, not deferred — PASSED cleanly: Case 1 worst
+`1.03×10⁻⁴`, Case 2 worst `8.35×10⁻³`, against 2%/5% bars).
+
+Phase 2: five blind critiques, unanimous support-with-changes.
+**PHOTONICS**: every config this cycle runs (`C40`/`G40` at
+`ABSORB=40`, `C80` at `ABSORB=80`) sits at an exact integer multiple of
+λ at 600nm (2.000λ/4.000λ) — the identical resonant/aliased condition
+`C70` was added, in this same sub-thread's own precedent cycle
+(exp-065), to guard against; absent here. **MATERIALS**: the proposal's
+own §4 decision language breaks `ABSORB`/`PAD` symmetry, implicitly
+granting `ABSORB` physical standing `PAD` doesn't have, though both are
+pure numerical domain-construction parameters. **ELECTROMAGNETISM** +
+**VISION SCIENCE**, independently converging from opposite directions
+(forward-settling argument vs. citation-provenance argument): `G40`'s
+own thin-boundary/large-domain combination — decoupling two variables
+(boundary thickness, domain size) that had always co-varied in every
+prior settling check this program has run — was never settling-tested
+at `STEPS≥2800`; the only prior FDTD data for `G40` (exp-065's own
+`Block PAD`) was at unsettled `STEPS=1400`. **THERMODYNAMICS**: the
+energy-sidecar N/A disposition, stated by every T28 instrument cycle
+since exp-071 in one sentence, was silently dropped from the raw
+proposal.
+
+Red Team's Phase-2 audit: **PROCEED-WITH-MANDATORY-FIXES, 8 items, zero
+overridden.** Adopted all five critiques' fixes (MODIFYING PHOTONICS'
+own proposed 6-call sparse fix — underspecified for `amp_ratio`'s own
+carrier-fit machinery — into a 16-call `G40`-at-750nm leg reusing an
+already-committed, non-aliased window, `experiments/069-.../
+results.json::block_leg750`, that none of the five critiques had
+found). Found **two new, load-bearing defects itself**: the proposal's
+own `(a)/(b)/(c1)/(c2)` outcome bands were neither mutually exclusive
+(a noise-level point could trip both "confound not relieved" and "both
+near-null" simultaneously) nor exhaustive (a real, physically plausible
+result region had no named verdict at all); and the `rho_pad_absorb`
+"real evidence... interaction exists" language directly contradicted
+its own cited exp-072 precedent (`rho_c`), which the source code itself
+documents as NOT a basis-stability/interaction test and which had never
+once been evaluated on real data anywhere in this program's history.
+
+Phase 3 (Director synthesis): all 8 docket items adopted verbatim, zero
+overridden. Rebuilt the outcome scheme as an exhaustive, mutually-
+exclusive 9-cell/5-outcome table (`ABSORB_TIED`, `ABSORB_LEANING`,
+`PAD_TIED`, `BOTH_LOW_NULL`, `BOTH_HIGH_SUPER_ADDITIVE`), verified by
+direct enumeration of all 9 cells; downgraded `rho_pad_absorb` to a
+disclosed, non-gating, explicitly-uncalibrated diagnostic; added a
+3-call `STEPS=2800`-vs-`4200`/`1400` settling precondition, HALT-if-
+fails, checked before any real data is scored; added the 16-call
+750nm advisory leg. Revised budget 31→50 FDTD calls. One disclosed,
+non-substantive resolution of a genuine textual ambiguity in the
+docket's own wording (the `(HIGH,HIGH)` cell's description satisfied
+two outcome names at once — carved `BOTH_HIGH` out of `PAD_TIED`'s
+catch-all explicitly, flagged rather than silently decided). **FROZEN
+PREDICTIONS committed to git (commit `c1e4af3`) before `run.py`'s first
+execution** — house discipline, non-negotiable.
+
+Phase 4: 50 FDTD calls, ~16.9 min wall-clock. **Two pure engineering/
+serialization bugs found and fixed mid-execution, both disclosed in
+full in `phase4_results.md`, neither touching any frozen prediction —
+all FDTD results confirmed bit-identical across both crashed attempts
+and the final clean run**: (1) `settling_gate_check` indexed its
+argument as if it were the FDTD-results dict directly, when
+`block_settle_precondition()` actually returns a wrapper dict — crashed
+after all 5 settling calls had already completed cleanly; (2)
+`json.dump` cannot serialize tuple dict keys, and `settle_precondition`
+embedded a `(theta,cpl_nm,steps)`-keyed dict directly — crashed at the
+very last line of `main()`, after every physics computation had already
+completed and printed correctly. **Settling precondition PASSED with a
+wide margin**: `frac_39=1.035×10⁻⁴`, `frac_40=7.472×10⁻⁵`, both
+~481×–666× inside the `THRESH_LOW=0.0498` bar — `G40`'s previously-
+untested geometry is, in fact, cleanly settled at `STEPS=2800`; the
+disclosed backward differential confirms `STEPS=1400` was badly
+unsettled (61.7%/64.0% relative shift), consistent with T27.
+
+**Official result: `x=amp_ratio(PAIR_PAD)=0.119366` (HIGH),
+`y=amp_ratio(PAIR_ABSORB40)=0.071616` (MED) → `OUTCOME=PAD_TIED`.** The
+pure-`PAD` effect at fixed `ABSORB=40` is LARGER than the pure-`ABSORB`
+effect at fixed `PAD=40` — the opposite of the reassuring "confound
+relieved, genuinely `ABSORB`-tied" direction five prior T28 cycles'
+causal framing implicitly hoped for. The 750nm advisory leg shows the
+OPPOSITE ordering (`x750=0.420 < y750=0.616`), a genuine, disclosed
+tension consistent with PHOTONICS' own aliasing concern; per the frozen
+design, non-decisive and not licensing any wavelength-general citation.
+
+Phase 5: six blind reviews, unanimous PARTIAL — an unusually clean
+crop, Red Team's own from-scratch re-derivation found no defect in any
+of the six. Full findings and the load-bearing lossless-vacuum proof
+and combined MATERIALS+EM interpretive finding: recorded in LIVE
+THREADS T28 (above) and T16 (above, VISION's cross-reference). In
+brief: **ELECTROMAGNETISM's Phase-5 finding, independently re-derived
+by Red Team from `lab/fdtd2d.py`'s primitive source — `PAD` is provably
+lossless vacuum, so `PAIR_PAD`'s entire signal can only be a phase/
+interference effect, never absorbed power** — is this cycle's single
+most load-bearing new finding, converting MATERIALS' own realizability
+reading from a strong analogy into a proven mechanism-class exclusion.
+Two small process gaps (VISION's own disclosed-then-dropped Phase-2
+finding on the `amp`/`C_thr` numerical coincidence; QUANTUM's `G0-e`
+promise-vs-implementation gap) and one genuine record gap (PHOTONICS'
+discarded 750nm carrier diagnostic) surfaced at Phase 5, all
+independently verified inert or closable, all closed same-shift via
+Red Team's 6-item mandatory-fix docket (zero new FDTD, zero change to
+`PAD_TIED` or any frozen prediction).
+
+**CHECKPOINT: no criterion fires** (Red Team's final audit ruled
+explicitly on all five). Three small, independently-diagnosed,
+non-outcome-determining process/documentation gaps surfacing in one
+cycle, immediately following R8's adoption last cycle, was weighed
+carefully against criterion 4 and read as evidence the Phase-5 review
+layer is working at high sensitivity — all three caught by the design,
+none survived into a defended headline claim, none outcome-determining
+on independent re-verification — not as program-integrity drift. One
+procedural recommendation offered, not a new numbered rule: Phase 3's
+acceptance table should log every disclosed Phase-2 "secondary
+finding"'s disposition explicitly, even a one-word "deferred, not
+adopted," so a genuinely non-sharpest finding cannot silently vanish
+between two disposition tables the way VISION's did this cycle.
+
+**Verdict: PARTIAL.** T28's own substantive mechanism question — the
+~2.84° periodicity's ultimate origin — remains unidentified, but this
+cycle delivers a real, independently-verified narrowing on two fronts
+simultaneously: which construction axis the signal tracks (`PAD`, not
+`ABSORB` — the less convenient, but honestly reported, direction), and
+which mechanism classes remain physically permitted for that axis
+(phase/interference only, absorption structurally excluded). Combined
+with MATERIALS' realizability reading, this is the cleanest negative
+signal this six-cycle T28 sub-thread has produced. Reconciled
+Iteration-54 ranking (Red Team's Phase-5 final audit, `phase5_redteam_
+audit.md` §7, 4 tiers, 8 items — full detail there): Tier 0, zero-FDTD
+desk work first — (1) refit exp-075's own already passivity-gated
+transfer-matrix echo model against `PAD`'s round-trip distance instead
+of `ABSORB` depth, the only mechanism class now physically permitted
+for this signal; (2) a fixed-carrier re-score of the already-collected
+750nm leg data; (3) score the already-built two-wall cavity model
+against the 750nm leg (PLAN.md's own carried-over Iteration-53 queue
+item 2, still unexecuted); Tier 1, cheap FDTD — (4) a `PAD`-depth
+causal sweep at fixed `ABSORB=40`; (5) broadband pulsed reflectance
+spectroscopy of the `ABSORB` boundary; Tier 2 — (6) the standing
+full-width non-aliased second-wavelength leg precondition; (7) test
+whether the `PAD`-sensitivity survives with a real absorbing article
+loaded (the charter-relevant question this cycle's empty-scene-only
+scope could not reach); Tier 3, record hygiene (bundle, zero cost).
+Full record: `experiments/076-t28-g40-pad-decorrelation/` — Phase-1
+proposal + `g0e_amplitude_channel_check.py`, five Phase-2 blind
+critiques, Phase-2 Red Team audit, Phase-3 synthesis, `NOTES.md`,
+`run.py`, Phase-4 results (`phase4_results.md`, `results.json`), six
+Phase-5 blind reviews, Phase-5 Red Team final audit; LIVE THREADS (T28
+updated above — `PAD_TIED`, the lossless-vacuum proof, the combined
+MATERIALS+EM finding; T16 updated above — a third confirmed
+instrument-floor-uncertainty driver).
