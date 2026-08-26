@@ -1,0 +1,63 @@
+==============================================================================
+exp-077 -- PAD round-trip-distance refit of exp-075's single-wall echo model
+==============================================================================
+
+[1] GEOMETRY CONGRUENCE (verified, not assumed)
+    C40: ABSORB= 40  PAD=  0  nx= 360  src_x= 300  plane_x=  77  d_sp= 223
+    G40: ABSORB= 40  PAD= 40  nx= 440  src_x= 340  plane_x= 117  d_sp= 223
+    C80: ABSORB= 80  PAD= 40  nx= 440  src_x= 340  plane_x= 117  d_sp= 223
+    PAIR_PAD  (C40,G40): SAME ABSORB=40 -> IDENTICAL r(theta); PLANE_X 77 -> 117 (round-trip distance changes, reflectance does not)
+    PAIR_ABSORB40 (G40,C80): SAME geometry (plane_x=117==117); ABSORB 40 -> 80 (reflectance changes, round-trip distance does not)
+
+[2] REAL DATA (experiments/076/results.json::headline, 31 angles, 36.0-42.0deg, 600nm, settled STEPS=2800)
+    real PAIR_PAD delta (G40-C40):      min=-2.235341e-03  max=3.026678e-03  ptp=5.262019e-03
+    real PAIR_ABSORB40 delta (C80-G40): min=-4.211574e-03  max=2.006204e-03  ptp=6.217778e-03
+    (established headline amp_ratio: PAIR_PAD=0.119366 HIGH, PAIR_ABSORB40=0.071616 MED)
+
+[3] r(theta;ABSORB) ON THE REAL DENSE GRID (31 angles)
+    ABSORB= 40  theta=36.0: |r|=0.0029 arg= -78.12deg   theta=39.0: |r|=0.0043 arg= -40.91deg   theta=42.0: |r|=0.0064 arg=  -1.23deg
+    ABSORB= 80  theta=36.0: |r|=0.0000 arg=+171.64deg   theta=39.0: |r|=0.0001 arg=-179.49deg   theta=42.0: |r|=0.0001 arg=-145.47deg
+
+[GATES] re-run on THIS cycle's own r(theta) values
+    G-LOSSLESS  worst ||r|-1| over 6 random real profiles/angles = 2.220e-16  PASS=True
+    G-N1        worst |r_loop - r_direct| over 8 random single layers = 1.404e-15  PASS=True
+    G-PASSIVITY worst |r| over 62 (ABSORB,theta) pairs = 0.006423  PASS=True
+
+[4] PREDICTED C_empty (single-wall echo model, per config)
+    internal check: max|C_boundary_free(k)-C_boundary_free(C40)| over G40/C80, all angles = 0.000e+00  (expect ~0 -- congruent geometry, exp-065 Sec 2; the PAD trick holds D_SP fixed)
+    predicted PAIR_PAD delta (G40-C40):      min=-7.195146e-04  max=1.512159e-03  ptp=2.231673e-03
+    predicted PAIR_ABSORB40 delta (C80-G40): min=-9.361412e-04  max=5.610631e-04  ptp=1.497204e-03
+    amplitude ratio (model ptp / real ptp): PAIR_PAD=0.4241  PAIR_ABSORB40=0.2408
+
+[5] CLOSED-FORM PER-WALL ROUND-TRIP PERIOD (cross-check, zero-order in r(theta)'s own phase; the actual DELTA of two different-period sinusoids is a beat, not this period directly -- see idealizations)
+    C40: plane_x=  77  P_wall(39deg)=11.824deg
+    G40: plane_x= 117  P_wall(39deg)=7.782deg
+    C80: plane_x= 117  P_wall(39deg)=7.782deg
+
+[6] TEST A -- FREE-PERIOD FIT (exp-069's own methodology, imported not reimplemented)
+  -- PAIR_PAD --
+    [real PAIR_PAD]  narrow[1,4]: P*=  4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=  4.6113deg  R^2=0.8165  [interior optimum]
+    [model PAIR_PAD]  narrow[1,4]: P*=  4.0000deg  R^2=0.5599  [AT BOUNDARY -- widening]
+    [model PAIR_PAD]   wide[1,15]: P*= 13.2794deg  R^2=0.8592  [interior optimum]
+  -- PAIR_ABSORB40 --
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=  4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=  4.1761deg  R^2=0.7156  [interior optimum]
+    [model PAIR_ABSORB40]  narrow[1,4]: P*=  4.0000deg  R^2=0.6221  [AT BOUNDARY -- widening]
+    [model PAIR_ABSORB40]   wide[1,15]: P*=  8.2026deg  R^2=0.8461  [interior optimum]
+
+    PAIR_PAD:      P*_real=4.6113deg  P*_model=13.2794deg  rel_dev=1.8798
+    PAIR_ABSORB40: P*_real=4.1761deg  P*_model=8.2026deg  rel_dev=0.9642
+
+[7] TEST B -- SHAPE MATCH: Pearson r^2(model predicted delta, real delta)
+    PAIR_PAD:      r=+0.2107  r^2=0.0444
+    PAIR_ABSORB40: r=+0.4468  r^2=0.1997
+
+[8] PRE-REGISTERED FALSIFIABLE BANDS -- scored (reused verbatim from exp-075's phase1_proposal.md Sec 5)
+    PAIR_PAD     : period band rel_dev=1.8798 -> REFUTE   shape band r^2=0.0444 -> REFUTE   COMBINED: REFUTE
+    PAIR_ABSORB40: period band rel_dev=0.9642 -> INCONCLUSIVE   shape band r^2=0.1997 -> INCONCLUSIVE   COMBINED: INCONCLUSIVE
+
+    PRIMARY TARGET (PAIR_PAD, the dominant signal this cycle was tasked to explain): COMBINED = REFUTE
+    SECONDARY CHECK (PAIR_ABSORB40): COMBINED = INCONCLUSIVE
+
+wrote /home/user/photon-lab/experiments/077-t28-pad-round-trip-echo-model/pad_round_trip_results.json
