@@ -22,7 +22,40 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-26, panel Iteration 51 done (exp-074, PARTIAL,
+## Current state (2026-08-26, panel Iteration 52 done (exp-075, PARTIAL,
+Combined Verdict REFUTE for both a single-wall and a two-wall-cavity
+boundary-reflectance-echo mechanism, **CHECKPOINT criterion 4 FIRES**
+(notification, not a pause; 11th time this program) — THERMODYNAMICS lead
+by rotation, executing PLAN.md's own Iteration-52 queue item 1
+(PHOTONICS' own queued WKB/adiabatic boundary-reflectance analytic model
+for the graded-loss `ABSORB` band): Phase 1 built an exact transfer-
+matrix reflectance for the `-x`-wall graded band and self-scored REFUTE
+against T28's real dense-sweep data (period ~4.3x too long, wrong-signed
+shape match) → five blind Phase-2 critiques (unanimous support-with-
+changes) found PHOTONICS' own two-wall-cavity variant (the OTHER PEC
+wall, never priced) lands inside the proposal's own SUPPORT band on a
+naive substitution → Red Team's Phase-2 audit confirmed this exactly plus
+its own look-elsewhere risk (2/11 named constants also land in-band) and
+ruled PROCEED-WITH-MANDATORY-FIXES, five items, zero overridden → Phase 3
+adopted all five, pre-registered the actual (correctly-derived) two-wall
+model BEFORE running it → Phase 4 CONFIRMED the frozen prediction: the
+two-wall model REFUTEs identically (bit-identical `P_model=15.0000°`),
+closing the look-elsewhere gap — PHOTONICS' match confirmed as the
+artifact it was suspected of being → Phase 5's own load-bearing finding:
+two independent blind seats (PHOTONICS, ELECTROMAGNETISM) found Test A's
+REFUTE is convention-dependent (`r→conj(r)` collapses it to INCONCLUSIVE
+for both mechanisms, undetected by the program's own G-PASSIVITY gate);
+Red Team's final audit built a NEW, owned empirical FDTD tie-breaker
+(reusing `lab.emit`'s own already-gated machinery) and RESOLVED it,
+moderate-to-high confidence, in favor of the committed convention (2.8x-
+6.7x margins) — **REFUTE STANDS for both mechanisms**. Checkpoint fires
+on the verification-discipline shape (an unverified "robust to" argument,
+not a false claim about a checked computation, filed a real gap as
+informational-only until two blind Phase-5 seats caught it) — new
+standing rule **R8** adopted, generalizing R7 to untested independence
+arguments. T28's own mechanism question remains open. Full record:
+`experiments/075-t28-absorb-boundary-wkb-reflectance/`, LOGBOOK.md
+Iteration 52); panel Iteration 51 done (exp-074, PARTIAL,
 Combined Verdict `HALT_NULL_MISCALIBRATED_9COL`, no Checkpoint criterion
 fires — ELECTROMAGNETISM lead by rotation, executing PLAN.md's own
 Iteration-51 queue item 1 (near-unanimous #1 across all six of exp-073's
@@ -2844,6 +2877,85 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
+- **[ACTIVE — Iteration 53 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-075's six seats (`phase5_redteam_audit.md` §7);
+  supersedes the Iteration-52 queue below as the active ranking, that
+  block retained as valid backlog, not deleted]** Two boundary-
+  reflectance-echo mechanisms (single-wall and the correctly-derived
+  two-wall cavity) are now REFUTEd against T28's real dense-sweep data,
+  on a reflection-phase convention independently confirmed correct by
+  Red Team's Phase-5 final audit (a new, owned empirical FDTD tie-breaker,
+  `experiments/075-.../phase5_redteam_phase_convention_check.py`). All
+  six Phase-5 seats converge, after reconciliation, on the same ranking.
+  (1) **G40/`PAD` decorrelation** (~31 FDTD calls, per MATERIALS' verified
+  geometry-reuse claim against `experiments/065-.../
+  design_geometry_output.txt`) — near-unanimous #1 (ranked #1 or #2 by
+  all six seats). The only queued item that actually *relieves*, rather
+  than discloses or prices, the `ABSORB`-or-`PAD` confound running under
+  every T28 causal claim since Iteration 48 — now the single most
+  information-dense open question on T28's board, with the boundary-
+  reflectance-echo class doubly REFUTEd on the existing congruent series
+  and the model's own predicted echo strongly `ABSORB`-depth-*dependent*
+  while the real residual is depth-*independent* (exp-075 Phase 3's own
+  cross-check, §5b of `boundary_reflectance.py`). Readout on the
+  phase-invariant amplitude channel `√(A_i²+A_q²)/a` (exp-072 baseline
+  0.161/0.041/0.020/0.166) — no fitted carrier phase, inherits neither the
+  window-resolution problem nor any sign-flip calibration problem, and is
+  explicitly NOT barred by exp-074's own seventh-cycle rule (a genuinely
+  different instrument class). Pre-register up front: the 2x2 factorial
+  is not completable (`config(80,0)` gives `clear_span_y=-40`), so main
+  effects are identifiable only under additivity, the interaction not at
+  all. (2) **Score the already-built two-wall model against the already-
+  collected 750nm leg** (`experiments/069/results.json::block_leg750`, 16
+  points, Iteration 46, zero new FDTD — VISION's own #1 Phase-5
+  candidate). Cheap, decisive either way, and stress-tests exp-075's own
+  REFUTE (as a free byproduct, a genuinely independent second data point
+  on the phase-convention resolution at a different wavelength) before
+  either headline REFUTE is cited elsewhere as a wavelength-general
+  result. (3) **Harden the phase-convention resolution to this program's
+  own R6/G0-e standard** (folds in PHOTONICS'/EM's own #1 Phase-5
+  candidate, now a closing task, not an opening one) — extend
+  `phase5_redteam_phase_convention_check.py` to the real `ABSORB`=40/60/
+  70/80 depths directly, with a higher-power extraction than a single-bin
+  FFT read; diagnose and fix the `K>=8` calibration degradation that
+  audit found and disclosed, or explicitly bound why it does not matter
+  at the real, much-smaller `|r|` values. (4) **Record-hygiene bundle**
+  (near-unanimous, touched by all six Phase-5 seats in some form): (a)
+  THERMODYNAMICS' sidecar rounding fix (`>99.996%`→`>99.995%`); (b) an
+  explicit two-wall-model sidecar re-confirmation sentence; (c) switch
+  `circular_shift_null` to exact 30-shift enumeration and add a
+  synthetic-noise (AR(1) and/or phase-randomization) sizing leg before
+  reuse on different data (QUANTUM's finding: the check is anti-
+  conservative, 1.3x-16x nominal depending on alpha); (d) add the
+  matched-`eps=mu`/`graded_black_shell`-code-path-disjointness note
+  explicitly to the idealization list; (e) `caveat_lint_config.json`
+  entries protecting exp-075's own headline scope caveats (the matched-
+  `eps=mu` realizability scope, the single-vs-two-wall-echo scope limit);
+  (f) fold Red Team's Phase-5 §2 finding and standing rule R8 into the
+  permanent record's own phase-convention caveat language. **Not ranked,
+  flagged as speculative backlog** (needs real design work before it
+  earns FDTD/analytic time): MATERIALS' residual-of-residual structural
+  candidate; QUANTUM's dispersive-`eps(omega)` extension (needs item 2's
+  750nm leg first); THERMODYNAMICS' Idealization-6 closed-form-to-exact
+  computation (cannot move T28's own mechanism question either way, the
+  bound is already 150x below the observed signal). `R_contact`'s
+  literature search (unchanged ranking, 13+ consecutive cycles blocked)
+  stays orthogonal, capacity permitting. **Standing rules for the
+  Director to carry forward (already adopted in LOGBOOK.md, not a new
+  FDTD item):** R8 (new this cycle — an unverified robustness/
+  independence argument about a flagged verification gap is not
+  sufficient to file it informational-only when an affordable named check
+  exists; the argument must be tested, not reasoned about). Full record:
+  `experiments/075-t28-absorb-boundary-wkb-reflectance/` — Phase-1
+  proposal + `boundary_reflectance.py`, five Phase-2 blind critiques,
+  Phase-2 Red Team audit, Phase-3 synthesis, `two_wall_cavity.py`,
+  Phase-4 results, `NOTES.md`, six Phase-5 blind reviews, Phase-5 Red
+  Team final audit + its own owned verification script; LOGBOOK.md
+  Iteration 52 (R8 adopted, CHECKPOINT criterion 4 fired, LIVE THREADS
+  T28 updated — both boundary-reflectance-echo mechanisms RULED OUT).
+- **[superseded by the Iteration-53 queue above — exp-075's own docket,
+  retained as a pointer to its own history, not deleted]** the
+  Iteration-52 queue that follows this note.
 - **[ACTIVE — Iteration 52 queue, Red Team's Phase-5 final-audit
   reconciliation of exp-074's six seats (`phase5_redteam_audit.md` §8);
   supersedes the Iteration-51 queue below as the active ranking, that
