@@ -96,12 +96,36 @@ own scope, the `N_SURR_CAL` vs `N_SURR` cost tradeoff).
 
 ## Result
 
-*(Placeholder — official Phase-4 run follows this commit; see
-`phase4_results.md`.)*
+**Combined Verdict: `HALT_NULL_MISCALIBRATED_9COL`.** Both frozen
+predictions confirmed. The i.i.d. leg fails 8.7×–11.2× nominal at
+α=0.01 (worse than exp-073's 5-column 5.4×, as predicted from the lower
+`lev9_Rq`). The new, genuinely order-preserving circular-shift leg fails
+far worse still — 38.9×–46.1× nominal at α=0.01, 3.5×–5.9× worse than the
+i.i.d. leg at every α — the first test in this five-cycle sub-thread to
+show a real, structure-preserving null leg is NOT statistically
+indistinguishable from an i.i.d. one (exp-073's own pooled leg was,
+`r=0.907`; this one measurably is not). No pair's `R_q`-within-the-two-
+tone-fit significance was ever scored. Full detail: `phase4_results.md`.
 
 ## Learned
 
-*(Placeholder — post Phase 4/5.)*
+The real 9-column fit's own `z9=5.03` at C60–C70 (independently found in
+Phase 2 by THERMODYNAMICS and Red Team) remains genuinely unresolved —
+this cycle establishes WHY it cannot currently be resolved with this
+instrument, rather than resolving it: the null construction needed to
+test it is badly miscalibrated, worse on realistic (θ-correlated) noise
+than on idealized (i.i.d.) noise. R7 (adopted this cycle) is directly,
+empirically confirmed on its first application: a design-only
+conditioning bound (`lev9_Rq≈0.59`, computed in Phase 1/3 before any
+calibration Monte Carlo ran) correctly predicted the DIRECTION of this
+failure but could not have predicted its MAGNITUDE, particularly the
+5× additional degradation on genuinely correlated noise — only actually
+fitting and calibrating exposed that. Per the pre-committed seventh-cycle
+decision rule (`phase3_synthesis.md` §6): this is the sixth consecutive
+non-decisive T28 differential/two-tone cycle (Iterations 46–51), and no
+seventh cycle on the same instrument class (a sign-flip/permutation null
+on this ramped-quadrature OLS basis, any window, single- or multi-tone)
+is authorized without a qualitatively different calibration strategy.
 
 ## Next
 
