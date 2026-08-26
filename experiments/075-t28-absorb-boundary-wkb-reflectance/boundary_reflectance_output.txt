@@ -36,6 +36,23 @@ exp-075 -- WKB/adiabatic boundary-reflectance model, ABSORB band
     via exp-048's Huygens-Fresnel propagator + a mirror-image source
     weighted by r(theta;ABSORB), 600nm, on the real dense grid.
     internal check: max|C_boundary_free(ABSORB)-C_boundary_free(40)| over all configs/angles = 0.000e+00  (expect ~0, exp-065 Sec 2)
+
+[5b] ABSORB-DEPTH RESIDUAL CROSS-CHECK (mandatory fix 2, VISION/Red Team)
+     the model's own per-config echo term C_with_wall(ABSORB)-C_boundary_free(theta):
+     ptp(ABSORB= 40) = 7.978e-04   (reference)
+     ptp(ABSORB= 60) = 1.174e-04   (6.79x smaller than ABSORB=40)
+     ptp(ABSORB= 70) = 1.927e-05   (41.40x smaller than ABSORB=40)
+     ptp(ABSORB= 80) = 2.810e-05   (28.39x smaller than ABSORB=40)
+     cross-config shape correlations (Pearson r) of the model's own echo term:
+       r(40,60) = -0.985
+       r(40,70) = -0.203
+       r(40,80) = +0.913
+       r(60,70) = +0.276
+       r(60,80) = -0.924
+       r(70,80) = -0.560
+     REAL data (exp-074, Iteration 51): four configs' own best-single-sinusoid
+     residuals are near-identical across depth, cross-config r=0.992-1.000.
+     MODEL's own echo term: 4/6 pairs NEGATIVELY correlated -- sharply INCONSISTENT with the real near-identity, a second independent REFUTE line.
     internal check: two equivalent ways of computing predicted delta agree to 0.000e+00
     predicted delta(theta): min=-1.655112e-04  max=6.043509e-04  ptp=7.698621e-04
     REAL delta(theta) (exp-069 block_dense):    min=-2.116618e-03  max=1.909639e-03  ptp=4.026256e-03

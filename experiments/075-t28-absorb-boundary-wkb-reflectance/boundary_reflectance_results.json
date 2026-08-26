@@ -74,6 +74,25 @@
     "pass_": true
   },
   "boundary_free_spread_internal_check": 0.0,
+  "absorb_depth_echo_ptp": {
+    "40": 0.0007977540424525904,
+    "60": 0.00011741417703271199,
+    "70": 1.927156368414229e-05,
+    "80": 2.8095562464899426e-05
+  },
+  "absorb_depth_echo_cross_correlation": {
+    "40,60": -0.9852535576361575,
+    "40,70": -0.20267098865914626,
+    "40,80": 0.9127330149398971,
+    "60,70": 0.27560251161508087,
+    "60,80": -0.923720365964033,
+    "70,80": -0.5598797615971862
+  },
+  "absorb_depth_echo_negative_pairs": 4,
+  "absorb_depth_crosscheck_reference_real_r_range": [
+    0.992,
+    1.0
+  ],
   "predicted_delta_equivalence_check": 0.0,
   "predicted_delta": [
     -6.615182762443814e-06,

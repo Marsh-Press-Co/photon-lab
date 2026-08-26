@@ -18,6 +18,17 @@ boundary physics, executed as the queue directs.*
 
 ## 0. What this is, and what it is not
 
+**Phase-3 corrigendum (Director, applying Red Team's Phase-2 audit,
+`phase2_redteam_audit.md`, mandatory fixes 3-4, zero overrides on either):**
+two in-place corrections below, both flagged [PHASE-3 FIX] at their point
+of use. Neither changes the Combined Verdict `REFUTE` for the mechanism
+actually tested (Red Team §6: independently reconfirmed six ways). Mandatory
+fix 1 (the two-wall-cavity variant, never priced by this document) and
+mandatory fix 2 (the `ABSORB`-depth residual cross-check) are executed as
+NEW work, not in-place edits — see `phase3_synthesis.md`,
+`two_wall_cavity.py`, and this file's own §2e-cross-check addendum in
+`boundary_reflectance.py`/`boundary_reflectance_results.json`.
+
 **ZERO new FDTD calls.** `lab.fdtd2d.Sim` is imported once, to build its
 `damp_e` array via `__init__` alone (no `.run()` anywhere in this
 experiment's code) — reading the graded-loss band's own per-cell numbers
@@ -313,6 +324,22 @@ confirming the model's own predicted curve does not complete even one
 oscillation across the 6° dense-sweep window at all, consistent with
 §2e's closed-form 7.8-11.8° period estimate). **`rel_dev=4.28` — REFUTE.**
 
+**[PHASE-3 FIX, QUANTUM/Red Team item, `phase2_redteam_audit.md` §2d/§4.4,
+adopted verbatim]** `rel_dev=4.28` should NOT be read as a calibrated
+period-mismatch factor — it is the numeric symptom of a boundary-search
+artifact. Independently confirmed (Red Team, bit-exact against six probe
+periods): the model's own `R²(P)` rises MONOTONICALLY with the search
+window's own upper bound (`R²=0.0131` at 1° up to `R²=0.8796` at 1000°,
+asymptoting exactly to a degree-2-polynomial-in-`sinθ` fit), with no
+interior optimum anywhere — the model's predicted curve genuinely never
+completes a third of an oscillation across the tested 6° window, so no
+period is actually being MEASURED. The REFUTE conclusion is not weakened
+by this correction — it is put on firmer ground: the real data has a
+genuine INTERIOR maximum (`P*=2.8421°`, `R²=0.6272`, well above its own
+large-`P` asymptote `R²≈0.41`), while the model's curve has no interior
+maximum at any window tested. That contrast — not the `4.28×` figure — is
+the load-bearing argument for Test A's REFUTE.
+
 ### Test B — shape match (the stronger test PANEL.md's own mandate names as preferable to a bare period match)
 
 Pearson `r^2` between the model's own predicted `delta(theta) =
@@ -325,9 +352,23 @@ block_dense.rows`.
 - **INCONCLUSIVE** otherwise
 
 **Observed: `r^2 = 0.2586`, Pearson `r = -0.508` (NEGATIVE correlation).**
-**INCONCLUSIVE** — close to, but under, the SUPPORT bar, and the sign is
-the wrong direction (weak anti-correlation, not the mechanism's own
-predicted-vs-real curves tracking together).
+**INCONCLUSIVE** under the pre-registered (sign-blind) band — close to,
+but under, the SUPPORT bar, and the sign is the wrong direction (weak
+anti-correlation, not the mechanism's own predicted-vs-real curves
+tracking together).
+
+**[PHASE-3 FIX, QUANTUM/Red Team item, `phase2_redteam_audit.md` §2d/§4.5,
+adopted verbatim]** The pre-registered band is scored as written above
+(pre-registration integrity — the SUPPORT/REFUTE thresholds are not
+retroactively changed), but "INCONCLUSIVE... close to the SUPPORT bar" is
+an understatement of what `r=-0.508` actually is: independently confirmed
+by two routes (a 200,000-trial permutation test, `p=0.0033-0.0035`, and an
+analytic `t`-distribution check, `p=0.0035`, agreeing to within Monte
+Carlo noise), this is a STATISTICALLY SIGNIFICANT anti-correlation, not
+statistical noise sitting near an arbitrary threshold. For a zero-free-
+parameter model with a definite predicted phase, a significant
+anti-correlation is real evidence the mechanism runs backward — stronger
+disconfirming information than "inconclusive" implies, not weaker.
 
 ### Amplitude, disclosed (non-gating — not part of either pre-registered band, reported for completeness)
 
@@ -350,13 +391,28 @@ band, interfering with the direct source field — is a real, passivity-
 respecting, `ABSORB`-dependent effect (§2d), but its own characteristic
 angular scale (7.8-11.8°, set by the plane-to-wall distance) is roughly
 3-5x too long, and its predicted amplitude is roughly 5x too small, to be
-the T28 ~2.84° family. **This does not close T28's mechanism question**
-— it rules OUT one previously-untested, physically well-motivated
+the T28 ~2.84° family. **This does not close T28's mechanism question.**
+
+**[PHASE-3 FIX, Red Team's own core finding, `phase2_redteam_audit.md`
+§1/§6, adopted verbatim, superseding the original framing below]**
+~~It rules OUT one previously-untested, physically well-motivated
 candidate (a single-bounce wall echo through the band's own admittance
-profile), narrowing the remaining space. It does not by itself rule out
-richer variants of the same physical idea (e.g. the `+x`-side band behind
-the source, or multiple internal bounces beyond the single echo modeled
-here — both named, not computed, in Idealization 4 below).
+profile), narrowing the remaining space.~~ **This framing is not yet
+earned.** PHOTONICS' Phase-2 critique found, and Red Team independently
+confirmed exactly, that a same-cost, same-machinery two-wall-cavity
+variant (using the domain's OTHER PEC wall, behind the source, `Idealization
+5` below) lands INSIDE this proposal's own pre-registered SUPPORT band on
+a first-pass closed-form estimate — never priced by this document. The
+correct interim statement is: **REFUTE of the single-`-x`-wall-echo
+mechanism specifically; the untested two-wall-cavity variant may fully or
+partially explain T28, so "narrows the remaining space" is not yet
+earned.** Red Team's own supplementary look-elsewhere check (2 of 11 named
+geometric constants in this bench's own `CONFIGS` land in the same
+SUPPORT band under the same naive substitution) means PHOTONICS' finding
+is suggestive, not yet decisive either — the actual two-wall interference
+model, built and scored properly (not a closed-form substitution), is
+`phase3_synthesis.md`'s mandatory next step; see `two_wall_cavity.py` and
+`phase4_results.md` for the resolution.
 
 ---
 
@@ -368,6 +424,22 @@ here — both named, not computed, in Idealization 4 below).
    from the code's own identical `_damping` formula implies a matched
    (`eps=mu`) effective medium (§2a) — an EXACT, not small-loss,
    consequence of that assumption (§2a, corrected during derivation).
+   **[PHASE-3 FIX, MATERIALS/Red Team item 2, `phase2_redteam_audit.md`
+   §2b/§4.2, adopted verbatim]** This matched-`eps=mu` medium is a
+   description of the FDTD *engine's own numerical damping construct*,
+   independently re-derived and confirmed by Red Team (`Z_TE=n/√(n²-sin²θ)`
+   follows algebraically from `μ(x)=n(x)`). It is NOT the admittance class
+   any known optical-frequency (450-750nm) material platform realizes —
+   broadband `μ(x)` tracking a lossy `ε(x)` over 2-4λ is microwave/RF
+   radar-absorbing-material territory, not an optical coating (MATERIALS'
+   realizability bound: unobtainium-with-parameters at these wavelengths).
+   A real, physically realizable (`μ=1`) graded absorber coating would show
+   genuine interior admittance-MISMATCH reflections at every grading step
+   that this matched-medium transfer matrix cannot capture by construction
+   — this REFUTE is a statement about the engine's own boundary-condition
+   artifact, not evidence about physically realizable graded-absorber
+   coatings generally. Stated here so no future LOGBOOK citation reads it
+   the wrong way.
 3. A genuine sign/branch ambiguity in that bridge, resolved by an
    unambiguous physical requirement (passivity, `|r|<=1`), not asserted
    (§2b — the single largest correction made during this cycle's own

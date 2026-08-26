@@ -425,6 +425,42 @@ def main():
           f"over all configs/angles = {bfree_spread:.3e}  (expect ~0, exp-065 Sec 2)")
     out["boundary_free_spread_internal_check"] = bfree_spread
 
+    # ---- [PHASE-3 FIX, mandatory fix 2, phase2_redteam_audit.md sec 2e/
+    # 4.6/5 -- VISION's flagged gap, independently run and confirmed by Red
+    # Team in the audit itself; committed here to the permanent record so
+    # it is code, not audit prose (house rule R4). The model's own ONLY
+    # source of ABSORB-dependence is this per-config echo term
+    # (C_with_wall(ABSORB) - C_boundary_free), confirmed isolated by the
+    # bfree_spread==0 check above -- does its OWN predicted ABSORB-depth
+    # scaling/shape agree or disagree with exp-074's real, established
+    # finding (LOGBOOK Iteration 51) that the four real configs' own
+    # best-single-sinusoid RESIDUAL shapes are near-identical across depth
+    # (cross-config r=0.992-1.000)? ----
+    echo_term = {a: (c_wall[a] - c_bfree[a]) for a in ABSORB_LIST}
+    echo_ptp = {a: float(np.ptp(echo_term[a])) for a in ABSORB_LIST}
+    print("\n[5b] ABSORB-DEPTH RESIDUAL CROSS-CHECK (mandatory fix 2, VISION/Red Team)")
+    print("     the model's own per-config echo term C_with_wall(ABSORB)-C_boundary_free(theta):")
+    for a in ABSORB_LIST:
+        ratio = echo_ptp[40] / echo_ptp[a] if echo_ptp[a] else float("inf")
+        print(f"     ptp(ABSORB={a:3d}) = {echo_ptp[a]:.3e}"
+              + (f"   ({ratio:.2f}x smaller than ABSORB=40)" if a != 40 else "   (reference)"))
+    echo_corr = {}
+    pairs = [(a, b) for i, a in enumerate(ABSORB_LIST) for b in ABSORB_LIST[i + 1:]]
+    print("     cross-config shape correlations (Pearson r) of the model's own echo term:")
+    for a, b in pairs:
+        r_ab = float(np.corrcoef(echo_term[a], echo_term[b])[0, 1])
+        echo_corr[f"{a},{b}"] = r_ab
+        print(f"       r({a},{b}) = {r_ab:+.3f}")
+    n_negative = sum(1 for v in echo_corr.values() if v < 0)
+    print(f"     REAL data (exp-074, Iteration 51): four configs' own best-single-sinusoid")
+    print(f"     residuals are near-identical across depth, cross-config r=0.992-1.000.")
+    print(f"     MODEL's own echo term: {n_negative}/{len(echo_corr)} pairs NEGATIVELY correlated --"
+          f" sharply INCONSISTENT with the real near-identity, a second independent REFUTE line.")
+    out["absorb_depth_echo_ptp"] = echo_ptp
+    out["absorb_depth_echo_cross_correlation"] = echo_corr
+    out["absorb_depth_echo_negative_pairs"] = n_negative
+    out["absorb_depth_crosscheck_reference_real_r_range"] = [0.992, 1.000]
+
     pred_delta_wall = c_wall[80] - c_wall[40]
     pred_delta_direct = (c_wall[80] - c_bfree[80]) - (c_wall[40] - c_bfree[40])
     cross_check = float(np.max(np.abs(pred_delta_wall - pred_delta_direct)))
