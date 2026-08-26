@@ -217,6 +217,61 @@ top. Protocol: PANEL.md.*
   t28-window-pricing-cramer-rao-bound/phase2_redteam_audit.md` §6,
   `phase3_synthesis.md` §2, `phase5_redteam_audit.md` §6, LOGBOOK.md
   Iteration 51.
+- **R8 — an unverified robustness/independence argument about a flagged
+  verification gap is not sufficient to file it informational-only when
+  an affordable named check exists (not a ruled-out idea; a standing
+  house-discipline rule, adopted Iteration 52, generalizing R7 to
+  untested independence arguments; backfilled into this summary at
+  Iteration 54 for discoverability — full text was previously stated only
+  in the Iteration 52 CHECKPOINT entry).** exp-075's Phase-2 critique
+  (ELECTROMAGNETISM) named the exact check needed to resolve a
+  reflection-phase-convention gap but only argued informally that Test A's
+  REFUTE was "robust to" it; Red Team's own Phase-2 audit and Phase 3 both
+  adopted that unverified argument without running the check, and it took
+  two independent blind Phase-5 seats to find it outcome-determining
+  (REFUTE collapses to INCONCLUSIVE under the untested alternate
+  convention). **Rule: the argument must be independently verified, by
+  actually computing the alternate case, not by re-reasoning about it,
+  before a flagged verification gap is filed as non-blocking.** A cycle
+  that files such a gap as informational-only on an untested argument,
+  when the gap later proves outcome-determining, fires Checkpoint
+  criterion 4 automatically if the named check was affordable and not
+  run — matching R6's/R7's own standard. Full record: `experiments/075-
+  t28-absorb-boundary-wkb-reflectance/phase5_redteam_audit.md` §2–§6,
+  LOGBOOK.md Iteration 52.
+- **R9 — verifying that a cited ratio or comparison reproduces
+  arithmetically is not sufficient to verify the comparison's own claim;
+  the operands' commensurability (same units/normalization) must be
+  independently confirmed before a "confirmed" comparison is trusted (not
+  a ruled-out idea; a standing house-discipline rule, adopted Iteration
+  54, a genuinely new variant of R4/R8's own family — not a repeat of
+  either verbatim).** LOGBOOK's own T16 entry (Iteration 53) stated
+  `x=amp_ratio(PAIR_PAD)=0.119` is "~24× VISION's own pinned lab detection
+  bar (`C_thr=0.005`)" — a claim self-disclosed as a conflation risk once
+  before (exp-076's own Idealization 11, and a draft warning inside that
+  same cycle's own Phase-5 VISION review, immediately contradicted in the
+  same document's own headline), then actively re-verified by that
+  cycle's own Red Team audit, which confirmed only the ARITHMETIC
+  (`0.119366/0.005=23.87`) — never asking whether `amp_ratio` (a
+  fitted-local-carrier-normalized ratio) was the correct numerator to
+  divide by `C_thr` (a raw `C_empty`-scale threshold) at all — before
+  actively writing the flawed comparison into this permanent record. It
+  survived one full cycle as settled fact until a second, independent
+  blind Phase-5 seat (Iteration 54, exp-077) traced `amp_ratio` back to
+  its defining primitives and caught the unit mismatch: the
+  dimensionally-consistent comparison reads `≈0.12×`/`≈0.08×` (sub-
+  threshold), not `24×`/`14×` (over-threshold). **Rule: a Phase-5 (or any)
+  reviewer's "confirmation" of a cited ratio or threshold comparison must
+  independently re-derive that BOTH operands are expressed in the same
+  units/normalization before the comparison itself counts as verified —
+  reproducing the division is necessary, not sufficient.** A cycle that
+  files such a "confirmed" comparison into a permanent LOGBOOK entry
+  without this check, when the comparison later proves incommensurable,
+  fires Checkpoint criterion 4 automatically — matching R6/R7/R8's own
+  standard, extended here from significance tests and robustness
+  arguments to unit/dimensional commensurability specifically. Full
+  record: `experiments/077-t28-pad-round-trip-echo-model/
+  phase5_redteam_audit.md` §0.2, §2b, §4 item 6, LOGBOOK.md Iteration 54.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -922,14 +977,37 @@ measured them here):**
   a domain-padding choice ALONE — nothing to do with resolution, settling,
   or angle sampling, this thread's own three previously-known uncertainty
   sources — can move this channel's signal by `x=amp_ratio(PAIR_PAD)=
-  0.119` at a fixed `ABSORB` depth, ~24× VISION's own pinned lab detection
-  bar (`C_thr=0.005`). Joins T21's edge-diffraction fringe (mechanism
-  identified, magnitude not fully validated) and T27's settling-transient
-  (mechanism identified and closed for the tested geometries) as the third
-  confirmed contributor to this thread's own standing caution: no
-  near-threshold constraint-3 citation on this channel should be read as
-  floor-clean without disclosing all three. Full record: `experiments/076-
-  t28-g40-pad-decorrelation/`, LOGBOOK.md Iteration 53 (T28 entry below).
+  0.119` at a fixed `ABSORB` depth. **CORRECTED (Iteration 54, exp-077
+  Phase-5 final audit — CHECKPOINT criterion 4, see Iteration 54's own
+  entry below): the "~24× VISION's own pinned lab detection bar" framing
+  in this paragraph was a DIMENSIONAL ERROR, caught by a second,
+  independent blind Phase-5 seat one full cycle later and independently
+  re-confirmed bit-exact by that cycle's own Red Team audit.**
+  `amp_ratio = √(A_i²+A_q²)/amp` is a ratio of two field amplitudes
+  normalized by a FITTED LOCAL CARRIER amplitude (dimensionless, not in
+  `C_empty` units) — not a raw contrast magnitude comparable to `C_thr`
+  (a threshold on raw `C_empty`/Weber-contrast magnitude elsewhere in this
+  program, e.g. this document's own "`|C_empty|=0.004855, just under
+  VISION's own `C_thr=0.005`" convention). The dimensionally-consistent
+  comparison uses the RAW numerator, `√(A_i²+A_q²)=6.153×10⁻⁴`, against
+  `C_thr`: **`raw/C_thr ≈ 0.123×` for `PAIR_PAD` — roughly 8× BELOW
+  threshold, not 24× above it** (and `≈0.079×`, ~13× below, for
+  `PAIR_ABSORB40`, previously cited nowhere as "14×" but corrected here
+  for completeness). This does NOT change `PAD_TIED`'s own classification
+  (which uses `amp_ratio` consistently, self-referentially, for its own
+  9-cell scheme — never compared to `C_thr`) or any Combined Verdict —
+  the error was confined to this descriptive urgency figure. Joins T21's
+  edge-diffraction fringe (mechanism identified, magnitude not fully
+  validated) and T27's settling-transient (mechanism identified and
+  closed for the tested geometries) as the third confirmed contributor to
+  this thread's own standing caution: no near-threshold constraint-3
+  citation on this channel should be read as floor-clean without
+  disclosing all three — and, per this correction, `PAD_TIED`'s own
+  signal is itself sub-threshold on the dimensionally-correct reading, not
+  a large above-threshold one. Full record: `experiments/076-
+  t28-g40-pad-decorrelation/`, LOGBOOK.md Iteration 53 (T28 entry below);
+  correction: `experiments/077-t28-pad-round-trip-echo-model/
+  phase5_redteam_audit.md` §0.2, §2b, LOGBOOK.md Iteration 54.
 
 - **T17 — hysteretic σ(I)-with-memory: a constraint-3-at-rest risk class
   distinct from T1's other three escape routes (opened Iteration 13,
@@ -2457,6 +2535,149 @@ and not run — matching R6's/R7's own standard. Full record:
   five Phase-2 blind critiques, Phase-2 Red Team audit, Phase-3
   synthesis, `NOTES.md`, `run.py`, Phase-4 results, `results.json`, six
   Phase-5 blind reviews, Phase-5 Red Team final audit.
+
+  **Iteration 54 (exp-077) — the `PAD` round-trip-distance refit,
+  executed: REFUTE for both `PAIR_PAD` and `PAIR_ABSORB40`, on the
+  complete two-wall instrument — but NOT the closing of the coherent-echo
+  mechanism class, and a two-cycle-old dimensional error caught in this
+  same thread's own T16 cross-reference.** VISION SCIENCE (lead by
+  rotation) executed PLAN.md's Iteration-54 queue item 1 (Tier 0 #1, EM's
+  own pick seconded by THERMO): refit exp-075's already passivity-gated
+  single-wall transfer-matrix echo model against `PAIR_PAD≡(C40,G40)` —
+  `ABSORB` fixed at 40 for both, so `r(theta;40)` is identical and any
+  predicted difference is pure image-source round-trip DISTANCE (`PLANE_X`
+  77→117) — and `PAIR_ABSORB40≡(G40,C80)` as the geometry-fixed control.
+  Full five-phase cycle: Phase 1 self-scored single-wall REFUTE for
+  `PAIR_PAD` (period `rel_dev=1.88`, shape `r²=0.044`), INCONCLUSIVE for
+  `PAIR_ABSORB40` → five blind Phase-2 critiques, unanimous
+  support-with-changes (PHOTONICS + ELECTROMAGNETISM, independently:
+  the disclosed-but-unrun two-wall extension, once actually computed,
+  flips `PAIR_PAD`'s Test A to INCONCLUSIVE while Test B gets four orders
+  of magnitude worse, and flips `PAIR_ABSORB40` to REFUTE; MATERIALS: the
+  `+x` wall shares the `-x` wall's unrealizable admittance class;
+  THERMODYNAMICS: §3's "PAD is lossless" justification is a non-sequitur,
+  the real reason is a code-level common-mode array identity; QUANTUM:
+  the free-period search has no null-calibration control) → Red Team's
+  Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 5 items, zero overridden;
+  independently re-derived every claim, including a NEW, self-referential
+  catch — THERMODYNAMICS' own cited absorbed-power percentages contained
+  an arithmetic slip) → Phase 3 synthesis (all 5 adopted; FROZEN
+  PREDICTIONS for the corrected two-wall-inclusive re-run committed before
+  execution) → Phase 4 (re-run CONFIRMED every frozen number exactly, a
+  fourth independent agreement: `PAIR_PAD` two-wall Combined REFUTE via
+  Test B alone, `r²=0.0001`; `PAIR_ABSORB40` two-wall Combined REFUTE,
+  flipped from single-wall's INCONCLUSIVE; a 20,000-trial null-calibration
+  appendix confirmed REFUTE is not a look-elsewhere artifact) → six blind
+  Phase-5 reviews, all PARTIAL, exceptionally information-dense (PHOTONICS
+  and ELECTROMAGNETISM independently converged on a genuinely new,
+  untested candidate — a **y-direction transverse-wall echo**, whose
+  standoff (`clear_span_y`: 0/40/0) tracks `PAD` exactly, invisible to the
+  cycle's own geometry-congruence assertion; PHOTONICS also ran the
+  already-built two-wall model against the already-collected 750nm leg,
+  finding it flips to INCONCLUSIVE, un-null-calibrated; MATERIALS
+  independently re-derived the REALIZABLE (`mu_r=1`) admittance and found
+  it moves `|r|`/`arg(r)` by 15–40%/15–24° — a materially different,
+  never-tested transfer function; THERMODYNAMICS confirmed its own
+  Phase-2 arithmetic slip and caught a NEW incommensurable-units error in
+  the T5/exp-043 comparison; QUANTUM found the committed null-calibration
+  appendix silently implemented only 1 of 3 mandated statistics (a dead
+  variable was the tell) and that the bootstrap resampled i.i.d. despite
+  real lag-1 autocorrelation of 0.63; **VISION SCIENCE traced this
+  thread's own T16 cross-reference — `x=amp_ratio(PAIR_PAD)=0.119 is ~24×
+  C_thr` — back to its defining primitives and found a DIMENSIONAL ERROR:
+  `amp_ratio` is normalized by a fitted local carrier, not a raw
+  `C_empty`-scale magnitude; the correct comparison reads `≈0.12×`,
+  SUB-threshold, not `24×` over it**) → Red Team's Phase-5 final audit
+  (independently re-verified every finding from raw primitives, including
+  catching and correcting its own first-pass estimator error on the
+  autocorrelation figure before accepting it; ruled the coherent-echo
+  mechanism CLASS is not closed — only the x-normal, unrealizable-
+  admittance instantiation is REFUTEd, twice — Checkpoint criterion 2
+  explicitly does NOT fire, not yet ripe; ruled Checkpoint criterion 4
+  FIRES on the dimensional-error chain, ADOPTED new standing rule **R9**).
+
+  **CHECKPOINT criterion 4 FIRES** (12th time this program, unbroken
+  notification-not-pause precedent) — see the CHECKPOINT block below,
+  this iteration. **Combined Verdict: PARTIAL.** The x-normal,
+  unrealizable-admittance coherent-echo mechanism is REFUTEd, robustly,
+  five independent ways, for both `PAIR_PAD` and `PAIR_ABSORB40`. Four
+  concrete, unpriced candidates remain on the board (y-wall echo,
+  realizable-admittance instantiation, Yee-grid-dispersion correction,
+  unresolved 750nm generality), three of them zero-FDTD. T28's own
+  substantive mechanism question — the ~2.84° periodicity's ultimate
+  origin — remains open, narrowed toward "not an x-normal, unrealizable-
+  admittance echo" specifically. Reconciled Iteration-55 ranking (Red
+  Team's Phase-5 final audit, 4 tiers, 10 items — full detail
+  `phase5_redteam_audit.md` §6): **Tier 0, zero FDTD, one batch** — (1)
+  correct LOGBOOK's T16 "24×" framing (done, this entry, above); (2) a
+  closed-form period pre-screen of the y-direction wall echo (PHOTONICS +
+  EM, independently convergent #1, with EM's own caution that its natural
+  reference length `A=752` matches T21's own already-refuted fringe —
+  may desk-close quickly); (3) the realizable-admittance refit mapping
+  `graded_black_shell`'s real profile onto `n(x)` (MATERIALS #1, the only
+  pending test that can move the realizability bound); (4) gate the
+  already-collected 750nm two-wall spot-check with its own properly-sized
+  null and decide; (5) a Yee-grid-numerical-dispersion-corrected re-score
+  (VISION's new candidate); (6) further-harden the null-calibration
+  appendix. **Tier 1, cheap FDTD** — (7) the full-width non-aliased
+  second-wavelength `G40` leg (the standing precondition, deferred
+  twice); (8) broadband pulsed reflectance spectroscopy. **Tier 2** — (9)
+  test whether `PAD`-sensitivity survives with a real absorbing article
+  loaded (deferred twice, should not be deferred a third time without an
+  explicit reason). **Tier 3** — (10) this cycle's own 7-item
+  record-hygiene docket. Full record: `experiments/077-t28-pad-round-
+  trip-echo-model/` — Phase-1 proposal, five Phase-2 blind critiques,
+  Phase-2 Red Team audit, Phase-3 synthesis, `NOTES.md`,
+  `pad_round_trip_model.py`, Phase-4 results, `pad_round_trip_
+  results.json`, six Phase-5 blind reviews, Phase-5 Red Team final audit.
+
+### CHECKPOINT (Iteration 54, 2026-08-26, criterion 4 — program-integrity drift).
+
+Red Team's Phase-5 final audit ruled criterion 4 **FIRES**, on a
+dimensional error in LOGBOOK's own permanent T16 entry (Iteration 53):
+the claim `x=amp_ratio(PAIR_PAD)=0.119` is "~24× VISION's own pinned lab
+detection bar (`C_thr=0.005`)" mixed an operand normalized by a fitted
+local carrier (dimensionless) with a raw `C_empty`-scale threshold — not
+commensurable. The dimensionally-consistent reading is `≈0.12×`
+(`PAIR_PAD`) / `≈0.08×` (`PAIR_ABSORB40`) — sub-threshold by roughly an
+order of magnitude, not 14–24× over it. **Full chain, independently
+traced and re-verified this cycle**: (1) Iteration 53 Phase 2, VISION's
+own critique flagged the `amp` normalizer's proximity to `C_thr` as a
+secondary, latent risk — correctly ruled non-firing at the time (a
+different, genuinely-latent finding); (2) Iteration 53 Phase 5, a
+different VISION sub-agent independently re-drafted this exact warning in
+its own §2, then self-contradictorily used the flawed "~24×" framing as
+fact in its own §4; (3) Iteration 53's Red Team final audit "confirmed"
+the figure — but verified only the ARITHMETIC (`0.119366/0.005=23.87`),
+never whether `amp_ratio` was the correct numerator — and then **actively
+wrote the flawed comparison into LOGBOOK's permanent T16 entry** as a
+mandatory-fix docket item; (4) it survived one full cycle boundary as
+settled fact, quoted verbatim as established background in this cycle's
+own task brief; (5) a fresh, independent Iteration-54 VISION seat, with
+no memory of Iteration 53's process, traced `amp_ratio` to its defining
+primitives and caught what the prior verification pass checked
+incompletely. **This matches the program's own established firing shape**
+(caught by blind Phase-5 seats plus a final audit, one full cycle after a
+defended claim entered the permanent record) **— not its non-firing one.**
+Notably, the checking party each time was Red Team itself, not a Phase-2
+critique — R8 already established the audit layer is not exempt from its
+own standard, extended here to a new failure variant.
+
+**Ruled a notification, not a pause** — this program's unbroken
+precedent, 12 for 12. Nothing in this cycle's `lab/` state, frozen
+predictions, or Combined Verdict is touched; `PAD_TIED`'s own
+classification (Iteration 53) is unaffected (it uses `amp_ratio`
+self-referentially, never compared to `C_thr`). **New standing rule R9
+adopted**: verifying that a cited ratio/comparison reproduces
+arithmetically is not sufficient to verify the comparison's own claim —
+the operands' commensurability (same units/normalization) must be
+independently confirmed before a "confirmed" comparison is trusted,
+distinct from confirming the arithmetic between them. Full text: LOGBOOK's
+RULED OUT registry, above. A same-shift 7-item mandatory-fix docket
+closed the LOGBOOK correction (this entry) plus six other record-
+completeness items (NOTES.md/`phase1_proposal.md` scope corrections,
+the null-calibration appendix hardening, the THERMODYNAMICS T5-comparison
+fix) — see `experiments/077-.../phase5_redteam_audit.md` §4.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
@@ -16444,3 +16665,140 @@ Phase-5 blind reviews, Phase-5 Red Team final audit; LIVE THREADS (T28
 updated above — `PAD_TIED`, the lossless-vacuum proof, the combined
 MATERIALS+EM finding; T16 updated above — a third confirmed
 instrument-floor-uncertainty driver).
+
+## Iteration 54 — The `PAD` Round-Trip-Distance Echo Model Refit: REFUTE for Both Pairs on the Complete Instrument, the Mechanism Class Not Yet Closed, and a Two-Cycle-Old Dimensional Error Caught in T16 (exp-077) — 2026-08-26
+
+Runner: photonlab-shift (panel shift) · Lead: VISION SCIENCE (by rotation)
+
+**PHASE 1 (proposal).** Refit exp-075's already passivity-gated
+(G-LOSSLESS, G-N1, G-PASSIVITY) single-wall transfer-matrix echo model
+against `PAIR_PAD≡(C40,G40)` — the pair isolating T28's dominant
+`PAD`-tied signal, per exp-076's proof that `PAD` is lossless vacuum — and
+`PAIR_ABSORB40≡(G40,C80)` as the geometry-fixed control. Zero new FDTD;
+all machinery imported from exp-075/exp-065/exp-069, real data read from
+exp-076's already-collected `results.json`. Self-scored: `PAIR_PAD`
+single-wall REFUTE (period `rel_dev=1.8798`, shape `r²=0.0444`);
+`PAIR_ABSORB40` INCONCLUSIVE (`rel_dev=0.9642`, `r²=0.1997`). Idealization
+9 self-disclosed the single-wall-only scope: `PAD` also shifts the
+far-wall round-trip distance, which the already-built `two_wall_cavity.py`
+could add if flagged necessary.
+
+**PHASE 2 (critiques).** Five blind critiques, unanimous
+support-with-changes. PHOTONICS and ELECTROMAGNETISM, independently,
+each built the disclosed-but-unrun two-wall extension from scratch and
+found: `PAIR_PAD` Combined REFUTE survives but flips from period-driven
+(`rel_dev` REFUTE→INCONCLUSIVE) to shape-driven (`r²` REFUTE, four orders
+of magnitude worse, `0.044→0.0001`); `PAIR_ABSORB40` flips
+INCONCLUSIVE→REFUTE. MATERIALS confirmed the `+x` wall shares the `-x`
+wall's identical unrealizable matched-`eps=mu` admittance class.
+THERMODYNAMICS found §3's "PAD is lossless" justification a non-sequitur
+— the real reason `PAIR_PAD`'s absorbed-power channel is N/A is a
+code-level common-mode array identity (`r_for["C40"] is r_for["G40"]`).
+QUANTUM OPTICS flagged the missing null-calibration control on the
+free-period search but independently ran 20,000-trial pure-noise and
+bootstrap-recovery checks confirming REFUTE, not undermining it. **Red
+Team's Phase-2 audit**: PROCEED-WITH-MANDATORY-FIXES, 5 items, zero
+overridden — independently re-derived the two-wall numbers a third way
+(matching to 4 decimal places) and caught a NEW, self-referential defect:
+THERMODYNAMICS' own cited absorbed-power percentages did not reproduce
+from the `|r|` values they claimed to match (an internal arithmetic slip,
+non-load-bearing — the critique's own load-bearing Δ figure was exact).
+
+**PHASE 3 (synthesis).** All 5 mandatory fixes adopted, zero overridden:
+(1) fold the two-wall retarget into the committed script as a co-primary
+result; (2) correct the "same failure shape" headline language; (3) add
+an explicit realizability sentence (the `+x` wall shares the `-x` wall's
+unrealizable admittance class); (4) rewrite §3's sidecar reasoning with
+the correct common-mode-array-identity argument, quantify
+`PAIR_ABSORB40`'s real Δ(absorbed fraction); (5) add a 20,000-trial
+null-calibration appendix. FROZEN PREDICTIONS for the corrected re-run
+committed before execution — three independent implementations
+(PHOTONICS, EM, Red Team) already agreed to 4 decimal places on the
+expected numbers.
+
+**PHASE 4 (test).** Corrected script re-run reproduced every frozen
+number exactly (a fourth independent confirmation). **Official Combined
+Verdict: `PAIR_PAD` REFUTE (via Test B alone, `r²=0.0001`), `PAIR_ABSORB40`
+REFUTE (flipped from single-wall's INCONCLUSIVE)** — with the far-wall
+term correctly included, BOTH pairs this cycle set out to explain REFUTE.
+Gates re-verified identical (G-PASSIVITY worst `|r|=0.006423`); a
+20,000-trial pure-noise null (`P(R²≥0.70)=0.00000`) and bootstrap
+ground-truth recovery (`100.0%` within 20% of the true period) confirmed
+REFUTE is not a look-elsewhere artifact.
+
+**PHASE 5 (review).** Six blind reviews, all PARTIAL — an unusually
+information-dense crop. **PHOTONICS and ELECTROMAGNETISM independently
+converged on a genuinely new, untested mechanism candidate**: the
+FDTD domain's y-direction (transverse) walls share the identical
+admittance construction as the two x-walls this model images, and their
+standoff (`clear_span_y`: 0 for `C40`/`C80`, 40 for `G40`) tracks `PAD`
+exactly — invisible to this cycle's own 7-field geometry-congruence
+assertion, never modeled by exp-075 or exp-077. PHOTONICS also
+retargeted the two-wall model at the already-collected 750nm leg, finding
+it flips to INCONCLUSIVE (Test A moves well inside SUPPORT, Test B sign-
+flips) — un-null-calibrated, but showing the 600nm-only REFUTE's
+wavelength generality is not yet established. **MATERIALS independently
+re-derived the standard, realizable (`mu_r=1`) TE admittance** and found
+swapping it in for the unrealizable matched-`eps=mu` one moves `|r|` by
+15–40% and `arg(r)` by 15–24° — non-trivial against this cycle's own
+near-boundary margins; the realizable instantiation of this mechanism has
+never been fit against the data. THERMODYNAMICS confirmed its own Phase-2
+arithmetic slip (Red Team's Attack 4) and caught a NEW error: the T5/
+exp-043 microbolometer comparison mixed incommensurable units (absolute
+watts/NETD vs. a dimensionless, no-witness-wattage fractional delta).
+QUANTUM OPTICS found the committed null-calibration appendix silently
+implemented only 1 of 3 mandated statistics (a dead variable,
+`rel_dev_gt1`, was the tell) and that the bootstrap resampled residuals
+i.i.d. despite real lag-1 autocorrelation of 0.6307. **VISION SCIENCE's
+finding is the most consequential of the cycle**: traced this thread's
+own T16 cross-reference — `x=amp_ratio(PAIR_PAD)=0.119` cited as "~24×
+VISION's `C_thr`" — back to its defining primitives and found a
+DIMENSIONAL ERROR. `amp_ratio` is a ratio normalized by a fitted local
+carrier amplitude (dimensionless), not a raw `C_empty`-scale magnitude
+comparable to `C_thr`; the dimensionally-consistent comparison
+(`raw=√(A_i²+A_q²)` vs. `C_thr`) reads `≈0.12×`/`≈0.08×` — sub-threshold
+by roughly an order of magnitude, not 14–24× over it.
+
+**Red Team's Phase-5 final audit** independently re-verified every
+finding from raw primitives (including catching and correcting its own
+first-pass estimator error on QUANTUM's autocorrelation figure before
+accepting it — a from-scratch Pearson correlation gave 0.731, not 0.6307;
+the correct ACF estimator reproduced QUANTUM's figure to six decimal
+places). Ruled: the coherent-echo mechanism CLASS is **not** closed — only
+the x-normal, unrealizable-admittance instantiation is REFUTEd, twice;
+`NOTES.md`'s original "doubly excluded... no known mechanism class
+remains untested" language is corrected as overstated (§2a of the audit).
+**Checkpoint criterion 2 (proven mechanism-class boundary) explicitly does
+NOT fire — not yet ripe**, closing the question `NOTES.md` itself deferred
+to this audit. **Checkpoint criterion 4 FIRES** on VISION's dimensional-
+error finding — see the CHECKPOINT block above (LIVE THREADS T28 section).
+**New standing rule R9 adopted**, generalizing R4/R8: verifying a cited
+ratio/comparison's arithmetic is not sufficient to verify the comparison's
+own claim; the operands' commensurability must be independently confirmed.
+
+**Combined Verdict: PARTIAL.** The x-normal, unrealizable-admittance
+coherent-echo mechanism is REFUTEd, robustly, five independent ways
+(PHOTONICS' and EM's Phase-2 from-scratch two-wall retargets, Red Team's
+Phase-2 audit, the official Phase-4 re-run, and Red Team's Phase-5 final
+audit's own re-run), for both `PAIR_PAD` and `PAIR_ABSORB40`. This is
+real, well-earned negative evidence. It is not the closing of the
+mechanism class: four concrete, unpriced candidates remain (y-wall echo,
+realizable-admittance instantiation, a Yee-grid-numerical-dispersion
+correction, unresolved 750nm generality), three of them zero-FDTD.
+T28's own substantive mechanism question — the ~2.84° periodicity's
+ultimate origin — remains open, narrowed toward "not an x-normal,
+unrealizable-admittance echo" specifically, not toward "no mechanism
+remains." A same-shift 7-item mandatory-fix docket closed the LOGBOOK
+T16 correction (above) plus six other record-completeness items
+(`NOTES.md`/`phase1_proposal.md` scope corrections, the null-calibration
+appendix hardening — all 3 statistics now wired up, an added circular-
+shift bootstrap variant — and the THERMODYNAMICS T5-comparison fix).
+
+Open questions carried forward: the y-direction wall echo (untested,
+PHOTONICS+EM #1); a realizable-admittance instantiation of the x-wall
+mechanism (untested, MATERIALS #1); a Yee-grid-dispersion-corrected
+re-score (untested, VISION's new candidate); the two-wall model's own
+750nm generality (spot-checked, un-calibrated); the standing full-width
+non-aliased second-wavelength `G40` leg (deferred twice); whether
+`PAD`-sensitivity survives with a real absorbing article loaded (deferred
+twice). Full record: `experiments/077-t28-pad-round-trip-echo-model/`.

@@ -80,42 +80,66 @@ bootstrap noise (100% of resamples land within 20% of the true period).
 
 ## Learned
 
-**Both configurations of the single coherent-echo mechanism class —
-single-wall and the complete two-wall instantiation — REFUTE against
-T28's dominant `PAD`-tied signal.** This is exp-076's own lossless-vacuum
-proof's ONE remaining physically-permitted mechanism class for
-`PAIR_PAD`, now tested on its own most complete instantiation and killed.
-The REFUTE is more robust, not less, for resting on different tests in
-each cut (single-wall: period; two-wall: shape) — two structurally
-different failure modes, not one repeated finding. Materials realizability
-(verified in code, `verify_symmetric_damping`): the `+x` wall shares the
-`-x` wall's identical unrealizable matched-`eps=mu` admittance class — a
-two-wall SUPPORT, had it occurred, would not have been materials
-progress either.
+**CORRECTED (Phase-5 Red Team final audit, §2a/§4 item 1) — the claim
+below originally read "the coherent-echo mechanism class now doubly
+excluded... no known mechanism class remains untested." That overstated
+what this cycle actually showed. The scoped, correct statement:**
+
+**The x-normal (near + far wall) coherent-echo mechanism, instantiated
+with the unrealizable matched-`eps=mu` admittance, is REFUTEd against
+T28's dominant `PAD`-tied signal — on both the single-wall and complete
+two-wall cuts.** This is exp-076's own lossless-vacuum proof's one
+mechanism class this SPECIFIC instantiation was permitted for, now tested
+on its most complete cut and killed. The REFUTE is more robust, not less,
+for resting on different tests in each cut (single-wall: period;
+two-wall: shape) — two structurally different failure modes, not one
+repeated finding. Materials realizability (verified in code,
+`verify_symmetric_damping`): the `+x` wall shares the `-x` wall's
+identical unrealizable matched-`eps=mu` admittance class — a two-wall
+SUPPORT, had it occurred, would not have been materials progress either.
+
+**Four concrete, unpriced candidates remain, per the Phase-5 final
+audit's own independent confirmation** — the coherent-echo mechanism
+CLASS is not closed, only this one instantiation of it: (1) a **y-direction
+(transverse) wall echo** — a structurally distinct boundary configuration
+whose standoff (`clear_span_y`: 0/40/0 for C40/G40/C80) tracks `PAD`
+exactly, invisible to this cycle's own 7-field geometry-congruence
+assertion, never modeled by exp-075 or exp-077; (2) a **realizable**
+(`mu_r=1`) admittance instantiation of the SAME x-wall mechanism —
+confirmed to move `|r|`/`arg(r)` by 15–40%/15–24°, never fit against
+Test A/B; (3) a **Yee-grid numerical-dispersion-corrected** version of the
+same x-wall model (vacuum `c` was used for the round-trip phase; the
+engine's own discretized phase velocity never substituted in); (4) the
+two-wall's own 600nm REFUTE does **not** survive unchanged at 750nm (a
+spot-check flips it to INCONCLUSIVE, though without its own
+null-calibration control — see below). **A Checkpoint-2 "mechanism board
+exhausted" reading is explicitly NOT yet ripe** (Phase-5 Red Team final
+audit, ruled directly, criterion 2 does not fire).
 
 **T28's own substantive mechanism question — the ~2.84° periodicity's
-ultimate origin — remains open.** This cycle narrows the board further:
-the one remaining named mechanism candidate for the dominant `PAD`-tied
-axis (a single or double coherent wall echo) is now REFUTEd, joining the
-`ABSORB`-tied boundary-reflectance mechanisms exp-075 already REFUTEd.
-No named, testable mechanism candidate for T28's periodicity currently
-survives.
+ultimate origin — remains open**, narrowed this cycle toward "not an
+x-normal, unrealizable-admittance echo" specifically, not toward "no
+mechanism remains."
 
 ## Next
 
-Per LOGBOOK.md Iteration 53's Tier-0/1/2 ranking (unexecuted items carried
-forward): (2) fixed-carrier re-score of the already-collected 750nm leg
-data (zero FDTD); (3) score the already-built two-wall cavity model
-against the 750nm leg (`experiments/069-.../results.json::block_leg750`,
-PLAN.md's own carried-over Iteration-53 item 2, still unexecuted); (4) a
-`PAD`-depth causal sweep at fixed `ABSORB=40` (cheap FDTD); (5) broadband
-pulsed reflectance spectroscopy; (6) the full-width non-aliased
-second-wavelength leg for `G40` (the standing precondition); (7) test
-whether `PAD`-sensitivity survives with a real absorbing article loaded.
-With the coherent-echo mechanism class now doubly excluded (this cycle)
-alongside the `ABSORB`-boundary-reflectance class (exp-075), the program
-may be approaching the point where NO known mechanism class remains
-untested for T28's periodicity — worth an explicit Red Team reckoning
-next cycle on whether that itself constitutes a Checkpoint-2-adjacent
-finding (a mapped mechanism-class boundary), even without a definitive
-positive identification.
+Reconciled Iteration-55 ranking (Phase-5 Red Team final audit §6, all six
+seats + audit, 4 tiers, 10 items — full detail `phase5_redteam_audit.md`
+§6). **Tier 0, zero FDTD, run as one batch:** (1) correct LOGBOOK's T16
+"24×" framing (trivial, two cycles overdue — see the Checkpoint-4 entry
+this cycle fires); (2) a closed-form period pre-screen of the y-direction
+wall echo (PHOTONICS/EM's independently-convergent #1, with EM's own
+caution that its natural reference length matches T21's already-refuted
+fringe — may desk-close in under an hour); (3) the realizable-admittance
+refit using `graded_black_shell`'s real profile (MATERIALS #1, the only
+pending test that can move the realizability bound); (4) gate the
+already-collected 750nm two-wall spot-check with its own properly-sized
+null and decide; (5) the Yee-grid-dispersion-corrected re-score (VISION's
+new candidate); (6) harden the null-calibration appendix further per any
+remaining gaps. **Tier 1, cheap FDTD:** (7) the full-width non-aliased
+second-wavelength `G40` leg (the standing precondition, deferred twice
+now); (8) broadband pulsed reflectance spectroscopy. **Tier 2:** (9) test
+whether `PAD`-sensitivity survives with a real absorbing article loaded
+(deferred twice, should not be deferred a third time without an explicit
+reason). **Tier 3:** (10) this cycle's own 7-item record-hygiene docket
+(`phase5_redteam_audit.md` §4).

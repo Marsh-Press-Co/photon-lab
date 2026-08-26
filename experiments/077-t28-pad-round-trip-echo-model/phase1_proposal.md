@@ -198,11 +198,20 @@ reason.
 thermodynamically-insignificant-in-magnitude disposition, computed, not
 asserted.** `ABSORB` genuinely differs (40 vs 80) here, so the absorbed
 fraction genuinely differs too: `Δ(absorbed fraction) = 8.4098×10⁻⁶`–
-`4.1247×10⁻⁵` across the 31-angle grid. Four to five orders of magnitude
-below any energy scale this program has ever treated as thermodynamically
-significant (T5/exp-043's own microbolometer-NETD floor is ~100× ABOVE
-readings orders of magnitude larger than this) — argued negligible
-quantitatively, not by category exemption.
+`4.1247×10⁻⁵` across the 31-angle grid. **CORRECTED (Phase-5 mandatory
+fix 5, THERMODYNAMICS' own Phase-5 review + Red Team's confirmation):
+the original comparison here cited T5/exp-043's microbolometer-NETD
+floor, mixing incommensurable units** — T5's chain is absolute watts →
+ΔT → emission band → NETD for a real absorber article at a pinned
+witness wattage; this quantity is a dimensionless fractional reflectance
+delta with no witness wattage pinned anywhere in this document. The
+correct, commensurable comparison uses THIS SAME instrument's own real
+observed signal: `Δ(absorbed fraction) / real signal ptp ≈ 1.4×10⁻³`–
+`6.6×10⁻³` (computed in code, `pad_round_trip_results.json::thermo_
+commensurable_ratio_absorb40`) — roughly 2.5–3 orders of magnitude below
+the very signal Tests A/B explain. An energy-scale plausibility check,
+not a T5-style detectability claim; non-load-bearing regardless (Tests
+A/B already REFUTE independently of this paragraph).
 
 ---
 
@@ -331,6 +340,35 @@ supports the single coherent-echo mechanism class exp-076's own proof
 identified as the only one still physically permitted for a `PAD`-tied
 signal.
 
+### §5c — 750nm two-wall spot-check, folded in as advisory (Phase-5
+mandatory-fix docket item 3, `phase2_redteam_audit.md`/`phase5_redteam_
+audit.md`; PHOTONICS' Phase-5 finding, independently re-derived by Red
+Team)
+
+Idealization 11 originally deferred the 750nm leg as "explicitly out of
+scope." Since the already-built two-wall machinery can be retargeted at
+the already-collected `experiments/076-.../results.json::leg750_scored`
+(`(C40,G40)`, 16 points, 38.0–41.0°) at zero marginal cost, and Phase 5
+showed this is outcome-relevant (not merely deferrable), the result is
+folded in here, advisory:
+
+```
+750nm two-wall: P*_real=3.8271deg (R^2=0.9884)  P*_model=4.1611deg (R^2=0.9788)
+                rel_dev=0.0873 -> SUPPORT (well inside <=0.30)
+                shape r=-0.5004  r^2=0.2504 -> INCONCLUSIVE (sign flips vs 600nm's +0.0097)
+                Combined: INCONCLUSIVE (600nm's two-wall Combined was REFUTE)
+```
+
+**Read as advisory, not a counter-finding**: the 16-point/3°-wide window
+has no dedicated null-calibration control of its own (unlike the 31-point/
+6°/600nm window this cycle's §5b/[12] appendix covers), and both curves'
+4-parameter free-sinusoid fits land at suspiciously high `R²` (0.99/0.98)
+on a small window — a pattern this program's own R5 discipline flags as
+needing a look-elsewhere check before being trusted either way. **What
+this DOES establish**: the 600nm-only REFUTE's wavelength generality is
+an open question, not a settled one — a properly null-calibrated 750nm
+leg is ranked for Iteration 55 (see `NOTES.md`'s "Next" section).
+
 ---
 
 ## 6. Idealizations (inherited from exp-075 §6, unchanged; plus new items 9-10)
@@ -362,10 +400,27 @@ with_wall` machinery, none of it re-derived.
     SUPPORT, had it occurred, would not have been materials progress of
     any kind; the two-wall REFUTE (§5b) likewise says nothing new about
     realizability, only about this specific mechanism's fit to the data.
+    **AMENDED (Phase-5 Red Team final audit F2, MATERIALS): this REFUTE is
+    a statement about the zero-free-parameter, matched-`eps=mu`
+    instantiation ONLY.** Independently re-derived (this audit, and
+    MATERIALS' own Phase-5 review): swapping to the standard, realizable
+    (`mu_r=1`) TE admittance `Z'=1/√(n(x)²−sin²θ)` in place of the matched
+    `Z=n(x)/√(n(x)²−sin²θ)`, through the identical gate-checked transfer-
+    matrix recursion at `ABSORB=40`, moves `|r|` by 15–40% and `arg(r)` by
+    15–24° across 36–42° (θ=36°: matched `|r|=0.0029`/`−78.12°` vs. real
+    `|r|=0.0041`/`−102.78°`; θ=42°: `|r|=0.0064`/`−1.23°` vs.
+    `|r|=0.0074`/`−19.48°`) — non-trivial against this cycle's own
+    near-boundary two-wall margins (`PAIR_ABSORB40` Test B `r²=0.0418`,
+    just under the `≤0.05` REFUTE bar). **This realizable instantiation has
+    never been fit against Test A/B** — a concrete, zero-FDTD candidate
+    for Iteration 55 (e.g. mapping `lab/materials.py::graded_black_shell`'s
+    real, already-characterized profile onto `n(x)`).
 11. Only the `PAIR_PAD`/`PAIR_ABSORB40` pair from exp-076's dense 600nm
-    window is scored; the 750nm advisory leg (queue item 2, a fixed-
-    carrier re-score) is explicitly out of scope for this cycle — a
-    separate queued item, not folded in here.
+    window is SCORED (Test A/B, gating); the 750nm two-wall spot-check
+    (§5c, folded in advisory per Phase-5 mandatory fix 3) shows this
+    deferral is now outcome-relevant, not merely a scope choice — a
+    properly null-calibrated 750nm leg is forward-pointed to Iteration 55
+    (`NOTES.md`), not left indefinitely deferred.
 12. No energy sidecar beyond §3's corrected disposition (mandatory fix 4)
     — `PAIR_PAD` N/A by code-level common-mode identity; `PAIR_ABSORB40`
     a real but 4-5-orders-of-magnitude-negligible Δ.
