@@ -1,0 +1,88 @@
+==============================================================================
+exp-078 -- y-wall (transverse-normal) echo: closed-form period pre-screen
+==============================================================================
+
+[0] SHARED-DAMPING-FORMULA PREMISE (y-edge vs x-edge, same Sim instance)
+    worst |x_edge_col - y_edge_col| = 0.000e+00  identical=True
+    x_edge[:5]=['0.7408', '0.7573', '0.7732', '0.7886', '0.8036']
+    y_edge[:5]=['0.7408', '0.7573', '0.7732', '0.7886', '0.8036']
+
+[1] GEOMETRY PER CONFIG (dg065.CONFIGS, congruent series + G40)
+           cfg     absorb        pad      obj_y       y_lo          A       d_sp    plane_x clear_span_y
+           C40         40          0        792         40        752        223         77          0
+           C60         60         20        812         60        752        223         97          0
+           C70         70         30        822         70        752        223        107          0
+           C80         80         40        832         80        752        223        117          0
+           G40         40         40        832         80        752        223        117         40
+    clear_span_y check (C40,G40,C80) = {'C40': 0, 'G40': 40, 'C80': 0} (queue-cited pattern: 0/40/0)
+
+[2] VALIDATION -- x-wall closed form, RE-DERIVED from scratch, vs the committed formula
+    C40: plane_x=  77  rederived=11.823882deg  committed(boundary_reflectance.py Sec[8])=11.823882deg  |dev|=1.776e-15deg
+    C80: plane_x= 117  rederived=7.781529deg  committed(boundary_reflectance.py Sec[8])=7.781529deg  |dev|=0.000e+00deg
+    -> method validated: independent from-scratch re-derivation reproduces the committed x-wall formula bit-for-bit. Proceeding to apply the SAME general (mirror-image, evaluated-at-observation-point) method to the y-wall.
+
+[3] REAL, ALREADY-ESTABLISHED PERIODS -- RE-DERIVED here from committed data via the SAME imported `_free_period_search` (not hand-typed), 31 angles, 36.0-42.0deg, 600nm, settled STEPS=2800 (experiments/076/results.json::headline)
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    established citations to compare against: PAIR_PAD (this run) = 4.6113deg (exp-077 cites 4.6113deg); PAIR_ABSORB40 (this run) = 4.1761deg (exp-077 cites 4.1761deg); C80-C40 (this run) = 2.8421deg (exp-069 cites 2.8421deg)
+    (750nm two-wall PAIR_PAD leg, exp-077 phase1_proposal.md Sec 5c: P*_real=3.8271deg, R^2=0.9884 -- carried here as a fourth reference, not re-derived, since exp-077's own committed JSON does not persist the 750nm leg fit under this key; disclosed, not silently dropped)
+    REFERENCE_PERIODS used for scoring below: {'c80_c40_deg': 2.8421052631578947, 'pair_pad_deg': 4.611289746337977, 'pair_absorb40_deg': 4.176134333690603, 'pair_pad_750nm_two_wall_deg': 3.8271}
+
+[4] PRIMARY MODEL -- edge-image (self-echo) Delta_phi_self(theta) per config
+    C40: ptp(Delta_phi_self) = 76.896615deg (as PHASE, not angle-of-theta-sweep) over the window; |r| range [0.0029,0.0064]
+    C60: ptp(Delta_phi_self) = 131.794916deg (as PHASE, not angle-of-theta-sweep) over the window; |r| range [0.0001,0.0007]
+    C70: ptp(Delta_phi_self) = 133.798261deg (as PHASE, not angle-of-theta-sweep) over the window; |r| range [0.0001,0.0001]
+    C80: ptp(Delta_phi_self) = 358.445829deg (as PHASE, not angle-of-theta-sweep) over the window; |r| range [0.0000,0.0001]
+    G40: ptp(Delta_phi_self) = 76.896615deg (as PHASE, not angle-of-theta-sweep) over the window; |r| range [0.0029,0.0064]
+
+[4b] PRIMARY MODEL -- does Delta_phi_self(theta) even have a resolvable period over 36-42deg? (free-period search on cos(Delta_phi_self), same staged-widening idiom as pad_round_trip_model.py; a fit that runs to the search boundary at every stage means NO well-constrained period exists in this window under this model -- boundary_reflectance.py's own 'model_period_runs_to_boundary' diagnostic, reused)
+    [model self-echo C40]  narrow[1,4]: P*=   3.2180deg  R^2=0.1557  [interior optimum]
+    [model self-echo C60]  narrow[1,4]: P*=   4.0000deg  R^2=0.2418  [AT BOUNDARY -- widening]
+    [model self-echo C60]   wide[1,15]: P*=  15.0000deg  R^2=0.9801  [AT BOUNDARY -- widening]
+    [model self-echo C60] widest[1,60]: P*=  60.0000deg  R^2=0.9895  [AT BOUNDARY -- widening]
+    [model self-echo C70]  narrow[1,4]: P*=   4.0000deg  R^2=0.2777  [AT BOUNDARY -- widening]
+    [model self-echo C70]   wide[1,15]: P*=  15.0000deg  R^2=0.8722  [AT BOUNDARY -- widening]
+    [model self-echo C70] widest[1,60]: P*=  60.0000deg  R^2=0.8740  [AT BOUNDARY -- widening]
+    [model self-echo C80]  narrow[1,4]: P*=   3.1880deg  R^2=0.1439  [interior optimum]
+    [model self-echo G40]  narrow[1,4]: P*=   3.2105deg  R^2=0.1544  [interior optimum]
+
+[4c] PRIMARY MODEL -- PAIR_PAD / PAIR_ABSORB40 deltas of the self-echo proxy curve
+    [model PAIR_PAD delta]  narrow[1,4]: P*=   3.1654deg  R^2=0.1331  [interior optimum]
+    [model PAIR_ABSORB40 delta]  narrow[1,4]: P*=   3.2030deg  R^2=0.1493  [interior optimum]
+    [model C80-C40 delta]  narrow[1,4]: P*=   3.2105deg  R^2=0.1530  [interior optimum]
+
+[5] PRIMARY MODEL -- period-band scoring (rel_dev<=0.30 SUPPORT / >1.00 REFUTE, the SAME band exp-075/077 pre-registered for this sub-thread's Test A)
+    self-echo C80-C40 vs C80-C40 real: P*_real=2.8421deg  P*_model=3.2105deg  rel_dev=0.1296 -> SUPPORT
+    self-echo PAIR_PAD vs PAIR_PAD real: P*_real=4.6113deg  P*_model=3.1654deg  rel_dev=0.3136 -> INCONCLUSIVE
+    self-echo PAIR_ABSORB40 vs PAIR_ABSORB40 real: P*_real=4.1761deg  P*_model=3.2030deg  rel_dev=0.2330 -> SUPPORT
+    at-search-boundary at EVERY widened stage (no interior optimum found anywhere up to 60deg): {'c80_c40': False, 'pair_pad': False, 'pair_absorb40': False}
+
+[6] SECONDARY, EXPLICITLY NAIVE candidates (R5-flagged look-elsewhere risk -- reported for the queue item's own 'is it even in the right ballpark' question, NEVER as this file's own primary claim; see [1b] in the module docstring for why the underlying closed-ray reduction is not justified for a y-wall in the first place)
+  -- Y_STANDOFF = OBJ_Y --
+    C40: OBJ_Y= 792  P_y(600nm,39deg)=0.9309deg  P_y(750nm,39deg)=1.1636deg
+    C60: OBJ_Y= 812  P_y(600nm,39deg)=0.9080deg  P_y(750nm,39deg)=1.1349deg
+    C70: OBJ_Y= 822  P_y(600nm,39deg)=0.8969deg  P_y(750nm,39deg)=1.1211deg
+    C80: OBJ_Y= 832  P_y(600nm,39deg)=0.8861deg  P_y(750nm,39deg)=1.1077deg
+    G40: OBJ_Y= 832  P_y(600nm,39deg)=0.8861deg  P_y(750nm,39deg)=1.1077deg
+  -- Y_STANDOFF = y_lo --
+    C40: y_lo=  40  P_y(600nm,39deg)=18.4315deg  P_y(750nm,39deg)=23.0393deg
+    C60: y_lo=  60  P_y(600nm,39deg)=12.2876deg  P_y(750nm,39deg)=15.3596deg
+    C70: y_lo=  70  P_y(600nm,39deg)=10.5323deg  P_y(750nm,39deg)=13.1653deg
+    C80: y_lo=  80  P_y(600nm,39deg)=9.2157deg  P_y(750nm,39deg)=11.5197deg
+    G40: y_lo=  80  P_y(600nm,39deg)=9.2157deg  P_y(750nm,39deg)=11.5197deg
+
+[6b] SECONDARY candidates vs all four reference periods (rel_dev, period-band only, R5-CAVEATED -- multiple candidates x multiple targets is a search, not evidence; no null-permutation control is run here, so NO match below is claimed as support)
+    OBJ_Y/C40: P_model=  0.9309deg  rel_dev vs [c80c40,pad,absorb40,pad750]=[0.672,0.798,0.777,0.757]
+    OBJ_Y/C80: P_model=  0.8861deg  rel_dev vs [c80c40,pad,absorb40,pad750]=[0.688,0.808,0.788,0.768]
+    OBJ_Y/G40: P_model=  0.8861deg  rel_dev vs [c80c40,pad,absorb40,pad750]=[0.688,0.808,0.788,0.768]
+    y_lo/C40: P_model= 18.4315deg  rel_dev vs [c80c40,pad,absorb40,pad750]=[5.485,2.997,3.414,3.816]
+    y_lo/C80: P_model=  9.2157deg  rel_dev vs [c80c40,pad,absorb40,pad750]=[2.243,0.999,1.207,1.408]
+    y_lo/G40: P_model=  9.2157deg  rel_dev vs [c80c40,pad,absorb40,pad750]=[2.243,0.999,1.207,1.408]
+
+[7] SUMMARY FOR PHASE-1 SELF-SCORING
+    PRIMARY model: 0/3 comparisons REFUTE on the period band; 2/3 SUPPORT; every pair-delta period search ran to the search boundary at all three widened stages (no interior optimum found up to 60deg) = False
+
+wrote /home/user/photon-lab/experiments/078-t28-y-wall-echo-prescreen/y_wall_prescreen_results.json
