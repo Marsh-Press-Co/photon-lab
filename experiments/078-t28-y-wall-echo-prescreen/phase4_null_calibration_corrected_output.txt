@@ -9,3 +9,6 @@ OBSERVED (corrected primary model): 0 of 3 comparisons SUPPORT (c80_c40 rel_dev=
             c80_c40 (target P*=2.8421deg, observed rel_dev=0.4074, observed R^2=0.2472):
         P(null rel_dev<=0.30) = 0.2635   P(null rel_dev<=observed=0.4074) = 0.3960   P(null R^2>=0.2472) = 0.2126
         window distribution under null: {'narrow[1,4]': 18573, 'wide[1,15]': 1411, 'widest[1,60]': 16}
+           pair_pad (target P*=4.6113deg, observed rel_dev=0.3021, observed R^2=0.1563):
+        P(null rel_dev<=0.30) = 0.1242   P(null rel_dev<=observed=0.3021) = 0.1258   P(null R^2>=0.1563) = 0.6465
+        window distribution under null: {'narrow[1,4]': 18581, 'wide[1,15]': 1405, 'widest[1,60]': 14}
