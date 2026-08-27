@@ -210,3 +210,50 @@ cycles) remain the board's own oldest-overdue items, unaddressed by this
 cycle's own Tier-0 scope — Iteration 59 should weigh whether continuing to
 defer them, now that this construction's own actually-decisive test has
 landed REFUTE-leaning, still has an explicit, non-inertial reason.
+
+---
+
+## PHASE 3 — DIRECTOR SYNTHESIS (corrected headline language)
+
+Red Team's Phase-2 audit (`phase2_redteam_audit.md`) ruled
+**PROCEED-WITH-MANDATORY-FIXES** and the Director adopts its 7-item fix
+docket **in full, zero overrides** — full rationale in `phase3_synthesis.md`
+§1. The above Result/Learned/Next sections are Phase 1's own self-scored
+language, **written before this audit** and left unedited above as the
+historical record — this section is the corrected reading that supersedes
+it in force, precisely, not by restatement:
+
+1. **Combined Verdict NEITHER for item 1 stands under BOTH admittance
+   families** (periods shift ≤0.0075° between families — not
+   outcome-determining; the phase-divergence at this cycle's 48–54° range is
+   only 8.4–10.6°, much smaller than exp-080 part(b)'s 54.0–83.6° at 5–15°,
+   which is WHY this differs from that precedent).
+2. **Item 1c's "REFUTE-leaning" reading is PAIR-SPECIFIC, not uniform.**
+   `PAIR_ABSORB40` is genuinely `r()`-dependent (ablated signal exactly
+   degenerate); `C80−C40` — the ONE pair carrying the lone SUPPORT —
+   survives ablation to `r()=1` almost unchanged (`≈0.2937` vs real
+   `0.2910`), proving that SUPPORT requires no wall reflectance at all —
+   it is NOT evidence for a real y-wall echo mechanism; `PAIR_PAD` is
+   partially dependent (`~0.15°` shift). The substantive reading is REFUTE
+   for the mechanism as a whole, now on firmer ground than Phase 1's own
+   hedge above.
+3. **Item 2's magnitude-only gates do NOT resolve the `r` vs `conj(r)`
+   phase-convention ambiguity** (R8's own concern) — "can be trusted going
+   forward" (Phase 1's own Result section, item 2) overclaimed. The
+   `conj(r)` sensitivity result (no verdict flips) is reassuring, not
+   resolving; the actual FDTD-based phase-convention extension is queued for
+   Iteration 59, not run this cycle.
+4. **Git-provenance claim, corrected**: PANEL.md's non-negotiable
+   git-before-run mandate binds to Phase 3's FROZEN PREDICTIONS commit
+   specifically (`phase3_synthesis.md`, committed before this cycle's
+   corrected script was run) — not to Phase 1.
+5. **Item 3's energy-budget headline, disambiguated**: the tight
+   `theta_local`-convention bound (`~1.3×10⁻⁸`) covers a construction item 1
+   never built or period-tested; the looser `0.15%` `90°−θ_beam`-convention
+   bound covers the object item 1 actually tested and scored. Both
+   negligible in absolute terms; conflating which covers which was the
+   Phase-1 draft's own overclaim.
+
+Full rationale, the pre-registered frozen predictions for the corrected
+re-run, and the Checkpoint ruling: `phase3_synthesis.md`. Confirmed numbers
+from the corrected re-run: `phase4_results.md`/`phase4_results.json`.

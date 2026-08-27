@@ -107,6 +107,23 @@ with open(EXP076_RESULTS) as f:
 THETAS = np.array(RES76["headline"]["theta"])
 
 
+def _json_default(o):
+    """Shared JSON encoder default for numpy/complex types -- module-level
+    so both main() (Phase 1) and main_phase4() (Phase 3 fix-docket
+    extensions) use the SAME encoder, not two near-duplicate copies."""
+    if isinstance(o, (np.bool_,)):
+        return bool(o)
+    if isinstance(o, (np.floating,)):
+        return float(o)
+    if isinstance(o, (np.integer,)):
+        return int(o)
+    if isinstance(o, np.ndarray):
+        return o.tolist()
+    if isinstance(o, complex):
+        return dict(re=o.real, im=o.imag)
+    raise TypeError(f"not JSON serializable: {type(o)}")
+
+
 # ============================================================ ITEM 1 / 1b
 def dist_direct_cells(y_s, cfg):
     """PHOTONICS' own exp-080 Phase-5 formula (phase5_review_photonics.md
@@ -171,14 +188,16 @@ def item1_e_direct_pad_invariance():
     return dict(max_abs_dev_vs_C40=max_dev, bit_identical_all_zero=bool(all_zero))
 
 
-def item1_build_and_score():
-    """Build E_total per config, form the 3 pair-deltas (PRIMARY proxy
-    Re{E_total}, this sub-thread's own house convention), and score each
-    via the SAME imported _free_period_search/staged-widening machinery
-    against REAL T28 reference periods recomputed fresh from
-    experiments/076-.../results.json::headline (never hand-typed, R4) --
-    the SAME idiom y_wall_aperture_sum.py Sec[3] uses."""
-    # ---- REAL reference periods, recomputed fresh (R4) ----
+def real_reference_periods():
+    """REAL T28 reference periods (PAIR_PAD/PAIR_ABSORB40/C80-C40), recomputed
+    fresh from experiments/076-.../results.json::headline's raw C40/G40/C80
+    curves via free_period_with_widening -- the SAME idiom
+    y_wall_aperture_sum.py Sec[3] uses. Factored out of item1_build_and_score
+    (Phase 1, unchanged behavior) so the Phase-3 fix-docket extensions below
+    (item1_admittance_family_rescore/item1c_ablation_control/
+    item2_conj_sensitivity) score against the IDENTICAL reference periods
+    without duplicating this computation a second/third/fourth time (R4:
+    reuse, don't reimplement -- a duplicated copy is a drift risk)."""
     real_c40 = np.array(RES76["headline"]["C40"])
     real_g40 = np.array(RES76["headline"]["G40"])
     real_c80 = np.array(RES76["headline"]["C80"])
@@ -194,6 +213,18 @@ def item1_build_and_score():
     reference_periods = dict(pair_pad_deg=real_free_pad["p_star_deg"],
                               pair_absorb40_deg=real_free_absorb40["p_star_deg"],
                               c80_c40_deg=real_free_c80c40["p_star_deg"])
+    return reference_periods, real_stages
+
+
+def item1_build_and_score():
+    """Build E_total per config, form the 3 pair-deltas (PRIMARY proxy
+    Re{E_total}, this sub-thread's own house convention), and score each
+    via the SAME imported _free_period_search/staged-widening machinery
+    against REAL T28 reference periods recomputed fresh from
+    experiments/076-.../results.json::headline (never hand-typed, R4) --
+    the SAME idiom y_wall_aperture_sum.py Sec[3] uses."""
+    # ---- REAL reference periods, recomputed fresh (R4) ----
+    reference_periods, real_stages = real_reference_periods()
 
     # ---- build E_total per config ----
     e_dir = {}
@@ -275,6 +306,243 @@ def item1_build_and_score():
         item1b_e_direct_cancellation=item1b, ss_tot_sanity=ss_tot,
         item1c_t21_proximity_diagnostic=dict(t21_fringe_period_deg=t21_ref, per_pair=vs_t21),
     )
+
+
+# ================================================ PHASE 3 FIX-DOCKET EXTENSIONS
+# Panel Iteration 58 Phase 3. Director synthesis adopts Red Team's Phase-2
+# audit (phase2_redteam_audit.md Sec 3 "Fix docket") IN FULL, zero overrides
+# -- items 1/1c/2 folded in here as COMMITTED, REUSABLE code (not scratch),
+# reproducing Red Team's own independently-computed Sec 0 numbers (items
+# A/B/C/D) from THIS file's own primitives, as a third independent
+# computation (Red Team's own scratch script was the second; item 1's
+# original committed run was the first) -- matching this program's own R4
+# discipline of independently reproducing even a Red Team audit's own
+# numbers, not merely trusting them.
+#
+# All three extensions below share ONE generic image-term builder
+# (_image_term_curve_generic) parameterized by admittance family and an
+# optional r-transform, rather than three near-duplicate copies of
+# d80.photonics_image_term_curve's own loop -- reduces drift risk (R4/DRY).
+# main_phase4() below asserts this generic builder reproduces
+# d80.photonics_image_term_curve() bit-exact at its default settings
+# (admittance="matched", r_transform=None) BEFORE trusting any variant built
+# on it -- the same "wiring check before trusting variants" discipline Red
+# Team's own audit used (phase2_redteam_audit.md's own preamble).
+
+def _image_term_curve_generic(cfg, absorb_for_r, thetas_beam_deg, admittance="matched", r_transform=None):
+    """Generic image-term builder underlying d80.photonics_image_term_curve.
+    Reproduces it bit-exact when admittance='matched' and r_transform=None
+    (verified in main_phase4() before any variant is trusted). Extends it,
+    fix-docket items 1/1c/2, to also support:
+
+      admittance='realizable' -- d80.reflection_coefficient_vec_realizable
+        (mu_r=1, MATERIALS' own item-4 fix) in place of the matched
+        ywas.reflection_coefficient_vec -- fix docket item 1
+        (phase2_redteam_audit.md Sec0 item A / Sec1 Attack 1).
+
+      r_transform -- callable applied to r(90-theta_beam) (the vector of
+        per-theta_beam reflection coefficients) before multiplying W(theta_beam):
+        docket item 1c's ablation control uses r_transform=lambda r:
+        np.ones_like(r) (r(90-theta_beam)->1 exactly, y_wall_aperture_sum.py
+        Sec[7]'s own convention, phase2_redteam_audit.md Sec0 item B);
+        docket item 2's phase-convention sensitivity check uses
+        r_transform=np.conj (phase2_redteam_audit.md Sec0 item C)."""
+    y_grid = ywas.build_aperture_grid(cfg, 1)
+    amp = ywas.aperture_amplitude(y_grid, cfg)
+    dist_img = ywas.dist_image_cells(y_grid, cfg)
+    n_prof = br.n_profile_exact(br.nu_profile(br.damp_e_profile(absorb_for_r)), 2.0 * math.pi / LAM600)
+    thetas_beam_deg = np.asarray(thetas_beam_deg, dtype=float)
+    if admittance == "matched":
+        r_at_beam = ywas.reflection_coefficient_vec(n_prof, 90.0 - thetas_beam_deg, LAM600)
+    elif admittance == "realizable":
+        r_at_beam = d80.reflection_coefficient_vec_realizable(n_prof, 90.0 - thetas_beam_deg, LAM600)
+    else:
+        raise ValueError(f"unknown admittance family: {admittance!r}")
+    if r_transform is not None:
+        r_at_beam = r_transform(r_at_beam)
+    curve = []
+    for i, th_beam in enumerate(thetas_beam_deg):
+        phase_drive = ywas.source_driven_phase(y_grid, float(th_beam), cfg)
+        integrand = amp * np.exp(1j * (phase_drive + ywas.K600 * dist_img))
+        w_re = float(ywas._trapz(integrand.real, y_grid))
+        w_im = float(ywas._trapz(integrand.imag, y_grid))
+        w = complex(w_re, w_im)
+        curve.append(r_at_beam[i] * w)
+    return np.array(curve, dtype=complex)
+
+
+def _score_construction(e_image_fn, label):
+    """Build E_total=E_direct+e_image_fn(cfg,absorb,thetas) per config, form
+    the 3 pair-deltas (PRIMARY proxy Re{E_total}), fit free periods, and
+    score against the SAME real T28 reference periods real_reference_periods()
+    computes -- the ONE shared scoring pipeline underlying item 1's original
+    build AND all three Phase-3 fix-docket extensions below, avoiding three
+    near-duplicate copies of item1_build_and_score's own scoring logic."""
+    reference_periods, _ = real_reference_periods()
+    e_tot = {}
+    for key in CONGRUENT_KEYS:
+        c = dg065.CONFIGS[key]
+        ed = e_direct_curve(c, THETAS)
+        ei = e_image_fn(c, c["absorb"], THETAS)
+        e_tot[key] = ed + ei
+
+    model_delta_pad = (e_tot["G40"] - e_tot["C40"]).real
+    model_delta_absorb40 = (e_tot["C80"] - e_tot["G40"]).real
+    model_delta_c80c40 = (e_tot["C80"] - e_tot["C40"]).real
+
+    stages = {"pair_pad": [], "pair_absorb40": [], "c80_c40": []}
+    fp_pad = free_period_with_widening(THETAS, model_delta_pad, f"{label} PAIR_PAD", stages["pair_pad"])
+    fp_absorb40 = free_period_with_widening(THETAS, model_delta_absorb40, f"{label} PAIR_ABSORB40",
+                                             stages["pair_absorb40"])
+    fp_c80c40 = free_period_with_widening(THETAS, model_delta_c80c40, f"{label} C80-C40", stages["c80_c40"])
+
+    scores = {}
+    scores["pair_pad"] = score_period(f"{label} PAIR_PAD vs real", reference_periods["pair_pad_deg"],
+                                       fp_pad["p_star_deg"], out_print=False)
+    scores["pair_absorb40"] = score_period(f"{label} PAIR_ABSORB40 vs real",
+                                            reference_periods["pair_absorb40_deg"], fp_absorb40["p_star_deg"],
+                                            out_print=False)
+    scores["c80_c40"] = score_period(f"{label} C80-C40 vs real", reference_periods["c80_c40_deg"],
+                                      fp_c80c40["p_star_deg"], out_print=False)
+
+    verdicts = [scores[k]["verdict"] for k in ("pair_pad", "pair_absorb40", "c80_c40")]
+    if all(v == "SUPPORT" for v in verdicts):
+        combined = "SUPPORT"
+    elif all(v == "REFUTE" for v in verdicts):
+        combined = "REFUTE"
+    else:
+        combined = "NEITHER"
+
+    ss_tot = {}
+    for name, arr in (("pair_pad", model_delta_pad), ("pair_absorb40", model_delta_absorb40),
+                       ("c80_c40", model_delta_c80c40)):
+        ss_tot[name] = float(np.sum((arr - np.mean(arr)) ** 2))
+        ss_tot[f"{name}_degenerate"] = bool(ss_tot[name] < ywas.SS_TOT_DEGENERATE_FLOOR)
+
+    return dict(
+        label=label, reference_periods=reference_periods,
+        model_free_periods=dict(pair_pad=fp_pad, pair_absorb40=fp_absorb40, c80_c40=fp_c80c40),
+        scores=scores, verdicts=verdicts, combined_verdict=combined, ss_tot_sanity=ss_tot,
+    )
+
+
+def phase_divergence_matched_vs_realizable_deg(absorb, theta_lo_deg, theta_hi_deg, n=200):
+    """arg(r_matched)-arg(r_realizable) in degrees (matched vs realizable
+    admittance family, MATERIALS' own item-4 fix), swept finely across
+    [theta_lo,theta_hi] at the given ABSORB depth -- explains WHY fix docket
+    item 1's realizable re-score barely moves item 1's own periods while
+    exp-080's own part(b) analog (near-normal 5-15deg range) moved sharply
+    (phase2_redteam_audit.md Sec0 item D)."""
+    n_prof = br.n_profile_exact(br.nu_profile(br.damp_e_profile(absorb)), 2.0 * math.pi / LAM600)
+    thetas = np.linspace(theta_lo_deg, theta_hi_deg, n)
+    r_m = ywas.reflection_coefficient_vec(n_prof, thetas, LAM600)
+    r_r = d80.reflection_coefficient_vec_realizable(n_prof, thetas, LAM600)
+    dphi = np.degrees(np.angle(r_m) - np.angle(r_r))
+    dphi = (dphi + 180.0) % 360.0 - 180.0  # wrap to (-180,180]
+    return dict(absorb=absorb, theta_range_deg=[theta_lo_deg, theta_hi_deg],
+                min_abs_deg=float(np.min(np.abs(dphi))), max_abs_deg=float(np.max(np.abs(dphi))))
+
+
+def item1_admittance_family_rescore():
+    """Fix docket item 1 (phase2_redteam_audit.md Sec0 item A / Sec1
+    Attack 1): re-score item 1's free-period fit under BOTH the matched
+    (unobtainium, exp-080's existing family) AND realizable (mu_r=1,
+    MATERIALS' item-4 fix) admittance families, at the SAME 90-theta_beam
+    range item 1 actually uses -- reporting both, not a single-family
+    headline. Also computes the phase-divergence explanation (item D) at
+    item 1's own [48,54]deg range vs exp-080 part(b)'s [5,15]deg range, at
+    ABSORB=40, so a future reader does not need to re-derive why this cycle's
+    result differs from that precedent."""
+    matched = _score_construction(lambda c, a, t: _image_term_curve_generic(c, a, t, "matched"), "matched")
+    realizable = _score_construction(lambda c, a, t: _image_term_curve_generic(c, a, t, "realizable"), "realizable")
+
+    shifts = {}
+    for name in ("pair_pad", "pair_absorb40", "c80_c40"):
+        pm = matched["model_free_periods"][name]["p_star_deg"]
+        pr = realizable["model_free_periods"][name]["p_star_deg"]
+        shifts[name] = abs(pm - pr)
+    verdict_flips = any(matched["scores"][k]["verdict"] != realizable["scores"][k]["verdict"]
+                         for k in matched["scores"])
+
+    phase_div_item1_range = phase_divergence_matched_vs_realizable_deg(40, 48.0, 54.0)
+    phase_div_part_b_range = phase_divergence_matched_vs_realizable_deg(40, 5.0, 15.0)
+
+    return dict(
+        matched=matched, realizable=realizable,
+        period_shift_deg=shifts, max_period_shift_deg=max(shifts.values()),
+        verdict_flips=verdict_flips,
+        combined_verdict_matched=matched["combined_verdict"],
+        combined_verdict_realizable=realizable["combined_verdict"],
+        phase_divergence_absorb40=dict(
+            item1_range_48_54deg=phase_div_item1_range,
+            part_b_precedent_range_5_15deg=phase_div_part_b_range,
+        ),
+    )
+
+
+def item1c_ablation_control():
+    """Fix docket item 2 (phase2_redteam_audit.md Sec0 item B / Sec1
+    Attack 2): reflectance-ablation control -- r(90-theta_beam)->1 EXACTLY
+    (y_wall_aperture_sum.py Sec[7]'s own convention), re-fit periods -- PER
+    PAIR, not aggregated, because Red Team's audit found the result is
+    pair-specific: PAIR_ABSORB40 genuinely r()-dependent (ablated signal
+    exactly degenerate), C80-C40 (the pair carrying the lone SUPPORT) nearly
+    r()-independent, PAIR_PAD partially dependent."""
+    matched = _score_construction(lambda c, a, t: _image_term_curve_generic(c, a, t, "matched"), "matched(real r)")
+    ablated = _score_construction(
+        lambda c, a, t: _image_term_curve_generic(c, a, t, "matched", r_transform=lambda r: np.ones_like(r)),
+        "ablated(r=1)")
+
+    per_pair = {}
+    for name in ("pair_pad", "pair_absorb40", "c80_c40"):
+        p_real_r = matched["model_free_periods"][name]["p_star_deg"]
+        p_ablated = ablated["model_free_periods"][name]["p_star_deg"]
+        per_pair[name] = dict(
+            p_model_real_r_deg=p_real_r, p_model_ablated_deg=p_ablated,
+            shift_deg=abs(p_real_r - p_ablated),
+            rel_dev_real_r_vs_target=matched["scores"][name]["rel_dev"],
+            rel_dev_ablated_vs_target=ablated["scores"][name]["rel_dev"],
+            verdict_real_r=matched["scores"][name]["verdict"],
+            verdict_ablated=ablated["scores"][name]["verdict"],
+            ablated_ss_tot=ablated["ss_tot_sanity"][name],
+            ablated_ss_tot_degenerate=ablated["ss_tot_sanity"][f"{name}_degenerate"],
+        )
+    return dict(matched=matched, ablated=ablated, per_pair=per_pair)
+
+
+def item2_conj_sensitivity():
+    """Fix docket item 3 (phase2_redteam_audit.md Sec0 item C / Sec1
+    Attack 3): r(90-theta_beam)->conj(r(90-theta_beam)) substitution on item
+    1's own construction -- checks whether item 1's per-pair verdicts or the
+    T21-proximity qualitative reading depend on the (magnitude-only-gated,
+    per EM's critique) sign convention of br.reflection_coefficient."""
+    matched = _score_construction(lambda c, a, t: _image_term_curve_generic(c, a, t, "matched"), "matched(r)")
+    conj_variant = _score_construction(
+        lambda c, a, t: _image_term_curve_generic(c, a, t, "matched", r_transform=np.conj),
+        "conj(r)")
+
+    t21_ref = dg065.dg048.ripple_period_deg(752, LAM600, 39.0)
+    per_pair = {}
+    verdict_flips = False
+    for name in ("pair_pad", "pair_absorb40", "c80_c40"):
+        v_real = matched["scores"][name]["verdict"]
+        v_conj = conj_variant["scores"][name]["verdict"]
+        if v_real != v_conj:
+            verdict_flips = True
+        p_conj = conj_variant["model_free_periods"][name]["p_star_deg"]
+        rd_t21 = rel_dev(t21_ref, p_conj)
+        rd_real_target = conj_variant["scores"][name]["rel_dev"]
+        per_pair[name] = dict(
+            p_model_matched_r_deg=matched["model_free_periods"][name]["p_star_deg"],
+            p_model_conj_r_deg=p_conj,
+            verdict_matched_r=v_real, verdict_conj_r=v_conj, verdict_flip=bool(v_real != v_conj),
+            rel_dev_vs_t21_conj=rd_t21, rel_dev_vs_t28_real_target_conj=rd_real_target,
+            closer_to_t21_than_to_t28_conj=bool(rd_t21 < rd_real_target),
+        )
+    return dict(matched=matched, conj_variant=conj_variant, per_pair=per_pair,
+                any_verdict_flip=verdict_flips, t21_fringe_period_deg=t21_ref,
+                combined_verdict_matched=matched["combined_verdict"],
+                combined_verdict_conj=conj_variant["combined_verdict"])
 
 
 # ============================================================ ITEM 2 (EM)
@@ -500,20 +768,173 @@ def main():
                    "-- reflection_coefficient_vec_realizable(), mu_r=ni^2 -> mu_r=ni",
     )
 
-    def _json_default(o):
-        if isinstance(o, (np.bool_,)):
-            return bool(o)
-        if isinstance(o, (np.floating,)):
-            return float(o)
-        if isinstance(o, (np.integer,)):
-            return int(o)
-        if isinstance(o, np.ndarray):
-            return o.tolist()
-        if isinstance(o, complex):
-            return dict(re=o.real, im=o.imag)
-        raise TypeError(f"not JSON serializable: {type(o)}")
-
     out_path = os.path.join(HERE, "phase1_results.json")
+    with open(out_path, "w") as f:
+        json.dump(out, f, indent=2, default=_json_default)
+    print(f"\nwrote {out_path}")
+    return out
+
+
+# ================================================ PHASE 4 -- TEST (corrected re-run)
+# Runs Phase 3's fix-docket extensions (item1_admittance_family_rescore,
+# item1c_ablation_control, item2_conj_sensitivity) and checks each against
+# the FROZEN PREDICTIONS committed to git in phase3_synthesis.md BEFORE this
+# function was ever invoked -- per PANEL.md's non-negotiable house
+# discipline. Also re-runs item1_build_and_score() fresh and diffs it
+# bit-exact against the committed phase1_results.json, confirming zero drift
+# in the original (Phase 1) result before trusting anything built on top of
+# it this cycle.
+
+def _wiring_check_image_term_curve():
+    """Confirm _image_term_curve_generic(admittance='matched', r_transform=
+    None) reproduces d80.photonics_image_term_curve() bit-exact, for every
+    congruent config, BEFORE any variant built on it (realizable/ablated/
+    conj) is trusted -- the same discipline Red Team's own audit script used
+    (phase2_redteam_audit.md's own preamble: reproduce the wiring first)."""
+    max_dev = 0.0
+    per_key = {}
+    for key in CONGRUENT_KEYS:
+        c = dg065.CONFIGS[key]
+        generic = _image_term_curve_generic(c, c["absorb"], THETAS, "matched")
+        original = d80.photonics_image_term_curve(c, c["absorb"], THETAS)
+        dev = float(np.max(np.abs(generic - original)))
+        per_key[key] = dev
+        max_dev = max(max_dev, dev)
+    return dict(per_key_max_abs_dev=per_key, max_abs_dev=max_dev, bit_exact=bool(max_dev == 0.0))
+
+
+def main_phase4():
+    print("=" * 78)
+    print("exp-081 Iteration 58 PHASE 4 -- corrected re-run of Phase 3's")
+    print("fix-docket extensions (Red Team's phase2_redteam_audit.md Sec 3,")
+    print("all 7 items adopted in full, zero overrides)")
+    print("=" * 78)
+
+    print("\n[wiring check] _image_term_curve_generic(matched) vs "
+          "d80.photonics_image_term_curve() -- must be bit-exact before any")
+    print("  variant (realizable/ablated/conj) is trusted")
+    wiring = _wiring_check_image_term_curve()
+    for key, dev in wiring["per_key_max_abs_dev"].items():
+        print(f"    {key}: max|generic-original| = {dev:.3e}")
+    print(f"    bit-exact: {wiring['bit_exact']}")
+    assert wiring["bit_exact"], "wiring check FAILED -- do not trust any Phase-4 extension below"
+
+    print("\n[reproduction check] item1_build_and_score() re-run fresh, diffed")
+    print("  against the committed phase1_results.json (zero drift expected)")
+    with open(os.path.join(HERE, "phase1_results.json")) as f:
+        committed_phase1 = json.load(f)
+    fresh_item1 = item1_build_and_score()
+    committed_periods = committed_phase1["item1_build_and_score"]["model_free_periods"]
+    committed_verdicts = committed_phase1["item1_build_and_score"]["verdicts"]
+    repro_period_dev = {}
+    for name in ("pair_pad", "pair_absorb40", "c80_c40"):
+        repro_period_dev[name] = abs(fresh_item1["model_free_periods"][name]["p_star_deg"]
+                                      - committed_periods[name]["p_star_deg"])
+    repro_verdicts_match = bool(fresh_item1["verdicts"] == committed_verdicts)
+    repro_combined_match = bool(fresh_item1["combined_verdict"] == committed_phase1["item1_build_and_score"][
+        "combined_verdict"])
+    for name, dev in repro_period_dev.items():
+        print(f"    {name}: |fresh-committed| period dev = {dev:.3e}")
+    print(f"    verdicts match committed: {repro_verdicts_match}  "
+          f"combined_verdict match committed: {repro_combined_match}")
+    assert repro_verdicts_match and repro_combined_match and max(repro_period_dev.values()) == 0.0, (
+        "item1_build_and_score() drifted from the committed phase1_results.json -- "
+        "do not trust the Phase-4 extensions below until resolved")
+
+    print("\n[item 1] admittance-family rescore (matched vs realizable)")
+    admit = item1_admittance_family_rescore()
+    for name in ("pair_pad", "pair_absorb40", "c80_c40"):
+        m = admit["matched"]["model_free_periods"][name]
+        r = admit["realizable"]["model_free_periods"][name]
+        print(f"    {name}: matched P*={m['p_star_deg']:.4f}deg ({admit['matched']['scores'][name]['verdict']})  "
+              f"realizable P*={r['p_star_deg']:.4f}deg ({admit['realizable']['scores'][name]['verdict']})  "
+              f"shift={admit['period_shift_deg'][name]:.4f}deg")
+    print(f"    max period shift = {admit['max_period_shift_deg']:.4f}deg  "
+          f"verdict_flips = {admit['verdict_flips']}")
+    print(f"    Combined Verdict: matched={admit['combined_verdict_matched']}  "
+          f"realizable={admit['combined_verdict_realizable']}")
+    print(f"    phase divergence (ABSORB=40): item1 range [48,54]deg = "
+          f"[{admit['phase_divergence_absorb40']['item1_range_48_54deg']['min_abs_deg']:.2f},"
+          f"{admit['phase_divergence_absorb40']['item1_range_48_54deg']['max_abs_deg']:.2f}]deg  "
+          f"part(b) precedent range [5,15]deg = "
+          f"[{admit['phase_divergence_absorb40']['part_b_precedent_range_5_15deg']['min_abs_deg']:.2f},"
+          f"{admit['phase_divergence_absorb40']['part_b_precedent_range_5_15deg']['max_abs_deg']:.2f}]deg")
+
+    print("\n[item 1c] reflectance-ablation control, per pair")
+    ablation = item1c_ablation_control()
+    for name, row in ablation["per_pair"].items():
+        print(f"    {name}: real-r P*={row['p_model_real_r_deg']:.4f}deg (rel_dev="
+              f"{row['rel_dev_real_r_vs_target']:.4f})  ablated P*={row['p_model_ablated_deg']:.4f}deg "
+              f"(rel_dev={row['rel_dev_ablated_vs_target']:.4f})  shift={row['shift_deg']:.4f}deg  "
+              f"ablated_degenerate={row['ablated_ss_tot_degenerate']}")
+
+    print("\n[item 2] r->conj(r) sensitivity check")
+    conj = item2_conj_sensitivity()
+    for name, row in conj["per_pair"].items():
+        print(f"    {name}: matched P*={row['p_model_matched_r_deg']:.4f}deg ({row['verdict_matched_r']})  "
+              f"conj P*={row['p_model_conj_r_deg']:.4f}deg ({row['verdict_conj_r']})  "
+              f"flip={row['verdict_flip']}")
+    print(f"    any verdict flip: {conj['any_verdict_flip']}")
+
+    # ---------------------------------------------------- frozen-prediction checks
+    # Every threshold below is copied verbatim from phase3_synthesis.md's own
+    # PRE-REGISTERED section, committed to git (frozen-predictions commit)
+    # BEFORE this function was ever run this cycle.
+    checks = {}
+
+    checks["realizable_periods_within_0p0075deg_of_matched"] = dict(
+        predicted="<=0.0075deg", observed=admit["max_period_shift_deg"],
+        passed=bool(admit["max_period_shift_deg"] <= 0.0075 + 1e-9))
+
+    checks["realizable_rescore_verdicts_unchanged"] = dict(
+        predicted="no verdict flips (matched vs realizable)", observed=admit["verdict_flips"],
+        passed=bool(not admit["verdict_flips"]))
+
+    checks["pair_absorb40_ablated_exactly_degenerate"] = dict(
+        predicted="ss_tot==0.0 exactly (bit-identical across theta_beam grid)",
+        observed=ablation["per_pair"]["pair_absorb40"]["ablated_ss_tot"],
+        passed=bool(ablation["per_pair"]["pair_absorb40"]["ablated_ss_tot"] == 0.0
+                     and ablation["per_pair"]["pair_absorb40"]["ablated_ss_tot_degenerate"]))
+
+    checks["c80_c40_ablated_score_near_0p2937"] = dict(
+        predicted="~0.2937 (within ~0.01 of real 0.2910)",
+        observed=ablation["per_pair"]["c80_c40"]["rel_dev_ablated_vs_target"],
+        passed=bool(abs(ablation["per_pair"]["c80_c40"]["rel_dev_ablated_vs_target"] - 0.2937) <= 0.01))
+
+    checks["pair_pad_ablated_shift_near_0p15deg"] = dict(
+        predicted="~0.15deg", observed=ablation["per_pair"]["pair_pad"]["shift_deg"],
+        passed=bool(abs(ablation["per_pair"]["pair_pad"]["shift_deg"] - 0.15) <= 0.05))
+
+    checks["conj_r_zero_verdict_flips"] = dict(
+        predicted="zero verdict flips", observed=conj["any_verdict_flip"],
+        passed=bool(not conj["any_verdict_flip"]))
+
+    checks["item1_original_run_reproduces_committed"] = dict(
+        predicted="bit-exact vs committed phase1_results.json",
+        observed=dict(period_dev=repro_period_dev, verdicts_match=repro_verdicts_match,
+                       combined_match=repro_combined_match),
+        passed=bool(repro_verdicts_match and repro_combined_match and max(repro_period_dev.values()) == 0.0))
+
+    all_frozen_predictions_confirmed = bool(all(v["passed"] for v in checks.values()))
+
+    print("\n[frozen-prediction verification]")
+    for name, v in checks.items():
+        print(f"    {name}: predicted={v['predicted']}  observed={v['observed']}  "
+              f"PASS={v['passed']}")
+    print(f"    ALL FROZEN PREDICTIONS CONFIRMED: {all_frozen_predictions_confirmed}")
+
+    out = dict(
+        wiring_check=wiring,
+        reproduction_check=dict(period_dev=repro_period_dev, verdicts_match=repro_verdicts_match,
+                                 combined_match=repro_combined_match),
+        item1_admittance_family_rescore=admit,
+        item1c_ablation_control=ablation,
+        item2_conj_sensitivity=conj,
+        frozen_prediction_checks=checks,
+        all_frozen_predictions_confirmed=all_frozen_predictions_confirmed,
+    )
+
+    out_path = os.path.join(HERE, "phase4_results.json")
     with open(out_path, "w") as f:
         json.dump(out, f, indent=2, default=_json_default)
     print(f"\nwrote {out_path}")
@@ -522,3 +943,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    main_phase4()
