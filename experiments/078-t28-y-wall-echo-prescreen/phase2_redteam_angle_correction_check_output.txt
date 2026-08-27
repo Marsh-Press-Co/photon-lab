@@ -1,0 +1,77 @@
+==============================================================================
+RED TEAM independent check -- y-wall angle-convention correction (exp-078)
+==============================================================================
+
+[A] FIRST-PRINCIPLES RE-DERIVATION (independent of any critique's prose)
+
+    y_wall_prescreen.py Sec[1b] / phase1_proposal.md Sec 3.1 both state the
+    bench's own convention: the direct wave travels in direction
+    (-cos(theta), +sin(theta)) (add_line_source's own docstring). The
+    x-wall's normal is x-hat=(1,0); the y-wall's normal is y-hat=(0,1).
+
+    The angle of incidence measured FROM A WALL'S OWN NORMAL, alpha, is
+    defined by cos(alpha) = |direction . normal|.
+
+      x-wall: cos(alpha_x) = |-cos(theta)| = cos(theta)  =>  alpha_x = theta
+      y-wall: cos(alpha_y) = |sin(theta)|                =>  alpha_y = 90-theta
+              (theta in [36,42]deg, so sin(theta)>0, cos is even/positive
+               branch on [0,90], alpha_y = 90-theta unambiguously)
+
+    So the x-wall's own incidence angle (measured from ITS normal) equals
+    the sweep theta directly -- confirming reflection_coefficient's
+    docstring convention is self-consistent for the x-wall as used
+    throughout exp-075/077. For the y-wall, the angle from ITS normal is
+    90-theta, NOT theta. This is re-derived here from the propagation
+    direction alone, not read off EM's or MATERIALS' stated conclusion.
+    
+    theta (sweep, from x-normal): [36.0, 39.0, 42.0]
+    alpha_y (from y-normal, re-derived): [54.0, 51.0, 48.0]
+
+[B] boundary_reflectance.py::reflection_coefficient -- read directly
+    docstring (verbatim, first 2 lines):
+      Complex reflection coefficient at the OUTER (interior-facing) face
+      of the graded stack, wave incident from vacuum (n=1) at angle
+    body: s2 = sin(radians(theta_deg))**2 -- theta_deg enters ONLY as sin(),
+    confirming theta_deg IS the angle from whichever wall's normal is being
+    modeled (sin(angle-from-normal) = tangential-component/k0, standard
+    oblique-incidence form). This matches [A]'s conclusion independently.
+
+[C] SPOT-CHECK: r(theta;ABSORB) both ways, at critiques' own angles
+    ABSORB= 40 theta= 36.0: |r|impl=0.002900 |r|corr=0.038656 ratio= 13.33x  arg impl=  -78.12deg arg corr= +154.34deg
+    ABSORB= 40 theta= 39.0: |r|impl=0.004269 |r|corr=0.024900 ratio=  5.83x  arg impl=  -40.91deg arg corr= +117.49deg
+    ABSORB= 40 theta= 42.0: |r|impl=0.006423 |r|corr=0.015755 ratio=  2.45x  arg impl=   -1.23deg arg corr=  +79.13deg
+    ABSORB= 80 theta= 36.0: |r|impl=0.000029 |r|corr=0.001889 ratio= 64.55x  arg impl= +171.64deg arg corr= -169.11deg
+    ABSORB= 80 theta= 39.0: |r|impl=0.000068 |r|corr=0.000777 ratio= 11.37x  arg impl= -179.49deg arg corr= +126.79deg
+    ABSORB= 80 theta= 42.0: |r|impl=0.000116 |r|corr=0.000202 ratio=  1.75x  arg impl= -145.47deg arg corr=  +47.56deg
+
+[D] FULL CORRECTED RE-SCORE of y_wall_prescreen.py's primary model
+    (ONLY the reflection_coefficient angle argument is changed: theta_deg -> 90.0-theta_deg. fixed_offset, free-period search, staged widening, and scoring bands are all untouched/reused.)
+    C40: |r| range corrected [0.015755,0.038656] ptp(Delta_phi)=75.2088deg
+    C60: |r| range corrected [0.002521,0.007152] ptp(Delta_phi)=119.6987deg
+    C70: |r| range corrected [0.000968,0.003627] ptp(Delta_phi)=356.1519deg
+    C80: |r| range corrected [0.000202,0.001889] ptp(Delta_phi)=355.6947deg
+    G40: |r| range corrected [0.015755,0.038656] ptp(Delta_phi)=75.2088deg
+
+    corrected free-period search on each PAIR_* delta curve:
+    [corrected PAIR_PAD delta]  narrow[1,4]: P*=   3.2180deg  R^2=0.1563  [interior]
+    [corrected PAIR_ABSORB40 delta]  narrow[1,4]: P*=   2.8045deg  R^2=0.1216  [interior]
+    [corrected C80-C40 delta]  narrow[1,4]: P*=   4.0000deg  R^2=0.2472  [AT BOUNDARY]
+    [corrected C80-C40 delta]   wide[1,15]: P*=  15.0000deg  R^2=0.9535  [AT BOUNDARY]
+    [corrected C80-C40 delta] widest[1,60]: P*=  60.0000deg  R^2=0.9693  [AT BOUNDARY]
+
+    AS-FILED vs CORRECTED, side by side:
+    c80_c40          AS-FILED   P*=  3.2105deg rel_dev=0.1296 R2=0.1530 -> SUPPORT
+                     CORRECTED  P*=  4.0000deg rel_dev=0.4074 R2=0.2472 -> INCONCLUSIVE  (window=narrow[1,4], at_boundary=True)
+    pair_pad         AS-FILED   P*=  3.1654deg rel_dev=0.3136 R2=0.1331 -> INCONCLUSIVE
+                     CORRECTED  P*=  3.2180deg rel_dev=0.3021 R2=0.1563 -> INCONCLUSIVE  (window=narrow[1,4], at_boundary=False)
+    pair_absorb40    AS-FILED   P*=  3.2030deg rel_dev=0.2330 R2=0.1493 -> SUPPORT
+                     CORRECTED  P*=  2.8045deg rel_dev=0.3284 R2=0.1216 -> INCONCLUSIVE  (window=narrow[1,4], at_boundary=False)
+
+    CORRECTED summary: 0/3 SUPPORT, 0/3 REFUTE (as-filed was 2/3 SUPPORT, 0/3 REFUTE)
+
+[E] RE-RUN GATES at the corrected y-wall envelope (48-54deg), never sampled by the originally committed +-44deg gates
+    G-LOSSLESS (48-54deg, 2000 trials): worst ||r|-1| = 3.331e-16  PASS=True
+    G-N1       (48-54deg, 2000 trials): worst |r_loop-r_direct| = 2.701e-15  PASS=True
+    G-PASSIVITY(48-54deg, 2000 trials/depth): worst |r| = 0.038583  PASS=True
+
+wrote /home/user/photon-lab/experiments/078-t28-y-wall-echo-prescreen/phase2_redteam_angle_correction_check_results.json

@@ -1,0 +1,133 @@
+{
+  "rederivation": {
+    "theta_sweep": [
+      36.0,
+      39.0,
+      42.0
+    ],
+    "alpha_y_from_normal": [
+      54.0,
+      51.0,
+      48.0
+    ]
+  },
+  "docstring_first_two_lines": [
+    "Complex reflection coefficient at the OUTER (interior-facing) face",
+    "of the graded stack, wave incident from vacuum (n=1) at angle"
+  ],
+  "spot_check_r_both_conventions": {
+    "40": {
+      "36.0": {
+        "theta": 36.0,
+        "abs_r_impl": 0.002900108417861224,
+        "arg_r_impl_deg": -78.12341279424552,
+        "abs_r_corr": 0.03865646130445257,
+        "arg_r_corr_deg": 154.3386189166073,
+        "ratio": 13.329315920182388
+      },
+      "39.0": {
+        "theta": 39.0,
+        "abs_r_impl": 0.004268628229915107,
+        "arg_r_impl_deg": -40.91432843397857,
+        "abs_r_corr": 0.02490043767623305,
+        "arg_r_corr_deg": 117.49064442577854,
+        "ratio": 5.833358244160856
+      },
+      "42.0": {
+        "theta": 42.0,
+        "abs_r_impl": 0.006423411555094661,
+        "arg_r_impl_deg": -1.2267978140095654,
+        "abs_r_corr": 0.015755063551714993,
+        "arg_r_corr_deg": 79.12983236688007,
+        "ratio": 2.45275636109896
+      }
+    },
+    "80": {
+      "36.0": {
+        "theta": 36.0,
+        "abs_r_impl": 2.9269730314008155e-05,
+        "arg_r_impl_deg": 171.6390131520231,
+        "abs_r_corr": 0.0018892366259981427,
+        "arg_r_corr_deg": -169.111079352781,
+        "ratio": 64.54574762836047
+      },
+      "39.0": {
+        "theta": 39.0,
+        "abs_r_impl": 6.82955987146259e-05,
+        "arg_r_impl_deg": -179.4868851181137,
+        "abs_r_corr": 0.0007767733326715132,
+        "arg_r_corr_deg": 126.7873227970881,
+        "ratio": 11.373695337488309
+      },
+      "42.0": {
+        "theta": 42.0,
+        "abs_r_impl": 0.00011550466198572974,
+        "arg_r_impl_deg": -145.47338823753608,
+        "abs_r_corr": 0.0002024709507318657,
+        "arg_r_corr_deg": 47.56460951600408,
+        "ratio": 1.752924490241618
+      }
+    }
+  },
+  "as_filed": {
+    "c80_c40": {
+      "p_model": 3.2105263157894735,
+      "rel_dev": 0.12962962962962957,
+      "r2": 0.1530097869774515,
+      "verdict": "SUPPORT"
+    },
+    "pair_pad": {
+      "p_model": 3.1654135338345863,
+      "rel_dev": 0.31355136893135443,
+      "r2": 0.1331180760669618,
+      "verdict": "INCONCLUSIVE"
+    },
+    "pair_absorb40": {
+      "p_model": 3.2030075187969924,
+      "rel_dev": 0.23302095601738534,
+      "r2": 0.1493191248004927,
+      "verdict": "SUPPORT"
+    }
+  },
+  "corrected": {
+    "c80_c40": {
+      "p_real": 2.8421052631578947,
+      "p_model": 4.0,
+      "rel_dev": 0.40740740740740744,
+      "r2": 0.2472345286807609,
+      "verdict": "INCONCLUSIVE",
+      "window": "narrow[1,4]",
+      "at_boundary": true
+    },
+    "pair_pad": {
+      "p_real": 4.611289746337977,
+      "p_model": 3.218045112781955,
+      "rel_dev": 0.3021377337354387,
+      "r2": 0.1563466153324431,
+      "verdict": "INCONCLUSIVE",
+      "window": "narrow[1,4]",
+      "at_boundary": false
+    },
+    "pair_absorb40": {
+      "p_real": 4.176134333690603,
+      "p_model": 2.8045112781954886,
+      "rel_dev": 0.32844323144245247,
+      "r2": 0.12157846604683187,
+      "verdict": "INCONCLUSIVE",
+      "window": "narrow[1,4]",
+      "at_boundary": false
+    }
+  },
+  "corrected_summary": {
+    "n_support": 0,
+    "n_refute": 0
+  },
+  "gates_at_corrected_envelope_48_54deg": {
+    "g_lossless_worst_dev": 3.3306690738754696e-16,
+    "g_lossless_pass": true,
+    "g_n1_worst_dev": 2.7012892057857038e-15,
+    "g_n1_pass": true,
+    "g_passivity_worst_abs_r": 0.03858270189794551,
+    "g_passivity_pass": true
+  }
+}
