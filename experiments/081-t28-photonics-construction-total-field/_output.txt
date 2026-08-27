@@ -60,3 +60,117 @@ field, scored via free-period fit against REAL T28 reference periods
     experiments/080-.../validity_precheck.py (see that file's diff)
 
 wrote /home/user/photon-lab/experiments/081-t28-photonics-construction-total-field/phase1_results.json
+==============================================================================
+exp-081 Iteration 58 PHASE 4 -- corrected re-run of Phase 3's
+fix-docket extensions (Red Team's phase2_redteam_audit.md Sec 3,
+all 7 items adopted in full, zero overrides)
+==============================================================================
+
+[wiring check] _image_term_curve_generic(matched) vs d80.photonics_image_term_curve() -- must be bit-exact before any
+  variant (realizable/ablated/conj) is trusted
+    C40: max|generic-original| = 0.000e+00
+    C60: max|generic-original| = 0.000e+00
+    C70: max|generic-original| = 0.000e+00
+    C80: max|generic-original| = 0.000e+00
+    G40: max|generic-original| = 0.000e+00
+    bit-exact: True
+
+[reproduction check] item1_build_and_score() re-run fresh, diffed
+  against the committed phase1_results.json (zero drift expected)
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    [model(total) PAIR_PAD]  narrow[1,4]: P*=   1.8571deg  R^2=0.8978  [interior optimum]
+    [model(total) PAIR_ABSORB40]  narrow[1,4]: P*=   2.0301deg  R^2=0.7300  [interior optimum]
+    [model(total) C80-C40]  narrow[1,4]: P*=   2.0150deg  R^2=0.8473  [interior optimum]
+    model(total) PAIR_PAD vs real: P*_real=4.6113deg  P*_model=1.8571deg  rel_dev=0.5973 -> INCONCLUSIVE
+    model(total) PAIR_ABSORB40 vs real: P*_real=4.1761deg  P*_model=2.0301deg  rel_dev=0.5139 -> INCONCLUSIVE
+    model(total) C80-C40 vs real: P*_real=2.8421deg  P*_model=2.0150deg  rel_dev=0.2910 -> SUPPORT
+    pair_pad: |fresh-committed| period dev = 0.000e+00
+    pair_absorb40: |fresh-committed| period dev = 0.000e+00
+    c80_c40: |fresh-committed| period dev = 0.000e+00
+    verdicts match committed: True  combined_verdict match committed: True
+
+[item 1] admittance-family rescore (matched vs realizable)
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    [matched PAIR_PAD]  narrow[1,4]: P*=   1.8571deg  R^2=0.8978  [interior optimum]
+    [matched PAIR_ABSORB40]  narrow[1,4]: P*=   2.0301deg  R^2=0.7300  [interior optimum]
+    [matched C80-C40]  narrow[1,4]: P*=   2.0150deg  R^2=0.8473  [interior optimum]
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    [realizable PAIR_PAD]  narrow[1,4]: P*=   1.8647deg  R^2=0.9062  [interior optimum]
+    [realizable PAIR_ABSORB40]  narrow[1,4]: P*=   2.0301deg  R^2=0.6756  [interior optimum]
+    [realizable C80-C40]  narrow[1,4]: P*=   2.0226deg  R^2=0.8096  [interior optimum]
+    pair_pad: matched P*=1.8571deg (INCONCLUSIVE)  realizable P*=1.8647deg (INCONCLUSIVE)  shift=0.0075deg
+    pair_absorb40: matched P*=2.0301deg (INCONCLUSIVE)  realizable P*=2.0301deg (INCONCLUSIVE)  shift=0.0000deg
+    c80_c40: matched P*=2.0150deg (SUPPORT)  realizable P*=2.0226deg (SUPPORT)  shift=0.0075deg
+    max period shift = 0.0075deg  verdict_flips = False
+    Combined Verdict: matched=NEITHER  realizable=NEITHER
+    phase divergence (ABSORB=40): item1 range [48,54]deg = [8.36,10.55]deg  part(b) precedent range [5,15]deg = [54.01,89.06]deg
+
+[item 1c] reflectance-ablation control, per pair
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    [matched(real r) PAIR_PAD]  narrow[1,4]: P*=   1.8571deg  R^2=0.8978  [interior optimum]
+    [matched(real r) PAIR_ABSORB40]  narrow[1,4]: P*=   2.0301deg  R^2=0.7300  [interior optimum]
+    [matched(real r) C80-C40]  narrow[1,4]: P*=   2.0150deg  R^2=0.8473  [interior optimum]
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    [ablated(r=1) PAIR_PAD]  narrow[1,4]: P*=   2.0075deg  R^2=0.9746  [interior optimum]
+    [ablated(r=1) PAIR_ABSORB40] ss_tot=0.000e+00 -- SS_TOT_DEGENERATE (below 1e-20): any R^2 reported below is fitting float rounding noise on an effectively-flat array, not a real period -- see phase5_redteam_audit.md Sec 2c.
+    [ablated(r=1) PAIR_ABSORB40]  narrow[1,4]: P*=   1.0000deg  R^2=0.0000  [AT BOUNDARY -- widening]  [SS_TOT_DEGENERATE -- R^2 is float noise, not signal]
+    [ablated(r=1) PAIR_ABSORB40]   wide[1,15]: P*=   1.0000deg  R^2=0.0000  [AT BOUNDARY -- widening]  [SS_TOT_DEGENERATE -- R^2 is float noise, not signal]
+    [ablated(r=1) PAIR_ABSORB40] widest[1,60]: P*=   1.0000deg  R^2=0.0000  [AT BOUNDARY -- widening]  [SS_TOT_DEGENERATE -- R^2 is float noise, not signal]
+    [ablated(r=1) C80-C40]  narrow[1,4]: P*=   2.0075deg  R^2=0.9746  [interior optimum]
+    pair_pad: real-r P*=1.8571deg (rel_dev=0.5973)  ablated P*=2.0075deg (rel_dev=0.5647)  shift=0.1504deg  ablated_degenerate=False
+    pair_absorb40: real-r P*=2.0301deg (rel_dev=0.5139)  ablated P*=1.0000deg (rel_dev=0.7605)  shift=1.0301deg  ablated_degenerate=True
+    c80_c40: real-r P*=2.0150deg (rel_dev=0.2910)  ablated P*=2.0075deg (rel_dev=0.2937)  shift=0.0075deg  ablated_degenerate=False
+
+[item 2] r->conj(r) sensitivity check
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    [matched(r) PAIR_PAD]  narrow[1,4]: P*=   1.8571deg  R^2=0.8978  [interior optimum]
+    [matched(r) PAIR_ABSORB40]  narrow[1,4]: P*=   2.0301deg  R^2=0.7300  [interior optimum]
+    [matched(r) C80-C40]  narrow[1,4]: P*=   2.0150deg  R^2=0.8473  [interior optimum]
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    [conj(r) PAIR_PAD]  narrow[1,4]: P*=   2.1278deg  R^2=0.8575  [interior optimum]
+    [conj(r) PAIR_ABSORB40]  narrow[1,4]: P*=   2.4887deg  R^2=0.5570  [interior optimum]
+    [conj(r) C80-C40]  narrow[1,4]: P*=   2.2481deg  R^2=0.7198  [interior optimum]
+    pair_pad: matched P*=1.8571deg (INCONCLUSIVE)  conj P*=2.1278deg (INCONCLUSIVE)  flip=False
+    pair_absorb40: matched P*=2.0301deg (INCONCLUSIVE)  conj P*=2.4887deg (INCONCLUSIVE)  flip=False
+    c80_c40: matched P*=2.0150deg (SUPPORT)  conj P*=2.2481deg (SUPPORT)  flip=False
+    any verdict flip: False
+
+[frozen-prediction verification]
+    realizable_periods_within_0p0075deg_of_matched: predicted=<=0.0075deg  observed=0.00751879699248148  PASS=False
+    realizable_rescore_verdicts_unchanged: predicted=no verdict flips (matched vs realizable)  observed=False  PASS=True
+    pair_absorb40_ablated_exactly_degenerate: predicted=ss_tot==0.0 exactly (bit-identical across theta_beam grid)  observed=0.0  PASS=True
+    c80_c40_ablated_score_near_0p2937: predicted=~0.2937 (within ~0.01 of real 0.2910)  observed=0.2936507936507937  PASS=True
+    pair_pad_ablated_shift_near_0p15deg: predicted=~0.15deg  observed=0.15037593984962383  PASS=True
+    conj_r_zero_verdict_flips: predicted=zero verdict flips  observed=False  PASS=True
+    item1_original_run_reproduces_committed: predicted=bit-exact vs committed phase1_results.json  observed={'period_dev': {'pair_pad': 0.0, 'pair_absorb40': 0.0, 'c80_c40': 0.0}, 'verdicts_match': True, 'combined_match': True}  PASS=True
+    ALL FROZEN PREDICTIONS CONFIRMED: False
+
+wrote /home/user/photon-lab/experiments/081-t28-photonics-construction-total-field/phase4_results.json

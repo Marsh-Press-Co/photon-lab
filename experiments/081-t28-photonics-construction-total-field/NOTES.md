@@ -257,3 +257,42 @@ it in force, precisely, not by restatement:
 Full rationale, the pre-registered frozen predictions for the corrected
 re-run, and the Checkpoint ruling: `phase3_synthesis.md`. Confirmed numbers
 from the corrected re-run: `phase4_results.md`/`phase4_results.json`.
+
+---
+
+## PHASE 4 — TEST (confirmed)
+
+`photonics_construction.py`'s Phase-3 extensions run fresh, after
+`phase3_synthesis.md`'s frozen predictions were committed and pushed
+(`522e9fb`). Wiring check (`_image_term_curve_generic` vs
+`d80.photonics_image_term_curve`) and reproduction check (`item1_build_and_
+score()` vs the committed `phase1_results.json`) both bit-exact, confirmed
+before trusting anything new.
+
+**Six of six substantive frozen predictions confirmed exactly**: realizable-
+admittance verdicts unchanged (Combined NEITHER both families), `PAIR_
+ABSORB40` ablated signal exactly degenerate, `C80−C40` ablated score
+`0.29365` (vs predicted `≈0.2937`), `PAIR_PAD` ablated shift `0.15038°` (vs
+predicted `≈0.15°`), `conj(r)` zero verdict flips, item 1's original run
+reproduces bit-exact. **One literal miss, disclosed not smoothed over**: the
+realizable-vs-matched period shift is `0.0075188°`, just over the frozen
+`"≤0.0075°"` bound (`1.88×10⁻⁵°`) — a rounding-precision artifact of stating
+the bound from Red Team's own 4-decimal-rounded table, not a physics
+discrepancy; the substantive claim it tested (not outcome-determining: zero
+verdict flips, shift 3 orders of magnitude below the `rel_dev` gates) is
+confirmed exactly. Full table: `phase4_results.md`.
+
+Trust suite (`lab/validation/run_all.py --only 12346789`): **41/41 green**,
+re-run after this cycle's code changes. Zero `lab/` diff throughout.
+
+**Final Combined Verdict for item 1, stated plainly**: **NEITHER**
+(mechanically, under both admittance families) — **REFUTE-leaning**
+substantively, and more firmly than Phase 1's own hedge stated it: the lone
+`C80−C40` SUPPORT is proven, not merely argued, to require no wall
+reflectance at all (survives ablation to `r()=1` almost unchanged), so it is
+not evidence for a real y-wall echo mechanism; `PAIR_ABSORB40` alone carries
+genuine wall-reflectance content, but does not itself support the mechanism
+either (INCONCLUSIVE, `rel_dev=0.5139`, far from SUPPORT). The `r`-vs-`conj(r)`
+phase-convention question remains genuinely open (queued for Iteration 59's
+FDTD extension) but is shown not to be outcome-determining for this cycle's
+own verdict.
