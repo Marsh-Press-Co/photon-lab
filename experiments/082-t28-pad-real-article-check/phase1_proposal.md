@@ -226,6 +226,17 @@ disclosed as reduced-power, not gated as though it were.
 
 ## PHASE 1 RESULTS (self-scored, numbers copied from `results.json`/`run_output.txt`, never hand-typed)
 
+**[PHASE 3 — DIRECTOR SYNTHESIS APPLIED, superseding the language below in
+force.]** The verdict/self-score language in this section originally
+overclaimed a mechanism-continuity reading ("the PAD confound reaches the
+real scored channel," "the same lossless phase artifact reaches the scored
+channel") that Red Team's Phase-2 audit (`phase2_redteam_audit.md` §0d–k,
+Attack 1) showed is not established and is demonstrated — from four
+independent lines of evidence, not merely suspected — to be UNRESOLVABLE
+at this cycle's own 7-point statistical power. The text below has been
+edited in place to state the corrected reading; see `phase3_synthesis.md`
+for the full disposition of all six fix-docket items.
+
 **Reproduction precondition: PASSED, bit-exact.** This cycle's own freshly-run
 EMPTY leg at all 7 angles for both `C40` and `G40` reproduces
 `experiments/076-.../results.json::headline`'s committed `C_empty` values at
@@ -251,23 +262,78 @@ leg is trusted at all.
 31-point exp-076 figure — an apples-to-apples comparator at reduced power).
 `ratio = A_scene / A_empty = 0.6573`.
 
-**VERDICT: SURVIVES** (`ratio ∈ [0.5, 2.0]`, per the pre-registered band) —
-the PAD-sensitivity confound reaches the real, article-loaded Weber-contrast
-channel at roughly two-thirds the amplitude it shows on the empty-scene
-proxy channel, not comparable-but-larger and not collapsed. This is a
-genuine, decisive, non-boundary result: `0.6573` sits centrally inside the
-`[0.5,2.0]` SURVIVES band, nowhere near either the `0.2` CANCELS line or the
-`2.0`/`0.5` INCONCLUSIVE edges.
+**VERDICT: SURVIVES stands MECHANICALLY** (`ratio ∈ [0.5, 2.0]`, per the
+pre-registered band) — the pre-registered `ptp`-amplitude-ratio computation
+is correct, reproduces bit-exact against `results.json`, and `0.6573` sits
+centrally inside the `[0.5,2.0]` SURVIVES band, nowhere near either the
+`0.2` CANCELS line or the `2.0`/`0.5` INCONCLUSIVE edges — a genuine,
+decisive, non-boundary computation, not a marginal call.
 
-**Secondary metric (disclosed, not gating).** `A_scene / C_thr = 0.6815` —
-the real, article-loaded PAD confound's own amplitude is **68% of VISION's
-frozen photopic lab bar** on this specific 7-point/`PAIR_PAD` instance.
-Sub-threshold on this reading alone, but not negligible relative to the bar
-this program scores every constraint-3 citation against — a materially
-different picture from T16's own corrected `PAIR_PAD` empty-scene reading
-(`≈0.12×C_thr`, Iteration 54/R9): the confound's real-scene footprint is
-**roughly 5.5× larger relative to `C_thr`** than its already-corrected
-empty-scene-only reading was.
+**What this does NOT establish: mechanism continuity.** The stronger,
+substantive reading — "the PAD-sensitivity confound reaches the real,
+article-loaded Weber-contrast channel," i.e. that the SAME lossless
+phase-interference mechanism Iteration 53 characterized on the empty scene
+is what produces the measured `delta_scene(θ)` — is NOT established, and
+per Red Team's Phase-2 audit (`phase2_redteam_audit.md` §0d–k, Attack 1) is
+shown, not merely suspected, to be **UNRESOLVABLE at this cycle's own
+7-point statistical power**, on four independent, mutually-reinforcing
+lines of evidence (numbers copied from the audit, the source where they
+were independently computed — not re-derived here, per R4 discipline):
+
+1. **Exact permutation test**: the observed point-wise Pearson correlation
+   between `delta_scene(θ)` and `delta_empty(θ)`, `r=0.0306`, has exact
+   two-sided significance `p=0.953` under a full 7!-permutation test — the
+   exact critical value for α=0.05 at n=7 is `|r|≥0.746`, roughly **24×**
+   the observed magnitude. The observed correlation is closer to what pure
+   chance produces than to a coin flip.
+2. **Divergent free periods**: the sub-thread's own established
+   `free_period_with_widening` machinery, run directly on both series
+   (not merely inferred from `r`), fits `delta_scene` at P*=2.940° and
+   `delta_empty` at P*=1.015° — a **190%** relative divergence
+   (`rel_dev=1.896`), not a shared period.
+3. **Ground-truth check**: `delta_empty`'s 7 points are bit-identical
+   (independently confirmed) to `experiments/076-.../results.json`'s own
+   committed `PAIR_PAD` data, whose TRUE established period — the full
+   31-point fit — is `4.611289746337977°`. The 7-point reduction recovers
+   `1.015°` instead: a **78% miss**, with a spuriously high R²=0.864
+   reported alongside it.
+4. **Null-permutation control**: a 200,000-trial null-permutation control
+   (Gaussian noise at each series' own measured σ, run through the
+   identical real free-period search) shows `P(R²≥0.858)=0.272` for
+   `delta_scene`'s own R² and `P(R²≥0.864)=0.257` for `delta_empty`'s —
+   roughly a **quarter of pure-noise 7-point series** clear the same bar
+   both real series clear.
+
+None of this proves the two series are unrelated — that would itself
+require statistical power this instrument does not have at n=7. The honest
+finding is a third, sharper one than either raising Phase-2 critique
+(PHOTONICS, ELECTROMAGNETISM) reached: the shape/mechanism-identity
+question is demonstrated to be **below this instrument's own resolving
+power**, independent of which way the true answer lies — not merely
+"not yet resolved." Full numbers and derivations:
+`phase2_redteam_audit.md` §0d–0k (appended in force by reference).
+
+**Secondary metric (disclosed, not gating). Relabeled as an
+instrument-uncertainty-budget number, NOT a perceptual-detectability
+claim** — per VISION's own Phase-2 request (adopted in full,
+`phase2_redteam_audit.md` Attack 4) and VISION's own T3-precedent argument:
+`C_thr` is a static-scene JND threshold; `A_scene` is peak-to-peak of a
+*difference between two numerical domain-treatments* of the same scene,
+swept across angle — no human views that quantity directly. Units match
+(both dimensionless Weber contrast) but the KIND of quantity does not, so
+this is never phrased as "N% of the way to visible." `A_scene / C_thr =
+0.6815` on this specific 7-point/`PAIR_PAD`/flagship-article instance.
+Three correctly-labeled comparators against T16's own `PAIR_PAD`
+empty-scene reading, each measuring a different thing (VISION's own
+diagnosis was correct; VISION's own arithmetic executing it was not — Red
+Team's Attack 5 independently re-derives the corrected figure, cited here,
+not recomputed a third time):
+
+| Comparator | Value | What it measures |
+|---|---|---|
+| Naive / mismatched-convention | ≈5.5× | `A_scene/C_thr` divided by T16's raw single-sided fitted-carrier amplitude `√(A_i²+A_q²)/C_thr` — a `ptp`-vs-single-sided-amplitude convention mismatch, disclosed, not corrected out |
+| Properly like-for-like (`ptp`-to-`ptp`-equivalent) | ≈2.77× | `A_scene` divided by T16's own figure doubled to its `ptp`-equivalent (`2×6.1530×10⁻⁴=1.2306×10⁻³`) — Red Team's own independent re-derivation, `phase2_redteam_audit.md` §0l |
+| T16's own historical empty-scene-only reading | ≈0.12× | `√(A_i²+A_q²)/C_thr` at Iteration 54/R9 |
 
 **Settling precondition (disclosed, not gating).** `|C(G40,39°,article,
 STEPS=2800) − C(G40,39°,article,STEPS=1400)| = 5.452×10⁻⁵` absolute,
@@ -278,21 +344,53 @@ article-loaded scene needs materially more settling than the empty scene
 already established as sufficient at STEPS=2800.
 
 **Combined self-score: SUPPORT for "this is charter-relevant, information-
-dense, and warranted the FDTD spend."** The PAD-sensitivity axis this
+dense, and warranted the FDTD spend" — scoped explicitly to the flagship,
+strongly-absorbing article class only.** The PAD-sensitivity axis this
 nine-cycle sub-thread has characterized as a boundary-domain artifact does
 **not** cleanly cancel in the object-minus-flank subtraction real
-constraint-3 scoring performs — it survives at material (not negligible,
-not dominant) amplitude. Every future ambient-contrast citation at a
-`FALLBACK_ANGLES`/dense-window-adjacent geometry in this bench's own
-congruent-series family should now disclose this as a named, quantified,
-non-hypothetical confound, not merely a theoretical risk (exp-076/077/078's
-own prior framing) — the empty-scene-only status this finding carried for
-six cycles is retired by this result.
+constraint-3 scoring performs on **this one article**
+(`materials.graded_black_shell`+`pec_disk`, `C≈−0.55`) — a comparable-scale
+oscillation survives at material (not negligible, not dominant) amplitude,
+mechanically. **No claim is made here about "real absorbing articles" in
+general, or about the channel independent of which article occupies it**
+— per MATERIALS' own Phase-2 finding (`phase2_redteam_audit.md` Attack 2):
+the one article tested sits ~100× past `C_thr` by design, and nothing here
+bears on whether a near-threshold σ(I) article would show a comparable
+reading. Any future ambient-contrast citation at a `FALLBACK_ANGLES`/
+dense-window-adjacent geometry, using this same flagship-article
+construction, should now disclose the confound's measured presence at
+this scale as a named, quantified, non-hypothetical finding on THAT
+article class — not generalized further.
 
-**What this result does NOT establish** (idealizations 1–5, restated):
-single wavelength (600nm), single pair (`PAIR_PAD` only, not `PAIR_ABSORB40`
-or `C80−C40`), 7-angle reduced power (not the full 31-point/0.2° sweep — a
-period/shape re-fit at this reduced power was not attempted, only an
-amplitude-ratio comparison), one article (the flagship absorber only, not
-a weaker σ(I)-style near-null article), one settling spot-check (not a full
-convergence study).
+**Mechanism-identity: one open question, not two footnotes.** Per Red
+Team's Attack 3, THERMODYNAMICS' own finding (Iteration 53's `PAIR_PAD`
+losslessness proof is a property of `lab/fdtd2d.py`'s damping-mask
+construction, proven empty-scene-only, never re-verified with a real
+absorber sitting inside the coherent echo's own round-trip path) and this
+section's own shape-evidence finding (above) are the SAME underlying
+question asked from two different charter angles — energy-accounting and
+statistical-shape — not independent risks. Neither line of evidence alone
+settles whether `delta_scene(θ)` is still the proven-lossless empty-scene
+phase effect, now merely observed through the article's own large shadow
+term and the nonlinear Weber-contrast ratio, or a qualitatively different,
+article-mediated (possibly absorption-coupled) interaction of similar
+scale. This is recorded as one open question for a future cycle, most
+directly addressed by the already-named full 31-point window at this same
+`PAIR_PAD` pair (idealization 2's own natural follow-up), which would give
+the free-period search the statistical power this cycle's own 7-point
+reduction demonstrably lacks.
+
+**What this result does NOT establish** (idealizations 1–5, restated, plus
+the mechanism-identity question above): single wavelength (600nm), single
+pair (`PAIR_PAD` only, not `PAIR_ABSORB40` or `C80−C40`), 7-angle reduced
+power (not the full 31-point/0.2° sweep — a period/shape re-fit at this
+reduced power was attempted directly by Red Team's own audit and shown to
+fail even on ground-truth data, not merely "not attempted"), one article
+(the flagship absorber only — see Combined self-score above; a weaker
+σ(I)-style near-null article is a named "Next" item, not tested here), one
+settling spot-check (not a full convergence study, though corroborated by
+a second, independent spot-check at a different angle/STEPS pair, EM's own
+Phase-2 finding), and — the item this correction adds — whether the
+measured confound is mechanistically the SAME `PAIR_PAD` phase effect or a
+qualitatively different one (open, per above, not resolvable at this
+cycle's own power).
