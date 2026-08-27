@@ -1,0 +1,64 @@
+{
+  "n_trials": 2000,
+  "seed": 7,
+  "n_points": 31,
+  "per_target": {
+    "c80_c40": {
+      "p_real_deg": 2.8421052631578947,
+      "p_null_rel_dev_le_030": 0.2635,
+      "p_null_r2_ge_observed": 0.654,
+      "window_counts": {
+        "narrow[1,4]": 1851,
+        "wide[1,15]": 148,
+        "widest[1,60]": 1
+      }
+    },
+    "pair_pad": {
+      "p_real_deg": 4.611289746337977,
+      "p_null_rel_dev_le_030": 0.137,
+      "p_null_r2_ge_observed": 0.784,
+      "window_counts": {
+        "narrow[1,4]": 1853,
+        "wide[1,15]": 145,
+        "widest[1,60]": 2
+      }
+    },
+    "pair_absorb40": {
+      "p_real_deg": 4.176134333690603,
+      "p_null_rel_dev_le_030": 0.1615,
+      "p_null_r2_ge_observed": 0.6795,
+      "window_counts": {
+        "narrow[1,4]": 1852,
+        "wide[1,15]": 144,
+        "widest[1,60]": 4
+      }
+    }
+  },
+  "observed": {
+    "c80_c40": {
+      "rel_dev": 0.12962962962962957,
+      "p_model_deg": 3.2105263157894735,
+      "r_squared": 0.1530097869774515
+    },
+    "pair_pad": {
+      "rel_dev": 0.31355136893135443,
+      "p_model_deg": 3.1654135338345863,
+      "r_squared": 0.1331180760669618
+    },
+    "pair_absorb40": {
+      "rel_dev": 0.23302095601738534,
+      "p_model_deg": 3.2030075187969924,
+      "r_squared": 0.1493191248004927
+    }
+  },
+  "joint": {
+    "distribution_k_of_3": {
+      "0": 0.5525,
+      "1": 0.3675,
+      "2": 0.074,
+      "3": 0.006
+    },
+    "p_ge2_of_3": 0.08,
+    "observed_n_support": 2
+  }
+}
