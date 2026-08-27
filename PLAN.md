@@ -22,7 +22,67 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-26, panel Iteration 54 done (exp-077, PARTIAL,
+## Current state (2026-08-26, panel Iteration 55 done (exp-078, PARTIAL,
+Test-A-only official result INCONCLUSIVE (0/3 SUPPORT, 0/3 REFUTE) for
+the y-direction (transverse-normal) wall-echo period pre-screen — T28's
+first genuinely new, untested mechanism candidate since Iteration 52 —
+**CHECKPOINT criterion 4 does NOT fire** (ruled a close call, not a clean
+one) — PHOTONICS lead by rotation, executing LOGBOOK.md's own
+Iteration-54 (exp-077) Tier-0 #2 queue item (PHOTONICS+EM #1): derive the
+y-wall's grazing-incidence period from scratch and pre-screen it against
+T28's established periods, zero new FDTD. Full five-phase cycle: Phase 1
+self-scored INCONCLUSIVE (2/3 period comparisons SUPPORT, `PAIR_PAD` —
+T28's actual dominant target — just missed) → five blind Phase-2
+critiques, unanimous support-with-changes (MATERIALS + ELECTROMAGNETISM +
+THERMODYNAMICS independently caught a load-bearing angle-convention bug —
+`reflection_coefficient` fed raw `theta` instead of the geometrically
+correct `90-theta` for a y-stratified wall; VISION disconfirmed a false
+"near-noise-floor" framing; QUANTUM's own 2,000-trial null control on the
+as-filed model scored `p=0.080`) → Red Team's Phase-2 audit
+(PROCEED-WITH-MANDATORY-FIXES, 7 items, zero overridden; ran a FULL
+corrected re-score, not a spot-check: **0/3 SUPPORT**, down from the
+as-filed 2/3 — both nominal SUPPORTs were entirely angle-convention
+artifacts) → Phase 3 (fix folded into the committed script as primary,
+FROZEN PREDICTIONS committed before the corrected re-run) → Phase 4
+(every frozen number CONFIRMED exactly; a fresh house-standard
+20,000-trial null-calibration against the corrected model found nothing
+distinguishable from noise) → six blind Phase-5 reviews, unanimous
+PARTIAL (PHOTONICS + THERMODYNAMICS + VISION, three independent methods,
+converged that `PAIR_PAD` is provably energy-blind/structurally
+under-informative under this model; VISION + THERMODYNAMICS caught the
+write-up's own `§5.2` table was never regenerated at the corrected angle;
+MATERIALS re-ranked the standing realizable-admittance refit toward the
+x-wall; **ELECTROMAGNETISM found even the "corrected" `90-theta` angle is
+itself not the physically rigorous incidence angle** for this model's
+own point-source construction — the rigorous, per-config-constant
+stationary-phase bounce angle collapses the predicted curve to exactly
+flat) → **Red Team's Phase-5 final audit independently confirmed EM's
+finding bit-exact, then extended it**: built the doubly-corrected curve
+directly, flat to float precision for all five configs (`ss_tot` ratio to
+real data's own scale `5.9×10⁻²⁷`), diagnosed a NEW spurious-R²-on-a-flat-
+array trap, hardened into the shared diagnostic (`SS_TOT_DEGENERATE`).
+**Combined Verdict: PARTIAL** — the official INCONCLUSIVE stands, verified
+bit-exact, and is sharpened (not reversed) by the Phase-5 finding: this
+specific edge-image/single-near-wall reduction, evaluated at its own
+internally-consistent angle, predicts no oscillatory signal at all — a
+decisively stronger negative than an ordinary INCONCLUSIVE, but not a
+formal REFUTE (the pre-registered band presupposes two comparably-
+determined nonzero periods) and NOT the closing of the y-wall mechanism
+class (the full non-edge-reduced aperture sum and far-wall pair remain
+untested). **Checkpoint criterion 4 ruled a close call, not clean**:
+three independent Phase-5 findings (EM's angle-within-angle defect,
+VISION's stale table, THERMODYNAMICS' partially-executed docket item)
+were all caught within this same cycle's own review layer, matching
+Iterations 51/53's non-firing pattern, distinguished explicitly from
+Iterations 49/50/52/54's firing precedents — the reason it doesn't fire
+is that Red Team's own audit actually computed the alternate case rather
+than filing it unverified. **Checkpoint criterion 2 ruled NOT YET RIPE.**
+A same-shift 7-item mandatory-fix docket (NOTES.md written — was
+missing; `§5.2`'s stale table refreshed; a stale digit corrected; a
+Fisher-combined omnibus statistic wired in; the new `SS_TOT_DEGENERATE`
+guard added) closed same-shift, zero `lab/` diff, pure desk analysis
+throughout. Full record: `experiments/078-t28-y-wall-echo-prescreen/`,
+LOGBOOK.md Iteration 55); panel Iteration 54 done (exp-077, PARTIAL,
 Combined Verdict REFUTE for both `PAIR_PAD` and `PAIR_ABSORB40` on the
 complete two-wall coherent-echo instrument, **CHECKPOINT criterion 4
 FIRES** (12th time, notification not a pause; new standing rule **R9**
@@ -2991,11 +3051,84 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
-- **[ACTIVE — Iteration 55 queue, Red Team's Phase-5 final-audit
-  reconciliation of exp-077's six seats (`experiments/077-.../
-  phase5_redteam_audit.md` §6); supersedes the Iteration-54 queue below
+- **[ACTIVE — Iteration 56 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-078's six seats (`experiments/078-.../
+  phase5_redteam_audit.md` §7); supersedes the Iteration-55 queue below
   as the active ranking, that block retained as valid backlog, not
-  deleted]** exp-077 REFUTEd the x-normal, unrealizable-admittance
+  deleted]** exp-078's y-wall echo pre-screen is INCONCLUSIVE (Test-A-only,
+  0/3 SUPPORT, 0/3 REFUTE) under the geometrically corrected `90-theta`
+  angle — sharpened further by Red Team's own Phase-5 finding that the
+  SAME edge-image/single-near-wall reduction, evaluated at its own
+  physically rigorous (per-config-constant, `theta_beam`-independent)
+  stationary-phase bounce angle, predicts EXACTLY ZERO oscillatory signal
+  (`ptp=0.000°`, all five configs) — a decisively stronger negative than
+  an ordinary INCONCLUSIVE, but NOT the closing of the y-wall mechanism
+  class (Checkpoint criterion 2 ruled not yet ripe; the full non-edge-
+  reduced aperture sum and the far-wall pair remain untested). **Tier 0 —
+  zero FDTD, run as one batch:** (1) **does the flat/zero-signal result
+  generalize from the single-edge reduction to the FULL, non-edge-reduced
+  y-mirrored aperture sum?** (merges EM's and QUANTUM's own picks,
+  sharpened by Red Team's own audit into a concrete, answerable question)
+  — each aperture point has its own per-point rigorous bounce angle
+  (unlike the single-edge case's shared constant); `phase1_proposal.md`'s
+  own §3.2 stationary-phase argument already predicts edge-domination
+  should hold for the full sum too, but this is a prediction, not yet
+  computed — the single most information-dense item on the whole T28
+  board: if it confirms, the y-wall self-echo-off-the-near-wall
+  coherent-echo sub-class is close to formally exhausted at the desk
+  level, without ever writing the full propagator; if it does NOT
+  generalize, that is itself the discovery of genuine `theta_beam`-
+  dependence this seven-cycle sub-thread has never found evidence for,
+  and would justify the full build for the first time. (2) this cycle's
+  own record-hygiene docket (DONE, LOGBOOK.md Iteration 55 — listed here
+  only for completeness). (3) **retarget the still-unexecuted
+  realizable-admittance (`mu_r=1`) refit at the X-WALL's own two-wall
+  model**, not the y-wall (MATERIALS' own re-ranking, confirmed by Red
+  Team: the y-wall's period is admittance-choice-invariant, Pearson
+  `r>0.9997`; the x-wall's own marginal Test-B numbers, `r²=0.0001–0.0418`
+  from exp-077, remain the only place this substitution could plausibly
+  move a verdict) — carried unexecuted from exp-077's own Iteration-55
+  ranking, still not run two cycles later. (4) the Fisher-combined
+  omnibus statistic (DONE, this shift — listed for completeness). (5)
+  **gate the already-collected 750nm two-wall x-wall spot-check** with a
+  properly-sized null and decide — the single oldest deferred item on the
+  whole T28 board, carried unexecuted from exp-077's own ranking through
+  exp-078 unchanged. (6) the `ss_tot`-scale sanity guard (DONE, this
+  shift — listed for completeness). (7) **pre-register the amplitude/
+  normalization convention for any future Test-B build, BEFORE it is
+  built** (VISION's own forward R9 guard) — cheap, documentation-only,
+  directly forecloses a fourth instance of R9's own failure shape in this
+  exact sub-thread. **Tier 1 — cheap FDTD, next:** (8) the full-width,
+  non-aliased second-wavelength (`G40`) leg (QUANTUM — the standing
+  precondition, now deferred across THREE consecutive cycles: exp-076,
+  exp-077, exp-078) — the cheapest remaining FDTD test of whether T28's
+  periodicity is a real, wavelength-scaling-consistent physical effect at
+  all, independent of which mechanism is being chased. (9) broadband
+  pulsed reflectance spectroscopy of the `ABSORB` boundary
+  (THERMODYNAMICS, carried from Iteration 53). **Tier 2 — the standing
+  charter-relevant test:** (10) **test whether the `PAD`-sensitivity
+  survives with a real absorbing article loaded** (VISION/THERMODYNAMICS
+  — now deferred across THREE consecutive cycles: exp-076, exp-077,
+  exp-078, each cycle's own ranking naming it explicitly and each one
+  declining to run it). Per the Iteration-54 ranking's own standing
+  instruction ("should not be deferred a third time without an explicit
+  reason"), exp-078 gave no such reason — **this is now the single most
+  overdue item on the whole T28 board and should not be deferred a
+  fourth time without one stated explicitly in Iteration 56's own
+  synthesis.** **Tier 3 — governance:** (11) Checkpoint criterion 2
+  (mechanism-class boundary) ruled NOT YET RIPE this cycle — at least
+  four concrete, unpriced items remain open (item 1's own generalization
+  question, the far-wall/far-edge pair, the x-wall's realizable-
+  admittance refit, and the wavelength-generality leg, item 8). None of
+  the above re-opens or re-proposes any RULED-OUT item (R1–R9); item 1's
+  own full-aperture-sum question and the x-wall realizable-admittance
+  refit are new instances of the already-permitted coherent-echo
+  mechanism class applied to configurations no prior cycle has tested,
+  not resurrections of anything closed. Full record: `experiments/078-
+  t28-y-wall-echo-prescreen/`, LOGBOOK.md Iteration 55.
+- **[superseded by the Iteration-56 queue above — exp-077's own docket,
+  retained as a pointer to its own history, not deleted]** exp-077
+  REFUTEd the x-normal, unrealizable-admittance
   coherent-echo mechanism for both `PAIR_PAD` and `PAIR_ABSORB40` on the
   complete two-wall instrument — real, well-earned negative evidence, but
   NOT the closing of the coherent-echo mechanism class (Checkpoint
