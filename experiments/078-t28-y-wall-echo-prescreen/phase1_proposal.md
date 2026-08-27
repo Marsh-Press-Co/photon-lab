@@ -262,33 +262,53 @@ data is correct before scoring the model against them.
 
 `C60`/`C70` (deep `ABSORB`, `\|r\|≈10⁻⁴`) run to the search boundary at
 every widened stage, converging on implausibly high `R²` (`0.98`/`0.87`)
-at a 60° period — a signature of fitting a near-degenerate, numerically
+at a 60° period — ~~a signature of fitting a near-degenerate, numerically
 ill-conditioned quantity (`arg()` of a complex number whose magnitude is
 within an order of magnitude of float noise in the underlying transfer-
-matrix recursion), not a physical oscillation. **Neither `C60` nor `C70`
-is used in any scored comparison below** (they enter no `PAIR_*`
+matrix recursion), not a physical oscillation~~. **CORRECTED (Phase 2,
+VISION SCIENCE's critique, independently re-verified by Red Team via a
+from-scratch 50-digit `mpmath` reimplementation): this "float noise"
+claim is FALSE.** These `\|r\|` values are resolved to 11–13 significant
+figures — twelve orders of magnitude above where genuine IEEE-754 float
+noise (`~10⁻¹⁶` relative) would sit. The at-boundary behavior is real
+model behavior at these depths, not a numerical artifact; the correct
+caution is THERMODYNAMICS' physical one instead (§7). **Neither `C60` nor
+`C70` is used in any scored comparison below** (they enter no `PAIR_*`
 combination this cycle scores), but `C80` — whose own `\|r\|` is smaller
 still (`3×10⁻⁵`–`1×10⁻⁴`) — **is** used in two of the three scored
-comparisons (`C80−C40` and `PAIR_ABSORB40`), and its own free-period
-search, while nominally "interior" (not literally at the grid boundary),
-rests on the same near-noise-floor `\|r\|` regime. This is the single
-biggest reason for caution in §7.
+comparisons (`C80−C40` and `PAIR_ABSORB40`).
 
 ### 5.3 — Primary model: `PAIR_PAD`/`PAIR_ABSORB40`/`C80−C40` deltas, scored against real periods
 
-| comparison | P*_real | P*_model | rel_dev | Test-A-only verdict |
-|---|---|---|---|---|
-| `C80−C40` | `2.8421°` | `3.2105°` | `0.1296` | SUPPORT |
-| `PAIR_PAD` (T28's actual dominant target) | `4.6113°` | `3.1654°` | `0.3136` | **INCONCLUSIVE** (just over the 0.30 bar) |
-| `PAIR_ABSORB40` | `4.1761°` | `3.2030°` | `0.2330` | SUPPORT |
+**CORRECTED (Phase 2 Red Team audit `phase2_redteam_audit.md` Attack 1,
+folded into `y_wall_prescreen.py` at Phase 3 as the primary,
+pre-registered computation — see `phase3_synthesis.md`/`phase4_results.
+md`): the table below is the AS-ORIGINALLY-FILED (incorrect-angle)
+version, retained for the record. The CORRECTED table (Sec [5]/[5b] of
+`y_wall_prescreen_results.json`, `phase4_results.md`) is:**
 
-Model R² at these three comparisons: `0.1530` / `0.1331` / `0.1493` —
-**all far below** the real data's own established R² (`0.63`–`0.82`) and
-below the R² this program has previously treated as even a "soft" CONFIRM
-(exp-070's own P-070-1, R²≈0.26–0.30, was itself scored "softer than
-first read"). No comparison here runs to a search boundary (§5.4's flag
-in the script output is `False` for all three), but that only means an
-interior optimum exists — it does not mean the fit is strong.
+| comparison | P*_real | P*_model (AS-FILED → CORRECTED) | rel_dev (AS-FILED → CORRECTED) | verdict (AS-FILED → CORRECTED) |
+|---|---|---|---|---|
+| `C80−C40` | `2.8421°` | `3.2105° → 4.0000°` (corrected: at search boundary, every widened stage to 60°) | `0.1296 → 0.4074` | SUPPORT → **INCONCLUSIVE** |
+| `PAIR_PAD` (T28's actual dominant target) | `4.6113°` | `3.1654° → 3.2180°` | `0.3136 → 0.3021` | INCONCLUSIVE → **INCONCLUSIVE** (essentially unmoved — `C40`/`G40` share `ABSORB=40`, so `r(θ;40)` is identical under either angle convention) |
+| `PAIR_ABSORB40` | `4.1761°` | `3.2030° → 2.8045°` | `0.2330 → 0.3284` | SUPPORT → **INCONCLUSIVE** |
+
+**Corrected summary: 0/3 SUPPORT, 0/3 REFUTE** (down from the as-filed
+2/3 SUPPORT). Both nominal SUPPORT verdicts were entirely an
+angle-convention artifact — see §1's correction note above.
+
+Original text (as-filed, retained for the record): Model R² at these
+three comparisons: `0.1530` / `0.1331` / `0.1493` — **all far below** the
+real data's own established R² (`0.63`–`0.82`) and below the R² this
+program has previously treated as even a "soft" CONFIRM (exp-070's own
+P-070-1, R²≈0.26–0.30, was itself scored "softer than first read"). No
+comparison here runs to a search boundary (§5.4's flag in the script
+output is `False` for all three), but that only means an interior
+optimum exists — it does not mean the fit is strong. **CORRECTED: under
+the fixed angle, `C80−C40`'s R² climbs to an implausible `0.95`–`0.97` at
+a non-resolving 60° "period" (at-boundary at every stage — no real
+interior optimum), while `PAIR_PAD`/`PAIR_ABSORB40`'s corrected R²
+(`0.1563`/`0.1216`) remain in the same weak range as before.**
 
 ### 5.4 — Secondary, naive coordinate-swap candidates (R5-flagged, not evidence)
 
@@ -356,6 +376,78 @@ a search, not a derivation.
 
 ## 7. Self-scored verdict
 
+**SUPERSEDED — see the rewritten verdict immediately below (Phase 3,
+mandatory-fix docket item 5). The original text is retained underneath for
+the record, per house convention, but should not be cited on its own.**
+
+### 7 (CORRECTED) — Self-scored verdict, rewritten around the corrected numbers
+
+**INCONCLUSIVE (Test-A-only reading), same bottom line as originally
+filed, but for different, corrected reasons.** Under the geometrically
+correct angle (§1/§5.3 corrections), the picture is **0/3 SUPPORT, 0/3
+REFUTE** — not the as-filed 2/3-SUPPORT picture the original §7 argued
+from. None of the three corrected `rel_dev` values (`0.30`–`0.41`) reach
+the `>1.00` REFUTE bar either, so this remains a genuine INCONCLUSIVE, not
+a REFUTE: this pre-screen still does not desk-close the y-wall echo
+mechanism class. But every one of the original three reasons behind that
+INCONCLUSIVE call needs restating:
+
+1. **All three comparisons now land INCONCLUSIVE, none SUPPORT.** The
+   original document's headline concern — that the one comparison built
+   from the least-degenerate, most-trustworthy pair (`PAIR_PAD`) was the
+   one that failed to clear SUPPORT while two contaminated comparisons
+   did — is moot: no comparison clears SUPPORT under the corrected angle.
+   `PAIR_PAD` itself is essentially unmoved (`0.3136→0.3021`), confirming
+   THERMODYNAMICS' Phase-2 finding that this comparison is structurally
+   insensitive to the angle bug (shared `ABSORB=40` on both sides).
+2. **`C80−C40`'s corrected model has no resolvable interior-optimum
+   period at all** in this window (runs to the search boundary at every
+   widened stage, `narrow[1,4]→wide[1,15]→widest[1,60]`, `R²` climbing to
+   an implausible `0.95`–`0.97` at a 60° "period" — the file's own
+   `model_period_runs_to_boundary`-style diagnostic for "not a
+   well-constrained period"). This is a materially worse result than the
+   as-filed document's own nominal SUPPORT for this comparison, not
+   merely a downgrade.
+3. **The "near-noise-floor" framing for `C60`/`C70`/`C80` was wrong**
+   (VISION's Phase-2 finding, independently re-verified by Red Team from
+   scratch): those `\|r\|` values are resolved to 11–13 significant
+   figures, not float noise. The correct caution is THERMODYNAMICS'
+   physical one: near-total absorption (`≥99.9999%` at `ABSORB=80`)
+   leaves little energy budget for a physically well-posed coherent phase
+   signature to ride on, independent of whether the number computing
+   that phase is numerically trustworthy.
+4. **R² remains weak under the corrected model** (`0.12`–`0.25` at the
+   three scored comparisons, `C80−C40`'s own high value belonging to its
+   non-resolving 60° fit, not a genuine tight match) — still far below
+   the real data's own established R² (`0.63`–`0.82`).
+5. **A fresh, house-standard (20,000-trial) null-calibration control
+   against the corrected model** (`phase4_null_calibration_corrected.py`,
+   Phase 4, mandatory-fix docket item 6 — retargeted from QUANTUM's own
+   2,000-trial Phase-2 control, which tested the wrong, as-filed model)
+   — see `phase4_results.md` for the numbers; expected (per
+   `phase3_synthesis.md`'s frozen prediction) to show these `rel_dev`/R²
+   values are not distinguishable from pure noise at the conventional
+   0.05 level either, reinforcing rather than undermining this
+   INCONCLUSIVE reading.
+
+**The honest bottom line, corrected**: this candidate mechanism still
+survives the cheap period pre-screen in the weak sense that nothing here
+positively REFUTEs it — but the pre-screen's own evidence for it, which
+the as-filed document read as "weak but present" (2 of 3 comparisons
+clearing SUPPORT), is now **entirely absent** (0 of 3), and one of the two
+comparisons that appeared to support it does not even have a resolvable
+period under the correct physics. **This lowers, not raises, the case for
+building the full y-mirrored coherent propagator** relative to the
+as-filed document's own recommendation. The mechanism class is not
+desk-closed by this pre-screen (a period pre-screen cannot close a
+mechanism class on its own, and `PAIR_PAD` — the actual target of
+interest — was never close to SUPPORT under either angle convention), but
+nothing in the corrected numbers argues for spending the effort on the
+full model either. See `phase4_results.md`/`phase3_synthesis.md` for the
+full accounting and Iteration-56's own ranking for what this narrows.
+
+### 7 (AS-ORIGINALLY FILED, superseded, retained for the record)
+
 **INCONCLUSIVE (Test-A-only reading) — this pre-screen does NOT desk-close
 the y-wall echo mechanism the way EM's own caution hoped it might, but it
 also does not license treating the period match as real support for
@@ -416,6 +508,39 @@ to see whether the two nominal "SUPPORT" comparisons survive once the
 near-noise-floor configs are properly downweighted. Only if both of those
 cheap checks still look encouraging does building the full model become
 justified.
+
+**CORRECTED post-Phase-2/3/4 (see `phase2_redteam_audit.md`,
+`phase3_synthesis.md`, `phase4_results.md`): this entire §7, as originally
+drafted, rested on numbers computed with `reflection_coefficient`
+evaluated at the WRONG angle for a y-stratified wall (raw sweep `theta`,
+not the geometrically correct `90-theta` — MATERIALS, ELECTROMAGNETISM,
+and THERMODYNAMICS independently caught this at Phase 2; Red Team's audit
+independently re-derived it a fourth way and ran the full corrected
+re-score). Under the corrected angle, BOTH nominal SUPPORT comparisons
+(`C80−C40`, `PAIR_ABSORB40`) flip to INCONCLUSIVE, and `C80−C40`'s own
+corrected model loses its resolvable interior-optimum period entirely
+(runs to the search boundary at every widened stage up to 60°).
+**Corrected summary: 0/3 SUPPORT, 0/3 REFUTE** (not the 2/3-SUPPORT
+picture the rest of this section describes). The self-scored bottom line
+(INCONCLUSIVE, do not yet build the full propagator) happens to survive —
+none of the corrected `rel_dev` values reach REFUTE either — but survives
+*by coincidence of separately-wrong reasoning*, per Red Team's own
+finding: reason 1 above ("2 of 3 raw comparisons clear SUPPORT") is false
+under the corrected angle; reason 2's "near-noise-floor" framing for
+`C60`/`C70`/`C80` is independently disconfirmed by VISION's own
+Phase-2 critique (those `\|r\|` values are resolved to 11–13 significant
+figures, not float noise) — replaced by THERMODYNAMICS' *physical*
+caution instead: near-total absorption (`≥99.9999%` at `C80`) leaves
+little energy budget for a physically well-posed coherent phase
+signature, independent of the number's own numerical trustworthiness;
+reason 3 (low R², `0.13`–`0.15`) still holds under the corrected numbers
+(`0.12`–`0.25`), now reinforced by a fresh 20,000-trial null-calibration
+control against the corrected model (`phase4_null_calibration_corrected.
+py`, house standard, retargeted from QUANTUM's own 2,000-trial Phase-2
+pass which tested the wrong model) — see `phase4_results.md` for the
+final numbers. See `phase3_synthesis.md` §3 for the frozen predictions
+this correction was checked against before the corrected script was run,
+and the corrected §5.2/§5.3 tables immediately below.
 
 ---
 

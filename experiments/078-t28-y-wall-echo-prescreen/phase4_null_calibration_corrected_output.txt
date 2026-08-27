@@ -1,0 +1,8 @@
+==============================================================================
+exp-078 Phase 4 -- fresh 20,000-trial null-calibration against the
+CORRECTED primary model (mandatory-fix docket item 6)
+==============================================================================
+n_trials=20000, seed=7, N=31 points (real theta grid, 36-42deg, 0.2deg step) -- i.i.d. N(0,1) noise, scale-invariant for P*/R^2. Targets read from the CORRECTED y_wall_prescreen_results.json (post Phase-3 angle-convention fix), not the as-filed (wrong-angle) numbers QUANTUM's own Phase-2 control (n_trials=2,000) targeted.
+OBSERVED (corrected primary model): 0 of 3 comparisons SUPPORT (c80_c40 rel_dev=0.4074, pair_pad rel_dev=0.3021, pair_absorb40 rel_dev=0.3284) -- note this is 0/3 under the corrected model (down from the as-filed 2/3), so the per-target 'how close to real is this, relative to noise' questions below are the informative ones; the joint 'P(>=2 of 3 SUPPORT)' framing QUANTUM's Phase-2 control used no longer applies to an observed count of 0.
+
+[1] PER-COMPARISON NULL (independent 20000-trial noise draw per target)

@@ -17,8 +17,11 @@ ZERO new FDTD calls. Imports, never reimplements (R4):
     computed `REFERENCE_PERIODS` / `primary_model_pair_deltas` results
     (read from the committed JSON, not hand-typed).
   - `pad_round_trip_model.py` (exp-077): the null-generation PATTERN this
-    file is explicitly asked to reuse (20,000-trial i.i.d. Gaussian noise,
-    scale-invariant for period/R^2 purposes, `seed=7`) -- the STAGED-
+    file is explicitly asked to reuse (i.i.d. Gaussian noise, scale-invariant
+    for period/R^2 purposes, `seed=7`; this Phase-2 critique turn runs
+    `n_trials=2,000` as a disclosed time-budget reduction from this
+    program's own usual 20,000-trial standard -- see the runtime print
+    below -- not the full house standard) -- the STAGED-
     WIDENING HARNESS (narrow[1,4]->wide[1,15]->widest[1,60]) is copied
     verbatim from `y_wall_prescreen.py`'s own `free_period_with_widening`
     (a data structure -- the stage list -- not a reimplementation of the
@@ -26,8 +29,10 @@ ZERO new FDTD calls. Imports, never reimplements (R4):
 
 WHAT THIS FILE DOES:
   [1] For EACH of the three primary-model comparisons (`c80_c40`,
-      `pair_pad`, `pair_absorb40`), draw 20,000 independent i.i.d.
-      N(0,1) 31-point noise curves on the REAL angle grid, run them through
+      `pair_pad`, `pair_absorb40`), draw `n_trials` (2,000 this run;
+      see the runtime print for the disclosed reduction from this
+      program's usual 20,000) independent i.i.d. N(0,1) 31-point noise
+      curves on the REAL angle grid, run them through
       the IDENTICAL staged free-period search y_wall_prescreen.py's own
       model curves went through, and compute P(rel_dev<=0.30) and
       P(R^2>=observed) against that comparison's own real reference period
@@ -160,7 +165,7 @@ def main():
            "observed": {}}
 
     # ---- [1] per-target single-comparison null ----
-    print("\n[1] PER-COMPARISON NULL (independent 20,000-trial noise draw per target)")
+    print(f"\n[1] PER-COMPARISON NULL (independent {n_trials}-trial noise draw per target)")
     single_hits = {}  # trial-indexed boolean arrays, for the joint check below
     for key, p_real in TARGETS.items():
         obs_rel_dev, obs_p_model, obs_r2 = OBSERVED[key]
