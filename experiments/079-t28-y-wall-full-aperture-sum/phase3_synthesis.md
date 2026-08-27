@@ -122,6 +122,31 @@ within a few hundredths of a degree of the r-weighted model's own periods;
 `PAIR_ABSORB40`'s ablated delta expected to be small-to-exactly-zero given
 G40/C80's shared geometry. **Confirmed exactly** — see `phase4_results.md`.
 
+## 4b. The standing PAD-sensitivity-with-real-article deferral — explicit reason (added at Phase 5, THERMODYNAMICS' catch)
+
+**Gap acknowledged**: exp-078's own Iteration-56 ranking (PLAN.md, Tier 2
+item 11) bound this cycle explicitly — the PAD-sensitivity-survives-a-real-
+absorbing-article test "should not be deferred a fourth time without one
+stated explicitly in Iteration 56's own synthesis." This document, as
+originally written, did not address that instruction at all — caught only
+at Phase 5 (THERMODYNAMICS' review), not before. Stated here, now,
+properly late but on the record rather than silently left unaddressed:
+
+**Reason for this fourth deferral**: this cycle's own assigned task was
+Iteration-55's Tier-0 item 1 — the single highest-ranked item on the whole
+T28 board, a zero-FDTD desk item Red Team's own audit independently judged
+the correct next test (`phase2_redteam_audit.md` §9 item 9's own priority
+framing: item 1 first, because its outcome could retire an entire
+mechanism sub-class at the desk level before any further FDTD spend).
+Running the PAD-sensitivity/real-article test in the same cycle was never
+in this cycle's own scope — it is real FDTD work (Tier 2, cheaper-tier
+work explicitly ranked behind Tier-0 desk items in every T28 cycle's own
+established sequencing since Iteration 53) and was not budgeted here. This
+is a scheduling reason, not a judgment that the item is unimportant — VISION's
+own Phase-5 review independently ranks it #1 for Iteration 57, and this
+document concurs: the deferral should end at Iteration 57, not continue by
+inertia a fifth time.
+
 ## 5. Phase-4 gate
 
 House gates apply: zero new `lab/` diff (confirmed — this entire cycle is

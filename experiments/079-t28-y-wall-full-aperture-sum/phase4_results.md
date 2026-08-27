@@ -9,12 +9,26 @@ folded in as committed code) and confirming every frozen/expected number.*
 
 ## 1. What changed in the script between Phase 1 and this run
 
-Only additive: new §[7] (reflectance-ablation control) and §[7b] (T21-
-forced-fit sub-check), inserted before the renumbered §[8] SUMMARY. No line
-in §[0]–§[6] (geometry, gates, the primary/secondary coherent-sum model,
-the real-data periods, the convergence check) was touched — confirmed by
-`git diff` showing only additions, no deletions in the pre-existing
-sections.
+**Correction (Phase-5 review, THERMODYNAMICS; figure re-verified,
+corrected, by the Director before commit — R4 applies to a reviewer's own
+recomputation too): the as-first-written version of this section overstated
+its own claim.** `git diff 9e4e1ae 3673d42 --
+experiments/079-.../y_wall_aperture_sum.py` shows **3** deleted lines, not
+zero (THERMODYNAMICS' own review cited 4; independently re-run here,
+`git diff ... | grep -c '^-[^-]'` = 3, not 4 — corrected in place, matching
+this program's own R4 discipline that a reviewer's recomputation is not
+exempt from being re-verified): the renumbered summary header
+(`[7] SUMMARY` → `[8] SUMMARY`) and one extended dict literal
+(`out["summary"] = dict(...)`, widened to add the new ablation/forced-fit
+fields) required removing their own original lines before the replacement
+was inserted. The substantive claim stands correctly: every PRE-EXISTING
+computed value (§[0]–§[6]: geometry, gates, the primary/secondary
+coherent-sum model, the real-data periods, the convergence check) is
+unchanged line-for-line and reproduces bit-identically (§2, below) — the
+deletions are cosmetic renumbering/dict-literal edits, not a removed
+computation. "Only additive" was the wrong word for what a line-diff
+shows; "no computation removed or altered" is the correct, and now
+independently re-verified, claim.
 
 ## 2. Confirmation against Phase-3's own stated expectations
 
