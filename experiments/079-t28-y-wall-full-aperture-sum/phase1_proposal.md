@@ -302,10 +302,17 @@ null-permutation-control rule targets. No null-permutation control is run
 here. §5.4's comparison against T21's own fringe period is a SINGLE,
 targeted, pre-named comparison (EM's own caution, already on record in
 exp-078's `phase1_proposal.md` §3.3, not a candidate invented post hoc to
-explain an inconvenient number) — disclosed as a real, if narrower, gap:
-Phase 2 may still reasonably require a formal look-elsewhere control before
-treating even this single T21-proximity finding as fully established,
-particularly given the one nominal Test-A SUPPORT below (§5.3).
+explain an inconvenient number). **[Phase-5 fix, VISION §2c, closed by Red
+Team's final audit — this paragraph was left stale after Phase 2 actually
+resolved the exact gap it names, an inconsistency VISION's review caught
+and Phase 3's own docket did not touch]**: this gap is RESOLVED, not merely
+disclosed — Phase 2's own reflectance-ablation control (§5.3, folded into
+committed code as `y_wall_aperture_sum.py` §[7]) supersedes a generic
+null-permutation control as the decisive, mechanism-appropriate test of
+whether the T21-proximity finding depends on the wall's reflectance at all
+(it does not — `|ΔP*|≤0.023°` under `r≡1`). The one nominal Test-A SUPPORT
+below is explicitly non-informative once that control is in the record
+(§5.3, §7) — not an open question left for a future cycle.
 
 ---
 
@@ -491,13 +498,26 @@ config's own echo curve, not an artifact of differencing.
    unchanged** — the same caveat MATERIALS attached to both the x-wall
    (exp-077 Idealization 10) and the y-wall single-edge model (exp-078
    Idealization 6). A SUPPORT or REFUTE under this construction says
-   nothing about realizability either way; MATERIALS' own re-ranking
-   (exp-078 Phase-5, F2) found the realizable (`mu_r=1`) substitution is
-   near period-invariant for the y-wall specifically (Pearson `r>0.9997`),
-   so this idealization is unlikely to move §5.3's own headline finding,
-   but was not independently re-tested here (out of scope this cycle,
-   matching the standing realizable-admittance refit's own retargeting to
-   the x-wall, exp-078 §7 item 3).
+   nothing about realizability either way. **[Phase-5 correction, MATERIALS
+   §2a/§2b, adopted by Red Team's final audit]**: the as-filed citation
+   above — exp-078's Pearson `r>0.9997` "near period-invariant" finding —
+   does NOT generalize from exp-078's narrow `48°–54°` single-edge envelope
+   to this file's own much wider `4.77°–15.50°` full-aperture envelope,
+   where the same admittance-choice correlation collapses to `0.74–0.88`
+   at three `ABSORB` depths and goes negative (`−0.63`) at a fourth
+   (independently reproduced, this audit, §0). The practical conclusion the
+   citation was used to support is nonetheless independently reconfirmed —
+   for a different and more robust reason than the citation itself gave:
+   MATERIALS' own fresh recomputation of this file's actual Test A under
+   the realizable substitution (§2b of its Phase-5 review, independently
+   reproduced bit-for-bit by this audit, §0) shows every period shifts by
+   at most `0.015°` and every verdict is unchanged, because — per
+   Idealization 9 — this construction's entire `theta_beam`-dependence is
+   carried by geometry that has nothing to do with `r()`'s specific form,
+   not because the two admittance choices happen to sit close together at
+   any particular angle. The standing realizable-admittance refit remains
+   correctly retargeted to the x-wall (exp-078 §7 item 3), now on firmer
+   ground.
 2. **No `dist_real` reference term** — `E_echo` is the total reflected
    field, not a phase difference against a direct-field object (§3.4).
    This is a deliberate construction choice matched to the task's own
@@ -551,6 +571,24 @@ config's own echo curve, not an artifact of differencing.
    as a coherent sum over the real, `theta_beam`-driven aperture with a
    per-point weight that carries no `theta_beam` dependence of its own. See
    §7 for what this means for this file's own verdict.
+   **[Phase-5 scoping fix, QUANTUM §3, adopted by Red Team's final audit]**:
+   the "at ANY period" language above is a scope statement about the
+   spatial-Fourier-transform ARGUMENT (algebraically unconditional, true for
+   any `r(θ)` whatsoever), not — as the unqualified prose could be read — a
+   claim independently verified for every possible `r(θ)`. The stronger,
+   PRACTICAL conclusion ("no echo at ANY period could have been recovered")
+   holds whenever `r(theta_local(y_s))`, as a function of `y_s`, stays
+   slowly-varying relative to the aperture's own window — confirmed here for
+   TWO independently-tested admittance families, not one: the matched
+   (`eps=mu`) transfer function used throughout this file (PHOTONICS' own
+   Phase-2 dense sweep, §3(c) of its critique: monotonic or one shallow
+   minimum across the full envelope, no resonant structure), and — per
+   MATERIALS' own Phase-5 §2b independent recomputation, confirmed
+   bit-reproducible by this audit — the REALIZABLE (`mu_r=1`) substitution,
+   whose Test-A periods shift by at most `0.015°` from the matched model's
+   own, every verdict unchanged. Both tested `r(θ)` families land in the
+   same place; the claim has not been checked against a hypothetically sharp
+   (resonant) `r(θ)`, and should not be read as ruling one out a priori.
 10. **[Added, Phase 3, `phase2_redteam_audit.md` Attack 4, EM] Missing
     `1/√dist_image(y_s)` cylindrical-wave amplitude-falloff term.**
     `echo_field_curve`'s per-point contribution has no such factor, unlike
