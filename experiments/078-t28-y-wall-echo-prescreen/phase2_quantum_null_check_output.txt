@@ -8,3 +8,11 @@ n_trials=2000, seed=7, N=31 points (real theta grid, 36-42deg, 0.2deg step) -- i
             c80_c40 (target P*=2.8421deg, observed rel_dev=0.1296, observed R^2=0.1530):
         P(null rel_dev<=0.30) = 0.2635   P(null R^2>=0.1530) = 0.6540
         window distribution under null: {'narrow[1,4]': 1851, 'wide[1,15]': 148, 'widest[1,60]': 1}
+           pair_pad (target P*=4.6113deg, observed rel_dev=0.3136, observed R^2=0.1331):
+        P(null rel_dev<=0.30) = 0.1370   P(null R^2>=0.1331) = 0.7840
+        window distribution under null: {'narrow[1,4]': 1853, 'wide[1,15]': 145, 'widest[1,60]': 2}
+      pair_absorb40 (target P*=4.1761deg, observed rel_dev=0.2330, observed R^2=0.1493):
+        P(null rel_dev<=0.30) = 0.1615   P(null R^2>=0.1493) = 0.6795
+        window distribution under null: {'narrow[1,4]': 1852, 'wide[1,15]': 144, 'widest[1,60]': 4}
+
+[2] JOINT NULL -- 3 independent noise curves per trial (one per target), count of SUPPORTs (rel_dev<=0.30) out of 3, vs the OBSERVED count (2 of 3)
