@@ -8,6 +8,29 @@ Executes `experiments/078-.../phase5_redteam_audit.md` §7 Tier 0 item 1 —
 the reconciled Iteration-56 ranking's single highest-value item on the
 whole T28 board.*
 
+**PHASE-3 UPDATE (Panel Iteration 56, post Phase-2 Red Team mandatory-fix
+docket, `phase2_redteam_audit.md`): this document's original framing
+over-claimed what its own data can support.** As-originally-filed, this
+proposal read the recovered `theta_beam`-dependence as evidence the
+mechanism is "closer to a genuine (informal) REFUTE... than to an
+INCONCLUSIVE." Red Team's Phase-2 audit — independently confirming, a third
+way, what EM's analytic derivation and QUANTUM's empirical ablation each
+found — ruled this construction **structurally incapable of discriminating
+a real y-wall echo, at ANY period, from no echo at all**: because both the
+per-point bounce angle `theta_local(y_s)` and the propagation distance
+`dist_image(y_s)` are, by this file's own §3.1 derivation, pure functions
+of static geometry with zero `theta_beam` dependence, `E_echo`'s entire
+`theta_beam`-dependence is the spatial Fourier transform of a
+`theta_beam`-independent envelope, evaluated at `k·sinθ_beam` — governed by
+the shared aperture window's own T21-family content regardless of the
+wall's true reflectance physics. §4 and §7 are corrected below to state
+this as the headline; the underlying Test-A numbers (`rel_dev`, R²,
+`ss_tot` ratios, gates, convergence check) are UNCHANGED — see
+`phase2_redteam_audit.md` and `phase3_synthesis.md` for the full
+adjudication, and `y_wall_aperture_sum.py` §[7]/§[7b] for the newly-folded-in
+reflectance-ablation control that makes this finding directly, reusably
+checkable in code.*
+
 ---
 
 ## 0. What this is, and what it is not
@@ -73,22 +96,33 @@ bounce angle `theta_local(y_s)=atan(D_SP/(OBJ_Y+y_s))` — the same formula
 Red Team's Phase-5 audit derived for `y_lo`, re-derived here for every
 point. This file builds that full coherent sum and finds: the flat result
 does **not** survive. A real, well-converged, non-degenerate oscillation
-reappears (`ss_tot` ratio to real-data scale `9.4×10⁻⁷` — nine orders of
-magnitude above exp-078's own `5.9×10⁻²⁷` floor). Genuine `theta_beam`-
-dependence exists in the full sum that the single-point reduction could
-never see, exactly as Red Team's own §2d flagged as "a real possibility."
+reappears (`ss_tot` ratio to real-data scale `9.4×10⁻⁷` — **≈20.2 orders of
+magnitude** above exp-078's own `5.9×10⁻²⁷` ratio; a DIFFERENT comparison —
+this cycle's own absolute `ss_tot` against the `SS_TOT_DEGENERATE_FLOOR`
+guard — is the one that is `≈9.78` orders, corrected per
+`phase2_redteam_audit.md` §3, Attack 2). Genuine `theta_beam`-dependence
+exists in the full sum that the single-point reduction could never see,
+exactly as Red Team's own exp-078 §2d flagged as "a real possibility."
 
-But the newly-recovered oscillation is not a match to T28's own family. It
-sits within 1.6%–3.5% of T21's own already-established, already-distinct
-aperture-diffraction fringe (`1.9608°`, `A=752`) — not near T28's own
-2.84°–4.6° periods (28.6%–56.8% away) — and EVERY individual config's own
-curve, not merely the pair-deltas, already carries this same ~2.0° period
-at `R²=0.97–0.98`. The mechanism is legible: the SAME driven-phase ramp
-that produces T21's real fringe in the direct field dominates this
-echo-model's coherent sum too; the y-wall geometry contributes only a
-slowly-varying envelope, not an independent new frequency. Edge-domination
-in the strict "flat" sense does not generalize — but the full sum still
-does not explain T28's own real signal.
+**But this `theta_beam`-dependence cannot discriminate a real y-wall echo
+from no echo at all (Phase-2 finding, given full weight — see the PHASE-3
+UPDATE above and §7).** The newly-recovered oscillation is not a match to
+T28's own family. It sits within 1.6%–3.5% of T21's own already-established,
+already-distinct aperture-diffraction fringe (`1.9608°`, `A=752`) — not near
+T28's own 2.84°–4.6° periods (28.6%–56.8% away) — and EVERY individual
+config's own curve, not merely the pair-deltas, already carries this same
+~2.0° period at `R²=0.97–0.98`. The mechanism is legible, and now
+DIRECTLY, reusably checkable in code (§3.1's reflectance-ablation control):
+both `theta_local(y_s)` and `dist_image(y_s)` are `theta_beam`-independent
+by construction, so `E_echo`'s entire `theta_beam`-dependence is carried by
+the SAME driven-phase ramp that produces T21's real fringe in the direct
+field — the y-wall's own reflectance physics (`r(theta_local(y_s))`)
+contributes only a slowly-varying (for `PAIR_PAD`/`C80−C40`) or, for
+`PAIR_ABSORB40` specifically, load-bearing-but-still-T21-frequency-locked
+envelope, never an independent new frequency. Edge-domination in the strict
+"flat" sense does not generalize — but the full sum, by its own structure,
+was never capable of answering whether a real y-wall echo at T28's own
+period exists.
 
 ---
 
@@ -234,12 +268,17 @@ either (a) edge-domination generalizes and the flat result survives
 (`ss_tot` ratio stays near float-noise scale), predicting the y-wall
 self-near-wall coherent-echo sub-class is close to formally exhausted; or
 (b) it does not, which "would justify the full build for the first time."
-**Actual result (§5): neither branch cleanly — the flat result does NOT
-survive (ruling out (a)), but the recovered signal does not support (b)'s
-own implicit expectation that non-flatness would indicate a genuine T28
-match either** (§5.3/§5.4) — a third, sharper outcome not named in either
-of the ranking's own two branches, reported honestly rather than forced
-into whichever branch it resembles more.
+**Actual result (§5, corrected per `phase2_redteam_audit.md` Attack 5): this
+IS branch (b) — the flat result does NOT survive (ruling out (a)) — refined,
+not a third branch.** Genuine `theta_beam`-dependence is recovered, exactly
+as branch (b)'s own premise states. What this file adds is why that
+dependence does NOT license branch (b)'s own stated *consequence* ("would
+justify the full build for the first time"): the recovered dependence is
+mechanistically inherited from the shared aperture window (T21's own
+frequency), and — per Red Team's own §2/Attack 1, given full weight —
+this specific construction is structurally incapable of producing a
+genuinely different, T28-matching frequency regardless of the wall's true
+reflectance physics (§5.2/§5.3, §7).
 
 **Convergence check, pre-registered as mandatory before trusting any
 period fit** (task's own instruction): does the answer change if the
@@ -295,18 +334,39 @@ particularly given the one nominal Test-A SUPPORT below (§5.3).
 ### 5.2 — Does the flat/zero-amplitude result generalize? NO.
 
 `ss_tot(model, Re-proxy PAIR_PAD) = 6.047×10⁻¹¹`, vs
-`ss_tot(real PAIR_PAD) = 6.439×10⁻⁵` — ratio `9.392×10⁻⁷`. This is **nine
-orders of magnitude above** exp-078's own single-edge, rigorous-angle
-model's `5.9×10⁻²⁷` ratio (`phase5_redteam_audit.md` §2c) — well above the
-`SS_TOT_DEGENERATE` floor (`1×10⁻²⁰`), confirmed `ss_tot_degenerate=False`
-in code. This is real, resolvable, non-degenerate signal, not floating-
-point rounding noise on a flat array. **The flat result from the single-
-edge reduction does NOT generalize to the full aperture sum.** Every
-individual config's own `Re{E_echo(cfg,theta_beam)}` curve shows real
-`ptp` variation (`C40`: `1.487×10⁻⁵`; `C60`: `3.509×10⁻⁷`; `C70`:
-`3.365×10⁻⁷`; `C80`: `1.789×10⁻⁷`; `G40`: `1.693×10⁻⁵` — `C40`/`G40`, both
-`ABSORB=40`, an order of magnitude larger than `C60`/`C70`/`C80`, matching
-the same `|r|` ordering exp-078 already established).
+`ss_tot(real PAIR_PAD) = 6.439×10⁻⁵` — ratio `9.392×10⁻⁷`. This is
+**≈20.2 orders of magnitude above** exp-078's own single-edge, rigorous-angle
+model's `5.9×10⁻²⁷` ratio (`phase5_redteam_audit.md` §2c) — corrected per
+`phase2_redteam_audit.md` §3 (Attack 2, THERMODYNAMICS): the as-filed
+version of this document mis-stated this comparison as "nine orders,"
+which is instead the value of a DIFFERENT, separately-named comparison —
+this cycle's own absolute `ss_tot_model` (`6.047×10⁻¹¹`) against the
+`SS_TOT_DEGENERATE_FLOOR` guard (`1×10⁻²⁰`) — `≈9.78` orders, correct on
+its own terms but not the comparison this paragraph names. Both
+comparisons independently confirm the same qualitative conclusion (well
+above the `SS_TOT_DEGENERATE` floor, `ss_tot_degenerate=False` in code).
+This is real, resolvable, non-degenerate signal, not floating-point
+rounding noise on a flat array. **The flat result from the single-edge
+reduction does NOT generalize to the full aperture sum.** Every individual
+config's own `Re{E_echo(cfg,theta_beam)}` curve shows real `ptp` variation
+(`C40`: `1.487×10⁻⁵`; `C60`: `3.509×10⁻⁷`; `C70`: `3.365×10⁻⁷`; `C80`:
+`1.789×10⁻⁷`; `G40`: `1.693×10⁻⁵` — `C40`/`G40`, both `ABSORB=40`, an
+order of magnitude larger than `C60`/`C70`/`C80`, matching the same `|r|`
+ordering exp-078 already established). **But — per §5.3/§7 — "does not
+generalize" is a different, narrower claim than "is informative about a
+real y-wall echo"; this section's own non-degenerate `ss_tot` says only
+that the model has real structure, not that the structure says anything
+about the wall's reflectance.** A missing `1/√dist_image(y_s)`
+cylindrical-wave amplitude-falloff term (Idealization 10, §6; this bench's
+own established `field_and_h` convention, `experiments/048-.../design_
+geometry.py`, subject of a dedicated correction, Iteration 19/exp-042) is
+undisclosed in this file's as-originally-computed model — EM's own
+Phase-2 re-run with the falloff added (`phase2_critique_em.md`) shows the
+Test-A period verdicts below shift `<1%` (robust to this specific
+omission) but the `ss_tot` ratio itself moves `≈753×`
+(`9.392×10⁻⁷→1.248×10⁻⁹`) — still nowhere near the `SS_TOT_DEGENERATE`
+floor either way, but the specific magnitude figures in this section
+should be read as convention-dependent, not exact.
 
 ### 5.3 — But the recovered period is T21's own fringe, not T28's family
 
@@ -338,6 +398,60 @@ fringe, differently weighted" as an explanation of the REAL data's
 here: this echo model's own recovered oscillation is mechanistically tied
 to T21's frequency, not to T28's independently-established, genuinely
 different one.
+
+**Companion note (PHOTONICS, `phase2_critique_photonics.md`; adjudicated
+`phase2_redteam_audit.md` §4): the "only a slowly-varying envelope" claim
+above is not fully earned by what was originally computed here.**
+Subtracting `PAIR_PAD`'s own dominant `1.9925°` tone and free-period-
+searching the residual finds a genuine secondary component at `2.5506°`
+(R²=`0.6043`, `≈2.8%` of the primary fit's own `ss_tot`) — real, disclosed
+structure, not noise, and closer to T28's own `C80−C40` real period
+(10.3% away) than to T21's (30.1% away). Red Team's own ruling: this does
+**not** change the verdict — a residual sideband inside a construction
+whose entire `theta_beam`-dependence is structurally locked to the shared
+aperture window (§7) is itself just another feature of that same window's
+Fourier content (a diffraction-grating side-lobe, not a new physical
+channel) — it cannot be independent evidence about the wall's own
+reflectance any more than the dominant tone can.
+
+**Reflectance-ablation control (Phase-2 mandatory fix, `y_wall_aperture_
+sum.py` §[7]/§[7b], `::reflectance_ablation_control`/`::t21_forced_fit_
+c80_c40` in the committed JSON) — the decisive, mechanism-appropriate test
+of whether ANY of the above depends on the wall's reflectance at all.**
+Replacing `r(theta_local(y_s))` with a bare constant `1.0` (zero wall-echo
+physics) and re-fitting: `PAIR_PAD`/`C80−C40`'s ablated periods reproduce
+the r-weighted model to `|ΔP*|≤0.023°` — geometry alone, independent of
+`ABSORB`, already produces this file's own recovered signal for those two
+comparisons. `PAIR_ABSORB40`'s ablated delta is EXACTLY zero (`ptp=0.0`,
+not merely small) — `G40`/`C80` share identical `(OBJ_Y,y_lo,y_hi)`
+(both `PAD=40`), so once `r()` is ablated to a config-independent constant
+their aperture sums are bit-identical by construction. This means
+`PAIR_ABSORB40`'s real (non-ablated) signal genuinely DOES require
+`ABSORB`-dependence to exist at all — unlike `PAIR_PAD`/`C80−C40` — but
+even this genuinely wall-physics-dependent signal still lands on T21's own
+period (`rel_dev=0.0315` vs. T21, §5.3 table), not T28's, because
+`ABSORB`-dependence only reshapes the envelope `w(y_s)`'s fine structure,
+never the aperture window's own dominant support — the ONLY `theta_beam`-
+dependent term in the integral remains the shared driven-phase ramp.
+**Two independent routes (geometry alone; genuine but T21-frequency-locked
+`ABSORB`-dependence) both land on the aperture's own period, never T28's —
+this construction cannot discriminate a real T28-matching y-wall echo from
+no echo at all, by either route.** The `C80−C40` T21-forced-fit sub-check
+(force the fit to T21's own EXACT `1.9608°`, not the free-fit optimum):
+`R²=0.9425` (vs. the free-fit's `0.9732`), `rel_dev=0.3101` against T28's
+real target — **just outside the SUPPORT bar**, vs. the free-fit's own
+marginal `rel_dev=0.2857` SUPPORT. The SUPPORT/INCONCLUSIVE line for this
+one comparison rides on a `~2%` sub-fitting-window difference between
+curves that are, structurally, all measuring the same T21-scale quantity —
+**the one nominal Test-A SUPPORT below should be read as non-informative,
+not as evidence, now that this control is in the record.**
+
+**THERMODYNAMICS energy-sidecar disposition (house norm, PANEL.md seat 4):
+N/A.** No absorbed-power computation appears anywhere in this file — `r()`
+is reused unchanged from an already-gated model, and this cycle scores only
+period comparisons on a reflectance phasor, never an energy/detectability
+question (`phase2_critique_thermodynamics.md`, confirmed by direct grep of
+the script).
 
 ### 5.4 — Secondary proxy (`|E_echo|`): 0/3 SUPPORT, confirms the same picture
 
@@ -413,90 +527,148 @@ config's own echo curve, not an artifact of differencing.
    own docstrings), not a runtime comparison against `sim.sources` (would
    require instantiating a `Sim`, which is zero-cost/zero-`.run()` and
    arguably in scope, but not done this cycle; disclosed as a cheap,
-   deferrable Phase-2 hardening item).
+   deferrable Phase-2 hardening item). **Closed at Phase 2** (PHOTONICS'
+   own critique, `phase2_critique_photonics.md`): a live `Sim` was
+   instantiated and its actual source array compared — exact (`0.0` diff)
+   agreement with `aperture_amplitude`'s own re-derivation.
+9. **[Added, Phase 3, `phase2_redteam_audit.md` Attack 1/§2 — the cycle's
+   own most consequential finding] This construction is structurally
+   incapable of discriminating a real y-wall echo, at ANY period, from no
+   echo at all.** Both `theta_local(y_s)` and `dist_image(y_s)` are, by
+   this file's own §3.1 derivation, pure functions of static per-config
+   geometry — zero `theta_beam` dependence anywhere. `E_echo`'s entire
+   `theta_beam`-dependence is therefore the spatial Fourier transform of a
+   `theta_beam`-independent envelope `w(y_s)=amp(y_s)·r(theta_local(y_s))·
+   exp(i·k·dist_image(y_s))`, evaluated at spatial frequency `k·sinθ_beam` —
+   governed by `w(y_s)`'s own dominant support (the shared `[y_lo,y_hi]`/
+   `TAPER=40` window, IDENTICAL to the real, direct-field aperture's own),
+   regardless of what the wall's true reflectance physics is. A real echo
+   at T28's own period, had one existed, could not have been recovered by
+   this instrument; no echo at all produces a statistically
+   indistinguishable result (confirmed directly, §5.3's reflectance-
+   ablation control). This is not a data problem a finer grid or a wider
+   angle sweep would fix — it is a structural property of building `E_echo`
+   as a coherent sum over the real, `theta_beam`-driven aperture with a
+   per-point weight that carries no `theta_beam` dependence of its own. See
+   §7 for what this means for this file's own verdict.
+10. **[Added, Phase 3, `phase2_redteam_audit.md` Attack 4, EM] Missing
+    `1/√dist_image(y_s)` cylindrical-wave amplitude-falloff term.**
+    `echo_field_curve`'s per-point contribution has no such factor, unlike
+    this bench's own established many-point Huygens–Fresnel convention
+    (`experiments/048-.../design_geometry.py::field_and_h`,
+    `G0=exp(i(kr−π/4))/√r`, the subject of a dedicated magnitude-bridge
+    correction, Iteration 19/exp-042). EM's own re-run with the falloff
+    added (`phase2_critique_em.md`) shows the Test-A period verdicts are
+    essentially unaffected (`<1%` shift on every P*, independently
+    confirming §5.3's own mechanistic reading) but the `ss_tot` ratio moves
+    `≈753×` (§5.2) — a real, previously-undisclosed idealization on the one
+    statistic this file leans on hardest as evidence of non-degenerate
+    signal, though not load-bearing to any scored verdict.
+11. **[Added, Phase 3, `phase2_redteam_audit.md` §2c — forward caution, not
+    a finding about this file] The effective aperture a fix would need is
+    a name already on LOGBOOK's own RULED OUT list.** Using T21's own
+    `P(θ)=λ/(A·cosθ)`, the effective aperture width `A_eff` a T21-class
+    edge-diffraction model would need to exactly reproduce T28's own real
+    `C80−C40` period is `A_eff = 752·1.9608/2.8421 = 518.8118` cells —
+    bit-identical (to the fourth significant figure) to `A_eff≈518.81`,
+    the exact quantity LOGBOOK's own R5 addendum (Iteration 47, exp-070)
+    already found and ruled a statistically-indistinguishable-from-chance
+    dead end (`null_p=0.497`). Any future attempt to "fix" this model class
+    by shrinking its effective aperture toward T28's own period would be
+    re-approaching that already-closed dead end, not new evidence.
 
 ---
 
 ## 7. Self-scored verdict
 
-**Neither of the two branches the reconciled ranking explicitly named
-(`phase5_redteam_audit.md` §7 item 1) is what happened — a third, sharper
-outcome, reported precisely rather than forced into either.**
+**[REVISED, Phase 3 — adopting `phase2_redteam_audit.md` in full, per the
+PHASE-3 UPDATE at the top of this document. The as-filed verdict below this
+line originally read "closer to a genuine (informal) REFUTE... than to an
+INCONCLUSIVE" and framed the result as "a third, sharper outcome not named
+in either of the ranking's own two branches." Both claims over-reached what
+this file's own data can support. Corrected verdict follows.]**
 
-**Branch (a), "edge-domination generalizes and the flat result survives":
-REFUTED.** `ss_tot` ratio to real-data scale is `9.4×10⁻⁷`, nine orders of
-magnitude above exp-078's own `5.9×10⁻²⁷` floor, well above the
-`SS_TOT_DEGENERATE` guard, confirmed by a convergence-checked (1x→2x→4x,
-`<0.002%` residual change) numerical integral, at a battery of gates
-passing across the full, never-before-sampled `4.77°–15.50°` bounce-angle
-envelope. This is real signal — the flat result does NOT generalize.
+**This IS branch (b) of the reconciled ranking (`phase5_redteam_audit.md`
+§7 item 1), refined — not a third branch.** Branch (a), "edge-domination
+generalizes and the flat result survives," is REFUTED: `ss_tot` ratio to
+real-data scale is `9.4×10⁻⁷`, `≈20.2` orders of magnitude above
+exp-078's own `5.9×10⁻²⁷` ratio (§5.2), well above the `SS_TOT_DEGENERATE`
+guard, confirmed by a convergence-checked (1x→2x→4x, `<0.002%` residual
+change) numerical integral, at a battery of gates passing across the full,
+never-before-sampled `4.77°–15.50°` bounce-angle envelope. Genuine
+`theta_beam`-dependence is recovered — real signal, not float noise.
 
-**Branch (b), implicit expectation that non-flatness "would justify the
-full build for the first time" because it signals a genuine T28 match:
-NOT SUPPORTED.** The recovered oscillation sits 1.6%–3.5% from T21's own
-already-established, already-known-distinct-from-T28 fringe period
-(`1.9608°`), not near T28's own real family (28.6%–56.8% away at the SAME
-model periods) — and this is mechanistically explained, not a
-statistical coincidence: every individual config's own curve, not just the
-pair-deltas, already carries the T21-family period at `R²≥0.97` (§5.5),
-confirming the coherent sum's dominant frequency is inherited from the
-SAME `A=752`-scale driven-phase ramp that produces T21's real fringe,
-weighted by a slowly-varying (not independently oscillatory) reflectance/
-distance envelope. LOGBOOK's own founding T28 argument (two sinusoids
-sharing one frequency sum/difference to a third at that SAME frequency,
-regardless of amplitude/phase) applies here exactly as it did to rule out
-"T21 fringe, differently weighted" for the real data.
+**But — the single most consequential finding of this cycle, from Red
+Team's own Phase-2 audit, given full weight, independently confirmed
+three ways (EM analytically, QUANTUM empirically, Red Team's own
+from-scratch re-run) — that recovered `theta_beam`-dependence CANNOT
+discriminate a real y-wall echo, at ANY period, from no echo at all
+(Idealization 9, §6).** Both `theta_local(y_s)` and `dist_image(y_s)` are
+pure functions of static geometry with zero `theta_beam` dependence
+(§3.1); `E_echo` is therefore the spatial Fourier transform of a
+`theta_beam`-independent envelope, evaluated at `k·sinθ_beam` — governed by
+the shared aperture window's own support, regardless of the wall's true
+reflectance. **The reflectance-ablation control (§5.3) makes this directly
+checkable, not merely arguable**: `PAIR_PAD`/`C80−C40`'s recovered periods
+survive UNCHANGED (`|ΔP*|≤0.023°`) when `r(theta_local(y_s))` is replaced
+with a bare constant `1.0` — geometry alone reproduces them; `PAIR_
+ABSORB40`'s signal genuinely requires `ABSORB`-dependence to exist at all
+(its ablated delta is EXACTLY zero), but even that signal still lands on
+T21's own period, not T28's, because `ABSORB`-dependence only reshapes the
+envelope's fine structure, never the aperture window's dominant support.
+**A real echo at T28's own period, had one existed, would have been just
+as invisible to this instrument as no echo at all is.**
+
+**What this means, precisely (and what it does NOT mean):** it does NOT
+mean this file's own Test-A numbers are wrong (they reproduce exactly,
+the gates are genuine, the convergence check is real) — it does NOT mean
+§5.3's mechanistic reading is false ("the recovered signal is T21's, not
+T28's" is true, confirmed three independent ways). **It means this
+specific construction was never capable, by its own structure, of
+answering whether a real y-wall echo mechanism explains T28's signal, in
+either direction.** This is narrower, and more useful for Iteration 57's
+own board, than either the original "closer to an informal REFUTE" framing
+this section carried as-filed, or a bare "the flat result does not
+generalize" headline: it identifies WHY this whole reduction family cannot
+answer the question it was built to answer, not merely that it didn't.
 
 **Test A, formally: 1/3 nominal SUPPORT (`C80−C40`, `rel_dev=0.2857`, just
 inside the `≤0.30` bar), 0/3 REFUTE, 2/3 INCONCLUSIVE (primary proxy);
-0/3 SUPPORT, 0/3 REFUTE, 3/3 INCONCLUSIVE (secondary proxy).** The one
-nominal SUPPORT should be read with real skepticism, not taken at face
-value: it sits an order of magnitude closer to T21's own frequency
-(`rel_dev=0.0353`) than to its own nominal target (`rel_dev=0.2857`, just
-inside the bar) — the same "compromise fit between two nearby,
-imperfectly-separated frequencies" shape this program's own Iteration-47
-precedent (P-070-1) already established as evidence AGAINST treating a
-marginal SUPPORT as real confirmation, not for it. `PAIR_PAD` — T28's own
-actual dominant empirical target — is the LEAST close of the three
-(`rel_dev=0.5679`) under the primary proxy, and the secondary proxy loses
-even the marginal SUPPORT entirely, confirming this reading rather than
-contradicting it.
+0/3 SUPPORT, 0/3 REFUTE, 3/3 INCONCLUSIVE (secondary proxy). This one
+nominal SUPPORT is non-informative, not merely marginal, now that the
+ablation control (§5.3) is in the record**: the `C80−C40` T21-forced-fit
+sub-check lands JUST outside the SUPPORT bar (`rel_dev=0.3101` at T21's
+exact period, vs. the free-fit's own `0.2857`) — the SUPPORT/INCONCLUSIVE
+line for this one comparison rides on a `~2%` sub-fitting-window
+difference between curves that are, structurally, all measuring the same
+T21-scale quantity, not an independent T28-matching frequency. `PAIR_PAD`
+— T28's own actual dominant empirical target — is the LEAST close of the
+three (`rel_dev=0.5679`) under the primary proxy, and the secondary proxy
+loses even the marginal SUPPORT entirely.
 
-**Overall characterization: the y-wall self-echo-off-the-near-wall
-coherent mechanism, now tested in its full (non-edge-reduced) form, is
-NOT flat/degenerate — but it also does not match T28's own real
-periodicity. Both of these are genuine findings, not a wash.** The
-mechanism's flatness at the single-edge, rigorous-angle reduction was a
-property of that specific reduction, not of the underlying physical
-question (confirming exp-078 Phase-5's own §2d caveat that the flat result
-might not generalize) — but the full sum's own honest answer is that it
-recovers a DIFFERENT, already-known, already-ruled-distinct-from-T28
-frequency, not T28's own signal. This is closer to a genuine (informal)
-REFUTE of "the y-wall self-near-wall echo mechanism explains T28's real
-signal" than to an INCONCLUSIVE — but is reported as a Test-A-only,
-period-based characterization (no Test B / shape match is built here,
-matching exp-078's own scope discipline) and is NOT filed as a formal
-pre-registered-band REFUTE, since the pre-registered band was built for
-comparing a model's OWN period against T28's, not for adjudicating a
-three-way "matches X, not Y, and here's why" finding — the band's own
-literal verdicts are reported in full above (§5.3/§5.4) without editing,
-and this prose states what they mean, not a replacement for them.
+**Overall characterization: does the flat/zero-amplitude result generalize
+from the single-edge reduction to the full aperture sum? Literally, in the
+narrow sense ("does the strict `ss_tot`-near-float-noise flatness
+survive"): no — correctly answered.** But the deeper question the
+reconciled ranking's own framing treated that narrow question as a proxy
+for — whether the y-wall self-echo-off-the-near-wall mechanism sub-class
+is close to exhausted, or newly worth pursuing — **is not actually closed
+by this cycle either way**, because the instrument this file built is
+structurally incapable of closing it in either direction. A different,
+better instrument is needed, not a refinement of this one.
 
-**Recommended next step, stated plainly**: per the reconciled ranking's
-own §7 conditional language ("if it does NOT generalize... that is itself
-the discovery of genuine θ-dependence... and would justify the full build
-for the first time"), the STRICT flat/zero-amplitude result did not
-generalize — but this file's own §5.3/§5.4 finding (the recovered
-θ-dependence is T21's, not T28's) is a materially different, and more
-informative, answer than a bare "does not generalize, build the full
-model" would have been. Building the full non-reduced y-mirrored
-propagator (adding the far-wall pair, item 8's own deferred refinements)
-is unlikely to change this file's own central finding — a slowly-varying
-envelope addition to an already-identified T21-frequency-dominated sum is
-very unlikely to introduce a genuinely NEW, independent, T28-matching
-frequency — but this is stated as a judgment, not re-verified numerically
-this cycle; Phase 2 may reasonably ask for it to be checked, or may
-concur that the y-wall self-echo-off-either-wall coherent-echo sub-class
-is, on this evidence, close to exhausted for explaining T28's own real
-signal specifically (though not for the general question of whether
-SOME y-wall-adjacent effect contributes — see Idealization 3).
+**Recommended next step (adopting `phase2_redteam_audit.md` §8/§9's own
+finding, not this file's own as-filed judgment)**: building the full
+non-reduced y-mirrored propagator by adding the far-wall/far-edge pair
+(item 8 of exp-078's own ranking, still deferred, Idealization 3) is very
+likely NOT the productive next step — it would add a SECOND `theta_beam`-
+independent per-point weight term summed against the SAME shared
+driven-phase ramp, inheriting this cycle's own structural limitation
+unchanged. **The productive next move, if the y-wall coherent-echo
+mechanism sub-class is worth testing further, is a construction that
+breaks the "static per-point angle" pattern** — a plane-wave/global-
+steering incidence-angle picture for the y-wall, the genuine analogue of
+what already makes the x-wall's own two-plane-wave reduction (§3.1 of this
+file; `phase1_proposal.md` [exp-078] §3.1) a `theta_beam`-dependent test
+of the wall's reflectance in the first place — rather than another
+refinement within the current point-source/per-point-image family.

@@ -129,6 +129,7 @@ CPL = br.CPL
 ywp = _load(os.path.join(EXP078_DIR, "y_wall_prescreen.py"), "_exp079_ywp")
 run69 = ywp.run69
 _free_period_search = ywp._free_period_search
+_fixed_period_fit = run69._fixed_period_fit
 free_period_with_widening = ywp.free_period_with_widening
 CONGRUENT_KEYS = ywp.CONGRUENT_KEYS
 SS_TOT_DEGENERATE_FLOOR = ywp.SS_TOT_DEGENERATE_FLOOR
@@ -659,8 +660,143 @@ def main():
     out["ss_tot_sanity"] = dict(ss_tot_model_pad=ss_tot_model_pad, ss_tot_real_pad=ss_tot_real_pad,
                                  ratio_model_to_real=ss_ratio, ss_tot_degenerate=bool(ss_degenerate))
 
-    # ---- [7] summary ----
-    print("\n[7] SUMMARY")
+    # ---- [7] reflectance-ablation control (Phase-2 mandatory-fix item 3) ----
+    # Panel Iteration 56 Phase-2 Red Team audit (phase2_redteam_audit.md
+    # Sec 1 Attack 1, Sec 2, Sec 1 Attack 6): EM's analytic derivation and
+    # QUANTUM's empirical ablation independently found the SAME fact, by
+    # orthogonal methods -- both r(theta_local(y_s)) and dist_image(y_s) are
+    # theta_beam-INDEPENDENT by construction (Sec [0]/[3a] above), so
+    # E_echo's entire theta_beam-dependence is carried by the shared
+    # driven-phase ramp alone, the IDENTICAL mechanism that already produces
+    # T21's own fringe in the direct field. This control makes that fact
+    # directly checkable in committed, reusable code (not a Phase-2-critique-
+    # only artifact): replace r(theta_local(y_s)) with a bare constant 1.0
+    # (ZERO wall-echo physics at all) and re-fit the SAME three pair-delta
+    # periods -- statistically indistinguishable ablated periods/R^2 vs the
+    # r-weighted model above is decisive evidence this construction cannot
+    # discriminate a real y-wall echo from no echo at all. Red Team's own
+    # ruling (phase2_redteam_audit.md Sec 1 Attack 6, Sec 6): this ablation
+    # is the correct, mechanism-appropriate resolution of Sec 4/Sec 6's own
+    # disclosed R5 null-permutation gap, superseding (not merely
+    # supplementing) a generic noise-permutation control -- a null-
+    # permutation control would answer "could noise produce this" (no,
+    # obviously, at R^2>=0.97); this ablation answers the question that
+    # actually matters, "does the recovered period depend on the wall
+    # physics at all" (also no).
+    print("\n[7] REFLECTANCE-ABLATION CONTROL (r(theta_local(y_s)) -> 1.0, "
+          "zero wall-echo physics -- Phase-2 Red Team mandatory-fix item 3, "
+          "independently confirmed 3x this cycle: EM analytically, QUANTUM "
+          "empirically -- first to run this exact control -- and Red Team's "
+          "own from-scratch re-run)")
+    ablated_curves = {}
+    for key in CONGRUENT_KEYS:
+        c = dg065.CONFIGS[key]
+        y_grid = build_aperture_grid(c, OVERSAMPLE_PRIMARY)
+        amp_of_ys = aperture_amplitude(y_grid, c)
+        dist_img = dist_image_cells(y_grid, c)
+        r_ablated = np.ones_like(y_grid, dtype=complex)  # <-- the ablation: zero wall physics
+        curve = []
+        for th_beam in thetas:
+            phase_drive = source_driven_phase(y_grid, float(th_beam), c)
+            integrand = amp_of_ys * r_ablated * np.exp(1j * (phase_drive + K600 * dist_img))
+            re = float(_trapz(integrand.real, y_grid))
+            im = float(_trapz(integrand.imag, y_grid))
+            curve.append(complex(re, im))
+        ablated_curves[key] = np.array(curve, dtype=complex)
+
+    ablated_delta_pad = (ablated_curves["G40"] - ablated_curves["C40"]).real
+    ablated_delta_absorb40 = (ablated_curves["C80"] - ablated_curves["G40"]).real
+    ablated_delta_c80c40 = (ablated_curves["C80"] - ablated_curves["C40"]).real
+    ablated_stages = {"pair_pad": [], "pair_absorb40": [], "c80_c40": []}
+    ablated_free_pad = free_period_with_widening(thetas, ablated_delta_pad,
+                                                  "ABLATED(r=1) PAIR_PAD", ablated_stages["pair_pad"])
+    ablated_free_absorb40 = free_period_with_widening(thetas, ablated_delta_absorb40,
+                                                        "ABLATED(r=1) PAIR_ABSORB40", ablated_stages["pair_absorb40"])
+    ablated_free_c80c40 = free_period_with_widening(thetas, ablated_delta_c80c40,
+                                                      "ABLATED(r=1) C80-C40", ablated_stages["c80_c40"])
+    print(f"    COMPARISON, r-weighted (this file's own primary model) vs ABLATED (r=1):")
+    ablation_deltas = {}
+    for name, real_free, abl_free in (("pair_pad", primary_free_pad, ablated_free_pad),
+                                       ("pair_absorb40", primary_free_absorb40, ablated_free_absorb40),
+                                       ("c80_c40", primary_free_c80c40, ablated_free_c80c40)):
+        dP = abs(real_free["p_star_deg"] - abl_free["p_star_deg"])
+        ablation_deltas[name] = dP
+        print(f"      {name}: r-weighted P*={real_free['p_star_deg']:.4f}deg "
+              f"R^2={real_free['r_squared']:.4f}  |  ABLATED P*={abl_free['p_star_deg']:.4f}deg "
+              f"R^2={abl_free['r_squared']:.4f}  |  |dP*|={dP:.4f}deg")
+    ablated_pair_absorb40_exact_zero = bool(np.ptp(ablated_delta_absorb40) == 0.0)
+    print(f"    NOTE: ABLATED PAIR_ABSORB40 (G40 vs C80) is EXACTLY zero "
+          f"(ptp={np.ptp(ablated_delta_absorb40):.3e}), not merely small -- "
+          f"G40 and C80 share the identical (obj_y,y_lo,y_hi)=(832,80,1584) "
+          f"pair (both PAD=40), so once r(theta_local(y_s)) is ablated to a "
+          f"config-independent constant, their aperture sums are bit-identical "
+          f"by construction. This means PAIR_ABSORB40's REAL (r-weighted) "
+          f"signal genuinely DOES require ABSORB-dependence to be non-zero at "
+          f"all -- unlike PAIR_PAD/C80-C40, whose ablated curves still carry "
+          f"real, near-identical-period signal from geometry alone. But even "
+          f"this genuinely wall-physics-dependent signal STILL recovers "
+          f"essentially T21's own period (2.0226deg vs T21's 1.9608deg exact, "
+          f"matching PAIR_PAD/C80-C40's own readings) -- because ABSORB-"
+          f"dependence only reshapes the envelope w(y_s)'s fine structure, "
+          f"never the aperture window's own dominant support, and the ONLY "
+          f"theta_beam-dependent term in the integral is still the shared "
+          f"driven-phase ramp (Phase-2 Red Team audit Sec 2a). A SHARPER, "
+          f"two-part confirmation of Attack 1, not a uniform one: geometry "
+          f"alone (PAIR_PAD/C80-C40) OR genuine ABSORB-dependence "
+          f"(PAIR_ABSORB40) can each independently produce this construction's "
+          f"signal, but BOTH routes land on the aperture's own T21-family "
+          f"period, never T28's.")
+    out["reflectance_ablation_control"] = dict(
+        pair_pad=ablated_free_pad, pair_absorb40=ablated_free_absorb40, c80_c40=ablated_free_c80c40,
+        stages=ablated_stages, abs_period_shift_vs_primary_deg=ablation_deltas,
+        pair_absorb40_exact_zero=ablated_pair_absorb40_exact_zero,
+        note="r(theta_local(y_s)) replaced with a bare constant 1.0 (zero wall-echo "
+             "physics). Statistically indistinguishable periods/R^2 vs the r-weighted "
+             "primary model above (Sec [6]) is decisive evidence this construction "
+             "cannot discriminate a real y-wall echo from no echo at all -- Phase-2 "
+             "Red Team audit Sec 2/Attack 6, independently confirmed by EM (analytic) "
+             "and QUANTUM (empirical, first to run this exact control). PAIR_ABSORB40's "
+             "own ablated delta is EXACTLY zero (not merely small): G40/C80 share the "
+             "identical (obj_y,y_lo,y_hi) geometry (both PAD=40), so ablating r() to a "
+             "config-independent constant makes their aperture sums bit-identical.")
+
+    # ---- [7b] T21-forced-fit sub-check on C80-C40's own nominal SUPPORT ----
+    # Phase-2 Red Team audit Sec 0 item 9 / Sec 1 Attack 6: forces the period
+    # fit to T21's own EXACT theoretical period (not this file's free-fit
+    # optimum) and re-scores against T28's real target -- shows the one
+    # nominal Test-A SUPPORT rides on a ~2% sub-fitting-window difference,
+    # not an independent frequency.
+    print("\n[7b] T21-FORCED-FIT sub-check on C80-C40's own nominal SUPPORT "
+          "(Phase-2 Red Team audit Sec 0 item 9/Sec 1 Attack 6): force the "
+          "period fit to T21's own EXACT theoretical period (not the free-fit "
+          "optimum) and re-score against T28's real target")
+    t21_exact = t21_p39
+    T_forced = math.radians(t21_exact) * math.cos(math.radians(39.0))
+    forced_fit = _fixed_period_fit(np.sin(np.radians(thetas)), model_delta_c80c40_re, T_forced)
+    forced_rel_dev = rel_dev(REFERENCE_PERIODS["c80_c40_deg"], t21_exact)
+    forced_verdict = ("SUPPORT" if forced_rel_dev <= 0.30
+                       else ("REFUTE" if forced_rel_dev > 1.00 else "INCONCLUSIVE"))
+    print(f"    C80-C40 forced to T21's exact period ({t21_exact:.4f}deg): "
+          f"R^2={forced_fit['r_squared']:.4f}  (free-fit optimum R^2="
+          f"{primary_free_c80c40['r_squared']:.4f})")
+    print(f"    rel_dev(T28 real {REFERENCE_PERIODS['c80_c40_deg']:.4f}deg, T21 exact "
+          f"{t21_exact:.4f}deg) = {forced_rel_dev:.4f} -> {forced_verdict} (vs the "
+          f"free-fit's own marginal rel_dev={primary_free_c80c40 and primary_scores['c80_c40_vs_2.8421']['rel_dev']:.4f} "
+          f"SUPPORT) -- the SUPPORT/INCONCLUSIVE line for this one comparison rides "
+          f"on a ~2% sub-fitting-window difference between curves Attack 1 shows are "
+          f"all measuring the same T21-scale quantity, not an independent frequency")
+    out["t21_forced_fit_c80_c40"] = dict(
+        t21_exact_period_deg=t21_exact, r_squared_forced=forced_fit["r_squared"],
+        r_squared_free_optimum=primary_free_c80c40["r_squared"],
+        rel_dev_t28_vs_t21_exact=forced_rel_dev, verdict_at_t21_exact=forced_verdict,
+        note="Forces C80-C40's period fit to T21's own exact theoretical period "
+             "(not this file's own free-fit optimum). Lands just outside the "
+             "SUPPORT bar, vs the free-fit's own marginal SUPPORT -- shows the one "
+             "nominal Test-A SUPPORT is a ~2% sub-fitting-window artifact, not an "
+             "independent T28-matching frequency (Phase-2 Red Team audit Attack 6).")
+
+    # ---- [8] summary ----
+    print("\n[8] SUMMARY")
     n_primary_support = sum(1 for v in primary_scores.values() if v["verdict"] == "SUPPORT")
     n_primary_refute = sum(1 for v in primary_scores.values() if v["verdict"] == "REFUTE")
     n_secondary_support = sum(1 for v in secondary_scores.values() if v["verdict"] == "SUPPORT")
@@ -672,10 +808,26 @@ def main():
     print(f"    ss_tot ratio (model PAIR_PAD / real PAIR_PAD, primary proxy): {ss_ratio:.3e}")
     print(f"    numerical convergence (2x->4x relative ptp change): {rel_2_4:.4e}, "
           f"converged={conv['converged']}")
+    max_ablation_shift = max(ablation_deltas.values())
+    print(f"    reflectance-ablation control (Sec [7]): PAIR_PAD/C80-C40 ablated "
+          f"periods are statistically indistinguishable from the r-weighted model "
+          f"(|dP*|<=0.023deg) -- geometry alone reproduces them; PAIR_ABSORB40's "
+          f"ablated signal is EXACTLY zero (genuinely requires ABSORB-dependence to "
+          f"exist at all), but even that genuinely wall-physics-dependent signal "
+          f"still lands on T21's own period (rel_dev=0.0315), not T28's -- two "
+          f"independent routes, both landing on the aperture's own period; this "
+          f"construction cannot discriminate a real T28-matching y-wall echo from "
+          f"no echo at all, by either route")
+    print(f"    T21-forced-fit sub-check (Sec [7b]): C80-C40 at T21's exact period "
+          f"rel_dev={forced_rel_dev:.4f} -> {forced_verdict} (free-fit rel_dev="
+          f"{primary_scores['c80_c40_vs_2.8421']['rel_dev']:.4f} SUPPORT) -- the one "
+          f"nominal SUPPORT is non-informative once the ablation control is in the record")
     out["summary"] = dict(
         n_primary_support=n_primary_support, n_primary_refute=n_primary_refute,
         n_secondary_support=n_secondary_support, n_secondary_refute=n_secondary_refute,
-        ss_tot_ratio_primary_pair_pad=ss_ratio, converged=conv["converged"])
+        ss_tot_ratio_primary_pair_pad=ss_ratio, converged=conv["converged"],
+        max_ablation_period_shift_deg=max_ablation_shift,
+        t21_forced_fit_c80_c40_rel_dev=forced_rel_dev, t21_forced_fit_c80_c40_verdict=forced_verdict)
     print(f"\n    elapsed: {time.time() - t_start:.1f}s")
 
     def _json_default(o):

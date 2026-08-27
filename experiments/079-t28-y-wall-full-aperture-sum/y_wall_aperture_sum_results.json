@@ -826,12 +826,104 @@
     "ratio_model_to_real": 9.391588920648808e-07,
     "ss_tot_degenerate": false
   },
+  "reflectance_ablation_control": {
+    "pair_pad": {
+      "window": "narrow[1,4]",
+      "p_star_deg": 2.007518796992481,
+      "r_squared": 0.9745572380455207,
+      "at_boundary": false,
+      "ss_tot_full": 0.013654362231923983,
+      "ss_tot_degenerate": false
+    },
+    "pair_absorb40": {
+      "window": "narrow[1,4]",
+      "p_star_deg": 1.0,
+      "r_squared": 0.0,
+      "at_boundary": true,
+      "ss_tot_full": 0.0,
+      "ss_tot_degenerate": true
+    },
+    "c80_c40": {
+      "window": "narrow[1,4]",
+      "p_star_deg": 2.007518796992481,
+      "r_squared": 0.9745572380455207,
+      "at_boundary": false,
+      "ss_tot_full": 0.013654362231923983,
+      "ss_tot_degenerate": false
+    },
+    "stages": {
+      "pair_pad": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 2.007518796992481,
+          "r_squared": 0.9745572380455207,
+          "at_boundary": false,
+          "ss_tot_full": 0.013654362231923983,
+          "ss_tot_degenerate": false
+        }
+      ],
+      "pair_absorb40": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 1.0,
+          "r_squared": 0.0,
+          "at_boundary": true,
+          "ss_tot_full": 0.0,
+          "ss_tot_degenerate": true
+        },
+        {
+          "window": "wide[1,15]",
+          "p_star_deg": 1.0,
+          "r_squared": 0.0,
+          "at_boundary": true,
+          "ss_tot_full": 0.0,
+          "ss_tot_degenerate": true
+        },
+        {
+          "window": "widest[1,60]",
+          "p_star_deg": 1.0,
+          "r_squared": 0.0,
+          "at_boundary": true,
+          "ss_tot_full": 0.0,
+          "ss_tot_degenerate": true
+        }
+      ],
+      "c80_c40": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 2.007518796992481,
+          "r_squared": 0.9745572380455207,
+          "at_boundary": false,
+          "ss_tot_full": 0.013654362231923983,
+          "ss_tot_degenerate": false
+        }
+      ]
+    },
+    "abs_period_shift_vs_primary_deg": {
+      "pair_pad": 0.015037593984962294,
+      "pair_absorb40": 1.0225563909774436,
+      "c80_c40": 0.022556390977443996
+    },
+    "pair_absorb40_exact_zero": true,
+    "note": "r(theta_local(y_s)) replaced with a bare constant 1.0 (zero wall-echo physics). Statistically indistinguishable periods/R^2 vs the r-weighted primary model above (Sec [6]) is decisive evidence this construction cannot discriminate a real y-wall echo from no echo at all -- Phase-2 Red Team audit Sec 2/Attack 6, independently confirmed by EM (analytic) and QUANTUM (empirical, first to run this exact control). PAIR_ABSORB40's own ablated delta is EXACTLY zero (not merely small): G40/C80 share the identical (obj_y,y_lo,y_hi) geometry (both PAD=40), so ablating r() to a config-independent constant makes their aperture sums bit-identical."
+  },
+  "t21_forced_fit_c80_c40": {
+    "t21_exact_period_deg": 1.9607950099405438,
+    "r_squared_forced": 0.9425361737894882,
+    "r_squared_free_optimum": 0.9731667305034172,
+    "rel_dev_t28_vs_t21_exact": 0.3100906446505494,
+    "verdict_at_t21_exact": "INCONCLUSIVE",
+    "note": "Forces C80-C40's period fit to T21's own exact theoretical period (not this file's own free-fit optimum). Lands just outside the SUPPORT bar, vs the free-fit's own marginal SUPPORT -- shows the one nominal Test-A SUPPORT is a ~2% sub-fitting-window artifact, not an independent T28-matching frequency (Phase-2 Red Team audit Attack 6)."
+  },
   "summary": {
     "n_primary_support": 1,
     "n_primary_refute": 0,
     "n_secondary_support": 0,
     "n_secondary_refute": 0,
     "ss_tot_ratio_primary_pair_pad": 9.391588920648808e-07,
-    "converged": true
+    "converged": true,
+    "max_ablation_period_shift_deg": 1.0225563909774436,
+    "t21_forced_fit_c80_c40_rel_dev": 0.3100906446505494,
+    "t21_forced_fit_c80_c40_verdict": "INCONCLUSIVE"
   }
 }
