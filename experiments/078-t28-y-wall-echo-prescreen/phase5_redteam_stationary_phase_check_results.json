@@ -1,0 +1,134 @@
+{
+  "rigorous_bounce_angle_deg": {
+    "C40": {
+      "theta_local_deg": 15.00425801922111,
+      "d_sp": 223,
+      "obj_y_plus_y_lo": 832
+    },
+    "C60": {
+      "theta_local_deg": 14.345029373588298,
+      "d_sp": 223,
+      "obj_y_plus_y_lo": 872
+    },
+    "C70": {
+      "theta_local_deg": 14.036243467926479,
+      "d_sp": 223,
+      "obj_y_plus_y_lo": 892
+    },
+    "C80": {
+      "theta_local_deg": 13.740220374651305,
+      "d_sp": 223,
+      "obj_y_plus_y_lo": 912
+    },
+    "G40": {
+      "theta_local_deg": 13.740220374651305,
+      "d_sp": 223,
+      "obj_y_plus_y_lo": 912
+    }
+  },
+  "em_table_cross_check_max_dev_deg": 0.0002580192211105725,
+  "gates_at_rigorous_envelope": {
+    "g_lossless_worst_dev": 3.3306690738754696e-16,
+    "g_lossless_pass": true,
+    "g_n1_worst_dev": 3.972054645195637e-15,
+    "g_n1_pass": true,
+    "g_passivity_worst_abs_r": 0.000107406302408142,
+    "g_passivity_pass": true
+  },
+  "reference_periods_deg": {
+    "c80_c40_deg": 2.8421052631578947,
+    "pair_pad_deg": 4.611289746337977,
+    "pair_absorb40_deg": 4.176134333690603
+  },
+  "rigorous_primary_model_curves": {
+    "C40": {
+      "ptp_delta_phi_deg": 0.0,
+      "abs_r_constant": 0.0001061113918827708,
+      "delta_phi_deg_constant": 1536.047413098354
+    },
+    "C60": {
+      "ptp_delta_phi_deg": 0.0,
+      "abs_r_constant": 3.996754762779716e-06,
+      "delta_phi_deg_constant": 1910.647226324493
+    },
+    "C70": {
+      "ptp_delta_phi_deg": 0.0,
+      "abs_r_constant": 3.7333391851912436e-06,
+      "delta_phi_deg_constant": 2271.7321897704837
+    },
+    "C80": {
+      "ptp_delta_phi_deg": 0.0,
+      "abs_r_constant": 2.0180218472758555e-06,
+      "delta_phi_deg_constant": 2619.1935932948804
+    },
+    "G40": {
+      "ptp_delta_phi_deg": 0.0,
+      "abs_r_constant": 9.27185960777778e-05,
+      "delta_phi_deg_constant": 2938.9644433539956
+    }
+  },
+  "all_configs_flat_to_float_precision": true,
+  "doubly_corrected_pair_deltas_ptp": {
+    "pair_pad": 0.0,
+    "pair_absorb40": 0.0,
+    "c80_c40": 0.0
+  },
+  "naive_band_applied_to_flat_curve": {
+    "c80_c40": {
+      "p_real_deg": 2.8421052631578947,
+      "p_model_deg": 11.483744194355127,
+      "rel_dev": 3.0405766609768037,
+      "naive_band_verdict_DO_NOT_CITE": "REFUTE"
+    },
+    "pair_pad": {
+      "p_real_deg": 4.611289746337977,
+      "p_model_deg": 1.0075187969924813,
+      "rel_dev": 0.781510411963899,
+      "naive_band_verdict_DO_NOT_CITE": "INCONCLUSIVE"
+    },
+    "pair_absorb40": {
+      "p_real_deg": 4.176134333690603,
+      "p_model_deg": 1.037593984962406,
+      "rel_dev": 0.7515419998366177,
+      "naive_band_verdict_DO_NOT_CITE": "INCONCLUSIVE"
+    }
+  },
+  "ss_tot_diagnosis": {
+    "pair_pad_model_ss_tot": 3.821045009664276e-31,
+    "pair_pad_real_ss_tot": 6.439268887766122e-05,
+    "ratio_model_to_real": 5.933973369125534e-27
+  },
+  "r_squared_identically_zero_everywhere": false,
+  "flat_curve_period_search_stages": {
+    "pair_pad": [
+      {
+        "window": "narrow[1,4]",
+        "p_star_deg": 1.0075187969924813,
+        "r_squared": 1.0,
+        "at_boundary": false
+      }
+    ],
+    "pair_absorb40": [
+      {
+        "window": "narrow[1,4]",
+        "p_star_deg": 1.037593984962406,
+        "r_squared": 1.0,
+        "at_boundary": false
+      }
+    ],
+    "c80_c40": [
+      {
+        "window": "narrow[1,4]",
+        "p_star_deg": 1.0,
+        "r_squared": 0.8888888888888888,
+        "at_boundary": true
+      },
+      {
+        "window": "wide[1,15]",
+        "p_star_deg": 11.483744194355127,
+        "r_squared": 0.9175627240143369,
+        "at_boundary": false
+      }
+    ]
+  }
+}
