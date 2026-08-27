@@ -1,0 +1,62 @@
+==============================================================================
+exp-081 -- PHOTONICS' construction, AS ORIGINALLY SPECIFIED: total
+field, scored via free-period fit against REAL T28 reference periods
+==============================================================================
+
+[1a] E_direct PAD-invariance -- numerical re-verification of
+     PHOTONICS' own exp-080 Phase-5 proof (cited, not re-derived)
+    max|E_direct(C40)-E_direct(C40)| = 0.000e+00
+    max|E_direct(C60)-E_direct(C40)| = 0.000e+00
+    max|E_direct(C70)-E_direct(C40)| = 0.000e+00
+    max|E_direct(C80)-E_direct(C40)| = 0.000e+00
+    max|E_direct(G40)-E_direct(C40)| = 0.000e+00
+    bit-identical across all 5 configs: True
+
+[1b/1] Build E_total = E_direct + E_image, form 3 pair-deltas,
+       check E_direct's effect on the pair-delta scores, then score
+       via _free_period_search against REAL T28 reference periods
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    [model(total) PAIR_PAD]  narrow[1,4]: P*=   1.8571deg  R^2=0.8978  [interior optimum]
+    [model(total) PAIR_ABSORB40]  narrow[1,4]: P*=   2.0301deg  R^2=0.7300  [interior optimum]
+    [model(total) C80-C40]  narrow[1,4]: P*=   2.0150deg  R^2=0.8473  [interior optimum]
+    model(total) PAIR_PAD vs real: P*_real=4.6113deg  P*_model=1.8571deg  rel_dev=0.5973 -> INCONCLUSIVE
+    model(total) PAIR_ABSORB40 vs real: P*_real=4.1761deg  P*_model=2.0301deg  rel_dev=0.5139 -> INCONCLUSIVE
+    model(total) C80-C40 vs real: P*_real=2.8421deg  P*_model=2.0150deg  rel_dev=0.2910 -> SUPPORT
+    REFERENCE_PERIODS (recomputed fresh from exp-076 headline): {'pair_pad_deg': 4.611289746337977, 'pair_absorb40_deg': 4.176134333690603, 'c80_c40_deg': 2.8421052631578947}
+    item 1b -- does E_direct change the pair-delta scores at all?
+      max_abs_diff_pair_pad = 1.0135230328611744e-14
+      max_abs_diff_pair_absorb40 = 1.1790779940942797e-14
+      max_abs_diff_c80_c40 = 1.2868517557974857e-14
+      all_exactly_zero = False
+    pair_pad: P*_real=4.6113deg  P*_model=1.8571deg  rel_dev=0.5973 -> INCONCLUSIVE
+    pair_absorb40: P*_real=4.1761deg  P*_model=2.0301deg  rel_dev=0.5139 -> INCONCLUSIVE
+    c80_c40: P*_real=2.8421deg  P*_model=2.0150deg  rel_dev=0.2910 -> SUPPORT
+    Combined Verdict: NEITHER
+    ss_tot sanity: {'pair_pad': 8.851818417318903e-06, 'pair_pad_degenerate': False, 'pair_absorb40': 6.007823709272005e-05, 'pair_absorb40_degenerate': False, 'c80_c40': 6.381617132628421e-05, 'c80_c40_degenerate': False}
+    [1c] T21-proximity diagnostic (look-elsewhere disclosure, T21 fringe=1.9608deg):
+      pair_pad: P*_model=1.8571deg  rel_dev_vs_T21=0.0529  rel_dev_vs_T28_real=0.5973  closer_to_T21=True
+      pair_absorb40: P*_model=2.0301deg  rel_dev_vs_T21=0.0353  rel_dev_vs_T28_real=0.5139  closer_to_T21=True
+      c80_c40: P*_model=2.0150deg  rel_dev_vs_T21=0.0277  rel_dev_vs_T28_real=0.2910  closer_to_T21=True
+
+[2] EM gate re-run at [47.5,54.5]deg
+    G-LOSSLESS worst ||r|-1| = 2.220e-16  PASS=True
+    G-N1       worst |r_loop-r_direct| = 3.140e-15  PASS=True
+    G-PASSIVITY worst |r| = 0.041413  PASS=True
+    ALL PASS: True
+
+[3] THERMODYNAMICS energy budget: geometric-interception x
+    material-reflectivity upper bound
+    theta_beam-convention anchor (ABSORB=40, matched, max) = 1.4943e-03 (0.1494%)
+    theta_local-convention (ABSORB=40, matched, max) = 1.2886e-08
+    theta_local-convention (ABSORB=40, realizable, max) = 2.6375e-08
+    theta_local bound smaller than theta_beam anchor: True
+    ratio (theta_beam anchor / theta_local matched) = 1.1597e+05
+
+[4] MATERIALS hygiene: docstring fix applied directly to
+    experiments/080-.../validity_precheck.py (see that file's diff)
+
+wrote /home/user/photon-lab/experiments/081-t28-photonics-construction-total-field/phase1_results.json

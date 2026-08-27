@@ -1,0 +1,284 @@
+{
+  "item1a_e_direct_pad_invariance": {
+    "max_abs_dev_vs_C40": {
+      "C40": 0.0,
+      "C60": 0.0,
+      "C70": 0.0,
+      "C80": 0.0,
+      "G40": 0.0
+    },
+    "bit_identical_all_zero": true
+  },
+  "item1_build_and_score": {
+    "reference_periods": {
+      "pair_pad_deg": 4.611289746337977,
+      "pair_absorb40_deg": 4.176134333690603,
+      "c80_c40_deg": 2.8421052631578947
+    },
+    "real_stages": {
+      "pair_pad": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 4.0,
+          "r_squared": 0.6824352476365169,
+          "at_boundary": true,
+          "ss_tot_full": 6.439268887766122e-05,
+          "ss_tot_degenerate": false
+        },
+        {
+          "window": "wide[1,15]",
+          "p_star_deg": 4.611289746337977,
+          "r_squared": 0.8164836481103196,
+          "at_boundary": false,
+          "ss_tot_full": 6.439268887766122e-05,
+          "ss_tot_degenerate": false
+        }
+      ],
+      "pair_absorb40": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 4.0,
+          "r_squared": 0.7092910809975224,
+          "at_boundary": true,
+          "ss_tot_full": 7.158295580724368e-05,
+          "ss_tot_degenerate": false
+        },
+        {
+          "window": "wide[1,15]",
+          "p_star_deg": 4.176134333690603,
+          "r_squared": 0.715638364085476,
+          "at_boundary": false,
+          "ss_tot_full": 7.158295580724368e-05,
+          "ss_tot_degenerate": false
+        }
+      ],
+      "c80_c40": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 2.8421052631578947,
+          "r_squared": 0.6272134587910355,
+          "at_boundary": false,
+          "ss_tot_full": 3.37297910253785e-05,
+          "ss_tot_degenerate": false
+        }
+      ]
+    },
+    "model_free_periods": {
+      "pair_pad": {
+        "window": "narrow[1,4]",
+        "p_star_deg": 1.8571428571428572,
+        "r_squared": 0.8978132267166716,
+        "at_boundary": false,
+        "ss_tot_full": 8.851818417318903e-06,
+        "ss_tot_degenerate": false
+      },
+      "pair_absorb40": {
+        "window": "narrow[1,4]",
+        "p_star_deg": 2.030075187969925,
+        "r_squared": 0.7299951077730829,
+        "at_boundary": false,
+        "ss_tot_full": 6.007823709272005e-05,
+        "ss_tot_degenerate": false
+      },
+      "c80_c40": {
+        "window": "narrow[1,4]",
+        "p_star_deg": 2.015037593984962,
+        "r_squared": 0.8472861229892049,
+        "at_boundary": false,
+        "ss_tot_full": 6.381617132628421e-05,
+        "ss_tot_degenerate": false
+      }
+    },
+    "model_stages": {
+      "pair_pad": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 1.8571428571428572,
+          "r_squared": 0.8978132267166716,
+          "at_boundary": false,
+          "ss_tot_full": 8.851818417318903e-06,
+          "ss_tot_degenerate": false
+        }
+      ],
+      "pair_absorb40": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 2.030075187969925,
+          "r_squared": 0.7299951077730829,
+          "at_boundary": false,
+          "ss_tot_full": 6.007823709272005e-05,
+          "ss_tot_degenerate": false
+        }
+      ],
+      "c80_c40": [
+        {
+          "window": "narrow[1,4]",
+          "p_star_deg": 2.015037593984962,
+          "r_squared": 0.8472861229892049,
+          "at_boundary": false,
+          "ss_tot_full": 6.381617132628421e-05,
+          "ss_tot_degenerate": false
+        }
+      ]
+    },
+    "scores": {
+      "pair_pad": {
+        "p_real_deg": 4.611289746337977,
+        "p_model_deg": 1.8571428571428572,
+        "rel_dev": 0.5972617295155452,
+        "verdict": "INCONCLUSIVE"
+      },
+      "pair_absorb40": {
+        "p_real_deg": 4.176134333690603,
+        "p_model_deg": 2.030075187969925,
+        "rel_dev": 0.5138865214194696,
+        "verdict": "INCONCLUSIVE"
+      },
+      "c80_c40": {
+        "p_real_deg": 2.8421052631578947,
+        "p_model_deg": 2.015037593984962,
+        "rel_dev": 0.2910052910052911,
+        "verdict": "SUPPORT"
+      }
+    },
+    "verdicts": [
+      "INCONCLUSIVE",
+      "INCONCLUSIVE",
+      "SUPPORT"
+    ],
+    "combined_verdict": "NEITHER",
+    "item1b_e_direct_cancellation": {
+      "max_abs_diff_pair_pad": 1.0135230328611744e-14,
+      "max_abs_diff_pair_absorb40": 1.1790779940942797e-14,
+      "max_abs_diff_c80_c40": 1.2868517557974857e-14,
+      "all_exactly_zero": false
+    },
+    "ss_tot_sanity": {
+      "pair_pad": 8.851818417318903e-06,
+      "pair_pad_degenerate": false,
+      "pair_absorb40": 6.007823709272005e-05,
+      "pair_absorb40_degenerate": false,
+      "c80_c40": 6.381617132628421e-05,
+      "c80_c40_degenerate": false
+    },
+    "item1c_t21_proximity_diagnostic": {
+      "t21_fringe_period_deg": 1.9607950099405438,
+      "per_pair": {
+        "pair_pad": {
+          "p_model_deg": 1.8571428571428572,
+          "rel_dev_vs_t21_fringe": 0.05286230955923821,
+          "rel_dev_vs_t28_real_target": 0.5972617295155452,
+          "closer_to_t21_than_to_t28": true
+        },
+        "pair_absorb40": {
+          "p_model_deg": 2.030075187969925,
+          "rel_dev_vs_t21_fringe": 0.03533269805265467,
+          "rel_dev_vs_t28_real_target": 0.5138865214194696,
+          "closer_to_t21_than_to_t28": true
+        },
+        "c80_c40": {
+          "p_model_deg": 2.015037593984962,
+          "rel_dev_vs_t21_fringe": 0.02766356695596806,
+          "rel_dev_vs_t28_real_target": 0.2910052910052911,
+          "closer_to_t21_than_to_t28": true
+        }
+      }
+    }
+  },
+  "item2_gate_rerun": {
+    "range_deg": [
+      47.5,
+      54.5
+    ],
+    "g_lossless_worst_dev": 2.220446049250313e-16,
+    "g_lossless_pass": true,
+    "g_n1_worst_dev": 3.1401849173675502e-15,
+    "g_n1_pass": true,
+    "g_passivity_worst_abs_r": 0.04141297124315439,
+    "g_passivity_pass": true,
+    "all_pass": true
+  },
+  "item3_energy_budget": {
+    "interception_factor_upper_bound": 1.0,
+    "theta_beam_convention_anchor": {
+      "note": "d80.part_c_power_budget_at_true_angle(), 90-theta_beam convention, matched admittance -- reproduces PLAN.md's own <=0.15% anchor",
+      "per_absorb": {
+        "absorb_40": {
+          "r2_min": 0.0002482220275185739,
+          "r2_max": 0.0014943220005826383,
+          "reflected_power_fraction_min": 0.0002482220275185739,
+          "reflected_power_fraction_max": 0.0014943220005826383
+        },
+        "absorb_60": {
+          "r2_min": 6.357807896433383e-06,
+          "r2_max": 5.114968937072868e-05,
+          "reflected_power_fraction_min": 6.357807896433383e-06,
+          "reflected_power_fraction_max": 5.114968937072868e-05
+        },
+        "absorb_70": {
+          "r2_min": 9.371953252345592e-07,
+          "r2_max": 1.3155686847989027e-05,
+          "reflected_power_fraction_min": 9.371953252345592e-07,
+          "reflected_power_fraction_max": 1.3155686847989027e-05
+        },
+        "absorb_80": {
+          "r2_min": 4.0994485890303634e-08,
+          "r2_max": 3.5692150290132254e-06,
+          "reflected_power_fraction_min": 4.0994485890303634e-08,
+          "reflected_power_fraction_max": 3.5692150290132254e-06
+        }
+      },
+      "absorb40_max": 0.0014943220005826383
+    },
+    "theta_local_convention": {
+      "note": "physically-correct fixed-observer angle (EM's own item-4 finding), both admittance families, max over the FULL per-ABSORB theta_local envelope",
+      "per_absorb": {
+        "absorb_40": {
+          "theta_local_envelope_deg": [
+            5.273534191326734,
+            15.00425801922111
+          ],
+          "reflected_power_fraction_matched_max": 1.288558037828073e-08,
+          "reflected_power_fraction_matched_min": 8.596738058606972e-09,
+          "reflected_power_fraction_realizable_max": 2.637481745452624e-08,
+          "reflected_power_fraction_realizable_min": 8.617004924361354e-09
+        },
+        "absorb_60": {
+          "theta_local_envelope_deg": [
+            5.361801056654782,
+            14.345029373588298
+          ],
+          "reflected_power_fraction_matched_max": 1.5974048633104613e-11,
+          "reflected_power_fraction_matched_min": 4.190258644176388e-12,
+          "reflected_power_fraction_realizable_max": 6.495942016645638e-09,
+          "reflected_power_fraction_realizable_min": 6.0352793920543285e-09
+        },
+        "absorb_70": {
+          "theta_local_envelope_deg": [
+            5.3173023952848615,
+            14.036243467926479
+          ],
+          "reflected_power_fraction_matched_max": 1.3937821470991007e-11,
+          "reflected_power_fraction_matched_min": 3.90387738632944e-13,
+          "reflected_power_fraction_realizable_max": 3.1363376298559423e-09,
+          "reflected_power_fraction_realizable_min": 2.3262784006147894e-09
+        },
+        "absorb_80": {
+          "theta_local_envelope_deg": [
+            5.273534191326734,
+            13.740220374651305
+          ],
+          "reflected_power_fraction_matched_max": 4.0724121758861205e-12,
+          "reflected_power_fraction_matched_min": 8.673736736417422e-14,
+          "reflected_power_fraction_realizable_max": 1.3351958519417068e-09,
+          "reflected_power_fraction_realizable_min": 1.0502119905949129e-09
+        }
+      },
+      "absorb40_matched_max": 1.288558037828073e-08,
+      "absorb40_realizable_max": 2.637481745452624e-08
+    },
+    "ratio_theta_beam_over_theta_local_matched_absorb40": 115968.54442826576,
+    "theta_local_bound_is_smaller": true
+  },
+  "item4_note": "docstring fix applied to experiments/080-.../validity_precheck.py -- reflection_coefficient_vec_realizable(), mu_r=ni^2 -> mu_r=ni"
+}

@@ -278,9 +278,13 @@ def part_b():
 def reflection_coefficient_vec_realizable(n_prof, theta_deg_arr, lam_cells):
     """SAME recursive transfer-matrix algebra as reflection_coefficient_vec,
     with the per-layer admittance Zi=ni/sqrt(ni^2-sin^2(theta)) (implicitly
-    mu_r=ni^2, the MATCHED/unobtainium family every other function in this
-    file uses) replaced by Zi=1/sqrt(ni^2-sin^2(theta)) (mu_r=1, the
-    REALIZABLE ordinary-dielectric family) -- the SAME substitution exp-079's
+    mu_r=ni, the MATCHED/unobtainium family every other function in this
+    file uses -- corrected exp-081 Iteration-58 item 4, MATERIALS hygiene:
+    Z_TE proportional to mu_r/sqrt(n^2-sin^2(theta)), so Zi=ni/sqrt(rad)
+    implies mu_r=ni, not ni^2, this docstring's own prior error) replaced by
+    Zi=1/sqrt(ni^2-sin^2(theta)) (mu_r=1, the REALIZABLE ordinary-dielectric
+    family -- the only one that could ever describe a real material, MATERIALS'
+    own exp-080 Phase-5 finding) -- the SAME substitution exp-079's
     own MATERIALS Phase-5 review made (phase5_review_materials.md Sec 2b),
     independently re-confirmed there by that cycle's own Red Team audit, and
     independently re-derived a second time by this cycle's own MATERIALS
