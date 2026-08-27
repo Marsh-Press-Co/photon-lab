@@ -1,0 +1,85 @@
+==============================================================================
+exp-082 -- PAD-loaded real-article check
+==============================================================================
+
+Reproduction precondition: this cycle's own freshly-run EMPTY leg at
+theta in {36..42} (1deg step) for C40/G40 must reproduce
+experiments/076-.../results.json::headline's C40/G40 values at those
+same integer-degree points, max|delta| < 1e-9 -- BEFORE the article-
+loaded leg is trusted.
+
+Primary metric: A_scene = ptp(C(G40;theta,article) - C(C40;theta,article))
+over theta in {36..42}; A_empty = ptp(C_empty(G40;theta) -
+C_empty(C40;theta)) over the SAME 7 angles, this cycle's own fresh run;
+ratio = A_scene / A_empty.
+  SURVIVES:      ratio in [0.5, 2.0]
+  CANCELS:       ratio <= 0.2
+  INCONCLUSIVE:  0.2 < ratio < 0.5, OR ratio > 2.0
+
+Secondary (disclosed, not gating): A_scene / C_thr (C_thr=0.005).
+
+Settling precondition (disclosed, not gating): |C(G40,theta=39,article,
+STEPS=2800) - C(G40,theta=39,article,STEPS=1400)| reported for context,
+no pass/fail threshold (single directional check, not full R3).
+
+clean
+
+29 FDTD calls queued (2 configs x 7 angles x 2 legs + 1 settling-precondition call)
+  [ 1/29] C40 theta=+36.0 article=False steps=2800 ( 58.1s)
+  [ 2/29] C40 theta=+36.0 article=True steps=2800 ( 59.7s)
+  [ 3/29] C40 theta=+37.0 article=False steps=2800 ( 62.5s)
+  [ 4/29] C40 theta=+37.0 article=True steps=2800 ( 63.5s)
+  [ 5/29] C40 theta=+38.0 article=False steps=2800 ( 85.5s)
+  [ 6/29] C40 theta=+38.0 article=True steps=2800 ( 84.3s)
+  [ 7/29] C40 theta=+39.0 article=False steps=2800 ( 80.1s)
+  [ 8/29] C40 theta=+39.0 article=True steps=2800 ( 80.9s)
+  [ 9/29] C40 theta=+40.0 article=False steps=2800 ( 80.5s)
+  [10/29] C40 theta=+40.0 article=True steps=2800 ( 78.5s)
+  [11/29] C40 theta=+41.0 article=False steps=2800 ( 82.8s)
+  [12/29] C40 theta=+41.0 article=True steps=2800 ( 79.3s)
+  [13/29] C40 theta=+42.0 article=False steps=2800 ( 82.7s)
+  [14/29] C40 theta=+42.0 article=True steps=2800 ( 84.5s)
+  [15/29] G40 theta=+36.0 article=False steps=2800 (111.6s)
+  [16/29] G40 theta=+36.0 article=True steps=2800 (118.2s)
+  [17/29] G40 theta=+37.0 article=False steps=2800 (106.3s)
+  [18/29] G40 theta=+37.0 article=True steps=2800 ( 95.3s)
+  [19/29] G40 theta=+38.0 article=False steps=2800 ( 99.7s)
+  [20/29] G40 theta=+38.0 article=True steps=2800 ( 98.8s)
+  [21/29] G40 theta=+39.0 article=False steps=2800 (100.7s)
+  [22/29] G40 theta=+39.0 article=True steps=2800 ( 95.3s)
+  [23/29] G40 theta=+40.0 article=False steps=2800 ( 86.5s)
+  [24/29] G40 theta=+40.0 article=True steps=2800 ( 85.3s)
+  [25/29] G40 theta=+41.0 article=False steps=2800 ( 78.0s)
+  [26/29] G40 theta=+41.0 article=True steps=2800 ( 71.8s)
+  [27/29] G40 theta=+42.0 article=False steps=2800 ( 67.4s)
+  [28/29] G40 theta=+42.0 article=True steps=2800 ( 73.8s)
+  [29/29] G40 theta=+39.0 article=True steps=1400 ( 31.0s)
+
+total wall time: 609.2s
+
+[primary metric]
+  delta_scene(theta) = [-0.0004287148400816676, -0.00041071059009811783, 0.0019231267035779709, -0.0014844929687928277, -0.0006898682053319005, 0.0007727142342485172, -0.0008029954301030928]
+  delta_empty(theta) = [-0.002157920387158452, 0.0015725517403317717, 0.0008150575564928042, -0.0006305400031862973, -0.0017500508423448089, -0.0013901256700601383, 0.0030266778957582785]
+  A_scene (ptp) = 3.407620e-03   A_empty (ptp) = 5.184598e-03
+  ratio = A_scene/A_empty = 0.6573
+  VERDICT: SURVIVES
+
+[secondary metric, disclosed not gating]
+  A_scene / C_thr = 0.6815  (C_thr=0.005)
+
+[reproduction precondition -- fresh empty leg vs exp-076 committed]
+  theta=+36.0  C40_dev=0.000e+00  G40_dev=0.000e+00
+  theta=+37.0  C40_dev=0.000e+00  G40_dev=0.000e+00
+  theta=+38.0  C40_dev=0.000e+00  G40_dev=0.000e+00
+  theta=+39.0  C40_dev=0.000e+00  G40_dev=0.000e+00
+  theta=+40.0  C40_dev=0.000e+00  G40_dev=0.000e+00
+  theta=+41.0  C40_dev=0.000e+00  G40_dev=0.000e+00
+  theta=+42.0  C40_dev=0.000e+00  G40_dev=0.000e+00
+  max_dev = 0.000e+00  PASS(<1e-9) = True
+
+[settling precondition, disclosed not gating]
+  C(G40,39deg,article,STEPS=2800) = -5.556152e-01
+  C(G40,39deg,article,STEPS=1400) = -5.556697e-01
+  abs_dev = 5.452e-05  rel_dev = 0.0001
+
+wrote /home/user/photon-lab/experiments/082-t28-pad-real-article-check/results.json

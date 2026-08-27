@@ -122,7 +122,25 @@ loosest possible interception assumption (100%), this entire construction
 family could never matter to constraint 3's energy budget — and the honest,
 `theta_local(y_s)`-based physical bound is many orders of magnitude more
 negligible than the `90°−θ_beam`-convention anchor PLAN.md cited as a
-sanity check.
+sanity check. **(600nm ONLY — not yet checked at 450/750nm; see the
+still-deferred wavelength-generality leg, Tier 1 item 8.)**
+
+**ABSORB=40-worst-case-across-all-depths (Iteration-59 hygiene addition,
+PLAN.md Tier-0 item 2)**, `reflected_power_fraction_max` at every tested
+`ABSORB` depth, interception=1, both conventions/families:
+
+| ABSORB | θ_beam-convention (matched) | θ_local-convention (matched) | θ_local-convention (realizable) |
+|---|---|---|---|
+| 40 | `1.4943×10⁻³` | `1.2886×10⁻⁸` | `2.6375×10⁻⁸` |
+| 60 | `5.1150×10⁻⁵` | `1.5974×10⁻¹¹` | `6.4959×10⁻⁹` |
+| 70 | `1.3156×10⁻⁵` | `1.3938×10⁻¹¹` | `3.1363×10⁻⁹` |
+| 80 | `3.5692×10⁻⁶` | `4.0724×10⁻¹²` | `1.3352×10⁻⁹` |
+
+`ABSORB=40` is the worst case (largest bound) across all four tested
+depths, every convention, every admittance family — monotonically
+decreasing with `ABSORB` depth throughout. Source:
+`phase1_results.json::item3_energy_budget.theta_beam_convention_anchor.
+per_absorb` / `.theta_local_convention.per_absorb` (read, not hand-typed).
 
 **Item 4 — applied**: `reflection_coefficient_vec_realizable()`'s docstring
 in `experiments/080-.../validity_precheck.py` corrected (`mu_r=ni^2`→

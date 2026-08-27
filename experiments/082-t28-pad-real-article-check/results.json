@@ -1,0 +1,143 @@
+{
+  "frozen_predictions": "\nReproduction precondition: this cycle's own freshly-run EMPTY leg at\ntheta in {36..42} (1deg step) for C40/G40 must reproduce\nexperiments/076-.../results.json::headline's C40/G40 values at those\nsame integer-degree points, max|delta| < 1e-9 -- BEFORE the article-\nloaded leg is trusted.\n\nPrimary metric: A_scene = ptp(C(G40;theta,article) - C(C40;theta,article))\nover theta in {36..42}; A_empty = ptp(C_empty(G40;theta) -\nC_empty(C40;theta)) over the SAME 7 angles, this cycle's own fresh run;\nratio = A_scene / A_empty.\n  SURVIVES:      ratio in [0.5, 2.0]\n  CANCELS:       ratio <= 0.2\n  INCONCLUSIVE:  0.2 < ratio < 0.5, OR ratio > 2.0\n\nSecondary (disclosed, not gating): A_scene / C_thr (C_thr=0.005).\n\nSettling precondition (disclosed, not gating): |C(G40,theta=39,article,\nSTEPS=2800) - C(G40,theta=39,article,STEPS=1400)| reported for context,\nno pass/fail threshold (single directional check, not full R3).\n",
+  "thetas": [
+    36.0,
+    37.0,
+    38.0,
+    39.0,
+    40.0,
+    41.0,
+    42.0
+  ],
+  "pair_keys": [
+    "C40",
+    "G40"
+  ],
+  "steps_main": 2800,
+  "per_theta": {
+    "36.0": {
+      "C40_C": -0.5763629008457272,
+      "C40_Ce": -0.008338908971214587,
+      "G40_C": -0.5767916156858088,
+      "G40_Ce": -0.010496829358373039,
+      "delta_scene": -0.0004287148400816676,
+      "delta_empty": -0.002157920387158452
+    },
+    "37.0": {
+      "C40_C": -0.565213775879653,
+      "C40_Ce": 0.0056331944332728145,
+      "G40_C": -0.5656244864697512,
+      "G40_Ce": 0.007205746173604586,
+      "delta_scene": -0.00041071059009811783,
+      "delta_empty": 0.0015725517403317717
+    },
+    "38.0": {
+      "C40_C": -0.5643962018739654,
+      "C40_Ce": -0.0007905534718836149,
+      "G40_C": -0.5624730751703875,
+      "G40_Ce": 2.450408460918929e-05,
+      "delta_scene": 0.0019231267035779709,
+      "delta_empty": 0.0008150575564928042
+    },
+    "39.0": {
+      "C40_C": -0.5541306857535946,
+      "C40_Ce": 0.005174448791089414,
+      "G40_C": -0.5556151787223874,
+      "G40_Ce": 0.004543908787903117,
+      "delta_scene": -0.0014844929687928277,
+      "delta_empty": -0.0006305400031862973
+    },
+    "40.0": {
+      "C40_C": -0.5449035257737302,
+      "C40_Ce": -0.0028016354383217923,
+      "G40_C": -0.5455933939790621,
+      "G40_Ce": -0.004551686280666601,
+      "delta_scene": -0.0006898682053319005,
+      "delta_empty": -0.0017500508423448089
+    },
+    "41.0": {
+      "C40_C": -0.5387921606574477,
+      "C40_Ce": -0.006549985445079565,
+      "G40_C": -0.5380194464231992,
+      "G40_Ce": -0.007940111115139703,
+      "delta_scene": 0.0007727142342485172,
+      "delta_empty": -0.0013901256700601383
+    },
+    "42.0": {
+      "C40_C": -0.5175150880910373,
+      "C40_Ce": -0.0032117548404553276,
+      "G40_C": -0.5183180835211404,
+      "G40_Ce": -0.00018507694469704905,
+      "delta_scene": -0.0008029954301030928,
+      "delta_empty": 0.0030266778957582785
+    }
+  },
+  "delta_scene": [
+    -0.0004287148400816676,
+    -0.00041071059009811783,
+    0.0019231267035779709,
+    -0.0014844929687928277,
+    -0.0006898682053319005,
+    0.0007727142342485172,
+    -0.0008029954301030928
+  ],
+  "delta_empty": [
+    -0.002157920387158452,
+    0.0015725517403317717,
+    0.0008150575564928042,
+    -0.0006305400031862973,
+    -0.0017500508423448089,
+    -0.0013901256700601383,
+    0.0030266778957582785
+  ],
+  "A_scene": 0.0034076196723707985,
+  "A_empty": 0.00518459828291673,
+  "ratio": 0.6572581878906447,
+  "verdict": "SURVIVES",
+  "c_thr_lab": 0.005,
+  "a_scene_over_cthr": 0.6815239344741597,
+  "reproduction_precondition": {
+    "per_theta": {
+      "36.0": {
+        "C40_dev": 0.0,
+        "G40_dev": 0.0
+      },
+      "37.0": {
+        "C40_dev": 0.0,
+        "G40_dev": 0.0
+      },
+      "38.0": {
+        "C40_dev": 0.0,
+        "G40_dev": 0.0
+      },
+      "39.0": {
+        "C40_dev": 0.0,
+        "G40_dev": 0.0
+      },
+      "40.0": {
+        "C40_dev": 0.0,
+        "G40_dev": 0.0
+      },
+      "41.0": {
+        "C40_dev": 0.0,
+        "G40_dev": 0.0
+      },
+      "42.0": {
+        "C40_dev": 0.0,
+        "G40_dev": 0.0
+      }
+    },
+    "max_dev": 0.0,
+    "passed": true
+  },
+  "settling_precondition": {
+    "steps_main": 2800,
+    "steps_check": 1400,
+    "theta": 39.0,
+    "cfg": "G40",
+    "C_steps2800": -0.5556151787223874,
+    "C_steps1400": -0.5556696996288889,
+    "abs_dev": 5.452090650148733e-05,
+    "rel_dev": 9.812710053540249e-05
+  }
+}

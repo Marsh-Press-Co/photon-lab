@@ -610,7 +610,19 @@ def item2_gate_rerun(lo=47.5, hi=54.5):
 
 # =================================================== ITEM 3 (THERMODYNAMICS)
 def item3_energy_budget():
-    """Price the geometric-interception x material-reflectivity energy
+    """POST-RUN ANALYTIC, ZERO FDTD (Iteration-59 hygiene label, PLAN.md
+    Tier-0 item 2, exp-081 phase5_redteam_audit.md Sec 4 item 4): every
+    number this function returns is a closed-form reflectance-times-
+    interception bound computed from already-gated reflection-coefficient
+    primitives, not an FDTD measurement -- matches THERMODYNAMICS' own
+    charter-wide energy-sidecar convention (LOGBOOK.md T5: "a post-run
+    analytic calculation, not an FDTD output, and is labeled as such").
+    600nm ONLY -- br.n_profile_exact/nu_profile/damp_e_profile and
+    LAM600=br.CPL[600] are the only wavelength this function ever
+    evaluates; no claim is made or implied at 450/750nm (the still-
+    deferred wavelength-generality leg, Tier 1 item 8).
+
+    Price the geometric-interception x material-reflectivity energy
     budget: what fraction of total scene power the echo path could carry,
     even a crude upper bound. Two parts:
 
