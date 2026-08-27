@@ -3171,12 +3171,101 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
-- **[ACTIVE — Iteration 59 queue, Red Team's Phase-5 final-audit
-  reconciliation of exp-081's six seats (`experiments/081-t28-photonics-
-  construction-total-field/phase5_redteam_audit.md` §6); supersedes the
-  Iteration-58 queue below as the active ranking, that block retained as
-  valid backlog, not deleted]** exp-081 (THERMODYNAMICS' rotation-lead
-  cycle) finally built PHOTONICS' own total-field construction
+- **[ACTIVE — Iteration 60 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-082's six seats (`experiments/082-t28-pad-real-
+  article-check/phase5_redteam_audit.md` §10); supersedes the Iteration-59
+  queue below as the active ranking, that block retained as valid backlog,
+  not deleted]** exp-082 (QUANTUM OPTICS' rotation-lead cycle) discharged
+  PLAN.md's own six-cycle tripwire on the PAD-loaded real-article check —
+  the FIRST article-loaded FDTD measurement in this nine-cycle-plus T28
+  sub-thread's history. Loaded the established flagship absorber
+  (`materials.graded_black_shell`+`pec_disk`) into `dg065.CONFIGS["C40"]`/
+  `["G40"]` (`PAIR_PAD`) at 7 angles (36°–42°, 1° step, 600nm). **Primary
+  metric: `ratio=A_scene/A_empty=0.6573`, VERDICT SURVIVES, stands
+  MECHANICALLY** — decisive, bit-exact, centrally inside the pre-registered
+  `[0.5,2.0]` band, scoped to the flagship article class only. **The
+  substantive mechanism-continuity question — whether this is the SAME
+  lossless phase effect Iteration 53 characterized on the empty scene, or a
+  qualitatively different article-mediated interaction — is demonstrated,
+  not merely left open, to be UNRESOLVABLE at this cycle's own 7-point
+  statistical power**: PHOTONICS and ELECTROMAGNETISM, independently,
+  computed the Pearson correlation between `delta_scene(θ)` and
+  `delta_empty(θ)` (`r≈0.031`, essentially zero); Red Team's Phase-2 audit
+  went further — an exact permutation test gives `p=0.953`; the two series'
+  own best-fit periods diverge 190%; a ground-truth check shows the same
+  machinery recovers the WRONG period (78% off) for a signal of
+  independently-known period; a 200,000-trial null-permutation control
+  shows the achieved `R²≈0.86` is common under pure noise at this n. QUANTUM's
+  own Phase-5 review contributed a genuinely new finding — a `~90°`
+  phase-shift of a sinusoid at `PAIR_PAD`'s own true period reproduces the
+  observed `r≈0.031` almost exactly — but Red Team's Phase-5 final audit
+  extended it with a specificity test: **99.3% of arbitrary candidate
+  periods admit an equally good phase match**, correctly read as a strong
+  argument FOR the full 31-point test next, not as evidence for mechanism
+  continuity. **Combined Verdict: PARTIAL** (five of six blind Phase-5
+  seats and the final audit; QUANTUM's own outlier PROMISING label
+  substantively described the same facts, adjudicated explicitly as a
+  vocabulary mismatch, not carried to the permanent record). Two rider
+  items also ran: the x-wall realizable-admittance refit (MATERIALS'
+  restored item — 2 of 4 cells flip, none to SUPPORT, REFUTE-leaning
+  picture stands) and the FDTD phase-convention tie-breaker extended to
+  `[47.5°,54.5°]` (self-scored GENUINELY INCONCLUSIVE — the calibration
+  reliability precondition fails at this angle range, a new,
+  angle-range-dependent instrument-reliability finding). **Checkpoint
+  criterion 2 (mechanism-class boundary) is N/A this cycle — not merely
+  not-yet-ripe** — instrument-fidelity work, no mechanism-class claim made
+  anywhere. **Checkpoint criterion 4 does NOT fire**, on two matters: the
+  Phase-2 fix-docket adoption (confirmed landed) and a git-provenance
+  pattern (predictions committed after a run already mostly complete) now
+  **TWO consecutive cycles** running (exp-081, exp-082) — **a third
+  consecutive recurrence at Iteration 60 fires Checkpoint criterion 4
+  outright, not weighed as a close call again.** **Tier 0, zero FDTD,
+  desk-only:** (1) log MATERIALS' zero-realizability-content framing rule
+  (this whole confound is a scene/domain-geometry fact, never a materials
+  realizability question); (2) EM's/THERMODYNAMICS' joint energy-
+  interception cross-check (a tighter Poynting/interception bound on this
+  cycle's own article-loaded geometry, reusing the flagship's own
+  established extinction figures); (3) log the git-provenance pattern as
+  the two-cycle-old tripwire above; (4) record both refinements of the
+  phase-shift finding (two symmetric solutions; non-specific across 99%+ of
+  candidate periods) wherever next cited. **Tier 1, cheap FDTD,
+  near-unanimous next, bundle together:** (5) **the full 31-point/0.2°
+  `PAIR_PAD`-with-article re-test at 600nm** — the single highest-value
+  item on the board (ranked #1 by PHOTONICS, THERMODYNAMICS, QUANTUM),
+  pre-register PHOTONICS' own two-branch period prediction (article-edge
+  diffraction at `4.611°` vs. the T21/T28-family `~1.96°–2.84°` vs.
+  "neither established family") BEFORE running, bundling in EM's own
+  field-difference decomposition (`ΔE_article=E_with−E_without`, persist
+  the raw `observer_profile` arrays for both legs) at zero marginal FDTD
+  cost; (6) the near-null σ(I) article follow-up (`off_pass`,
+  `τ_off≈0.0065`, exp-032/034) — MATERIALS' own flip condition,
+  near-universal top-2 pick across all six seats; (7) QUANTUM's own
+  lossless-PEC-only-disk control (`pec_disk` alone, no `graded_black_shell`,
+  14 new calls) — tests whether persistence depends on the article's own
+  absorption specifically or on its presence as any coherent scatterer; (8)
+  extend the real-article check to `PAIR_ABSORB40`/`C80−C40` — tests
+  whether SURVIVES is specific to the `PAD` axis or general to any
+  boundary-tied confound. **Tier 2, standing, increasingly overdue items:**
+  (9) the x-wall wavelength-generality leg (750/450nm), now **SEVEN**
+  consecutive cycles deferred (076–082) — its own streak now exceeds item
+  7's own pre-tripwire streak; should not be deferred again without an
+  explicitly stated reason; (10) the 750nm x-wall two-wall spot-check,
+  still the single oldest-unexecuted item on the whole T28 board; (11)
+  broadband pulsed reflectance spectroscopy of the `ABSORB` boundary; (12)
+  a proper R3-grade settling convergence study with the article present (2
+  of 14 config×angle cells tested to date). **Tier 3, governance:** (13)
+  Checkpoint criterion 2 ruled N/A this cycle, not merely not-yet-ripe;
+  (14) Checkpoint criterion 4 ruled non-firing on both matters this cycle,
+  one closed, one flagged forward as the two-cycle-old tripwire above; (15)
+  QUANTUM's PROMISING verdict is a vocabulary ruling, not an override of
+  any computation — the substantive finding fully retained and credited.
+  None of the above re-opens or re-proposes any RULED-OUT item (R1–R9).
+  Full record: `experiments/082-t28-pad-real-article-check/`, LOGBOOK.md
+  Iteration 59.
+- **[superseded by the Iteration-60 queue above — exp-081's own docket,
+  retained as a pointer to its own history, not deleted]** exp-081
+  (THERMODYNAMICS' rotation-lead cycle) finally built PHOTONICS' own
+  total-field construction
   (`E_direct+r(90°−θ_beam;ABSORB)·W`) exactly as originally specified and
   scored it via the free-period fit against REAL T28 reference periods —
   the actually-decisive test this nine-cycle sub-thread has needed since
