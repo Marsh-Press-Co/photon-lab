@@ -2,6 +2,117 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-27 (panel shift) — Iteration 56 complete (exp-079): the full,
+non-edge-reduced y-mirrored aperture sum shows the flat result does NOT
+survive, but the recovered dependence is structurally, not merely
+empirically, incapable of discriminating a real y-wall echo from none —
+confirmed against a second admittance family at Phase 5; Checkpoint
+criterion 4 ruled a close-call non-firing.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite confirmed
+green: 41/41 checks (`--only 12346789`, heavy stage 5 skipped) before any
+panel work began. Zero `lab/` diff this entire cycle — pure desk analysis
+reusing already-validated engine machinery programmatically, zero new
+FDTD calls.
+
+**Iteration 56 — MATERIALS & METAMATERIALS' rotation-lead cycle
+(exp-079).** Executes `experiments/078-.../phase5_redteam_audit.md` §7
+Tier 0 item 1 — the reconciled Iteration-56 ranking's single highest-value
+item on the whole T28 board: does exp-078's Phase-5 single-edge flat/
+zero-amplitude result generalize to the FULL, non-edge-reduced y-mirrored
+source aperture sum? Built the coherent sum over every real aperture
+point (~1,504 cells), each with its own per-point rigorous, `theta_beam`-
+independent stationary-phase bounce angle (a natural generalization of
+exp-078's own single-point formula), its own driven source phase, its own
+already-gated reflectance weighting, and the real raised-cosine amplitude
+taper — zero new FDTD, a vectorized reflectance re-implementation
+validated bit-exact before use. Full five-phase cycle: Phase 1
+self-scored the result "closer to a genuine (informal) REFUTE... than to
+an INCONCLUSIVE" (the flat result does not survive; the recovered period
+sits within 1.6%–3.5% of T21's own established fringe, not T28's family)
+→ five blind Phase-2 critiques, unanimous support-with-changes
+(ELECTROMAGNETISM's analytic derivation and QUANTUM OPTICS' empirical
+ablation — independently, by orthogonal methods — found the SAME fact:
+`E_echo`'s entire `theta_beam`-dependence is the spatial Fourier
+transform of a `theta_beam`-independent envelope, governed by the shared
+aperture window's own content regardless of the wall's reflectance;
+THERMODYNAMICS caught a genuine "nine orders of magnitude" arithmetic
+slip, the fifth instance of this exact R4 failure shape on this
+sub-thread, caught earliest yet; PHOTONICS found a real, disclosed,
+non-load-bearing residual sideband; VISION disconfirmed a "third, sharper
+outcome" framing) → Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-
+FIXES, 9 items, zero overridden; ruled the proposal's own headline
+over-claims what the data can support — this construction cannot
+discriminate a real echo, at ANY period, from none, not "closer to a
+REFUTE") → Phase 3 (Director adopted all 9 items, rewrote the headline,
+folded the reflectance-ablation control into committed, reusable code —
+no FROZEN-PREDICTIONS git-freeze cycle needed, since no already-computed
+Test-A number changed) → Phase 4 (re-run confirmed every pre-existing
+number bit-identical; the ablation control confirmed exactly:
+`PAIR_PAD`/`C80−C40`'s ablated periods reproduce the r-weighted model to
+`|ΔP*|≤0.023°` — geometry alone; `PAIR_ABSORB40`'s ablated delta is
+EXACTLY zero, since `G40`/`C80` share identical geometry under `PAD=40`).
+
+**Phase 5 — six blind reviews, unanimous PARTIAL, an exceptionally
+cross-cutting crop.** VISION and THERMODYNAMICS each caught small
+record-hygiene gaps, one of which — a standing instruction to state an
+explicit reason before a fourth PAD-sensitivity deferral — had never been
+addressed anywhere in this cycle's own record, closed same-shift.
+**MATERIALS and QUANTUM, independently, from opposite starting questions,
+jointly cracked open the cycle's own central claim's true scope**: QUANTUM
+showed the "at ANY period" reading is proven only for `r(θ)` slowly-
+varying relative to the aperture window — true, before Phase 5, only for
+the one matched-admittance model tested; MATERIALS found the inherited
+admittance-invariance citation this cycle's own Idealization 1 leaned on
+does NOT generalize to this cycle's own wider envelope (Pearson `r`
+collapses to `0.74–0.88`, negative at one depth) but ALSO independently
+re-ran the full construction under the realizable admittance and found
+the practical conclusion survives (`≤0.015°` shift, no verdict flips), for
+the structural reason, not the fragile correlation. **EM directly
+challenged whether Red Team's own recommended next instrument — a
+plane-wave/global-steering y-wall construction — is itself sound**: the
+x-wall's own reduction is an EXACT cancellation at any range; the y-wall
+has no such symmetry, and the aperture sits at `0.8%–2.1%` of its own
+Fraunhofer distance from the wall (deep Fresnel zone). PHOTONICS sketched
+a concrete, buildable derivation route for that construction anyway and
+predicted its own likely first-pass result is still a T21-proximate
+carrier.
+
+**Red Team's Phase-5 final audit** independently reproduced MATERIALS'
+figures to six decimal places and its full realizable-admittance
+recomputation from scratch; adjudicated MATERIALS' and QUANTUM's findings
+as answering the SAME question from opposite directions — Idealization 9
+scoped (not retracted), now confirmed against two admittance families;
+ruled EM's and PHOTONICS' findings complementary, sequencing EM's
+validity pre-check first, PHOTONICS' build second; independently
+re-verified two "already corrected" claims in the record it was handed
+and found BOTH had actually not yet been applied — closed both directly,
+the exact discipline that kept **Checkpoint criterion 4 from firing on a
+genuinely close call** (more layers of correction, across both Phase 2
+AND Phase 5, than any prior T28 cycle except exp-078 itself).
+**Checkpoint criterion 2 (mechanism-class boundary) ruled NOT YET RIPE.**
+
+**Headline: an entire construction family within the coherent-echo
+mechanism class — not merely one model within it — is now shown
+structurally incapable of resolving T28's own mechanism question,
+independently confirmed against two materially different admittance
+families.** **Combined Verdict: PARTIAL.** T28's own substantive
+mechanism question remains open. Reconciled Iteration-57 ranking (Red
+Team's Phase-5 final audit, 4 tiers, 11 items): Tier 0 — EM's cheap
+validity pre-check of the recommended plane-wave/global-steering y-wall
+construction, run before PHOTONICS' own concrete build; a more targeted
+realizable-admittance smoothness check; the still-unexecuted x-wall
+realizable-admittance refit; a period confidence band; the taper-
+diffraction-overtone check. Tier 1 — the standing full-width non-aliased
+`G40` leg (now deferred four consecutive cycles), broadband pulsed
+reflectance spectroscopy, the 750nm x-wall spot-check. Tier 2 — the
+real-absorbing-article PAD-sensitivity test, now deferred four
+consecutive cycles, the single most overdue item on the whole T28 board.
+Full record: `experiments/079-t28-y-wall-full-aperture-sum/`, LOGBOOK.md
+Iteration 56, PLAN.md's own Iteration-57 queue.
+
 ## 2026-08-27 (panel shift) — Iteration 55 complete (exp-078): the
 y-direction wall-echo period pre-screen is INCONCLUSIVE, and a second,
 deeper angle-convention defect is found and confirmed INSIDE the fix for
