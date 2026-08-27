@@ -3171,11 +3171,109 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
-- **[ACTIVE — Iteration 58 queue, Red Team's Phase-5 final-audit
-  reconciliation of exp-080's six seats (`experiments/080-.../
-  phase5_redteam_audit.md` §6); supersedes the Iteration-57 queue below
-  as the active ranking, that block retained as valid backlog, not
-  deleted]** exp-080 (EM's rotation-lead validity pre-check) found (a)
+- **[ACTIVE — Iteration 59 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-081's six seats (`experiments/081-t28-photonics-
+  construction-total-field/phase5_redteam_audit.md` §6); supersedes the
+  Iteration-58 queue below as the active ranking, that block retained as
+  valid backlog, not deleted]** exp-081 (THERMODYNAMICS' rotation-lead
+  cycle) finally built PHOTONICS' own total-field construction
+  (`E_direct+r(90°−θ_beam;ABSORB)·W`) exactly as originally specified and
+  scored it via the free-period fit against REAL T28 reference periods —
+  the actually-decisive test this nine-cycle sub-thread has needed since
+  exp-069. **Combined Verdict NEITHER, mechanically** (1 SUPPORT —
+  `C80−C40`, `rel_dev=0.2910` — + 2 INCONCLUSIVE + 0 REFUTE) — **REFUTE-
+  leaning substantively and DECISIVELY, not merely asserted**: Red Team's
+  Phase-2 audit's own reflectance-ablation control (`r(90°−θ_beam)→1`)
+  proved, pair-specifically, that `C80−C40`'s lone SUPPORT survives
+  deleting 100% of the wall's reflectance almost unchanged (`0.2910→
+  0.2937`) while `PAIR_ABSORB40` — the pair genuinely dependent on real
+  wall reflectance — still misses badly (`rel_dev=0.5139`) even with real
+  reflectance present. Independently re-verified from primitives at least
+  nine times across this cycle's own record (five Phase-2 critics, Red
+  Team's Phase-2 audit, six Phase-5 blind reviews, Red Team's Phase-5
+  final audit). Robust to admittance family (matched vs. realizable
+  `μ_r=1`, shift `≤0.0075°`, not outcome-determining — this construction's
+  own `[47.5°,54.5°]` range carries an order-of-magnitude-smaller
+  matched-vs-realizable phase divergence than exp-080's part(b) precedent)
+  and to the `r`-vs-`conj(r)` sign convention (zero verdict flips, though
+  the TRUE convention at this range remains genuinely open empirically,
+  queued not resolved). This is a genuine **third** independent negative
+  finding against the plane-wave/global-steering coherent-echo mechanism
+  class, joining exp-078's single-edge and exp-079's full-aperture-sum
+  structural forecloses. The energy budget (THERMODYNAMICS' own item 3)
+  confirms this construction family could never matter to constraint 3 in
+  absolute terms: the honest `theta_local`-convention bound (`~1.3×10⁻⁸`)
+  is ~116,000× tighter than the naive `90°−θ_beam`-convention anchor used
+  as the headline figure. **Checkpoint criterion 2 (mechanism-class
+  boundary) remains NOT YET RIPE — narrowed for a THIRD consecutive
+  cycle**: single construction, one wavelength, empty scene, one
+  genuinely open verification gap (the real FDTD phase-convention check).
+  **Checkpoint criterion 4 does NOT fire**, on two distinct governance
+  findings Red Team's Phase-5 final audit adjudicated explicitly: (i)
+  VISION's Phase-5 finding that PLAN.md's own twice-escalated instruction
+  — a sixth deferral of the PAD-loaded real-article check "must again be
+  stated explicitly in that cycle's own synthesis" — was not met in
+  `phase3_synthesis.md`; the audit itself supplied the missing reason,
+  closing the gap same-shift, but flagged this as **the second
+  consecutive T28 cycle** the instruction was not fully met, with a
+  written tripwire: a third consecutive miss "would no longer be a close
+  call... I would expect it to fire criterion 4 outright." (ii)
+  MATERIALS' Phase-5 finding that the x-wall realizable-admittance refit
+  — named explicitly in three consecutive iterations' own rankings
+  (54→55→56) — silently vanished from exp-080's own Iteration-57
+  reconciled ranking with no stated disposition; a backlog-tracking
+  omission, not a substantive false claim, ruled a different and
+  lower-stakes failure kind than any prior R4/R6/R7/R8/R9 firing
+  precedent, restored to this board (item 1, below) rather than left
+  silent a fourth cycle. **Tier 0, zero FDTD, desk-only:** (1) restore or
+  explicitly retire the x-wall realizable-admittance refit (MATERIALS'
+  restored item — reuse `d80.reflection_coefficient_vec_realizable`
+  against the already-built exp-075/exp-077 x-wall models, or state why
+  their already-wide REFUTE margins make that unnecessary); (2)
+  THERMODYNAMICS' hygiene bundle (a local "post-run analytic, zero FDTD"
+  docstring label on `item3_energy_budget()`, the ABSORB=40-worst-case-
+  across-all-depths table into `NOTES.md`, an explicit 600nm-only
+  qualifier on item 3's headline sentence); (3) record, wherever this
+  cycle's stress tests are next cited, that they comprise three genuinely
+  independent lines of evidence (admittance family, ablation, ablation-
+  constant phase), not four — the `conj(r)` check is substantially a
+  corollary of the ablation check for `C80−C40` specifically (EM's own
+  Phase-5 finding), not a fully separate confirmation. **Tier 1, cheap
+  FDTD, next:** (4) extend the empirical FDTD phase-convention tie-breaker
+  (`phase5_redteam_phase_convention_check.py`'s own idiom, exp-075's
+  `[0°,20°,39°]` precedent) to 2–3 angles inside `[47.5°,54.5°]` — the
+  single remaining genuinely open verification question, near-unanimous
+  top pick (EM #1, QUANTUM #1, PHOTONICS #2, VISION #2); (5) broadband
+  pulsed reflectance spectroscopy of the `ABSORB` boundary; (6) the 750nm
+  x-wall two-wall spot-check — the single oldest-unexecuted item on the
+  whole T28 board. **Tier 2, the board's two most overdue items, strongest
+  cross-seat consensus of any single item this cycle:** (7) **the
+  PAD-loaded real-article check — now SIX consecutive T28 cycles deferred
+  (076–081)**, ranked #1 by VISION and THERMODYNAMICS, #2 by MATERIALS,
+  EM, and QUANTUM — the only queued item that tests whether ANY of this
+  nine-cycle sub-thread's findings, this cycle's sharpened REFUTE-leaning
+  result included, bear on a scene with a real absorbing article rather
+  than free-space domain-boundary geometry alone. **If Iteration 59
+  defers this a seventh time, the reason must again be stated explicitly
+  in that cycle's own synthesis — a third consecutive miss on this exact
+  requirement fires Checkpoint criterion 4 outright, not weighed as a
+  close call again.** (8) **the 750/450nm x-wall wavelength-generality
+  leg — also SIX consecutive cycles deferred**, ranked #1 by PHOTONICS
+  and MATERIALS from their own charter vantage (wavelength/angle
+  coherence; dispersive realizability) — every quantitative finding this
+  cycle produced is single-wavelength (600nm) evidence. **Tier 3,
+  governance:** (9) Checkpoint criterion 2 ruled NOT YET RIPE this cycle,
+  narrowed a third consecutive cycle — items 4, 7, and 8 above are what
+  would actually make it ripe; (10) Checkpoint criterion 4 ruled
+  non-firing this cycle on both governance findings, conditioned
+  explicitly on this cycle's own fix docket being what Iteration 58's
+  LOGBOOK entry inherits, with an explicit forward tripwire on item 7.
+  None of the above re-opens or re-proposes any RULED-OUT item (R1–R9).
+  Full record: `experiments/081-t28-photonics-construction-total-field/`,
+  LOGBOOK.md Iteration 58.
+- **[superseded by the Iteration-59 queue above — exp-080's own docket,
+  retained as a pointer to its own history, not deleted]** exp-080 (EM's
+  rotation-lead validity pre-check) found (a)
   FORECLOSE on the Fraunhofer-margin/`theta_local`-spread test, robust
   across the full 3-λ sweep; (b) admittance-family-dependent on the
   single-effective-angle reproduction test (INCONCLUSIVE matched, mean

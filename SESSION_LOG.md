@@ -2,6 +2,110 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-27 (panel shift) — Iteration 58 complete (exp-081): PHOTONICS'
+construction finally built and scored AS ORIGINALLY SPECIFIED (total
+field, real-data free-period fit) — Combined Verdict NEITHER
+mechanically, REFUTE-leaning substantively and DECISIVELY, the lone
+SUPPORT proven (not argued) to need zero wall physics; two governance
+findings (a compliance gap, a silently-dropped queue item) both real,
+both closed same-shift, both flagged as second-consecutive-cycle
+patterns.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite
+confirmed green: 41/41 checks (`--only 12346789`) before any panel work
+began, and re-confirmed green (unaffected) after every phase this cycle.
+Zero `lab/` diff this entire cycle — pure desk analysis reusing
+already-validated engine machinery programmatically, zero new FDTD calls.
+
+**Iteration 58 — THERMODYNAMICS' rotation-lead cycle (exp-081).**
+Executes exp-080's own Tier-0 batch in full: (1) build the construction
+PHOTONICS actually specified in exp-079's own §4 sketch — total field,
+`E_direct(θ_beam)+r(90°−θ_beam;ABSORB)·W(θ_beam)`, `E_direct` cited
+verbatim from PHOTONICS' exp-080 Phase-5 proof (bit-identical across all
+5 congruent configs) — scored via the free-period fit against REAL T28
+reference periods, not exp-080's mistaken R²-shape-comparison
+methodology; (2) EM's gate re-run at `[47.5°,54.5°]`; (3) THERMODYNAMICS'
+own geometric-interception energy budget; (4) MATERIALS' docstring/
+disclaimer hygiene. Full five-phase cycle: Phase 1 self-scored Combined
+Verdict **NEITHER** (1 SUPPORT — `C80−C40`, margin 0.009 inside the 0.30
+bar — + 2 INCONCLUSIVE) plus an unregistered T21-proximity diagnostic
+showing all three model periods sit 10×+ closer to T21's own 1.9608°
+fringe than to their own T28 targets → five blind Phase-2 critiques,
+unanimous support-with-changes, three independently convergent
+load-bearing gaps: MATERIALS (item 1 never scored under the realizable
+admittance, a gap exp-080 already proved can flip verdicts); PHOTONICS +
+QUANTUM, independently (item 1c skipped the sub-thread's own established
+reflectance-ablation control); EM (the gate re-run is magnitude-only,
+can't resolve the `r`-vs-`conj(r)` ambiguity item 1's own result actually
+depends on) → Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 7
+items, zero overridden; **actually ran** all three flagged gaps rather
+than re-arguing them, finding the ablation control MORE decisive than any
+critique anticipated and pair-specific: `PAIR_ABSORB40`'s ablated signal
+collapses to exactly zero, while `C80−C40`'s lone SUPPORT survives zero
+wall physics almost unchanged, `0.2910→0.2937` — proving it needs no wall
+reflectance at all; the realizable-admittance rescore and `conj(r)`
+substitution both shift periods trivially, zero verdict flips) → Phase 3
+(Director adopted all 7 items in full, zero overrides; extended
+`photonics_construction.py` with all three checks as committed code,
+corrected every overclaiming headline, FROZEN PREDICTIONS committed in a
+dedicated pre-run commit restoring this sub-thread's own stricter
+git-provenance standard) → Phase 4 (6 of 7 frozen predictions confirmed
+exactly; one literal miss disclosed honestly — a 4-decimal-rounding
+artifact of the frozen bound's own text, `0.0075188°` vs `"≤0.0075°"` —
+the substantive zero-flip claim confirmed exactly) → six blind Phase-5
+reviews, **unanimous PARTIAL**, every seat independently re-deriving the
+ablation-control result from scratch (a cumulative eighth independent
+computation across this cycle's own record): EM found the pair-specific
+ablation conclusions survive testing the ablation constant at other
+unimodular phases too; MATERIALS re-typed the admittance formulas from
+scratch and traced the phase-divergence explanation to real physics
+(`arg(r)` ill-conditioned near-normal specifically, not a general law);
+THERMODYNAMICS confirmed ABSORB=40 is the worst case across all four
+depths; **VISION found PLAN.md's own twice-escalated sixth-deferral-
+justification instruction was not met in `phase3_synthesis.md`**;
+**MATERIALS found the x-wall realizable-admittance refit — named in
+three consecutive iterations' own rankings — silently vanished from
+exp-080's own Iteration-57 reconciled ranking with no stated
+disposition** → **Red Team's Phase-5 final audit** independently
+re-verified the ablation-control proof from primitives a ninth time,
+refined the record's own stress-test count from four to three genuinely
+independent lines of evidence (the `conj(r)` check is substantially a
+corollary of the ablation check, EM's own correct point), and adjudicated
+both governance findings explicitly: VISION's compliance gap does NOT
+fire Checkpoint criterion 4 (an omission, not a false claim; caught
+inside this same Phase-5 layer; the audit itself supplies the missing
+reason) but is **the second consecutive T28 cycle** this exact
+instruction was not fully met — written tripwire: a third consecutive
+miss "would no longer be a close call... I would expect it to fire
+criterion 4 outright." MATERIALS' governance gap also does NOT fire (a
+backlog-tracking omission, a different and lower-stakes failure kind than
+every prior R4/R6/R7/R8/R9 firing precedent) but is restored to
+Iteration 59's board.
+
+**Combined Verdict: PARTIAL.** A genuine **third** independent negative
+finding against the plane-wave/global-steering coherent-echo mechanism
+class, joining exp-078's single-edge and exp-079's full-aperture-sum
+structural forecloses — robust to admittance family and sign convention,
+proven (not merely argued) via the pair-specific ablation control.
+**Checkpoint criterion 2 remains NOT YET RIPE, narrowed a THIRD
+consecutive cycle.** **Checkpoint criterion 4 does NOT fire** on either
+governance finding — both real, both closed same-shift, both flagged as
+patterns that fire outright on a third consecutive recurrence. Reconciled
+Iteration-59 ranking (Red Team's Phase-5 final audit, 4 tiers, 10 items):
+Tier 0 — restore/retire the x-wall admittance refit; THERMODYNAMICS'
+hygiene bundle; the three-not-four stress-test record note. Tier 1 —
+extend the FDTD phase-convention tie-breaker to `[47.5°,54.5°]`;
+broadband pulsed reflectance spectroscopy; the 750nm x-wall spot-check.
+Tier 2 — **the PAD-loaded real-article check, now SIX consecutive cycles
+deferred**, strongest cross-seat consensus of any single item this cycle
+(if deferred a seventh time without an explicit stated reason, Checkpoint
+criterion 4 fires outright); the 750/450nm wavelength-generality leg,
+also SIX consecutive cycles deferred. Full record:
+`experiments/081-t28-photonics-construction-total-field/`, LOGBOOK.md
+Iteration 58, PLAN.md's own Iteration-59 queue.
+
 ## 2026-08-27 (panel shift) — Iteration 57 complete (exp-080): EM's
 validity pre-check FORECLOSEs the Fraunhofer margin and finds the
 single-angle reproduction test is admittance-family-dependent (INCONCLUSIVE

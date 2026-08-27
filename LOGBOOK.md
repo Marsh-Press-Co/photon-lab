@@ -3065,6 +3065,177 @@ fix) — see `experiments/077-.../phase5_redteam_audit.md` §4.
   Phase-2 Red Team audit, Phase-3 synthesis, Phase-4 results, `NOTES.md`,
   six Phase-5 blind reviews, Phase-5 Red Team final audit.
 
+  **Iteration 58 (exp-081, 2026-08-27) — PHOTONICS' construction finally
+  built AS ORIGINALLY SPECIFIED (total field, real-data free-period fit):
+  Combined Verdict NEITHER mechanically, REFUTE-leaning substantively and
+  DECISIVELY — the lone SUPPORT is proven, not argued, to need no wall
+  physics at all.** THERMODYNAMICS led (rotation), executing exp-080's own
+  Tier-0 item 1 in full: build `E_total(θ_beam)=E_direct(θ_beam)+
+  r(90°−θ_beam;ABSORB)·W(θ_beam)` — both terms present, `E_direct` cited
+  verbatim from PHOTONICS' own exp-080 Phase-5 proof — scored via
+  `_free_period_search`/staged-widening against REAL T28 reference periods
+  recomputed fresh from `experiments/076-.../results.json::headline`, under
+  a FRESH SUPPORT/INCONCLUSIVE/REFUTE band pre-registered before the script
+  ran; plus EM's gate re-run at `[47.5°,54.5°]`, THERMODYNAMICS' own
+  geometric-interception energy budget, and MATERIALS' docstring/disclaimer
+  hygiene — all four Tier-0 items in one build, zero new FDTD. Full
+  five-phase cycle: Phase 1 self-scored Combined Verdict **NEITHER**
+  (1 SUPPORT — `C80−C40`, `rel_dev=0.2910`, margin 0.009 inside the 0.30 bar
+  — + 2 INCONCLUSIVE + 0 REFUTE, exactly per the pre-registered rule) and,
+  not pre-registered but run because the lone SUPPORT sat near-boundary, a
+  T21-proximity look-elsewhere diagnostic (this sub-thread's own R5
+  discipline) showing all three model periods land 10×+ closer to T21's
+  established 1.9608° fringe than to their own T28 targets → five blind
+  Phase-2 critiques, unanimous support-with-changes, three independently
+  convergent load-bearing gaps: MATERIALS found item 1's headline was
+  scored exclusively under the matched admittance family, never the
+  realizable (`μ_r=1`) one exp-080's own part(b) showed CAN flip a verdict;
+  PHOTONICS and QUANTUM, independently, found item 1c's T21-proximity
+  reading skipped this sub-thread's own established reflectance-ablation
+  control (`r(90°−θ_beam)→1`, re-fit — the idiom exp-079's own §[7]
+  established); EM found the item-2 gate re-run is magnitude-only and
+  cannot resolve the `r`-vs-`conj(r)` phase-convention ambiguity R8 exists
+  to guard against, even though item 1's result is driven by `arg(r)`, not
+  `|r|`; VISION found Phase 1's frozen predictions and results landed in
+  one commit rather than a dedicated pre-registration-before-code commit →
+  Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 7 items, zero
+  overridden; actually RAN all three flagged gaps rather than re-arguing
+  them, and found the ablation control MORE informative than any critique
+  anticipated — **pair-specific, not uniform**: `PAIR_ABSORB40`'s ablated
+  signal collapses to exactly zero (genuinely `r()`-dependent), while
+  `C80−C40` — the pair carrying the lone SUPPORT — survives ablation to
+  zero wall physics almost unchanged (`0.2937` vs `0.2910`), proving the
+  SUPPORT requires no wall reflectance at all; the realizable-admittance
+  rescore shifts periods `≤0.0075°`, zero flips, not outcome-determining
+  here because this construction's own `[47.5°,54.5°]` range carries only
+  `8.4–10.6°` matched-vs-realizable phase divergence, an order of magnitude
+  smaller than exp-080 part(b)'s `54.0–83.6°` at `[5°,15°]`; the `conj(r)`
+  substitution also produces zero flips, reassuring but not resolving) →
+  Phase 3 (Director adopted all 7 fix-docket items in full, zero overrides;
+  extended `photonics_construction.py` with the realizable-admittance
+  rescore, the pair-specific ablation control, and the `conj(r)` sensitivity
+  check as committed, reusable code; corrected every overclaiming headline
+  sentence to state precisely what each check does and does not establish;
+  FROZEN PREDICTIONS — pre-registering that the corrected script would
+  reproduce Red Team's own independently-computed audit numbers — committed
+  to git in a dedicated commit strictly before the corrected re-run,
+  restoring this sub-thread's own stricter git-provenance standard) → Phase
+  4 (6 of 7 frozen predictions confirmed exactly; one literal miss disclosed
+  honestly, not smoothed over: the realizable-admittance shift computed as
+  `0.00751879...°`, exceeding the frozen `"≤0.0075°"` bound by `1.88×10⁻⁵°`
+  — a 4-decimal-rounding artifact of the bound's own text, not a
+  computational discrepancy; the substantive claim, zero verdict flips,
+  confirmed exactly) → six blind Phase-5 reviews, **unanimous PARTIAL**,
+  every seat independently re-deriving the load-bearing numbers from
+  scratch (PHOTONICS, VISION, THERMODYNAMICS, EM, MATERIALS, QUANTUM — a
+  cumulative eighth independent computation of the ablation-control result
+  across this cycle's own record by the time Red Team's final audit added a
+  ninth): EM's own genuine new extension found the pair-specific ablation
+  conclusions survive testing the ablation constant at OTHER unimodular
+  phases too (`−1`, `i`, `45°`), not just `r=1`; MATERIALS independently
+  re-typed the matched/realizable admittance formulas from scratch (a fifth
+  independent computation) and traced the phase-divergence explanation to
+  real, causally-verified physics (`|r|` 2–3 orders smaller at exp-080's
+  near-normal range, making `arg(r)` ill-conditioned there specifically —
+  not a general law); THERMODYNAMICS confirmed ABSORB=40 is the worst case
+  across all four tested depths and that item 3's "negligible" claim is
+  600nm-only; **VISION found a genuine compliance gap**: PLAN.md's own
+  twice-escalated instruction that a sixth deferral of the PAD-loaded
+  real-article check "must again be stated explicitly in that cycle's own
+  synthesis" was not met — `phase3_synthesis.md` names the item as overdue
+  but never states the reason; **MATERIALS found a genuine cross-cycle
+  governance gap**: the x-wall realizable-admittance refit, named explicitly
+  in three consecutive iterations' own rankings (54→55→56), silently
+  vanished from exp-080's own Iteration-57 reconciled ranking — the exact
+  document that became PLAN.md's active queue and LOGBOOK's own permanent
+  Iteration-57 entry — with no explicit retirement anywhere → **Red Team's
+  Phase-5 final audit** independently re-verified the ablation-control proof
+  and all three robustness checks from primitives (an eighth-or-ninth
+  independent computation, bit-exact), refined the record's own count of
+  independent stress tests from four to **three** (the `conj(r)` check is
+  substantially a corollary of the ablation check for `C80−C40`
+  specifically, EM's own correct point, not a fully separate confirmation —
+  non-load-bearing, does not weaken the conclusion), and adjudicated both
+  governance findings explicitly rather than pattern-matching them to prior
+  precedent: VISION's compliance gap does NOT fire Checkpoint criterion 4
+  (an omission, not a false claim; the underlying scheduling decision was
+  substantively sound and near-unanimous across five Phase-2 critics; caught
+  inside this same Phase-5 layer before LOGBOOK — the audit itself supplies
+  the missing reason, closing the gap same-shift) but is flagged explicitly
+  as **the second consecutive T28 cycle** this exact instruction was not
+  fully met, with a written tripwire that a third consecutive miss "would no
+  longer be a close call... I would expect it to fire criterion 4 outright";
+  MATERIALS' governance gap also does NOT fire (a backlog-tracking omission,
+  not a substantive false claim — a different and lower-stakes failure kind
+  than every prior R4/R6/R7/R8/R9 firing precedent, all of which concerned a
+  wrong or unverified claim, not a missing queue line) but is restored to
+  Iteration 59's board with an explicit disposition rather than left silent
+  a fourth cycle.
+
+  **Combined Verdict: PARTIAL.** Item 1's Combined Verdict is NEITHER
+  mechanically (1 SUPPORT + 2 INCONCLUSIVE + 0 REFUTE, exactly by the
+  pre-registered rule) and REFUTE-leaning substantively — not merely
+  asserted, but *proven*: the lone `C80−C40` SUPPORT survives deleting 100%
+  of the wall's reflectance (`r()→1`) almost unchanged (`0.2910→0.2937`, a
+  shift three orders of magnitude smaller than the INCONCLUSIVE band's own
+  width), an algebraic necessity independently re-derived from primitives at
+  minimum nine times across this cycle's own record, while `PAIR_ABSORB40`
+  — the one pair genuinely, algebraically dependent on real wall reflectance
+  — still misses badly (`rel_dev=0.5139`) even WITH real reflectance
+  present. This is a genuine, **third** independent negative finding against
+  the plane-wave/global-steering coherent-echo mechanism class, joining
+  exp-078's single-edge and exp-079's full-aperture-sum structural
+  forecloses — robust to admittance family (`≤0.0075°` shift, explained by
+  this construction's own smaller phase divergence at grazing incidence, not
+  a general law) and to the `r`-vs-`conj(r)` sign convention (zero flips,
+  though the TRUE convention at `[47.5°,54.5°]` remains genuinely open
+  empirically, queued not resolved). The energy budget confirms this
+  construction family could never matter to constraint 3 in absolute terms
+  regardless: the honest `theta_local`-convention bound (`~1.3×10⁻⁸`) is
+  ~116,000× tighter than the naive `90°−θ_beam`-convention anchor.
+  **Checkpoint criterion 2 (mechanism-class boundary) remains NOT YET
+  RIPE — narrowed for a THIRD consecutive cycle, not yet a proven
+  boundary**: single construction, one wavelength (600nm), empty scene, one
+  genuinely open verification gap (the real FDTD phase-convention check,
+  queued for Iteration 59). **Checkpoint criterion 4 does NOT fire** on
+  either of the two governance findings this audit adjudicated explicitly —
+  both real, both closed same-shift, both flagged as patterns that would
+  fire outright on a third consecutive recurrence. Reconciled Iteration-59
+  ranking (Red Team's Phase-5 final audit, 4 tiers, 10 items — full detail
+  `phase5_redteam_audit.md` §6): **Tier 0, zero FDTD, desk-only** — (1)
+  restore or explicitly retire the x-wall realizable-admittance refit
+  (MATERIALS' restored item — reuse `d80.reflection_coefficient_vec_
+  realizable` against the already-built exp-075/exp-077 x-wall models, or
+  state why its already-wide REFUTE margins make that unnecessary); (2)
+  THERMODYNAMICS' hygiene bundle (docstring label, worst-case-depth table,
+  600nm-only qualifier); (3) record that this cycle ran three genuinely
+  independent stress tests, not four. **Tier 1, cheap FDTD** — (4) extend
+  the empirical FDTD phase-convention tie-breaker
+  (`phase5_redteam_phase_convention_check.py`'s own idiom) to 2–3 angles
+  inside `[47.5°,54.5°]` — the single remaining genuinely open verification
+  question, near-unanimous top pick (EM #1, QUANTUM #1, PHOTONICS #2,
+  VISION #2); (5) broadband pulsed reflectance spectroscopy; (6) the 750nm
+  x-wall two-wall spot-check, still the single oldest-unexecuted item on the
+  whole board. **Tier 2, the board's two most overdue items, strongest
+  cross-seat consensus of any single item this cycle** — (7) **the
+  PAD-loaded real-article check — now SIX consecutive T28 cycles deferred
+  (076–081)**, ranked #1 by VISION and THERMODYNAMICS, #2 by MATERIALS, EM,
+  and QUANTUM; this cycle's own required deferral reason is now supplied
+  (§4 item 1 of the Phase-5 audit) — **if Iteration 59 defers this a
+  seventh time without stating its own reason explicitly, that is a third
+  consecutive miss on this exact instruction and Checkpoint criterion 4
+  fires outright, not weighed as a close call again**; (8) the 750/450nm
+  x-wall wavelength-generality leg, also SIX consecutive cycles deferred,
+  ranked #1 by PHOTONICS and MATERIALS from their own charter vantage.
+  **Tier 3, governance** — (9) Checkpoint criterion 2 ruled NOT YET RIPE,
+  narrowed a third consecutive cycle; (10) Checkpoint criterion 4 ruled
+  non-firing on both governance findings this cycle, with an explicit
+  forward tripwire on item 7. Full record: `experiments/081-t28-photonics-
+  construction-total-field/` — Phase-1 proposal, `photonics_construction.py`,
+  Phase-1 results, five Phase-2 blind critiques, Phase-2 Red Team audit,
+  Phase-3 synthesis (FROZEN PREDICTIONS), Phase-4 results, `NOTES.md`, six
+  Phase-5 blind reviews, Phase-5 Red Team final audit.
+
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
 - ~~Is the 3λ shell-thickness feature specific to r2=90?~~ **ANSWERED
