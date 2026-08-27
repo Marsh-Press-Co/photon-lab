@@ -1,0 +1,29 @@
+==============================================================================
+exp-080 -- EM validity pre-check for the plane-wave/global-steering
+y-wall construction (Red Team exp-079 Sec 3/7 Tier-0 item 1)
+==============================================================================
+
+[a] FRAUNHOFER/FAR-FIELD MARGIN + theta_local SPREAD (pre-registered thresholds: FORECLOSE if ratio<10% or spread>1.5x; DOES-NOT-FORECLOSE if ratio>100% and spread<1.2x)
+    W=[1504] cells (all congruent configs)  lambda=20 cells  d_F=W^2/lambda=113100.8 cells
+    C40: dist_image=[861.4,2346.6] cells  ratio=[0.76%,2.07%]  theta_local=[5.45,15.00]deg  spread=2.752x
+    C60: dist_image=[900.1,2386.4] cells  ratio=[0.80%,2.11%]  theta_local=[5.36,14.35]deg  spread=2.675x
+    C70: dist_image=[919.5,2406.4] cells  ratio=[0.81%,2.13%]  theta_local=[5.32,14.04]deg  spread=2.640x
+    C80: dist_image=[938.9,2426.3] cells  ratio=[0.83%,2.15%]  theta_local=[5.27,13.74]deg  spread=2.606x
+    G40: dist_image=[938.9,2426.3] cells  ratio=[0.83%,2.15%]  theta_local=[5.27,13.74]deg  spread=2.606x
+    worst dist_ratio (max over configs/edges) = 2.145%
+    smallest dist_ratio floor (min over configs/edges) = 0.762%
+    worst theta_local spread ratio = 2.752x
+    VERDICT (a): FORECLOSE
+
+[b] SINGLE-ANGLE REPRODUCTION TEST (pre-registered thresholds: SUPPORT if mean R2>=0.90 and min>=0.75; REFUTE if mean R2<0.50)
+    version-drift guard: max|recomputed - committed| = 0.000e+00 (PASS, tol=1e-06)
+    C40: theta_eff(primary)=8.6458deg  theta_eff(secondary)=8.0136deg  R2(Re,primary)=0.8244  R2(abs,primary)=0.6855  R2(Re,secondary)=0.8273  R2(abs,secondary)=0.6878
+    C60: theta_eff(primary)=8.4027deg  theta_eff(secondary)=7.8187deg  R2(Re,primary)=0.8071  R2(abs,primary)=0.5996  R2(Re,secondary)=0.8044  R2(abs,secondary)=0.4853
+    C70: theta_eff(primary)=8.2865deg  theta_eff(secondary)=7.7247deg  R2(Re,primary)=0.5214  R2(abs,primary)=-7.8150  R2(Re,secondary)=0.4827  R2(abs,secondary)=-9.3270
+    C80: theta_eff(primary)=8.1736deg  theta_eff(secondary)=7.6330deg  R2(Re,primary)=0.5802  R2(abs,primary)=-8.4474  R2(Re,secondary)=0.5298  R2(abs,secondary)=-10.1161
+    G40: theta_eff(primary)=8.1736deg  theta_eff(secondary)=7.6330deg  R2(Re,primary)=0.9393  R2(abs,primary)=0.8870  R2(Re,secondary)=0.9398  R2(abs,secondary)=0.8773
+    mean R2(Re,primary) over 5 configs = 0.7345
+    min  R2(Re,primary) over 5 configs = 0.5214
+    VERDICT (b): INCONCLUSIVE
+
+wrote /home/user/photon-lab/experiments/080-t28-y-wall-planewave-validity-precheck/validity_precheck_results.json

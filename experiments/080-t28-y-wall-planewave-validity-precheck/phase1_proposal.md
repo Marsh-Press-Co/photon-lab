@@ -269,3 +269,150 @@ This document makes no `lab/` changes and does not modify `LOGBOOK.md`/
 `PLAN.md`/`SESSION_LOG.md`/`lab/ARTIFACTS.md`/`lab/artifacts.py`/`AGENTS.md`.
 Per house discipline, this file is committed and pushed BEFORE
 `validity_precheck.py` is written or run.
+
+---
+
+## PHASE 1 RESULTS (post-freeze)
+
+`validity_precheck.py` written and run only after the freeze commit
+(`6fb6b99`) was confirmed on `origin/main`. Every number below is copied
+from `validity_precheck_results.json`/`_output.txt`, never hand-typed (R4).
+The version-drift guard (recomputed per-point curve vs the committed
+`y_wall_aperture_sum_results.json`) passed at **exactly** `0.0` max
+absolute difference for both proxies, at every config — the comparison
+below is against a bit-identical reproduction of exp-079's own frozen
+record, not a re-derivation that might have silently drifted.
+
+### (a) Fraunhofer/far-field margin + `theta_local` spread — VERDICT: **FORECLOSE**
+
+| cfg | `dist_image` [cells] (y_lo, y_hi) | ratio vs `d_F=113,100.8` cells | `theta_local` envelope [deg] | spread ratio |
+|---|---|---|---|---|
+| C40 | 861.4, 2346.6 | 0.76%, 2.07% | [5.4531, 15.0043] | 2.752x |
+| C60 | 900.1, 2386.4 | 0.80%, 2.11% | [5.3618, 14.3450] | 2.675x |
+| C70 | 919.5, 2406.4 | 0.81%, 2.13% | [5.3173, 14.0362] | 2.640x |
+| C80 | 938.9, 2426.3 | 0.83%, 2.15% | [5.2735, 13.7402] | 2.606x |
+| G40 | 938.9, 2426.3 | 0.83%, 2.15% | [5.2735, 13.7402] | 2.606x |
+
+`W=1504` cells confirmed identical across all 5 congruent configs (direct
+`dg065.CONFIGS[key]["aperture_cells"]` lookup, matching the design-time
+assertion — no drift). `λ=CPL[600]=20` cells confirmed. `d_F=W²/λ=113,100.8`
+cells, identical for all 5 (W and λ do not vary across the congruent
+series). Worst `dist_ratio` over all configs/edges = **2.145%**; worst
+`theta_local` spread ratio = **2.752x** (C40, the un-padded anchor —
+slightly *higher* than exp-079's own audit-cited `2.8×` for the same
+config, essentially the same figure to the precision either was reported
+at; every other congruent config's spread is between 2.61x and 2.68x, all
+clearing the FORECLOSE bar).
+
+**Self-scored against the pre-registered thresholds**: every one of the 5
+configs has `dist_ratio_max ≪ 0.10` (worst case `2.15%`, roughly `4.7×`
+inside the FORECLOSE threshold) **and** `theta_local` spread `> 1.5×` at
+every config (worst case `2.75×`, `1.8×` past the FORECLOSE threshold).
+**VERDICT: FORECLOSE, exactly as pre-registered** — the aperture sits deep
+in the Fresnel (near-field) zone relative to the wall by any reasonable
+Fraunhofer convention, and the per-point bounce angle varies by a real
+factor of `~2.6–2.75×` across the aperture at every congruent config, not
+merely at C40. This reproduces and generalizes the exp-079 audit's own
+independently-derived figures (§0.7 there: `0.8–2.1%`/`2.8×` for C40 only)
+to all 5 congruent configs from a fresh script, closing the "verify or
+correct" instruction with no correction needed — the audit's numbers were
+accurate, and the effect is not C40-specific.
+
+### (b) Single-angle reproduction test — VERDICT: **INCONCLUSIVE**
+
+| cfg | `theta_eff` primary (amp-wt mean) | `theta_eff` secondary (midpoint) | R²(Re,primary) | R²(abs,primary) |
+|---|---|---|---|---|
+| C40 | 8.6458° | 8.0136° | 0.8244 | 0.6855 |
+| C60 | 8.4027° | 7.8187° | 0.8071 | 0.5996 |
+| C70 | 8.2865° | 7.7247° | 0.5214 | −7.8150 |
+| C80 | 8.1736° | 7.6330° | 0.5802 | −8.4474 |
+| G40 | 8.1736° | 7.6330° | 0.9393 | 0.8870 |
+
+Mean `R²(Re, theta_eff primary)` over the 5 configs = **0.7345**; minimum
+(C70) = **0.5214**. Against the pre-registered bands (`SUPPORT` requires
+mean `≥0.90` **and** min `≥0.75`; `REFUTE` requires mean `<0.50`): mean
+falls in `[0.50,0.90)` and the C70 minimum falls below the `0.75` floor —
+**VERDICT: INCONCLUSIVE, exactly as the pre-registered rule requires** (not
+a judgment call — the numbers land squarely inside the stated band, not
+near either boundary).
+
+**This REFUTES my own pre-registered directional prediction (I predicted
+SUPPORT).** Stated honestly, not smoothed over: the reasoning I gave FOR
+SUPPORT (the exp-079 ablation control's `r≡1` simplification barely moved
+the `PAIR_PAD`/`C80−C40` pair-DELTA periods, `|ΔP*|≤0.023°`) does not
+transfer to this test, which scores the full per-config curve SHAPE
+point-by-point, not a period fitted after differencing two configs. A
+period fit is comparatively forgiving of amplitude/offset mismatch between
+curves — it only asks "what frequency dominates" — while `R²` here
+penalizes any pointwise divergence directly. The reasoning I gave AGAINST
+SUPPORT (the `2.75×` `theta_local` spread and `MATERIALS`' own
+`Pearson r=0.74–0.88` admittance-smoothness finding) turns out to be the
+better predictor of the actual outcome's ORDER OF MAGNITUDE, though not
+sharp enough to have called the specific INCONCLUSIVE band over SUPPORT or
+REFUTE with confidence beforehand — exactly the kind of miss a genuine,
+falsifiable, numeric pre-registration is supposed to expose, per this
+program's own R4/verify-before-claim discipline, rather than a vague
+prediction that could be read as having "basically” called it either way
+after the fact.
+
+**A structural feature worth flagging, not silently absorbed into the
+single verdict number**: the SECONDARY (`|E_echo|`) proxy is markedly worse
+than the PRIMARY (`Re{E_echo}`) proxy at C70/C80, going sharply NEGATIVE
+(`R²=−7.82` and `−8.45`) — a single-angle model that is a WORSE predictor
+of `|E_echo|` than simply guessing the true curve's own mean at every
+point. This happens because `|E_echo|` is a nonlinear function of the
+complex phasor, and the single-angle model's fixed complex multiplier
+`r(theta_eff)` rotates/scales the ablated-shape phasor by a CONSTANT
+complex factor (an exact algebraic consequence of pulling a `y_s`-
+independent `r` out of the aperture integral — confirmed directly in this
+file's own `r_theta_eff_primary`/`r_theta_eff_secondary` values, one fixed
+complex number per config, `validity_precheck_results.json`), which can
+push the single-angle phasor's own zero-crossings and envelope minima to
+different `θ_beam` locations than the true model's, and taking `|·|`
+amplifies that mismatch relative to the (linear, sign-preserving) `Re{·}`
+proxy. This is disclosed as a genuine, if secondary, finding — not
+folded into the primary verdict, per this proposal's own pre-registered
+scoring rule (Re/primary drives the verdict; abs/secondary is a robustness
+report only).
+
+**Cross-check, `theta_eff` secondary (midpoint) vs primary (amp-weighted
+mean)**: the two definitions differ by `0.4–0.7°` per config (a real, if
+modest, sensitivity to the choice named as Idealization 1) but produce
+`R²` values within `0.02–0.05` of each other at every config (C40:
+`0.8244` vs `0.8273`; C70: `0.5214` vs `0.4827`) — the INCONCLUSIVE
+verdict is robust to which `theta_eff` definition is used; neither
+definition reaches SUPPORT nor drops to REFUTE.
+
+### Combined reading
+
+(a) **FORECLOSE** and (b) **INCONCLUSIVE** — the specific combination this
+proposal's own §4 did not name outright (only FORECLOSE+SUPPORT and
+FORECLOSE+REFUTE were sketched), but its reasoning covers it: a formal
+far-field/plane-wave criterion clearly fails at this bench geometry (a),
+and the empirical question of whether one global angle can even summarize
+THIS already-foreclosed per-point-image family's own curve shape lands
+ambiguously — good enough to track the dominant shape at 3 of 5 configs
+(`R²>0.80`, `G40` at `0.94`) but poor enough at 2 of 5 (`C70`, `C80`,
+`R²≈0.52–0.58`) that "one global angle adequately summarizes this
+family" cannot be affirmed cleanly either. **Reading the two parts
+together, per this proposal's own Idealization 2 and §4 framing**: this is
+not evidence the plane-wave/global-steering construction PHOTONICS
+sketched (§4 of its review) is doomed — that construction's own `r` is a
+genuine function of `θ_beam`, a structurally different object from this
+pre-check's static `theta_eff`, so this test cannot rule it out. But it
+IS evidence that a global-angle SUMMARY of this aperture's own per-point
+geometry is not a clean, high-fidelity substitute for the per-point
+model even where the underlying physics (this specific family) is already
+known to be structurally incapable of the T28 signal — a caution to carry
+into the PHOTONICS build (§4), not a foreclosure of attempting it.
+**Recommendation for Iteration 57's own next step: proceed to PHOTONICS'
+§4 build, exactly as Red Team's own §3 sequencing anticipated for a
+FORECLOSE-leaning (a) result, but carry this cycle's own (b) finding
+forward explicitly as a documented caveat on any claim that a single
+`θ_beam`-dependent scalar cleanly represents the true multi-point
+interaction** — the same caution this pre-check's own Idealization 2
+already flagged as a limit on what (b) could prove, now confirmed rather
+than merely hypothesized.
+
+Full numeric detail: `validity_precheck_results.json`; full stdout:
+`_output.txt`.

@@ -1,0 +1,333 @@
+"""
+experiments/080-t28-y-wall-planewave-validity-precheck/validity_precheck.py
+=============================================================================
+Panel Iteration 57 (exp-080). Lead: ELECTROMAGNETISM, by rotation. Executes
+EM's own PRE-REGISTERED (phase1_proposal.md, frozen before this file was
+written) validity pre-check of the plane-wave/global-steering y-wall
+construction Red Team's exp-079 Phase-5 final audit (Sec 3, Sec 7 Tier-0
+item 1) recommends building next, and PHOTONICS' own Phase-5 review (Sec 4)
+sketched a concrete build for.
+
+ZERO new FDTD calls. Imports, never reimplements:
+  - experiments/065-.../design_geometry.py (dg065): CONFIGS -- raw geometry
+    (aperture_cells, d_sp, obj_y, y_lo/y_hi, absorb) per congruent config.
+  - experiments/075-.../boundary_reflectance.py (br): CPL (lambda=CPL[600]),
+    damp_e_profile/nu_profile/n_profile_exact (the already-gated per-ABSORB
+    complex index profile).
+  - experiments/079-.../y_wall_aperture_sum.py (ywas): theta_local_deg,
+    dist_image_cells, aperture_amplitude, source_driven_phase,
+    reflection_coefficient_vec, build_aperture_grid, echo_field_curve,
+    _trapz, K600, CONGRUENT_KEYS -- all already gated in that file's own
+    main() (G-LOSSLESS/G-N1/G-PASSIVITY, a bit-exact vectorized-vs-scalar
+    validation). Nothing here reimplements any of that physics.
+
+Two parts, exactly as pre-registered in phase1_proposal.md Sec 4 (thresholds
+and predictions frozen and pushed BEFORE this file existed):
+
+  (a) FRAUNHOFER/FAR-FIELD MARGIN + theta_local SPREAD. W, lambda, Fraunhofer
+      distance d_F=W^2/lambda; actual dist_image(y_s) at the aperture edges
+      (y_lo,y_hi) per congruent config; the ratio dist_image/d_F; and the
+      theta_local(y_s) envelope spread. Scored against the pre-registered
+      FORECLOSE / MARGINAL / DOES-NOT-FORECLOSE thresholds.
+
+  (b) SINGLE-ANGLE REPRODUCTION TEST. A single-angle variant of
+      echo_field_curve: r(theta_eff;ABSORB) applied as ONE constant complex
+      scalar (not the per-point r(theta_local(y_s)) the true model uses),
+      for two theta_eff definitions (PRIMARY: amplitude-weighted mean over
+      the native aperture grid; SECONDARY/robustness: aperture-midpoint
+      value theta_local(OBJ_Y)). Compared against the TRUE per-point curve
+      already committed in
+      experiments/079-.../y_wall_aperture_sum_results.json's
+      `primary_model_curves` key, via R^2, per config, both proxies (Re
+      PRIMARY / |.| SECONDARY, this sub-thread's own house convention). A
+      version-drift guard recomputes the true per-point curve fresh from
+      ywas.echo_field_curve and asserts it matches the committed JSON to
+      float precision before any R^2 is trusted.
+
+Run: `python3 validity_precheck.py` from this directory (or anywhere --
+paths resolve from __file__). Writes `validity_precheck_results.json` and
+prints every table below; every number appended to phase1_proposal.md's
+"PHASE 1 RESULTS (post-freeze)" section is copied from that JSON/stdout,
+never hand-typed (R4).
+"""
+
+import importlib.util
+import json
+import math
+import os
+import sys
+
+import numpy as np
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+sys.path.insert(0, ROOT)
+
+
+def _load(path, name):
+    """House `_load()` pattern (boundary_reflectance.py / y_wall_prescreen.py
+    / y_wall_aperture_sum.py's own convention) for filename collisions
+    across experiment directories."""
+    spec = importlib.util.spec_from_file_location(name, path)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+EXP065_DIR = os.path.join(ROOT, "experiments", "065-t24-absorb-boundary-sweep")
+EXP075_DIR = os.path.join(ROOT, "experiments", "075-t28-absorb-boundary-wkb-reflectance")
+EXP076_RESULTS = os.path.join(ROOT, "experiments", "076-t28-g40-pad-decorrelation", "results.json")
+EXP079_DIR = os.path.join(ROOT, "experiments", "079-t28-y-wall-full-aperture-sum")
+
+dg065 = _load(os.path.join(EXP065_DIR, "design_geometry.py"), "_exp080_dg065")
+br = _load(os.path.join(EXP075_DIR, "boundary_reflectance.py"), "_exp080_br")
+ywas = _load(os.path.join(EXP079_DIR, "y_wall_aperture_sum.py"), "_exp080_ywas")
+
+CONGRUENT_KEYS = ywas.CONGRUENT_KEYS  # ("C40","C60","C70","C80","G40")
+LAM600 = br.CPL[600]
+
+with open(os.path.join(EXP079_DIR, "y_wall_aperture_sum_results.json")) as f:
+    EXP079_RESULTS = json.load(f)
+
+# ------------------------------------------------- pre-registered thresholds
+# phase1_proposal.md Sec 4a (part a) -- frozen and pushed before this file
+# existed (commit 6fb6b99).
+FORECLOSE_RATIO = 0.10
+DOESNOT_RATIO = 1.0
+FORECLOSE_SPREAD = 1.5
+DOESNOT_SPREAD = 1.2
+
+# phase1_proposal.md Sec 4b (part b) -- same freeze.
+SUPPORT_R2 = 0.90
+SUPPORT_FLOOR_R2 = 0.75
+REFUTE_R2 = 0.50
+
+DRIFT_GUARD_TOL = 1e-6
+
+
+def r_squared(true, model):
+    true = np.asarray(true, dtype=float)
+    model = np.asarray(model, dtype=float)
+    ss_res = float(np.sum((true - model) ** 2))
+    ss_tot = float(np.sum((true - np.mean(true)) ** 2))
+    return float(1.0 - ss_res / ss_tot) if ss_tot > 0 else float("nan")
+
+
+# ============================================================== part (a)
+def part_a():
+    rows = {}
+    W_seen = set()
+    for key in CONGRUENT_KEYS:
+        c = dg065.CONFIGS[key]
+        W_cfg = c["aperture_cells"]
+        W_seen.add(int(W_cfg))
+        d_f = (W_cfg ** 2) / LAM600
+        y_lo, y_hi = c["y_lo"], c["y_hi"]
+        d_lo = float(ywas.dist_image_cells(y_lo, c))
+        d_hi = float(ywas.dist_image_cells(y_hi, c))
+        d_min, d_max = min(d_lo, d_hi), max(d_lo, d_hi)
+        th_lo = float(ywas.theta_local_deg(y_lo, c))
+        th_hi = float(ywas.theta_local_deg(y_hi, c))
+        env_lo, env_hi = min(th_lo, th_hi), max(th_lo, th_hi)
+        spread = env_hi / env_lo
+        rows[key] = dict(
+            W=int(W_cfg), lam_cells=int(LAM600), fraunhofer_dist_cells=float(d_f),
+            dist_image_at_y_lo=d_lo, dist_image_at_y_hi=d_hi,
+            dist_ratio_min=d_min / d_f, dist_ratio_max=d_max / d_f,
+            theta_local_at_y_lo_deg=th_lo, theta_local_at_y_hi_deg=th_hi,
+            theta_local_env_lo_deg=env_lo, theta_local_env_hi_deg=env_hi,
+            theta_local_spread_ratio=spread,
+        )
+    worst_ratio = max(r["dist_ratio_max"] for r in rows.values())
+    best_ratio_all_above = min(r["dist_ratio_min"] for r in rows.values())
+    worst_spread = max(r["theta_local_spread_ratio"] for r in rows.values())
+    if worst_ratio < FORECLOSE_RATIO or worst_spread > FORECLOSE_SPREAD:
+        verdict = "FORECLOSE"
+    elif best_ratio_all_above > DOESNOT_RATIO and worst_spread < DOESNOT_SPREAD:
+        verdict = "DOES-NOT-FORECLOSE"
+    else:
+        verdict = "MARGINAL"
+    return dict(
+        rows=rows, W_values_seen=sorted(W_seen), lam_cells=int(LAM600),
+        worst_dist_ratio=worst_ratio, best_dist_ratio_all_configs_min=best_ratio_all_above,
+        worst_theta_local_spread_ratio=worst_spread,
+        thresholds=dict(foreclose_ratio=FORECLOSE_RATIO, doesnot_ratio=DOESNOT_RATIO,
+                         foreclose_spread=FORECLOSE_SPREAD, doesnot_spread=DOESNOT_SPREAD),
+        verdict=verdict,
+    )
+
+
+# ============================================================== part (b)
+def theta_eff_primary(cfg):
+    """Amplitude-weighted mean of theta_local(y_s) over the native (dy=1
+    cell) aperture grid -- phase1_proposal.md Sec 2's PRIMARY definition."""
+    y_grid = ywas.build_aperture_grid(cfg, 1)
+    amp = ywas.aperture_amplitude(y_grid, cfg)
+    th_loc = ywas.theta_local_deg(y_grid, cfg)
+    num = ywas._trapz(amp * th_loc, y_grid)
+    den = ywas._trapz(amp, y_grid)
+    return float(num / den)
+
+
+def theta_eff_secondary(cfg):
+    """Aperture-midpoint value -- phase1_proposal.md Sec 2's SECONDARY
+    (robustness cross-check) definition."""
+    return float(ywas.theta_local_deg(cfg["obj_y"], cfg))
+
+
+def single_angle_curve(cfg, absorb_for_r, thetas_beam_deg, theta_eff_deg):
+    """echo_field_curve's own machinery, with r(theta_local(y_s)) replaced
+    by ONE constant r(theta_eff;ABSORB) -- everything else (taper, driven-
+    phase ramp, dist_image) exactly as in the true per-point model."""
+    y_grid = ywas.build_aperture_grid(cfg, 1)
+    amp = ywas.aperture_amplitude(y_grid, cfg)
+    dist_img = ywas.dist_image_cells(y_grid, cfg)
+    n_prof = br.n_profile_exact(br.nu_profile(br.damp_e_profile(absorb_for_r)),
+                                 2.0 * math.pi / LAM600)
+    r_const = ywas.reflection_coefficient_vec(n_prof, np.array([theta_eff_deg]), LAM600)[0]
+    curve = []
+    for th_beam in thetas_beam_deg:
+        phase_drive = ywas.source_driven_phase(y_grid, float(th_beam), cfg)
+        integrand = amp * r_const * np.exp(1j * (phase_drive + ywas.K600 * dist_img))
+        re = float(ywas._trapz(integrand.real, y_grid))
+        im = float(ywas._trapz(integrand.imag, y_grid))
+        curve.append(complex(re, im))
+    return np.array(curve, dtype=complex), complex(r_const)
+
+
+def part_b():
+    with open(EXP076_RESULTS) as f:
+        res76 = json.load(f)
+    thetas = np.array(res76["headline"]["theta"])
+
+    per_config = {}
+    max_drift = 0.0
+    for key in CONGRUENT_KEYS:
+        c = dg065.CONFIGS[key]
+
+        # version-drift guard: recompute the TRUE per-point curve fresh from
+        # the live, already-gated function and check it against the
+        # committed JSON before trusting any comparison built on it.
+        true_curve, _ = ywas.echo_field_curve(c, c["absorb"], thetas, 1)
+        stored = EXP079_RESULTS["primary_model_curves"][key]
+        drift_re = float(np.max(np.abs(true_curve.real - np.array(stored["re_e_echo"]))))
+        drift_abs = float(np.max(np.abs(np.abs(true_curve) - np.array(stored["abs_e_echo"]))))
+        max_drift = max(max_drift, drift_re, drift_abs)
+
+        eff_primary = theta_eff_primary(c)
+        eff_secondary = theta_eff_secondary(c)
+
+        curve_primary, r_primary = single_angle_curve(c, c["absorb"], thetas, eff_primary)
+        curve_secondary, r_secondary = single_angle_curve(c, c["absorb"], thetas, eff_secondary)
+
+        per_config[key] = dict(
+            theta_eff_primary_deg=eff_primary,
+            theta_eff_secondary_deg=eff_secondary,
+            r_theta_eff_primary=dict(re=r_primary.real, im=r_primary.imag, abs=abs(r_primary)),
+            r_theta_eff_secondary=dict(re=r_secondary.real, im=r_secondary.imag, abs=abs(r_secondary)),
+            drift_guard_max_abs_diff_re=drift_re,
+            drift_guard_max_abs_diff_abs=drift_abs,
+            r2_re_theta_eff_primary=r_squared(true_curve.real, curve_primary.real),
+            r2_abs_theta_eff_primary=r_squared(np.abs(true_curve), np.abs(curve_primary)),
+            r2_re_theta_eff_secondary=r_squared(true_curve.real, curve_secondary.real),
+            r2_abs_theta_eff_secondary=r_squared(np.abs(true_curve), np.abs(curve_secondary)),
+        )
+
+    assert max_drift < DRIFT_GUARD_TOL, (
+        f"version-drift guard FAILED: recomputed per-point curve does not "
+        f"match the committed y_wall_aperture_sum_results.json "
+        f"(max_drift={max_drift:.3e} >= {DRIFT_GUARD_TOL:.0e}) -- do not "
+        f"trust any R^2 number below until this is resolved")
+
+    r2_primary_vals = [v["r2_re_theta_eff_primary"] for v in per_config.values()]
+    mean_r2 = float(np.mean(r2_primary_vals))
+    min_r2 = float(min(r2_primary_vals))
+    if mean_r2 >= SUPPORT_R2 and min_r2 >= SUPPORT_FLOOR_R2:
+        verdict = "SUPPORT"
+    elif mean_r2 < REFUTE_R2:
+        verdict = "REFUTE"
+    else:
+        verdict = "INCONCLUSIVE"
+
+    return dict(
+        per_config=per_config,
+        mean_r2_re_theta_eff_primary=mean_r2,
+        min_r2_re_theta_eff_primary=min_r2,
+        max_drift_guard_abs_diff=max_drift,
+        thresholds=dict(support_r2=SUPPORT_R2, support_floor_r2=SUPPORT_FLOOR_R2,
+                         refute_r2=REFUTE_R2),
+        verdict=verdict,
+    )
+
+
+def main():
+    print("=" * 78)
+    print("exp-080 -- EM validity pre-check for the plane-wave/global-steering")
+    print("y-wall construction (Red Team exp-079 Sec 3/7 Tier-0 item 1)")
+    print("=" * 78)
+
+    print("\n[a] FRAUNHOFER/FAR-FIELD MARGIN + theta_local SPREAD "
+          "(pre-registered thresholds: FORECLOSE if ratio<%.0f%% or spread>%.1fx; "
+          "DOES-NOT-FORECLOSE if ratio>%.0f%% and spread<%.1fx)"
+          % (FORECLOSE_RATIO * 100, FORECLOSE_SPREAD, DOESNOT_RATIO * 100, DOESNOT_SPREAD))
+    a = part_a()
+    print(f"    W={a['W_values_seen']} cells (all congruent configs)  "
+          f"lambda={a['lam_cells']} cells  "
+          f"d_F=W^2/lambda={a['rows'][CONGRUENT_KEYS[0]]['fraunhofer_dist_cells']:.1f} cells")
+    for key, row in a["rows"].items():
+        print(f"    {key}: dist_image=[{row['dist_image_at_y_lo']:.1f},"
+              f"{row['dist_image_at_y_hi']:.1f}] cells  "
+              f"ratio=[{row['dist_ratio_min'] * 100:.2f}%,{row['dist_ratio_max'] * 100:.2f}%]  "
+              f"theta_local=[{row['theta_local_env_lo_deg']:.2f},"
+              f"{row['theta_local_env_hi_deg']:.2f}]deg  "
+              f"spread={row['theta_local_spread_ratio']:.3f}x")
+    print(f"    worst dist_ratio (max over configs/edges) = {a['worst_dist_ratio'] * 100:.3f}%")
+    print(f"    smallest dist_ratio floor (min over configs/edges) = "
+          f"{a['best_dist_ratio_all_configs_min'] * 100:.3f}%")
+    print(f"    worst theta_local spread ratio = {a['worst_theta_local_spread_ratio']:.3f}x")
+    print(f"    VERDICT (a): {a['verdict']}")
+
+    print("\n[b] SINGLE-ANGLE REPRODUCTION TEST "
+          "(pre-registered thresholds: SUPPORT if mean R2>=%.2f and min>=%.2f; "
+          "REFUTE if mean R2<%.2f)" % (SUPPORT_R2, SUPPORT_FLOOR_R2, REFUTE_R2))
+    b = part_b()
+    print(f"    version-drift guard: max|recomputed - committed| = "
+          f"{b['max_drift_guard_abs_diff']:.3e} (PASS, tol={DRIFT_GUARD_TOL:.0e})")
+    for key, row in b["per_config"].items():
+        print(f"    {key}: theta_eff(primary)={row['theta_eff_primary_deg']:.4f}deg  "
+              f"theta_eff(secondary)={row['theta_eff_secondary_deg']:.4f}deg  "
+              f"R2(Re,primary)={row['r2_re_theta_eff_primary']:.4f}  "
+              f"R2(abs,primary)={row['r2_abs_theta_eff_primary']:.4f}  "
+              f"R2(Re,secondary)={row['r2_re_theta_eff_secondary']:.4f}  "
+              f"R2(abs,secondary)={row['r2_abs_theta_eff_secondary']:.4f}")
+    print(f"    mean R2(Re,primary) over {len(CONGRUENT_KEYS)} configs = "
+          f"{b['mean_r2_re_theta_eff_primary']:.4f}")
+    print(f"    min  R2(Re,primary) over {len(CONGRUENT_KEYS)} configs = "
+          f"{b['min_r2_re_theta_eff_primary']:.4f}")
+    print(f"    VERDICT (b): {b['verdict']}")
+
+    out = dict(part_a=a, part_b=b)
+
+    def _json_default(o):
+        if isinstance(o, (np.bool_,)):
+            return bool(o)
+        if isinstance(o, (np.floating,)):
+            return float(o)
+        if isinstance(o, (np.integer,)):
+            return int(o)
+        if isinstance(o, np.ndarray):
+            return o.tolist()
+        if isinstance(o, complex):
+            return dict(re=o.real, im=o.imag)
+        raise TypeError(f"not JSON serializable: {type(o)}")
+
+    out_path = os.path.join(HERE, "validity_precheck_results.json")
+    with open(out_path, "w") as f:
+        json.dump(out, f, indent=2, default=_json_default)
+    print(f"\nwrote {out_path}")
+    return out
+
+
+if __name__ == "__main__":
+    main()
