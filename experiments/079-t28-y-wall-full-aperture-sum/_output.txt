@@ -1,0 +1,100 @@
+==============================================================================
+exp-079 -- y-wall FULL, non-edge-reduced aperture sum (coherent
+Huygens-Fresnel echo model), zero new FDTD
+==============================================================================
+
+[0] GEOMETRY PER CONFIG + symmetric-aperture premise (0.5*(y_lo+y_hi) == obj_y, required for source_driven_phase's own simplification)
+    C40: absorb= 40 pad=  0 obj_y= 792 y_lo= 40 y_hi=1544 A=752 d_sp=223 aperture_cells=1504 mid==obj_y: True
+    C60: absorb= 60 pad= 20 obj_y= 812 y_lo= 60 y_hi=1564 A=752 d_sp=223 aperture_cells=1504 mid==obj_y: True
+    C70: absorb= 70 pad= 30 obj_y= 822 y_lo= 70 y_hi=1574 A=752 d_sp=223 aperture_cells=1504 mid==obj_y: True
+    C80: absorb= 80 pad= 40 obj_y= 832 y_lo= 80 y_hi=1584 A=752 d_sp=223 aperture_cells=1504 mid==obj_y: True
+    G40: absorb= 40 pad= 40 obj_y= 832 y_lo= 80 y_hi=1584 A=752 d_sp=223 aperture_cells=1504 mid==obj_y: True
+
+[0b] theta_local(y_s) ENVELOPE across the full aperture (vs exp-078 Phase-5's single-point 13.7-15.0deg at y_lo only)
+    C40: theta_local(y_lo)=15.0043deg  theta_local(y_hi)=5.4531deg  range=[5.4531,15.0043]
+    C60: theta_local(y_lo)=14.3450deg  theta_local(y_hi)=5.3618deg  range=[5.3618,14.3450]
+    C70: theta_local(y_lo)=14.0362deg  theta_local(y_hi)=5.3173deg  range=[5.3173,14.0362]
+    C80: theta_local(y_lo)=13.7402deg  theta_local(y_hi)=5.2735deg  range=[5.2735,13.7402]
+    G40: theta_local(y_lo)=13.7402deg  theta_local(y_hi)=5.2735deg  range=[5.2735,13.7402]
+    GLOBAL envelope across all 5 configs (with 0.5deg margin): [4.7735,15.5043]deg -- never sampled by ANY prior gate in this program (as-filed +-44deg; exp-078 corrected 48-54deg; exp-078 Phase-5 rigorous single-edge 13.7-15.1deg)
+
+[1] GATE CHECK at the full aperture's theta_local envelope (scalar, already-gated br.reflection_coefficient)
+    G-LOSSLESS (4.77-15.50deg, 2000 trials): worst ||r|-1| = 2.220e-16  PASS=True
+    G-N1       (4.77-15.50deg, 2000 trials): worst |r_loop-r_direct| = 5.403e-15  PASS=True
+    G-PASSIVITY(4.77-15.50deg, 2000 trials/depth): worst |r| = 0.000115  PASS=True
+
+[2b] VALIDATE reflection_coefficient_vec against the scalar, already-gated br.reflection_coefficient (bit-exact required before using the vectorized form at scale)
+    max |r_vec - r_scalar| over 4 ABSORB depths x 5 sample angles = 7.988e-16
+    -> vectorized form reproduces the scalar, already-gated function to float precision.
+
+[3] REAL reference periods (re-derived from committed data via the SAME imported _free_period_search, 31 angles, 36.0-42.0deg, 600nm)
+    [real PAIR_PAD]  narrow[1,4]: P*=   4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [real PAIR_PAD]   wide[1,15]: P*=   4.6113deg  R^2=0.8165  [interior optimum]
+    [real PAIR_ABSORB40]  narrow[1,4]: P*=   4.0000deg  R^2=0.7093  [AT BOUNDARY -- widening]
+    [real PAIR_ABSORB40]   wide[1,15]: P*=   4.1761deg  R^2=0.7156  [interior optimum]
+    [real C80-C40]  narrow[1,4]: P*=   2.8421deg  R^2=0.6272  [interior optimum]
+    REFERENCE_PERIODS used for scoring below: {'c80_c40_deg': 2.8421052631578947, 'pair_pad_deg': 4.611289746337977, 'pair_absorb40_deg': 4.176134333690603} (citations: 2.8421 / 4.6113 / 4.1761 deg)
+
+[4] NUMERICAL-CONVERGENCE CHECK: 1x (native, dy=1 cell -- the REAL per-cell source resolution) vs 2x vs 4x oversampled trapezoidal-rule aperture integral
+    [conv os=1 PAIR_PAD]  narrow[1,4]: P*=   1.9925deg  R^2=0.9720  [interior optimum]
+    oversample=1x  n_points(C40)=1505  ptp(PAIR_PAD)=4.463023e-06  ptp(PAIR_ABSORB40)=1.684111e-05  ptp(C80-C40)=1.470059e-05  PAIR_PAD P*=1.9925deg R^2=0.9720
+    [conv os=2 PAIR_PAD]  narrow[1,4]: P*=   1.9925deg  R^2=0.9720  [interior optimum]
+    oversample=2x  n_points(C40)=3009  ptp(PAIR_PAD)=4.464108e-06  ptp(PAIR_ABSORB40)=1.684511e-05  ptp(C80-C40)=1.470405e-05  PAIR_PAD P*=1.9925deg R^2=0.9720
+    [conv os=4 PAIR_PAD]  narrow[1,4]: P*=   1.9925deg  R^2=0.9720  [interior optimum]
+    oversample=4x  n_points(C40)=6017  ptp(PAIR_PAD)=4.464175e-06  ptp(PAIR_ABSORB40)=1.684536e-05  ptp(C80-C40)=1.470426e-05  PAIR_PAD P*=1.9925deg R^2=0.9720
+    relative change in ptp(PAIR_PAD), 1x->2x = 2.4313e-04, 2x->4x = 1.4956e-05  (small and shrinking = converged)
+    CONVERGED (2x->4x relative change < 1%): True
+
+[5] PRIMARY MODEL -- full coherent aperture-sum echo field E_echo(cfg,theta_beam), native (1x, dy=1 cell) discretization
+    C40: ptp(Re E_echo)=1.487000e-05  mean(|E_echo|)=5.059927e-06  ptp(|E_echo|)=9.219955e-06  n_points=1505
+    C60: ptp(Re E_echo)=3.508566e-07  mean(|E_echo|)=1.588681e-07  ptp(|E_echo|)=2.046933e-07  n_points=1505
+    C70: ptp(Re E_echo)=3.365153e-07  mean(|E_echo|)=1.447177e-07  ptp(|E_echo|)=1.101665e-07  n_points=1505
+    C80: ptp(Re E_echo)=1.788514e-07  mean(|E_echo|)=7.706578e-08  ptp(|E_echo|)=5.519308e-08  n_points=1505
+    G40: ptp(Re E_echo)=1.693182e-05  mean(|E_echo|)=4.714271e-06  ptp(|E_echo|)=8.813437e-06  n_points=1505
+
+[5b] DIAGNOSTIC -- per-config free-period fit on Re{E_echo(cfg,theta)} ALONE (not a pair delta): does a T21-like (~1.96deg) period already dominate each config's own curve individually?
+    [solo C40]  narrow[1,4]: P*=   2.0226deg  R^2=0.9733  [interior optimum]
+    [solo C60]  narrow[1,4]: P*=   2.0226deg  R^2=0.9779  [interior optimum]
+    [solo C70]  narrow[1,4]: P*=   2.0150deg  R^2=0.9803  [interior optimum]
+    [solo C80]  narrow[1,4]: P*=   2.0150deg  R^2=0.9791  [interior optimum]
+    [solo G40]  narrow[1,4]: P*=   2.0226deg  R^2=0.9684  [interior optimum]
+    (T21's own established fringe period, A=752, 600nm, 39deg: 1.9608deg -- re-derived here from the already-committed dg048.ripple_period_deg, not hand-typed)
+
+[5a] SCALAR PROXY CHOICE: PRIMARY = Re{E_echo} (this bench's own house phasor convention, lab/emit.py's f(n)=Re{F e^{-i*omega*n}} -- the physically-meaningful, sign-carrying field value a real time-domain monitor would record); SECONDARY robustness cross-check = |E_echo| (sign-blind magnitude). Both reported symmetrically -- neither is dropped or cherry-picked based on which fits better (R5 discipline: two proxy CHOICES on one already-derived model, not a search over candidate mechanisms).
+
+[6] MODEL PAIR DELTAS (PAIR_PAD / PAIR_ABSORB40 / C80-C40), PRIMARY proxy Re{E_echo}, scored against real periods
+    [model(Re) PAIR_PAD]  narrow[1,4]: P*=   1.9925deg  R^2=0.9720  [interior optimum]
+    [model(Re) PAIR_ABSORB40]  narrow[1,4]: P*=   2.0226deg  R^2=0.9683  [interior optimum]
+    [model(Re) C80-C40]  narrow[1,4]: P*=   2.0301deg  R^2=0.9732  [interior optimum]
+    Re-model C80-C40 vs real: P*_real=2.8421deg  P*_model=2.0301deg  rel_dev=0.2857 -> SUPPORT
+    Re-model PAIR_PAD vs real: P*_real=4.6113deg  P*_model=1.9925deg  rel_dev=0.5679 -> INCONCLUSIVE
+    Re-model PAIR_ABSORB40 vs real: P*_real=4.1761deg  P*_model=2.0226deg  rel_dev=0.5157 -> INCONCLUSIVE
+
+[6a] DIAGNOSTIC -- how close are the PRIMARY model's own three periods to T21's OWN established fringe (1.9608deg, A=752, 39deg, 600nm) vs to T28's own real targets? (disclosed look-elsewhere comparison, R5 -- see phase1_proposal.md Sec 3.3/7)
+    c80_c40: P*_model=2.0301deg  vs T21 fringe 1.9608deg -> rel_dev=0.0353
+    pair_pad: P*_model=1.9925deg  vs T21 fringe 1.9608deg -> rel_dev=0.0162
+    pair_absorb40: P*_model=2.0226deg  vs T21 fringe 1.9608deg -> rel_dev=0.0315
+
+[6b] MODEL PAIR DELTAS, SECONDARY proxy |E_echo| (robustness cross-check)
+    [model(abs) PAIR_PAD]  narrow[1,4]: P*=   1.0075deg  R^2=0.8897  [interior optimum]
+    [model(abs) PAIR_ABSORB40]  narrow[1,4]: P*=   1.0075deg  R^2=0.8237  [interior optimum]
+    [model(abs) C80-C40]  narrow[1,4]: P*=   1.0075deg  R^2=0.8362  [interior optimum]
+    abs-model C80-C40 vs real: P*_real=2.8421deg  P*_model=1.0075deg  rel_dev=0.6455 -> INCONCLUSIVE
+    abs-model PAIR_PAD vs real: P*_real=4.6113deg  P*_model=1.0075deg  rel_dev=0.7815 -> INCONCLUSIVE
+    abs-model PAIR_ABSORB40 vs real: P*_real=4.1761deg  P*_model=1.0075deg  rel_dev=0.7587 -> INCONCLUSIVE
+
+[6c] SS_TOT-SCALE SANITY (exp-078 Phase-5's own SS_TOT_DEGENERATE hardening, applied explicitly here): model ss_tot vs real ss_tot, same statistic, PRIMARY proxy PAIR_PAD
+    ss_tot(model, Re-proxy PAIR_PAD) = 6.047497e-11
+    ss_tot(real PAIR_PAD)             = 6.439269e-05
+    ratio (model/real) = 9.391589e-07  (exp-078's own flat single-edge model measured 5.9e-27 here -- a ratio many orders of magnitude below 1 would mean this file's model is ALSO degenerate/flat, not a real oscillation)
+    ss_tot below the SS_TOT_DEGENERATE floor (1e-20): False
+
+[7] SUMMARY
+    PRIMARY (Re{E_echo}):   1/3 SUPPORT, 0/3 REFUTE
+    SECONDARY (|E_echo|):    0/3 SUPPORT, 0/3 REFUTE
+    ss_tot ratio (model PAIR_PAD / real PAIR_PAD, primary proxy): 9.392e-07
+    numerical convergence (2x->4x relative ptp change): 1.4956e-05, converged=True
+
+    elapsed: 2.3s
+
+wrote /home/user/photon-lab/experiments/079-t28-y-wall-full-aperture-sum/y_wall_aperture_sum_results.json
