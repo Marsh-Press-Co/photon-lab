@@ -83,11 +83,13 @@ exp-077 -- PAD round-trip-distance refit of exp-075's single-wall echo model
      PAIR_PAD: r_for['C40'] IS r_for['G40'] (same array object) -> absorbed-power fraction is common-mode BY CONSTRUCTION, not because PAD itself is lossless (PAD *is* also lossless vacuum, independently, but that is not the operative reason for THIS pair's N/A disposition)
      ABSORB=40 absorbed fraction 1-|r|^2: 99.9959%-99.9992%
      ABSORB=80 absorbed fraction 1-|r|^2: 100.0000%-100.0000%
-     PAIR_ABSORB40: Delta(absorbed fraction) = 8.4098e-06-4.1247e-05 (real, non-common-mode, but ~4-5 orders of magnitude below any energy scale this program has ever treated as thermodynamically significant -- T5/exp-043's own microbolometer-NETD floor is ~100x ABOVE readings orders of magnitude larger than this)
+     PAIR_ABSORB40: Delta(absorbed fraction) = 8.4098e-06-4.1247e-05 (real, non-common-mode). CORRECTED comparison (Phase-5 Red Team audit F4/Attack -- the T5/exp-043 microbolometer-NETD comparison mixed incommensurable units, a witness-pinned absolute-watts floor vs a dimensionless, no-witness-wattage fractional delta): as a fraction of THIS SAME instrument's own real observed signal ptp (6.2178e-03), Delta(absorbed fraction) is 1.3525e-03-6.6337e-03 -- ~2.5-3 orders of magnitude below the very signal Tests A/B explain (an energy-scale plausibility check, not a T5-style detectability claim)
 
-[12] MANDATORY FIX 5 -- NULL-CALIBRATION APPENDIX (20,000-trial pure-noise null + 20,000-trial bootstrap ground-truth recovery, PAIR_PAD's real curve)
-     pure-noise null (N=20000): P(R^2>=0.70)=0.00000  max R^2 over all trials=0.5609  mean=0.1921
-     real PAIR_PAD's own R^2=0.8165 (far outside the pure-noise distribution above)
-     bootstrap ground-truth recovery (N=20000): true P*=4.6126deg  recovered mean=4.6145deg +/- 0.1409deg  frac within 20% of true=1.0000
+[12] MANDATORY FIX 5 (HARDENED) -- NULL-CALIBRATION APPENDIX (20,000-trial pure-noise null, 3 statistics + 2x 20,000-trial bootstrap ground-truth recovery, i.i.d. and circular-shift, PAIR_PAD's real curve)
+     pure-noise null (N=20000): P(R^2>=0.70)=0.00000  P(rel_dev>1.00)=0.00140  P(shape r^2<=0.05)=0.77610  max R^2 over all trials=0.5609  mean=0.1921
+     real PAIR_PAD's own R^2=0.8165 (far outside the pure-noise R^2 distribution above; the rel_dev/shape-r^2 threshold-crossings alone are reachable by chance a non-trivial fraction of the time -- the R^2 separation, not bare threshold-crossing, is this appendix's real evidence)
+     residual lag-1 autocorrelation (real PAIR_PAD): 0.6307 (non-trivial -- both bootstrap variants below reported, not i.i.d. alone)
+     bootstrap i.i.d.            (N=20000): recovered mean=4.6145deg +/- 0.1409deg  frac within 20% of true=1.0000
+     bootstrap circular-shift    (N=20000): recovered mean=4.6196deg +/- 0.1452deg  frac within 20% of true=1.0000
 
 wrote /home/user/photon-lab/experiments/077-t28-pad-round-trip-echo-model/pad_round_trip_results.json

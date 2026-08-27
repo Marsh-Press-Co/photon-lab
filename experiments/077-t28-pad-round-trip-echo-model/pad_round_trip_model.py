@@ -259,26 +259,42 @@ def thermo_sidecar_check(thetas, r40, r80):
     )
 
 
-# =============== MANDATORY FIX 5 (Attack 5, QUANTUM OPTICS/Red Team) --
-# the null-calibration appendix: a pure-noise Monte Carlo null AND a
-# bootstrap ground-truth-recovery check on `_free_period_search`, both
-# against the SAME real angle grid this cycle's Test A actually uses.
-def null_calibration_appendix(thetas, real_delta_pad, n_trials=20000, seed=7):
+# =============== MANDATORY FIX 5 (Attack 5, QUANTUM OPTICS/Red Team;
+# HARDENED per Phase-5 Red Team final audit F5 -- the first cut of this
+# function silently dropped 2 of the 3 statistics both QUANTUM's own
+# Phase-2 critique and Red Team's own Phase-2 audit (Attack 5) computed
+# (`rel_dev_gt1` was dead code, never incremented/reported), and the
+# bootstrap resampled residuals i.i.d. despite a real lag-1 autocorrelation
+# of 0.6307 in the actual residuals -- both fixed here) -- the
+# null-calibration appendix: a pure-noise Monte Carlo null (all THREE
+# statistics, not one) AND a bootstrap ground-truth-recovery check on
+# `_free_period_search`, BOTH i.i.d. and circular-shift (order-preserving,
+# R6-addendum-style) variants, against the SAME real angle grid this
+# cycle's Test A actually uses.
+def null_calibration_appendix(thetas, real_delta_pad, p_star_real_deg, n_trials=20000, seed=7):
     """(a) Pure-noise null: draw i.i.d. Gaussian noise (same length, scaled
     to real_delta_pad's own std) n_trials times, free-fit each, and report
-    how often rel_dev>1.00 / R^2>=0.70 arise from pure chance -- the
-    look-elsewhere control QUANTUM's Phase-2 critique named as missing.
-    (b) Bootstrap ground-truth recovery: resample real_delta_pad's own
-    residuals (after subtracting ITS OWN best-fit sinusoid) onto the same
-    grid n_trials times and re-fit, checking the real P*/R^2 is stable
-    under realistic (not synthetic-Gaussian) noise structure."""
+    all THREE statistics Red Team's Phase-2 audit (Attack 5) computed: how
+    often a noise curve's own self-fit rel_dev (vs the REAL data's fixed
+    P*=`p_star_real_deg`) exceeds 1.00, its own self-fit R^2 reaches >=0.70,
+    and its Pearson shape-r^2 AGAINST the real curve falls to <=0.05 -- all
+    three from pure chance, the look-elsewhere control QUANTUM's Phase-2
+    critique named as missing.
+    (b) Bootstrap ground-truth recovery, TWO variants: (i) i.i.d. resample
+    of real_delta_pad's own residuals (the original cut); (ii) a
+    circular-shift (order-preserving) resample of the SAME residuals,
+    which respects their real lag-1 autocorrelation (0.6307, confirmed by
+    Red Team's Phase-5 final audit) instead of assuming independence --
+    reported side by side so "recovery is stable" is not read as more
+    precise than the i.i.d. assumption alone supports."""
     rng = np.random.default_rng(seed)
     n = len(thetas)
     sigma = float(np.std(real_delta_pad))
 
-    # (a) pure i.i.d. Gaussian noise null
+    # (a) pure i.i.d. Gaussian noise null -- all three statistics
     rel_dev_gt1 = 0
     r2_ge_070 = 0
+    shape_r2_le_005 = 0
     r2_samples = np.empty(n_trials)
     for i in range(n_trials):
         noise = rng.normal(0.0, sigma, size=n)
@@ -286,30 +302,51 @@ def null_calibration_appendix(thetas, real_delta_pad, n_trials=20000, seed=7):
         r2_samples[i] = fit["r_squared"]
         if fit["r_squared"] >= 0.70:
             r2_ge_070 += 1
+        rel_dev_noise = abs(fit["p_star_deg"] - p_star_real_deg) / p_star_real_deg
+        if rel_dev_noise > 1.00:
+            rel_dev_gt1 += 1
+        shape_r2_noise = float(np.corrcoef(noise, real_delta_pad)[0, 1]) ** 2
+        if shape_r2_noise <= 0.05:
+            shape_r2_le_005 += 1
     out_a = dict(n_trials=n_trials, sigma=sigma,
                  p_r2_ge_070=r2_ge_070 / n_trials,
+                 p_rel_dev_gt1=rel_dev_gt1 / n_trials,
+                 p_shape_r2_le_005=shape_r2_le_005 / n_trials,
                  max_r2_over_trials=float(np.max(r2_samples)),
                  mean_r2_over_trials=float(np.mean(r2_samples)))
 
     # (b) bootstrap ground-truth recovery: fit real_delta_pad's own best
-    # sinusoid, resample its OWN residuals with replacement, re-fit
+    # sinusoid, resample its OWN residuals two ways, re-fit
     best = free_period_with_widening_quiet(thetas, real_delta_pad)
     Tc = math.radians(best["p_star_deg"]) * math.cos(math.radians(39.0))
     x_sin = np.sin(np.radians(thetas))
     fixed = _fixed_period_fit(x_sin, real_delta_pad, Tc)
     yhat = fixed["c0"] + fixed["a"] * np.cos(2 * math.pi * x_sin / Tc) + fixed["b"] * np.sin(2 * math.pi * x_sin / Tc)
     resid = real_delta_pad - yhat
-    recovered_periods = np.empty(n_trials)
-    for i in range(n_trials):
-        boot_resid = rng.choice(resid, size=n, replace=True)
-        boot_curve = yhat + boot_resid
-        fit = free_period_with_widening_quiet(thetas, boot_curve)
-        recovered_periods[i] = fit["p_star_deg"]
-    out_b = dict(n_trials=n_trials, true_p_star_deg=best["p_star_deg"],
-                 recovered_mean_p_star_deg=float(np.mean(recovered_periods)),
-                 recovered_std_p_star_deg=float(np.std(recovered_periods)),
-                 frac_within_20pct_of_true=float(np.mean(
-                     np.abs(recovered_periods - best["p_star_deg"]) / best["p_star_deg"] <= 0.20)))
+    lag1_acf = float(np.sum(resid[:-1] * resid[1:]) / np.sum(resid ** 2))
+
+    def _bootstrap(shift_mode):
+        recovered = np.empty(n_trials)
+        for i in range(n_trials):
+            if shift_mode == "iid":
+                boot_resid = rng.choice(resid, size=n, replace=True)
+            else:  # "circular" -- order-preserving, R6-addendum style
+                shift = int(rng.integers(0, n))
+                boot_resid = np.roll(resid, shift)
+            boot_curve = yhat + boot_resid
+            fit = free_period_with_widening_quiet(thetas, boot_curve)
+            recovered[i] = fit["p_star_deg"]
+        return dict(
+            n_trials=n_trials,
+            recovered_mean_p_star_deg=float(np.mean(recovered)),
+            recovered_std_p_star_deg=float(np.std(recovered)),
+            frac_within_20pct_of_true=float(np.mean(
+                np.abs(recovered - best["p_star_deg"]) / best["p_star_deg"] <= 0.20)))
+
+    out_b_iid = _bootstrap("iid")
+    out_b_circ = _bootstrap("circular")
+    out_b = dict(true_p_star_deg=best["p_star_deg"], residual_lag1_acf=lag1_acf,
+                 iid=out_b_iid, circular_shift=out_b_circ)
     return dict(pure_noise_null=out_a, bootstrap_recovery=out_b)
 
 
@@ -624,28 +661,51 @@ def main():
           f"-{thermo['absorbed_frac_40_max']*100:.4f}%")
     print(f"     ABSORB=80 absorbed fraction 1-|r|^2: {thermo['absorbed_frac_80_min']*100:.4f}%"
           f"-{thermo['absorbed_frac_80_max']*100:.4f}%")
+    real_signal_ptp_absorb40 = float(np.ptp(real_delta_absorb40))
+    thermo_commensurable_ratio = (
+        thermo['delta_absorbed_frac_min'] / real_signal_ptp_absorb40,
+        thermo['delta_absorbed_frac_max'] / real_signal_ptp_absorb40,
+    )
     print(f"     PAIR_ABSORB40: Delta(absorbed fraction) = {thermo['delta_absorbed_frac_min']:.4e}"
-          f"-{thermo['delta_absorbed_frac_max']:.4e} (real, non-common-mode, but ~4-5 orders of "
-          f"magnitude below any energy scale this program has ever treated as thermodynamically "
-          f"significant -- T5/exp-043's own microbolometer-NETD floor is ~100x ABOVE readings "
-          f"orders of magnitude larger than this)")
+          f"-{thermo['delta_absorbed_frac_max']:.4e} (real, non-common-mode). CORRECTED comparison "
+          f"(Phase-5 Red Team audit F4/Attack -- the T5/exp-043 microbolometer-NETD comparison "
+          f"mixed incommensurable units, a witness-pinned absolute-watts floor vs a dimensionless, "
+          f"no-witness-wattage fractional delta): as a fraction of THIS SAME instrument's own real "
+          f"observed signal ptp ({real_signal_ptp_absorb40:.4e}), Delta(absorbed fraction) is "
+          f"{thermo_commensurable_ratio[0]:.4e}-{thermo_commensurable_ratio[1]:.4e} -- "
+          f"~2.5-3 orders of magnitude below the very signal Tests A/B explain (an energy-scale "
+          f"plausibility check, not a T5-style detectability claim)")
     out["thermo_sidecar"] = thermo
+    out["thermo_commensurable_ratio_absorb40"] = thermo_commensurable_ratio
 
     # ======================================================================
-    # MANDATORY FIX 5 (Attack 5) -- null-calibration appendix, 20,000 trials
+    # MANDATORY FIX 5 (Attack 5, hardened per Phase-5 Red Team audit F5) --
+    # null-calibration appendix, 20,000 trials, all 3 pure-noise statistics
+    # + i.i.d. AND circular-shift bootstrap variants
     # ======================================================================
-    print("\n[12] MANDATORY FIX 5 -- NULL-CALIBRATION APPENDIX (20,000-trial pure-noise "
-          "null + 20,000-trial bootstrap ground-truth recovery, PAIR_PAD's real curve)")
-    null_calib = null_calibration_appendix(thetas, real_delta_pad, n_trials=20000)
+    print("\n[12] MANDATORY FIX 5 (HARDENED) -- NULL-CALIBRATION APPENDIX (20,000-trial "
+          "pure-noise null, 3 statistics + 2x 20,000-trial bootstrap ground-truth recovery, "
+          "i.i.d. and circular-shift, PAIR_PAD's real curve)")
+    null_calib = null_calibration_appendix(thetas, real_delta_pad, preal_pad, n_trials=20000)
     pnn = null_calib["pure_noise_null"]
     btr = null_calib["bootstrap_recovery"]
     print(f"     pure-noise null (N={pnn['n_trials']}): P(R^2>=0.70)={pnn['p_r2_ge_070']:.5f}  "
+          f"P(rel_dev>1.00)={pnn['p_rel_dev_gt1']:.5f}  P(shape r^2<=0.05)={pnn['p_shape_r2_le_005']:.5f}  "
           f"max R^2 over all trials={pnn['max_r2_over_trials']:.4f}  mean={pnn['mean_r2_over_trials']:.4f}")
     print(f"     real PAIR_PAD's own R^2={real_free_pad['chosen']['r_squared']:.4f} "
-          f"(far outside the pure-noise distribution above)")
-    print(f"     bootstrap ground-truth recovery (N={btr['n_trials']}): true P*={btr['true_p_star_deg']:.4f}deg  "
-          f"recovered mean={btr['recovered_mean_p_star_deg']:.4f}deg +/- {btr['recovered_std_p_star_deg']:.4f}deg  "
-          f"frac within 20% of true={btr['frac_within_20pct_of_true']:.4f}")
+          f"(far outside the pure-noise R^2 distribution above; the rel_dev/shape-r^2 threshold-"
+          f"crossings alone are reachable by chance a non-trivial fraction of the time -- the R^2 "
+          f"separation, not bare threshold-crossing, is this appendix's real evidence)")
+    print(f"     residual lag-1 autocorrelation (real PAIR_PAD): {btr['residual_lag1_acf']:.4f} "
+          f"(non-trivial -- both bootstrap variants below reported, not i.i.d. alone)")
+    print(f"     bootstrap i.i.d.            (N={btr['iid']['n_trials']}): "
+          f"recovered mean={btr['iid']['recovered_mean_p_star_deg']:.4f}deg +/- "
+          f"{btr['iid']['recovered_std_p_star_deg']:.4f}deg  "
+          f"frac within 20% of true={btr['iid']['frac_within_20pct_of_true']:.4f}")
+    print(f"     bootstrap circular-shift    (N={btr['circular_shift']['n_trials']}): "
+          f"recovered mean={btr['circular_shift']['recovered_mean_p_star_deg']:.4f}deg +/- "
+          f"{btr['circular_shift']['recovered_std_p_star_deg']:.4f}deg  "
+          f"frac within 20% of true={btr['circular_shift']['frac_within_20pct_of_true']:.4f}")
     out["null_calibration_appendix"] = null_calib
 
     def _json_default(o):

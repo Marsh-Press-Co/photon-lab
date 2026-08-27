@@ -651,20 +651,35 @@
     "delta_absorbed_frac_max": 4.124687467921273e-05,
     "pair_pad_common_mode": true
   },
+  "thermo_commensurable_ratio_absorb40": [
+    0.0013525366219772463,
+    0.00663370038585324
+  ],
   "null_calibration_appendix": {
     "pure_noise_null": {
       "n_trials": 20000,
       "sigma": 0.0014412437379508784,
       "p_r2_ge_070": 0.0,
+      "p_rel_dev_gt1": 0.0014,
+      "p_shape_r2_le_005": 0.7761,
       "max_r2_over_trials": 0.5608835067568139,
       "mean_r2_over_trials": 0.19214861094769778
     },
     "bootstrap_recovery": {
-      "n_trials": 20000,
       "true_p_star_deg": 4.612580414581844,
-      "recovered_mean_p_star_deg": 4.614498784846319,
-      "recovered_std_p_star_deg": 0.14087926673621404,
-      "frac_within_20pct_of_true": 1.0
+      "residual_lag1_acf": 0.6307471012826418,
+      "iid": {
+        "n_trials": 20000,
+        "recovered_mean_p_star_deg": 4.614498784846319,
+        "recovered_std_p_star_deg": 0.14087926673621404,
+        "frac_within_20pct_of_true": 1.0
+      },
+      "circular_shift": {
+        "n_trials": 20000,
+        "recovered_mean_p_star_deg": 4.61962744817727,
+        "recovered_std_p_star_deg": 0.1451666776171883,
+        "frac_within_20pct_of_true": 1.0
+      }
     }
   }
 }
