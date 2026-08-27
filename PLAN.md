@@ -22,7 +22,37 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-27, panel Iteration 56 done (exp-079, PARTIAL,
+## Current state (2026-08-27, panel Iteration 57 done (exp-080, PARTIAL,
+ELECTROMAGNETISM's rotation-lead validity pre-check of the plane-wave/
+global-steering y-wall construction Red Team's exp-079 audit recommended:
+(a) Fraunhofer-margin/`theta_local`-spread check **FORECLOSE**, robust
+across the full 3-λ sweep; (b) single-effective-angle reproduction of
+exp-079's own true per-point curve **admittance-family-dependent**
+(INCONCLUSIVE under the matched/unobtainium admittance, mean `R²=0.7345`;
+**REFUTE** under the realizable `μ_r=1` admittance, mean `R²=0.4305`, two
+configs negative, surviving a best-fit-scale robustness check); (c)
+QUANTUM's blind Phase-2 critique directly built PHOTONICS' own
+not-yet-built §4 plane-wave construction (zero new FDTD) and found the
+SAME pathology at a WORSE floor — but Phase 5 (QUANTUM again, independently,
+confirmed by Red Team's final audit against the primary source) found this
+was scored by the WRONG methodology entirely (an `R²` shape-comparison
+against a candidate curve, not the free-period fit against real T28 data
+PHOTONICS actually specified) and is missing `E_direct` — which PHOTONICS'
+own Phase-5 review then proved, from primitives, cancels bit-identically
+across every congruent config, so every ingredient for the actually-
+correct test now exists for the first time in this nine-cycle sub-thread.
+Full five-phase cycle, six blind Phase-5 reviews (unanimous PARTIAL,
+zero miscalculated figures across eleven independent reproductions), Red
+Team's final audit **explicitly corrected an overconfident "does not clear
+a bar" framing before it could reach LOGBOOK.md** — **CHECKPOINT criterion
+4 does NOT fire** (ruled a closer call than exp-079's own Iteration-56
+precedent, conditioned explicitly on the corrected framing being what is
+inherited forward, not the pre-Phase-5 language) — **CHECKPOINT criterion 2
+(mechanism-class boundary) ruled NOT YET RIPE**, more precisely specified:
+the one test that would settle it (a free-period fit of the total field
+against real T28 periods) has never been run, though every ingredient for
+it now exists. Full record: `experiments/080-t28-y-wall-planewave-
+validity-precheck/`, LOGBOOK.md Iteration 57); panel Iteration 56 done (exp-079, PARTIAL,
 the full non-edge-reduced y-mirrored aperture sum computed for T28's
 y-wall echo mechanism — the flat/zero-amplitude result exp-078's Phase-5
 single-edge model found does NOT survive (`ss_tot` ratio `9.4×10⁻⁷`,
@@ -3141,11 +3171,97 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
-- **[ACTIVE — Iteration 57 queue, Red Team's Phase-5 final-audit
-  reconciliation of exp-079's six seats (`experiments/079-.../
-  phase5_redteam_audit.md` §7); supersedes the Iteration-56 queue below
+- **[ACTIVE — Iteration 58 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-080's six seats (`experiments/080-.../
+  phase5_redteam_audit.md` §6); supersedes the Iteration-57 queue below
   as the active ranking, that block retained as valid backlog, not
-  deleted]** exp-079 computed the full, non-edge-reduced y-mirrored
+  deleted]** exp-080 (EM's rotation-lead validity pre-check) found (a)
+  FORECLOSE on the Fraunhofer-margin/`theta_local`-spread test, robust
+  across the full 3-λ sweep; (b) admittance-family-dependent on the
+  single-effective-angle reproduction test (INCONCLUSIVE matched, mean
+  `R²=0.7345`; **REFUTE** realizable `μ_r=1`, mean `R²=0.4305`, two
+  configs negative, surviving a robustness check); (c) QUANTUM's blind
+  Phase-2 critique built PHOTONICS' own not-yet-built §4 plane-wave
+  construction (zero new FDTD) and found the SAME zero-crossing pathology
+  at a WORSE floor (scale-corrected mean `R²=0.602`, min `0.085`) — but
+  Phase 5 (QUANTUM again, confirmed by Red Team's final audit against the
+  primary source) found this was scored by the WRONG methodology (an `R²`
+  shape-comparison against exp-079's own already-discredited candidate
+  curve, not the free-period fit against REAL T28 periods PHOTONICS
+  actually specified) and is missing `E_direct` — which PHOTONICS' own
+  Phase-5 review then proved, from primitives, cancels bit-identically
+  across every congruent config (a coordinate substitution `u=y_s−OBJ_Y`
+  makes every ingredient PAD-invariant by the congruent series' own
+  design). **Every ingredient for the actually-decisive test now exists,
+  for the first time in this nine-cycle sub-thread.** Red Team's Phase-5
+  final audit explicitly corrected an overconfident "does not clear a
+  bar" framing (part (d) carried no scored `verdict` field and was never
+  run against real data) before it could reach LOGBOOK.md as though it
+  were a completed test. **Checkpoint criterion 4 does NOT fire** (a
+  closer call than exp-079's own Iteration-56 precedent — three
+  concentrated near-misses caught and corrected within this same Phase-5
+  layer, conditioned explicitly on the corrected framing being what is
+  inherited forward). **Checkpoint criterion 2 ruled NOT YET RIPE**, more
+  precisely specified: the free-period fit of the total field against real
+  T28 periods has never been run, though every ingredient for it now
+  exists. **Tier 0 — zero FDTD, run as one batch, in order:** (1) **build
+  the construction PHOTONICS actually specified, scored the way PHOTONICS
+  actually specified** — total field `E_direct(θ_beam)+r(90°−θ_beam;
+  ABSORB)·W(θ_beam)`, with `E_direct` now derived and proven to cancel in
+  every needed pair-delta (cite PHOTONICS' own exp-080 Phase-5 formula,
+  do not re-derive it), scored via `_free_period_search`/staged-widening
+  against the REAL T28 reference periods (`experiments/076-.../
+  results.json::headline`), under a FRESH SUPPORT/INCONCLUSIVE/REFUTE
+  band **committed to git BEFORE running it** — the single highest-value
+  item on the board, now fully specified for the first time; retire or
+  clearly re-label `part_d_photonics_construction()`'s own note to state
+  plainly it was a partial, image-only, non-authoritative draft superseded
+  by this build; (2) **cheap precondition (EM):** re-run
+  `gate_lossless_unimodular_range`/`gate_single_layer_identity_range`/
+  `gate_passivity_range` over `[47.5°,54.5°]` before trusting
+  `reflection_coefficient_vec` at this range in item 1's own build —
+  currently only hand-checked in a Phase-5 review (`|r|≤0.0853`,
+  passivity holds), not committed as a gate; (3) **THERMODYNAMICS:** price
+  the geometric-interception × material-reflectivity energy budget — the
+  still-missing third quantity for constraint 3's own bookkeeping (neither
+  part (b)'s nor part (c)/(d)'s `|r|²` alone answers what fraction of
+  total scene power the echo path could actually carry; even a crude upper
+  bound, ≤0.15% before any interception factor at ABSORB=40, resolves
+  whether this construction family could ever matter to constraint 3 in
+  absolute terms); (4) **hygiene, fold into item 1's own edit
+  (MATERIALS):** fix `reflection_coefficient_vec_realizable()`'s docstring
+  (`mu_r=ni^2`→`mu_r=ni`); state explicitly that the realizable number, not
+  the matched one, is the only one that could ever describe a real
+  material; state explicitly (EM) that a valid global-angle y-wall
+  construction needs an angle convention built from `theta_local(y_s)`'s
+  own fixed-observer geometry, not a borrowed `θ_beam`-steering
+  convention — resolving the near-field problem alone will not fix this.
+  **Tier 1 — cheap FDTD, next:** (5) the real 750/450nm
+  wavelength-generality x-wall leg — now deferred FIVE consecutive T28
+  cycles (076–080); (6) broadband pulsed reflectance spectroscopy of the
+  `ABSORB` boundary — deferred five consecutive cycles; (7) the 750nm
+  x-wall two-wall spot-check — the single oldest-unexecuted item on the
+  whole T28 board. **Tier 2 — now the single most overdue item on the
+  whole T28 board:** (8) whether the `PAD`-sensitivity axis survives with
+  a real absorbing article loaded — deferred FIVE consecutive cycles
+  (076–080), each cycle's own ranking naming it explicitly and declining
+  to run it; every congruent-series config to date, across nine T28
+  cycles, is an EMPTY scene. **If Iteration 58 defers this a sixth time,
+  the reason must again be stated explicitly in that cycle's own
+  synthesis**, against this cycle's own finding (item 1 is now fully
+  specified and cheap; this item remains the only one that tests
+  real-world relevance at all), not by inertia. **Tier 3 — governance:**
+  (9) Checkpoint criterion 2 (mechanism-class boundary) ruled NOT YET RIPE
+  this cycle, more precisely specified than before — item 1 above is the
+  test that would actually settle it; (10) Checkpoint criterion 4 ruled
+  non-firing this cycle, conditioned explicitly on this cycle's own
+  corrected framing (not the pre-Phase-5 "does not clear a bar" language)
+  being what Iteration 58 and LOGBOOK.md actually inherit. None of the
+  above re-opens or re-proposes any RULED-OUT item (R1–R9). Full record:
+  `experiments/080-t28-y-wall-planewave-validity-precheck/`, LOGBOOK.md
+  Iteration 57.
+- **[superseded by the Iteration-58 queue above — exp-079's own docket,
+  retained as a pointer to its own history, not deleted]** exp-079 computed the full, non-edge-reduced y-mirrored
   aperture sum: the flat/zero-amplitude result exp-078's single-edge model
   found does NOT survive (`ss_tot` ratio `9.4×10⁻⁷`, real signal,
   convergence-checked), but the recovered `theta_beam`-dependence is
