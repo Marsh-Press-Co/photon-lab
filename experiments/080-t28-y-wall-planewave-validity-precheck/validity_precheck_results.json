@@ -199,5 +199,148 @@
       "refute_r2": 0.5
     },
     "verdict": "INCONCLUSIVE"
+  },
+  "part_b_realizable": {
+    "per_config": {
+      "C40": {
+        "theta_eff_primary_deg": 8.645818695059228,
+        "r_theta_eff_realizable": {
+          "re": -2.4410542118506307e-05,
+          "im": -8.64409694388768e-05,
+          "abs": 8.98215773856828e-05
+        },
+        "r2_re_realizable": -0.6229932909340925
+      },
+      "C60": {
+        "theta_eff_primary_deg": 8.402674745971737,
+        "r_theta_eff_realizable": {
+          "re": -7.312148611728346e-05,
+          "im": -2.8592013350018838e-05,
+          "abs": 7.851276940350362e-05
+        },
+        "r2_re_realizable": 0.9981963725049894
+      },
+      "C70": {
+        "theta_eff_primary_deg": 8.286452241908538,
+        "r_theta_eff_realizable": {
+          "re": -4.7723242472352116e-05,
+          "im": -1.4672706334726124e-05,
+          "abs": 4.9927909862721324e-05
+        },
+        "r2_re_realizable": 0.9915998423952951
+      },
+      "C80": {
+        "theta_eff_primary_deg": 8.173580653148331,
+        "r_theta_eff_realizable": {
+          "re": -3.175184718983866e-05,
+          "im": -1.0282836151341807e-05,
+          "abs": 3.3375387927066966e-05
+        },
+        "r2_re_realizable": 0.9959336858043064
+      },
+      "G40": {
+        "theta_eff_primary_deg": 8.173580653148331,
+        "r_theta_eff_realizable": {
+          "re": -2.925974416852203e-05,
+          "im": -9.618225710371974e-05,
+          "abs": 0.00010053436830444305
+        },
+        "r2_re_realizable": -0.2103277629497462
+      }
+    },
+    "mean_r2_realizable": 0.43048176936415034,
+    "min_r2_realizable": -0.6229932909340925,
+    "verdict": "REFUTE",
+    "note": "admittance-family-DEPENDENT vs part_b's matched-family mean=0.7345/min=0.5214 -- both computed self-consistently (true curve AND model curve under the SAME admittance family per config, not a mismatched comparison), per Red Team phase2_redteam_audit.md Sec 0 item 4"
+  },
+  "part_c_power_budget": {
+    "absorb_40": {
+      "r2_min": 0.0002482220275185739,
+      "r2_max": 0.0014943220005826383,
+      "reflected_power_fraction_min": 0.0002482220275185739,
+      "reflected_power_fraction_max": 0.0014943220005826383
+    },
+    "absorb_60": {
+      "r2_min": 6.357807896433383e-06,
+      "r2_max": 5.114968937072868e-05,
+      "reflected_power_fraction_min": 6.357807896433383e-06,
+      "reflected_power_fraction_max": 5.114968937072868e-05
+    },
+    "absorb_70": {
+      "r2_min": 9.371953252345592e-07,
+      "r2_max": 1.3155686847989027e-05,
+      "reflected_power_fraction_min": 9.371953252345592e-07,
+      "reflected_power_fraction_max": 1.3155686847989027e-05
+    },
+    "absorb_80": {
+      "r2_min": 4.0994485890303634e-08,
+      "r2_max": 3.5692150290132254e-06,
+      "reflected_power_fraction_min": 4.0994485890303634e-08,
+      "reflected_power_fraction_max": 3.5692150290132254e-06
+    }
+  },
+  "part_b_abs_calibration_corrected": {
+    "C40": {
+      "alpha_star": 1.0241518500757807,
+      "r2_abs_calibration_corrected": 0.6879345521788619
+    },
+    "C60": {
+      "alpha_star": 1.2210964786920542,
+      "r2_abs_calibration_corrected": 0.8797719724779122
+    },
+    "C70": {
+      "alpha_star": 2.0215218100401193,
+      "r2_abs_calibration_corrected": -1.6481219357039087
+    },
+    "C80": {
+      "alpha_star": 1.9966687229215583,
+      "r2_abs_calibration_corrected": -2.295598751372178
+    },
+    "G40": {
+      "alpha_star": 0.9699239557482795,
+      "r2_abs_calibration_corrected": 0.8912707126609687
+    }
+  },
+  "part_d_photonics_construction": {
+    "per_config": {
+      "C40": {
+        "absorb": 40,
+        "raw_r2_re": -109334.82084218232,
+        "raw_r2_abs": -354136.80199068063,
+        "scale_corrected_r2_re": 0.8835750982530579,
+        "scale_corrected_r2_abs": 0.4901876080562265
+      },
+      "C60": {
+        "absorb": 60,
+        "raw_r2_re": -5179217.013554095,
+        "raw_r2_abs": -23541876.634172786,
+        "scale_corrected_r2_re": 0.6985373282338576,
+        "scale_corrected_r2_abs": 0.22246676160534928
+      },
+      "C70": {
+        "absorb": 70,
+        "raw_r2_re": -333383.3167420308,
+        "raw_r2_abs": -23598994.879043724,
+        "scale_corrected_r2_re": 0.08517246219270513,
+        "scale_corrected_r2_abs": -4.494906375393524
+      },
+      "C80": {
+        "absorb": 80,
+        "raw_r2_re": -1064841.0725753065,
+        "raw_r2_abs": -19033830.90019877,
+        "scale_corrected_r2_re": 0.5071828618414312,
+        "scale_corrected_r2_abs": -7.7066273271837495
+      },
+      "G40": {
+        "absorb": 40,
+        "raw_r2_re": -81525.33838365391,
+        "raw_r2_abs": -390685.3475335514,
+        "scale_corrected_r2_re": 0.8355734943615261,
+        "scale_corrected_r2_abs": 0.6632140235474413
+      }
+    },
+    "mean_scale_corrected_r2_re": 0.6020082489765156,
+    "min_scale_corrected_r2_re": 0.08517246219270513,
+    "note": "canonical zero-FDTD implementation of PHOTONICS' Sec 4 image term (QUANTUM's construction, Red-Team-adopted); worse floor than this cycle's own part (b) static-theta_eff result -- see phase3_synthesis.md"
   }
 }

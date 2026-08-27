@@ -261,6 +261,247 @@ def part_b():
     )
 
 
+# ======================================== PHASE 3 fix docket (Red Team's
+# phase2_redteam_audit.md Sec 3, items 1-5, all ADOPTED IN FULL -- folds
+# each blind Phase-2 critique's own independently-reproduced finding into
+# committed, reusable code, exactly as this sub-thread's own house practice
+# requires (y_wall_aperture_sum.py Sec [7]/[7b] precedent, exp-079
+# Iteration 56). Every function below reproduces a number Red Team already
+# independently re-derived from primitives and confirmed exact
+# (phase2_redteam_audit.md Sec 0, items 4/5/6/8) -- no NEW previously-
+# uncomputed claim is made here, so no fresh FROZEN-PREDICTIONS freeze cycle
+# is needed (same reasoning exp-079 Iteration 56 Phase 3 gave for its own
+# no-freeze-needed fix docket).
+
+
+# ---- fix docket item 2 (MATERIALS): realizable (mu_r=1) admittance rerun
+def reflection_coefficient_vec_realizable(n_prof, theta_deg_arr, lam_cells):
+    """SAME recursive transfer-matrix algebra as reflection_coefficient_vec,
+    with the per-layer admittance Zi=ni/sqrt(ni^2-sin^2(theta)) (implicitly
+    mu_r=ni^2, the MATCHED/unobtainium family every other function in this
+    file uses) replaced by Zi=1/sqrt(ni^2-sin^2(theta)) (mu_r=1, the
+    REALIZABLE ordinary-dielectric family) -- the SAME substitution exp-079's
+    own MATERIALS Phase-5 review made (phase5_review_materials.md Sec 2b),
+    independently re-confirmed there by that cycle's own Red Team audit, and
+    independently re-derived a second time by this cycle's own MATERIALS
+    Phase-2 critique and Red Team's Phase-2 audit (Sec 0 item 4)."""
+    theta = np.radians(np.asarray(theta_deg_arr, dtype=float))
+    s2 = np.sin(theta) ** 2
+    k0 = 2.0 * math.pi / lam_cells
+    Zvac = 1.0 / np.cos(theta)
+    Zin = np.zeros_like(theta, dtype=complex)
+    n_prof = n_prof.astype(complex)
+    for ni in n_prof:
+        rad = (ni ** 2 - s2.astype(complex))
+        kxi = k0 * np.sqrt(rad)
+        Zi = 1.0 / np.sqrt(rad)  # <-- the one line that differs: mu_r=1
+        t = np.tan(kxi * 1.0)
+        Zin = Zi * (Zin + 1j * Zi * t) / (Zi + 1j * Zin * t)
+    return (Zin - Zvac) / (Zin + Zvac)
+
+
+def single_angle_curve_realizable(cfg, absorb_for_r, thetas_beam_deg, theta_eff_deg):
+    """single_angle_curve, with reflection_coefficient_vec_realizable in
+    place of reflection_coefficient_vec -- everything else (taper,
+    driven-phase ramp, dist_image, theta_eff itself) unchanged."""
+    y_grid = ywas_build_aperture_grid(cfg, 1)
+    amp = ywas.aperture_amplitude(y_grid, cfg)
+    dist_img = ywas.dist_image_cells(y_grid, cfg)
+    n_prof = br.n_profile_exact(br.nu_profile(br.damp_e_profile(absorb_for_r)),
+                                 2.0 * math.pi / LAM600)
+    r_const = reflection_coefficient_vec_realizable(n_prof, np.array([theta_eff_deg]), LAM600)[0]
+    curve = []
+    for th_beam in thetas_beam_deg:
+        phase_drive = ywas.source_driven_phase(y_grid, float(th_beam), cfg)
+        integrand = amp * r_const * np.exp(1j * (phase_drive + ywas.K600 * dist_img))
+        re = float(ywas._trapz(integrand.real, y_grid))
+        im = float(ywas._trapz(integrand.imag, y_grid))
+        curve.append(complex(re, im))
+    return np.array(curve, dtype=complex), complex(r_const)
+
+
+def ywas_build_aperture_grid(cfg, oversample):
+    return ywas.build_aperture_grid(cfg, oversample)
+
+
+def part_b_realizable():
+    """Fix docket item 2: rerun part (b) end-to-end under the realizable
+    admittance -- BOTH the true per-point curve and the single-angle model
+    recomputed consistently under mu_r=1 (not a mismatched-family
+    comparison), mirroring exp-079's own Sec 2b methodology."""
+    with open(EXP076_RESULTS) as f:
+        res76 = json.load(f)
+    thetas = np.array(res76["headline"]["theta"])
+
+    per_config = {}
+    for key in CONGRUENT_KEYS:
+        c = dg065.CONFIGS[key]
+        y_grid = ywas.build_aperture_grid(c, 1)
+        amp = ywas.aperture_amplitude(y_grid, c)
+        dist_img = ywas.dist_image_cells(y_grid, c)
+        th_loc = ywas.theta_local_deg(y_grid, c)
+        n_prof = br.n_profile_exact(br.nu_profile(br.damp_e_profile(c["absorb"])),
+                                     2.0 * math.pi / LAM600)
+        r_of_ys_realizable = reflection_coefficient_vec_realizable(n_prof, th_loc, LAM600)
+
+        eff_primary = theta_eff_primary(c)  # geometry-only, admittance-independent
+
+        true_curve_realizable = []
+        model_curve_realizable = []
+        r_const = reflection_coefficient_vec_realizable(n_prof, np.array([eff_primary]), LAM600)[0]
+        for th_beam in thetas:
+            phase_drive = ywas.source_driven_phase(y_grid, float(th_beam), c)
+            true_integrand = amp * r_of_ys_realizable * np.exp(1j * (phase_drive + ywas.K600 * dist_img))
+            model_integrand = amp * r_const * np.exp(1j * (phase_drive + ywas.K600 * dist_img))
+            true_curve_realizable.append(complex(
+                float(ywas._trapz(true_integrand.real, y_grid)),
+                float(ywas._trapz(true_integrand.imag, y_grid))))
+            model_curve_realizable.append(complex(
+                float(ywas._trapz(model_integrand.real, y_grid)),
+                float(ywas._trapz(model_integrand.imag, y_grid))))
+        true_curve_realizable = np.array(true_curve_realizable, dtype=complex)
+        model_curve_realizable = np.array(model_curve_realizable, dtype=complex)
+
+        per_config[key] = dict(
+            theta_eff_primary_deg=eff_primary,
+            r_theta_eff_realizable=dict(re=r_const.real, im=r_const.imag, abs=abs(r_const)),
+            r2_re_realizable=r_squared(true_curve_realizable.real, model_curve_realizable.real),
+        )
+
+    r2_vals = [v["r2_re_realizable"] for v in per_config.values()]
+    mean_r2 = float(np.mean(r2_vals))
+    min_r2 = float(min(r2_vals))
+    if mean_r2 >= SUPPORT_R2 and min_r2 >= SUPPORT_FLOOR_R2:
+        verdict = "SUPPORT"
+    elif mean_r2 < REFUTE_R2:
+        verdict = "REFUTE"
+    else:
+        verdict = "INCONCLUSIVE"
+    return dict(per_config=per_config, mean_r2_realizable=mean_r2, min_r2_realizable=min_r2,
+                verdict=verdict,
+                note="admittance-family-DEPENDENT vs part_b's matched-family mean=0.7345/"
+                     "min=0.5214 -- both computed self-consistently (true curve AND model "
+                     "curve under the SAME admittance family per config, not a mismatched "
+                     "comparison), per Red Team phase2_redteam_audit.md Sec 0 item 4")
+
+
+# ---- fix docket item 3 (THERMODYNAMICS): |r(90-theta_beam)|^2 power budget
+def part_c_power_budget_at_true_angle():
+    """The reflected-power fraction 1-|r(theta_beam)|^2 THERMODYNAMICS'
+    standing suggestion (exp-079 Sec 7 Tier-0 item 1) asks for, evaluated at
+    the angle PHOTONICS' own Sec 4 construction actually uses
+    (90-theta_beam), NOT this cycle's own geometry-only theta_eff (whose
+    |r|^2 answers a different, much smaller-magnitude question, Red Team
+    phase2_redteam_audit.md Sec 1 Attack 2 / Sec 0 item 5)."""
+    with open(EXP076_RESULTS) as f:
+        res76 = json.load(f)
+    thetas = np.array(res76["headline"]["theta"])
+    out = {}
+    for absorb in br.ABSORB_LIST:
+        n_prof = br.n_profile_exact(br.nu_profile(br.damp_e_profile(absorb)),
+                                     2.0 * math.pi / LAM600)
+        r_vals = ywas.reflection_coefficient_vec(n_prof, 90.0 - thetas, LAM600)
+        r2 = np.abs(r_vals) ** 2
+        out[f"absorb_{absorb}"] = dict(
+            r2_min=float(r2.min()), r2_max=float(r2.max()),
+            reflected_power_fraction_min=float(r2.min()),
+            reflected_power_fraction_max=float(r2.max()),
+        )
+    return out
+
+
+# ---- fix docket item 4 (PHOTONICS): calibration-corrected R^2(abs) for part (b)
+def _best_scale(true, model):
+    """Least-squares-optimal real scalar alpha minimizing ||true-alpha*model||^2."""
+    model = np.asarray(model, dtype=float)
+    true = np.asarray(true, dtype=float)
+    denom = float(np.sum(model ** 2))
+    return float(np.sum(true * model) / denom) if denom > 0 else float("nan")
+
+
+def part_b_abs_calibration_corrected():
+    """PHOTONICS' finding (Red Team Sec 0 item 6): the raw theta_eff-based
+    R^2(abs) at C70/C80 (-7.82/-8.45) is ~2x worse than the true shape-only
+    floor because |r(theta_eff)| happens to undershoot the least-squares-
+    optimal scale -- report both, per Red Team's Attack 4 fix."""
+    with open(EXP076_RESULTS) as f:
+        res76 = json.load(f)
+    thetas = np.array(res76["headline"]["theta"])
+    out = {}
+    for key in CONGRUENT_KEYS:
+        c = dg065.CONFIGS[key]
+        true_curve, _ = ywas.echo_field_curve(c, c["absorb"], thetas, 1)
+        eff_primary = theta_eff_primary(c)
+        model_curve, _ = single_angle_curve(c, c["absorb"], thetas, eff_primary)
+        alpha_star = _best_scale(np.abs(true_curve), np.abs(model_curve))
+        r2_abs_calibrated = r_squared(np.abs(true_curve), alpha_star * np.abs(model_curve))
+        out[key] = dict(alpha_star=alpha_star, r2_abs_calibration_corrected=r2_abs_calibrated)
+    return out
+
+
+# ---- fix docket item 1 (QUANTUM, adopted by Red Team as the canonical
+# zero-FDTD implementation of PHOTONICS' Sec 4 image term -- NOT a future
+# "build item", per phase2_redteam_audit.md Sec 2/Sec 6: this construction
+# has already been independently derived twice (QUANTUM's blind critique,
+# Red Team's from-scratch reproduction) and reproduces to 4 decimal places
+# both times. Folded here into committed, reusable code so Iteration 58 can
+# extend it (real free-period scoring) rather than re-derive it a third time.
+def photonics_image_term_curve(cfg, absorb_for_r, thetas_beam_deg):
+    """E_photonics(theta_beam) = r(90-theta_beam;ABSORB) * W(theta_beam),
+    where W(theta_beam) is exp-079's own Sec [7] r_ablated=1 integral
+    (re-derived here fresh from the same primitives, not copied) -- PHOTONICS'
+    own Sec 4 review's sketched construction (apply ONE scalar r(90-theta_beam),
+    evaluated at the SWEPT BEAM ANGLE itself, globally to the unweighted image
+    sum), fix-docket Idealization 5: E_direct(theta_beam) is OMITTED here,
+    an inherited-not-independently-verified assumption (valid only insofar as
+    it cancels identically across congruent-config pair deltas -- flagged,
+    not resolved, by this file)."""
+    y_grid = ywas.build_aperture_grid(cfg, 1)
+    amp = ywas.aperture_amplitude(y_grid, cfg)
+    dist_img = ywas.dist_image_cells(y_grid, cfg)
+    n_prof = br.n_profile_exact(br.nu_profile(br.damp_e_profile(absorb_for_r)),
+                                 2.0 * math.pi / LAM600)
+    thetas_beam_deg = np.asarray(thetas_beam_deg, dtype=float)
+    r_at_beam = ywas.reflection_coefficient_vec(n_prof, 90.0 - thetas_beam_deg, LAM600)
+    curve = []
+    for i, th_beam in enumerate(thetas_beam_deg):
+        phase_drive = ywas.source_driven_phase(y_grid, float(th_beam), cfg)
+        integrand = amp * np.exp(1j * (phase_drive + ywas.K600 * dist_img))
+        w_re = float(ywas._trapz(integrand.real, y_grid))
+        w_im = float(ywas._trapz(integrand.imag, y_grid))
+        w = complex(w_re, w_im)
+        curve.append(r_at_beam[i] * w)
+    return np.array(curve, dtype=complex)
+
+
+def part_d_photonics_construction():
+    """Score photonics_image_term_curve against the true per-point curve --
+    raw, then scale-corrected (single best-fit real scalar per config,
+    isolating pure shape from the raw amplitude-regime mismatch)."""
+    with open(EXP076_RESULTS) as f:
+        res76 = json.load(f)
+    thetas = np.array(res76["headline"]["theta"])
+    out = {}
+    for key in CONGRUENT_KEYS:
+        c = dg065.CONFIGS[key]
+        true_curve, _ = ywas.echo_field_curve(c, c["absorb"], thetas, 1)
+        model_curve = photonics_image_term_curve(c, c["absorb"], thetas)
+        raw_r2_re = r_squared(true_curve.real, model_curve.real)
+        raw_r2_abs = r_squared(np.abs(true_curve), np.abs(model_curve))
+        alpha_re = _best_scale(true_curve.real, model_curve.real)
+        alpha_abs = _best_scale(np.abs(true_curve), np.abs(model_curve))
+        sc_r2_re = r_squared(true_curve.real, alpha_re * model_curve.real)
+        sc_r2_abs = r_squared(np.abs(true_curve), alpha_abs * np.abs(model_curve))
+        out[key] = dict(absorb=int(c["absorb"]), raw_r2_re=raw_r2_re, raw_r2_abs=raw_r2_abs,
+                         scale_corrected_r2_re=sc_r2_re, scale_corrected_r2_abs=sc_r2_abs)
+    sc_re_vals = [v["scale_corrected_r2_re"] for v in out.values()]
+    return dict(per_config=out, mean_scale_corrected_r2_re=float(np.mean(sc_re_vals)),
+                min_scale_corrected_r2_re=float(min(sc_re_vals)),
+                note="canonical zero-FDTD implementation of PHOTONICS' Sec 4 image term "
+                     "(QUANTUM's construction, Red-Team-adopted); worse floor than this "
+                     "cycle's own part (b) static-theta_eff result -- see phase3_synthesis.md")
+
+
 def main():
     print("=" * 78)
     print("exp-080 -- EM validity pre-check for the plane-wave/global-steering")
@@ -307,7 +548,41 @@ def main():
           f"{b['min_r2_re_theta_eff_primary']:.4f}")
     print(f"    VERDICT (b): {b['verdict']}")
 
-    out = dict(part_a=a, part_b=b)
+    print("\n[b-realizable] Fix docket item 2 (MATERIALS): part (b) rerun under "
+          "the REALIZABLE (mu_r=1) admittance, self-consistently")
+    b_realizable = part_b_realizable()
+    for key, row in b_realizable["per_config"].items():
+        print(f"    {key}: R2(Re,realizable)={row['r2_re_realizable']:.4f}")
+    print(f"    mean R2(Re,realizable) = {b_realizable['mean_r2_realizable']:.4f}  "
+          f"min = {b_realizable['min_r2_realizable']:.4f}  "
+          f"VERDICT: {b_realizable['verdict']}")
+
+    print("\n[c] Fix docket item 3 (THERMODYNAMICS): |r(90-theta_beam)|^2 "
+          "reflected-power fraction at the REAL angle PHOTONICS' construction uses")
+    c = part_c_power_budget_at_true_angle()
+    for key, row in c.items():
+        print(f"    {key}: reflected-power-fraction=[{row['r2_min']:.3e},{row['r2_max']:.3e}]")
+
+    print("\n[b-abs-cal] Fix docket item 4 (PHOTONICS): calibration-corrected "
+          "R2(abs) for part (b)'s static-theta_eff model")
+    b_abs_cal = part_b_abs_calibration_corrected()
+    for key, row in b_abs_cal.items():
+        print(f"    {key}: alpha*={row['alpha_star']:.4e}  "
+              f"R2(abs,calibrated)={row['r2_abs_calibration_corrected']:.4f}")
+
+    print("\n[d] Fix docket item 1 (QUANTUM, Red-Team-adopted as canonical): "
+          "PHOTONICS' Sec 4 image term E_photonics(theta_beam)=r(90-theta_beam)*W(theta_beam)")
+    d = part_d_photonics_construction()
+    for key, row in d["per_config"].items():
+        print(f"    {key}: raw R2(Re)={row['raw_r2_re']:.3e}  raw R2(abs)={row['raw_r2_abs']:.3e}  "
+              f"scale-corrected R2(Re)={row['scale_corrected_r2_re']:.4f}  "
+              f"scale-corrected R2(abs)={row['scale_corrected_r2_abs']:.4f}")
+    print(f"    mean scale-corrected R2(Re) = {d['mean_scale_corrected_r2_re']:.4f}  "
+          f"min = {d['min_scale_corrected_r2_re']:.4f}")
+
+    out = dict(part_a=a, part_b=b, part_b_realizable=b_realizable,
+               part_c_power_budget=c, part_b_abs_calibration_corrected=b_abs_cal,
+               part_d_photonics_construction=d)
 
     def _json_default(o):
         if isinstance(o, (np.bool_,)):

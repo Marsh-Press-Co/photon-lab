@@ -26,4 +26,33 @@ y-wall construction (Red Team exp-079 Sec 3/7 Tier-0 item 1)
     min  R2(Re,primary) over 5 configs = 0.5214
     VERDICT (b): INCONCLUSIVE
 
+[b-realizable] Fix docket item 2 (MATERIALS): part (b) rerun under the REALIZABLE (mu_r=1) admittance, self-consistently
+    C40: R2(Re,realizable)=-0.6230
+    C60: R2(Re,realizable)=0.9982
+    C70: R2(Re,realizable)=0.9916
+    C80: R2(Re,realizable)=0.9959
+    G40: R2(Re,realizable)=-0.2103
+    mean R2(Re,realizable) = 0.4305  min = -0.6230  VERDICT: REFUTE
+
+[c] Fix docket item 3 (THERMODYNAMICS): |r(90-theta_beam)|^2 reflected-power fraction at the REAL angle PHOTONICS' construction uses
+    absorb_40: reflected-power-fraction=[2.482e-04,1.494e-03]
+    absorb_60: reflected-power-fraction=[6.358e-06,5.115e-05]
+    absorb_70: reflected-power-fraction=[9.372e-07,1.316e-05]
+    absorb_80: reflected-power-fraction=[4.099e-08,3.569e-06]
+
+[b-abs-cal] Fix docket item 4 (PHOTONICS): calibration-corrected R2(abs) for part (b)'s static-theta_eff model
+    C40: alpha*=1.0242e+00  R2(abs,calibrated)=0.6879
+    C60: alpha*=1.2211e+00  R2(abs,calibrated)=0.8798
+    C70: alpha*=2.0215e+00  R2(abs,calibrated)=-1.6481
+    C80: alpha*=1.9967e+00  R2(abs,calibrated)=-2.2956
+    G40: alpha*=9.6992e-01  R2(abs,calibrated)=0.8913
+
+[d] Fix docket item 1 (QUANTUM, Red-Team-adopted as canonical): PHOTONICS' Sec 4 image term E_photonics(theta_beam)=r(90-theta_beam)*W(theta_beam)
+    C40: raw R2(Re)=-1.093e+05  raw R2(abs)=-3.541e+05  scale-corrected R2(Re)=0.8836  scale-corrected R2(abs)=0.4902
+    C60: raw R2(Re)=-5.179e+06  raw R2(abs)=-2.354e+07  scale-corrected R2(Re)=0.6985  scale-corrected R2(abs)=0.2225
+    C70: raw R2(Re)=-3.334e+05  raw R2(abs)=-2.360e+07  scale-corrected R2(Re)=0.0852  scale-corrected R2(abs)=-4.4949
+    C80: raw R2(Re)=-1.065e+06  raw R2(abs)=-1.903e+07  scale-corrected R2(Re)=0.5072  scale-corrected R2(abs)=-7.7066
+    G40: raw R2(Re)=-8.153e+04  raw R2(abs)=-3.907e+05  scale-corrected R2(Re)=0.8356  scale-corrected R2(abs)=0.6632
+    mean scale-corrected R2(Re) = 0.6020  min = 0.0852
+
 wrote /home/user/photon-lab/experiments/080-t28-y-wall-planewave-validity-precheck/validity_precheck_results.json
