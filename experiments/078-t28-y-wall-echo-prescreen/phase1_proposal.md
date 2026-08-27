@@ -252,31 +252,59 @@ data is correct before scoring the model against them.
 
 ### 5.2 — Primary model: self-echo curve, per config
 
+**CORRECTED (Phase 5 mandatory-fix docket, `phase5_redteam_audit.md` §6
+item 2): the table originally printed here was never actually
+regenerated at the corrected angle — it silently reproduced the
+as-filed (`theta`, not `90-theta`) numbers digit-for-digit despite
+sitting under this same section's own "CORRECTED" framing, independently
+caught by both VISION and THERMODYNAMICS at Phase 5, confirmed bit-exact
+by Red Team's audit from the raw JSON. The as-filed per-config numbers
+were never separately persisted in `y_wall_prescreen_results.json::
+as_filed_incorrect_audit_trail` (only the three `PAIR_*`/`C80-C40`
+pair-delta rows are), so they are not reconstructed here — matching
+THERMODYNAMICS' own stated preference (delete rather than fabricate).
+The table below is the CORRECTED (`90-theta`) version, read directly
+from `y_wall_prescreen_results.json::primary_model_period_search.chosen`
+/ `::primary_model_edge_curves`, never hand-typed (R4):**
+
 | cfg | `ptp(Delta_phi_self)` | `\|r\|` range | free-period `P*` (narrow[1,4]) | R² | at boundary? |
 |---|---|---|---|---|---|
-| C40 | `76.897°` | `[0.0029, 0.0064]` | `3.2180°` | `0.1557` | no |
-| C60 | `131.795°` | `[0.0001, 0.0007]` | `4.0000°` | `0.2418` | **yes** (widens to `60°`, R²=0.9895) |
-| C70 | `133.798°` | `[0.0001, 0.0001]` | `4.0000°` | `0.2777` | **yes** (widens to `60°`, R²=0.8740) |
-| C80 | `358.446°` | `[0.00003, 0.00012]` | `3.1880°` | `0.1439` | no |
-| G40 | `76.897°` (= C40, exact) | `[0.0029, 0.0064]` | `3.2105°` | `0.1544` | no |
+| C40 | `75.209°` | `[0.0158, 0.0387]` | `3.2180°` | `0.1537` | no |
+| C60 | `119.699°` | `[0.0025, 0.0072]` | `3.1278°` | `0.1197` | no |
+| C70 | `356.152°` | `[0.0010, 0.0036]` | `3.1955°` | `0.1424` | no |
+| C80 | `355.695°` | `[0.0002, 0.0019]` | `2.9098°` | `0.1100` | no |
+| G40 | `75.209°` (= C40, exact) | `[0.0158, 0.0387]` | `3.1053°` | `0.1204` | no |
 
-`C60`/`C70` (deep `ABSORB`, `\|r\|≈10⁻⁴`) run to the search boundary at
-every widened stage, converging on implausibly high `R²` (`0.98`/`0.87`)
-at a 60° period — ~~a signature of fitting a near-degenerate, numerically
-ill-conditioned quantity (`arg()` of a complex number whose magnitude is
-within an order of magnitude of float noise in the underlying transfer-
-matrix recursion), not a physical oscillation~~. **CORRECTED (Phase 2,
-VISION SCIENCE's critique, independently re-verified by Red Team via a
-from-scratch 50-digit `mpmath` reimplementation): this "float noise"
-claim is FALSE.** These `\|r\|` values are resolved to 11–13 significant
-figures — twelve orders of magnitude above where genuine IEEE-754 float
-noise (`~10⁻¹⁶` relative) would sit. The at-boundary behavior is real
-model behavior at these depths, not a numerical artifact; the correct
-caution is THERMODYNAMICS' physical one instead (§7). **Neither `C60` nor
-`C70` is used in any scored comparison below** (they enter no `PAIR_*`
-combination this cycle scores), but `C80` — whose own `\|r\|` is smaller
-still (`3×10⁻⁵`–`1×10⁻⁴`) — **is** used in two of the three scored
-comparisons (`C80−C40` and `PAIR_ABSORB40`).
+**Under the corrected angle, no individual config runs to the search
+boundary** — the as-filed table's own "C60/C70 hit the 60° boundary with
+implausible R²=0.98/0.87" story does not describe this model; that
+behavior was itself an artifact of the wrong angle, not a property of
+this construction. (`C80−C40`'s own PAIR-DELTA search, §5.3, still runs
+to the boundary — a different, downstream computation from the
+per-config curves in this table; the two should not be conflated.) On the
+"near-noise-floor" question originally raised here: VISION SCIENCE's
+Phase-2 critique (independently re-verified by Red Team via a from-scratch
+50-digit `mpmath` reimplementation) found the small `\|r\|` values at deep
+`ABSORB` are resolved to 11–13 significant figures — twelve orders of
+magnitude above where genuine IEEE-754 float noise (`~10⁻¹⁶` relative)
+would sit — real model behavior, not a numerical artifact. **Neither `C60`
+nor `C70` is used in any scored comparison below** (they enter no
+`PAIR_*` combination this cycle scores), but `C80` — whose own `\|r\|` is
+smaller still — **is** used in two of the three scored comparisons
+(`C80−C40` and `PAIR_ABSORB40`).
+
+**Further correction (Phase 5, Red Team's final audit, `phase5_redteam_
+audit.md` §2): even this table's own `90-theta` convention is not the
+physically rigorous incidence angle for this model's own point-source
+construction.** The rigorous, per-config-constant stationary-phase bounce
+angle (`atan(D_SP/(OBJ_Y+y_lo))`, 13.7°–15.0° from the y-wall's own
+normal, independent of the swept beam angle) collapses `Delta_phi_self`
+to a flat curve for every config (`ptp=0.000°`, all five) — a decisively
+stronger negative than this table's own at-boundary/low-R² picture, not
+a correction of any number printed above (both angle conventions are
+disclosed, real computations; see `phase5_redteam_audit.md` §2/§5 for
+the full accounting and why the pre-registered Test-A band does not
+apply to a zero-amplitude prediction).
 
 ### 5.3 — Primary model: `PAIR_PAD`/`PAIR_ABSORB40`/`C80−C40` deltas, scored against real periods
 
@@ -412,7 +440,7 @@ INCONCLUSIVE call needs restating:
    (VISION's Phase-2 finding, independently re-verified by Red Team from
    scratch): those `\|r\|` values are resolved to 11–13 significant
    figures, not float noise. The correct caution is THERMODYNAMICS'
-   physical one: near-total absorption (`≥99.9999%` at `ABSORB=80`)
+   physical one: near-total absorption (`≥99.9996%` at `ABSORB=80`)
    leaves little energy budget for a physically well-posed coherent phase
    signature to ride on, independent of whether the number computing
    that phase is numerically trustworthy.
@@ -530,7 +558,7 @@ under the corrected angle; reason 2's "near-noise-floor" framing for
 `C60`/`C70`/`C80` is independently disconfirmed by VISION's own
 Phase-2 critique (those `\|r\|` values are resolved to 11–13 significant
 figures, not float noise) — replaced by THERMODYNAMICS' *physical*
-caution instead: near-total absorption (`≥99.9999%` at `C80`) leaves
+caution instead: near-total absorption (`≥99.9996%` at `C80`) leaves
 little energy budget for a physically well-posed coherent phase
 signature, independent of the number's own numerical trustworthiness;
 reason 3 (low R², `0.13`–`0.15`) still holds under the corrected numbers

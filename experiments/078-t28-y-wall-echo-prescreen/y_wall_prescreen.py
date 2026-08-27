@@ -308,12 +308,34 @@ def naive_y_wall_period(theta_deg, lam_cells, y_standoff):
 
 
 # ===================================================== free-period helper
+# Phase 5 mandatory-fix docket item 5 (phase5_redteam_audit.md Sec 6, Red
+# Team's own new finding, Sec 2c): `_fixed_period_fit`'s `ss_tot>0 else 0.0`
+# guard does NOT catch a numerically-flat-but-not-exactly-zero array --
+# `np.mean()` of many bit-identical floats does not, in general, round-trip
+# to exactly that value, leaving `ss_tot` at the ~1e-31 scale for an array
+# that is flat to float precision, which a period search can then report a
+# spurious R^2 near 1.0 against. This threshold (chosen well below this
+# file's own real-signal scale, ~1e-5 to 1e-1, and well above genuine
+# float round-off, ~1e-28 to 1e-31 for arrays of this size/magnitude)
+# flags that trap generically, for any current or future call site in this
+# file, without touching the imported `_free_period_search` itself.
+SS_TOT_DEGENERATE_FLOOR = 1e-20
+
+
 def free_period_with_widening(thetas, delta, label, out_list):
     """SAME staged-widening idiom as pad_round_trip_model.py's own
     `free_period_with_widening` (imported logic pattern, not the function
     itself, since that module is not import-safe standalone here without
     re-running its own main()-adjacent state -- the STAGES and the
     at-boundary rule are reproduced verbatim from that file)."""
+    delta = np.asarray(delta, dtype=float)
+    ss_tot_full = float(np.sum((delta - np.mean(delta)) ** 2))
+    ss_tot_degenerate = ss_tot_full < SS_TOT_DEGENERATE_FLOOR
+    if ss_tot_degenerate:
+        print(f"    [{label}] ss_tot={ss_tot_full:.3e} -- SS_TOT_DEGENERATE "
+              f"(below {SS_TOT_DEGENERATE_FLOOR:.0e}): any R^2 reported below is "
+              f"fitting float rounding noise on an effectively-flat array, not a "
+              f"real period -- see phase5_redteam_audit.md Sec 2c.")
     stages = [
         dict(name="narrow[1,4]", lo_deg=1.0, hi_deg=4.0, n_grid=400),
         dict(name="wide[1,15]", lo_deg=1.0, hi_deg=15.0, n_grid=2800),
@@ -326,10 +348,12 @@ def free_period_with_widening(thetas, delta, label, out_list):
         p = fit["p_star_deg"]
         at_boundary = bool(p <= st["lo_deg"] * 1.005 or p >= st["hi_deg"] * 0.995)
         rec = dict(window=st["name"], p_star_deg=p, r_squared=fit["r_squared"],
-                   at_boundary=at_boundary)
+                   at_boundary=at_boundary, ss_tot_full=ss_tot_full,
+                   ss_tot_degenerate=ss_tot_degenerate)
         out_list.append(rec)
+        flag = "  [SS_TOT_DEGENERATE -- R^2 is float noise, not signal]" if ss_tot_degenerate else ""
         print(f"    [{label}] {st['name']:>12}: P*={p:9.4f}deg  R^2={fit['r_squared']:.4f}"
-              f"{'  [AT BOUNDARY -- widening]' if at_boundary else '  [interior optimum]'}")
+              f"{'  [AT BOUNDARY -- widening]' if at_boundary else '  [interior optimum]'}{flag}")
         if chosen is None or (chosen["at_boundary"] and not at_boundary):
             chosen = rec
         if not at_boundary:

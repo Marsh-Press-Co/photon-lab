@@ -93,19 +93,25 @@
       "window": "wide[1,15]",
       "p_star_deg": 4.611289746337977,
       "r_squared": 0.8164836481103196,
-      "at_boundary": false
+      "at_boundary": false,
+      "ss_tot_full": 6.439268887766122e-05,
+      "ss_tot_degenerate": false
     },
     "pair_absorb40": {
       "window": "wide[1,15]",
       "p_star_deg": 4.176134333690603,
       "r_squared": 0.715638364085476,
-      "at_boundary": false
+      "at_boundary": false,
+      "ss_tot_full": 7.158295580724368e-05,
+      "ss_tot_degenerate": false
     },
     "c80_c40": {
       "window": "narrow[1,4]",
       "p_star_deg": 2.8421052631578947,
       "r_squared": 0.6272134587910355,
-      "at_boundary": false
+      "at_boundary": false,
+      "ss_tot_full": 3.37297910253785e-05,
+      "ss_tot_degenerate": false
     },
     "stages": {
       "pair_pad": [
@@ -113,13 +119,17 @@
           "window": "narrow[1,4]",
           "p_star_deg": 4.0,
           "r_squared": 0.6824352476365169,
-          "at_boundary": true
+          "at_boundary": true,
+          "ss_tot_full": 6.439268887766122e-05,
+          "ss_tot_degenerate": false
         },
         {
           "window": "wide[1,15]",
           "p_star_deg": 4.611289746337977,
           "r_squared": 0.8164836481103196,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 6.439268887766122e-05,
+          "ss_tot_degenerate": false
         }
       ],
       "pair_absorb40": [
@@ -127,13 +137,17 @@
           "window": "narrow[1,4]",
           "p_star_deg": 4.0,
           "r_squared": 0.7092910809975224,
-          "at_boundary": true
+          "at_boundary": true,
+          "ss_tot_full": 7.158295580724368e-05,
+          "ss_tot_degenerate": false
         },
         {
           "window": "wide[1,15]",
           "p_star_deg": 4.176134333690603,
           "r_squared": 0.715638364085476,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 7.158295580724368e-05,
+          "ss_tot_degenerate": false
         }
       ],
       "c80_c40": [
@@ -141,7 +155,9 @@
           "window": "narrow[1,4]",
           "p_star_deg": 2.8421052631578947,
           "r_squared": 0.6272134587910355,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 3.37297910253785e-05,
+          "ss_tot_degenerate": false
         }
       ]
     }
@@ -185,31 +201,41 @@
         "window": "narrow[1,4]",
         "p_star_deg": 3.218045112781955,
         "r_squared": 0.153652654913619,
-        "at_boundary": false
+        "at_boundary": false,
+        "ss_tot_full": 3.4578987252780293,
+        "ss_tot_degenerate": false
       },
       "C60": {
         "window": "narrow[1,4]",
         "p_star_deg": 3.1278195488721803,
         "r_squared": 0.1196587313088181,
-        "at_boundary": false
+        "at_boundary": false,
+        "ss_tot_full": 3.1701449494109974,
+        "ss_tot_degenerate": false
       },
       "C70": {
         "window": "narrow[1,4]",
         "p_star_deg": 3.1954887218045114,
         "r_squared": 0.1423703964951084,
-        "at_boundary": false
+        "at_boundary": false,
+        "ss_tot_full": 8.016641991602407,
+        "ss_tot_degenerate": false
       },
       "C80": {
         "window": "narrow[1,4]",
         "p_star_deg": 2.9097744360902253,
         "r_squared": 0.10996701683276178,
-        "at_boundary": false
+        "at_boundary": false,
+        "ss_tot_full": 2.945918591880095,
+        "ss_tot_degenerate": false
       },
       "G40": {
         "window": "narrow[1,4]",
         "p_star_deg": 3.1052631578947367,
         "r_squared": 0.12037562493101273,
-        "at_boundary": false
+        "at_boundary": false,
+        "ss_tot_full": 0.5320356293270692,
+        "ss_tot_degenerate": false
       }
     },
     "stages": {
@@ -218,7 +244,9 @@
           "window": "narrow[1,4]",
           "p_star_deg": 3.218045112781955,
           "r_squared": 0.153652654913619,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 3.4578987252780293,
+          "ss_tot_degenerate": false
         }
       ],
       "C60": [
@@ -226,7 +254,9 @@
           "window": "narrow[1,4]",
           "p_star_deg": 3.1278195488721803,
           "r_squared": 0.1196587313088181,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 3.1701449494109974,
+          "ss_tot_degenerate": false
         }
       ],
       "C70": [
@@ -234,7 +264,9 @@
           "window": "narrow[1,4]",
           "p_star_deg": 3.1954887218045114,
           "r_squared": 0.1423703964951084,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 8.016641991602407,
+          "ss_tot_degenerate": false
         }
       ],
       "C80": [
@@ -242,7 +274,9 @@
           "window": "narrow[1,4]",
           "p_star_deg": 2.9097744360902253,
           "r_squared": 0.10996701683276178,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 2.945918591880095,
+          "ss_tot_degenerate": false
         }
       ],
       "G40": [
@@ -250,7 +284,9 @@
           "window": "narrow[1,4]",
           "p_star_deg": 3.1052631578947367,
           "r_squared": 0.12037562493101273,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 0.5320356293270692,
+          "ss_tot_degenerate": false
         }
       ]
     }
@@ -260,19 +296,25 @@
       "window": "narrow[1,4]",
       "p_star_deg": 3.218045112781955,
       "r_squared": 0.1563466153324431,
-      "at_boundary": false
+      "at_boundary": false,
+      "ss_tot_full": 1.5031032228092638,
+      "ss_tot_degenerate": false
     },
     "pair_absorb40": {
       "window": "narrow[1,4]",
       "p_star_deg": 2.8045112781954886,
       "r_squared": 0.12157846604683187,
-      "at_boundary": false
+      "at_boundary": false,
+      "ss_tot_full": 1.0147212390676865,
+      "ss_tot_degenerate": false
     },
     "c80_c40": {
       "window": "narrow[1,4]",
       "p_star_deg": 4.0,
       "r_squared": 0.2472345286807609,
-      "at_boundary": true
+      "at_boundary": true,
+      "ss_tot_full": 1.0456123071135073,
+      "ss_tot_degenerate": false
     },
     "stages": {
       "pair_pad": [
@@ -280,7 +322,9 @@
           "window": "narrow[1,4]",
           "p_star_deg": 3.218045112781955,
           "r_squared": 0.1563466153324431,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 1.5031032228092638,
+          "ss_tot_degenerate": false
         }
       ],
       "pair_absorb40": [
@@ -288,7 +332,9 @@
           "window": "narrow[1,4]",
           "p_star_deg": 2.8045112781954886,
           "r_squared": 0.12157846604683187,
-          "at_boundary": false
+          "at_boundary": false,
+          "ss_tot_full": 1.0147212390676865,
+          "ss_tot_degenerate": false
         }
       ],
       "c80_c40": [
@@ -296,19 +342,25 @@
           "window": "narrow[1,4]",
           "p_star_deg": 4.0,
           "r_squared": 0.2472345286807609,
-          "at_boundary": true
+          "at_boundary": true,
+          "ss_tot_full": 1.0456123071135073,
+          "ss_tot_degenerate": false
         },
         {
           "window": "wide[1,15]",
           "p_star_deg": 15.0,
           "r_squared": 0.9535388860947247,
-          "at_boundary": true
+          "at_boundary": true,
+          "ss_tot_full": 1.0456123071135073,
+          "ss_tot_degenerate": false
         },
         {
           "window": "widest[1,60]",
           "p_star_deg": 60.0,
           "r_squared": 0.9693378270651474,
-          "at_boundary": true
+          "at_boundary": true,
+          "ss_tot_full": 1.0456123071135073,
+          "ss_tot_degenerate": false
         }
       ]
     },
@@ -367,19 +419,25 @@
         "window": "narrow[1,4]",
         "p_star_deg": 3.1654135338345863,
         "r_squared": 0.1331180760669618,
-        "at_boundary": false
+        "at_boundary": false,
+        "ss_tot_full": 0.5957757982042514,
+        "ss_tot_degenerate": false
       },
       "pair_absorb40": {
         "window": "narrow[1,4]",
         "p_star_deg": 3.2030075187969924,
         "r_squared": 0.1493191248004927,
-        "at_boundary": false
+        "at_boundary": false,
+        "ss_tot_full": 7.595444411051158,
+        "ss_tot_degenerate": false
       },
       "c80_c40": {
         "window": "narrow[1,4]",
         "p_star_deg": 3.2105263157894735,
         "r_squared": 0.1530097869774515,
-        "at_boundary": false
+        "at_boundary": false,
+        "ss_tot_full": 11.738598485196139,
+        "ss_tot_degenerate": false
       },
       "stages": {
         "pair_pad": [
@@ -387,7 +445,9 @@
             "window": "narrow[1,4]",
             "p_star_deg": 3.1654135338345863,
             "r_squared": 0.1331180760669618,
-            "at_boundary": false
+            "at_boundary": false,
+            "ss_tot_full": 0.5957757982042514,
+            "ss_tot_degenerate": false
           }
         ],
         "pair_absorb40": [
@@ -395,7 +455,9 @@
             "window": "narrow[1,4]",
             "p_star_deg": 3.2030075187969924,
             "r_squared": 0.1493191248004927,
-            "at_boundary": false
+            "at_boundary": false,
+            "ss_tot_full": 7.595444411051158,
+            "ss_tot_degenerate": false
           }
         ],
         "c80_c40": [
@@ -403,7 +465,9 @@
             "window": "narrow[1,4]",
             "p_star_deg": 3.2105263157894735,
             "r_squared": 0.1530097869774515,
-            "at_boundary": false
+            "at_boundary": false,
+            "ss_tot_full": 11.738598485196139,
+            "ss_tot_degenerate": false
           }
         ]
       }

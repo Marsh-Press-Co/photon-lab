@@ -64,5 +64,28 @@
     },
     "p_le_observed_count": 0.54265,
     "observed_n_support": 0
+  },
+  "fisher_combined_omnibus": {
+    "note": "Added Phase 5 mandatory-fix docket item 4 (phase5_redteam_audit.md sec 6): Fisher combined-probability omnibus test on the three per-target p-values already computed above (p_null_rel_dev_le_observed for period-closeness, p_null_r2_ge_observed for R^2), zero new Monte Carlo trials. QUANTUM Phase-5 review originated this; Red Team independently reproduced it (X2=9.49, df=6, p=0.148 for period) before this was wired in.",
+    "period_closeness": {
+      "input_p_values": [
+        0.39595,
+        0.1258,
+        0.17435
+      ],
+      "statistic_chi2": 9.492439557803978,
+      "df": 6,
+      "combined_p": 0.14771854478453192
+    },
+    "r_squared": {
+      "input_p_values": [
+        0.2126,
+        0.64655,
+        0.8344
+      ],
+      "statistic_chi2": 4.3309798652202804,
+      "df": 6,
+      "combined_p": 0.6319811692851871
+    }
   }
 }

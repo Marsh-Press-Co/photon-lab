@@ -98,3 +98,28 @@ propagator — the honest reading is that a period-only pre-screen of this
 mechanism class, done correctly, finds nothing encouraging enough to
 justify that build, not "survives with caveats." Full record: this
 directory; Phase 5 (six blind reviews + Red Team's final audit) next.
+
+## 5. Phase-5 addendum (Red Team's final audit, `phase5_redteam_audit.md`
+§2/§5/§6 item 1 — does NOT edit the frozen numbers above)
+
+Net of all six blind Phase-5 reviews and Red Team's final audit, this
+INCONCLUSIVE result is sharpened further, not reversed: even the
+`90−θ_beam` angle this document's own frozen numbers use is not the
+physically rigorous incidence angle for `edge_image_phase_difference`'s
+own point-source construction (that convention is correct for a
+plane-wave, whole-aperture-steered picture — a representation this model
+already abandoned). The rigorous, per-config stationary-phase bounce
+angle (`atan(D_SP/(OBJ_Y+y_lo))`, 13.7°–15.0° from the y-wall's own
+normal, independent of the swept beam angle) collapses `Delta_phi_self`
+to a flat curve for every config — no predicted oscillation at all,
+verified to float precision (`ss_tot` ratio to real data's own scale:
+`5.9×10⁻²⁷`). This is a decisively stronger negative for the specific
+edge-image/single-near-wall reduction than an ordinary INCONCLUSIVE, but
+is not filed as a formal REFUTE against the pre-registered band (which
+presupposes two comparably-determined nonzero periods), and does **not**
+close the y-wall mechanism class as a whole — the full, non-edge-reduced
+aperture sum and the far-edge/far-wall image pair remain untested, and
+whether the flat result generalizes to them is the single highest-value
+open question this cycle leaves (Iteration-56 Tier 0 #1). Full accounting:
+`phase5_redteam_audit.md` §2, §5; `NOTES.md`'s own "Result"/"Next"
+sections.
