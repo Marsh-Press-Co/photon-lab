@@ -1,0 +1,7 @@
+==============================================================================
+exp-078 Phase 2 (QUANTUM OPTICS) -- null-permutation control on the
+proposal's own three primary Test-A period comparisons
+==============================================================================
+n_trials=2000, seed=7, N=31 points (real theta grid, 36-42deg, 0.2deg step) -- i.i.d. N(0,1) noise, scale-invariant for P*/R^2 (fit is linear-least-squares in a fixed cos/sin basis). NOTE: n_trials=2,000 not this program's usual 20,000 (R5/exp-070/exp-077 precedent) -- disclosed time-budget reduction for a single Phase-2 critique turn (the staged search's Python-loop grid evaluation, imported unmodified per R4, costs ~30-40ms/trial); SE of an estimated proportion near p=0.3 at n=2,000 is ~1.0pp, sufficient to resolve the questions asked here (is the observed rate order-of-magnitude consistent with chance, not a precision estimate of a small tail probability).
+
+[1] PER-COMPARISON NULL (independent 20,000-trial noise draw per target)
