@@ -12,3 +12,8 @@ OBSERVED (corrected primary model): 0 of 3 comparisons SUPPORT (c80_c40 rel_dev=
            pair_pad (target P*=4.6113deg, observed rel_dev=0.3021, observed R^2=0.1563):
         P(null rel_dev<=0.30) = 0.1242   P(null rel_dev<=observed=0.3021) = 0.1258   P(null R^2>=0.1563) = 0.6465
         window distribution under null: {'narrow[1,4]': 18581, 'wide[1,15]': 1405, 'widest[1,60]': 14}
+      pair_absorb40 (target P*=4.1761deg, observed rel_dev=0.3284, observed R^2=0.1216):
+        P(null rel_dev<=0.30) = 0.1542   P(null rel_dev<=observed=0.3284) = 0.1744   P(null R^2>=0.1216) = 0.8344
+        window distribution under null: {'narrow[1,4]': 18614, 'wide[1,15]': 1370, 'widest[1,60]': 16}
+
+[2] JOINT NULL -- 3 independent noise curves per trial (one per target), count of SUPPORTs (rel_dev<=0.30) out of 3, vs the OBSERVED count (0 of 3, corrected model)
