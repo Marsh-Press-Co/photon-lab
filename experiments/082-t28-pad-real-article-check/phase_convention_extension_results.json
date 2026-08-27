@@ -1,0 +1,78 @@
+{
+  "calibration": [
+    {
+      "K": 5,
+      "theta": 48.0,
+      "code_arg_deg": 59.556490855405514,
+      "measured_abs_r": 0.15982163149265194,
+      "measured_arg_deg": 60.91548136049942,
+      "peak_match": true,
+      "closer_to": "r"
+    },
+    {
+      "K": 5,
+      "theta": 51.0,
+      "code_arg_deg": 66.72232961102925,
+      "measured_abs_r": 0.12282603181571798,
+      "measured_arg_deg": 84.3168270639481,
+      "peak_match": false,
+      "closer_to": "r"
+    },
+    {
+      "K": 5,
+      "theta": 54.0,
+      "code_arg_deg": 74.19865458735485,
+      "measured_abs_r": 0.11588116250224942,
+      "measured_arg_deg": 85.27900042404742,
+      "peak_match": false,
+      "closer_to": "r"
+    }
+  ],
+  "lossy": [
+    {
+      "K": 5,
+      "theta": 48.0,
+      "code_abs_r": 0.3395174037169762,
+      "code_arg_deg": 79.44209240493934,
+      "measured_abs_r": 0.11914675372265222,
+      "measured_arg_deg": 57.56679894933044,
+      "peak_match": true,
+      "dev_r": 0.2332136592737588,
+      "dev_conj": 0.4343346612918024,
+      "closer_to": "r"
+    },
+    {
+      "K": 5,
+      "theta": 51.0,
+      "code_abs_r": 0.36452637410315625,
+      "code_arg_deg": 86.89533195597815,
+      "measured_abs_r": 0.08532469654794607,
+      "measured_arg_deg": 91.20994156897301,
+      "peak_match": false,
+      "dev_r": 0.2795172091589447,
+      "dev_conj": 0.4498132672036526,
+      "closer_to": "r"
+    },
+    {
+      "K": 5,
+      "theta": 54.0,
+      "code_abs_r": 0.3923972690495435,
+      "code_arg_deg": 94.31311877697112,
+      "measured_abs_r": 0.07969942365229574,
+      "measured_arg_deg": 93.31564201141141,
+      "peak_match": false,
+      "dev_r": 0.3127130007165665,
+      "dev_conj": 0.4715099993361538,
+      "closer_to": "r"
+    }
+  ],
+  "summary": {
+    "n_favor_r": 6,
+    "n_total": 6,
+    "calibration_reliable": false,
+    "theta_range_deg": [
+      47.5,
+      54.5
+    ]
+  }
+}

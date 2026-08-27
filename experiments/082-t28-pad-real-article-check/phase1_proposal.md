@@ -221,3 +221,78 @@ disclosed as reduced-power, not gated as though it were.
    measurement), not an analytic power-budget estimate; THERMODYNAMICS'
    own energy-sidecar convention (post-run analytic, zero FDTD) does not
    apply to this item, which is itself the FDTD measurement.
+
+---
+
+## PHASE 1 RESULTS (self-scored, numbers copied from `results.json`/`run_output.txt`, never hand-typed)
+
+**Reproduction precondition: PASSED, bit-exact.** This cycle's own freshly-run
+EMPTY leg at all 7 angles for both `C40` and `G40` reproduces
+`experiments/076-.../results.json::headline`'s committed `C_empty` values at
+those exact integer-degree points to `max_dev = 0.0` (float64, not merely
+"small") — the harness (new 600nm/STEPS=2800/`dg065.CONFIGS` FDTD calls,
+freshly run this cycle) is verified correct before the new, article-loaded
+leg is trusted at all.
+
+**Primary metric.**
+
+| θ (deg) | `C40_C` (scene) | `G40_C` (scene) | `delta_scene` | `delta_empty` (fresh, same 7θ) |
+|---|---|---|---|---|
+| 36 | −0.576363 | −0.576792 | −4.287×10⁻⁴ | −2.158×10⁻³ |
+| 37 | −0.565214 | −0.565625 | −4.107×10⁻⁴ | +1.573×10⁻³ |
+| 38 | −0.564396 | −0.562473 | +1.923×10⁻³ | +8.151×10⁻⁴ |
+| 39 | −0.554131 | −0.555615 | −1.484×10⁻³ | −6.305×10⁻⁴ |
+| 40 | −0.544904 | −0.545593 | −6.899×10⁻⁴ | −1.750×10⁻³ |
+| 41 | −0.538792 | −0.538019 | +7.727×10⁻⁴ | −1.390×10⁻³ |
+| 42 | −0.517515 | −0.518318 | −8.030×10⁻⁴ | +3.027×10⁻³ |
+
+`A_scene = ptp(delta_scene) = 3.4076×10⁻³`. `A_empty = ptp(delta_empty) =
+5.1846×10⁻³` (this cycle's own fresh 7-point measurement, not the full
+31-point exp-076 figure — an apples-to-apples comparator at reduced power).
+`ratio = A_scene / A_empty = 0.6573`.
+
+**VERDICT: SURVIVES** (`ratio ∈ [0.5, 2.0]`, per the pre-registered band) —
+the PAD-sensitivity confound reaches the real, article-loaded Weber-contrast
+channel at roughly two-thirds the amplitude it shows on the empty-scene
+proxy channel, not comparable-but-larger and not collapsed. This is a
+genuine, decisive, non-boundary result: `0.6573` sits centrally inside the
+`[0.5,2.0]` SURVIVES band, nowhere near either the `0.2` CANCELS line or the
+`2.0`/`0.5` INCONCLUSIVE edges.
+
+**Secondary metric (disclosed, not gating).** `A_scene / C_thr = 0.6815` —
+the real, article-loaded PAD confound's own amplitude is **68% of VISION's
+frozen photopic lab bar** on this specific 7-point/`PAIR_PAD` instance.
+Sub-threshold on this reading alone, but not negligible relative to the bar
+this program scores every constraint-3 citation against — a materially
+different picture from T16's own corrected `PAIR_PAD` empty-scene reading
+(`≈0.12×C_thr`, Iteration 54/R9): the confound's real-scene footprint is
+**roughly 5.5× larger relative to `C_thr`** than its already-corrected
+empty-scene-only reading was.
+
+**Settling precondition (disclosed, not gating).** `|C(G40,39°,article,
+STEPS=2800) − C(G40,39°,article,STEPS=1400)| = 5.452×10⁻⁵` absolute,
+`9.81×10⁻⁵` relative — three orders of magnitude below the primary
+metric's own scale. A single directional spot-check, not a full R3-grade
+convergence study (idealization 4), but this one point shows no sign the
+article-loaded scene needs materially more settling than the empty scene
+already established as sufficient at STEPS=2800.
+
+**Combined self-score: SUPPORT for "this is charter-relevant, information-
+dense, and warranted the FDTD spend."** The PAD-sensitivity axis this
+nine-cycle sub-thread has characterized as a boundary-domain artifact does
+**not** cleanly cancel in the object-minus-flank subtraction real
+constraint-3 scoring performs — it survives at material (not negligible,
+not dominant) amplitude. Every future ambient-contrast citation at a
+`FALLBACK_ANGLES`/dense-window-adjacent geometry in this bench's own
+congruent-series family should now disclose this as a named, quantified,
+non-hypothetical confound, not merely a theoretical risk (exp-076/077/078's
+own prior framing) — the empty-scene-only status this finding carried for
+six cycles is retired by this result.
+
+**What this result does NOT establish** (idealizations 1–5, restated):
+single wavelength (600nm), single pair (`PAIR_PAD` only, not `PAIR_ABSORB40`
+or `C80−C40`), 7-angle reduced power (not the full 31-point/0.2° sweep — a
+period/shape re-fit at this reduced power was not attempted, only an
+amplitude-ratio comparison), one article (the flagship absorber only, not
+a weaker σ(I)-style near-null article), one settling spot-check (not a full
+convergence study).

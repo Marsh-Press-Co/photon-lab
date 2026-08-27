@@ -1,0 +1,105 @@
+{
+  "phase_divergence_deg": {
+    "absorb40": {
+      "min": 18.249263207794854,
+      "max": 24.65975495785301
+    },
+    "absorb80": {
+      "min": 0.4747496413613419,
+      "max": 15.009418615946515
+    }
+  },
+  "results": {
+    "matched": {
+      "single_wall": {
+        "pair_pad": {
+          "p_real_deg": 4.611289746337977,
+          "p_model_deg": 13.279385494819579,
+          "rel_dev": 1.8797551716123038,
+          "pearson_r": 0.2107166002326808,
+          "r_squared": 0.04440148561361941,
+          "combined": "REFUTE"
+        },
+        "pair_absorb40": {
+          "p_real_deg": 4.176134333690603,
+          "p_model_deg": 8.20257234726688,
+          "rel_dev": 0.9641543331337155,
+          "pearson_r": 0.4468352210855928,
+          "r_squared": 0.1996617148026106,
+          "combined": "INCONCLUSIVE"
+        }
+      },
+      "two_wall": {
+        "pair_pad": {
+          "p_real_deg": 4.611289746337977,
+          "p_model_deg": 8.667738478027868,
+          "rel_dev": 0.8796776942744251,
+          "pearson_r": 0.009701201710932125,
+          "r_squared": 9.41133146361924e-05,
+          "combined": "REFUTE"
+        },
+        "pair_absorb40": {
+          "p_real_deg": 4.176134333690603,
+          "p_model_deg": 7.037156127188282,
+          "rel_dev": 0.6850885447856961,
+          "pearson_r": 0.20434498815292348,
+          "r_squared": 0.04175687418321844,
+          "combined": "REFUTE"
+        }
+      }
+    },
+    "realizable": {
+      "single_wall": {
+        "pair_pad": {
+          "p_real_deg": 4.611289746337977,
+          "p_model_deg": 7.692390139335477,
+          "rel_dev": 0.6681645618656544,
+          "pearson_r": -0.033243074585116716,
+          "r_squared": 0.001105102007871633,
+          "combined": "REFUTE"
+        },
+        "pair_absorb40": {
+          "p_real_deg": 4.176134333690603,
+          "p_model_deg": 6.637013219006788,
+          "rel_dev": 0.589271965095389,
+          "pearson_r": 0.19717016864207787,
+          "r_squared": 0.03887607540234543,
+          "combined": "REFUTE"
+        }
+      },
+      "two_wall": {
+        "pair_pad": {
+          "p_real_deg": 4.611289746337977,
+          "p_model_deg": 6.757056091461236,
+          "rel_dev": 0.4653288912992951,
+          "pearson_r": -0.24289772921643624,
+          "r_squared": 0.05899930685850118,
+          "combined": "INCONCLUSIVE"
+        },
+        "pair_absorb40": {
+          "p_real_deg": 4.176134333690603,
+          "p_model_deg": 6.06680957484816,
+          "rel_dev": 0.4527333390367014,
+          "pearson_r": -0.0945454187114379,
+          "r_squared": 0.008938836199321112,
+          "combined": "REFUTE"
+        }
+      }
+    }
+  },
+  "verdict_flips": [
+    [
+      "single_wall",
+      "pair_absorb40",
+      "INCONCLUSIVE",
+      "REFUTE"
+    ],
+    [
+      "two_wall",
+      "pair_pad",
+      "REFUTE",
+      "INCONCLUSIVE"
+    ]
+  ],
+  "n_flips": 2
+}

@@ -1,0 +1,7 @@
+==============================================================================
+exp-082 Tier-0 item 1 -- x-wall realizable-admittance (mu_r=1) refit
+==============================================================================
+
+[phase divergence] arg(r_matched)-arg(r_realizable), over theta in [36.0,42.0]deg:
+    ABSORB=40: min=18.25deg  max=24.66deg
+    ABSORB=80: min=0.47deg  max=15.01deg

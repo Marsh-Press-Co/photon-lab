@@ -1,0 +1,18 @@
+====================================================================================================
+exp-082 Tier-1 item 4 -- phase-convention tie-breaker extended to theta in (48.0, 51.0, 54.0) (inside [47.5,54.5]deg), K=5 only
+====================================================================================================
+
+[CALIB] Lossless (real n=1) spacer, K=5 -- |r_measured| must equal 1.0
+  K=5 theta= 48.0  code arg= +59.56deg | measured |r|=0.1598 arg= +60.92deg  peak_match=True  closer_to=r
+  K=5 theta= 51.0  code arg= +66.72deg | measured |r|=0.1228 arg= +84.32deg  peak_match=False  closer_to=r
+  K=5 theta= 54.0  code arg= +74.20deg | measured |r|=0.1159 arg= +85.28deg  peak_match=False  closer_to=r
+
+[LOSSY] Real ABSORB-band construction (cubic ramp), K=5 -- the actual question
+  K=5 theta= 48.0  code |r|=0.3395 arg= +79.44deg | measured |r|=0.1191 arg= +57.57deg  peak_match=True  dev_r=0.2332  dev_conj=0.4343  closer_to=r
+  K=5 theta= 51.0  code |r|=0.3645 arg= +86.90deg | measured |r|=0.0853 arg= +91.21deg  peak_match=False  dev_r=0.2795  dev_conj=0.4498  closer_to=r
+  K=5 theta= 54.0  code |r|=0.3924 arg= +94.31deg | measured |r|=0.0797 arg= +93.32deg  peak_match=False  dev_r=0.3127  dev_conj=0.4715  closer_to=r
+
+SUMMARY: at K=5 inside [47.5,54.5]deg, 6/6 sub-tests (3 calibration + 3 lossy) favor the COMMITTED convention 'r'.
+[CALIB] reliability check (|r_measured| close to 1.0, matching the original file's own K=5 reliability finding): False
+
+wrote /home/user/photon-lab/experiments/082-t28-pad-real-article-check/phase_convention_extension_results.json
