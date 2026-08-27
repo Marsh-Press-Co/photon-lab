@@ -94,6 +94,24 @@ Run: `python3 y_wall_prescreen.py` from this directory (or anywhere --
 paths resolve from `__file__`). Writes `y_wall_prescreen_results.json` and
 prints every table below; every number in `phase1_proposal.md` is copied
 from that JSON/stdout, never hand-typed (R4).
+
+PHASE-3 UPDATE (Panel Iteration 55, post Phase-2 Red Team mandatory-fix
+docket, `phase2_redteam_audit.md`): the as-originally-filed Phase-1 version
+of this file fed `reflection_coefficient` the raw sweep `theta_deg`
+unconverted for the y-wall call -- WRONG, since that function's own angle
+convention is "from the interface's own normal" and the y-wall's normal is
+NOT the x-wall's. Three independent blind critics (MATERIALS, ELECTROMAGNETISM,
+THERMODYNAMICS) and Red Team's own from-scratch re-derivation all
+independently converged: the correct angle is `90-theta_deg`
+(`y_wall_incidence_angle`, added below). This is now the file's PRIMARY,
+pre-registered computation (`use_corrected_angle=True`, the default
+everywhere); the as-originally-filed numbers are retained ONLY as an
+explicitly labeled audit-trail comparison (Sec [5b]), never as this file's
+own claim. Folding in this fix flips BOTH of the as-filed document's
+nominal SUPPORT verdicts to INCONCLUSIVE (`C80-C40` additionally loses its
+own resolvable interior-optimum period entirely) -- see `phase3_synthesis.md`
+for the full accounting and `phase2_redteam_audit.md` for the audit that
+caught it.
 """
 
 import importlib.util
@@ -197,7 +215,27 @@ def x_wall_closed_form_rederivation(theta_deg, lam_cells, plane_x):
 
 
 # ============================================ [1] primary: edge-image model
-def edge_image_phase_difference(theta_deg, lam_cells, cfg, absorb_for_r):
+def y_wall_incidence_angle(theta_deg):
+    """MANDATORY FIX (Phase 2 Red Team audit, phase2_redteam_audit.md
+    Attack 1 -- independently converged on by MATERIALS, ELECTROMAGNETISM,
+    THERMODYNAMICS, then re-derived a fourth way and confirmed by Red
+    Team's own phase2_redteam_angle_correction_check.py). `boundary_
+    reflectance.py::reflection_coefficient`'s own docstring states
+    `theta_deg` is the angle measured FROM THE INTERFACE'S OWN NORMAL
+    (it enters only as `sin(theta_deg)**2`, the standard oblique-incidence
+    tangential-wavevector fraction). For the x-wall, whose normal is x-hat,
+    the angle from that normal equals the sweep theta itself (direct-wave
+    direction (-cos(theta),+sin(theta)) per `Sim.add_line_source`'s own
+    docstring => cos(alpha_x)=cos(theta) => alpha_x=theta) -- so the x-wall
+    model's original theta-in/theta-out usage was always correct. For the
+    y-wall, whose normal is y-hat, the SAME direction vector gives
+    cos(alpha_y)=sin(theta) => alpha_y=90-theta, NOT theta. This function
+    performs that conversion; every call into `br.reflection_coefficient`
+    in this file for the y-wall model MUST route through it."""
+    return 90.0 - theta_deg
+
+
+def edge_image_phase_difference(theta_deg, lam_cells, cfg, absorb_for_r, use_corrected_angle=True):
     """Delta_phi_self(theta; cfg) = arg(r(theta;absorb_for_r))
        + k*[hypot(D_SP, OBJ_Y+y_lo) - hypot(D_SP, A)]
     -- the near edge (y_lo) vs its OWN image through the near (y=0) y-wall,
@@ -207,11 +245,19 @@ def edge_image_phase_difference(theta_deg, lam_cells, cfg, absorb_for_r):
     phase -- it does not re-derive a new "steered" phase from its mirrored
     position) and cancels exactly in the difference; only r(theta)'s own
     phase and a FIXED (theta-independent) propagation-distance offset
-    survive. Returns (delta_phi_rad, dist_real, dist_image, fixed_offset_cells)."""
+    survive. `use_corrected_angle` (default True, the PRIMARY/pre-registered
+    computation per the Phase-2 Red Team mandatory-fix docket, item 1)
+    routes `reflection_coefficient` through `y_wall_incidence_angle`
+    (90-theta); `use_corrected_angle=False` reproduces the AS-ORIGINALLY-
+    (INCORRECTLY)-FILED Phase-1 computation (raw, unconverted theta),
+    retained ONLY as an explicitly labeled audit-trail comparison row per
+    the docket's item 2 -- never as this file's own headline. Returns
+    (delta_phi_rad, dist_real, dist_image, fixed_offset_cells)."""
     k = 2.0 * math.pi / lam_cells
     n_prof = br.n_profile_exact(br.nu_profile(br.damp_e_profile(absorb_for_r)),
                                  2.0 * math.pi / CPL[600])
-    r = br.reflection_coefficient(n_prof, theta_deg, lam_cells)
+    r_angle = y_wall_incidence_angle(theta_deg) if use_corrected_angle else theta_deg
+    r = br.reflection_coefficient(n_prof, r_angle, lam_cells)
     d_sp = cfg["d_sp"]
     a = cfg["A"]
     y_lo = cfg["y_lo"]
@@ -225,15 +271,17 @@ def edge_image_phase_difference(theta_deg, lam_cells, cfg, absorb_for_r):
                 fixed_offset_cells=fixed_offset)
 
 
-def edge_image_curve(thetas, lam_cells, cfg, absorb_for_r):
+def edge_image_curve(thetas, lam_cells, cfg, absorb_for_r, use_corrected_angle=True):
     """Delta_phi_self(theta) over the real angle grid, plus a proxy
     oscillation curve cos(Delta_phi_self(theta)) (unweighted by |r| or
     aperture taper -- Idealization, phase1_proposal.md -- this pre-screen
-    is a PERIOD check, not a full amplitude/shape model)."""
+    is a PERIOD check, not a full amplitude/shape model). See
+    `edge_image_phase_difference` for `use_corrected_angle`."""
     dphis = []
     absr = []
     for t in thetas:
-        d = edge_image_phase_difference(float(t), lam_cells, cfg, absorb_for_r)
+        d = edge_image_phase_difference(float(t), lam_cells, cfg, absorb_for_r,
+                                         use_corrected_angle=use_corrected_angle)
         dphis.append(d["delta_phi_rad"])
         absr.append(d["abs_r"])
     dphis = np.array(dphis)
@@ -481,6 +529,56 @@ def main():
           f"anywhere up to 60deg): {at_boundary_flags}")
     out["primary_model_at_boundary_every_stage"] = at_boundary_flags
 
+    # ---- [5b] AS-ORIGINALLY-(INCORRECTLY)-FILED audit-trail comparison ----
+    # Mandatory-fix docket item 2 (phase2_redteam_audit.md): the as-filed
+    # Phase-1 numbers (raw, unconverted theta fed to reflection_coefficient)
+    # are kept ONLY as an explicitly labeled comparison row, never as the
+    # headline. Reuses the SAME edge_image_curve/free_period_with_widening/
+    # score_period machinery, only the angle-convention flag differs.
+    print("\n[5b] AS-ORIGINALLY-(INCORRECTLY)-FILED audit trail (raw theta, not "
+          "90-theta -- kept ONLY for comparison, per phase2_redteam_audit.md's "
+          "mandatory-fix docket item 2; NOT this file's own claim)")
+    as_filed_curves = {key: edge_image_curve(thetas, CPL[600], dg065.CONFIGS[key],
+                                              dg065.CONFIGS[key]["absorb"],
+                                              use_corrected_angle=False)
+                        for key in CONGRUENT_KEYS}
+    as_filed_delta_pad = as_filed_curves["G40"]["cos_delta_phi"] - as_filed_curves["C40"]["cos_delta_phi"]
+    as_filed_delta_absorb40 = as_filed_curves["C80"]["cos_delta_phi"] - as_filed_curves["G40"]["cos_delta_phi"]
+    as_filed_delta_c80c40 = as_filed_curves["C80"]["cos_delta_phi"] - as_filed_curves["C40"]["cos_delta_phi"]
+    as_filed_pair_stages = {"pair_pad": [], "pair_absorb40": [], "c80_c40": []}
+    as_filed_free_pad = free_period_with_widening(thetas, as_filed_delta_pad,
+                                                    "AS-FILED PAIR_PAD delta", as_filed_pair_stages["pair_pad"])
+    as_filed_free_absorb40 = free_period_with_widening(thetas, as_filed_delta_absorb40,
+                                                          "AS-FILED PAIR_ABSORB40 delta",
+                                                          as_filed_pair_stages["pair_absorb40"])
+    as_filed_free_c80c40 = free_period_with_widening(thetas, as_filed_delta_c80c40,
+                                                        "AS-FILED C80-C40 delta", as_filed_pair_stages["c80_c40"])
+    as_filed_scores = {}
+    as_filed_scores["c80_c40_vs_2.8421"] = score_period(
+        "AS-FILED self-echo C80-C40 vs C80-C40 real", REFERENCE_PERIODS["c80_c40_deg"],
+        as_filed_free_c80c40["p_star_deg"])
+    as_filed_scores["pair_pad_vs_4.6113"] = score_period(
+        "AS-FILED self-echo PAIR_PAD vs PAIR_PAD real", REFERENCE_PERIODS["pair_pad_deg"],
+        as_filed_free_pad["p_star_deg"])
+    as_filed_scores["pair_absorb40_vs_4.1761"] = score_period(
+        "AS-FILED self-echo PAIR_ABSORB40 vs PAIR_ABSORB40 real", REFERENCE_PERIODS["pair_absorb40_deg"],
+        as_filed_free_absorb40["p_star_deg"])
+    print("\n    AS-FILED (incorrect) vs CORRECTED (primary), side by side:")
+    for k, real_p in (("c80_c40_vs_2.8421", None), ("pair_pad_vs_4.6113", None),
+                       ("pair_absorb40_vs_4.1761", None)):
+        af = as_filed_scores[k]
+        co = primary_scores[k]
+        print(f"      {k:24s} AS-FILED  rel_dev={af['rel_dev']:.4f} -> {af['verdict']:<12}  "
+              f"CORRECTED  rel_dev={co['rel_dev']:.4f} -> {co['verdict']}")
+    out["as_filed_incorrect_audit_trail"] = dict(
+        note="Phase-1-as-originally-computed (raw theta, not 90-theta); kept ONLY as a "
+             "labeled comparison row per phase2_redteam_audit.md's mandatory-fix docket "
+             "item 2, NEVER as this file's primary claim (see [5]/[7] for the corrected "
+             "primary result).",
+        scores=as_filed_scores,
+        pair_deltas=dict(pair_pad=as_filed_free_pad, pair_absorb40=as_filed_free_absorb40,
+                          c80_c40=as_filed_free_c80c40, stages=as_filed_pair_stages))
+
     # ---- [2] secondary naive candidates ----
     print("\n[6] SECONDARY, EXPLICITLY NAIVE candidates (R5-flagged look-elsewhere risk -- "
           "reported for the queue item's own 'is it even in the right ballpark' question, "
@@ -522,17 +620,95 @@ def main():
                   f"{row['pair_absorb40']:.3f},{row['pair_pad_750nm']:.3f}]")
     out["naive_secondary_rel_dev"] = naive_scores
 
+    # ---- [7] gate re-run at the CORRECTED y-wall angle envelope ----
+    # Mandatory-fix docket item 3 (phase2_redteam_audit.md Attack 2): the
+    # x-wall's own sanity/passivity gates (boundary_reflectance.py) were only
+    # ever sampled at theta in [-44,44]deg; the CORRECTED y-wall call routes
+    # reflection_coefficient through 48-54deg (90-theta for theta in
+    # [36,42]deg), a range never previously gate-tested. Re-run here,
+    # near-verbatim from phase2_redteam_angle_correction_check.py Sec [E]
+    # (Red Team's own already-verified corrected pipeline, reused per the
+    # docket rather than re-derived a fifth time).
+    print("\n[7] GATE RE-RUN at the corrected y-wall envelope (48-54deg), never "
+          "sampled by the originally committed +-44deg gates")
+
+    def gate_lossless_unimodular_range(lo, hi, n_trials=2000, seed=11):
+        rng = np.random.default_rng(seed)
+        worst = 0.0
+        for _ in range(n_trials):
+            length = int(rng.integers(5, 60))
+            n_prof = 1.0 + 0.6 * rng.random(length)
+            theta_deg = float(rng.uniform(lo, hi))
+            r = br.reflection_coefficient(n_prof.astype(complex), theta_deg, 20.0)
+            worst = max(worst, abs(abs(r) - 1.0))
+        return worst
+
+    def gate_single_layer_identity_range(lo, hi, n_trials=2000, seed=13):
+        rng = np.random.default_rng(seed)
+        worst = 0.0
+        for _ in range(n_trials):
+            n1 = complex(rng.uniform(0.5, 2.0), rng.uniform(0.0, 1.5))
+            theta_deg = float(rng.uniform(lo, hi))
+            lam = float(rng.uniform(10.0, 30.0))
+            theta = math.radians(theta_deg)
+            s2 = math.sin(theta) ** 2
+            k0 = 2.0 * math.pi / lam
+            kx1 = k0 * np.sqrt(n1 ** 2 - s2)
+            Z1 = n1 / np.sqrt(n1 ** 2 - s2)
+            Zin_direct = 1j * Z1 * np.tan(kx1 * 1.0)
+            Zvac = 1.0 / math.cos(theta)
+            r_direct = (Zin_direct - Zvac) / (Zin_direct + Zvac)
+            r_loop = br.reflection_coefficient(np.array([n1]), theta_deg, lam)
+            worst = max(worst, abs(r_direct - r_loop))
+        return worst
+
+    def gate_passivity_range(lo, hi, n_trials=2000, seed=17):
+        rng = np.random.default_rng(seed)
+        worst = 0.0
+        for absorb in br.ABSORB_LIST:
+            damp = br.damp_e_profile(absorb)
+            nu = br.nu_profile(damp)
+            n_exact = br.n_profile_exact(nu, 2.0 * math.pi / CPL[600])
+            for _ in range(n_trials // len(br.ABSORB_LIST)):
+                theta_deg = float(rng.uniform(lo, hi))
+                r = br.reflection_coefficient(n_exact, theta_deg, CPL[600])
+                worst = max(worst, abs(r))
+        return worst
+
+    g_lossless_new = gate_lossless_unimodular_range(48.0, 54.0)
+    g_n1_new = gate_single_layer_identity_range(48.0, 54.0)
+    g_pass_new = gate_passivity_range(48.0, 54.0)
+    print(f"    G-LOSSLESS (48-54deg, 2000 trials): worst ||r|-1| = {g_lossless_new:.3e}  "
+          f"PASS={g_lossless_new < 1e-9}")
+    print(f"    G-N1       (48-54deg, 2000 trials): worst |r_loop-r_direct| = {g_n1_new:.3e}  "
+          f"PASS={g_n1_new < 1e-12}")
+    print(f"    G-PASSIVITY(48-54deg, 2000 trials/depth): worst |r| = {g_pass_new:.6f}  "
+          f"PASS={g_pass_new <= 1.0 + 1e-9}")
+    gates_corrected = dict(
+        g_lossless_worst_dev=g_lossless_new, g_lossless_pass=bool(g_lossless_new < 1e-9),
+        g_n1_worst_dev=g_n1_new, g_n1_pass=bool(g_n1_new < 1e-12),
+        g_passivity_worst_abs_r=g_pass_new, g_passivity_pass=bool(g_pass_new <= 1.0 + 1e-9))
+    assert gates_corrected["g_lossless_pass"] and gates_corrected["g_n1_pass"] \
+        and gates_corrected["g_passivity_pass"], \
+        "corrected-envelope gate FAILED -- do not trust r(theta) at 48-54deg"
+    out["gates_at_corrected_envelope_48_54deg"] = gates_corrected
+
     # ---- combined self-scored verdict inputs ----
-    print("\n[7] SUMMARY FOR PHASE-1 SELF-SCORING")
+    print("\n[8] SUMMARY FOR PHASE-1 SELF-SCORING (CORRECTED primary model, "
+          "post Phase-2 Red Team mandatory-fix docket)")
     n_primary_refute = sum(1 for v in primary_scores.values() if v["verdict"] == "REFUTE")
     n_primary_support = sum(1 for v in primary_scores.values() if v["verdict"] == "SUPPORT")
-    print(f"    PRIMARY model: {n_primary_refute}/3 comparisons REFUTE on the period band; "
-          f"{n_primary_support}/3 SUPPORT; every pair-delta period search ran to the search "
-          f"boundary at all three widened stages (no interior optimum found up to 60deg) = "
-          f"{all(at_boundary_flags.values())}")
+    n_as_filed_support = sum(1 for v in as_filed_scores.values() if v["verdict"] == "SUPPORT")
+    print(f"    CORRECTED primary model: {n_primary_refute}/3 comparisons REFUTE on the "
+          f"period band; {n_primary_support}/3 SUPPORT; every pair-delta period search ran "
+          f"to the search boundary at all three widened stages (no interior optimum found "
+          f"up to 60deg) = {all(at_boundary_flags.values())}")
+    print(f"    (AS-FILED, incorrect-angle audit trail: {n_as_filed_support}/3 SUPPORT -- "
+          f"kept for comparison only, per phase2_redteam_audit.md item 2, NOT the headline)")
     out["summary"] = dict(
         n_primary_refute=n_primary_refute, n_primary_support=n_primary_support,
-        all_primary_at_boundary=bool(all(at_boundary_flags.values())))
+        all_primary_at_boundary=bool(all(at_boundary_flags.values())),
+        n_as_filed_support_audit_trail_only=n_as_filed_support)
 
     def _json_default(o):
         if isinstance(o, (np.bool_,)):
