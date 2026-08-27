@@ -17,3 +17,7 @@ OBSERVED (corrected primary model): 0 of 3 comparisons SUPPORT (c80_c40 rel_dev=
         window distribution under null: {'narrow[1,4]': 18614, 'wide[1,15]': 1370, 'widest[1,60]': 16}
 
 [2] JOINT NULL -- 3 independent noise curves per trial (one per target), count of SUPPORTs (rel_dev<=0.30) out of 3, vs the OBSERVED count (0 of 3, corrected model)
+    distribution of #SUPPORT-out-of-3 under null: {0: 0.54265, 1: 0.37365, 2: 0.0788, 3: 0.0049}
+    P(<= observed count of 0 of 3 SUPPORT under null) = 0.5426  (a LOW value here would mean the corrected model clears SUPPORT unusually RARELY vs noise -- not evidence for the mechanism either way; this metric mainly documents that 0-of-3 is, as expected, an unremarkable outcome under a null with no relationship to reality)
+
+wrote /home/user/photon-lab/experiments/078-t28-y-wall-echo-prescreen/phase4_null_calibration_corrected_results.json
