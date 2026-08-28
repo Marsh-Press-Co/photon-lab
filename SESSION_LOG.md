@@ -2,6 +2,99 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-28 (panel shift) — Iteration 63 complete (exp-086): fixes the
+R11 boundary-pinning defect at its source, in all three affected
+functions, and re-scores exp-085's own Method C classification on the
+corrected machinery -- confirming, now by the automated pipeline itself
+rather than a hand audit, that "STRONG COHERENT CHIRP" does not survive
+(`frac_recovered=21/37=0.5676`, `NOT STABLY PERIODIC`). Closes the
+quiet-variant sibling's audit-coverage gap Red Team's own Phase-2 audit
+found (a 6.70% boundary-firing rate inside the null-calibration appendix
+underwriting T28's "settled" x-normal REFUTE since Iteration 54) with a
+controlled matched-seed comparison: the fix's effect on the cited
+statistics is bit-identical to the unfixed logic, corroborated across 10
+independent seeds after a Phase-5 seat caught the original claim resting
+on just one. New standing rule R12 adopted (multi-seed corroboration
+required before reporting a fix's effect on a tail statistic as
+"negligible"). Checkpoint criterion 4 does not fire on any of four
+cycle-produced near-misses, conditioned on a 4-item close-out docket that
+landed before this entry. New forward tripwire: the energy-interception
+cross-check, four cycles deferred, fires Checkpoint criterion 4
+automatically on a fifth.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Trust suite confirmed green:
+41/41 checks (`--only 12346789`) before any panel work began. Local
+`main` branch was stale at Iteration 42 (`f123e01`) from a prior
+detached-HEAD session pattern; reattached to `origin/main`'s actual tip
+(Iteration 62) and pushed cleanly throughout this shift with no history
+rewrite.
+
+**Iteration 63 -- ELECTROMAGNETISM's rotation-lead cycle (exp-086).**
+Executes exp-085's own Red Team Phase-5 final audit §7 items 1-3 (a flat
+six-item list; the proposal's own title mislabeled it "Tier-1 items
+(1)-(5)," caught and corrected at Phase 2): fix the shared period-search
+machinery's silent narrowest-stage fallback at all three call sites --
+both non-quiet copies plus the `_quiet` sibling, the Director's own scope
+extension at Phase 3 -- re-score, extend the circular-shift null to all
+37 sub-windows, correct the overlap-inflated Spearman significance, and a
+bounded prior-citation audit. `phase1_proposal.md` committed and pushed
+strictly before any code existed.
+
+**Phase 2 -- five blind critiques, five different defects, zero
+overlap.** PHOTONICS found the sub-windows' signal amplitude spans
+~5,000x-6,600x and the uniform R² bar can't distinguish a noise-floor fit
+from one riding a signal orders of magnitude larger. MATERIALS found the
+quiet variant -- called 60,001 times inside the null-calibration appendix
+underwriting T28's "settled" REFUTE since Iteration 54 -- was excluded
+from the audit-coverage prediction entirely. THERMODYNAMICS found zero
+mention of the energy-interception check that fired Checkpoint criterion
+4 at Iteration 61 for the identical silent-absence shape. QUANTUM found
+the overlap-corrected Spearman fix hid an unstated 3-way stride-phase
+degree of freedom, outcome-determining. VISION found the predicted label
+dropped exp-085's own instrument-reliability caveat. Red Team's Phase-2
+audit (PROCEED-WITH-MANDATORY-FIXES, 6 items, zero overridden) actually
+ran MATERIALS' own proposed flip-check: a 3,000-trial sample found the
+bug fires at 6.70% inside the quiet variant's own construction.
+
+**Phase 4: every frozen prediction reproduced exactly.** The R11 fix,
+sanity-verified at all three sites (the interior-optimum path bit-exact
+reproduces the committed `P*=4.6113°` citation; a known all-boundary
+sub-window now correctly returns the widest stage, flagged). Method C
+re-score: 6/37 boundary-pinned, `frac_recovered=0.5676`, `NOT STABLY
+PERIODIC`; three pre-registered Spearman stride phases, phase-dependent
+significance. The full-scale 60,001-call null-calibration re-run proved
+impractical for one shift (~2.7hr estimated, disclosed); a bounded N=3000
+re-run's naive before/after comparison was recognized mid-cycle as an
+invalid matched test (sample size differs) and corrected with a proper
+same-N/seed old-buggy-vs-corrected comparison: bit-identical result, a
+cleaner answer than predicted.
+
+**Phase 5 -- six blind reviews, unanimous PARTIAL, three new findings, no
+overlap with Phase 2.** PHOTONICS found the "recovered" set is itself
+amplitude-heterogeneous and traced the model to source: no shadow-
+boundary/UTD correction anywhere in the chain. MATERIALS traced the
+mechanism: of 201 boundary-pinned trials, only 10 differ from the fix at
+all. EM confirmed the REFUTE-driving statistic is untouched by the bug
+and passivity bookkeeping undisturbed. THERMODYNAMICS confirmed the
+match is bit-identical, not merely "4 decimal places" as understated.
+QUANTUM caught the single-seed gap and closed it with an 8-seed
+replication (R12 adopted). VISION caught a Learned-section scope erosion
+before it reached LOGBOOK.
+
+**Red Team's Phase-5 final audit**: independently re-confirmed all six
+findings and added a seventh -- a promised Method-A re-fit never
+executed, proven a mathematical no-op by construction. Checkpoint
+criterion 2 N/A; criterion 4 does not fire, conditioned on the 4-item
+Tier-0 docket, which landed. Combined Verdict: PARTIAL. Reconciled
+Iteration-64 queue: a grazing-incidence model-validity check
+(near-unanimous #1), R12 into standard practice, the still-queued
+full-scale null-calibration run, the energy-interception tripwire, the
+x-wall leg (11 cycles deferred). Full record:
+`experiments/086-t28-free-period-boundary-fix-rescore/`, LOGBOOK.md
+Iteration 63, PLAN.md Iteration-64 queue.
+
 ## 2026-08-28 (panel shift) — Iteration 62 complete (exp-085): a
 wide/dense re-evaluation of T28's leg (a) model finds both global
 instruments collapse cleanly to noise-scale, and the local instrument's
