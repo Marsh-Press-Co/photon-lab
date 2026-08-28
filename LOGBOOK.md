@@ -407,6 +407,66 @@ top. Protocol: PANEL.md.*
   phase5_review_quantum.md`, `phase5_supplementary_multiseed_check.json`,
   `phase5_redteam_audit.md` §1.7/§3 item 2/§7 Tier 1 item 2, LOGBOOK.md
   Iteration 63.
+- **R13 — a ratio classifier whose denominator is built from a quantity
+  independently known (or knowable, zero-FDTD, from already-committed
+  data) to have real zero-crossings must be floor-gated on that
+  quantity's own absolute or amplitude-normalized magnitude — not merely
+  on the numerator's own measurement-noise floor — before a decade/
+  threshold classification built on it is trusted at any single sampled
+  point (not a ruled-out idea; a standing house-discipline rule, adopted
+  Iteration 64, a genuinely new failure mode distinct from the R5/R10
+  look-elsewhere/null-under-noise lineage: R5/R10 concern whether a
+  fitted period, phase, or match is statistically distinguishable from
+  noise; this concerns whether a pointwise ratio between two
+  independently-sourced curves is well-defined at all near a point where
+  one curve is known to pass through zero — a problem that exists even at
+  zero measurement noise, given only that the reference curve is
+  genuinely oscillatory).** exp-087's own pre-registered PRIMARY
+  classification (`ratio_k(θ)=frac_p_abs(θ)/frac_contrast(θ)`,
+  ENERGY-DECOUPLED/CONSISTENT/ENERGY-DOMINANT/MIXED/DEGENERATE) cleared
+  its own noise-floor gate (guarding only the numerator, `p_abs_w`'s own
+  `box_dev`-scaled uncertainty) at all 3 sampled angles, including
+  `θ=38.6°` — a well-powered, non-degenerate measurement by that gate's
+  own standard, margin 4.49× over the floor. But `frac_contrast(θ)`'s own
+  denominator, `delta_scene(θ)` (exp-083's own independently-established,
+  `p=0.0`-null-controlled, genuinely oscillatory confound curve, period
+  ≈2.84–2.95°), crosses zero at `θ₀≈38.590°` — independently re-derived
+  twice over (QUANTUM's Phase-5 review; Red Team's Phase-5 final audit)
+  by linear interpolation between the two flanking exp-083 dense-grid
+  points (`38.4°→+8.083×10⁻⁴, 38.6°→−4.151×10⁻⁵`) — placing the sampled
+  angle `38.6°` a mere `≈0.01°` from the true zero and within `≈0.053°`
+  of the point where `ratio_k` itself crosses the classifier's own
+  `RATIO_HIGH=10` decade boundary, a quarter of this cycle's own `0.2°`
+  grid step. `frac_p_abs(38.6°)` itself showed no compensating anomaly —
+  it read 7.4% BELOW its own smooth interpolated trend — ruling out a
+  genuine numerator-side spike coinciding by chance with the node. The
+  `ratio_k=53.99` reading that alone drove this cycle's ENERGY-DOMINANT
+  classification (under the pre-registered "any resolved angle over
+  `RATIO_HIGH`" veto priority) is, on the balance of this quantitative
+  evidence, better explained as a mathematically near-inevitable
+  consequence of sampling within a quarter-grid-step of a known
+  denominator zero than as new physics — disclosed, not adopted, by
+  NOTES.md itself, and independently confirmed sufficient by three
+  separate seats (PHOTONICS, QUANTUM, THERMODYNAMICS) plus Red Team's own
+  final audit. **Rule: before a decade/threshold classification is built
+  on a ratio whose denominator derives from a quantity with known or
+  knowable real zero-crossings, the pipeline must apply a floor gate on
+  that denominator's own absolute or amplitude-normalized size (a
+  house-style convention, disclosed as such) — an angle failing this gate
+  is reported as its own outcome (e.g. `UNRESOLVED-BY-CONSTRUCTION`/
+  `NODE-UNRESOLVABLE`), excluded from classification, never silently
+  scored alongside angles that cleared it.** A cycle that ships a
+  ratio-classifier decade/threshold verdict built on a real-zero-crossing-
+  capable denominator without this floor gate, when the denominator's own
+  zero-crossing later proves outcome-determining, fires Checkpoint
+  criterion 4 automatically, no further deliberation — matching R6–R12's
+  own "known, named, ignored" standard, once this rule's text has been
+  logged. **Does not fire on its own founding instance** (exp-087) —
+  matching R5/R6/R9/R10/R11/R12's own precedent that a rule's founding/
+  consolidating cycle establishes the standard rather than retroactively
+  violating it. Full record: `experiments/087-t28-energy-interception-
+  poynting-check/phase5_review_quantum.md` §1–§5,
+  `phase5_redteam_audit.md` §2/§8, LOGBOOK.md Iteration 64.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -4305,6 +4365,149 @@ downgrade, now house discipline going forward. Full record:
   `phase4_prior_citation_audit.py` + results, six Phase-5 blind reviews,
   `phase5_redteam_audit.md`, `phase5_supplementary_multiseed_check.json`,
   `phase5_mechanism_trace_10of201.json`, `NOTES.md`.
+
+  **Iteration 64 (exp-087, 2026-08-28) — the joint EM/THERMO
+  energy-interception cross-check, measured for real at last: a genuine,
+  purpose-built, article-loaded Poynting-box FDTD measurement discharges
+  the Iteration-63 forward tripwire (fifth consecutive deferral would have
+  fired Checkpoint criterion 4 automatically) and FALSIFIES its own
+  pre-registered ENERGY-DECOUPLED hypothesis.** THERMODYNAMICS led
+  (rotation), co-owner of the cross-check named jointly with
+  ELECTROMAGNETISM at Iteration 59. Route (a) chosen over route (b)
+  (retiring the deferral framing): applied `lab/sections.py`'s
+  already-stage-8-gated Poynting-box ledger (`widths()`) — never before
+  run on T28's article-loaded `PAIR_PAD` scene — to the already-built,
+  already-validated flagship-absorber geometry (exp-082/083), at a
+  disclosed, non-uniformly-spaced 3-angle subset ({36.0°,38.6°,41.8°})
+  chosen to break a uniform-spacing aliasing risk against `P*=2.9474°`
+  Phase 2 caught in the original proposal. `phase1_proposal.md` committed
+  and pushed strictly before any Phase-4 code existed.
+
+  **Phase 2 — five blind critiques, unanimous support-with-changes, zero
+  overlap.** EM found the missing `xi_ext` extinction-routes-agreement
+  gate (never checked for `graded_black_shell` at any angle, nor any
+  absorbing object obliquely, anywhere in the trust suite). PHOTONICS
+  found the original uniform 3.0° angle spacing sat within 1.8% of exact
+  aliasing against `P*=2.9474°` — independently strengthened by Red
+  Team's Phase-2 audit, which found the "fixed REF location" rebuttal
+  fails (the fixed-location/swept-angle idiom is exactly how T28's own
+  periodicity was first discovered, not immune to it). QUANTUM found a
+  vacuous-classification gap at 0/1 resolved angles. MATERIALS found two
+  provisional inputs (ASSUMED silicon constants + an unvalidated
+  measurement) compounding into one "falsifiable" NETD verdict. VISION
+  found idealization 10 was the one place constraint 3 is named
+  affirmatively — a linguistic seam that had already produced two prior
+  scope-erosion incidents on this sub-thread. Red Team's Phase-2 audit
+  (PROCEED-WITH-MANDATORY-FIXES, 10 items, zero overridden) independently
+  re-confirmed all five critiques exactly and added a sixth finding of its
+  own (settling of the new `widths()`-derived channel unverified, R3's own
+  meta-rule). Director adopted all 10 in full.
+
+  **Phase 4: a real bug found and fixed before any classification was
+  trusted.** The first run produced `sigma_abs<0` at every cell —
+  `sections.widths()`'s `i_inc` is a signed +x-flux, and T28's `PAIR_PAD`
+  geometry propagates in -x (`src_x>obj_x>plane_x`). Fixed with a
+  caller-side wrapper (zero `lab/` diff), confirmed sound by two
+  independent Phase-5 re-derivations from `_face_flux`/`_cross_flux`'s own
+  coordinate-invariance (EM, Red Team). All Tier-0 gates PASS: vacuum
+  footprint, bit-exact reproduction, `xi_ext≤0.00048` (comfortably inside
+  `≤0.12` — the never-before-tested combination holds cleanly), synthetic
+  classifier recovery, non-negativity. **PRIMARY result: FALSIFIED.**
+  `ratio_k`={2.64, 53.99, 5.71} at θ={36.0,38.6,41.8}° classifies
+  ENERGY-DOMINANT (any angle >10 vetoes), not the predicted
+  ENERGY-DECOUPLED. `θ=38.6°` coincides almost exactly with `delta_scene`'s
+  own zero-crossing (exp-083's committed data) — a disclosed, quantified
+  candidate denominator artifact — but even fully crediting that
+  explanation, the other two angles both read CONSISTENT (`ratio_k`=2.64,
+  5.71), not DECOUPLED: a genuine, non-artifactual falsification. P8
+  (NETD) confirmed UNDETECTABLE at every cell, 374×–442× margin.
+
+  **Phase 5 — six blind reviews (PHOTONICS, MATERIALS, EM, QUANTUM,
+  VISION, THERMODYNAMICS), unanimous PARTIAL/CONCUR, zero overlap.**
+  PHOTONICS quantitatively closed the θ=38.6° question: substituting a
+  neighbor-interpolated `frac_contrast` gives `ratio_k≈3.99`, matching the
+  other two CONSISTENT angles with nothing left over to explain — the
+  artifact explanation is quantitatively sufficient. MATERIALS found no
+  realizability content but an independent free confirmation:
+  `ratio_abs_ext`=0.5128–0.5138 across all 6 cells, within 0.55–0.75% of
+  T9's established broadside anchor (0.51) — the first-ever confirmation
+  this generalizes to oblique incidence. EM confirmed the finding is
+  genuine (not an artifact of the direction-correction fix, independently
+  re-verified from first principles) and caught a real historical-accuracy
+  error: `run.py`'s "first-ever `src_x>obj_x`" framing is FALSE —
+  `experiments/024` (Iteration 2) has the identical geometry and already
+  defensively wraps `abs()` around the same quantities, unrecognized for
+  62 iterations. QUANTUM found the θ=38.6° reading exposes a genuinely new
+  structural failure mode: `ratio_k`'s denominator has a real
+  zero-crossing at `θ₀≈38.590°`, an algebraic (not statistical) instability
+  distinct from R5/R10. VISION caught a THIRD instance of the
+  disclaimer-erosion shape (NETD/constraint-3 language present in
+  `results.json` but not carried inline at both NOTES.md prose
+  restatements) plus a vanished T9-comparison and a false "reproduced
+  bit-exact this cycle" citation that survived five blind Phase-2
+  critiques and Red Team's own Phase-2 audit. THERMODYNAMICS confirmed the
+  tripwire's genuine discharge and closed a swing-specific NETD gap nobody
+  else checked.
+
+  **Red Team's Phase-5 final audit**: independently re-confirmed every
+  Phase-5 finding from source (including re-deriving QUANTUM's zero-
+  crossing arithmetic to 4 significant figures and confirming EM's
+  historical-accuracy claim by reading exp-024's own code directly) and
+  ruled: the tripwire is discharged, letter and intent — a falsified
+  prediction from a genuinely gated instrument is MORE credible evidence
+  of honest discharge than a confirming one would be (a cycle that predicts
+  X, builds a real instrument with five HALT points, and reports NOT-X
+  against its own leading hypothesis is hard to fake). **Checkpoint
+  criterion 2: N/A**, matching every T28 desk/instrument cycle since
+  exp-069. **Checkpoint criterion 4: does NOT fire** on any of five
+  matters (the corrected historical claim; the third disclaimer-erosion
+  instance, closed same-shift with a new forward tripwire — a fourth
+  instance fires automatically; the vanished T9-comparison and false
+  citation, logged as reinforcing R4, not a new rule; the inverted
+  `back_frac`/`fwd_frac` labels in `sections.py`, flagged forward,
+  non-blocking; the θ=38.6° denominator-fragility finding) — all
+  non-load-bearing, all caught blind, same cycle, before this entry.
+  **New standing rule R13 adopted** (full text: LOGBOOK's RULED OUT
+  registry) — a ratio classifier with a real-zero-crossing-capable
+  denominator must be floor-gated before a single-point decade
+  classification is trusted; does not fire on its own founding instance.
+  All Tier-0 same-shift fixes (historical correction, disclaimer
+  inline-carry, T9-comparison restoration, correction addendum to
+  `phase1_proposal.md`, `back_frac`/`fwd_frac` disclosure) applied before
+  this LOGBOOK entry.
+
+  **Combined Verdict: PARTIAL.** A materially new, robust finding updates
+  this sub-thread's own ten-plus-cycle phase/interference-only prior:
+  bulk-integrated absorbed power and localized Weber contrast are, at
+  minimum, comparable-order-of-magnitude coupled at this bench geometry,
+  not decoupled as the corroborative default assumption had it. Not
+  RULED OUT (no mechanism class foreclosed) and not PROMISING (no
+  constraint-3 ledger progress claimed, correctly, by this cycle's own
+  scope). Reconciled Iteration-65 ranking (Red Team's Phase-5 final audit,
+  4 tiers — full detail `phase5_redteam_audit.md`): **Tier 1, cheap FDTD,
+  near-unanimous** — (1) the decisive 8-call bracketing follow-up at
+  θ=38.4°/38.8° (QUANTUM) — cheapest, fastest, most decisive resolution of
+  the node-artifact question; (2) extend the channel to the full/denser
+  31-point window, scoring `σ_abs(C40,θ)`/`σ_abs(G40,θ)` individually
+  (MATERIALS' falsifiable "passive transducer, not resonant source" test);
+  (3) apply R13's new floor gate to this cycle's own data, zero new FDTD.
+  **Tier 2** — institutionalize the extinction-routes-agreement identity
+  for `graded_black_shell` obliquely as a permanent stage-8 row; extend to
+  `PAIR_ABSORB40`/`C80−C40` and 450/750nm; extend to the near-null σ(I)
+  article; audit other T28 ratio constructions for R13's hazard. **Tier 3,
+  standing, unaffected** — PHOTONICS' grazing-incidence validity check
+  (still near-unanimous #1 on the whole board); the x-wall wavelength-
+  generality leg (now TWELVE consecutive cycles deferred, 076–087, the
+  single oldest board item); the still-queued full-scale null-calibration
+  re-run; R12-into-standard-practice; leg-(b) work; QUANTUM's
+  lossless-PEC-only-disk control; hardening `sections.py::widths()` to
+  normalize by `abs(i_inc)` internally (now TWO independent instances,
+  exp-024 and exp-087); the ritualization governance question (Iteration
+  61), still not resolved. Full record: `experiments/087-t28-energy-
+  interception-poynting-check/` — `phase1_proposal.md` (+ correction
+  addendum), five Phase-2 blind critiques, `phase2_redteam_audit.md`,
+  `phase3_synthesis.md`, `run.py`/`results.json`/`run_output.txt`, six
+  Phase-5 blind reviews, `phase5_redteam_audit.md`, `NOTES.md`.
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
