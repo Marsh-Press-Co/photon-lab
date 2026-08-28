@@ -204,3 +204,94 @@ trust-suite implication, no realizability claim (MATERIALS' seat, not
 engaged this cycle — this thread carries zero realizability content by
 construction, matching exp-083's own standing framing rule for the whole
 T28 empty-scene/geometry-fact class).
+
+### Phase 1 result (self-scored)
+
+Executed exactly as pre-registered above: `phase1_derivation.py`, output
+captured verbatim in `phase1_output.txt`, every number below read from
+`derivation_results.json` (R4 — never hand-typed). Zero FDTD calls, 57.3 s
+wall time.
+
+**LEG (a) — source aperture's own two tapered edges, vs `P_edge_A`.**
+The exact (non-paraxial) Huygens–Fresnel sum over C40's real geometry is
+genuinely θ-dependent (`ptp=2.02×10⁻²`, not flat), and its free-period fit
+(staged widening, settled at the `narrow[1,4]°` window — an interior
+optimum, no widening needed) gives:
+
+- `P_model_a = 2.5338°`, `R² = 0.3697`
+- `rel_dev(P_model_a, P_edge_A=2.8421°) = 0.1085`
+- **Nominal verdict (pre-registered bands): SUPPORT** (`R²≥0.30` AND
+  `rel_dev≤0.20`, with margin — 0.1085 clears the 0.20 bar by nearly 2×).
+- **R5 specificity control**: `5/60 = 8.3%` of a dense `[1°,15°]` candidate
+  grid also clear the SUPPORT band at this fixed `(P_model_a, R²_a)` — well
+  short of my own pre-registered "comparable to the ~20% width the band
+  allows" downgrade trigger. **No downgrade. FINAL VERDICT: SUPPORT.**
+  This is meaningfully more specific than exp-083's own QUANTUM phase-shift
+  finding (99.3% of candidates cleared there) — a genuinely more
+  informative match, not merely another instance of R5's usual warning.
+- **Structural corollary, checked directly (not merely asserted)**:
+  `max|C_model(C80) − C_model(C40)| = 0.0` exactly — this ABSORB/PAD-
+  independent mechanism predicts a bit-identical curve across the
+  congruent series, confirming it can explain a component present
+  identically in each raw config curve (matching exp-070's own
+  individual-config finding), but structurally **cannot**, by itself,
+  explain the real, non-zero `C80(θ)−C40(θ)` difference FDTD actually
+  shows. Both readings are on the table, exactly as pre-registered — this
+  result does not by itself decide between them.
+
+**ANCHOR 1 (classical single straight-edge Fresnel diffraction) —
+PASSED, with an informative twist.** The discrete exact-Green's-function
+sum (independent of every `CONFIGS` number) disagrees with the classical
+closed-form Hecht/Born–Wolf single-edge formula by up to
+`max|diff| = 9.25×10⁻²` across `v∈[−3,3]`. Diagnosed, not left as a red
+flag: substituting the SAME discrete sum's own deliberately-paraxial
+version (quadratic-phase, constant-amplitude — i.e. reproducing the
+classical formula's own approximation) cuts the residual to
+`3.29×10⁻³` — nearly two orders of magnitude smaller, at
+near-discretization precision. **This validates the underlying machinery
+directly** and shows the larger exact-vs-classical gap is real,
+disclosed non-paraxial physics (this file's exact `hypot`-distance,
+non-constant-amplitude treatment, used everywhere else in this file),
+not a bug — itself a first quantified measure of how far this bench's own
+near-field geometry departs from the paraxial approximation.
+
+**LEG (b) — article's own two rim edges, vs `P*` — verdict WITHHELD,
+per this file's own pre-registered R4 gate.** Raw numbers, reported for
+transparency only:
+
+- `P_model_b = 2.1353°`, `R² = 0.1670`, `rel_dev(P_model_b, P*=2.9474°)
+  = 0.2755` — nominal classification REFUTE (`R²<0.30`).
+- **ANCHOR 2 (composition-of-propagators identity) FAILS, confirmed not
+  a discretization artifact.** With the disk mask disabled
+  (`R_OUT_test=0`), the two-stage calculation should reproduce leg (a)'s
+  own direct one-stage curve (same total distance, `d1+d2=223`) by an
+  exact identity of the free-space propagator. It does not:
+  `max|diff| = 1.81×10⁻²` (comparable to the curve's own full
+  `ptp=2.02×10⁻²`), `max relative pointwise deviation ≈ 2445%`. A
+  dedicated convergence check — re-running at 1×/2×/4×/8× the native
+  intermediate-surface sampling density, with an explicit quadrature
+  weight — shows the mismatch is **stable** (ratio range
+  `[2.8943, 2.8950]` across all four resolutions, `<0.03%` drift): this
+  rules out under-resolution as the cause. The gap is a real, systematic,
+  θ-dependent shortfall of the two-stage "bare Huygens secondary source"
+  composition used here (most likely a missing Rayleigh–Sommerfeld-style
+  boundary treatment at the intermediate re-radiating surface — a known
+  subtlety of naive multi-screen Huygens propagation, distinct from
+  single-screen Kirchhoff/RS diffraction, which is what leg (a) and
+  Anchor 1 both correctly validate). **Per this file's own pre-registered
+  R4 discipline, leg (b)'s REFUTE is NOT adopted as a trustworthy result
+  this cycle — the instrument computing it failed its own anchor.** The
+  R5 specificity control (`0/60` targets clear, moot since `R²_b<0.30`
+  already fails the floor for any target) changes nothing here.
+
+**Honest overall self-score**: **LEG (a) — SUPPORT**, holding up under
+its own specificity control, with a genuine, correctly-diagnosed,
+pre-registered structural ambiguity (config-shared component vs. the
+real `C80−C40` difference) left explicitly open, not resolved by this
+result. **LEG (b) — NO VERDICT (instrument-validation failure)**, not
+REFUTE — the two-stage propagation needs a corrected kernel (a proper
+Rayleigh–Sommerfeld normalization, or a genuinely single-integral
+double-diffraction treatment instead of a two-stage composition) before
+its comparison to `P*` can be trusted. This is not the clean two-target
+result pre-registered; it is reported exactly as it came out, including
+where the secondary comparison's own machinery did not pass its own bar.

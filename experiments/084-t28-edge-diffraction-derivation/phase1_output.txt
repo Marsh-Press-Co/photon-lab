@@ -1,0 +1,90 @@
+==============================================================================
+exp-084 -- source-aperture / article-rim Fresnel EDGE-DIFFRACTION
+derivation (zero FDTD, pure Python desk calculation)
+==============================================================================
+
+[0] REFERENCE PERIODS (read from committed JSON, never hand-typed)
+    P_edge_A     (empty-scene target, PRIMARY)   = 2.8421052632 deg
+    P_edge_B     (already-refuted far-field fmla) = 1.9607950099 deg
+    P_continuity (ruled-out echo-class period)    = 4.6112897463 deg
+    P*           (article-rim target, SECONDARY)  = 2.9473684211 deg
+
+[1] LEG (a) -- source aperture's own two tapered edges
+    exact (non-paraxial) Huygens-Fresnel sum, C40 geometry,
+    A=752, TAPER=40 (raised-cosine), D_SP=223, lambda=20 cells
+    C_model_a(theta) over the 31-pt dense window: ptp=2.021904e-02  mean=-1.362173e-03  ratio=14.8432
+    -> genuinely theta-dependent (not flat): True
+    [leg_a]  narrow[1,4]: P*=   2.5338deg  R^2=0.3697  [interior optimum]
+    free-period fit (staged widening): P_model_a=2.5338 deg  R^2=0.3697  window=narrow[1,4]
+    rel_dev vs P_edge_A = 0.1085   -> SUPPORT
+
+    Structural corollary (pre-registered): max|C_model(C80)-C model(C40)| = 0.000e+00
+    (mechanism is ABSORB/PAD-independent by construction -- this should be ~0)
+
+[2] ANCHOR 1 (R4 self-discipline) -- classical single straight-edge Fresnel diffraction
+    discrete exact-Green's-function Huygens sum (untapered, normal incidence,
+    plain semi-infinite aperture) vs. the closed-form Hecht/Born&Wolf formula,
+    scipy.special.fresnel(v) -- independent of every CONFIGS number in this file.
+      v= -3.0  numeric=(+0.04091+0.06511j)  classical=(-0.05102+0.05470j)  |diff|=9.25e-02
+      v= -2.0  numeric=(+0.09349+0.04961j)  classical=(+0.08417+0.07242j)  |diff|=2.46e-02
+      v= -1.0  numeric=(-0.09762+0.18531j)  classical=(-0.10908+0.17082j)  |diff|=1.85e-02
+      v= -0.5  numeric=(+0.23088+0.21323j)  classical=(+0.22146+0.21381j)  |diff|=9.44e-03
+      v= +0.0  numeric=(+0.50018-0.00028j)  classical=(+0.50000+0.00000j)  |diff|=3.34e-04
+      v= +0.5  numeric=(+0.76969-0.21362j)  classical=(+0.77854-0.21381j)  |diff|=8.85e-03
+      v= +1.0  numeric=(+1.09825-0.18495j)  classical=(+1.10908-0.17082j)  |diff|=1.78e-02
+      v= +2.0  numeric=(+0.90689-0.05008j)  classical=(+0.91583-0.07242j)  |diff|=2.41e-02
+      v= +3.0  numeric=(+0.95958-0.06548j)  classical=(+1.05102-0.05470j)  |diff|=9.21e-02
+    max|numeric(EXACT) - classical| over all v = 9.251e-02
+    max|numeric(PARAXIAL-substitute) - classical| over all v = 3.291e-03
+    -> the paraxial substitute (same discrete sum, r linearized to quadratic order,
+       amplitude held constant -- i.e. deliberately reproducing the classical formula's
+       OWN approximation) matches to near-discretization precision, confirming the
+       machinery itself is correct; the larger EXACT-vs-classical residual above is
+       real, disclosed non-paraxial physics (this file's own exact hypot(L,dy)
+       distance/amplitude, used everywhere else in this file), not a defect.
+
+[3] LEG (b) -- article's own two rim edges (secondary comparison)
+    two-stage Huygens-Fresnel: source->article (d1=130 cells) -> opaque-strip
+    mask (|y-obj_y|<=R_OUT=78) -> article->plane (d2=LEVER=93 cells)
+    C_model_b(theta): ptp=8.209592e-02  mean=-5.570213e-01  ratio=0.1474
+    [leg_b]  narrow[1,4]: P*=   2.1353deg  R^2=0.1670  [interior optimum]
+    free-period fit (staged widening): P_model_b=2.1353 deg  R^2=0.1670  window=narrow[1,4]
+    rel_dev vs P* = 0.2755   -> REFUTE (no periodic structure recovered)
+
+[3b] ANCHOR 2 (R4 self-discipline, geometry-specific) -- composition-of-propagators identity
+     mask disabled (R_OUT_test=0): two-stage (d1+d2=223) should reproduce
+     leg (a)'s own direct one-stage C40 curve (same total distance) to within
+     discretization/finite-aperture error.
+     max|C_twostage(R_OUT=0) - C_onestage| = 1.807e-02  (vs curve's own ptp=2.022e-02)
+     max relative pointwise deviation = 2445.3327%
+
+     Convergence diagnostic (is this discretization, or a real gap?): re-run at theta=39deg
+     with the intermediate/source surface resolved 1x/2x/4x/8x finer than the native
+     1-cell grid (explicit dy quadrature weight) -- a discretization artifact should
+     shrink toward 1.0; a real methodological gap should not move.
+       oversample=1x  c_direct=+0.006810  c_twostage=+0.019714  ratio=2.8950
+       oversample=2x  c_direct=+0.006810  c_twostage=+0.019712  ratio=2.8947
+       oversample=4x  c_direct=+0.006810  c_twostage=+0.019710  ratio=2.8945
+       oversample=8x  c_direct=+0.006810  c_twostage=+0.019709  ratio=2.8943
+     ratio range over 1x-8x = [2.8943, 2.8950]  converged(<5% drift)=True
+     *** ANCHOR 2 FAILS *** -- the mismatch does NOT shrink with finer sampling
+     (confirmed above), so it is a real, stable gap in the two-stage bare-Huygens
+     composition method itself (most likely a missing/incorrect Rayleigh-Sommerfeld-
+     style boundary-condition treatment at the intermediate re-radiating surface --
+     naive Huygens secondary sources are known to need care beyond a single screen),
+     NOT a bug in leg (a)'s own already-validated machinery. Per this file's own R4
+     pre-commitment, LEG (b)'s numeric result below is reported for transparency
+     ONLY and is NOT treated as a trustworthy SUPPORT/INCONCLUSIVE/REFUTE this cycle.
+
+[4] R5 SPECIFICITY / LOOK-ELSEWHERE CONTROL (pre-registered, mandatory before any SUPPORT counts as evidence)
+    leg (a): P_model=2.5338 R^2=0.3697  -> 5/60 candidate targets in [1,15]deg also clear the SUPPORT band (8.3%)
+    leg (b): P_model=2.1353 R^2=0.1670  -> 0/60 candidate targets in [1,15]deg also clear the SUPPORT band (0.0%)
+
+[5] SUMMARY
+    LEG (a) vs P_edge_A=2.8421: P_model_a=2.5338  R^2=0.3697  rel_dev=0.1085
+             nominal VERDICT=SUPPORT  ->  FINAL (post-R5) VERDICT=SUPPORT
+    LEG (b) vs P*      =2.9474: P_model_b=2.1353  R^2=0.1670  rel_dev=0.2755
+             nominal VERDICT=REFUTE (no periodic structure recovered)  ->  FINAL VERDICT=REFUTE (no periodic structure recovered)  [UNTRUSTED -- ANCHOR 2 FAILED, see Sec 3b]
+    elapsed = 57.31 s
+
+    results written to /home/user/photon-lab/experiments/084-t28-edge-diffraction-derivation/derivation_results.json
