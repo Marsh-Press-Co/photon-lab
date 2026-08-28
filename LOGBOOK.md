@@ -329,6 +329,51 @@ top. Protocol: PANEL.md.*
   derivation/phase2_redteam_audit.md` §3, `phase3_synthesis.md` ("New
   standing rule — R10"), `phase5_review_quantum.md` §3–§4,
   `phase5_redteam_audit.md` §6, LOGBOOK.md Iteration 61.
+- **R11 — a boundary-pinned (non-convergent) result from `free_period_
+  with_widening`'s staged widening search must be surfaced as such, never
+  silently reported as a resolved period (not a ruled-out idea; a standing
+  house-discipline rule, adopted Iteration 62, on the R6–R10 “known, named,
+  ignored” escalation model — this is the first firing-precondition rule
+  targeting the T28 sub-thread’s own shared period-search MACHINERY rather
+  than a substantive mechanism claim).** exp-085's own `phase4_derivation.py`
+  applied Fix 3 (`center_deg=θc`) correctly to all 37 Method C sub-windows,
+  but two independent blind Phase-5 seats (MATERIALS, PHOTONICS)
+  independently found that `free_period_with_widening`
+  (`experiments/078-t28-y-wall-echo-prescreen/y_wall_prescreen.py`, its
+  origin in `experiments/077-.../pad_round_trip_model.py`, reused unmodified
+  across ~15 T28 experiments since exp-077) silently returns the
+  **narrowest, worst-fitting** search stage's own value when EVERY widening
+  stage (`narrow[1,4]`, `wide[1,15]`, `widest[1,60]`) is boundary-pinned —
+  i.e. no interior optimum exists anywhere in `[1°,60°]` — rather than
+  flagging non-convergence. Red Team's Phase-5 final audit independently
+  confirmed this exactly (6/37 of exp-085's own Method C sub-windows report
+  a literal `P=4.0000°` boundary artifact; 15/37 in the broader
+  period-exceeds-window-width category) and quantified its consequence: a
+  corrected `frac_recovered` (excluding the 15 unresolvable sub-windows)
+  drops from `1.000` to `0.595`, failing the `≥0.80` gate
+  shared by every one of exp-085's own named positive classifications
+  — under a defensible accounting, **no STABLE/DRIFTING/STRONG-COHERENT-
+  CHIRP verdict is reachable at all** from the as-filed data. A bounded
+  historical scan found the defect fired twice before (exp-078, exp-079),
+  both inert (one self-evidently degenerate at `R²=0.0`; one
+  self-disclosed at the time via an explicitly printed `at_boundary` flag,
+  landing on the correct qualitative verdict regardless) — and confirmed
+  neither of T28's two currently-active headline citations (`P_edge_A=
+  2.8421°`, `P_model_a=2.5338°`) rests on a boundary-pinned call. **Rule:
+  any future call to `free_period_with_widening`/`_free_period_search` (or
+  any period-search machinery sharing this staged-widening idiom) must
+  apply the fix — when every stage is boundary-pinned, return the WIDEST
+  stage's own value with an explicit `converged=False`/
+  `no_interior_optimum=True` flag, surfaced through every caller, never the
+  narrowest stage silently — before any classification, spread, or trend
+  statistic built from its output is cited as evidence. A cycle that reuses
+  this machinery unfixed, and ships a classification that turns out to
+  depend on a silently-boundary-pinned value, no longer receives
+  first-time-discovery treatment and fires Checkpoint criterion 4
+  automatically, matching R6–R10's own “known, named, ignored” standard.**
+  Full record: `experiments/085-t28-leg-a-wide-window-period-pin/
+  phase5_review_materials.md`, `phase5_review_photonics.md` §0.3/§2,
+  `phase5_redteam_audit.md` §1.3–§1.5/§3/§6 item 1, LOGBOOK.md Iteration 62.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -3924,6 +3969,151 @@ downgrade, now house discipline going forward. Full record:
 `experiments/084-t28-edge-diffraction-derivation/phase3_synthesis.md`
 ("Checkpoint criterion 4"), `phase5_review_vision.md`,
 `phase5_redteam_audit.md` §5/§7/§8.
+
+  **Iteration 62 (exp-085, 2026-08-28) — MATERIALS led (rotation),
+  executing Iteration-61's own Tier-1 item 7: a zero-FDTD wide-window/
+  dense re-evaluation of leg (a)'s exact model (`edge_diffraction_c_
+  empty_corrected`), asking whether the narrow 6°/31-point window's own
+  INCONCLUSIVE period-match (`P_model_a=2.5338°, R²=0.3697`) reflects a
+  too-narrow sampling window or a genuinely non-stationary (chirped)
+  curve. Three instruments: Method A (existing period-search machinery on
+  a 13×-wider/10×-denser θ∈[2°,80°] grid, plus a mandatory exhaustive
+  circular-shift null), Method B (an independent Hann-tapered, zero-padded
+  FFT), Method C (37 sliding 6°-wide sub-windows, stated primary for the
+  periodicity-stability question). `phase1_proposal.md` committed and
+  pushed strictly before any code existed.
+
+  **Phase 2 — five blind critiques, unanimous support-with-changes,
+  converging 5-for-5 (not the 4-for-5 the task briefing itself
+  miscounted, caught by Red Team) on a single defect**: the proposal's own
+  §4 claimed R10's deterministic-curve clause exempts a noise-free curve
+  from the mandatory circular-shift null — a misreading; R10 only
+  reinterprets the null's result for such a curve, never waives it, and
+  was adopted using this exact function as its own worked example. EM
+  additionally found, and confirmed from source, that `free_period_with_
+  widening`'s hardcoded `center_deg=39.0` mislabels every one of Method
+  C's 37 sub-window fits by `cos(θc)/cos(39°)` (`1.28×` at `θc=5°` to
+  `0.29×` at `θc=77°`); QUANTUM and VISION independently constructed
+  concrete overlap/gap counterexamples showing §4(b)'s four outcome bands
+  are neither mutually exclusive nor exhaustive; PHOTONICS found Methods
+  A/B (both stationarity-assuming) cannot on their own distinguish "no
+  periodicity" from "genuine broadband chirp," leaving Method C as the
+  only real probe of the chirp hypothesis.
+
+  **Red Team's Phase-2 audit** (PROCEED-WITH-MANDATORY-FIXES, 7 items,
+  zero overridden) independently re-derived every claim from primitives —
+  confirming R10's misreading unanimous 5/5, the `center_deg` factor
+  arithmetic exactly, both MECE counterexamples exactly — and added two of
+  its own: an undisclosed FFT-leakage/windowing confound in Method B, and
+  a missing A/B-vs-C decision precedence rule.
+
+  **Phase 3** adopted all 7 fixes in full, zero overrides: mandatory
+  circular-shift null on the wide curve (interpreted per R10's own
+  deterministic-curve clause, never skipped) plus a 10/37 Method-C
+  sub-window null sample; `center_deg=θc` correction at each sub-window
+  call; a 4-band MECE-closed precedence order; a named STRONG COHERENT
+  CHIRP cell; a Hann-tapered FFT; Method C stated primary, A/B
+  corroborating-only. Frozen (`phase3_synthesis.md`) before
+  `phase4_derivation.py` existed.
+
+  **Phase 4** (a cached-Green's-function speed optimization, verified
+  bit-identical at 7 spot-check angles before use — the underlying formula
+  untouched): **Method A/B (global instruments) collapse cleanly to
+  noise-scale — the wide window's own single-tone fit finds nothing**
+  (`R²_wide=0.0128`, sitting at the 45.4th percentile of its own 3900-shift
+  circular-shift null; R5 specificity control clears 0/60 targets;
+  `P_fft`'s in-range peak is unsharp, `P2/P1=0.80`, and the FFT's true
+  global maximum, `P_fft_full=140.07°`, sits entirely outside the primary
+  range). **Method C nominally classified "STRONG COHERENT CHIRP"**
+  (`frac_recovered=1.000, spread=9.26, ρ=0.882, p=5.8×10⁻¹³`) but its own
+  Fix-2 reliability check fired (4/10 sampled sub-windows at circular-shift
+  pass rate ≥40%) — a gap in Phase 3's own frozen spec (Fix 2's downgrade
+  rule covered only a nominal STABLE outcome, never the new STRONG
+  COHERENT CHIRP cell Fix 5 added in the same document) disclosed plainly
+  in `NOTES.md` rather than silently patched.
+
+  **Phase 5 — six blind reviews, unanimous PARTIAL, converging on a
+  materially deeper defect than NOTES.md's own self-disclosed one.**
+  **MATERIALS and PHOTONICS, independently, found and confirmed from
+  source** that `free_period_with_widening` (shared machinery, in service
+  since exp-077, reused across ~15 T28 experiments) silently returns the
+  narrowest, worst-fitting search stage's own value when every widening
+  stage is boundary-pinned, rather than flagging non-convergence — hitting
+  15 of Method C's 37 sub-windows, concentrated at grazing incidence
+  (**new standing rule R11 adopted**; full text: RULED OUT registry,
+  above). **QUANTUM and VISION, independently, found** the 37 sub-windows
+  overlap 67% pairwise (invalidating `ρ`'s cited `p=5.8×10⁻¹³` as computed)
+  and that NOTES.md's own "genuinely bimodal" null-contamination reading
+  fails a formal binomial test (`p=0.754` against uniform ~50%
+  contamination). **EM** independently confirmed the `center_deg` fix was
+  complete and correct, gave a sound account of `P_fft_full=140.07°` as
+  sitting below the domain's own Fourier resolution floor, and proposed a
+  DRIFTING (not full STRONG COHERENT CHIRP) downgrade on the strength of a
+  new local-period-growth discriminant. **THERMODYNAMICS** independently
+  reproduced every headline figure and the run's own timing, no new
+  defects.
+
+  **Red Team's Phase-5 final audit** adjudicated rather than tallied:
+  recomputed `frac_recovered` under the corrected machinery and found it
+  drops from `1.000` to `0.595` — **failing the ≥0.80 gate shared by
+  every one of STABLE/DRIFTING/STRONG-COHERENT-CHIRP, so none is
+  reachable from the as-filed data**; showed EM's own growth discriminant
+  is built substantially on the same contaminated tail (the true
+  clean-region residual is ~2×, not the cited ~6×); confirmed QUANTUM's/
+  VISION's significance findings exactly; and found, combining PHOTONICS'
+  and VISION's own results, that even the "safe" near-normal-quarter
+  fallback reading is itself majority null-contaminated on the only direct
+  sampled evidence available (4 of 6 sampled near-normal sub-windows are
+  unreliable). A bounded scan of prior committed JSON (experiments 077–084)
+  found the defect fired twice historically (exp-078, exp-079), both
+  inert — no currently-cited T28 number (`P_edge_A`, `P_model_a`) rests on
+  a boundary-pinned call.
+
+  **Combined Verdict: PARTIAL**, unanimous across all six blind Phase-5
+  seats and the final audit — the audit's own corrected reading is sharper
+  than any individual seat's: **no defensible period-existence claim
+  currently survives at any resolved scale of this instrument, global or
+  local.** Reported, per Red Team's own explicit instruction, as **NOT
+  STABLY PERIODIC at this instrument's current reliability level** — not
+  "STRONG COHERENT CHIRP" as Phase 4 filed it. This does not foreclose
+  genuine near-field structure near the aperture's own near-normal region;
+  it establishes that this cycle's own (defective, under-null-tested)
+  instrument cannot yet certify it either way. **Checkpoint criterion 2 is
+  N/A** — reasoned explicitly (an instrument-quality finding, not a
+  phenomenon mechanism-class claim), matching every T28 desk cycle since
+  exp-069. **Checkpoint criterion 4 does NOT fire** — a close call,
+  correctly weighed against every firing precedent's own distinguishing
+  test (whether a defect enters a defended, committed record uncaught):
+  this defect was caught blind, independently, by two Phase-5 seats,
+  within the same cycle, before any LOGBOOK entry existed; no currently-
+  cited T28 number is corrupted; both historical firings were inert.
+  **Named binding forward as new standing rule R11**: a future cycle that
+  reuses the affected machinery without the fix, and ships a
+  classification depending on a silently-boundary-pinned value, no longer
+  receives first-time-discovery treatment and fires Checkpoint criterion 4
+  automatically. Reconciled Iteration-63 ranking (Red Team's Phase-5 final
+  audit §7): **(1)** fix `free_period_with_widening`'s all-stages-boundary
+  case (both files carrying the logic) and re-score Method C's
+  classification on the corrected machinery — precondition for every other
+  fix to mean anything; **(2)**, in the same batch, extend the
+  circular-shift null to all 37 sub-windows (confirmed cheap, ~30s) and
+  correct the Spearman significance for window overlap; **(3)** a cheap,
+  bounded audit of whether the defect silently affected any OTHER prior
+  T28 citation beyond the two (inert) instances found here; **(4)** the
+  joint EM/THERMO energy-interception cross-check, in full, on the next
+  scene-bearing T28 cycle — now three consecutive cycles deferred/exempt
+  (083/084/085); **(5)** PHOTONICS' domain-truncation test for leg (b)'s
+  Anchor 2 and/or EM's matrix-valued RS/Kirchhoff kernel rebuild; **(6)**
+  standing Tier-2/3 items carried forward unchanged (the x-wall
+  wavelength-generality leg, now TEN consecutive cycles deferred, 076–085;
+  the near-null σ(I) article follow-up; QUANTUM's lossless-PEC-only-disk
+  control; the ritualization governance question named at Iteration 61,
+  still not resolved). Full record: `experiments/085-t28-leg-a-wide-
+  window-period-pin/` — `phase1_proposal.md`, five Phase-2 blind
+  critiques, Phase-2 Red Team audit, `phase3_synthesis.md`,
+  `phase4_derivation.py`, `derivation_results.json`, `NOTES.md`, six
+  Phase-5 blind reviews, Phase-5 Red Team final audit.
+
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
