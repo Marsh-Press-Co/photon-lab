@@ -39,3 +39,164 @@ repeats exp-082's own spot-check exactly, no new pass/fail threshold.
 clean
 
 125 FDTD calls queued (2 configs x 31 angles x 2 legs = 124, + 1 settling-precondition call)
+  [  1/125] C40 theta=+36.00 article=False steps=2800 ( 80.5s)
+  [  2/125] C40 theta=+36.00 article=True steps=2800 ( 80.8s)
+  [  3/125] C40 theta=+36.20 article=False steps=2800 ( 80.9s)
+  [  4/125] C40 theta=+36.20 article=True steps=2800 ( 83.1s)
+  [  5/125] C40 theta=+36.40 article=False steps=2800 ( 57.7s)
+  [  6/125] C40 theta=+36.40 article=True steps=2800 ( 57.2s)
+  [  7/125] C40 theta=+36.60 article=False steps=2800 ( 55.7s)
+  [  8/125] C40 theta=+36.60 article=True steps=2800 ( 49.4s)
+  [  9/125] C40 theta=+36.80 article=False steps=2800 ( 47.3s)
+  [ 10/125] C40 theta=+36.80 article=True steps=2800 ( 52.6s)
+  [ 11/125] C40 theta=+37.00 article=False steps=2800 ( 52.4s)
+  [ 12/125] C40 theta=+37.00 article=True steps=2800 ( 58.4s)
+  [ 13/125] C40 theta=+37.20 article=False steps=2800 ( 49.7s)
+  [ 14/125] C40 theta=+37.20 article=True steps=2800 ( 52.5s)
+  [ 15/125] C40 theta=+37.40 article=False steps=2800 ( 52.3s)
+  [ 16/125] C40 theta=+37.40 article=True steps=2800 ( 53.5s)
+  [ 17/125] C40 theta=+37.60 article=False steps=2800 ( 54.8s)
+  [ 18/125] C40 theta=+37.60 article=True steps=2800 ( 50.0s)
+  [ 19/125] C40 theta=+37.80 article=False steps=2800 ( 50.9s)
+  [ 20/125] C40 theta=+37.80 article=True steps=2800 ( 51.7s)
+  [ 21/125] C40 theta=+38.00 article=False steps=2800 ( 50.1s)
+  [ 22/125] C40 theta=+38.00 article=True steps=2800 ( 53.6s)
+  [ 23/125] C40 theta=+38.20 article=False steps=2800 ( 51.7s)
+  [ 24/125] C40 theta=+38.20 article=True steps=2800 ( 54.4s)
+  [ 25/125] C40 theta=+38.40 article=False steps=2800 ( 52.1s)
+  [ 26/125] C40 theta=+38.40 article=True steps=2800 ( 51.7s)
+  [ 27/125] C40 theta=+38.60 article=False steps=2800 ( 51.5s)
+  [ 28/125] C40 theta=+38.60 article=True steps=2800 ( 53.3s)
+  [ 29/125] C40 theta=+38.80 article=False steps=2800 ( 52.1s)
+  [ 30/125] C40 theta=+38.80 article=True steps=2800 ( 52.7s)
+  [ 31/125] C40 theta=+39.00 article=False steps=2800 ( 52.0s)
+  [ 32/125] C40 theta=+39.00 article=True steps=2800 ( 48.9s)
+  [ 33/125] C40 theta=+39.20 article=False steps=2800 ( 46.1s)
+  [ 34/125] C40 theta=+39.20 article=True steps=2800 ( 45.9s)
+  [ 35/125] C40 theta=+39.40 article=False steps=2800 ( 50.3s)
+  [ 36/125] C40 theta=+39.40 article=True steps=2800 ( 50.5s)
+  [ 37/125] C40 theta=+39.60 article=False steps=2800 ( 46.5s)
+  [ 38/125] C40 theta=+39.60 article=True steps=2800 ( 45.5s)
+  [ 39/125] C40 theta=+39.80 article=False steps=2800 ( 54.6s)
+  [ 40/125] C40 theta=+39.80 article=True steps=2800 ( 51.4s)
+  [ 41/125] C40 theta=+40.00 article=False steps=2800 ( 50.5s)
+  [ 42/125] C40 theta=+40.00 article=True steps=2800 ( 47.7s)
+  [ 43/125] C40 theta=+40.20 article=False steps=2800 ( 49.8s)
+  [ 44/125] C40 theta=+40.20 article=True steps=2800 ( 55.1s)
+  [ 45/125] C40 theta=+40.40 article=False steps=2800 ( 56.1s)
+  [ 46/125] C40 theta=+40.40 article=True steps=2800 ( 49.7s)
+  [ 47/125] C40 theta=+40.60 article=False steps=2800 ( 49.4s)
+  [ 48/125] C40 theta=+40.60 article=True steps=2800 ( 54.0s)
+  [ 49/125] C40 theta=+40.80 article=False steps=2800 ( 46.7s)
+  [ 50/125] C40 theta=+40.80 article=True steps=2800 ( 47.5s)
+  [ 51/125] C40 theta=+41.00 article=False steps=2800 ( 51.0s)
+  [ 52/125] C40 theta=+41.00 article=True steps=2800 ( 50.4s)
+  [ 53/125] C40 theta=+41.20 article=False steps=2800 ( 50.4s)
+  [ 54/125] C40 theta=+41.20 article=True steps=2800 ( 49.1s)
+  [ 55/125] C40 theta=+41.40 article=False steps=2800 ( 51.2s)
+  [ 56/125] C40 theta=+41.40 article=True steps=2800 ( 50.7s)
+  [ 57/125] C40 theta=+41.60 article=False steps=2800 ( 45.4s)
+  [ 58/125] C40 theta=+41.60 article=True steps=2800 ( 48.5s)
+  [ 59/125] C40 theta=+41.80 article=False steps=2800 ( 49.3s)
+  [ 60/125] C40 theta=+41.80 article=True steps=2800 ( 51.3s)
+  [ 61/125] C40 theta=+42.00 article=False steps=2800 ( 49.8s)
+  [ 62/125] C40 theta=+42.00 article=True steps=2800 ( 49.4s)
+  [ 63/125] G40 theta=+36.00 article=False steps=2800 ( 62.5s)
+  [ 64/125] G40 theta=+36.00 article=True steps=2800 ( 59.4s)
+  [ 65/125] G40 theta=+36.20 article=False steps=2800 ( 62.2s)
+  [ 66/125] G40 theta=+36.20 article=True steps=2800 ( 67.2s)
+  [ 67/125] G40 theta=+36.40 article=False steps=2800 ( 63.9s)
+  [ 68/125] G40 theta=+36.40 article=True steps=2800 ( 60.1s)
+  [ 69/125] G40 theta=+36.60 article=False steps=2800 ( 64.5s)
+  [ 70/125] G40 theta=+36.60 article=True steps=2800 ( 64.2s)
+  [ 71/125] G40 theta=+36.80 article=False steps=2800 ( 62.7s)
+  [ 72/125] G40 theta=+36.80 article=True steps=2800 ( 65.0s)
+  [ 73/125] G40 theta=+37.00 article=False steps=2800 ( 66.5s)
+  [ 74/125] G40 theta=+37.00 article=True steps=2800 ( 60.7s)
+  [ 75/125] G40 theta=+37.20 article=False steps=2800 ( 64.0s)
+  [ 76/125] G40 theta=+37.20 article=True steps=2800 ( 64.8s)
+  [ 77/125] G40 theta=+37.40 article=False steps=2800 ( 69.1s)
+  [ 78/125] G40 theta=+37.40 article=True steps=2800 ( 62.4s)
+  [ 79/125] G40 theta=+37.60 article=False steps=2800 ( 71.5s)
+  [ 80/125] G40 theta=+37.60 article=True steps=2800 ( 60.9s)
+  [ 81/125] G40 theta=+37.80 article=False steps=2800 ( 65.4s)
+  [ 82/125] G40 theta=+37.80 article=True steps=2800 ( 67.0s)
+  [ 83/125] G40 theta=+38.00 article=False steps=2800 ( 63.1s)
+  [ 84/125] G40 theta=+38.00 article=True steps=2800 ( 62.9s)
+  [ 85/125] G40 theta=+38.20 article=False steps=2800 ( 62.9s)
+  [ 86/125] G40 theta=+38.20 article=True steps=2800 ( 68.7s)
+  [ 87/125] G40 theta=+38.40 article=False steps=2800 ( 62.8s)
+  [ 88/125] G40 theta=+38.40 article=True steps=2800 ( 59.7s)
+  [ 89/125] G40 theta=+38.60 article=False steps=2800 ( 64.1s)
+  [ 90/125] G40 theta=+38.60 article=True steps=2800 ( 65.7s)
+  [ 91/125] G40 theta=+38.80 article=False steps=2800 ( 65.4s)
+  [ 92/125] G40 theta=+38.80 article=True steps=2800 ( 61.8s)
+  [ 93/125] G40 theta=+39.00 article=False steps=2800 ( 60.6s)
+  [ 94/125] G40 theta=+39.00 article=True steps=2800 ( 70.1s)
+  [ 95/125] G40 theta=+39.20 article=False steps=2800 ( 62.5s)
+  [ 96/125] G40 theta=+39.20 article=True steps=2800 ( 66.1s)
+  [ 97/125] G40 theta=+39.40 article=False steps=2800 ( 62.0s)
+  [ 98/125] G40 theta=+39.40 article=True steps=2800 ( 65.3s)
+  [ 99/125] G40 theta=+39.60 article=False steps=2800 ( 57.2s)
+  [100/125] G40 theta=+39.60 article=True steps=2800 ( 65.8s)
+  [101/125] G40 theta=+39.80 article=False steps=2800 ( 69.3s)
+  [102/125] G40 theta=+39.80 article=True steps=2800 ( 63.6s)
+  [103/125] G40 theta=+40.00 article=False steps=2800 ( 60.5s)
+  [104/125] G40 theta=+40.00 article=True steps=2800 ( 64.0s)
+  [105/125] G40 theta=+40.20 article=False steps=2800 ( 63.5s)
+  [106/125] G40 theta=+40.20 article=True steps=2800 ( 64.6s)
+  [107/125] G40 theta=+40.40 article=False steps=2800 ( 62.1s)
+  [108/125] G40 theta=+40.40 article=True steps=2800 ( 63.3s)
+  [109/125] G40 theta=+40.60 article=False steps=2800 ( 66.7s)
+  [110/125] G40 theta=+40.60 article=True steps=2800 ( 64.9s)
+  [111/125] G40 theta=+40.80 article=False steps=2800 ( 61.8s)
+  [112/125] G40 theta=+40.80 article=True steps=2800 ( 62.7s)
+  [113/125] G40 theta=+41.00 article=False steps=2800 ( 66.5s)
+  [114/125] G40 theta=+41.00 article=True steps=2800 ( 61.1s)
+  [115/125] G40 theta=+41.20 article=False steps=2800 ( 67.4s)
+  [116/125] G40 theta=+41.20 article=True steps=2800 ( 62.9s)
+  [117/125] G40 theta=+41.40 article=False steps=2800 ( 67.0s)
+  [118/125] G40 theta=+41.40 article=True steps=2800 ( 64.8s)
+  [119/125] G40 theta=+41.60 article=False steps=2800 ( 63.5s)
+  [120/125] G40 theta=+41.60 article=True steps=2800 ( 63.4s)
+  [121/125] G40 theta=+41.80 article=False steps=2800 ( 66.0s)
+  [122/125] G40 theta=+41.80 article=True steps=2800 ( 61.7s)
+  [123/125] G40 theta=+42.00 article=False steps=2800 ( 63.6s)
+  [124/125] G40 theta=+42.00 article=True steps=2800 ( 61.2s)
+  [125/125] G40 theta=+39.00 article=True steps=1400 ( 28.1s)
+
+total wall time: 1829.5s
+
+[secondary: amplitude-ratio consistency check, n=31]
+  A_scene (ptp) = 3.811072e-03   A_empty (ptp) = 5.262019e-03
+  ratio = 0.7243   ratio_verdict = SURVIVES
+
+[reproduction precondition -- fresh 31-pt empty leg vs exp-076 committed]
+  max_dev = 0.000e+00  PASS(<1e-9) = True
+    [delta_scene]  narrow[1,4]: P*=  2.9474deg  R^2=0.8582  [interior optimum]
+
+[PRIMARY: three-branch period discriminator on delta_scene(theta), n=31]
+  P* = 2.9474deg   R2 = 0.8582
+  P_continuity=4.6113  P_edge_A=2.8421  P_edge_B=1.9608
+  BRANCH: B_ARTICLE_EDGE_DIFFRACTION  ({'rel_dev_edge_a': 0.03703703703703699, 'rel_dev_edge_b': 0.5031496949505206})
+    [delta_empty]  narrow[1,4]: P*=  4.0000deg  R^2=0.6824  [AT BOUNDARY -- widening]
+    [delta_empty]   wide[1,15]: P*=  4.6113deg  R^2=0.8165  [interior optimum]
+  [context] delta_empty free fit: P*=4.6113deg R2=0.8165
+
+[secondary: Pearson r(delta_scene,delta_empty) @ n=31, 200000-trial permutation]
+  r_obs = 0.3949   p_value = 0.02806
+
+[secondary] A_scene / C_thr = 0.7622  (C_thr=0.005)
+
+[settling precondition, disclosed not gating]
+  abs_dev = 5.452e-05  rel_dev = 0.0001
+    [DeltaE_obj_article_C40]  narrow[1,4]: P*=  3.0226deg  R^2=0.1977  [interior optimum]
+    [DeltaE_obj_article_G40]  narrow[1,4]: P*=  2.9098deg  R^2=0.2550  [interior optimum]
+    [DeltaDeltaE_obj_article_PAD]  narrow[1,4]: P*=  2.5865deg  R^2=0.4582  [interior optimum]
+
+[COMPANION: EM's field-difference decomposition (disclosed, complementary, not gating)]
+  DeltaE_obj_article_C40: P*=3.0226deg  R2=0.1977  branch=C_NEITHER_ESTABLISHED_FAMILY
+  DeltaE_obj_article_G40: P*=2.9098deg  R2=0.2550  branch=C_NEITHER_ESTABLISHED_FAMILY
+  DeltaDeltaE_obj_article_PAD (G40-C40): P*=2.5865deg  R2=0.4582  branch=B_ARTICLE_EDGE_DIFFRACTION
+
+wrote /home/user/photon-lab/experiments/083-t28-pad-article-full-power-retest/results.json
