@@ -272,6 +272,63 @@ top. Protocol: PANEL.md.*
   arguments to unit/dimensional commensurability specifically. Full
   record: `experiments/077-t28-pad-round-trip-echo-model/
   phase5_redteam_audit.md` §0.2, §2b, §4 item 6, LOGBOOK.md Iteration 54.
+- **R10 — a specificity-over-candidate-targets sweep is not a
+  substitute for an order-preserving null-under-noise test; circular-
+  shift-on-the-real-data is the mandatory default, and a non-circular-
+  shift surrogate may supplement but never replace it without its own
+  independent verification (not a ruled-out idea; a standing
+  house-discipline rule, adopted Iteration 61, generalizing Red Team's
+  own recommendation in the R6/R7/R8/R9 lineage).** exp-084's leg (a)
+  nominally cleared its own pre-registered R5 specificity-over-targets
+  control (`5/60=8.3%` of candidate target periods also matched) and was
+  self-scored SUPPORT on that basis — but an order-preserving
+  circular-shift null on the SAME fitted curve, run against the literal
+  production `free_period_with_widening` pipeline, showed `R²=0.3697` is
+  met or exceeded by `15/30=50.0%` of the curve's own circular shifts,
+  sitting at the null distribution's median, not a rejection tail — the
+  verdict reverses. This is the second consecutive cycle (Iteration
+  60/exp-083's two-tone admixture claim; Iteration 61/exp-084's leg (a))
+  this exact divergence — a specificity-over-targets sweep reading
+  falsely reassuring while an order-preserving null-under-noise test
+  reverses the verdict — has been outcome-determining. **Rule: any
+  future free-period-fit or free-phase-fit SUPPORT/CONFIRM verdict must
+  clear a circular-shift-on-the-real-data null test — the mandatory
+  default, always run and reported even when another surrogate is also
+  tried — before it is reported as evidence; a specificity-over-
+  candidate-targets sweep alone is not sufficient.** A non-circular-shift
+  "equivalent structurally-matched surrogate" (AR(1)-parametric,
+  phase-randomized/IAAFT, wavelet-matched, or other) may supplement but
+  never replace the circular-shift verdict unless (a) the surrogate
+  family is justified, *before* it is run, by a stated diagnostic of the
+  observed data's own dependency structure (e.g. measured
+  autocorrelation or periodogram) — never selected after seeing which
+  surrogate gives the more favorable answer — and (b) the surrogate's
+  own null-generating code is independently re-implemented from scratch
+  by a second seat and its headline figure reproduces, matching this
+  program's existing R4/R6 reproduction standard, before it is cited in
+  a permanent record (Iteration 60's own EM/Red-Team episode — an
+  AR(1)-parametric figure that did NOT independently reproduce,
+  `p≈0.09–0.10` vs. the claimed `0.766` — is the standing cautionary
+  instance this clause exists to prevent recurring). If a validated
+  alternative surrogate and circular-shift disagree, both are reported
+  side by side and the more conservative one governs the verdict. When
+  the "observed curve" is itself a deterministic, zero-measurement-noise
+  quantity (a closed-form desk evaluation, not real instrument data with
+  physical noise — as in exp-084's own leg (a)), state explicitly that
+  the circular-shift result answers a self-similarity/specificity
+  question ("how much does this curve's own smoothness alone explain an
+  apparently good fit"), not a literal measurement-noise question — both
+  are legitimate uses of the same test, but conflating the two
+  misdescribes what "distinguishable from noise" means for a curve that
+  has no noise in it at all. **A cycle that ships a free-period/
+  free-phase SUPPORT verdict backed only by an unreproduced surrogate, or
+  that omits the mandatory circular-shift baseline entirely, fires
+  Checkpoint criterion 4 automatically — the one gap where R10, alone
+  among the R6–R9 lineage, previously carried no escalation
+  consequence.** Full record: `experiments/084-t28-edge-diffraction-
+  derivation/phase2_redteam_audit.md` §3, `phase3_synthesis.md` ("New
+  standing rule — R10"), `phase5_review_quantum.md` §3–§4,
+  `phase5_redteam_audit.md` §6, LOGBOOK.md Iteration 61.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -3596,6 +3653,277 @@ fix) — see `experiments/077-.../phase5_redteam_audit.md` §4.
   `results.json`, `null_permutation_control.json`, five Phase-2 blind
   critiques, Phase-2 Red Team audit, Phase-3 synthesis, `NOTES.md`, six
   Phase-5 blind reviews, Phase-5 Red Team final audit.
+
+  **Iteration 61 (exp-084, 2026-08-28) — the sub-thread's first mechanism
+  class never tried in nine-plus prior cycles: not a reflection/echo off
+  the ABSORB boundary (every such model REFUTEd, exp-078/079/081), but a
+  genuine near-field Fresnel/Kirchhoff DIFFRACTION treatment of the
+  source aperture's own two tapered edges. Combined Verdict PARTIAL: the
+  period-match question is correctly downgraded SUPPORT→INCONCLUSIVE
+  (fails the program's own harder-companion null), but a genuinely new
+  positive finding survives and is independently stress-tested three
+  ways — the first result in this sub-thread's history showing a
+  zero-FDTD vacuum construction track real FDTD physics this closely on
+  any axis. New standing rule R10 adopted. Checkpoint criterion 4 FIRES
+  (13th time), with a sharpened scope-mismatch framing and a named
+  governance question about the escalating-tripwire format itself.**
+  PHOTONICS led (rotation), executing Iteration-60's own Tier-1 item 7:
+  applied first to the empty-scene geometry where `P_edge_A=2.8421°`
+  originates, then (leg (b)) to the article's own rim vs exp-083's
+  `P*=2.9474°`. Motivated by an already-established fact this sub-thread
+  had never acted on: the source aperture sits at 0.2% of its own
+  Fraunhofer distance (deep near-field), where `P_edge_B`'s own
+  already-refuted far-field grating formula should not be expected to
+  apply. `phase1_proposal.md` alone committed and pushed (`c714ad5`)
+  strictly before any code existed — house discipline restored a second
+  consecutive cycle.
+
+  **Phase 1 self-scored leg (a) SUPPORT** (`P_model_a=2.5338°, R²=0.3697,
+  rel_dev=0.1085` vs `P_edge_A`), specificity-checked (`5/60=8.3%` of a
+  dense target grid also cleared the band) — and leg (b) NO VERDICT after
+  its own pre-registered Anchor 2 (a composition-of-propagators identity)
+  failed a convergence-checked test (stable 2.894–2.895× mismatch across
+  1×–8× oversampling, ruling out discretization).
+
+  **Phase 2 — five blind critiques, unanimous support-with-changes,
+  building toward the same reversal from four independent directions.**
+  MATERIALS found leg (a)'s SUPPORT, even if real, moves no realizability
+  bound (the mechanism's own structural corollary predicts
+  `C_model(C80)≡C_model(C40)`, so it engages only a config-shared
+  component). THERMODYNAMICS found the twice-deferred joint EM/THERMO
+  energy-interception cross-check goes unmentioned rather than
+  deferred-with-reason, and leg (b)'s fringe amplitude is never checked
+  against the flagship absorber's own `R≤0.2%` reflectance ceiling.
+  ELECTROMAGNETISM independently swept Anchor 2's ratio across all 31
+  angles and found it is not a smooth scalar — a shape distortion
+  consistent with a missing phase-carrying normalization factor, not the
+  write-up's own guessed missing Rayleigh–Sommerfeld term. **VISION
+  independently found `P_model_a` is bit-identical to 15 significant
+  figures to an already-discounted exp-070 number** ("a compromise fit"
+  contaminated by T21's own fringe, per Iteration 47), naming the
+  T21-decorrelation test that would resolve it. **QUANTUM built the
+  missing null-under-noise test the file never ran**: an order-preserving
+  circular-shift null (this program's own established "harder companion,"
+  the exact method that reversed exp-083's two-tone claim one cycle
+  earlier) — `14/30=46.7%` of shifts meet or exceed the observed `R²`,
+  the fit sitting at the null distribution's median, not a rejection
+  tail.
+
+  **Red Team's Phase-2 audit** (PROCEED-WITH-MANDATORY-FIXES, 6 items,
+  zero overridden) independently re-derived all three load-bearing claims
+  from scratch. VISION's bit-identical coincidence: confirmed, ruled out
+  as data leakage (zero references to exp-070 anywhere in
+  `phase1_derivation.py`'s import graph), and independently explained —
+  `corr(leg_a_curve, real C80(θ))=0.9582`, a genuine, distinctive shape
+  correlation (three unrelated controls all `|r|<0.35`) — but running
+  VISION's own named decisive test to its actual conclusion
+  (`R²_fixed=0.271` vs. the real curve's own `0.265`, "comparable")
+  independently mandates the SAME downgrade VISION's own critique argued
+  for, by an unrelated route. QUANTUM's null test: reproduced and, on the
+  literal production pipeline (full staged widening), found slightly
+  worse for leg (a): `15/30=50.0%`. EM's non-smoothness claim: confirmed
+  exactly. **Ruling: leg (a)'s verdict does not survive — SUPPORT should
+  be downgraded to INCONCLUSIVE — and Checkpoint criterion 4 fires** on
+  the joint energy-interception cross-check's third consecutive silent
+  deferral (named Iteration 59, tripwired explicitly at Iteration 60:
+  "a third consecutive deferral without an explicit reason fires it").
+
+  **Phase 3** adopted all 6 fix-docket items in full, zero overrides
+  (Director's own reasoning on Checkpoint 4, not a rubber stamp — weighed
+  and rejected an Iteration-58-style same-shift-catch non-firing analogy
+  as inapplicable to a pre-committed, numbered-cycle tripwire written
+  specifically to foreclose that latitude). Downgraded leg (a) to
+  INCONCLUSIVE; credited the shape-correlation finding as the cycle's
+  surviving positive result; declined to adopt either causal guess for
+  Anchor 2's failure as settled; adopted THERMODYNAMICS' fringe-vs-ceiling
+  comparison as a forward "Anchor 3" requirement; **adopted new standing
+  rule R10** (a specificity-over-targets sweep is not a substitute for a
+  null-under-noise test — the second consecutive cycle, after exp-083's
+  own two-tone reversal, this exact divergence has been
+  outcome-determining). Declined to retrofit a rushed energy-interception
+  check into this cycle's own zero-FDTD scope "purely to avoid the
+  firing," judging that itself the kind of after-the-fact rationalization
+  R8 exists to catch — let Checkpoint 4 fire instead. `phase3_fix_docket_
+  checks.py` independently re-derives (a third time) both decisive
+  numbers, bit-exact. No FROZEN-PREDICTIONS git-freeze cycle needed
+  (prose/verdict corrections to already-verified numbers). 41/41 trust
+  suite, zero `lab/` diff throughout.
+
+  **Phase 5 — six blind reviews, unanimous PARTIAL, an exceptionally
+  dense layer.** PHOTONICS caught a stale `phase3_fix_docket_results.json`
+  (fixed same-shift) and independently ran an aperture-width sensitivity
+  sweep corroborating the shape-correlation finding as structure-sensitive
+  (`r`: `0.958→0.45` at a 1% perturbation), naming a third, untested cause
+  for Anchor 2's failure (intermediate-window truncation). MATERIALS
+  confirmed zero realizability content survives the correction.
+  **ELECTROMAGNETISM built an uncommitted probe and PROVED algebraically**
+  (`amb.weber`'s ratio construction cancels any global complex constant
+  exactly) **that a bare phase-factor fix for Anchor 2 is powerless, not
+  merely untested** — sharpening the real fix to a genuinely
+  position-and-observation-point-dependent kernel; also found the model
+  curve's own "chirped" (non-stationary) character is an *expected*
+  signature of genuine near-field diffraction, supporting the
+  shape-correlation reading over the period-match one. THERMODYNAMICS
+  independently confirmed the Checkpoint-4 chain and found the newly
+  adopted "Anchor 3" is not yet well-posed (an R9-class commensurability
+  gap: a zero-reflectivity Kirchhoff mask's fringe amplitude compared to
+  an unrelated global reflectance ceiling). **QUANTUM applied
+  circular-shift scrutiny to the shape-correlation finding for the first
+  time**: only `1/30=3.3%` of shifts exceed `r=0.958` — the single shift
+  that beats it is the immediately adjacent `+0.2°` lag, essentially
+  tied, a signature of genuine spatially-coherent structure, not a lucky
+  global optimum — and found R10's own draft text lacked an escalation
+  clause, the only member of the R6–R9 lineage to do so. **VISION's
+  governance audit passed cleanly and named a significant meta-concern**:
+  this is the 13th consecutive Checkpoint-4 firing ruled "notification,
+  not a pause" — does the mechanism still carry teeth?
+
+  **Red Team's Phase-5 final audit** independently re-derived EM's proof
+  from `amb.weber`/`propagate`'s own source and confirmed it by direct
+  execution (four global complex constants, all reproduce the baseline to
+  machine precision); independently re-ran QUANTUM's shape-correlation
+  null bit-exact; ruled Anchor 3 not yet well-posed and supplied a
+  minimal fix (scope to a genuine partial-reflection construction, both
+  operands from the identical pipeline); **adjudicated the ritualization
+  concern directly rather than dismissing it**: 13/13 notification-only
+  firings is not itself evidence of toothlessness (the substantive defect
+  is independently corrected same-shift in every one, by PANEL.md's own
+  explicit design — a standing veto exercised at will, never a required
+  gate, is not an absence of consequence), **but this specific firing
+  exposes a real, fixable design gap**: the escalating-tripwire format has
+  no clause distinguishing a cycle that chose not to run a scene-dependent
+  check (exp-082's/exp-083's own genuinely discretionary silent misses)
+  from one that structurally could not (exp-084 had no article-loaded
+  FDTD scene at all) — diluting the signal a 13th firing is meant to
+  carry. Named as a standing Tier-3 governance item for Iteration 62's
+  board, not dismissed. Finalized R10's text with an escalation clause,
+  a surrogate-validation bar, a tie-break rule, and a deterministic-curve
+  caveat (full text: RULED OUT registry, above).
+
+  **Combined Verdict: PARTIAL**, unanimous across all six blind Phase-5
+  seats and the final audit. **Checkpoint criterion 2 is N/A** — matching
+  every T28 desk cycle since exp-069, no mechanism-class claim bearing on
+  any phenomenon constraint anywhere. **Checkpoint criterion 4 FIRES —
+  the 13th time this program** — on the energy-interception cross-check's
+  third consecutive silent absence, ruled notification-not-pause, with
+  the record crediting a same-shift partial discharge (the reflectance-
+  ceiling sanity comparison, Red Team's own Phase-2 attack 4) and stating
+  precisely that this cycle, unlike exp-082's/exp-083's own silent misses,
+  had no article-loaded FDTD scene to run the full check against at all.
+  T28's own founding question — `P_edge_A`'s ultimate physical origin —
+  remains open, narrowed for the first time in this sub-thread's history
+  toward genuine physical kinship with near-field diffraction rather than
+  toward another refuted reflection-echo class. Reconciled Iteration-62
+  ranking (Red Team's Phase-5 final audit, 4 tiers, 19 items — full detail
+  `phase5_redteam_audit.md` §10): **Tier 0, zero FDTD** — (1) transcribe
+  R10's finalized text into this registry (done, above); (2) rescope
+  Anchor 3 to a genuine partial-reflection construction, both operands
+  from the identical pipeline; (3) the Checkpoint-4 LOGBOOK precision
+  above (done); (4) the ritualization item, named for Iteration 62's
+  board, not resolved; (5) leg (b)'s narrowed causal diagnosis (a bare
+  phase factor is proven powerless; PHOTONICS' domain-truncation
+  hypothesis and EM's matrix-valued kernel remain open); (6) the
+  shape-correlation finding's own three independent stress tests, logged
+  together. **Tier 1** — (7) QUANTUM's own zero-FDTD wide-window
+  re-evaluation of leg (a)'s model period, pinning its asymptotic value
+  with certainty rather than a p-value — the single sharpest, cheapest
+  next test; (8) PHOTONICS' domain-truncation test for Anchor 2, cheaper
+  than a kernel rebuild, a precondition for leg (b) ever producing a
+  trustworthy verdict; (9) EM's own matrix-valued RS/Kirchhoff kernel
+  rebuild, scoped as its own small pre-registered proposal; (10) the
+  rescoped Anchor-3-compliant leg (b) rebuild, gated behind (8)–(9).
+  **Tier 2** — (11) the joint EM/THERMO energy-interception cross-check's
+  full form, still not run, highest institutional priority for the first
+  Iteration-62 cycle with a real article-loaded scene; (12) the near-null
+  σ(I) article follow-up, still not run; (13) QUANTUM's lossless-PEC-
+  only-disk control; (14) the `PAIR_ABSORB40`/`C80−C40` extension; (15)
+  the x-wall wavelength-generality leg, now **NINE** consecutive cycles
+  deferred (076–084), the single oldest item on the whole T28 board; (16)
+  a proper R3-grade settling convergence study with the article present.
+  **Tier 3, governance** — (17) Checkpoint criterion 2 ruled N/A; (18)
+  Checkpoint criterion 4 ruled FIRING, the 13th time, with the sharpened
+  scope-mismatch framing; (19) the ritualization question itself, named
+  as a standing board item — whether the R6–R9/R10 escalating-tripwire
+  format needs a scope-applicability clause before further firings
+  dilute the signal. Full record: `experiments/084-t28-edge-diffraction-
+  derivation/` — Phase-1 proposal + `phase1_derivation.py`, five Phase-2
+  blind critiques, Phase-2 Red Team audit, Phase-3 synthesis +
+  `phase3_fix_docket_checks.py`, `NOTES.md`, six Phase-5 blind reviews,
+  Phase-5 Red Team final audit.
+
+### CHECKPOINT (Iteration 61, 2026-08-28, criterion 4 — program-integrity drift).
+
+Red Team's Phase-5 final audit ruled criterion 4 **FIRES**, per Iteration
+60's own explicit, already-written precommitment: *"a third consecutive
+deferral without an explicit reason [would fire] it."* The joint EM/
+THERMO energy-interception cross-check — named at Iteration 59, flagged
+as a two-cycle pattern with this exact tripwire at Iteration 60 — appears
+nowhere in exp-084's Phase 1 or any of its five Phase-2 critiques (zero
+occurrences of "Poynting"/"interception"/"cross-check," independently
+grepped by both Red Team's Phase-2 audit and this final audit). The
+literal, pre-committed condition is true; this is the program's 13th
+Checkpoint-4 firing.
+
+**Sharpened, not softened, on the record.** Two things this audit adds
+that the raw firing does not by itself convey: (1) unlike exp-082's and
+exp-083's own genuinely discretionary silent misses (both had live
+article-loaded FDTD data available and skipped the check anyway), exp-084
+is a zero-FDTD desk cycle with no article-loaded scene to run the *full*
+check against at all — a scope mismatch, not neglect, though the tripwire
+correctly fires identically on both since its own text draws no such
+distinction. (2) A cheap partial discharge of the same underlying
+question *did* happen same-shift: Red Team's own Phase-2 audit (attack 4)
+independently computed leg (b)'s fringe amplitude against the flagship
+absorber's own established `R≤0.2%` reflectance ceiling (`~41×` too
+large) — not the full Poynting/interception bound Iteration 59 scoped,
+but not zero engagement either, and it should be credited as such rather
+than folded into the same "silent" characterization as the two prior
+cycles.
+
+**The Director considered, and rejected, the strongest available
+non-firing argument before agreeing to the firing** (full reasoning:
+`experiments/084-.../phase3_synthesis.md`, "Checkpoint criterion 4 —
+Director's own reasoning"): Iteration 58's own precedent shows a
+same-shift-caught compliance gap does NOT fire criterion 4. But Iteration
+60's own precommitment is written in stronger, escalation-specific
+language than that generic pattern — precisely to foreclose a future
+Director's latitude to defuse a numbered-cycle tripwire with a same-shift
+save. Supplying an explicit reason now, specifically to dodge a
+pre-scheduled firing, would itself be the kind of after-the-fact
+rationalization R8 exists to catch. The Director declined to retrofit a
+rushed, scope-mismatched version of the check into this cycle purely to
+avoid the firing, and let it fire instead — independently re-affirmed by
+Red Team's own Phase-5 final audit as the correct call.
+
+**A genuine governance question, raised by VISION's blind Phase-5
+review and adjudicated directly by Red Team's final audit, not
+dismissed**: is 13 consecutive "notification, not a pause" firings
+evidence the mechanism has lost teeth? **Ruling: no, not on its own** —
+in every one of the 13 firings on this program's record, the substantive
+object-level defect the tripwire names has been independently corrected
+through the ordinary Phase-2/3/5 review layer *before* the firing was
+even logged; "notification, not pause" restates PANEL.md's own explicit,
+from-the-start design (a standing human veto exercised at will, never a
+required gate), not an emergent failure of it. **But this specific
+firing exposes a real, fixable design gap**: the R6–R9/R10 escalating-
+tripwire format ("N consecutive [X] fires automatically") carries no
+clause distinguishing a cycle that chose not to comply from one that
+structurally could not — an escalation counter that accrues identically
+either way dilutes exactly the signal a firing is meant to carry, on any
+future scene-dependent item. **Named as a standing Tier-3 governance item
+for Iteration 62's board** (not resolved this cycle): should the
+escalating-tripwire format gain a scope-applicability clause before a
+14th, 15th, or 16th firing further dilutes the signal?
+
+**Ruled a notification, not a pause** — this program's unbroken
+precedent, now **13 for 13**. No `lab/` diff, no frozen prediction, and
+no Combined Verdict is touched. New standing rule **R10** adopted this
+same cycle (full text: RULED OUT registry, above) — the specificity-vs-
+null-test divergence that helped surface this cycle's own leg (a)
+downgrade, now house discipline going forward. Full record:
+`experiments/084-t28-edge-diffraction-derivation/phase3_synthesis.md`
+("Checkpoint criterion 4"), `phase5_review_vision.md`,
+`phase5_redteam_audit.md` §5/§7/§8.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
