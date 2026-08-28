@@ -22,7 +22,41 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-28, panel Iteration 63 done (exp-086, PARTIAL,
+## Current state (2026-08-28, panel Iteration 64 done (exp-087, PARTIAL,
+THERMODYNAMICS' rotation-lead cycle: the joint EM/THERMO
+energy-interception cross-check, named at Iteration 59 and deferred/
+exempt four consecutive cycles, finally measured for real -- a genuine,
+purpose-built, 13-call article-loaded Poynting-box FDTD measurement
+(`lab/sections.py::widths()`, never before run on T28's `PAIR_PAD` scene)
+discharges the Iteration-63 forward tripwire (a fifth deferral would have
+fired Checkpoint criterion 4 automatically) and FALSIFIES its own
+pre-registered ENERGY-DECOUPLED hypothesis. **Primary result:**
+`ratio_k`={2.64, 53.99, 5.71} at θ={36.0,38.6,41.8}° classifies
+ENERGY-DOMINANT; `θ=38.6°` sits almost exactly on `delta_scene`'s own
+zero-crossing (a disclosed, quantitatively-confirmed-sufficient candidate
+denominator artifact -- three seats and Red Team's final audit
+independently verified this), but even discounting it, the other two
+angles both read CONSISTENT (not the predicted DECOUPLED) -- a genuine,
+non-artifactual falsification updating this sub-thread's own ten-plus-
+cycle phase/interference-only prior. A real bug (a sign-convention
+mismatch in `sections.widths()`'s `i_inc` for T28's `-x`-propagating
+scene) was found and fixed same-cycle with a zero-`lab/`-diff caller-side
+wrapper; Phase 5 (EM) further found this exact geometry/defect pairing
+already existed, silently absorbed via ad hoc `abs()`-wrapping, since
+Iteration 2 (exp-024) -- a historical-accuracy correction, not a new
+defect. All five Phase-2 critiques (unanimous support-with-changes) and
+all six Phase-5 reviews (unanimous PARTIAL/CONCUR) found zero-overlapping,
+independently-verified issues; Red Team's Phase-5 final audit confirmed
+every one, ruled Checkpoint criterion 4 does NOT fire on any of five
+non-load-bearing matters (a third disclaimer-erosion instance closed
+same-shift with a new forward tripwire for a fourth), and adopted **new
+standing rule R13** (a ratio classifier whose denominator has real
+zero-crossings must be floor-gated before a single-point decade
+classification is trusted -- an algebraic instability distinct from the
+R5/R10 statistical-look-elsewhere lineage). **Checkpoint criterion 2
+N/A**, matching every T28 desk/instrument cycle since exp-069. Full
+record: `experiments/087-t28-energy-interception-poynting-check/`,
+LOGBOOK.md Iteration 64); panel Iteration 63 done (exp-086, PARTIAL,
 ELECTROMAGNETISM's rotation-lead cycle, executing exp-085's own Red Team
 Phase-5 final audit §7 Tier-1 items 1-3: fixed the R11 boundary-pinning
 defect (`free_period_with_widening`'s silent narrowest-stage fallback) at
@@ -3280,12 +3314,94 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
-- **[ACTIVE — Iteration 64 queue, Red Team's Phase-5 final-audit
-  reconciliation of exp-086's six seats (`experiments/086-t28-free-
-  period-boundary-fix-rescore/phase5_redteam_audit.md` §7); supersedes the
-  Iteration-63 queue below as the active ranking, that block retained as
-  valid backlog, not deleted]** exp-086 (ELECTROMAGNETISM's rotation-lead
-  cycle) fixed the R11 boundary-pinning defect at all three affected call
+- **[ACTIVE — Iteration 65 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-087's six seats (`experiments/087-t28-energy-
+  interception-poynting-check/phase5_redteam_audit.md`); supersedes the
+  Iteration-64 queue below as the active ranking, that block retained as
+  valid backlog, not deleted]** exp-087 (THERMODYNAMICS' rotation-lead
+  cycle) built a genuine, purpose-built, 13-call Poynting-box measurement
+  of the joint EM/THERMO energy-interception cross-check on T28's
+  article-loaded `PAIR_PAD` scene, discharging the Iteration-63 forward
+  tripwire and FALSIFYING its own pre-registered ENERGY-DECOUPLED
+  hypothesis. **Primary result:** `ratio_k`={2.64, 53.99, 5.71} at
+  θ={36.0,38.6,41.8}° classifies ENERGY-DOMINANT; `θ=38.6°` sits almost
+  exactly on `delta_scene`'s own zero-crossing (a disclosed, quantitatively
+  confirmed-sufficient candidate denominator artifact — PHOTONICS,
+  QUANTUM, THERMODYNAMICS, and Red Team's final audit all independently
+  verified this), but even discounting it, the other two angles both read
+  CONSISTENT (`0.1–10`), not the predicted DECOUPLED (`<0.1`) — a genuine,
+  non-artifactual falsification against ten-plus cycles of convergent
+  phase/interference-only evidence. A real sign-convention bug in
+  `sections.widths()`'s `i_inc` for T28's `-x`-propagating geometry was
+  found and fixed same-cycle (zero `lab/` diff); EM's Phase-5 review then
+  found the identical geometry/defect pairing already existed, silently
+  absorbed via ad hoc `abs()`-wrapping, since Iteration 2 (exp-024) — a
+  historical-accuracy correction, not a new defect, applied same-shift.
+  All five Phase-2 critiques (unanimous support-with-changes, zero
+  overlap) and all six Phase-5 reviews (unanimous PARTIAL/CONCUR, zero
+  overlap) independently verified; Red Team's Phase-5 final audit
+  confirmed every finding from source. **New standing rule R13 adopted**:
+  a ratio classifier whose denominator has real, knowable zero-crossings
+  must be floor-gated on that denominator's own magnitude before a
+  decade-threshold classification is trusted at a single sampled point —
+  an algebraic instability (present even at zero measurement noise)
+  distinct from the R5/R10 statistical-look-elsewhere lineage; does not
+  fire on its own founding instance. **Checkpoint criterion 4 does NOT
+  fire** on any of five independently-found, non-load-bearing matters (the
+  corrected historical claim; a THIRD instance of the NETD/constraint-3
+  disclaimer-erosion shape, closed same-shift — a new forward tripwire set:
+  a fourth instance fires Checkpoint criterion 4 automatically; a vanished
+  T9-anchor comparison plus a false "reproduced bit-exact this cycle"
+  citation that survived five blind Phase-2 critiques and Red Team's own
+  Phase-2 audit, caught only at Phase 5, logged as reinforcing R4's
+  existing discipline rather than a new rule; an inverted `back_frac`/
+  `fwd_frac` direction-label defect in `lab/sections.py::widths()` itself,
+  flagged forward, non-blocking) — every one caught blind, same cycle,
+  before the LOGBOOK entry. **Checkpoint criterion 2 N/A**, matching every
+  T28 desk/instrument cycle since exp-069. **Tier 1 (near-unanimous next,
+  cheap FDTD):** (1) the decisive 8-call bracketing follow-up at
+  θ=38.4°/38.8° (QUANTUM's own proposal) — cheapest, fastest, single most
+  decisive resolution of the node-artifact-vs-genuine-physics question;
+  (2) extend the energy-interception channel to the full/denser 31-point
+  window, scoring `σ_abs(C40,θ)`/`σ_abs(G40,θ)` individually, not merely
+  their PAD-difference (MATERIALS' falsifiable "passive transducer, not
+  resonant source" test); (3) apply R13's new denominator floor gate to
+  this cycle's own already-collected 3-angle data and report the
+  corrected classification (zero new FDTD). **Tier 2:** institutionalize
+  the newly-validated extinction-routes-agreement identity for
+  `graded_black_shell` obliquely as a permanent stage-8 suite row; extend
+  the validated measurement to `PAIR_ABSORB40`/`C80−C40` and to 450/750nm;
+  extend to the near-null σ(I) article (the class that actually matters
+  for constraint-3 realizability); a bounded audit of whether any other
+  cited T28 ratio construction shares R13's hazard, unguarded. **Tier 3,
+  standing, carried forward unchanged:** PHOTONICS' grazing-incidence
+  validity check on `edge_diffraction_c_empty_corrected` (still the single
+  highest-ranked standing item on the whole T28 board, near-unanimous #1
+  at Iteration 63's own close); the x-wall wavelength-generality leg, now
+  **TWELVE** consecutive cycles deferred (076–087), the single oldest item
+  on the whole T28 board; the still-queued full-scale (60,001-call)
+  null-calibration re-run (2 of 3 parts done); R12-into-standard-practice;
+  PHOTONICS' domain-truncation test for leg (b)'s Anchor 2 / EM's
+  matrix-valued RS/Kirchhoff kernel rebuild; QUANTUM's lossless-PEC-only-
+  disk control; hardening `lab/sections.py::widths()` itself to normalize
+  by `abs(i_inc)` internally, with a new stage-8 gate on a synthetic
+  -x-propagating scene (now TWO independent instances, exp-024 and
+  exp-087, of this exact geometry tripping the same latent issue — scope
+  as its own small, gated `lab/`-change proposal, not a same-shift patch);
+  the still-unresolved ritualization governance question (named Iteration
+  61). **Tier 4, governance:** Checkpoint criterion 2 ruled N/A; Checkpoint
+  criterion 4 ruled not firing on five matters, reasoned individually; new
+  standing rule R13 adopted; the historical-accuracy correction to the
+  "first-ever `src_x>obj_x`" framing and the meta-observation that a bare
+  rule-name citation ("(R4)") is not itself evidence of compliance, both
+  logged as reinforcing existing R4 discipline. None of the above re-opens
+  or re-proposes any RULED-OUT item (R1–R13). Full record:
+  `experiments/087-t28-energy-interception-poynting-check/`, LOGBOOK.md
+  Iteration 64.
+- **[superseded by the Iteration-65 queue above — exp-086's own docket,
+  retained as a pointer to its own history, not deleted]** exp-086
+  (ELECTROMAGNETISM's rotation-lead cycle) fixed the R11 boundary-pinning
+  defect at all three affected call
   sites (`free_period_with_widening` ×2 + the `_quiet` sibling, the
   Director's own scope extension beyond Phase 1's original two-file plan),
   re-scored exp-085's own Method C classification on the corrected
