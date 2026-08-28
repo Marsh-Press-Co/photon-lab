@@ -233,11 +233,15 @@ full-power fit (never hand-typed, copied from the cited JSON fields):
 
 Classification (the sub-thread's own established `rel_dev≤0.20` AND
 `R²≥0.30` "within tolerance" convention — exp-069 P-069-3, exp-077 Test A,
-unmodified):
+unmodified). *(Phase 3 note: branch (B)'s original working name,
+"ARTICLE-EDGE DIFFRACTION," is retained below only as the classification
+bucket's label; see the "PHASE 1 RESULTS" section for the Phase 2/3-corrected
+reading of what a match to this bucket does and does not establish.)*
 
 - **(A) MECHANISM CONTINUITY**: `|P*−P_continuity|/P_continuity ≤ 0.20` AND
   `R² ≥ 0.30`.
-- **(B) ARTICLE-EDGE DIFFRACTION**: `R² ≥ 0.30` AND (`|P*−P_edge_A|/P_edge_A
+- **(B) ARTICLE-EDGE DIFFRACTION** *(bucket label; see Phase 3 correction
+  below)*: `R² ≥ 0.30` AND (`|P*−P_edge_A|/P_edge_A
   ≤ 0.20` OR `|P*−P_edge_B|/P_edge_B ≤ 0.20`) — either member of the
   established T21/T28 family counts as this branch (PHOTONICS' own
   Phase-5 framing groups them as one family, not two separate hypotheses).
@@ -338,7 +342,15 @@ remains a single directional check, not the full R3-grade convergence study
    cycle measures the OBSERVED contrast/field delta directly (an FDTD
    measurement); THERMODYNAMICS'/EM's own joint energy-interception
    cross-check (Tier 0 item 2, zero-FDTD, post-run analytic) is a separate,
-   already-queued board item, not folded into this build.
+   already-queued board item, not folded into this build. **Phase 2/3
+   re-scope (Red Team's Attack 4, adopted in full):** `P_edge_A`'s own
+   physical origin — under ANY reading, article-intrinsic (Branch B, per
+   this cycle) or a pre-existing domain/source artifact — has never been
+   shown non-dissipative. This is a pre-existing, broader gap in the
+   founding periodicity's own characterization; this cycle's own Branch-B
+   language doesn't specifically create or worsen it, only makes it newly
+   live because it is, for the first time, scored on a channel with a real
+   absorbing article present.
 7. **The three-branch classification assumes the true period is
    well-separated and single-valued** — if the recovered `P*` reflects a
    genuine SUPERPOSITION of both mechanisms (a real possibility PHOTONICS'
@@ -366,7 +378,7 @@ the §0a estimate of ≈44 min; 4-way parallelism held throughout).
   the full window's own settled step count. No evidence STEPS=2800 is
   insufficient with the article present.
 
-### PRIMARY: the three-branch period discriminator — **BRANCH B, ARTICLE-EDGE DIFFRACTION, decisively**
+### PRIMARY: the three-branch period discriminator — **BRANCH B: matches T28's own long-standing, unexplained `P_edge_A` family**
 
 ```
 delta_scene(theta) free-period fit (narrow[1,4]deg stage, interior optimum):
@@ -409,7 +421,56 @@ threshold is only moderately conservative in isolation, which is exactly why
 this post-hoc null control matters and is not redundant with the
 pre-registered gate.
 
-### COMPANION: EM's field-difference decomposition — independently corroborates Branch B
+**PHASE 2/3 CORRECTION (Red Team's Attack 1, adopted in full — replaces
+every "ARTICLE-EDGE DIFFRACTION, confirmed/decisively" reading below and
+elsewhere in this cycle's record).** The period-family match above is a
+real, decisive, null-controlled statistical finding and is NOT retracted —
+independently reproduced at minimum four times (this committed run,
+QUANTUM's blind critique, EM's blind critique, Red Team's own audit). But
+"ARTICLE-EDGE DIFFRACTION, confirmed" overstates what a period-family match
+demonstrates. The corrected reading:
+
+**Branch B matches T28's own long-standing, unexplained `P_edge_A`
+family — period-family membership, statistically decisive and
+null-controlled (`R²=0.858`, clears a 20,000-trial null with `p=0.0`), NOT
+yet demonstrated to be article-intrinsic.**
+
+Two lines of evidence, both independently computed by Red Team's own
+Phase-2 audit (`phase2_redteam_audit.md` §0c–0d), drive this correction:
+
+1. PHOTONICS' own far-field two-rim-edge estimate (`Δy=2·R_OUT=156` cells,
+   `λ=20` cells at 600nm, `θ=39°`) gives `Δθ=λ/(Δy·cosθ)=9.4520°` —
+   independently reconfirmed by Red Team to the same figure — a **3.3×
+   miss** against the recovered period (`9.45°` vs `P_edge_A=2.84°`).
+2. This aperture's own Fresnel number is `N_F=Δy²/(λ·lever)=156²/(20·93)
+   ≈13.08` — deep in the near-field/Fresnel regime, not the far-field
+   regime the two-slit formula assumes (independently established
+   elsewhere in this sub-thread, Iteration 56/exp-079). So the miss is not
+   simply "the mechanism predicts the wrong number" — the formula applied
+   is not even the correct one for this geometry's regime. This makes the
+   causal question an **untested regime**, not a clean refutation of a
+   rim-diffraction origin — but equally, no correct first-principles
+   derivation of `P_edge_A` from the article's own geometry exists yet, for
+   either candidate story.
+
+`P_edge_A=2.8421°` is T28's own founding, still-unexplained periodicity
+from the empty scene (exp-069) — nine-plus dedicated mechanism-search
+cycles have tested and refuted or structurally foreclosed every domain-echo
+candidate for it, and nobody has ever derived it from geometry. Landing on
+it specifically therefore most plausibly means the article-loaded channel
+inherited the SAME unexplained artifact the empty scene already produces —
+not that a new article-rim mechanism was discovered and confirmed.
+
+**MATERIALS' article-radius discriminator — an `R_OUT` sweep at fixed
+`PAD`, re-running the identical `PAIR_PAD` harness at an alternate article
+radius and checking whether `P*` tracks `R_OUT/λ` (genuine article-rim
+origin) or stays pinned (pre-existing domain/source artifact merely
+becoming visible) — is now this sub-thread's single highest-priority item
+for Iteration 61**, sharpened by this correction: it is the only test that
+can move Branch B from a period-family match to a demonstrated causal
+claim, in either direction.
+
+### COMPANION: EM's field-difference decomposition — independently corroborates the SAME period family (Branch B bucket)
 
 ```
 DeltaE_obj_article_C40 (article - no-article, C40 alone):  P*=3.0226deg R^2=0.1977  -> below R^2 floor, C (uninformative alone)
@@ -493,36 +554,99 @@ against the primary result:
 explicitly as an open item for Phase 2/5, not swept into either the SUPPORT
 or REFUTE column.
 
-### Combined self-score
+### PHASE 2/3 UPDATE — the two-tone admixture question: tested, and reversed under the correct null (Red Team's Attack 2, adopted in full)
+
+This tension did not stay unexamined through Phase 2. QUANTUM's and EM's
+blind critiques both independently built a two-tone fit (`delta_scene`
+against BOTH `P_edge_A` and `P_continuity` simultaneously, periods FIXED,
+no free search — correctly avoiding R5's look-elsewhere concern) and found
+a large, apparently significant improvement over the single-tone model:
+`R²: 0.845→0.958` (QUANTUM), and, using this program's own established
+Freedman-Lane residual-permutation convention (R6's Iteration-50 addendum),
+`p<0.001` across three baselines (EM), corroborated in EM's own linear
+field-difference companion (`p=0.00018`). Read at face value this looked
+like a resolved, quantified finding: genuine partial admixture of the
+`P_continuity` mechanism at 34–77% relative amplitude, riding underneath
+the dominant `P_edge_A` term.
+
+**It is NOT resolved, and this record does not adopt that reading.** Red
+Team's own Phase-2 audit found that both critiques share a genuine,
+independently-demonstrated methodological blind spot: the Freedman-Lane
+test assumes exchangeable residuals, and the single-tone residuals
+underlying this exact construction are highly autocorrelated — lag-1
+`r≈0.9508` (`delta_scene`), `r≈0.9355` (EM's own field-difference pair) —
+matching a previously-documented exp-074 pattern ("shared curvature
+misspecification," Iteration 51), not i.i.d. noise. A from-scratch
+synthetic Monte Carlo confirmed the Freedman-Lane method is correctly
+calibrated WHEN residuals are genuinely i.i.d. (empirical false-positive
+rate matches the nominal `α` almost exactly at every level tested) — the
+method itself is sound in the abstract; it is misapplied here. Running the
+order-preserving circular-shift companion — the harder, autocorrelation-
+respecting null this program's own R6/R7 addenda establish for exactly this
+situation — **reverses the verdict**: for `delta_scene`, the observed
+`F=33.39` sits BELOW the median of its own 31 possible circular shifts
+(`p=0.581`); for EM's own field-difference companion, `p=0.097` — neither
+significant at any conventional threshold.
+
+**The corrected reading, replacing "resolved... genuine partial admixture,
+p<0.001" wherever it would otherwise be inherited:** the two-tone
+correlation tension (`r=0.395, p=0.028` raw, at n=31) is a real, disclosed
+question that is NOT yet resolved, in either direction. The naive
+Freedman-Lane full-permutation test found it highly significant
+(`p<0.001`); the correct, order-preserving circular-shift companion test
+reverses that finding (`p=0.581` for the primary `delta_scene` series,
+`p=0.097` for EM's own field-difference companion) once the residuals' own
+extreme autocorrelation is respected instead of destroyed by full
+permutation. This is now an open question requiring a properly
+PRE-REGISTERED null-calibration test (matching R6's own Iteration-50
+addendum standard — a synthetic-recovery gate run BEFORE the test is
+trusted, not after) at Iteration 61, not a settled finding either way.
+
+### Combined self-score (Phase 3 corrected, Iteration 60 synthesis)
 
 **The pre-registered PRIMARY discriminator resolves decisively to BRANCH B
-— ARTICLE-EDGE DIFFRACTION (PHOTONICS' own hypothesis), not Branch A
+— a period-family match to T28's own long-standing, unexplained `P_edge_A`
+family, statistically decisive and null-controlled — not Branch A
 (QUANTUM's mechanism-continuity hypothesis) and not Branch C (neither
 family).** This is the single test PHOTONICS' and Red Team's own Phase-5
 audit of exp-082 specified as decisive, and it decides cleanly, with a
 freshly-run null-permutation control (not merely the inherited threshold)
 showing the result is far outside what pure noise produces on this exact
 instrument. EM's own field-difference companion, run at zero marginal FDTD
-cost, independently corroborates the SAME branch via a structurally
+cost, independently corroborates the SAME period family via a structurally
 different (linear, not Weber-contrast) construction, itself passing its own
 fresh null-permutation control. **This resolves, for the first time in this
-nine-cycle-plus T28 sub-thread, the specific mechanism-identity question
-exp-082 showed was unresolvable at reduced power** — not by asserting more
-statistical power in the abstract, but by actually running the pre-specified
-discriminating test and getting an unambiguous, doubly-corroborated,
-null-controlled answer.
+nine-cycle-plus T28 sub-thread, WHICH established period family the
+article-loaded channel's dominant periodicity belongs to** — not by
+asserting more statistical power in the abstract, but by actually running
+the pre-specified discriminating test and getting an unambiguous,
+doubly-corroborated, null-controlled answer. **It does NOT resolve WHETHER
+that period family is caused by the article's own rim** (Red Team's Attack
+1): PHOTONICS' own far-field two-rim estimate misses the recovered period
+by 3.3× (`9.45°` vs `2.84°`), and this aperture's own Fresnel number
+(`≈13`) means the far-field formula PHOTONICS applied is not even the right
+one for this near-field geometry — an untested regime, not a demonstrated
+rim-diffraction mechanism. MATERIALS' article-radius discriminator is the
+single highest-priority Iteration-61 item to close this gap.
 
 **What this does NOT establish, stated explicitly, not overclaimed:**
 Branch B being selected does not mean `PAD`'s own empty-scene mechanism
 (Iteration 53's proven-lossless phase effect) is irrelevant to the
-article-loaded channel — `delta_empty`'s own signal is real and, per the
-correlation figure, not entirely uncorrelated with `delta_scene`, just
-NOT the dominant periodic structure once an article of this size occupies
-the object window. The two individually-inconclusive EM single-config
-fits (`R²<0.30` each) mean this cycle cannot yet say HOW MUCH of each
-config's own field response the article-edge term explains in isolation —
-only that the cross-config difference, which is what T28's own scoring has
-always used, carries a `2.84°`-family signature that survives a null
-control. The correlation tension (above) is a genuine open question, not
-resolved here. `T1: N/A` throughout — no constraint-3 claim is made or
-implied by any number in this section.
+article-loaded channel. The correlation tension (`r=0.395, p=0.028`) is a
+real, disclosed, NOT-yet-resolved question — Phase 2's own two-tone tests
+(QUANTUM, EM) found an apparently significant `PAD`-continuity admixture
+under a full-permutation Freedman-Lane null (`p<0.001`), but Red Team's own
+independent verification found the underlying residuals are highly
+autocorrelated (lag-1 `r≈0.93–0.95`), invalidating that null's own
+exchangeability assumption, and the correct order-preserving circular-shift
+companion test REVERSES the finding (`p=0.581` primary series, `p=0.097` EM
+field-difference companion). This is now an open question requiring a
+properly pre-registered null-calibration test (R6's own Iteration-50-
+addendum standard) at Iteration 61, not settled either way by this cycle.
+The two individually-inconclusive EM single-config fits (`R²<0.30` each)
+mean this cycle cannot yet say HOW MUCH of each config's own field response
+the `P_edge_A`-family term explains in isolation — only that the
+cross-config difference, which is what T28's own scoring has always used,
+carries a `2.84°`-family signature that survives a null control. `T1: N/A`
+throughout — no constraint-3 claim is made or implied by any number in this
+section.
