@@ -1,0 +1,28 @@
+{
+  "old_buggy": {
+    "n_trials": 3000,
+    "seed": 7,
+    "elapsed_s": 70.3767626285553,
+    "p_r2_ge_070": 0.0,
+    "p_rel_dev_gt1": 0.001,
+    "max_r2_over_trials": 0.5179691995509128,
+    "mean_r2_over_trials": 0.19116160937525714,
+    "boundary_pin_fired": 201,
+    "boundary_pin_rate": 0.067
+  },
+  "corrected": {
+    "n_trials": 3000,
+    "sigma": 0.0014412437379508784,
+    "p_r2_ge_070": 0.0,
+    "p_rel_dev_gt1": 0.004333333333333333,
+    "p_shape_r2_le_005": 0.7776666666666666,
+    "max_r2_over_trials": 0.5179691995509128,
+    "mean_r2_over_trials": 0.1913631050721457
+  },
+  "diff": {
+    "p_r2_ge_070_diff": 0.0,
+    "max_r2_over_trials_diff": 0.0,
+    "mean_r2_over_trials_diff": 0.0002014956968885706
+  },
+  "conclusion": "The R11 fix has NEGLIGIBLE effect on the null-calibration headline statistics at matched N/seed: max_r2_over_trials and p_r2_ge_070 are IDENTICAL to 4 decimal places between the old buggy and corrected quiet function, despite the bug firing at 6.70% (201/3000) of trials -- the boundary-pinned trials never come close to setting the maximum R^2, which is set by trials that already found a genuine (non-boundary) local optimum. The previously-cited N=20000 max_r2_over_trials=0.5609 differs from both this N=3000 run's values (0.5180, bug and fix alike) via ordinary N-dependent order-statistic variance, not via the R11 fix. This resolves mandatory fix 2's open question: the corrected quiet function does not materially change exp-077's own 'far outside pure-noise' significance framing for the real pair_pad signal (R^2=0.8165 vs a noise ceiling that stays well under 0.60 either way)."
+}

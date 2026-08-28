@@ -101,12 +101,105 @@ exp-084/085's own established exemption language).
 
 ## Result
 
-*(filled after Phase 4 runs)*
+**Predictions 1–5: reproduced exactly**, by the automated corrected pipeline
+(`phase4_rescore.py`), independent of Phase 1's proposal arithmetic and
+Red Team's from-scratch reimplementation — the THIRD independent
+computation to land on identical figures:
+- Boundary set: exactly `θc∈{45,59,61,63,71,73}`, 6/37, bit-exact.
+- `frac_recovered = 21/37 = 0.5676` exactly.
+- `classification_a = NOT STABLY PERIODIC` (`frac_recovered<0.80` gate,
+  first branch). Caveat carried per fix 4: this is a statement about what
+  this doubly-corrected instrument can currently certify, not a claim that
+  no near-normal-quarter periodicity exists.
+- Spearman, three pre-registered stride phases: θc-start=5° →
+  `ρ=0.8571, p=0.0238` (clears significance); 7° → `ρ=0.4286, p=0.3536`;
+  9° → `ρ=0.5357, p=0.2357` (neither clears). Headline: **phase-dependent,
+  not a single robust verdict** — exactly QUANTUM's/Red Team's finding,
+  now reproduced a third time by the production pipeline.
+- Prior-citation audit (`phase4_prior_citation_audit.py`, all committed
+  JSON in experiments 077–085): exactly 2 all-stages-boundary occurrences
+  found, both already known and inert (exp-078 `c80_c40`, exp-079
+  `pair_absorb40` ablation control) — **no additional currently-cited T28
+  number corrupted.**
+- Extending the circular-shift null to all 37 sub-windows (was 10/37):
+  `null_pass_rate = 13/37 = 0.3514`.
+
+**Prediction 6 (quiet-variant fix + null-calibration re-run): the
+falsifier was NOT triggered, but the naive before/after comparison this
+prediction was built around turned out to be the wrong test — corrected
+mid-cycle, not silently.** The direct re-run at N=3000 (bounded, disclosed
+scope reduction from the mandated 60,001 calls — see Idealizations)
+gave `p_r2_ge_070=0.0000`, `max_r2_over_trials=0.5180` — BELOW the
+predicted `[0.56,0.78]` band, which assumed the fix would raise these
+statistics from their N=20000-cited values. Recognizing that
+`max_r2_over_trials` is an order statistic and N=3000 vs. the cited
+N=20000 is not a valid matched comparison, a controlled follow-up
+(`phase4_null_calibration_controlled_comparison.py`) reconstructed the OLD
+buggy logic and ran it at the SAME N=3000/seed=7: **`max_r2_over_trials`
+and `p_r2_ge_070` are bit-identical between the old buggy and corrected
+functions** (0.5179691995509128 both; the bug fires at 6.70%, 201/3000,
+confirming Red Team's own figure exactly, but the boundary-pinned trials
+never come close to setting the maximum — that's set by trials that
+already found a genuine local optimum). **The previously-cited
+N=20000 value (0.5609) differs from both N=3000 runs via ordinary
+sample-size variance, not via the R11 fix.** This is a cleaner, more
+decisive answer than the frozen prediction anticipated: the fix has
+**negligible** measurable effect on exp-077's null-calibration headline
+statistics, not merely a bounded one. `p_rel_dev_gt1` shows a small
+secondary difference (0.0043 corrected vs. 0.0010 old-buggy, matched
+N/seed) — a period-deviation statistic, not the "far outside noise"
+headline figure, disclosed but not load-bearing. Bootstrap-recovery stats
+(both variants) shifted <0.01° as predicted (`recovered_mean_p_star_deg`
+4.6120°/4.6207° vs. the cited run's own values, essentially unchanged).
+
+Both cosmetic fixes (item 4) applied to exp-085's own record: the
+`rd_wide_fft` print-label mislabel corrected; NOTES.md's "62.8%... of
+their mean" corrected to the true mean-relative figure, 91.6%.
+`classification_b` unaffected either way, confirmed.
 
 ## Learned
 
-*(filled after Phase 5)*
+The R11 fix is now live at the source in all three affected functions
+(`free_period_with_widening` ×2, `free_period_with_widening_quiet`),
+verified: the interior-optimum path is bit-exact-unchanged (real
+`pair_pad` reproduces `P*=4.6113°, R²=0.8165` exactly), and the
+all-boundary path now correctly surfaces the widest stage, flagged, never
+the narrowest silently. exp-085's own "STRONG COHERENT CHIRP" is
+confirmed, by the automated pipeline itself (not merely a hand audit), to
+not survive — the corrected `frac_recovered=0.568` fails the shared
+`≥0.80` gate cleanly, and the finding is `NOT STABLY PERIODIC`. The
+overlap-corrected significance test surfaced a real, load-bearing
+subtlety (QUANTUM's stride-phase finding): "not independently
+significant" was never a phase-invariant conclusion — one of three
+equally valid alignments DOES clear `p<0.05`. Treating a single arbitrary
+phase as the answer would have been exactly the kind of unstated
+researcher-degree-of-freedom this program has a standing rule against
+(R5); reporting all three, pre-registered, is the correct discipline.
+The null-calibration audit produced a genuinely reassuring result beyond
+what was predicted: the boundary-pinning bug, despite firing at a real
+6.70% rate, has negligible effect on the specific statistics that
+underwrite "the real oscillation is not noise" — a controlled matched-N
+comparison is a sharper tool than a naive before/after diff whenever
+sample size itself changes between the two things being compared, a
+methodological lesson worth carrying into future T28 audits.
 
 ## Next
 
-*(filled after Phase 5)*
+Tier-2 standing items, updated: (1) a full-scale (60,001-call)
+`null_calibration_appendix` re-run remains queued, though the controlled
+N=3000 comparison substantially de-risks its urgency (bug-vs-fix already
+shown bit-identical at matched N); (2) the joint EM/THERMO
+energy-interception cross-check, now FOUR consecutive cycles
+deferred/exempt (083/084/085/086) — the next scene-bearing T28 cycle
+should treat this as approaching the same escalation shape R6–R10 named
+for other repeatedly-deferred items; (3) PHOTONICS' grazing-incidence
+model-validity question (does `edge_diffraction_c_empty_corrected` remain
+inside its own valid near-field regime at the ~5,444×–6,631× ptp-growth
+sub-windows?) — disclosed, not resolved, this cycle; (4) PHOTONICS'
+domain-truncation test for leg (b)'s Anchor 2 and/or EM's matrix-valued
+RS/Kirchhoff kernel rebuild; (5) standing items carried forward unchanged:
+the x-wall wavelength-generality leg (now ELEVEN consecutive cycles
+deferred, 076–086, the single oldest item on the whole T28 board), the
+near-null σ(I) article follow-up, QUANTUM's lossless-PEC-only-disk
+control, the ritualization governance question named at Iteration 61,
+still not resolved.

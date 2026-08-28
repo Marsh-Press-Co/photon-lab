@@ -1,0 +1,35 @@
+{
+  "pair_pad": {
+    "n_trials": 3000,
+    "seed": 7,
+    "elapsed_s": 472.53617000579834,
+    "corrected": {
+      "pure_noise_null": {
+        "n_trials": 3000,
+        "sigma": 0.0014412437379508784,
+        "p_r2_ge_070": 0.0,
+        "p_rel_dev_gt1": 0.004333333333333333,
+        "p_shape_r2_le_005": 0.7776666666666666,
+        "max_r2_over_trials": 0.5179691995509128,
+        "mean_r2_over_trials": 0.1913631050721457
+      },
+      "bootstrap_recovery": {
+        "true_p_star_deg": 4.612580414581844,
+        "residual_lag1_acf": 0.6307471012826418,
+        "iid": {
+          "n_trials": 3000,
+          "recovered_mean_p_star_deg": 4.612016678579938,
+          "recovered_std_p_star_deg": 0.14174015942958326,
+          "frac_within_20pct_of_true": 1.0
+        },
+        "circular_shift": {
+          "n_trials": 3000,
+          "recovered_mean_p_star_deg": 4.620686204431737,
+          "recovered_std_p_star_deg": 0.14572525322149335,
+          "frac_within_20pct_of_true": 1.0
+        }
+      }
+    },
+    "p_star_real_deg": 4.611289746337977
+  }
+}
