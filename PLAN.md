@@ -22,7 +22,47 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-28, panel Iteration 62 done (exp-085, PARTIAL,
+## Current state (2026-08-28, panel Iteration 63 done (exp-086, PARTIAL,
+ELECTROMAGNETISM's rotation-lead cycle, executing exp-085's own Red Team
+Phase-5 final audit §7 Tier-1 items 1-3: fixed the R11 boundary-pinning
+defect (`free_period_with_widening`'s silent narrowest-stage fallback) at
+all three affected call sites -- both non-quiet copies PLUS the identical-
+shape `_quiet` sibling (Director's own scope extension) -- re-scored
+exp-085's Method C classification on the corrected machinery, extended
+the circular-shift null to all 37 sub-windows, and ran a bounded
+prior-citation audit. Method C re-score reproduced every frozen
+prediction exactly: `frac_recovered=21/37=0.5676`, `classification_a=NOT
+STABLY PERIODIC` -- exp-085's own "STRONG COHERENT CHIRP" reconfirmed
+dead, now by the automated pipeline itself, not a hand audit. Three
+pre-registered Spearman stride phases found the overlap-corrected
+significance genuinely phase-dependent (one of three clears `p<0.05`,
+two don't). The quiet-variant's audit-coverage gap (Red Team's own
+Phase-2 finding: a 6.70% boundary-firing rate inside the null-calibration
+appendix underwriting T28's "settled" x-normal REFUTE since Iteration
+54) was closed with a controlled matched-seed comparison finding
+`max_r2_over_trials`/`p_r2_ge_070` **bit-identical** between old-buggy
+and corrected logic -- a materially cleaner result than predicted --
+corroborated across 10 independent seeds after QUANTUM's Phase-5 review
+caught the original single-seed gap. **New standing rule R12 adopted**
+(a fix's "negligible effect on a tail statistic" claim needs >=5-8-seed
+corroboration before being reported as settled -- R6/R6-addendum
+lineage). Full five-phase cycle, six blind Phase-5 reviews (unanimous
+PARTIAL, five Phase-2 critiques and three Phase-5 findings with zero
+overlap between them -- ten independently-caught defects across the
+cycle, none load-bearing), Red Team's Phase-5 final audit independently
+re-confirmed all six Phase-5 findings from source and added a seventh of
+its own (a promised Method-A re-fit never executed, proven a mathematical
+no-op by construction). **CHECKPOINT criterion 4 does NOT fire** on any
+of four near-misses this cycle produced, explicitly conditioned on a
+4-item Tier-0 mandatory-fix docket landing before the LOGBOOK entry --
+it did. **CHECKPOINT criterion 2 N/A**, matching every T28 desk cycle
+since exp-069. **New forward tripwire**: the joint EM/THERMO energy-
+interception cross-check, now FOUR consecutive cycles deferred/exempt
+(083-086) -- a fifth consecutive deferral without either a purpose-built
+scene or an explicit retirement of the deferral framing fires Checkpoint
+criterion 4 automatically. Full record:
+`experiments/086-t28-free-period-boundary-fix-rescore/`, LOGBOOK.md
+Iteration 63); panel Iteration 62 done (exp-085, PARTIAL,
 MATERIALS' rotation-lead cycle: a zero-FDTD wide-window/dense
 re-evaluation of leg (a)'s exact model, asking whether the narrow
 31-point window's own INCONCLUSIVE period-match reflects a too-narrow
@@ -3240,11 +3280,76 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
-- **[ACTIVE — Iteration 63 queue, Red Team's Phase-5 final-audit
-  reconciliation of exp-085's six seats (`experiments/085-t28-leg-a-wide-
-  window-period-pin/phase5_redteam_audit.md` §7); supersedes the
-  Iteration-62 queue below as the active ranking, that block retained as
-  valid backlog, not deleted]** exp-085 (MATERIALS' rotation-lead cycle)
+- **[ACTIVE — Iteration 64 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-086's six seats (`experiments/086-t28-free-
+  period-boundary-fix-rescore/phase5_redteam_audit.md` §7); supersedes the
+  Iteration-63 queue below as the active ranking, that block retained as
+  valid backlog, not deleted]** exp-086 (ELECTROMAGNETISM's rotation-lead
+  cycle) fixed the R11 boundary-pinning defect at all three affected call
+  sites (`free_period_with_widening` ×2 + the `_quiet` sibling, the
+  Director's own scope extension beyond Phase 1's original two-file plan),
+  re-scored exp-085's own Method C classification on the corrected
+  machinery, extended the circular-shift null to all 37 sub-windows, and
+  closed the quiet-variant's audit-coverage gap with a 10-seed-
+  corroborated bit-identical "negligible effect" finding. **Method C
+  re-score reproduced every frozen prediction exactly**: `frac_recovered=
+  21/37=0.5676`, `classification_a=NOT STABLY PERIODIC` — exp-085's own
+  "STRONG COHERENT CHIRP" is now dead by the automated pipeline itself.
+  **New standing rule R12 adopted** (multi-seed corroboration required
+  before reporting a fix's effect on a tail statistic as "negligible").
+  **Checkpoint criterion 4 does NOT fire** on any of four cycle-produced
+  near-misses (a scope-description self-contradiction across three
+  documents; QUANTUM's single-seed gap, closed by replication within the
+  same cycle; a promised-but-unexecuted Method-A re-fit, proven a
+  mathematical no-op by construction; a Learned-section scope-erosion,
+  corrected before LOGBOOK) — **explicitly conditioned** on a 4-item
+  Tier-0 mandatory-fix docket landing first, which it did. **Checkpoint
+  criterion 2 N/A**, matching every T28 desk cycle since exp-069.
+  **New forward tripwire adopted**: the joint EM/THERMO energy-
+  interception cross-check, now FOUR consecutive cycles deferred/exempt
+  (083–086), SEVEN since first named (Iteration 59) — a FIFTH consecutive
+  deferral without either a purpose-built article-loaded scene or an
+  explicit retirement of the "next scene-bearing cycle" framing fires
+  Checkpoint criterion 4 automatically; **Iteration 64 must address this
+  directly, one way or the other, not defer a fifth time by default.**
+  **Tier 1 (near-unanimous #1, six of seven seats):** (1) a dedicated,
+  cheap, zero-FDTD validity check of `edge_diffraction_c_empty_corrected`
+  at grazing incidence (θc≳45°) — PHOTONICS traced the model to source
+  and confirmed no Fresnel-transition/UTD shadow-boundary correction term
+  exists anywhere in the chain, and the sole recovered θc=57° point sits
+  amplitude-comparable to the confirmed blow-up region; this gates
+  whether ANY future classification built on Method C's grazing-angle
+  sub-windows is physically meaningful at all, not merely a fit-quality
+  question. (2) Transcribe R12's adoption and this cycle's own 10-seed
+  compliance into standard practice for future tail-statistic claims.
+  (3) Complete the still-queued full-scale (60,001-call)
+  `null_calibration_appendix` re-run — run in two parts per Red Team's
+  own reconciliation: (a) one N=60,001 run at exp-077's own originally-
+  implied seed for an apples-to-apples update of the exact cited figure,
+  AND (b) folded into the R12 multi-seed protocol rather than treated as
+  sufficient alone (a large single N is still one draw of the order
+  statistic). **Tier 2, the board's most overdue standing items:** (4) the
+  energy-interception cross-check under its new forward tripwire, above
+  — this cycle's own top governance priority; (5) the x-wall wavelength-
+  generality leg, now **ELEVEN** consecutive cycles deferred (076–086),
+  the single oldest item on the whole T28 board. **Tier 3, standing,
+  carried forward unchanged:** (6) PHOTONICS' domain-truncation test for
+  leg (b)'s Anchor 2, and/or EM's matrix-valued RS/Kirchhoff kernel
+  rebuild; (7) the near-null σ(I) article follow-up, still not run; (8)
+  QUANTUM's lossless-PEC-only-disk control, still not run; (9) the
+  ritualization governance question named at Iteration 61, still not
+  resolved. **Tier 4, governance:** (10) Checkpoint criterion 2 ruled
+  N/A; (11) Checkpoint criterion 4 ruled not firing on four matters,
+  reasoned individually, conditioned on the Tier-0 docket (delivered);
+  (12) a governance observation, not yet a rule: the fourth consecutive
+  T28 cycle with multiple dense, individually-non-firing Phase-5
+  near-misses — healthy but worth tracking if a fifth cycle recurs. None
+  of the above re-opens or re-proposes any RULED-OUT item (R1–R12). Full
+  record: `experiments/086-t28-free-period-boundary-fix-rescore/`,
+  LOGBOOK.md Iteration 63.
+- **[superseded by the Iteration-64 queue above — exp-086's own docket,
+  retained as a pointer to its own history, not deleted]** exp-085
+  (MATERIALS' rotation-lead cycle)
   re-evaluated leg (a)'s exact model over a wide/dense window to ask
   whether the narrow 31-point window's own INCONCLUSIVE period-match
   (`P_model_a=2.5338°`) reflects a too-narrow sample or genuine
