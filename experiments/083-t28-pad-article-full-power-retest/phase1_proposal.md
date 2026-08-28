@@ -348,3 +348,181 @@ remains a single directional check, not the full R3-grade convergence study
    with a high-`R²`-but-unstable-`P*` signature.
 
 ---
+
+## PHASE 1 RESULTS (self-scored, numbers copied from `results.json`/`run_output.txt`/`null_permutation_control.json`, never hand-typed)
+
+**125/125 FDTD calls completed, 1829.5s wall time** (≈30.5 min — faster than
+the §0a estimate of ≈44 min; 4-way parallelism held throughout).
+
+### Preconditions
+
+- **Reproduction precondition: PASSED, bit-exact.** Fresh 31-point empty leg
+  vs `experiments/076-.../results.json::headline` — `max_dev = 0.0` at every
+  one of the 31 shared angles (not merely `<1e-9`; literally exact). The
+  article-loaded leg is trusted.
+- **Settling precondition (disclosed, not gating): `rel_dev = 9.81×10⁻⁵`** —
+  bit-identical to exp-082's own reading at the same cell (`G40, θ=39°`),
+  since this is the same STEPS=2800-vs-1400 comparison, now re-confirmed at
+  the full window's own settled step count. No evidence STEPS=2800 is
+  insufficient with the article present.
+
+### PRIMARY: the three-branch period discriminator — **BRANCH B, ARTICLE-EDGE DIFFRACTION, decisively**
+
+```
+delta_scene(theta) free-period fit (narrow[1,4]deg stage, interior optimum):
+  P* = 2.9474 deg    R^2 = 0.8582
+  rel_dev vs P_continuity (4.6113deg) = 0.361   [outside 20% band]
+  rel_dev vs P_edge_A     (2.8421deg) = 0.037   [WELL INSIDE 20% band]
+  rel_dev vs P_edge_B     (1.9608deg) = 0.503   [outside 20% band]
+BRANCH: B_ARTICLE_EDGE_DIFFRACTION
+```
+
+This is not a close call: `P*` sits at 3.7% relative deviation from
+`P_edge_A`, an order of magnitude inside the pre-registered 20% tolerance,
+and 36%/50% away from the other two bands — no boundary ambiguity. `R²=0.858`
+clears the pre-registered `≥0.30` floor by a wide margin.
+
+**Post-hoc due diligence, run at self-scoring time (not pre-registered,
+disclosed as such): a 20,000-trial null-permutation control**, shuffling
+`delta_scene`'s own 31 values and re-running the identical
+`_free_period_search` on each shuffle (zero new FDTD, pure desk compute,
+reusing the sub-thread's own established null-control idiom, exp-069/072/077
+precedent):
+
+```
+null-permutation control on delta_scene, n_trials=20000:
+  R^2_observed = 0.8582
+  null distribution: mean=0.192  p95=0.335  p99=0.420  MAX=0.632
+  p_value = 0.0  (0/20000 permutations reached R^2>=0.8582)
+```
+
+**The observed `R²=0.858` exceeds the MAXIMUM achieved by 20,000 pure-noise
+permutations of this exact data on this exact instrument** — not merely a
+significant p-value, but entirely outside the null distribution's own
+observed range. This directly answers the look-elsewhere concern R5's own
+family of house rules exists to raise (a free-period search over ~400
+candidate periods CAN inflate apparent fit quality by chance): here it
+demonstrably does not explain this result. Separately: the pre-registered
+`R²≥0.30` floor itself sits close to this null distribution's own 90–95th
+percentile (`p95=0.335`) — a real, disclosed finding that the inherited
+threshold is only moderately conservative in isolation, which is exactly why
+this post-hoc null control matters and is not redundant with the
+pre-registered gate.
+
+### COMPANION: EM's field-difference decomposition — independently corroborates Branch B
+
+```
+DeltaE_obj_article_C40 (article - no-article, C40 alone):  P*=3.0226deg R^2=0.1977  -> below R^2 floor, C (uninformative alone)
+DeltaE_obj_article_G40 (article - no-article, G40 alone):  P*=2.9098deg R^2=0.2550  -> below R^2 floor, C (uninformative alone)
+DeltaDeltaE_obj_article_PAD (G40-C40, the field-level PAIR_PAD analog):
+  P*=2.5865deg  R^2=0.4582  rel_dev vs P_edge_A=0.090 [inside 20% band]  -> BRANCH B
+```
+
+Each single-config field-level decomposition, alone, is too weak to classify
+(`R²<0.30`) — a real, disclosed limitation, not swept aside. But the
+**cross-config pair** — the field-level construction that mirrors T28's own
+established practice of always scoring `PAIR_PAD` as a *difference*, never a
+single config, because that is what cancels the shared, non-PAD-dependent
+`E_direct` term (PHOTONICS' own exp-080 Phase-5 proof) — independently
+recovers a period in the SAME family as the primary test (`2.59°` vs the
+primary's `2.95°`, both within 20% of `P_edge_A=2.84°`, though not identical
+to each other; disclosed, §5 idealization 7's own caveat about
+superposition/precision remains open). **A second null-permutation control on
+this exact series**: `R²_observed=0.4582`, null distribution
+`mean=0.190, p95=0.325, p99=0.399, max=0.560`, **p=0.00185** (37/20,000) —
+also decisively clears its own null, though with less extreme margin than
+the primary test's `p=0.0`.
+
+**Two structurally different instruments — the established nonlinear
+Weber-contrast pair-fit (delta_scene) and EM's new linear field-difference
+pair-fit (DeltaDeltaE_obj_article_PAD) — independently land in the SAME
+branch, each clearing its own fresh null-permutation control.** This is
+materially stronger corroboration than either alone, and is new evidence
+this cycle produced, not assumed.
+
+### Secondary, disclosed-not-gating diagnostics
+
+```
+Amplitude-ratio consistency: A_scene=3.811e-3  A_empty=5.262e-3  ratio=0.7243  SURVIVES
+  (same direction/magnitude as exp-082's own n=7 reading, ratio=0.6573 -- consistent, not re-litigated)
+A_scene / C_thr = 0.7622  (C_thr=0.005; context only, R9-consistent normalization)
+delta_empty own free-period fit (context): P* = 4.611289746337977deg, R^2=0.8165
+  -- IDENTICAL to P_continuity to full float precision. This is a NECESSARY
+  consequence of the reproduction precondition (this leg is bit-exact to
+  exp-076's own committed data, from which P_continuity was itself derived
+  via the identical fitting function) -- a harness-correctness confirmation,
+  not new independent evidence. Correctly read as a sanity check, not a
+  finding.
+Pearson r(delta_scene, delta_empty) @ n=31: r_obs = 0.3949, p = 0.02806 (200,000-trial permutation)
+```
+
+**Honest discussion of the correlation figure, since it is the one number
+this cycle produced that is in some tension with the primary branch
+classification.** At n=7 (exp-082), `r≈0.031, p=0.953` was read as
+uninformative. At n=31, `r=0.395` is a real, MODEST, nominally-significant
+positive correlation between `delta_scene` and `delta_empty` — a genuinely
+different reading, not merely "more of the same." Two honest cautions
+against over-reading it as evidence for mechanism continuity, weighed
+against the primary result:
+
+1. **This was pre-registered explicitly as disclosed-not-gating context**
+   (§4c), decided BEFORE the run — the correct discipline, since the
+   primary, gating discriminator (the free-period fit, §4a) is a sharper,
+   pre-committed test of the same underlying question and it resolves
+   cleanly in favor of Branch B.
+2. **Multiple-comparisons caution, stated explicitly, not smoothed over.**
+   This cycle computed several non-trivial statistics (the primary 3-branch
+   classification, this correlation/p-value, and three EM-companion branch
+   classifications). Read in isolation at the nominal `α=0.05`, `p=0.02806`
+   looks significant; under even a simple Bonferroni correction across this
+   cycle's ~5 headline-adjacent tests (`α_corrected≈0.01`), it would NOT
+   clear the bar. Since it was pre-registered as non-gating precisely to
+   avoid leaning on it either way, this is disclosed as an open, unresolved
+   tension, not adjudicated here.
+3. **A plausible, charter-neutral explanation for a modest nonzero
+   correlation between two DIFFERENT-period series over a short window**:
+   `delta_scene`'s `P*=2.95°` and `delta_empty`'s `P*=4.61°` are not harmonics
+   of each other, but over a 6°-wide window (≈2.0 and ≈1.3 periods
+   respectively) two moderately-different-frequency sinusoids are not fully
+   orthogonal — a data-free leakage argument in the same family as this
+   sub-thread's own established `L(T)` leakage-budget finding (exp-072/074).
+   A modest correlation between two now-independently-well-determined but
+   DIFFERENT periods is not, by itself, evidence they share a mechanism.
+
+**This tension is real and not resolved by this cycle** — flagged
+explicitly as an open item for Phase 2/5, not swept into either the SUPPORT
+or REFUTE column.
+
+### Combined self-score
+
+**The pre-registered PRIMARY discriminator resolves decisively to BRANCH B
+— ARTICLE-EDGE DIFFRACTION (PHOTONICS' own hypothesis), not Branch A
+(QUANTUM's mechanism-continuity hypothesis) and not Branch C (neither
+family).** This is the single test PHOTONICS' and Red Team's own Phase-5
+audit of exp-082 specified as decisive, and it decides cleanly, with a
+freshly-run null-permutation control (not merely the inherited threshold)
+showing the result is far outside what pure noise produces on this exact
+instrument. EM's own field-difference companion, run at zero marginal FDTD
+cost, independently corroborates the SAME branch via a structurally
+different (linear, not Weber-contrast) construction, itself passing its own
+fresh null-permutation control. **This resolves, for the first time in this
+nine-cycle-plus T28 sub-thread, the specific mechanism-identity question
+exp-082 showed was unresolvable at reduced power** — not by asserting more
+statistical power in the abstract, but by actually running the pre-specified
+discriminating test and getting an unambiguous, doubly-corroborated,
+null-controlled answer.
+
+**What this does NOT establish, stated explicitly, not overclaimed:**
+Branch B being selected does not mean `PAD`'s own empty-scene mechanism
+(Iteration 53's proven-lossless phase effect) is irrelevant to the
+article-loaded channel — `delta_empty`'s own signal is real and, per the
+correlation figure, not entirely uncorrelated with `delta_scene`, just
+NOT the dominant periodic structure once an article of this size occupies
+the object window. The two individually-inconclusive EM single-config
+fits (`R²<0.30` each) mean this cycle cannot yet say HOW MUCH of each
+config's own field response the article-edge term explains in isolation —
+only that the cross-config difference, which is what T28's own scoring has
+always used, carries a `2.84°`-family signature that survives a null
+control. The correlation tension (above) is a genuine open question, not
+resolved here. `T1: N/A` throughout — no constraint-3 claim is made or
+implied by any number in this section.
