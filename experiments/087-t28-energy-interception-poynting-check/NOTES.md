@@ -132,8 +132,118 @@ fix-by-fix mapping)
 
 ## Result
 
-*(to be filled in after Phase 4 — not written before the run, per house
-discipline)*
+**Call-count correction, disclosed (cosmetic, non-substantive):** the
+frozen plan's own §Frozen-configuration table stated 14 new FDTD calls (12
+main + 2 settling). The actual settling spot-check (mirroring exp-083's own
+idiom exactly, as stated) needs only ONE extra call — the article leg
+re-run at `STEPS=1400`, reusing the main sweep's already-produced empty-leg
+capture as the reference in both the 2800- and 1400-step comparisons — so
+the correct, and actual, total is **13** (12 + 1). `run.py`'s own
+Idealizations-7-citing comment states this reuse explicitly; the frozen
+text's "14" double-counted an unneeded second empty-leg call. Verified: the
+implemented script performed exactly 13 FDTD calls (`run_output.txt`,
+`results.json::total_new_fdtd_calls=13`).
+
+**A genuine first-of-its-kind instrument finding, found and fixed before
+any classification was trusted (not silently patched):** the first
+run produced `sigma_abs<0` at every one of 12 (cfg,θ,box) cells — failing
+the pre-registered non-negativity gate outright. Traced to source, not
+worked around: `lab/sections.py::widths()`'s own `i_inc` is a **signed**
++x-direction flux at the reference strip; every PRIOR caller (exp-002/024's
+absorber bench) had `src_x<obj_x`, propagating in +x, so `i_inc` was always
+positive and this sign was never exercised. T28's `PAIR_PAD` geometry has
+`src_x>obj_x>plane_x` (confirmed from `dg069.CONFIGS`) — the wave
+propagates in **-x** — so `i_inc` is, correctly, negative, and every
+`sigma_*` field (each a power divided by this one signed scalar) flipped
+sign together. Confirmed NOT scattered noise: `sigma_ext` and
+`sigma_ext_cross` agreed on the same negative sign to <0.05% (`xi_ext`,
+already computed, is sign-invariant and unaffected). Fixed with a
+caller-side wrapper, `widths_direction_corrected()`, in `run.py` —
+**zero `lab/` diff** (confirmed: `git diff --stat -- lab/` empty
+throughout): recovers each raw power and re-normalizes by `abs(i_inc)`
+(the physically correct choice — an intensity normalizer must be a
+magnitude, not a directionally-signed flux). Because `xi_ext`/`box_dev_*`
+are ratios of differences to magnitudes, both already-computed and
+already-gated (P3/P4, both PASS, `xi_ext≤0.00048` everywhere — the
+extinction-routes-agreement identity holds cleanly even at this first-ever
+oblique/`graded_black_shell`/PAD-shifted-box application, EM's own
+moderate-confidence P4 prediction confirmed) are provably invariant to
+this correction and were not recomputed.
+
+**P1 (vacuum footprint): PASS**, all 4 (cfg,box) cells, both configs.
+**P2 (reproduction): PASS**, `max_dev=0.0` exactly (bit-identical, not
+merely within tolerance) against `experiments/083-.../results.json`'s own
+committed `C_empty` figures at all 3 angles, both configs.
+**P4 (`xi_ext`): PASS**, `≤0.00048` everywhere (12 cells) — comfortably
+inside the `≤0.12` tolerance, the never-before-tested extinction-routes
+identity holds for `graded_black_shell` at oblique incidence.
+**P5 (synthetic recovery): PASS**, all 14 decade-boundary/bucket test cases
+recovered exactly. **Non-negativity gate: PASS** (after the direction
+correction above). **P6 (settling): reported, not gating** —
+`rel_dev(sigma_abs)=7.9×10⁻⁵`, `rel_dev(sigma_ext)=9.4×10⁻⁴` at
+`G40`/θ=38.6°/`BOX_A` — small, no red flag for the new channel's own
+settling at `STEPS=2800`.
+
+**P7 (PRIMARY): FALSIFIED — classification is ENERGY-DOMINANT, not the
+predicted ENERGY-DECOUPLED.**
+
+| θ | frac_p_abs | frac_contrast | ratio_k | resolved |
+|---|---|---|---|---|
+| 36.0° | 1.965×10⁻³ | 7.438×10⁻⁴ | 2.64 | yes |
+| 38.6° | 4.001×10⁻³ | 7.410×10⁻⁵ | 53.99 | yes |
+| 41.8° | 7.214×10⁻³ | 1.263×10⁻³ | 5.71 | yes |
+
+All 3 angles resolved (the noise-floor gate clears comfortably at every
+angle — this is a real, well-powered measurement, not a marginal one).
+`θ=38.6°` alone reads `ratio_k=53.99>10` (label X), which under §4's own
+stated priority (any resolved angle over `RATIO_HIGH` ⇒ ENERGY-DOMINANT
+outright) drives the overall classification, regardless of the other two
+angles' own labels.
+
+**A disclosed, independently-checked candidate explanation for the θ=38.6°
+outlier specifically — not adopted as settled, flagged for Phase 5.**
+Checking `experiments/083-.../results.json::per_theta` around 38.6°
+directly (not asserted, read): `delta_scene(θ)` — the Weber-contrast
+confound curve `frac_contrast`'s own numerator depends on — crosses zero
+almost exactly AT 38.6°: `37.6°→+1.587e-3, 38.0°→+1.923e-3, 38.4°→+8.08e-4,
+**38.6°→-4.15e-5**, 38.8°→-8.57e-4, 39.2°→-1.829e-3`. `θ=38.6°` sits within
+one 0.2° grid step of this curve's own genuine node — `frac_contrast`'s
+denominator (`|C40_C(38.6°)|`, not itself near zero) is fine, but its
+*numerator* (`|delta_scene(38.6°)|=4.15×10⁻⁵`) is anomalously small purely
+because the confound oscillation happens to cross zero there, which alone
+would inflate `ratio_k` regardless of the article's real absorbed-power
+behavior. This is a plausible, quantitatively consistent explanation for
+the θ=38.6° outlier specifically (a near-zero-crossing denominator
+artifact, not a real physical energy-dominant regime at that one angle) —
+disclosed as a candidate, independently checked from source, NOT resolved
+or adopted as the final reading; Phase 5 should scrutinize it rather than
+accept it on this NOTES.md's own say-so.
+
+**This explanation does NOT rescue the pre-registered prediction, even if
+fully credited.** Excluding θ=38.6° as a node artifact, the remaining two
+angles (36.0°, 41.8°) both read `ratio_k∈{2.64,5.71}` — squarely inside the
+**CONSISTENT** band (`0.1–10`), not the predicted **ENERGY-DECOUPLED**
+(`<0.1`). The bulk-integrated absorbed-power PAD-sensitivity and the
+localized Weber-contrast PAD-sensitivity are, at these two "clean" angles,
+comparable in fractional magnitude — a genuine, non-artifactual departure
+from ten-plus cycles' own phase/interference-only prior, not merely a
+single-point aliasing/node fluke. **Falsified as pre-registered — a
+materially new finding warranting immediate follow-up, per this document's
+own §Falsifiers language, not a failure of this proposal.**
+
+**P8: predicted UNDETECTABLE, confirmed at all 6 (cfg,θ) cells** —
+`dt_ss_full_K` ranges `4.52×10⁻⁵` to `5.35×10⁻⁵` K, NETD margin
+(`0.020K/dt_ss`) ranges **≈374×–442×** — comfortably clear, same order as
+this flagship absorber's every prior disposition (T5/exp-043/exp-057). No
+triage-rule trigger (fix 6 N/A this cycle — P8 did not depart from
+UNDETECTABLE).
+
+**Aliasing-risk-band log (fix 10):** the actual, non-uniform grid sits
+8.5–12.6% from exact integer-cycle resonance against both `P_edge_A` and
+`P_star` at both gaps — meaningfully clearer of the aliasing condition than
+Phase 1's original uniform 3.0° spacing (1.8% from exact resonance against
+`P_star`), though not zero risk; disclosed for any future reviewer citing
+this cycle's own angle choice.
 
 ## Learned
 

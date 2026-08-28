@@ -1,0 +1,494 @@
+{
+  "angles": [
+    36.0,
+    38.6,
+    41.8
+  ],
+  "pair_keys": [
+    "C40",
+    "G40"
+  ],
+  "steps_main": 2800,
+  "total_new_fdtd_calls": 13,
+  "total_wall_time_s": 115.6724500656128,
+  "vacuum_footprint_check": {
+    "C40": {
+      "BOX_A": {
+        "box": [
+          80,
+          260,
+          702,
+          882
+        ],
+        "all_vacuum": true
+      },
+      "BOX_B": {
+        "box": [
+          68,
+          272,
+          690,
+          894
+        ],
+        "all_vacuum": true
+      }
+    },
+    "G40": {
+      "BOX_A": {
+        "box": [
+          120,
+          300,
+          742,
+          922
+        ],
+        "all_vacuum": true
+      },
+      "BOX_B": {
+        "box": [
+          108,
+          312,
+          730,
+          934
+        ],
+        "all_vacuum": true
+      }
+    }
+  },
+  "synthetic_recovery_check": {
+    "results": [
+      {
+        "ratio": 0.05,
+        "expected": "D",
+        "got": "D",
+        "pass_": true
+      },
+      {
+        "ratio": 0.099999,
+        "expected": "D",
+        "got": "D",
+        "pass_": true
+      },
+      {
+        "ratio": 0.1,
+        "expected": "C",
+        "got": "C",
+        "pass_": true
+      },
+      {
+        "ratio": 0.100001,
+        "expected": "C",
+        "got": "C",
+        "pass_": true
+      },
+      {
+        "ratio": 1.0,
+        "expected": "C",
+        "got": "C",
+        "pass_": true
+      },
+      {
+        "ratio": 9.999999,
+        "expected": "C",
+        "got": "C",
+        "pass_": true
+      },
+      {
+        "ratio": 10.0,
+        "expected": "C",
+        "got": "C",
+        "pass_": true
+      },
+      {
+        "ratio": 10.000001,
+        "expected": "X",
+        "got": "X",
+        "pass_": true
+      },
+      {
+        "ratio": 20.0,
+        "expected": "X",
+        "got": "X",
+        "pass_": true
+      },
+      {
+        "ratios": [
+          0.01,
+          0.02,
+          0.05
+        ],
+        "expected": "ENERGY-DECOUPLED",
+        "got": "ENERGY-DECOUPLED",
+        "pass_": true
+      },
+      {
+        "ratios": [
+          1.0,
+          2.0,
+          5.0
+        ],
+        "expected": "CONSISTENT",
+        "got": "CONSISTENT",
+        "pass_": true
+      },
+      {
+        "ratios": [
+          15.0,
+          20.0,
+          30.0
+        ],
+        "expected": "ENERGY-DOMINANT",
+        "got": "ENERGY-DOMINANT",
+        "pass_": true
+      },
+      {
+        "ratios": [
+          0.01,
+          1.0,
+          0.02
+        ],
+        "expected": "MIXED",
+        "got": "MIXED",
+        "pass_": true
+      },
+      {
+        "ratios": [
+          0.01,
+          15.0,
+          1.0
+        ],
+        "expected": "ENERGY-DOMINANT",
+        "got": "ENERGY-DOMINANT",
+        "pass_": true
+      }
+    ],
+    "all_pass": true
+  },
+  "reproduction_precondition": {
+    "per_cell": {
+      "C40": {
+        "36.0": {
+          "fresh": -0.008338908971214587,
+          "ref": -0.008338908971214587,
+          "dev": 0.0
+        },
+        "38.6": {
+          "fresh": -0.0005931996683328222,
+          "ref": -0.0005931996683328222,
+          "dev": 0.0
+        },
+        "41.8": {
+          "fresh": -0.004615413347741515,
+          "ref": -0.004615413347741515,
+          "dev": 0.0
+        }
+      },
+      "G40": {
+        "36.0": {
+          "fresh": -0.010496829358373039,
+          "ref": -0.010496829358373039,
+          "dev": 0.0
+        },
+        "38.6": {
+          "fresh": -0.00010744643397042619,
+          "ref": -0.00010744643397042619,
+          "dev": 0.0
+        },
+        "41.8": {
+          "fresh": -0.003024994294379413,
+          "ref": -0.003024994294379413,
+          "dev": 0.0
+        }
+      }
+    },
+    "max_dev": 0.0,
+    "passed": true
+  },
+  "widths": {
+    "C40_36.0_BOX_A": {
+      "sigma_scat": 146.54579729423185,
+      "sigma_abs": 154.2246826215567,
+      "sigma_ext": 300.77047991578854,
+      "sigma_ext_cross": 300.8243530749198,
+      "back_frac": 0.6755526326753866,
+      "fwd_frac": 8.532454910287688e-05,
+      "i_inc": 0.31769655517361556,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_36.0_BOX_B": {
+      "sigma_scat": 146.50518390197286,
+      "sigma_abs": 154.20852788796475,
+      "sigma_ext": 300.71371178993763,
+      "sigma_ext_cross": 300.8235492885837,
+      "back_frac": 0.7064110907816044,
+      "fwd_frac": 6.677063295414282e-05,
+      "i_inc": 0.31769655517361556,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_38.6_BOX_A": {
+      "sigma_scat": 151.3157167357435,
+      "sigma_abs": 159.64609952260608,
+      "sigma_ext": 310.9618162583496,
+      "sigma_ext_cross": 310.95779198332974,
+      "back_frac": 0.6158402042310264,
+      "fwd_frac": 8.586965706743308e-05,
+      "i_inc": 0.3279108551673764,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_38.6_BOX_B": {
+      "sigma_scat": 151.30280709040665,
+      "sigma_abs": 159.59865752807514,
+      "sigma_ext": 310.9014646184818,
+      "sigma_ext_cross": 311.0097705768847,
+      "back_frac": 0.6403767554870853,
+      "fwd_frac": 5.406653127447457e-05,
+      "i_inc": 0.3279108551673764,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_41.8_BOX_A": {
+      "sigma_scat": 158.47151714957667,
+      "sigma_abs": 167.47539148788323,
+      "sigma_ext": 325.9469086374599,
+      "sigma_ext_cross": 325.8313583265917,
+      "back_frac": 0.5547697930965889,
+      "fwd_frac": 6.007507770005269e-05,
+      "i_inc": 0.3410171130630587,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_41.8_BOX_B": {
+      "sigma_scat": 158.53656001476995,
+      "sigma_abs": 167.48383628600376,
+      "sigma_ext": 326.0203963007737,
+      "sigma_ext_cross": 325.8633744935793,
+      "back_frac": 0.5697002287491635,
+      "fwd_frac": 5.147695207554665e-05,
+      "i_inc": 0.3410171130630587,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_36.0_BOX_A": {
+      "sigma_scat": 146.55935480712145,
+      "sigma_abs": 154.4203742785506,
+      "sigma_ext": 300.97972908567203,
+      "sigma_ext_cross": 301.02990204886726,
+      "back_frac": 0.6763743750780815,
+      "fwd_frac": 9.17558252393537e-05,
+      "i_inc": 0.3186989002836852,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_36.0_BOX_B": {
+      "sigma_scat": 146.5209300939862,
+      "sigma_abs": 154.39709435339162,
+      "sigma_ext": 300.91802444737783,
+      "sigma_ext_cross": 301.0113114617005,
+      "back_frac": 0.7070785786547562,
+      "fwd_frac": 7.015441014364265e-05,
+      "i_inc": 0.3186989002836852,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_38.6_BOX_A": {
+      "sigma_scat": 151.47930088682708,
+      "sigma_abs": 160.01220974573917,
+      "sigma_ext": 311.49151063256625,
+      "sigma_ext_cross": 311.53517133780014,
+      "back_frac": 0.6161850834196811,
+      "fwd_frac": 5.237697158092701e-05,
+      "i_inc": 0.32871823423186003,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_38.6_BOX_B": {
+      "sigma_scat": 151.46331310212878,
+      "sigma_abs": 160.0022267603992,
+      "sigma_ext": 311.465539862528,
+      "sigma_ext_cross": 311.559876146757,
+      "back_frac": 0.6404003084660193,
+      "fwd_frac": 3.088853772522049e-05,
+      "i_inc": 0.32871823423186003,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_41.8_BOX_A": {
+      "sigma_scat": 159.1068537825855,
+      "sigma_abs": 168.05642984219912,
+      "sigma_ext": 327.16328362478464,
+      "sigma_ext_cross": 327.0260242303803,
+      "back_frac": 0.5534979698773476,
+      "fwd_frac": 0.000101848926001262,
+      "i_inc": 0.34052430743572165,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_41.8_BOX_B": {
+      "sigma_scat": 159.16696586393817,
+      "sigma_abs": 168.03952998598808,
+      "sigma_ext": 327.2064958499263,
+      "sigma_ext_cross": 327.0853850904355,
+      "back_frac": 0.5686983911030352,
+      "fwd_frac": 8.47318014152561e-05,
+      "i_inc": 0.34052430743572165,
+      "direction_correction_sign_applied": -1.0
+    }
+  },
+  "box_dev": {
+    "C40_36.0": {
+      "ext": 0.00018874234554801575,
+      "abs": 0.00010474804238429019
+    },
+    "C40_38.6": {
+      "ext": 0.00019408054851873926,
+      "abs": 0.0002971697690880589
+    },
+    "C40_41.8": {
+      "ext": 0.000225458997666245,
+      "abs": 5.042411333098306e-05
+    },
+    "G40_36.0": {
+      "ext": 0.0002050126049407078,
+      "abs": 0.00015075682381778668
+    },
+    "G40_38.6": {
+      "ext": 8.337553079867244e-05,
+      "abs": 6.238889742124708e-05
+    },
+    "G40_41.8": {
+      "ext": 0.00013208152413338498,
+      "abs": 0.00010056060471419534
+    }
+  },
+  "xi_ext": {
+    "C40_36.0_BOX_A": 0.00017911717648078041,
+    "C40_36.0_BOX_B": 0.000365256037020351,
+    "C40_38.6_BOX_A": 1.2941379968340166e-05,
+    "C40_38.6_BOX_B": 0.0003483610427368973,
+    "C40_41.8_BOX_A": 0.00035450654019454327,
+    "C40_41.8_BOX_B": 0.0004816318517985525,
+    "G40_36.0_BOX_A": 0.00016669881173606078,
+    "G40_36.0_BOX_B": 0.00031000806446858175,
+    "G40_38.6_BOX_A": 0.00014016659762323963,
+    "G40_38.6_BOX_B": 0.00030287872061438064,
+    "G40_41.8_BOX_A": 0.0004195440053161898,
+    "G40_41.8_BOX_B": 0.0003701355597362874
+  },
+  "xi_pass": true,
+  "nonneg_pass": true,
+  "thermo": {
+    "C40_36.0": {
+      "sigma_ext_cells": 300.77047991578854,
+      "ratio_abs_ext_raw": 0.5127653573739598,
+      "ratio_abs_ext_clamped": 0.5127653573739598,
+      "p_abs_w": 2.748813736707898e-12,
+      "dt_ss_full_K": 4.516012618903763e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "C40_38.6": {
+      "sigma_ext_cells": 310.9618162583496,
+      "ratio_abs_ext_raw": 0.5133945429170339,
+      "ratio_abs_ext_clamped": 0.5133945429170339,
+      "p_abs_w": 2.9418572483621216e-12,
+      "dt_ss_full_K": 4.833162858291049e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "C40_41.8": {
+      "sigma_ext_cells": 325.9469086374599,
+      "ratio_abs_ext_raw": 0.5138118725775694,
+      "ratio_abs_ext_clamped": 0.5138118725775694,
+      "p_abs_w": 3.2348495483451184e-12,
+      "dt_ss_full_K": 5.314518472276565e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "G40_36.0": {
+      "sigma_ext_cells": 300.97972908567203,
+      "ratio_abs_ext_raw": 0.5130590513442711,
+      "ratio_abs_ext_clamped": 0.5130590513442711,
+      "p_abs_w": 2.7542164394468874e-12,
+      "dt_ss_full_K": 4.524888692760511e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "G40_38.6": {
+      "sigma_ext_cells": 311.49151063256625,
+      "ratio_abs_ext_raw": 0.5136968562025716,
+      "ratio_abs_ext_clamped": 0.5136968562025716,
+      "p_abs_w": 2.9536263664210568e-12,
+      "dt_ss_full_K": 4.852498284681625e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "G40_41.8": {
+      "sigma_ext_cells": 327.16328362478464,
+      "ratio_abs_ext_raw": 0.5136775373453545,
+      "ratio_abs_ext_clamped": 0.5136775373453545,
+      "p_abs_w": 3.258186276825606e-12,
+      "dt_ss_full_K": 5.352858269147644e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    }
+  },
+  "p8_all_undetectable": true,
+  "biot_swing_x": 780.0,
+  "h_conv_swing_x": 116.0,
+  "frac_p_abs": {
+    "36.0": 0.0019654670183146365,
+    "38.6": 0.004000574149370313,
+    "41.8": 0.007214161936040001
+  },
+  "frac_contrast": {
+    "36.0": 0.0007438279588304384,
+    "38.6": 7.410062757210442e-05,
+    "41.8": 0.0012633809286846705
+  },
+  "ratio_k": {
+    "36.0": 2.6423677612294223,
+    "38.6": 53.988397675546146,
+    "41.8": 5.710203290428644
+  },
+  "resolved": {
+    "36.0": true,
+    "38.6": true,
+    "41.8": true
+  },
+  "n_resolved": 3,
+  "p7_classification": "ENERGY-DOMINANT",
+  "p_edge_a": 2.8421052631578947,
+  "p_star": 2.9473684210526314,
+  "aliasing_risk_log": [
+    {
+      "gap_deg": 2.6000000000000014,
+      "period_name": "P_edge_A",
+      "period_deg": 2.8421052631578947,
+      "cycles_per_gap": 0.9148148148148153,
+      "frac_from_integer_resonance": 0.0851851851851847
+    },
+    {
+      "gap_deg": 2.6000000000000014,
+      "period_name": "P_star",
+      "period_deg": 2.9473684210526314,
+      "cycles_per_gap": 0.8821428571428577,
+      "frac_from_integer_resonance": 0.11785714285714233
+    },
+    {
+      "gap_deg": 3.1999999999999957,
+      "period_name": "P_edge_A",
+      "period_deg": 2.8421052631578947,
+      "cycles_per_gap": 1.1259259259259244,
+      "frac_from_integer_resonance": 0.12592592592592444
+    },
+    {
+      "gap_deg": 3.1999999999999957,
+      "period_name": "P_star",
+      "period_deg": 2.9473684210526314,
+      "cycles_per_gap": 1.0857142857142843,
+      "frac_from_integer_resonance": 0.0857142857142843
+    }
+  ],
+  "settling_spot_check": {
+    "cfg": "G40",
+    "theta": 38.6,
+    "sigma_abs_2800": 160.01220974573917,
+    "sigma_abs_1400": 160.02490601432925,
+    "sigma_ext_2800": 311.49151063256625,
+    "sigma_ext_1400": 311.1992526399925,
+    "rel_dev_abs": 7.934562375115578e-05,
+    "rel_dev_ext": 0.0009382534759301941
+  },
+  "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict.",
+  "scope_note": "This cross-check bears only on T28's own confound-mechanism question and constraint-3's energy-ledger bookkeeping. It does not test constraints 1/2/4, and does not re-open or re-score REALIZABILITY_MEMO.md's verdict."
+}

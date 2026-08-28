@@ -1,0 +1,103 @@
+==============================================================================
+exp-087 -- T28 energy-interception Poynting-box cross-check
+==============================================================================
+
+[P1] vacuum-footprint precondition: PASS=True
+  C40 BOX_A box=[80, 260, 702, 882] all_vacuum=True
+  C40 BOX_B box=[68, 272, 690, 894] all_vacuum=True
+  G40 BOX_A box=[120, 300, 742, 922] all_vacuum=True
+  G40 BOX_B box=[108, 312, 730, 934] all_vacuum=True
+
+[P5] synthetic classifier-recovery check: PASS=True
+  {'ratio': 0.05, 'expected': 'D', 'got': 'D', 'pass_': True}
+  {'ratio': 0.099999, 'expected': 'D', 'got': 'D', 'pass_': True}
+  {'ratio': 0.1, 'expected': 'C', 'got': 'C', 'pass_': True}
+  {'ratio': 0.100001, 'expected': 'C', 'got': 'C', 'pass_': True}
+  {'ratio': 1.0, 'expected': 'C', 'got': 'C', 'pass_': True}
+  {'ratio': 9.999999, 'expected': 'C', 'got': 'C', 'pass_': True}
+  {'ratio': 10.0, 'expected': 'C', 'got': 'C', 'pass_': True}
+  {'ratio': 10.000001, 'expected': 'X', 'got': 'X', 'pass_': True}
+  {'ratio': 20.0, 'expected': 'X', 'got': 'X', 'pass_': True}
+  {'ratios': [0.01, 0.02, 0.05], 'expected': 'ENERGY-DECOUPLED', 'got': 'ENERGY-DECOUPLED', 'pass_': True}
+  {'ratios': [1.0, 2.0, 5.0], 'expected': 'CONSISTENT', 'got': 'CONSISTENT', 'pass_': True}
+  {'ratios': [15.0, 20.0, 30.0], 'expected': 'ENERGY-DOMINANT', 'got': 'ENERGY-DOMINANT', 'pass_': True}
+  {'ratios': [0.01, 1.0, 0.02], 'expected': 'MIXED', 'got': 'MIXED', 'pass_': True}
+  {'ratios': [0.01, 15.0, 1.0], 'expected': 'ENERGY-DOMINANT', 'got': 'ENERGY-DOMINANT', 'pass_': True}
+
+13 FDTD calls queued (2 configs x 3 angles x 2 legs = 12, + 1 settling-check call)
+  [ 1/13] C40 theta=+36.00 article=False steps=2800
+  [ 2/13] C40 theta=+36.00 article=True steps=2800
+  [ 3/13] C40 theta=+38.60 article=False steps=2800
+  [ 4/13] C40 theta=+38.60 article=True steps=2800
+  [ 5/13] C40 theta=+41.80 article=False steps=2800
+  [ 6/13] C40 theta=+41.80 article=True steps=2800
+  [ 7/13] G40 theta=+36.00 article=False steps=2800
+  [ 8/13] G40 theta=+36.00 article=True steps=2800
+  [ 9/13] G40 theta=+38.60 article=False steps=2800
+  [10/13] G40 theta=+38.60 article=True steps=2800
+  [11/13] G40 theta=+41.80 article=False steps=2800
+  [12/13] G40 theta=+41.80 article=True steps=2800
+  [13/13] G40 theta=+38.60 article=True steps=1400
+
+total wall time: 115.7s
+
+[P2] reproduction precondition: max_dev=0.000e+00 PASS(<1e-9)=True
+
+[P3] box independence (box_dev) and [P4] xi_ext (extinction-routes agreement):
+  C40 theta=36.0 BOX_A: xi_ext=0.000179
+  C40 theta=36.0 BOX_B: xi_ext=0.000365
+  C40 theta=38.6 BOX_A: xi_ext=0.000013
+  C40 theta=38.6 BOX_B: xi_ext=0.000348
+  C40 theta=41.8 BOX_A: xi_ext=0.000355
+  C40 theta=41.8 BOX_B: xi_ext=0.000482
+  G40 theta=36.0 BOX_A: xi_ext=0.000167
+  G40 theta=36.0 BOX_B: xi_ext=0.000310
+  G40 theta=38.6 BOX_A: xi_ext=0.000140
+  G40 theta=38.6 BOX_B: xi_ext=0.000303
+  G40 theta=41.8 BOX_A: xi_ext=0.000420
+  G40 theta=41.8 BOX_B: xi_ext=0.000370
+  C40 theta=36.0: box_dev_ext=0.000189 box_dev_abs=0.000105
+  C40 theta=38.6: box_dev_ext=0.000194 box_dev_abs=0.000297
+  C40 theta=41.8: box_dev_ext=0.000225 box_dev_abs=0.000050
+  G40 theta=36.0: box_dev_ext=0.000205 box_dev_abs=0.000151
+  G40 theta=38.6: box_dev_ext=0.000083 box_dev_abs=0.000062
+  G40 theta=41.8: box_dev_ext=0.000132 box_dev_abs=0.000101
+  [P4] xi_ext <= 0.12 everywhere: PASS=True
+  [widths, direction-corrected] C40 theta=36.0 BOX_A: sigma_abs=154.224683 sigma_scat=146.545797 sigma_ext=300.770480
+  [widths, direction-corrected] C40 theta=36.0 BOX_B: sigma_abs=154.208528 sigma_scat=146.505184 sigma_ext=300.713712
+  [widths, direction-corrected] C40 theta=38.6 BOX_A: sigma_abs=159.646100 sigma_scat=151.315717 sigma_ext=310.961816
+  [widths, direction-corrected] C40 theta=38.6 BOX_B: sigma_abs=159.598658 sigma_scat=151.302807 sigma_ext=310.901465
+  [widths, direction-corrected] C40 theta=41.8 BOX_A: sigma_abs=167.475391 sigma_scat=158.471517 sigma_ext=325.946909
+  [widths, direction-corrected] C40 theta=41.8 BOX_B: sigma_abs=167.483836 sigma_scat=158.536560 sigma_ext=326.020396
+  [widths, direction-corrected] G40 theta=36.0 BOX_A: sigma_abs=154.420374 sigma_scat=146.559355 sigma_ext=300.979729
+  [widths, direction-corrected] G40 theta=36.0 BOX_B: sigma_abs=154.397094 sigma_scat=146.520930 sigma_ext=300.918024
+  [widths, direction-corrected] G40 theta=38.6 BOX_A: sigma_abs=160.012210 sigma_scat=151.479301 sigma_ext=311.491511
+  [widths, direction-corrected] G40 theta=38.6 BOX_B: sigma_abs=160.002227 sigma_scat=151.463313 sigma_ext=311.465540
+  [widths, direction-corrected] G40 theta=41.8 BOX_A: sigma_abs=168.056430 sigma_scat=159.106854 sigma_ext=327.163284
+  [widths, direction-corrected] G40 theta=41.8 BOX_B: sigma_abs=168.039530 sigma_scat=159.166966 sigma_ext=327.206496
+
+[non-negativity gate] sigma_abs>=0 everywhere: PASS=True
+
+[P8] scene-specific detectability (NETD is an instrument threshold, NOT a human-eye one -- does not bear on constraint-3/4's human-eye verdict):
+  C40 theta=36.0: p_abs_w=2.748814e-12 W  dt_ss=4.516013e-05 K  UNDETECTABLE
+  C40 theta=38.6: p_abs_w=2.941857e-12 W  dt_ss=4.833163e-05 K  UNDETECTABLE
+  C40 theta=41.8: p_abs_w=3.234850e-12 W  dt_ss=5.314518e-05 K  UNDETECTABLE
+  G40 theta=36.0: p_abs_w=2.754216e-12 W  dt_ss=4.524889e-05 K  UNDETECTABLE
+  G40 theta=38.6: p_abs_w=2.953626e-12 W  dt_ss=4.852498e-05 K  UNDETECTABLE
+  G40 theta=41.8: p_abs_w=3.258186e-12 W  dt_ss=5.352858e-05 K  UNDETECTABLE
+
+[PRIMARY P7] energy-interception cross-check classification:
+  theta=36.0: frac_p_abs=1.965467e-03  frac_contrast=7.438280e-04  ratio_k=2.642368e+00  resolved=True
+  theta=38.6: frac_p_abs=4.000574e-03  frac_contrast=7.410063e-05  ratio_k=5.398840e+01  resolved=True
+  theta=41.8: frac_p_abs=7.214162e-03  frac_contrast=1.263381e-03  ratio_k=5.710203e+00  resolved=True
+  n_resolved=3/3  CLASSIFICATION = ENERGY-DOMINANT
+
+[aliasing-risk-band log, Phase-2 fix 10]
+  gap=2.6000000000000014deg vs P_edge_A=2.8421deg: 0.9148 cycles/gap (8.52% from exact resonance)
+  gap=2.6000000000000014deg vs P_star=2.9474deg: 0.8821 cycles/gap (11.79% from exact resonance)
+  gap=3.1999999999999957deg vs P_edge_A=2.8421deg: 1.1259 cycles/gap (12.59% from exact resonance)
+  gap=3.1999999999999957deg vs P_star=2.9474deg: 1.0857 cycles/gap (8.57% from exact resonance)
+
+[P6] settling spot-check (G40, theta=38.6, BOX_A): rel_dev(sigma_abs)=7.9346e-05  rel_dev(sigma_ext)=9.3825e-04
+
+wrote /home/user/photon-lab/experiments/087-t28-energy-interception-poynting-check/results.json
