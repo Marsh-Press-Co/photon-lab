@@ -249,3 +249,38 @@ DECOUPLED / CONSISTENT / ENERGY-DOMINANT / MIXED) the data return — the
 tripwire's condition is "build it or explicitly retire the deferral
 framing," not "confirm a particular answer." No result this cycle can
 produce constitutes a sixth deferral.
+
+---
+
+### Correction addendum (Phase 5, VISION SCIENCE's review + Red Team's
+final audit) — the original text above is preserved unedited; this
+addendum documents a citation defect found in it, per this program's own
+practice of correcting a frozen document with an addendum rather than
+silently rewriting it.
+
+The §2 parameter table's "T9 broadside anchor (context only)" row cited
+its four figures (`sigma_ext_cells=240.0073740162445`,
+`p_abs_w=1.7409069740390205e-12`, `dt_ss=2.8601275372385233e-05`,
+`699.27×`) as "`experiments/057-.../run.py` — independently reproduced
+bit-exact this cycle by direct invocation of `lab.thermo_sidecar` (R4)."
+**This citation is false.** VISION's Phase-5 review, confirmed
+independently by Red Team's Phase-5 final audit reading `run.py` and
+`run_output.txt` directly: no code in this experiment's `run.py` ever
+invokes `lab.thermo_sidecar` on exp-057's cited inputs — the numbers are
+correct (they match `experiments/057-.../results.json` exactly) but were
+copied verbatim, not recomputed by anything in this cycle's own record.
+Red Team's audit adds a meta-observation: the citation's own trailing
+"(R4)" invoked the very rule it violated — a bare rule-name tag is not
+itself evidence of compliance, and this is worth naming so a future
+reviewer does not treat one as sufficient. Non-load-bearing (this row is
+explicitly "context only," never scored) — logged as a fresh instance of
+the R4 lineage's own standing discipline, not a new rule. The row's
+correct caption is: "cited verbatim from exp-057, not re-invoked this
+cycle." Separately, the same §4-P4 promised an informal
+`σ_abs(cfg,θ)/σ_ext(cfg,θ)` vs. this same T9 anchor comparison that
+Phase 3's renumbering silently dropped without an explicit retirement
+note — restored, with the actual measured values (0.5128–0.5138, a
+genuine free confirmation that the anchor generalizes to oblique
+incidence), in `NOTES.md`'s own Result/Learned sections. Full record:
+`phase5_review_vision.md`, `phase5_redteam_audit.md` §4, LOGBOOK.md
+Iteration 64.

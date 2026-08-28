@@ -126,12 +126,21 @@ def widths_direction_corrected(cap_scene, cap_empty, box, ref):
     cycle, unchanged discipline).
 
     `widths()`'s own `i_inc` is a SIGNED +x-direction flux at the reference
-    strip (lab/sections.py's own `sx()` convention). Every prior caller of
-    `widths()` (exp-002/024's absorber bench) had its source at smaller x
-    than the object, propagating in +x, so i_inc came out positive and the
-    sign never had to be handled explicitly. T28's PAIR_PAD geometry is the
-    first `widths()` application with `src_x > obj_x > plane_x` (confirmed
-    from `dg069.CONFIGS`) -- the wave propagates in -x, so the SAME
+    strip (lab/sections.py's own `sx()` convention). CORRECTED (Phase 5,
+    EM's review + Red Team's final audit -- the original text here claimed
+    this was the first `widths()` application with `src_x > obj_x >
+    plane_x`; that is FALSE, independently confirmed from source):
+    exp-002's absorber bench (`SRC_X=64 < CX=252`) does propagate in +x,
+    but exp-024 (`experiments/024-ambient-margin-adjudication`, Panel
+    Iteration 2) has `SRC_X=300 > OBJ_X=170 > PLANE_X=77` -- the IDENTICAL
+    -x-propagating relationship T28's PAIR_PAD geometry has -- and its own
+    `run.py` (lines 195-199) already defensively wraps `abs()` around
+    `sigma_abs*i_inc` and `net_box_flux`, strong evidence the same sign
+    issue was present, silently absorbed, and never diagnosed since
+    Iteration 2. T28's PAIR_PAD geometry (`src_x > obj_x > plane_x`,
+    confirmed from `dg069.CONFIGS`) is the first time this hazard has been
+    NAMED and traced to source, not the first time the underlying geometry
+    has existed -- the wave propagates in -x, so the SAME
     reference-strip flux measurement is, correctly, NEGATIVE. Since
     `sigma_scat`/`sigma_abs`/`sigma_ext`/`sigma_ext_cross` are each a power
     divided by this one signed i_inc, all four flip sign together (confirmed

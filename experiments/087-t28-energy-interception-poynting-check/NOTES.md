@@ -123,10 +123,12 @@ fix-by-fix mapping)
    3 angles**, moderate confidence, corroborative not dispositive.
    Falsified by CONSISTENT, ENERGY-DOMINANT, MIXED, or DEGENERATE.
 8. **P8 (scene-specific detectability):** `netd_disposition` predicted
-   UNDETECTABLE at every (cfg,θ) cell. Pre-committed triage rule: any
-   departure must be checked against this program's own already-measured
-   material-identity swing magnitudes (~780× Biot, ~116× H_CONV) before
-   being read as new physics.
+   UNDETECTABLE at every (cfg,θ) cell — **NETD is an instrument/detector
+   threshold, not a human-eye one; this does NOT bear on constraint-3/4's
+   human-eye verdict** (carried inline per Idealization 9/Phase-2 fix 8).
+   Pre-committed triage rule: any departure must be checked against this
+   program's own already-measured material-identity swing magnitudes
+   (~780× Biot, ~116× H_CONV) before being read as new physics.
 9. **Non-negativity gate (hard assertion, not a scored prediction):**
    `sigma_abs≥0`, `p_abs_w≥0` everywhere. HALT if violated.
 
@@ -144,31 +146,62 @@ text's "14" double-counted an unneeded second empty-leg call. Verified: the
 implemented script performed exactly 13 FDTD calls (`run_output.txt`,
 `results.json::total_new_fdtd_calls=13`).
 
-**A genuine first-of-its-kind instrument finding, found and fixed before
-any classification was trusted (not silently patched):** the first
-run produced `sigma_abs<0` at every one of 12 (cfg,θ,box) cells — failing
-the pre-registered non-negativity gate outright. Traced to source, not
-worked around: `lab/sections.py::widths()`'s own `i_inc` is a **signed**
-+x-direction flux at the reference strip; every PRIOR caller (exp-002/024's
-absorber bench) had `src_x<obj_x`, propagating in +x, so `i_inc` was always
-positive and this sign was never exercised. T28's `PAIR_PAD` geometry has
-`src_x>obj_x>plane_x` (confirmed from `dg069.CONFIGS`) — the wave
-propagates in **-x** — so `i_inc` is, correctly, negative, and every
-`sigma_*` field (each a power divided by this one signed scalar) flipped
-sign together. Confirmed NOT scattered noise: `sigma_ext` and
-`sigma_ext_cross` agreed on the same negative sign to <0.05% (`xi_ext`,
-already computed, is sign-invariant and unaffected). Fixed with a
-caller-side wrapper, `widths_direction_corrected()`, in `run.py` —
-**zero `lab/` diff** (confirmed: `git diff --stat -- lab/` empty
-throughout): recovers each raw power and re-normalizes by `abs(i_inc)`
-(the physically correct choice — an intensity normalizer must be a
-magnitude, not a directionally-signed flux). Because `xi_ext`/`box_dev_*`
-are ratios of differences to magnitudes, both already-computed and
-already-gated (P3/P4, both PASS, `xi_ext≤0.00048` everywhere — the
-extinction-routes-agreement identity holds cleanly even at this first-ever
-oblique/`graded_black_shell`/PAD-shifted-box application, EM's own
+**An instrument finding, found and fixed before any classification was
+trusted (not silently patched) — corrected same-shift per Red Team's
+Phase-5 final audit §1, a historical-accuracy fix, not a substantive
+one:** the first run produced `sigma_abs<0` at every one of 12
+(cfg,θ,box) cells — failing the pre-registered non-negativity gate
+outright. Traced to source, not worked around: `lab/sections.py::widths()`'s
+own `i_inc` is a **signed** +x-direction flux at the reference strip.
+T28's `PAIR_PAD` geometry has `src_x>obj_x>plane_x` (confirmed from
+`dg069.CONFIGS`) — the wave propagates in **-x** — so `i_inc` is,
+correctly, negative, and every `sigma_*` field (each a power divided by
+this one signed scalar) flipped sign together. **Corrected wording (this
+was NOT the first `widths()` application to this geometry): EM's Phase-5
+review, and Red Team's Phase-5 final audit independently from source,
+found `experiments/024-ambient-margin-adjudication` has the IDENTICAL
+`src_x(300)>obj_x(170)>plane_x(77)` relationship and already defensively
+wraps `abs()` around `sigma_abs*i_inc` and `net_box_flux` at its own
+gates (`run.py` lines 195-199) — three independent facts (identical
+geometry; unchanged `widths()` code since exp-002; a defensive `abs()`
+wrap around exactly the two quantities this cycle shows are sign-flipped
+together) make "the same defect, present and silently absorbed at
+Iteration 2, never diagnosed" the better-supported reading. What IS
+genuinely novel this cycle is the diagnosis (naming the hazard, tracing
+it to `sections.widths()`'s own `sx()` convention, confirming it via an
+independent invariance argument, fixing it with a documented, zero-`lab/`-
+diff wrapper) — not the underlying defect's existence.** Confirmed NOT
+scattered noise: `sigma_ext` and `sigma_ext_cross` agreed on the same
+negative sign to <0.05% (`xi_ext`, already computed, is sign-invariant and
+unaffected). Fixed with a caller-side wrapper,
+`widths_direction_corrected()`, in `run.py` — **zero `lab/` diff**
+(confirmed: `git diff --stat -- lab/` empty throughout): recovers each raw
+power and re-normalizes by `abs(i_inc)` (the physically correct choice —
+an intensity normalizer must be a magnitude, not a directionally-signed
+flux; independently re-derived from `_face_flux`/`_cross_flux`'s own
+coordinate-invariance by EM's Phase-5 review and Red Team's final audit —
+only `i_inc` needed correcting, confirmed sound, not masking a subtler
+defect). Because `xi_ext`/`box_dev_*` are ratios of differences to
+magnitudes, both already-computed and already-gated (P3/P4, both PASS,
+`xi_ext≤0.00048` everywhere — the extinction-routes-agreement identity
+holds cleanly even at this never-before-diagnosed oblique/
+`graded_black_shell`/PAD-shifted-box combination, EM's own
 moderate-confidence P4 prediction confirmed) are provably invariant to
 this correction and were not recomputed.
+
+**A separate, related, non-blocking latent defect, flagged forward, not
+fixed this cycle (EM's Phase-5 review, confirmed by Red Team's final
+audit):** `sections.py::widths()`'s own `back_frac`/`fwd_frac` fields
+carry the same uncorrected +x-propagation assumption (the labels are
+inverted for a -x-propagating scene) — `widths_direction_corrected()`
+does NOT touch these fields (confirmed from `run.py`: only
+`sigma_scat`/`sigma_abs`/`sigma_ext`/`sigma_ext_cross` are reassigned).
+This cycle's own scored conclusions (P7, P8) never read `back_frac`/
+`fwd_frac` — confirmed by reading `run.py::main()` in full — so nothing
+here is corrupted, but any future consumer of this cycle's own
+`results.json::widths` fields, especially for a constraint-2-adjacent
+"no specular return" question, would get the physically backward answer
+if read at face value.
 
 **P1 (vacuum footprint): PASS**, all 4 (cfg,box) cells, both configs.
 **P2 (reproduction): PASS**, `max_dev=0.0` exactly (bit-identical, not
@@ -231,12 +264,24 @@ single-point aliasing/node fluke. **Falsified as pre-registered — a
 materially new finding warranting immediate follow-up, per this document's
 own §Falsifiers language, not a failure of this proposal.**
 
-**P8: predicted UNDETECTABLE, confirmed at all 6 (cfg,θ) cells** —
-`dt_ss_full_K` ranges `4.52×10⁻⁵` to `5.35×10⁻⁵` K, NETD margin
-(`0.020K/dt_ss`) ranges **≈374×–442×** — comfortably clear, same order as
-this flagship absorber's every prior disposition (T5/exp-043/exp-057). No
-triage-rule trigger (fix 6 N/A this cycle — P8 did not depart from
-UNDETECTABLE).
+**P8: predicted UNDETECTABLE, confirmed at all 6 (cfg,θ) cells — NETD is
+an instrument/detector threshold, not a human-eye one; does NOT bear on
+constraint-3/4's human-eye verdict** (carried inline per Idealization 9/
+Phase-2 fix 8) — `dt_ss_full_K` ranges `4.52×10⁻⁵` to `5.35×10⁻⁵` K, NETD
+margin (`0.020K/dt_ss`) ranges **≈374×–442×** — comfortably clear, same
+order as this flagship absorber's every prior disposition (T5/exp-043/
+exp-057). No triage-rule trigger (fix 6 N/A this cycle — P8 did not depart
+from UNDETECTABLE). THERMODYNAMICS' Phase-5 review additionally ran a
+**swing-specific (differential) NETD recomputation** — whether the
+ENERGY-DOMINANT swing itself, not just each cell's absolute `dt_ss`,
+carries a detectability consequence — confirming margins of
+52,000×–225,000×, even more comfortably UNDETECTABLE; formalized here as a
+standing check for any future cycle citing a large fractional
+absorbed-power swing. Separately, THERMODYNAMICS' review found the
+`iso_xsec_sq`-vs-infinite-rod area convention (Idealization 3) scales
+`ratio_k`'s numeric value by roughly 1.5–2× without changing any
+classification bucket — disclosed as a standing citable caveat wherever
+this cycle's exact `ratio_k` figures are next quoted.
 
 **Aliasing-risk-band log (fix 10):** the actual, non-uniform grid sits
 8.5–12.6% from exact integer-cycle resonance against both `P_edge_A` and
@@ -245,10 +290,96 @@ Phase 1's original uniform 3.0° spacing (1.8% from exact resonance against
 `P_star`), though not zero risk; disclosed for any future reviewer citing
 this cycle's own angle choice.
 
+**Restored (Phase 5, VISION/MATERIALS; correction to a Phase-3 renumbering
+that silently dropped it): the informal T9-anchor comparison Phase 1's own
+§4-P4 promised** (`σ_abs(cfg,θ)/σ_ext(cfg,θ)` at `BOX_A`, informally vs.
+T9's established broadside anchor `σ_abs/σ_ext=0.51`). Computed for free
+from data already in `results.json`: `ratio_abs_ext` measured 0.5128–0.5138
+across all 6 (cfg,θ) cells — within 0.55%–0.75% of the broadside anchor.
+**A genuine, first-ever, essentially free confirmation that T9's
+near-field extinction-paradox ratio generalizes cleanly to 36°–42° oblique
+incidence** on this flagship absorber — resolving, in the affirmative, the
+"genuine uncertainty" the original proposal's own P4 context section
+explicitly left open. Worth logging against T9 in LOGBOOK.
+
 ## Learned
 
-*(to be filled in after Phase 5)*
+**Combined Verdict: PARTIAL** (unanimous across all six blind Phase-5
+seats — PHOTONICS, MATERIALS, ELECTROMAGNETISM, QUANTUM OPTICS, VISION
+SCIENCE, THERMODYNAMICS — and Red Team's Phase-5 final audit). The
+forward tripwire is genuinely discharged, letter and intent: a real,
+purpose-built, 13-call, well-powered FDTD measurement was built and run,
+not a sixth deferral. Red Team's final audit weighed and adopted the
+argument (raised independently by multiple Phase-5 reviews) that a
+falsified prediction is, if anything, MORE credible evidence of a genuine
+discharge than a confirming one would have been: this cycle's own lead
+seat pre-registered its preferred hypothesis (ENERGY-DECOUPLED) with only
+moderate confidence, built a genuinely gated instrument (P1/P2/P4/P5/
+non-negativity, all HALT points), and reported the opposite of that
+preference. The PRIMARY metric (P7) is genuinely FALSIFIED: even crediting
+in full the disclosed θ=38.6° denominator-artifact explanation (confirmed
+quantitatively sufficient, independently, by PHOTONICS, QUANTUM,
+THERMODYNAMICS, and Red Team's own final audit — the true zero-crossing
+sits at θ₀≈38.590°, ~0.01° from the sampled point), the remaining two
+angles (36.0°, 41.8°) read CONSISTENT (`ratio_k`=2.64, 5.71), not the
+predicted ENERGY-DECOUPLED — a materially new, robust finding against
+ten-plus cycles' own phase/interference-only prior for this sub-thread.
+The filed classification (ENERGY-DOMINANT, driven by θ=38.6° under the
+pre-registered "any resolved angle over 10" priority rule) stands as the
+official record of what the frozen pipeline computed — Red Team's audit
+explicitly declined to retroactively relabel it against a gate that did
+not exist in the frozen Phase-3 spec, the same house discipline that
+governs every other post-hoc-rationalization risk this program guards
+against (R8's lineage). **New standing rule R13 adopted** (LOGBOOK.md RULED
+OUT registry, full text there): a ratio classifier whose denominator is
+built from a quantity with real, knowable zero-crossings must be
+floor-gated on that denominator's own magnitude before a decade-threshold
+classification is trusted at a single sampled point — a genuinely new
+failure mode (an algebraic instability, present even at zero measurement
+noise) distinct from the R5/R10 statistical-look-elsewhere lineage. Does
+not fire on its own founding instance (exp-087), matching every prior
+rule's own founding-instance precedent. **Checkpoint criterion 2: N/A**,
+confirmed independently, matching every T28 desk/instrument cycle since
+exp-069. **Checkpoint criterion 4: does NOT fire** on any of five matters
+this cycle's own layered review surfaced (the corrected "first-ever"
+historical claim; a third instance of the NETD/constraint-3
+disclaimer-erosion shape, closed same-shift, with a NEW forward tripwire
+set — a fourth instance fires automatically; the vanished T9-comparison,
+restored above; a false "reproduced bit-exact this cycle" citation in
+Phase 1's own parameter table that survived five blind Phase-2 critiques
+and Red Team's own Phase-2 audit, caught only at Phase 5 — logged as
+reinforcing R4's existing discipline, not a new rule; the inverted
+`back_frac`/`fwd_frac` labels in `lab/sections.py::widths()`, flagged
+forward, non-blocking) — every one non-load-bearing to this cycle's own
+scored PRIMARY/detectability verdicts, every one caught blind, same
+cycle, before this LOGBOOK entry.
 
 ## Next
 
-*(to be filled in after Phase 5)*
+Reconciled Iteration-65 ranking (Red Team's Phase-5 final audit, full
+detail `phase5_redteam_audit.md`): **Tier 1, cheap FDTD, near-unanimous
+next** — (1) the decisive 8-call bracketing follow-up at θ=38.4°/38.8°
+(QUANTUM) — cheapest, fastest, single most decisive resolution of the
+node-artifact-vs-genuine-physics question; (2) extend the
+energy-interception channel to the full/denser 31-point window, computing
+`σ_abs(C40,θ)`/`σ_abs(G40,θ)` individually (not merely their difference) —
+MATERIALS' falsifiable "passive transducer, not resonant source" test; (3)
+apply R13's new denominator floor gate to this cycle's own already-
+collected data and report the corrected classification (zero new FDTD).
+**Tier 2** — institutionalize the extinction-routes-agreement identity for
+`graded_black_shell` obliquely as a permanent stage-8 suite row; extend the
+validated measurement to `PAIR_ABSORB40`/`C80−C40` and to 450/750nm; extend
+to the near-null σ(I) article (the class that actually matters for
+constraint-3 realizability); a bounded audit of whether any other T28
+ratio construction shares R13's hazard. **Tier 3, standing, unaffected by
+this cycle** — PHOTONICS' grazing-incidence validity check (still
+near-unanimous #1 on the whole T28 board); the x-wall wavelength-
+generality leg (now TWELVE consecutive cycles deferred, 076–087, the
+single oldest board item); the still-queued full-scale null-calibration
+re-run; R12-into-standard-practice; PHOTONICS'/EM's leg-(b) work; QUANTUM's
+lossless-PEC-only-disk control; hardening `sections.py::widths()` itself
+to normalize by `abs(i_inc)` internally (now TWO independent instances,
+exp-024 and exp-087, of the same latent geometry tripping this issue) —
+scope as its own small, gated `lab/`-change proposal, not a same-shift
+patch; the still-unresolved ritualization governance question (Iteration
+61).
