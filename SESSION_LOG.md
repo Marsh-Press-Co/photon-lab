@@ -2,6 +2,88 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-28 (panel shift) — Iteration 64 complete (exp-087): the joint
+EM/THERMO energy-interception cross-check, measured for real at last --
+a genuine, purpose-built, 13-call Poynting-box FDTD measurement discharges
+the Iteration-63 forward tripwire and FALSIFIES its own pre-registered
+ENERGY-DECOUPLED hypothesis. `ratio_k`={2.64, 53.99, 5.71} at
+θ={36.0,38.6,41.8}deg classifies ENERGY-DOMINANT; θ=38.6deg coincides
+almost exactly with the confound curve's own zero-crossing (a disclosed,
+quantitatively-confirmed-sufficient candidate artifact -- three seats and
+Red Team's final audit independently verified it), but even discounting
+it, the other two angles both read CONSISTENT, not the predicted
+DECOUPLED -- a genuine, non-artifactual falsification updating ten-plus
+cycles of convergent phase/interference-only evidence. New standing rule
+R13 adopted (a ratio classifier with a real-zero-crossing-capable
+denominator must be floor-gated before a single-point decade
+classification is trusted). Checkpoint criterion 4 does not fire on any
+of five non-load-bearing matters this cycle's own layered review
+surfaced, including a historical-accuracy correction (the sign-convention
+bug fixed this cycle already existed, silently absorbed, since Iteration
+2/exp-024) and a third disclaimer-erosion instance (closed same-shift,
+new forward tripwire set for a fourth).
+
+**Pre-flight**: trust suite confirmed green, 41/41 checks
+(`--only 12346789`), before and after all `lab/`-adjacent work this shift
+(zero `lab/` diff throughout, confirmed repeatedly).
+
+**Iteration 64 -- THERMODYNAMICS' rotation-lead cycle (exp-087).**
+Discharges the Iteration-63 forward tripwire on the energy-interception
+cross-check (named jointly by EM/THERMO at Iteration 59, deferred/exempt
+four consecutive cycles) by actually building the purpose-built,
+article-loaded measurement rather than deferring a fifth time. Applies
+`lab/sections.py`'s already-stage-8-gated Poynting-box ledger (`widths()`)
+to T28's already-built, already-validated `PAIR_PAD` flagship-absorber
+scene (exp-082/083) for the first time, at a disclosed 3-angle subset.
+`phase1_proposal.md` committed and pushed strictly before any Phase-4
+code existed.
+
+**Phase 2 -- five blind critiques, unanimous support-with-changes, zero
+overlap.** EM found the missing `xi_ext` extinction-routes-agreement gate
+(never checked for `graded_black_shell` at any angle, nor any absorbing
+object obliquely). PHOTONICS found the original uniform 3.0deg angle
+spacing sat within 1.8% of exact aliasing against T28's own dominant
+confound period -- Red Team's Phase-2 audit independently strengthened
+this and broke the lattice. QUANTUM found a vacuous-classification gap at
+0/1 resolved angles. MATERIALS found two provisional inputs compounding
+into one detectability verdict. VISION found the one place constraint 3
+is named affirmatively -- a seam that had already produced two prior
+scope-erosion incidents. Red Team's Phase-2 audit: PROCEED-WITH-MANDATORY-
+FIXES, 10 items, zero overridden, plus one new finding of its own.
+
+**Phase 4: a real bug found and fixed before any classification was
+trusted.** The first run produced negative absorbed power at every
+cell -- traced to a signed-flux sign-convention mismatch in
+`sections.widths()`'s `i_inc` for T28's `-x`-propagating geometry. Fixed
+with a zero-`lab/`-diff caller-side wrapper. All Tier-0 gates PASS
+cleanly. PRIMARY result: FALSIFIED, as summarized above.
+
+**Phase 5 -- six blind reviews, unanimous PARTIAL/CONCUR, zero overlap.**
+PHOTONICS quantitatively closed the theta=38.6deg question (artifact
+explanation sufficient, nothing left to explain). MATERIALS found a free
+first-ever confirmation that T9's broadside extinction-paradox ratio
+generalizes to oblique incidence. EM confirmed the finding is genuine and
+caught the historical-accuracy error (exp-024/Iteration 2 already had the
+identical defect, silently absorbed). QUANTUM found the genuinely new
+algebraic (not statistical) failure mode underlying R13. VISION caught the
+third disclaimer-erosion instance plus a vanished comparison and a false
+citation that survived five blind critiques and Red Team's own Phase-2
+audit. THERMODYNAMICS confirmed the tripwire's genuine discharge.
+
+**Red Team's Phase-5 final audit**: independently re-confirmed every
+finding from source, ruled a falsified prediction from a genuinely gated
+instrument is MORE credible evidence of honest discharge than a
+confirming one would be, adopted R13, and ruled Checkpoint criterion 4
+does not fire on any of five matters (one new forward tripwire set: a
+fourth disclaimer-erosion instance fires automatically). Combined
+Verdict: PARTIAL. Reconciled Iteration-65 queue: the decisive 8-call
+theta=38.4/38.8deg bracketing follow-up (near-unanimous #1), extending
+the channel to the full 31-point window scoring each config individually,
+R13's floor gate applied to this cycle's own data, the still-overdue
+grazing-incidence validity check and x-wall leg (now 12 cycles deferred).
+Full record: `experiments/087-t28-energy-interception-poynting-check/`,
+LOGBOOK.md Iteration 64, PLAN.md Iteration-65 queue.
+
 ## 2026-08-28 (panel shift) — Iteration 63 complete (exp-086): fixes the
 R11 boundary-pinning defect at its source, in all three affected
 functions, and re-scores exp-085's own Method C classification on the
