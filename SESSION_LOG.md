@@ -2,6 +2,95 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-28 (panel shift) — Iteration 62 complete (exp-085): a
+wide/dense re-evaluation of T28's leg (a) model finds both global
+instruments collapse cleanly to noise-scale, and the local instrument's
+own nominal "STRONG COHERENT CHIRP" reading does not survive Red Team's
+final audit -- two independent Phase-5 seats catch a silent boundary-
+pinning defect in shared, ~15-experiment-reused period-search machinery
+that inflates the finding; corrected accounting fails every named
+classification's own gate. New standing rule R11 adopted; Checkpoint
+criterion 4 ruled a close call that does NOT fire (caught blind,
+same-cycle, before LOGBOOK commit).
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite confirmed
+green: 41/41 checks (`--only 12346789`) before any panel work began. Zero
+`lab/` diff this entire cycle -- pure desk analysis reusing already-
+validated engine machinery, zero new FDTD calls.
+
+**Iteration 62 -- MATERIALS' rotation-lead cycle (exp-085).** Executes
+exp-084's own Iteration-62 Tier-1 item 7: does the narrow 6°/31-point
+window's own INCONCLUSIVE period-match for leg (a)'s exact model
+(`P_model_a=2.5338°, R²=0.3697`) reflect a too-narrow sample, or a
+genuinely non-stationary (chirped) curve? Since the model is a
+deterministic, zero-noise closed form, it costs nothing to evaluate far
+more widely and densely. Three instruments: Method A (existing
+period-search machinery on a 13x-wider/10x-denser grid, plus a mandatory
+exhaustive circular-shift null), Method B (an independent Hann-tapered,
+zero-padded FFT), Method C (37 sliding sub-windows, stated primary for
+the periodicity-stability question). `phase1_proposal.md` committed and
+pushed strictly before any code existed.
+
+**Phase 2 -- five blind critiques, unanimous support-with-changes,
+converging 5-for-5 on the same defect.** The proposal's own §4 claimed
+R10's deterministic-curve clause exempts a noise-free curve from the
+mandatory circular-shift null -- a misreading, confirmed independently by
+all five seats (the task briefing itself undercounted this as 4-for-5;
+Red Team caught and corrected the miscount). EM additionally found the
+shared machinery's hardcoded `center_deg=39.0` mislabels every Method-C
+sub-window fit; QUANTUM and VISION independently constructed concrete
+counterexamples showing the outcome bands are neither mutually exclusive
+nor exhaustive; PHOTONICS found the global instruments can't on their own
+distinguish "no periodicity" from "genuine broadband chirp." Red Team's
+Phase-2 audit: PROCEED-WITH-MANDATORY-FIXES, 7 items, zero overridden,
+every claim independently re-derived from primitives.
+
+**Phase 4: the global instruments collapse cleanly to noise-scale.**
+`R²_wide=0.0128` sits at the 45th percentile of its own 3900-shift
+circular-shift null; the R5 specificity control clears 0/60 targets; the
+FFT's true global maximum sits exactly at 2.0x the domain's own Fourier
+resolution floor -- a clean, fully-earned negative finding. **The local
+instrument (Method C) nominally filed "STRONG COHERENT CHIRP"**
+(`frac_recovered=1.000, ρ=0.882`) but its own reliability check fired
+(4/10 sampled sub-windows indistinguishable from curve-smoothness) -- a
+gap in the cycle's own frozen spec (a downgrade rule that covered only a
+different nominal outcome) disclosed plainly in `NOTES.md`, not silently
+patched.
+
+**Phase 5 -- six blind reviews, unanimous PARTIAL, converging on a
+materially deeper defect than the self-disclosed one.** MATERIALS and
+PHOTONICS, independently, found and confirmed from source that
+`free_period_with_widening` -- shared machinery reused across ~15 T28
+experiments since exp-077 -- silently returns a non-convergent search's
+own worst candidate as if resolved, corrupting 15 of 37 sub-windows.
+QUANTUM and VISION, independently, found the 37 sub-windows' 67% pairwise
+overlap invalidates the cited significance figure, and that the
+"genuinely bimodal" reading fails a formal binomial test. EM proposed a
+milder DRIFTING downgrade on the strength of a new discriminant.
+
+**Red Team's Phase-5 final audit adjudicated rather than tallied.**
+Recomputed `frac_recovered` under the corrected machinery: drops from
+`1.000` to `0.595`, failing the gate every named positive classification
+shares -- **none is reachable from the as-filed data.** Showed EM's own
+discriminant is built substantially on the same contaminated tail. Found,
+by combining two seats' own results, that even the "safe" fallback
+reading is itself majority null-contaminated on the only direct evidence
+available. A bounded historical scan found the defect fired twice before
+(exp-078, exp-079), both inert -- no currently-cited T28 number is
+corrupted. **Combined Verdict: PARTIAL**, reported as NOT STABLY PERIODIC,
+not "STRONG COHERENT CHIRP" as Phase 4 filed it. **New standing rule R11
+adopted** (a boundary-pinned period-search result must be surfaced, never
+silently reported as resolved -- binding forward on any future reuse of
+the affected machinery). **Checkpoint criterion 2 is N/A**, reasoned
+explicitly. **Checkpoint criterion 4 does NOT fire** -- a close call,
+correctly weighed: caught blind, same-cycle, before LOGBOOK commit.
+
+Full record: `experiments/085-t28-leg-a-wide-window-period-pin/`. PLAN.md
+and LOGBOOK.md updated; Iteration-63 queue (Red Team's reconciled ranking,
+3 tiers, 16 items) committed. Runner: photonlab-shift cloud routine.
+
 ## 2026-08-28 (panel shift) — Iteration 61 complete (exp-084): T28's
 first-ever diffraction (not reflection/echo) treatment of a boundary
 finds a genuinely new positive result — a zero-FDTD vacuum construction
