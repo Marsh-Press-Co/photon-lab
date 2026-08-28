@@ -3171,11 +3171,111 @@ continuous mode with checkpoints. The remaining [open] items below are
   ARTICLE FDTD leg explicitly deferred to Iteration 45 (below), not
   folded in. Full record: `experiments/067-r-contact-bonded-substrate-
   correction/`, LOGBOOK.md Iteration 44.
-- **[ACTIVE — Iteration 60 queue, Red Team's Phase-5 final-audit
-  reconciliation of exp-082's six seats (`experiments/082-t28-pad-real-
-  article-check/phase5_redteam_audit.md` §10); supersedes the Iteration-59
-  queue below as the active ranking, that block retained as valid backlog,
-  not deleted]** exp-082 (QUANTUM OPTICS' rotation-lead cycle) discharged
+- **[ACTIVE — Iteration 61 queue, Red Team's Phase-5 final-audit
+  reconciliation of exp-083's six seats (`experiments/083-t28-pad-article-
+  full-power-retest/phase5_redteam_audit.md` §10); supersedes the
+  Iteration-60 queue below as the active ranking, that block retained as
+  valid backlog, not deleted]** exp-083 (VISION SCIENCE's rotation-lead
+  cycle) ran T28's first properly-powered article-loaded period
+  discriminator (125 FDTD calls, full 31-point/0.2° `PAIR_PAD`-with-article
+  re-test at 600nm), restoring the git-provenance discipline flagged as a
+  two-cycle-old tripwire at Iteration 59's close (frozen predictions
+  committed and pushed at `06cb96b`, strictly before any FDTD call).
+  **PRIMARY: the three-branch period discriminator resolves decisively to
+  BRANCH B** — `delta_scene(θ)`'s free period, `P*=2.9474°, R²=0.8582`, is
+  3.7% from `P_edge_A=2.8421°` (T28's own original `C80−C40` period), far
+  from `P_continuity=4.611°` (36% off) and `P_edge_B=1.9608°` (50% off), and
+  clears the MAXIMUM of a 20,000-trial null-permutation control (`p=0.0`) —
+  doubly corroborated by EM's independent field-difference companion
+  (`P*=2.5865°`, own `p=0.00185`). The first time in nine-plus T28 cycles
+  the article-loaded channel's own dominant periodicity has been
+  statistically pinned. **But the CAUSAL label does not survive scrutiny,
+  twice over**: Red Team's Phase-2 audit (adopting PHOTONICS'/MATERIALS'
+  own findings) ruled Branch B is a period-family MATCH, not a demonstrated
+  mechanism — `P_edge_A` is T28's own founding, still-unexplained
+  periodicity (nine-plus prior mechanism-search cycles have REFUTEd every
+  domain-echo candidate for it), PHOTONICS' own far-field two-rim estimate
+  misses by 3.3×, and this aperture's own Fresnel number (`N_F≈13`) means
+  the far-field formula wasn't even the right regime; Red Team's Phase-5
+  final audit sharpened this further — **`P_edge_A` was originally
+  established on a scene independently confirmed to contain ZERO article/
+  materials calls of any kind** (`experiments/069-.../run.py`) — an
+  Occam's-razor argument favoring "inherited pre-existing artifact" over
+  "genuine article-rim diffraction," without yet proving it. **A two-tone
+  `PAD`-continuity admixture claim, independently raised by QUANTUM's and
+  EM's own Phase-2 critiques (Freedman-Lane permutation, `p<0.001`), was
+  REVERSED by Red Team's Phase-2 audit** under the correct, order-
+  preserving circular-shift companion (`p=0.581`/`p=0.097`) — the
+  underlying residuals are highly autocorrelated (lag-1 `r≈0.93–0.95`,
+  matching a previously-documented exp-074 pattern), invalidating the naive
+  null's exchangeability assumption, independently reconfirmed four times.
+  **EM's own Phase-5 attempt to rescue the admixture claim with a
+  wrap-free AR(1)-parametric surrogate (`p=0.766`) does NOT itself
+  reproduce** — Red Team's Phase-5 final audit independently rebuilt it
+  from scratch across five structural variants and got `p≈0.09–0.10`
+  instead (materially weaker, not stronger); EM's qualitative critique of
+  circular-shift is retained, its specific number is not — the first
+  Phase-5 figure this cycle's own layered verification caught failing R4.
+  **Combined Verdict: PARTIAL**, unanimous across all six blind Phase-5
+  seats and both Red Team audits. **Checkpoint criterion 2 is N/A — not
+  merely not-yet-ripe**: artifact-attribution/null-construction work
+  internal to the lab's own instrument, unconnected to any phenomenon-
+  program constraint, reasoned through explicitly despite this cycle's own
+  genuine methodological depth. **Checkpoint criterion 4 does NOT fire** on
+  any of three matters adjudicated (the causal-label/two-tone overclaims,
+  both caught within Phase 2; EM's own unreproduced AR(1) figure, caught
+  within Phase 5) — all closed same-shift. The joint EM/THERMO energy-
+  interception cross-check is now a **two-cycle-old named-but-deferred
+  pattern** (Iteration 59's close; this cycle's own scoping) — approaching,
+  not yet at, the R8-family tripwire; a third consecutive deferral without
+  an explicit reason fires it. **Tier 0, zero FDTD, desk-only:** (1) log
+  the AR(1) non-reproduction finding wherever the admixture question is
+  next cited; (2) log `P_edge_A`'s own empty-scene provenance as a
+  standing, source-verified fact; (3) state MATERIALS' "zero realizability
+  content" rule precisely — genuinely open, but the evidence now leans the
+  prior toward the rule's original reading, not a symmetric question; (4)
+  log the energy-interception two-cycle pattern; (5) the R5 pre-
+  registration discipline note, now four cycles running. **Tier 1, cheap
+  FDTD, near-unanimous next:** (6) **MATERIALS' article-radius (`R_OUT`)
+  discriminator — the single highest-value item on the board (ranked #1 or
+  #2 by all six Phase-5 seats), UPGRADED per Red Team's own cross-cutting
+  attack on the six-way consensus** — pre-register AT LEAST TWO alternate
+  radii (e.g. `R_OUT∈{50,100}` alongside the existing 78 baseline,
+  geometrically confirmed feasible without domain resizing), not the
+  single radius every review that names it specifies, so the outcome can
+  distinguish a genuine scaling trend from a coincidental shift; pre-
+  register the "period stays pinned" directional prior explicitly before
+  running; (7) **PHOTONICS' own zero-FDTD Fresnel/Kirchhoff edge-
+  diffraction desk derivation**, applied FIRST to the empty-scene geometry
+  where `P_edge_A` actually originates, then to the article's own rim as a
+  cheap second comparison — the first attempt in nine-plus prior mechanism
+  cycles to model a T28 boundary as a genuine diffractor rather than a
+  reflector; if it succeeds on the empty scene, item 6's own sweep can be
+  scored against a quantitative prediction, not a bare direction; (8) a
+  committed, independently-reproduced AR(1)-matched null-calibration test
+  for the two-tone admixture question (QUANTUM's own fully-specified
+  design — measure `φ̂`, generate synthetic H0 data, sweep `φ̂`, inject
+  known admixture amplitudes to characterize power) — MUST reconcile with
+  Red Team's own non-reproduction of EM's earlier AR(1) figure before
+  either number is treated as final. **Tier 2, standing, increasingly
+  overdue items:** (9) the near-null σ(I) article follow-up, still not
+  run; (10) QUANTUM's own lossless-PEC-only-disk control, still open; (11)
+  the `PAIR_ABSORB40`/`C80−C40` extension, still open; (12) the x-wall
+  wavelength-generality leg (750/450nm), now **EIGHT** consecutive cycles
+  deferred (076–083), exceeding every other item's own pre-tripwire streak
+  on this board — should not be deferred again without an explicitly
+  stated reason; (13) a proper R3-grade settling convergence study with the
+  article present. **Tier 3, governance:** (14) Checkpoint criterion 2
+  ruled N/A this cycle, reasoned through explicitly, not by pattern-match;
+  (15) Checkpoint criterion 4 ruled non-firing on all three matters this
+  cycle adjudicated; (16) the energy-interception item's own two-cycle
+  pattern, logged explicitly as approaching — not yet at — the R8-family
+  tripwire. None of the above re-opens or re-proposes any RULED-OUT item
+  (R1–R9). Full record: `experiments/083-t28-pad-article-full-power-
+  retest/`, LOGBOOK.md Iteration 60.
+- **[superseded by the Iteration-61 queue above — exp-082's own docket,
+  retained as a pointer to its own history, not deleted]** exp-082
+  (QUANTUM OPTICS' rotation-lead cycle) discharged
   PLAN.md's own six-cycle tripwire on the PAD-loaded real-article check —
   the FIRST article-loaded FDTD measurement in this nine-cycle-plus T28
   sub-thread's history. Loaded the established flagship absorber

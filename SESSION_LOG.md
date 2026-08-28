@@ -2,6 +2,105 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-28 (panel shift) — Iteration 60 complete (exp-083): T28's first
+properly-powered article-loaded period discriminator resolves decisively
+to Branch B (matches T28's own long-unexplained `P_edge_A` family), the
+causal label walked back twice over, a two-tone admixture claim
+independently reversed by Red Team then its own would-be rescue caught
+failing to reproduce.
+
+**Pre-flight**: continuing the same shift as Iteration 59. Fast-subset
+trust suite confirmed green: 41/41 checks throughout this entire cycle.
+Zero `lab/` diff — the sub-thread's second genuinely new FDTD build
+(125 calls), reusing only already-gated primitives.
+
+**Iteration 60 — VISION SCIENCE's rotation-lead cycle (exp-083).**
+Executes PLAN.md's Iteration-60 Tier-1 headline item: the full
+31-point/0.2° `PAIR_PAD`-with-article re-test at 600nm, pre-registering
+PHOTONICS' own two-branch-plus-null period discriminator and bundling
+EM's field-difference decomposition. **Critical house discipline
+restored**: `phase1_proposal.md` alone was committed and pushed
+(`06cb96b`) strictly before `run.py` was written or any FDTD call
+executed — discharging the two-cycle-old git-provenance tripwire
+(exp-081, exp-082), independently verified genuine at the source by
+three separate seats.
+
+**Primary: the three-branch discriminator resolves decisively to Branch
+B.** `P*=2.9474°, R²=0.8582` — 3.7% from `P_edge_A=2.8421°` (T28's own
+original `C80−C40` period), far from `P_continuity=4.611°` (36% off) and
+`P_edge_B=1.9608°` (50% off), clearing the maximum of a 20,000-trial
+null-permutation control (`p=0.0`). EM's independent field-difference
+companion corroborates the same branch (`p=0.00185`). First time in
+nine-plus T28 cycles the article-loaded channel's dominant periodicity
+has been statistically pinned. A disclosed tension: `r(delta_scene,
+delta_empty)@n=31=0.395, p=0.028` — up sharply from exp-082's `n=7`
+reading of `r≈0.031`.
+
+**Phase 2's real substance**: five blind critiques, unanimous
+support-with-changes. **PHOTONICS found "ARTICLE-EDGE DIFFRACTION" is
+mechanistically empty** — `P_edge_A` is T28's own founding, still-
+unexplained periodicity (nine-plus prior mechanism-search cycles have
+REFUTEd every domain-echo candidate), and PHOTONICS' own two-rim
+far-field estimate misses by 3.3×. **QUANTUM and EM, independently,
+each found a genuine secondary `P_continuity` component** via a
+Freedman-Lane permutation test (`p<0.001`) → **Red Team's Phase-2
+audit** adopted the causal-label correction (this aperture's own
+Fresnel number, `N_F≈13`, means PHOTONICS' far-field formula wasn't
+even the right regime) and, more consequentially, **discovered QUANTUM's
+and EM's two-tone finding shares a common blind spot**: the residuals
+are highly autocorrelated (lag-1 `r≈0.93–0.95`, matching a previously-
+documented exp-074 pattern), invalidating the Freedman-Lane test. The
+correct order-preserving circular-shift companion **REVERSED the
+verdict** (`p=0.581`/`p=0.097`) — the admixture claim does not hold up.
+
+**Phase 3** adopted all 6 fix-docket items in full (no freeze needed —
+prose corrections to already-verified numbers): replaced the causal-
+mechanism language with "matches T28's own unexplained family";
+withdrew the "resolved admixture" language, stating both readings side
+by side as open; added MATERIALS' radius discriminator as the named top
+priority. One commit, 41/41 trust suite throughout.
+
+**Phase 5 — six blind reviews, unanimous PARTIAL, one further reversal.**
+**PHOTONICS found `P_edge_A` was originally measured on the EMPTY
+scene** (zero article/materials calls anywhere in its source) — an
+Occam's-razor argument favoring "inherited artifact." THERMODYNAMICS
+found the joint EM/THERMO energy-interception cross-check is now a
+second consecutive deferred cycle. **EM found circular-shift isn't the
+best-suited null** for this non-periodic sweep and built a wrap-free
+AR(1)-parametric surrogate claiming an even more decisive reversal
+(`p=0.766`) → **Red Team's Phase-5 final audit** independently rebuilt
+EM's own construction from scratch across five variants and **could NOT
+reproduce EM's own figures** (`p≈0.09–0.10` instead) — the qualitative
+critique adopted, the specific number logged as not reproduced, the
+first Phase-5 figure this cycle's own verification caught failing R4.
+Confirmed PHOTONICS' empty-scene-provenance finding at the source.
+Attacked the six-way consensus itself: every review naming the `R_OUT`
+discriminator specifies only one alternate radius — upgraded to at
+least two, so the result can show a scaling trend, not just pinned-vs-
+moved.
+
+**Combined Verdict: PARTIAL**, unanimous across all six blind Phase-5
+seats and both Red Team audits. The period-family question is resolved,
+decisively and doubly instrument-corroborated, at full power — a
+genuine first for this sub-thread. The causal question remains open,
+prior now leaning toward "inherited artifact." The two-tone admixture
+question is reversed under the correct null, independently reconfirmed
+four times, and remains open — EM's own attempted rescue does not
+itself reproduce. **Checkpoint criterion 2 is N/A — not merely
+not-yet-ripe**: artifact-attribution/null-construction work, unconnected
+to any phenomenon-program constraint. **Checkpoint criterion 4 does NOT
+fire** on any of three matters adjudicated, all closed same-shift. The
+energy-interception cross-check is now a **two-cycle-old named-but-
+deferred pattern** — a third consecutive deferral without an explicit
+reason fires criterion 4. Reconciled Iteration-61 ranking (4 tiers, 16
+items): Tier 1 headline — MATERIALS' upgraded multi-radius `R_OUT`
+discriminator (pre-registering the "pinned" prior), PHOTONICS' zero-FDTD
+Fresnel/Kirchhoff edge-diffraction derivation (run first on the empty
+scene), a committed AR(1)-matched null-calibration test reconciling with
+Red Team's own non-reproduction finding. Full record: `experiments/083-
+t28-pad-article-full-power-retest/`, LOGBOOK.md Iteration 60, PLAN.md's
+own Iteration-61 queue.
+
 ## 2026-08-27 (panel shift) — Iteration 59 complete (exp-082): the T28
 sub-thread's six-cycle tripwire discharged — the FIRST article-loaded
 FDTD measurement in nine-plus cycles finds VERDICT SURVIVES, stands

@@ -3444,6 +3444,159 @@ fix) — see `experiments/077-.../phase5_redteam_audit.md` §4.
   Red Team audit, Phase-3 synthesis, `NOTES.md`, six Phase-5 blind reviews,
   Phase-5 Red Team final audit.
 
+  **Iteration 60 (exp-083, 2026-08-28) — the T28 sub-thread's own first
+  properly-powered article-loaded period discriminator: Branch B resolved
+  decisively (matches T28's own long-standing, still-unexplained
+  `P_edge_A` family), the causal label walked back twice over, and a
+  two-tone admixture claim independently reversed, then its own would-be
+  rescue caught failing to reproduce.** VISION SCIENCE led (rotation),
+  executing PLAN.md's Iteration-60 Tier-1 headline item: the full
+  31-point/0.2° `PAIR_PAD`-with-article re-test at 600nm (125 FDTD calls),
+  pre-registering PHOTONICS' own two-branch-plus-null period discriminator
+  and bundling EM's own field-difference decomposition. **Critical house
+  discipline restored this cycle**: `phase1_proposal.md` alone was
+  committed and pushed (`06cb96b`) strictly before `run.py` was written or
+  any FDTD call executed — discharging the two-cycle-old git-provenance
+  tripwire (exp-081, exp-082) flagged at Iteration 59's close, independently
+  verified genuine at the source by three separate seats across Phase 2 and
+  Phase 5. Reproduction precondition PASSED bit-exact.
+
+  **PRIMARY: the three-branch discriminator resolves decisively to BRANCH
+  B.** `delta_scene(θ)`'s free period at full power: `P*=2.9474°,
+  R²=0.8582` — 3.7% from `P_edge_A=2.8421°` (T28's own original `C80−C40`
+  period), far from `P_continuity=4.611°` (36% off) and `P_edge_B=1.9608°`
+  (50% off). A post-hoc 20,000-trial null-permutation control shows the
+  observed `R²` exceeds the maximum of 20,000 pure-noise permutations
+  (`p=0.0`). EM's own field-difference companion independently
+  corroborates the same branch (`P*=2.5865°`, its own null-controlled
+  `p=0.00185`) — two structurally different instruments converging. A
+  disclosed, unresolved tension: `r(delta_scene,delta_empty)@n=31=0.395,
+  p=0.028` — up sharply from exp-082's own `n=7` reading of `r≈0.031`.
+
+  **Phase 2 — five blind critiques, unanimous support-with-changes, a rich
+  layer.** MATERIALS confirmed article identity/numbers, flagged the
+  article-radius dependence was never tested. THERMODYNAMICS found Branch
+  B potentially reopens the absorbed-power question (the diffracting edge,
+  if real, sits against genuinely lossy material, not vacuum).
+  **PHOTONICS found "ARTICLE-EDGE DIFFRACTION" is mechanistically empty**:
+  `P_edge_A=2.8421°` is T28's own founding, still-unexplained periodicity
+  — nine-plus prior mechanism-search cycles have REFUTEd every domain-echo
+  candidate for it — and PHOTONICS' own two-rim far-field estimate misses
+  by 3.3× (9.45° vs 2.84°). **QUANTUM and EM, independently, each ran a
+  two-tone fit and found a genuine secondary `P_continuity` component**
+  (QUANTUM: `R²=0.9575` two-tone vs `0.845` single-tone; EM: Freedman-Lane
+  residual-permutation, `p<0.001`, corroborated in its own field-difference
+  instrument at `p=0.00018`) → **Red Team's Phase-2 audit** (PROCEED-WITH-
+  MANDATORY-FIXES, 6 items) adopted PHOTONICS'/MATERIALS' causal-label
+  correction (Branch B is a period-family MATCH, not a demonstrated
+  mechanism — this aperture's own Fresnel number, `N_F≈13`, means the
+  far-field formula PHOTONICS used wasn't even the right regime) and, more
+  consequentially, **independently discovered that QUANTUM's and EM's
+  two-tone finding shares a common blind spot**: the residuals underlying
+  both tests are highly autocorrelated (lag-1 `r≈0.93–0.95`, matching a
+  previously-documented exp-074 pattern), invalidating the Freedman-Lane
+  test's exchangeability assumption. Running the order-preserving
+  circular-shift companion (this program's own established "harder
+  companion," R6/R7) **REVERSED the verdict**: `p=0.581` primary series,
+  `p=0.097` EM's companion — the two-tone admixture claim does NOT hold up.
+
+  **Phase 3** adopted all 6 fix-docket items in full (no FROZEN-PREDICTIONS
+  freeze needed — prose corrections to already-verified numbers): replaced
+  every "ARTICLE-EDGE DIFFRACTION, confirmed" sentence with "matches T28's
+  own unexplained `P_edge_A` family"; withdrew the "resolved... genuine
+  admixture, p<0.001" language, stating both readings (naive-significant vs
+  correctly-reversed) side by side as an open Iteration-61 question; added
+  MATERIALS' radius discriminator as the named top priority; re-scoped the
+  energy concern to `P_edge_A`'s own origin generally; logged the R5
+  pre-registration gap as a recurring pattern; credited the git-provenance
+  restoration explicitly. One commit, 41/41 trust suite throughout.
+
+  **Phase 5 — six blind reviews, unanimous PARTIAL, exceptional
+  convergence and one further reversal.** MATERIALS correctly declined to
+  auto-reinstate its own Iteration-59 "zero realizability content" rule
+  (genuine ambiguity remains between two opposite-realizability readings).
+  VISION independently re-verified the git-provenance restoration at the
+  source and the autocorrelation figure. **PHOTONICS found `P_edge_A` was
+  originally measured on the EMPTY scene** (`experiments/069-...`'s own
+  `run.py` contains zero article/materials calls) — an Occam's-razor
+  argument favoring "inherited pre-existing artifact" over "genuine new
+  article-rim diffraction that happens to coincide." THERMODYNAMICS found
+  the joint EM/THERMO energy-interception cross-check is now a **second
+  consecutive deferred cycle**, more urgent given Branch B's confirmed,
+  potentially-lossy pathway. QUANTUM, independently, reproduced Red Team's
+  reversal a sixth time and sketched a concrete AR(1)-matched
+  null-calibration test for Iteration 61. **EM found circular-shift isn't
+  the best-suited null for this non-periodic angular sweep** and built a
+  wrap-free AR(1)-parametric surrogate claiming an even more decisive
+  reversal (`p=0.766` vs `0.581`) → **Red Team's Phase-5 final audit**
+  independently rebuilt EM's own AR(1) construction from scratch across
+  five structural variants and **could NOT reproduce EM's own figures**
+  (own reconstruction: `p≈0.09–0.10`, materially weaker, not stronger) —
+  EM's qualitative critique adopted, its specific number logged as
+  NOT independently reproduced, the first Phase-5 figure this cycle's own
+  layered verification caught failing R4. Independently confirmed
+  PHOTONICS' empty-scene-provenance finding at the source. Ruled MATERIALS'
+  caution correct but sharpened the board's prior toward "inherited
+  artifact." Attacked the six-way consensus itself: every review naming
+  the R_OUT discriminator specifies only ONE alternate radius (pinned-vs-
+  moved only, not a scaling law) — upgraded to at least two.
+
+  **Combined Verdict: PARTIAL**, unanimous across all six blind Phase-5
+  seats and the final audit. The period-family question exp-082 showed was
+  unresolvable at 7-point power is resolved, decisively and doubly
+  instrument-corroborated, at full power — a genuine first for this
+  nine-cycle-plus sub-thread. The causal question (what `P_edge_A`
+  physically is) remains open, prior now leaning toward "inherited
+  artifact." The two-tone admixture question is REVERSED under the correct
+  null, independently reconfirmed four times, and remains open in both
+  directions — EM's own attempted rescue does not itself reproduce.
+  **Checkpoint criterion 2 is N/A — not merely not-yet-ripe** — reasoned
+  through explicitly: despite genuine methodological depth (a real
+  reversal of a significance claim about T28's own founding periodicity),
+  this is artifact-attribution/null-construction work internal to the
+  lab's own instrument, unconnected to any phenomenon-program constraint.
+  **Checkpoint criterion 4 does not fire** on any of three matters
+  adjudicated across this cycle (the causal-label/two-tone overclaims,
+  both caught within Phase 2; EM's own unreproduced AR(1) figure, caught
+  within Phase 5) — all closed same-shift, before LOGBOOK. The joint
+  EM/THERMO energy-interception cross-check is logged as a **two-cycle-old
+  named-but-deferred pattern**, approaching but not yet at the R8-family
+  tripwire — a third consecutive deferral without an explicit reason would
+  fire it. Reconciled Iteration-61 ranking (Red Team's Phase-5 final audit,
+  4 tiers, 16 items — full detail `phase5_redteam_audit.md` §10): **Tier
+  0, zero FDTD, desk-only** — (1) log the AR(1) non-reproduction finding;
+  (2) log `P_edge_A`'s own empty-scene provenance; (3) state MATERIALS'
+  rule precisely (both halves — genuinely open, prior leaning one way); (4)
+  log the energy-interception two-cycle pattern; (5) the R5 pre-
+  registration discipline note, now four cycles running. **Tier 1, cheap
+  FDTD, near-unanimous next** — (6) **MATERIALS' article-radius (`R_OUT`)
+  discriminator, upgraded to AT LEAST TWO alternate radii** (e.g.
+  `R_OUT∈{50,100}` alongside the existing 78 baseline, geometrically
+  confirmed feasible without domain resizing) — the single highest-value
+  item on the board, ranked #1 or #2 by all six Phase-5 seats, pre-
+  registering the "period stays pinned" directional prior explicitly; (7)
+  PHOTONICS' own zero-FDTD Fresnel/Kirchhoff edge-diffraction derivation,
+  applied FIRST to the empty-scene geometry where `P_edge_A` actually
+  originates — the first attempt in nine-plus prior mechanism cycles to
+  model a T28 boundary as a genuine diffractor rather than a reflector;
+  (8) a committed, independently-reproduced AR(1)-matched null-calibration
+  test (QUANTUM's own design) that must reconcile with this audit's own
+  non-reproduction finding before either number is treated as final.
+  **Tier 2, standing, increasingly overdue items** — (9) the near-null
+  σ(I) article follow-up, still not run; (10) QUANTUM's lossless-PEC-only-
+  disk control; (11) the `PAIR_ABSORB40`/`C80−C40` extension; (12) the
+  x-wall wavelength-generality leg, now **EIGHT** consecutive cycles
+  deferred (076–083); (13) a proper R3-grade settling convergence study
+  with the article present. **Tier 3, governance** — (14) Checkpoint
+  criterion 2 ruled N/A, reasoned through explicitly, not by pattern-match;
+  (15) Checkpoint criterion 4 ruled non-firing on all three matters
+  adjudicated; (16) the energy-interception item's own two-cycle pattern,
+  approaching the R8-family tripwire. Full record: `experiments/083-t28-
+  pad-article-full-power-retest/` — Phase-1 proposal, `run.py`,
+  `results.json`, `null_permutation_control.json`, five Phase-2 blind
+  critiques, Phase-2 Red Team audit, Phase-3 synthesis, `NOTES.md`, six
+  Phase-5 blind reviews, Phase-5 Red Team final audit.
+
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
 - ~~Is the 3λ shell-thickness feature specific to r2=90?~~ **ANSWERED
