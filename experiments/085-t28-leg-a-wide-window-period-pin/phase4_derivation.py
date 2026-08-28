@@ -416,7 +416,15 @@ def main():
     else:
         classification_b = "NEITHER -- THIRD VALUE / CATCH-ALL"
     print(f"    P_wide={P_wide:.4f}  P_fft={P_fft:.4f}  "
-          f"rel_dev(P_wide,P_fft vs mean)={rd_wide_fft:.4f}")
+          # exp-086 Iteration 63 cosmetic fix (Red Team Phase-2 audit item
+          # 4 / VISION's Phase-5 finding): this print previously labeled
+          # rd_wide_fft "vs mean" but it is |P_wide-P_fft|/P_fft
+          # (rel_dev's own convention), not the mean-relative figure the
+          # gating boolean `disagreement` below actually uses -- corrected
+          # label; the gating boolean itself was always correct and
+          # classification_b is unaffected either way.
+          f"rel_dev(P_wide,P_fft)={rd_wide_fft:.4f}  "
+          f"(mean-relative={abs(P_wide-P_fft)/((P_wide+P_fft)/2.0):.4f}, the gating figure)")
     print(f"    rel_dev(P_wide,P_edge_A)={rel_dev(P_wide, P_EDGE_A):.4f}  "
           f"rel_dev(P_fft,P_edge_A)={rel_dev(P_fft, P_EDGE_A):.4f}")
     print(f"    rel_dev(P_wide,P_model_a_narrow)={rel_dev(P_wide, P_MODEL_A_NARROW):.4f}  "

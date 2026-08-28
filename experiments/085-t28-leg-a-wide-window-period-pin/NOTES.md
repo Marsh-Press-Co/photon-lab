@@ -77,10 +77,16 @@ peak; not sharp, `P2/P1=0.799` — a near-equal secondary peak — and the
 FFT's own largest peak over the FULL, unrestricted spectrum sits at
 `P_fft_full=140.07°`, entirely outside the `[1°,15°]` primary range —
 essentially a broad low-frequency/near-DC trend, not a resolved tone).
-`rel_dev(P_wide,P_fft)=62.8%` of their mean, far past the 10% disagreement
-bar — the two global instruments do not even roughly agree with each
-other, let alone with `P_edge_A=2.8421°` or the narrow-window's
-`P_model_a=2.5338°`.
+`|P_wide-P_fft|=62.8%` of `P_fft` (`rel_dev` convention), i.e. **91.6% of
+their mean** — the actual mean-relative figure the `disagreement` gate
+uses (corrected here per exp-086, Iteration 63, Red Team's Phase-2 audit
+item 4 / VISION's Phase-5 finding of exp-085's own cycle: the prior draft
+conflated the two conventions; the gating boolean itself was always
+computed correctly and `classification_b=METHOD DISAGREEMENT` is
+unaffected either way) — far past the 10% disagreement bar regardless of
+which convention is read: the two global instruments do not even roughly
+agree with each other, let alone with `P_edge_A=2.8421°` or the
+narrow-window's `P_model_a=2.5338°`.
 
 **Net reading**: neither global instrument (A, B) finds anything resembling
 a clean, sharp, single dominant period anywhere in the wide window — both

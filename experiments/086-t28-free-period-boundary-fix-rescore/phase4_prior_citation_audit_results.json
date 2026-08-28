@@ -1,0 +1,47 @@
+{
+  "files_scanned": 18,
+  "all_stage_boundary_occurrences": [
+    {
+      "file": "experiments/078-t28-y-wall-echo-prescreen/y_wall_prescreen_results.json",
+      "path": "/primary_model_pair_deltas/stages/c80_c40",
+      "n_stages": 3,
+      "first_stage": {
+        "window": "narrow[1,4]",
+        "p_star_deg": 4.0,
+        "r_squared": 0.2472345286807609,
+        "at_boundary": true,
+        "ss_tot_full": 1.0456123071135073,
+        "ss_tot_degenerate": false
+      },
+      "last_stage": {
+        "window": "widest[1,60]",
+        "p_star_deg": 60.0,
+        "r_squared": 0.9693378270651474,
+        "at_boundary": true,
+        "ss_tot_full": 1.0456123071135073,
+        "ss_tot_degenerate": false
+      }
+    },
+    {
+      "file": "experiments/079-t28-y-wall-full-aperture-sum/y_wall_aperture_sum_results.json",
+      "path": "/reflectance_ablation_control/stages/pair_absorb40",
+      "n_stages": 3,
+      "first_stage": {
+        "window": "narrow[1,4]",
+        "p_star_deg": 1.0,
+        "r_squared": 0.0,
+        "at_boundary": true,
+        "ss_tot_full": 0.0,
+        "ss_tot_degenerate": true
+      },
+      "last_stage": {
+        "window": "widest[1,60]",
+        "p_star_deg": 1.0,
+        "r_squared": 0.0,
+        "at_boundary": true,
+        "ss_tot_full": 0.0,
+        "ss_tot_degenerate": true
+      }
+    }
+  ]
+}

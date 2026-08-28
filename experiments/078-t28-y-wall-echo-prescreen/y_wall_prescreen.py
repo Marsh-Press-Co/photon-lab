@@ -327,7 +327,17 @@ def free_period_with_widening(thetas, delta, label, out_list):
     `free_period_with_widening` (imported logic pattern, not the function
     itself, since that module is not import-safe standalone here without
     re-running its own main()-adjacent state -- the STAGES and the
-    at-boundary rule are reproduced verbatim from that file)."""
+    at-boundary rule are reproduced verbatim from that file).
+
+    R11 FIX (exp-086, Panel Iteration 63, EM lead; LOGBOOK.md RULED OUT
+    registry, rule R11): the staged-widening loop used to leave `chosen`
+    pinned at the FIRST (narrowest) stage's own record when EVERY stage
+    came back `at_boundary` -- silently reporting the least-informative,
+    worst-fitting reading as if it were a resolved interior optimum. A
+    genuine interior optimum still wins as soon as one is found
+    (unchanged); if the loop runs to completion without ever finding one,
+    `chosen` is now explicitly reset to the WIDEST stage's own record,
+    tagged `converged=False`/`no_interior_optimum=True`."""
     delta = np.asarray(delta, dtype=float)
     ss_tot_full = float(np.sum((delta - np.mean(delta)) ** 2))
     ss_tot_degenerate = ss_tot_full < SS_TOT_DEGENERATE_FLOOR
@@ -357,7 +367,15 @@ def free_period_with_widening(thetas, delta, label, out_list):
         if chosen is None or (chosen["at_boundary"] and not at_boundary):
             chosen = rec
         if not at_boundary:
+            chosen["converged"] = True
+            chosen["no_interior_optimum"] = False
             break
+    else:
+        # every stage stayed at_boundary -- R11 fix: report the WIDEST
+        # stage's own record, flagged, never the narrowest silently.
+        chosen = out_list[-1]
+        chosen["converged"] = False
+        chosen["no_interior_optimum"] = True
     return chosen
 
 

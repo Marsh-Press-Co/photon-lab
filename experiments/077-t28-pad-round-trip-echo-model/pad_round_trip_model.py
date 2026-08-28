@@ -350,24 +350,49 @@ def null_calibration_appendix(thetas, real_delta_pad, p_star_real_deg, n_trials=
     return dict(pure_noise_null=out_a, bootstrap_recovery=out_b)
 
 
+# =============== R11 FIX (exp-086, Panel Iteration 63, EM lead; LOGBOOK.md
+# RULED OUT registry, rule R11): the staged-widening loop below used to
+# leave `chosen` pinned at the FIRST (narrowest) stage's own record when
+# EVERY stage came back `at_boundary` -- silently reporting the least-
+# informative, worst-fitting reading as if it were a resolved interior
+# optimum. Fixed here (and in `y_wall_prescreen.py`'s own copy, and in the
+# `_quiet` sibling directly below): a genuine interior optimum still wins
+# as soon as one is found (unchanged); but if the loop runs to completion
+# WITHOUT ever finding one, `chosen` is now explicitly reset to the WIDEST
+# stage's own record (the least-wrong of the boundary-pinned readings, and
+# the one that at least searched the full candidate range), tagged
+# `converged=False`/`no_interior_optimum=True` so no downstream caller can
+# mistake it for a resolved fit without checking the flag. A genuine
+# interior optimum is tagged `converged=True`/`no_interior_optimum=False`.
 def free_period_with_widening_quiet(thetas, delta):
     """Same staged-widening logic as `free_period_with_widening`, without
-    the per-call print (used inside the 20,000-trial Monte Carlo loops)."""
+    the per-call print (used inside the 20,000-trial Monte Carlo loops).
+    R11 FIX applied (see module note above)."""
     stages = [
         dict(lo_deg=1.0, hi_deg=4.0, n_grid=400),
         dict(lo_deg=1.0, hi_deg=15.0, n_grid=1400),
     ]
     chosen = None
+    last_rec = None
     for st in stages:
         fit = _free_period_search(thetas, delta, center_deg=39.0,
                                    lo_deg=st["lo_deg"], hi_deg=st["hi_deg"], n_grid=st["n_grid"])
         p = fit["p_star_deg"]
         at_boundary = (p <= st["lo_deg"] * 1.005) or (p >= st["hi_deg"] * 0.995)
         rec = dict(p_star_deg=p, r_squared=fit["r_squared"], at_boundary=at_boundary)
+        last_rec = rec
         if chosen is None or (chosen["at_boundary"] and not at_boundary):
             chosen = rec
         if not at_boundary:
+            chosen["converged"] = True
+            chosen["no_interior_optimum"] = False
             break
+    else:
+        # every stage stayed at_boundary -- R11 fix: report the WIDEST
+        # stage's own record, flagged, never the narrowest silently.
+        chosen = last_rec
+        chosen["converged"] = False
+        chosen["no_interior_optimum"] = True
     return chosen
 
 
@@ -380,7 +405,7 @@ def free_period_with_widening(thetas, delta, label):
     model curve) and, if THAT also hits boundary, to [1,60]deg -- exactly
     boundary_reflectance.py's own Sec[6] staged-widening pattern, applied
     here to whichever curve (real or predicted) needs it, not assumed in
-    advance which one will."""
+    advance which one will. R11 FIX applied (see module note above)."""
     stages = [
         dict(name="narrow[1,4]", lo_deg=1.0, hi_deg=4.0, n_grid=400),
         dict(name="wide[1,15]", lo_deg=1.0, hi_deg=15.0, n_grid=2800),
@@ -403,7 +428,15 @@ def free_period_with_widening(thetas, delta, label):
         if chosen is None or (chosen["at_boundary"] and not at_boundary):
             chosen = rec
         if not at_boundary:
+            chosen["converged"] = True
+            chosen["no_interior_optimum"] = False
             break
+    else:
+        # every stage stayed at_boundary -- R11 fix: report the WIDEST
+        # stage's own record, flagged, never the narrowest silently.
+        chosen = results[-1]
+        chosen["converged"] = False
+        chosen["no_interior_optimum"] = True
     return dict(stages=results, chosen=chosen)
 
 
