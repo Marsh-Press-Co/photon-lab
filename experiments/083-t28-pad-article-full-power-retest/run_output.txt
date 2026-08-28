@@ -1,0 +1,41 @@
+==============================================================================
+exp-083 -- the full 31-point/0.2deg PAIR_PAD-with-article re-test
+==============================================================================
+
+Reproduction precondition: this cycle's own freshly-run EMPTY leg at all 31
+dg069.DENSE_ANGLES for C40/G40 must reproduce experiments/076-.../
+results.json::headline's C40/G40 values at those same angles,
+max|delta| < 1e-9 -- BEFORE the article-loaded leg (or any period fit) is
+trusted.
+
+PRIMARY (three-branch period discriminator, pre-registered BEFORE running):
+free_period_with_widening(THETAS, delta_scene) recovers (P*, R2) for
+delta_scene(theta) = C(G40;theta,article) - C(C40;theta,article) over all
+31 angles.
+  (A) MECHANISM CONTINUITY:      |P*-4.611290|/4.611290 <= 0.2  AND R2 >= 0.3
+  (B) ARTICLE-EDGE DIFFRACTION:  R2 >= 0.3 AND (within 0.2 of 2.842105 OR of 1.960795)
+  (C) NEITHER ESTABLISHED FAMILY: R2 < 0.3, OR R2 >= 0.3 but P* clears none of the three bands.
+
+COMPANION (EM's field-difference decomposition, bundled at zero marginal
+FDTD cost, disclosed/complementary -- NOT gating, no pre-registered band):
+persist raw observer_profile(theta,y) for both legs, both configs, all 31
+angles; DeltaE_article_k(theta,y) = profile_with(k,theta,y) -
+profile_without(k,theta,y) for k in {C40,G40}; reduce via the object-window
+mean (amb.window_means); free-period-fit DeltaE_obj_article_C40(theta),
+DeltaE_obj_article_G40(theta), and their cross-config pair
+DeltaDeltaE_obj_article_PAD(theta) = G40-C40, report against the same three
+reference periods.
+
+Secondary (disclosed, not gating): ratio=A_scene/A_empty (exp-082's own
+[0.5,2.0]/<=0.2/other bands, recomputed at n=31 for direct comparability);
+Pearson r(delta_scene,delta_empty) at n=31 with a 200,000-trial permutation
+p-value (the diagnostic Red Team's own exp-082 audit showed was structurally
+underpowered at n=7); A_scene/C_thr (C_thr=0.005).
+
+Settling precondition (disclosed, not gating): |C(G40,theta=39,article,
+STEPS=2800) - C(G40,theta=39,article,STEPS=1400)| reported for context,
+repeats exp-082's own spot-check exactly, no new pass/fail threshold.
+
+clean
+
+125 FDTD calls queued (2 configs x 31 angles x 2 legs = 124, + 1 settling-precondition call)
