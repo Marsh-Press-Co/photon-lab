@@ -1,7 +1,7 @@
 {
   "shape_correlation": {
     "leg_a_vs_real_C80 (the finding)": 0.9581856926779434,
-    "leg_b_nomask_own_output_vs_real_C80 (control)": 0.9022947333208244,
+    "leg_b_own_masked_output_vs_real_C80 (control)": -0.10459710451467671,
     "bare_linear_ramp_vs_real_C80 (control)": -0.33470476808727845,
     "bare_quadratic_vs_real_C80 (control)": -0.5534090683128732
   },
