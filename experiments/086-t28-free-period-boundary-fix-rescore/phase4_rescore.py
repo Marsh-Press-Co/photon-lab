@@ -20,8 +20,13 @@ machinery (regenerating the 37 sub-window curves via the bit-identical
 pre-registered non-overlapping stride phases; [4] persist ss_tot_full/ptp
 per sub-window; [5] re-run `null_calibration_appendix` in full (60,001
 calls, corrected quiet function) against exp-077's own committed real
-data; [6] a bounded audit of committed JSON in experiments 069-085 for any
-other silently boundary-pinned citation.
+data; [6] a bounded audit of committed JSON in experiments 077-085 (the
+range `free_period_with_widening` actually spans -- 069-076 independently
+confirmed absent of any occurrence by two separate grep methods, out of
+scope by construction; corrected here per Red Team's Phase-5 final audit
+Sec 1.3/Sec 6 item 2, which caught this docstring's own "069-085" against
+the actual glob's "077-085") for any other silently boundary-pinned
+citation.
 """
 
 import glob

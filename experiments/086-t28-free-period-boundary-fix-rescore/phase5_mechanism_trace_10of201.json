@@ -1,0 +1,11 @@
+{
+  "n_trials": 3000,
+  "seed": 7,
+  "elapsed_s": 125.63628816604614,
+  "n_boundary_pinned": 201,
+  "boundary_pin_rate": 0.067,
+  "n_differ_old_vs_new": 10,
+  "max_abs_r2_diff_among_differing": 0.19384552323676252,
+  "mean_abs_r2_diff_among_differing": 0.06044870906657858,
+  "conclusion": "Of the 201/3000 (6.70%) all-stage-boundary-pinned pure-noise trials, only this many report a DIFFERENT r_squared between the old-buggy (narrowest-stage) and corrected (widest-stage) logic -- the other boundary-pinned trials converge to the identical edge fit at both the narrow[1,4] and wide[1,15] windows, so the R11 fix is frequently a no-op even when it technically fires. None of the differing values approach the ~0.52 max_r2_over_trials ceiling set by genuinely-converged, non-boundary trials -- confirming MATERIALS' Phase-5 mechanism trace and Red Team's Phase-5 final audit Sec 1.4."
+}

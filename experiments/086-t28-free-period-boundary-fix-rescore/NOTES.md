@@ -48,7 +48,13 @@ non-overlapping stride phases (θc-start = 5°/7°/9°); (4) persists
 in full (60,001 calls, corrected count) on the corrected quiet function
 against exp-077's own committed real data, diffing every cited statistic;
 (6) a bounded grep/re-derive audit of committed JSON in experiments
-069–085 for any other silently boundary-pinned citation beyond the two
+077–085 (the range `free_period_with_widening` actually spans;
+069–076 independently confirmed absent of any occurrence by two
+separate grep methods — THERMODYNAMICS' Phase-2 critique,
+MATERIALS' Phase-5 review — out of scope by construction, corrected
+here per Red Team's Phase-5 final audit §1.3/§6 item 2, which caught
+this section's own internal inconsistency with the Result section
+below) for any other silently boundary-pinned citation beyond the two
 already-known-inert instances (exp-078, exp-079); (7) the two cosmetic
 fixes (the `rd_wide_fft` "vs mean" mislabel in exp-085's own
 `phase4_derivation.py` print statement, and NOTES.md's "62.8%" citation
@@ -155,7 +161,32 @@ headline figure, disclosed but not load-bearing. Bootstrap-recovery stats
 Both cosmetic fixes (item 4) applied to exp-085's own record: the
 `rd_wide_fft` print-label mislabel corrected; NOTES.md's "62.8%... of
 their mean" corrected to the true mean-relative figure, 91.6%.
-`classification_b` unaffected either way, confirmed.
+`classification_b` unaffected either way — **verified, not merely
+re-run** (Red Team's Phase-5 final audit §1.9): `phase1_proposal.md`'s
+own §6 Phase-4 plan promised a re-fit of Method A's persisted curve
+through the corrected machinery; no Phase-4 script actually executed it
+(zero `method_a` re-fit anywhere in `phase4_rescore_results.json`).
+Independently checked whether the claim is nonetheless true: exp-085's
+own committed `derivation_results.json::method_a.stages` is a
+single-element array, `window="narrow[1,4]", at_boundary=False` — an
+interior optimum found at the very first stage, never widened. Since the
+R11 fix changes behavior only in the branch that fires when EVERY stage
+is boundary-pinned, and Method A's own search never reached that branch,
+the fix is a mathematical no-op on `P_wide` by construction — re-running
+it would reproduce `P_wide=3.2556390977443606°` bit-identically.
+Method B (`P_fft`) is a separate FFT computation that never calls
+`free_period_with_widening` at all. So `classification_b` is provably,
+not merely plausibly, unaffected — the claim was correct but unverified
+inside this cycle's own record until this note.
+
+The 10-of-201-differ mechanism trace (MATERIALS' Phase-5 finding, Red
+Team's Phase-5 final audit §1.4) is now persisted as a committed,
+invocable artifact:
+`phase5_mechanism_trace_10of201.json` — of the 201/3000 (6.70%)
+all-stage-boundary-pinned pure-noise trials, exactly 10 report a
+different `r_squared` between the old-buggy and corrected logic
+(`max_abs_r2_diff_among_differing=0.1938`), none approaching the
+`max_r2_over_trials≈0.52` ceiling set by genuinely-converged trials.
 
 ## Learned
 
@@ -178,10 +209,24 @@ researcher-degree-of-freedom this program has a standing rule against
 The null-calibration audit produced a genuinely reassuring result beyond
 what was predicted: the boundary-pinning bug, despite firing at a real
 6.70% rate, has negligible effect on the specific statistics that
-underwrite "the real oscillation is not noise" — a controlled matched-N
-comparison is a sharper tool than a naive before/after diff whenever
-sample size itself changes between the two things being compared, a
-methodological lesson worth carrying into future T28 audits.
+underwrite "the real **pair_pad** oscillation is not noise" — this leg's
+null was computed only against `pair_pad`'s own `real_delta_pad`/σ
+(`phase4_null_calibration_rerun.py`'s own explicit scope comment);
+`pair_absorb40`'s own noise floor was never recomputed at any N this
+cycle. (Correction, Red Team's Phase-5 final audit §1.8/§6 item 1,
+independently confirming VISION's Phase-5 finding: an earlier draft of
+this paragraph generalized to "the real oscillation" unqualified, one
+level beyond what was actually tested — the same scope-erosion shape as
+the T16/R9 precedent, caught and closed within this cycle's own Phase-5
+layer before reaching LOGBOOK.) A controlled matched-N comparison is a
+sharper tool than a naive before/after diff whenever sample size itself
+changes between the two things being compared — a methodological lesson
+worth carrying into future T28 audits. That "negligible effect" reading
+is itself now corroborated across 10 independent seeds (QUANTUM's own
+8-seed Phase-5 replication plus a Director-run 2-seed follow-up,
+`phase5_supplementary_multiseed_check.json`), not the single seed=7 draw
+this NOTES.md originally rested the claim on — see new standing rule R12
+(LOGBOOK.md RULED OUT registry).
 
 ## Next
 

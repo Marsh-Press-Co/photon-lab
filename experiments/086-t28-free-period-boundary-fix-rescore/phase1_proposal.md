@@ -54,6 +54,21 @@ anything.
 | `rd_wide_fft` mislabel | `phase4_derivation.py` line ~405/418: `rd_wide_fft = rel_dev(P_wide, P_fft)` printed under `"vs mean"` | **NOT** re-edited in exp-085's own historical file (house convention: flag, don't silently rewrite a closed cycle's own record) — corrected **in this cycle's own script and write-up**; NOTES.md's "62.8%...of their mean" citation corrected here to 91.6% (mean-relative), both independently recomputed, not hand-typed (R4) |
 | Prior-citation audit scope | All committed `*.json` in `experiments/069-085` carrying `free_period_with_widening`/`_free_period_search` output (21 files identified: `069/results.json`, `070–073/results.json`, `074`'s 2 files, `075`'s 3 files, `076`'s 2 files, `077/pad_round_trip_results.json`, `078`'s 5 files, `079/y_wall_aperture_sum_results.json`, `080/validity_precheck_results.json`, `081`'s 2 files, `082`'s 3 files, `083`'s 2 files, `084/derivation_results.json`, `085/derivation_results.json`) | Grep for explicit `at_boundary` keys (present ⇒ direct read); where absent, flag any period-like numeric field within 0.5% of `{1.0, 4.0, 15.0, 60.0}°` (the 3-stage boundaries) or `{1.0, 4.0, 15.0}°` (the quiet-variant's 2-stage boundaries) as a candidate, then **directly re-derive** (re-run the raw staged search) each flagged candidate — audit §1.5's own method, exact, extended in file coverage from "077–084" to the full "069–085" board |
 
+**Correction, added post-Phase-5 (Red Team's final audit §1.3/§6 item 2;
+house convention: flag this cycle's own still-open document, don't
+silently rewrite the frozen table above)**: the "Prior-citation audit
+scope" row's own "069–085, 21 files" framing was never actually executed
+— `phase4_prior_citation_audit.py` correctly scanned only `experiments/
+077–085` (18 files), matching this document's OWN prediction (4) text two
+paragraphs below, which already correctly reasons that the defect
+"postdates exp-076" and is "absent from 069–076's own committed code
+paths." Independently confirmed absent by two separate grep methods
+(THERMODYNAMICS' Phase-2 critique, MATERIALS' Phase-5 review): zero
+`free_period_with_widening`/`at_boundary` occurrences anywhere in
+069–076's committed JSON. No citation is at risk from this
+table-vs-prediction inconsistency; it is a self-citation/documentation-
+precision defect, closed here.
+
 ### 3. Checkpoint criterion 2 statement
 
 **N/A**, matching every T28 desk cycle since exp-069 and exp-085's own §0/
