@@ -21,7 +21,7 @@ becomes dissipative, but because the mechanism now identified sits next
 to genuinely lossy material in a way the prior "lossless" guarantee
 never covered. Detailed below.
 
-## Steel-man (148 words)
+## Steel-man
 
 Idealization 6 is honest, not a violation: it names the exact deferred
 item, the exact reason (no FDTD dependency, separately queued), and does
@@ -38,7 +38,7 @@ now-identified mechanism in hand, is the more disciplined order — the
 cross-check is strictly more informative post-Branch-B than it would have
 been run blind.
 
-## Sharpest attack (149 words)
+## Sharpest attack
 
 The record leans on Iteration 53's "PAD is provably lossless vacuum"
 proof (re-derived from `lab/fdtd2d.py`'s own material law by Red Team,
