@@ -374,6 +374,39 @@ top. Protocol: PANEL.md.*
   Full record: `experiments/085-t28-leg-a-wide-window-period-pin/
   phase5_review_materials.md`, `phase5_review_photonics.md` §0.3/§2,
   `phase5_redteam_audit.md` §1.3–§1.5/§3/§6 item 1, LOGBOOK.md Iteration 62.
+- **R12 — a claim that a fix/change has "negligible"/"materially
+  unchanged" effect on a tail/order statistic (max, min, an extreme
+  percentile) computed from a finite noise sample must be corroborated
+  across multiple (≥5–8) independent seeds/draws before it is reported as
+  settled — a single matched-seed comparison, however exact, is not
+  sufficient (not a ruled-out idea; a standing house-discipline rule,
+  adopted Iteration 63, in the R6/R6-addendum "one run is not a proof"
+  lineage, extended here from significance tests against a constructed
+  null to comparisons of a code fix's own effect on an order statistic).**
+  exp-086's R11 fix (`free_period_with_widening_quiet`) was independently
+  shown, at seed=7/N=3000, to leave `max_r2_over_trials`/`p_r2_ge_070`
+  bit-identical between the old-buggy and corrected logic — but this
+  single-seed result was what NOTES.md's Result section initially rested
+  its "negligible effect" language on, before any multi-seed check
+  existed. QUANTUM's blind Phase-5 review caught the gap directly (a
+  single matched-seed comparison cannot license a general claim about an
+  order statistic, especially since the SAME cycle's own prior-citation
+  audit showed a boundary-pinned R² swinging by 0.72 absolute on real
+  data elsewhere in the record) and closed it with an independent 8-seed
+  replication (9,600 pure-noise trials); a Director-run 2-seed follow-up
+  landed on top of that. All 10 seeds: bit-identical between old-buggy and
+  corrected. Red Team's Phase-5 final audit ruled this a close but
+  non-firing Checkpoint-4 call (caught blind, same cycle, before LOGBOOK,
+  and the multi-seed evidence reached the SAME conclusion the single seed
+  did — nothing needed reversing, only re-evidencing) but named the
+  standing gap this rule now closes. **Rule: report a fix's effect on a
+  tail statistic as "negligible"/"materially unchanged" only after
+  checking it across ≥5–8 independent seeds; a bare single-seed match,
+  however exact, gets reported as suggestive, not settled.** Full record:
+  `experiments/086-t28-free-period-boundary-fix-rescore/
+  phase5_review_quantum.md`, `phase5_supplementary_multiseed_check.json`,
+  `phase5_redteam_audit.md` §1.7/§3 item 2/§7 Tier 1 item 2, LOGBOOK.md
+  Iteration 63.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -4113,6 +4146,165 @@ downgrade, now house discipline going forward. Full record:
   critiques, Phase-2 Red Team audit, `phase3_synthesis.md`,
   `phase4_derivation.py`, `derivation_results.json`, `NOTES.md`, six
   Phase-5 blind reviews, Phase-5 Red Team final audit.
+
+  **Iteration 63 (exp-086, 2026-08-28) — ELECTROMAGNETISM led (rotation),
+  executing exp-085's own Red Team Phase-5 final audit §7 Tier-1 items
+  1–3 (a flat, un-Tiered six-item list — the proposal's own title
+  mislabeled it "Tier-1 items (1)–(5)," caught and corrected at this
+  cycle's own Phase 2, Red Team attack 6): fix `free_period_with_
+  widening`'s all-stages-boundary silent-fallback defect (R11) at ALL
+  THREE affected call sites — `pad_round_trip_model.py`'s and
+  `y_wall_prescreen.py`'s own `free_period_with_widening`, PLUS the
+  identical-shape `_quiet` sibling (Director's own scope extension,
+  adopted at Phase 3: leaving a known-live instance of R11's exact bug
+  unrepaired would contradict R11's own "binding on any future reuse"
+  text) — re-score exp-085's own Method C classification on the corrected
+  machinery, extend the circular-shift null to all 37 sub-windows
+  (was 10/37), correct the overlap-inflated Spearman significance, and a
+  bounded prior-citation audit.
+
+  **Phase 2 — five blind critiques, unanimous support-with-changes,
+  five DIFFERENT defects, zero overlap**: PHOTONICS found the recovered
+  sub-windows' signal amplitude spans ~5,000×–6,600× and the uniform
+  `r²≥0.30` bar can't tell a noise-floor fit from one riding a signal four
+  orders of magnitude larger; MATERIALS found `free_period_with_
+  widening_quiet` — called 60,001 times (corrected from its own "40,000")
+  inside `null_calibration_appendix`, the evidentiary context for T28's
+  "settled" x-normal REFUTE since Iteration 54 — was excluded from
+  Prediction (4)'s audit scope entirely; THERMODYNAMICS found zero
+  mention anywhere of the energy-interception cross-check that fired
+  Checkpoint criterion 4 at Iteration 61 for the identical silent-absence
+  shape; QUANTUM found the overlap-corrected Spearman fix hid an
+  unstated 3-way stride-phase researcher-degree-of-freedom (`ρ=0.857,
+  p=0.024` at one phase, `p>0.05` at the other two — outcome-determining);
+  VISION found the predicted "NOT STABLY PERIODIC" label dropped
+  exp-085's own instrument-reliability caveat. Red Team's Phase-2 audit
+  (PROCEED-WITH-MANDATORY-FIXES, 6 items, zero overridden) independently
+  re-derived every claim from primitives — including actually RUNNING
+  MATERIALS' proposed flip-check itself: a 3,000-trial empirical sample
+  found the R11 bug fires at **6.70%** inside the quiet variant's own
+  null-calibration construction, converting a theoretical coverage gap
+  into a demonstrated fact — plus one new finding of its own (the
+  "Tier-1 (1)–(5)" title mislabel).
+
+  **Phase 3** adopted all 6 fixes in full, zero overrides, plus the
+  Director's own clarifying finding (independently re-derived, later
+  confirmed by EM's own Phase-5 trace): the currently-cited REFUTE
+  verdicts (exp-077) are driven by `shape_r_squared_*`, a Pearson
+  shape-correlation computed entirely independently of `free_period_
+  with_widening` — the quiet-variant fix could not have flipped any of
+  them even unfixed, though the audit still ran in full since it bears
+  on how confidently the real oscillation is called non-noise. Frozen
+  predictions committed (`39363f3`) strictly before `phase4_rescore.py`
+  existed.
+
+  **Phase 4**: the R11 fix applied and sanity-verified at all three sites
+  (interior-optimum path bit-exact-reproduces the committed `P*=4.6113°,
+  R²=0.8165` citation; the real θc=61° all-boundary sub-window now
+  correctly returns the widest[1,60] stage, flagged). Method C re-score
+  reproduced every frozen prediction EXACTLY: 6/37 boundary-pinned
+  (`θc∈{45,59,61,63,71,73}`), `frac_recovered=21/37=0.5676`,
+  `classification_a=NOT STABLY PERIODIC`; three pre-registered Spearman
+  stride phases (`ρ=0.857/p=0.024` at one, non-significant at the other
+  two — phase-dependent, not a single verdict). The bounded prior-
+  citation audit found exactly 2 all-stages-boundary occurrences, both
+  already known and inert (exp-078, exp-079) — no additional currently-
+  cited T28 number corrupted. The full-scale (60,001-call) null-
+  calibration re-run proved impractical for one shift (~2.7hr estimated;
+  disclosed); a bounded N=3000 re-run instead found `max_r2_over_trials`
+  BELOW the cited N=20000 value — recognized mid-cycle as an invalid
+  matched comparison (N differs), corrected with a controlled same-N/
+  seed old-buggy-vs-corrected comparison: `max_r2_over_trials`/
+  `p_r2_ge_070` came out **bit-identical** (0.5179691995509128 exactly),
+  despite the bug firing at 6.70% — a materially cleaner, more decisive
+  answer than the frozen prediction anticipated.
+
+  **Phase 5 — six blind reviews, unanimous PARTIAL, three genuinely new
+  findings, no overlap with Phase 2's five.** PHOTONICS found the 21-
+  window "recovered" set is itself amplitude-heterogeneous (~492×
+  spread) and traced the underlying model to source: a bare scalar
+  Kirchhoff–Huygens sum with no shadow-boundary/UTD correction term
+  anywhere in the chain — physically consistent with, not merely
+  coincident with, the grazing-incidence blow-up. MATERIALS
+  independently re-derived the controlled comparison from a fresh
+  reimplementation and traced the MECHANISM: of 201 boundary-pinned
+  trials, only 10 report a different R² between old and new logic at
+  all, none approaching the ceiling. EM independently traced
+  `shape_r_squared_*` through source, confirming the Director's Phase-3
+  finding exactly, and confirmed passivity/reciprocity bookkeeping
+  undisturbed. THERMODYNAMICS confirmed the exemption sentence delivered
+  and all timing figures exact, and confirmed the controlled-comparison
+  match is BIT-identical (not merely "4 decimal places" as the script's
+  own conclusion text understated). QUANTUM caught the single-seed gap
+  in the "negligible effect" claim (**new standing rule R12 adopted** —
+  see RULED OUT registry) and closed it with its own 8-seed replication;
+  a Director-run 2-seed follow-up brought the total to 10 seeds, all
+  bit-identical. VISION confirmed the caveat carry-forward correct but
+  found NOTES.md's Learned section had silently widened the null-
+  calibration finding from `pair_pad`-only (disclosed in code) to an
+  unqualified "the real oscillation" — the T16/R9 scope-erosion shape,
+  caught before LOGBOOK.
+
+  **Red Team's Phase-5 final audit**: independently re-confirmed all six
+  findings from source/JSON (a fifth-to-sixth independent reproduction
+  of most headline numbers) and added one of its own — `phase1_
+  proposal.md`'s own promised Method A re-fit was never executed by any
+  Phase-4 script, undetected through every prior review layer, but
+  independently proven a mathematical no-op by construction (exp-085's
+  own `method_a.stages` shows a single-stage, non-boundary interior
+  optimum, matching the Iteration-53/exp-076 "promised-but-unexecuted,
+  provably harmless" precedent exactly). **Checkpoint criterion 2: N/A**,
+  matching every T28 desk cycle since exp-069. **Checkpoint criterion 4:
+  does NOT fire** on any of the cycle's four near-misses (the scope-
+  description mismatch, QUANTUM's since-closed single-seed gap, the
+  unexecuted-but-harmless Method A re-fit, VISION's Learned-section
+  erosion), each independently reasoned against this program's own
+  established catch-before-commit test — **explicitly conditioned** on a
+  4-item Tier-0 mandatory-fix docket landing before this entry, which it
+  did (`8ce0a84`): the NOTES.md Learned-section correction, the scope-
+  description reconciliation across three documents, a Method-A closing
+  note, and persisting the 10-of-201 mechanism trace as a committed
+  artifact. **A governance observation, not a new rule**: this is the
+  fourth consecutive T28 cycle (081/082/083, now 086) where several
+  independently-caught near-misses are closed inside one cycle's own
+  Phase-5 layer without any individually clearing the firing bar —
+  healthy, but dense enough that a future cycle should reason each case
+  through on its own facts, not pattern-match from the non-firing count
+  alone. **New forward tripwire on the energy-interception check**: now
+  FOUR consecutive cycles deferred/exempt (083–086), SEVEN since first
+  named (Iteration 59) — a fifth consecutive deferral without either
+  building a purpose-built scene or explicitly retiring the "next scene-
+  bearing cycle" framing fires Checkpoint criterion 4 automatically,
+  pre-announced now on the R11 precedent. **Combined Verdict: PARTIAL.**
+  T28's own founding periodicity question is untouched by design; this
+  cycle repairs the sub-thread's own shared instrument, reconfirms
+  exp-085's "STRONG COHERENT CHIRP" does not survive by the automated
+  pipeline itself (not merely a hand audit), and closes the quiet-
+  variant's audit-coverage gap with a decisively negligible result,
+  10-seed-corroborated. Reconciled Iteration-64 ranking (Red Team's
+  Phase-5 final audit §7): **Tier 1** — (1) a dedicated zero-FDTD
+  validity check of `edge_diffraction_c_empty_corrected` at grazing
+  incidence, near-unanimous #1 across six of seven seats; (2) transcribe
+  R12's adoption and this cycle's own 10-seed compliance into practice;
+  (3) the still-queued full-scale 60,001-call null-calibration run, run
+  in two parts per this audit's own reconciliation (a same-seed
+  apples-to-apples update, folded into the R12 multi-seed protocol, not
+  treated as sufficient alone). **Tier 2** — (4) the energy-interception
+  cross-check under its new forward tripwire; (5) the x-wall wavelength-
+  generality leg, now ELEVEN consecutive cycles deferred (076–086), the
+  single oldest item on the whole T28 board. **Tier 3** — standing items
+  carried forward unchanged: PHOTONICS' domain-truncation test for leg
+  (b)'s Anchor 2 / EM's kernel rebuild; the near-null σ(I) article
+  follow-up; QUANTUM's lossless-PEC-only-disk control; the ritualization
+  governance question named at Iteration 61, still not resolved. Full
+  record: `experiments/086-t28-free-period-boundary-fix-rescore/` —
+  `phase1_proposal.md` (+ correction addendum), five Phase-2 blind
+  critiques, `phase2_redteam_audit.md`, `phase3_synthesis.md`,
+  `phase4_rescore.py`/`phase4_null_calibration_rerun.py`/
+  `phase4_null_calibration_controlled_comparison.py`/
+  `phase4_prior_citation_audit.py` + results, six Phase-5 blind reviews,
+  `phase5_redteam_audit.md`, `phase5_supplementary_multiseed_check.json`,
+  `phase5_mechanism_trace_10of201.json`, `NOTES.md`.
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
