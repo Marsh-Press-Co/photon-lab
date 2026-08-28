@@ -1,0 +1,19 @@
+{
+  "shape_correlation": {
+    "leg_a_vs_real_C80 (the finding)": 0.9581856926779434,
+    "leg_b_nomask_own_output_vs_real_C80 (control)": 0.9022947333208244,
+    "bare_linear_ramp_vs_real_C80 (control)": -0.33470476808727845,
+    "bare_quadratic_vs_real_C80 (control)": -0.5534090683128732
+  },
+  "circular_shift_null": {
+    "observed_r2": 0.36965580905914364,
+    "observed_p_model_deg": 2.533834586466165,
+    "window": "narrow[1,4]",
+    "n_shifts": 30,
+    "n_meet_or_exceed": 15,
+    "fraction_meet_or_exceed": 0.5,
+    "mean_shift_r2": 0.45940017607278044,
+    "max_shift_r2": 0.7302485115811618,
+    "min_shift_r2": 0.2891751565685923
+  }
+}

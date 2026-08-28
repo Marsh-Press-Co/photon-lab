@@ -221,14 +221,20 @@ optimum, no widening needed) gives:
 - `P_model_a = 2.5338°`, `R² = 0.3697`
 - `rel_dev(P_model_a, P_edge_A=2.8421°) = 0.1085`
 - **Nominal verdict (pre-registered bands): SUPPORT** (`R²≥0.30` AND
-  `rel_dev≤0.20`, with margin — 0.1085 clears the 0.20 bar by nearly 2×).
+  `rel_dev≤0.20`) — **but this verdict does NOT survive Phase 2. See the
+  "Phase 3 correction" section appended below: two independent lines of
+  evidence (Red Team's own circular-shift null test, and VISION's own
+  pre-registered T21-decorrelation test run to its actual conclusion) both
+  mandate downgrading this to INCONCLUSIVE. The R5 specificity-over-targets
+  control below is real but answers a different question than the
+  decisive one — do not read "FINAL VERDICT: SUPPORT" below as this
+  cycle's standing verdict; it is superseded.**
 - **R5 specificity control**: `5/60 = 8.3%` of a dense `[1°,15°]` candidate
   grid also clear the SUPPORT band at this fixed `(P_model_a, R²_a)` — well
   short of my own pre-registered "comparable to the ~20% width the band
-  allows" downgrade trigger. **No downgrade. FINAL VERDICT: SUPPORT.**
-  This is meaningfully more specific than exp-083's own QUANTUM phase-shift
-  finding (99.3% of candidates cleared there) — a genuinely more
-  informative match, not merely another instance of R5's usual warning.
+  allows" downgrade trigger. Read AT THE TIME OF WRITING as "no downgrade,"
+  but this specificity-over-targets question is not the same as a
+  null-under-noise question — see the Phase 3 correction.
 - **Structural corollary, checked directly (not merely asserted)**:
   `max|C_model(C80) − C_model(C40)| = 0.0` exactly — this ABSORB/PAD-
   independent mechanism predicts a bit-identical curve across the
@@ -284,14 +290,42 @@ transparency only:
   R5 specificity control (`0/60` targets clear, moot since `R²_b<0.30`
   already fails the floor for any target) changes nothing here.
 
-**Honest overall self-score**: **LEG (a) — SUPPORT**, holding up under
-its own specificity control, with a genuine, correctly-diagnosed,
-pre-registered structural ambiguity (config-shared component vs. the
-real `C80−C40` difference) left explicitly open, not resolved by this
-result. **LEG (b) — NO VERDICT (instrument-validation failure)**, not
-REFUTE — the two-stage propagation needs a corrected kernel (a proper
-Rayleigh–Sommerfeld normalization, or a genuinely single-integral
-double-diffraction treatment instead of a two-stage composition) before
-its comparison to `P*` can be trusted. This is not the clean two-target
-result pre-registered; it is reported exactly as it came out, including
-where the secondary comparison's own machinery did not pass its own bar.
+**Honest overall self-score (AS FILED at Phase 1 — see Phase 3 correction,
+below, which supersedes the LEG (a) verdict)**: **LEG (a) — SUPPORT**,
+holding up under its own specificity control, with a genuine,
+correctly-diagnosed, pre-registered structural ambiguity (config-shared
+component vs. the real `C80−C40` difference) left explicitly open, not
+resolved by this result. **LEG (b) — NO VERDICT (instrument-validation
+failure)**, not REFUTE — the two-stage propagation needs a corrected
+kernel (a proper Rayleigh–Sommerfeld normalization, or a genuinely
+single-integral double-diffraction treatment instead of a two-stage
+composition) before its comparison to `P*` can be trusted. This is not
+the clean two-target result pre-registered; it is reported exactly as it
+came out, including where the secondary comparison's own machinery did
+not pass its own bar.
+
+---
+
+### Phase 3 correction (Director, post Phase-2 Red Team audit)
+
+**LEG (a)'s verdict is downgraded from SUPPORT to INCONCLUSIVE.** Full
+reasoning, both independent lines of evidence, and the fix-docket
+adoption in full: see `phase3_synthesis.md` and
+`phase3_fix_docket_checks.py`/`phase3_fix_docket_results.json` (committed
+code, not hand-typed, per R4). In one line: Red Team's own from-scratch
+circular-shift null test (this program's established "harder companion,"
+the same method that reversed exp-083's two-tone claim one cycle ago)
+found `R²=0.3697` is met or exceeded by 50.0% of the curve's 30
+order-preserving circular shifts — sitting at the null distribution's
+median, not a rejection tail — independently reproduced bit-exact by this
+Phase-3 script. VISION's own pre-registered T21-decorrelation escape test,
+run to its actual conclusion, independently mandates the same downgrade
+by an unrelated route (`R²_fixed=0.271` vs. the real curve's own `0.265` —
+"comparable," not "near-zero"). **The genuine, surviving positive result
+of this cycle is a different one**: `corr(leg_a_curve, real FDTD
+C80(θ)) = +0.9582`, control-tested against leg (b)'s own output
+(`r=−0.10`), a bare linear ramp (`r=−0.33`), and a bare quadratic
+(`r=−0.55`) — a real, distinctive shape match between a zero-FDTD,
+vacuum-only diffraction integral and the actual FDTD physics, independent
+of whether its best-fit period specifically is distinguishable from
+noise at this sample size (it is not).
