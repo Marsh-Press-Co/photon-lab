@@ -2,6 +2,150 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-28 (panel shift) — Iteration 61 complete (exp-084): T28's
+first-ever diffraction (not reflection/echo) treatment of a boundary
+finds a genuinely new positive result — a zero-FDTD vacuum construction
+tracking real FDTD physics closer than any prior T28 mechanism attempt —
+but the period-match itself does not survive the program's own harder-
+companion null test; new standing rule R10 adopted; Checkpoint criterion
+4 fires (13th time), and Red Team's final audit directly adjudicates a
+governance concern about whether 13 straight notification-only firings
+still carry teeth.
+
+**Pre-flight**: fresh container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Fast-subset trust suite confirmed
+green: 41/41 checks (`--only 12346789`) before any panel work began, and
+reconfirmed green after every phase this cycle. Zero `lab/` diff this
+entire cycle — pure desk analysis reusing already-validated engine
+machinery, zero new FDTD calls.
+
+**Iteration 61 — PHOTONICS' rotation-lead cycle (exp-084).** Executes
+exp-083's own Iteration-61 Tier-1 item 7: the first attempt in nine-plus
+T28 cycles to model a boundary as a genuine near-field Fresnel/Kirchhoff
+DIFFRACTOR rather than a reflector — every prior mechanism cycle
+(exp-075/077/078/079/081) modeled the ABSORB band as a specular echo and
+was REFUTEd. Applied first to the empty-scene geometry where `P_edge_A=
+2.8421°` originates (exp-069), then to the article's own rim as a cheap
+second comparison vs exp-083's `P*=2.9474°`. `phase1_proposal.md` alone
+committed and pushed (`c714ad5`) strictly before any code existed — house
+discipline restored a second consecutive cycle.
+
+**Primary: leg (a) nominally SUPPORT, then correctly downgraded to
+INCONCLUSIVE.** `P_model_a=2.5338°, R²=0.3697` nominally cleared the
+pre-registered band (`rel_dev=0.1085` vs `P_edge_A`), and passed its own
+R5 specificity-over-targets control (`5/60=8.3%`). But QUANTUM's blind
+Phase-2 critique built the missing null-under-noise test the file never
+ran (an order-preserving circular-shift null, this program's own
+established "harder companion," the exact method that reversed exp-083's
+two-tone claim one cycle earlier): `14/30=46.7%` of shifts meet or exceed
+the observed R² — independently reproduced by Red Team's Phase-2 audit on
+the literal production pipeline at `15/30=50.0%`, slightly worse. VISION's
+blind critique independently found `P_model_a` bit-identical to 15
+significant figures to an already-discounted exp-070 number ("a
+compromise fit"); running VISION's own named decisive test to its actual
+conclusion (`R²_fixed=0.271` vs. the real curve's own `0.265`) mandated
+the identical downgrade by an unrelated route. **Two independent lines of
+evidence, adopted in full at Phase 3: leg (a) is recorded as
+INCONCLUSIVE, not SUPPORT.**
+
+**But a genuinely new positive result survives the correction.** The
+model curve's raw shape correlates `r=+0.9582` with the real FDTD
+`C80(θ)` curve — far above three unrelated controls (`|r|<0.35`) —
+independently confirmed at three separate layers of this cycle's own
+review (Red Team's Phase-2 audit; PHOTONICS' own Phase-5 aperture-width
+sensitivity sweep, `r`: `0.958→0.45` at a 1% perturbation; QUANTUM's own
+Phase-5 circular-shift null on the correlation itself, `1/30=3.3%`,
+near-tied with the immediately adjacent `+0.2°` lag — a signature of
+genuine spatially-coherent structure, not a lucky global optimum). **This
+is the first result in this nine-plus-cycle T28 sub-thread showing a
+zero-FDTD, vacuum-only diffraction construction track real FDTD physics
+this closely, on any axis.**
+
+**Leg (b) (article-rim, secondary target) NO VERDICT.** Its own
+pre-registered Anchor 2 (a composition-of-propagators identity) failed a
+convergence-checked test (stable `2.894–2.895×` mismatch, 1×–8×
+oversampling, ruling out discretization) — correctly self-caught before
+a false conclusion could be drawn. ELECTROMAGNETISM's blind Phase-5
+review then built an uncommitted probe and **proved algebraically**
+(independently re-derived and confirmed by direct execution in Red Team's
+own final audit) that a bare global phase/normalization constant is
+mathematically **powerless**, not merely untested, to close this gap —
+`amb.weber`'s ratio construction cancels any global complex constant
+exactly — narrowing the real fix to a genuinely position-and-observation-
+point-dependent RS/Kirchhoff kernel. PHOTONICS' own review named a third,
+cheaper, still-untested cause (intermediate-window truncation).
+
+**New standing rule R10 adopted** (RULED OUT registry): a specificity-
+over-candidate-targets sweep is not a substitute for an order-preserving
+null-under-noise test — circular-shift-on-the-real-data is now the
+mandatory default, with an escalation clause, a surrogate-validation bar,
+a tie-break rule, and a deterministic-curve caveat (finalized by Red
+Team's Phase-5 final audit after QUANTUM's blind review found the initial
+draft the sole toothless member of the R6–R9 lineage). This is the
+**second** consecutive cycle (after exp-083's own two-tone admixture
+reversal) this exact specificity-vs-null divergence has been
+outcome-determining.
+
+**THERMODYNAMICS' proposed "Anchor 3"** (leg (b)'s fringe amplitude vs.
+the flagship absorber's own `R≤0.2%` reflectance ceiling, ~41× too large)
+**is real diagnostic evidence but not yet a commensurable comparison** —
+an R9-class gap (a zero-reflectivity Kirchhoff mask's fringe compared to
+an unrelated global reflectance fraction), ruled and minimally fixed by
+Red Team's final audit: scope to a genuine partial-reflection
+construction, both operands from the identical pipeline.
+
+**Checkpoint criterion 4 FIRES — the 13th time this program** — on the
+joint EM/THERMO energy-interception cross-check's third consecutive
+silent absence (named Iteration 59, tripwired explicitly at Iteration 60:
+"a third consecutive deferral without an explicit reason fires it").
+The Director considered and rejected a same-shift-catch non-firing
+analogy (Iteration 58's own precedent) as inapplicable to a pre-committed,
+numbered-cycle tripwire written specifically to foreclose that latitude,
+and declined to retrofit a rushed check into this cycle's own zero-FDTD
+scope purely to avoid the firing — independently re-affirmed by Red
+Team's final audit. **Sharpened, not softened**: unlike exp-082's/
+exp-083's own genuinely discretionary silent misses (both had live
+article-loaded FDTD data and skipped the check anyway), exp-084 had no
+article-loaded scene to run the full check against at all — a scope
+mismatch, credited alongside a same-shift partial discharge (Red Team's
+own Phase-2 reflectance-ceiling sanity comparison).
+
+**VISION's blind Phase-5 review named a significant governance concern**
+— 13/13 consecutive Checkpoint-4 firings ruled "notification, not a
+pause" — **adjudicated directly by Red Team's final audit, not dismissed
+and not treated as alarm**: not itself evidence of toothlessness (the
+substantive object-level defect is independently corrected same-shift in
+every one of the 13 cases, by PANEL.md's own explicit from-the-start
+design — a standing veto exercised at will, never a required gate, is a
+deliberate choice, not an absence of consequence) — **but this specific
+firing exposes a real, fixable design gap**: the R6–R9/R10 escalating-
+tripwire format has no clause distinguishing a cycle that chose not to
+comply from one that structurally could not, diluting the signal a
+13th firing is meant to carry. **Named as a standing Tier-3 governance
+item for Iteration 62's board**, not resolved this cycle.
+
+**Combined Verdict: PARTIAL**, unanimous across all six blind Phase-5
+seats and the final audit. Checkpoint criterion 2 is N/A (matching every
+T28 desk cycle since exp-069 — no mechanism-class claim anywhere).
+Reconciled Iteration-62 ranking (4 tiers, 19 items): Tier 0 — transcribe
+R10 (done), rescope Anchor 3, the Checkpoint-4 LOGBOOK precision (done),
+the ritualization item, leg (b)'s narrowed causal diagnosis, log the
+shape-correlation finding's three stress tests. Tier 1 — QUANTUM's
+zero-FDTD wide-window re-evaluation of leg (a)'s asymptotic period (the
+single sharpest, cheapest next test), PHOTONICS' domain-truncation test
+for Anchor 2, EM's matrix-valued RS/Kirchhoff kernel rebuild, the
+rescoped Anchor-3-compliant leg (b) rebuild. Tier 2 — the joint energy-
+interception cross-check's full form (Checkpoint-4's own named cause,
+highest institutional priority for the next cycle with a real
+article-loaded scene), the near-null σ(I) article follow-up, QUANTUM's
+lossless-PEC-only-disk control, the `PAIR_ABSORB40`/`C80−C40` extension,
+the x-wall wavelength-generality leg (now **NINE** consecutive cycles
+deferred, the single oldest item on the whole T28 board), an R3-grade
+settling study. Tier 3 — the two Checkpoint rulings, and the ritualization
+question itself. Full record: `experiments/084-t28-edge-diffraction-
+derivation/`, LOGBOOK.md Iteration 61, PLAN.md's own Iteration-62 queue.
+
 ## 2026-08-28 (panel shift) — Iteration 60 complete (exp-083): T28's first
 properly-powered article-loaded period discriminator resolves decisively
 to Branch B (matches T28's own long-unexplained `P_edge_A` family), the
