@@ -2,7 +2,7 @@
   "old_buggy": {
     "n_trials": 3000,
     "seed": 7,
-    "elapsed_s": 70.3767626285553,
+    "elapsed_s": 68.59776782989502,
     "p_r2_ge_070": 0.0,
     "p_rel_dev_gt1": 0.001,
     "max_r2_over_trials": 0.5179691995509128,
