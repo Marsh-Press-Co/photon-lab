@@ -1,0 +1,48 @@
+==============================================================================
+exp-090 -- T28 Floor-Frac Threshold Fit -- Panel Iteration 67
+==============================================================================
+
+FLOOR = 0.1 x RMS[frac_contrast] = 1.917438e-04  (unchanged since exp-088)
+
+Table 1 (sorted by margin):
+  theta= 41.4  margin=  1.3095  ratio_k=  28.8072  Y=1  (exp-089)
+  theta= 40.2  margin=  1.4764  ratio_k=  25.0820  Y=1  (exp-089)
+  theta= 37.2  margin=  2.1709  ratio_k=   3.4433  Y=0  (exp-089)
+  theta= 36.0  margin=  3.8793  ratio_k=   2.6424  Y=0  (exp-087)
+  theta= 41.8  margin=  6.5889  ratio_k=   5.7102  Y=0  (exp-087)
+  theta= 38.4  margin=  7.4946  ratio_k=   0.9075  Y=0  (exp-088)
+  theta= 38.8  margin=  8.0187  ratio_k=   3.8733  Y=0  (exp-088)
+
+[Q1, diagnostic] AUC(margin)=1.0  (predicted 1.0, no ties)
+[Q1, diagnostic] naive unpenalized MLE diverges: True  (beta=[  26.11462482 -103.01357742])
+
+[Q2, DIAGNOSTIC SANITY CHECK ONLY -- not independent evidence, see NOTES.md]
+  exact permutation test: total=21, count_ge=1, p=0.047619047619047616
+
+[Q3, PRIMARY] caution zone = [1.4764, 2.1709]  width=0.6946 (47.0% of lower edge)
+
+[Q4, PRIMARY] Firth fit: converged=True in 20 iters, beta=[ 1.78058954 -5.63151961]
+[Q4, PRIMARY] m50=2.071013  inside zone [1.4764,2.1709]: True
+
+[Q5, DIAGNOSTIC SANITY CHECK ONLY -- not a live falsification test, see NOTES.md]
+  drop theta= 41.4: zone=[1.4764,2.1709]  AUC=1.0
+  drop theta= 40.2: zone=[1.3095,2.1709]  AUC=1.0
+  drop theta= 37.2: zone=[1.4764,3.8793]  AUC=1.0
+  drop theta= 36.0: zone=[1.4764,2.1709]  AUC=1.0
+  drop theta= 41.8: zone=[1.4764,2.1709]  AUC=1.0
+  drop theta= 38.4: zone=[1.4764,2.1709]  AUC=1.0
+  drop theta= 38.8: zone=[1.4764,2.1709]  AUC=1.0
+
+[Q6, context] theta=38.6: margin=0.3865  P(Y=1)=0.9838  below zone lower edge: True
+
+[Q7, disclosure gate] 37.2 deg sets the Q3 zone's UPPER edge (2.1709) and Q4's most load-bearing C-class point.
+[Q7, disclosure gate] recomputed resolved-gate noise-floor margin (a SEPARATE quantity from Q3's frac_contrast-based margin) from persisted thermo/box_dev primitives: 1.045659x
+[Q7, disclosure gate] exp-089's own filed figure for this same quantity: 1.046x ("a felt-lucky pass", NOTES.md Learned #4) -- matches to printed precision.
+[Q7, disclosure gate] 'drop 37.2' LOO scenario (see Q5 table above) is the operationally primary sensitivity reading: zone upper edge -> 3.8793 if dropped.
+
+[Q8, PRIMARY] zero-crossings of delta_scene(theta) in exp-083's 31-point window: [37.1272, 38.5902, 40.2654, 41.4609]
+[Q8, PRIMARY] distances (deg): 41.4->0.0609, 40.2->0.0654, 37.2->0.0728, 36.0->1.1272, 41.8->0.3391, 38.4->0.1902, 38.8->0.2098
+[Q8, PRIMARY] AUC(distance)=1.0  distance-zone=[0.0654,0.0728]  gap_ratio=1.1121
+[Q8, PRIMARY] margin gap_ratio=1.4704  margin more robust than distance: True
+
+wrote /home/user/photon-lab/experiments/090-t28-floor-frac-threshold-fit/results.json

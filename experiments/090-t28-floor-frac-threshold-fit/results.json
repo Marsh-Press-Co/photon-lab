@@ -1,0 +1,203 @@
+{
+ "floor_frac": 0.1,
+ "rms_frac_contrast": 0.0019174375118374476,
+ "floor": 0.00019174375118374476,
+ "table1": [
+  {
+   "theta": 41.4,
+   "frac_contrast": 0.0002510967422703893,
+   "margin": 1.309543287435571,
+   "ratio_k": 28.80719,
+   "y": 1,
+   "source": "exp-089"
+  },
+  {
+   "theta": 40.2,
+   "frac_contrast": 0.0002830881250772126,
+   "margin": 1.4763877483857824,
+   "ratio_k": 25.08201,
+   "y": 1,
+   "source": "exp-089"
+  },
+  {
+   "theta": 37.2,
+   "frac_contrast": 0.0004162655447269212,
+   "margin": 2.170947121651026,
+   "ratio_k": 3.443295,
+   "y": 0,
+   "source": "exp-089"
+  },
+  {
+   "theta": 36.0,
+   "frac_contrast": 0.0007438279588304384,
+   "margin": 3.8792813546118685,
+   "ratio_k": 2.642368,
+   "y": 0,
+   "source": "exp-087"
+  },
+  {
+   "theta": 41.8,
+   "frac_contrast": 0.0012633809286846705,
+   "margin": 6.588902745904841,
+   "ratio_k": 5.710203,
+   "y": 0,
+   "source": "exp-087"
+  },
+  {
+   "theta": 38.4,
+   "frac_contrast": 0.0014370491250264455,
+   "margin": 7.494633416498386,
+   "ratio_k": 0.9075118,
+   "y": 0,
+   "source": "exp-088"
+  },
+  {
+   "theta": 38.8,
+   "frac_contrast": 0.001537528237042816,
+   "margin": 8.018661508136601,
+   "ratio_k": 3.873254,
+   "y": 0,
+   "source": "exp-088"
+  }
+ ],
+ "excluded_38_6": {
+  "theta": 38.6,
+  "frac_contrast": 7.410062757210442e-05,
+  "ratio_k": 53.9884,
+  "margin": 0.38645654481378666,
+  "source": "exp-087"
+ },
+ "q1": {
+  "auc_margin": 1.0,
+  "naive_mle_diverges": true,
+  "naive_mle_beta": [
+   26.11462482259794,
+   -103.01357741541669
+  ]
+ },
+ "q2_diagnostic_only": {
+  "p_exact": 0.047619047619047616,
+  "total_perm": 21,
+  "count_ge": 1,
+  "note": "diagnostic sanity check only, NOT independent evidence -- see NOTES.md Q2"
+ },
+ "q3": {
+  "zone": [
+   1.4763877483857824,
+   2.170947121651026
+  ],
+  "width": 0.6945593732652438
+ },
+ "q4": {
+  "converged": true,
+  "n_iter": 20,
+  "beta": [
+   1.7805895384714663,
+   -5.6315196073656555
+  ],
+  "m50": 2.071012796646712,
+  "inside_zone": true
+ },
+ "q5_diagnostic_only": {
+  "loo": [
+   {
+    "dropped_theta": 41.4,
+    "zone": [
+     1.4763877483857824,
+     2.170947121651026
+    ],
+    "auc": 1.0
+   },
+   {
+    "dropped_theta": 40.2,
+    "zone": [
+     1.309543287435571,
+     2.170947121651026
+    ],
+    "auc": 1.0
+   },
+   {
+    "dropped_theta": 37.2,
+    "zone": [
+     1.4763877483857824,
+     3.8792813546118685
+    ],
+    "auc": 1.0
+   },
+   {
+    "dropped_theta": 36.0,
+    "zone": [
+     1.4763877483857824,
+     2.170947121651026
+    ],
+    "auc": 1.0
+   },
+   {
+    "dropped_theta": 41.8,
+    "zone": [
+     1.4763877483857824,
+     2.170947121651026
+    ],
+    "auc": 1.0
+   },
+   {
+    "dropped_theta": 38.4,
+    "zone": [
+     1.4763877483857824,
+     2.170947121651026
+    ],
+    "auc": 1.0
+   },
+   {
+    "dropped_theta": 38.8,
+    "zone": [
+     1.4763877483857824,
+     2.170947121651026
+    ],
+    "auc": 1.0
+   }
+  ],
+  "note": "deterministic illustration only, NOT a live falsification test -- see NOTES.md Q5"
+ },
+ "q6_context": {
+  "theta": 38.6,
+  "margin": 0.38645654481378666,
+  "p_y1": 0.9837908947131072,
+  "below_zone_lower_edge": true
+ },
+ "q7_disclosure": {
+  "zone_upper_edge_point_theta": 37.2,
+  "prior_filed_resolved_margin_str": "1.046x (exp-089 NOTES.md Learned #4)",
+  "recomputed_resolved_margin": 1.0456585785601518,
+  "p_abs_w_c40": 2.8127043563514567e-12,
+  "p_abs_w_g40": 2.808672836407139e-12,
+  "box_dev_max": 0.00045691305539087015,
+  "noise_floor": 3.855484024115265e-15,
+  "drop_372_loo_zone_upper": 3.8793
+ },
+ "q8": {
+  "crossings_deg": [
+   37.127246379304516,
+   38.59023047672059,
+   40.26541960305772,
+   41.46090139413461
+  ],
+  "distances_deg": [
+   0.0609013941346106,
+   0.06541960305771966,
+   0.07275362069548663,
+   1.1272463793045162,
+   0.339098605865388,
+   0.19023047672059334,
+   0.20976952327940523
+  ],
+  "auc_distance": 1.0,
+  "distance_zone": [
+   0.06541960305771966,
+   0.07275362069548663
+  ],
+  "gap_ratio_distance": 1.1121073393138168,
+  "gap_ratio_margin": 1.4704450941323812,
+  "margin_more_robust": true
+ }
+}
