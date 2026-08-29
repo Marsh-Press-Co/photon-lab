@@ -22,7 +22,80 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-28, panel Iteration 64 done (exp-087, PARTIAL,
+## Current state (2026-08-29, panel Iteration 65 done (exp-088, PARTIAL,
+QUANTUM OPTICS' rotation-lead cycle: the decisive theta=38.4/38.8deg
+bracketing follow-up around exp-087's theta=38.6deg ENERGY-DOMINANT
+spike, folded with R13's own new denominator floor gate applied both
+forward (to the 2 new angles) and retroactively (to exp-087's own 3
+already-collected points) -- an 8-call FDTD build plus a zero-marginal-
+cost desk computation. **Primary result:** exp-087's own filed
+ENERGY-DOMINANT classification reclassifies **CONSISTENT** at the 5
+now-sampled angles (theta=38.6deg excluded NODE-UNRESOLVABLE by the
+floor gate, `ratio_k`={2.64, 0.908, 5.71, 3.87} resolved at the other
+four) -- a disclosed, forward-citable reading, explicitly NOT a
+retroactive edit of exp-087's own unedited filed record. Both new
+angles cleared `RATIO_HIGH=10` with margin exactly as predicted
+(qualitative CONFIRM), but `ratio_k(38.4deg)=0.908` missed its own
+pre-registered `[1.5,5.0]` quantitative band: the full 5-point
+`frac_p_abs(theta)` sequence is genuinely non-monotonic (a real,
+well-resolved dip at 38.4deg below even the 36.0deg anchor value),
+disclosed honestly rather than smoothed over. Five blind Phase-2
+critiques (unanimous support-with-changes, zero overlap: PHOTONICS
+found `delta_scene` crosses zero FOUR times in the window, not just
+this one node; MATERIALS found the floor threshold is
+article/wavelength-specific and needed an explicit disclaimer; EM
+found the bracket width was never justified against any physical
+linewidth; THERMODYNAMICS raised an R8 concern later ruled NOT an
+actual violation; VISION caught an incipient fourth disclaimer-erosion
+instance before Phase 3) and Red Team's Phase-2 audit (10-item
+docket, zero overridden) both landed cleanly pre-run. Phase 4 ran all
+gates PASS, 8 calls, 138.4s. **Six blind Phase-5 reviews converged
+from three independent angles on the same genuine surprise**:
+PHOTONICS argued the dip likely inherits T28's own established
+~2.84-2.95deg periodicity (C40/G40 are the identical pair
+`delta_scene` is built from); MATERIALS found this channel has never
+received an R3-mandated spatial (`cpl`) resolution check, only a
+temporal one; EM found the data itself (a 3.07x jump in one 0.2deg
+step) may instantiate exactly the sub-0.4deg feature its own adopted
+bound disclaimed protection against, and that 38.4deg carries the
+cycle's thinnest noise margin (2.70x); THERMODYNAMICS mechanistically
+traced the dip to the sigma_ext(theta) config-differential term,
+forced there by T9-flat `ratio_abs_ext`; **VISION caught the disclaimer-
+erosion shape recurring a FOURTH time** -- NOTES.md's own Q4 Result
+paragraph (the PRIMARY metric, the cycle's sole new finding) carried
+zero inline occurrence of the NETD/constraint-3 disclaimer through
+Phase 5, though the adjacent Q1/Q5/Q6 paragraphs and the frozen
+Predictions section all correctly carried it; **QUANTUM OPTICS,
+self-reviewing its own Phase-1 proposal, found `frac_p_abs` (`ratio_k`'s
+own numerator) is architecturally the SAME small-difference-over-base
+hazard class R13 already named for the denominator** -- but its own
+"Secondary note" falsely claimed no fourth disclaimer instance
+existed. **Red Team's Phase-5 final audit** independently re-derived
+every load-bearing number from raw primitives, confirmed all six
+findings, rejected QUANTUM's false claim directly (logged as its own
+R4/R9 registry note), **ruled Checkpoint criterion 4 FIRES** --
+explicitly NOT discretionary, since Iteration 64's own close used
+unconditional language for a fourth disclaimer-erosion instance ("fires
+automatically... no further deliberation"), a deliberate escalation
+beyond R6-R13's usual same-cycle-discharge pattern -- procedural/
+program-integrity, not scientific (no arithmetic wrong, no gate
+bypassed). **New standing rule R14 adopted** (a ratio classifier's own
+numerator, built as a small difference between two comparable,
+independently-varying quantities, needs the same single-point-distrust
+R13 applies to a zero-crossing-capable denominator, even absent a
+demonstrated zero-crossing -- PHOTONICS' periodicity-inheritance and
+THERMODYNAMICS' sigma_ext-differential findings ruled complementary to
+QUANTUM's construction-level hazard, not competing). Ruled the
+bracket-width bound retroactively weakened by data; the forward
+tripwire restated as ONE combined denominator+numerator angle census.
+**CHECKPOINT fired (14th time, notification not pause)** -- fixed
+same-shift: the one-sentence disclaimer added to Q4's Result paragraph,
+and the "carried idealizations" banner escalated from recommended to
+MANDATORY at both the Predictions and Result sections of any future
+T28 document (this cycle is direct proof a banner scoped to one section
+does not propagate to the other). Full record: `experiments/088-t28-
+node-bracket-r13-floor-gate/`, LOGBOOK.md Iteration 65); panel
+Iteration 64 done (exp-087, PARTIAL,
 THERMODYNAMICS' rotation-lead cycle: the joint EM/THERMO
 energy-interception cross-check, named at Iteration 59 and deferred/
 exempt four consecutive cycles, finally measured for real -- a genuine,
