@@ -4805,6 +4805,189 @@ fixes applied in place).
   `run.py`/`results.json`/`run_output.txt`, six Phase-5 blind reviews,
   `phase5_redteam_audit.md`.
 
+  **Iteration 66 (exp-089, 2026-08-29) — the combined denominator-node/
+  numerator-gap census: R13's floor gate demonstrably fails at two more
+  near-crossing angles, but a five-way independent decomposition
+  mechanistically resolves the surprise as the SAME R13 story at a third
+  and fourth location, not a new hazard — and a freshly-composed false
+  claim in the frozen record is caught same-cycle and ruled non-firing on
+  a reasoned, not reflexive, discharge test.** VISION SCIENCE led
+  (rotation). Executed exp-088's own Iteration-66 Tier-1 item 1: one
+  combined 12-call FDTD set at θ={37.2°,40.2°,41.4°} — each the tightest-
+  floor-margin grid neighbor of one of the three still-unsampled
+  `delta_scene` zero-crossings — sized to answer both the denominator-side
+  node census and the numerator-side interior-gap census at once, reusing
+  exp-088's machinery verbatim. `phase1_proposal.md` committed and pushed
+  strictly before any Phase-4 code existed.
+
+  **Phase 2 — five blind critiques, unanimous support-with-changes, two
+  genuinely convergent pairs.** PHOTONICS and THERMODYNAMICS each named
+  the same open risk from independent angles (an un-executed R14(a)
+  parent-quantity smoothness check; the 1.4° interior gap's own thin
+  margin against R14(c)'s half-period bound). MATERIALS restated the
+  FLOOR/RMS material-and-wavelength specificity caveat. ELECTROMAGNETISM
+  found the false-superlative risk in a "thinnest margin ever" claim that
+  compared a floor-*clearing* angle against a floor-*failing* one.
+  QUANTUM OPTICS found the proposal's own Q4 periodicity-recurrence test
+  inherited the identical CONFIRM/REFUTE-labeling hazard that fired
+  Checkpoint criterion 4 one cycle earlier, plus an aliasing risk against
+  T28's own established period. Red Team's Phase-2 audit
+  (PROCEED-WITH-MANDATORY-FIXES, 9 items, zero overridden): independently
+  re-derived every cited number exact, elevated three items (the
+  dual-section carried-idealizations banner, the false superlative, the
+  1.4°-gap scoping) to blocking given Iteration 65's own escalated rule,
+  and offered the Director two alternative fixes for Q4 — a bias-
+  correction-plus-control-angle path, or dropping the labeled verdict
+  entirely and reporting raw numbers. The Director (Phase 3) chose the
+  second, cheaper, more conservative path, adopted all nine items in full,
+  and closed the banner gap in the same synthesis, before `NOTES.md`
+  existed — Checkpoint criterion 4 did not fire on this gap (caught
+  blind, before Phase 3, this sub-thread's own established non-firing
+  shape).
+
+  **Phase 4: all house gates PASS, 12 FDTD calls, 150.4s.** Q1/Q2/Q7 and
+  the new R14(a) smoothness gate (both parent curves confirmed strictly
+  non-decreasing across the combined 8-point set) all CONFIRMED exactly
+  as pre-registered. **Q3 (PRIMARY): the predicted CONSISTENT lean
+  CONFIRMED at 37.2° (thinnest resolved-margin, 1.046×, this sub-thread
+  has ever accepted), DECISIVELY MISSED at 40.2° and 41.4° — both read
+  `ratio_k`≫10 (25.08, 28.81) despite formally clearing R13's floor gate
+  at only 1.31–1.48× margin** — exactly the single most consequential
+  possible outcome the document itself had pre-registered, realized at
+  both lowest-confidence angles simultaneously. **Q6 (combined 8-point
+  classification) FLIPS to ENERGY-DOMINANT** — a second and third
+  floor-clearing ENERGY-DOMINANT angle, not one isolated node. **Q5
+  (floor-gate-adequacy test) CONFIRMED**: `FLOOR_FRAC=0.10` is not fully
+  protective at 1.3–1.5× margin — a genuine instrument-calibration
+  finding. Q4 (periodicity-recurrence), per the Director's chosen path,
+  reported raw numbers only, correctly not scored — the numbers show no
+  resemblance to a recurring dip, explicitly not read as corroborating or
+  undercutting Q3/Q6 either way (the decoupling discipline held under
+  real data).
+
+  **Phase 5 — six blind reviews, unanimous PARTIAL/CONCUR, all five
+  independently converging on the same mechanistic finding via five
+  different methods.** PHOTONICS, ELECTROMAGNETISM, THERMODYNAMICS, and
+  QUANTUM OPTICS each independently decomposed the `ratio_k` swing at
+  40.2°/41.4° and found it ~90% attributable to the denominator
+  (`frac_contrast`, continuing to collapse toward a real, nearby
+  zero-crossing) and only ~10% to the numerator's own ordinary,
+  on-trend growth — an R13 (denominator) story, not a new R14 (numerator)
+  hazard. VISION independently found the same pattern via a different
+  route (a clean margin/outcome separation: every point ≥2.17× FLOOR
+  reads CONSISTENT, every point ≤2.17× fails the gate or reads
+  ENERGY-DOMINANT) and — critically — caught that `NOTES.md`'s own filed
+  Q6 sentence and Learned item 1 both, independently of any disclaimer-
+  carry-forward failure, asserted language the cycle's own data
+  contradicts: "non-artifactual," "away from any... neighborhood," "not
+  confined to one node's immediate neighborhood." QUANTUM OPTICS,
+  self-reviewing its own Phase-1 proposal, found the identical defect
+  and proved it false by direct primitive re-derivation (both angles sit
+  0.061–0.065° from a real crossing — the closest available grid point
+  to each, chosen for exactly that reason by the cycle's own §1 selection
+  rule). MATERIALS found the FLOOR/RMS module constant is a genuine
+  forward risk (a bare import, not yet a violation) if a future
+  `FLOOR_FRAC` recalibration is filed without restating its own
+  material/wavelength scope.
+
+  **Red Team's Phase-5 final audit**: independently re-derived every
+  load-bearing number from raw primitives across four experiment
+  directories by two further methods of its own (a fifth and sixth
+  independent confirmation of the numerator/denominator decomposition),
+  and by direct linear interpolation of the real 31-point grid confirmed
+  QUANTUM's/VISION's claim exactly — 40.2°/41.4° are 0.0654°/0.0609° from
+  real zero-crossings, the closer of each crossing's two flanking grid
+  points on this program's 0.2° grid. **Ruled QUANTUM's finding
+  CONFIRMED as a genuine, materially false statement in the frozen
+  Phase-4/Result-stage record** — but, after reasoning explicitly through
+  both possible answers against all four prior disclaimer-erosion
+  instances' own defining shape (a scope-limiting qualifier that already
+  exists elsewhere in the record failing to propagate into one prose
+  restatement), **ruled this is a mechanistically different defect — an
+  affirmative, freshly-composed false claim that was never true anywhere
+  in the record before, not an omission of an existing correct caveat —
+  and does NOT fire Checkpoint criterion 4 as a fifth instance of that
+  specific lineage.** The audit found the actual near-miss for a fifth
+  disclaimer-erosion instance this cycle (the banner gap, above) was a
+  different defect that already was caught blind at Phase 2 and closed
+  before Phase 3 froze anything; found no text anywhere in the program's
+  record generalizing Iteration 64's unconditional "fires automatically"
+  language for a fourth instance forward to a fifth of any kind; and
+  applied this program's own established discharge test (caught blind,
+  independently, same cycle, before any LOGBOOK entry, non-load-bearing
+  to any underlying measurement) — met on all three counts here, as it
+  has been for every prior rule's founding/discovery instance. Logged as
+  a new R4/R9 registry note instead (an unverified absence claim, one
+  placement-step more serious than QUANTUM's own identical-shape mistake
+  one cycle earlier, which sat in a Phase-5 review rather than `NOTES.md`
+  itself). **Separately ruled R13's `FLOOR_FRAC=0.10` empirically
+  demonstrated inadequate** — a clean margin/outcome separation across
+  all 7 resolved points (misclassifications at ≤1.48×, correct
+  classifications at ≥2.17×) — **but minting an exact new numbered
+  threshold is premature at n=7 near-boundary points**; found `NOTES.md`'s
+  own suggested 0.20–0.30 replacement range is only half-supported (0.30
+  would incorrectly exclude 37.2°, a genuinely CONSISTENT point);
+  recommended a zero-FDTD logistic/threshold fit against the full 7-point
+  record as the correct next step, ranked ahead of any new FDTD bracket.
+  All six Tier-0 mandatory/recommended fixes (corrected Q6 sentence,
+  corrected Learned item 1, the decomposition filed into the permanent
+  record, the R4/R9 note, MATERIALS' scoping sentence, THERMODYNAMICS'
+  Q7-vs-Q3 decoupling sentence) applied same-shift before this LOGBOOK
+  entry; item 7 (a `run.py` code fix) deferred, non-blocking, to avoid a
+  code change without a re-run to confirm.
+
+  **No new numbered rule adopted this cycle** — the `FLOOR_FRAC`
+  inadequacy is real and mechanistically understood, but Red Team ruled a
+  binary re-threshold premature at this sample size in favor of a
+  zero-FDTD fit first (Iteration-67 queue, below).
+
+  **Combined Verdict: PARTIAL.** A materially stronger result than
+  exp-088 produced at the equivalent stage: the surprise is not merely
+  observed but mechanistically *understood* — a corrected diagnosis, not
+  just a corrected classification — via five independently-converging
+  decompositions. Not RULED OUT (no mechanism class foreclosed; T1 route
+  N/A, matching every T28 desk/instrument cycle since exp-069) and not
+  PROMISING (no constraint-metric progress claimed, correctly, by this
+  cycle's own scope). Set against that: the record itself briefly stated
+  the opposite of its own correct diagnosis, in the same document, one
+  sentence from data that already contradicted it — a real defect,
+  corrected same-shift, ruled non-firing only after explicit reasoning
+  against the discharge test, not by reflex. Reconciled Iteration-67
+  queue (Red Team's Phase-5 final audit, 4 tiers — full detail
+  `phase5_redteam_audit.md` §8): **Tier 0, same-shift, applied** — the
+  6-item docket above. **Tier 1, cheap, zero-FDTD, immediate** — (1)
+  PHOTONICS' logistic/threshold fit of `FLOOR_FRAC` against all 7
+  resolved points' margin/outcome record, ranked highest because it is
+  free and should inform how any new bracket is designed; (2) a
+  retargeted bracket at 40.2°/41.4°'s own "second-ring" ≈0.19–0.21°
+  far-side neighbors, testing whether `ratio_k` tracks `1/frac_contrast`
+  smoothly toward the true crossings (mirroring 38.4°/38.8°'s own
+  relationship to 38.590°); (3) both a temporal AND, for the first time
+  on this channel, a spatial (`cpl`) resolution check at 38.4° — R3's own
+  standing meta-rule, undischarged two cycles running. **Tier 2** — the
+  still-queued R14(b) formal null-controlled period fit against the raw
+  signed difference (now further motivated by EM's own new finding: a
+  4-fold sign alternation, period-plausible but failing a naive
+  single-tone amplitude check); MATERIALS'/THERMODYNAMICS' scoping
+  sentences (already folded into Tier 0 here); the `run.py` R14(a)
+  proxy-tolerance fix before third reuse. **Tier 3, standing, unaffected**
+  — Red Team's own Iteration-65 ranking item 2 (the ~124-call full/denser
+  individual-`σ_abs` build, now doubly motivated — the only instrument
+  dense enough to properly fit both the `FLOOR_FRAC` recalibration and
+  the R14(b) period question); PHOTONICS' grazing-incidence validity
+  check (still near-unanimous #1 on the whole T28 board); the x-wall
+  wavelength-generality leg (now **FIFTEEN** consecutive cycles deferred,
+  076–089, the single oldest item on the whole T28 board); the still-
+  queued full-scale null-calibration re-run; R12-into-standard-practice;
+  leg-(b) work; QUANTUM's lossless-PEC-only-disk control; hardening
+  `sections.py::widths()` to normalize by `abs(i_inc)` internally; the
+  ritualization governance question (Iteration 61), still unresolved.
+  Full record: `experiments/089-t28-combined-angle-census/` —
+  `phase1_proposal.md`, five Phase-2 blind critiques,
+  `phase2_redteam_audit.md`, `phase3_synthesis.md`, `NOTES.md`,
+  `run.py`/`results.json`/`run_output.txt`, six Phase-5 blind reviews,
+  `phase5_redteam_audit.md`.
+
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
