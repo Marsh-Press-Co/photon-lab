@@ -325,15 +325,52 @@ reading FLIPS to ENERGY-DOMINANT.** `n_resolved=7/8` (38.6° excluded
 `NODE-UNRESOLVABLE` by construction), combined ratios `[2.642, 3.443,
 0.908, 3.873, 25.08, 28.81, 5.71]` — two angles (40.2°, 41.4°) trigger
 `classify_resolved`'s own any-X veto priority, exactly the mechanism
-that drove exp-087's original filed ENERGY-DOMINANT result. **This is
-a SECOND and THIRD floor-clearing, non-artifactual ENERGY-DOMINANT
-angle** — not one isolated node (38.6°, already excluded by R13) but
-two more, both away from any previously-known zero-crossing's immediate
-neighborhood. **The single-node-artifact reading this sub-thread has
-held since exp-088 does not survive this cycle's own data**, scoped
-explicitly to these 8 sampled angles only (Idealizations 9-10; not a
-channel-general claim — 23 of the 31 grid angles remain FDTD-unsampled
-for `ratio_k`).
+that drove exp-087's original filed ENERGY-DOMINANT result. **This is a
+SECOND and THIRD floor-clearing ENERGY-DOMINANT angle — not one isolated
+node (38.6°, already excluded by R13) but two more, both sitting within
+0.061–0.065° of a real `delta_scene` zero-crossing (the closest available
+grid point to each, by this cycle's own design). The swing is,
+quantitatively, ~90% attributable to the denominator continuing to
+shrink toward that crossing and only ~10% to the numerator's own
+ordinary, on-trend growth (decomposition below) — mechanistically an R13
+(denominator, zero-crossing-proximity) story, not a new R14 numerator
+anomaly and not evidence of a phenomenon distributed independently of
+node proximity.** *(Corrected same-shift, Tier-0 fix item 1, Red Team's
+Phase-5 final audit §2/§6 — the original text here asserted "non-
+artifactual" and "away from any previously-known zero-crossing's
+immediate neighborhood," which independent re-derivation from primitives
+showed to be factually false: both angles are the closest grid point to
+a real, already-known crossing, chosen for exactly that reason by
+`phase1_proposal.md` §1's own selection rule.)* Scoped explicitly to
+these 8 sampled angles only (Idealizations 9-10; not a channel-general
+claim — 23 of the 31 grid angles remain FDTD-unsampled for `ratio_k`).
+
+**Numerator/denominator decomposition (Tier-0 fix item 3, filed into the
+permanent record — independently reproduced five separate ways: by
+PHOTONICS, ELECTROMAGNETISM, THERMODYNAMICS, and QUANTUM OPTICS' own
+Phase-5 reviews, and by Red Team's Phase-5 final audit, each via a
+structurally different method, agreeing to 3+ significant figures):**
+holding the actual measured numerator fixed and substituting a
+"typical" non-crossing-adjacent `frac_contrast` (mean of the two nearest
+established CONSISTENT points, 38.8°/41.8° → 1.4005×10⁻³) collapses both
+points to squarely CONSISTENT (`ratio_k`=5.07/5.17); substituting the
+numerator's own pre-registered smooth-trend desk estimate while holding
+the actual measured denominator fixed leaves the classification
+ENERGY-DOMINANT either way (23.11 vs. actual 25.08, 7.9% off; 28.06 vs.
+actual 28.81, 2.6% off). A log-decomposition against the last previously
+-established point (38.8°) gives the same answer in closed form: the
+`ratio_k` swing at 40.2°/41.4° is 90.6%/90.3% attributable to the
+denominator's own collapse toward its zero-crossing and 9.4%/9.7% to the
+numerator's own ordinary continuation.
+
+**Q7-vs-Q3 decoupling (Tier-0 fix item 6, THERMODYNAMICS' Phase-5
+finding, mirroring Idealization 13's existing Q4-vs-Q3 disclaimer):**
+Q7's NETD/T9-anchor readings at these same angles (below) are computed
+from the same `p_abs_w` primitives as Q3/Q6 but answer a different,
+decoupled question (instrument-detectability, not energy-partition
+classification) — a reader must not treat Q7's UNDETECTABLE/on-anchor
+readings as corroborating or undercutting Q6's ENERGY-DOMINANT finding
+at the same angles.
 
 **Q7 (NETD/T9-anchor extension): CONFIRMED, zero marginal cost.** All
 6 cells UNDETECTABLE (`dt_ss_full_K`≈4.61×10⁻⁵–5.24×10⁻⁵ K, margin
@@ -346,14 +383,23 @@ human-eye verdict** (Idealization 9).
 
 ## Learned (Director's own read, before Phase 5 — subject to revision)
 
-1. **The "single-node-artifact" reading is dead.** exp-088 closed
-   believing exactly one point (38.6°) drove ENERGY-DOMINANT and every
-   floor-clearing point was CONSISTENT. This cycle's own 3 new points
-   put two MORE floor-clearing points at `ratio_k` 2.5–2.9× above
-   `RATIO_HIGH`, at angles with no prior connection to 38.6° beyond
-   sharing R13's original hazard class (a `delta_scene` zero-crossing
-   nearby). Whatever T28's energy-interception channel is actually
-   doing, it is not confined to one node's immediate neighborhood.
+1. **The "single-node-artifact" reading is dead — but stated correctly,
+   the pattern is a node-proximity story, not evidence against one.**
+   *(Corrected same-shift, Tier-0 fix item 2, Red Team's Phase-5 final
+   audit §4/§6 — VISION's and PHOTONICS' independently-reached Phase-5
+   finding: as originally drafted this item overclaimed. The
+   margin/outcome record is a clean separation — every point at ≥2.17×
+   FLOOR margin reads CONSISTENT; every point at ≤2.17× either fails the
+   gate (38.6°) or reads ENERGY-DOMINANT/barely-resolved (37.2°, 40.2°,
+   41.4°) — which is fully consistent with a node-proximity/floor-gate-
+   calibration story at three locations, not a phenomenon distributed
+   independently of zero-crossing proximity.)* exp-088 closed believing
+   exactly one point (38.6°) drove ENERGY-DOMINANT and every floor-
+   clearing point was CONSISTENT. This cycle's own 3 new points put two
+   MORE floor-clearing points at `ratio_k` 2.5–2.9× above `RATIO_HIGH`,
+   at angles that (per the decomposition above) are ~90% explained by
+   the exact same R13-class denominator mechanism, now demonstrated at
+   three near-crossing locations instead of one.
 2. **R13's `FLOOR_FRAC=0.10` looks materially too permissive, not just
    imperfect.** Both misses happened well inside the "clears" region
    (1.31×, 1.48×) — not at the ragged edge near 1.0× where some slop
@@ -385,20 +431,56 @@ human-eye verdict** (Idealization 9).
    same cycle's own idealizations already flagged as unreliable. Good
    that no falsifiable claim was staked on it.
 
+**R4/R9 registry note (Tier-0 fix item 4, record hygiene, Red Team's
+Phase-5 final audit §3.4/§6):** the corrected Q6/Learned-item-1 language
+above replaces an unverified absence/negation claim ("away from any
+previously-known zero-crossing's immediate neighborhood," "non-
+artifactual") that entered this document's own Phase-4/Result-stage
+record and was independently proven false by direct re-derivation from
+primitives — one placement-step more serious than the precedent this
+same seat (QUANTUM OPTICS) set one cycle earlier at exp-088 (a false
+"no fourth instance found" claim caught at the Phase-5-review stage,
+before reaching `NOTES.md` itself). Both are logged as instances of the
+same R4/R9 ("verify-before-claim," including claims of absence) registry
+item; neither fired Checkpoint criterion 4 (this cycle's ruling: LOGBOOK.md
+Iteration 66; exp-088's: LOGBOOK.md Iteration 65).
+
+**MATERIALS' `FLOOR_FRAC` scoping note (Tier-0 fix item 5, before any
+future recalibration is filed):** `FLOOR`/`RMS[frac_contrast]` — and any
+future re-tuned `FLOOR_FRAC` value — remain specific to
+`graded_black_shell`/600nm; a bare module constant carried forward by
+direct-import reference, without restating this scope, risks silently
+becoming a future cycle's inherited default for a different article or
+wavelength.
+
 ## Next
 
 The clearest, cheapest, most decisive follow-up this cycle's own data
-demands: **densify around 40.2° and 41.4° specifically** (the two new
-ENERGY-DOMINANT points), not the untested remainder of the grid in
-general — is each an isolated spike (mirroring 38.6°'s own shape) or
-part of a broader elevated region? A tight bracket at each (e.g.
-±0.2°/±0.4°, mirroring exp-088's own 38.6° bracket design) would show
-whether R13's floor gate is failing at isolated points or across a
-wider band. Second priority: revisit `FLOOR_FRAC` itself given Learned
-item 2 — a tightened threshold (e.g. 0.20–0.30×RMS) recomputed once
-against this cycle's now-larger sample, or a graduated caution zone
-replacing the binary gate. Both are Phase-5's to rank, not pre-decided
-here. The 23 still-FDTD-unsampled grid angles, PHOTONICS' grazing-
-incidence validity check, the x-wall wavelength-generality leg (now 15
-cycles deferred), and the still-queued formal null-controlled period
-fit (R14(b)) all remain open, unaffected by this cycle's own scope.
+demands, **retargeted per PHOTONICS' and Red Team's own Phase-5
+correction**: not "isolated spike vs. broader elevated region" in
+`frac_p_abs` (the decomposition above already shows the numerator is
+unremarkable at both new angles) but whether `ratio_k` tracks
+`1/frac_contrast` smoothly toward the true crossings (40.265°, 41.461°)
+— sampling the "second-ring" ≈0.19–0.21° far-side neighbors, mirroring
+38.4°/38.8°'s own comfortable-margin relationship to 38.590°. Second
+priority, now backed by a clean n=7 margin/outcome separation
+(misclassifications at ≤1.48× FLOOR, correct classifications at ≥2.17×):
+a zero-FDTD logistic/threshold fit of `FLOOR_FRAC` against all 7 resolved
+points on record (PHOTONICS' proposal, Red Team-endorsed as the single
+highest-value next step) — ranked ahead of any new FDTD bracket because
+it should inform how one is designed, and because Red Team's own audit
+found this cycle's own suggested 0.20–0.30 replacement range is only
+half-supported: 0.20 separates cleanly, but 0.30 would incorrectly
+exclude 37.2°, a point this cycle's own data shows is genuinely
+CONSISTENT. A binary re-tuned threshold is itself judged premature at
+n=7 near-boundary points — a graduated caution zone, consistent with the
+now-demonstrated continuous (not sharply-thresholded) mechanism, is the
+better-supported direction. Also still open: both a temporal AND, for
+the first time on this channel, a spatial (`cpl`) resolution check at
+38.4° (R3's own standing meta-rule, undischarged two cycles running); the
+still-queued formal null-controlled period fit against the raw signed
+difference `p_abs(G40,θ)−p_abs(C40,θ)` (R14(b)); the 23 still-FDTD-
+unsampled grid angles; PHOTONICS' grazing-incidence validity check; the
+x-wall wavelength-generality leg (now 15 cycles deferred); `run.py`'s
+R14(a) gate proxy-tolerance mismatch (EM's Phase-5 finding, non-blocking
+this cycle, a real fix before third reuse).
