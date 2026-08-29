@@ -158,7 +158,15 @@ inline at each item below, not stated once and dropped.
    38.8°→0.210°, 40.2°→0.065°, 41.4°→0.061°, 41.8°→0.339°**;
    `AUC(distance)=1.0` (perfect separation, matching `margin`);
    distance-zone `≈[0.065°, 0.073°]`, gap ratio (`upper/lower`)
-   `≈1.11` — **roughly a third of margin's own gap ratio (`≈1.47`)**.
+   `≈1.11` — **roughly a third of margin's own gap ratio (`≈1.47`)**
+   *[Erratum, Tier-0 fix 3, ELECTROMAGNETISM's/Red Team's Phase-5
+   finding: this frozen prediction's own "roughly a third" framing does
+   not match either natural ratio reading of the numbers it itself
+   states (`1.32×` direct, `4.20×` excess-over-lower-edge) — left
+   visible here as originally written, per this program's own erratum
+   convention (correct beside, don't silently rewrite a frozen
+   prediction); see the Result section for the corrected reading, which
+   cites the raw numbers only.]*.
    **This is the falsifiable core of this cycle's own regressor-choice
    defense**: both regressors separate the n=7 sample perfectly, but
    `margin` is predicted to be the empirically more robust choice by a
@@ -232,6 +240,24 @@ inline at each item below, not stated once and dropped.
     purpose). A future citation applying the zone/`m₅₀` to an arbitrary,
     non-crossing-adjacent angle would be extrapolating past this sample's
     actual support.
+12. **[Tier-0 fix 4, QUANTUM OPTICS' Phase-5 finding, extending
+    Idealization 11 above] Q8's own margin-vs-distance comparison
+    inherits Idealization 11's sample curation directly, not just as a
+    generic extrapolation risk.** The three points selecting the caution
+    zone's own edges — both `Y=1` points (40.2°, 41.4°) and the `Y=0`
+    point setting the upper edge (37.2°) — are exactly the three points
+    exp-089 selected by minimizing `margin` (not distance) among grid
+    candidates near each crossing. A procedure that selects points by
+    minimizing one candidate regressor near a decision boundary, then
+    compares that regressor's own boundary-region tightness against an
+    un-optimized alternative, is structurally biased toward the
+    regressor it was selected for — independent of which quantity is
+    mechanistically more informative. Q8's *quantitative* "margin is
+    empirically more robust" reading (§Result, Q8) should be treated as
+    consistent with, not independent confirmation of, that conclusion;
+    the mechanistic argument in `phase1_proposal.md` §5 is unaffected
+    and remains the primary, construction-independent basis for the
+    choice.
 
 ## Result
 
@@ -248,15 +274,20 @@ freeze (`phase3_synthesis.md`), by all five Phase-2 critiques, and by
 Red Team's own Phase-2 audit, before `run.py` ever executed.**
 
 - **Q1**: `AUC(margin)=1.0`, no ties, confirmed. Naive unpenalized MLE
-  diverges (`β=(26.11,−103.01)` after 2000 Newton–Raphson steps, still
-  climbing) — confirms the diagnosed hazard directly, not merely by
-  assertion.
+  diverges decisively: the blowup guard (`|β|>100`) fires after only 11
+  Newton–Raphson steps (`β=(26.11,−103.01)`), not a slow asymptotic climb
+  [Tier-0 fix 1, MATERIALS' Phase-5 finding — the original phrasing here
+  did not describe the committed function's actual behavior] — confirms
+  the diagnosed hazard directly, not merely by assertion.
 - **Q2 (diagnostic only)**: exact permutation `p=1/21=0.047619...`,
   bit-exact as predicted. Reported for pipeline-correctness only, per
   the reclassification above — NOT independent evidence the
   margin–outcome link is real.
 - **Q3 (PRIMARY)**: caution zone = **`[1.4764, 2.1709]`**, width `0.6946`
-  (47.0% of the lower edge), bit-exact as predicted.
+  (47.0% of the lower edge), bit-exact as predicted. *(Idealizations
+  9-11 apply: the R3 spatial-resolution gap on this channel's inputs and
+  the n=7 sample's own crossing-proximity curation both bear directly on
+  this number [Tier-0 fix 5, VISION's Phase-5 finding].)*
 - **Q4 (PRIMARY, contingent)**: Firth's fit **converged** in 20
   iterations (predicted ≤200) to `β=(1.78058954, −5.63151961)`,
   **`m₅₀=2.071013`**, landing strictly inside the Q3 zone, in the upper
@@ -274,24 +305,48 @@ Red Team's own Phase-2 audit, before `run.py` ever executed.**
 - **Q7 (disclosure gate)**: 37.2°'s own SEPARATE `resolved`-gate
   noise-floor margin, recomputed live from exp-089's own persisted
   `thermo`/`box_dev` primitives (not hand-typed): **`1.045659×`** —
-  matches exp-089's own filed `1.046×` to printed precision. This is the
-  point setting the Q3 zone's upper edge and anchoring `m₅₀`'s shallow
-  end; its own pre-existing fragility (a "felt-lucky pass" per exp-089's
-  record) means the zone as reported should be read alongside the
-  "drop 37.2°" LOO row (upper edge → `3.8793`) as the operationally live
-  risk case, not a remote hypothetical.
+  matches exp-089's own filed `1.046×` to printed precision (the small
+  `1.0455×` figure quoted earlier in `phase3_synthesis.md` traces to
+  rounding intermediate quantities before dividing in a by-hand check,
+  not a round-half-up convention on the final answer [Tier-0 fix 7,
+  THERMODYNAMICS' Phase-5 finding] — cite `run.py`'s own `1.045659×`
+  going forward). This is the point setting the Q3 zone's upper edge and
+  anchoring `m₅₀`'s shallow end; its own pre-existing fragility (a
+  "felt-lucky pass" per exp-089's record) means the zone as reported
+  should be read alongside the "drop 37.2°" LOO row (upper edge →
+  `3.8793`) as the operationally live risk case, not a remote
+  hypothetical. *(Idealization 9 applies [Tier-0 fix 5, VISION's Phase-5
+  finding].)*
 - **Q8 (PRIMARY)**: all four `delta_scene(θ)` zero-crossings located at
   **37.1272°, 38.5902°, 40.2654°, 41.4609°** (matching exp-089's own
   citations to the sub-0.01° digit). Nearest-crossing distances at the 7
   angles reproduce exactly as predicted. **`AUC(distance)=1.0`**
   (perfect separation, matching `margin`), distance-zone
-  `[0.0654°, 0.0728°]`, **gap ratio `1.1121`** — confirmed **roughly a
-  third** of margin's own gap ratio (`1.4704`). **Confirmed: both
-  regressors separate this sample perfectly, but `margin` is the
-  empirically more robust choice by a real, measured safety margin — the
-  regressor-choice defense in `phase1_proposal.md` §5 is corrected from
-  an argued-collinearity claim to a computed one, exactly as Red Team's
-  RT-3 required.**
+  `[0.0654°, 0.0728°]`, **gap ratio `1.1121`** vs. margin's own gap ratio
+  `1.4704` — **both regressors separate this sample perfectly; margin's
+  zone is the wider/more comfortable of the two by these raw numbers**
+  [Tier-0 fix 3, ELECTROMAGNETISM's Phase-5 finding: the earlier
+  "roughly a third"/"roughly 3×" characterization does not match either
+  natural ratio reading (the direct gap-ratio-to-gap-ratio comparison is
+  `1.32×`; the excess-over-the-lower-edge comparison is `4.20×`) — dropped
+  in favor of citing the raw numbers, per this program's own R9
+  precedent against a single restated multiplicative headline figure].
+  **However, this comparison's own evidentiary weight is CONFOUNDED by
+  sample construction, not fully independent** [Tier-0 fix 4, QUANTUM
+  OPTICS' Phase-5 finding, confirmed against exp-089's own
+  `phase1_proposal.md` text]: three of the seven points — both `Y=1`
+  points (40.2°, 41.4°, the zone's lower edge) and the `Y=0` point
+  setting the zone's upper edge (37.2°) — were selected by exp-089's own
+  rule specifically as the tightest-floor-**margin** grid neighbor of
+  each crossing, not by distance. Q8's result should be read as
+  **consistent with, but not independently isolated from, that
+  construction** — the mechanistic argument in `phase1_proposal.md` §5
+  (margin is the gate's own native, interpretable quantity, and the four
+  crossings' own local slopes differ by ~1.8×, independently confirmed
+  by both PHOTONICS' and ELECTROMAGNETISM's Phase-5 reviews via two
+  different computations) remains the primary, construction-independent
+  basis for preferring `margin`; the *quantitative* "measurably more
+  robust" safety-margin claim does not, and is downgraded accordingly.
 
 All house gates PASS: `FLOOR`/`RMS[frac_contrast]` reproduce exactly
 against exp-088's and exp-089's own committed R13-gate values (assertion
@@ -326,15 +381,27 @@ point given that history, not a shortcut).
    LOO stress test as independent evidence, whether the separation
    itself already logically forces the outcome.
 3. **The regressor-choice defense in the original proposal was correct in
-   its conclusion but under-supported in its method — computing it
-   (Q8) produced a materially stronger and more precise claim than
-   arguing it did.** `margin` and `distance-to-crossing` are NOT merely
+   its conclusion but under-supported in its method — computing it (Q8)
+   was still the right move, though the resulting claim needs its own
+   caveat, corrected same-shift [Tier-0 fix 4, QUANTUM OPTICS' Phase-5
+   finding].** `margin` and `distance-to-crossing` are NOT merely
    theoretically equivalent (the "near-collinear" framing) — they are
-   both empirically perfect separators at this sample size, but `margin`
-   carries roughly 3× the relative safety margin. This is a concrete
+   both empirically perfect separators at this sample size, and `margin`'s
+   zone is wider by the raw numbers (`1.47` vs `1.11` gap ratio) — but
+   this specific comparison is confounded by the sample's own
+   margin-based curation (three of seven points, including both zone
+   edges, were selected by minimizing `margin`), so it is *consistent
+   with*, not independent confirmation of, margin's superiority. The
+   mechanistic argument (margin is the gate's own native quantity; the
+   four crossings' own local slopes differ ~1.8×, independently confirmed
+   by two Phase-5 seats via different methods) is the argument that
+   actually survives construction-independent. This is a concrete
    instance of R8's own lesson (an argued robustness claim must be
    computed, not merely reasoned about) discharged the same cycle it was
-   raised, cleanly.
+   raised — but the computation itself needed a second look before its
+   own evidentiary weight could be trusted, a useful lesson in its own
+   right about verifying a fix doesn't inherit the very bias it was
+   built to test.
 4. **37.2° is a genuinely load-bearing, genuinely fragile point that this
    sub-thread should not lose sight of.** It anchors the Q3 zone's upper
    edge, Firth's `m₅₀`, AND (a separate, independently-flagged concern)
@@ -361,27 +428,44 @@ enforcement for the STEPS=1400 gap), rather than relying on a third
 consecutive Phase-2 catch. Candidate for a future Iteration's board
 discussion, not itself a T28 physics item.
 
-Substantive T28 items, reconciled from this cycle's own Idealizations and
-exp-089's own still-open queue (unchanged by this desk cycle, since none
-of it touches T28's mechanism question):
+**Reconciled Iteration-68 ranking (Red Team's Phase-5 final audit,
+merging all six seats' own rankings — R3 resolution + a repeat/denser
+measurement at 37.2°/40.2°/41.4° appears in every seat's own top three,
+in some form):**
 
-1. The still-overdue R3 spatial (`cpl`) resolution check on the
-   `frac_p_abs`/`ratio_k`/`frac_contrast` channel — undischarged three
-   cycles running as of this document (exp-088, exp-089, exp-090), and
-   the one item this cycle's own Idealization 9 names as bearing directly
-   on this fit's own inputs (40.2°/41.4°, which set the zone's lower
-   edge).
-2. PHOTONICS' grazing-incidence validity check — still near-unanimous #1
-   on the whole T28 board, still not run.
-3. The x-wall wavelength-generality (450/750nm) leg — now **SIXTEEN**
-   consecutive cycles deferred (076–090).
-4. The still-queued R14(b) formal null-controlled period fit against the
-   raw signed `p_abs(G40,θ)−p_abs(C40,θ)` difference.
-5. A repeat/denser measurement at or near 37.2° specifically, given this
-   cycle's own Q7 finding that it is simultaneously the Q3 zone's
-   load-bearing upper-edge point AND a pre-existing "felt-lucky pass" —
-   the single most concrete, well-motivated next FDTD call this
-   sub-thread's own record now points to.
-6. A retargeted bracket at 40.2°/41.4°'s own far-side "second-ring"
-   neighbors (exp-089's own Next item, still open, unaffected by this
-   cycle's calibration work).
+1. **A single, combined FDTD cycle: the R3 spatial (`cpl` 20→30)
+   resolution check plus a repeat/denser, tighter-settling measurement,
+   run jointly at 37.2°, 40.2°, and 41.4°.** The near-unanimous top pick.
+   Closes the board's single oldest undischarged T28-desk-cycle debt
+   (three consecutive cycles, exp-088/089/090), directly revalidates the
+   exact numerical inputs this cycle's own caution zone rests on
+   (40.2°/41.4° set its lower edge and — per EM's and PHOTONICS' own
+   Phase-5 findings — sit at the two shallowest-slope crossings, where a
+   fixed grid-quantization perturbation converts into the largest
+   relative `margin` shift anywhere this method touches), and relieves
+   37.2°'s own two independently-flagged fragilities (Q7's noise-floor
+   margin and the zone's upper-edge sensitivity) at zero extra marginal
+   cost.
+2. **Zero-cost, can run first/alongside item 1: an unbiased margin-vs-
+   distance rebuild on the full 31-point window**, scored as continuous
+   predictors against an already-available proxy label (`delta_scene(θ)`
+   sign or `C40_C(θ)` window membership) rather than the margin-curated
+   n=7 sample — the direct, affordable answer to Q8's own confound
+   (Tier-0 fix 4), on an unselected sample for the first time.
+3. **PHOTONICS' own grazing-incidence validity check** — still the
+   single most-repeated, near-unanimous item across the whole T28
+   board's multi-iteration history, and increasingly the actual
+   bottleneck: every angle this cycle's n=7 table draws from sits in the
+   aperture's own deep near-field/grazing-incidence regime, and this
+   check would determine whether the R13/R14 floor-gate apparatus this
+   cycle just refined is even being applied where its own assumptions
+   hold.
+
+Also still open, unchanged by this desk cycle: the x-wall wavelength-
+generality (450/750nm) leg (now **FIFTEEN** consecutive cycles deferred,
+076–090, inclusive count `090−076+1=15` [Tier-0 fix 6, MATERIALS' Phase-5
+finding — corrects a one-count drift that entered this citation at
+Iteration 65/exp-088]); the still-queued R14(b) formal null-controlled
+period fit against the raw signed `p_abs(G40,θ)−p_abs(C40,θ)` difference;
+a retargeted bracket at 40.2°/41.4°'s own far-side "second-ring"
+neighbors (exp-089's own Next item, still open).
