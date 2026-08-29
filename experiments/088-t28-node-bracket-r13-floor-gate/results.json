@@ -1,0 +1,309 @@
+{
+  "angles": [
+    38.4,
+    38.8
+  ],
+  "pair_keys": [
+    "C40",
+    "G40"
+  ],
+  "steps_main": 2800,
+  "total_new_fdtd_calls": 8,
+  "total_wall_time_s": 138.39483785629272,
+  "r13_floor_gate": {
+    "floor_frac": 0.1,
+    "rms_frac_contrast": 0.0019174375118374476,
+    "n_window_points": 31,
+    "floor": 0.00019174375118374476
+  },
+  "vacuum_footprint_check": {
+    "C40": {
+      "BOX_A": {
+        "box": [
+          80,
+          260,
+          702,
+          882
+        ],
+        "all_vacuum": true
+      },
+      "BOX_B": {
+        "box": [
+          68,
+          272,
+          690,
+          894
+        ],
+        "all_vacuum": true
+      }
+    },
+    "G40": {
+      "BOX_A": {
+        "box": [
+          120,
+          300,
+          742,
+          922
+        ],
+        "all_vacuum": true
+      },
+      "BOX_B": {
+        "box": [
+          108,
+          312,
+          730,
+          934
+        ],
+        "all_vacuum": true
+      }
+    }
+  },
+  "reproduction_precondition": {
+    "per_cell": {
+      "C40": {
+        "38.4": {
+          "fresh": -0.0025981683892813967,
+          "ref": -0.0025981683892813967,
+          "dev": 0.0
+        },
+        "38.8": {
+          "fresh": 0.002411572816994889,
+          "ref": 0.002411572816994889,
+          "dev": 0.0
+        }
+      },
+      "G40": {
+        "38.4": {
+          "fresh": -0.0019060769507947,
+          "ref": -0.0019060769507947,
+          "dev": 0.0
+        },
+        "38.8": {
+          "fresh": 0.0024459636954770048,
+          "ref": 0.0024459636954770048,
+          "dev": 0.0
+        }
+      }
+    },
+    "max_dev": 0.0,
+    "passed": true
+  },
+  "widths": {
+    "C40_38.4_BOX_A": {
+      "sigma_scat": 151.02366124315662,
+      "sigma_abs": 159.1513816786618,
+      "sigma_ext": 310.17504292181843,
+      "sigma_ext_cross": 310.21014404076936,
+      "back_frac": 0.6197350401948687,
+      "fwd_frac": 9.171158698327366e-05,
+      "i_inc": 0.3269064059444761,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_38.4_BOX_B": {
+      "sigma_scat": 151.0106329929453,
+      "sigma_abs": 159.15927236680952,
+      "sigma_ext": 310.1699053597548,
+      "sigma_ext_cross": 310.28957594865153,
+      "back_frac": 0.644812775264598,
+      "fwd_frac": 5.862708489056498e-05,
+      "i_inc": 0.3269064059444761,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_38.8_BOX_A": {
+      "sigma_scat": 151.52561179248318,
+      "sigma_abs": 160.07322600761964,
+      "sigma_ext": 311.59883780010284,
+      "sigma_ext_cross": 311.555795752704,
+      "back_frac": 0.6123972199744157,
+      "fwd_frac": 7.608041814969662e-05,
+      "i_inc": 0.3288499782036704,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_38.8_BOX_B": {
+      "sigma_scat": 151.51400693858812,
+      "sigma_abs": 159.99800619375137,
+      "sigma_ext": 311.5120131323395,
+      "sigma_ext_cross": 311.5798892267864,
+      "back_frac": 0.6365135178402693,
+      "fwd_frac": 4.940335245842338e-05,
+      "i_inc": 0.3288499782036704,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_38.4_BOX_A": {
+      "sigma_scat": 150.93976601938186,
+      "sigma_abs": 159.31697443071042,
+      "sigma_ext": 310.2567404500923,
+      "sigma_ext_cross": 310.3270234486728,
+      "back_frac": 0.6204222249287433,
+      "fwd_frac": 7.722340977160036e-05,
+      "i_inc": 0.32812181428047926,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_38.4_BOX_B": {
+      "sigma_scat": 150.92689906517538,
+      "sigma_abs": 159.34266130033117,
+      "sigma_ext": 310.26956036550655,
+      "sigma_ext_cross": 310.3763858469193,
+      "back_frac": 0.6452424511731553,
+      "fwd_frac": 5.137066153331825e-05,
+      "i_inc": 0.32812181428047926,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_38.8_BOX_A": {
+      "sigma_scat": 151.91540769286175,
+      "sigma_abs": 160.56976403768934,
+      "sigma_ext": 312.4851717305511,
+      "sigma_ext_cross": 312.48683707685814,
+      "back_frac": 0.6122706894530611,
+      "fwd_frac": 3.611565445439332e-05,
+      "i_inc": 0.32935554908167525,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_38.8_BOX_B": {
+      "sigma_scat": 151.8980948438572,
+      "sigma_abs": 160.53927959677424,
+      "sigma_ext": 312.43737444063146,
+      "sigma_ext_cross": 312.49430916332665,
+      "back_frac": 0.6360916502107677,
+      "fwd_frac": 2.0256907239902057e-05,
+      "i_inc": 0.32935554908167525,
+      "direction_correction_sign_applied": -1.0
+    }
+  },
+  "box_dev": {
+    "C40_38.4": {
+      "ext": 1.656342823467762e-05,
+      "abs": 4.9579765280598454e-05
+    },
+    "C40_38.8": {
+      "ext": 0.00027864246341966013,
+      "abs": 0.00046990877702866055
+    },
+    "G40_38.4": {
+      "ext": 4.1320344549622995e-05,
+      "abs": 0.0001612312166518566
+    },
+    "G40_38.8": {
+      "ext": 0.0001529585856984067,
+      "abs": 0.0001898516890636251
+    }
+  },
+  "xi_ext": {
+    "C40_38.4_BOX_A": 0.00011316551654280274,
+    "C40_38.4_BOX_B": 0.0003858226953318468,
+    "C40_38.8_BOX_A": 0.0001381328881157585,
+    "C40_38.8_BOX_B": 0.0002178923816271956,
+    "G40_38.4_BOX_A": 0.00022653173780691032,
+    "G40_38.4_BOX_B": 0.00034429894214206406,
+    "G40_38.8_BOX_A": 5.329361063205013e-06,
+    "G40_38.8_BOX_B": 0.00018222763136811488
+  },
+  "xi_pass": true,
+  "nonneg_pass": true,
+  "thermo": {
+    "C40_38.4": {
+      "sigma_ext_cells": 310.17504292181843,
+      "ratio_abs_ext_raw": 0.5131018285013244,
+      "p_abs_w": 2.9253206899701102e-12,
+      "dt_ss_full_K": 4.8059950275376266e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "C40_38.8": {
+      "sigma_ext_cells": 311.59883780010284,
+      "ratio_abs_ext_raw": 0.5137157350705844,
+      "p_abs_w": 2.9557707370007384e-12,
+      "dt_ss_full_K": 4.85602126059961e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "G40_38.4": {
+      "sigma_ext_cells": 310.2567404500923,
+      "ratio_abs_ext_raw": 0.513500445468446,
+      "p_abs_w": 2.929135714681061e-12,
+      "dt_ss_full_K": 4.812262712941701e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "G40_38.8": {
+      "sigma_ext_cells": 312.4851717305511,
+      "ratio_abs_ext_raw": 0.513847627228037,
+      "p_abs_w": 2.9733730542252685e-12,
+      "dt_ss_full_K": 4.8849400213167795e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    }
+  },
+  "q6_all_undetectable": true,
+  "ratio_abs_ext_new_angles": {
+    "C40_38.4": 0.5131018285013244,
+    "C40_38.8": 0.5137157350705844,
+    "G40_38.4": 0.513500445468446,
+    "G40_38.8": 0.513847627228037
+  },
+  "biot_swing_x": 780.0,
+  "h_conv_swing_x": 116.0,
+  "frac_p_abs": {
+    "38.4": 0.0013041389697994702,
+    "38.8": 0.005955237665824989
+  },
+  "frac_contrast_new_angles": {
+    "38.4": 0.0014370491250264455,
+    "38.8": 0.001537528237042816
+  },
+  "ratio_k_new_angles": {
+    "38.4": 0.9075117524430284,
+    "38.8": 3.873254176638027
+  },
+  "floor_pass_new_angles": {
+    "38.4": true,
+    "38.8": true
+  },
+  "resolved_new_angles": {
+    "38.4": true,
+    "38.8": true
+  },
+  "q4_predictions_check": {
+    "theta_38_4_in_band": false,
+    "theta_38_8_in_band": true
+  },
+  "retroactive_exp087_reclassification": {
+    "36.0": {
+      "frac_contrast": 0.0007438279588304384,
+      "floor_pass": true,
+      "ratio_k": 2.6423677612294223,
+      "resolved_orig": true,
+      "resolved_under_r13": true,
+      "outcome": "resolved"
+    },
+    "38.6": {
+      "frac_contrast": 7.410062757210442e-05,
+      "floor_pass": false,
+      "ratio_k": 53.988397675546146,
+      "resolved_orig": true,
+      "resolved_under_r13": false,
+      "outcome": "NODE-UNRESOLVABLE"
+    },
+    "41.8": {
+      "frac_contrast": 0.0012633809286846705,
+      "floor_pass": true,
+      "ratio_k": 5.710203290428644,
+      "resolved_orig": true,
+      "resolved_under_r13": true,
+      "outcome": "resolved"
+    }
+  },
+  "q1_classification": "CONSISTENT",
+  "q5_all_resolved_ratios": [
+    2.6423677612294223,
+    5.710203290428644,
+    0.9075117524430284,
+    3.873254176638027
+  ],
+  "q5_n_resolved": 4,
+  "q5_classification": "CONSISTENT",
+  "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 9)",
+  "scope_note": "This cross-check bears only on T28's own confound-mechanism question and constraint-3's energy-ledger bookkeeping. It does not test constraints 1/2/4, and does not re-open or re-score REALIZABILITY_MEMO.md's verdict. (Idealization 10)",
+  "historical_record_note": "experiments/087-.../results.json and NOTES.md remain the unedited historical record of the frozen Iteration-64 pipeline's output. Q1/Q5 above are a separate, R13-corrected reading supplied for forward citation only -- not a retroactive edit.",
+  "floor_gate_scope_note": "This cycle's own 5-point sample measures ratio_k near only ONE of exp-083's four delta_scene zero-crossings (37.127, 38.590, 40.265, 41.461 deg). The other three have never been FDTD-sampled for ratio_k. Any channel-general CONSISTENT claim requires closing that gap first -- see NOTES.md Next."
+}

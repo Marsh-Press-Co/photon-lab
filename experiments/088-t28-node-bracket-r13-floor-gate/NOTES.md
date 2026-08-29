@@ -257,3 +257,83 @@ angles: ≈37.1°/37.2° (nearest `delta_scene`'s zero-crossing at 37.127°),
 41.461°, floor margin only 1.31×). This is a real, quantified gap this
 cycle's own 8 calls do not close — named here explicitly so it is not
 lost regardless of whether this cycle's own predictions land.
+
+## Result
+
+All house gates PASS. **P1 (vacuum footprint): PASS**, both configs.
+**P2 (reproduction): PASS**, `max_dev=0.0` exactly. **P4 (`xi_ext`):
+PASS**, `≤3.86×10⁻⁴` everywhere (well inside `≤0.12`). **Non-negativity
+gate: PASS**, `sigma_abs≥0` at all 8 cells. 8 FDTD calls, 138.4s wall
+time — matches the frozen budget exactly.
+
+**Q1 (retroactive R13 reclassification of exp-087): CONFIRMED exactly
+as predicted.** θ=38.6° reclassifies `NODE-UNRESOLVABLE` (`frac_contrast
+=7.41×10⁻⁵`, `0.39×` FLOOR); θ=36.0°/41.8° both clear
+(`ratio_k`=2.64/5.71). **Corrected classification of exp-087's own
+3-angle primary result, at these 5 sampled angles only: CONSISTENT** —
+a separate, forward-citable reading supplied alongside exp-087's own
+unedited filed record (Idealizations 9-10), not a replacement of it.
+
+**Q3 (floor gate, new angles): CONFIRMED.** Both θ=38.4°/38.8° clear
+the floor (`frac_contrast`=1.437×10⁻³/1.538×10⁻³, margins 7.49×/8.02×
+FLOOR) — reproduces the desk-only pre-registered prediction exactly, as
+it must (no new FDTD was needed to score this).
+
+**Q4 (PRIMARY): qualitatively CONFIRMED, quantitatively PARTIALLY
+MISSED — a genuine, disclosed surprise, not smoothed over.**
+
+| θ | frac_p_abs | frac_contrast | ratio_k | label | predicted band | in band? |
+|---|---|---|---|---|---|---|
+| 38.4° | 1.304×10⁻³ | 1.437×10⁻³ | **0.908** | C | [1.5, 5.0] | **NO** |
+| 38.8° | 5.955×10⁻³ | 1.538×10⁻³ | 3.873 | C | [1.5, 5.5] | yes |
+
+Both angles classify "C" (CONSISTENT) — neither exceeds `RATIO_HIGH=10`
+nor falls below `RATIO_LOW=0.1` — so the qualitative prediction (neither
+new point reproduces or approaches the 38.6° spike) is CONFIRMED exactly
+as pre-registered, and the falsification clause literally stated in
+NOTES.md's own Q4 text ("Falsified if either reads `>10`... or `<0.1`")
+does not fire at either angle.
+
+**But the quantitative central-estimate band at θ=38.4° is missed —
+`ratio_k=0.908` sits below `[1.5,5.0]`, driven by `frac_p_abs(38.4°)
+=1.304×10⁻³`, which is LOWER than even the 36.0° value
+(`1.9655×10⁻³`, exp-087) that the linear-interpolation model was
+anchored on.** Assembling the full 5-point `frac_p_abs(θ)` sequence
+(36.0°/38.4°/38.6°/38.8°/41.8° = 1.9655×10⁻³ / **1.3041×10⁻³** /
+4.0006×10⁻³ / 5.9552×10⁻³ / 7.2142×10⁻³, exp-087+exp-088 combined,
+independently verified from both `results.json` files): the curve is
+**non-monotonic** — it dips at 38.4° below both its own 36.0° neighbor
+and the smooth-trend prediction, then rises steeply and monotonically
+through 38.6°→38.8°→41.8°. This is a real, well-resolved reading (it
+clears the box-dev noise floor with margin, `resolved=True`, same gate
+exp-087 used) — not a noise-floor artifact — and was NOT anticipated by
+any prediction in this document. **Disclosed here for Phase 5 to
+scrutinize, not adopted as evidence of any particular mechanism**: it
+could reflect genuine structure on the absorbed-power channel specific
+to a region ELECTROMAGNETISM's own Phase-2 critique flagged as
+plausible (a channel that need not share the ambient-contrast channel's
+own linewidth/smoothness, phase2_critique_em.md), or it could be an
+artifact of the linear-interpolation model's own crudeness (only two
+anchor points, no physical justification for smoothness given T28's own
+established periodic structure) — this cycle's own data cannot
+distinguish those readings and does not attempt to.
+
+**Q5 (combined 5-angle picture): CONFIRMED.** `n_resolved=4/5`
+(θ=38.6° excluded `NODE-UNRESOLVABLE` by construction), combined ratios
+`[2.642, 5.710, 0.908, 3.873]`, **CLASSIFICATION = CONSISTENT** — no
+angle reads "X", none reads "D", exactly as predicted. Scoped explicitly
+to these 5 sampled angles only (Idealizations 9-10; the forward-tripwire
+above, Next, is unaffected by this confirmation and remains open).
+
+**Q6 (NETD, new angles): CONFIRMED.** All 4 cells UNDETECTABLE
+(`dt_ss_full_K`=4.81×10⁻⁵–4.88×10⁻⁵ K, margin ≈409×–416× against the
+0.020K NETD band) — comfortably inside exp-087's own 374×–442× range,
+confirming THERMODYNAMICS' Phase-2 smoothness argument (§Idealizations
+9, carried inline). **NETD is an instrument/detector threshold, not a
+human-eye one — this does NOT bear on constraint-3/4's human-eye
+verdict.**
+
+**Q7 (T9 anchor cross-check, new angles): CONFIRMED.** `ratio_abs_ext`
+= 0.5131–0.5138 across all 4 cells, within the same 0.51–0.52 band
+exp-087 measured (and 0.7–0.9% of T9's established 0.51 broadside
+anchor) — informal context, not a scored falsifier, as pre-registered.

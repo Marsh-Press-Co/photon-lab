@@ -1,0 +1,67 @@
+==============================================================================
+exp-088 -- T28 node bracket (theta=38.4/38.8deg) + R13 floor gate
+==============================================================================
+
+[R13 floor gate] RMS[frac_contrast], n=31: 1.917438e-03  FLOOR_FRAC=0.1  FLOOR=1.917438e-04
+
+[P1] vacuum-footprint precondition (new angles' geometry is angle-independent, same as exp-087): PASS=True
+
+8 FDTD calls queued (2 configs x 2 angles x 2 legs = 8)
+  [ 1/8] C40 theta=+38.40 article=False steps=2800
+  [ 2/8] C40 theta=+38.40 article=True steps=2800
+  [ 3/8] C40 theta=+38.80 article=False steps=2800
+  [ 4/8] C40 theta=+38.80 article=True steps=2800
+  [ 5/8] G40 theta=+38.40 article=False steps=2800
+  [ 6/8] G40 theta=+38.40 article=True steps=2800
+  [ 7/8] G40 theta=+38.80 article=False steps=2800
+  [ 8/8] G40 theta=+38.80 article=True steps=2800
+
+total wall time: 138.4s
+
+[P2] reproduction precondition: max_dev=0.000e+00 PASS(<1e-9)=True
+
+[P4] xi_ext (extinction-routes agreement) <= 0.12 everywhere: PASS=True
+  C40 theta=38.4 BOX_A: xi_ext=0.000113
+  C40 theta=38.4 BOX_B: xi_ext=0.000386
+  C40 theta=38.8 BOX_A: xi_ext=0.000138
+  C40 theta=38.8 BOX_B: xi_ext=0.000218
+  G40 theta=38.4 BOX_A: xi_ext=0.000227
+  G40 theta=38.4 BOX_B: xi_ext=0.000344
+  G40 theta=38.8 BOX_A: xi_ext=0.000005
+  G40 theta=38.8 BOX_B: xi_ext=0.000182
+  [widths, direction-corrected] C40 theta=38.4 BOX_A: sigma_abs=159.151382 sigma_ext=310.175043
+  [widths, direction-corrected] C40 theta=38.4 BOX_B: sigma_abs=159.159272 sigma_ext=310.169905
+  [widths, direction-corrected] C40 theta=38.8 BOX_A: sigma_abs=160.073226 sigma_ext=311.598838
+  [widths, direction-corrected] C40 theta=38.8 BOX_B: sigma_abs=159.998006 sigma_ext=311.512013
+  [widths, direction-corrected] G40 theta=38.4 BOX_A: sigma_abs=159.316974 sigma_ext=310.256740
+  [widths, direction-corrected] G40 theta=38.4 BOX_B: sigma_abs=159.342661 sigma_ext=310.269560
+  [widths, direction-corrected] G40 theta=38.8 BOX_A: sigma_abs=160.569764 sigma_ext=312.485172
+  [widths, direction-corrected] G40 theta=38.8 BOX_B: sigma_abs=160.539280 sigma_ext=312.437374
+
+[non-negativity gate] sigma_abs>=0 everywhere: PASS=True
+
+[Q6] scene-specific detectability at new angles (NETD is an instrument threshold, NOT a human-eye one -- does not bear on constraint-3/4's human-eye verdict, Idealization 9):
+  C40 theta=38.4: p_abs_w=2.925321e-12 W  dt_ss=4.805995e-05 K  UNDETECTABLE
+  C40 theta=38.8: p_abs_w=2.955771e-12 W  dt_ss=4.856021e-05 K  UNDETECTABLE
+  G40 theta=38.4: p_abs_w=2.929136e-12 W  dt_ss=4.812263e-05 K  UNDETECTABLE
+  G40 theta=38.8: p_abs_w=2.973373e-12 W  dt_ss=4.884940e-05 K  UNDETECTABLE
+
+[Q7] T9 anchor (sigma_abs/sigma_ext) cross-check at new angles (informal context, not a scored falsifier):
+  C40 theta=38.4: ratio_abs_ext=0.513102
+  C40 theta=38.8: ratio_abs_ext=0.513716
+  G40 theta=38.4: ratio_abs_ext=0.513500
+  G40 theta=38.8: ratio_abs_ext=0.513848
+
+[PRIMARY Q4] ratio_k at the two new bracketing angles:
+  theta=38.4: frac_p_abs=1.304139e-03  frac_contrast=1.437049e-03  ratio_k=9.075118e-01  floor_pass=True  resolved
+  theta=38.8: frac_p_abs=5.955238e-03  frac_contrast=1.537528e-03  ratio_k=3.873254e+00  floor_pass=True  resolved
+
+[Q1] retroactive R13 reclassification of exp-087's own 3-angle result:
+  theta=36.0: frac_contrast=7.438280e-04  floor_pass=True  ratio_k=2.642368e+00  resolved
+  theta=38.6: frac_contrast=7.410063e-05  floor_pass=False  ratio_k=5.398840e+01  NODE-UNRESOLVABLE
+  theta=41.8: frac_contrast=1.263381e-03  floor_pass=True  ratio_k=5.710203e+00  resolved
+  Q1 corrected classification (5 sampled angles only, per Idealizations 9-10/NOTES.md scoping): CONSISTENT
+
+[Q5] combined 5-angle picture: n_resolved=4/5  CLASSIFICATION = CONSISTENT  (scoped to these 5 sampled angles only -- NOT a channel-general claim, see Next/forward-tripwire in NOTES.md)
+
+wrote /home/user/photon-lab/experiments/088-t28-node-bracket-r13-floor-gate/results.json
