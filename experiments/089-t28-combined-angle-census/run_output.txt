@@ -1,0 +1,103 @@
+==============================================================================
+exp-089 -- T28 combined angle census (theta=37.2/40.2/41.4deg)
+==============================================================================
+
+[R13 floor gate] RMS[frac_contrast], n=31: 1.917438e-03  FLOOR_FRAC=0.1  FLOOR=1.917438e-04  (unchanged from exp-088)
+
+[P1] vacuum-footprint precondition (angle-independent geometry, same as exp-087/088): PASS=True
+
+12 FDTD calls queued (2 configs x 3 angles x 2 legs = 12)
+  [ 1/12] C40 theta=+37.20 article=False steps=2800
+  [ 2/12] C40 theta=+37.20 article=True steps=2800
+  [ 3/12] C40 theta=+40.20 article=False steps=2800
+  [ 4/12] C40 theta=+40.20 article=True steps=2800
+  [ 5/12] C40 theta=+41.40 article=False steps=2800
+  [ 6/12] C40 theta=+41.40 article=True steps=2800
+  [ 7/12] G40 theta=+37.20 article=False steps=2800
+  [ 8/12] G40 theta=+37.20 article=True steps=2800
+  [ 9/12] G40 theta=+40.20 article=False steps=2800
+  [10/12] G40 theta=+40.20 article=True steps=2800
+  [11/12] G40 theta=+41.40 article=False steps=2800
+  [12/12] G40 theta=+41.40 article=True steps=2800
+
+total wall time: 150.4s
+
+[P2] reproduction precondition: max_dev=0.000e+00 PASS(<1e-9)=True
+
+[P4] xi_ext (extinction-routes agreement) <= 0.12 everywhere: PASS=True
+  C40 theta=37.2 BOX_A: xi_ext=0.000165
+  C40 theta=37.2 BOX_B: xi_ext=0.000369
+  C40 theta=40.2 BOX_A: xi_ext=0.000214
+  C40 theta=40.2 BOX_B: xi_ext=0.000009
+  C40 theta=41.4 BOX_A: xi_ext=0.000172
+  C40 theta=41.4 BOX_B: xi_ext=0.000066
+  G40 theta=37.2 BOX_A: xi_ext=0.000213
+  G40 theta=37.2 BOX_B: xi_ext=0.000339
+  G40 theta=40.2 BOX_A: xi_ext=0.000176
+  G40 theta=40.2 BOX_B: xi_ext=0.000030
+  G40 theta=41.4 BOX_A: xi_ext=0.000142
+  G40 theta=41.4 BOX_B: xi_ext=0.000002
+
+[Idealization 15] back_frac/fwd_frac read in this file: True  (expected False -- grep-verified, not assumed)
+  [widths, direction-corrected] C40 theta=37.2 BOX_A: sigma_abs=156.165294 sigma_ext=303.936841
+  [widths, direction-corrected] C40 theta=37.2 BOX_B: sigma_abs=156.233564 sigma_ext=303.973935
+  [widths, direction-corrected] C40 theta=40.2 BOX_A: sigma_abs=163.162411 sigma_ext=318.263363
+  [widths, direction-corrected] C40 theta=40.2 BOX_B: sigma_abs=163.347453 sigma_ext=318.481860
+  [widths, direction-corrected] C40 theta=41.4 BOX_A: sigma_abs=165.835259 sigma_ext=322.057691
+  [widths, direction-corrected] C40 theta=41.4 BOX_B: sigma_abs=165.749911 sigma_ext=322.020645
+  [widths, direction-corrected] G40 theta=37.2 BOX_A: sigma_abs=155.999234 sigma_ext=303.824275
+  [widths, direction-corrected] G40 theta=37.2 BOX_B: sigma_abs=156.070512 sigma_ext=303.863030
+  [widths, direction-corrected] G40 theta=40.2 BOX_A: sigma_abs=162.578131 sigma_ext=317.139227
+  [widths, direction-corrected] G40 theta=40.2 BOX_B: sigma_abs=162.740984 sigma_ext=317.342131
+  [widths, direction-corrected] G40 theta=41.4 BOX_A: sigma_abs=166.460024 sigma_ext=323.169755
+  [widths, direction-corrected] G40 theta=41.4 BOX_B: sigma_abs=166.380288 sigma_ext=323.130343
+
+[non-negativity gate] sigma_abs>=0 everywhere: PASS=True
+
+[Q7] scene-specific detectability at new angles (NETD is an instrument threshold, NOT a human-eye one -- does not bear on constraint-3/4's human-eye verdict, Idealization 9):
+  C40 theta=37.2: p_abs_w=2.812704e-12 W  dt_ss=4.620978e-05 K  UNDETECTABLE
+  C40 theta=40.2: p_abs_w=3.077251e-12 W  dt_ss=5.055601e-05 K  UNDETECTABLE
+  C40 theta=41.4: p_abs_w=3.164949e-12 W  dt_ss=5.199680e-05 K  UNDETECTABLE
+  G40 theta=37.2: p_abs_w=2.808673e-12 W  dt_ss=4.614355e-05 K  UNDETECTABLE
+  G40 theta=40.2: p_abs_w=3.055402e-12 W  dt_ss=5.019704e-05 K  UNDETECTABLE
+  G40 theta=41.4: p_abs_w=3.187843e-12 W  dt_ss=5.237291e-05 K  UNDETECTABLE
+
+[Q7] T9 anchor (sigma_abs/sigma_ext) cross-check at new angles (informal context, not a scored falsifier):
+  C40 theta=37.2: ratio_abs_ext=0.513808
+  C40 theta=40.2: ratio_abs_ext=0.512665
+  C40 theta=41.4: ratio_abs_ext=0.514924
+  G40 theta=37.2: ratio_abs_ext=0.513452
+  G40 theta=40.2: ratio_abs_ext=0.512640
+  G40 theta=41.4: ratio_abs_ext=0.515085
+
+[PRIMARY Q3] ratio_k at the three new census angles:
+  theta=37.2: frac_p_abs=1.433325e-03  frac_contrast=4.162655e-04  ratio_k=3.443295e+00  floor_pass=True  resolved
+  theta=40.2: frac_p_abs=7.100420e-03  frac_contrast=2.830881e-04  ratio_k=2.508201e+01  floor_pass=True  resolved
+  theta=41.4: frac_p_abs=7.233392e-03  frac_contrast=2.510967e-04  ratio_k=2.880719e+01  floor_pass=True  resolved
+
+[Q5] floor-gate-adequacy: any floor-clearing new angle with ratio_k>10.0: True  (CONFIRM=gate inadequate, REFUTE=gate adequate at this margin)
+
+[Q4] periodicity-recurrence REPORT (descriptive only, NOT scored -- Idealization 13: comparator bias + aliasing risk both disclosed, no CONFIRM/REFUTE verdict claimed):
+  frac_p_abs(37.2)=1.433325e-03  vs  frac_p_abs(36.0)=1.965467e-03 (filed, exp-087)
+  frac_p_abs(40.2)=7.100420e-03  vs  frac_p_abs(38.4)=1.304139e-03 (filed, exp-088)
+  frac_p_abs(41.4)=7.233392e-03  vs  frac_p_abs(38.8)=5.955238e-03 (filed, exp-088)
+
+[Q6] combined 8-point picture: n_resolved=7/8  CLASSIFICATION = ENERGY-DOMINANT  (scoped to these 8 sampled angles only -- NOT a channel-general claim)
+
+[R14(a) smoothness gate] p_abs_w(C40,theta) and p_abs_w(G40,theta) non-decreasing across the combined 8-point sorted angle list, within noise floor: PASS=True
+  C40: 36.0->37.2  2.748814e-12->2.812704e-12
+  C40: 37.2->38.4  2.812704e-12->2.925321e-12
+  C40: 38.4->38.6  2.925321e-12->2.941857e-12
+  C40: 38.6->38.8  2.941857e-12->2.955771e-12
+  C40: 38.8->40.2  2.955771e-12->3.077251e-12
+  C40: 40.2->41.4  3.077251e-12->3.164949e-12
+  C40: 41.4->41.8  3.164949e-12->3.234850e-12
+  G40: 36.0->37.2  2.754216e-12->2.808673e-12
+  G40: 37.2->38.4  2.808673e-12->2.929136e-12
+  G40: 38.4->38.6  2.929136e-12->2.953626e-12
+  G40: 38.6->38.8  2.953626e-12->2.973373e-12
+  G40: 38.8->40.2  2.973373e-12->3.055402e-12
+  G40: 40.2->41.4  3.055402e-12->3.187843e-12
+  G40: 41.4->41.8  3.187843e-12->3.258186e-12
+
+wrote /home/user/photon-lab/experiments/089-t28-combined-angle-census/results.json

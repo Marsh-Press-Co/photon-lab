@@ -1,0 +1,489 @@
+{
+  "angles": [
+    37.2,
+    40.2,
+    41.4
+  ],
+  "pair_keys": [
+    "C40",
+    "G40"
+  ],
+  "steps_main": 2800,
+  "total_new_fdtd_calls": 12,
+  "total_wall_time_s": 150.44084882736206,
+  "r13_floor_gate": {
+    "floor_frac": 0.1,
+    "rms_frac_contrast": 0.0019174375118374476,
+    "n_window_points": 31,
+    "floor": 0.00019174375118374476
+  },
+  "vacuum_footprint_check": {
+    "C40": {
+      "BOX_A": {
+        "box": [
+          80,
+          260,
+          702,
+          882
+        ],
+        "all_vacuum": true
+      },
+      "BOX_B": {
+        "box": [
+          68,
+          272,
+          690,
+          894
+        ],
+        "all_vacuum": true
+      }
+    },
+    "G40": {
+      "BOX_A": {
+        "box": [
+          120,
+          300,
+          742,
+          922
+        ],
+        "all_vacuum": true
+      },
+      "BOX_B": {
+        "box": [
+          108,
+          312,
+          730,
+          934
+        ],
+        "all_vacuum": true
+      }
+    }
+  },
+  "reproduction_precondition": {
+    "per_cell": {
+      "C40": {
+        "37.2": {
+          "fresh": 0.008078279213811657,
+          "ref": 0.008078279213811657,
+          "dev": 0.0
+        },
+        "40.2": {
+          "fresh": -0.005433176693810937,
+          "ref": -0.005433176693810937,
+          "dev": 0.0
+        },
+        "41.4": {
+          "fresh": -0.005817360666431347,
+          "ref": -0.005817360666431347,
+          "dev": 0.0
+        }
+      },
+      "G40": {
+        "37.2": {
+          "fresh": 0.009973929393851,
+          "ref": 0.009973929393851,
+          "dev": 0.0
+        },
+        "40.2": {
+          "fresh": -0.006812107857528726,
+          "ref": -0.006812107857528726,
+          "dev": 0.0
+        },
+        "41.4": {
+          "fresh": -0.006571861362515086,
+          "ref": -0.006571861362515086,
+          "dev": 0.0
+        }
+      }
+    },
+    "max_dev": 0.0,
+    "passed": true
+  },
+  "widths": {
+    "C40_37.2_BOX_A": {
+      "sigma_scat": 147.77154665352282,
+      "sigma_abs": 156.16529385947098,
+      "sigma_ext": 303.9368405129938,
+      "sigma_ext_cross": 303.88670007886293,
+      "back_frac": 0.6496403214002658,
+      "fwd_frac": 4.188699747353095e-05,
+      "i_inc": 0.32275438750977575,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_37.2_BOX_B": {
+      "sigma_scat": 147.74037017901097,
+      "sigma_abs": 156.23356433671512,
+      "sigma_ext": 303.9739345157261,
+      "sigma_ext_cross": 303.8616971895133,
+      "back_frac": 0.6785072320318691,
+      "fwd_frac": 3.621786646075011e-05,
+      "i_inc": 0.32275438750977575,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_40.2_BOX_A": {
+      "sigma_scat": 155.10095203648922,
+      "sigma_abs": 163.16241122961705,
+      "sigma_ext": 318.26336326610624,
+      "sigma_ext_cross": 318.33162476455317,
+      "back_frac": 0.5823224973336668,
+      "fwd_frac": 0.00016278070400909878,
+      "i_inc": 0.3331872288263273,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_40.2_BOX_B": {
+      "sigma_scat": 155.13440674307682,
+      "sigma_abs": 163.34745337691461,
+      "sigma_ext": 318.48186011999144,
+      "sigma_ext_cross": 318.4790284050803,
+      "back_frac": 0.6025871891732185,
+      "fwd_frac": 0.00013203717073045253,
+      "i_inc": 0.3331872288263273,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_41.4_BOX_A": {
+      "sigma_scat": 156.22243174098747,
+      "sigma_abs": 165.83525888700095,
+      "sigma_ext": 322.05769062798845,
+      "sigma_ext_cross": 322.0021725294614,
+      "back_frac": 0.5617759130922735,
+      "fwd_frac": 7.903388201615633e-05,
+      "i_inc": 0.3408795393829556,
+      "direction_correction_sign_applied": -1.0
+    },
+    "C40_41.4_BOX_B": {
+      "sigma_scat": 156.27073420557088,
+      "sigma_abs": 165.7499107186497,
+      "sigma_ext": 322.0206449242205,
+      "sigma_ext_cross": 321.9993968069252,
+      "back_frac": 0.5778410221670671,
+      "fwd_frac": 6.534408246466304e-05,
+      "i_inc": 0.3408795393829556,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_37.2_BOX_A": {
+      "sigma_scat": 147.82504078196965,
+      "sigma_abs": 155.9992339516721,
+      "sigma_ext": 303.82427473364174,
+      "sigma_ext_cross": 303.75947046374284,
+      "back_frac": 0.6488983398898625,
+      "fwd_frac": 7.279978930876172e-05,
+      "i_inc": 0.32469702673270523,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_37.2_BOX_B": {
+      "sigma_scat": 147.7925176999277,
+      "sigma_abs": 156.0705120382956,
+      "sigma_ext": 303.8630297382233,
+      "sigma_ext_cross": 303.76007703944293,
+      "back_frac": 0.677934384024267,
+      "fwd_frac": 6.649813999730937e-05,
+      "i_inc": 0.32469702673270523,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_40.2_BOX_A": {
+      "sigma_scat": 154.5610955186519,
+      "sigma_abs": 162.57813105009313,
+      "sigma_ext": 317.1392265687451,
+      "sigma_ext_cross": 317.1949309364712,
+      "back_frac": 0.5835254169179751,
+      "fwd_frac": 0.0001887751148427308,
+      "i_inc": 0.3344284177039701,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_40.2_BOX_B": {
+      "sigma_scat": 154.60114622967973,
+      "sigma_abs": 162.7409844938509,
+      "sigma_ext": 317.34213072353066,
+      "sigma_ext_cross": 317.33273267558246,
+      "back_frac": 0.6039054006341862,
+      "fwd_frac": 0.00015240525795027053,
+      "i_inc": 0.3344284177039701,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_41.4_BOX_A": {
+      "sigma_scat": 156.70973033789764,
+      "sigma_abs": 166.46002446665577,
+      "sigma_ext": 323.16975480455346,
+      "sigma_ext_cross": 323.12381882412285,
+      "back_frac": 0.560143643387355,
+      "fwd_frac": 6.163807262431129e-05,
+      "i_inc": 0.33975596851623374,
+      "direction_correction_sign_applied": -1.0
+    },
+    "G40_41.4_BOX_B": {
+      "sigma_scat": 156.75005466939376,
+      "sigma_abs": 166.38028829829798,
+      "sigma_ext": 323.1303429676917,
+      "sigma_ext_cross": 323.1309702184342,
+      "back_frac": 0.5760839508197793,
+      "fwd_frac": 5.2355015052002114e-05,
+      "i_inc": 0.33975596851623374,
+      "direction_correction_sign_applied": -1.0
+    }
+  },
+  "box_dev": {
+    "C40_37.2": {
+      "ext": 0.00012204510209986009,
+      "abs": 0.00043716805160035077
+    },
+    "C40_40.2": {
+      "ext": 0.000686528451289285,
+      "abs": 0.0011340978960966519
+    },
+    "C40_41.4": {
+      "ext": 0.00011502816062460115,
+      "abs": 0.0005146563458463044
+    },
+    "G40_37.2": {
+      "ext": 0.00012755730138921934,
+      "abs": 0.00045691305539087015
+    },
+    "G40_40.2": {
+      "ext": 0.0006397951996695139,
+      "abs": 0.0010016934178409917
+    },
+    "G40_41.4": {
+      "ext": 0.00012195397705327042,
+      "abs": 0.00047901091336049605
+    }
+  },
+  "xi_ext": {
+    "C40_37.2_BOX_A": 0.00016496991298007365,
+    "C40_37.2_BOX_B": 0.00036923338967087744,
+    "C40_40.2_BOX_A": 0.00021448116976585476,
+    "C40_40.2_BOX_B": 8.891291045723798e-06,
+    "C40_41.4_BOX_A": 0.00017238556986106813,
+    "C40_41.4_BOX_B": 6.598371138698003e-05,
+    "G40_37.2_BOX_A": 0.0002132952344104603,
+    "G40_37.2_BOX_B": 0.0003388128488979522,
+    "G40_40.2_BOX_A": 0.0001756464134974346,
+    "G40_40.2_BOX_B": 2.9614876306427963e-05,
+    "G40_41.4_BOX_A": 0.00014214195402782775,
+    "G40_41.4_BOX_B": 1.9411694262676933e-06
+  },
+  "xi_pass": true,
+  "nonneg_pass": true,
+  "back_fwd_frac_read_check": true,
+  "thermo": {
+    "C40_37.2": {
+      "sigma_ext_cells": 303.9368405129938,
+      "ratio_abs_ext_raw": 0.5138083741210525,
+      "p_abs_w": 2.8127043563514567e-12,
+      "dt_ss_full_K": 4.620978204853377e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "C40_40.2": {
+      "sigma_ext_cells": 318.26336326610624,
+      "ratio_abs_ext_raw": 0.5126647615207716,
+      "p_abs_w": 3.0772514226100976e-12,
+      "dt_ss_full_K": 5.0556012837342383e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "C40_41.4": {
+      "sigma_ext_cells": 322.05769062798845,
+      "ratio_abs_ext_raw": 0.514924076377852,
+      "p_abs_w": 3.1649493630721244e-12,
+      "dt_ss_full_K": 5.1996798004011065e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "G40_37.2": {
+      "sigma_ext_cells": 303.82427473364174,
+      "ratio_abs_ext_raw": 0.5134521726035035,
+      "p_abs_w": 2.808672836407139e-12,
+      "dt_ss_full_K": 4.614354840491226e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "G40_40.2": {
+      "sigma_ext_cells": 317.1392265687451,
+      "ratio_abs_ext_raw": 0.5126396151276849,
+      "p_abs_w": 3.055401643746287e-12,
+      "dt_ss_full_K": 5.019704389102374e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    },
+    "G40_41.4": {
+      "sigma_ext_cells": 323.16975480455346,
+      "ratio_abs_ext_raw": 0.5150854063287186,
+      "p_abs_w": 3.187842683949576e-12,
+      "dt_ss_full_K": 5.2372911250938455e-05,
+      "netd_classification": "UNDETECTABLE",
+      "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- this classification does NOT bear on constraint-3/4's human-eye verdict (panel Iteration 20, VISION SCIENCE's mandatory fix, Red Team attack 7)"
+    }
+  },
+  "q7_all_undetectable": true,
+  "ratio_abs_ext_new_angles": {
+    "C40_37.2": 0.5138083741210525,
+    "C40_40.2": 0.5126647615207716,
+    "C40_41.4": 0.514924076377852,
+    "G40_37.2": 0.5134521726035035,
+    "G40_40.2": 0.5126396151276849,
+    "G40_41.4": 0.5150854063287186
+  },
+  "biot_swing_x": 780.0,
+  "h_conv_swing_x": 116.0,
+  "frac_p_abs": {
+    "37.2": 0.0014333251680767798,
+    "40.2": 0.007100420428200747,
+    "41.4": 0.007233392465789568
+  },
+  "frac_contrast_new_angles": {
+    "37.2": 0.0004162655447269212,
+    "40.2": 0.0002830881250772126,
+    "41.4": 0.0002510967422703893
+  },
+  "ratio_k_new_angles": {
+    "37.2": 3.4432952384206352,
+    "40.2": 25.082014394860607,
+    "41.4": 28.80719359552826
+  },
+  "floor_pass_new_angles": {
+    "37.2": true,
+    "40.2": true,
+    "41.4": true
+  },
+  "resolved_new_angles": {
+    "37.2": true,
+    "40.2": true,
+    "41.4": true
+  },
+  "q3_predictions_check": {
+    "theta_37_2_in_band": true
+  },
+  "q5_floor_gate_inadequate": true,
+  "q4_periodicity_report": {
+    "theta_37_2": 0.0014333251680767798,
+    "anchor_36_0": 0.0019654670183146365,
+    "theta_40_2": 0.007100420428200747,
+    "anchor_38_4": 0.0013041389697994702,
+    "theta_41_4": 0.007233392465789568,
+    "anchor_38_8": 0.005955237665824989,
+    "scored": false,
+    "note": "Descriptive only (Idealization 13) -- not a CONFIRM/REFUTE periodicity verdict."
+  },
+  "q6_all_resolved_ratios": [
+    2.6423677612294223,
+    5.710203290428644,
+    0.9075117524430284,
+    3.873254176638027,
+    3.4432952384206352,
+    25.082014394860607,
+    28.80719359552826
+  ],
+  "q6_n_resolved": 7,
+  "q6_classification": "ENERGY-DOMINANT",
+  "r14a_smoothness_gate": {
+    "passed": true,
+    "steps": {
+      "C40": [
+        {
+          "theta_prev": 36.0,
+          "theta_cur": 37.2,
+          "v_prev": 2.748813736707898e-12,
+          "v_cur": 2.8127043563514567e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 37.2,
+          "theta_cur": 38.4,
+          "v_prev": 2.8127043563514567e-12,
+          "v_cur": 2.9253206899701102e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 38.4,
+          "theta_cur": 38.6,
+          "v_prev": 2.9253206899701102e-12,
+          "v_cur": 2.9418572483621216e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 38.6,
+          "theta_cur": 38.8,
+          "v_prev": 2.9418572483621216e-12,
+          "v_cur": 2.9557707370007384e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 38.8,
+          "theta_cur": 40.2,
+          "v_prev": 2.9557707370007384e-12,
+          "v_cur": 3.0772514226100976e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 40.2,
+          "theta_cur": 41.4,
+          "v_prev": 3.0772514226100976e-12,
+          "v_cur": 3.1649493630721244e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 41.4,
+          "theta_cur": 41.8,
+          "v_prev": 3.1649493630721244e-12,
+          "v_cur": 3.2348495483451184e-12,
+          "ok": true
+        }
+      ],
+      "G40": [
+        {
+          "theta_prev": 36.0,
+          "theta_cur": 37.2,
+          "v_prev": 2.7542164394468874e-12,
+          "v_cur": 2.808672836407139e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 37.2,
+          "theta_cur": 38.4,
+          "v_prev": 2.808672836407139e-12,
+          "v_cur": 2.929135714681061e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 38.4,
+          "theta_cur": 38.6,
+          "v_prev": 2.929135714681061e-12,
+          "v_cur": 2.9536263664210568e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 38.6,
+          "theta_cur": 38.8,
+          "v_prev": 2.9536263664210568e-12,
+          "v_cur": 2.9733730542252685e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 38.8,
+          "theta_cur": 40.2,
+          "v_prev": 2.9733730542252685e-12,
+          "v_cur": 3.055401643746287e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 40.2,
+          "theta_cur": 41.4,
+          "v_prev": 3.055401643746287e-12,
+          "v_cur": 3.187842683949576e-12,
+          "ok": true
+        },
+        {
+          "theta_prev": 41.4,
+          "theta_cur": 41.8,
+          "v_prev": 3.187842683949576e-12,
+          "v_cur": 3.258186276825606e-12,
+          "ok": true
+        }
+      ]
+    }
+  },
+  "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 9)",
+  "scope_note": "This cross-check bears only on T28's own confound-mechanism question and constraint-3's energy-ledger bookkeeping. It does not test constraints 1/2/4, and does not re-open or re-score REALIZABILITY_MEMO.md's verdict. (Idealization 10)",
+  "floor_rms_specificity_note": "FLOOR/RMS[frac_contrast] are specific to graded_black_shell/600nm and must be independently recomputed for any other article or wavelength. (Idealization 16)",
+  "q4_decoupling_note": "Q4's periodicity-recurrence report is NOT evidence about whether Q3's ratio_k finding at the same angle is real physics or an artifact -- the two questions are logically decoupled. (Red Team's Phase-2 finding 7.1, adopted.)"
+}

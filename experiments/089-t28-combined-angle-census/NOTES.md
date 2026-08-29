@@ -227,3 +227,178 @@ from exp-087/088):** `sigma_abs≥0`, `p_abs_w≥0` everywhere. HALT if
 violated.
 
 ## Result
+
+**Carried idealizations banner** (Phase-2 fix item 1, MANDATORY dual-
+section requirement per the Iteration-65 CHECKPOINT): every finding
+restated below is governed by Idealizations 9-10 (NETD is not a
+human-eye threshold; this cycle does not test constraint 1/2/3/4) and
+Idealization 16 (FLOOR/RMS are `graded_black_shell`/600nm-specific).
+This is the second consecutive T28 cycle (after exp-088) to carry this
+banner independently at both the Predictions and Result sections — the
+exact discipline the Iteration-65 CHECKPOINT existed to install.
+
+All house gates PASS. **P1 (vacuum footprint): PASS**, both configs.
+**P2 (reproduction): PASS**, `max_dev=0.0` exactly. **P4 (`xi_ext`):
+PASS**, `≤3.69×10⁻⁴` everywhere (well inside `≤0.12`). **Non-negativity
+gate: PASS**, `sigma_abs≥0` at all 12 cells. **R14(a) smoothness gate:
+PASS** — `p_abs_w(C40,θ)` and `p_abs_w(G40,θ)` are each strictly
+non-decreasing across the entire combined 8-point sorted angle list
+(36.0°→41.8°), with no step failing its own noise-floor tolerance — the
+parent-quantity smoothness R14(a) requires is confirmed, not merely
+assumed. 12 FDTD calls, 150.4s wall time — matches the frozen budget
+exactly.
+
+**Idealization 15 self-check bug, disclosed rather than silently
+corrected:** the printed `back_frac/fwd_frac read in this file: True`
+line is a **false positive** — direct inspection (not the naive
+in-file substring search `run.py` actually ran) shows the only three
+occurrences of the strings `"back_frac"`/`"fwd_frac"` in `run.py` are
+the check's own comment, its own print statement, and its own
+persisted-key name — none is an actual read of `w["back_frac"]` or
+`w["fwd_frac"]` off any `widths_direction_corrected()` return value.
+The substantive Idealization-15 claim ("not read anywhere in this
+cycle's own scored quantities") is confirmed true by manual grep for
+the subscript patterns `back_frac"]`/`fwd_frac"]`/`.back_frac`/
+`.fwd_frac`, which find zero matches — but the automated check that
+was supposed to verify this (Phase-2 fix item 9) is itself buggy
+(a naive self-referential string search), and its printed `True` must
+not be read as confirming the hazard it claims to check. Flagged for
+Phase 5.
+
+**Q1 (desk, R13 floor gate): CONFIRMED exactly as predicted, no
+surprise.** All three new angles clear: 37.2° (2.1709× FLOOR), 40.2°
+(1.4764× FLOOR), 41.4° (1.3095× FLOOR) — bit-exact to the frozen desk
+prediction, as they must (zero new FDTD needed to score this).
+
+**Q2 (preconditions): CONFIRMED.** All PASS, as predicted.
+
+**Q3 (PRIMARY, `ratio_k` at the three new census angles): the
+predicted CONSISTENT lean CONFIRMED at 37.2°, DECISIVELY MISSED at
+40.2° and 41.4° — the single most consequential possible outcome this
+document named, materializing at BOTH lowest-confidence angles at
+once (Idealizations 9-10, 16 apply).**
+
+| θ | frac_p_abs | frac_contrast | ratio_k | resolved margin | outcome |
+|---|---|---|---|---|---|
+| 37.2° | 1.433×10⁻³ | 4.163×10⁻⁴ | **3.443** | 1.046× (thinnest ever) | CONSISTENT — in predicted [1.5,9.0] band |
+| 40.2° | 7.100×10⁻³ | 2.831×10⁻⁴ | **25.08** | 2.087× | **ENERGY-DOMINANT** — `>RATIO_HIGH=10` |
+| 41.4° | 7.233×10⁻³ | 2.511×10⁻⁴ | **28.81** | 4.685× | **ENERGY-DOMINANT** — `>RATIO_HIGH=10` |
+
+37.2° lands within its predicted band, but with the thinnest
+noise-floor resolved-margin (1.046×) this sub-thread has ever accepted
+as `resolved=True` — barely above the gate's own pass line, disclosed
+here rather than glossed over as a clean confirmation. **40.2° and
+41.4° both read `ratio_k≫10` while formally clearing R13's floor gate**
+at 1.4764× and 1.3095× FLOOR respectively — exactly the outcome §6's
+own Q3 text named as "the single most consequential possible outcome
+of this cycle," now realized at both angles simultaneously, not one.
+
+**Q4 (periodicity-recurrence REPORT, descriptive only — not scored,
+per Idealization 13): the raw numbers do not resemble a recurring dip.**
+`frac_p_abs(40.2°)=7.100×10⁻³` sits close to (moderately above) the
+"smooth trend" desk estimate (`6.543×10⁻³`) that Idealization 13 named
+as unreliable — not near `frac_p_abs(38.4°)=1.304×10⁻³`'s own dip.
+`frac_p_abs(41.4°)=7.233×10⁻³` likewise sits close to its own smooth-
+trend estimate (`7.046×10⁻³`), not near `frac_p_abs(38.8°)=5.955×10⁻³`.
+Correctly not scored as CONFIRM/REFUTE (the decision this document made
+before seeing this data) — reported here only as description: whatever
+drove Q3's ENERGY-DOMINANT reading at these two angles, it does not
+present as the periodicity-inheritance dip PHOTONICS hypothesized at
+exp-088. **Per Idealization 13, this report is NOT evidence about
+whether Q3's ENERGY-DOMINANT finding at the same angles is real physics
+or an artifact — the two questions remain logically decoupled.**
+
+**Q5 (the floor-gate-adequacy prediction — the sharpest test this
+cycle registered): CONFIRMED — the gate is not fully protective at
+this margin.** Both 40.2° (1.4764× FLOOR) and 41.4° (1.3095× FLOOR)
+read `ratio_k>RATIO_HIGH=10` while floor-clearing. This is a genuinely
+new instrument-calibration finding: `FLOOR_FRAC=0.10`, adopted one
+cycle ago (R13, Iteration 64) and applied here for the first time to
+points below 2× margin, does not reliably exclude ENERGY-DOMINANT
+misclassification down to at least 1.31× FLOOR. **Whether the correct
+fix is tightening `FLOOR_FRAC`, a graduated caution zone instead of a
+binary gate, or something else is explicitly left to Phase 5 — this
+document does not pre-judge it** (Idealization 16).
+
+**Q6 (combined 8-point classification): the predicted CONSISTENT
+reading FLIPS to ENERGY-DOMINANT.** `n_resolved=7/8` (38.6° excluded
+`NODE-UNRESOLVABLE` by construction), combined ratios `[2.642, 3.443,
+0.908, 3.873, 25.08, 28.81, 5.71]` — two angles (40.2°, 41.4°) trigger
+`classify_resolved`'s own any-X veto priority, exactly the mechanism
+that drove exp-087's original filed ENERGY-DOMINANT result. **This is
+a SECOND and THIRD floor-clearing, non-artifactual ENERGY-DOMINANT
+angle** — not one isolated node (38.6°, already excluded by R13) but
+two more, both away from any previously-known zero-crossing's immediate
+neighborhood. **The single-node-artifact reading this sub-thread has
+held since exp-088 does not survive this cycle's own data**, scoped
+explicitly to these 8 sampled angles only (Idealizations 9-10; not a
+channel-general claim — 23 of the 31 grid angles remain FDTD-unsampled
+for `ratio_k`).
+
+**Q7 (NETD/T9-anchor extension): CONFIRMED, zero marginal cost.** All
+6 cells UNDETECTABLE (`dt_ss_full_K`≈4.61×10⁻⁵–5.24×10⁻⁵ K, margin
+≈382×–434× against the 0.020K NETD band) — consistent with exp-087/088's
+own range. `ratio_abs_ext`=0.5126–0.5151 across all 6 cells, within
+0.5–1.0% of T9's established 0.51 anchor — informal context, not a
+scored falsifier, as predicted. **NETD is an instrument/detector
+threshold, not a human-eye one — this does NOT bear on constraint-3/4's
+human-eye verdict** (Idealization 9).
+
+## Learned (Director's own read, before Phase 5 — subject to revision)
+
+1. **The "single-node-artifact" reading is dead.** exp-088 closed
+   believing exactly one point (38.6°) drove ENERGY-DOMINANT and every
+   floor-clearing point was CONSISTENT. This cycle's own 3 new points
+   put two MORE floor-clearing points at `ratio_k` 2.5–2.9× above
+   `RATIO_HIGH`, at angles with no prior connection to 38.6° beyond
+   sharing R13's original hazard class (a `delta_scene` zero-crossing
+   nearby). Whatever T28's energy-interception channel is actually
+   doing, it is not confined to one node's immediate neighborhood.
+2. **R13's `FLOOR_FRAC=0.10` looks materially too permissive, not just
+   imperfect.** Both misses happened well inside the "clears" region
+   (1.31×, 1.48×) — not at the ragged edge near 1.0× where some slop
+   would be expected. This is the first real evidence the gate's
+   calibration, not merely its existence, needs revisiting.
+3. **The proposal's own distrusted, unscored naive interpolation
+   (`ratio_k≈20–28`, explicitly NOT pre-registered as a committed
+   band because of documented bias) landed closer to the real measured
+   values (25.08, 28.81) than the qualitative CONSISTENT lean the
+   document DID commit to.** Worth Phase 5 scrutiny: was declining a
+   numeric band at exactly the two angles that most needed one the
+   right call, or did it (correctly) avoid a biased number while still
+   under-weighting what the same biased method's DIRECTION was saying?
+4. **37.2°'s own resolved-margin (1.046×) is the thinnest this
+   sub-thread has ever accepted as `resolved=True`.** It happened to
+   land in-band, but on a noise-floor test with almost no room to
+   spare — a felt-lucky pass, not a robust one, and worth its own
+   scrutiny independent of the 40.2°/41.4° story.
+5. **The Idealization-15 self-check (Phase-2 fix item 9) is itself
+   broken** — a naive in-file string search that matches its own
+   diagnostic text. The underlying claim it was meant to verify still
+   holds (manually confirmed), but the automated check should not be
+   trusted or reused as written.
+6. Q4's decision to report raw numbers rather than a scored
+   CONFIRM/REFUTE verdict (Phase-3 synthesis, Director's choice) held
+   up under real data — the raw numbers show no resemblance to the
+   periodicity-inheritance dip PHOTONICS hypothesized, so a labeled
+   verdict would have had to report REFUTE, but on a comparator this
+   same cycle's own idealizations already flagged as unreliable. Good
+   that no falsifiable claim was staked on it.
+
+## Next
+
+The clearest, cheapest, most decisive follow-up this cycle's own data
+demands: **densify around 40.2° and 41.4° specifically** (the two new
+ENERGY-DOMINANT points), not the untested remainder of the grid in
+general — is each an isolated spike (mirroring 38.6°'s own shape) or
+part of a broader elevated region? A tight bracket at each (e.g.
+±0.2°/±0.4°, mirroring exp-088's own 38.6° bracket design) would show
+whether R13's floor gate is failing at isolated points or across a
+wider band. Second priority: revisit `FLOOR_FRAC` itself given Learned
+item 2 — a tightened threshold (e.g. 0.20–0.30×RMS) recomputed once
+against this cycle's now-larger sample, or a graduated caution zone
+replacing the binary gate. Both are Phase-5's to rank, not pre-decided
+here. The 23 still-FDTD-unsampled grid angles, PHOTONICS' grazing-
+incidence validity check, the x-wall wavelength-generality leg (now 15
+cycles deferred), and the still-queued formal null-controlled period
+fit (R14(b)) all remain open, unaffected by this cycle's own scope.
