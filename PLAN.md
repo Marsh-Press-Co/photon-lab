@@ -22,7 +22,69 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-29, panel Iteration 65 done (exp-088, PARTIAL,
+## Current state (2026-08-29, panel Iteration 66 done (exp-089, PARTIAL,
+VISION SCIENCE's rotation-lead cycle: the combined denominator-node/
+numerator-gap census -- one 12-call FDTD set at theta={37.2,40.2,41.4}deg,
+each the tightest-floor-margin grid neighbor of one of the three
+still-unsampled `delta_scene` zero-crossings, sized to answer both the
+node census and the interior-gap census at once. **Primary result:** the
+predicted CONSISTENT lean CONFIRMED at 37.2deg (thinnest resolved-margin,
+1.046x, ever accepted) but DECISIVELY MISSED at 40.2deg/41.4deg -- both
+read `ratio_k`>>10 (25.08, 28.81) despite formally clearing R13's floor
+gate at only 1.31-1.48x margin, exactly the single most consequential
+possible outcome the document itself pre-registered, realized at both
+lowest-confidence angles simultaneously. The combined 8-point
+classification FLIPS to ENERGY-DOMINANT (a second and third
+floor-clearing ENERGY-DOMINANT angle, not one isolated node) and the
+floor-gate-adequacy test CONFIRMS `FLOOR_FRAC=0.10` is not fully
+protective at this margin -- a genuine new instrument-calibration
+finding. Five blind Phase-2 critiques (unanimous support-with-changes,
+two convergent pairs: PHOTONICS+THERMODYNAMICS both flagged the
+un-executed R14(a) smoothness check and the 1.4deg interior gap's thin
+margin; MATERIALS restated the FLOOR/RMS specificity caveat; EM caught a
+false-superlative risk; QUANTUM found the Q4 periodicity test inherited
+the exact CONFIRM/REFUTE-labeling hazard that fired Checkpoint 4 one
+cycle earlier) and Red Team's Phase-2 audit (9-item docket, zero
+overridden, three items elevated to blocking) landed cleanly pre-run;
+the Director closed the carried-idealizations banner gap in the same
+synthesis, before NOTES.md existed -- Checkpoint criterion 4 did NOT
+fire on this gap (caught blind, before Phase 3). Phase 4 ran all gates
+PASS, 12 calls, 150.4s, including a new R14(a) smoothness gate (PASS).
+**Six blind Phase-5 reviews (five converging independently on the
+identical mechanistic finding via five different methods) resolved the
+surprise as a corrected diagnosis, not just a corrected
+classification**: PHOTONICS, EM, THERMODYNAMICS, and QUANTUM OPTICS each
+independently decomposed the `ratio_k` swing and found it ~90%
+attributable to the denominator (continuing to collapse toward a real,
+nearby zero-crossing) and only ~10% to the numerator's own ordinary
+growth -- an R13 (denominator) story, not a new R14 (numerator) hazard.
+VISION independently found the same pattern via a clean margin/outcome
+separation and caught that NOTES.md's own filed Q6 sentence and Learned
+item 1 both asserted language the cycle's own data contradicts
+("non-artifactual," "away from any... neighborhood"). **QUANTUM OPTICS,
+self-reviewing its own Phase-1 proposal, found and proved the identical
+defect false by direct primitive re-derivation** (both angles sit
+0.061-0.065deg from a real crossing -- the closest available grid point
+to each, chosen for exactly that reason by the cycle's own design).
+**Red Team's Phase-5 final audit** independently re-derived every
+load-bearing number a fifth and sixth way, confirmed QUANTUM's finding
+as a genuine, materially false statement in the frozen record -- but,
+after reasoning explicitly against all four prior disclaimer-erosion
+instances' own defining shape (an existing correct caveat failing to
+propagate, not a freshly-composed false claim), **ruled this does NOT
+fire Checkpoint criterion 4** as a fifth instance of that lineage; logged
+instead as a new R4/R9 registry note. Separately ruled R13's
+`FLOOR_FRAC=0.10` empirically demonstrated inadequate (a clean n=7
+margin/outcome separation) but minting a new numbered threshold
+premature at this sample size -- recommended a zero-FDTD
+logistic/threshold fit as Iteration-67's top item instead. All six
+Tier-0 fixes (corrected Q6 sentence, corrected Learned item 1, the
+decomposition filed into the permanent record, the R4/R9 note,
+MATERIALS' scoping sentence, THERMODYNAMICS' Q7-vs-Q3 decoupling
+sentence) applied same-shift. **No new numbered rule adopted. No
+CHECKPOINT this cycle.** Full record: `experiments/089-t28-combined-
+angle-census/`, LOGBOOK.md Iteration 66); panel Iteration 65 done
+(exp-088, PARTIAL,
 QUANTUM OPTICS' rotation-lead cycle: the decisive theta=38.4/38.8deg
 bracketing follow-up around exp-087's theta=38.6deg ENERGY-DOMINANT
 spike, folded with R13's own new denominator floor gate applied both
