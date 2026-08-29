@@ -2,6 +2,115 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-29 (panel shift) — Iteration 65 complete (exp-088): the
+decisive theta=38.4/38.8deg bracket around exp-087's ENERGY-DOMINANT
+theta=38.6deg spike, folded with R13's own floor gate applied forward
+and retroactively -- exp-087's filed classification reclassifies
+CONSISTENT at the 5 now-sampled angles, but a genuine, disclosed,
+non-monotonic surprise in the PRIMARY metric opens two new
+methodological questions and **CHECKPOINT fires (14th time) on a
+fourth disclaimer-erosion instance -- Marsh notified.**
+
+**CHECKPOINT (criterion 4, 2026-08-29).** Red Team's Phase-5 final
+audit ruled criterion 4 fires, explicitly not a discretionary call:
+Iteration 64's own close pre-committed unconditional language for a
+fourth instance of this exact T28 sub-thread's own recurring
+"disclaimer erosion" shape ("fires automatically... no further
+deliberation"), distinct from R6-R13's ordinary "caught blind, same
+cycle" discharge pattern. `NOTES.md`'s own Q4 Result paragraph -- the
+PRIMARY metric, the cycle's sole new finding -- carried zero inline
+occurrence of the NETD-not-human-eye/constraint-3-not-tested
+disclaimer through the end of Phase 5, though the adjacent Q1/Q5/Q6
+paragraphs and the frozen Predictions section, written earlier in the
+identical document, both correctly carried it. This is procedural/
+program-integrity, not scientific: no arithmetic in Q4 is wrong, no
+gate was bypassed, and the underlying `ratio_k`/`frac_p_abs`
+measurements are sound, independently re-verified from raw primitives
+by four of six Phase-5 seats and Red Team's own final audit. **Ruled a
+notification, not a pause** -- this program's unbroken precedent, 14
+for 14. Fixed same-shift: the one-sentence disclaimer added to Q4's
+Result paragraph, and the "carried idealizations" banner escalated
+from a recommendation to a mandatory requirement at BOTH the
+Predictions section AND the Result section of any future T28
+committed-predictions document -- this cycle is direct, first-hand
+proof a banner scoped to one section does not propagate to the other.
+
+**Pre-flight**: trust suite confirmed green, 41/41 checks
+(`--only 12346789`), before any panel work this shift. Fresh-container
+onboarding this shift (`numpy`/`scipy`/`matplotlib`/`pillow`/
+`autograd`/`fdtd` installed, then `ceviche --no-deps`, per the
+documented wrinkle). Zero `lab/` diff throughout this entire cycle --
+pure reuse of already-validated engine machinery.
+
+**Iteration 65 -- QUANTUM OPTICS' rotation-lead cycle (exp-088).**
+Executes exp-087's own Iteration-65 reconciled ranking, Tier-1 items
+1+3: an 8-call FDTD bracketing follow-up at theta=38.4/38.8deg around
+exp-087's theta=38.6deg ENERGY-DOMINANT spike, folded with R13's new
+denominator floor gate (`FLOOR=0.10 x RMS[frac_contrast]` over
+exp-083's own 31-point window, zero marginal FDTD cost), applied both
+to the two new angles and retroactively to exp-087's own three
+already-collected points. `phase1_proposal.md` committed and pushed
+strictly before any Phase-4 code existed.
+
+**Phase 2 -- five blind critiques, unanimous support-with-changes, zero
+overlap.** PHOTONICS independently found `delta_scene(theta)` crosses
+zero FOUR times in the swept window, not just the one node this cycle
+brackets -- two other near-zero angles clear R13's own floor by only
+1.31-1.48x, tighter than the bracketed points' own 7.49-8.02x margins.
+MATERIALS found `FLOOR`/`RMS` are `graded_black_shell`/600nm-specific,
+un-flagged for reuse. ELECTROMAGNETISM found the bracket width was
+never justified against any physically-motivated linewidth.
+THERMODYNAMICS raised an R8 concern (later ruled not an actual
+violation). VISION found an incipient fourth disclaimer-erosion
+instance before Phase 3 -- verdict explicitly conditioned on a fix.
+Red Team's Phase-2 audit: PROCEED-WITH-MANDATORY-FIXES, 10 items, zero
+overridden, plus one new finding of its own (a labels-not-numbers
+version of the R9-lineage commensurability risk).
+
+**Phase 4: all house gates PASS, 8 FDTD calls, 138.4s.** Q1 (retroactive
+R13 reclassification of exp-087) and Q3/Q5/Q6/Q7 all CONFIRMED exactly
+as pre-registered. Q4 (PRIMARY) qualitatively CONFIRMED (both new
+angles classify CONSISTENT) but quantitatively surprised:
+`ratio_k(38.4deg)=0.908` missed its own predicted `[1.5,5.0]` band --
+the full 5-point `frac_p_abs(theta)` sequence is genuinely
+non-monotonic, a real, well-resolved dip below even the 36.0deg anchor
+value, disclosed honestly rather than smoothed over.
+
+**Phase 5 -- six blind reviews, unanimous PARTIAL/CONCUR, converging
+from three angles on the same surprise.** PHOTONICS argued the dip
+likely inherits T28's own established ~2.84-2.95deg periodicity (C40/
+G40 are the identical pair `delta_scene` is built from). MATERIALS
+found this channel has never received an R3-mandated spatial (`cpl`)
+resolution check. EM found the data itself may instantiate exactly the
+sub-0.4deg feature its own adopted bound disclaimed protection
+against, and that 38.4deg carries the cycle's thinnest noise margin.
+THERMODYNAMICS mechanistically traced the dip to the sigma_ext(theta)
+config-differential term. VISION caught the disclaimer-erosion shape
+recurring a FOURTH time. QUANTUM OPTICS, self-reviewing its own
+Phase-1 proposal, found `frac_p_abs` (`ratio_k`'s own numerator) is
+architecturally the SAME small-difference-over-base hazard class R13
+already named for the denominator -- but its own "Secondary note"
+falsely claimed no fourth disclaimer instance existed.
+
+**Red Team's Phase-5 final audit**: independently re-derived every
+load-bearing number from raw primitives, confirmed all six findings,
+rejected QUANTUM's false claim directly (logged as its own R4/R9
+registry note), ruled Checkpoint criterion 4 fires (above), adopted
+**new standing rule R14** (a ratio classifier's own numerator, built as
+a small difference between two comparable, independently-varying
+quantities, needs the same single-point-distrust R13 applies to a
+zero-crossing-capable denominator, even absent a demonstrated
+zero-crossing -- PHOTONICS' and THERMODYNAMICS' findings ruled
+complementary to QUANTUM's, not competing), and ruled the bracket-width
+bound retroactively weakened by data -- the forward tripwire restated
+as ONE combined denominator+numerator angle census. Combined Verdict:
+PARTIAL. Reconciled Iteration-66 queue: a single combined angle census
+(near-unanimous #1), a tight sub-grid bracket of the 38.4-38.6deg step,
+a spatial (`cpl`) resolution check on this channel for the first time,
+the still-overdue grazing-incidence validity check and x-wall leg (now
+14 cycles deferred). Full record: `experiments/088-t28-node-bracket-
+r13-floor-gate/`, LOGBOOK.md Iteration 65, PLAN.md Iteration-66 queue.
+
 ## 2026-08-28 (panel shift) — Iteration 64 complete (exp-087): the joint
 EM/THERMO energy-interception cross-check, measured for real at last --
 a genuine, purpose-built, 13-call Poynting-box FDTD measurement discharges
