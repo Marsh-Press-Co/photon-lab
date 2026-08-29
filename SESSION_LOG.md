@@ -2,6 +2,152 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-29 (panel shift) — Iteration 67 complete (exp-090): the
+zero-FDTD `FLOOR_FRAC` caution-zone fit -- a sound, usable calibration
+deliverable ships, but four independent, previously-uncaught
+record-hygiene defects surface at Phase 5 on top of a nine-item Phase-2
+docket, an unusually deep (nine-plus-party) verification stack, not a
+clean pass. **No CHECKPOINT this cycle** (four Phase-5 near-misses, each
+individually ruled non-firing).
+
+**Pre-flight**: fresh-container onboarding this shift (`numpy`/`scipy`/
+`matplotlib`/`pillow`/`autograd`/`fdtd` installed, then `ceviche
+--no-deps`, per the documented wrinkle). Trust suite confirmed green,
+41/41 checks (`--only 12346789`), before any panel work. Zero `lab/` diff
+throughout this entire cycle -- pure reuse of already-validated engine
+machinery, zero new FDTD calls (a desk-only statistics cycle).
+
+**Iteration 67 -- PHOTONICS' rotation-lead cycle (exp-090).** Executes
+exp-089's own near-unanimous Iteration-67 Tier-1 item 1, ranked ahead of
+any new FDTD bracket by Red Team's own recommendation: a zero-FDTD
+logistic/threshold fit of R13's `FLOOR_FRAC=0.10` floor gate against all
+7 now-resolved (theta, margin, `ratio_k`) points across
+exp-087/088/089 -- a perfectly rank-separated n=7 sample (both
+misclassified points at floor-margin 1.31-1.48x, every correct
+classification at 2.17x or above). Method: a non-parametric caution zone
+(the order-statistic gap between the largest misclassified and smallest
+correctly-classified margin), an exact permutation test, Firth's
+bias-reduced logistic regression (replacing a demonstrably divergent
+naive MLE at this perfectly-separated sample size, verified numerically),
+and an exhaustive leave-one-out jackknife. `phase1_proposal.md` committed
+and pushed strictly before any Phase-2 critique or Phase-4 code existed.
+
+**Phase 2 -- five blind critiques, unanimous support-with-changes, zero
+overlap.** MATERIALS found the n=7 sample's own `frac_contrast` values
+have never passed an R3-mandated spatial (`cpl`) resolution check on this
+channel -- undischarged two cycles running, and load-bearing precisely at
+40.2deg/41.4deg, the points setting the zone's own lower edge.
+ELECTROMAGNETISM found the exact permutation test's null (reshuffle `Y`
+with margin held fixed) is not exchangeable with the actual generative
+mechanism, since `margin` mechanically drives ~90% of the classification
+per exp-089's own decomposition -- an R10-lineage failure shape applied to
+a new instrument. THERMODYNAMICS found the caution zone risks being
+misread as a signal to deprioritize sampling in the CAUTION region, when
+R14's own established `sigma_ext(theta)`-differential concentration there
+argues for the opposite. QUANTUM OPTICS found the leave-one-out
+jackknife's own stated falsifier can never actually fire given the
+sample's perfect rank separation -- a pure order-statistics deduction, not
+an empirical stress test. VISION SCIENCE found the proposal's own
+Predictions section carried the FLOOR/RMS specificity caveat inline but
+never the mandatory NETD/constraint-3-4 disclaimer -- the identical
+disclaimer-erosion shape that fired Checkpoint criterion 4 a fourth time
+one cycle earlier. Red Team's Phase-2 audit: PROCEED-WITH-MANDATORY-FIXES,
+9 items, zero overridden, upheld all five blind critiques and added three
+of its own (37.2deg's own pre-existing "felt-lucky pass" fragility sets
+the zone's upper edge, undisclosed; the n=7 population is a targeted,
+crossing-proximity-enriched sample, not representative; the proposal's
+regressor-choice defense rested on an argued, not computed, collinearity
+claim -- an R8-shape gap). Compounding finding: the permutation test and
+LOO jackknife are **reclassified from falsifiable predictions to
+diagnostic sanity checks** -- a real methodological correction reaching
+the scoring table, not a wording nit. Ruled VISION's disclaimer-erosion
+finding non-firing (caught blind, at Phase 2, before Phase 3 froze
+anything), naming a governance concern: the second consecutive T28
+Phase-1 draft to miss this exact just-escalated requirement.
+
+**Phase 3 (Director): all nine items adopted in full, zero overridden.**
+Independently re-verified every load-bearing number before freezing,
+including computing Red Team's own requested distance-to-crossing
+sensitivity comparison in full rather than leaving it uncomputed: all
+four `delta_scene(theta)` zero-crossings located at
+37.127/38.590/40.265/41.461deg; the distance regressor ALSO achieves
+perfect separation (`AUC=1.0`) but with a gap ratio (1.11) thinner than
+margin's own (1.47) -- folded in as a new PRIMARY prediction (Q8),
+discharging the R8-shape gap with a computed answer.
+
+**Phase 4: all frozen predictions reproduced exactly, zero FDTD calls.**
+Naive MLE diverges (blowup guard fires at iteration 11); exact permutation
+`p=1/21`; caution zone = `[1.4764, 2.1709]`; Firth's fit converges (20
+iterations) to `m50=2.071013`, inside the zone; LOO jackknife preserves
+`AUC=1.0` in all 7 subsets exactly as predicted; the 38.6deg out-of-sample
+point scores `P(Y=1)=0.984`, below the zone; Q7's live recomputation of
+37.2deg's own resolved-gate margin (1.045659x) matches exp-089's filed
+1.046x figure; Q8's distance comparator reproduced bit-exact. No
+surprises -- a clean confirmation.
+
+**Phase 5 -- six blind reviews, five CONCUR/CONCUR-variant, one PARTIAL,
+four genuinely new, non-overlapping findings surfacing after eight prior
+independent verification passes.** PHOTONICS (self-reviewing its own
+proposal) and ELECTROMAGNETISM independently, by different computations,
+found the physical mechanism behind Q8: the four `delta_scene`
+zero-crossings have measurably different local slopes (~1.8x spread),
+which `margin` implicitly normalizes for and raw distance does not -- a
+genuine convergent discovery. MATERIALS found `NOTES.md`'s own Q1
+narrative ("diverges after 2000 steps, still climbing") does not describe
+the committed `run.py`'s actual behavior (a hard exit at iteration 11) --
+an R4-shape defect surviving eight prior passes. ELECTROMAGNETISM
+separately found Q8's "roughly a third"/"roughly 3x" gap-ratio language
+matches neither natural reading of its own cited numbers (1.32x direct,
+4.20x excess-over-edge). QUANTUM OPTICS found Q8's own "margin is
+empirically more robust" claim is confounded by sample construction: the
+three points setting both zone edges were selected by exp-089's own rule
+as the tightest-**margin** grid neighbor of each crossing, not by
+distance -- connecting Red Team's own separate Phase-2 findings (sample
+curation; the distance regressor) which had never been combined. VISION
+SCIENCE found the Result section's carried-idealizations banner narrower
+than the Predictions section's own per-item citations -- a third distinct
+catch of the banner-carry-forward mechanism inside two consecutive T28
+cycles.
+
+**Red Team's Phase-5 final audit**: upheld all four assigned findings,
+extending MATERIALS' own the furthest -- traced `phase3_synthesis.md`'s
+own uncommitted `beta=(65.0,-256.8)` figure to a variant of the committed
+function that exits via a **mislabeled "converged" gradient-underflow
+branch** at iteration 24, the opposite of the "diverges, still climbing"
+narrative it was cited to support. Confirmed QUANTUM's sample-selection
+confound directly against exp-088's/exp-089's own selection-rule text.
+Ruled VISION's Phase-5 banner finding a **milder** variant than the
+Iteration-65 firing precedent (the mandatory 6/7/13 disclaimer itself did
+not fail to propagate -- only a supplementary, self-invented per-item
+convention around it did) and, independently, non-firing on the ordinary
+discharge test. **Checkpoint criterion 4 does NOT fire** on any of the
+four Phase-5 findings, reasoned through individually rather than by
+inertia; recommended a mechanical lint-style safeguard checking per-item
+idealization-citation parity between the Predictions and Result sections,
+for Iteration 68's board. All seven Tier-0 fixes applied same-shift,
+before this LOGBOOK entry.
+
+**Combined Verdict: PARTIAL.** The core deliverable -- the caution zone
+`[1.4764, 2.1709]` and Firth's corroborating fit (`m50=2.071`) -- is
+sound, correctly scoped, and now independently reproduced by at least
+nine parties across every phase; the permutation-test/LOO reclassification
+is a genuine, completely-executed methodological correction reaching
+code, not just prose. Set against that: Q8's own quantitative "measurably
+more robust" claim is confounded by inherited sample construction; a
+genuinely uncaught R4-shape narrative defect survived eight verification
+passes before a ninth found it; a real, narrower-than-first-characterized
+banner-carry-forward gap recurred a third time. No new numbered rule
+adopted. Reconciled Iteration-68 queue: a combined FDTD cycle running the
+still-overdue R3 spatial resolution check jointly with a repeat/denser
+measurement at 37.2/40.2/41.4deg (near-unanimous rank 1 across all six
+seats); a zero-cost unbiased margin-vs-distance rebuild on the full
+31-point window (rank 2); PHOTONICS' own long-deferred grazing-incidence
+validity check (rank 3); the x-wall wavelength-generality leg (now
+FIFTEEN consecutive cycles deferred); a mechanical banner-parity lint
+safeguard, named for the board. Full record: `experiments/090-t28-
+floor-frac-threshold-fit/`, LOGBOOK.md Iteration 67, PLAN.md Iteration-68
+queue.
+
 ## 2026-08-29 (panel shift) — Iteration 66 complete (exp-089): the
 combined denominator-node/numerator-gap census -- R13's floor gate
 demonstrably fails at two more near-crossing angles (40.2/41.4deg,
