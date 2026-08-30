@@ -1,0 +1,15 @@
+==============================================================================
+exp-091 -- T28 R3 resolution & denser recheck
+==============================================================================
+
+[R13 floor gate] RMS[frac_contrast], n=31: 1.917438e-03  FLOOR_FRAC=0.1  FLOOR=1.917438e-04  (unchanged from exp-088, applied unrecomputed against the new cpl=30 numbers -- Idealization 6)
+
+[P1] vacuum-footprint precondition (native + R3 geometry): PASS=True
+
+40 FDTD calls queued (Leg1=12 native cpl=20 STEPS=4200, Leg2=12 R3 cpl=30 STEPS=4200, Leg3=8 R3 settling STEPS=6300, Leg4=8 R3 bracket STEPS=4200)
+  [ 1/40] C40      theta=+37.20 article=False steps=4200
+  [ 2/40] C40      theta=+37.20 article=True steps=4200
+  [ 3/40] C40      theta=+40.20 article=False steps=4200
+  [ 4/40] C40      theta=+40.20 article=True steps=4200
+  [ 5/40] C40      theta=+41.40 article=False steps=4200
+  [ 6/40] C40      theta=+41.40 article=True steps=4200
