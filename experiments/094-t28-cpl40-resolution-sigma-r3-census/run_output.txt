@@ -1,0 +1,170 @@
+==============================================================================
+exp-094 -- T28 cpl=40 resolution check, sigma_max comparability close, R3 census
+==============================================================================
+
+[R13 floor gate] RMS[frac_contrast], n=31: 1.917438e-03  FLOOR=1.917438e-04  (unchanged, applied unrecomputed -- Idealization 6)
+
+==============================================================================
+MANDATORY NEW-SUITE GATES 1-4 (static/algebraic, R4 family)
+==============================================================================
+[Gate 1] vacuum-footprint precondition (R4_CONFIGS): PASS=True
+[Gate 2] A congruence: C40_R4.A=1504  G40_R4.A=1504  round(A_HALF_APERTURE*R4_RATIO)=1504  PASS=True
+[Gate 3] L_GEOMETRIC_M_R4=2.340000e-06  L_GEOMETRIC_M=2.340000e-06  L_GEOMETRIC_M_R3=2.340000e-06  PASS=True
+[Gate 4] SIGMA_R4_CORRECTED=0.25  PASS=True
+[Gate 6, documentation-only] 2*SIGMA_R4_CORRECTED*R4_R_OUT=78.0  2*SIGMA_NATIVE*R_OUT=78.0  dev=0.000e+00  PASS=True  (non-discriminating -- reduces to a tautology already implied by Gate 4, per phase3_synthesis.md; NOT a substitute for Gate 5 below)
+
+[Gate 5] (mandatory, Red Team RT-1) runtime sigma_e/sigma_max check -- wired INSIDE `_run_sim_r4_sigma` itself, fires on every Rank 1a/1b article call, before any FDTD step. See per-call confirmation below each Rank 1a/1b block.
+
+==============================================================================
+RANK 2 -- sigma@41.6deg sigma-comparability close (cpl=30, sigma_max=1/3 corrected)
+==============================================================================
+
+4 FDTD calls queued (Rank 2)
+  [ 1/4] C40_R3   theta=+41.60 article=False steps=4200 sigma_max=None
+  [ 2/4] C40_R3   theta=+41.60 article=True steps=4200 sigma_max=0.3333333333333333
+  [ 3/4] G40_R3   theta=+41.60 article=False steps=4200 sigma_max=None
+  [ 4/4] G40_R3   theta=+41.60 article=True steps=4200 sigma_max=0.3333333333333333
+Rank 2 wall time: 115.9s (1.93 min)
+
+[Rank 2] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 2] sigma_abs>=0 everywhere: PASS=True
+
+[Rank 2] native-sigma (0.5) comparator, exp-091's own filed 41.6deg bracket: delta_scene=+1.783759e-04  frac_contrast=3.329596e-04  ratio_k=25.9467  frac_p_abs=8.639217e-03  floor_pass=True
+[Rank 2] corrected-sigma (1/3), this cycle: delta_scene=+1.920318e-04  frac_contrast=3.614476e-04  ratio_k=23.4944  frac_p_abs=8.492004e-03  floor_pass=True
+
+[Rank 2 PRIMARY] delta_scene ratio=1.0766 sign_match=True  sub-verdict=CONFIRM  |  frac_contrast ratio=1.0856  sub-verdict=CONFIRM  ||  OVERALL VERDICT=CONFIRM  (no confident directional lean pre-committed, per Phase-3 RT-2 correction -- REFUTE disclosed as at least as plausible as CONFIRM)
+[Rank 2, informational, non-gating] p_abs_w(G)/p_abs_w(C) ratio=1.0085  (energy-flatness-style reading); ratio_abs_ext_raw_c=0.5141  dev from 0.51 T9 anchor=0.81%  (both reported per module docstring disclosure (iii); frac_p_abs=8.492004e-03)
+
+==============================================================================
+RANK 3 -- census R3-verify, 36.0/38.4/38.8deg (cpl=30, sigma_max=0.5 native)
+==============================================================================
+
+12 FDTD calls queued (Rank 3)
+  [ 1/12] C40_R3   theta=+36.00 article=False steps=4200 sigma_max=None
+  [ 2/12] C40_R3   theta=+36.00 article=True steps=4200 sigma_max=0.5
+  [ 3/12] C40_R3   theta=+38.40 article=False steps=4200 sigma_max=None
+  [ 4/12] C40_R3   theta=+38.40 article=True steps=4200 sigma_max=0.5
+  [ 5/12] C40_R3   theta=+38.80 article=False steps=4200 sigma_max=None
+  [ 6/12] C40_R3   theta=+38.80 article=True steps=4200 sigma_max=0.5
+  [ 7/12] G40_R3   theta=+36.00 article=False steps=4200 sigma_max=None
+  [ 8/12] G40_R3   theta=+36.00 article=True steps=4200 sigma_max=0.5
+  [ 9/12] G40_R3   theta=+38.40 article=False steps=4200 sigma_max=None
+  [10/12] G40_R3   theta=+38.40 article=True steps=4200 sigma_max=0.5
+  [11/12] G40_R3   theta=+38.80 article=False steps=4200 sigma_max=None
+  [12/12] G40_R3   theta=+38.80 article=True steps=4200 sigma_max=0.5
+Rank 3 wall time: 316.1s (5.27 min)
+
+[Rank 3] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 3] sigma_abs>=0 everywhere: PASS=True
+
+[Rank 3 PRIMARY] per-angle three-way outcome:
+  theta=36.0: ratio_k_cpl20=2.6424 (Y=0)  ratio_k_cpl30=2.4582  floor_pass=True  Y_cpl30=0  OUTCOME=CONSISTENT
+  theta=38.4: ratio_k_cpl20=0.9075 (Y=0)  ratio_k_cpl30=16.9967  floor_pass=True  Y_cpl30=1  OUTCOME=FLIPPED
+  theta=38.8: ratio_k_cpl20=3.8733 (Y=0)  ratio_k_cpl30=2.2729  floor_pass=True  Y_cpl30=0  OUTCOME=CONSISTENT
+
+==============================================================================
+RANK 1a -- cpl=40 (R4) settling precondition @ 41.825deg (sigma_max=0.25)
+==============================================================================
+
+8 FDTD calls queued (Rank 1a) -- Gate 5 fires inline on each article call, before its own FDTD step
+  [ 1/8] C40_R4   theta=+41.825 article=False steps=5600 sigma_max=None
+  [ 2/8] C40_R4   theta=+41.825 article=True steps=5600 sigma_max=0.25
+  [ 3/8] G40_R4   theta=+41.825 article=False steps=5600 sigma_max=None
+  [ 4/8] G40_R4   theta=+41.825 article=True steps=5600 sigma_max=0.25
+  [ 5/8] C40_R4   theta=+41.825 article=False steps=8400 sigma_max=None
+  [ 6/8] C40_R4   theta=+41.825 article=True steps=8400 sigma_max=0.25
+  [ 7/8] G40_R4   theta=+41.825 article=False steps=8400 sigma_max=None
+  [ 8/8] G40_R4   theta=+41.825 article=True steps=8400 sigma_max=0.25
+Rank 1a wall time: 821.5s (13.69 min)
+[Gate 5] all 4 Rank 1a article calls completed their inline runtime sigma_e/sigma_max assert without raising -- PASS (an AssertionError inside any worker would have propagated and stopped this script before this line)
+
+[Rank 1a] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 1a] sigma_abs>=0 everywhere: PASS=True
+
+[Rank 1a PRIMARY] delta_scene(STEPS=5600)=+3.898698e-04  delta_scene(STEPS=8400)=+3.893642e-04  rel_dev=0.1297%  VERDICT=PASS  (see module docstring disclosure (ii) for the single-delta_scene settling-metric resolution of this check's own ambiguous 'at both/either config' wording)
+
+==============================================================================
+RANK 1b -- cpl=40 (R4) interior near-null sweep, 6 angles (sigma_max=0.25, gate=PASS)
+==============================================================================
+
+24 FDTD calls queued (Rank 1b) -- Gate 5 fires inline on each article call, before its own FDTD step
+  [ 1/24] C40_R4   theta=+41.750 article=False steps=5600 sigma_max=None
+  [ 2/24] C40_R4   theta=+41.750 article=True steps=5600 sigma_max=0.25
+  [ 3/24] C40_R4   theta=+41.775 article=False steps=5600 sigma_max=None
+  [ 4/24] C40_R4   theta=+41.775 article=True steps=5600 sigma_max=0.25
+  [ 5/24] C40_R4   theta=+41.825 article=False steps=5600 sigma_max=None
+  [ 6/24] C40_R4   theta=+41.825 article=True steps=5600 sigma_max=0.25
+  [ 7/24] C40_R4   theta=+41.850 article=False steps=5600 sigma_max=None
+  [ 8/24] C40_R4   theta=+41.850 article=True steps=5600 sigma_max=0.25
+  [ 9/24] C40_R4   theta=+41.875 article=False steps=5600 sigma_max=None
+  [10/24] C40_R4   theta=+41.875 article=True steps=5600 sigma_max=0.25
+  [11/24] C40_R4   theta=+41.900 article=False steps=5600 sigma_max=None
+  [12/24] C40_R4   theta=+41.900 article=True steps=5600 sigma_max=0.25
+  [13/24] G40_R4   theta=+41.750 article=False steps=5600 sigma_max=None
+  [14/24] G40_R4   theta=+41.750 article=True steps=5600 sigma_max=0.25
+  [15/24] G40_R4   theta=+41.775 article=False steps=5600 sigma_max=None
+  [16/24] G40_R4   theta=+41.775 article=True steps=5600 sigma_max=0.25
+  [17/24] G40_R4   theta=+41.825 article=False steps=5600 sigma_max=None
+  [18/24] G40_R4   theta=+41.825 article=True steps=5600 sigma_max=0.25
+  [19/24] G40_R4   theta=+41.850 article=False steps=5600 sigma_max=None
+  [20/24] G40_R4   theta=+41.850 article=True steps=5600 sigma_max=0.25
+  [21/24] G40_R4   theta=+41.875 article=False steps=5600 sigma_max=None
+  [22/24] G40_R4   theta=+41.875 article=True steps=5600 sigma_max=0.25
+  [23/24] G40_R4   theta=+41.900 article=False steps=5600 sigma_max=None
+  [24/24] G40_R4   theta=+41.900 article=True steps=5600 sigma_max=0.25
+Rank 1b wall time: 1761.1s (29.35 min)
+[Gate 5] all 12 Rank 1b article calls completed their inline runtime sigma_e/sigma_max assert without raising -- PASS
+
+[Rank 1b] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 1b] sigma_abs>=0 everywhere: PASS=True
+
+[Rank 1b] per-angle results:
+  theta=41.75: delta_scene=+4.222353e-04  frac_contrast=8.042686e-04  ratio_k=7.1334  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0057
+  theta=41.775: delta_scene=+4.054735e-04  frac_contrast=7.732848e-04  ratio_k=6.8473  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0053
+  theta=41.825: delta_scene=+3.898698e-04  frac_contrast=7.453904e-04  ratio_k=5.8621  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0044
+  theta=41.85: delta_scene=+3.911720e-04  frac_contrast=7.488386e-04  ratio_k=5.1943  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0039
+  theta=41.875: delta_scene=+3.985905e-04  frac_contrast=7.640329e-04  ratio_k=4.4505  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0034
+  theta=41.9: delta_scene=+4.121234e-04  frac_contrast=7.910155e-04  ratio_k=3.6703  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0029
+
+[Rank 1b PRIMARY] any interior point delta_scene>0 AND floor_pass: True
+[Rank 1b PRIMARY] all interior points delta_scene<=0: False
+[Rank 1b PRIMARY] all interior points floor_pass=False: False
+[Rank 1b PRIMARY] THREE-WAY OUTCOME = TWO-NODE CONFIRMED
+
+[Rank 1b, informational, non-gating, RT-5/Idealization 23] p_abs_w(G4)/p_abs_w(C4) ratio across all 6 angles: max deviation from 1.0 = 0.5737%  (tests whether exp-093's own cpl<=30-verified energy-flatness finding extends to cpl=40; both the literal G4/C4 ratio AND the established ratio_abs_ext_raw_c deviation from the 0.51 T9 anchor are reported per module docstring disclosure (iii) -- neither is gating)
+    theta=41.75: p_abs_w(G4)/p_abs_w(C4)=1.0057  ratio_abs_ext_raw_c dev from 0.51=0.68%
+    theta=41.775: p_abs_w(G4)/p_abs_w(C4)=1.0053  ratio_abs_ext_raw_c dev from 0.51=0.66%
+    theta=41.825: p_abs_w(G4)/p_abs_w(C4)=1.0044  ratio_abs_ext_raw_c dev from 0.51=0.62%
+    theta=41.85: p_abs_w(G4)/p_abs_w(C4)=1.0039  ratio_abs_ext_raw_c dev from 0.51=0.60%
+    theta=41.875: p_abs_w(G4)/p_abs_w(C4)=1.0034  ratio_abs_ext_raw_c dev from 0.51=0.58%
+    theta=41.9: p_abs_w(G4)/p_abs_w(C4)=1.0029  ratio_abs_ext_raw_c dev from 0.51=0.57%
+
+total FDTD wall time (Rank 2+3+1a+1b): 3014.5s (50.24 min)
+
+==============================================================================
+RANK 3-ext -- caution-zone growth, cpl=30-only, desk-only (0 FDTD calls)
+==============================================================================
+
+[Rank 3-ext] base n=8 table live re-recomputation vs exp-093's own frozen figures: auc=1.0000  zone=[4.108338359719357, 5.428698393194279]  firth_m50=4.6934  reproduces_bit_exact=True
+  theta=36.0: floor_pass=True -- included, margin=7.7754  Y=0
+  theta=38.4: floor_pass=True -- included, margin=1.4854  Y=1
+  theta=38.8: floor_pass=True -- included, margin=18.1526  Y=0
+
+[Rank 3-ext PRIMARY] extended table n=11 pos=3  AUC=1.0000  zone=[4.108338359719357, 5.428698393194279]  inverted=False  firth_m50=4.3832  naive_MLE_diverges=True
+[Rank 3-ext PRIMARY] VERDICT=CONFIRM  (base_reproduces=True, zone_inverted=False)
+
+[disclosure] netd_disclaimer: NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 3)
+[disclosure] scope_note: This cycle is pure instrument recalibration (T1 route N/A, Checkpoint criterion 2 N/A) -- no phenomenon-mechanism claim, REALIZABILITY_MEMO.md untouched. (Idealization 7)
+[disclosure] r4_family_disclaimer: Idealization 17: the R4 (cpl=40) geometry family is a mechanical, zero-design-freedom substitution of R4_RATIO=2.0 for R3_RATIO=1.5 into the already-committed r3_config() recipe. If the R3-family recipe carries any undetected systematic bias, R4 inherits it unchanged -- the two families are not independent confirmations of the re-discretization scheme, only of the specific feature under test at two grid densities.
+
+wrote /home/user/photon-lab/experiments/094-t28-cpl40-resolution-sigma-r3-census/results.json
+
+==============================================================================
+SUMMARY
+==============================================================================
+  Rank 2 (sigma@41.6deg):               CONFIRM
+  Rank 3 (census R3-verify, 3 angles):  36.0=CONSISTENT, 38.4=FLIPPED, 38.8=CONSISTENT
+  Rank 1a (cpl=40 settling):             PASS  (rel_dev=0.1297%)
+  Rank 1b (cpl=40 interior three-way):   TWO-NODE CONFIRMED
+  Rank 3-ext (caution-zone growth):      CONFIRM  (zone_inverted=False)
+  total FDTD calls: 48   total wall time: 3033.7s (50.56 min)

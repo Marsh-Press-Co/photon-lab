@@ -1,0 +1,381 @@
+{
+  "total_fdtd_calls": 48,
+  "rank2_calls": 4,
+  "rank3_calls": 12,
+  "rank1a_calls": 8,
+  "rank1b_calls": 24,
+  "rank3_ext_calls": 0,
+  "rank2_wall_s": 115.92424821853638,
+  "rank3_wall_s": 316.0641164779663,
+  "rank1a_wall_s": 821.4592831134796,
+  "rank1b_wall_s": 1761.0978457927704,
+  "total_fdtd_wall_time_s": 3014.5454936027527,
+  "total_wall_time_s": 3033.744938135147,
+  "sigma_native": 0.5,
+  "sigma_r3_corrected": 0.3333333333333333,
+  "sigma_r4_corrected": 0.25,
+  "r13_floor_gate": {
+    "floor": 0.00019174375118374476,
+    "rms_frac_contrast": 0.0019174375118374476,
+    "n_window_points": 31
+  },
+  "gates": {
+    "gate1_vacuum_footprint_r4": {
+      "report": {
+        "C40_R4": {
+          "BOX_A": {
+            "box": [
+              160,
+              520,
+              1404,
+              1764
+            ],
+            "all_vacuum": true
+          },
+          "BOX_B": {
+            "box": [
+              136,
+              544,
+              1380,
+              1788
+            ],
+            "all_vacuum": true
+          }
+        },
+        "G40_R4": {
+          "BOX_A": {
+            "box": [
+              240,
+              600,
+              1484,
+              1844
+            ],
+            "all_vacuum": true
+          },
+          "BOX_B": {
+            "box": [
+              216,
+              624,
+              1460,
+              1868
+            ],
+            "all_vacuum": true
+          }
+        }
+      },
+      "pass_": true
+    },
+    "gate2_a_congruence": {
+      "a_c40_r4": 1504,
+      "a_g40_r4": 1504,
+      "pass_": true
+    },
+    "gate3_l_geometric_bit_identity": {
+      "l_geometric_m_r4": 2.3399999999999996e-06,
+      "l_geometric_m": 2.3399999999999996e-06,
+      "l_geometric_m_r3": 2.34e-06,
+      "dev_native": 0.0,
+      "dev_r3": 4.235164736271502e-22,
+      "pass_": true
+    },
+    "gate4_sigma_r4_corrected": {
+      "value": 0.25,
+      "pass_": true
+    },
+    "gate5_runtime_sigma_array": {
+      "pass_": true,
+      "n_article_calls_checked": 16,
+      "note": "Wired inline in _run_sim_r4_sigma: np.isclose(sim.sigma_e[shell_mask].max(), sigma_max, atol=1e-9), shell_mask=(PEC_R_R4<=rr<=R4_R_OUT) on the ez-point grid centered at (obj_x,obj_y), rr from materials._grids -- mirrors materials.graded_black_shell's own indexing exactly. Fires BEFORE sim.run() on all 16 Rank 1a/1b article calls (4+12); an AssertionError in any worker would have propagated and stopped this script before results.json was ever written."
+    },
+    "gate6_documentation_only": {
+      "lhs": 78.0,
+      "rhs": 78.0,
+      "dev": 0.0,
+      "pass_": true
+    }
+  },
+  "xi_pass": true,
+  "nonneg_pass": true,
+  "rank2": {
+    "angle": 41.6,
+    "verdict": "CONFIRM",
+    "delta_scene_sub_verdict": "CONFIRM",
+    "frac_contrast_sub_verdict": "CONFIRM",
+    "corrected": {
+      "delta_scene": 0.00019203184630300907,
+      "frac_contrast": 0.0003614475642107888,
+      "ratio_k": 23.494428217818747,
+      "frac_p_abs": 0.00849200385185581,
+      "floor_pass": true
+    },
+    "native_comparator": {
+      "theta": 41.6,
+      "steps": 4200,
+      "p_c": 3.3189904721468247e-12,
+      "p_g": 3.3476639499998487e-12,
+      "frac_p_abs": 0.00863921668159448,
+      "C_c": -0.5357282881442872,
+      "C_g": -0.535549912275722,
+      "C_empty_c": -0.005671008489364193,
+      "C_empty_g": -0.0019451442453201078,
+      "delta_scene": 0.00017837586856517262,
+      "frac_contrast": 0.00033295958513419177,
+      "ratio_k": 25.9467426898452,
+      "floor_pass": true,
+      "resolved": true,
+      "noise_floor": 1.5398043500854663e-15,
+      "delta_p_abs": 2.867347785302399e-14,
+      "box_dev_max": 0.0001546458542145672,
+      "margin": 18.621507239820748
+    },
+    "delta_scene_ratio": 1.0765573160073891,
+    "frac_contrast_ratio": 1.0855598707726513,
+    "pg_pc_ratio_informational": 1.008492003851856,
+    "ratio_abs_ext_dev_from_anchor_informational": 0.008128151743135978
+  },
+  "rank3": {
+    "angles": [
+      36.0,
+      38.4,
+      38.8
+    ],
+    "per_theta": {
+      "36.0": {
+        "delta_scene": -0.0008776529106750974,
+        "frac_contrast": 0.001490886602271647,
+        "ratio_k": 2.458157874177305,
+        "floor_pass": true,
+        "ratio_k_cpl20": 2.642368,
+        "y_cpl20": 0,
+        "y_cpl30": 0,
+        "outcome": "CONSISTENT"
+      },
+      "38.4": {
+        "delta_scene": -0.0001632393089414652,
+        "frac_contrast": 0.000284810215288115,
+        "ratio_k": 16.9967271486861,
+        "floor_pass": true,
+        "ratio_k_cpl20": 0.9075118,
+        "y_cpl20": 0,
+        "y_cpl30": 1,
+        "outcome": "FLIPPED"
+      },
+      "38.8": {
+        "delta_scene": -0.0019737930363935563,
+        "frac_contrast": 0.0034806420160950584,
+        "ratio_k": 2.272940492602062,
+        "floor_pass": true,
+        "ratio_k_cpl20": 3.873254,
+        "y_cpl20": 0,
+        "y_cpl30": 0,
+        "outcome": "CONSISTENT"
+      }
+    }
+  },
+  "rank1a": {
+    "angle": 41.825,
+    "steps": [
+      5600,
+      8400
+    ],
+    "delta_scene_5600": 0.0003898698382436283,
+    "delta_scene_8400": 0.0003893642455321533,
+    "rel_dev": 0.00129682438054889,
+    "verdict": "PASS"
+  },
+  "rank1b": {
+    "angles": [
+      41.75,
+      41.775,
+      41.825,
+      41.85,
+      41.875,
+      41.9
+    ],
+    "gate": "PASS",
+    "settling_uncertain_flag": false,
+    "per_theta": {
+      "41.75": {
+        "delta_scene": 0.0004222353029617043,
+        "frac_contrast": 0.0008042686081760626,
+        "ratio_k": 7.133350254273196,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.005737129680636666,
+        "p_c": 3.2211400415558145e-12,
+        "p_g": 3.2396201396937116e-12,
+        "pg_pc_ratio": 1.0057371296806366,
+        "ratio_abs_ext_raw_c": 0.5134475076148134,
+        "ratio_abs_ext_dev_from_anchor": 0.006759818852575261,
+        "classification": "CONSISTENT"
+      },
+      "41.775": {
+        "delta_scene": 0.0004054734663654358,
+        "frac_contrast": 0.0007732848412914619,
+        "ratio_k": 6.8472724537463625,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.005294891992674655,
+        "p_c": 3.226608850712462e-12,
+        "p_g": 3.2436933960795927e-12,
+        "pg_pc_ratio": 1.0052948919926747,
+        "ratio_abs_ext_raw_c": 0.5133495701063778,
+        "ratio_abs_ext_dev_from_anchor": 0.006567784522309449,
+        "classification": "CONSISTENT"
+      },
+      "41.825": {
+        "delta_scene": 0.0003898698382436283,
+        "frac_contrast": 0.0007453903899315176,
+        "ratio_k": 5.862146870797905,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.004369587941859876,
+        "p_c": 3.2373969506173407e-12,
+        "p_g": 3.251543041295772e-12,
+        "pg_pc_ratio": 1.00436958794186,
+        "ratio_abs_ext_raw_c": 0.5131568105354555,
+        "ratio_abs_ext_dev_from_anchor": 0.006189824579324446,
+        "classification": "CONSISTENT"
+      },
+      "41.85": {
+        "delta_scene": 0.0003911720031248844,
+        "frac_contrast": 0.0007488386265661498,
+        "ratio_k": 5.194261430979051,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.0038896635959998764,
+        "p_c": 3.2426891567187407e-12,
+        "p_g": 3.255302126684773e-12,
+        "pg_pc_ratio": 1.003889663596,
+        "ratio_abs_ext_raw_c": 0.5130628792160395,
+        "ratio_abs_ext_dev_from_anchor": 0.006005645521646153,
+        "classification": "CONSISTENT"
+      },
+      "41.875": {
+        "delta_scene": 0.00039859054178026376,
+        "frac_contrast": 0.0007640329127607539,
+        "ratio_k": 4.45053942406833,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.003400358599527494,
+        "p_c": 3.2478956290824786e-12,
+        "p_g": 3.258939638915197e-12,
+        "pg_pc_ratio": 1.0034003585995275,
+        "ratio_abs_ext_raw_c": 0.5129711635525185,
+        "ratio_abs_ext_dev_from_anchor": 0.005825810887291126,
+        "classification": "CONSISTENT"
+      },
+      "41.9": {
+        "delta_scene": 0.00041212335664131405,
+        "frac_contrast": 0.0007910154825034885,
+        "ratio_k": 3.6703373474235463,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.0029032936678228104,
+        "p_c": 3.2530032568370333e-12,
+        "p_g": 3.2624476805940153e-12,
+        "pg_pc_ratio": 1.0029032936678228,
+        "ratio_abs_ext_raw_c": 0.5128820901139324,
+        "ratio_abs_ext_dev_from_anchor": 0.005651157086141897,
+        "classification": "CONSISTENT"
+      }
+    },
+    "any_new_confirmed_excursion": true,
+    "all_new_nonpositive": false,
+    "all_new_floor_fail": false,
+    "outcome": "TWO-NODE CONFIRMED",
+    "pg_pc_ratio_max_dev_pct_informational": 0.5737129680636555
+  },
+  "rank3_ext": {
+    "base_table_n": 8,
+    "base_reproduces_bit_exact": true,
+    "base_zone_reproduced": {
+      "n": 8,
+      "pos": 2,
+      "auc": 1.0,
+      "zone": [
+        4.108338359719357,
+        5.428698393194279
+      ],
+      "inverted": false,
+      "firth_beta": [
+        3.7650293528574967,
+        -5.606975100009267
+      ],
+      "firth_n_iter": 15,
+      "firth_converged": true,
+      "firth_m50": 4.693429438459299,
+      "naive_mle_diverges": true,
+      "naive_mle_beta": [
+        78.04455510439915,
+        -115.66068312229832
+      ]
+    },
+    "base_zone_expected": {
+      "auc": 1.0,
+      "zone": [
+        4.1083,
+        5.4287
+      ],
+      "firth_beta": [
+        3.76504788,
+        -5.60700572
+      ],
+      "firth_m50": 4.6934
+    },
+    "new_rows_included": [
+      {
+        "theta": 36.0,
+        "source": "Rank 3, this cycle (cpl=30, native sigma)",
+        "frac_contrast": 0.001490886602271647,
+        "ratio_k": 2.458157874177305,
+        "margin": 7.775411678699014,
+        "y": 0
+      },
+      {
+        "theta": 38.4,
+        "source": "Rank 3, this cycle (cpl=30, native sigma)",
+        "frac_contrast": 0.000284810215288115,
+        "ratio_k": 16.9967271486861,
+        "margin": 1.485368954815045,
+        "y": 1
+      },
+      {
+        "theta": 38.8,
+        "source": "Rank 3, this cycle (cpl=30, native sigma)",
+        "frac_contrast": 0.0034806420160950584,
+        "ratio_k": 2.272940492602062,
+        "margin": 18.152570785785965,
+        "y": 0
+      }
+    ],
+    "extended_zone": {
+      "n": 11,
+      "pos": 3,
+      "auc": 1.0,
+      "zone": [
+        4.108338359719357,
+        5.428698393194279
+      ],
+      "inverted": false,
+      "firth_beta": [
+        4.0590287584923725,
+        -6.324509540646289
+      ],
+      "firth_n_iter": 17,
+      "firth_converged": true,
+      "firth_m50": 4.38322176375168,
+      "naive_mle_diverges": true,
+      "naive_mle_beta": [
+        73.95495105354756,
+        -109.54209737106837
+      ]
+    },
+    "zone_inverted": false,
+    "verdict": "CONFIRM"
+  },
+  "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 3)",
+  "scope_note": "This cycle is pure instrument recalibration (T1 route N/A, Checkpoint criterion 2 N/A) -- no phenomenon-mechanism claim, REALIZABILITY_MEMO.md untouched. (Idealization 7)",
+  "r4_family_disclaimer": "Idealization 17: the R4 (cpl=40) geometry family is a mechanical, zero-design-freedom substitution of R4_RATIO=2.0 for R3_RATIO=1.5 into the already-committed r3_config() recipe. If the R3-family recipe carries any undetected systematic bias, R4 inherits it unchanged -- the two families are not independent confirmations of the re-discretization scheme, only of the specific feature under test at two grid densities.",
+  "spec_resolution_disclosures": "See this file's own module docstring, disclosures (i)-(iii): (i) R4_BASE_OBJ_Y set to 1584 (=R4_BASE_NY//2, mirroring R3_BASE_OBJ_Y's own precedent), not NOTES.md's literal table value 1504, to satisfy the cycle's own mandatory Gate 2 (A==1504) and its Setup section's own explicit congruence sentence; (ii) Rank 1a's settling check is a SINGLE delta_scene(steps)-based metric, not two independent per-config metrics; (iii) Rank 1b's/Rank 2's 'p_abs_w ratio ... 0.51 T9 anchor' informational check is reported as BOTH readings (literal G/C p_abs_w ratio, AND the established ratio_abs_ext_raw_c-vs-0.51 anchor), non-gating either way."
+}
