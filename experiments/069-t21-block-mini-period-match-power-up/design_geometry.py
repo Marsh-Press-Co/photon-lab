@@ -219,6 +219,97 @@ assert R3_CONFIGS["C40_R3"]["A"] == R3_CONFIGS["C80_R3"]["A"] == R3_CONFIGS["G40
     round(A_HALF_APERTURE * R3_RATIO), \
     f"R3 congruent construction: A must scale by exactly R3_RATIO ({A_HALF_APERTURE*R3_RATIO})"
 
+# --------------------------------------------------- Block R4 (exp-094, T28 Panel
+# Iteration 71) -- a genuinely new grid-density family, cpl=40, mechanically
+# substituting R4_RATIO=2.0 for R3_RATIO=1.5 into the already-committed
+# r3_config() recipe (NOTES.md/phase3_synthesis.md of
+# experiments/094-t28-cpl40-resolution-sigma-r3-census). Additive only --
+# nothing above this block is touched.
+R4_RATIO = 2.0
+R4_CPL = {600: 40}
+R4_BASE_NX = round(360 * R4_RATIO)          # 720
+R4_BASE_NY = round(1584 * R4_RATIO)         # 3168
+R4_BASE_ABSORB = round(40 * R4_RATIO)       # 80
+R4_BASE_SRC_X = round(300 * R4_RATIO)       # 600
+R4_BASE_PLANE_X = round(77 * R4_RATIO)      # 154
+R4_BASE_OBJ_X = round(170 * R4_RATIO)       # 340
+# R4_BASE_OBJ_Y -- DISCLOSED RESOLUTION OF A FROZEN-SPEC AMBIGUITY (exp-094
+# Phase 4). NOTES.md's own constants table gives the formula
+# "R4_BASE_NY//2 - R4_BASE_ABSORB" = 1504 for this constant, and separately
+# labels 1504 as "un-tabulated in the R3 family too -- same derived-quantity
+# precedent." That claimed R3 precedent does not hold: R3_BASE_OBJ_Y (above)
+# is actually just R3_BASE_NY // 2 = 1188 (NOT R3_BASE_NY//2 - R3_BASE_ABSORB
+# = 1128) -- r3_config() subtracts ABSORB exactly once, later, via
+# `y_lo = absorb + pad` when it computes `A = obj_y - y_lo`. Setting
+# R4_BASE_OBJ_Y to the table's literal 1504 and then mirroring r3_config()
+# line-for-line would subtract R4_BASE_ABSORB a SECOND time inside r4_config()
+# itself, giving A = 1504 - 80 = 1424 -- silently breaking this cycle's own
+# mandatory Gate 2 (`R4_CONFIGS["C40_R4"]["A"] == round(A_HALF_APERTURE *
+# R4_RATIO) == 1504`) and contradicting the Setup section's own explicit
+# sentence "Both configs give A = obj_y - y_lo = 1504 = round(752*2.0)".
+# Resolved conservatively toward the spec's own stated, mandatory, doubly-
+# asserted intent (A=1504 via the *actual* r3_config()-style derivation,
+# obj_y = NY//2, absorb subtracted exactly once via y_lo) rather than its
+# literal, internally-contradictory table entry for this one intermediate
+# constant -- verified below to reproduce A=1504 exactly, matching gate 2.
+R4_BASE_OBJ_Y = R4_BASE_NY // 2             # 1584 (mirrors R3_BASE_OBJ_Y = R3_BASE_NY // 2)
+R4_TAPER = round(TAPER * R4_RATIO)          # 80
+R4_R_OUT = round(R_OUT * R4_RATIO)          # 156
+R4_W_OBJ = round(W_OBJ * R4_RATIO)          # 156
+R4_GUARD_OUT = round(GUARD_OUT * R4_RATIO)  # 370
+R4_W_FLANK = round(W_FLANK * R4_RATIO)      # 156
+R4_STEPS = round(STEPS_SETTLED * R4_RATIO)  # 5600
+R4_STEPS_STRESS = round(R4_STEPS * 1.5)     # 8400
+
+
+def r4_config(absorb, pad):
+    """R4-rescaled congruent config -- line-for-line mirror of `r3_config()`
+    above, substituting the R4_* constants (exp-094, mandatory per NOTES.md:
+    'mirrors r3_config() line-for-line')."""
+    nx = R4_BASE_NX + 2 * pad
+    ny = R4_BASE_NY + 2 * pad
+    src_x = R4_BASE_SRC_X + pad
+    plane_x = R4_BASE_PLANE_X + pad
+    obj_x = R4_BASE_OBJ_X + pad
+    obj_y = R4_BASE_OBJ_Y + pad
+    y_lo = R4_BASE_ABSORB + pad
+    y_hi = ny - y_lo
+    return dict(
+        naive=False, absorb=absorb, pad=pad, nx=nx, ny=ny,
+        src_x=src_x, plane_x=plane_x, obj_x=obj_x, obj_y=obj_y,
+        y_lo=y_lo, y_hi=y_hi, A=obj_y - y_lo, aperture_cells=y_hi - y_lo,
+        cells=nx * ny,
+    )
+
+
+R4_CONFIGS = {
+    "C40_R4": r4_config(80, 0),
+    "G40_R4": r4_config(80, 80),
+}
+assert R4_CONFIGS["C40_R4"]["A"] == R4_CONFIGS["G40_R4"]["A"] == \
+    round(A_HALF_APERTURE * R4_RATIO) == 1504, \
+    f"R4 congruent construction: A must scale by exactly R4_RATIO ({A_HALF_APERTURE*R4_RATIO})"
+
+PEC_R_R4 = round(30 * R4_RATIO)             # 60 (30 = PEC_R_NATIVE, exp-091's own constant)
+BOX_CLEARANCE_A_R4 = round(12 * R4_RATIO)   # 24
+BOX_CLEARANCE_B_R4 = round(24 * R4_RATIO)   # 48
+REF_HALF_H_R4 = round(80 * R4_RATIO)        # 160
+SIGMA_NATIVE_FOR_R4 = 0.5                   # matches exp-092's own SIGMA_NATIVE, cited
+                                             # locally (not imported) to keep this file's
+                                             # own zero-FDTD desk arithmetic self-contained
+SIGMA_R4_CORRECTED = SIGMA_NATIVE_FOR_R4 / R4_RATIO   # 0.25 -- holds the shell's
+                                             # accumulated optical depth
+                                             # 2*sigma*r_out(cells) invariant under a
+                                             # pure grid-density rescale (EM's Phase-2
+                                             # first-principles re-derivation,
+                                             # phase3_synthesis.md Sec 3 item 5)
+assert abs(SIGMA_R4_CORRECTED - 0.25) < 1e-12
+
+DX_M_R4 = 600.0e-9 / R4_CPL[600]            # 1.5e-8 m
+L_GEOMETRIC_M_R4 = R4_R_OUT * DX_M_R4       # 156 * 1.5e-8 = 2.34e-6 m
+assert abs(L_GEOMETRIC_M_R4 - (R_OUT * 30.0e-9)) < 1e-12, \
+    "R4 physical shell radius does not match native (Idealization 4-style sanity check)"
+
 # ------------------------------------------------------------- cost basis
 # Reused verbatim from dg065.CPU_S_PER_CALL (measured on the SAME container,
 # same shift -- 4-worker ProcessPoolExecutor contention included, linear-in-
