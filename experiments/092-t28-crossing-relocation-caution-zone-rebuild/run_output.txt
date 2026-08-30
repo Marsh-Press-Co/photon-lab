@@ -1,0 +1,13 @@
+==============================================================================
+exp-092 -- T28 crossing relocation & caution-zone rebuild
+==============================================================================
+
+[R13 floor gate] RMS[frac_contrast], n=31: 1.917438e-03  FLOOR=1.917438e-04  (unchanged, applied unrecomputed -- Idealization 6)
+
+[P1] vacuum-footprint precondition: PASS=True
+
+==============================================================================
+RANK 3 -- sigma_max PRIMARY-channel check (runs first)
+==============================================================================
+
+12 FDTD calls queued (Rank 3)
