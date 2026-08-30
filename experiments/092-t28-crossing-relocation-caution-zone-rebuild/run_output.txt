@@ -11,3 +11,123 @@ RANK 3 -- sigma_max PRIMARY-channel check (runs first)
 ==============================================================================
 
 12 FDTD calls queued (Rank 3)
+  [ 1/12] C40_R3   theta=+37.20 article=False steps=4200 sigma_max=None
+  [ 2/12] C40_R3   theta=+37.20 article=True steps=4200 sigma_max=0.3333333333333333
+  [ 3/12] C40_R3   theta=+40.20 article=False steps=4200 sigma_max=None
+  [ 4/12] C40_R3   theta=+40.20 article=True steps=4200 sigma_max=0.3333333333333333
+  [ 5/12] C40_R3   theta=+41.40 article=False steps=4200 sigma_max=None
+  [ 6/12] C40_R3   theta=+41.40 article=True steps=4200 sigma_max=0.3333333333333333
+  [ 7/12] G40_R3   theta=+37.20 article=False steps=4200 sigma_max=None
+  [ 8/12] G40_R3   theta=+37.20 article=True steps=4200 sigma_max=0.3333333333333333
+  [ 9/12] G40_R3   theta=+40.20 article=False steps=4200 sigma_max=None
+  [10/12] G40_R3   theta=+40.20 article=True steps=4200 sigma_max=0.3333333333333333
+  [11/12] G40_R3   theta=+41.40 article=False steps=4200 sigma_max=None
+  [12/12] G40_R3   theta=+41.40 article=True steps=4200 sigma_max=0.3333333333333333
+Rank 3 wall time: 454.5s (7.58 min)
+
+[Rank 3] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 3] sigma_abs>=0 everywhere: PASS=True
+  [empty-leg consistency] C40_R3 theta=37.2: fresh=7.8538354038e-03  filed=7.8538354038e-03
+  [empty-leg consistency] C40_R3 theta=40.2: fresh=-5.7180098914e-03  filed=-5.7180098914e-03
+  [empty-leg consistency] C40_R3 theta=41.4: fresh=-5.8626301761e-03  filed=-5.8626301761e-03
+  [empty-leg consistency] G40_R3 theta=37.2: fresh=1.0810073967e-02  filed=1.0810073967e-02
+  [empty-leg consistency] G40_R3 theta=40.2: fresh=-6.9716148269e-03  filed=-6.9716148269e-03
+  [empty-leg consistency] G40_R3 theta=41.4: fresh=-3.5326736847e-03  filed=-3.5326736847e-03
+[Rank 3] empty-leg bit-exact reproduction of exp-091's own filed values: ALL MATCH=True
+
+[Rank 3] sigma-corrected (1/3) vs as-filed (0.5) exp-091 comparison:
+  theta=37.2: delta_scene ratio=0.9226 sign_match=True  frac_contrast ratio=0.9382  p_abs_w ratio=0.9610 sign_match=True  ratio_abs_ext=0.5139 (dev from 0.51 anchor: 0.77%)
+  theta=40.2: delta_scene ratio=1.0141 sign_match=True  frac_contrast ratio=1.0267  p_abs_w ratio=0.9619 sign_match=True  ratio_abs_ext=0.5127 (dev from 0.51 anchor: 0.54%)
+  theta=41.4: delta_scene ratio=1.1720 sign_match=True  frac_contrast ratio=1.1827  p_abs_w ratio=0.9602 sign_match=True  ratio_abs_ext=0.5147 (dev from 0.51 anchor: 0.93%)
+
+[R3 PRIMARY] delta_scene sub-verdict=CONFIRM  frac_contrast sub-verdict=CONFIRM  OVERALL R3 VERDICT=CONFIRM
+[R3b PRIMARY, non-gating] p_abs_w verdict=CONFIRM
+
+[Sigma branch] R3 CONFIRM -> Rank 1 runs at sigma_max=0.5 (exp-091's own as-filed convention)
+
+==============================================================================
+RANK 1 -- wider-net crossing search (sigma_max=0.500000)
+==============================================================================
+
+28 FDTD calls queued (Rank 1)
+  [ 1/28] C40_R3   theta=+39.20 article=False steps=4200 sigma_max=None
+  [ 2/28] C40_R3   theta=+39.20 article=True steps=4200 sigma_max=0.5
+  [ 3/28] C40_R3   theta=+39.40 article=False steps=4200 sigma_max=None
+  [ 4/28] C40_R3   theta=+39.40 article=True steps=4200 sigma_max=0.5
+  [ 5/28] C40_R3   theta=+39.60 article=False steps=4200 sigma_max=None
+  [ 6/28] C40_R3   theta=+39.60 article=True steps=4200 sigma_max=0.5
+  [ 7/28] C40_R3   theta=+39.80 article=False steps=4200 sigma_max=None
+  [ 8/28] C40_R3   theta=+39.80 article=True steps=4200 sigma_max=0.5
+  [ 9/28] C40_R3   theta=+40.00 article=False steps=4200 sigma_max=None
+  [10/28] C40_R3   theta=+40.00 article=True steps=4200 sigma_max=0.5
+  [11/28] C40_R3   theta=+41.80 article=False steps=4200 sigma_max=None
+  [12/28] C40_R3   theta=+41.80 article=True steps=4200 sigma_max=0.5
+  [13/28] C40_R3   theta=+42.00 article=False steps=4200 sigma_max=None
+  [14/28] C40_R3   theta=+42.00 article=True steps=4200 sigma_max=0.5
+  [15/28] G40_R3   theta=+39.20 article=False steps=4200 sigma_max=None
+  [16/28] G40_R3   theta=+39.20 article=True steps=4200 sigma_max=0.5
+  [17/28] G40_R3   theta=+39.40 article=False steps=4200 sigma_max=None
+  [18/28] G40_R3   theta=+39.40 article=True steps=4200 sigma_max=0.5
+  [19/28] G40_R3   theta=+39.60 article=False steps=4200 sigma_max=None
+  [20/28] G40_R3   theta=+39.60 article=True steps=4200 sigma_max=0.5
+  [21/28] G40_R3   theta=+39.80 article=False steps=4200 sigma_max=None
+  [22/28] G40_R3   theta=+39.80 article=True steps=4200 sigma_max=0.5
+  [23/28] G40_R3   theta=+40.00 article=False steps=4200 sigma_max=None
+  [24/28] G40_R3   theta=+40.00 article=True steps=4200 sigma_max=0.5
+  [25/28] G40_R3   theta=+41.80 article=False steps=4200 sigma_max=None
+  [26/28] G40_R3   theta=+41.80 article=True steps=4200 sigma_max=0.5
+  [27/28] G40_R3   theta=+42.00 article=False steps=4200 sigma_max=None
+  [28/28] G40_R3   theta=+42.00 article=True steps=4200 sigma_max=0.5
+Rank 1 wall time: 780.5s (13.01 min)
+
+total wall time (Rank 3 + Rank 1): 1235.0s (20.58 min)
+
+[Rank 1] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 1] sigma_abs>=0 everywhere: PASS=True
+
+[Rank 1] per-angle results:
+  theta=39.2: delta_scene=-2.492094e-03  frac_contrast=4.444325e-03  ratio_k=0.9197  class=CONSISTENT  floor_pass=True
+  theta=39.4: delta_scene=-2.211345e-03  frac_contrast=3.960076e-03  ratio_k=0.0762  class=ENERGY-DECOUPLED  floor_pass=True
+  theta=39.6: delta_scene=-1.670669e-03  frac_contrast=3.000293e-03  ratio_k=1.2111  class=CONSISTENT  floor_pass=True
+  theta=39.8: delta_scene=-9.793070e-04  frac_contrast=1.761690e-03  ratio_k=3.8410  class=CONSISTENT  floor_pass=True
+  theta=40.0: delta_scene=-2.449455e-04  frac_contrast=4.411039e-04  ratio_k=18.8852  class=ENERGY-DOMINANT  floor_pass=True
+  theta=41.8: delta_scene=-1.865127e-05  frac_contrast=3.516532e-05  ratio_k=172.4579  class=NODE-UNRESOLVABLE  floor_pass=False
+  theta=42.0: delta_scene=+8.041787e-05  frac_contrast=1.533205e-04  ratio_k=15.9625  class=NODE-UNRESOLVABLE  floor_pass=False
+
+[R1a/R1b] lower window [39.2, 39.4, 39.6, 39.8, 40.0, 40.2, 40.4]
+          values ['-2.4921e-03', '-2.2113e-03', '-1.6707e-03', '-9.7931e-04', '-2.4495e-04', '+4.3699e-04', '+9.8564e-04']
+          crossings found: [40.07183833857387]
+[R1a/R1b] upper window [41.4, 41.6, 41.8, 42.0]
+          values ['+5.6255e-04', '+1.7838e-04', '-1.8651e-05', '+8.0418e-05']
+          crossings found: [41.781067311937264, 41.8376530294636]
+
+[R1a PRIMARY] VERDICT=NEITHER  (lower crossings: 1, upper crossings: 2)
+[R1b diagnostic] {
+  "lower_crossing_cpl30": 40.07183833857387,
+  "upper_crossing_cpl30": 41.781067311937264,
+  "naive_extrapolation_lower": 40.04,
+  "naive_extrapolation_upper": 41.69,
+  "known_cpl20_lower": 40.26541960305772,
+  "known_cpl20_upper": 41.46090139413461,
+  "shift_vs_cpl20_lower": -0.1935812644838535,
+  "shift_vs_naive_lower": 0.03183833857386986,
+  "shift_vs_cpl20_upper": 0.3201659178026546,
+  "shift_vs_naive_upper": 0.09106731193726603
+}
+
+==============================================================================
+RANK 2 -- caution-zone rebuild under DROP/RELABEL treatments (zero FDTD)
+==============================================================================
+
+[R2 PRIMARY] caution-zone rebuild:
+  ORIGINAL: n=7 pos=2 AUC=1.0 zone=[1.4763877483857824, 2.170947121651026] inverted=False m50=2.071013 naive_diverges=True
+  (i) DROP 41.4: n=6 pos=1 AUC=1.0 zone=[1.4763877483857824, 2.170947121651026] inverted=False m50=1.818061 naive_diverges=True
+  (ii) RELABEL 41.4->0: n=7 pos=1 AUC=0.8333333333333334 zone=[1.4763877483857824, 1.309543287435571] inverted=True m50=1.031717 naive_diverges=False
+
+[R2 PRIMARY] VERDICT=CONFIRM (live recomputation vs. five-times-pre-verified frozen table)
+
+wrote /home/user/photon-lab/experiments/092-t28-crossing-relocation-caution-zone-rebuild/results.json
+
+[disclosure] netd_disclaimer: NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 3)
+[disclosure] scope_note: This cycle is pure instrument recalibration (T1 route N/A, Checkpoint criterion 2 N/A) -- no phenomenon-mechanism claim, REALIZABILITY_MEMO.md untouched. (Idealization 7)
+[disclosure] sigma_branch_disclaimer: A Rank-3 REFUTE or NEITHER-default reopens Rank 1's own net-placement logic as provisional for a future cycle -- resequencing fixes which article Rank 1 measures, not whether the net's own location is still correctly aimed under a corrected article. (Idealization 11)

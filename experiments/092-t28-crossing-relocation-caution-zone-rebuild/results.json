@@ -1,0 +1,355 @@
+{
+  "rank3_calls": 12,
+  "rank1_calls": 28,
+  "total_fdtd_calls": 40,
+  "rank3_wall_s": 454.5207450389862,
+  "rank1_wall_s": 780.4746444225311,
+  "total_wall_time_s": 1234.9953894615173,
+  "sigma_native": 0.5,
+  "sigma_r3_corrected": 0.3333333333333333,
+  "r13_floor_gate": {
+    "floor": 0.00019174375118374476,
+    "rms_frac_contrast": 0.0019174375118374476,
+    "n_window_points": 31
+  },
+  "vacuum_footprint_check": {
+    "C40_R3": {
+      "BOX_A": {
+        "box": [
+          120,
+          390,
+          1053,
+          1323
+        ],
+        "all_vacuum": true
+      },
+      "BOX_B": {
+        "box": [
+          102,
+          408,
+          1035,
+          1341
+        ],
+        "all_vacuum": true
+      }
+    },
+    "G40_R3": {
+      "BOX_A": {
+        "box": [
+          180,
+          450,
+          1113,
+          1383
+        ],
+        "all_vacuum": true
+      },
+      "BOX_B": {
+        "box": [
+          162,
+          468,
+          1095,
+          1401
+        ],
+        "all_vacuum": true
+      }
+    }
+  },
+  "vac_pass": true,
+  "xi_pass": true,
+  "nonneg_pass": true,
+  "empty_leg_consistency_check": {
+    "C40_R3_37.2": {
+      "fresh": 0.007853835403810018,
+      "filed": 0.007853835403810018,
+      "bit_exact_match": true
+    },
+    "C40_R3_40.2": {
+      "fresh": -0.005718009891427233,
+      "filed": -0.005718009891427233,
+      "bit_exact_match": true
+    },
+    "C40_R3_41.4": {
+      "fresh": -0.00586263017609534,
+      "filed": -0.00586263017609534,
+      "bit_exact_match": true
+    },
+    "G40_R3_37.2": {
+      "fresh": 0.010810073967266964,
+      "filed": 0.010810073967266964,
+      "bit_exact_match": true
+    },
+    "G40_R3_40.2": {
+      "fresh": -0.006971614826932537,
+      "filed": -0.006971614826932537,
+      "bit_exact_match": true
+    },
+    "G40_R3_41.4": {
+      "fresh": -0.0035326736846525977,
+      "filed": -0.0035326736846525977,
+      "bit_exact_match": true
+    }
+  },
+  "empty_leg_consistency_all_match": true,
+  "rank3": {
+    "per_theta": {
+      "37.2": {
+        "sigma_corrected_delta_scene": 0.0011506212270747662,
+        "filed_delta_scene": 0.0012470908427402172,
+        "delta_scene_ratio": 0.9226442754936124,
+        "delta_scene_sign_match": true,
+        "sigma_corrected_frac_contrast": 0.0020290098045437992,
+        "filed_frac_contrast": 0.0021626774459842504,
+        "frac_contrast_ratio": 0.9381934454956976,
+        "sigma_corrected_p_abs_w_c": 2.7964983360311363e-12,
+        "filed_p_abs_w_c": 2.90992336586183e-12,
+        "p_abs_w_ratio": 0.9610213000241329,
+        "p_abs_w_sign_match": true,
+        "sigma_corrected_ratio_abs_ext_raw": 0.5139212467094293,
+        "ratio_abs_ext_dev_from_anchor": 0.007688719038096632,
+        "ratio_k": 1.7359981855459006,
+        "floor_pass": true
+      },
+      "40.2": {
+        "sigma_corrected_delta_scene": 0.0004431720048038157,
+        "filed_delta_scene": 0.00043698985753015673,
+        "delta_scene_ratio": 1.014147118444808,
+        "delta_scene_sign_match": true,
+        "sigma_corrected_frac_contrast": 0.0008087579957998686,
+        "filed_frac_contrast": 0.0007877482082246626,
+        "frac_contrast_ratio": 1.0266706891311825,
+        "sigma_corrected_p_abs_w_c": 3.0662625274124522e-12,
+        "filed_p_abs_w_c": 3.1876595887849325e-12,
+        "p_abs_w_ratio": 0.9619165541390967,
+        "p_abs_w_sign_match": true,
+        "sigma_corrected_ratio_abs_ext_raw": 0.5127425836929583,
+        "ratio_abs_ext_dev_from_anchor": 0.005377615084232005,
+        "ratio_k": 9.728551430420627,
+        "floor_pass": true
+      },
+      "41.4": {
+        "sigma_corrected_delta_scene": 0.0006593350827729383,
+        "filed_delta_scene": 0.0005625525031021095,
+        "delta_scene_ratio": 1.1720418612256387,
+        "delta_scene_sign_match": true,
+        "sigma_corrected_frac_contrast": 0.001231129632859171,
+        "filed_frac_contrast": 0.0010409189939562388,
+        "frac_contrast_ratio": 1.1827333731129215,
+        "sigma_corrected_p_abs_w_c": 3.152036099891574e-12,
+        "filed_p_abs_w_c": 3.2826656791173235e-12,
+        "p_abs_w_ratio": 0.9602062494341871,
+        "p_abs_w_sign_match": true,
+        "sigma_corrected_ratio_abs_ext_raw": 0.5147332191337985,
+        "ratio_abs_ext_dev_from_anchor": 0.009280821830977526,
+        "ratio_k": 7.472255551839369,
+        "floor_pass": true
+      }
+    },
+    "delta_scene_sub_verdict": "CONFIRM",
+    "frac_contrast_sub_verdict": "CONFIRM",
+    "verdict": "CONFIRM",
+    "r3b_verdict": "CONFIRM"
+  },
+  "sigma_branch": {
+    "chosen_sigma_max": 0.5,
+    "reason": "R3 CONFIRM -> Rank 1 runs at sigma_max=0.5 (exp-091's own as-filed convention)"
+  },
+  "rank1": {
+    "angles": [
+      39.2,
+      39.4,
+      39.6,
+      39.8,
+      40.0,
+      41.8,
+      42.0
+    ],
+    "per_theta": {
+      "39.2": {
+        "delta_scene": -0.00249209413171092,
+        "frac_contrast": 0.004444324503094969,
+        "ratio_k": 0.9197288754312666,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.0040875735772831585,
+        "classification": "CONSISTENT"
+      },
+      "39.4": {
+        "delta_scene": -0.002211344593311737,
+        "frac_contrast": 0.003960075563626508,
+        "ratio_k": 0.07618619496482193,
+        "floor_pass": true,
+        "resolved": false,
+        "frac_p_abs": 0.00030170308896587623,
+        "classification": "ENERGY-DECOUPLED"
+      },
+      "39.6": {
+        "delta_scene": -0.0016706690287676684,
+        "frac_contrast": 0.003000293292425567,
+        "ratio_k": 1.2111342431542735,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.003633757945962683,
+        "classification": "CONSISTENT"
+      },
+      "39.8": {
+        "delta_scene": -0.0009793069861832038,
+        "frac_contrast": 0.0017616901422901569,
+        "ratio_k": 3.840960038535623,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.006766581436818628,
+        "classification": "CONSISTENT"
+      },
+      "40.0": {
+        "delta_scene": -0.00024494552418619087,
+        "frac_contrast": 0.00044110392814963005,
+        "ratio_k": 18.88524222127873,
+        "floor_pass": true,
+        "resolved": true,
+        "frac_p_abs": 0.008330354527863293,
+        "classification": "ENERGY-DOMINANT"
+      },
+      "41.8": {
+        "delta_scene": -1.8651266434188685e-05,
+        "frac_contrast": 3.516531773191797e-05,
+        "ratio_k": 172.45786339700862,
+        "floor_pass": false,
+        "resolved": false,
+        "frac_p_abs": 0.006064535561723514,
+        "classification": "NODE-UNRESOLVABLE"
+      },
+      "42.0": {
+        "delta_scene": 8.041787461443572e-05,
+        "frac_contrast": 0.00015332053035585125,
+        "ratio_k": 15.962480414174616,
+        "floor_pass": false,
+        "resolved": false,
+        "frac_p_abs": 0.0024473759628961403,
+        "classification": "NODE-UNRESOLVABLE"
+      }
+    },
+    "verdict": "NEITHER",
+    "crossing_report": {
+      "lower_crossing_cpl30": 40.07183833857387,
+      "upper_crossing_cpl30": 41.781067311937264,
+      "naive_extrapolation_lower": 40.04,
+      "naive_extrapolation_upper": 41.69,
+      "known_cpl20_lower": 40.26541960305772,
+      "known_cpl20_upper": 41.46090139413461,
+      "shift_vs_cpl20_lower": -0.1935812644838535,
+      "shift_vs_naive_lower": 0.03183833857386986,
+      "shift_vs_cpl20_upper": 0.3201659178026546,
+      "shift_vs_naive_upper": 0.09106731193726603
+    },
+    "lower_window": [
+      39.2,
+      39.4,
+      39.6,
+      39.8,
+      40.0,
+      40.2,
+      40.4
+    ],
+    "upper_window": [
+      41.4,
+      41.6,
+      41.8,
+      42.0
+    ]
+  },
+  "rank2": {
+    "original": {
+      "n": 7,
+      "pos": 2,
+      "auc": 1.0,
+      "zone": [
+        1.4763877483857824,
+        2.170947121651026
+      ],
+      "inverted": false,
+      "firth_beta": [
+        1.7805895384714663,
+        -5.6315196073656555
+      ],
+      "firth_converged": true,
+      "firth_m50": 2.071012796646712,
+      "naive_mle_diverges": true
+    },
+    "drop_41_4": {
+      "n": 6,
+      "pos": 1,
+      "auc": 1.0,
+      "zone": [
+        1.4763877483857824,
+        2.170947121651026
+      ],
+      "inverted": false,
+      "firth_beta": [
+        1.1798402677256998,
+        -4.5446903358797535
+      ],
+      "firth_converged": true,
+      "firth_m50": 1.8180612310318796,
+      "naive_mle_diverges": true
+    },
+    "relabel_41_4": {
+      "n": 7,
+      "pos": 1,
+      "auc": 0.8333333333333334,
+      "zone": [
+        1.4763877483857824,
+        1.309543287435571
+      ],
+      "inverted": true,
+      "firth_beta": [
+        0.03854616230409393,
+        -2.8424857063252253
+      ],
+      "firth_converged": true,
+      "firth_m50": 1.0317173247854177,
+      "naive_mle_diverges": false
+    },
+    "verdict": "CONFIRM",
+    "frozen_comparator_table": {
+      "ORIGINAL": {
+        "n": 7,
+        "pos": 2,
+        "auc": 1.0,
+        "zone": [
+          1.4764,
+          2.1709
+        ],
+        "inverted": false,
+        "firth_m50": 2.071013,
+        "naive_mle_diverges": true
+      },
+      "DROP": {
+        "n": 6,
+        "pos": 1,
+        "auc": 1.0,
+        "zone": [
+          1.4764,
+          2.1709
+        ],
+        "inverted": false,
+        "firth_m50": 1.818061,
+        "naive_mle_diverges": true
+      },
+      "RELABEL": {
+        "n": 7,
+        "pos": 1,
+        "auc": 0.8333,
+        "zone": [
+          1.4764,
+          1.3095
+        ],
+        "inverted": true,
+        "firth_m50": 1.031717,
+        "naive_mle_diverges": false
+      }
+    }
+  },
+  "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 3)",
+  "scope_note": "This cycle is pure instrument recalibration (T1 route N/A, Checkpoint criterion 2 N/A) -- no phenomenon-mechanism claim, REALIZABILITY_MEMO.md untouched. (Idealization 7)",
+  "sigma_branch_disclaimer": "A Rank-3 REFUTE or NEITHER-default reopens Rank 1's own net-placement logic as provisional for a future cycle -- resequencing fixes which article Rank 1 measures, not whether the net's own location is still correctly aimed under a corrected article. (Idealization 11)"
+}
