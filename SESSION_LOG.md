@@ -2,6 +2,151 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-30 (panel shift) — Iteration 69 complete (exp-092): the
+combined Rank 1-3 build resolves exp-091's own top open question cleanly
+(the sigma_max confound does NOT contaminate the PRIMARY channel) and
+locates the lower cpl=30 crossing for the first time, while discovering a
+new double-crossing structure in the upper window whose own status stays
+explicitly undecided. **No new standing rule adopted. No CHECKPOINT this
+cycle** (all five criteria worked through explicitly; none fire).
+
+**Pre-flight**: continuing this same container's session (deps already
+installed and verified from the prior shift's own onboarding). Trust
+suite confirmed green, 41/41 checks (`--only 12346789`), before any panel
+work. Zero `lab/` diff throughout this entire cycle -- all new code lives
+in `experiments/092-.../run.py`, reusing exp-090's/exp-091's own
+committed machinery verbatim.
+
+**Iteration 69 -- ELECTROMAGNETISM's rotation-lead cycle (exp-092).**
+Executes exp-091's own near-unanimous Iteration-69 reconciled Ranks 1-3
+as one combined build, in Red Team's own mandated order: **Rank 3**
+(FIRST, 12 calls) -- an algebraically-forced `sigma_max` correction
+(0.5->1/3, preserving `tau_center` under the R3 rescale) tested against
+the PRIMARY `delta_scene`/`frac_contrast` channel, not only `p_abs_w`
+(MATERIALS' own exp-091 self-review checked only the latter); its own
+verdict gates **Rank 1**'s (28 calls) `sigma_max` choice, a branch rule
+pre-registered before any run. Rank 1 itself: a data-justified,
+asymmetric, outward-biased wider net (seven new `DENSE_ANGLES` points)
+sized from naive linear extrapolations of exp-091's own already-collected
+bracket-pair slopes. **Rank 2** (zero FDTD) rebuilds exp-090's own
+caution zone/Firth fit under two counterfactual treatments (DROP 41.4deg;
+RELABEL 41.4deg->Y=0) of its `n=7` dataset, reusing exp-090's own
+committed functions verbatim. `phase1_proposal.md` committed and pushed
+strictly before any Phase-2 critique or Phase-4 code existed.
+
+**Phase 2 -- five blind critiques, unanimous support-with-changes, two
+independently-convergent pairs.** MATERIALS and QUANTUM OPTICS,
+independently, via different reasoning paths, both found Rank 1's 20-call
+spend was unsequenced with -- and therefore not gated by -- the cheaper
+Rank 3 check built to validate the very article it measures with.
+PHOTONICS found the net's own amplitude-inflation "corroboration" a
+non sequitur (a zero-crossing's location is invariant under amplitude
+rescaling), though its own stronger, directly-measured alternative basis
+independently motivated the same net-extension fix. THERMODYNAMICS found
+Rank 3's own co-equal `p_abs_w` prediction left an unscored byproduct.
+VISION SCIENCE found exp-091's own Idealization 8 silently dropped and a
+print-parity fix about to recur inside the very cycle that would
+generate the artifact a second time.
+
+**Red Team's Phase-2 audit**: PROCEED-WITH-MANDATORY-FIXES, 7 items, zero
+overridden. Independently confirmed the sequencing fix costs zero net
+wall-time (CPU-time is additive regardless of execution order), elevated
+PHOTONICS' own fix to mandatory, and added two findings of its own (a
+recurring band-mistransfer wording defect; an overclaimed
+settling-invariance justification contradicted by this program's own T27
+record).
+
+**Phase 3 (Director): all seven items adopted in full, plus one
+Director-caught defect of its own.** Before writing `run.py`, found
+`phase1_proposal.md`'s own claimed "zero-cost" empty-leg reuse was not
+actually implementable -- `lab/ambient.py::contrast_from_runs` needs the
+raw empty-run profile array, and no T28-family experiment persists raw
+FDTD captures to disk -- a gap missed by the proposal's own author, all
+five blind critics, and Red Team alike. Fixed by re-running Rank 3's
+empty leg fresh (a deterministic reproduction, not new information),
+growing Rank 3 from 6 to 12 calls and the cycle's total from 34 to 40. A
+second Director catch corrected an arithmetic slip inherited from
+PHOTONICS' critique through Red Team's own docket (two new angles cost 8
+calls, not 4). Final budget: 134.6 CPU-min / 39.5 min wall -- at the top
+of, but inside, this sub-thread's own established ~100-150 CPU-min band.
+`NOTES.md` frozen and pushed strictly before any Phase-4 code existed.
+
+**Phase 4: all 40 FDTD calls completed (20.58 min wall), all house gates
+PASS.** **Rank 3 -- CONFIRM, cleanly, at all three census angles and both
+scored quantities** (`delta_scene`/`frac_contrast` ratios 0.92x-1.18x,
+sign held throughout) -- the `sigma_max` confound does NOT contaminate
+the PRIMARY channel, resolving exp-091's own single most consequential
+open question in the clean direction. `p_abs_w` co-equally CONFIRMs (a
+uniform ~4% decrease at all three angles, within <1% of the T9
+`ratio_abs_ext~=0.51` anchor). Sigma branch: CONFIRM -> Rank 1 ran at
+native `sigma_max=0.5`, directly comparable to exp-091's own filed data.
+**Rank 1 -- NEITHER**, the pre-registered mechanical label for a
+genuinely split result: the lower crossing is cleanly LOCATED,
+`theta=40.0718deg` -- a real `-0.194deg` shift from the known `cpl=20`
+location, within `+0.032deg` of the naive extrapolation. The upper window
+reveals a new, more complex structure: TWO crossings, `41.7811deg`/
+`41.8377deg`, only `0.057deg` apart, straddling a `NODE-UNRESOLVABLE`
+point -- a genuine near-total interference null, though both crossings
+themselves are drawn from inside the same floor-gate-failing
+neighborhood. **Rank 2 -- CONFIRM, bit-exact** -- the live recomputation
+reproduces the five-times-independently-pre-verified DROP/RELABEL table
+exactly, a seventh independent reproduction of this sub-thread's
+single most-verified deliverable. The Director-added empty-leg
+consistency check reproduced exp-091's own filed values bit-exact at all
+six cells.
+
+**Phase 5 -- six blind reviews (all CONCUR/CONCUR-WITH-GAP(S)), zero
+overlap, each independently caught a genuinely distinct defect.**
+PHOTONICS found `NOTES.md`'s own Learned #3 directly contradicted its own
+Next section's admission that more data is needed to settle the
+double-crossing's own status -- an internal inconsistency, both
+statements drawn from the same floor-gate-failing points. MATERIALS found
+`results.json` silently dropped the second located upper-window crossing.
+ELECTROMAGNETISM's own self-review found its own Phase-1 mechanism
+argument (accumulated Yee-grid dispersion phase) was never actually
+computed -- a second consecutive cycle this exact EM-charter check was
+named but not run. THERMODYNAMICS found `netd_disposition` computed for
+every cell but never persisted or printed -- the identical gap already
+present, unnamed, in exp-091's own record. QUANTUM OPTICS independently
+re-derived every headline number bit-exact, zero discrepancies. VISION
+SCIENCE confirmed both of its own prior-cycle demanded fixes landed
+cleanly, and independently caught a new duplicate, contradictory
+placeholder `## Learned`/`## Next` stub left in `NOTES.md` after the
+Phase-4 close-out edit.
+
+**Red Team's Phase-5 final audit**: independently re-verified every
+load-bearing number bit-exact, adjudicated all four cross-review
+findings, applied same-shift fixes to each. PHOTONICS' internal
+inconsistency: real, a new gap shape -- non-firing, Learned #3 walked
+back and `NOTES.md`'s own Next section re-ordered (the denser-sweep
+resolution check now ranked ahead of, not after, the caution-zone re-fit,
+per three independently-converging reviews). MATERIALS' JSON truncation:
+real, patched additively into `results.json`, `run.py` corrected forward.
+THERMODYNAMICS' NETD-persistence gap: ruled **first-time naming, not a
+recurrence** -- non-firing, backfilled for Rank 3's six cells, a forward
+tripwire set explicitly for a third occurrence. EM's own twice-named
+dispersion-integral gap: non-firing under R8's own outcome-determining
+test, elevated to a **mandatory** Iteration-70 item. **No CHECKPOINT this
+cycle** (all five criteria worked through explicitly; none fire). No new
+standing rule adopted.
+
+**Combined Verdict: PARTIAL.** Confirmed, cleanly: the `sigma_max`
+confound does not contaminate the PRIMARY channel (Rank 3); the lower
+`cpl=30` crossing is located, not merely known-to-be-outside-the-old-
+window (Rank 1); the caution zone's DROP/RELABEL consequences are
+bit-exact-verified a seventh time (Rank 2). Genuinely new, open: the
+upper window's double-crossing is real but its status (genuine two-node
+feature vs. under-resolved single null) is explicitly undecided, not
+resolved -- the single most consequential open question this cycle
+leaves standing, on par with R15's own still-provisional caution zone.
+Reconciled Iteration-70 queue: a denser off-grid/`cpl=40` sweep of
+41.6-42.2deg to resolve the double-crossing ambiguity (rank 1); re-fitting
+R15's own caution zone using the newly located crossings, gated on rank 1
+(rank 2); a targeted `sigma_max` check at the upper near-null region
+itself (rank 3). Full record: `experiments/092-t28-crossing-relocation-
+caution-zone-rebuild/`, LOGBOOK.md Iteration 69, PLAN.md Iteration-70
+queue.
+
 ## 2026-08-30 (panel shift) — Iteration 68 complete (exp-091): the R3
 resolution & denser recheck discharges the board's oldest debt and
 delivers this sub-thread's most consequential correction since R13/R14's
