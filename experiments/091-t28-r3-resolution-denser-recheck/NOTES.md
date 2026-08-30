@@ -219,3 +219,165 @@ Corrects `phase1_proposal.md`'s own Idealization 10 and §4c2, whose stated
 premise ("40.2° is the hardest case") is superseded here per the
 mandatory-fix docket (Phase-3 synthesis §1, items 1–2) — the original
 document is left as-filed, not retroactively edited, per house convention.
+
+## Result
+
+*Drafted by Red Team's Phase-5 final audit (`phase5_redteam_audit.md` §5),
+applied by the Director same-shift — matching the exp-080 precedent
+(missing `NOTES.md`, closed same-shift by Red Team's final audit).*
+
+**Carried idealizations banner** (mandatory at both this section and the
+Predictions section, per the Iteration-65 CHECKPOINT's own escalated,
+non-discretionary rule): every finding below is governed by
+**Idealizations 3/6/7**: NETD is an instrument/detector threshold, not a
+human perceptual one — nothing here bears on constraint-3/4's human-eye
+verdict; this cycle does not test constraint 1/2/3/4 and takes no T1
+escape-route position (`REALIZABILITY_MEMO.md` untouched, Checkpoint
+criterion 2 N/A); `FLOOR`/`RMS[frac_contrast]` are applied, not recomputed,
+against the new `cpl=30` numbers — a disclosed mixed-resolution comparison.
+
+All 40 FDTD calls completed; all house gates PASS (`vac_pass`, `xi_pass`,
+`nonneg_pass`, all exhaustively checked, not sampled).
+
+- **(a) PRIMARY — REFUTE.** `delta_scene(40.2°)` changes sign between
+  cpl=20 (`−1.5427×10⁻⁴`) and cpl=30 (`+4.3699×10⁻⁴`). 37.2°/41.4° hold
+  sign but land outside the `[0.3,3.0]` CONFIRM band (ratios 5.21×/4.16×,
+  the disclosed NEITHER outcome) — under the pre-registered priority rule,
+  the single sign flip alone determines the overall REFUTE.
+- **(a2) — REFUTE at both brackets.** Neither `[40.2°,40.4°]` nor
+  `[41.4°,41.6°]` shows a sign change at `cpl=30` — both pairs read
+  same-signed (positive at both ends). The known `cpl=20` crossings
+  (40.2654°, 41.4609°) sit inside both `cpl=20` brackets and are not
+  reproduced in either `cpl=30` bracket. **This instrument, as built, can
+  say the crossings are not in the tested `±0.2°` windows; it cannot say
+  where they went** — two independent, disclosed, non-fatal
+  back-of-envelope linear extrapolations (PHOTONICS' and QUANTUM's
+  Phase-5 reviews, matching arithmetic) suggest both crossings moved
+  further than the tested window, in opposite directions, but this is an
+  informal estimate, not a located measurement, and is not adopted as a
+  filed result.
+- **(b) PRIMARY — mixed, at the single most consequential possible
+  outcome the design's own two-sided framing anticipated.** 37.2° stays
+  CONSISTENT (`ratio_k`: 3.4641→1.8463). 40.2° stays formally
+  ENERGY-DOMINANT (`ratio_k`: 25.0503→10.0744) but clears `RATIO_HIGH=10.0`
+  by only **0.74%** under `_label()`'s own strict `>` inequality — a
+  razor-thin, not a comfortable, survival. 41.4° **reclassifies**
+  (`ratio_k`: 28.8456→9.2116, ENERGY-DOMINANT→CONSISTENT). Neither
+  reclassification result was hedged into a default lean by this cycle's
+  own pre-registration; both hold/hold and hold/flip outcomes were treated
+  as equally informative in advance.
+- **(b2) PRIMARY — CONFIRM.** `frac_p_abs` survives `cpl` 20→30 at all
+  three angles (ratios 2.78×/1.12×/1.33×, all inside `[0.3,3.0]`, all
+  sign-matched) — resolution-robust in the sense this cycle's band tests.
+  **Read this as "classification-stable across these two resolutions," not
+  "resolution-converged"**: the underlying `p_abs_w` primitive itself grows
+  a small, uniform, mechanistically well-understood ~3.5–3.7% at every
+  angle (consistent with reduced staircasing of the graded shell's curved
+  boundary at finer `Δx` — THERMODYNAMICS' Phase-5 finding, independently
+  corroborated by EM and MATERIALS via two further computation routes), not
+  scattering around a fixed value — a `cpl=40` check is expected, on this
+  reading, to show further growth in the same direction, not oscillation.
+  **A separate, currently undischarged open question** (flagged forward,
+  not resolved by this cycle): `graded_black_shell`'s `sigma_max` parameter
+  was left at its unscaled native default (`0.5`) at both resolutions,
+  which by this program's own `τ_center=2·σ·r_out(cells)` convention
+  (the T10/SIGMA_ON erratum precedent) means the `cpl=30` article carries
+  ~1.5× the native accumulated optical depth, not a strict resolution-
+  matched replica. Checked against `p_abs_w` and judged a small (~3.5%),
+  not primary, driver there (consistent with an already near-saturated
+  absorber, T9's own `σ_abs/σ_ext≈0.51` anchor) — **not yet checked
+  against `delta_scene`/`frac_contrast`/`ratio_k`, the PRIMARY channel**,
+  since the sigma inflation, while common-mode between `C40_R3`/`G40_R3`,
+  could still plausibly shift the shell's own small residual-reflection
+  phase and thereby the interference pattern `delta_scene` is built from.
+- **(c1)/(c2) — CONFIRM, cleanly.** All six `c1` cells (native-`cpl`
+  `STEPS=4200` vs. exp-083's own `STEPS=2800`) and all four `c2` cells
+  (R3-resolution `STEPS=6300` vs. `4200`, at both spot-checked angles)
+  read relative deviations of `0.0001%`–`0.0138%`, six-plus orders of
+  magnitude inside the `≤1%` CONFIRM band. **Settling is independently,
+  cleanly ruled out as an explanation for the sign flip or any other
+  surprise in this cycle, at either resolution.**
+- **(d) — disclosed, non-gating.** The 37.2° `resolved`-gate noise-floor
+  margin at `STEPS=4200` is `1.061940×`, against the cited `STEPS=2800`
+  figure of `1.045659×` — a genuinely marginal `1.6%` relative increase.
+  This is technically relief in the predicted direction but is itself
+  still a "felt-lucky," not a robust, margin; the §1 narrative's
+  "directly relieving" framing should be read as weakly, not
+  substantively, discharged. The R14(a)-style smoothness gate passes
+  cleanly across all five `cpl=30` angles, both configs (no non-monotonic
+  dip of the R14-founding shape at this cycle's own window). The ordering
+  check (`frac_contrast(37.2°)>40.2°>41.4°`) holds at `cpl=20` but **fails**
+  at `cpl=30` (40.2° < 41.4°) — a further, independent signature that the
+  local `delta_scene(θ)` structure near 40–42° is genuinely reshaped
+  between resolutions, not merely phase-shifted in place. **Mandatory
+  cross-reference (item 10):** both (a2) brackets returned an
+  uninterpretable null (`crossing_cpl30=None` at both), so the requested
+  cross-reference against (c2)'s settling residuals cannot be computed as
+  specified — this null is itself informative (both crossings left their
+  tested windows entirely) but is not a numeric answer to the question
+  asked.
+
+**Note on exp-090's caution zone (Idealization 9/11's own named gap, now
+discharged for these three points).** Both `Y=1` (ENERGY-DOMINANT) points
+in exp-090's own n=7 caution-zone sample — 40.2° and 41.4° — are the two
+angles this cycle resolution-tested. Neither survives cleanly: 41.4°
+reclassifies outright; 40.2° survives by 0.74% of the threshold's own
+value. Relabeling 41.4° per this cycle's own finding **inverts** the
+zone's own non-parametric construction (`min{margin:Y=0}=1.3095 <
+max{margin:Y=1}=1.4764`) — exactly `exp-090/NOTES.md`'s own pre-registered
+Q3 falsification clause ("falsified if... inverted"). **The caution zone
+`[1.4764,2.1709]` and Firth's fit `m₅₀=2.071013` should be treated,
+from this point forward, as `cpl=20`-specific and provisional — not a
+resolution-verified decision boundary — until re-fit** (see
+`phase5_redteam_audit.md` §0/§3 for the full arithmetic and the newly
+adopted R15).
+
+## Learned
+
+1. **A channel proven to carry a coherent, PAD-driven phase/timing signal
+   (not a magnitude/absorption one) is exactly the class of quantity where
+   grid refinement can relocate a zero-crossing rather than merely
+   rescaling an amplitude** — the sign flip and both bracket REFUTEs are
+   consistent with, and arguably the clearest demonstration yet of, this
+   program's own T10 precedent (a near-field point-probe channel's
+   relative spread growing under `cpl` refinement), now observed on a
+   finer intrinsic fringe period and at a larger magnitude than T10's own
+   original beam-behind measurement.
+2. **A calibration boundary's own floor-gate clearing (R13) does not
+   imply its classification is resolution-stable** — both points defining
+   exp-090's caution-zone edges cleared `floor_pass=True` at every tested
+   resolution while one flipped outright and the other survived by 0.74%.
+   This is a genuinely new failure axis, formalized this cycle as R15.
+3. **A common-mode construction confound in a shared article does not
+   automatically cancel in a config-differential channel** — `sigma_max`'s
+   unscaled default under the R3 rescale inflates both `C40_R3`'s and
+   `G40_R3`'s optical depth identically, but this cycle did not (and, on
+   reflection, structurally could not, without a dedicated sigma-rescaled
+   rerun) rule out that this shared inflation still perturbs the
+   *difference* signal (`delta_scene`) the pair is built to isolate, via
+   the shell's own residual-reflection phase. Flagged forward, not
+   resolved.
+4. **A record's own printed, human-readable log and its underlying JSON
+   are a distinct propagation surface from prose-to-prose caveat
+   carry-forward** — this cycle's `netd_disclaimer`/`scope_note` fields
+   were correctly written to `results.json` but never printed to
+   `run_output.txt`, a gap this sub-thread's four prior disclaimer-erosion
+   catches never checked for because none of them involved a
+   never-printed field. See `phase5_redteam_audit.md` §2 for the full
+   reasoning on why this is ruled a new gap shape, not a fifth instance of
+   that lineage.
+
+## Next
+
+See `phase5_redteam_audit.md` §6 for the full ranked Iteration-69
+candidate list (reconciling all six Phase-5 reviews' own top-3s): locating
+the actual `cpl=30` crossings with a wider net (Tier 1, rank 1); rebuilding
+exp-090's caution zone/Firth fit under both "drop 41.4°" and "relabel
+41.4°" treatments, zero-FDTD (Tier 1, rank 2); the `sigma_max` R3-rescale
+check extended to the PRIMARY `delta_scene`/`frac_contrast`/`ratio_k`
+channel, not only `p_abs_w`/`frac_p_abs` (Tier 1, rank 3); a third
+`cpl=40` resolution point to distinguish converging from still-drifting
+(Tier 2); extending R3 to the remaining four of exp-090's seven
+caution-zone points (Tier 3); persisting `sigma_ext_cells`/
+`ratio_abs_ext_raw` and a print-parity/Result-section-existence structural
+safeguard (Tier 4).

@@ -536,6 +536,45 @@ top. Protocol: PANEL.md.*
   and disclosed, unaffected. Full record: `experiments/088-t28-node-
   bracket-r13-floor-gate/phase5_review_quantum.md`,
   `phase5_redteam_audit.md` §0/§1/§3, LOGBOOK.md Iteration 65.
+- **R15 — a calibration boundary (threshold, caution zone, fitted
+  classifier edge) built from points whose classification depends on
+  proximity to a demonstrated or plausible resolution-sensitive
+  interference node must have that resolution-sensitivity independently
+  R3-verified before the boundary is trusted for any future classification
+  (adopted Iteration 68, exp-091, MATERIALS' self-review finding, Red
+  Team's Phase-5 final audit).** R13's own floor gate (guarding a literal
+  near-zero denominator at the resolution it was measured) is necessary
+  but not sufficient: a point can clear R13's floor cleanly at every
+  tested resolution and still have its classification flip under grid
+  refinement, because the underlying feature's own zero-crossing
+  LOCATION — not merely its measured distance from a fixed-resolution
+  floor — can itself move under `cpl` refinement. This is a genuinely
+  distinct failure axis from R13/R14: both of those rules concern a
+  single-resolution algebraic-instability/subtractive-cancellation
+  hazard; R15 concerns whether the underlying feature is stable ACROSS
+  resolutions at all. Founding instance: exp-090's caution zone
+  `[1.4764,2.1709]` (built from exp-087/088/089's n=7 sample), whose
+  entire `Y=1` class (40.2°, 41.4°) failed exp-091's own first R3 check on
+  this channel — one outright reclassifying (`ratio_k` 28.85→9.21,
+  ENERGY-DOMINANT→CONSISTENT), one surviving only by 0.74% of
+  `RATIO_HIGH=10.0`'s own value (`ratio_k`=10.074, under `_label()`'s own
+  strict `>` inequality) — and whose non-parametric zone construction
+  ITSELF INVERTS under the relabeling this demands
+  (`min{margin:Y=0}=1.3095 < max{margin:Y=1}=1.4764`), exactly triggering
+  exp-090's own pre-registered "falsified if the computed zone is empty,
+  inverted, or the underlying separation has any tie/inversion" clause.
+  `delta_scene(40.2°)` was independently shown to change SIGN between
+  `cpl=20` (`−1.543×10⁻⁴`) and `cpl=30` (`+4.370×10⁻⁴`), and neither of two
+  `±0.2°` brackets built to straddle the known `cpl=20` crossings
+  (40.265°/41.461°) reproduced a crossing at `cpl=30` — the true `cpl=30`
+  crossing locations remain unlocated, not merely shifted, as of this
+  cycle. **Does not fire on its own founding instance** (exp-090) —
+  matching R5/R6/R9/R10/R11/R12/R13/R14's own precedent that a rule's
+  founding cycle establishes the standard rather than retroactively
+  violating it; exp-090's own record named the R3 gap explicitly as an
+  open Idealization at the time. Full record: `experiments/091-t28-r3-
+  resolution-denser-recheck/phase5_review_materials.md` §3–§5,
+  `phase5_redteam_audit.md` §0/§3, LOGBOOK.md Iteration 68.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
