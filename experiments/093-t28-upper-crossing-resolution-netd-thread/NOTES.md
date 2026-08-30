@@ -334,3 +334,103 @@ proposing seat and independently re-confirmed by Red Team
 This cycle takes no position on σ(I)/σ(x,t)/angular selectivity/
 sub-threshold operation, makes no phenomenon-mechanism claim, and does
 not touch `REALIZABILITY_MEMO.md`.
+
+## Result
+
+*(Added post-Phase-4, before Phase-5 review — a structural gap caught by
+MATERIALS' own Phase-5 review: this section was missing entirely until
+now, the exact "Result-section-existence" safeguard the exp-090/091
+lineage itself named. All 56 FDTD calls ran, all house gates PASS
+(`xi_ext<=0.12`, `sigma_abs>=0` everywhere, trust suite re-confirmed
+41/41 green post-run). Total wall time 29.4 min (well under the 55-166
+min estimate). Full record: `run_output.txt`, `results.json`.)*
+
+**(Item 5) PRIMARY — CONFIRM.** All 7 angles reproduce exp-092's own
+filed `rank1.per_theta` values bit-exact (`delta_scene`/`frac_contrast`/
+`ratio_k`/`floor_pass` all match). **(Item 5b, NETD/instrument, not
+human-eye) — all 14 cells UNDETECTABLE**, `dt_ss_full_K` in
+`5.07×10⁻⁵`–`5.59×10⁻⁵` K, comfortably inside the predicted
+`1×10⁻⁵`–`5×10⁻⁴` K range. Zero surprises.
+
+**(Item 3) PRIMARY — REFUTE.** `delta_scene` at 41.8° moves by 4.71× under
+the `sigma_max` correction (outside `[0.3,3.0]`); at 42.0° it **flips
+sign** (ratio=−0.7225, `sign_match=False`) — a genuine, disclosed material
+contamination at the upper near-null that Rank 3's own broader census
+(37.2°/40.2°/41.4°, exp-092) never covered. `p_abs_w` (item 3b,
+informational) stays CONFIRM at both angles (`ratio_abs_ext` within 0.7%
+of the 0.51 T9 anchor) — the contamination is specific to the coherent
+`delta_scene` channel, not the absorbed-energy channel.
+
+**(Sigma branch) → item 1 ran at `sigma_max=1/3`** (corrected), per the
+REFUTE branch rule, disclosed as not directly comparable to the
+native-sigma flanking anchors (41.6°/41.8°/42.0°) — Idealization 11.
+
+**(Item 1) PRIMARY — THREE-WAY OUTCOME = SINGLE-NULL.** All six interior
+points read `delta_scene≤0`; four (41.825°/41.850°/41.875°/41.900°) clear
+R13's floor gate, all classifying ENERGY-DOMINANT (`ratio_k` 20.5–29.6×);
+two (41.750°/41.775°) stay `NODE-UNRESOLVABLE`. **No interior point reads
+`delta_scene>0` while clearing the floor gate — the "double-crossing" does
+not survive resolution refinement.** The two candidate crossings exp-092
+located (41.7811°/41.8377°) are better read as a 3-point
+linear-interpolation artifact across one smooth, deep near-total-null
+trough than as two genuine oscillatory nodes — a real, resolving finding,
+though (per Idealization 16 and MATERIALS' own Phase-5 finding, below)
+this is an *angular*-resolution result at fixed `cpl=30`, not yet an
+R15-grade cross-`cpl` verification, and item 3's own sign-flip at 42.0°
+under `sigma_max` is direct empirical evidence this exact angular band is
+sensitive to more than one axis of resolution.
+
+**(Item 2) PRIMARY — CONFIRM, bit-exact.** `auc(-pos,-neg)=1.0000`
+(exp-090's own convention), zone `[4.1083, 5.4287]`, Firth
+`β=[3.76504788,−5.60700572]`, `m₅₀=4.6934`, naive MLE diverges — every
+figure reproduces the frozen NOTES.md prediction to full precision.
+**Extension (SINGLE-NULL gate): table stands as built**; item 1's four
+floor-clearing interior points are reported as context only (all Y=1,
+consistent with a deep near-null, not zone-defining members).
+
+**(Item 4) PRIMARY — CONFIRM.** At the corrected, mandated length scale
+(`ℓ=A_HALF_APERTURE=752`/`1128` cells), magnitude ratios (observed vs.
+predicted `|Δθ|`) are **32.1×/80.2×/95.8×** at the lower/upper-1/upper-2
+crossings — inside the corrected `[10×,200×]` band, REFUTing the
+dispersion-alone mechanism by one clear order of magnitude. R8's
+standing tripwire is now genuinely discharged at the actually-named
+length scale (not the pre-freeze draft's mistaken `2×PAD`, retained only
+as a relabeled secondary computation, ratios 301.8×/754.0×/900.4×).
+
+## Learned
+
+1. A calibration-boundary/interference-node region can be sensitive to
+   `sigma_max` (a numerical-rescale parameter, not a physical material
+   change) at exactly the same angular band a resolution-only sweep is
+   also probing — item 3's sign flip at 42.0° and item 1's SINGLE-NULL
+   sweep sit in the identical 41.75°–42.0° window, both run this cycle,
+   independently confirming the region is fragile on more than one axis.
+2. THERMODYNAMICS' own NETD/energy-sidecar channel (item 5b) stays flat
+   and UNDETECTABLE across all 14 backfilled cells regardless of angle or
+   config — the ~2.84° oscillatory imprint this sub-thread has chased
+   since exp-069 lives entirely in the coherent `delta_scene`/`σ_ext(θ)`
+   channel, never in bulk absorbed power, now directly measured rather
+   than inferred from R14's own flatness argument alone.
+3. The pre-freeze draft's own two Phase-2-caught defects (item 2's false
+   "AUC reversal," item 4's wrong length scale) were both catchable by
+   independently recomputing a cited figure from its own primary source
+   rather than trusting a hand-written table — exactly the discipline
+   R4 already names. Both were caught before any run; neither reached
+   this document uncorrected.
+
+## Next (ranked, pending Phase 5's own six blind reviews + Red Team's final audit — provisional)
+
+1. A `cpl=40` spatial-resolution check at the 41.75°–41.90° interior
+   near-null specifically (per Idealization 16 and item 3's own
+   sign-flip finding) — the SINGLE-NULL verdict is angular-only-verified,
+   not yet R15-grade.
+2. A dedicated follow-up on item 3's own sign-flip mechanism — does the
+   same `sigma_max`-sensitivity apply anywhere else in the newly-swept
+   interior, or is 42.0° specific to sitting closest to the true null?
+3. R15's own two still-open discharge conditions (three of exp-090's
+   seven original caution-zone points still lack any `cpl=30`
+   measurement; no `cpl=40` comparator exists anywhere on this channel).
+
+*(This section is provisional — Phase 5's own six blind reviews and Red
+Team's final audit may substantially revise this ranking; the Director's
+own closing synthesis, not this draft, is authoritative.)*
