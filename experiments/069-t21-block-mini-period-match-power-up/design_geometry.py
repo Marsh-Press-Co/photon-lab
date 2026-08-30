@@ -213,8 +213,10 @@ def r3_config(absorb, pad):
 R3_CONFIGS = {
     "C40_R3": r3_config(60, 0),      # ABSORB scales too: 40*1.5=60
     "C80_R3": r3_config(120, 60),    # 80*1.5=120, pad 40*1.5=60
+    "G40_R3": r3_config(60, 60),     # R3 scaling of native G40=config(40,40): absorb 40->60, pad 40->60
 }
-assert R3_CONFIGS["C40_R3"]["A"] == R3_CONFIGS["C80_R3"]["A"] == round(A_HALF_APERTURE * R3_RATIO), \
+assert R3_CONFIGS["C40_R3"]["A"] == R3_CONFIGS["C80_R3"]["A"] == R3_CONFIGS["G40_R3"]["A"] == \
+    round(A_HALF_APERTURE * R3_RATIO), \
     f"R3 congruent construction: A must scale by exactly R3_RATIO ({A_HALF_APERTURE*R3_RATIO})"
 
 # ------------------------------------------------------------- cost basis
