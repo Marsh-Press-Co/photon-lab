@@ -575,6 +575,90 @@ top. Protocol: PANEL.md.*
   open Idealization at the time. Full record: `experiments/091-t28-r3-
   resolution-denser-recheck/phase5_review_materials.md` §3–§5,
   `phase5_redteam_audit.md` §0/§3, LOGBOOK.md Iteration 68.
+  **Addendum (Iteration 71, exp-094) — R15's own concern empirically
+  realized, on its own founding sub-thread, as a full-window reversal
+  rather than a boundary-adjacent single-point wobble.** exp-094's `cpl=40`
+  congruent-geometry check (`R4`, a mechanical `R4_RATIO=2.0` rescale of
+  the already-validated `R3` recipe) found ALL SIX of exp-093's own
+  `cpl=30` interior near-null points (41.750°–41.900°) reverse sign AND
+  classification at `cpl=40` — not a partial drift, a complete reversal,
+  independently re-derived four separate times (PHOTONICS, MATERIALS,
+  QUANTUM's own self-review, Red Team's Phase-5 final audit) from
+  `results.json` primitives. MATERIALS' own Phase-5 review and PHOTONICS'
+  own Phase-5 review independently converged, without seeing each other's
+  work, on the identical structural point: a monotonic node-migration
+  story, an oscillating-with-`cpl` story, and a genuinely
+  non-convergent-at-any-affordable-`cpl` story are all equally consistent
+  with two data points from one shared construction recipe. **Rule,
+  addendum: a cross-resolution check that reverses an ENTIRE sampled span
+  (every point flipping sign and classification together) must be read as
+  evidence that NEITHER resolution's reading is individually
+  trustworthy, and must specifically not be resolved by defaulting to the
+  finer grid as automatically more correct. A finer-grid family built by
+  mechanically substituting a new ratio into an already-validated
+  congruent-construction recipe inherits any resolution-*independent*
+  systematic the recipe itself carries; two such points cannot, on their
+  own, distinguish genuine continuum convergence from a persistent
+  recipe-level artifact or a genuinely non-convergent oscillation. A
+  third, differently-ratioed resolution point is the minimum required to
+  distinguish these — and, before that point is trusted, the new family
+  must additionally be shown to reproduce the ALREADY-KNOWN-CORRECT sign
+  at a robust, far-from-null angle on the same channel (a synthetic
+  ground-truth-recovery discipline, generalized from R6's own
+  estimator-conditioned form to a new resolution family — QUANTUM's own
+  self-attack, independently endorsed by Red Team's Phase-5 final audit as
+  more urgent than the already-queued third-resolution-point check), since
+  a uniform full-window reversal is indistinguishable, from pointwise data
+  alone, from a systematic registration/phase-reference defect in the new
+  family's own construction.** **Does not fire on its own founding
+  instance** (exp-094), matching every prior rule/addendum's own precedent.
+  Full record: `experiments/094-t28-cpl40-resolution-sigma-r3-census/
+  phase5_review_materials.md`, `phase5_review_photonics.md`,
+  `phase5_review_quantum.md`, `phase5_redteam_audit.md` §1.2/§5, LOGBOOK.md
+  Iteration 71.
+- **R16 — a top-level disclaimer covering a byproduct field travels
+  unconditionally, but is necessary, not sufficient: the byproduct itself
+  must be persisted via this program's own established extraction
+  convention (`netd_row()` or its successor) wherever a `_full`/
+  NETD-surfacing metrics function computes it, for every cell/angle where
+  it is computed (not a ruled-out idea; a standing house-discipline rule,
+  proposed by Red Team's Phase-5 final audit and ratified by the Director,
+  Iteration 71, closing a specific loophole in RT-4's own narrower
+  same-cycle mandate).** exp-094's own Rank 2/Rank 3 calls invoked the
+  `_full` metrics variant (per Red Team's own Phase-2 RT-4 mandate, which
+  required only that a disclaimer travel with any NETD byproduct field,
+  not that the field itself be persisted); the `netd_disclaimer` top-level
+  key landed correctly in `results.json`, byte-for-byte matching
+  exp-093's own wording (VISION's own Phase-5 re-verification) — but it
+  covered an empty set: `cell_metrics_r4`'s own `dt_ss_full_K`/
+  `netd_classification` fields, computed for every one of this cycle's 20
+  article-bearing cells, were never extracted into any Rank's own report
+  dict or `results.json`, reproducing — in genuinely new `R4`-family code
+  that never called `netd_row()` at all — a pattern LOGBOOK's own
+  Iteration-70 entry had declared "genuinely closed" one cycle earlier
+  (VISION's own structural fix from exp-092). Red Team's Phase-5 final
+  audit ruled this does NOT meet the strict "known, named, ignored" bar
+  R6/R11's own lineage reserves for automatic firing (that bar requires
+  literally reusing the same already-fixed machinery unfixed; here the
+  code path that dropped the data was new, never having called
+  `netd_row()` at all, rather than calling it and discarding the
+  result) — Checkpoint criterion 4 does NOT fire, but is named the
+  closest non-firing call in this sub-thread's history, and this rule
+  closes the loophole going forward. **Standing forward-elevating clause
+  (Red Team's own language, adopted verbatim): a third occurrence of "a
+  disclaimer travels but the field it is meant to cover is never
+  persisted," on this or any T28-adjacent channel, in any form, fires
+  Checkpoint criterion 4 automatically, no further deliberation** — this
+  cycle's occurrence is named the second (exp-092/093's boundary was the
+  first, closed by exp-093's own `netd_row()` fix; this cycle broke that
+  chain in new code, not old). Same-shift fix applied post-audit
+  (Fix #2/#3): `p_abs_w`/`netd_row()` retroactively extracted into Rank
+  2/3/1a/1b's own report dicts, zero-FDTD-marginal-cost deterministic
+  rerun. **Does not fire on its own founding instance** (exp-094),
+  matching every prior rule's own precedent. Full record:
+  `experiments/094-t28-cpl40-resolution-sigma-r3-census/
+  phase5_review_thermodynamics.md`, `phase5_review_vision.md`,
+  `phase5_redteam_audit.md` §1.4/§3/§4/§5, LOGBOOK.md Iteration 71.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
