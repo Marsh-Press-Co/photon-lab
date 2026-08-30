@@ -257,7 +257,198 @@ investigated before trusting anything else this cycle measures.
 
 ## Result
 
-*(To be written after Phase 4 — see `phase5_redteam_audit.md` once filed.)*
+**Carried idealizations banner** (mandatory at both this section and the
+Predictions section, per the Iteration-65 CHECKPOINT's own escalated,
+non-discretionary rule): every finding below is governed by
+**Idealizations 3/6/7/11**: NETD is an instrument/detector threshold, not
+a human perceptual one — nothing here bears on constraint-3/4's human-eye
+verdict; this cycle does not test constraint 1/2/3/4 and takes no T1
+escape-route position (`REALIZABILITY_MEMO.md` untouched, Checkpoint
+criterion 2 N/A); `FLOOR`/`RMS[frac_contrast]` are applied, not recomputed,
+against the new points; a Rank-3 REFUTE/NEITHER-default would have
+reopened Rank 1's own net-placement logic as provisional — moot this
+cycle, since Rank 3 CONFIRMed (see below).
+
+All 40 FDTD calls completed (20.58 min wall — 7.58 min Rank 3, 13.01 min
+Rank 1); all house gates PASS (`vac_pass`, `xi_pass`, `nonneg_pass`, all
+exhaustively checked). The Director-added empty-leg consistency check
+(Idealization/fix #8, `phase3_synthesis.md` §2) **ALL MATCH** — all six
+freshly re-run empty-leg `C_empty` values reproduce exp-091's own filed
+values bit-exact, confirming this bench's FDTD is deterministic as
+assumed and validating the "re-run rather than reuse" fix.
+
+- **(R3) PRIMARY — CONFIRM, cleanly, at all three census angles and both
+  scored quantities.** The sigma-corrected (`1/3`) article's `delta_scene`
+  ratio vs. exp-091's own as-filed (`0.5`) value: `0.9226`/`1.0141`/`1.1720`
+  at 37.2°/40.2°/41.4°, sign held at all three; `frac_contrast` ratio:
+  `0.9382`/`1.0267`/`1.1827` — all six cells comfortably inside `[0.3,3.0]`.
+  **The unscaled `sigma_max` confound MATERIALS flagged at exp-091's own
+  Phase-5 self-review does NOT materially contaminate the PRIMARY
+  `delta_scene`/`frac_contrast` channel.** This is a genuine, clean
+  resolution of exp-091's own single most consequential open question
+  (`phase5_redteam_audit.md` §7: "on par with... the still-unlocated
+  crossings") — the sign flip and razor-thin 40.2° survival exp-091
+  reported are resolution-genuine, not a sigma-scaling artifact.
+- **(R3b) PRIMARY, non-gating — CONFIRM.** `p_abs_w` ratio
+  `0.9610`/`0.9619`/`0.9602` at the three angles — a clean, small,
+  *consistent* ~3.8–4.0% decrease at every angle, matching THERMODYNAMICS'
+  own pre-registered directional lean (a 33% conductivity cut moving an
+  already-near-saturated absorber's `p_abs_w` sub-linearly, per the T9
+  `ratio_abs_ext≈0.51` anchor) almost exactly. `ratio_abs_ext_raw` itself
+  measured `0.5139`/`0.5127`/`0.5147` — within `0.54–0.93%` of the `0.51`
+  anchor at all three angles, comfortably inside THERMODYNAMICS' own
+  named `~2–3%` band.
+- **[Sigma branch] CONFIRM → Rank 1 ran at `sigma_max=0.5`** (native,
+  exp-091's own as-filed convention), the pre-registered branch outcome.
+  Rank 1's own results below are therefore directly comparable to
+  exp-091's own filed `cpl=20` data with no sigma-scaling caveat.
+- **(R1a) PRIMARY — NEITHER**, the pre-registered outcome for "a crossing
+  found but the local curve is non-monotonic within a window" — and a
+  genuinely split result underneath that one mechanical label, reported
+  in full rather than flattened to it:
+  - **Lower window — a clean success.** Exactly ONE crossing found,
+    `theta=40.0718°`, a single monotonic sign change across all seven
+    points (`-2.49e-3` at 39.2° rising smoothly to `+9.86e-4` at 40.4°,
+    exp-091's own already-committed bracket point). Shift vs. the known
+    `cpl=20` location (`40.2654°`): **`-0.1936°`** — a real, sizeable
+    relocation, larger than either tested `cpl=30` bracket in exp-091 could
+    have shown. Shift vs. the naive linear extrapolation this cycle's own
+    Phase-1 design used to size the net (`≈40.04°`): only **`+0.0318°`** —
+    the naive 2-point secant, despite PHOTONICS' own upheld objection that
+    its amplitude-based corroboration was a non sequitur, turns out to have
+    been a good *quantitative* predictor of the actual location, for
+    whatever reason (not claimed as validated methodology, since n=1).
+  - **Upper window — a new, more complex structure, not a located single
+    crossing.** TWO crossings found, `41.7811°` and `41.8377°`, only
+    `0.0566°` apart — the local curve crosses zero, comes back, and
+    crosses again within one grid step's neighborhood, rather than making
+    one clean transition. This coincides exactly with `theta=41.8°` itself
+    reading `NODE-UNRESOLVABLE` (`floor_pass=False`, `delta_scene=
+    -1.865e-5`, the smallest-magnitude value this cycle measured by nearly
+    an order of magnitude) — the two located crossings straddle a genuine,
+    near-total interference null, not sampling noise. **This is a new
+    positive finding, not merely a failure to locate**: exp-091's own
+    single-bracket instrument could not have shown this structure exists;
+    this cycle's own denser net proves the upper crossing region is
+    genuinely more complex than a single zero-crossing, at `cpl=30`,
+    independent of whether either individual crossing's own location is
+    itself considered "found" in the (R1a) sense.
+- **(R1b) diagnostic** — both located crossings, against both comparators:
+
+  | | `cpl=30` location | vs. known `cpl=20` | vs. naive extrapolation |
+  |---|---|---|---|
+  | Lower | 40.0718° | −0.1936° | +0.0318° |
+  | Upper (first of two) | 41.7811° | +0.3202° | +0.0911° |
+  | Upper (second of two) | 41.8377° | +0.3768° | +0.1477° |
+
+  Both crossings moved in the *predicted directions* (lower → smaller θ,
+  upper → larger θ) — the PHOTONICS-upheld "widening lobe" qualitative
+  picture (Rank 1's own §2a) is directionally confirmed even though its
+  amplitude-based corroboration was independently ruled a non sequitur;
+  the *quantitative* naive-extrapolation estimates were good for the lower
+  crossing and only fair (0.09–0.15° off) for the upper pair, unsurprising
+  since the upper region's own true structure (two nearby crossings, not
+  one) was never representable by a single-crossing 2-point secant model
+  to begin with.
+- **(R1c) diagnostic** — new floor-clearing classifications at the seven
+  new angles: 39.2°/39.6°/39.8° CONSISTENT, 39.4° ENERGY-DECOUPLED
+  (`ratio_k=0.0762`, the lowest value this cycle measured), 40.0°
+  ENERGY-DOMINANT (`ratio_k=18.89`, floor-clearing), **41.8° AND 42.0°
+  both NODE-UNRESOLVABLE** (`floor_pass=False` at both) — the floor gate
+  correctly excludes the entire upper window's edge region, not only the
+  41.8° point the double-crossing straddles; the whole `41.8°–42.0°`
+  neighborhood reads small, node-proximate signal, consistent with §Result
+  above's reading of a genuine near-total null there, not an isolated
+  single-point artifact. No new claim is scored against these — context
+  only, per the pre-registered design.
+- **(R2) PRIMARY — CONFIRM, bit-exact.** The live in-`run.py` recomputation
+  reproduces the five-times-independently-pre-verified frozen table
+  exactly: `AUC=1.0/1.0/0.8333`, zone `[1.4764,2.1709]`(unchanged under
+  DROP)/`[1.4764,1.3095]`(inverted under RELABEL), `m₅₀=2.071013/1.818061/
+  1.031717`, naive-MLE-diverges `True/True/False`. This closes the loop on
+  a deliverable that was, by the time of this run, arguably the
+  best-verified single computation in this sub-thread's history (six
+  independent reproductions across three cycles' worth of parties, this
+  live run making a seventh).
+
+**Reading the two Rank-1 crossing locations against exp-090's own caution
+zone (context, not a re-litigation of R15 — that remains Iteration-70's
+own named task, `phase3_synthesis.md` §6 unchanged):** now that the true
+`cpl=30` lower-crossing location (`40.072°`) is known, the `cpl=20`
+census point at `40.2°` sits `0.194°` past it (on the *positive* side, per
+Rank 3's own reproduced sign), while `40.4°` sits `0.332°` past it —
+consistent with `delta_scene(40.2°, cpl=30)` reading small-but-positive,
+matching this cycle's own already-reported `+4.37e-4` value from Rank 3.
+Full re-fitting of R15's own caution zone against these newly-located
+crossings is out of scope this cycle (queued forward, §Next) — this
+paragraph is a consistency note, not a new computation.
+
+## Learned
+
+1. **A genuinely open, two-sided instrument-validity question can resolve
+   cleanly in the "not contaminated" direction** — Rank 3's CONFIRM across
+   both `delta_scene`/`frac_contrast` and the co-equal `p_abs_w` channel,
+   with `ratio_abs_ext` landing within ~1% of the T9 anchor at all three
+   angles, is about as clean a negative result as this program's own
+   `[0.3,3.0]` band has ever produced. exp-091's own headline sign flip
+   and caution-zone-inverting finding stand *more* firmly for having
+   survived this check, not merely unchallenged by it.
+2. **A wider net can succeed and reveal new complexity in the same
+   measurement.** The pre-registered CONFIRM/NEITHER/REFUTE trichotomy for
+   (R1a) was built around "how many crossings did each window find," which
+   correctly classifies this cycle's result as NEITHER — but that one label
+   undersells a substantively split outcome (a clean single-crossing
+   success in one window, a genuinely new double-crossing structure
+   discovered in the other). Future crossing-search designs on this
+   channel should consider scoring each window's own outcome separately
+   from the start, rather than only a combined worst-case verdict.
+3. **A double-crossing pair separated by 0.057° straddling a
+   floor-gate-failing point is a coherent, physically legible picture, not
+   a numerical artifact** — the three independent signals (two sign
+   changes, and a `NODE-UNRESOLVABLE` classification at the point they
+   straddle) all point to the same underlying feature (a near-total
+   interference null at `cpl=30` near 41.8°), corroborating each other
+   without any additional computation needed to connect them.
+4. **This program's own `_run_sim_r3`-family FDTD calls are exactly
+   deterministic across separate process invocations** — six independent
+   bit-exact reproductions of exp-091's own filed empty-leg values,
+   confirmed live in this cycle's own `run.py`, is now empirical
+   confirmation (not merely an architectural assumption) that "re-run
+   rather than persist" is a costless substitute for a raw-capture cache
+   this program has never built.
+
+## Next
+
+Ranked, reconciling this cycle's own two live open items with the items
+`phase1_proposal.md` §7 and `phase3_synthesis.md` explicitly deferred:
+
+1. **Re-fit/re-derive R15's own caution-zone question using the two newly
+   located `cpl=30` crossings** (or three, counting the upper pair
+   separately) as inputs, now that Rank 3 has confirmed the sigma_max
+   confound does not contaminate this reading — the natural next step
+   given this cycle's own two PRIMARY results (R3 CONFIRM licenses citing
+   Rank 1's numbers cleanly; Rank 1 locates the lower crossing and reveals
+   the upper region's real structure).
+2. **A dedicated, denser sweep of the upper window (41.6°–42.2°, finer
+   than the native 0.2° `DENSE_ANGLES` step)** to resolve whether the
+   double-crossing pair at 41.78°/41.84° is a genuine two-node feature or
+   an under-resolved single deep null — this cycle's own grid cannot
+   distinguish those without off-grid points.
+3. **Extend the search past 42.0°** — this cycle's own §2b-disclosed
+   window-edge risk was not realized for the *located* crossings (both
+   fell inside the tested windows), but the newly-discovered upper
+   complexity means the true picture past 42.0° remains unknown; still
+   named, not resolved.
+4. Carried forward, unchanged, standing: PHOTONICS' own grazing-incidence
+   validity check (still the single most-repeated item on the whole T28
+   board); the x-wall wavelength-generality leg (well past sixteen
+   consecutive cycles deferred); the still-queued R14(b) formal
+   null-controlled period fit; the Rank-2-in-exp-090's-own-queue unbiased
+   margin-vs-distance rebuild on the full 31-point window; a `cpl=40`
+   third resolution point (Tier 2, `phase1_proposal.md` §7); extending R3
+   to exp-090's remaining four caution-zone points (Tier 3); the
+   structural/governance items at Tier 4; the ritualization governance
+   question (Iteration 61), still unresolved.
 
 ## Learned
 
