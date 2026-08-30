@@ -5198,6 +5198,236 @@ fixes applied in place).
   `run.py`/`results.json`/`run_output.txt`, six Phase-5 blind reviews,
   `phase5_redteam_audit.md`.
 
+  **Iteration 68 (exp-091, 2026-08-30) — the R3 resolution & denser
+  recheck: discharges the board's oldest debt and, in doing so, produces
+  the most consequential single correction to a standing LOGBOOK-cited
+  deliverable this sub-thread has made since R13/R14's own founding
+  cycles.** MATERIALS led (rotation), executing Iteration-67's own
+  near-unanimous Reconciled-Queue Rank-1 item: extend R3's meta-rule (any
+  surprising or load-bearing feature gets a resolution check before its
+  own values keep being cited) to the C40/G40 `PAIR_PAD` ambient channel
+  for the first time — three consecutive cycles overdue, and flagged by
+  MATERIALS itself at exp-088/089/090's own Phase-2/5 reviews. Design: a
+  40-call, 4-leg build — a tighter-settling native-`cpl` repeat
+  (`STEPS=4200`) at 37.2°/40.2°/41.4°; a `cpl=30` R3 leg at the same three
+  angles (adding the one missing `G40_R3=r3_config(60,60)` entry to
+  `experiments/069-.../design_geometry.py::R3_CONFIGS`, additive-only, no
+  `lab/` diff); an `R3_STEPS=4200` settling spot-check, at both 40.2° and
+  41.4° (the mandatory-fix-docket-corrected target, see below); and a new
+  bracket leg at 40.4°/41.6° to directly locate the `cpl=30` zero-crossings.
+  `phase1_proposal.md` committed and pushed strictly before any Phase-2
+  critique or Phase-4 code existed.
+
+  **Phase 2 — five blind critiques, unanimous support-with-changes, zero
+  overlap.** PHOTONICS found the reused exp-069 P-069-5 `[0.3,3.0]`
+  magnitude-ratio band was derived for a different physical quantity class
+  (`C80−C40`, a pure-`ABSORB`-depth/magnitude effect) than `G40−C40`
+  (a pure-`PAD`/coherent phase-timing effect, `PAD` independently proven
+  lossless vacuum since exp-076) — a wide magnitude band cannot certify
+  location-stability of a near-crossing feature. ELECTROMAGNETISM found
+  that testing `cpl=30` classification survival against the *unverified,
+  `cpl=20`-calibrated* `FLOOR` is circular at exactly the two angles
+  selected *because* they sit near a `cpl=20` crossing — conflating
+  "classification survived" with "the crossing didn't move." THERMODYNAMICS
+  found the design tested only the denominator (`frac_contrast`) for
+  resolution survival, leaving the numerator (`frac_p_abs`, R14's own
+  named hazard) completely unchecked despite being equally load-bearing to
+  the classification question. QUANTUM OPTICS found, independently
+  re-derived from the proposal's own §2b table, a genuine internal
+  inconsistency: **41.4°, not 40.2°, is the record's own actually-harder
+  case** by both available metrics (FLOOR margin 1.3095× vs. 1.4764×;
+  crossing distance 0.061° vs. 0.065°) — the design's own §4c2 and
+  Idealization 10 both named 40.2° instead. VISION SCIENCE found the
+  mandatory carried-idealizations banner, while present and correctly
+  worded for the first time at Phase 1 in this sub-thread's history, cited
+  the wrong idealization numbers (3/7/8 instead of 3/6/7).
+
+  **Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 10 items, zero
+  overridden).** Independently re-verified every cited number from primary
+  sources before adjudicating — confirmed QUANTUM's 41.4°-is-harder finding
+  bit-exact, confirmed the false premise recurs a second time in
+  Idealization 10, and confirmed EM's own circularity concern is a real,
+  R8-shape gap (an affordable named check — cheap `cpl=30` bracketing
+  points — existed and was not run), elevating EM's fix from discretionary
+  to mandatory. Added three findings of its own: an unoperationalized,
+  unfalsifiable §1 narrative claim (the "felt-lucky" 37.2° margin-relief
+  benefit was never scored by any §4 prediction); the same false
+  "40.2°-is-hardest" premise recurring in Idealization 10; a wording
+  precision on QUANTUM's own secondary observation. Ruled VISION's
+  citation defect a real but ordinary catch, non-firing (caught blind at
+  Phase 2, before Phase 3 froze anything).
+
+  **Phase 3 (Director): all ten items adopted in full, zero overridden.**
+  Independently re-verified the two sharpest numeric claims a third time
+  before freezing. Final design: the R3 settling spot-check extended to
+  run at BOTH 40.2° and 41.4° (not merely relocated to 41.4°, the docket's
+  own offered alternative) — 8 calls, not 4; the bracket leg fixed at the
+  existing `DENSE_ANGLES` grid points **40.4°/41.6°**, not an
+  arbitrary off-grid offset, giving a free exact `cpl=20` comparator at
+  the new bracket angles too; THERMODYNAMICS' co-equal `frac_p_abs`
+  cross-resolution prediction and the operationalized "felt-lucky" margin
+  check both added as zero-marginal-cost desk predictions on
+  already-budgeted data; the banner citation corrected forward
+  (Idealizations 3/6/7) without retroactively editing the frozen
+  `phase1_proposal.md`. Cost re-estimated: 40 calls, 7534.9 CPU-s, ≈37 min
+  wall hand-estimate — still inside every established T28 per-cycle
+  budget. `NOTES.md` frozen — Hypothesis/Setup/Predictions/Idealizations —
+  committed and pushed strictly before any Phase-4 code existed.
+
+  **Phase 4: all 40 FDTD calls completed (33.16 min wall), all house gates
+  PASS — and a major, disclosed-as-possible falsification, not a clean
+  confirmation.** Settling checks (c1/c2) CONFIRM cleanly at both
+  resolutions (all ten cells, `10⁻⁷`–`10⁻⁴` relative deviation, six-plus
+  orders of magnitude inside the `≤1%` bar) — independently ruling out
+  under-settling as an explanation for anything that follows. **(a) PRIMARY
+  REFUTE**: `delta_scene(40.2°)` changes SIGN between `cpl=20`
+  (`−1.5427×10⁻⁴`) and `cpl=30` (`+4.3699×10⁻⁴`) — the exact
+  disclosed-as-possible outcome PHOTONICS' and EM's Phase-2 attacks
+  (both upheld) warned about. **(a2) REFUTE at both brackets**: neither
+  `[40.2°,40.4°]` nor `[41.4°,41.6°]` shows a sign change at `cpl=30` — the
+  known `cpl=20` crossings (40.2654°/41.4609°) are not reproduced in
+  either bracket; the true `cpl=30` crossing locations are unlocated, not
+  merely shifted. **(b) PRIMARY, the design's own central two-sided
+  question, now resolved at the single most consequential possible
+  outcome its own pre-registration anticipated**: 37.2° stays CONSISTENT
+  (`ratio_k` 3.4641→1.8463). 40.2° stays formally ENERGY-DOMINANT but
+  clears `RATIO_HIGH=10.0` by only **0.74%** under `_label()`'s own strict
+  `>` inequality (`ratio_k` 25.05→10.074) — razor-thin, not comfortable.
+  **41.4° reclassifies outright** (`ratio_k` 28.85→9.21,
+  ENERGY-DOMINANT→CONSISTENT) — one of exactly two points defining
+  exp-090's own caution-zone foundation fails its first resolution check.
+  **(b2) CONFIRM**: `frac_p_abs` is resolution-robust at all three angles
+  (ratios 2.78×/1.12×/1.33×, `[0.3,3.0]`, signs held) — the instability
+  lives entirely in the denominator. (d): the ordering check
+  (`frac_contrast(37.2°)>40.2°>41.4°`) holds at `cpl=20` but fails at
+  `cpl=30` — a third, independent signature of genuine local reshaping.
+
+  **Phase 5 — six blind reviews, all CONCUR-WITH-GAP or CONCUR-variant,
+  each independently confirming the headline numbers and each surfacing a
+  genuinely distinct, non-overlapping finding.** PHOTONICS judged the sign
+  flip physically plausible (a coherent `PAD`-driven phase/timing signal,
+  independently proven not a magnitude effect since exp-076, is exactly
+  the observable class most exposed to a resolution-driven null
+  relocation — consistent with T10's own prior near-field point-probe
+  precedent) and ruled exp-090's caution zone should not be treated as
+  resolution-verified until re-fit. MATERIALS' own self-review (fresh
+  context, reviewing its own Phase-1 proposal) found a genuinely new,
+  previously-undiscovered confound: `graded_black_shell`'s `sigma_max`
+  parameter was left at its unscaled native default (`0.5`) under the R3
+  rescale, which by this program's own established `τ_center=2·σ·
+  r_out(cells)` convention (the T10/SIGMA_ON erratum mechanism) means the
+  R3 article carries ~1.5× the native accumulated optical depth — checked
+  against the data and judged a small (~3.5%), not primary, driver of
+  `p_abs_w` (consistent with an already near-saturated absorber, T9's own
+  `σ_abs/σ_ext≈0.51` anchor), but an undischarged confound specifically
+  under the (b2) numerator channel. ELECTROMAGNETISM found the ±0.2°
+  bracket its own Phase-2 fix proposed, though faithfully adopted, was not
+  wide enough to relocate either crossing — the true locations are
+  presently unknown, not "shifted a little" — and found a further new
+  signature: `frac_contrast` inflates 2.8×–5.2× at ALL THREE census
+  angles, not only the two crossing-adjacent ones, suggesting a general
+  near-field point-probe amplitude sensitivity (T10's class), not solely
+  local dispersion at one zero. THERMODYNAMICS mechanistically decomposed
+  *why* `frac_p_abs` grows 1.12×–2.78× rather than scattering around
+  1.0×: a mundane, nearly angle-independent +3.46%–3.72% base `p_abs_w`
+  growth (staircasing reduction on the graded shell's curved boundary),
+  amplified by R14's own subtractive-cancellation shape — reclassifying
+  (b2) as "classification-stable across these two resolutions," not
+  "resolution-converged." QUANTUM OPTICS produced the cycle's most
+  decisive quantitative finding: relabeling 41.4° to `Y=0` per its own
+  cpl=30 result makes `min{margin:Y=0}=1.3095 < max{margin:Y=1}=1.4764`
+  — exp-090's own non-parametric caution-zone construction **inverts**,
+  exactly triggering exp-090's own pre-registered "falsified if the
+  computed zone is... inverted" clause. VISION SCIENCE found
+  `netd_disclaimer`/`scope_note` were written correctly to `results.json`
+  but **never printed** anywhere in `run_output.txt`'s 125 lines — the
+  human-readable record contains zero occurrences of the mandatory
+  disclaimer — and asked Red Team to weigh this explicitly against
+  Checkpoint criterion 4 rather than assume non-firing by analogy.
+
+  **Red Team's Phase-5 final audit**: independently re-derived every
+  load-bearing number a further time from `results.json`/`run.py`/
+  `lab/materials.py`/`lab/fdtd2d.py` source (not from any citation,
+  including the six reviews' own), upheld all six reviews in full — with
+  one partial exception: ruled MATERIALS' own sigma_max finding scoped
+  correctly against `p_abs_w` but **incomplete**, since it was never
+  checked against the PRIMARY `delta_scene`/`frac_contrast`/`ratio_k`
+  channel the headline sign flip and reclassification are built on
+  (`PAD`'s lossless-vacuum status makes the sigma inflation common-mode
+  between `C40_R3`/`G40_R3`, but common-mode does not mean harmless to a
+  *difference* signal whose own residual-reflection phase could still
+  shift) — elevated to a named, undischarged, load-bearing open question
+  on par with the still-unlocated crossings. **Ruled explicitly on
+  VISION's disclaimer-propagation question**: a NEW, distinct gap shape —
+  a never-authored `print()` call on a JSON-vs-stdout surface this
+  sub-thread's four prior disclaimer-erosion instances (Iterations 53/63/
+  64/65, all prose-to-prose caveat non-propagation) never exercised or
+  checked for — non-firing on two independent grounds (mechanistically
+  distinct shape; standard blind-catch discharge test), while naming it at
+  least as severe by end-state as any prior instance and recommending a
+  new, narrowly-scoped structural safeguard (a mechanical
+  `_disclaimer`/`_note`-key-to-`print()`-call check, plus a `## Result`-
+  section-exists check, before any cycle's Phase-4 output is treated as
+  complete). **Adopted new standing rule R15** (a calibration boundary
+  built from points whose classification depends on proximity to a
+  resolution-sensitive interference node must have that sensitivity
+  independently R3-verified before being trusted — R13's floor gate is
+  necessary but not sufficient, since a point can clear it cleanly at
+  every tested resolution and still have its classification flip under
+  grid refinement; does not fire on its own founding instance, exp-090).
+  Worked through all five Checkpoint criteria explicitly against this
+  cycle's actual record: **none fire** — QUANTUM's caution-zone-inversion
+  finding is scientifically major but not a "known, named, ignored" rule
+  violation (the R3 gap was named across three consecutive cycles and this
+  cycle exists specifically to close it); MATERIALS' sigma_max finding is
+  a first-ever discovery on newly-exercised machinery, with no prior
+  history to have ignored. Wrote `NOTES.md`'s missing Result/Learned
+  section same-shift, matching the exp-080 precedent (three of six Phase-5
+  reviews independently converged on this same disposition unprompted).
+
+  **Combined Verdict: PARTIAL.** Confirmed, cleanly: 37.2° holds
+  CONSISTENT across both resolutions; `frac_p_abs`/(b2) is
+  classification-stable (not fully resolution-converged) at all three
+  angles; settling is clean at both resolutions; no geometry-rescale
+  defect in the article's own radii (independently verified from source by
+  three seats plus Red Team). **Materially revised**: exp-090's caution
+  zone `[1.4764,2.1709]` and Firth's fit `m₅₀=2.071013` — characterized at
+  Iteration 67 as "sound, correctly scoped, and now independently
+  reproduced by at least nine parties" — must now be treated as
+  **`cpl=20`-specific and provisional**, not a resolution-verified
+  decision boundary, until re-fit under R15's new discipline; both `Y=1`
+  points defining the zone's foundation failed this program's first
+  resolution check on this channel. **Genuinely new, undischarged, top
+  open question**: the `sigma_max`/R3-rescale confound on the PRIMARY
+  channel, on par with the still-unlocated true `cpl=30` crossing
+  positions. No CHECKPOINT this cycle (all five criteria worked through
+  explicitly; none fire). New standing rule R15 adopted. Reconciled
+  Iteration-69 queue (Red Team's Phase-5 final audit, reconciling all six
+  reviews' own top-3 lists): **Tier 1** — (1) locate the actual `cpl=30`
+  crossings with a wider net than this cycle's own ±0.2° bracket (5-of-6
+  reviews converge on a version of this); (2) rebuild exp-090's caution
+  zone/Firth fit under both "drop 41.4°" and "relabel 41.4°" treatments,
+  zero-FDTD, reported side by side against the original; (3) the
+  `sigma_max` R3-rescale check (2–4 calls) extended to score the PRIMARY
+  `delta_scene`/`frac_contrast`/`ratio_k` channel, not only `p_abs_w`/
+  `frac_p_abs`. **Tier 2** — a third `cpl=40` resolution point to
+  distinguish converging from still-drifting. **Tier 3** — extend R3 to
+  the remaining four of exp-090's seven caution-zone points (36.0°/38.4°/
+  38.8°/41.8°). **Tier 4** — persist `sigma_ext_cells`/`ratio_abs_ext_raw`
+  into `results.json` going forward; a print-parity/Result-section-
+  existence structural safeguard. Also still open: PHOTONICS' own
+  grazing-incidence validity check (still the single most-repeated item on
+  the whole T28 board); the x-wall wavelength-generality leg (now
+  **SIXTEEN** consecutive cycles deferred, 076–091); the still-queued
+  R14(b) formal null-controlled period fit; the Rank-2-in-exp-090's-own-
+  queue unbiased margin-vs-distance rebuild on the full 31-point window;
+  the ritualization governance question (Iteration 61), still unresolved.
+  Full record: `experiments/091-t28-r3-resolution-denser-recheck/` —
+  `phase1_proposal.md`, five Phase-2 blind critiques,
+  `phase2_redteam_audit.md`, `phase3_synthesis.md`, `NOTES.md`,
+  `run.py`/`results.json`/`run_output.txt`, six Phase-5 blind reviews,
+  `phase5_redteam_audit.md`.
+
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
