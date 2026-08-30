@@ -347,3 +347,151 @@ phenomenon-mechanism claim, and does not touch `REALIZABILITY_MEMO.md`.
 **N/A.** Pure instrument/desk-recalibration cycle: no new material,
 mechanism, or optical-response claim is made anywhere in this document.
 `REALIZABILITY_MEMO.md` is not opened, cited, or re-scored.
+
+## Result
+
+*(Added post-Phase-4, before Phase-5 review, per this program's own
+Result-section-existence safeguard. All 48 FDTD calls ran, all six house
+gates PASS — including the new Gate 5 runtime `sigma_e`/`sigma_max` check
+(Red Team RT-1), which fired inline on all 16 Rank 1a/1b article calls
+before any FDTD step and was independently confirmed a genuine
+discriminator, not a tautology, by injecting a simulated R15-style wiring
+defect into a standalone test harness during Phase 4 (correctly raised
+`AssertionError`). Trust suite 41/41 green both before and after this run.
+Zero `lab/` diff. Total wall time 3033.7s (50.56 min), well under the
+80–100 min model estimate — matching this program's own established
+"actual lands under the model estimate" track record. Full record:
+`run_output.txt`, `results.json`.)*
+
+**(Rank 2) PRIMARY — CONFIRM.** `delta_scene` ratio (corrected/native)
+1.0766, `frac_contrast` ratio 1.0856, both sign-matched and inside
+`[0.3,3.0]`. Per Phase 3's corrected, no-lean framing (RT-2), this CONFIRM
+was reported as no more or less likely than REFUTE going in — it landed
+CONFIRM. **Informational:** `p_abs_w` (G/C) ratio 1.0085 (within 1% of
+unity); `ratio_abs_ext_raw` deviates 0.81% from the 0.51 T9 anchor.
+
+**(Rank 3) PRIMARY — TWO CONSISTENT, ONE FLIPPED.** 36.0°→CONSISTENT
+(`ratio_k` 2.6424→2.4582, `Y=0` both resolutions); 38.8°→CONSISTENT
+(`ratio_k` 3.8733→2.2729, `Y=0` both resolutions); **38.4°→FLIPPED**
+(`ratio_k` 0.9075→16.9967, `Y=0`→`Y=1`, crossing `RATIO_HIGH=10` by a wide
+margin). This is the modal-expectation-violating outcome NOTES.md's own
+Predictions section explicitly flagged as plausible and non-downweighted:
+38.4°'s `cpl=20` `ratio_k` (0.9075) was the single SMALLEST of all seven
+original n=7 points — comfortably far from `RATIO_HIGH`, by raw margin —
+yet flipped at `cpl=30` by nearly a factor of 19, a larger absolute swing
+than 41.4°'s own precedent-setting flip at exp-091 (28.85→9.21, itself
+already a reclassification). All three points clear `floor_pass=True` at
+`cpl=30` — none is `NODE-UNRESOLVABLE`.
+
+**(Rank 1a) PRIMARY — PASS.** `rel_dev=0.1297%` between `STEPS=5600` and
+`STEPS=8400` at 41.825°, comfortably under the `1×10⁻²` CONFIRM/PASS bar
+(and far under the `1×10⁻¹` HALT bar) — Rank 1b proceeded at
+`sigma_max=SIGMA_R4_CORRECTED=0.25` as pre-registered.
+
+**(Rank 1b) PRIMARY — TWO-NODE CONFIRMED, and a materially stronger
+reversal than that category name alone conveys.** At least one interior
+point clears `delta_scene>0 AND floor_pass` — the pre-registered
+TWO-NODE-CONFIRMED bar. **What actually happened is stronger: all six
+interior points (41.750°–41.900°) read `delta_scene>0`, `floor_pass=True`,
+classification CONSISTENT** (`ratio_k` range 3.67–7.13) — not merely one
+excursion inside an otherwise-negative trough, but the *entire* previously
+near-total-null band exp-093 measured at `cpl=30` (all six points there
+read `delta_scene≤0`, four ENERGY-DOMINANT at `ratio_k` 20.5×–29.6×,
+classified SINGLE-NULL) **reads oppositely in both sign and
+classification at `cpl=40`.** This is disclosed exactly as measured, not
+downgraded to fit the pre-registered category's literal wording: exp-093's
+own SINGLE-NULL verdict does not survive R15-grade cross-`cpl`
+verification — the specific failure mode R15 (adopted Iteration 68) exists
+to catch, now realized on its own founding sub-thread's own most recent
+headline result, one cycle later. **Informational (Red Team RT-5):**
+`p_abs_w` (G4/C4) ratio stays within 0.57% of 1.0 across all six angles —
+exp-093's own energy-flatness/UNDETECTABLE finding (Learned #2, previously
+`cpl≤30`-verified only per Idealization 23) is directly confirmed to
+extend to `cpl=40`: the coherent `delta_scene` channel's sign/magnitude
+reversal under resolution refinement is NOT accompanied by any
+corresponding movement in the absorbed-energy channel, at this resolution
+either.
+
+**(Rank 3-ext) PRIMARY — CONFIRM.** Base `n=8` table reproduces exp-093's
+frozen figures bit-exact (`auc=1.0000`, zone `[4.1083,5.4287]`,
+`firth_β=[3.76504788,−5.60700572]`, `m₅₀=4.6934`, naive MLE diverges).
+Extended `n=11` table (all three new Rank-3 points clear `floor_pass`, per
+NOTES.md's "excluded only if NODE-UNRESOLVABLE" rule — including 38.4°,
+now `Y=1`) remains **non-inverted** (`zone=[4.1083,5.4287]` unchanged at
+the boundary-setting values, `firth_m₅₀` shifts to 4.3832, `auc=1.0000`
+unchanged) — no falsifier fires.
+
+## Learned
+
+1. **R15's own concern is not hypothetical — it just fired, on R15's own
+   founding sub-thread, one cycle after the SINGLE-NULL verdict it was
+   meant to stress-test was filed.** Exp-093's `cpl=30` SINGLE-NULL reading
+   of the 41.75°–41.90° interior does not merely fail to be confirmed at
+   `cpl=40` — it reverses in both sign and classification at every single
+   sampled point in that window. This is now the third distinct instance
+   on this exact 41.6°–42.0° window, across three consecutive cycles
+   (41.4°'s `cpl=20→30` flip at exp-091; `delta_scene`'s `sigma_max`
+   sign-flip at 42.0° at exp-093; this cycle's full-window `cpl=30→40`
+   reversal), of a "settled-looking" reading in this narrow angular band
+   moving under a resolution or numerical-parameter change most of this
+   sub-thread's other angles do not show this sensitivity to.
+2. **The energy channel keeps not moving.** Across three different kinds
+   of perturbation now applied specifically to this near-null band
+   (`cpl` 30→40 this cycle, `sigma_max` native→corrected at exp-093,
+   angular density at exp-093's own item 1) the absorbed-power channel
+   (`p_abs_w`, `ratio_abs_ext_raw`) has never shown a swing exceeding ~1%,
+   while the coherent `delta_scene`/`frac_contrast`/`ratio_k` channel has
+   reversed sign and/or classification at least three times in the
+   identical window. R14's own mechanistic account (the oscillatory
+   imprint lives in the `σ_ext(θ)` config-differential term, never the
+   absorption/scattering partition) continues to hold at a third
+   resolution.
+3. **A "comfortable" `cpl=20` margin from `RATIO_HIGH` is not a reliable
+   predictor of `cpl=30` stability**, now demonstrated a second time on two
+   different points by two different cycles: 41.4° (exp-091, margin ~2.9×
+   from the boundary by raw ratio) and 38.4° (this cycle, margin ~11×) both
+   flipped, while several points with comparable or smaller `cpl=20`
+   margins (37.2°, 39.2°–39.8°) did not. The direction and magnitude of a
+   `cpl`-refinement-driven change on this channel appears to depend on
+   proximity to the underlying oscillatory feature's own zero-crossings,
+   not on the raw classifier margin at the coarser resolution.
+4. Gate 5 (this cycle's new runtime `sigma_e`/`sigma_max` array check) is
+   this sub-thread's first-ever verification that actually reads the
+   constructed `Sim` object rather than a Python constant — independently
+   confirmed during Phase 4 to be a genuine discriminator (correctly
+   raises against a simulated wiring defect), not a check that would pass
+   regardless of correctness. This class of gate should be considered for
+   retrofitting onto the `R3` family's own existing sigma-branch call
+   sites (exp-091/092/093), which have never had an equivalent check.
+
+## Next (ranked, pending Phase 5's own six blind reviews + Red Team's final audit — provisional)
+
+1. **The 41.6°–42.0° window's own status is now genuinely three-way
+   unresolved across `cpl∈{20,30,40}`**, not merely "SINGLE-NULL, pending
+   R15 verification" as exp-093 left it. A `cpl=50` (or higher) check at
+   the same six interior points would show whether the sequence is
+   converging toward one of the two readings, oscillating, or genuinely
+   non-convergent under this bench's own discretization scheme —
+   Idealization 17's own disclosed risk (the `R3`/`R4` families are not
+   independent confirmations of the re-discretization scheme itself) is
+   now directly load-bearing to interpreting this reversal.
+2. **38.4°'s flip deserves the same kind of dedicated follow-up 41.4°'s
+   flip received** (exp-092's own Rank-1 net-widening design was partly
+   motivated by 41.4°'s flip) — is 38.4° similarly close to an underlying
+   `delta_scene` zero-crossing at `cpl=30` that a coarser `cpl=20` grid
+   simply missed, the same story R13/R14 already tell for this channel
+   elsewhere?
+3. R15's own two founding discharge conditions are now BOTH touched this
+   cycle (the three-point `cpl=30` census closes one; the `cpl=40` check
+   opens, rather than closes, the other) — a future cycle should decide
+   whether R15 itself needs a new addendum given its own founding
+   instrument now shows the cross-resolution instability was even sharper
+   than the rule anticipated (a full-window sign reversal, not a
+   near-boundary single-point wobble).
+4. The unbiased margin-vs-distance rebuild on the full 31-point window
+   (exp-090's own Rank-2-in-queue item, carried as open since exp-090,
+   Idealization 8) remains open, still not run.
+
+*(This section is provisional — Phase 5's own six blind reviews and Red
+Team's final audit may substantially revise this ranking; the Director's
+own closing synthesis, not this draft, is authoritative.)*
