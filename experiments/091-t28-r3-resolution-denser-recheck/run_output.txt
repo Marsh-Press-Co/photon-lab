@@ -49,3 +49,76 @@ exp-091 -- T28 R3 resolution & denser recheck
   [40/40] G40_R3   theta=+41.60 article=True steps=4200
 
 total wall time: 1989.5s (33.16 min)
+
+[P4] xi_ext (extinction-routes agreement) <= 0.12 everywhere: PASS=True
+[non-negativity gate] sigma_abs>=0 everywhere: PASS=True
+
+[raw per-(config,angle,cpl) primitives]
+  -- Leg1 native cpl=20 STEPS=4200 --
+    theta= 37.2  C_empty(C)=8.078158e-03  C_empty(G)=9.974158e-03  delta_scene=+2.342651e-04  frac_contrast=4.152722e-04  p_abs_w(C)=2.812726e-12  frac_p_abs=1.438543e-03  ratio_k=3.464097e+00  floor_pass=True  resolved=True
+    theta= 40.2  C_empty(C)=-5.432718e-03  C_empty(G)=-6.811668e-03  delta_scene=-1.542677e-04  frac_contrast=2.834300e-04  p_abs_w(C)=3.077219e-12  frac_p_abs=7.100007e-03  ratio_k=2.505030e+01  floor_pass=True  resolved=True
+    theta= 41.4  C_empty(C)=-5.818092e-03  C_empty(G)=-6.572309e-03  delta_scene=+1.334160e-04  frac_contrast=2.504955e-04  p_abs_w(C)=3.164978e-12  frac_p_abs=7.225692e-03  ratio_k=2.884559e+01  floor_pass=True  resolved=True
+  -- Leg2 R3 cpl=30 STEPS=4200 --
+    theta= 37.2  C_empty(C)=7.853835e-03  C_empty(G)=1.081007e-02  delta_scene=+1.247091e-03  frac_contrast=2.162677e-03  p_abs_w(C)=2.909923e-12  frac_p_abs=3.992880e-03  ratio_k=1.846267e+00  floor_pass=True  resolved=True
+    theta= 40.2  C_empty(C)=-5.718010e-03  C_empty(G)=-6.971615e-03  delta_scene=+4.369899e-04  frac_contrast=7.877482e-04  p_abs_w(C)=3.187660e-12  frac_p_abs=7.936113e-03  ratio_k=1.007443e+01  floor_pass=True  resolved=True
+    theta= 41.4  C_empty(C)=-5.862630e-03  C_empty(G)=-3.532674e-03  delta_scene=+5.625525e-04  frac_contrast=1.040919e-03  p_abs_w(C)=3.282666e-12  frac_p_abs=9.588537e-03  ratio_k=9.211608e+00  floor_pass=True  resolved=True
+  -- Leg3 R3 cpl=30 STEPS=6300 --
+    theta= 40.2  C_empty(C)=-5.718799e-03  C_empty(G)=-6.970986e-03  delta_scene=+4.375347e-04  frac_contrast=7.887299e-04  p_abs_w(C)=3.187661e-12  frac_p_abs=7.942872e-03  ratio_k=1.007046e+01  floor_pass=True  resolved=True
+    theta= 41.4  C_empty(C)=-5.863397e-03  C_empty(G)=-3.532893e-03  delta_scene=+5.620724e-04  frac_contrast=1.040031e-03  p_abs_w(C)=3.282702e-12  frac_p_abs=9.578849e-03  ratio_k=9.210154e+00  floor_pass=True  resolved=True
+  -- Leg4 R3 cpl=30 STEPS=4200 (bracket) --
+    theta= 40.4  C_empty(C)=-6.908107e-03  C_empty(G)=-7.560004e-03  delta_scene=+9.856382e-04  frac_contrast=1.779516e-03  p_abs_w(C)=3.199511e-12  frac_p_abs=5.661574e-03  ratio_k=3.181524e+00  floor_pass=True  resolved=True
+    theta= 41.6  C_empty(C)=-5.671008e-03  C_empty(G)=-1.945144e-03  delta_scene=+1.783759e-04  frac_contrast=3.329596e-04  p_abs_w(C)=3.318990e-12  frac_p_abs=8.639217e-03  ratio_k=2.594674e+01  floor_pass=True  resolved=True
+
+[(a) PRIMARY] frac_contrast_R3/frac_contrast_cpl20(Leg1) ratio+sign, three census angles: VERDICT=REFUTE
+  theta=37.2: ratio=5.2079  sign_match=True  (vs filed STEPS=2800: ratio=5.1954)
+  theta=40.2: ratio=2.7793  sign_match=False  (vs filed STEPS=2800: ratio=2.7827)
+  theta=41.4: ratio=4.1554  sign_match=True  (vs filed STEPS=2800: ratio=4.1455)
+
+[(a2)] cpl=20 zero-crossings of delta_scene(theta), n=31 census (re-derived, not hand-typed): [37.1272, 38.5902, 40.2654, 41.4609]
+
+[(a2)] cpl=30 crossing interpolation vs known cpl=20 crossings:
+  40.2-40.4: cpl30_crossing=None  known_cpl20=40.2654  shift=None  VERDICT=REFUTE
+  41.4-41.6: cpl30_crossing=None  known_cpl20=41.4609  shift=None  VERDICT=REFUTE
+
+[(b) PRIMARY] ratio_k classification, cpl=30 (Leg2) vs cpl=20 (primary comparator = Leg1 fresh STEPS=4200; filed exp-089/090 STEPS=2800 shown for context):
+  theta=37.2: cpl30=CONSISTENT (ratio_k=1.8463)  cpl20_leg1=CONSISTENT (ratio_k=3.4641)  match_vs_leg1=True  |  cpl20_filed=CONSISTENT (ratio_k=3.4433)  match_vs_filed=True
+  theta=40.2: cpl30=ENERGY-DOMINANT (ratio_k=10.0744)  cpl20_leg1=ENERGY-DOMINANT (ratio_k=25.0503)  match_vs_leg1=True  |  cpl20_filed=ENERGY-DOMINANT (ratio_k=25.0820)  match_vs_filed=True
+  theta=41.4: cpl30=CONSISTENT (ratio_k=9.2116)  cpl20_leg1=ENERGY-DOMINANT (ratio_k=28.8456)  match_vs_leg1=False  |  cpl20_filed=ENERGY-DOMINANT (ratio_k=28.8072)  match_vs_filed=False
+
+[(b2) PRIMARY] frac_p_abs_R3/frac_p_abs_cpl20(Leg1) ratio+sign, three census angles: VERDICT=CONFIRM
+  theta=37.2: ratio=2.7756  sign_match=True
+  theta=40.2: ratio=1.1178  sign_match=True
+  theta=41.4: ratio=1.3270  sign_match=True
+
+[(c1)] native-cpl STEPS=4200 vs exp-083's committed STEPS=2800 C_empty, all 6 cells: all-CONFIRM=True
+  C40_37.2: rel_dev=0.0015%  VERDICT=CONFIRM
+  C40_40.2: rel_dev=0.0084%  VERDICT=CONFIRM
+  C40_41.4: rel_dev=0.0126%  VERDICT=CONFIRM
+  G40_37.2: rel_dev=0.0023%  VERDICT=CONFIRM
+  G40_40.2: rel_dev=0.0065%  VERDICT=CONFIRM
+  G40_41.4: rel_dev=0.0068%  VERDICT=CONFIRM
+
+[(c2)] R3-resolution settling, STEPS=6300 vs 4200 at cpl=30, both angles both configs (article leg C AND empty leg C_empty, 'both legs' per NOTES.md): all-CONFIRM=True
+  C40_R3_40.2: rel_dev(C)=0.0001% [CONFIRM]  rel_dev(C_empty)=0.0138% [CONFIRM]
+  C40_R3_41.4: rel_dev(C)=0.0001% [CONFIRM]  rel_dev(C_empty)=0.0131% [CONFIRM]
+  G40_R3_40.2: rel_dev(C)=0.0000% [CONFIRM]  rel_dev(C_empty)=0.0090% [CONFIRM]
+  G40_R3_41.4: rel_dev(C)=0.0000% [CONFIRM]  rel_dev(C_empty)=0.0062% [CONFIRM]
+
+[(d)] 37.2deg resolved-gate noise-floor margin at STEPS=4200 (Leg1, freshly computed): 1.061940x
+  cited STEPS=2800 figure: exp-090 results.json::q7_disclosure.recomputed_resolved_margin = 1.045659x (prior_filed_resolved_margin_str='1.046x (exp-089 NOTES.md Learned #4)', itself computed by exp-090 from exp-089's own persisted thermo/box_dev primitives -- exp-089's own results.json does not carry a precomputed field for this quantity)
+
+[(d)] R14(a)-style smoothness gate, p_abs_w across 5 cpl=30 angles (37.2,40.2,40.4,41.4,41.6): PASS=True
+  C40_R3: 37.2->40.2  2.909923e-12->3.187660e-12
+  C40_R3: 40.2->40.4  3.187660e-12->3.199511e-12
+  C40_R3: 40.4->41.4  3.199511e-12->3.282666e-12
+  C40_R3: 41.4->41.6  3.282666e-12->3.318990e-12
+  G40_R3: 37.2->40.2  2.898304e-12->3.162362e-12
+  G40_R3: 40.2->40.4  3.162362e-12->3.181397e-12
+  G40_R3: 40.4->41.4  3.181397e-12->3.314142e-12
+  G40_R3: 41.4->41.6  3.314142e-12->3.347664e-12
+
+[(d)] ordering check frac_contrast(37.2)>frac_contrast(40.2)>frac_contrast(41.4): cpl20(Leg1)=True  cpl30(Leg2)=False
+
+[cross-reference, mandatory fix 10] larger (a2) crossing shift at Nonedeg; larger (c2) settling residual (rel_dev(C), max of both configs) at 41.4deg (40.2:0.0001%, 41.4:0.0001%); directionally consistent=None
+
+wrote /home/user/photon-lab/experiments/091-t28-r3-resolution-denser-recheck/results.json
