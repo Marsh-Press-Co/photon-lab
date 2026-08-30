@@ -22,7 +22,74 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-30, panel Iteration 68 done (exp-091, PARTIAL,
+## Current state (2026-08-30, panel Iteration 69 done (exp-092, PARTIAL,
+ELECTROMAGNETISM's rotation-lead cycle: exp-091's own reconciled
+Iteration-69 Ranks 1-3 combined into one 40-call build, run in Red
+Team's own mandated order -- Rank 3 (12 calls) FIRST, gating Rank 1's
+(28 calls) sigma_max choice; Rank 2 (zero FDTD) rebuilding exp-090's
+caution zone under DROP/RELABEL treatments. Five blind Phase-2
+critiques (unanimous support-with-changes, two independently-convergent
+pairs: MATERIALS + QUANTUM OPTICS both independently found Rank 1's
+20-call spend unsequenced with the 6-call Rank 3 validity check;
+PHOTONICS found the net's own amplitude-inflation corroboration a non
+sequitur, though its stronger alternative basis independently motivated
+the same net-extension fix; THERMODYNAMICS found Rank 3's own p_abs_w
+byproduct unscored; VISION found a silently-dropped idealization and an
+about-to-recur print-parity gap) and Red Team's 7-item
+PROCEED-WITH-MANDATORY-FIXES audit (zero overridden, sequencing fix
+independently confirmed to cost zero net wall-time) landed cleanly
+pre-run. Phase 3's Director synthesis adopted all seven items plus
+caught an eighth defect of its own: the proposal's claimed "zero-cost"
+empty-leg reuse was not actually implementable (contrast_from_runs
+needs the raw empty-run profile array; no T28-family experiment
+persists raw captures to disk) -- missed by the proposal's author, all
+five critics, and Red Team alike; fixed by re-running the empty leg
+fresh (a deterministic reproduction), growing the cycle from 34 to 40
+calls. Phase 4 ran all gates PASS, 40 calls, 20.58 min wall. **Rank 3 --
+CONFIRM, cleanly:** the sigma_max confound does NOT contaminate the
+PRIMARY delta_scene/frac_contrast channel (ratios 0.92x-1.18x, sign
+held), resolving exp-091's own top open question in the clean
+direction; sigma branch licensed Rank 1 to run at native sigma_max=0.5.
+**Rank 1 -- NEITHER**, a genuinely split result: the lower cpl=30
+crossing is cleanly LOCATED (40.0718deg, a real -0.194deg shift from the
+known cpl=20 location); the upper window reveals a NEW double-crossing
+structure (41.7811deg/41.8377deg, 0.057deg apart, straddling a
+NODE-UNRESOLVABLE near-total interference null) -- real but drawn
+entirely from floor-gate-failing points, status (genuine two-node
+feature vs. under-resolved single null) explicitly undecided. **Rank 2
+-- CONFIRM, bit-exact**, a seventh independent reproduction of this
+sub-thread's most-verified deliverable. Six blind Phase-5 reviews (all
+CONCUR/CONCUR-WITH-GAP(S), zero overlap) each caught a genuinely
+distinct defect: PHOTONICS found NOTES.md's own Learned/Next sections
+self-contradicted on the double-crossing's own evidentiary status; MATERIALS
+found results.json silently dropped the second located upper crossing;
+EM's own self-review found its Phase-1 dispersion-integral mechanism
+argument was never actually computed, a second consecutive cycle this
+exact check was named but not run; THERMODYNAMICS found netd_disposition
+computed but never persisted/printed, the identical gap already present
+unnamed in exp-091's own record; QUANTUM OPTICS independently re-derived
+every headline number bit-exact, zero discrepancies; VISION confirmed
+both its own prior-cycle fixes landed and caught a new duplicate-
+placeholder defect in NOTES.md, same-shift-fixed. Red Team's Phase-5
+final audit adjudicated all four findings and applied same-shift fixes
+to each (PHOTONICS' internal inconsistency walked back and Next section
+re-ordered; MATERIALS' JSON gap patched additively; THERMODYNAMICS'
+NETD gap ruled first-time-naming, non-firing, backfilled, forward
+tripwire set; EM's own gap ruled non-firing under R8 but elevated to a
+mandatory Iteration-70 item). **No CHECKPOINT this cycle** (all five
+criteria worked through explicitly; none fire). No new standing rule
+adopted -- R13/R14/R15 applied unchanged. **Combined Verdict: PARTIAL**
+-- confirmed: sigma_max confound ruled out on the PRIMARY channel; the
+lower crossing located, not merely known-absent from the old window; the
+caution-zone DROP/RELABEL table bit-exact a seventh time. Genuinely new,
+open: the upper double-crossing's own status, on par with R15's own
+still-provisional caution zone. Reconciled Iteration-70 queue: a denser
+off-grid/cpl=40 sweep of 41.6-42.2deg to resolve the double-crossing
+ambiguity (rank 1); re-fitting R15's caution zone using the located
+crossings, gated on rank 1 (rank 2); a targeted sigma_max check at the
+upper near-null region itself (rank 3). Full record: `experiments/092-
+t28-crossing-relocation-caution-zone-rebuild/`, LOGBOOK.md Iteration 69);
+panel Iteration 68 done (exp-091, PARTIAL,
 MATERIALS' rotation-lead cycle: the R3 spatial-resolution (cpl 20->30)
 check on the T28 C40/G40 PAIR_PAD ambient channel, three cycles overdue
 and flagged by MATERIALS itself at exp-088/089/090 -- a 40-call, 4-leg
