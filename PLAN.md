@@ -22,7 +22,84 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-30, panel Iteration 69 done (exp-092, PARTIAL,
+## Current state (2026-08-30, panel Iteration 70 done (exp-093, PARTIAL,
+THERMODYNAMICS' rotation-lead cycle: exp-092's own Reconciled
+Iteration-70 queue executed as one combined, ordered build (item 5 -> 3
+-> 1 -> 2 -> 4): a full NETD/energy-sidecar backfill of exp-092's own
+Rank-1 14 cells (item 5, 28 calls, THERMODYNAMICS' own signature item);
+a sigma_max PRIMARY-channel check localized to the upper near-null
+(item 3, 4 calls); a denser off-grid cpl=30 sweep of 41.75-41.90deg to
+resolve the double-crossing (item 1, 24 calls, sigma branch-gated on
+item 3); a zero-FDTD cpl=30-only caution-zone re-fit gated on item 1
+(item 2); and the twice-deferred Yee-grid dispersion phase-accumulation
+integral (item 4, MANDATORY under R8's third-citation tripwire). Five
+blind Phase-2 critiques (unanimous support-with-changes, two
+independently-convergent load-bearing catches: QUANTUM OPTICS found
+item 2's own headline "AUC reversal" claim was a sign-convention
+artifact, no real reversal exists; ELECTROMAGNETISM found item 4's
+chosen length scale (round-trip PAD) substituted a different,
+already-refuted mechanism for the actually-named aperture-length
+mandate) and Red Team's 6-item PROCEED-WITH-MANDATORY-FIXES audit (zero
+overridden, both disputes independently re-derived from primary source)
+landed cleanly pre-run. Phase 3's Director synthesis adopted all six
+fixes plus independently re-verified both disputed figures a THIRD time
+before freeze, bit-exact match both times. Phase 4 ran all gates PASS,
+56 calls, 29.4 min wall (well under the 55-166 min estimate), trust
+suite re-confirmed 41/41 green. **Item 5 -- CONFIRM, bit-exact**, all 14
+NETD cells UNDETECTABLE. **Item 3 -- REFUTE**: delta_scene FLIPS SIGN at
+42.0deg between native and corrected sigma_max, a genuine contamination
+Rank 3's own broader census never covered; branches item 1 to corrected
+sigma_max. **Item 1 -- SINGLE-NULL**: every interior point reads
+delta_scene<=0; the "double-crossing" does not survive resolution
+refinement, best read as one smooth near-total-null trough, not two
+genuine nodes -- resolving exp-092's own top open question, though only
+angular-resolution-verified, not yet R15-grade cross-cpl-verified.
+**Item 2 -- CONFIRM, bit-exact** against the frozen n=8 cpl=30-only
+table. **Item 4 -- CONFIRM**: at the corrected ell=A_HALF_APERTURE
+length scale, ratios 32.1x/80.2x/95.8x land inside the corrected
+[10x,200x] band -- the dispersion-alone mechanism is genuinely REFUTEd
+(one clear order of magnitude, not the pre-freeze draft's mistaken two)
+and R8's own tripwire is discharged for the first time at the correct
+length scale. Six blind Phase-5 reviews (all CONCUR-WITH-GAP(S), zero
+DISPUTE) each caught a genuinely distinct defect: MATERIALS+PHOTONICS
+independently converged on NOTES.md missing its Result section (fixed
+mid-Phase-5 by the Director) and a stale "always native sigma_max"
+caption in run.py persisted uncorrected into results.json;
+THERMODYNAMICS' own self-review (self-critical) caught its own §1
+self-test was promised but never reported for item 1's own interior
+points -- a third, milder, self-caught instance of the same
+"confident-claim-unverified" shape Phase 2 had already caught twice in
+its own draft; ELECTROMAGNETISM independently re-derived item 4's own
+ratios bit-exact and found item 1's own "continuous curve" mixes
+native- and corrected-sigma points with no single consistent physical
+basis (real, disclosed, confirmed non-load-bearing); QUANTUM OPTICS
+independently reproduced item 2's own figures bit-exact and confirmed
+item 1's own outcome logic depends purely on delta_scene<=0. Red Team's
+Phase-5 final audit adjudicated every finding (both mid-Phase-5
+Director fixes ruled adequate and non-firing under this program's own
+"caught blind, same cycle" precedent; the caption defect UPHELD, real,
+non-load-bearing, one same-shift fix required and applied
+post-audit). **No CHECKPOINT this cycle** (all five criteria worked
+through explicitly; criterion 4 -- the disclaimer-erosion lineage's own
+fourth-and-fifth-instance question -- does NOT fire, VISION's own prior
+structural fix genuinely closed that gap class). No new standing rule
+adopted -- R13/R14/R15 applied unchanged. **Combined Verdict: PARTIAL**
+-- confirmed: the double-crossing does not survive resolution
+refinement; the twice-deferred Yee-dispersion mandate is finally
+discharged at the correct length scale; the energy channel stays flat
+and UNDETECTABLE everywhere, including the disputed node's own
+interior. Genuinely new, open: a real sigma_max-sensitivity at the
+exact angular band this cycle also resolution-swept (item 3's sign
+flip), meaning SINGLE-NULL is not yet cross-verified against the
+native-sigma regime that originally located the double-crossing.
+Reconciled Iteration-71 queue: a targeted cpl=40 spatial-resolution
+check at 41.75-41.90deg (rank 1, convergent MATERIALS+PHOTONICS);
+closing the sigma_max comparability gap at both window edges (rank 2,
+convergent EM+QUANTUM); R3-verifying the three still-unmeasured
+original caution-zone points 36.0/38.4/38.8deg (rank 3, the single
+most-repeated item on the whole T28 board). Full record:
+`experiments/093-t28-upper-crossing-resolution-netd-thread/`,
+LOGBOOK.md Iteration 70); panel Iteration 69 done (exp-092, PARTIAL,
 ELECTROMAGNETISM's rotation-lead cycle: exp-091's own reconciled
 Iteration-69 Ranks 1-3 combined into one 40-call build, run in Red
 Team's own mandated order -- Rank 3 (12 calls) FIRST, gating Rank 1's
