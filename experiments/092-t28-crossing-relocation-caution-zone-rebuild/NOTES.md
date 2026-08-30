@@ -449,11 +449,3 @@ Ranked, reconciling this cycle's own two live open items with the items
    to exp-090's remaining four caution-zone points (Tier 3); the
    structural/governance items at Tier 4; the ritualization governance
    question (Iteration 61), still unresolved.
-
-## Learned
-
-*(To be written after Phase 5.)*
-
-## Next
-
-*(To be written after Phase 5 — see the reconciled Iteration-70 queue.)*
