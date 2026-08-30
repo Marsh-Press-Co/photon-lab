@@ -13,3 +13,5 @@ exp-091 -- T28 R3 resolution & denser recheck
   [ 4/40] C40      theta=+40.20 article=True steps=4200
   [ 5/40] C40      theta=+41.40 article=False steps=4200
   [ 6/40] C40      theta=+41.40 article=True steps=4200
+  [ 7/40] G40      theta=+37.20 article=False steps=4200
+  [ 8/40] G40      theta=+37.20 article=True steps=4200
