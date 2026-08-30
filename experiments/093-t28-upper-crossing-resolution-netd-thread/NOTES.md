@@ -405,14 +405,22 @@ against item 1's own six interior points, though `results.json`'s
 | 41.875° | 5.3336×10⁻⁵ | 5.3602×10⁻⁵ | UNDETECTABLE | UNDETECTABLE |
 | 41.900° | 5.3418×10⁻⁵ | 5.3662×10⁻⁵ | UNDETECTABLE | UNDETECTABLE |
 
-**No swing coincident with the disputed node** — the sequence is smooth
-and monotonically increasing across the whole interior window, fully
-consistent with the flanking item-5 values (`5.5×10⁻⁵` K at 41.8°/42.0°),
-with no discontinuity at the near-total-null region item 1 was built to
-resolve. §1's own self-test is discharged: the SINGLE-NULL result does
-not disturb the energy channel's own smoothness, exactly as predicted —
-now directly measured against the disputed node's own interior, not only
-the flanking grid.
+**No swing coincident with the disputed node** — the six corrected-sigma
+interior values themselves (41.750°–41.900°) rise smoothly and
+monotonically, with no jump or dip at the near-total-null region item 1
+was built to resolve. **Corrected wording (Red Team Phase-5 final audit,
+Fix 2):** a real, disclosed, `sigma_max`-driven discontinuity DOES exist
+between the interior points and the flanking item-5 values at 41.8°/42.0°
+in raw θ-order — those two flanking values are native-`sigma_max` NETD
+readings (`5.5×10⁻⁵` K, item 5b), not directly comparable to the
+corrected-`sigma_max` interior sequence, per Idealization 11 — this is
+the same sigma-branch comparability caveat already carried elsewhere in
+this document, not a new physical finding, and does not undermine the
+self-test itself: within the one sigma-consistent interior sequence that
+actually answers §1's own question, there is no swing. §1's own self-test
+is discharged: the SINGLE-NULL result does not disturb the energy
+channel's own smoothness, exactly as predicted — now directly measured
+against the disputed node's own interior, not only the flanking grid.
 
 **(Item 4) PRIMARY — CONFIRM.** At the corrected, mandated length scale
 (`ℓ=A_HALF_APERTURE=752`/`1128` cells), magnitude ratios (observed vs.

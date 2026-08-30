@@ -231,3 +231,28 @@ SUMMARY
   Item 2 (n=8 zone base table):          CONFIRM  (extension gate: SINGLE-NULL)
   Item 4 (dispersion, 10x-200x band):    CONFIRM
   total FDTD calls: 56   total wall time: 1764.0s (29.40 min)
+
+==============================================================================
+POST-HOC FIX (Red Team Phase-5 final audit, Fix 1) -- combined-curve caption
+==============================================================================
+The original caption above ("41.6/41.8/42.0 are always native sigma_max=0.5")
+was FALSE for this run: item 3 fired REFUTE, so 41.8/42.0deg actually carry
+sigma-corrected (sigma_max=1/3) values, not native. run.py's data selection
+was always correct; only the printed label was stale. Corrected caption and
+per-point sigma_max/native tags (now also patched into results.json):
+
+  theta=41.6: delta_scene=+1.783759e-04  sigma_max=0.500000  native=True
+  theta=41.75: delta_scene=-4.325027e-05  sigma_max=0.333333  native=False
+  theta=41.775: delta_scene=-6.795517e-05  sigma_max=0.333333  native=False
+  theta=41.8: delta_scene=-8.790557e-05  sigma_max=0.333333  native=False
+  theta=41.825: delta_scene=-1.029125e-04  sigma_max=0.333333  native=False
+  theta=41.85: delta_scene=-1.128068e-04  sigma_max=0.333333  native=False
+  theta=41.875: delta_scene=-1.174405e-04  sigma_max=0.333333  native=False
+  theta=41.9: delta_scene=-1.166874e-04  sigma_max=0.333333  native=False
+  theta=42.0: delta_scene=-5.810166e-05  sigma_max=0.333333  native=False
+
+Only 41.6deg is native; all of 41.8deg-41.9deg (including the two endpoints
+41.8/42.0, post-item-3-REFUTE) are corrected-sigma. Not load-bearing to the
+SINGLE-NULL verdict (item 1's own three-way-outcome logic never reads this
+combined-curve field). Underlying delta_scene values unchanged, bit-identical
+to the original run -- this is a label/serialization fix only, zero FDTD.

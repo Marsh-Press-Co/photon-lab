@@ -578,18 +578,34 @@ def main():
     with open(EXP091_RESULTS) as f:
         j091 = json.load(f)
     filed_r3_leg4 = j091["raw"]["r3_leg4_cpl30_steps4200_bracket"]   # includes 41.6
+    # Red Team Phase-5 final audit, Fix 1 (exp-093): the interior points and
+    # 41.6deg are always native sigma_max=0.5, but 41.8/42.0deg switch to
+    # whatever sigma_item1 the branch rule picked (SIGMA_R3_CORRECTED here,
+    # since item 3 fired REFUTE) -- tag each point's own sigma_max/
+    # comparability explicitly, per-point, rather than one caption that
+    # silently goes stale whenever the branch differs from native.
     combined_curve = {}
     for th in ITEM1_ANGLES:
-        combined_curve[th] = item1_report[th]["delta_scene"]
-    combined_curve[41.8] = item5_report[41.8]["delta_scene"] if sigma_item1 == SIGMA_NATIVE else item3_report[41.8]["sigma_corrected_delta_scene"]
-    combined_curve[42.0] = item5_report[42.0]["delta_scene"] if sigma_item1 == SIGMA_NATIVE else item3_report[42.0]["sigma_corrected_delta_scene"]
+        combined_curve[th] = dict(delta_scene=item1_report[th]["delta_scene"],
+                                   sigma_max=sigma_item1, native=(sigma_item1 == SIGMA_NATIVE))
+    combined_curve[41.8] = dict(
+        delta_scene=item5_report[41.8]["delta_scene"] if sigma_item1 == SIGMA_NATIVE else item3_report[41.8]["sigma_corrected_delta_scene"],
+        sigma_max=sigma_item1, native=(sigma_item1 == SIGMA_NATIVE))
+    combined_curve[42.0] = dict(
+        delta_scene=item5_report[42.0]["delta_scene"] if sigma_item1 == SIGMA_NATIVE else item3_report[42.0]["sigma_corrected_delta_scene"],
+        sigma_max=sigma_item1, native=(sigma_item1 == SIGMA_NATIVE))
     if "41.6" in filed_r3_leg4:
-        combined_curve[41.6] = filed_r3_leg4["41.6"]["delta_scene"]
+        combined_curve[41.6] = dict(delta_scene=filed_r3_leg4["41.6"]["delta_scene"],
+                                     sigma_max=SIGMA_NATIVE, native=True)
     print("\n[item 1, context] combined curve, 41.6-42.0deg "
-          f"(note: 41.6/41.8/42.0 are always native sigma_max=0.5; interior points are at "
-          f"sigma_max={sigma_item1:.6f} -- {'directly comparable' if sigma_item1 == SIGMA_NATIVE else 'NOT directly comparable, disclosed per Idealization 11'}):")
+          f"(41.6deg is always native sigma_max=0.5; 41.8/42.0deg follow item 3's own branch -- "
+          f"here sigma_max={sigma_item1:.6f} -- "
+          f"{'directly comparable to 41.6deg' if sigma_item1 == SIGMA_NATIVE else 'NOT directly comparable to 41.6deg, disclosed per Idealization 11'}; "
+          f"interior points always at sigma_max={sigma_item1:.6f}; "
+          f"per-point sigma_max/native tags carried in results.json, not asserted uniformly):")
     for th in sorted(combined_curve):
-        print(f"  theta={th}: delta_scene={combined_curve[th]:+.6e}")
+        c = combined_curve[th]
+        print(f"  theta={th}: delta_scene={c['delta_scene']:+.6e}  sigma_max={c['sigma_max']:.6f}  native={c['native']}")
 
     # =================================================================
     # ITEM 2 -- caution-zone re-fit, gated on item 1 (FOURTH, 0 calls)
