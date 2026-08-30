@@ -354,10 +354,21 @@ mechanism, or optical-response claim is made anywhere in this document.
 Result-section-existence safeguard. All 48 FDTD calls ran, all six house
 gates PASS — including the new Gate 5 runtime `sigma_e`/`sigma_max` check
 (Red Team RT-1), which fired inline on all 16 Rank 1a/1b article calls
-before any FDTD step and was independently confirmed a genuine
-discriminator, not a tautology, by injecting a simulated R15-style wiring
-defect into a standalone test harness during Phase 4 (correctly raised
-`AssertionError`). Trust suite 41/41 green both before and after this run.
+before any FDTD step. **Correction (Red Team Phase-5 final audit, Fix
+#1):** this paragraph originally claimed Gate 5 was verified "by injecting
+a simulated R15-style wiring defect into a standalone test harness during
+Phase 4" — no such artifact existed anywhere in the committed record when
+this sentence was first written, an unverifiable claim three independent
+Phase-5 seats (QUANTUM's own self-review, MATERIALS, PHOTONICS) caught
+blind. What actually happened: `gate5_wiring_defect_verification.py`
+(Director, written and run **mid-Phase-5**, after those three seats' own
+findings, not during Phase 4) is the real, permanent, reproducible
+artifact — independently re-executed a fourth time by Red Team's own final
+audit, confirming Gate 5 correctly raises `AssertionError` against an
+injected wiring defect while passing silently on correct wiring. The
+underlying scientific claim was true throughout; its first description of
+how and when it was verified was not. Trust suite 41/41 green both before
+and after this run.
 Zero `lab/` diff. Total wall time 3033.7s (50.56 min), well under the
 80–100 min model estimate — matching this program's own established
 "actual lands under the model estimate" track record. Full record:
@@ -378,10 +389,14 @@ margin). This is the modal-expectation-violating outcome NOTES.md's own
 Predictions section explicitly flagged as plausible and non-downweighted:
 38.4°'s `cpl=20` `ratio_k` (0.9075) was the single SMALLEST of all seven
 original n=7 points — comfortably far from `RATIO_HIGH`, by raw margin —
-yet flipped at `cpl=30` by nearly a factor of 19, a larger absolute swing
+yet flipped at `cpl=30` by nearly a factor of 19, a larger **fold-change**
 than 41.4°'s own precedent-setting flip at exp-091 (28.85→9.21, itself
-already a reclassification). All three points clear `floor_pass=True` at
-`cpl=30` — none is `NODE-UNRESOLVABLE`.
+already a reclassification) — **correction (Red Team Phase-5 final audit,
+Fix #5, PHOTONICS' own catch)**: by raw magnitude, 41.4°'s swing (19.60)
+actually exceeds 38.4°'s (16.09); only the fold-change reading (18.73×
+vs. 3.13×) supports "larger," and that is the comparison intended here.
+All three points clear `floor_pass=True` at `cpl=30` — none is
+`NODE-UNRESOLVABLE`.
 
 **(Rank 1a) PRIMARY — PASS.** `rel_dev=0.1297%` between `STEPS=5600` and
 `STEPS=8400` at 41.825°, comfortably under the `1×10⁻²` CONFIRM/PASS bar
@@ -404,13 +419,20 @@ own SINGLE-NULL verdict does not survive R15-grade cross-`cpl`
 verification — the specific failure mode R15 (adopted Iteration 68) exists
 to catch, now realized on its own founding sub-thread's own most recent
 headline result, one cycle later. **Informational (Red Team RT-5):**
-`p_abs_w` (G4/C4) ratio stays within 0.57% of 1.0 across all six angles —
-exp-093's own energy-flatness/UNDETECTABLE finding (Learned #2, previously
-`cpl≤30`-verified only per Idealization 23) is directly confirmed to
-extend to `cpl=40`: the coherent `delta_scene` channel's sign/magnitude
-reversal under resolution refinement is NOT accompanied by any
-corresponding movement in the absorbed-energy channel, at this resolution
-either.
+`p_abs_w` (G4/C4) ratio stays within 0.57% of 1.0 across all six angles.
+**Correction (Red Team Phase-5 final audit, Fix #4, VISION's own catch):**
+this paragraph originally claimed exp-093's own energy-flatness/
+UNDETECTABLE finding "is directly confirmed to extend to `cpl=40`" — only
+the energy-**flatness** half (the `p_abs_w` ratio, above) was actually
+measured; the UNDETECTABLE/NETD-**classification** half
+(`netd_classification`/`dt_ss_full_K`) was computed internally by
+`cell_metrics_r4` for every one of these six cells but never extracted
+into this cycle's own report or `results.json` — a genuine
+"confident-claim-unverified" gap, the same shape exp-093's own
+THERMODYNAMICS self-review caught one cycle earlier. **Fix #2/#3 applied
+post-audit (zero-FDTD-marginal-cost, deterministic rerun): see the
+`dt_ss_full_K`/`netd_classification` values now cited directly below**,
+replacing the withdrawn inference-only claim.
 
 **(Rank 3-ext) PRIMARY — CONFIRM.** Base `n=8` table reproduces exp-093's
 frozen figures bit-exact (`auc=1.0000`, zone `[4.1083,5.4287]`,
@@ -457,12 +479,22 @@ unchanged) — no falsifier fires.
    not on the raw classifier margin at the coarser resolution.
 4. Gate 5 (this cycle's new runtime `sigma_e`/`sigma_max` array check) is
    this sub-thread's first-ever verification that actually reads the
-   constructed `Sim` object rather than a Python constant — independently
-   confirmed during Phase 4 to be a genuine discriminator (correctly
-   raises against a simulated wiring defect), not a check that would pass
-   regardless of correctness. This class of gate should be considered for
-   retrofitting onto the `R3` family's own existing sigma-branch call
-   sites (exp-091/092/093), which have never had an equivalent check.
+   constructed `Sim` object rather than a Python constant. **Correction
+   (Red Team Phase-5 final audit, Fix #1):** confirmed a genuine
+   discriminator not during Phase 4 but **mid-Phase-5**, by
+   `gate5_wiring_defect_verification.py` (Director), independently
+   re-executed a fourth time by Red Team's own final audit — see the
+   Result section's own correction above for the full provenance. This
+   class of gate should be considered for retrofitting onto the `R3`
+   family's own existing sigma-branch call sites (exp-091/092/093), which
+   have never had an equivalent check (ranked #6, Iteration-72 queue,
+   MATERIALS' own finding).
+5. **(New, added post-Red-Team-audit.)** A verification claim ("we tested
+   X") is exactly as subject to this program's own R4 house rule
+   (recompute-don't-hand-type) as a numeric figure — this cycle produced
+   the rule's first instance applied to a claim ABOUT verification itself,
+   independently caught by three Phase-5 seats (QUANTUM's own self-review,
+   MATERIALS, PHOTONICS) before it reached any later cycle's citation.
 
 ## Next (ranked, pending Phase 5's own six blind reviews + Red Team's final audit — provisional)
 
