@@ -22,7 +22,73 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-29, panel Iteration 67 done (exp-090, PARTIAL,
+## Current state (2026-08-30, panel Iteration 68 done (exp-091, PARTIAL,
+MATERIALS' rotation-lead cycle: the R3 spatial-resolution (cpl 20->30)
+check on the T28 C40/G40 PAIR_PAD ambient channel, three cycles overdue
+and flagged by MATERIALS itself at exp-088/089/090 -- a 40-call, 4-leg
+build (native-cpl repeat at tighter settling; a cpl=30 R3 leg, adding the
+one missing G40_R3 config; an R3 settling spot-check corrected to run at
+BOTH 40.2/41.4deg per Red Team's own upheld Phase-2 finding that 41.4deg,
+not 40.2deg, is the record's actually-harder case; a new 40.4/41.6deg
+bracket leg to locate the cpl=30 zero-crossings). Five blind Phase-2
+critiques (unanimous support-with-changes, zero overlap: PHOTONICS found
+the reused magnitude-ratio tolerance band mistransfers from a different
+physical quantity class; ELECTROMAGNETISM found testing against the
+unverified cpl=20 FLOOR is circular at exactly the two crossing-proximate
+angles; THERMODYNAMICS found the numerator (frac_p_abs) was left
+completely untested for resolution survival; QUANTUM OPTICS caught the
+41.4-vs-40.2-hardest-case inconsistency; VISION found a mis-cited
+idealization banner) and Red Team's 10-item PROCEED-WITH-MANDATORY-FIXES
+audit (zero overridden, EM's fix elevated to mandatory under R8) landed
+cleanly pre-run. Phase 4 ran all gates PASS but delivered a major,
+disclosed-as-possible falsification, not a clean confirmation:
+delta_scene(40.2deg) changes SIGN between cpl=20 and cpl=30; neither
+bracket reproduces the known cpl=20 crossing at cpl=30 (their true
+locations are unlocated, not merely shifted); 37.2deg holds CONSISTENT as
+predicted; 40.2deg survives ENERGY-DOMINANT by only 0.74% of
+RATIO_HIGH=10.0's own value; **41.4deg RECLASSIFIES from ENERGY-DOMINANT
+to CONSISTENT** -- one of exactly two points defining exp-090's own
+caution-zone foundation fails its first resolution check; frac_p_abs
+(the numerator) stays resolution-robust at all three angles, isolating
+the instability to the denominator. Six blind Phase-5 reviews (all
+CONCUR-WITH-GAP/variant, each independently confirming the headline
+numbers and each surfacing a genuinely distinct finding) and Red Team's
+final audit (independently re-derived every number a further time from
+source) delivered the cycle's decisive result: **relabeling 41.4deg per
+its own cpl=30 finding INVERTS exp-090's own non-parametric caution-zone
+construction** (min{margin:Y=0}=1.3095 < max{margin:Y=1}=1.4764),
+triggering exp-090's own pre-registered falsification clause. MATERIALS'
+self-review found a genuinely new confound (graded_black_shell's
+sigma_max left unscaled under the R3 rescale, ~1.5x native optical depth
+by this program's own tau_center convention) -- checked and judged small
+on p_abs_w but, per Red Team's own extension, NOT yet checked against the
+PRIMARY delta_scene/frac_contrast/ratio_k channel the headline sign flip
+rests on -- elevated to this cycle's top open question alongside the
+still-unlocated crossings. VISION found the mandatory NETD disclaimer
+written correctly to results.json but never printed to run_output.txt --
+ruled by Red Team a NEW, distinct gap shape (JSON-vs-stdout, not the
+Iteration-65 lineage's prose-to-prose propagation failure), non-firing on
+two independent grounds. **New standing rule R15 adopted** (a calibration
+boundary built from resolution-sensitive-interference-node-proximate
+points needs independent R3-verification before being trusted; R13's
+floor gate is necessary but not sufficient). **No CHECKPOINT this cycle**
+(all five criteria worked through explicitly; none fire -- the
+caution-zone-inversion finding is scientifically major but not a "known,
+named, ignored" rule violation). **Combined Verdict: PARTIAL** --
+confirmed: 37.2deg holds, frac_p_abs/(b2) classification-stable, settling
+clean at both resolutions, no geometry-rescale defect; materially
+revised: exp-090's caution zone [1.4764,2.1709]/Firth fit m50=2.071,
+characterized one cycle earlier as "sound... reproduced by at least nine
+parties," must now be treated as cpl=20-specific and provisional, not
+resolution-verified, until re-fit under R15. Reconciled Iteration-69
+queue: locating the actual cpl=30 crossings with a wider net (rank 1,
+5-of-6 convergent); rebuilding exp-090's caution zone under both
+drop/relabel treatments, zero-FDTD (rank 2); the sigma_max rescale check
+extended to the PRIMARY channel (rank 3); a third cpl=40 resolution
+point; extending R3 to the remaining four of exp-090's seven
+caution-zone points; a print-parity/Result-section-existence structural
+safeguard. Full record: `experiments/091-t28-r3-resolution-denser-
+recheck/`, LOGBOOK.md Iteration 68); panel Iteration 67 done (exp-090, PARTIAL,
 PHOTONICS' rotation-lead cycle: a zero-FDTD logistic/threshold fit of
 R13's FLOOR_FRAC=0.10 floor gate against all 7 now-resolved (theta,
 margin, ratio_k) points across exp-087/088/089, executing exp-089's own
