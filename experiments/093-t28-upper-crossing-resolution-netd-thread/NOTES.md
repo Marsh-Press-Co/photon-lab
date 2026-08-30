@@ -388,6 +388,32 @@ figure reproduces the frozen NOTES.md prediction to full precision.
 floor-clearing interior points are reported as context only (all Y=1,
 consistent with a deep near-null, not zone-defining members).
 
+**(Item 5b, extended) The §1 self-test, actually run — caught missing by
+THERMODYNAMICS' own Phase-5 self-review.** §1's Hypothesis stated: "a
+`netd_classification` swing coincident with the disputed node would
+itself be a new, genuinely surprising finding" — this was never reported
+against item 1's own six interior points, though `results.json`'s
+`item1.per_theta` already carried the fully-computed fields
+(`dt_ss_full_K_c/g`, `netd_classification_c/g`) at Phase 4. Reported now:
+
+| θ | `dt_ss_full_K_c` | `dt_ss_full_K_g` | `netd_c` | `netd_g` |
+|---|---|---|---|---|
+| 41.750° | 5.2914×10⁻⁵ | 5.3278×10⁻⁵ | UNDETECTABLE | UNDETECTABLE |
+| 41.775° | 5.3000×10⁻⁵ | 5.3346×10⁻⁵ | UNDETECTABLE | UNDETECTABLE |
+| 41.825° | 5.3169×10⁻⁵ | 5.3477×10⁻⁵ | UNDETECTABLE | UNDETECTABLE |
+| 41.850° | 5.3253×10⁻⁵ | 5.3541×10⁻⁵ | UNDETECTABLE | UNDETECTABLE |
+| 41.875° | 5.3336×10⁻⁵ | 5.3602×10⁻⁵ | UNDETECTABLE | UNDETECTABLE |
+| 41.900° | 5.3418×10⁻⁵ | 5.3662×10⁻⁵ | UNDETECTABLE | UNDETECTABLE |
+
+**No swing coincident with the disputed node** — the sequence is smooth
+and monotonically increasing across the whole interior window, fully
+consistent with the flanking item-5 values (`5.5×10⁻⁵` K at 41.8°/42.0°),
+with no discontinuity at the near-total-null region item 1 was built to
+resolve. §1's own self-test is discharged: the SINGLE-NULL result does
+not disturb the energy channel's own smoothness, exactly as predicted —
+now directly measured against the disputed node's own interior, not only
+the flanking grid.
+
 **(Item 4) PRIMARY — CONFIRM.** At the corrected, mandated length scale
 (`ℓ=A_HALF_APERTURE=752`/`1128` cells), magnitude ratios (observed vs.
 predicted `|Δθ|`) are **32.1×/80.2×/95.8×** at the lower/upper-1/upper-2
