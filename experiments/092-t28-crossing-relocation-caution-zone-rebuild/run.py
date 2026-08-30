@@ -226,6 +226,13 @@ def pair_metrics(c_cell, g_cell, floor):
                 frac_contrast=frac_contrast, ratio_k=ratio_k, floor_pass=floor_pass,
                 resolved=resolved, noise_floor=noise_floor, margin=margin,
                 ratio_abs_ext_raw_c=c_cell["thermo"]["ratio_abs_ext_raw"],
+                # Phase-5 fix (Red Team's final audit, THERMODYNAMICS' Phase-5
+                # finding, also present unfixed in exp-091's own record):
+                # netd_disposition is computed per cell above but was
+                # previously dropped before reaching rank3_report/rank1_report
+                # -- dt_ss_full_K_c is new here (netd_classification_c already
+                # existed in this dict but was likewise never threaded onward).
+                dt_ss_full_K_c=c_cell["thermo"]["dt_ss_full_K"],
                 netd_classification_c=c_cell["thermo"]["netd_classification"])
 
 
@@ -361,6 +368,8 @@ def main():
             sigma_corrected_ratio_abs_ext_raw=pm["ratio_abs_ext_raw_c"],
             ratio_abs_ext_dev_from_anchor=abs(pm["ratio_abs_ext_raw_c"] - 0.51) / 0.51,
             ratio_k=pm["ratio_k"], floor_pass=pm["floor_pass"],
+            sigma_corrected_dt_ss_full_K=pm["dt_ss_full_K_c"],
+            sigma_corrected_netd_classification=pm["netd_classification_c"],
         )
     print("\n[Rank 3] sigma-corrected (1/3) vs as-filed (0.5) exp-091 comparison:")
     for th, r in sorted(rank3_report.items()):
@@ -440,6 +449,8 @@ def main():
             ratio_k=pm["ratio_k"], floor_pass=pm["floor_pass"], resolved=pm["resolved"],
             frac_p_abs=pm["frac_p_abs"],
             classification=("NODE-UNRESOLVABLE" if not pm["floor_pass"] else classification_word(pm["ratio_k"])),
+            dt_ss_full_K_c=pm["dt_ss_full_K_c"],
+            netd_classification_c=pm["netd_classification_c"],
         )
     print("\n[Rank 1] per-angle results:")
     for th, r in sorted(rank1_report.items()):
@@ -482,9 +493,17 @@ def main():
           f"(lower crossings: {len(lower_crossings)}, upper crossings: {len(upper_crossings)})")
 
     known_40, known_41 = 40.26541960305772, 41.46090139413461
+    # Phase-5 fix (Red Team's final audit, MATERIALS' Phase-5 finding):
+    # persist the FULL per-window crossing list, not only crossings[0] --
+    # find_zero_crossings can return more than one root per window (as it
+    # does here, in the upper window), and a singular field silently drops
+    # every crossing after the first from results.json even though it is
+    # correctly counted (len(upper_crossings)) and printed above.
     r1b_report = dict(
         lower_crossing_cpl30=(float(lower_crossings[0]) if len(lower_crossings) else None),
         upper_crossing_cpl30=(float(upper_crossings[0]) if len(upper_crossings) else None),
+        lower_crossings_cpl30_all=[float(x) for x in lower_crossings],
+        upper_crossings_cpl30_all=[float(x) for x in upper_crossings],
         naive_extrapolation_lower=40.04, naive_extrapolation_upper=41.69,
         known_cpl20_lower=known_40, known_cpl20_upper=known_41,
     )

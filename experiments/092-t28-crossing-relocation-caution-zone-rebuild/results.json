@@ -107,7 +107,11 @@
         "sigma_corrected_ratio_abs_ext_raw": 0.5139212467094293,
         "ratio_abs_ext_dev_from_anchor": 0.007688719038096632,
         "ratio_k": 1.7359981855459006,
-        "floor_pass": true
+        "floor_pass": true,
+        "sigma_corrected_dt_ss_full_K": 4.594353413478306e-05,
+        "sigma_corrected_netd_classification": "UNDETECTABLE",
+        "filed_dt_ss_full_K": 4.780698839206721e-05,
+        "filed_netd_classification": "UNDETECTABLE"
       },
       "40.2": {
         "sigma_corrected_delta_scene": 0.0004431720048038157,
@@ -124,7 +128,11 @@
         "sigma_corrected_ratio_abs_ext_raw": 0.5127425836929583,
         "ratio_abs_ext_dev_from_anchor": 0.005377615084232005,
         "ratio_k": 9.728551430420627,
-        "floor_pass": true
+        "floor_pass": true,
+        "sigma_corrected_dt_ss_full_K": 5.0375476816593985e-05,
+        "sigma_corrected_netd_classification": "UNDETECTABLE",
+        "filed_dt_ss_full_K": 5.2369903189450164e-05,
+        "filed_netd_classification": "UNDETECTABLE"
       },
       "41.4": {
         "sigma_corrected_delta_scene": 0.0006593350827729383,
@@ -141,7 +149,11 @@
         "sigma_corrected_ratio_abs_ext_raw": 0.5147332191337985,
         "ratio_abs_ext_dev_from_anchor": 0.009280821830977526,
         "ratio_k": 7.472255551839369,
-        "floor_pass": true
+        "floor_pass": true,
+        "sigma_corrected_dt_ss_full_K": 5.1784646635965176e-05,
+        "sigma_corrected_netd_classification": "UNDETECTABLE",
+        "filed_dt_ss_full_K": 5.3930753592241134e-05,
+        "filed_netd_classification": "UNDETECTABLE"
       }
     },
     "delta_scene_sub_verdict": "CONFIRM",
@@ -239,7 +251,17 @@
       "shift_vs_cpl20_lower": -0.1935812644838535,
       "shift_vs_naive_lower": 0.03183833857386986,
       "shift_vs_cpl20_upper": 0.3201659178026546,
-      "shift_vs_naive_upper": 0.09106731193726603
+      "shift_vs_naive_upper": 0.09106731193726603,
+      "lower_crossings_cpl30_all": [
+        40.07183833857387
+      ],
+      "upper_crossings_cpl30_all": [
+        41.781067311937264,
+        41.8376530294636
+      ],
+      "upper_crossing_cpl30_second": 41.8376530294636,
+      "shift_vs_cpl20_upper_second": 0.3767516353289935,
+      "shift_vs_naive_upper_second": 0.14765302946360492
     },
     "lower_window": [
       39.2,
@@ -351,5 +373,11 @@
   },
   "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 3)",
   "scope_note": "This cycle is pure instrument recalibration (T1 route N/A, Checkpoint criterion 2 N/A) -- no phenomenon-mechanism claim, REALIZABILITY_MEMO.md untouched. (Idealization 7)",
-  "sigma_branch_disclaimer": "A Rank-3 REFUTE or NEITHER-default reopens Rank 1's own net-placement logic as provisional for a future cycle -- resequencing fixes which article Rank 1 measures, not whether the net's own location is still correctly aimed under a corrected article. (Idealization 11)"
+  "sigma_branch_disclaimer": "A Rank-3 REFUTE or NEITHER-default reopens Rank 1's own net-placement logic as provisional for a future cycle -- resequencing fixes which article Rank 1 measures, not whether the net's own location is still correctly aimed under a corrected article. (Idealization 11)",
+  "phase5_redteam_backfill": {
+    "applied_by": "Red Team Phase-5 final audit, Panel Iteration 69",
+    "date": "2026-08-30",
+    "note": "Additive only -- no existing scored field altered. (1) rank1.crossing_report gains the full per-window crossing list (lower_crossings_cpl30_all/upper_crossings_cpl30_all) plus the previously-dropped second upper crossing (upper_crossing_cpl30_second) and its two comparator shifts -- MATERIALS Phase-5 finding: run.py computed and printed both upper crossings but persisted only crossings[0]. The already-scored crossing_report fields are unchanged; NOTES.md/run_output.txt already carried the complete number. (2) rank3.per_theta gains netd_classification/dt_ss_full_K for both the sigma_corrected and filed p_abs_w variants at all three census angles -- THERMODYNAMICS Phase-5 finding, confirmed also present in exp-091 own record: netd_disposition is computed per cell in cell_metrics() but never threaded into rank3_report/rank1_report. Backfilled here only where the underlying p_abs_w was already committed (Rank 3 six cells); Rank 1 own 14 cells cannot be backfilled without new FDTD, since their individual p_abs_w values were never persisted either -- named open, not fixed, see phase5_redteam_audit.md. Computed by invoking the actual committed find_zero_crossings/ts.netd_disposition functions, not hand-derived (R4 discipline). All backfilled classifications: UNDETECTABLE, matching the established exp-087 margin band. run.py itself is also fixed forward (both gaps) so a future cycle reusing this file does not reproduce either defect a third time.",
+    "full_record": "phase5_redteam_audit.md"
+  }
 }

@@ -301,7 +301,15 @@ assumed and validating the "re-run rather than reuse" fix.
 - **[Sigma branch] CONFIRM → Rank 1 ran at `sigma_max=0.5`** (native,
   exp-091's own as-filed convention), the pre-registered branch outcome.
   Rank 1's own results below are therefore directly comparable to
-  exp-091's own filed `cpl=20` data with no sigma-scaling caveat.
+  exp-091's own filed `cpl=20` data with no sigma-scaling caveat **at the
+  three tested census angles (37.2°, 40.2°, 41.4°)**. Scope correction
+  (Red Team's Phase-5 final audit, `phase5_redteam_audit.md`): none of
+  the three sits inside the near-total interference null Rank 1 itself
+  discovers below (nearest tested point, 41.4°, sits 0.38–0.44° from the
+  upper double-crossing, where `delta_scene` reads an order of magnitude
+  smaller than anywhere Rank 3 sampled) — the CONFIRM does not, on its
+  own, extend to that specific region; see Learned item 3's own
+  correction below.
 - **(R1a) PRIMARY — NEITHER**, the pre-registered outcome for "a crossing
   found but the local curve is non-monotonic within a window" — and a
   genuinely split result underneath that one mechanical label, reported
@@ -403,12 +411,26 @@ paragraph is a consistency note, not a new computation.
    channel should consider scoring each window's own outcome separately
    from the start, rather than only a combined worst-case verdict.
 3. **A double-crossing pair separated by 0.057° straddling a
-   floor-gate-failing point is a coherent, physically legible picture, not
-   a numerical artifact** — the three independent signals (two sign
-   changes, and a `NODE-UNRESOLVABLE` classification at the point they
-   straddle) all point to the same underlying feature (a near-total
-   interference null at `cpl=30` near 41.8°), corroborating each other
-   without any additional computation needed to connect them.
+   floor-gate-failing point is consistent with, but not yet independently
+   confirmed as, a genuine two-node feature** — the three cited signals
+   (two sign changes, and a `NODE-UNRESOLVABLE` classification at the
+   point they straddle) are real and do point to the same underlying
+   region (a near-total interference null at `cpl=30` near 41.8°), but
+   all three are drawn from the same `floor_pass=False` neighborhood
+   R13's own gate exists to flag as untrustworthy at a single resolution,
+   not from independent, floor-clearing measurements — corroboration
+   from inside the disputed region is weaker than the "not a numerical
+   artifact" language originally here implied. **Corrected same-shift**
+   (Red Team's Phase-5 final audit, `phase5_redteam_audit.md` §1;
+   independently caught by PHOTONICS' blind Phase-5 review, which found
+   this sentence directly contradicted the Next section's own admission
+   (item 1 below, renumbered from item 2 — see the Next section's own
+   note) that a denser check is still needed to distinguish a genuine
+   two-node feature from an under-resolved single deep null): the same
+   open question this Learned item now states plainly is answered, not
+   begged, is exactly what Next item 1 (below) should resolve before any
+   future caution-zone rebuild treats both crossings as independently
+   settled inputs.
 4. **This program's own `_run_sim_r3`-family FDTD calls are exactly
    deterministic across separate process invocations** — six independent
    bit-exact reproductions of exp-091's own filed empty-leg values,
@@ -420,20 +442,35 @@ paragraph is a consistency note, not a new computation.
 ## Next
 
 Ranked, reconciling this cycle's own two live open items with the items
-`phase1_proposal.md` §7 and `phase3_synthesis.md` explicitly deferred:
+`phase1_proposal.md` §7 and `phase3_synthesis.md` explicitly deferred.
+**Re-ordered same-shift** (Red Team's Phase-5 final audit,
+`phase5_redteam_audit.md`, reconciling all six Phase-5 reviews' own
+top-3s — PHOTONICS, ELECTROMAGNETISM, and QUANTUM OPTICS independently
+converge on resolving the upper-window ambiguity before or alongside,
+not after, the caution-zone re-fit): the original ordering below put the
+re-fit first; every seat that ranked both items ranked the resolution
+check no lower than co-equal with it, since a re-fit built on an
+unresolved double-crossing input would risk exactly the failure mode
+R15 itself exists to catch. The two items are re-numbered accordingly;
+neither's own text is otherwise changed.
 
-1. **Re-fit/re-derive R15's own caution-zone question using the two newly
+1. **A dedicated, denser sweep of the upper window (41.6°–42.2°, finer
+   than the native 0.2° `DENSE_ANGLES` step)** to resolve whether the
+   double-crossing pair at 41.78°/41.84° is a genuine two-node feature or
+   an under-resolved single deep null — this cycle's own grid cannot
+   distinguish those without off-grid points. **Elevated to Next item 1**
+   (was item 2): the single most decisive, cheapest test of the exact
+   ambiguity Learned item 3 (above) now discloses rather than resolves.
+2. **Re-fit/re-derive R15's own caution-zone question using the two newly
    located `cpl=30` crossings** (or three, counting the upper pair
    separately) as inputs, now that Rank 3 has confirmed the sigma_max
    confound does not contaminate this reading — the natural next step
    given this cycle's own two PRIMARY results (R3 CONFIRM licenses citing
    Rank 1's numbers cleanly; Rank 1 locates the lower crossing and reveals
-   the upper region's real structure).
-2. **A dedicated, denser sweep of the upper window (41.6°–42.2°, finer
-   than the native 0.2° `DENSE_ANGLES` step)** to resolve whether the
-   double-crossing pair at 41.78°/41.84° is a genuine two-node feature or
-   an under-resolved single deep null — this cycle's own grid cannot
-   distinguish those without off-grid points.
+   the upper region's real structure). **Was Next item 1**: still the
+   right next major step, but should run gated on, or at minimum report
+   both a single-null and a two-node version of, item 1's own result —
+   not silently pick one reading of the upper region.
 3. **Extend the search past 42.0°** — this cycle's own §2b-disclosed
    window-edge risk was not realized for the *located* crossings (both
    fell inside the tested windows), but the newly-discovered upper
