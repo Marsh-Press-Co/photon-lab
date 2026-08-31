@@ -24,7 +24,7 @@ RANK 2 -- sigma@41.6deg sigma-comparability close (cpl=30, sigma_max=1/3 correct
   [ 2/4] C40_R3   theta=+41.60 article=True steps=4200 sigma_max=0.3333333333333333
   [ 3/4] G40_R3   theta=+41.60 article=False steps=4200 sigma_max=None
   [ 4/4] G40_R3   theta=+41.60 article=True steps=4200 sigma_max=0.3333333333333333
-Rank 2 wall time: 115.9s (1.93 min)
+Rank 2 wall time: 110.0s (1.83 min)
 
 [Rank 2] xi_ext <= 0.12 everywhere: PASS=True
 [Rank 2] sigma_abs>=0 everywhere: PASS=True
@@ -34,6 +34,7 @@ Rank 2 wall time: 115.9s (1.93 min)
 
 [Rank 2 PRIMARY] delta_scene ratio=1.0766 sign_match=True  sub-verdict=CONFIRM  |  frac_contrast ratio=1.0856  sub-verdict=CONFIRM  ||  OVERALL VERDICT=CONFIRM  (no confident directional lean pre-committed, per Phase-3 RT-2 correction -- REFUTE disclosed as at least as plausible as CONFIRM)
 [Rank 2, informational, non-gating] p_abs_w(G)/p_abs_w(C) ratio=1.0085  (energy-flatness-style reading); ratio_abs_ext_raw_c=0.5141  dev from 0.51 T9 anchor=0.81%  (both reported per module docstring disclosure (iii); frac_p_abs=8.492004e-03)
+[Rank 2, informational, non-gating, Fix #3] dt_ss_full_K(C)=5.2404e-05  dt_ss_full_K(G)=5.2849e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
 
 ==============================================================================
 RANK 3 -- census R3-verify, 36.0/38.4/38.8deg (cpl=30, sigma_max=0.5 native)
@@ -52,7 +53,7 @@ RANK 3 -- census R3-verify, 36.0/38.4/38.8deg (cpl=30, sigma_max=0.5 native)
   [10/12] G40_R3   theta=+38.40 article=True steps=4200 sigma_max=0.5
   [11/12] G40_R3   theta=+38.80 article=False steps=4200 sigma_max=None
   [12/12] G40_R3   theta=+38.80 article=True steps=4200 sigma_max=0.5
-Rank 3 wall time: 316.1s (5.27 min)
+Rank 3 wall time: 318.8s (5.31 min)
 
 [Rank 3] xi_ext <= 0.12 everywhere: PASS=True
 [Rank 3] sigma_abs>=0 everywhere: PASS=True
@@ -61,6 +62,11 @@ Rank 3 wall time: 316.1s (5.27 min)
   theta=36.0: ratio_k_cpl20=2.6424 (Y=0)  ratio_k_cpl30=2.4582  floor_pass=True  Y_cpl30=0  OUTCOME=CONSISTENT
   theta=38.4: ratio_k_cpl20=0.9075 (Y=0)  ratio_k_cpl30=16.9967  floor_pass=True  Y_cpl30=1  OUTCOME=FLIPPED
   theta=38.8: ratio_k_cpl20=3.8733 (Y=0)  ratio_k_cpl30=2.2729  floor_pass=True  Y_cpl30=0  OUTCOME=CONSISTENT
+
+[Rank 3, informational, non-gating, Fix #2] p_abs_w(G)/p_abs_w(C) ratio (energy-flatness-style reading) + NETD sidecar, per census angle:
+  theta=36.0: p_abs_w(G)/p_abs_w(C)=1.0037  ratio_abs_ext_raw_c=0.5084  dev from 0.51 T9 anchor=0.32%  frac_p_abs=3.664835e-03  dt_ss_full_K(C)=4.6793e-05  dt_ss_full_K(G)=4.6965e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
+  theta=38.4: p_abs_w(G)/p_abs_w(C)=1.0048  ratio_abs_ext_raw_c=0.5086  dev from 0.51 T9 anchor=0.28%  frac_p_abs=4.840842e-03  dt_ss_full_K(C)=4.9760e-05  dt_ss_full_K(G)=5.0001e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
+  theta=38.8: p_abs_w(G)/p_abs_w(C)=1.0079  ratio_abs_ext_raw_c=0.5092  dev from 0.51 T9 anchor=0.16%  frac_p_abs=7.911292e-03  dt_ss_full_K(C)=5.0234e-05  dt_ss_full_K(G)=5.0632e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
 
 ==============================================================================
 RANK 1a -- cpl=40 (R4) settling precondition @ 41.825deg (sigma_max=0.25)
@@ -75,13 +81,15 @@ RANK 1a -- cpl=40 (R4) settling precondition @ 41.825deg (sigma_max=0.25)
   [ 6/8] C40_R4   theta=+41.825 article=True steps=8400 sigma_max=0.25
   [ 7/8] G40_R4   theta=+41.825 article=False steps=8400 sigma_max=None
   [ 8/8] G40_R4   theta=+41.825 article=True steps=8400 sigma_max=0.25
-Rank 1a wall time: 821.5s (13.69 min)
+Rank 1a wall time: 815.8s (13.60 min)
 [Gate 5] all 4 Rank 1a article calls completed their inline runtime sigma_e/sigma_max assert without raising -- PASS (an AssertionError inside any worker would have propagated and stopped this script before this line)
 
 [Rank 1a] xi_ext <= 0.12 everywhere: PASS=True
 [Rank 1a] sigma_abs>=0 everywhere: PASS=True
 
 [Rank 1a PRIMARY] delta_scene(STEPS=5600)=+3.898698e-04  delta_scene(STEPS=8400)=+3.893642e-04  rel_dev=0.1297%  VERDICT=PASS  (see module docstring disclosure (ii) for the single-delta_scene settling-metric resolution of this check's own ambiguous 'at both/either config' wording)
+[Rank 1a, informational, non-gating, Fix #3] STEPS=5600: dt_ss_full_K(C)=5.3187e-05  dt_ss_full_K(G)=5.3419e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
+[Rank 1a, informational, non-gating, Fix #3] STEPS=8400: dt_ss_full_K(C)=5.3187e-05  dt_ss_full_K(G)=5.3420e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
 
 ==============================================================================
 RANK 1b -- cpl=40 (R4) interior near-null sweep, 6 angles (sigma_max=0.25, gate=PASS)
@@ -112,7 +120,7 @@ RANK 1b -- cpl=40 (R4) interior near-null sweep, 6 angles (sigma_max=0.25, gate=
   [22/24] G40_R4   theta=+41.875 article=True steps=5600 sigma_max=0.25
   [23/24] G40_R4   theta=+41.900 article=False steps=5600 sigma_max=None
   [24/24] G40_R4   theta=+41.900 article=True steps=5600 sigma_max=0.25
-Rank 1b wall time: 1761.1s (29.35 min)
+Rank 1b wall time: 1749.7s (29.16 min)
 [Gate 5] all 12 Rank 1b article calls completed their inline runtime sigma_e/sigma_max assert without raising -- PASS
 
 [Rank 1b] xi_ext <= 0.12 everywhere: PASS=True
@@ -125,6 +133,14 @@ Rank 1b wall time: 1761.1s (29.35 min)
   theta=41.85: delta_scene=+3.911720e-04  frac_contrast=7.488386e-04  ratio_k=5.1943  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0039
   theta=41.875: delta_scene=+3.985905e-04  frac_contrast=7.640329e-04  ratio_k=4.4505  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0034
   theta=41.9: delta_scene=+4.121234e-04  frac_contrast=7.910155e-04  ratio_k=3.6703  class=CONSISTENT  floor_pass=True  p_abs_w(G)/p_abs_w(C)=1.0029
+
+[Rank 1b, informational, non-gating, Fix #3] dt_ss_full_K/netd_classification sidecar, per interior angle:
+  theta=41.75: dt_ss_full_K(C)=5.2920e-05  dt_ss_full_K(G)=5.3224e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
+  theta=41.775: dt_ss_full_K(C)=5.3010e-05  dt_ss_full_K(G)=5.3290e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
+  theta=41.825: dt_ss_full_K(C)=5.3187e-05  dt_ss_full_K(G)=5.3419e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
+  theta=41.85: dt_ss_full_K(C)=5.3274e-05  dt_ss_full_K(G)=5.3481e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
+  theta=41.875: dt_ss_full_K(C)=5.3360e-05  dt_ss_full_K(G)=5.3541e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
+  theta=41.9: dt_ss_full_K(C)=5.3443e-05  dt_ss_full_K(G)=5.3599e-05  netd(C)=UNDETECTABLE  netd(G)=UNDETECTABLE
 
 [Rank 1b PRIMARY] any interior point delta_scene>0 AND floor_pass: True
 [Rank 1b PRIMARY] all interior points delta_scene<=0: False
@@ -139,7 +155,7 @@ Rank 1b wall time: 1761.1s (29.35 min)
     theta=41.875: p_abs_w(G4)/p_abs_w(C4)=1.0034  ratio_abs_ext_raw_c dev from 0.51=0.58%
     theta=41.9: p_abs_w(G4)/p_abs_w(C4)=1.0029  ratio_abs_ext_raw_c dev from 0.51=0.57%
 
-total FDTD wall time (Rank 2+3+1a+1b): 3014.5s (50.24 min)
+total FDTD wall time (Rank 2+3+1a+1b): 2994.4s (49.91 min)
 
 ==============================================================================
 RANK 3-ext -- caution-zone growth, cpl=30-only, desk-only (0 FDTD calls)
@@ -167,4 +183,4 @@ SUMMARY
   Rank 1a (cpl=40 settling):             PASS  (rel_dev=0.1297%)
   Rank 1b (cpl=40 interior three-way):   TWO-NODE CONFIRMED
   Rank 3-ext (caution-zone growth):      CONFIRM  (zone_inverted=False)
-  total FDTD calls: 48   total wall time: 3033.7s (50.56 min)
+  total FDTD calls: 48   total wall time: 3015.6s (50.26 min)

@@ -396,7 +396,23 @@ Fix #5, PHOTONICS' own catch)**: by raw magnitude, 41.4°'s swing (19.60)
 actually exceeds 38.4°'s (16.09); only the fold-change reading (18.73×
 vs. 3.13×) supports "larger," and that is the comparison intended here.
 All three points clear `floor_pass=True` at `cpl=30` — none is
-`NODE-UNRESOLVABLE`.
+`NODE-UNRESOLVABLE`. **Informational (Red Team Phase-5 final audit, Fix
+#2, THERMODYNAMICS' own catch):** `p_abs_w` (G/C) ratio and NETD sidecar,
+extracted this shift for all three census angles — previously absent at
+any resolution, including at 38.4°, this cycle's own newest and largest
+coherent-channel reversal. 36.0°: ratio 1.0037, `ratio_abs_ext_raw` 0.32%
+from the 0.51 T9 anchor, `dt_ss_full_K` 4.6793×10⁻⁵ K (C) /
+4.6965×10⁻⁵ K (G), both UNDETECTABLE. **38.4° (the newly-FLIPPED
+point):** ratio 1.0048, 0.28% from anchor, `dt_ss_full_K` 4.9760×10⁻⁵ /
+5.0001×10⁻⁵ K, both UNDETECTABLE. 38.8°: ratio 1.0079, 0.16% from anchor,
+`dt_ss_full_K` 5.0234×10⁻⁵ / 5.0632×10⁻⁵ K, both UNDETECTABLE. The
+energy-flatness/UNDETECTABLE pattern established at 41.6° (Rank 2) and
+the interior sweep (Rank 1b, below) holds at all three census angles too
+— 38.4°'s coherent-channel reversal has no companion energy-channel
+signature; R14's own mechanism (the oscillatory imprint lives in
+`σ_ext(θ)`'s config-differential structure, never the absorption/
+scattering partition) is unthreatened by this cycle's own headline
+finding.
 
 **(Rank 1a) PRIMARY — PASS.** `rel_dev=0.1297%` between `STEPS=5600` and
 `STEPS=8400` at 41.825°, comfortably under the `1×10⁻²` CONFIRM/PASS bar
@@ -430,9 +446,17 @@ measured; the UNDETECTABLE/NETD-**classification** half
 into this cycle's own report or `results.json` — a genuine
 "confident-claim-unverified" gap, the same shape exp-093's own
 THERMODYNAMICS self-review caught one cycle earlier. **Fix #2/#3 applied
-post-audit (zero-FDTD-marginal-cost, deterministic rerun): see the
-`dt_ss_full_K`/`netd_classification` values now cited directly below**,
-replacing the withdrawn inference-only claim.
+post-audit (zero-FDTD-marginal-cost, deterministic rerun):
+`dt_ss_full_K`/`netd_classification` now extracted and persisted for all
+six interior angles — 41.750°: 5.2920×10⁻⁵ K (C) / 5.3224×10⁻⁵ K (G);
+41.775°: 5.3010×10⁻⁵ / 5.3290×10⁻⁵; 41.825°: 5.3187×10⁻⁵ / 5.3419×10⁻⁵;
+41.850°: 5.3274×10⁻⁵ / 5.3481×10⁻⁵; 41.875°: 5.3360×10⁻⁵ / 5.3541×10⁻⁵;
+41.900°: 5.3443×10⁻⁵ / 5.3599×10⁻⁵ — all twelve values (both configs, all
+six angles) classify **UNDETECTABLE** per `NETD_BAND_K`.** The
+UNDETECTABLE classification is therefore now directly confirmed to
+extend to `cpl=40` at this window from the actual persisted values, not
+merely inferred from the energy-flatness ratio — closing the gap this
+correction names.
 
 **(Rank 3-ext) PRIMARY — CONFIRM.** Base `n=8` table reproduces exp-093's
 frozen figures bit-exact (`auc=1.0000`, zone `[4.1083,5.4287]`,

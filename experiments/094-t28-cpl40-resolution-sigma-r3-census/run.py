@@ -178,6 +178,16 @@ ratio_sign_verdict = exp093.ratio_sign_verdict
 classification_word = exp093.classification_word
 compute_zone = exp093.compute_zone
 VERDICT_RANK = exp093.VERDICT_RANK
+netd_row = exp093.netd_row   # Phase-5 Red Team audit Fixes #2/#3 (same-shift):
+                              # exp-093's own already-built NETD-persistence
+                              # extraction, imported verbatim (importable
+                              # directly off the loaded exp093 module -- no
+                              # mirroring needed), retrofitted below into
+                              # every Rank's own result-assembly dict wherever
+                              # a `pair_metrics_full` `pm` is already in
+                              # scope. Purely additive: extracts already-
+                              # computed fields, changes no formula/gate/
+                              # verdict.
 
 # R3-family plumbing, pulled through the nested exp-092/exp-091 module
 # attributes (NOT all re-exported at exp-093's own module scope -- confirmed
@@ -489,6 +499,15 @@ def main():
           f"dev from 0.51 T9 anchor={ratio_abs_ext_dev_r2:.2%}  "
           f"(both reported per module docstring disclosure (iii); frac_p_abs={pm_r2['frac_p_abs']:.6e})")
 
+    # Phase-5 Red Team audit, Fix #3 (same-shift): retrofit exp-093's own
+    # `netd_row()` extraction -- persist the dt_ss_full_K/netd_classification
+    # sidecar `pair_metrics_full` already computed above, closing the
+    # NETD-byproduct-dropped gap for Rank 2 (additive only, no new FDTD).
+    netd_row_r2 = netd_row(pm_r2)
+    print(f"[Rank 2, informational, non-gating, Fix #3] dt_ss_full_K(C)={netd_row_r2['dt_ss_full_K_c']:.4e}  "
+          f"dt_ss_full_K(G)={netd_row_r2['dt_ss_full_K_g']:.4e}  "
+          f"netd(C)={netd_row_r2['netd_classification_c']}  netd(G)={netd_row_r2['netd_classification_g']}")
+
     # =================================================================
     # RANK 3 -- SECOND, census R3-verify, three angles (12 calls)
     # =================================================================
@@ -542,17 +561,41 @@ def main():
         else:
             y_cpl30 = 1 if pm["ratio_k"] > RATIO_HIGH else 0
             outcome = "CONSISTENT" if y_cpl30 == y_cpl20 else "FLIPPED"
+        # Phase-5 Red Team audit, Fix #2 (same-shift, THERMODYNAMICS-charter-
+        # central): extract p_abs_w/frac_p_abs and the full netd_row()
+        # sidecar -- `pair_metrics_full` already computed these in-memory
+        # above (zero marginal FDTD cost); only the extraction into
+        # `rank3_report` was missing. Additive only -- delta_scene/
+        # frac_contrast/ratio_k/floor_pass/outcome fields unchanged.
         rank3_report[th] = dict(
             delta_scene=pm["delta_scene"], frac_contrast=pm["frac_contrast"],
             ratio_k=pm["ratio_k"], floor_pass=pm["floor_pass"],
             ratio_k_cpl20=cpl20["ratio_k"], y_cpl20=y_cpl20, y_cpl30=y_cpl30,
             outcome=outcome,
+            frac_p_abs=pm["frac_p_abs"],
+            **netd_row(pm),
         )
     print("\n[Rank 3 PRIMARY] per-angle three-way outcome:")
     for th, r in sorted(rank3_report.items()):
         print(f"  theta={th}: ratio_k_cpl20={r['ratio_k_cpl20']:.4f} (Y={r['y_cpl20']})  "
               f"ratio_k_cpl30={r['ratio_k']:.4f}  floor_pass={r['floor_pass']}  "
               f"Y_cpl30={r['y_cpl30']}  OUTCOME={r['outcome']}")
+
+    # Fix #2, informational, non-gating: p_abs_w(G)/p_abs_w(C) ratio + NETD
+    # sidecar per census angle -- especially 38.4deg (this cycle's own
+    # newest, largest reversal), previously zero energy-channel check at
+    # any resolution (THERMODYNAMICS Phase-5 review Sec.2).
+    print("\n[Rank 3, informational, non-gating, Fix #2] p_abs_w(G)/p_abs_w(C) ratio "
+          "(energy-flatness-style reading) + NETD sidecar, per census angle:")
+    for th, r in sorted(rank3_report.items()):
+        pg_pc_ratio_r3 = r["p_abs_w_g"] / r["p_abs_w_c"] if r["p_abs_w_c"] != 0 else float("inf")
+        ratio_abs_ext_dev_r3 = abs(r["ratio_abs_ext_raw_c"] - 0.51) / 0.51
+        print(f"  theta={th}: p_abs_w(G)/p_abs_w(C)={pg_pc_ratio_r3:.4f}  "
+              f"ratio_abs_ext_raw_c={r['ratio_abs_ext_raw_c']:.4f}  "
+              f"dev from 0.51 T9 anchor={ratio_abs_ext_dev_r3:.2%}  "
+              f"frac_p_abs={r['frac_p_abs']:.6e}  "
+              f"dt_ss_full_K(C)={r['dt_ss_full_K_c']:.4e}  dt_ss_full_K(G)={r['dt_ss_full_K_g']:.4e}  "
+              f"netd(C)={r['netd_classification_c']}  netd(G)={r['netd_classification_g']}")
 
     # =================================================================
     # RANK 1a -- THIRD, cpl=40 settling precondition (8 calls, gates Rank 1b)
@@ -609,6 +652,22 @@ def main():
           f"(see module docstring disclosure (ii) for the single-delta_scene "
           f"settling-metric resolution of this check's own ambiguous 'at "
           f"both/either config' wording)")
+
+    # Phase-5 Red Team audit, Fix #3 (same-shift): retrofit netd_row() for
+    # Rank 1a's own two settling cells (STEPS=5600/8400) -- `pair_metrics_full`
+    # already computed dt_ss_full_K/netd_classification above; persist it.
+    netd_row_r1a_5600 = netd_row(pm_5600)
+    netd_row_r1a_8400 = netd_row(pm_8400)
+    print(f"[Rank 1a, informational, non-gating, Fix #3] STEPS={dg.R4_STEPS}: "
+          f"dt_ss_full_K(C)={netd_row_r1a_5600['dt_ss_full_K_c']:.4e}  "
+          f"dt_ss_full_K(G)={netd_row_r1a_5600['dt_ss_full_K_g']:.4e}  "
+          f"netd(C)={netd_row_r1a_5600['netd_classification_c']}  "
+          f"netd(G)={netd_row_r1a_5600['netd_classification_g']}")
+    print(f"[Rank 1a, informational, non-gating, Fix #3] STEPS={dg.R4_STEPS_STRESS}: "
+          f"dt_ss_full_K(C)={netd_row_r1a_8400['dt_ss_full_K_c']:.4e}  "
+          f"dt_ss_full_K(G)={netd_row_r1a_8400['dt_ss_full_K_g']:.4e}  "
+          f"netd(C)={netd_row_r1a_8400['netd_classification_c']}  "
+          f"netd(G)={netd_row_r1a_8400['netd_classification_g']}")
     # =================================================================
     # RANK 1b -- THIRD, cpl=40 interior sweep (24 calls, gated on Rank 1a)
     # =================================================================
@@ -677,11 +736,26 @@ def main():
                 ratio_abs_ext_dev_from_anchor=ratio_abs_ext_dev,
                 classification=("NODE-UNRESOLVABLE" if not pm["floor_pass"] else classification_word(pm["ratio_k"])),
             )
+            # Phase-5 Red Team audit, Fix #3 (same-shift): retrofit the
+            # netd_row() fields still missing here (p_c/p_g/ratio_abs_ext_raw_c
+            # already present under this cycle's own pre-existing names --
+            # merge only what's actually new: p_abs_w_c/g aliases,
+            # dt_ss_full_K_c/g, netd_classification_c/g, sigma_ext_cells_c/g,
+            # ratio_abs_ext_raw_g -- no existing key overwritten).
+            for k, v in netd_row(pm).items():
+                if k not in rank1b_report[th]:
+                    rank1b_report[th][k] = v
         print("\n[Rank 1b] per-angle results:")
         for th, r in sorted(rank1b_report.items()):
             print(f"  theta={th}: delta_scene={r['delta_scene']:+.6e}  frac_contrast={r['frac_contrast']:.6e}  "
                   f"ratio_k={r['ratio_k']:.4f}  class={r['classification']}  floor_pass={r['floor_pass']}  "
                   f"p_abs_w(G)/p_abs_w(C)={r['pg_pc_ratio']:.4f}")
+        print("\n[Rank 1b, informational, non-gating, Fix #3] dt_ss_full_K/netd_classification "
+              "sidecar, per interior angle:")
+        for th, r in sorted(rank1b_report.items()):
+            print(f"  theta={th}: dt_ss_full_K(C)={r['dt_ss_full_K_c']:.4e}  "
+                  f"dt_ss_full_K(G)={r['dt_ss_full_K_g']:.4e}  "
+                  f"netd(C)={r['netd_classification_c']}  netd(G)={r['netd_classification_g']}")
 
         any_confirmed_r1b = any(r["delta_scene"] > 0 and r["floor_pass"] for r in rank1b_report.values())
         all_nonpositive_r1b = all(r["delta_scene"] <= 0 for r in rank1b_report.values())
@@ -820,7 +894,7 @@ def main():
             delta_scene_sub_verdict=ds_verdict_r2, frac_contrast_sub_verdict=fc_verdict_r2,
             corrected=dict(delta_scene=pm_r2["delta_scene"], frac_contrast=pm_r2["frac_contrast"],
                            ratio_k=pm_r2["ratio_k"], frac_p_abs=pm_r2["frac_p_abs"],
-                           floor_pass=pm_r2["floor_pass"]),
+                           floor_pass=pm_r2["floor_pass"], **netd_row_r2),
             native_comparator=native_r2,
             delta_scene_ratio=ds_ratio_r2, frac_contrast_ratio=fc_ratio_r2,
             pg_pc_ratio_informational=pg_pc_ratio_r2,
@@ -831,6 +905,7 @@ def main():
             angle=RANK1_ANGLE_SETTLE, steps=[dg.R4_STEPS, dg.R4_STEPS_STRESS],
             delta_scene_5600=ds_5600, delta_scene_8400=ds_8400, rel_dev=rel_dev_r1a,
             verdict=r1a_verdict,
+            netd_row_5600=netd_row_r1a_5600, netd_row_8400=netd_row_r1a_8400,
         ),
         rank1b=dict(
             angles=RANK1B_ANGLES, gate=r1a_verdict,
