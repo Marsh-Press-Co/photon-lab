@@ -2,6 +2,138 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-31 (panel shift) — Iteration 73 complete (exp-096): the
+angle-domain registration-readback gate this sub-thread has needed for
+nineteen cycles reads CLEAN, but Red Team's Phase-5 final audit -- built
+on a three-to-four-way blind convergence (PHOTONICS, ELECTROMAGNETISM,
+QUANTUM OPTICS independently, MATERIALS confirming the underlying fact)
+-- found the CLEAN verdict's scope is narrower than this cycle's own
+frozen text claimed on four separate axes, and adopted a new standing
+rule (R18) to stop it recurring: a check joining an already-fault-
+injection-verified architecture must earn its own control in the same
+cycle it is added, not merely inherit the trust its siblings have
+already proven. **No CHECKPOINT this cycle** -- criterion 4 ruled the
+closest non-firing call since R16/R17's own founding instances, for the
+identical reason (caught blind at Phase 5, own founding cycle, before
+this LOGBOOK entry).
+
+**Pre-flight**: continuing this same container's session (deps installed
+via the documented pyMKL-wheel-fails-build workaround). Trust suite
+confirmed green, 41/41 checks (`--only 12346789`), before any panel work,
+and re-confirmed green a final time after this cycle's full close. Zero
+`lab/` diff throughout -- all new code lives in
+`experiments/096-t28-r4-registration-readback-gate/run.py`.
+
+**Iteration 73 -- PHOTONICS' rotation-lead cycle (exp-096).** Executed
+exp-095's own Reconciled Iteration-73 queue items 1+2 (the angle-domain
+registration-readback gate, QUANTUM's proposal, run first; the zero-FDTD
+bracket-width desk bound) as one combined, zero-FDTD build.
+`phase1_proposal.md` committed and pushed strictly before any Phase-2
+critique existed.
+
+**Phase 2 -- five blind critiques, unanimous support-with-changes, three
+seats independently converged on the same crux by three different
+routes.** MATERIALS, ELECTROMAGNETISM, and QUANTUM OPTICS each
+independently found that the gate, as drafted, validated `run.py`'s own
+job constants against themselves -- never against a ground truth outside
+the code path it audits. VISION found the mandatory carried-idealizations
+banner missing from Predictions and a 300-word Phase-1 cap overrun.
+THERMODYNAMICS found the draft's own "12 Sim constructions" bookkeeping
+was arithmetically wrong (true pre-fix count: 10).
+
+**Red Team's Phase-2 audit**: PROCEED-WITH-MANDATORY-FIXES, 8 items, zero
+overridden. Independently found a sixth defect the five blind critiques
+missed entirely: the draft's own C/G-pair "congruence" claim was factually
+wrong (only the source aperture `A` is held identical across
+`C40_R{n}`/`G40_R{n}` pairs -- `nx`/`ny`/`src_x`/`y_lo`/`y_hi` all differ
+by construction -- and misattributed to the wrong numbered gate),
+invalidating the one-member-per-pair representativeness claim specifically
+for the placement and phase-array checks. Expanded the representative set
+from 8 to 16 points for exactly those two checks. Ruled the three-way
+convergent finding fixable, not fatal, at zero FDTD cost: adopted
+QUANTUM's proposed NOTES.md cross-check (Check 6, named "the single most
+load-bearing fix in the docket") plus MATERIALS' own recipe-internal
+spot-check (Check 5).
+
+**Phase 3 (Director): all eight fixes adopted.** `NOTES.md` frozen and
+pushed strictly before any Phase-4 code existed, with a six-check
+architecture (was four) and an explicit, corrected 18-construction count.
+
+**Phase 4: 0 FDTD calls, 2.175s wall time, trust suite re-confirmed
+green.** **Registration-readback gate: CLEAN** across all 16
+representative-point constructions, Check 5, and Check 6 (8 points).
+**Fault-injection triad: all as predicted** -- positive control CLEAN,
+FI-A/B/C all correctly caught, confirming the gate is a genuine
+discriminator, not a rubber stamp. **Zero-FDTD desk bound confirmed**,
+bit-exact against Phase 1: ±0.5° single-sided half-width is the most
+defensible candidate bracket at θ₀≈38.590° among the three examined.
+Result/Learned sections written this same Phase, not deferred to Phase 5
+(the exact gap VISION caught in exp-095, avoided here).
+
+**Phase 5 -- six blind reviews, all CONCUR-WITH-GAP(S), zero DISPUTE, a
+three-to-four-way convergent crux finding via independent routes.**
+PHOTONICS found the amplitude-taper channel (`sim.sources[-1]['profile']`,
+driven by `edge=TAPER[family]`) is checked by nothing in this cycle's
+six checks or fault-injection triad -- notable because `TAPER` is a
+previously-named-and-refuted T28 mechanism candidate (exp-070) -- and
+that NOTES.md's own frozen claim ("FI-A caught by Check 1, transitively
+Check 4") is mechanically false as coded. MATERIALS found Check 5
+restates `r4_config()`'s own formula rather than independently
+re-deriving it -- narrower independence than claimed. ELECTROMAGNETISM
+confirmed Red Team's Phase-2 override of its own proposed remedy was
+correct, but found Check 6 is a set-membership test, not a positional
+one (a same-line index swap would pass CLEAN undetected), and
+independently re-derived the FI-A/Check-4 finding as unconditional, not
+scenario-specific. THERMODYNAMICS found a silently-reordered desk-bound
+ratio triple in Result (non-load-bearing) and an 18-vs-20
+construction-count naming mismatch. QUANTUM OPTICS independently
+converged on the identical FI-A/Check-4 crux by a third route, and found
+Check 6 never reads `cpl_intended` despite three separate governing
+texts -- including QUANTUM's own critique and NOTES.md's own Setup
+section -- naming it in scope. VISION found the Result section still
+lacks the mandatory Idealizations banner the Iteration-65 CHECKPOINT rule
+requires -- confirmed the identical gap exists in exp-095's own Result
+section too, making this a two-cycle-old quiet convention drift, not a
+one-off.
+
+**Red Team's Phase-5 final audit**: independently re-derived every
+load-bearing figure from source (zero disputes on any mechanical fact
+among all seven parties; all six reviews ADOPTED, zero overridden).
+Ruled the FI-A/Check-4 finding unconditional: Check 4 recomputes its own
+comparator from `sim.lam`, the already-realized value, so it structurally
+cannot corroborate the resolution axis in any fault mode -- not merely in
+the narrower source-of-truth-corruption scenario Red Team's own Phase-2
+audit had originally scoped it to. **Adopted new standing rule R18** (full
+text: LOGBOOK.md RULED OUT registry) -- a check's documented scope must be
+confirmed against its actual code before being relied upon, and any check
+joining an already-fault-injection-verified layered architecture must
+receive its own control in the same cycle it is added. **Checkpoint
+criterion 4 ruled the closest non-firing call since R16/R17's own founding
+instances, for the identical reason** (caught blind at Phase 5, own
+founding cycle, before this LOGBOOK entry) -- **does NOT fire**.
+
+**Combined Verdict: PARTIAL.** The core claim survives: caller-level
+plumbing divergence (fault-injection-verified on the angle/placement axis)
+and `run.py`-vs-NOTES.md transcription drift (angle component) are
+genuinely ruled out for the first time in this sub-thread's 19-cycle
+history, strengthening -- without completing -- the case for genuine node
+migration as the better-supported reading of exp-095's Rank 1c FAIL. But
+the CLEAN verdict's scope is narrower, on four independently-confirmed
+axes, than this cycle's own frozen language first claimed: the resolution
+axis rests on Check 1 alone, not redundantly on Check 1+4; Check 6 covers
+angle only, not `cpl`/family, via set-membership not positional
+comparison; Check 5 restates its own target formula rather than
+re-deriving it independently, and covers only one family/config point;
+the amplitude-taper channel is checked by nothing. NOTES.md's original
+Interpretation language is left standing, flagged not rewritten (T10
+precedent), with a same-shift correction naming all four gaps and a
+completed Next section carrying the Reconciled Iteration-74 queue: Tier 0
+(zero-FDTD fixes to this cycle's own gate, closing R18's own founding
+gaps) before Tier 1 (resume real FDTD spend on Iteration-73's own queue
+items 3/4, now properly unblocked). Full record:
+`experiments/096-t28-r4-registration-readback-gate/`, LOGBOOK.md
+Iteration 73.
+
 ## 2026-08-31 (panel shift) — Iteration 72 complete (exp-095): the R4
 ground-truth sign-recovery control (built in direct response to
 exp-094's own R15-addendum near-miss) caught a genuine ambiguity a
