@@ -6352,6 +6352,93 @@ decisive discriminator); the re-centered node-bracketing re-run at
 deferred. Full record: `experiments/096-t28-r4-registration-readback-
 gate/`, LOGBOOK.md Iteration 73.
 
+**Iteration 74 (exp-097) — MATERIALS' rotation-lead cycle.** Executed
+exp-096's own Reconciled Iteration-74 queue, Tier 0 in full, as one
+combined zero-FDTD build: Check 6 fixed to positional (index-for-index)
+comparison plus its own `cpl_intended` half; Check 5 extended to `R3`/
+`R5` with a negative control; a new Check 7 (amplitude-taper
+registration) plus FI-D; a zero-cost documentation bundle including a
+governance ruling on the carried-idealizations-banner rule's literal
+scope. Five blind Phase-2 critiques (unanimous support-with-changes):
+EM and THERMODYNAMICS independently converged, by different routes, on
+a false "bit-exact" desk-check claim (computed `y_hi` vs. the wrong
+constant, `R{n}_BASE_NY` — a different quantity); QUANTUM found item 3's
+new fault-injection control (`FI-G`) covered only the pre-existing `R4`
+leg, not the two new `R3`/`R5` legs it was meant to validate; PHOTONICS
+found the standing-items ledger line (grazing-incidence, x-wall)
+silently dropped for the first time since Iteration 64; VISION found
+the governance ruling had no attached verification mechanism. Red
+Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 6 items, zero
+overridden) independently found a sixth, most-load-bearing defect none
+of the five blind critiques caught: Check 6's new `cpl_intended`
+sub-check (`cpl_ok`) was a family-level tautology, keyed by the same
+untrusted `pt["family"]` field on both sides — unable to catch a
+family-mislabeling transcription slip, the exact class exp-096's own
+FI-A already treats as a live threat, one cycle inside R18's own
+founding discipline. Fix: re-key the ground truth by `notes_line`
+(independent of `family`), add a `family_ok` sub-check with its own
+fault-injection scenario (FI-H). Phase 4 ran 0 FDTD calls, 2.305s wall,
+21 `Sim` constructions bit-exact against the frozen prediction, trust
+suite re-confirmed green, zero `lab/` diff. **Registration-readback
+gate: CLEAN** across the representative set, Check 5 (3/3 families),
+and Check 6-new (8/8 points, all three sub-checks). **All nine
+fault-injection scenarios** (positive control, FI-A/B/C reproduced,
+FI-D/E/F/G/H new) resolved exactly as predicted — FI-D proved Check 7
+covers a genuinely orthogonal axis; FI-H proved Red Team's own fix
+works. Six blind Phase-5 reviews (all CONCUR-WITH-GAP(S), zero DISPUTE,
+a genuine three-independent-catch-plus-one-echo convergence):
+PHOTONICS, MATERIALS, and ELECTROMAGNETISM independently found
+Idealization 40 mischaracterizes `cpl_ok`'s own independence — the
+actual code is stronger (more independent of `pt["family"]`) than
+documented, the mirror-image, non-dangerous direction of every prior
+R18 instance; PHOTONICS additionally found `FI-G`, even extended,
+validates only the `src_x` branch of Check 5's three-quantity
+assertion, never `y_lo`/`y_hi`; QUANTUM OPTICS found Check 5 has never
+tested any `G40_*` padded config, a known limitation this cycle's own
+restated Idealizations imprecisely re-disclosed; THERMODYNAMICS found a
+"doubled...to 41" wording imprecision (41 itself correct, "doubled" a
+loose gloss); VISION found four of five Phase-2 sharpest-attack
+sections exceeded the ≤150-word cap. Red Team's Phase-5 final audit
+independently re-verified every finding from source and by direct
+execution, ADOPTED all six reviews with one partial override — QUANTUM
+OPTICS' own Phase-5 write-up independently repeated the exact
+Idealization-40 mischaracterization three other seats correctly caught,
+the first instance in this sub-thread's history of an R18-class
+claimed-scope error occurring inside a review document itself, not a
+proposal. Ruled all five Checkpoint criteria explicitly: **none fire**
+— every gap caught blind at Phase 5, this cycle, no known-named-ignored
+recurrence, no constraint of the phenomenon target in play. No new
+standing rule proposed (R18 already covers the pattern). **Combined
+Verdict: PARTIAL** — the core claim survives: R18's own Tier-0
+discipline, applied retroactively to its own founding gate, closes the
+four previously-claimed-vs-actual coverage gaps plus the mid-cycle
+tautology (the earliest an R18-class defect has been caught in this
+sub-thread's history) without discovering a genuine registration defect
+anywhere in the underlying, already-validated construction code. Scope
+narrower than "CLEAN, seven checks" on three independently-confirmed,
+non-load-bearing axes (`FI-G`'s `src_x`-only coverage; the un-tested
+`G40_*` configs; Idealization 40's own inaccuracy). **Tier 1 (real FDTD
+spend) is genuinely, fully unblocked** — unanimous across all six
+Phase-5 reviews and Red Team's own independent confirmation; none of
+the residual gaps implicates the construction code Tier 1 depends on.
+Reconciled Iteration-75 queue: Tier 0 (documentation/code fixes —
+correct Idealization 40, log QUANTUM's own echo, add `FI-G′` to Check
+5, restate the `G40_*` disclosure, minor wording/word-cap notes) now
+runs ALONGSIDE Tier 1, not gating it — a genuine departure from
+Iteration-74's own sequencing, since this cycle's residual gaps are
+holes in the instrument's self-certification, not in the construction
+code. Tier 1: bracket the other three established `cpl=20` nulls at
+`cpl=40` (~24 calls, unanimous #1 across all six seats); the
+re-centered node-bracketing re-run at θ₀≈38.590° (~8–16 calls); pre-wire
+`netd_row()` sidecar extraction from first commit, per R16; the
+`cpl=50`/`R5` interior sweep remains deferred. New governance ask
+(MATERIALS, adopted by the Director): PHOTONICS' own grazing-incidence
+validity check, now ten-or-eleven consecutive cycles undischarged,
+should be scheduled within the next two cycles or formally
+deprioritized, closing Iteration 61's still-open ritualization question
+for this specific item. Full record: `experiments/097-t28-r18-tier0-
+gate-closure/`, LOGBOOK.md Iteration 74.
+
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
