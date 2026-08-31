@@ -22,7 +22,74 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-31, panel Iteration 72 done (exp-095, PARTIAL,
+## Current state (2026-08-31, panel Iteration 73 done (exp-096, PARTIAL,
+PHOTONICS' rotation-lead cycle: executed exp-095's own Reconciled
+Iteration-73 queue items 1+2 -- the angle-domain registration-readback
+gate (QUANTUM's proposal, run first per the queue) and the zero-FDTD
+bracket-width desk bound. Five blind Phase-2 critiques (unanimous
+support-with-changes, MATERIALS/ELECTROMAGNETISM/QUANTUM OPTICS
+independently converged, by three different routes, that the gate
+validated job constants against themselves, never a ground truth outside
+the code path it audits; VISION found the mandatory Idealizations banner
+missing from Predictions plus a 300-word Phase-1 cap overrun;
+THERMODYNAMICS found a 12-vs-10 construction-count arithmetic error).
+Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 8 items, zero
+overridden) independently found the proposal's own C/G-pair congruence
+claim factually wrong (only the aperture A is held identical, misattributed
+to the wrong gate) -- expanded the representative set 8->16 points for the
+placement/phase-array checks. Ruled the three-way convergent finding
+fixable: adopted QUANTUM's NOTES.md cross-check (Check 6, "the single most
+load-bearing fix") plus MATERIALS' recipe-internal spot-check (Check 5).
+Phase 4: 0 FDTD calls, 2.175s wall, 18 Sim constructions, trust suite
+green throughout, zero lab/ diff. **Registration-readback gate: CLEAN**
+(all 16 representative points pass Checks 1-4, Check 5 clean, Check 6 all
+clean). **Fault-injection triad: all as predicted** (positive control
+CLEAN, FI-A/B/C all correctly caught). **Desk bound confirmed**: +/-0.5deg
+half-width is the most defensible candidate bracket at theta0~=38.590deg.
+Six blind Phase-5 reviews (all CONCUR-WITH-GAP(S), zero DISPUTE):
+PHOTONICS found the amplitude-taper channel entirely unchecked (a
+previously-refuted T28 mechanism candidate, exp-070) and that NOTES.md's
+"FI-A caught transitively by Check 4" claim is mechanically false as
+coded; MATERIALS found Check 5 restates r4_config()'s own formula rather
+than independently re-deriving it; ELECTROMAGNETISM found Check 6 is
+set-membership not positional (a same-line index swap passes undetected)
+and independently re-derived the FI-A/Check-4 finding as general, not
+scenario-specific; THERMODYNAMICS found a silently-reordered desk-bound
+ratio triple (non-load-bearing) and an 18-vs-20 construction-count naming
+mismatch; QUANTUM OPTICS independently converged on the same FI-A/Check-4
+crux and found Check 6 never reads cpl_intended despite three governing
+texts claiming it does; VISION found the Result section still lacks the
+mandatory Idealizations banner -- now a two-cycle-old quiet convention
+drift (exp-095, exp-096). Red Team's Phase-5 final audit adopted all six
+reviews, zero overridden, independently re-verified from source. **New
+standing rule R18 adopted**: a check's documented scope must be confirmed
+against its actual code, and any check joining an already-fault-injection-
+verified architecture must get its own control in the same cycle it is
+added. **Checkpoint criterion 4 ruled the closest non-firing call since
+R16/R17's own founding instances, for the same reason** (caught blind at
+Phase 5, own founding cycle) -- **does NOT fire**. **Combined Verdict:
+PARTIAL** -- the core claim survives (caller-plumbing and angle-only
+transcription drift genuinely ruled out, fault-injection-verified on
+Checks 1-4) but is narrower than first stated on four independently-
+confirmed axes (the resolution axis rests on Check 1 alone, not
+redundantly on Check 1+4; Check 6 covers angle only, not cpl/family, via
+set-membership not positional comparison; Check 5 is formula-restating,
+not formula-independent, covering only R4/C40; the amplitude-taper
+channel is checked by nothing). Within this corrected scope, still
+strengthens (does not complete) the case for genuine node migration as the
+better-supported reading of exp-095's Rank 1c FAIL. Reconciled
+Iteration-74 queue: Tier 0 (zero-FDTD fixes to this cycle's own gate --
+fix Check 6 to positional comparison plus its own fault-injection control;
+implement Check 6's missing cpl_intended half; add a fault-injection
+control to Check 5 and extend it to a genuinely formula-independent
+recompute at R3/R5; add a seventh check + FI-D for the amplitude-taper
+channel; documentation corrections) before Tier 1 (resume real FDTD spend,
+now properly unblocked -- bracket the other three established cpl=20
+nulls at cpl=40; the re-centered node-bracketing re-run at 38.590deg at
+the confirmed >=0.5deg half-width; pre-wire netd_row() sidecar extraction
+from first commit per R16; the cpl=50/R5 interior sweep remains deferred).
+Full record: `experiments/096-t28-r4-registration-readback-gate/`,
+LOGBOOK.md Iteration 73); panel Iteration 72 done (exp-095, PARTIAL,
 VISION SCIENCE's rotation-lead cycle: executed exp-094's own Reconciled
 Iteration-72 queue items 1/3/4 as one combined, internally-gated build
 (item 2, the cpl=50/R5 third resolution point, built in full and
