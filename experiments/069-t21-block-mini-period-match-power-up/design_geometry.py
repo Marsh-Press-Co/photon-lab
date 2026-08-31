@@ -310,6 +310,94 @@ L_GEOMETRIC_M_R4 = R4_R_OUT * DX_M_R4       # 156 * 1.5e-8 = 2.34e-6 m
 assert abs(L_GEOMETRIC_M_R4 - (R_OUT * 30.0e-9)) < 1e-12, \
     "R4 physical shell radius does not match native (Idealization 4-style sanity check)"
 
+# --------------------------------------------------------------- R5 family
+# Panel Iteration 72 (exp-095), VISION SCIENCE lead proposal, Red Team
+# Phase-2 mandatory-fix docket item 5 (phase2_redteam_audit.md): a genuinely
+# new `cpl=50` third resolution point, mechanically substituting
+# R5_RATIO=2.5 into the already-committed r4_config()/r3_config() recipe --
+# line-for-line mirror of the R4 block above, R3/R4's own precedent. MATERIALS'
+# Phase-2 critique (independently confirmed by Red Team, attack #3/mandatory-
+# fix item 4): since R_OUT=78 is even, Gate-3 bit-exactness requires `cpl` a
+# multiple of 10 (equivalently RATIO a multiple of 0.5) -- cpl=50 is the
+# NEAREST remaining Gate-3-exact point from this one recipe, continuing the
+# identical 1.5->2.0->2.5 arithmetic progression, not an independently-
+# distinct discretization. This does NOT, by itself, discharge R15's own
+# addendum (a recipe-level systematic reproduces at every ratio the recipe
+# can produce) -- see NOTES.md's own explicit reframing.
+R5_RATIO = 2.5
+R5_CPL = {600: 50}
+R5_BASE_NX = round(360 * R5_RATIO)          # 900
+R5_BASE_NY = round(1584 * R5_RATIO)         # 3960
+R5_BASE_ABSORB = round(40 * R5_RATIO)       # 100
+R5_BASE_SRC_X = round(300 * R5_RATIO)       # 750
+R5_BASE_PLANE_X = round(77 * R5_RATIO)      # 192 (77*2.5=192.5, banker's-rounds to 192)
+R5_BASE_OBJ_X = round(170 * R5_RATIO)       # 425
+R5_BASE_OBJ_Y = R5_BASE_NY // 2             # 1980 (mirrors R3/R4_BASE_OBJ_Y precedent
+                                             # exactly -- absorb subtracted exactly once,
+                                             # later, via y_lo inside r5_config() itself;
+                                             # see R4_BASE_OBJ_Y's own disclosed-resolution
+                                             # comment above for why this is the correct
+                                             # derivation, not NY//2 - ABSORB)
+R5_TAPER = round(TAPER * R5_RATIO)          # 100
+R5_R_OUT = round(R_OUT * R5_RATIO)          # 195
+R5_W_OBJ = round(W_OBJ * R5_RATIO)          # 195
+R5_GUARD_OUT = round(GUARD_OUT * R5_RATIO)  # 462
+R5_W_FLANK = round(W_FLANK * R5_RATIO)      # 195
+R5_STEPS = round(STEPS_SETTLED * R5_RATIO)  # 7000
+R5_STEPS_STRESS = round(R5_STEPS * 1.5)     # 10500
+
+
+def r5_config(absorb, pad):
+    """R5-rescaled congruent config -- line-for-line mirror of `r4_config()`
+    above, substituting the R5_* constants."""
+    nx = R5_BASE_NX + 2 * pad
+    ny = R5_BASE_NY + 2 * pad
+    src_x = R5_BASE_SRC_X + pad
+    plane_x = R5_BASE_PLANE_X + pad
+    obj_x = R5_BASE_OBJ_X + pad
+    obj_y = R5_BASE_OBJ_Y + pad
+    y_lo = R5_BASE_ABSORB + pad
+    y_hi = ny - y_lo
+    return dict(
+        naive=False, absorb=absorb, pad=pad, nx=nx, ny=ny,
+        src_x=src_x, plane_x=plane_x, obj_x=obj_x, obj_y=obj_y,
+        y_lo=y_lo, y_hi=y_hi, A=obj_y - y_lo, aperture_cells=y_hi - y_lo,
+        cells=nx * ny,
+    )
+
+
+R5_CONFIGS = {
+    "C40_R5": r5_config(100, 0),
+    "G40_R5": r5_config(100, 100),
+}
+assert R5_CONFIGS["C40_R5"]["A"] == R5_CONFIGS["G40_R5"]["A"] == \
+    round(A_HALF_APERTURE * R5_RATIO) == 1880, \
+    f"R5 congruent construction: A must scale by exactly R5_RATIO ({A_HALF_APERTURE*R5_RATIO})"
+
+PEC_R_R5 = round(30 * R5_RATIO)             # 75
+BOX_CLEARANCE_A_R5 = round(12 * R5_RATIO)   # 30
+BOX_CLEARANCE_B_R5 = round(24 * R5_RATIO)   # 60
+REF_HALF_H_R5 = round(80 * R5_RATIO)        # 200
+SIGMA_NATIVE_FOR_R5 = 0.5                   # matches SIGMA_NATIVE_FOR_R4's own precedent
+SIGMA_R5_CORRECTED = SIGMA_NATIVE_FOR_R5 / R5_RATIO   # 0.2 -- holds the shell's
+                                             # accumulated optical depth
+                                             # 2*sigma*r_out(cells) invariant, EM's
+                                             # Iteration-71-established first-principles
+                                             # derivation (leading-order in alpha; the
+                                             # Courant number cancels in
+                                             # lab/fdtd2d.py's own alpha=sigma_e*S/(2*eps_r)
+                                             # update -- independently re-derived by
+                                             # ELECTROMAGNETISM's exp-095 Phase-2 critique),
+                                             # applied at a THIRD ratio for the first time.
+assert abs(SIGMA_R5_CORRECTED - 0.2) < 1e-12
+
+DX_M_R5 = 600.0e-9 / R5_CPL[600]            # 1.2e-8 m
+L_GEOMETRIC_M_R5 = R5_R_OUT * DX_M_R5       # 195 * 1.2e-8 = 2.34e-6 m
+assert abs(L_GEOMETRIC_M_R5 - (R_OUT * 30.0e-9)) < 1e-12, \
+    "R5 physical shell radius does not match native (Idealization 4-style sanity check)"
+assert abs(L_GEOMETRIC_M_R5 - L_GEOMETRIC_M_R4) < 1e-12, \
+    "R5 physical shell radius does not match R4 (Gate 3, exp-095)"
+
 # ------------------------------------------------------------- cost basis
 # Reused verbatim from dg065.CPU_S_PER_CALL (measured on the SAME container,
 # same shift -- 4-worker ProcessPoolExecutor contention included, linear-in-
