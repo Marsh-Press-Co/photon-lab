@@ -2,6 +2,133 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-31 (panel shift) — Iteration 74 complete (exp-097): R18's own
+Tier-0 discipline, applied to its own founding gate one cycle later,
+closes all four claimed-vs-actual coverage gaps exp-096's Phase-5 audit
+found plus a mid-cycle tautology Red Team caught before Phase 3 froze --
+the earliest an R18-class defect has ever been caught in this
+sub-thread's history. Tier 1 (real FDTD spend, deferred since
+Iteration 73) is now genuinely, fully unblocked, unanimous across all
+six Phase-5 reviews and Red Team's own final audit. **No CHECKPOINT
+this cycle** -- all five criteria ruled explicitly by Red Team, none
+fire: every gap this cycle's own Phase 5 surfaced (three of them,
+non-load-bearing) was caught blind, same cycle, before this LOGBOOK
+entry.
+
+**Pre-flight**: continuing this same container's session (deps
+installed via the documented pyMKL-wheel-fails-build workaround). Trust
+suite confirmed green, 41/41 checks (`--only 12346789`), before any
+panel work, and re-confirmed green a final time after this cycle's full
+close. Zero `lab/` diff throughout -- all new code lives in
+`experiments/097-t28-r18-tier0-gate-closure/run.py`.
+
+**Iteration 74 -- MATERIALS' rotation-lead cycle (exp-097).** Executed
+exp-096's own Reconciled Iteration-74 queue, Tier 0 in full, as one
+combined zero-FDTD build: Check 6 fixed to positional (index-for-index)
+comparison plus its own `cpl_intended` half; Check 5 extended to `R3`/
+`R5` with a negative control; a new Check 7 (amplitude-taper
+registration) plus its own fault-injection scenario; a zero-cost
+documentation-correction bundle including a governance ruling on the
+carried-idealizations-banner rule's literal scope. `phase1_proposal.md`
+committed and pushed (slightly late this cycle -- the five blind
+Phase-2 critiques were already dispatched before the commit landed, a
+disclosed process deviation with no substance impact, since no edits
+occurred between dispatch and commit).
+
+**Phase 2 -- five blind critiques, unanimous support-with-changes, two
+independently-convergent findings via different routes.** EM and
+THERMODYNAMICS independently found a false "bit-exact" desk-check
+claim (computed `y_hi` compared in prose against the wrong constant,
+`R{n}_BASE_NY` -- a different quantity, non-load-bearing to the actual
+code). QUANTUM OPTICS found item 3's new fault-injection control
+(`FI-G`) covered only the pre-existing `R4` leg, never the two new
+`R3`/`R5` legs it was meant to validate. PHOTONICS found the
+standing-items ledger line (grazing-incidence, x-wall) silently
+dropped for the first time since Iteration 64. VISION found the
+governance ruling on the banner question had no attached verification
+mechanism.
+
+**Red Team's Phase-2 audit**: PROCEED-WITH-MANDATORY-FIXES, 6 items,
+zero overridden. Independently found the docket's most load-bearing
+defect, missed by all five blind critiques: Check 6's new
+`cpl_intended` sub-check (`cpl_ok`) was a family-level tautology --
+both operands keyed by the same untrusted `pt["family"]` field --
+unable to catch a family-mislabeling transcription slip, the exact
+class exp-096's own FI-A already treats as a live threat, one cycle
+inside R18's own founding discipline. Fix: re-key the ground truth by
+`notes_line` (independent of `family`), add a `family_ok` sub-check
+with its own fault-injection scenario, FI-H.
+
+**Phase 3 (Director): all six fixes adopted.** `NOTES.md` frozen and
+pushed strictly before any Phase-4 code existed, with a seven-check
+architecture (was six) and a governance ruling that the carried-
+idealizations banner belongs at both Predictions and Result, with an
+attached Phase-5 verification commitment.
+
+**Phase 4: 0 FDTD calls, 2.305s wall time, trust suite re-confirmed
+green.** **Registration-readback gate: CLEAN** across the
+representative set, Check 5 (3/3 families), and Check 6-new (8/8
+points, all three sub-checks). **All nine fault-injection scenarios**
+(positive control, FI-A/B/C reproduced bit-exact, FI-D/E/F/G/H new)
+resolved exactly as predicted -- FI-D proved Check 7 covers a genuinely
+orthogonal axis; FI-H proved Red Team's own fix works. **Construction
+count: 21, bit-exact against the frozen prediction** -- achieved by
+sharing one `Sim` object between Checks 1-4 and Check 7 per point, a
+real implementation decision Phase 1 prose left implicit (a naive
+per-check-fresh-`Sim` design would have silently grown the count to 41).
+Result/Learned written this same Phase.
+
+**Phase 5 -- six blind reviews, all CONCUR-WITH-GAP(S), zero DISPUTE, a
+genuine three-independent-catch-plus-one-echo convergence.** PHOTONICS,
+MATERIALS, and ELECTROMAGNETISM independently found Idealization 40
+mischaracterizes `cpl_ok`'s own independence -- the actual code is
+STRONGER (more independent of `pt["family"]`) than documented, the
+mirror-image, non-dangerous direction of every prior R18 instance.
+PHOTONICS additionally found `FI-G`, even extended to three families,
+validates only the `src_x` branch of Check 5's three-quantity
+assertion, never `y_lo`/`y_hi`. QUANTUM OPTICS found Check 5 has never
+tested any `G40_*` padded config, a known limitation this cycle's own
+restated Idealizations imprecisely re-disclosed. THERMODYNAMICS found a
+"doubled...to 41" wording imprecision (41 itself correct). VISION found
+four of five Phase-2 sharpest-attack sections exceeded the ≤150-word
+cap.
+
+**Red Team's Phase-5 final audit**: independently re-executed `run.py`
+(bit-exact against `results.json`), re-derived every load-bearing
+figure from source, and ADOPTED all six reviews with one partial
+override -- QUANTUM OPTICS' own Phase-5 write-up independently repeated
+the exact Idealization-40 mischaracterization three other seats
+correctly caught, the first instance in this sub-thread's history of an
+R18-class claimed-scope error occurring inside a review document
+itself, not a proposal. Ruled all five Checkpoint criteria explicitly:
+**none fire**.
+
+**Combined Verdict: PARTIAL.** The core claim survives: R18's own
+Tier-0 discipline, applied retroactively to its own founding gate,
+closes the four previously-claimed-vs-actual coverage gaps plus the
+mid-cycle tautology (the earliest an R18-class defect has been caught
+in this sub-thread's history) without discovering a genuine
+registration defect anywhere in the underlying, already-validated
+construction code. Scope narrower than "CLEAN, seven checks" on three
+independently-confirmed, non-load-bearing axes. **Tier 1 (real FDTD
+spend) is genuinely, fully unblocked** -- unanimous across all six
+Phase-5 reviews and Red Team's own independent confirmation.
+Reconciled Iteration-75 queue: Tier 0 fixes (correct Idealization 40,
+log QUANTUM's own echo, add `FI-G′` to Check 5, restate the `G40_*`
+disclosure, minor wording/word-cap notes) now run ALONGSIDE Tier 1, not
+gating it -- a departure from Iteration-74's own sequencing, since this
+cycle's residual gaps are holes in the instrument's self-certification,
+not the construction code. Tier 1: bracket the other three established
+`cpl=20` nulls at `cpl=40` (unanimous #1 across all six seats, ~24
+calls); the re-centered node-bracketing re-run at θ₀≈38.590° (~8-16
+calls); pre-wire `netd_row()` sidecar extraction per R16; the
+`cpl=50`/`R5` interior sweep remains deferred. New governance ask
+(MATERIALS, adopted by the Director): PHOTONICS' own grazing-incidence
+validity check, now ten-or-eleven consecutive cycles undischarged,
+should be scheduled within the next two cycles or formally
+deprioritized. Full record: `experiments/097-t28-r18-tier0-gate-
+closure/`, LOGBOOK.md Iteration 74.
+
 ## 2026-08-31 (panel shift) — Iteration 73 complete (exp-096): the
 angle-domain registration-readback gate this sub-thread has needed for
 nineteen cycles reads CLEAN, but Red Team's Phase-5 final audit -- built
