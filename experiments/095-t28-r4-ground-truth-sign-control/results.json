@@ -1,0 +1,235 @@
+{
+  "total_fdtd_calls": 20,
+  "rank1_calls": 16,
+  "rank4_calls": 4,
+  "rank2_calls": 0,
+  "rank3_calls": 0,
+  "proceed_gate": false,
+  "rank1a_wall_s": 602.9631252288818,
+  "rank1c_wall_s": 617.5518569946289,
+  "rank4_wall_s": 117.14976358413696,
+  "rank2_wall_s": 0.0,
+  "rank3_wall_s": 0.0,
+  "total_fdtd_wall_time_s": 1337.6647458076477,
+  "total_wall_time_s": 1348.1665229797363,
+  "sigma_native": 0.5,
+  "sigma_r3_corrected": 0.3333333333333333,
+  "sigma_r4_corrected": 0.25,
+  "sigma_r5_corrected": 0.2,
+  "r13_floor_gate": {
+    "floor": 0.00019174375118374476,
+    "rms_frac_contrast": 0.0019174375118374476,
+    "n_window_points": 31
+  },
+  "gates": {
+    "gate1_vacuum_footprint_r5": {
+      "report": {
+        "C40_R5": {
+          "BOX_A": {
+            "box": [
+              200,
+              650,
+              1755,
+              2205
+            ],
+            "all_vacuum": true
+          },
+          "BOX_B": {
+            "box": [
+              170,
+              680,
+              1725,
+              2235
+            ],
+            "all_vacuum": true
+          }
+        },
+        "G40_R5": {
+          "BOX_A": {
+            "box": [
+              300,
+              750,
+              1855,
+              2305
+            ],
+            "all_vacuum": true
+          },
+          "BOX_B": {
+            "box": [
+              270,
+              780,
+              1825,
+              2335
+            ],
+            "all_vacuum": true
+          }
+        }
+      },
+      "pass_": true
+    },
+    "gate2_a_congruence": {
+      "a_c40_r5": 1880,
+      "a_g40_r5": 1880,
+      "pass_": true
+    },
+    "gate3_l_geometric_bit_identity": {
+      "l_geometric_m_r5": 2.34e-06,
+      "l_geometric_m": 2.3399999999999996e-06,
+      "l_geometric_m_r3": 2.34e-06,
+      "l_geometric_m_r4": 2.3399999999999996e-06,
+      "dev_native": 4.235164736271502e-22,
+      "dev_r3": 0.0,
+      "dev_r4": 4.235164736271502e-22,
+      "pass_": true
+    },
+    "gate4_sigma_r5_corrected": {
+      "value": 0.2,
+      "pass_": true
+    },
+    "gate5_runtime_sigma_array": {
+      "pass_": true,
+      "n_article_calls_checked": 8,
+      "note": "Wired inline in _run_sim_r5_sigma: np.isclose(sim.sigma_e[shell_mask].max(), sigma_max, atol=1e-9), shell_mask=(PEC_R_R5<=rr<=R5_R_OUT) on the ez-point grid centered at (obj_x,obj_y). Also fires (R4 variant) on every Rank 1a/1c article call regardless of gate outcome. An AssertionError in any worker would have propagated and stopped this script before results.json was ever written."
+    },
+    "gate6_documentation_only": {
+      "lhs": 78.0,
+      "rhs": 78.0,
+      "dev": 0.0,
+      "pass_": true
+    }
+  },
+  "xi_pass": true,
+  "nonneg_pass": true,
+  "rank1": {
+    "rank1a": {
+      "angles": [
+        39.2,
+        39.4
+      ],
+      "verdict": "PASS",
+      "per_theta": {
+        "39.2": {
+          "delta_scene": -0.003149520984824239,
+          "frac_contrast": 0.005704975642074943,
+          "ratio_k": 0.5290247380599338,
+          "floor_pass": true,
+          "nearest_known_null_deg": 38.59023047672059,
+          "distance_to_nearest_null_deg": 0.6097695232794109,
+          "comparator_cpl20_delta_scene": -0.0018292081339966737,
+          "comparator_cpl30_delta_scene": -0.00249209413171092,
+          "p_abs_w_c": 2.9624841273674496e-12,
+          "p_abs_w_g": 2.971425121450067e-12,
+          "dt_ss_full_K_c": 4.867050656737598e-05,
+          "dt_ss_full_K_g": 4.881739772105234e-05,
+          "netd_classification_c": "UNDETECTABLE",
+          "netd_classification_g": "UNDETECTABLE",
+          "sigma_ext_cells_c": 623.7477269336053,
+          "sigma_ext_cells_g": 625.0075958000726,
+          "ratio_abs_ext_raw_c": 0.5139748317092304,
+          "ratio_abs_ext_raw_g": 0.5134497807127129
+        },
+        "39.4": {
+          "delta_scene": -0.002590877409174963,
+          "frac_contrast": 0.004708887443176004,
+          "ratio_k": 0.23599023484717294,
+          "floor_pass": true,
+          "nearest_known_null_deg": 40.07183833857387,
+          "distance_to_nearest_null_deg": 0.6718383385738704,
+          "comparator_cpl20_delta_scene": -0.001866941486908802,
+          "comparator_cpl30_delta_scene": -0.002211344593311737,
+          "p_abs_w_c": 2.9853119946236567e-12,
+          "p_abs_w_g": 2.9819945623302294e-12,
+          "dt_ss_full_K_c": 4.904554447996717e-05,
+          "dt_ss_full_K_g": 4.899104254737198e-05,
+          "netd_classification_c": "UNDETECTABLE",
+          "netd_classification_g": "UNDETECTABLE",
+          "sigma_ext_cells_c": 626.377069096322,
+          "sigma_ext_cells_g": 626.3830075773312,
+          "ratio_abs_ext_raw_c": 0.5135961955421028,
+          "ratio_abs_ext_raw_g": 0.5130157335003815
+        }
+      }
+    },
+    "rank1c": {
+      "angles": [
+        38.49,
+        38.69
+      ],
+      "verdict": "FAIL",
+      "theta0": 38.59023047672059,
+      "per_theta": {
+        "38.49": {
+          "delta_scene": -0.0015168400043253927,
+          "frac_contrast": 0.002698917922646329,
+          "ratio_k": 2.638669835664111,
+          "floor_pass": true,
+          "p_abs_w_c": 2.9072018600034096e-12,
+          "p_abs_w_g": 2.9279056530364836e-12,
+          "dt_ss_full_K_c": 4.776227690567247e-05,
+          "dt_ss_full_K_g": 4.810241850693103e-05,
+          "netd_classification_c": "UNDETECTABLE",
+          "netd_classification_g": "UNDETECTABLE",
+          "sigma_ext_cells_c": 618.1385457276342,
+          "sigma_ext_cells_g": 620.1343995542381,
+          "ratio_abs_ext_raw_c": 0.5135790605458301,
+          "ratio_abs_ext_raw_g": 0.5139125285503163
+        },
+        "38.69": {
+          "delta_scene": -0.002538530922948423,
+          "frac_contrast": 0.004540115398680884,
+          "ratio_k": 1.8304981289586408,
+          "floor_pass": true,
+          "p_abs_w_c": 2.9199687590455534e-12,
+          "p_abs_w_g": 2.9442356638204265e-12,
+          "dt_ss_full_K_c": 4.79720236644603e-05,
+          "dt_ss_full_K_g": 4.837070345393309e-05,
+          "netd_classification_c": "UNDETECTABLE",
+          "netd_classification_g": "UNDETECTABLE",
+          "sigma_ext_cells_c": 619.288740932805,
+          "sigma_ext_cells_g": 621.8110421745379,
+          "ratio_abs_ext_raw_c": 0.5139201063078482,
+          "ratio_abs_ext_raw_g": 0.5139956953523326
+        }
+      }
+    },
+    "proceed_gate": false
+  },
+  "rank4": {
+    "angle": 38.4,
+    "verdict": "NEITHER",
+    "corrected": {
+      "delta_scene": -2.93882687918412e-06,
+      "frac_contrast": 5.2041019175480955e-06,
+      "ratio_k": 808.6716221110596,
+      "floor_pass": false,
+      "y": null,
+      "p_abs_w_c": 2.9093637082949597e-12,
+      "p_abs_w_g": 2.9216075022782265e-12,
+      "dt_ss_full_K_c": 4.7797793805324204e-05,
+      "dt_ss_full_K_g": 4.7998946496731784e-05,
+      "netd_classification_c": "UNDETECTABLE",
+      "netd_classification_g": "UNDETECTABLE",
+      "sigma_ext_cells_c": 463.9001316824684,
+      "sigma_ext_cells_g": 464.68255222741334,
+      "ratio_abs_ext_raw_c": 0.5133047996184836,
+      "ratio_abs_ext_raw_g": 0.513730604386421
+    },
+    "native_comparator": {
+      "ratio_k": 16.9967271486861,
+      "floor_pass": true,
+      "y": 1
+    }
+  },
+  "rank2": {
+    "skipped": true,
+    "reason": "Rank 1 combined go/no-go gate did not PROCEED"
+  },
+  "rank3": {
+    "skipped": true,
+    "reason": "Rank 1 combined go/no-go gate did not PROCEED"
+  },
+  "netd_disclaimer": "NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 3)",
+  "scope_note": "This cycle is pure instrument recalibration (T1 route N/A, Checkpoint criterion 2 N/A) -- no phenomenon-mechanism claim, REALIZABILITY_MEMO.md untouched. (Idealization 7)",
+  "r4_r5_family_disclaimer": "Idealization 17: the R3/R4/R5 (cpl=30/40/50) geometry families are a single mechanical, zero-design-freedom construction recipe (r{n}_config()) applied at three ratios drawn from the same admissible set {1.5,2.0,2.5,...} -- not three independent re-derivations of the discretization scheme. If the recipe carries any undetected systematic bias, all three families inherit it unchanged. This outcome alone does NOT discharge R15's Iteration-71 addendum -- R5 is drawn from the identical r{n}_config() mechanical recipe as R3/R4 (only Gate-3-exact ratios, i.e. cpl a multiple of 10, are reachable), so a recipe-level systematic would reproduce identically at this ratio too. See Idealization 17/28/29.",
+  "call_count_disclosure": "Disclosed spec-resolution note (module docstring disclosure (iv), NOTES.md's own 'Disclosed spec-resolution note' section): Rank 3b and Rank 4's own call counts are 24 and 4 respectively (not the Phase-1/Red-Team-stated 12 and 2) -- both legs are spent fresh for the new sigma-branch reading in each item; only the OLD/comparator side (already-filed scalar metrics, zero new calls) is genuinely reused, mirroring exp-094's own Rank 2 precedent. PASS-path total is 86 calls (16+36+30+4), not the originally-stated 72; FAIL-path total is 20 (16+4), not 18. Angles/sigma choices/gating logic/outcome taxonomy are unaffected."
+}

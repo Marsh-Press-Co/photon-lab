@@ -21,3 +21,88 @@ RANK 1 -- combined go/no-go gate, R4 (cpl=40) family (16 calls, UNCONDITIONAL)
 
 [Rank 1a] sign check @ [39.2, 39.4]deg (sigma_max=0.25 corrected)
 8 FDTD calls queued (Rank 1a) -- Gate 5 fires inline on each article call, before its own FDTD step
+  [ 1/8] C40_R4   theta=+39.200 article=False steps=5600 sigma_max=None
+  [ 2/8] C40_R4   theta=+39.200 article=True steps=5600 sigma_max=0.25
+  [ 3/8] G40_R4   theta=+39.200 article=False steps=5600 sigma_max=None
+  [ 4/8] G40_R4   theta=+39.200 article=True steps=5600 sigma_max=0.25
+  [ 5/8] C40_R4   theta=+39.400 article=False steps=5600 sigma_max=None
+  [ 6/8] C40_R4   theta=+39.400 article=True steps=5600 sigma_max=0.25
+  [ 7/8] G40_R4   theta=+39.400 article=False steps=5600 sigma_max=None
+  [ 8/8] G40_R4   theta=+39.400 article=True steps=5600 sigma_max=0.25
+Rank 1a wall time: 603.0s (10.05 min)
+[Gate 5] all 4 Rank 1a article calls completed their inline runtime sigma_e/sigma_max assert without raising -- PASS
+[Rank 1a] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 1a] sigma_abs>=0 everywhere: PASS=True
+
+[Rank 1a] full known-crossing set (re-pulled, not hand-typed): cpl20=[37.1272, 38.5902, 40.2654, 41.4609]  cpl30=[40.0718, 41.7811, 41.8377]
+
+[Rank 1a PRIMARY] per-angle sign check:
+  theta=39.2: delta_scene(R4)=-3.149521e-03  floor_pass=True  nearest_null=38.5902 (dist=0.6098deg)  comparator(cpl20)=-1.829208e-03  comparator(cpl30)=-2.492094e-03
+  theta=39.4: delta_scene(R4)=-2.590877e-03  floor_pass=True  nearest_null=40.0718 (dist=0.6718deg)  comparator(cpl20)=-1.866941e-03  comparator(cpl30)=-2.211345e-03
+
+[Rank 1a PRIMARY] both negative=True  both floor_pass=True  VERDICT=PASS
+
+[Rank 1c] node-bracketing recovery check @ [38.49, 38.69]deg (around established cpl=20 null theta0~=38.590deg, sigma_max=0.25 corrected)
+[Rank 1c] established cpl=20 null theta0=38.590230deg  (re-pulled from experiments/090-.../results.json::q8.crossings_deg, not hand-typed)
+8 FDTD calls queued (Rank 1c) -- Gate 5 fires inline on each article call, before its own FDTD step
+  [ 1/8] C40_R4   theta=+38.490 article=False steps=5600 sigma_max=None
+  [ 2/8] C40_R4   theta=+38.490 article=True steps=5600 sigma_max=0.25
+  [ 3/8] G40_R4   theta=+38.490 article=False steps=5600 sigma_max=None
+  [ 4/8] G40_R4   theta=+38.490 article=True steps=5600 sigma_max=0.25
+  [ 5/8] C40_R4   theta=+38.690 article=False steps=5600 sigma_max=None
+  [ 6/8] C40_R4   theta=+38.690 article=True steps=5600 sigma_max=0.25
+  [ 7/8] G40_R4   theta=+38.690 article=False steps=5600 sigma_max=None
+  [ 8/8] G40_R4   theta=+38.690 article=True steps=5600 sigma_max=0.25
+Rank 1c wall time: 617.6s (10.29 min)
+[Gate 5] all 4 Rank 1c article calls completed their inline runtime sigma_e/sigma_max assert without raising -- PASS
+[Rank 1c] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 1c] sigma_abs>=0 everywhere: PASS=True
+
+[Rank 1c PRIMARY] per-angle node-bracketing check:
+  theta=38.49: delta_scene(R4)=-1.516840e-03  floor_pass=True
+  theta=38.69: delta_scene(R4)=-2.538531e-03  floor_pass=True
+
+[Rank 1c PRIMARY] both floor_pass=True  VERDICT=FAIL
+
+[RANK 1 COMBINED GO/NO-GO] Rank 1a=PASS  Rank 1c=FAIL  PROCEED to Rank 2/3=False
+[RANK 1 COMBINED GO/NO-GO] HALT before Rank 2/3 -- integrity finding, Checkpoint-4-relevant per Phase-1's own SS2 language. Rank 4 (independent, unconditional) still runs below. Ranks 2/3 SKIPPED, results.json/NOTES.md still written in full, per this program's 'a FAIL is a reported outcome, never a crash' discipline.
+
+==============================================================================
+RANK 4 -- 38.4deg at corrected sigma (0.3333), R3 (cpl=30) family (4 calls, UNCONDITIONAL, independent of Rank 1's verdict)
+==============================================================================
+
+4 FDTD calls queued (Rank 4) -- see module docstring disclosure (iv): both legs spent fresh, cross-process reuse limited to a pulled scalar comparator (exp-094's own already-filed native-sigma Rank-3 38.4deg reading)
+  [ 1/4] C40_R3   theta=+38.40 article=False steps=4200 sigma_max=None
+  [ 2/4] C40_R3   theta=+38.40 article=True steps=4200 sigma_max=0.3333333333333333
+  [ 3/4] G40_R3   theta=+38.40 article=False steps=4200 sigma_max=None
+  [ 4/4] G40_R3   theta=+38.40 article=True steps=4200 sigma_max=0.3333333333333333
+Rank 4 wall time: 117.1s (1.95 min)
+
+[Rank 4] xi_ext <= 0.12 everywhere: PASS=True
+[Rank 4] sigma_abs>=0 everywhere: PASS=True
+
+[Rank 4] native-sigma (0.5) comparator, exp-094's own filed 38.4deg Rank-3 reading: ratio_k=16.9967  floor_pass=True  Y=1
+[Rank 4] corrected-sigma (0.3333), this cycle: delta_scene=-2.938827e-06  frac_contrast=5.204102e-06  ratio_k=808.6716  floor_pass=False  Y=None
+
+[Rank 4 PRIMARY] VERDICT=NEITHER  (no confident lean pre-committed -- 38.4deg's own native-sigma-only premise self-falsified per exp-094's Idealization 21 finding)
+
+==============================================================================
+RANK 2 / RANK 3 -- SKIPPED (Rank 1 combined gate did not PROCEED)
+==============================================================================
+
+[disclosure] netd_disclaimer: NETD is an instrument/detector threshold, not a human perceptual one -- does NOT bear on constraint-3/4's human-eye verdict. (Idealization 3)
+[disclosure] scope_note: This cycle is pure instrument recalibration (T1 route N/A, Checkpoint criterion 2 N/A) -- no phenomenon-mechanism claim, REALIZABILITY_MEMO.md untouched. (Idealization 7)
+[disclosure] r4_r5_family_disclaimer: Idealization 17: the R3/R4/R5 (cpl=30/40/50) geometry families are a single mechanical, zero-design-freedom construction recipe (r{n}_config()) applied at three ratios drawn from the same admissible set {1.5,2.0,2.5,...} -- not three independent re-derivations of the discretization scheme. If the recipe carries any undetected systematic bias, all three families inherit it unchanged. This outcome alone does NOT discharge R15's Iteration-71 addendum -- R5 is drawn from the identical r{n}_config() mechanical recipe as R3/R4 (only Gate-3-exact ratios, i.e. cpl a multiple of 10, are reachable), so a recipe-level systematic would reproduce identically at this ratio too. See Idealization 17/28/29.
+[disclosure] call_count_disclosure: Disclosed spec-resolution note (module docstring disclosure (iv), NOTES.md's own 'Disclosed spec-resolution note' section): Rank 3b and Rank 4's own call counts are 24 and 4 respectively (not the Phase-1/Red-Team-stated 12 and 2) -- both legs are spent fresh for the new sigma-branch reading in each item; only the OLD/comparator side (already-filed scalar metrics, zero new calls) is genuinely reused, mirroring exp-094's own Rank 2 precedent. PASS-path total is 86 calls (16+36+30+4), not the originally-stated 72; FAIL-path total is 20 (16+4), not 18. Angles/sigma choices/gating logic/outcome taxonomy are unaffected.
+
+wrote /home/user/photon-lab/experiments/095-t28-r4-ground-truth-sign-control/results.json
+
+==============================================================================
+SUMMARY
+==============================================================================
+  Rank 1a (sign check, 39.2/39.4deg):     PASS
+  Rank 1c (node bracket, 38.49/38.69deg): FAIL
+  RANK 1 COMBINED GO/NO-GO:               PROCEED=False
+  Rank 4 (38.4deg corrected sigma):       NEITHER
+  Rank 2/Rank 3: SKIPPED (Rank 1 gate did not PROCEED)
+  total FDTD calls: 20   total wall time: 1348.2s (22.47 min)
