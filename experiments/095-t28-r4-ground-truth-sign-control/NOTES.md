@@ -248,6 +248,20 @@ flagged as a Checkpoint-4-relevant integrity finding per Phase-1's §2
 language, per this program's own "a FAIL is a reported outcome, never a
 crash" discipline.
 
+**Same-shift correction (Phase 5, Red Team's final audit, mandatory-fix
+item 1 — see Result/Learned below for the full reasoning):** the "the
+established node appears to have vanished... a genuine integrity
+finding" framing above, frozen before the run, is now shown (all six
+blind Phase-5 reviews, independently convergent) to give one-sided
+weight to a registration-defect reading over an equally — now
+better-supported — alternative: the node genuinely migrated beyond the
+tested ±0.1° window. Left standing here as the honest historical record
+of this cycle's own pre-run state of belief, not rewritten, per this
+program's own "original text flagged, not rewritten" discipline (T10's
+precedent) — the corrected, weighted reading is in **Result/Learned**
+below and is what any future citation of this cycle should carry
+forward, not the sentence above in isolation.
+
 **Rank 2 — `cpl=50` (`R5`) family, gated on Rank 1 PROCEED (36 calls).**
 Rank 2a: three-way settling precondition (CONFIRM/CAUTIONARY-PASS/HALT,
 identical bands to exp-094's own Rank 1a) on BOTH `delta_scene` (PRIMARY,
@@ -433,7 +447,11 @@ DIFFER across the pair. INCONCLUSIVE = `floor_pass=False` at either.
 FAIL = both floor-clear, same sign. No confident lean stated — this is a
 control powered against a specific defect class, not a hypothesis with a
 preferred direction; a FAIL here is exactly as informative (a genuine,
-disclosed integrity finding) as a PASS.
+disclosed integrity finding) as a PASS. **Same-shift correction (Phase
+5): "integrity finding" here should not be read as favoring a
+registration-defect explanation over genuine node migration — see
+Result/Learned below, where six independent Phase-5 reviews and Red
+Team's own final audit weigh both.**
 
 **(Rank 2a, PRIMARY, gates Rank 2b.)** Identical three-way bands to
 exp-094's own Rank 1a, applied at `cpl=50` on `delta_scene`: PASS
@@ -576,3 +594,242 @@ mechanism.
 
 **N/A**, for the identical reason. `REALIZABILITY_MEMO.md` is not opened,
 cited, or re-scored.
+
+## Result
+
+*(Added Phase 5, per Red Team's own mandatory-fix item 2 — this section
+did not exist when this document closed Phase 3; six blind Phase-5
+reviews and Red Team's final audit found it missing.)*
+
+All predictions scored against `results.json`, independently re-verified
+bit-exact by all six blind Phase-5 reviews and Red Team's final audit —
+zero arithmetic, wiring, or gate-logic defect found anywhere in this
+cycle's record:
+
+- **Rank 1a (sign check, 39.2°/39.4°): PASS.** `delta_scene(R4)` negative
+  at both (−3.149521×10⁻³, −2.590877×10⁻³), both `floor_pass=True`,
+  matching the known `cpl=20`/`cpl=30` comparators' sign.
+- **Rank 1c (node-bracketing recovery, 38.49°/38.69°): FAIL.** Both
+  points floor-clear (−1.516840×10⁻³, −2.538531×10⁻³) but the SAME
+  (negative) sign — the established `cpl=20` null at θ₀≈38.590° does not
+  manifest as a sign change in the `R4` (`cpl=40`) family within the
+  tested ±0.1° window.
+- **Combined go/no-go: HALT** (`proceed_gate=false`). Ranks 2
+  (`cpl=50`/`R5` family, 36 calls) and 3 (`cpl=40` sigma-comparability,
+  30 calls) correctly SKIPPED — 66 of 86 possible calls not spent, per
+  the pre-registered discipline.
+- **Rank 4 (38.4° at corrected sigma, unconditional): NEITHER.**
+  `delta_scene=−2.938827×10⁻⁶`, `frac_contrast=5.204102×10⁻⁶` — only
+  **2.71%** of `FLOOR` (`1.917438×10⁻⁴`), so `floor_pass=False`; no `Y`
+  classification is drawn. (A related figure, `|delta_scene|/FLOOR
+  =1.53%`, is a DIFFERENT ratio from the `frac_contrast/FLOOR=2.71%`
+  R13 actually gates on — both support the identical qualitative
+  reading ("far below floor, essentially on a crossing") but should not
+  be conflated in any future citation — Red Team's mandatory-fix item
+  3, an R9-lineage nit, non-load-bearing.)
+- **Gates 1–6 (R5 family): all PASS.** Gate 5's own fault-injection
+  verification (`gate5_wiring_defect_verification_result.json`) ran for
+  real this shift: `control_pass=true`, `injected_defect_pass=true`,
+  with the literal caught `AssertionError` text persisted — a genuine
+  discriminator, not a rubber stamp, confirmed at the new `R5` call
+  site even though Rank 2/3 never exercised it scientifically.
+- **R16 compliance: clean.** Every one of the ten article-bearing cells
+  this cycle actually spent an FDTD call on carries the full
+  `netd_row()` schema (THERMODYNAMICS' Phase-5 review, independently
+  confirmed by Red Team's own field-by-field check) — the first T28
+  cycle since R16's adoption to engage this exact risk class and close
+  it before, not after, the run.
+- **Total: 20 of 86 possible FDTD calls, 1348.2s (22.47 min) wall** —
+  well under even the FAIL-path model estimate (§"Estimated FDTD call
+  count," 141.2 CPU-min / 41.4 min wall), matching this sub-thread's own
+  unbroken track record of landing under its own estimate.
+
+**The central interpretive question — does Rank 1c's FAIL reflect
+genuine node migration or a systematic registration defect in the `R4`
+family's own construction — is NOT settled by this cycle, but the
+balance of evidence shifted meaningfully, in one direction, for the
+first time.** Full reasoning: Red Team's Phase-5 final audit §2
+(`phase5_redteam_audit.md`), summarized:
+
+- **Toward migration:** this cycle's own Rank 4 places the
+  corrected-sigma `cpl=30` crossing at θ≈38.4° (`frac_contrast` only
+  2.71% of `FLOOR`), a **0.190° shift** — matching, to two significant
+  figures, exp-092's own independently-measured **0.194°** migration of
+  the neighboring lower crossing between `cpl=20`→`cpl=30` (a *smaller*
+  resolution step than the `cpl=20`→`cpl=40` comparison Rank 1c makes).
+  Every crossing on this channel ever tracked across a resolution step
+  has moved 0.19°–0.38° (MATERIALS' Phase-5 review) — comfortably
+  exceeding the ±0.1° bracket tested. A magnitude-scale check
+  (PHOTONICS' Phase-5 review, independently re-derived by Red Team)
+  predicts what Rank 1c's own two points should read if the null merely
+  migrated in place; the observed values are 2.3×–6× larger, consistent
+  with (not merely compatible with) genuine migration. Smooth Yee-grid
+  numerical dispersion is independently ruled out as the mechanism, by
+  25×–78× (ELECTROMAGNETISM's Phase-5 review, re-derived from
+  exp-093's own filed phase data) — the one candidate that would NOT
+  require trusting the `R4` family's own geometric registration is now
+  quantitatively excluded, narrowing the live hypothesis space to
+  exactly two.
+- **Against declaring migration proven:** Gate 5 has never, at any
+  point in this 19-cycle sub-thread's history, independently verified
+  geometric/angular registration (`cx`/`cy`/`angle_deg`/source
+  placement) — only `sigma_e` magnitude. A small, systematic coordinate
+  or angle offset would produce exactly Rank 1c's own observed
+  signature (PASS at amplitude-dominated far points, FAIL at
+  phase-dominated near-null points) — indistinguishable, at what this
+  cycle alone measured, from genuine migration (EM's own "observationally
+  degenerate" framing, Red Team's own crux finding). Red Team's own
+  Phase-5 audit adds a further qualifier no single blind review stated
+  at full strength: the "directional coherence" argument (both located
+  migrations shift toward lower θ) rules out only a *random* defect,
+  not a *systematic* one baked into the shared, deterministic
+  `r{n}_config()` recipe that `R3`/`R4`/`R5` are all generated from —
+  exactly the class of defect R15's own addendum (this whole sub-thread's
+  reason for existing) was built to worry about.
+
+**Red Team's own stated position** (its Phase-5 final audit §2, quoted):
+*"the evidence assembled this cycle shifts the balance of plausibility
+toward genuine node migration — plausibly by something like 2:1 to 3:1,
+an impressionistic read of convergent-evidence weight, not a computed
+posterior — but does not rise to the level of proof this program's own
+house discipline ... requires before a mechanism question is closed."*
+This is the reading this document adopts, replacing the frozen
+pre-run "integrity finding"/"registration-defect candidate" framing
+(left standing above, flagged not rewritten) as the accurate
+characterization of where this cycle actually leaves the question.
+
+**Checkpoint criteria (all five, worked through explicitly by Red
+Team's Phase-5 final audit): none fire.** Criteria 1/2/3/5: N/A (pure
+instrument recalibration, no constraint-metric progress, no new engine
+physics beyond the validated `r{n}_config()` recipe, and this cycle
+delivered real forward information — a correctly-gated HALT that saved
+66 calls, a new quantitative anchor, dispersion ruled out — so criterion
+5's "two consecutive non-advancing iterations" does not apply).
+Criterion 4 (program-integrity drift) is named **the closest non-firing
+call this cycle produces, on two matters** — the pre-registered
+one-sided Rank-1c framing (a genuinely new gap shape, not a recurrence
+of any R1–R16 rule) and VISION's own finding that this document was
+missing its Result/Learned/Next sections (the identical, already-twice-
+non-fired exp-080/exp-090 gap shape) — both caught blind, within this
+same cycle's own Phase-5 layer, before this LOGBOOK entry, neither
+defended against a named affordable check that was skipped. **Ruled
+non-firing on both**, matching this program's own unbroken
+founding-instance/caught-blind discharge precedent.
+
+**New standing rule adopted: R17.** *A tolerance, bracket, or window
+sized to test whether a feature (a node, crossing, or period) is
+present or has moved must be justified, before the run, against the
+largest already-established cross-resolution (or cross-condition) shift
+magnitude on file for a comparable transition — not adopted as an
+illustrative round number from the critique or proposal that first
+suggested it, and not frozen by a Phase-2 audit without independently
+computing that comparison even when the underlying data is already
+present elsewhere in the same document. Where a narrower-than-precedented
+bracket returns a FAIL/negative outcome, the pre-registered interpretive
+label attached to that branch must give equal weight to "the window was
+undersized relative to established precedent" as to any other named
+hypothesis — unless a specific, named, independently-run test has
+actually discriminated between them.* Does not fire on its own founding
+instance (this cycle), matching every prior rule in this lineage's own
+first-application precedent. Full text and provenance:
+`phase5_redteam_audit.md` §6.
+
+## Learned
+
+1. **The combined go/no-go gate worked exactly as designed.** Rank 1c —
+   the item added at Phase 2 specifically in response to a critique
+   this program's own Red Team adopted (QUANTUM's finding that a
+   sign-only check has near-zero power against a phase/registration
+   defect) — caught a genuine ambiguity a sign-only check (Rank 1a)
+   would have missed entirely. A clean Rank-1a-only PASS would have
+   licensed the full 66-call Rank 2/3 spend on a since-shown-fragile
+   `R4` anchor. This is a real, not hypothetical, save.
+2. **An illustrative tolerance, once written into a critique, can freeze
+   into a mandatory-fix docket and then a frozen prediction without
+   ever being checked against calibration data sitting elsewhere in the
+   very same document.** The ±0.1° bracket traces to QUANTUM's own
+   Phase-2 critique ("e.g. ±0.1°" — explicitly a placeholder, per
+   QUANTUM's own Phase-5 self-review), was adopted verbatim by this
+   seat's own Phase-2 Red Team audit as mandatory-fix item 2 — the same
+   audit whose own §1/item-1 table independently computed the
+   `40.0718°` `cpl=30` crossing location two sections away, for a
+   different purpose, without connecting the two — and inherited
+   unchanged into this document's own frozen Predictions. This is a
+   genuine chain-of-custody gap spanning Phase 2 through Phase 3,
+   caught only at Phase 5, by design (this program's own layered
+   verification working as intended, not a process failure in itself —
+   but the underlying gap it caught is real, which is exactly why R17
+   now exists).
+3. **Directional coherence across `R3`/`R4`/`R5` is weaker evidence than
+   it first appears, because the three are not independent
+   discretizations.** They are one deterministic `r{n}_config()` recipe
+   evaluated at three ratios (Idealization 17). A systematic recipe-level
+   registration bias would be expected to produce the same
+   same-direction drift as genuine convergent physics, precisely because
+   both are functions of the same input variable (`RATIO`). This
+   sharpens, one level deeper, exactly the caution R15's own addendum
+   already carries — it does not overturn the migration reading, but it
+   means "both migrations point the same way" is weaker corroboration
+   than it sounds.
+4. **The energy channel (`p_abs_w`) stayed flat throughout** — every
+   point this cycle measured, including both Rank 1c bracket points,
+   confirms the anomaly (whatever its cause) lives purely in the
+   coherent `delta_scene` channel, matching the established R13/R14
+   pattern across every prior T28 resolution cycle.
+5. **A fully-built, gate-verified, once-real-FDTD-exercised `R5`
+   (`cpl=50`) family now exists and was correctly, deliberately left
+   unused this cycle** — it should be REUSED, not rebuilt, whenever the
+   registration question is resolved and R15's addendum is revisited.
+
+## Next
+
+Reconciled Iteration-73 queue (Red Team's Phase-5 final audit §7, six
+seats' own recommendations reconciled by what each is actually
+diagnostic of, cheapest-and-most-fundamental first):
+
+1. **Angle-domain registration-readback gate** (QUANTUM's proposal,
+   near-zero marginal FDTD cost, code-only) — verify the constructed
+   `Sim` object's own actually-injected incidence angle/k-vector matches
+   the intended θ, for both `R3` and `R4`. The single most fundamental
+   unresolved question: if clean, removes registration as a live
+   explanation entirely; if it finds a defect, reprioritizes everything
+   below around fixing it first.
+2. **Zero-FDTD desk bound** (MATERIALS/THERMODYNAMICS) — using the
+   `0.194°`/`0.320°`/`0.377°` migration figures already on file, compute
+   whether a hypothetical `cpl=40` migration of comparable scale would
+   land inside or outside candidate bracket widths (±0.2°/±0.4°/±0.5°)
+   at 38.590° — informs how wide items 3/4 need to be, rather than
+   reusing another round number.
+3. **Bracket the other three established `cpl=20` nulls** (EM's
+   proposal, ~24 calls, `R4` family, identical ±0.1° methodology at
+   37.127°/40.265°/41.461°) — the decisive discriminator at the
+   node-location level: a uniform FAIL across all four nulls implicates
+   a family-wide defect; a mixed result supports genuine,
+   feature-dependent migration.
+4. **A single, reconciled node-bracketing re-run at 38.590°** (~8–16
+   calls, gated on or parallel to items 1–3): directionally weighted
+   toward lower θ first, covering at minimum 37.9°–38.5° (extended to
+   38.9° for symmetric coverage), sized to comfortably clear the
+   established migration band, with a native-sigma companion leg (the
+   native/corrected sigma confound has never been checked at 38.590°
+   specifically — exp-093's own Item 3 precedent at 42.0° shows it can
+   matter).
+5. **Record hygiene, zero cost, immediate** — this document's own
+   corrections (above) should be treated as the starting point any
+   Iteration-73 Phase-1 proposal inherits, not NOTES.md's original
+   one-sided pre-run language.
+6. **Standing, explicitly deferred until items 1–4 settle the
+   registration question**: resume the `cpl=50` (`R5`) interior sweep
+   (this cycle's own skipped Rank 2/3) — unanimous across every seat
+   that addressed sequencing. The `R5` family is already fully built,
+   gate-verified, and once-exercised with real FDTD (the fault-injection
+   harness) — REUSE it, do not rebuild it.
+
+**Standing, unranked, carried forward unchanged:** PHOTONICS' own
+grazing-incidence validity check (now **EIGHT** consecutive cycles
+undischarged, Iterations 64–72, the single most-repeated item on the
+whole T28 board); the x-wall wavelength-generality leg (now **TWENTY**
+consecutive cycles deferred, 076–095); retrofitting Gate 5's runtime
+check onto the `R3` family's own existing sigma-branch call sites; the
+unbiased margin-vs-distance rebuild on the full 31-point window; the
+ritualization governance question (Iteration 61).
