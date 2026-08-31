@@ -698,6 +698,64 @@ top. Protocol: PANEL.md.*
   (exp-095), matching every prior rule's own precedent. Full record:
   `experiments/095-t28-r4-ground-truth-sign-control/phase5_review_
   quantum.md`, `phase5_redteam_audit.md` §2/§6, LOGBOOK.md Iteration 72.
+- **R18 — a check's own documented/claimed scope (what any governing
+  document — a proposal, a NOTES.md Setup or Predictions section, a
+  Phase-2 fix docket — states it verifies) must be independently confirmed
+  against the check's own actual source code, line-by-line, before it is
+  relied upon, cited as closing a defect class, or described as
+  load-bearing; and a check joining an already-partially-fault-injection-
+  verified layered-check architecture — at any phase, including a
+  mid-cycle Phase-2 fix docket — must receive its own fault-injection
+  positive/negative control in the SAME cycle it is added, not merely
+  inherit the trust its already-verified siblings have earned (not a
+  ruled-out idea; a standing house-discipline rule, proposed by Red Team's
+  Phase-5 final audit and ratified by the Director, Iteration 73,
+  generalizing R4/R9's "claimed figure/comparison must survive contact
+  with source" lineage to a check's own coverage claim rather than a
+  numeric figure or bracket, and generalizing R6/R8's "no positive control
+  is not evidence" standard from statistical estimators/robustness
+  arguments to construction-time correctness assertions specifically).**
+  Founding case: exp-096's own six-check angle-domain registration-
+  readback gate. Checks 1–4 each carried a genuine, executed
+  fault-injection scenario proving they discriminate real defects; Checks
+  5 (MATERIALS' recipe-internal spot-check) and 6 (QUANTUM's NOTES.md
+  cross-check, added mid-cycle by Red Team's own Phase-2 fix docket as
+  "the single most load-bearing fix in the docket") had none. Two
+  independent scope-overclaim defects surfaced only at Phase 5, both
+  traced to this exact gap: (1) NOTES.md's own frozen claim that FI-A
+  (a family/`cpl` swap) would be caught "by Check 1, transitively Check
+  4" was falsified by the cycle's own executed data (`check4_phase_ramp=
+  true` for FI-A, `results.json`) — Check 4 recomputes its comparator from
+  the already-corrupted `sim.lam`, so it structurally cannot corroborate
+  the resolution axis in any fault mode, a fact that would have surfaced
+  mechanically had a `cpl`-only fault-injection scenario been run against
+  Check 4 specifically, rather than left to a three-way blind Phase-5
+  convergence (PHOTONICS, ELECTROMAGNETISM, QUANTUM OPTICS) to catch by
+  code re-read; the falsified claim was silently dropped, not corrected,
+  in NOTES.md's own Result section. (2) Check 6, as coded, reads only the
+  angle component of each point (a set-membership test against a
+  two-element list, not a positional comparison) despite three separate
+  governing texts (NOTES.md's Setup section, Red Team's own Phase-2 fix
+  docket, QUANTUM's own Phase-5 self-review) naming BOTH `theta_intended`
+  AND `cpl_intended` as in scope — `cpl_intended` is never read inside the
+  function, and the set-membership form would not catch a same-line index
+  swap, the single most plausible real-world instance of the transcription
+  defect this check exists to rule out. Both defects survived Phase 1's
+  own text, five blind Phase-2 critiques, Red Team's own Phase-2 audit,
+  and Phase 3 synthesis, caught only at Phase 5 — by direct code re-reads,
+  not by any executed control that would have surfaced them mechanically.
+  Red Team's Phase-5 final audit ruled this does NOT meet the strict
+  "known, named, ignored" bar (this is this specific gate's own founding
+  cycle; there is no prior instance of Check 6 or the FI-A/Check-4
+  relationship existing, being flagged, and then being reused unfixed) —
+  Checkpoint criterion 4 does NOT fire, ruled the closest non-firing call
+  since R16/R17's own founding instances, for the same reason. **Does not
+  fire on its own founding instance** (exp-096), matching every prior
+  rule's own precedent. Full record: `experiments/096-t28-r4-
+  registration-readback-gate/phase5_review_photonics.md`,
+  `phase5_review_electromagnetism.md` (filed as `phase5_review_em.md`),
+  `phase5_review_quantum.md`, `phase5_redteam_audit.md` §1/§3/§5, LOGBOOK.md
+  Iteration 73.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -6215,6 +6273,84 @@ sweep, explicitly deferred until the registration question resolves,
 to be reused not rebuilt. Full record:
 `experiments/095-t28-r4-ground-truth-sign-control/`, LOGBOOK.md
 Iteration 72.
+
+**Iteration 73 (exp-096) — PHOTONICS' rotation-lead cycle.** Executed
+exp-095's own Reconciled Iteration-73 queue items 1+2 (the angle-domain
+registration-readback gate; the zero-FDTD bracket-width desk bound),
+run first per the queue's own sequencing. Five blind Phase-2 critiques
+(unanimous support-with-changes): MATERIALS, ELECTROMAGNETISM, and
+QUANTUM OPTICS independently converged, by three different routes, on
+the same crux — the gate validates job constants against themselves,
+never against a ground truth outside the code path it audits; VISION
+found the mandatory carried-idealizations banner missing from §5, plus
+a 300-word Phase-1 cap overrun; THERMODYNAMICS found a construction-
+count arithmetic error (12 claimed, 10 actual, pre-fix). Red Team's
+Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 8 items, zero overridden)
+independently found the proposal's own C/G-pair congruence claim
+factually wrong (only the aperture `A` is held identical across pairs,
+misattributed to the wrong gate), invalidating representativeness for
+the placement/phase-array checks specifically — expanded the
+representative set from 8 to 16 points. Ruled the three-way convergent
+finding fixable, not fatal: adopted QUANTUM's NOTES.md cross-check
+(Check 6, the single most load-bearing fix) plus MATERIALS' recipe-
+internal spot-check (Check 5). Phase 4 ran 0 FDTD calls, 2.175s wall,
+18 `Sim` constructions, trust suite re-confirmed green throughout, zero
+`lab/` diff. **Registration-readback gate: CLEAN** — all 16
+representative points pass Checks 1–4, Check 5 clean, Check 6 all
+clean. **Fault-injection triad: all as predicted** — positive control
+CLEAN, FI-A/B/C all correctly caught. **Desk bound confirmed**: ±0.5°
+single-sided half-width is the most defensible candidate bracket at
+θ₀≈38.590° among the three examined. Six blind Phase-5 reviews (all
+CONCUR-WITH-GAP(S), zero DISPUTE): PHOTONICS found the gate never
+checks the amplitude-taper channel (a previously-refuted T28 mechanism
+candidate, exp-070) and that NOTES.md's "FI-A caught transitively by
+Check 4" claim is mechanically false as coded; MATERIALS found Check 5
+restates `r4_config()`'s own formula rather than independently
+re-deriving it; ELECTROMAGNETISM found Check 6 is set-membership, not
+positional (a same-line index swap passes undetected), and
+independently re-derived the FI-A/Check-4 finding as general, not
+scenario-specific; THERMODYNAMICS found a silently-reordered desk-bound
+ratio triple (non-load-bearing) and an 18-vs-20 construction-count
+naming mismatch; QUANTUM OPTICS independently converged on the same
+FI-A/Check-4 crux and found Check 6 never reads `cpl_intended` despite
+three governing texts claiming it does; VISION found the Result section
+still lacks the mandatory Idealizations banner — now a two-cycle-old
+quiet convention drift (exp-095, exp-096), not a one-off. Red Team's
+Phase-5 final audit adopted all six reviews, zero overridden, and
+independently re-verified every finding from primary source. **New
+standing rule R18 adopted** (full text: LOGBOOK.md RULED OUT registry) —
+a check's documented scope must be confirmed against its actual code,
+and any check joining an already-fault-injection-verified architecture
+must get its own control in the same cycle it is added. **Checkpoint
+criterion 4 ruled the closest non-firing call since R16/R17's own
+founding instances, for the same reason** (caught blind at Phase 5, own
+founding cycle) — **does NOT fire**. **Combined Verdict: PARTIAL** — the
+core claim survives (caller-plumbing and angle-only transcription drift
+genuinely ruled out, fault-injection-verified on Checks 1–4) but is
+narrower than first stated on four independently-confirmed axes (the
+resolution axis rests on Check 1 alone, not Check 1+4 redundantly; Check
+6 covers angle only, not `cpl`/family, and via set-membership not
+positional comparison; Check 5 is formula-restating, not
+formula-independent, and covers only `R4`/`C40`; the amplitude-taper
+channel is checked by nothing). Within this corrected scope, still
+strengthens (does not complete) the case for genuine node migration as
+the better-supported reading of exp-095's Rank 1c FAIL. Reconciled
+Iteration-74 queue: Tier 0 (zero-FDTD, close this cycle's own gate's
+residual gaps first, R18's own discipline applied retroactively) — fix
+Check 6 to positional comparison plus its own fault-injection control
+(EM); implement Check 6's missing `cpl_intended` half (QUANTUM); add a
+fault-injection control to Check 5 and extend it to a genuinely
+formula-independent recompute at `R3`/`R5` (MATERIALS+EM+VISION
+converging); add a seventh check + FI-D for the amplitude-taper channel
+(PHOTONICS); a bundle of zero-cost documentation corrections. Tier 1
+(resume real FDTD spend, now properly unblocked): bracket the other
+three established `cpl=20` nulls at `cpl=40` (EM, ~24 calls, the
+decisive discriminator); the re-centered node-bracketing re-run at
+38.590° at the confirmed ≥0.5° half-width (~8–16 calls); pre-wire
+`netd_row()` sidecar extraction from first commit, per R16
+(THERMODYNAMICS, preventive); the `cpl=50`/`R5` interior sweep remains
+deferred. Full record: `experiments/096-t28-r4-registration-readback-
+gate/`, LOGBOOK.md Iteration 73.
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)

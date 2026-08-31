@@ -369,6 +369,43 @@ file. The desk bound independently confirms exp-095's own already-queued
 item-4 bracket design (≥0.5° single-sided half-width) is the right order
 of magnitude for any future re-run.
 
+**Same-shift correction (Phase 5, Red Team's final audit — see Result/
+Learned's own item 5 below for the full reasoning; left standing above,
+flagged not rewritten, per this program's own T10 precedent).** The
+Interpretation paragraph above is accurate as far as it goes but does not
+name four gaps independently confirmed at Phase 5, each narrowing the
+CLEAN result's scope below what "removes... entirely"-adjacent language
+(here, "rules out... entirely") could be read to imply: (1) Check 4's
+"logically sufficient" framing does not hold on the resolution axis
+specifically — it recomputes its own comparator from `sim.lam`, the
+already-realized (and, under FI-A, already-corrupted) value, so it cannot
+independently corroborate anything Check 1 doesn't already establish
+alone; the frozen Predictions/Setup claim that FI-A is caught
+"transitively" by Check 4 is empirically false (`results.json`:
+`check4_phase_ramp=true` for FI-A) and was silently dropped, not
+corrected, in the Result bullets above. (2) Check 6 covers the angle
+component of each point only — `cpl_intended` is never read inside
+`check6_notes_md_cross_check()`, despite this document's own Setup
+section (and Red Team's own Phase-2 fix docket) naming both as in scope —
+and is a set-membership test, not a positional one, so a same-line index
+swap in `run.py`'s own job constants would pass CLEAN undetected. (3)
+Check 5 is independent of the module constants and the function call, but
+restates `r4_config()`'s own formula rather than re-deriving it from a
+source outside that formula — a defect shared between the recipe and its
+own restatement would not be caught. (4) The amplitude-taper channel
+(`sim.sources[-1]['profile']`, driven by `edge=TAPER[family]`) — a
+previously-named-and-refuted T28 mechanism candidate, exp-070's
+"TAPER-as-sub-aperture" — is checked by none of the six checks or the
+fault-injection triad. The core claim survives: caller-plumbing
+divergence (angle/placement axis, fault-injection-verified) and
+`run.py`-vs-NOTES.md transcription drift (angle component only) are
+genuinely ruled out, and this still strengthens, without completing, the
+case for genuine node migration. New standing rule **R18** (full text:
+LOGBOOK.md RULED OUT registry) generalizes the fix going forward: a
+check's documented scope must be confirmed against its actual code, and
+any check joining an already-fault-injection-verified architecture must
+receive its own control in the same cycle it is added.
+
 ## Learned
 
 1. **A cheap, zero-FDTD instrument, built with a real positive/negative
@@ -397,6 +434,20 @@ of magnitude for any future re-run.
    spot-check clean"), not "registration is not the cause" — the same
    discipline R17 established for bracket-sizing claims now applies
    symmetrically to this cycle's own clean-instrument claim.
+5. **A layered-check architecture is only as trustworthy as its
+   least-verified member.** Checks 1–4 each carried a genuine,
+   executed fault-injection scenario; Checks 5 and 6 — one added at
+   Phase 1, one added mid-cycle by Red Team's own Phase-2 fix docket as
+   "the single most load-bearing fix in the docket" — had none, and both
+   turned out to cover less than every governing document claimed. Two
+   scope-overclaim defects survived Phase 1's text, five blind Phase-2
+   critiques, Red Team's own Phase-2 audit, and Phase 3 synthesis,
+   caught only at Phase 5 by direct code re-reads rather than by any
+   executed control that would have surfaced them mechanically — the
+   exact gap R18 (new standing rule, this cycle) now closes going
+   forward: every check in a layered architecture earns its own
+   fault-injection control in the cycle it joins, not merely the trust
+   its siblings have already earned.
 
 ## What this cycle does NOT do (unchanged from Phase 1)
 
@@ -405,3 +456,74 @@ and 4 (a reconciled node-bracketing re-run at 38.590°, ~8–16 calls) are
 gated on this cycle's own registration-readback outcome and are explicitly
 NOT run this cycle. Item 6 (resuming the `cpl=50`/`R5` interior sweep)
 remains deferred.
+
+## Next
+
+Reconciled Iteration-74 queue (Red Team's Phase-5 final audit §6, six
+seats' own recommendations reconciled by what each is actually diagnostic
+of, cheapest-and-most-fundamental first):
+
+**Tier 0 — zero-FDTD, code-only, close this cycle's own gate's residual
+gaps before further FDTD spend leans on it (R18's own discipline applied
+retroactively):**
+
+1. **Fix Check 6 to positional (not set-membership) comparison, and add
+   its own fault-injection scenario** (a same-line index swap, e.g.
+   temporarily reversing `RANK1A_ANGLES`) proving the fixed check now
+   catches what the set-membership version could not (EM, near-zero
+   cost). Highest priority: the check three governing texts already
+   claim covers more than it does.
+2. **Implement the `cpl_intended` half of Check 6** that this document's
+   own Setup section and Red Team's own fix-docket item 4 already claim
+   exists (QUANTUM, near-zero cost; bundle with item 1, same function).
+3. **Add a fault-injection negative control to Check 5, and extend it to
+   a genuinely formula-independent recompute at `R3` and `R5`**, sourced
+   from outside `design_geometry.py` (MATERIALS+EM+VISION, converging
+   independently; zero-FDTD).
+4. **Add a seventh check reading `sim.sources[-1]['profile']` against an
+   independent recompute of the raised-cosine taper from `TAPER[family]`,
+   plus a fourth fault-injection scenario (FI-D: a wrong/swapped `edge`
+   value)** (PHOTONICS, zero-FDTD) — the amplitude/aperture-edge
+   registration axis a gate named "registration-readback" implies is
+   covered and is not; directly relevant given `TAPER`'s own prior life
+   as a named-and-refuted T28 mechanism candidate (exp-070).
+5. **Bundle of zero-cost documentation corrections**: correct the "Check
+   1 (transitively, Check 4)" claim for FI-A in Setup/Predictions; label
+   the desk-bound containment-ratio triples explicitly
+   (`lower/upper1/upper2:`); correct the `design_geometry.py` citation
+   shorthand (it lives in the T21 `069-t21-...` directory, not a T28
+   `069-...` one — a small, recurring citation error across this
+   sub-thread); and a governance item — the Director should state
+   explicitly whether the Iteration-65 carried-idealizations-banner rule
+   means "Predictions + Result" (its literal text) or "Idealizations +
+   Predictions" (the pattern exp-095 and exp-096 have both actually
+   followed), before a third occurrence forces the question under worse
+   conditions (VISION).
+
+**Tier 1 — resume real FDTD spend, now properly unblocked, sequenced
+after Tier 0 so any Tier-0 finding does not require retroactively
+auditing fresh FDTD spend:**
+
+6. **Bracket the other three established `cpl=20` nulls at `cpl=40`**
+   (EM's original Iteration-73 proposal, ~24 calls) — the decisive
+   discriminator between a family-wide defect and feature-dependent
+   migration.
+7. **The re-centered, directionally-weighted node-bracketing re-run at
+   θ₀≈38.590°**, sized to this cycle's own confirmed ≥0.5° single-sided
+   half-width (~8–16 calls) — the direct answer to the question this
+   whole two-cycle registration detour exists to eventually enable.
+8. **Pre-wire `netd_row()`/`cell_metrics_r{3,4,5}` sidecar extraction
+   into whichever of items 6/7's `run.py` computes `delta_scene`/
+   `frac_contrast`, from first commit, per R16** (THERMODYNAMICS,
+   preventive).
+9. **Item 6 (the `cpl=50`/`R5` interior sweep) remains deferred**,
+   unanimous across every seat that has addressed sequencing since
+   exp-095 — reuse the already-built, gate-verified family, do not
+   rebuild it.
+
+**Standing, unranked, carried forward unchanged:** PHOTONICS' own
+grazing-incidence validity check (now NINE consecutive cycles
+undischarged, Iterations 64–73); the x-wall wavelength-generality leg
+(now TWENTY-ONE consecutive cycles deferred, 076–096); the unbiased
+margin-vs-distance rebuild; the ritualization governance question
+(Iteration 61).
