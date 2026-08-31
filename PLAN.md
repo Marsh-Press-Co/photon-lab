@@ -22,7 +22,104 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-31, panel Iteration 71 done (exp-094, PARTIAL,
+## Current state (2026-08-31, panel Iteration 72 done (exp-095, PARTIAL,
+VISION SCIENCE's rotation-lead cycle: executed exp-094's own Reconciled
+Iteration-72 queue items 1/3/4 as one combined, internally-gated build
+(item 2, the cpl=50/R5 third resolution point, built in full and
+gate-verified but explicitly gated on item 1's own verdict -- the
+Director's own Phase-3 scope extension reading Red Team's "any further
+R4-family spend" to cover Rank 3's own cpl=40 legs too, not only the
+literal cpl=50 item named next). Five blind Phase-2 critiques (unanimous
+support-with-changes, five distinct, non-overlapping catches):
+PHOTONICS and QUANTUM OPTICS independently converged that the draft's
+own Rank-1 control angles (39.2/39.8deg) sat too close to known
+delta_scene nulls for a clean far-from-null ground-truth control;
+ELECTROMAGNETISM found the new cpl=50 family had no native-sigma
+comparator; MATERIALS found cpl=50 is structurally the LEAST
+alias-breaking third point available from the shared r{n}_config()
+recipe (only cpl a multiple of 10 keeps Gate 3's radius invariant
+exact), so no cpl=50 outcome could discharge R15's own addendum alone;
+THERMODYNAMICS found no cell_metrics_r5 was named anywhere, risking a
+third R16 recurrence. Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-
+FIXES, 9 items, zero overridden) independently found a sixth defect:
+checked against the FULL six-crossing null set, the draft's own "safe"
+control angle (39.2deg) was itself only 0.610deg from a genuine null,
+and the naive fix (39.0/39.4deg) was not uniformly safe. Phase 3
+adopted all nine fixes: corrected control angles (39.2/39.4deg); a new,
+additive Rank 1c node-bracketing recovery check (38.49/38.69deg,
++/-0.1deg around the established cpl=20 null theta0~=38.590deg,
+QUANTUM's own proposal) combined with Rank 1a into one go/no-go gate;
+a native-sigma R5 comparator leg; a necessary-not-sufficient reframing
+of any Rank-2b outcome against R15's addendum; cell_metrics_r5 named
+and wired from first commit; plus the Director's own independently-
+found spec-resolution gap (this codebase never persists raw field
+captures across process boundaries -- corrected, raising the PASS-path
+total from 72 to 86 calls). Phase 4 ran 20 of 86 possible FDTD calls,
+22.47 min wall. **Rank 1a -- PASS**, delta_scene(R4) negative at both
+39.2/39.4deg. **Rank 1c -- FAIL**: both 38.49/38.69deg floor-clear but
+the SAME (negative) sign -- the established theta0~=38.590deg null does
+not manifest as a sign change in the R4 (cpl=40) family within the
+tested window. **The combined go/no-go gate correctly HALTed** -- Ranks
+2/3 (66 calls) SKIPPED on a since-shown-fragile anchor. **Rank 4
+(independent, unconditional) -- NEITHER**: 38.4deg at corrected sigma
+reads frac_contrast at only 2.71% of FLOOR, floor_pass=False. Six blind
+Phase-5 reviews (all CONCUR/CONCUR-WITH-GAP(S), zero DISPUTE, five
+independently-convergent findings via five different routes):
+THERMODYNAMICS and MATERIALS independently found the +/-0.1deg bracket
+was narrower than this window's own already-documented null-migration
+precedent (0.194/0.320/0.377deg between cpl=20 and cpl=30, already on
+file); QUANTUM, self-critical of its own idea, proposed a new
+angle-domain analog of Gate 5 (a registration/incidence-angle readback);
+ELECTROMAGNETISM independently re-derived that Yee-grid dispersion
+predicts a node shift 25x-78x too small to explain the FAIL, naming the
+crux finding ("observationally degenerate": Gate 5 has never checked
+geometric registration, only sigma_e magnitude); VISION found NOTES.md
+was missing its Result/Learned/Next sections entirely; **PHOTONICS
+supplied the single most load-bearing new finding**: this cycle's own
+Rank 4 already places the corrected-sigma cpl=30 crossing at
+theta~=38.4deg, a 0.190deg shift matching exp-092's own independently-
+measured 0.194deg migration to two significant figures. Red Team's
+Phase-5 final audit independently re-verified every finding (zero
+disputes on any mechanical number among all seven parties), ruled
+genuine node migration is now the better-supported reading of Rank 1c's
+FAIL ("an impressionistic 2:1 to 3:1... not a computed posterior") but
+explicitly NOT proven -- EM's "observationally degenerate" point
+stands, and Red Team's own further finding shows "directional
+coherence" is weaker evidence than it looks, since R3/R4/R5 share one
+deterministic recipe, not independent discretizations. **New standing
+rule R17 adopted**: a tolerance/bracket sizing a presence-or-absence
+test must be justified against the largest already-established
+cross-resolution shift on file, not adopted as an illustrative round
+number; a narrower-than-precedented bracket's FAIL framing must give
+equal weight to under-sizing as to any other named hypothesis.
+**Checkpoint criterion 4 ruled the closest non-firing call, on two
+matters** (the one-sided pre-run Rank-1c framing; VISION's NOTES.md
+structural gap, identical to the already-twice-non-fired exp-080/
+exp-090 precedent) -- both caught blind, same cycle, before this
+LOGBOOK entry; **does NOT fire**. A five-item same-shift mandatory-fix
+docket applied post-audit (frozen framing flagged not rewritten, with
+correction pointers; new Result/Learned/Next sections written; a
+commensurability nit corrected; a bracket-provenance disclosure added),
+zero results.json change needed. **Combined Verdict: PARTIAL** -- the
+combined go/no-go gate did exactly what it was built to do (Rank 1c
+caught a genuine ambiguity a sign-only check would have missed, saving
+66 calls); smooth numerical dispersion is ruled out as an explanation;
+a new quantitative anchor shifts belief toward genuine node migration
+without proving it; the fully-built, gate-verified cpl=50 family is
+correctly left unused, to be REUSED (not rebuilt) once the registration
+question resolves; R16 compliance is clean. Whether exp-094's own
+headline six-point reversal at 41.75-41.90deg survives remains
+untouched. Reconciled Iteration-73 queue: an angle-domain
+registration-readback gate (QUANTUM, near-zero marginal FDTD cost, run
+first); a zero-FDTD desk bound sizing a wider bracket against the
+established migration precedent; bracketing the other three established
+cpl=20 nulls at cpl=40 (EM, ~24 calls, the decisive discriminator); a
+reconciled, re-centered, directionally-weighted node search at
+38.590deg with a native-sigma companion leg (~8-16 calls); the cpl=50/
+R5 family's own interior sweep, explicitly deferred until the
+registration question resolves, to be reused not rebuilt. Full record:
+`experiments/095-t28-r4-ground-truth-sign-control/`, LOGBOOK.md
+Iteration 72); panel Iteration 71 done (exp-094, PARTIAL,
 QUANTUM OPTICS' rotation-lead cycle: exp-093's own Reconciled
 Iteration-71 queue executed as one combined build, cheapest-and-
 independent-first (a genuine departure from exp-092/093's own gated
