@@ -1,0 +1,23 @@
+==============================================================================
+exp-095 -- T28 R4 ground-truth sign control, cpl=50 (R5) third resolution point, sigma/38.4deg comparability closes
+==============================================================================
+
+[R13 floor gate] RMS[frac_contrast], n=31: 1.917438e-03  FLOOR=1.917438e-04  (unchanged, applied unrecomputed -- Idealization 6)
+
+==============================================================================
+MANDATORY NEW-SUITE GATES (static/algebraic, R5 family)
+==============================================================================
+[Gate 1] vacuum-footprint precondition (R5_CONFIGS): PASS=True
+[Gate 2] A congruence: C40_R5.A=1880  G40_R5.A=1880  round(A_HALF_APERTURE*R5_RATIO)=1880  PASS=True
+[Gate 3] L_GEOMETRIC_M_R5=2.340000e-06  L_GEOMETRIC_M=2.340000e-06  L_GEOMETRIC_M_R3=2.340000e-06  L_GEOMETRIC_M_R4=2.340000e-06  PASS=True
+[Gate 4] SIGMA_R5_CORRECTED=0.2  PASS=True
+[Gate 6, documentation-only] 2*SIGMA_R5_CORRECTED*R5_R_OUT=78.0  2*SIGMA_NATIVE*R_OUT=78.0  dev=0.000e+00  PASS=True  (non-discriminating -- reduces to a tautology already implied by Gate 4; NOT a substitute for Gate 5 below)
+
+[Gate 5] (mandatory, from this family's first commit) runtime sigma_e/sigma_max check -- wired INSIDE `_run_sim_r5_sigma` itself, fires on every Rank 2 article call at corrected sigma, before any FDTD step. See per-call confirmation below.
+
+==============================================================================
+RANK 1 -- combined go/no-go gate, R4 (cpl=40) family (16 calls, UNCONDITIONAL)
+==============================================================================
+
+[Rank 1a] sign check @ [39.2, 39.4]deg (sigma_max=0.25 corrected)
+8 FDTD calls queued (Rank 1a) -- Gate 5 fires inline on each article call, before its own FDTD step

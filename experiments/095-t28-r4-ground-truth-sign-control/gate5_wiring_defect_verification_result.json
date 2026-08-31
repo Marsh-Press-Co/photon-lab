@@ -1,0 +1,6 @@
+{
+  "control_pass": true,
+  "injected_defect_pass": true,
+  "injected_defect_message": "GATE 5 FAILED -- runtime sigma_e/sigma_max mismatch: sim.sigma_e[shell_mask].max()=0.5 vs sigma_max=0.2",
+  "verdict": "PASS"
+}
