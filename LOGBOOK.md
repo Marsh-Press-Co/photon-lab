@@ -5853,6 +5853,200 @@ fixes applied in place).
   `run.py`/`results.json`/`run_output.txt`, six Phase-5 blind reviews,
   `phase5_redteam_audit.md`.
 
+  **Iteration 71 (exp-094) — QUANTUM OPTICS' rotation-lead cycle.
+  R15's own founding concern empirically realized: a COMPLETE, full-
+  window sign-and-classification reversal, on R15's own founding
+  sub-thread, one cycle after the verdict it exists to stress-test.**
+  Executes exp-093's own Reconciled Iteration-71 queue as one combined
+  build, cheapest-and-independent-first (a genuine departure from
+  exp-092/093's own gated chain — none of this cycle's three items sets
+  a parameter for either of the others): a `sigma_max`-corrected
+  measurement at the window's lower flanking anchor, 41.6° (Rank 2, 4
+  calls); an R3-verify of the three still-unmeasured original `cpl=20`
+  caution-zone points, 36.0°/38.4°/38.8° (Rank 3, 12 calls, the single
+  most-repeated open item on the whole T28 board); and a genuinely new
+  `cpl=40` congruent-geometry family (`R4`, a mechanical `R4_RATIO=2.0`
+  substitution into the already-validated `R3` recipe) re-sweeping
+  exp-093's own six interior near-null points at the analogous
+  τ_center-preserving corrected sigma (Rank 1a settling gate, 8 calls;
+  Rank 1b interior sweep, 24 calls); plus a zero-FDTD `cpl=30`-only
+  caution-zone extension gated on Rank 3 (Rank 3-ext). Five blind Phase-2
+  critiques (unanimous support-with-changes, five distinct, non-
+  overlapping catches, zero overlap): MATERIALS and ELECTROMAGNETISM
+  independently converged on the same underlying gap by different
+  reasoning paths (MATERIALS: direct R15-founding-defect pattern-match;
+  EM: at `R4_RATIO=2.0`'s exact-integer arithmetic, the existing static
+  gates are weaker discriminators than at `R3`'s own half-integer
+  rounding) — no gate anywhere in this sub-thread's history has ever
+  read the constructed `Sim` object's own `sigma_e` array, only Python
+  constants; a runtime wiring bug in the new family would sail through
+  undetected. PHOTONICS independently found the Rank-2 "CONFIRM is more
+  likely" lean inverted R13/R14's own established ratio_k/near-null
+  relationship (a large `ratio_k` against a near-flat numerator signals
+  proximity to a null, not distance from one) — confirmed by direct
+  recomputation. VISION found an ambiguity (later confirmed real) about
+  whether the `_full` metrics variant's NETD byproducts would surface
+  undisclaimed. THERMODYNAMICS found Rank 1b's new `cpl=40` cells carried
+  no zero-cost energy-channel anchor check. Red Team's Phase-2 audit
+  (PROCEED-WITH-MANDATORY-FIXES, 5 items, zero overridden) independently
+  re-derived every disputed figure and correctly ruled EM's own proposed
+  static-assert remedy algebraically tautological — MATERIALS' runtime
+  `sim.sigma_e[shell_mask].max()` check was the one that actually
+  discharges the gap.
+
+  **Phase 3 (Director): all five fixes adopted, plus the Director's own
+  independent third re-derivation of the one disputed figure set** —
+  bit-exact match to both prior derivations. `NOTES.md` frozen and pushed
+  strictly before any Phase-4 code existed, carrying a new mandatory Gate
+  5 (the sub-thread's first-ever runtime array check, not merely a static
+  constant check) and a commitment to carry `netd_disclaimer` into this
+  cycle's own `results.json`.
+
+  **Phase 4: all 48 FDTD calls completed (50.56 min wall), all six house
+  gates PASS, trust suite 41/41 green before and after.** Gate 5 fired
+  clean on all 16 Rank 1a/1b article calls; independently confirmed a
+  genuine discriminator (not tautological) by injecting a simulated
+  wiring defect into a standalone verification script — written and run
+  **mid-Phase-5**, not Phase 4 (see the Phase-5 correction below). **Rank
+  2 — CONFIRM**, no directional lean stated in advance, per Phase 3's
+  corrected framing. **Rank 3 — TWO CONSISTENT, ONE FLIPPED**: 36.0°/38.8°
+  hold; 38.4° flips (`ratio_k` `0.9075→16.9967`, ~19× — the single
+  smallest-margin point of the entire original n=7 set, the modal-
+  expectation-violating outcome NOTES.md's own Predictions explicitly
+  flagged as plausible in advance). **Rank 1a — PASS** (`rel_dev=0.13%`).
+  **Rank 1b — TWO-NODE CONFIRMED, and materially stronger than the
+  category name conveys: ALL SIX interior points reverse sign AND
+  classification relative to exp-093's own `cpl=30` SINGLE-NULL
+  reading** — not a boundary-adjacent excursion, a complete, full-window
+  reversal. `p_abs_w` stays flat (≤0.6% swing) throughout, extending
+  R14's established mechanism to a third resolution. **Rank 3-ext —
+  CONFIRM**, base `n=8` table bit-exact, extended `n=11` table
+  non-inverted.
+
+  **Phase 5 — six blind reviews, all CONCUR-WITH-GAP(S), zero DISPUTE,
+  a program-record five genuinely distinct, independently-caught
+  defects, three of them convergent.** PHOTONICS, MATERIALS, and QUANTUM
+  OPTICS' own self-review — three seats, independently, without seeing
+  each other's work — all caught the identical defect: `NOTES.md`'s own
+  Result section and Learned section asserted Gate 5 was verified "by
+  injecting a simulated R15-style wiring defect into a standalone test
+  harness during Phase 4" with **no corresponding artifact anywhere in
+  the committed record** — an R4-shaped unverifiable claim (this
+  program's own recompute-don't-hand-type discipline, its first
+  instance applied to a claim ABOUT verification rather than a numeric
+  figure). All three independently reconstructed the fault-injection
+  test themselves and confirmed the underlying claim true. VISION found
+  a second, distinct overclaim in the same Result section: Rank 1b's
+  "UNDETECTABLE... directly confirmed to extend to `cpl=40`" language
+  measured only the energy-flatness ratio half, never the NETD-
+  classification half — the identical "confident-claim-unverified"
+  shape exp-093's own THERMODYNAMICS self-review caught one cycle
+  earlier. THERMODYNAMICS independently traced this to source: Rank 3's
+  own newest, largest finding (38.4°'s flip) had zero energy-channel
+  check at any resolution, and the NETD-surfacing `_full` machinery's
+  own byproducts were computed everywhere but persisted nowhere —
+  `netd_row()`, the exact fix `experiments/093-.../run.py` built one
+  cycle earlier for this precise purpose, was never called in this
+  cycle's genuinely new `R4`-family code. MATERIALS independently
+  proposed a new R15 addendum (the reversal is complete, 6/6 points, not
+  a boundary-proximate wobble — two data points from one shared
+  construction recipe cannot distinguish genuine convergence from a
+  persistent recipe-level artifact), converging with PHOTONICS'
+  independent structural finding without either seeing the other's work.
+  QUANTUM's own self-review flagged the sharpest structural gap: every
+  one of this cycle's 32 `R4`-family calls sampled only the fragile
+  interior band — no control point verifies the new family reproduces an
+  ALREADY-KNOWN-CORRECT sign at a robust, far-from-null angle, an
+  R6-style ground-truth-recovery gap generalized to a new resolution
+  family rather than a new estimator. PHOTONICS also caught a smaller
+  wording defect (a "larger absolute swing" claim that reads backwards
+  under the raw-magnitude sense of "absolute").
+
+  **Red Team's Phase-5 final audit**: independently re-derived every
+  load-bearing figure a fourth-plus way (including re-executing the
+  Director's own mid-Phase-5 verification script), confirmed all
+  findings. **Adopted the new R15 addendum** (a full-span reversal
+  cannot be resolved by defaulting to the finer grid; a third,
+  differently-ratioed resolution point plus a far-from-null ground-truth
+  control are the minimum discharge requirement). **Proposed and the
+  Director ratified new standing rule R16** (a disclaimer traveling
+  unconditionally is necessary but not sufficient — the byproduct itself
+  must be persisted via `netd_row()` wherever a `_full`/NETD-surfacing
+  function computes it), closing the specific loophole this cycle's own
+  Phase-2 RT-4 mandate (disclaimer-travels, not persistence-required)
+  left open. **Checkpoint criterion 4 ruled the closest non-firing call
+  in this sub-thread's history** — two independent overclaims in the
+  same Result section, plus a recurrence of a pattern LOGBOOK's own
+  Iteration-70 entry had just declared "genuinely closed" one cycle
+  earlier — but ruled NOT the strict R6/R11 "known, named, ignored" bar
+  (that bar requires reusing the SAME already-fixed machinery unfixed;
+  here the code path was genuinely new, never having called `netd_row()`
+  at all). **Standing forward-elevating clause adopted verbatim: a third
+  disclaimer-without-persistence occurrence, on this or any T28-adjacent
+  channel, fires Checkpoint criterion 4 automatically, no further
+  deliberation** — this cycle's occurrence named the second (exp-092/093
+  was the first, closed by exp-093's own fix; this cycle broke that
+  chain in new code). Five same-shift fixes, all applied post-audit,
+  zero load-bearing to any verdict: (1) corrected the Gate-5 provenance
+  claim in `NOTES.md`; (2) extracted `p_abs_w`/NETD sidecar for Rank 3's
+  three census angles (all three, including 38.4°, classify
+  UNDETECTABLE, energy-flatness ratio within 0.8% of unity — R14's
+  mechanism unthreatened even at the newest reversal); (3) retrofitted
+  `netd_row()` into Rank 2/1a/1b's own output (a deterministic rerun,
+  bit-exact on every existing figure — the only six differing scalars
+  anywhere were wall-clock timing fields; all twelve Rank-1b NETD values
+  classify UNDETECTABLE, directly confirming the classification at
+  `cpl=40` rather than inferring it); (4) corrected the "directly
+  confirmed" overclaim; (5) corrected PHOTONICS' own "absolute swing"
+  wording.
+
+  **Combined Verdict: PARTIAL.** Confirmed, cleanly, independently
+  re-derived from primary source a fourth-plus way: Rank 2's sigma-
+  comparability CONFIRM; Rank 3's census (two CONSISTENT, one genuine,
+  well-resolved FLIPPED); Rank 1a's clean settling PASS; Rank 3-ext's
+  non-inverted zone; and, most consequentially, **Rank 1b's complete
+  sign-and-classification reversal at `cpl=40`** — a genuine, full-window
+  phenomenon, physically coherent with this program's own R13/R14
+  mechanism, and (per EM's own re-applied dispersion-integral work,
+  independently confirmed too small by 32×–96× even for a smaller effect
+  than this one) too large to be explained by smooth Yee-grid dispersion
+  — pointing instead to curved-boundary staircasing. Genuinely new, open,
+  not resolved and not overclaimed as such: the 41.6°–42.0° window's
+  status across `cpl∈{20,30,40}` is now three-way unresolved, and —
+  per the new R15 addendum — cannot yet be told apart from a persistent
+  `R3`/`R4`-recipe-level artifact or a registration defect absent a third
+  resolution point and a far-from-null ground-truth control. Two
+  independently-caught, now-corrected overclaims and one recurrence of a
+  previously-declared-closed pattern leave Checkpoint criterion 4 as the
+  closest non-firing call in this sub-thread's history, logged with a
+  forward-elevating clause and a new standing rule rather than allowed to
+  pass as routine. Reconciled Iteration-72 queue (Red Team's own Phase-5
+  final audit, reconciling all six seats' own rankings): **(1)** a
+  ground-truth sign-recovery control for the `R4` family at an
+  already-robust, far-from-null point (37.2°/39.2°/39.8°) — QUANTUM's own
+  rank, independently endorsed as more urgent than the already-queued
+  `cpl=50` check, since every `R4`-family reading to date needs
+  re-examination if this fails; **(2)** a third resolution point
+  (`cpl=50` or `cpl=45`) at the same six interior angles, gated on (1) —
+  the minimum discharge per the new R15 addendum; **(3)** close the
+  sigma-comparability gap at both window edges (41.6° at `cpl=40`; the
+  interior sweep at native sigma); **(4)** 38.4° at corrected sigma
+  (QUANTUM's own self-falsified-Idealization-21 finding — this point is
+  now shown near-null-adjacent by the identical R13/R14 signature). Also
+  still open, standing: retrofitting Gate 5's runtime check onto the
+  `R3` family's own existing sigma-branch call sites (MATERIALS' own
+  rank); PHOTONICS' own grazing-incidence validity check (named at
+  Iterations 64/65/67/68/69/70/71, the single most-repeated undischarged
+  item on the whole T28 board); the x-wall wavelength-generality leg
+  (now **NINETEEN** consecutive cycles deferred, 076–094); the
+  unbiased margin-vs-distance rebuild (open since exp-090); the
+  ritualization governance question (Iteration 61). Full record:
+  `experiments/094-t28-cpl40-resolution-sigma-r3-census/` —
+  `phase1_proposal.md`, five Phase-2 blind critiques,
+  `phase2_redteam_audit.md`, `phase3_synthesis.md`, `NOTES.md`,
+  `run.py`/`results.json`/`run_output.txt`, six Phase-5 blind reviews,
+  `phase5_redteam_audit.md`, `gate5_wiring_defect_verification.py`.
+
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
