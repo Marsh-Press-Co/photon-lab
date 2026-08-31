@@ -363,6 +363,72 @@ banner sentence, satisfying §6's own commitment. Phase 5 is asked to
 confirm this by name (per the docket item 4 fix), not merely take this
 sentence's presence on faith.
 
+**Same-shift correction (Phase 5, Red Team's final audit — left standing
+above, flagged not rewritten, per this program's own T10 precedent).**
+The Result above is accurate as far as it goes but does not name three
+gaps independently confirmed at Phase 5, each narrowing the CLEAN
+result's scope below what a bare "CLEAN, seven checks" could be read to
+imply: **(1)** Check 5's own fault-injection control, `FI-G` (even after
+this cycle's own 3-family extension), validates only the `src_x` branch
+of its three-quantity assertion — the `y_lo`/`y_hi` branch, the source-
+placement span the phase-ramp formula itself centers on, has zero
+demonstrated fault-injection discriminating power for any of the three
+families (PHOTONICS, independently confirmed by Red Team's own direct
+code read; non-load-bearing — the underlying values are independently
+correct by a route outside the gate, confirmed by both PHOTONICS and
+this audit's own from-scratch `design_geometry.py` re-derivation).
+**(2)** Check 5 has never tested any `G40_*` (padded) config, for any
+family — a known, pre-existing limitation (unchanged since exp-096)
+whose disclosure this cycle's own restated Idealizations 39/42
+compressed rather than stated with exp-096's original precision
+(QUANTUM OPTICS). **(3)** Idealization 40's own text mischaracterizes
+`cpl_ok`'s actual independence: it states `cpl_ok` is "STILL keyed by
+`pt["family"]` on both sides" absent `family_ok`, but direct execution
+(three independent seats — PHOTONICS, MATERIALS, ELECTROMAGNETISM — plus
+Red Team's own final audit) shows `cpl_ok`'s right-hand operand is keyed
+by `family_frozen` (sourced from `notes_line`), never `pt["family"]` —
+`cpl_ok` alone already discriminates every currently-possible family
+mislabel among `R3`/`R4`/`R5`, contingent on their `cpl` values staying
+pairwise distinct. Non-dangerous direction (the code is stronger than
+documented, not weaker) but a real documentation-scope error, inside the
+very Idealization meant to describe the fix for a documentation-scope
+error — and independently echoed, not caught, by QUANTUM OPTICS' own
+Phase-5 review (Red Team's own finding, §3/§4 of `phase5_redteam_audit.md`),
+the first instance in this sub-thread's history of an R18-class claimed-
+scope error occurring inside a review document rather than a proposal.
+**None of these three gaps implicates the underlying construction code**
+— every quantity independently re-derived from `design_geometry.py`/
+`lab/fdtd2d.py` source this Phase (by three separate seats plus Red
+Team) matches what the gate reports. Corrected Idealization 40 text
+(the fix itself, not yet applied to the paragraph above per T10 — queued
+Iteration-75 Tier 0 item 1): *"`cpl_frozen` is keyed by `family_frozen`
+(itself sourced from `notes_line`), independent of `pt["family"]`;
+`cpl_ok` alone already discriminates every currently-possible family
+mislabel among `R3`/`R4`/`R5`, contingent on their `cpl` values staying
+pairwise distinct — not merely safe because gated behind `family_ok`."*
+No standing rule is newly proposed; every gap found this cycle is a
+fresh application of R18's own existing discipline (adopted exp-096),
+not a new failure shape. **No Checkpoint fires** — all five criteria
+ruled explicitly by Red Team's final audit; every gap was caught blind
+at Phase 5, this cycle, matching R16/R17/R18's own founding-instance
+discharge precedent, and no constraint of the phenomenon target (#1–#4)
+is in play this cycle at all.
+
+**Combined Verdict: PARTIAL.** The core claim survives, independently
+re-verified from source and by direct execution: R18's own Tier-0
+discipline, applied retroactively to its own founding gate, closes the
+four previously-claimed-vs-actual coverage gaps (Check 6 positional +
+`cpl_intended`, Check 5's `R3`/`R5` extension, Check 7's new
+amplitude-taper axis) plus the tautology Red Team caught mid-cycle at
+Phase 2 — the earliest an R18-class defect has been caught in this
+sub-thread's history — without discovering a genuine registration
+defect anywhere in the underlying, already-validated construction code.
+**Tier 1 (real FDTD spend) is genuinely, fully unblocked** — unanimous
+across all six Phase-5 reviews and Red Team's own independent
+confirmation; none of the three residual gaps above implicates the
+construction code Tier 1 depends on, and nothing here needs fixing
+*before* Tier 1 proceeds.
+
 ## Learned
 
 1. **R18's own founding cycle discharges cleanly at Tier 0 — but Red
@@ -422,3 +488,76 @@ cycles undischarged, Iterations 64–74); the x-wall wavelength-generality
 leg (now TWENTY-TWO consecutive cycles deferred, 076–097); the unbiased
 margin-vs-distance rebuild; the ritualization governance question
 (Iteration 61).
+
+## Next
+
+Reconciled Iteration-75 queue (Red Team's Phase-5 final audit §7, six
+seats' own recommendations reconciled by what each is actually
+diagnostic of, cheapest-and-most-fundamental first):
+
+**Tier 0 — zero-FDTD, documentation/code fixes, run ALONGSIDE Tier 1,
+NOT gating it (all six Phase-5 reviews and Red Team's own final audit
+agree none of these blocks real spend — a genuine departure from
+Iteration-74's own Tier 0/Tier 1 sequencing, since this cycle's own
+residual gaps are holes in the instrument's self-certification, not in
+the construction code Tier 1 depends on):**
+
+1. **Correct Idealization 40** (and `run.py`'s matching docstring) to
+   state `cpl_frozen` is keyed by `family_frozen` (via `notes_line`),
+   independent of `pt["family"]` — EM's fullest formulation, converging
+   PHOTONICS+MATERIALS+EM's independent catches. **Also log, in the same
+   correction, that QUANTUM OPTICS' own Phase-5 review independently
+   repeats this exact mischaracterization** — a same-shift LOGBOOK note,
+   not a re-run, so a future citation of that review does not inherit
+   the wrong reason for its otherwise-correct verdict.
+2. **Add `FI-G′` (`native_absorb` corrupted, e.g. 41 not 40) to Check 5,
+   scored against all three families** (PHOTONICS' highest-priority
+   Tier-0 item: two of the check's own three asserted quantities
+   currently have zero fault-injection coverage). Zero new `Sim`
+   constructions. `FI-G″` (`native_ny` corrupted) optional, cheap to
+   bundle in the same commit.
+3. **Restate Idealization 39/42 to explicitly name the still-open
+   `G40_*`-config scope gap in Check 5's extension**, matching exp-096's
+   own original precision (QUANTUM OPTICS) — one line, no code change.
+4. **Wording fix**: "would have silently doubled... to 41" →
+   "would have silently grown the construction count to 41, nearly
+   double" (THERMODYNAMICS) — no re-run needed.
+5. **A Director note logging VISION's word-cap finding** (four of five
+   Phase-2 sharpest-attack sections exceeded PANEL.md's ≤150-word cap)
+   as a named precedent, without requiring the four already-adopted
+   critiques to be rewritten.
+
+**Tier 1 — resume real FDTD spend, now properly unblocked (unanimous
+across all six Phase-5 reviews and Red Team's own independent
+confirmation):**
+
+6. **Bracket the other three established `cpl=20` nulls at `cpl=40`**
+   (~24 calls) — ranked #1 by every seat that ranked this cycle. The
+   decisive discriminator between a family-wide `cpl=40` recipe defect
+   and feature-dependent node migration.
+7. **The re-centered, directionally-weighted node-bracketing re-run at
+   θ₀≈38.590°**, sized to the confirmed ≥0.5° single-sided half-width
+   (exp-096's desk bound; ~8–16 calls) — ranked #2, sequenced after item
+   6 per every seat's own stated reasoning.
+8. **Pre-wire `netd_row()`/`cell_metrics_r{3,4,5}` sidecar extraction
+   into whichever of items 6/7's `run.py` computes `delta_scene`/
+   `frac_contrast`, from first commit, per R16** (THERMODYNAMICS,
+   echoed by EM/QUANTUM/VISION) — the first real-FDTD cycle on this
+   window since exp-094's own R16 near-miss.
+9. **The `cpl=50`/`R5` interior sweep remains deferred**, unanimous
+   across every seat that has addressed sequencing since exp-095 —
+   reuse the already-built, gate-verified family, do not rebuild it.
+
+**Standing, unranked, carried forward, with a new governance ask**:
+PHOTONICS' own grazing-incidence validity check (now TEN-OR-ELEVEN
+consecutive cycles undischarged, Iterations 64–74, exact count
+ambiguous per Red Team's own §4.3 finding — the fact of non-discharge is
+not); MATERIALS' own governance recommendation, adopted here by the
+Director: this item should either be scheduled within the next two
+cycles or the Director/Red Team should make an explicit, reasoned call
+to formally deprioritize it, closing Iteration 61's still-open
+ritualization question for this specific item rather than letting the
+count climb indefinitely as a restated-but-never-executed line. The
+x-wall wavelength-generality leg (22 consecutive cycles deferred,
+076–097, same governance question); the unbiased margin-vs-distance
+rebuild; the ritualization governance question itself (Iteration 61).
