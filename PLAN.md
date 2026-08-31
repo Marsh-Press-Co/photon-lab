@@ -22,7 +22,53 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-31, panel Iteration 73 done (exp-096, PARTIAL,
+## Current state (2026-08-31, panel Iteration 74 done (exp-097, PARTIAL,
+MATERIALS' rotation-lead cycle: executed exp-096's own Reconciled
+Iteration-74 queue, Tier 0 in full, as one combined zero-FDTD build --
+Check 6 fixed to positional comparison plus its own cpl_intended half;
+Check 5 extended to R3/R5 with a negative control; a new Check 7
+(amplitude-taper registration) plus FI-D; a zero-cost documentation
+bundle. Five blind Phase-2 critiques (unanimous support-with-changes,
+EM+THERMODYNAMICS independently converged on a false "bit-exact"
+desk-check claim; QUANTUM found FI-G's R4-only scope; PHOTONICS found
+the standing-items ledger silently dropped; VISION found the governance
+ruling had no attached verification mechanism). Red Team's Phase-2
+audit (PROCEED-WITH-MANDATORY-FIXES, 6 items, zero overridden)
+independently found the most load-bearing defect: Check 6's new
+cpl_intended sub-check was a family-level tautology, keyed by the same
+untrusted field on both sides -- fixed via a notes_line-keyed family_ok
+sub-check plus its own fault-injection scenario (FI-H). Phase 4: 0 FDTD
+calls, 2.305s wall, 21 Sim constructions bit-exact against the frozen
+prediction, trust suite green, zero lab/ diff. Registration-readback
+gate: CLEAN (representative set, Check 5 3/3 families, Check 6-new 8/8
+points). All nine fault-injection scenarios resolved exactly as
+predicted. Six blind Phase-5 reviews (all CONCUR-WITH-GAP(S), zero
+DISPUTE): PHOTONICS/MATERIALS/ELECTROMAGNETISM independently found
+Idealization 40 mischaracterizes cpl_ok's own independence (the code is
+STRONGER than documented, the mirror-image, non-dangerous direction of
+every prior R18 instance); PHOTONICS additionally found FI-G validates
+only src_x, never y_lo/y_hi; QUANTUM found Check 5 never tests G40_*
+padded configs; THERMODYNAMICS found a wording imprecision;
+VISION found four of five Phase-2 sections exceeded the word cap. Red
+Team's Phase-5 final audit ADOPTED all six reviews, one partial
+override -- QUANTUM's own review independently repeated the
+Idealization-40 error, the first instance of an R18-class error inside
+a review document itself. All five Checkpoint criteria ruled: none
+fire. No new standing rule proposed. Combined Verdict: PARTIAL -- the
+core claim survives, R18's own Tier-0 discipline closes all four
+claimed-vs-actual coverage gaps plus the mid-cycle tautology without
+finding a genuine registration defect. Tier 1 (real FDTD spend) is
+genuinely, fully unblocked -- unanimous across all six Phase-5 reviews
+and Red Team. Reconciled Iteration-75 queue: Tier 0 fixes now run
+ALONGSIDE Tier 1 (correct Idealization 40, log QUANTUM's echo, add
+FI-G' to Check 5, restate the G40_* disclosure); Tier 1: bracket the
+other three established cpl=20 nulls at cpl=40 (unanimous #1), the
+re-centered node-bracketing re-run at 38.590deg, pre-wire netd_row()
+sidecar per R16, cpl=50/R5 sweep stays deferred. New governance ask:
+PHOTONICS' own grazing-incidence check (10-11 cycles undischarged)
+should be scheduled within two cycles or formally deprioritized. Full
+record: `experiments/097-t28-r18-tier0-gate-closure/`, LOGBOOK.md
+Iteration 74); panel Iteration 73 done (exp-096, PARTIAL,
 PHOTONICS' rotation-lead cycle: executed exp-095's own Reconciled
 Iteration-73 queue items 1+2 -- the angle-domain registration-readback
 gate (QUANTUM's proposal, run first per the queue) and the zero-FDTD
