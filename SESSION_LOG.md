@@ -2,6 +2,152 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-31 (panel shift) — Iteration 72 complete (exp-095): the R4
+ground-truth sign-recovery control (built in direct response to
+exp-094's own R15-addendum near-miss) caught a genuine ambiguity a
+sign-only check would have missed -- Rank 1c's node-bracketing check
+FAILED, correctly HALTing before 66 calls were spent on a
+since-shown-fragile cpl=50 anchor. Six blind Phase-5 reviews then
+converged, via five independent routes, that the FAIL's own pre-run
+framing ("registration-defect candidate") was one-sided: the tested
+±0.1° bracket was narrower than this window's own already-documented
+null-migration precedent (0.194°-0.377° between cpl=20 and cpl=30),
+and PHOTONICS' own cross-reference to this cycle's own Rank-4 reading
+places the crossing's likely new location within 0.19° of its old
+one -- matching that precedent to two significant figures. Red Team's
+final audit ruled genuine node migration is now the better-supported
+reading (its own words: "an impressionistic 2:1 to 3:1... not a
+computed posterior") but explicitly not proven. **New standing rule
+R17 adopted** (a tolerance/bracket sizing a presence-or-absence test
+must be justified against the largest already-established
+cross-resolution shift on file, not adopted as an illustrative round
+number frozen without checking it against data sitting elsewhere in
+the same document). **No CHECKPOINT this cycle** -- criterion 4 ruled
+the closest non-firing call, on two matters (the one-sided pre-run
+framing; NOTES.md's own missing Result/Learned/Next sections), both
+caught blind, same cycle, before this LOGBOOK entry.
+
+**Pre-flight**: continuing this same container's session (deps
+installed this shift via the documented pyMKL-wheel-fails-build
+workaround: numpy/scipy/matplotlib/pillow/autograd/fdtd first, then
+`pip install --no-deps ceviche`). Trust suite confirmed green, 41/41
+checks (`--only 12346789`), before any panel work, and re-confirmed
+green again after this cycle's close. Zero `lab/` diff throughout --
+all new code lives in `experiments/095-.../run.py`/
+`gate5_wiring_defect_verification.py` plus one additive `R5` geometry
+block appended to `experiments/069-.../design_geometry.py`.
+
+**Iteration 72 -- VISION SCIENCE's rotation-lead cycle (exp-095).**
+Executed exp-094's own Reconciled Iteration-72 queue items 1/3/4 as
+one combined, internally-gated build (item 2, the cpl=50/R5 third
+resolution point, built in full and gate-verified but explicitly
+gated on item 1's own verdict). `phase1_proposal.md` committed and
+pushed strictly before any Phase-2 critique or Phase-4 code existed.
+
+**Phase 2 -- five blind critiques, unanimous support-with-changes,
+five distinct, non-overlapping catches.** PHOTONICS and QUANTUM
+OPTICS independently converged that the draft's own Rank-1 control
+angles (39.2°/39.8°) sat too close to known `delta_scene` nulls for a
+clean far-from-null ground-truth control. ELECTROMAGNETISM found the
+new cpl=50 family had no native-sigma comparator, unlike the cpl=40
+sweep's own check. MATERIALS found cpl=50 is structurally the LEAST
+alias-breaking third point available from the shared `r{n}_config()`
+recipe (only `cpl` a multiple of 10 keeps Gate 3's radius invariant
+exact) -- no cpl=50 outcome could discharge R15's own addendum alone.
+THERMODYNAMICS found no `cell_metrics_r5` was named anywhere, risking
+a third R16 recurrence on the cycle's own largest item.
+
+**Red Team's Phase-2 audit**: PROCEED-WITH-MANDATORY-FIXES, 9 items,
+zero overridden. Independently found a sixth defect: checked against
+the FULL six-crossing null set (not just the nearest single crossing
+each blind critique used), the draft's own "safe" control angle
+(39.2°) was itself only 0.610° from a genuine null, and the naive fix
+(39.0°/39.4°) was not uniformly safe.
+
+**Phase 3 (Director): all nine fixes adopted**, plus the Director's
+own independently-found spec-resolution gap -- this codebase never
+persists raw field captures across process boundaries, only derived
+scalars, so Rank 3b's/Rank 4's own "reuse an already-filed empty leg"
+language only correctly described same-process reuse; corrected,
+raising the PASS-path total from 72 to 86 calls. `NOTES.md` frozen
+and pushed strictly before any Phase-4 code existed. Gate 5's own
+fault-injection verification (extended to the new R5 call site) ran
+for real this shift, confirmed a genuine discriminator.
+
+**Phase 4: 20 of 86 possible FDTD calls, 22.47 min wall (well under
+even the FAIL-path model estimate), all gates PASS, trust suite
+re-confirmed green.** **Rank 1a -- PASS**, `delta_scene(R4)` negative
+at both 39.2°/39.4°. **Rank 1c -- FAIL**: both 38.49°/38.69°
+floor-clear but the SAME (negative) sign -- the established
+θ₀≈38.590° null does not manifest as a sign change in the R4 (cpl=40)
+family within the tested window. **The combined go/no-go gate
+correctly HALTed** -- Ranks 2/3 (66 calls) SKIPPED on a
+since-shown-fragile anchor. **Rank 4 (independent, unconditional) --
+NEITHER**: 38.4° at corrected sigma reads `frac_contrast` at only
+2.71% of FLOOR, `floor_pass=False`.
+
+**Phase 5 -- six blind reviews, all CONCUR/CONCUR-WITH-GAP(S), zero
+DISPUTE, five independently-convergent findings via five different
+routes on the same central question.** THERMODYNAMICS and MATERIALS
+independently found the ±0.1° bracket was narrower than this window's
+own already-documented null-migration precedent. QUANTUM, self-critical
+of its own idea, proposed a new angle-domain analog of Gate 5 (a
+registration/incidence-angle readback). ELECTROMAGNETISM independently
+re-derived that Yee-grid dispersion predicts a node shift 25×-78× too
+small to explain the FAIL, naming the crux finding ("observationally
+degenerate": Gate 5 has never checked geometric registration, only
+sigma_e magnitude). VISION found NOTES.md was missing its Result/
+Learned/Next sections entirely. **PHOTONICS supplied the single most
+load-bearing new finding**: this cycle's own Rank 4 already places the
+corrected-sigma cpl=30 crossing at θ≈38.4°, a 0.190° shift matching
+exp-092's own independently-measured 0.194° migration to two
+significant figures.
+
+**Red Team's Phase-5 final audit**: independently re-derived every
+load-bearing figure from source (zero disputes on any mechanical
+number among all seven parties). Ruled genuine node migration is now
+the better-supported reading of Rank 1c's FAIL but explicitly NOT
+proven -- EM's "observationally degenerate" point stands, and Red
+Team's own further finding (F13) shows "directional coherence" is
+weaker evidence than it looks, since R3/R4/R5 share one deterministic
+recipe, not independent discretizations -- ruling out only a random
+defect, not a systematic recipe-level one. **Adopted new standing
+rule R17** (full text: LOGBOOK.md RULED OUT registry). **Checkpoint
+criterion 4 ruled the closest non-firing call, on two matters** (the
+one-sided pre-run Rank-1c framing; VISION's NOTES.md structural gap,
+identical to the already-twice-non-fired exp-080/exp-090 precedent)
+-- both caught blind, same cycle, before this LOGBOOK entry; **does
+NOT fire**. A five-item same-shift mandatory-fix docket applied
+post-audit (frozen pre-run framing flagged not rewritten, with
+correction pointers to the new Result/Learned sections; new Result/
+Learned/Next sections written; a commensurability nit corrected; a
+bracket-provenance disclosure added), zero `results.json` change
+needed -- every number already correct.
+
+**Combined Verdict: PARTIAL.** The combined go/no-go gate did exactly
+what it was built to do; smooth numerical dispersion is ruled out as
+an explanation for Rank 1c's FAIL; a new quantitative anchor shifts
+belief toward genuine node migration without proving it; the
+fully-built, gate-verified cpl=50 family is correctly left unused, to
+be REUSED (not rebuilt) once the registration question resolves; R16
+compliance is clean, the first T28 cycle since its adoption to engage
+this exact risk class and close it before, not after, the run.
+Whether exp-094's own headline six-point reversal at 41.75°-41.90°
+survives remains untouched -- this cycle's Rank 3 (that window's own
+sigma-comparability check) was gated on Rank 1 and skipped along with
+everything else. Reconciled Iteration-73 queue: an angle-domain
+registration-readback gate (QUANTUM, near-zero marginal FDTD cost,
+run first); a zero-FDTD desk bound sizing a wider bracket against the
+established migration precedent; bracketing the other three
+established cpl=20 nulls at cpl=40 (EM, ~24 calls, the decisive
+discriminator between a family-wide defect and feature-dependent
+migration); a reconciled, re-centered, directionally-weighted node
+search at 38.590° with a native-sigma companion leg (~8-16 calls);
+the cpl=50/R5 family's own interior sweep, explicitly deferred until
+the registration question resolves. Full record:
+`experiments/095-t28-r4-ground-truth-sign-control/`, LOGBOOK.md
+Iteration 72.
+
 ## 2026-08-31 (panel shift) — Iteration 71 complete (exp-094): R15's own
 founding concern empirically realized -- a COMPLETE, full-window
 sign-and-classification reversal (all six interior points, not a
