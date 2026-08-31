@@ -1,0 +1,528 @@
+{
+  "experiment": "exp-097",
+  "panel_iteration": 74,
+  "fdtd_calls": 0,
+  "wall_time_s": 2.305,
+  "representative": [
+    {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 39.2,
+      "cpl_actual": 40,
+      "theta_actual": 39.2,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "G40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 39.2,
+      "cpl_actual": 40,
+      "theta_actual": 39.2,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 39.4,
+      "cpl_actual": 40,
+      "theta_actual": 39.4,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "G40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 39.4,
+      "cpl_actual": 40,
+      "theta_actual": 39.4,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 38.49,
+      "cpl_actual": 40,
+      "theta_actual": 38.49,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "G40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 38.49,
+      "cpl_actual": 40,
+      "theta_actual": 38.49,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 38.69,
+      "cpl_actual": 40,
+      "theta_actual": 38.69,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "G40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 38.69,
+      "cpl_actual": 40,
+      "theta_actual": 38.69,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 41.6,
+      "cpl_actual": 40,
+      "theta_actual": 41.6,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R4",
+      "config_key": "G40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 41.6,
+      "cpl_actual": 40,
+      "theta_actual": 41.6,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R3",
+      "config_key": "C40_R3",
+      "cpl_intended": 30,
+      "theta_intended": 38.4,
+      "cpl_actual": 30,
+      "theta_actual": 38.4,
+      "edge_actual": 60,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R3",
+      "config_key": "G40_R3",
+      "cpl_intended": 30,
+      "theta_intended": 38.4,
+      "cpl_actual": 30,
+      "theta_actual": 38.4,
+      "edge_actual": 60,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R5",
+      "config_key": "C40_R5",
+      "cpl_intended": 50,
+      "theta_intended": 41.825,
+      "cpl_actual": 50,
+      "theta_actual": 41.825,
+      "edge_actual": 100,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R5",
+      "config_key": "G40_R5",
+      "cpl_intended": 50,
+      "theta_intended": 41.825,
+      "cpl_actual": 50,
+      "theta_actual": 41.825,
+      "edge_actual": 100,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R5",
+      "config_key": "C40_R5",
+      "cpl_intended": 50,
+      "theta_intended": 41.85,
+      "cpl_actual": 50,
+      "theta_actual": 41.85,
+      "edge_actual": 100,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    },
+    {
+      "family": "R5",
+      "config_key": "G40_R5",
+      "cpl_intended": 50,
+      "theta_intended": 41.85,
+      "cpl_actual": 50,
+      "theta_actual": 41.85,
+      "edge_actual": 100,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true
+    }
+  ],
+  "representative_1234_all_clean": true,
+  "representative_7_all_clean": true,
+  "check6_new": [
+    {
+      "theta_ok": true,
+      "family_ok": true,
+      "cpl_ok": true,
+      "clean": true
+    },
+    {
+      "theta_ok": true,
+      "family_ok": true,
+      "cpl_ok": true,
+      "clean": true
+    },
+    {
+      "theta_ok": true,
+      "family_ok": true,
+      "cpl_ok": true,
+      "clean": true
+    },
+    {
+      "theta_ok": true,
+      "family_ok": true,
+      "cpl_ok": true,
+      "clean": true
+    },
+    {
+      "theta_ok": true,
+      "family_ok": true,
+      "cpl_ok": true,
+      "clean": true
+    },
+    {
+      "theta_ok": true,
+      "family_ok": true,
+      "cpl_ok": true,
+      "clean": true
+    },
+    {
+      "theta_ok": true,
+      "family_ok": true,
+      "cpl_ok": true,
+      "clean": true
+    },
+    {
+      "theta_ok": true,
+      "family_ok": true,
+      "cpl_ok": true,
+      "clean": true
+    }
+  ],
+  "check6_new_all_clean": true,
+  "check6_old": [
+    {
+      "clean": true
+    },
+    {
+      "clean": true
+    },
+    {
+      "clean": true
+    },
+    {
+      "clean": true
+    },
+    {
+      "clean": true
+    },
+    {
+      "clean": true
+    },
+    {
+      "clean": true
+    },
+    {
+      "clean": true
+    }
+  ],
+  "check6_old_all_clean": true,
+  "check5_extended": {
+    "R3": {
+      "src_x_recomputed": 450,
+      "y_lo_recomputed": 60,
+      "y_hi_recomputed": 2316,
+      "src_x_stored": 450,
+      "y_lo_stored": 60,
+      "y_hi_stored": 2316,
+      "clean": true
+    },
+    "R4": {
+      "src_x_recomputed": 600,
+      "y_lo_recomputed": 80,
+      "y_hi_recomputed": 3088,
+      "src_x_stored": 600,
+      "y_lo_stored": 80,
+      "y_hi_stored": 3088,
+      "clean": true
+    },
+    "R5": {
+      "src_x_recomputed": 750,
+      "y_lo_recomputed": 100,
+      "y_hi_recomputed": 3860,
+      "src_x_stored": 750,
+      "y_lo_stored": 100,
+      "y_hi_stored": 3860,
+      "clean": true
+    },
+    "clean": true
+  },
+  "fault_injection_1234_7": {
+    "positive_control": {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 39.2,
+      "cpl_actual": 40,
+      "theta_actual": 39.2,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": true,
+      "clean_7": true,
+      "must_be_1234": "CLEAN",
+      "must_be_7": "CLEAN"
+    },
+    "FI_A_family_cpl_swap": {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 39.2,
+      "cpl_actual": 30,
+      "theta_actual": 39.2,
+      "edge_actual": 80,
+      "check1_resolution": false,
+      "check2_angle_spec": true,
+      "check3_placement": true,
+      "check4_phase_ramp": true,
+      "check7_taper": true,
+      "clean_1234": false,
+      "clean_7": true,
+      "must_be_1234": "DEFECT-FOUND",
+      "must_be_7": "CLEAN"
+    },
+    "FI_B_angle_mislabel": {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 39.2,
+      "cpl_actual": 40,
+      "theta_actual": 38.69,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": false,
+      "check3_placement": true,
+      "check4_phase_ramp": false,
+      "check7_taper": true,
+      "clean_1234": false,
+      "clean_7": true,
+      "must_be_1234": "DEFECT-FOUND",
+      "must_be_7": "CLEAN"
+    },
+    "FI_C_sign_flip": {
+      "family": "R4",
+      "config_key": "C40_R4",
+      "cpl_intended": 40,
+      "theta_intended": 39.2,
+      "cpl_actual": 40,
+      "theta_actual": -39.2,
+      "edge_actual": 80,
+      "check1_resolution": true,
+      "check2_angle_spec": false,
+      "check3_placement": true,
+      "check4_phase_ramp": false,
+      "check7_taper": true,
+      "clean_1234": false,
+      "clean_7": true,
+      "must_be_1234": "DEFECT-FOUND",
+      "must_be_7": "CLEAN"
+    },
+    "all_as_predicted": true
+  },
+  "FI_D": {
+    "family": "R4",
+    "config_key": "C40_R4",
+    "cpl_intended": 40,
+    "theta_intended": 39.2,
+    "cpl_actual": 40,
+    "theta_actual": 39.2,
+    "edge_actual": 60,
+    "check1_resolution": true,
+    "check2_angle_spec": true,
+    "check3_placement": true,
+    "check4_phase_ramp": true,
+    "check7_taper": false,
+    "clean_1234": true,
+    "clean_7": false,
+    "must_be_1234": "CLEAN",
+    "must_be_7": "DEFECT-FOUND",
+    "as_predicted": true
+  },
+  "FI_E": {
+    "results": [
+      {
+        "pair_index": 0,
+        "theta_scored": 39.4,
+        "new_clean": false,
+        "old_clean": true
+      },
+      {
+        "pair_index": 1,
+        "theta_scored": 39.2,
+        "new_clean": false,
+        "old_clean": true
+      }
+    ],
+    "caught_by_new": true,
+    "missed_by_old": true
+  },
+  "FI_F": {
+    "new_clean": false,
+    "old_clean": true,
+    "caught_by_new": true,
+    "missed_by_old": true
+  },
+  "FI_G": {
+    "R3": {
+      "src_x_recomputed": 452,
+      "src_x_stored": 450,
+      "caught_as_defect": true
+    },
+    "R4": {
+      "src_x_recomputed": 602,
+      "src_x_stored": 600,
+      "caught_as_defect": true
+    },
+    "R5": {
+      "src_x_recomputed": 752,
+      "src_x_stored": 750,
+      "caught_as_defect": true
+    },
+    "all_caught": true
+  },
+  "FI_H": {
+    "true_family": "R3",
+    "mislabeled_family": "R4",
+    "notes_line": 511,
+    "new_clean": false,
+    "old_clean": true,
+    "new_family_ok": false,
+    "caught_by_new": true,
+    "missed_by_old": true
+  },
+  "registration_gate_outcome": "CLEAN",
+  "sim_construction_count": {
+    "representative": 16,
+    "fault_injection_new": 4,
+    "fi_d_new": 1,
+    "fi_e_f_g_h_new": 0,
+    "total": 21
+  }
+}

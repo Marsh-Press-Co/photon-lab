@@ -296,6 +296,114 @@ Python/arithmetic checks with no `Sim()` call in their own design).
 object construction and array comparison only), matching exp-096's own
 estimate and this sub-thread's established zero-FDTD-cycle band.
 
+## Result
+
+**Carried idealizations banner (per §6's own governance ruling — placed
+here AND at Predictions, closing the verification gap VISION found in
+Phase 1's own draft): every result below is governed by Idealizations
+1/7/17/38/39 plus this cycle's own 40–45.**
+
+Run: `python3 experiments/097-t28-r18-tier0-gate-closure/run.py`. **0
+FDTD calls, 2.305s wall.** Trust suite re-confirmed green (41/41,
+`--only 12346789`) before and after this run; zero `lab/` diff throughout
+— all new code lives in this experiment's own `run.py`.
+
+**Every prediction resolved exactly as tabled — no deviation.**
+
+- **Representative set (16 shared `Sim` constructions, Checks 1–4 + 7
+  together):** all CLEAN on both axes (`representative_1234_all_clean=
+  True`, `representative_7_all_clean=True`).
+- **Check 5, extended:** CLEAN, 3/3 families (`R3`, `R4`, `R5` all
+  independently recompute bit-exact against `design_geometry.py`'s own
+  stored `src_x`/`y_lo`/`y_hi`).
+- **Check 6-new (positional + `cpl_intended` + `family_ok`):** CLEAN,
+  8/8 points, all three sub-checks.
+- **Check 6-old (set-membership, retained for comparison):** also CLEAN
+  on the unmodified representative set (expected — the old check's
+  defect is a coverage gap under fault injection, not a false positive
+  on clean data; see FI-E/H below for where old and new diverge).
+- **Composite registration-readback gate outcome: CLEAN.**
+
+**Fault-injection results, all six scenarios as predicted, zero
+surprises:**
+
+| Scenario | Predicted | Actual | As predicted? |
+|---|---|---|---|
+| Positive control | Checks 1–4 CLEAN, Check 7 CLEAN | CLEAN / CLEAN | ✓ |
+| FI-A (family/cpl swap) | Checks 1–4 DEFECT-FOUND, Check 7 CLEAN | DEFECT-FOUND / CLEAN | ✓ |
+| FI-B (angle mislabel) | Checks 1–4 DEFECT-FOUND, Check 7 CLEAN | DEFECT-FOUND / CLEAN | ✓ |
+| FI-C (sign flip) | Checks 1–4 DEFECT-FOUND, Check 7 CLEAN | DEFECT-FOUND / CLEAN | ✓ |
+| FI-D (wrong `edge`) | Checks 1–4 CLEAN, Check 7 DEFECT-FOUND | CLEAN / DEFECT-FOUND | ✓ |
+| FI-E (θ index swap) | new catches, old misses | caught_by_new=True, missed_by_old=True | ✓ |
+| FI-F (`cpl` corruption) | new catches, old misses | caught_by_new=True, missed_by_old=True | ✓ |
+| FI-G (native-constant corruption, 3 legs) | all 3 legs caught | all_caught=True | ✓ |
+| FI-H (family mislabel, new) | new catches, old misses | caught_by_new=True, missed_by_old=True | ✓ |
+
+FI-D's specificity result is the direct confirmation Check 7 covers a
+genuinely orthogonal axis: corrupting only `edge` leaves Checks 1–4
+CLEAN (θ/`cpl`/placement/phase are all untouched by `edge`) while Check
+7 alone catches it. FI-H is the direct confirmation Red Team's own
+Phase-2 fix works: the identical mislabeled point that the un-re-keyed
+`cpl_ok`-only design would have passed CLEAN (both sides keyed by the
+same wrong `family`) is caught by `family_ok`, independently keyed by
+`notes_line`.
+
+**Construction count: 21 `Sim.__init__` calls, bit-exact against
+NOTES.md's own frozen prediction** (16 representative + 4 positive-
+control/FI-A/B/C + 1 FI-D; FI-E/F/G/H add zero, matching prediction).
+Achieved by sharing one `Sim` object between Checks 1–4 and Check 7 per
+point (`run_checks_1234_and_7`), rather than building a second, separate
+object for Check 7 as Phase 1's draft implementation would have — this
+choice is itself load-bearing for the frozen count and is stated
+explicitly here since Phase 1's own text did not specify object-sharing
+in code, only in the predicted total.
+
+**Governance ruling, discharged:** this Result section carries the
+banner sentence, satisfying §6's own commitment. Phase 5 is asked to
+confirm this by name (per the docket item 4 fix), not merely take this
+sentence's presence on faith.
+
+## Learned
+
+1. **R18's own founding cycle discharges cleanly at Tier 0 — but Red
+   Team found a sixth defect, one cycle deep into R18's own life, with
+   the identical shape R18 was written to prevent.** Check 6's Phase-1
+   draft added a `cpl_intended` sub-check specifically to close a
+   claimed-vs-actual coverage gap, and that sub-check was itself a
+   tautology (both sides keyed by the same untrusted `family` field) —
+   caught at Phase 2 this time, not Phase 5, the earliest point this
+   framework has ever caught an R18-class defect. The house discipline
+   worked exactly as designed; it is not evidence R18-class defects are
+   rare, only that catching them earlier is possible when the fix
+   docket itself is read adversarially rather than implemented as
+   written.
+2. **A "bit-exact... matches" claim embedded in a document's own
+   self-certifying compliance header (§0, not just the detailed working
+   in §2b) is a more dangerous place for an unverified figure to sit
+   than the detailed section underneath it** — a reviewer who trusts the
+   header and skips the arithmetic carries the false confidence forward
+   unchallenged. Red Team's own extension of EM/THERMODYNAMICS' finding
+   (the same defect, stated twice) is the operative lesson, not the
+   arithmetic error itself (non-load-bearing, corrected here before it
+   could become a frozen instance).
+3. **Object-sharing between checks is a real implementation decision
+   with real construction-count consequences, and Phase 1 prose alone
+   does not pin it down.** Phase 1's own predicted-outcomes table
+   assumed Check 7 reads the SAME `Sim` object Checks 1–4 already built,
+   but nothing in the check-logic description said so explicitly; a
+   naive Phase-4 implementation (build a fresh `Sim` per check) would
+   have silently doubled the construction count to 41, a discrepancy a
+   future THERMODYNAMICS-style audit would have caught at Phase 5 rather
+   than Phase 4. Caught and fixed during implementation this cycle,
+   named here so a future cycle's own Phase-1 draft states object-
+   sharing as an explicit design choice, not an implicit assumption.
+4. **The standing-items ledger and the banner-verification-mechanism
+   gap are both now closed by explicit commitment, not merely noted.**
+   PHOTONICS' items (grazing-incidence, x-wall wavelength-generality)
+   remain genuinely undischarged — restoring the ledger line does not
+   discharge them, only prevents them being silently forgotten a second
+   time.
+
 ## What this cycle does NOT do
 
 Per the Reconciled Iteration-74 queue's own Tier 0/Tier 1 split: Tier 1
