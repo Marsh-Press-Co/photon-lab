@@ -314,6 +314,90 @@ comparison only), matching Phase 1's estimate, adjusted for the 8→16
 expansion (still negligible against this sub-thread's own established
 ~100–150 CPU-minute per-cycle band).
 
+## Result
+
+All predictions scored against `results.json` (`experiments/096-.../run.py`,
+`run_output.txt`), zero FDTD calls, 2.175s wall time, trust suite
+re-confirmed green (41/41, `--only 12346789`) both before and after this
+Phase, zero `lab/` diff:
+
+- **Registration-readback gate: CLEAN.** All 16 representative-point
+  constructions (8 points × 2 pair members, fix #1's expanded set) pass
+  Checks 1–4. Check 5 (MATERIALS' recipe-internal spot-check, `R4`/`C40_R4`):
+  CLEAN — independently recomputed `src_x=600`, `y_lo=80`, `y_hi=3088` from
+  native base constants × `RATIO=2.0`, bit-exact against `R4_CONFIGS`'
+  own stored values. Check 6 (QUANTUM's NOTES.md cross-check, 8 points):
+  all CLEAN — every `run.py` job-constant angle in exp-095's own frozen
+  `RANK1A_ANGLES`/`RANK1C_ANGLES`/`RANK2A_ANGLE`/`RANK2B_NATIVE_ANGLES`/
+  `RANK3A_ANGLE`/`RANK4_ANGLE` matches the value hand-transcribed from
+  exp-095's own NOTES.md Predictions section at the cited line.
+- **Fault-injection triad: all as predicted.** Positive control CLEAN (not
+  flagged); FI-A (family/`cpl` swap) caught by Check 1 as predicted;
+  FI-B (angle mislabel) caught by Checks 2 and 4 as predicted
+  (`check4_max_abs_diff=1.636`, comfortably above `atol=1e-9`); FI-C (sign
+  flip) caught by Checks 2 and 4 as predicted (`check4_max_abs_diff=
+  298.6`, an order of magnitude larger than FI-B's, consistent with a
+  full-array sign negation rather than a modest angle shift). The gate is
+  a genuine discriminator, not a rubber stamp, confirmed by construction
+  this Phase, not merely claimed.
+- **Zero-FDTD desk bound: confirmed, bit-exact against Phase 1's numbers**
+  (independently re-derived this Phase directly from raw `results.json`,
+  not restated). At θ₀≈38.590°: ±0.2° insufficient (1.03×/0.62×/0.53× —
+  barely covers only the smallest figure, misses the other two); ±0.4°
+  clears all three but at only 1.06× margin against the largest
+  (`upper_window_2`); ±0.5° gives 1.33×/1.56×/2.58×, the most defensible
+  of the three candidates examined, though still short of this
+  sub-thread's own ~2× comfort benchmark for the two upper-window
+  figures.
+
+**Interpretation, per Idealization 38's own pre-registered scope (no
+overclaim):** the CLEAN result rules out caller-level plumbing divergence
+(Checks 1–4, confirmed genuine discriminators by the fault-injection
+triad) and `run.py`-vs-NOTES.md transcription drift (Check 6) as
+explanations for exp-095's own Rank 1c FAIL, and finds no defect at the
+one recipe-internal spot-check performed (Check 5, `R4`/`C40` only — not
+exhaustive across every family/config/constant, per Idealization 39). It
+does **not** prove the shared `r{n}_config()` recipe's complete internal
+arithmetic is defect-free at every point untested by Check 5's single
+spot-check. Within this stated scope, this cycle **removes one of the two
+named candidate explanations Red Team's exp-095 audit identified**
+(registration/wiring defect vs. genuine node migration) at every point
+this Phase actually checked, leaving genuine node migration as the
+better-supported reading of Rank 1c's FAIL among the two — strengthening,
+not completing, the "2:1 to 3:1, impressionistic" reading already on
+file. The desk bound independently confirms exp-095's own already-queued
+item-4 bracket design (≥0.5° single-sided half-width) is the right order
+of magnitude for any future re-run.
+
+## Learned
+
+1. **A cheap, zero-FDTD instrument, built with a real positive/negative
+   control, can genuinely discharge one branch of a multi-cycle
+   ambiguity.** Nineteen cycles never checked this axis; one 2-second
+   script did, with a fault-injection triad proving the check would have
+   caught the defect it was built to catch had one existed.
+2. **The three-way blind convergence (MATERIALS/EM/QUANTUM) on "the gate
+   validates against itself" was the single most valuable Phase-2 finding
+   this cycle produced** — without Check 6 (QUANTUM's fix), a CLEAN
+   result would have rested entirely on `run.py`'s own job constants,
+   unable to rule out the specific transcription-slip failure mode this
+   fix closes. The convergence pattern this program has now seen at
+   exp-094 (3-for-5), exp-095 (5-for-6/6-for-6), and this cycle (3-for-5)
+   continues to reliably flag genuine structural gaps, not critique noise.
+3. **Red Team's attack #1 (the C/G-pair congruence misattribution) was a
+   genuinely new finding, not a restatement of any blind critique** — it
+   would have silently halved this cycle's own effective coverage (8
+   points instead of 16 for Checks 3/4) had it gone uncaught, on exactly
+   the two checks (placement, phase array) most sensitive to a `pad`-
+   arithmetic defect.
+4. **This cycle's own scope boundary (Idealization 38/39) is itself now
+   the load-bearing fact for how much confidence the CLEAN result buys.**
+   A future cycle citing this result should cite the scoped claim
+   ("caller-plumbing and transcription-drift ruled out; one recipe
+   spot-check clean"), not "registration is not the cause" — the same
+   discipline R17 established for bracket-sizing claims now applies
+   symmetrically to this cycle's own clean-instrument claim.
+
 ## What this cycle does NOT do (unchanged from Phase 1)
 
 Items 3 (bracketing the other three `cpl=20` nulls at `cpl=40`, ~24 calls)

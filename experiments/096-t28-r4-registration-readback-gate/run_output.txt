@@ -1,0 +1,17 @@
+exp-096 -- Registration-Readback Gate + Desk Bound (0 FDTD calls, 2.175s wall)
+Representative points: 8 x 2 pair members = 16 constructions, all clean = True
+Check 5 (recipe spot-check): clean = True
+Check 6 (NOTES.md cross-check): all clean = True
+REGISTRATION-READBACK GATE OUTCOME: CLEAN
+
+Fault injection (must be: positive_control=CLEAN, FI-A/B/C=DEFECT-FOUND):
+  positive_control: clean=True, must_be=CLEAN, caught_as_defect=False
+  FI_A_family_cpl_swap: clean=False, must_be=DEFECT-FOUND, caught_as_defect=True
+  FI_B_angle_mislabel: clean=False, must_be=DEFECT-FOUND, caught_as_defect=True
+  FI_C_sign_flip: clean=False, must_be=DEFECT-FOUND, caught_as_defect=True
+  ALL AS PREDICTED: True
+
+Desk bound (containment ratios, candidate half-width / migration figure):
+  +/-0.2 deg: {'lower_window': 1.0332, 'upper_window_1': 0.6247, 'upper_window_2': 0.5309}
+  +/-0.4 deg: {'lower_window': 2.0663, 'upper_window_1': 1.2494, 'upper_window_2': 1.0617}
+  +/-0.5 deg: {'lower_window': 2.5829, 'upper_window_1': 1.5617, 'upper_window_2': 1.3271}
