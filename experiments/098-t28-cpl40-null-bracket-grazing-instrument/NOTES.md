@@ -360,3 +360,225 @@ grep before the cycle closes (VISION SCIENCE's fix, Attack 8).**
 the CLEAN gate) and 120 zero-FDTD closed-form evaluations (item v). Wall
 time, scaling from exp-095's own 20-call/22.47-min pace: **≈35 minutes**
 for the 32 real calls; item (v) adds under 30 seconds.
+
+## Result
+
+**Carried idealizations banner: this section is governed by Idealizations
+1/7/17/38/39/42 plus this cycle's own 46–52 (§Idealizations above) —
+restated here per VISION SCIENCE's own fix (Attack 8), confirmed present
+in both Predictions and Result by direct grep before this cycle closes.**
+
+**Correction, disclosed (R4 discipline, applied to this program's own
+process, not just its physics claims):** this document's own §Setup/
+§Predictions predicted **32** real `sim.run()` calls (24 item (i) + 8
+item (ii)). The actual, necessary figure is **64** — an arithmetic error
+that omitted the empty/article factor: each of the 16 angle/config
+points needs BOTH an empty and an article `Sim` construction (matching
+exp-095's own established `PAIR_KEYS_R4` × empty/article job-list
+convention, e.g. its own 2-angle Rank 1c used 8 calls, not 4). This
+undercount survived Phase 1's proposal, all five blind Phase-2
+critiques, and Red Team's own Phase-2 audit — none of the seven seats
+caught it. It was caught only by `run.py`'s own internal
+`assert total_calls == 32`, which failed on first execution (`git log`:
+the failing run's console output is superseded by the corrected one
+below; the assert was corrected to 64 and the full run re-executed from
+scratch, since the crash occurred before `results.json` was written —
+no partial artifact existed to salvage without hand-typing figures from
+console text, which this program's own R4 discipline forbids). Non-
+load-bearing to any physics finding: the actual FDTD spend was always
+the complete, correct 64-call set (both conditions are required to
+compute `delta_scene` at all) — only the predicted/asserted count was
+wrong. Logged for Phase 5 as a genuine process finding: this program's
+own review pipeline (five blind critiques + Red Team) did not catch an
+arithmetic error in a parameter table, only the code's own execution
+did — worth Phase 5's explicit attention on whether this generalizes
+(a call-count arithmetic check is currently nobody's assigned duty
+across the seven charters).
+
+**64 real FDTD calls, 8077.1s (134.62 min) wall time** (materially
+longer than the ≈35-minute estimate scaled from exp-095's own pace —
+disclosed as a container/hardware timing difference, not a physics
+finding: a smaller validation batch, run separately before the full
+spend, reproduced exp-095's own filed Rank 1c `delta_scene` values
+**bit-exactly** at both 38.49° and 38.69°, confirming the pipeline
+itself, not just its speed, matches precedent). Trust suite
+re-confirmed green (41/41, `--only 12346789`) both before and after this
+cycle's full close; zero `lab/` diff throughout.
+
+**Item (i) — bracket the other three established cpl=20 nulls at
+cpl=40: MIXED**, neither family-wide-clean nor family-wide-defect.
+
+| Null | θ₀ (cpl=20) | Verdict | Crossing (cpl=40) |
+|---|---|---|---|
+| A | 37.127246° | **SIGN-CHANGE-FOUND** | ≈36.770358° |
+| B | 40.265420° | **SIGN-CHANGE-FOUND** | ≈39.921519° |
+| C | 41.460901° | **NO-SIGN-CHANGE** | — (same sign throughout, floor-clear at all 4 angles) |
+
+All 12 angles (3 nulls × 4) cleared `floor_pass=True` and the
+registration-readback pre-check CLEAN, at every one of the 48 real
+calls those 12 angles required — no ambiguous-floor result anywhere in
+item (i). Two of the three re-tested established cpl=20 nulls DO
+reproduce a genuine `delta_scene` sign change at cpl=40; one does not.
+Combined with θ₀≈38.590230° (item ii, below), **two of the four
+established cpl=20 nulls now share the "no cpl=40 crossing inside a
+naively-sized bracket" outcome, not one** — a materially different
+picture than exp-095's own single-null FAIL suggested, though item (ii)
+below shows that outcome is itself bracket-size-sensitive, so Null C's
+own NO-SIGN-CHANGE here is not yet re-tested at a wider bracket (see
+§Next).
+
+**Item (ii) — re-centered node-bracketing re-run at θ₀≈38.590230°:
+CONFIRM-migration-down.** A genuine sign change is found at
+**θ≈38.252279°**, strictly below exp-095's own original 38.49°/38.69°
+bracket (all 6 points in the combined 38.09°–38.69° span floor-clear):
+
+| θ | 38.09° | 38.19° | 38.29° | 38.39° | 38.49° (reused) | 38.69° (reused) |
+|---|---|---|---|---|---|---|
+| `delta_scene` | +1.038×10⁻³ | +4.091×10⁻⁴ | −2.478×10⁻⁴ | −8.999×10⁻⁴ | −1.517×10⁻³ | −2.539×10⁻³ |
+
+This **directly confirms the lower-θ-weighting hypothesis** stated in
+§Setup: the one directly analogous cross-resolution shift on file (Null
+B's own −0.194° cpl20→cpl30 migration, this cycle's own item (i)) DID
+predict the right direction. exp-095's Rank 1c FAIL is now best read as
+**a bracket-sizing failure (R17's own founding case, working as
+intended one cycle later), not a genuine absence of a crossing** — the
+true cpl=40 node for this feature sits ≈0.338° below θ₀, outside the
+±0.10° window Rank 1c originally tested.
+
+**MATERIALS' Richardson-style diagnostic (descriptive only,
+Idealization 49 — no continuum reference exists, NOT a formal
+convergence-order estimate):**
+
+| Null | shift 20→30 | shift 20→40 | observed ratio | naive 2nd-order-accurate ratio | same sign? |
+|---|---|---|---|---|---|
+| B | −0.193581° | −0.343900° | **1.777** | 0.5625 | yes |
+| A | no cpl=30 counterpart on file | — | — | — | — |
+| C | not applicable (NO-SIGN-CHANGE this cycle) | — | — | — | — |
+
+Only Null B has both shifts available. The observed ratio (1.78×) is
+**same-sign but far from** the naive uniform-2nd-order-accuracy
+expectation (0.5625×) — descriptively, the shift is GROWING faster than
+2nd-order convergence would predict, not shrinking toward it. This is
+flagged, not resolved: per Idealization 49, it does not by itself
+distinguish genuine (non-monotonic-in-magnitude) physical migration
+from a convergence order lower than 2, or from the near-null
+sensitivity R15 already warned about. One data point cannot settle
+this; a third resolution point at this SAME feature (cpl=50/R5, already
+built at exp-095, explicitly deferred) is the natural next test.
+
+**Item (v) — grazing-incidence instrument: a real, informative, mixed
+result.** **GP1 (passivity): PASS**, `min(C(θ)) = −0.4405 ≥ −1` at all
+120 swept points — no numerical defect. **GP2′ (redesigned amplitude
+probe): flags MARGINAL** (10×–1000× vs. the θ∈[30°,50°] reference band)
+continuously across **θ=50.5°–89.5°** — the ENTIRE upper half of the
+sweep, not a narrow band — with **zero INVALID (>1000×) points**
+anywhere in this specific curve. This flagged region **directly
+overlaps** the already-known exp-086 blow-up band (θc≈59°–73°),
+corroborating that finding via a structurally different instrument
+(a wide, coarse 0.5°-step sweep of the full model here, vs. exp-086's
+own narrow, fine-step windows centered at specific θc values there) —
+but the severity differs: this instrument's worst ratio — **235.4×, at
+θ=66.0°, itself squarely inside the exp-086 blow-up band** (verified
+directly from `results.json::item_v.gp2_curve`, not hand-typed: I
+initially drafted this as peaking near θ=89.5° and caught the error by
+re-reading the actual array before freezing this section, R4 applied to
+this very paragraph) — reads well below exp-086's own reported
+5,444×–6,631×, an expected, disclosed difference: exp-086 measured
+PEAK-TO-PEAK ripple within a narrow sliding window at fixed θc, this
+instrument measures a single point value against a fixed reference band
+— two different quantities probing the same underlying breakdown, not a
+discrepancy to resolve, and this instrument's own peak landing INSIDE
+the known band (not merely overlapping its edges) is a materially
+stronger corroboration than "the flagged range overlaps." **This
+cycle's own governance ask is genuinely, honestly discharged**: the
+instrument is no longer a deterministic non-test (Red Team's Attack 1
+is resolved — GP2′ produces a real, non-constant curve, `np.std` over
+the 120 `ratio_to_ref` values is nonzero, independently checkable in
+`results.json`), and it corroborates rather than contradicts the
+already-known failure mode, rather than certifying PASS/VALID blind to
+it. **GP3 (reciprocity): CONFIRMED degenerate**,
+`y_src == y_obs` holds by direct assertion — the single live answer in
+this geometry, as QUANTUM OPTICS found.
+
+**`netd_row()` coverage: PASS** — the mandatory build-time assert
+(`NETD_ROW_KEYS <= set(row.keys())`) held for all 64 real-FDTD report
+rows (item (i) 48 + item (ii) 16, the reused 38.49°/38.69° rows
+independently re-checked against the same key set from exp-095's own
+already-filed data) — enforced, not merely disclaimed (R16, in full,
+this time).
+
+**Item (iv): CLEAN, exactly as predicted.** `check5_recipe_spot_check_extended()`
+clean=True (reused from exp-097, unmodified). **FI-G′: CAUGHT at all
+three families** (R3/R4/R5) — the `native_absorb` corruption (41, not
+40) is detected via the `y_lo`/`y_hi` mismatch at every family, closing
+the gap the original FI-G left open (Idealization iv-c).
+
+## Learned
+
+1. **This program's own five-blind-critique-plus-Red-Team review process
+   has a real, demonstrated blind spot: parameter-table arithmetic.**
+   Six independent seats read the same "32 calls" table and none
+   flagged that it omitted the empty/article multiplier — every seat's
+   own discipline-specific lens (optical coherence, realizability,
+   energy budget, expressibility, perceptual thresholds, internal
+   consistency) had no natural angle on "does this multiplication check
+   out." Only the code's own execution caught it. Candidate fix for a
+   future cycle's governance docket: assign call-count arithmetic
+   verification explicitly (a natural fit for whichever seat is
+   already checking `results.json`'s own `fdtd_calls` field against the
+   frozen prediction — currently nobody's stated duty).
+2. **R17's bracket-sizing discipline, adopted one cycle after its own
+   founding defect (exp-095's undersized ±0.10° bracket), worked exactly
+   as intended one cycle later**: item (ii)'s wider, lower-θ-weighted
+   bracket found the crossing exp-095's own narrower bracket missed.
+   This is the sub-thread's first fully-worked example of an R-rule
+   closing the exact gap it was written for, not just preventing a
+   repeat in the abstract.
+3. **"Genuine migration vs. family-wide recipe defect" (this cycle's own
+   Hypothesis 1) resolved to neither cleanly** — it is feature-dependent
+   (2 of 3 tested nulls migrate, 1 does not, matching θ₀≈38.590230°'s
+   own now-resolved migration) but MATERIALS' own Phase-2 finding stands
+   unrefuted: without a convergence-order estimate, "migrates" and
+   "hasn't converged" remain observationally similar for any single
+   pairwise comparison. The Richardson-style diagnostic's own surprising
+   direction (growing faster than 2nd-order, not shrinking toward it)
+   makes this MORE open, not less — a genuine, disclosed, unresolved
+   finding for the next cycle.
+4. **A redesigned, genuinely θ-dependent instrument found something a
+   vacuous one could not, and it corroborated rather than contradicted
+   prior work.** This is the sub-thread's first cycle in several to
+   report a new, substantive FDTD-adjacent physics finding (rather than
+   another registration/gate-integrity result) — the grazing-incidence
+   governance ask, live since Iteration 64 (11 cycles), is genuinely
+   closed this cycle, not deferred a 12th time.
+
+## Next (Reconciled Iteration-76 queue, Director's draft — subject to
+Phase 5's own ranking)
+
+1. **Null C re-test at a wider, R17-compliant bracket.** This cycle's
+   ±0.5° bracket found NO-SIGN-CHANGE at θ₀=41.460901°, but item (ii)
+   just demonstrated a ±0.5°-scale bracket can still miss a real
+   crossing if it isn't also correctly CENTERED/weighted. Null C sits
+   near the historically ambiguous "double-crossing" region (the two
+   close cpl=30 crossings at 41.781067°/41.837653°, Iteration 70's own
+   single-smooth-trough finding) — a wider and/or asymmetric re-test,
+   informed by that precedent, is the natural next step, not a default
+   "NO-SIGN-CHANGE, closed" reading.
+2. **The cpl=50/R5 third resolution point at Null B and/or θ₀≈38.590230°**
+   (already built at exp-095, explicitly deferred, reuse not rebuild) —
+   the natural test of the Richardson-style diagnostic's own surprising
+   >2nd-order-looking growth, now that two of three needed resolution
+   points exist for at least one feature.
+3. **GP2′'s own severity gap vs. exp-086 warrants one direct
+   reconciliation run**: compute GP2′-style curve using exp-086's own
+   narrow-sliding-window method at this cycle's same θ range, to confirm
+   the two instruments are measuring the same underlying breakdown at
+   compatible severity once methodology is held constant (zero-FDTD,
+   reuses exp-086's own already-committed method).
+4. **Assign call-count arithmetic verification** as an explicit, named
+   duty in a future governance docket (Learned item 1) — a zero-cost,
+   high-value process fix.
+5. Idealizations 46/50 (this cycle's own bracket-scope and
+   model-vs-mechanism caveats) remain live and undischarged; no new
+   standing rule is proposed this cycle by the Director (Phase 5 may
+   disagree).
