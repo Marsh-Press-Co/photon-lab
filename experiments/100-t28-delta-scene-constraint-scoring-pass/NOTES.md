@@ -287,7 +287,21 @@ assumption — the construction it described no longer exists, per fix 4/5).
     finding, or any peak beyond 42.960901° where the signal was still
     climbing at the edge of exp-099's own tested span, remain unlocated).
     A clean Leg-B PASS bounds constraint-1/2 risk at these 6 specific
-    points only.
+    points only. **Correction (Red Team's Phase-5 final audit, caught by
+    no blind Phase-5 review): the 2 added points are only the largest
+    values in exp-099's own local subset, not in the full pooled
+    36°–43° table this cycle's own Tier 1 item 1 assembles — that pool's
+    own computed peak (Tier 2 Leg A's `peak_abs_delta_scene`) is
+    3.1495×10⁻³ at θ=39.2° (exp-095, same R4/cpl=40 family), 13% larger
+    in magnitude than either of Leg B's two added points. Fix 1's own
+    "two largest-magnitude already-filed values" claim is corrected here
+    to "two of the larger already-filed values, drawn from one
+    contributing experiment's own subset, not the full pool" — a real,
+    non-load-bearing (constraint-2's margin is orders of magnitude too
+    large for a 13% larger `delta_scene` to change; constraint-1 is
+    already UNINTERPRETABLE for an unrelated reason) citation-accuracy
+    defect, disclosed rather than silently reproduced. Iteration 78's own
+    re-run should re-select using the full pool.**
 69. Item 1(a)'s joint decision rule (fix 2, `p<0.05` AND `|r|≥0.2`) is a
     pre-registered convention, not a physically derived boundary — a
     different, equally defensible threshold could classify some borderline
@@ -438,7 +452,16 @@ scores). This clears `C_thr_lab=0.005` (63% of the bar) and
 contrast bound only, provisional pending T3** — not a completed
 Tier-W/Tier-A verdict — and per fix/Idealization 64, 600nm-only, with
 the established T21 750nm/θ=40° contamination-risk precedent (4.7×
-`C_thr` in this identical window) left untested this cycle.
+`C_thr` in this identical window) left untested this cycle. **Same-
+shift Phase-5 addition (Red Team's final audit, adopting VISION's
+Phase-5 finding): this PASS is additionally filed as instrument-
+characterization only, not a verdict on a confirmed article-coupled
+phenomenon** — per fix 3/Idealization 70's own ambiguous branch, Tier
+1 left `delta_scene`'s own mechanism identity (real diffraction fringe
+vs. domain/PAD artifact) unresolved this cycle. A Weber-contrast
+reading of an as-yet-unidentified signal is a materially different
+claim than the identical PASS number would be for a confirmed physical
+fringe, even though the arithmetic is unaffected either way.
 
 **Tier 2, Leg B — direct FDTD measurement: constraint 2 (specular
 return) result stands and PASSES; constraint 1 (beam termination)
@@ -492,6 +515,37 @@ papered over.**
   (window re-centered at `obj_y + Δy(θ)`, or a closed-box measurement
   matching `cell_metrics_r4`'s own established idiom) is queued for
   Iteration 78 (§Next).
+- **Thermal/energy sidecar (fix 7), narrated (same-shift Phase-5
+  addition, Red Team's final audit adopting THERMODYNAMICS' and EM's
+  Phase-5 findings — fix 7's persistence was already satisfied and
+  code-asserted; this closes only the separate gap that its own
+  headline finding was never stated in this section's prose).** All 12
+  `netd_row()` classifications (6 angles × `{C40_R4,G40_R4}`) read
+  **UNDETECTABLE**, `dt_ss_full_K` clustering 4.58×10⁻⁵–5.43×10⁻⁵ K —
+  consistent with every prior R4-family cell on file; this cycle's own
+  two new instruments raise no new re-radiation/detectability concern.
+  A genuine, previously-uncredited free byproduct: `ratio_abs_ext_raw_
+  {c,g}` sits at 0.5129–0.5153 at all 6 angles/both configs,
+  reconfirming T9's established ~0.51 anchor generalizes to the R4
+  family at oblique incidence (37°–43°) for the first time on this
+  specific bench.
+- **A Red-Team-Phase-5-caught angle-selection defect in fix 1 itself
+  (none of the six blind Phase-5 reviews caught this; disclosed here,
+  not silently corrected).** Fix 1's own text claimed the two added
+  angles are "the two largest-magnitude already-filed `delta_scene`
+  values in the characterized 36°–43° window" — but this searched only
+  `experiments/099-.../item_1.combined_report`, not the full pooled
+  table this cycle's own Tier 1 item 1 assembles from 7 directories.
+  That full pool's own computed peak (Tier 2 Leg A's own
+  `peak_abs_delta_scene`) is **3.1495×10⁻³ at θ=39.2°**
+  (`095-t28-r4-ground-truth-sign-control`, same R4/cpl=40 family) —
+  13% larger in magnitude than both of Leg B's added points
+  (2.778×10⁻³, 2.472×10⁻³). Leg B's own six angles are therefore NOT
+  the two largest-magnitude already-filed values in the full pool, only
+  in exp-099's own local subset of it — Idealization 68 is corrected
+  below to disclose this precisely, and Iteration 78's own re-run
+  should re-select using the full pool, not repeat the same
+  incomplete search.
 
 ## Learned
 
