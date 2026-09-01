@@ -1,0 +1,132 @@
+==============================================================================
+exp-098 -- T28 cpl=40 null bracketing + grazing-incidence instrument
+Panel Iteration 75, ELECTROMAGNETISM rotation lead
+==============================================================================
+
+[R13 floor gate] RMS[frac_contrast], n=31: 1.917438e-03  FLOOR=1.917438e-04  (unchanged, applied unrecomputed -- Idealization 6)
+
+==============================================================================
+ITEM (iv): Tier-0 documentation/code-correction bundle -- FI-G'
+==============================================================================
+[Check 5, R3/R4/R5, reused from exp-097] clean=True
+[FI-G', new] all_caught=True
+
+==============================================================================
+ITEM (i): bracket nulls A/B/C (cpl=20) at cpl=40, +/-0.500deg quartile-spaced
+==============================================================================
+
+[Null A] theta0(cpl20)=37.127246deg  angles=[36.627246, 36.960546, 37.293946, 37.627246]
+  [ 1/16] C40_R4   theta=+36.627 article=False steps=5600 sigma_max=None
+  [ 2/16] C40_R4   theta=+36.627 article=True steps=5600 sigma_max=0.25
+  [ 3/16] G40_R4   theta=+36.627 article=False steps=5600 sigma_max=None
+  [ 4/16] G40_R4   theta=+36.627 article=True steps=5600 sigma_max=0.25
+  [ 5/16] C40_R4   theta=+36.961 article=False steps=5600 sigma_max=None
+  [ 6/16] C40_R4   theta=+36.961 article=True steps=5600 sigma_max=0.25
+  [ 7/16] G40_R4   theta=+36.961 article=False steps=5600 sigma_max=None
+  [ 8/16] G40_R4   theta=+36.961 article=True steps=5600 sigma_max=0.25
+  [ 9/16] C40_R4   theta=+37.294 article=False steps=5600 sigma_max=None
+  [10/16] C40_R4   theta=+37.294 article=True steps=5600 sigma_max=0.25
+  [11/16] G40_R4   theta=+37.294 article=False steps=5600 sigma_max=None
+  [12/16] G40_R4   theta=+37.294 article=True steps=5600 sigma_max=0.25
+  [13/16] C40_R4   theta=+37.627 article=False steps=5600 sigma_max=None
+  [14/16] C40_R4   theta=+37.627 article=True steps=5600 sigma_max=0.25
+  [15/16] G40_R4   theta=+37.627 article=False steps=5600 sigma_max=None
+  [16/16] G40_R4   theta=+37.627 article=True steps=5600 sigma_max=0.25
+  wall=1998.9s (33.31 min)  calls=16  preflight_clean=True
+    theta=36.627246: delta_scene=-6.087977e-04  floor_pass=True
+    theta=36.960546: delta_scene=+8.090604e-04  floor_pass=True
+    theta=37.293946: delta_scene=+2.290055e-03  floor_pass=True
+    theta=37.627246: delta_scene=+2.774448e-03  floor_pass=True
+  [Null A] verdict=SIGN-CHANGE-FOUND  crossing=36.77035821175119
+
+[Null B] theta0(cpl20)=40.265420deg  angles=[39.76542, 40.09872, 40.43212, 40.76542]
+  [ 1/16] C40_R4   theta=+39.765 article=False steps=5600 sigma_max=None
+  [ 2/16] C40_R4   theta=+39.765 article=True steps=5600 sigma_max=0.25
+  [ 3/16] G40_R4   theta=+39.765 article=False steps=5600 sigma_max=None
+  [ 4/16] G40_R4   theta=+39.765 article=True steps=5600 sigma_max=0.25
+  [ 5/16] C40_R4   theta=+40.099 article=False steps=5600 sigma_max=None
+  [ 6/16] C40_R4   theta=+40.099 article=True steps=5600 sigma_max=0.25
+  [ 7/16] G40_R4   theta=+40.099 article=False steps=5600 sigma_max=None
+  [ 8/16] G40_R4   theta=+40.099 article=True steps=5600 sigma_max=0.25
+  [ 9/16] C40_R4   theta=+40.432 article=False steps=5600 sigma_max=None
+  [10/16] C40_R4   theta=+40.432 article=True steps=5600 sigma_max=0.25
+  [11/16] G40_R4   theta=+40.432 article=False steps=5600 sigma_max=None
+  [12/16] G40_R4   theta=+40.432 article=True steps=5600 sigma_max=0.25
+  [13/16] C40_R4   theta=+40.765 article=False steps=5600 sigma_max=None
+  [14/16] C40_R4   theta=+40.765 article=True steps=5600 sigma_max=0.25
+  [15/16] G40_R4   theta=+40.765 article=False steps=5600 sigma_max=None
+  [16/16] G40_R4   theta=+40.765 article=True steps=5600 sigma_max=0.25
+  wall=2012.6s (33.54 min)  calls=16  preflight_clean=True
+    theta=39.765420: delta_scene=-8.449996e-04  floor_pass=True
+    theta=40.098720: delta_scene=+9.592213e-04  floor_pass=True
+    theta=40.432120: delta_scene=+2.305983e-03  floor_pass=True
+    theta=40.765420: delta_scene=+2.715956e-03  floor_pass=True
+  [Null B] verdict=SIGN-CHANGE-FOUND  crossing=39.921519316666235
+
+[Null C] theta0(cpl20)=41.460901deg  angles=[40.960901, 41.294201, 41.627601, 41.960901]
+  [ 1/16] C40_R4   theta=+40.961 article=False steps=5600 sigma_max=None
+  [ 2/16] C40_R4   theta=+40.961 article=True steps=5600 sigma_max=0.25
+  [ 3/16] G40_R4   theta=+40.961 article=False steps=5600 sigma_max=None
+  [ 4/16] G40_R4   theta=+40.961 article=True steps=5600 sigma_max=0.25
+  [ 5/16] C40_R4   theta=+41.294 article=False steps=5600 sigma_max=None
+  [ 6/16] C40_R4   theta=+41.294 article=True steps=5600 sigma_max=0.25
+  [ 7/16] G40_R4   theta=+41.294 article=False steps=5600 sigma_max=None
+  [ 8/16] G40_R4   theta=+41.294 article=True steps=5600 sigma_max=0.25
+  [ 9/16] C40_R4   theta=+41.628 article=False steps=5600 sigma_max=None
+  [10/16] C40_R4   theta=+41.628 article=True steps=5600 sigma_max=0.25
+  [11/16] G40_R4   theta=+41.628 article=False steps=5600 sigma_max=None
+  [12/16] G40_R4   theta=+41.628 article=True steps=5600 sigma_max=0.25
+  [13/16] C40_R4   theta=+41.961 article=False steps=5600 sigma_max=None
+  [14/16] C40_R4   theta=+41.961 article=True steps=5600 sigma_max=0.25
+  [15/16] G40_R4   theta=+41.961 article=False steps=5600 sigma_max=None
+  [16/16] G40_R4   theta=+41.961 article=True steps=5600 sigma_max=0.25
+  wall=1964.1s (32.73 min)  calls=16  preflight_clean=True
+    theta=40.960901: delta_scene=+2.471869e-03  floor_pass=True
+    theta=41.294201: delta_scene=+1.512684e-03  floor_pass=True
+    theta=41.627601: delta_scene=+5.854146e-04  floor_pass=True
+    theta=41.960901: delta_scene=+4.704114e-04  floor_pass=True
+  [Null C] verdict=NO-SIGN-CHANGE  crossing=None
+
+[Item (i) SUMMARY] family verdict=MIXED
+[Richardson-style diagnostic, descriptive only] B={'available': True, 'shift_20_30': -0.1935812644838535, 'shift_20_40': -0.34390028639148795, 'observed_ratio': 1.7765163757372424, 'naive_order2_ratio': 0.5625, 'same_sign_as_20_30': True, 'note': 'descriptive only -- no continuum reference exists; not a formal order estimate (Idealization 49)'}  C={'available': False}  A={'available': False, 'note': 'no cpl=30 counterpart on file for null A (theta0=37.127246deg)'}
+
+==============================================================================
+ITEM (ii): re-centered node-bracketing re-run at theta0~=38.590230deg
+==============================================================================
+  [ 1/16] C40_R4   theta=+38.090 article=False steps=5600 sigma_max=None
+  [ 2/16] C40_R4   theta=+38.090 article=True steps=5600 sigma_max=0.25
+  [ 3/16] G40_R4   theta=+38.090 article=False steps=5600 sigma_max=None
+  [ 4/16] G40_R4   theta=+38.090 article=True steps=5600 sigma_max=0.25
+  [ 5/16] C40_R4   theta=+38.190 article=False steps=5600 sigma_max=None
+  [ 6/16] C40_R4   theta=+38.190 article=True steps=5600 sigma_max=0.25
+  [ 7/16] G40_R4   theta=+38.190 article=False steps=5600 sigma_max=None
+  [ 8/16] G40_R4   theta=+38.190 article=True steps=5600 sigma_max=0.25
+  [ 9/16] C40_R4   theta=+38.290 article=False steps=5600 sigma_max=None
+  [10/16] C40_R4   theta=+38.290 article=True steps=5600 sigma_max=0.25
+  [11/16] G40_R4   theta=+38.290 article=False steps=5600 sigma_max=None
+  [12/16] G40_R4   theta=+38.290 article=True steps=5600 sigma_max=0.25
+  [13/16] C40_R4   theta=+38.390 article=False steps=5600 sigma_max=None
+  [14/16] C40_R4   theta=+38.390 article=True steps=5600 sigma_max=0.25
+  [15/16] G40_R4   theta=+38.390 article=False steps=5600 sigma_max=None
+  [16/16] G40_R4   theta=+38.390 article=True steps=5600 sigma_max=0.25
+  wall=2051.0s (34.18 min)  calls=16
+    theta=38.090000: delta_scene=+1.038284e-03
+    theta=38.190000: delta_scene=+4.090528e-04
+    theta=38.290000: delta_scene=-2.477514e-04
+    theta=38.390000: delta_scene=-8.999610e-04
+    theta=38.490000: delta_scene=-1.516840e-03
+    theta=38.690000: delta_scene=-2.538531e-03
+[Item (ii) SUMMARY] verdict=CONFIRM-migration-down  crossing=38.25227925382004  span=38.09-38.69deg
+
+==============================================================================
+ITEM (v): grazing-incidence instrument (GP1/GP2'/GP3), 0 FDTD calls
+==============================================================================
+[GP1] min(C(theta))=-4.405432e-01  pass=True
+[GP2'] flagged_band=(np.float64(50.5), 89.5)  overlaps_known_exp086_blowup(59-73deg)=True
+[GP3] y_src==y_obs (degenerate)=True
+
+==============================================================================
+TOTAL: 64 real FDTD calls, 8077.1s (134.62 min) wall time
+==============================================================================
+
+results.json written.
