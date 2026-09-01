@@ -199,22 +199,30 @@ def find_sign_change(angles_sorted, delta_scene_by_angle):
     return None, None
 
 
-def richardson_style_diagnostic(shift_20_30, shift_20_40, cpl20=20, cpl30=30, cpl40=40):
-    """Explicitly DESCRIPTIVE (Idealization 49) -- not a formal Richardson
-    extrapolation / convergence-order estimate: no continuum (converged)
-    reference value exists anywhere in this program's record to anchor
-    one. Reports the observed pairwise-shift ratio alongside the naive
-    ratio a uniform 2nd-order-accurate (Yee-grid-typical) error scaling
-    would predict, purely as a sanity comparison."""
-    if shift_20_40 is None or shift_20_30 in (None, 0.0):
+def richardson_style_diagnostic(shift_20_30, shift_30_40, cpl20=20, cpl30=30, cpl40=40):
+    """CORRECTED (Red Team Phase-5 final audit, Iteration 75 -- MATERIALS'
+    finding, independently re-derived and adopted): the original version
+    of this function divided a CUMULATIVE cpl20->40 shift by a MARGINAL
+    cpl20->30 shift, a category-mismatched comparison. This version takes
+    the two MARGINAL shifts directly (cpl20->30 and cpl30->40) and reports
+    their ratio. Still explicitly DESCRIPTIVE (Idealization 49) -- not a
+    formal Richardson extrapolation / convergence-order estimate: no
+    continuum (converged) reference value exists anywhere in this
+    program's record to anchor one. `naive_order2_ratio` is unchanged by
+    this fix -- (h40/h20)**2/(h30/h20)**2 algebraically simplifies to
+    (h40/h30)**2 regardless of h20, so it was already the correct
+    marginal-pair grid-ratio-squared comparison target; only the observed
+    ratio's own numerator/denominator pairing was wrong."""
+    if shift_30_40 is None or shift_20_30 in (None, 0.0):
         return dict(available=False)
-    observed_ratio = shift_20_40 / shift_20_30
-    h20, h30, h40 = 1.0 / cpl20, 1.0 / cpl30, 1.0 / cpl40
-    naive_order2_ratio = (h40 / h20) ** 2 / (h30 / h20) ** 2
-    return dict(available=True, shift_20_30=shift_20_30, shift_20_40=shift_20_40,
+    observed_ratio = shift_30_40 / shift_20_30
+    h30, h40 = 1.0 / cpl30, 1.0 / cpl40
+    naive_order2_ratio = (h40 / h30) ** 2
+    return dict(available=True, shift_20_30=shift_20_30, shift_30_40=shift_30_40,
                 observed_ratio=observed_ratio, naive_order2_ratio=naive_order2_ratio,
-                same_sign_as_20_30=bool((shift_20_30 < 0) == (shift_20_40 < 0)),
-                note="descriptive only -- no continuum reference exists; not a formal order estimate (Idealization 49)")
+                same_sign_as_20_30=bool((shift_20_30 < 0) == (shift_30_40 < 0)),
+                note="descriptive only -- marginal-to-marginal pairing (corrected, Phase-5 Red Team "
+                     "audit); no continuum reference exists; not a formal order estimate (Idealization 49)")
 
 
 # ================================================================ item (v): grazing-incidence instrument (0 FDTD calls)
@@ -334,6 +342,43 @@ def run_fi_g_prime():
     return out
 
 
+def run_fi_g_double_prime():
+    """FI-G'' (new, same-shift correction, Red Team Phase-5 final audit,
+    Iteration 75 -- QUANTUM OPTICS' finding, independently confirmed:
+    exp-097's own Next queue named this scenario by name and exp-098
+    silently dropped it). `native_absorb` corruption alone (FI-G') moves
+    y_lo and y_hi TOGETHER (y_hi = ny - y_lo, so an absorb-only corruption
+    shifts both), leaving `native_ny` -- the only input that can move
+    y_hi INDEPENDENTLY of y_lo -- with zero fault-injection coverage
+    across this program's entire history. This closes that gap: native_ny
+    corrupted to 1585 (true: 1584), native_absorb held correct at 40,
+    scored against all three families' y_lo/y_hi recomputation. Zero new
+    Sim constructions."""
+    native_src_x, native_absorb, native_ny = 300, 40, 1585  # native_ny corrupted: 1585, not 1584
+    dg097 = exp097.dg
+    out = {}
+    for family, ratio, target in [
+        ("R3", 1.5, dg097.R3_CONFIGS["C40_R3"]),
+        ("R4", 2.0, dg097.R4_CONFIGS["C40_R4"]),
+        ("R5", 2.5, dg097.R5_CONFIGS["C40_R5"]),
+    ]:
+        src_x = round(native_src_x * ratio) + 0
+        absorb = round(native_absorb * ratio)
+        ny = round(native_ny * ratio) + 0
+        y_lo = absorb + 0
+        y_hi = ny - y_lo
+        y_lo_ok = (y_lo == target["y_lo"])
+        y_hi_ok = (y_hi == target["y_hi"])
+        caught = bool(not y_lo_ok or not y_hi_ok)
+        out[family] = dict(y_lo_recomputed=y_lo, y_hi_recomputed=y_hi,
+                            y_lo_stored=target["y_lo"], y_hi_stored=target["y_hi"],
+                            y_lo_moved=bool(not y_lo_ok), y_hi_moved=bool(not y_hi_ok),
+                            caught_as_defect=caught)
+    out["all_caught"] = all(out[f]["caught_as_defect"] for f in ("R3", "R4", "R5"))
+    out["y_lo_independent_of_corruption"] = all(not out[f]["y_lo_moved"] for f in ("R3", "R4", "R5"))
+    return out
+
+
 # ================================================================ main
 def main():
     t0 = time.time()
@@ -348,13 +393,20 @@ def main():
 
     # ---- item (iv): Tier-0 doc/code bundle ----
     print("\n" + "=" * 78)
-    print("ITEM (iv): Tier-0 documentation/code-correction bundle -- FI-G'")
+    print("ITEM (iv): Tier-0 documentation/code-correction bundle -- FI-G'/FI-G''")
     print("=" * 78)
     check5_extended = check5_recipe_spot_check_extended()
     fi_g_prime = run_fi_g_prime()
+    fi_g_double_prime = run_fi_g_double_prime()
     print(f"[Check 5, R3/R4/R5, reused from exp-097] clean={check5_extended['clean']}")
-    print(f"[FI-G', new] all_caught={fi_g_prime['all_caught']}")
+    print(f"[FI-G', native_absorb corruption] all_caught={fi_g_prime['all_caught']}")
     assert fi_g_prime["all_caught"], "FI-G' FAILED to catch native_absorb corruption -- HALT"
+    print(f"[FI-G'', new (same-shift fix, Red Team Phase-5 audit), native_ny corruption] "
+          f"all_caught={fi_g_double_prime['all_caught']}  "
+          f"y_lo_independent_of_corruption={fi_g_double_prime['y_lo_independent_of_corruption']}")
+    assert fi_g_double_prime["all_caught"], "FI-G'' FAILED to catch native_ny corruption -- HALT"
+    assert fi_g_double_prime["y_lo_independent_of_corruption"], (
+        "FI-G'' sanity check failed -- native_ny corruption should not move y_lo; HALT")
 
     # ---- item (i): bracket the other three established cpl=20 nulls at cpl=40 ----
     print("\n" + "=" * 78)
@@ -399,11 +451,14 @@ def main():
         item_i_family_verdict = "MIXED"
     print(f"\n[Item (i) SUMMARY] family verdict={item_i_family_verdict}")
 
-    # MATERIALS' Richardson-style diagnostic (descriptive only, Idealization 49)
-    richardson_B = richardson_style_diagnostic(SHIFT_20_30_B, item_i["B"]["crossing_cpl40"] and
-                                                (item_i["B"]["crossing_cpl40"] - THETA0_B))
-    richardson_C = richardson_style_diagnostic(SHIFT_20_30_C, item_i["C"]["crossing_cpl40"] and
-                                                (item_i["C"]["crossing_cpl40"] - THETA0_C))
+    # MATERIALS' Richardson-style diagnostic (descriptive only, Idealization 49),
+    # marginal-to-marginal pairing (corrected, Red Team Phase-5 final audit)
+    theta_cpl30_B = THETA0_B + SHIFT_20_30_B
+    shift_30_40_B = (item_i["B"]["crossing_cpl40"] - theta_cpl30_B) if item_i["B"]["crossing_cpl40"] is not None else None
+    richardson_B = richardson_style_diagnostic(SHIFT_20_30_B, shift_30_40_B)
+    theta_cpl30_C = THETA0_C + SHIFT_20_30_C
+    shift_30_40_C = (item_i["C"]["crossing_cpl40"] - theta_cpl30_C) if item_i["C"]["crossing_cpl40"] is not None else None
+    richardson_C = richardson_style_diagnostic(SHIFT_20_30_C, shift_30_40_C)
     richardson_A = dict(available=False, note="no cpl=30 counterpart on file for null A (theta0=37.127246deg)")
     print(f"[Richardson-style diagnostic, descriptive only] B={richardson_B}  C={richardson_C}  A={richardson_A}")
 
@@ -435,11 +490,25 @@ def main():
     else:
         item_ii_verdict = "REFUTE-down-CONFIRM-neither"
     print(f"[Item (ii) SUMMARY] verdict={item_ii_verdict}  crossing={crossing_ii}  span=38.09-38.69deg")
+
+    # Idealization 47 fix (same-shift correction, Red Team Phase-5 final
+    # audit, THERMODYNAMICS' bonus finding, independently confirmed): the
+    # frozen text claimed the reused 38.49/38.69deg rows were "re-verified
+    # this cycle by running that same [registration-readback] gate" --
+    # false as originally coded (registration_preflight() was only ever
+    # called with NEW angles). Making the claim true, rather than writing
+    # around it: explicitly run the same gate against the reused points.
+    reused_preflight = registration_preflight([38.49, 38.69])
+    print(f"[Idealization 47 fix] registration gate re-run against reused 38.49/38.69deg points: "
+          f"all_clean={reused_preflight['all_clean']}")
+    assert reused_preflight["all_clean"], "registration gate FAILED on reused Rank-1c points -- HALT"
+
     item_ii = dict(theta0_cpl20=THETA0_38590, new_angles=NEW_ANGLES_II,
                    reused_angles_from_exp095=[38.49, 38.69], combined_angles=combined_angles,
                    combined_report=combined_report, all_floor_pass=combined_all_floor_pass,
                    crossing_cpl40=crossing_ii, crossing_bracket=bracket_ii, verdict=item_ii_verdict,
-                   wall_s=batch_ii["wall_s"], n_calls=batch_ii["n_calls"], preflight=batch_ii["preflight"])
+                   wall_s=batch_ii["wall_s"], n_calls=batch_ii["n_calls"], preflight=batch_ii["preflight"],
+                   reused_points_registration_check=reused_preflight)
 
     # ---- item (v): grazing-incidence instrument ----
     print("\n" + "=" * 78)
@@ -469,20 +538,58 @@ def main():
     for row in all_netd_rows:
         assert NETD_ROW_KEYS <= set(row.keys()), "MANDATORY netd_row() coverage assert failed at final aggregation"
 
+    # New standing rule (Red Team Phase-5 final audit, Iteration 75, ADOPTED
+    # NOW as an explicit exception to the usual cross-cycle cadence): any
+    # count of FDTD calls, report rows, or data points must be backed by an
+    # explicit, checkable assert distinguishing call-count from
+    # distinct-row/data-point-count wherever both exist in the same
+    # computation -- a code-enforced invariant, not a reviewer's manual
+    # cross-check. n_rows_new counts item(i)'s 12 + item(ii)'s 4 new angle
+    # points (NOT legs, NOT empty/article conditions); n_rows_total adds
+    # the 2 reused points from exp-095. Each row costs exactly 4 real FDTD
+    # calls (2 configs x 2 conditions) -- fdtd_calls == n_rows_new * 4.
+    n_rows_new = len(item_i["A"]["angles"]) + len(item_i["B"]["angles"]) + len(item_i["C"]["angles"]) + len(NEW_ANGLES_II)
+    n_rows_total_incl_reused = n_rows_new + len(item_ii["reused_angles_from_exp095"])
+    assert n_rows_new == 16, f"expected 16 new distinct rows, got {n_rows_new}"
+    assert n_rows_total_incl_reused == 18, f"expected 18 total distinct rows incl. reused, got {n_rows_total_incl_reused}"
+    assert total_calls == n_rows_new * 4, (
+        f"call-count/row-count invariant FAILED: {total_calls} calls != {n_rows_new} rows * 4")
+
     total_wall = time.time() - t0
     print(f"\n{'=' * 78}\nTOTAL: {total_calls} real FDTD calls, {total_wall:.1f}s "
           f"({total_wall / 60.0:.2f} min) wall time\n{'=' * 78}")
 
     results = dict(
         experiment="exp-098", panel_iteration=75,
-        fdtd_calls=total_calls, wall_time_s=total_wall,
+        fdtd_calls=total_calls, n_rows_new=n_rows_new, n_rows_total_incl_reused=n_rows_total_incl_reused,
+        wall_time_s=total_wall,
         r13_floor_gate=dict(floor=floor, rms=rms, n83=n83),
-        item_iv=dict(check5_extended=check5_extended, fi_g_prime=fi_g_prime),
+        item_iv=dict(check5_extended=check5_extended, fi_g_prime=fi_g_prime,
+                     fi_g_double_prime=fi_g_double_prime),
         item_i=item_i, item_i_family_verdict=item_i_family_verdict,
         richardson_diagnostic=dict(A=richardson_A, B=richardson_B, C=richardson_C),
         item_ii=item_ii,
         item_v=item_v,
-        netd_row_coverage_assert="PASS -- all rows carry all 10 keys",
+        gp2_vs_exp086_disclosure=(
+            "GP2' and exp-086's own ptp method are two post-processing statistics computed from the "
+            "IDENTICAL closed-form formula (edge_diffraction_c_empty_corrected), not independent "
+            "physical instruments -- their agreement corroborates the same underlying model behavior "
+            "read two ways, not two separate measurements of reality (QUANTUM OPTICS, Phase-5 finding, "
+            "adopted by Red Team)."
+        ),
+        gp1_framing_correction=(
+            "GP1 is a non-negativity check on a windowed Poynting-flux component, motivated by the "
+            "absence of any gain mechanism in this source-driven construction -- not a direct corollary "
+            "of Poynting's/passivity theorems applied to this specific window (those bound NET flux "
+            "through a closed surface, not one windowed local vector component in an interference "
+            "pattern, where local backflow is ordinary). The PASS result is correct; the original "
+            "'hard passivity floor' language oversold its derivation (ELECTROMAGNETISM self-review, "
+            "adopted by Red Team)."
+        ),
+        netd_row_coverage_assert=(
+            f"PASS -- all {n_rows_total_incl_reused} distinct report rows ({n_rows_new} new, "
+            f"backed by {total_calls} real FDTD calls, plus 2 reused from exp-095) carry all 10 keys"
+        ),
         idealization_40_correction=(
             "cpl_ok alone already discriminates every currently-possible family mislabel among "
             "R3/R4/R5, since CPL={R3:30,R4:40,R5:50} is injective -- independently re-confirmed by "

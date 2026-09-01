@@ -1,0 +1,7 @@
+[Fix 1] Richardson B (corrected): {'available': True, 'shift_20_30': -0.1935812644838535, 'shift_30_40': -0.15031902190763446, 'observed_ratio': 0.7765163757372424, 'naive_order2_ratio': 0.5625, 'same_sign_as_20_30': True, 'note': 'descriptive only -- marginal-to-marginal pairing (corrected, Phase-5 Red Team audit); no continuum reference exists; not a formal order estimate (Idealization 49)'}
+[Fix 7] FI-G'': all_caught=True  y_lo_independent_of_corruption=True
+[Fix 5] reused-points registration gate: all_clean=True
+[Fix 3] n_rows_new=16  n_rows_total_incl_reused=18  fdtd_calls=64
+[Fix 2] band [50.5,89.5]: 9 VALID [52.0, 52.5, 53.0, 53.5, 54.0, 54.5, 60.5, 61.0, 69.5], 70 MARGINAL; tail [74,89.5]: 32 points, 0 VALID (0 = no recovery)
+
+results.json updated with Phase-5 same-shift fixes.

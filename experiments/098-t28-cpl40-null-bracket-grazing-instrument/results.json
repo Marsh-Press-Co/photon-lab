@@ -62,6 +62,37 @@
         "caught_as_defect": true
       },
       "all_caught": true
+    },
+    "fi_g_double_prime": {
+      "R3": {
+        "y_lo_recomputed": 60,
+        "y_hi_recomputed": 2318,
+        "y_lo_stored": 60,
+        "y_hi_stored": 2316,
+        "y_lo_moved": false,
+        "y_hi_moved": true,
+        "caught_as_defect": true
+      },
+      "R4": {
+        "y_lo_recomputed": 80,
+        "y_hi_recomputed": 3090,
+        "y_lo_stored": 80,
+        "y_hi_stored": 3088,
+        "y_lo_moved": false,
+        "y_hi_moved": true,
+        "caught_as_defect": true
+      },
+      "R5": {
+        "y_lo_recomputed": 100,
+        "y_hi_recomputed": 3862,
+        "y_lo_stored": 100,
+        "y_hi_stored": 3860,
+        "y_lo_moved": false,
+        "y_hi_moved": true,
+        "caught_as_defect": true
+      },
+      "all_caught": true,
+      "y_lo_independent_of_corruption": true
     }
   },
   "item_i": {
@@ -726,11 +757,11 @@
     "B": {
       "available": true,
       "shift_20_30": -0.1935812644838535,
-      "shift_20_40": -0.34390028639148795,
-      "observed_ratio": 1.7765163757372424,
+      "shift_30_40": -0.15031902190763446,
+      "observed_ratio": 0.7765163757372424,
       "naive_order2_ratio": 0.5625,
       "same_sign_as_20_30": true,
-      "note": "descriptive only -- no continuum reference exists; not a formal order estimate (Idealization 49)"
+      "note": "descriptive only -- marginal-to-marginal pairing (corrected, Phase-5 Red Team audit); no continuum reference exists; not a formal order estimate (Idealization 49)"
     },
     "C": {
       "available": false
@@ -986,6 +1017,76 @@
           "theta_intended": 38.39,
           "cpl_actual": 40,
           "theta_actual": 38.39,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        }
+      ]
+    },
+    "reused_points_registration_check": {
+      "n_points": 4,
+      "all_clean": true,
+      "checks": [
+        {
+          "family": "R4",
+          "config_key": "C40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 38.49,
+          "cpl_actual": 40,
+          "theta_actual": 38.49,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        },
+        {
+          "family": "R4",
+          "config_key": "G40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 38.49,
+          "cpl_actual": 40,
+          "theta_actual": 38.49,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        },
+        {
+          "family": "R4",
+          "config_key": "C40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 38.69,
+          "cpl_actual": 40,
+          "theta_actual": 38.69,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        },
+        {
+          "family": "R4",
+          "config_key": "G40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 38.69,
+          "cpl_actual": 40,
+          "theta_actual": 38.69,
           "edge_actual": 80,
           "check1_resolution": true,
           "check2_angle_spec": true,
@@ -1846,9 +1947,44 @@
       }
     ],
     "gp3_y_src_equals_y_obs": true,
-    "gp3_note": "obliquity is symmetric purely because y_src/y_obs share one construction and one shared d_sp -- there was never a second, independently-defined observer-side obliquity to compare against in this geometry (QUANTUM OPTICS, adopted verbatim)."
+    "gp3_note": "obliquity is symmetric purely because y_src/y_obs share one construction and one shared d_sp -- there was never a second, independently-defined observer-side obliquity to compare against in this geometry (QUANTUM OPTICS, adopted verbatim).",
+    "gp2_band_exact_counts": {
+      "band": "[50.5,89.5]deg",
+      "valid_thetas": [
+        52.0,
+        52.5,
+        53.0,
+        53.5,
+        54.0,
+        54.5,
+        60.5,
+        61.0,
+        69.5
+      ],
+      "n_valid": 9,
+      "n_marginal": 70,
+      "n_invalid": 0,
+      "tail_band": "[74.0,89.5]deg",
+      "tail_n_points": 32,
+      "tail_n_valid": 0,
+      "correction_note": "Result's original 'flags MARGINAL continuously... the ENTIRE upper half' overclaimed -- 9 VALID points are interspersed (incl. theta=69.5deg, itself inside the exp-086 corroboration band), and the 74-89.5deg tail shows 0 recovery (0/32 VALID), a shape divergence from exp-086's own trend never surfaced in the original Result text."
+    }
   },
-  "netd_row_coverage_assert": "PASS -- all rows carry all 10 keys",
+  "netd_row_coverage_assert": "PASS -- all 18 distinct report rows (16 new, backed by 64 real FDTD calls, plus 2 reused from exp-095) carry all 10 keys",
   "idealization_40_correction": "cpl_ok alone already discriminates every currently-possible family mislabel among R3/R4/R5, since CPL={R3:30,R4:40,R5:50} is injective -- independently re-confirmed by QUANTUM OPTICS this cycle -- not merely 'safe because gated behind family_ok' as exp-097's own text claimed.",
-  "quantum_echo_logged": "QUANTUM OPTICS' own exp-097 Phase-5 self-review independently repeated this exact Idealization-40 mischaracterization -- the first instance of an R18-class scope error occurring inside a review document itself, not a proposal."
+  "quantum_echo_logged": "QUANTUM OPTICS' own exp-097 Phase-5 self-review independently repeated this exact Idealization-40 mischaracterization -- the first instance of an R18-class scope error occurring inside a review document itself, not a proposal.",
+  "n_rows_new": 16,
+  "n_rows_total_incl_reused": 18,
+  "gp2_vs_exp086_disclosure": "GP2' and exp-086's own ptp method are two post-processing statistics computed from the IDENTICAL closed-form formula (edge_diffraction_c_empty_corrected), not independent physical instruments -- their agreement corroborates the same underlying model behavior read two ways, not two separate measurements of reality (QUANTUM OPTICS, Phase-5 finding, adopted by Red Team).",
+  "gp1_framing_correction": "GP1 is a non-negativity check on a windowed Poynting-flux component, motivated by the absence of any gain mechanism in this source-driven construction -- not a direct corollary of Poynting's/passivity theorems applied to this specific window (those bound NET flux through a closed surface, not one windowed local vector component in an interference pattern, where local backflow is ordinary). The PASS result is correct; the original 'hard passivity floor' language oversold its derivation (ELECTROMAGNETISM self-review, adopted by Red Team).",
+  "phase5_same_shift_fixes_applied": [
+    "1. Richardson diagnostic corrected: marginal-to-marginal pairing (was cumulative/marginal)",
+    "2. GP2' Result overclaim corrected: exact VALID/MARGINAL counts added (gp2_band_exact_counts)",
+    "3. Row-count vs call-count: n_rows_new/n_rows_total_incl_reused added, code-enforced invariant asserted",
+    "4. GP1 framing corrected: gp1_framing_correction field added",
+    "5. Idealization 47: reused-points registration gate actually executed (item_ii.reused_points_registration_check)",
+    "6. Banner placement: fixed directly in NOTES.md (no results.json field)",
+    "7. FI-G'' executed: item_iv.fi_g_double_prime",
+    "8. GP2'/exp-086 disclosure added: gp2_vs_exp086_disclosure"
+  ]
 }

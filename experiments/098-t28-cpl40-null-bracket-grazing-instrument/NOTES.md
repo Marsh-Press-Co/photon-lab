@@ -343,6 +343,13 @@ grep before the cycle closes (VISION SCIENCE's fix, Attack 8).**
 
 ## Predictions (frozen before any Phase-4 code exists)
 
+**Carried idealizations banner (duplicated here into the Predictions
+section body itself, same-shift fix, Red Team Phase-5 final audit —
+VISION SCIENCE found the §Idealizations closing paragraph named this
+section without a banner sentence physically inside it): every
+prediction below is governed by Idealizations 1/7/17/38/39/42 plus this
+cycle's own 46–52 (§Idealizations above).**
+
 | Item | Metric | Predicted band / criterion | Confident lean? |
 |---|---|---|---|
 | (i) A/B/C | `delta_scene(θ)` sign, all 4 angles/null, both legs | **PASS-family-clean**: all three nulls show a sign change *somewhere* inside their ±0.5° bracket → feature-dependent migration, matching θ₀=38.590°'s FAIL as the outlier. **FAIL-family-wide**: all three show NO sign change (same-sign, floor-clear) → points toward a family-wide cpl=40 recipe defect. No confident lean — genuine open question; per Idealization 17/MATERIALS' finding, EITHER outcome is also consistent with unconverged discretization, stated explicitly in Result regardless of which outcome obtains. |
@@ -510,8 +517,137 @@ this time).
 **Item (iv): CLEAN, exactly as predicted.** `check5_recipe_spot_check_extended()`
 clean=True (reused from exp-097, unmodified). **FI-G′: CAUGHT at all
 three families** (R3/R4/R5) — the `native_absorb` corruption (41, not
-40) is detected via the `y_lo`/`y_hi` mismatch at every family, closing
-the gap the original FI-G left open (Idealization iv-c).
+40) is detected via the `y_lo`/`y_hi` mismatch at every family. This
+closes only the `absorb`-driven half of the y_lo/y_hi coverage gap — see
+Phase 5 corrections item 7 below; it does NOT independently exercise
+`native_ny`, as this section's own "closing the gap the original FI-G
+left open" claim overstated (T10: flagged here, not silently rewritten).
+
+## Phase 5 corrections (same-shift, Red Team final audit — flagged per
+T10, not silently rewritten into the Result prose above)
+
+All six blind Phase-5 reviews returned CONCUR-WITH-GAP(S); Red Team's
+final audit independently re-verified every finding from source and
+ADOPTED all six plus one bonus self-found defect (Idealization 47).
+None changes a PASS/FAIL classification or a crossing value already on
+file — all are zero-FDTD, zero-new-`sim.run()`-call prose/formula/
+scoping corrections, applied via `phase5_same_shift_fixes.py` (which
+recomputes every corrected figure from the actual committed function,
+never hand-typed) plus this document. Full detail:
+`phase5_redteam.md`.
+
+1. **Richardson diagnostic (MATERIALS, adopted).** `richardson_style_diagnostic()`
+   divided a CUMULATIVE cpl20→40 shift by a MARGINAL cpl20→30 shift — a
+   category-mismatched comparison. **Corrected**: the properly-paired
+   marginal-to-marginal ratio (cpl30→40 shift ÷ cpl20→30 shift) is
+   **0.777** (SHRINKING, same sign), not the originally-reported 1.777
+   (growing) — reversing the direction of the finding. Above (§Result,
+   Null B's own Richardson row) and Learned #3's "growing faster than
+   2nd-order... MORE open, not less" no longer hold: the corrected
+   reading is mildly **reassuring**, not alarming — same-sign, and only
+   ~38% off the naive 2nd-order-accurate expectation (0.5625) rather
+   than 3.16× off in the wrong direction. `run.py`'s own function and
+   call site are corrected at source; `results.json::richardson_diagnostic.B`
+   now reports the corrected pairing.
+2. **GP2′ Result overclaim (PHOTONICS + THERMODYNAMICS, independently
+   convergent, adopted).** Above (§Result, item v), "flags MARGINAL
+   continuously... the ENTIRE upper half" is factually wrong against
+   `results.json::item_v.gp2_curve`: **9 VALID points are interspersed**
+   in the 50.5°–89.5° band (52.0°, 52.5°, 53.0°, 53.5°, 54.0°, 54.5°,
+   60.5°, 61.0°, 69.5°) — not a solid band. Notably **θ=69.5° reads
+   VALID despite sitting INSIDE** the θc≈59°–73° corroboration band.
+   Separately, the **74°–89.5° tail shows ZERO recovery** (0/32 points
+   VALID) — a shape divergence from exp-086's own trend (which recovers
+   below its pre-peak shoulder by θc=75°–77°) never surfaced in the
+   original Result text (PHOTONICS). Exact counts now persisted at
+   `results.json::item_v.gp2_band_exact_counts`.
+3. **Row-count vs. call-count (THERMODYNAMICS + ELECTROMAGNETISM,
+   independently convergent, adopted) — a THIRD instance of this
+   cycle's own named error class.** Above (§Result), "held for all 64
+   real-FDTD report rows" mislabels the call count (64) as a row count.
+   The actual distinct row/data-point count is **16 new (18 including
+   the 2 reused from exp-095)**; each row costs 4 real FDTD calls (2
+   configs × 2 conditions) — `64 = 16 × 4`. `results.json` now carries
+   `n_rows_new`/`n_rows_total_incl_reused` and a code-enforced assert
+   (`fdtd_calls == n_rows_new * 4`) in `run.py`, per the new standing
+   rule (below).
+4. **GP1 framing (ELECTROMAGNETISM self-review, adopted).** Above
+   (§Setup item v and §Result), "a hard passivity floor... for this
+   lossless, source-driven field superposition" oversells its own
+   derivation: `weber()`/`window_means()` (`lab/ambient.py`) compute a
+   windowed mean of a signed local Poynting-vector component, not a
+   closed-surface flux integral — passivity/energy-conservation theorems
+   bound *net* flux through a closed surface, not one windowed local
+   component in an interference pattern, where local backflow is
+   ordinary. **The PASS result itself is correct**; only the physics
+   justification was oversold. Corrected framing:
+   `results.json::gp1_framing_correction`.
+5. **Idealization 47 (THERMODYNAMICS' bonus find, independently
+   confirmed by Red Team, adopted).** Idealization 47's claim that the
+   reused 38.49°/38.69° rows were "re-verified this cycle by running
+   that same [registration-readback] gate against their exact tuple"
+   was FALSE as coded — `registration_preflight()` was only ever called
+   with NEW angles. **Made true rather than written around**: the gate
+   is now actually executed against both reused points
+   (`results.json::item_ii.reused_points_registration_check`, CLEAN).
+6. **Banner placement (VISION SCIENCE, adopted).** The Predictions-side
+   carried-idealizations banner sentence is now duplicated directly
+   inside the `## Predictions` section body (above), not only in the
+   closing paragraph of `## Idealizations` that names it.
+7. **FI-G″ (QUANTUM OPTICS, adopted — ruled by Red Team as the single
+   finding this audit weighs most heavily, "closest call" under
+   Checkpoint criterion 4).** FI-G′ (`native_absorb` corruption) moves
+   `y_lo` and `y_hi` TOGETHER (`y_hi = ny − y_lo`), so it only ever
+   exercises the `absorb`-driven half of that branch. `native_ny` — the
+   only input that can move `y_hi` INDEPENDENTLY of `y_lo` — had zero
+   fault-injection coverage across this program's entire history, and
+   exp-097's own Next queue had named exactly this scenario (`FI-G″`,
+   "optional, cheap to bundle") one cycle earlier; exp-098 dropped it
+   without disclosure. **Executed now, not deferred**: `native_ny`
+   corrupted to 1585 (true: 1584), scored against all three families —
+   CAUGHT at every family, and independently confirmed `y_lo` stays
+   unmoved by this corruption (`results.json::item_iv.fi_g_double_prime`).
+8. **GP2′/exp-086 "structurally different instrument" disclosure
+   (QUANTUM OPTICS, adopted).** §Result's "corroborating... via a
+   structurally different instrument" is now qualified:
+   `results.json::gp2_vs_exp086_disclosure` states plainly that GP2′ and
+   exp-086's own `ptp` method are two post-processing statistics on the
+   IDENTICAL closed-form formula, not independent physical instruments —
+   real corroboration of the same underlying model behavior, not two
+   separate measurements of reality.
+
+**New standing rule, ADOPTED NOW** (Red Team's explicit exception to
+this program's usual cross-cycle recurrence-before-ratification cadence,
+justified by the within-cycle recurrence strength — see `phase5_redteam.md`
+§3): *any results table, Result-section prose, or Learned/Next item that
+states a count of FDTD calls, report rows, or data points must be backed
+by an explicit, checkable assert distinguishing call-count from
+distinct-row/data-point-count wherever both exist in the same
+computation — a code-enforced invariant, not a reviewer's manual
+cross-check.* `run.py` now implements this assert
+(`fdtd_calls == n_rows_new * 4`, `n_rows_new == 16`,
+`n_rows_total_incl_reused == 18`).
+
+**Checkpoint criterion 4 ruled the closest call this program has had
+(Red Team's own words) but does NOT fire**: every defect above,
+including the FI-G″ undisclosed drop, was caught blind by this same
+cycle's own six-seat-plus-Red-Team review process before Iteration 76
+opens — matching this program's established R16/R17/R18 non-firing
+precedent. Red Team's own warning: a fourth instance of the count-
+conflation class, or any confirmed-but-undisclosed dropped commitment
+surviving uncorrected into a future cycle's LOGBOOK entry, should fire
+criterion 4 without further warning. **All five checkpoint criteria: do
+not fire** (1/2 N/A — no T1 candidate under test; 3 N/A — zero engine
+physics beyond the validated bench classes; 5 N/A — genuine logbook-
+advancing content this cycle, independent of every corrected defect).
+
+**Combined Verdict: PROMISING** (Red Team's final ruling, upgraded from
+this Director's own draft framing) — both of this cycle's stated goals
+were substantively achieved in the underlying data (item i/ii's real
+MIXED migration result, and the 11-cycle-old grazing-incidence
+governance ask genuinely, honestly discharged), and every confirmed
+defect is a zero-FDTD, non-load-bearing correction that changes no
+PASS/FAIL classification or crossing value already on file.
 
 ## Learned
 
@@ -526,7 +662,12 @@ the gap the original FI-G left open (Idealization iv-c).
    future cycle's governance docket: assign call-count arithmetic
    verification explicitly (a natural fit for whichever seat is
    already checking `results.json`'s own `fdtd_calls` field against the
-   frozen prediction — currently nobody's stated duty).
+   frozen prediction — currently nobody's stated duty). **[Phase 5
+   correction: this blind spot recurred a SECOND time within this same
+   Result section — see "Phase 5 corrections" item 3 above — and Red
+   Team ADOPTED a new standing rule NOW, as an explicit exception to the
+   usual cross-cycle cadence, making this a code-enforced assert rather
+   than an assigned human duty.]**
 2. **R17's bracket-sizing discipline, adopted one cycle after its own
    founding defect (exp-095's undersized ±0.10° bracket), worked exactly
    as intended one cycle later**: item (ii)'s wider, lower-θ-weighted
@@ -540,9 +681,16 @@ the gap the original FI-G left open (Idealization iv-c).
    own now-resolved migration) but MATERIALS' own Phase-2 finding stands
    unrefuted: without a convergence-order estimate, "migrates" and
    "hasn't converged" remain observationally similar for any single
-   pairwise comparison. The Richardson-style diagnostic's own surprising
+   pairwise comparison. ~~The Richardson-style diagnostic's own surprising
    direction (growing faster than 2nd-order, not shrinking toward it)
-   makes this MORE open, not less — a genuine, disclosed, unresolved
+   makes this MORE open, not less~~ — **[Phase 5 correction: this
+   sentence rested on a mis-paired ratio (cumulative/marginal, not
+   marginal/marginal — see "Phase 5 corrections" item 1 above). The
+   corrected marginal-to-marginal ratio is 0.777 (shrinking, same sign),
+   mildly REASSURING, not alarming. The underlying open question
+   (migration vs. non-convergence, MATERIALS' own finding) still stands
+   — it is just not sharpened in the direction this sentence claimed.]**
+   — a genuine, disclosed, unresolved
    finding for the next cycle.
 4. **A redesigned, genuinely θ-dependent instrument found something a
    vacuous one could not, and it corroborated rather than contradicted
@@ -552,33 +700,49 @@ the gap the original FI-G left open (Idealization iv-c).
    governance ask, live since Iteration 64 (11 cycles), is genuinely
    closed this cycle, not deferred a 12th time.
 
-## Next (Reconciled Iteration-76 queue, Director's draft — subject to
-Phase 5's own ranking)
+## Next (Reconciled Iteration-76 queue — FINAL, per Red Team's Phase-5
+audit, superseding the Director's own draft above; origins cited per
+`phase5_redteam.md` §5)
 
-1. **Null C re-test at a wider, R17-compliant bracket.** This cycle's
-   ±0.5° bracket found NO-SIGN-CHANGE at θ₀=41.460901°, but item (ii)
-   just demonstrated a ±0.5°-scale bracket can still miss a real
-   crossing if it isn't also correctly CENTERED/weighted. Null C sits
-   near the historically ambiguous "double-crossing" region (the two
-   close cpl=30 crossings at 41.781067°/41.837653°, Iteration 70's own
-   single-smooth-trough finding) — a wider and/or asymmetric re-test,
-   informed by that precedent, is the natural next step, not a default
-   "NO-SIGN-CHANGE, closed" reading.
-2. **The cpl=50/R5 third resolution point at Null B and/or θ₀≈38.590230°**
-   (already built at exp-095, explicitly deferred, reuse not rebuild) —
-   the natural test of the Richardson-style diagnostic's own surprising
-   >2nd-order-looking growth, now that two of three needed resolution
-   points exist for at least one feature.
-3. **GP2′'s own severity gap vs. exp-086 warrants one direct
-   reconciliation run**: compute GP2′-style curve using exp-086's own
-   narrow-sliding-window method at this cycle's same θ range, to confirm
-   the two instruments are measuring the same underlying breakdown at
-   compatible severity once methodology is held constant (zero-FDTD,
-   reuses exp-086's own already-committed method).
-4. **Assign call-count arithmetic verification** as an explicit, named
-   duty in a future governance docket (Learned item 1) — a zero-cost,
-   high-value process fix.
-5. Idealizations 46/50 (this cycle's own bracket-scope and
-   model-vs-mechanism caveats) remain live and undischarged; no new
-   standing rule is proposed this cycle by the Director (Phase 5 may
-   disagree).
+1. **Null C re-test at a wider, R17-compliant, asymmetric bracket,
+   explicitly scoping a "vanishing amplitude, no crossing at any
+   reasonable width" outcome as a live third result** (not just "wider
+   bracket will find it"). *Origin: Director's own draft (above, item 1),
+   independently ranked #2 by EM/THERMODYNAMICS/VISION; PHOTONICS'
+   additional vanishing-amplitude hypothesis (Null C's decelerating
+   `delta_scene` curve) folded in as an explicit alternative to test for.*
+   Five of six seats converge on this as the most physics-load-bearing
+   open thread — item (ii) just proved a same-sized-but-mis-centered
+   bracket produces a false NO-SIGN-CHANGE, and Null C's current verdict
+   rests on exactly that untested failure mode.
+2. **The cpl=50/R5 third resolution point at Null B (and/or
+   θ₀≈38.590230°)**, reusing exp-095's already-built family, run against
+   the CORRECTED marginal-to-marginal Richardson formula (Phase 5
+   correction item 1 above), not the miscomputed one. *Origin:
+   Director's own draft (above, item 2), PHOTONICS #3, EM #3, MATERIALS
+   #2 (explicitly gated on the formula fix landing first — now landed).*
+   Zero new `Sim` family construction; the only genuine path to an
+   actual (still non-formal, per Idealization 49) convergence read at
+   one feature.
+3. **Reconcile GP2′ against exp-086's own sliding-window `ptp` method,
+   extended through the 74°–89.5° tail** (not just the originally-swept
+   59°–73° band) at matched θ range, zero-FDTD, reusing exp-086's method
+   verbatim — explicitly scoped to also state whether the severity gap
+   (235× vs. 5,444×–6,631×) is fully explained by the differing statistic
+   or partially by something else. *Origin: Director's own draft (above,
+   item 3), QUANTUM OPTICS #3, PHOTONICS #1 (extending the pre-existing
+   scope to cover the tail divergence this seat found).*
+4. **Ratify the call-count/row-count arithmetic-assert standing rule**
+   (already adopted this cycle, see "Phase 5 corrections" above) into
+   `LOGBOOK.md`'s numbered R-rule sequence. *Origin: Director's own draft
+   (above, item 4), THERMODYNAMICS #1 (promote candidate→committed),
+   VISION #3 (calibration: a code-enforced invariant, not a new
+   attentional/duty burden on any one seat).*
+5. **State the cpl-is-orthogonal-to-realizability finding explicitly in
+   a future Result section**, and revisit the standing T1-route-N/A
+   governance flag (six consecutive cycles, exp-094 through exp-098,
+   zero new FDTD evidence bearing on any realizability parameter) at the
+   next Phase 3 checkpoint. *Origin: MATERIALS #3.* Not a forcing
+   function for a T1 proposal this cycle, but the flag has outlived its
+   own originally-cited precedent count without a Result-section-level
+   re-raise.
