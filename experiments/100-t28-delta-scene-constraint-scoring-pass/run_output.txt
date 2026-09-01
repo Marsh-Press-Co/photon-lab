@@ -25,3 +25,38 @@ exp-100 -- First constraint-1/2/3 scoring pass on delta_scene(theta)
 -- Pre-registered T1 label (fix 3), decided by Tier 1 item 1's outcome (ambiguous): N/A, unresolved -- Tier 1's pooled/family-stratified results contradict each other (Idealization 70); Tier 2's own numbers below are filed as instrument-characterization only and do not move T1 in either direction
 
 -- Tier 2, Leg B: 6 angles x 2 keys x 2 conditions = 24 sim.run() calls --
+  [ 1/24] C40_R4   theta=+37.127 article=False steps=5600 sigma_max=None
+  [ 2/24] C40_R4   theta=+37.127 article=True steps=5600 sigma_max=0.25
+  [ 3/24] G40_R4   theta=+37.127 article=False steps=5600 sigma_max=None
+  [ 4/24] G40_R4   theta=+37.127 article=True steps=5600 sigma_max=0.25
+  [ 5/24] C40_R4   theta=+38.590 article=False steps=5600 sigma_max=None
+  [ 6/24] C40_R4   theta=+38.590 article=True steps=5600 sigma_max=0.25
+  [ 7/24] G40_R4   theta=+38.590 article=False steps=5600 sigma_max=None
+  [ 8/24] G40_R4   theta=+38.590 article=True steps=5600 sigma_max=0.25
+  [ 9/24] C40_R4   theta=+40.265 article=False steps=5600 sigma_max=None
+  [10/24] C40_R4   theta=+40.265 article=True steps=5600 sigma_max=0.25
+  [11/24] G40_R4   theta=+40.265 article=False steps=5600 sigma_max=None
+  [12/24] G40_R4   theta=+40.265 article=True steps=5600 sigma_max=0.25
+  [13/24] C40_R4   theta=+40.961 article=False steps=5600 sigma_max=None
+  [14/24] C40_R4   theta=+40.961 article=True steps=5600 sigma_max=0.25
+  [15/24] G40_R4   theta=+40.961 article=False steps=5600 sigma_max=None
+  [16/24] G40_R4   theta=+40.961 article=True steps=5600 sigma_max=0.25
+  [17/24] C40_R4   theta=+41.461 article=False steps=5600 sigma_max=None
+  [18/24] C40_R4   theta=+41.461 article=True steps=5600 sigma_max=0.25
+  [19/24] G40_R4   theta=+41.461 article=False steps=5600 sigma_max=None
+  [20/24] G40_R4   theta=+41.461 article=True steps=5600 sigma_max=0.25
+  [21/24] C40_R4   theta=+42.961 article=False steps=5600 sigma_max=None
+  [22/24] C40_R4   theta=+42.961 article=True steps=5600 sigma_max=0.25
+  [23/24] G40_R4   theta=+42.961 article=False steps=5600 sigma_max=None
+  [24/24] G40_R4   theta=+42.961 article=True steps=5600 sigma_max=0.25
+  wall_s=3095.8  n_calls=24  xi_pass=True  nonneg_pass=True
+  R18 validation gate (empty-scene observer self-ratio < 0.02): True
+  empty_self_ratios={'C40_R4@37.127246379304516': 0.00022651550427294547, 'G40_R4@37.127246379304516': 0.00010655586603782172, 'C40_R4@38.59023047672059': 0.00018857171645936236, 'G40_R4@38.59023047672059': 9.974875509702189e-05, 'C40_R4@40.26541960305772': 0.00033308797263312224, 'G40_R4@40.26541960305772': 0.00017430716817071033, 'C40_R4@40.960901': 0.0003488106385921076, 'G40_R4@40.960901': 0.0002439148765323298, 'C40_R4@41.46090139413461': 0.0003754413552545014, 'G40_R4@41.46090139413461': 0.00019388059769142652, 'C40_R4@42.960901': 0.0003867893383983041, 'G40_R4@42.960901': 0.0003094670343545481}
+  theta=+37.127246  delta_scene=+1.610726e-03  beam_behind[C40_R4]=0.41558071087826076  observer_article_norm[C40_R4]=0.0002698286021263878
+  theta=+38.590230  delta_scene=-2.071944e-03  beam_behind[C40_R4]=0.42116755255966765  observer_article_norm[C40_R4]=0.0002259105803040455
+  theta=+40.265420  delta_scene=+1.726150e-03  beam_behind[C40_R4]=0.4383965400630978  observer_article_norm[C40_R4]=0.0003639284105714413
+  theta=+40.960901  delta_scene=+2.471869e-03  beam_behind[C40_R4]=0.43972277118362146  observer_article_norm[C40_R4]=0.0003601279050042966
+  theta=+41.460901  delta_scene=+9.879972e-04  beam_behind[C40_R4]=0.4415984598171353  observer_article_norm[C40_R4]=0.0003742613162003437
+  theta=+42.960901  delta_scene=+2.778079e-03  beam_behind[C40_R4]=0.45891367752844037  observer_article_norm[C40_R4]=0.000394896756134232
+
+Total wall time: 3130.7s. results.json written.

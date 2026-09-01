@@ -359,5 +359,222 @@ Wall-time estimate, scaling from exp-099's own 40-call/148.32-min pace
 
 ## Result
 
-*(to be filled at Phase 4, after the run — predictions above are frozen
-and committed to git before any Phase-4 code exists.)*
+**Process note, disclosed (R4 discipline applied to this program's own
+execution).** `run.py`'s first execution crashed at the very start of
+Leg B, before any `sim.run()` call (0 FDTD calls spent, confirmed from
+the crashed run's own console capture, which shows Tier 1/Leg A's full
+output but stops at the Leg-B section header): a `PicklingError`
+(`Can't pickle <function one_call_r4>... it's not the same object as
+_exp095_exp094.one_call_r4`). Root cause: this file independently
+`_load()`-ed `experiments/095-.../run.py` (registering `sys.modules
+["_exp095_exp094"]` via exp095's own internal chain) AND independently
+`_load()`-ed `experiments/098-.../run.py`, which itself internally
+re-`_load()`s exp095/exp094 under the same literal module names,
+clobbering that registration before multiprocessing tried to pickle
+`run_block_r4`'s own closed-over `one_call_r4` for the process pool —
+exactly the hazard exp-098's own module docstring already names
+("the actual FDTD calls below use ONLY exp095's own objects, never
+mixed with [another chain's] own, to stay internally consistent with
+each function's own closure"), violated by mixing a direct load with
+exp098's own internal one. **Fixed** by taking every R4-family name
+(`dg`, `cell_metrics_r4`, `pair_metrics_full`, `netd_row`,
+`run_block_r4`, `compute_floor`, `XI_TOL`, `SIGMA_R4_CORRECTED`) from
+`exp098.exp095` (exp098's own single internal instance) instead of a
+second, independent load. Dry-run re-validated identical (Tier 1
+outcome unchanged) before the real spend was re-launched from scratch.
+**No data was lost**: the crash occurred before any real measurement.
+
+**24 real FDTD calls (the full Leg B budget, exactly as priced), 3095.8s
+(51.6 min) wall time** (faster than the ≈89-minute scaled estimate).
+Trust suite reconfirmed green (41/41, `--only 12346789`) after this
+cycle's full close; zero `lab/` diff throughout.
+
+**Tier 1, item 1 — PAD-vs-article partition: AMBIGUOUS, per the
+pre-registered Idealization 70 branch, genuinely exercised (not merely
+disclosed as a possibility).** Pooled (n=75 rows, 7 experiment
+directories): r(delta_scene, frac_p_abs) = **0.2065**, permutation
+p = **0.0758** (20,000 trials) — the joint rule (p<0.05 AND |r|≥0.2)
+is **NOT MET** on the pooled set (p misses by a real but not enormous
+margin; the *pooled* effect size itself clears the 0.2 floor). But the
+family-stratified breakdown **contradicts** this: **R3** (n=33) shows a
+significant correlation (r=0.486, p=0.0042, clears the joint rule
+cleanly); **R4** (n=35) does not (r=0.110, p=0.525); **R5** (n=4, too
+few points for a confident reading) shows a large but non-significant
+r=0.901, p=0.164. Per Idealization 70's own pre-registered rule (frozen
+before this script ran), this contradiction routes item 1 to the
+**AMBIGUOUS** branch, not a clean majority-PAD verdict — disclosed as
+the genuinely informative outcome it is, not resolved by picking
+whichever reading is more convenient. `Δratio_abs_ext(θ)` (n=57 rows
+with both legs on file): max=0.060%, mean=0.035% — T9's established
+<0.1% flatness finding is reconfirmed at this much larger n.
+
+**Tier 1, item 2 — MATERIALS' disposition memo: branch (iii),
+disposition deferred.** Per the pre-registered conditional (fix 6), the
+ambiguous item-1 outcome means no realizability claim is made this
+cycle; `disposition_memo.md` states this explicitly, citing the exact
+contradiction. This itself answers Phase 2 MATERIALS' own critique (the
+original framing was a category error) in a stronger way than either
+binary outcome would have: the memo now demonstrates its own
+pre-registered conditional structure earning its keep on a genuinely
+mixed result, not merely on paper.
+
+**Tier 1, item 3 — Richardson 4-point characterization at Null B:
+raw-magnitude monotonicity CONFIRMED at full float precision**
+(|shift₂₀₋₃₀|=0.193581 > |shift₃₀₋₄₀|=0.150319 > |shift₄₀₋₅₀|=0.144649,
+strictly decreasing — the predicted-open question resolved cleanly).
+Observed ratios 0.7765→0.9623 (climbing toward 1, confirmed); implied
+local order **p₁=0.879 → p₂=0.172** (dropping sharply, matching the
+predicted lean). Per Idealization 49, this is descriptive only — `n=2`
+ratios cannot distinguish genuine-but-slow convergence from a
+non-convergent recipe artifact; the sharply dropping implied order is
+suggestive of the latter but not conclusive.
+
+**Tier 2, Leg A — `C_thr(L)` desk score: PASS at both bars, as
+predicted.** Peak `|delta_scene|` over the full pooled 36°–43° table:
+**3.1495×10⁻³** at θ=39.2° (`095-.../results.json`, a Rank-1a point —
+not one of Leg B's own 6 angles, but within the pooled table Leg A
+scores). This clears `C_thr_lab=0.005` (63% of the bar) and
+`C_thr_field=0.02` comfortably. Per fix 8, reported as a **static-
+contrast bound only, provisional pending T3** — not a completed
+Tier-W/Tier-A verdict — and per fix/Idealization 64, 600nm-only, with
+the established T21 750nm/θ=40° contamination-risk precedent (4.7×
+`C_thr` in this identical window) left untested this cycle.
+
+**Tier 2, Leg B — direct FDTD measurement: constraint 2 (specular
+return) result stands and PASSES; constraint 1 (beam termination)
+result is UNINTERPRETABLE this cycle, a real methodological defect in
+this cycle's own new instrument, disclosed and quantified, not
+papered over.**
+
+- **`observer_record_t28` (constraint 2): PASS, as predicted, robustly.**
+  All 6 empty-scene self-ratios read 1.0×10⁻⁴–3.9×10⁻⁴ — comfortably
+  below the R18 validation-gate bar (0.02) and close to the established
+  camera-floor scale (stage 6's own "empty room returns ~nothing," 1e-4
+  order). The R18 gate **PASSES at all 6 angles**, so the article-loaded
+  readings are trusted: `observer_article_norm` reads 2.3×10⁻⁴–3.9×10⁻⁴
+  at all 6 angles — indistinguishable in order of magnitude from the
+  empty-scene floor. This bench's first-ever direct specular-return
+  measurement finds **no detectable specular return to the observer**
+  at any of the 6 tested angles, fully consistent with the established
+  `graded_black_shell` behavior and with this item's own confident-PASS
+  prediction. This metric is NOT subject to the window-placement defect
+  below: `emit.observer_record`'s plane-wave decomposition is a
+  whole-domain angular FFT, not a fixed spatial window, so it is
+  insensitive to the oblique beam's own lateral walk downstream.
+- **`beam_behind_t28` (constraint 1): UNINTERPRETABLE — a real,
+  quantified window-placement defect in this cycle's own new code, not
+  a physics finding.** All 6 readings cluster at **0.42–0.46**
+  (monotonically increasing with θ) — dramatically higher than the
+  established `graded_black_shell` figure (1.5–1.8%, near-normal
+  incidence) or than a plausible "beam gets through" reading at these
+  moderate (37°–43°) angles. Diagnosed, not merely suspected: per
+  `lab/fdtd2d.py`'s own documented source convention ("the −x-going wave
+  travels along (−cosθ,+sinθ)"), the object's own shadow walks laterally
+  in y by `Δy = (R_OUT+10)·tan(θ)` between the object and this item's
+  downstream measurement plane (166 cells apart) — **125.7 to 154.6
+  cells across the 6 tested angles**, essentially the FULL
+  `BEAM_BEHIND_HALF_WIDTH` (160) of the fixed, `obj_y`-centered window
+  this cycle's own `beam_behind_t28` uses. The window was built without
+  correcting for this walk (unlike the already-established
+  `cell_metrics_r4`/`widths_direction_corrected`, which use a CLOSED
+  BOX centered tightly on the object and a proper 4-face Poynting
+  integral — robust to propagation angle by construction, the reason
+  this specific defect does not exist anywhere else in this
+  sub-thread's own established machinery). At this large a lateral
+  offset, the window reads mostly UN-shadowed flux beside the true
+  (shifted) shadow, not the object's own blocking — the near-total-
+  absorption case (the correct reading nearest this bench) would show
+  as a HIGH ratio under this defect, exactly the failure mode measured.
+  **This item's own reading is reported as UNINTERPRETABLE-PENDING-
+  WINDOW-CORRECTION, not as a constraint-1 finding, this cycle** — the
+  defect is disclosed with its own quantitative diagnosis (not silently
+  dropped, not smoothed into a false reading), and a corrected version
+  (window re-centered at `obj_y + Δy(θ)`, or a closed-box measurement
+  matching `cell_metrics_r4`'s own established idiom) is queued for
+  Iteration 78 (§Next).
+
+## Learned
+
+1. **A second, distinct instance of a module-chain-loading hazard this
+   program's own precedent (exp-098's own module docstring) had already
+   named in writing but this cycle's own Phase-4 code still walked into**:
+   mixing a direct `_load()` of a source file with a SECOND file's own
+   internal, transitive `_load()` of the identical source (same literal
+   module name) breaks multiprocessing pickling, because `sys.modules`
+   holds only the LAST registration and pickle needs the referenced
+   function object to be reachable there by identity. Caught before any
+   FDTD call executed (0 calls wasted), fixed by sourcing every
+   R4-family name through the single chain that will actually be live at
+   call time. Candidate governance question for Phase 5: whether this
+   deserves a named standing rule (a fourth `_load()`-chain instance of a
+   documented-but-still-violated hazard would be a real pattern), or
+   whether one clean disclosure plus a fix is sufficient given the
+   docstring warning already existed and was simply not read closely
+   enough before writing new code against it.
+2. **This cycle's own new `beam_behind_t28` instrument has a real,
+   quantified design defect** (the oblique-incidence lateral-shift
+   miscentering above) that does not exist in this sub-thread's own
+   already-established closed-box machinery — a concrete lesson that a
+   NEW instrument built as "the obvious analog of an existing idiom"
+   (here: exp-001's own beam-behind ratio, reused as a downstream line
+   window rather than a closed box) can silently inherit a defect the
+   established idiom never had, precisely because the established idiom
+   was built for a different (normal-incidence or box-based) geometry.
+   `observer_record_t28`, by contrast, inherited its robustness "for
+   free" from `emit.observer_record`'s own whole-domain FFT design, not
+   from any correction this cycle made.
+3. **The T1-label pre-registration (fix 3, Idealization 70) worked
+   exactly as designed, on a real, non-hypothetical case.** The pooled
+   result and the family-stratified breakdown genuinely disagreed; the
+   pre-committed rule routed this to "ambiguous," not to a post-hoc
+   choice of whichever reading was more narratively convenient. This is
+   the single clearest evidence this cycle that Red Team's RT-3 concern
+   (an eighth T1:N/A deferral dressed as progress) was substantively
+   addressed, not merely narrated as addressed: the mechanism it
+   demanded is now shown working on real data, not just specified.
+4. **Constraint 2's result (no detectable specular return) is this
+   cycle's one clean, trustworthy, first-ever direct constraint reading
+   on this bench** — small in scope (4 angles' worth of new information,
+   1 wavelength, 1 resolution family) but real, and not subject to the
+   window-defect that limits item (i)'s own reading this cycle.
+
+## Next (Iteration-78 queue proposal — Director's draft, subject to
+Phase 5's own ranking and Red Team's final audit)
+
+**Tier 0 — mandatory fix, cheap, zero-ambiguity:** correct
+`beam_behind_t28`'s window centering for oblique incidence (`y_center =
+obj_y + (obj_x − plane_x_behind)·tan(θ)` in this bench's own sign
+convention, verified against `lab/fdtd2d.py`'s documented source
+geometry before use — or, more robustly, replace the downstream-line-
+window idiom entirely with a closed-box extraction mirroring
+`cell_metrics_r4`'s own already-validated 4-face Poynting construction,
+which does not require any angle-dependent centering correction at all)
+and re-run Leg B's constraint-1 reading at the same 6 angles — zero new
+angles, low marginal FDTD cost (reuses this cycle's own already-spent
+captures if the fix is a pure post-processing correction on the same
+raw field data; if it requires a genuinely new box geometry, a fresh
+6×2×2=24-call spend, priced explicitly next cycle).
+
+**Tier 1 — parallel, cheap:**
+- Extend Tier 1 item 1's pooled correlation to more experiment
+  directories if any remain unaudited, and consider whether the R3-only
+  significant correlation (r=0.486, p=0.0042) merits its own targeted
+  follow-up (e.g. a fresh, small R3-family spend at a few more angles,
+  to see if the R3-specific signal replicates or was itself a
+  family-specific artifact, per this item's own disclosed caution).
+- VISION'S own pre-flight note on whether Leg A's static-contrast bound
+  can ever be upgraded to a genuine Tier-W/Tier-A verdict without T3
+  (still unbuilt) — a scoping question, not a build ask, cheap to answer
+  in writing.
+- The standing 5–8-cycle-deferred items, unchanged: the full-width
+  non-aliased `G40` leg; the 750/450nm wavelength-generality leg (now
+  doubly motivated by PHOTONICS' own T21-precedent caveat on Leg A);
+  the x-wall realizable-admittance refit; `PAD`-sensitivity with a real
+  absorbing article at other wavelengths/τ.
+
+**Tier 2, once Tier 0's fix lands:** if the corrected `beam_behind_t28`
+also reads far from the established near-total-absorption figure at
+these moderate angles, that is a genuine, disclosed constraint-1 finding
+(oblique-incidence transmission through an otherwise near-total
+absorber) worth its own dedicated investigation — not assumed in
+advance either way.
