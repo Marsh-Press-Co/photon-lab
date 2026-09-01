@@ -796,6 +796,52 @@ top. Protocol: PANEL.md.*
   record: `experiments/098-t28-cpl40-null-bracket-grazing-instrument/
   phase5_review_thermodynamics.md`, `phase5_review_em.md`,
   `phase5_redteam_audit.md` §1/§2/§3, LOGBOOK.md Iteration 75.
+- **R20 — three or more independent R4-class defects (a claimed-exact
+  figure, citation, label, or coincidence that does not reproduce from
+  its own cited source) surviving a document's own Phase-3
+  prediction-freeze into its Result/Learned sections, each caught only at
+  Phase 5 — not earlier — in a single document, constitutes a
+  Checkpoint-4-grade recurrence pattern on its own, independent of
+  whether any individual instance is load-bearing to a scored verdict
+  (not a ruled-out idea; a standing house-discipline rule, proposed and
+  adopted by Red Team's Phase-5 final audit, Iteration 76, closing a real
+  gap: unlike R6–R19, R4 itself had never carried a forward-elevating/
+  automatic-fire clause, despite being the oldest and most-repeated rule
+  in this registry — five-plus prior invocations before this one). A
+  future cycle whose Result/Learned sections exhibit this density fires
+  Checkpoint criterion 4 automatically, no further deliberation, matching
+  R6–R19's own "known, named, ignored" escalation standard — except here
+  the "known" precondition is discharged by this rule's own text, not by
+  a prior cycle's specific named instance.** Founding case: exp-099's own
+  `NOTES.md` accumulated FIVE total instances across its lifecycle — two
+  caught pre-freeze by Red Team's own Phase-2 audit (a θ₀ digit
+  insertion; an interior-angle label mismatch), and three more surviving
+  into the frozen Result/Learned sections, each independently caught by a
+  different Phase-5 seat: PHOTONICS found Learned #4 cited exp-098's own
+  retracted Richardson figure (`1.777`, superseded by exp-098's own
+  currently-filed `0.7765163757372424`) instead of the corrected one,
+  inverting a "growing" claim into what should have read "shrinking";
+  THERMODYNAMICS' own self-review found a mislabeled ratio (`r₄=|Δ₄|/
+  |Δ₃|=1.332`, a formula the code never computes — the true value is
+  `r_ratios[0]=|Δ₅|/|Δ₄|`); ELECTROMAGNETISM found a false "coincidence"
+  claim between two angles that actually differ by 3.3368×10⁻⁴°. Also
+  folds in THERMODYNAMICS' own explicitly-deferred governance question
+  (whether a "filed data reconstructed by fresh arithmetic instead of
+  read back by its stored key" discipline deserves a standing rule, given
+  a second cross-cycle instance of that root cause, this time inside
+  `run.py` itself rather than in prose — the same root lesson, one rule,
+  not two). **Does not fire on its own founding instance** (exp-099),
+  matching every prior R-rule's own precedent. Checkpoint criterion 4
+  ruled the closest call this program's own R4 lineage has had, but does
+  NOT fire this cycle — all five instances were caught blind, within this
+  same cycle's own six-seat-plus-Red-Team review process, before this
+  entry, matching the R16/R17/R18/R19 non-firing precedent; R19 itself
+  was independently confirmed correctly honored this cycle (zero
+  call-count/row-count conflation). Full record:
+  `experiments/099-t28-null-c-r5-thirdpoint-gp2-reconciliation/
+  phase5_review_photonics.md`, `phase5_review_thermodynamics.md`,
+  `phase5_review_em.md`, `phase5_redteam_audit.md` §0/§2/§3, LOGBOOK.md
+  Iteration 76.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -6601,6 +6647,109 @@ state the cpl-is-orthogonal-to-realizability finding explicitly and
 revisit the six-consecutive-cycle T1-route-N/A flag (MATERIALS) at the
 next Phase 3 checkpoint. Full record: `experiments/098-t28-cpl40-null-
 bracket-grazing-instrument/`, LOGBOOK.md Iteration 75.
+
+**Iteration 76 (exp-099) — THERMODYNAMICS' rotation-lead cycle.** Executed
+exp-098's own Reconciled Iteration-76 queue items 1–3 (item 4, ratifying
+R19, already done; item 5 given a reasoned disposition). Five blind
+Phase-2 critiques (unanimous support-with-changes) plus Red Team's Phase-2
+audit (PROCEED-WITH-MANDATORY-FIXES, 9 attacks, 7 mandatory fixes adopted,
+0 overridden, 1 new defect Red Team itself found — a Null C angle-label
+error). Phase 3 adopted all seven fixes; `NOTES.md` frozen and pushed
+strictly before any Phase-4 code existed. Phase 4: `run.py`'s first
+execution this shift crashed mid-item-1 with a `KeyError`
+(`combined_delta_c[THETA0_C + 0.500]`, a freshly-computed float failing to
+bit-match a 6-decimal-rounded filed key) after item 1's 12 real calls had
+already completed correctly; fixed (pull the actual stored key, per this
+document's own Fix 4 discipline) and re-executed from scratch. **40 real
+FDTD calls (full PASS-path), 8899.4s (148.32 min) wall, trust suite green
+throughout, zero `lab/` diff. Item 1 — Null C wider bracket:
+INCONCLUSIVE-AT-THIS-WIDTH**, a genuine reversal/bounce near
+θ₀+0.5°–0.83° (no zero-crossing across the ±1.5° span), not the
+anticipated crossing or clean decay — Fix 5's period gate correctly barred
+a VANISHING-AMPLITUDE mis-score of this same oscillatory trough. **Item 2
+— `cpl=50`/R5's first-ever real FDTD spend in this program's history,
+ground-truth-gated: every gate cleared, full 28/28-call PASS-path.** Step
+0 fault-injection re-scoring `all_as_predicted=True`; Step 1 GT sign match
+at θ=36° (negative, matching the R4-family reference); Step 2 settling
+PASS (`rel_dev=0.179%`); Step 3 SIGN-CHANGE-FOUND at θc50≈39.776870°,
+`shift_40_50=−0.144649°`, same sign as both established shifts —
+Richardson (30/40/50): `observed_ratio=0.9623` vs. naive `0.64`. **Item 3
+— GP2′/`ptp` tail reconciliation (θc∈{79°...87°}): genuine non-resolution
+honestly disclosed** — an unpredicted 77°→79° increase (621×→850×)
+followed by real decline to 87° (292×) that never reaches the
+reference-comparable regime, while GP2′ stays elevated (12.2×–78.5×) over
+the same range.
+
+**Six blind Phase-5 reviews, all CONCUR-WITH-GAP(S), an unusually clean
+crop, three independently catching a distinct instance of the same defect
+shape.** PHOTONICS found Learned #4 cited exp-098's own RETRACTED
+Richardson figure (`1.777`) instead of the currently-filed, corrected one
+(`0.7765163757372424`), inverting "growing" into what should have read
+"shrinking, twice." THERMODYNAMICS' own self-review found a mislabeled
+ratio (`r₄=|Δ₄|/|Δ₃|=1.332`, a formula the code never computes — the true
+value is `r_ratios[0]=|Δ₅|/|Δ₄|`) and that its own charter instrument (the
+thermal/energy sidecar) was silently omitted from Result/Learned at R5's
+two landmark first-ever points. ELECTROMAGNETISM found a false
+"coincidence" claim between Step 2's settling angle and a Step-3 interior
+point that actually differ by 3.3368×10⁻⁴°. QUANTUM OPTICS and MATERIALS
+independently converged on the same underlying gap from two charters:
+`delta_scene`'s own realizability content (a PAD-only signal, PAD proven
+"lossless vacuum" at exp-076) was never resolved past Iteration 60's
+explicit non-reinstatement of Iteration 59's rule — NOTES.md's own T1
+trigger risked scoring a domain-geometry artifact as a material mechanism
+if honored literally next cycle. VISION found 3 of 5 Phase-2 critiques
+exceeded PANEL.md's 150-word cap (uncaught by Red Team's own Phase-2
+audit) and that the KeyError bugfix's "directly diffed" claim is not
+reconstructible from the committed git record.
+
+**Red Team's Phase-5 final audit independently re-verified all six
+findings from primitives (not taken on any reviewer's word) and ADOPTED
+all six in full**, then named the pattern none of the six stated alone:
+this single document carries FIVE total R4-class defects across its
+lifecycle (two caught pre-freeze at Phase 2, three surviving into frozen
+Result/Learned, caught only at Phase 5). **New standing rule R20 adopted
+NOW** (full text above, RULED OUT registry): three-or-more R4-class
+defects surviving a document's own Phase-3 freeze into Result/Learned,
+each caught only at Phase 5, is a Checkpoint-4-grade pattern on its own
+going forward — closing a real gap (unlike R6–R19, R4 itself never
+carried a forward-elevating clause). Folds in THERMODYNAMICS' own
+deferred KeyError-pattern governance question under the same rule text.
+**Checkpoint criterion 4 ruled the closest call this program's own R4
+lineage has had — does NOT fire**, every defect caught blind, within this
+cycle's own review layers, before this entry, matching the
+R16/R17/R18/R19 non-firing precedent; R19 itself independently confirmed
+correctly honored (zero call-count/row-count conflation). All six
+mandatory documentation-only fixes applied same-shift to `NOTES.md`
+(zero-FDTD, none changing a PASS/FAIL classification or crossing value
+already on file). **Combined Verdict: PROMISING** — R5's first-ever real
+spend is a genuine methodological milestone (the first resolution family
+in this sub-thread's history to clear ground-truth-sign AND
+fault-injection gates BEFORE its first near-null reading was trusted,
+rather than earning that discipline only retroactively), weighed against
+the five-instance R4-class citation-hygiene drag (why R20 exists) — none
+individually load-bearing to any scored verdict. All three item-level
+outcomes stand undisputed. Reconciled Iteration-77 queue (Red Team's
+final ranking, resolving a genuine 5-vs-1 seat disagreement on
+sequencing): **Tier 1 (mandatory preconditions before any
+constraint-1/2/3/4 scoring pass touches `delta_scene(θ)`)** — QUANTUM's
+PAD-vs-article partition, elevated from recommendation to mandatory
+structural precondition (zero new FDTD, reuses already-computed
+`ratio_abs_ext`/`p_abs_w`); MATERIALS' disposition memo separating the
+inert-`cpl`-knob fact from the still-open feature-realizability ambiguity;
+a formal 4-point (cpl=20/30/40/50) Richardson convergence
+characterization at Null B (is the ratio's climb toward 1 genuine-but-slow
+convergence or a non-convergent recipe artifact?). **Tier 2** — the
+constraint-1/2/3/4 scoring pass itself (rotation lead: QUANTUM OPTICS),
+gated on Tier 1's outputs but not deferred an eighth cycle — seven
+consecutive T1:N/A cycles is exactly the drift PANEL.md's own Checkpoint
+criterion 4 names. **Tier 3** — Null C's trough at the full established
+period (cross-resolution-spot-checked first); VISION's own pre-flight
+perceptual-caveat note; EM's and THERMODYNAMICS' own persistence-gap
+backfills; the Richardson pattern's generalization to Null A; item 3's
+direct GP2′-vs-exp-086 recompute; the standing 5–8-cycle-deferred items
+(`G40` full-width leg, 750/450nm leg, `PAD`-with-article survival). Full
+record: `experiments/099-t28-null-c-r5-thirdpoint-gp2-reconciliation/`,
+LOGBOOK.md Iteration 76.
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)

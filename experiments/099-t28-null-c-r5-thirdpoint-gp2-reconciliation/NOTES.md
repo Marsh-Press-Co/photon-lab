@@ -229,8 +229,12 @@ Gates Step 3 (Rank 2b): if the R5 sign at 36.0° does not match, Rank 2b is
 skipped and reported UNINTERPRETABLE-PENDING-R5-GROUND-TRUTH-CHECK.
 
 **Step 2 — Rank 2a, settling precondition (unchanged from Phase 1), 8
-calls.** θ=**39.854853°** (coincides with one Rank 2b interior angle, matching
-exp-095's own precedent `RANK2A_ANGLE ∈ RANK2B_ANGLES`). `dg.R5_STEPS`
+calls.** θ=**39.854853°** (a hand-computed offset intended to match one Rank
+2b interior angle, per exp-095's own precedent `RANK2A_ANGLE ∈
+RANK2B_ANGLES` — **correction, Phase-5 Red Team audit mandatory fix #3**:
+this is NOT literally identical to Step 3's own interior point, computed by
+`run.py` as `θc40−0.067` in floating-point arithmetic — see the corrected
+row below and §Result). `dg.R5_STEPS`
 vs. `dg.R5_STEPS_STRESS`, both legs, both conditions: 2×2×2 = **8
 `sim.run()` calls**, plus 2 zero-cost preflight checks. Gate: `settle_band`
 on `rel_dev = |Δdelta_scene(R5_STEPS_STRESS, R5_STEPS)| /
@@ -248,7 +252,7 @@ confirmed downward marginal-shift direction, 20→30 AND 30→40 both negative):
 |---|---|
 | 39.521519° | −0.400° |
 | 39.688186° | −0.233° |
-| 39.854853° | −0.067° (= Step 2's angle) |
+| 39.854853° → actual computed value **39.854519316666234°** | −0.067° (**correction, Phase-5 Red Team audit mandatory fix #3**: near, not equal to, Step 2's own 39.854853°; gap 3.3368×10⁻⁴°, since Step 2's angle is a hand-computed offset and Step 3's is `θc40−0.067` computed in floating point — see §Result) |
 | 40.021519° | +0.100° |
 
 Family `R5` only, both legs, both conditions: 4×2×2 = **16 `sim.run()`
@@ -366,13 +370,32 @@ criterion 2 (T1 position) is N/A, the seventh consecutive cycle.** This
 seat's own disposition (Phase 1, unattacked at Phase 2): items 1–3 are
 house-discipline/instrument-trust work on the evidentiary basis for an
 already-committed escape route (angular selectivity); none proposes a new
-mechanism to map. **The cpl-is-orthogonal-to-realizability finding, stated
-explicitly (MATERIALS' non-blocking wording fix)**: `cpl` is confirmed
-purely a grid-density/numerical-resolution parameter (`CPL={R3:30,R4:40,
-R5:50}`), with physical geometry (`L_GEOMETRIC_M`) held invariant to 1e-12
-across R3/R4/R5 — it carries zero realizability content of its own; the
-realizability bound MATERIALS' charter owns remains entirely un-addressed
-by any cpl-indexed work in this seven-cycle run, and is orthogonal to it.
+mechanism to map. **Correction, Phase-5 Red Team audit mandatory fix #4
+(MATERIALS + QUANTUM OPTICS, independently) — two previously-conflated
+claims, separated:**
+
+1. **The `cpl`-resolution-knob-is-inert finding (newly verified THIS
+   cycle)**: `cpl` is confirmed purely a grid-density/numerical-resolution
+   parameter (`CPL={R3:30,R4:40,R5:50}`), with physical geometry
+   (`L_GEOMETRIC_M`) `assert`-enforced invariant to 1e-12 across R3/R4/R5,
+   extended to R5 for the first time this cycle. This specific fact is
+   genuinely re-verified, not merely inherited.
+2. **The tracked `delta_scene` feature's own realizability status (an
+   inherited, still-genuinely-open ambiguity, NOT re-tested or reaffirmed
+   this cycle or any cycle since Iteration 60)**: Iteration 59 adopted a
+   "zero realizability content" framing rule for this PAD-toggled signal
+   (`PAD` independently proven lossless vacuum, exp-076); Iteration 60's
+   own Phase-5 text explicitly declined to reinstate it ("genuine
+   ambiguity remains between two opposite-realizability readings"). That
+   ambiguity has stood unresolved for 16 cycles (60→76) — it is NOT
+   settled by fact 1 above, which concerns the resolution knob, not the
+   feature. The realizability bound MATERIALS' charter owns remains
+   entirely un-addressed by any cpl-indexed work in this seven-cycle run.
+   **Per Red Team's Phase-5 audit, this ambiguity is why QUANTUM's
+   PAD-vs-article partition (Iteration 77's §Next Tier 1) is a mandatory
+   structural precondition, not an optional wording fix, before
+   `delta_scene(θ)` is fed to any constraint-1/2/3/4 scoring pass.**
+
 **Explicit trigger, restated**: once items 1–3 close, Iteration 77's queue
 should include an actual constraint-1/2/3/4 scoring pass treating the
 now-more-fully-characterized `delta_scene(θ)` sign structure as an
@@ -441,9 +464,17 @@ recompute") and the full script re-executed from scratch, per this
 program's own exp-098 precedent for a mid-run defect caught before
 `results.json` existed. **No data was lost or altered**: the two
 executions' item 1 console output is bit-identical at all 7 combined
-`delta_scene` values (directly diffed, this shift, against the crashed
-run's own console capture) — the defect was confined to a downstream
-derived-statistic lookup, never the FDTD measurements themselves. Logged
+`delta_scene` values — **correction, Phase-5 Red Team audit mandatory fix
+#5 (VISION SCIENCE)**: this comparison was performed in-session, by eye,
+against the crashed run's own console capture visible in that turn's tool
+output; it is **not independently re-auditable from the committed git
+record** (checkpoint commit `d9f1006` stops at the launch banner, before
+any of the crashed run's own item-1 per-theta lines were ever committed).
+"Directly diffed" overstated the claim's own evidentiary status — the
+values genuinely match, but a future reader cannot re-verify this from
+`git log` alone, only from this document's own assertion. The defect was
+confined to a downstream derived-statistic lookup, never the FDTD
+measurements themselves. Logged
 for Phase 5's attention (§Learned below): this is a different failure
 shape than exp-098's own call-count arithmetic miss (Learned #1 there),
 but the same underlying lesson — filed data must be read back by its
@@ -476,9 +507,15 @@ VANISHING-AMPLITUDE from. All 3 new points floor-clear
 
 The genuinely new finding: `delta_scene` does **not** continue
 decelerating toward zero past θ₀+0.500° — it **reverses** and climbs
-back up, `r₄=|Δ₄|/|Δ₃|=1.332` (>1, growing, not the <0.5 decay Fix 5's
+back up. **Correction, Phase-5 Red Team audit mandatory fix #2
+(THERMODYNAMICS' own self-review)**: the ratio here is the code's own
+`r_ratios[0]=|Δ₅|/|Δ₄|=1.332` (θ₀+0.833°→+1.167° step vs. θ₀+0.500°→+0.833°
+step) — NOT `|Δ₄|/|Δ₃|` as originally labeled (that boundary-spanning
+ratio, θ₀+0.500°→+0.833° vs. the last FILED interval θ₀+0.1667°→+0.500°,
+is never computed by `run.py` at all; hand-computed for context here, it
+is ≈7.41). `r_ratios[0]=1.332` (>1, growing, not the <0.5 decay Fix 5's
 amplitude criterion needs) before decaying again on the next interval
-(`r₅=0.283`). `amplitude_criteria_met=False` on `r₄` alone, so neither
+(`r_ratios[1]=0.283`). `amplitude_criteria_met=False` on `r_ratios[0]` alone, so neither
 clean pattern (crossing, or clean decay-to-plateau) holds — the data
 describe a **smooth local minimum (trough) near θ₀+0.5°–0.83° with no
 zero-crossing across this ±1.5° span**, not the "further deceleration"
@@ -510,7 +547,15 @@ in full, 28/28 calls.**
   clear → **OPEN**, ran unconditionally-priced 16 calls.
 - **Step 3** (interior sweep, 4 angles around θc40=39.921519°, 16
   calls): **SIGN-CHANGE-FOUND**, crossing at **θc50≈39.776870°**,
-  bracket [39.688519°, 39.854519°].
+  bracket [39.688519°, 39.854519°]. **Correction, Phase-5 Red Team audit
+  mandatory fix #3 (ELECTROMAGNETISM)**: Step 2's settling angle
+  (39.854853°, a hand-computed offset) is NOT literally identical to
+  Step 3's own nearest interior point (39.854519316666234°, computed as
+  `θc40−0.067` in floating point) — the two differ by 3.3368×10⁻⁴°.
+  Step 2's PASS is informative for the Step-3 bracket via smoothness (the
+  two nearby points' `delta_scene` differ by only ~0.4%, `+5.230823×10⁻⁴`
+  at 39.854519° vs. `+5.253136×10⁻⁴` at 39.854853°), not literal
+  coincidence.
 
 | θ (cpl=50) | `delta_scene` |
 |---|---|
@@ -528,13 +573,27 @@ duplication bug — cross-checked against `results.json`'s own
 `step3.theta_c40`/`crossing_cpl50` fields directly), confirming
 Idealization 55's lean. **Richardson (30/40/50, corrected
 marginal-to-marginal, descriptive only — Idealization 49):
-observed_ratio=0.9623 vs. naive 2nd-order 0.64** — same-sign,
-larger-than-naive, the same qualitative pattern as exp-098's own Null-B
-Richardson figure (20/30/40: observed 1.777 vs. naive 0.5625) —
-**reproduced a second time, at a different point-pair on the same
-feature.** Neither figure alone settles whether this is genuine
-super-linear migration or a convergence order below 2 (Idealization
-49); two same-direction observations at Null B now exist, not one.
+observed_ratio=0.9623 vs. naive 2nd-order 0.64.** **Correction, Phase-5
+Red Team audit mandatory fix #1 (PHOTONICS)**: this document's first
+draft mis-cited exp-098's own Null-B Richardson figure (20/30/40) as
+"observed 1.777 vs. naive 0.5625" and framed both together as a
+"super-linear-growth pattern." `1.777` is exp-098's own retracted,
+pre-correction number — exp-098's own currently-filed `results.json`
+stores `observed_ratio=0.7765163757372424`, and exp-098's own NOTES.md
+states explicitly that the corrected figure is `0.777` (**shrinking**,
+same sign), not the originally-reported `1.777` (growing). The correct
+comparison is **0.9623 (this cycle, 30/40/50) vs. 0.7765 (exp-098,
+20/30/40) — both <1, both shrinking, not growing** — a materially more
+reassuring reading than "super-linear growth": a shrinking
+marginal-to-marginal pattern reproduced a second time, at a different
+point-pair on the same feature (Null B), not a growing one. The
+genuinely open question this correction surfaces (per QUANTUM OPTICS'
+own Phase-5 review) is that the ratio is **climbing toward 1** across
+the two data points (0.7765→0.9623), which could indicate either
+genuine-but-slow convergence or a non-convergent recipe artifact
+(Idealization 49) — this is the actual open question, not "growing
+faster than 2nd order," and is queued as Iteration-77 Tier 1 item 3
+(§Next).
 
 **Item 3 — GP2′/`ptp` tail reconciliation, θc∈{79°,81°,83°,85°,87°}:
 result does not cleanly support either falsification branch.**
@@ -565,6 +624,98 @@ either "one curve fully explains the gap" or "persistent, unexplained
 shape divergence"; it is genuinely mixed, an honest non-resolution, not
 a coin-flip default.
 
+## Phase 5 corrections (same-shift, Red Team final audit — flagged per
+R4/T10, not silently rewritten into the Result prose without a visible
+trail)
+
+All six blind Phase-5 reviews returned CONCUR-WITH-GAP(S); Red Team's
+final audit independently re-verified every finding from source (not
+taken on any reviewer's word) and ADOPTED all six in full, plus a
+cross-review synthesis finding of its own (§2 below). None changes a
+PASS/FAIL classification, a crossing value, or a scored verdict already
+on file — all six are zero-FDTD, documentation-only prose/label
+corrections, applied inline above (§T1 disposition, §Result, §Learned,
+§Next) with explicit "**Correction, Phase-5 Red Team audit mandatory fix
+#N**" markers at each site, never silently rewritten. Full detail:
+`phase5_redteam_audit.md`.
+
+1. **Richardson mis-citation (PHOTONICS, adopted)** — exp-098's own
+   retracted `1.777` figure was cited instead of the corrected, currently
+   filed `0.7765163757372424`; the qualitative story inverts from
+   "super-linear growth" to "shrinking, twice." §Result, §Learned #4.
+2. **r-index mislabel (THERMODYNAMICS' own self-review, adopted)** —
+   `r₄=|Δ₄|/|Δ₃|=1.332` mislabeled a ratio the code never computes; the
+   value is actually `r_ratios[0]=|Δ₅|/|Δ₄|`. §Result.
+3. **False settling-angle "coincidence" (ELECTROMAGNETISM, adopted)** —
+   Step 2's hand-computed 39.854853° is not literally identical to Step
+   3's own floating-point-computed interior point (39.854519316666234°,
+   a 3.3368×10⁻⁴° gap); Step 2's PASS informs Step 3 via smoothness, not
+   exact coincidence. §Setup, §Result.
+4. **T1-disposition conflation (MATERIALS + QUANTUM OPTICS, independently
+   convergent, adopted)** — the newly-verified "`cpl` knob is inert"
+   fact and the inherited, still-unresolved "tracked feature has zero
+   realizability content" claim (Iteration 59, not reaffirmed at
+   Iteration 60) were stated as one settled finding; separated. Elevates
+   QUANTUM's PAD-vs-article partition from recommendation to mandatory
+   Iteration-77 precondition. §T1 disposition.
+5. **Unauditable "directly diffed" claim (VISION SCIENCE, adopted)** —
+   the KeyError bugfix's crashed-vs-rerun comparison was performed
+   in-session, by eye, and is not reconstructible from the committed git
+   record (`d9f1006` stops before any item-1 output); scoped accurately.
+   §Result.
+6. **Word-count cap (VISION SCIENCE, adopted, process-only)** — 3 of 5
+   Phase-2 critiques exceeded PANEL.md's 150-word cap, uncaught by Red
+   Team's own Phase-2 audit; no text change to this document, flagged for
+   Phase-2 discipline going forward.
+
+**New synthesis (Red Team's own §2, cross-review)**: this single document
+carries FIVE separate instances of the identical "claimed-exact
+figure/citation/label that does not reproduce from source" defect shape
+across its lifecycle — two caught pre-freeze at Phase 2 (θ₀'s digit
+insertion; the interior-angle label mismatch), three more (#1–#3 above)
+surviving into the frozen Result/Learned sections, uncaught until Phase
+5. **New standing rule, ADOPTED NOW (R20)**: three or more independent
+R4-class defects surviving a document's own Phase-3 freeze into its
+Result/Learned sections, each caught only at Phase 5, constitutes a
+Checkpoint-4-grade recurrence pattern on its own — a future cycle
+exhibiting this density fires Checkpoint criterion 4 automatically. Does
+not fire on its own founding instance (this cycle), matching every prior
+R-rule's precedent. R20 also folds in Learned #1's own KeyError pattern
+(a citation failure inside code, not prose — same root cause, one rule).
+Logged to `LOGBOOK.md` this shift.
+
+**Checkpoint criterion 4 ruled the closest call this program's R4
+lineage has had, but does NOT fire**: every defect above was caught
+blind, within this same cycle's own six-seat-plus-Red-Team review
+process, before this LOGBOOK entry — matching the R16/R17/R18/R19
+non-firing precedent. R19 itself (call-count vs. row-count) was
+independently confirmed correctly honored this cycle (40 calls map to a
+fully cross-checked job list, zero conflation). **All five checkpoint
+criteria: do not fire** (1/2 N/A — no new T1 mechanism proposed; 3 N/A —
+zero engine physics beyond the validated bench classes; 5 N/A — genuine
+logbook-advancing content this cycle).
+
+**Combined Verdict: PROMISING** (Red Team's final ruling). Item 2 — R5's
+first-ever real FDTD spend in this program's 76-iteration history — is a
+genuine methodological milestone: the first resolution family in this
+sub-thread's entire history to clear a far-from-null ground-truth sign
+check AND a full fault-injection re-scoring BEFORE its first
+interior-near-null reading was trusted, rather than earning that
+discipline only retroactively (R3 and R4 both did). All three gates
+cleared cleanly; Step 3 delivered a genuine, cleanly-bracketed sign
+change plus a second independent (and, corrected, reassuring) Richardson
+data point at Null B. Item 1's "bounce" and item 3's honest non-
+resolution are both disclosed as such, not smoothed into false
+confidence — PHOTONICS' own Attack-5-derived period gate (Fix 5) is
+empirically vindicated by the result it correctly barred. Weighed against
+this: the five-instance R4-class defect density (why R20 exists), a
+second-consecutive-cycle instance of the "filed data reconstructed, not
+read back" root cause in a new code location, and one unauditable
+verification claim — none individually load-bearing to any scored
+verdict, but a real, non-blocking drag on this cycle's own record-keeping
+quality. **All three item-level outcomes stand as computed and are not
+disputed by anything in this audit.**
+
 ## Learned
 
 1. **A second, distinct instance of "filed data reconstructed by fresh
@@ -594,12 +745,18 @@ a coin-flip default.
    at Step 3. This sub-thread's three-cycle-old "R5 built, never spent"
    status (exp-095) is now closed with a substantive, gated result, not
    merely an unblocked capability.
-4. **The Richardson-style super-linear-growth pattern (observed ratio
-   well above the naive 2nd-order expectation, same sign) reproduced at
-   a second, independent point-pair on Null B** (20/30/40 in exp-098;
-   30/40/50 here) — still descriptive only (Idealization 49), but two
-   same-direction data points is a materially different evidentiary
-   state than one, and a natural candidate for Phase 5's own ranking.
+4. **Correction, Phase-5 Red Team audit mandatory fix #1 (PHOTONICS):**
+   this item originally read "Richardson-style super-linear-growth
+   pattern... reproduced," citing exp-098's own retracted `1.777` figure
+   — see §Result's own corrected discussion. The corrected finding: **a
+   shrinking marginal-to-marginal Richardson ratio (both `<1`) reproduced
+   at a second, independent point-pair on Null B** (0.7765 at 20/30/40,
+   exp-098; 0.9623 at 30/40/50, this cycle) — still descriptive only
+   (Idealization 49), but two same-direction (shrinking) data points is a
+   materially different, and more reassuring, evidentiary state than one.
+   The ratio's own climb toward 1 across the two points (not "growing
+   past 2nd order") is the genuinely open question, queued for Iteration
+   77 (§Next).
 5. **Item 3's falsification criterion, honestly applied, does not
    resolve** — the tail shows real decline without real recovery on
    both curves, plus an unpredicted early reversal (77°→79°). Disclosing
@@ -607,39 +764,88 @@ a coin-flip default.
    was built to produce either way (§Setup item 3), not a defect in the
    test.
 
-## Next (Reconciled Iteration-77 queue, Director's draft — subject to
-Phase 5's own ranking)
+## Next (Reconciled Iteration-77 queue — FINAL, per Red Team's Phase-5
+audit, superseding the Director's own draft above; origins cited per
+`phase5_redteam_audit.md` §5)
 
-1. **Null C: test whether the bounce found this cycle is a true local
-   minimum or the near edge of a wider oscillation** — a bracket
-   reaching the full ≥2.9474° period half-width (Fix 5's own named
-   threshold, item 1's own Idealization 60) is the natural next test,
-   now that a concrete reversal point (θ₀+0.5°–0.83°) narrows where to
-   center it.
-2. **The T1 escape-route trigger, restated (§T1 disposition,
-   THERMODYNAMICS' own ruling, this document)**: items 1–3 close this
-   cycle; Iteration 77 should include an actual constraint-1/2/3/4
-   scoring pass treating the now-more-fully-characterized
-   `delta_scene(θ)` sign structure as an angular-selectivity parameter,
-   scored against the existing constraint-metric instruments — not
-   another round of bracket/instrument validation alone. If Iteration 77
-   files T1: N/A without addressing this trigger, THERMODYNAMICS' own
-   disposition should be read as overridden, not reaffirmed by default.
-3. **The Richardson super-linear pattern, now reproduced twice at Null
-   B (20/30/40 and 30/40/50), warrants explicit scoping**: whether it
-   generalizes to Null A (cpl=30 counterpart not yet on file) or is
-   Null-B-specific.
-4. **Item 3's non-resolution is itself a candidate closing item**: a
-   direct GP2′-style recompute using exp-086's own narrow-sliding-window
-   method over this cycle's same θc∈{79°...87°} range (already named in
-   exp-098's own Next §3) would let one instrument, not two statistics
-   on the same curve, speak to the tail directly.
-5. **Standing, still-deferred items, unresolved by this cycle**: the
-   full-width non-aliased second-wavelength `G40` leg and the real
-   750/450nm wavelength-generality leg (both deferred since exp-076,
-   now six consecutive cycles); the x-wall realizable-admittance refit
-   (four cycles deferred); whether `PAD`-sensitivity survives with a
-   real absorbing article loaded (five cycles deferred, still the
-   single most overdue item on the T28 board) — this cycle did not
-   touch any of these three; if Iteration 77 defers them again, that
-   should be a stated decision, not silence.
+Five of six seats (MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, VISION,
+and QUANTUM as an explicit gating precondition) converge on running the
+constraint-1/2/3/4 scoring pass next cycle; PHOTONICS alone ranked it
+third. Red Team's ruling, adopted: QUANTUM's dissent is a Red-Team-
+charter-native expressibility concern and gates the trigger structurally;
+PHOTONICS' dissent is a data-quality caution and is folded in as a
+parallel precondition in the same tier, not grounds to demote the trigger
+a full tier — seven consecutive T1:N/A cycles is exactly the drift
+PANEL.md's own Checkpoint criterion 4 names.
+
+**Tier 0 — mandatory documentation fixes**: applied same-shift, this
+document, per `phase5_redteam_audit.md` §6 — the Richardson mis-citation,
+the r-index mislabel, the settling-angle false-coincidence, the
+T1-disposition conflation, the unauditable-verification-claim scoping,
+and logging R20 into LOGBOOK.md.
+
+**Tier 1 — preconditions that MUST run before any constraint-1/2/3/4
+scoring pass touches `delta_scene(θ)`, bundled, zero-or-low marginal FDTD
+cost:**
+
+1. **QUANTUM's PAD-vs-article partition (mandatory, elevated from
+   recommendation)**: decompose `delta_scene(θ)` into a PAD-toggled/
+   article-held-fixed leg and an article-toggled/PAD-held-fixed leg, at
+   the same angles, reusing `ratio_abs_ext`/`p_abs_w` — already computed
+   at every point this sub-thread has run, including this cycle's 17 new
+   cells. Zero new FDTD beyond what Iteration 77 spends anyway.
+2. **MATERIALS' disposition memo**, bundled with #1: a short, zero-FDTD,
+   citable finding formally separating "the `cpl` resolution knob is
+   physically inert (newly confirmed, R3/R4/R5)" from "the tracked
+   feature itself carries zero realizability content (an inherited,
+   still-genuinely-ambiguous framing question, per Iteration 59→60 — NOT
+   reaffirmed since)."
+3. **A formal 4-point (cpl=20/30/40/50) convergence characterization at
+   Null B**: is the Richardson ratio (0.7765→0.9623, climbing toward 1,
+   not shrinking away from the naive figure) evidence of genuine-but-slow
+   convergence or a non-convergent recipe artifact (Idealization 49/R15's
+   own standing concern)? Zero new FDTD; all four points are already on
+   file. Directly informs whether `delta_scene(θ)` is trustworthy enough
+   to feed a scoring pass at all.
+
+**Tier 2 — the scoring pass itself, gated on Tier 1's outputs, not
+deferred a further cycle**: run `delta_scene(θ)`'s (or, if Tier 1's
+partition finds the signal majority-PAD, its residual article-coupled
+component's) sign structure through `emit.observer_record`,
+`lab/ambient.py`, and the beam-behind box, per PANEL.md's own Metrics
+table. If Tier 1 finds negligible article coupling, that converts Tier 2
+into a disciplined negative finding (this diffraction feature has no
+constraint-relevant material analog) — the honest, overdue answer to
+seven cycles of deferred T1 status, not grounds to defer an eighth time.
+Rotation lead: QUANTUM OPTICS. Must inherit VISION's own already-pinned
+`C_thr(L)`/floor-gate machinery (T2/T16/T21/T24/T27) rather than
+re-derive it.
+
+**Tier 3 — parallel/lower-priority, cheap, fold in opportunistically:**
+
+- Null C's own trough, widened to the full ≥2.9474° established period —
+  but first spot-check the trough's own cross-resolution stability (1–2
+  points at cpl=30 or cpl=50) before centering a wider search on it,
+  matching R15's own discipline (QUANTUM's own finding, adopted).
+- VISION's own pre-flight perceptual-caveat note (which `C_thr(L)`
+  parameterization, which uncertainty budgets, Tier-W vs. Tier-A) —
+  cheap, zero-FDTD, should exist before Iteration 77's own proposal is
+  drafted, not folded in after.
+- EM's own persistence gap (`xi_ext`/`sigma_abs_nonneg` margins never
+  written to `results.json`) and THERMODYNAMICS' own persistence gap
+  (`p_abs_w`/`dt_ss_full_K`/`netd_classification` computed-then-dropped
+  at Step 1/Step 2) — both cheap, zero-new-FDTD backfills, bundle
+  together.
+- The Richardson pattern's lateral generalization to Null A — legitimate,
+  lower priority than the vertical convergence question (Tier 1 item 3
+  above).
+- Item 3's direct GP2′-style recompute via exp-086's own narrow-window
+  method over this cycle's same θc∈{79°...87°} range.
+- Standing, now 5–8-cycle-deferred items, unchanged by this cycle: the
+  full-width non-aliased second-wavelength `G40` leg and the real
+  750/450nm wavelength-generality leg (six cycles deferred); the x-wall
+  realizable-admittance refit (four cycles deferred); whether
+  `PAD`-sensitivity survives with a real absorbing article loaded (five
+  cycles deferred, still the single most overdue item on the T28 board)
+  — if Iteration 77 defers these again, that must be a stated decision,
+  not silence.
