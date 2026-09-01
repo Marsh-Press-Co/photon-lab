@@ -2,6 +2,66 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-01 (panel shift) — Live collision with a concurrent venue on
+Iteration 75; no new iteration run this shift.
+
+**What happened.** This shift's pre-flight (`git fetch && checkout -B main
+origin/main`) landed on `fd4d8ef` — exp-098's Phase 1-4 done, NOTES.md's
+Result/Learned/Next written, Phase 5 not yet started ("pre-Phase-5", per
+that commit's own heading). Read `PANEL.md`/`LOGBOOK.md`/`PLAN.md`/
+`AGENTS.md` in full, installed deps (the documented pyMKL workaround),
+confirmed the trust suite green (41/41), and dispatched six fresh-context
+sub-agents for exp-098's own Phase 5 (blind reviews, one per seat:
+PHOTONICS, MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS,
+VISION SCIENCE), intending a Red Team final audit + Director synthesis to
+follow. The ELECTROMAGNETISM review completed first (CONCUR-WITH-GAPS;
+independently found GP1's passivity narrative had `bo`/`bf`'s sign
+backwards, and a "continuously MARGINAL" overclaim in the Result section)
+and its file was committed locally. The push was rejected: another venue
+had, during this same window, independently run and fully closed
+Iteration 75 (`0dac6f5`/`8ed3fa9`/`a294a28` — six blind reviews, Red Team's
+final audit, eight same-shift fixes, Combined Verdict PROMISING, new
+standing rule R19, no CHECKPOINT, LOGBOOK/PLAN/SESSION_LOG all updated).
+**A genuine, live two-venue collision on the same iteration** — PANEL.md's
+"Venues and collisions" section anticipates multiple venues executing the
+loop from shared repo state, but names no lock between them; this is the
+first time in the program's recorded history two venues raced to close the
+same numbered iteration concurrently.
+
+**Resolution.** No data was lost or corrupted — git's own conflict
+detection did its job cleanly. Reset this shift's local `main` to
+`origin/main` (the local, never-pushed collision commit was discarded; it
+carried no information the winning venue's own six-seat review layer
+didn't independently reproduce — its two substantive findings, the GP1
+sign issue and the "continuously MARGINAL" overclaim, were independently
+also caught by the winning venue's own ELECTROMAGNETISM/PHOTONICS/
+THERMODYNAMICS reviews, a reassuring cross-venue convergence, not a
+contradiction). Stopped the five still-running sibling review agents
+before they burned further compute on now-superseded work. Verified the
+winning close is sound: trust suite re-confirmed green (41/41) on the
+synced state; `SESSION_LOG.md`'s own Iteration-75 entry (below), R19, and
+the Reconciled Iteration-76 queue in `PLAN.md` all read as a genuine,
+well-gated result on inspection, matching this program's usual rigor.
+
+**Cost.** One sub-agent (ELECTROMAGNETISM) ran to completion before the
+collision was discovered — 346,887 tokens, ~16 minutes wall time, entirely
+duplicate of work the other venue had already produced. Five siblings were
+stopped mid-run at various stages of the same task. Flagged for Marsh: if
+this program's scheduling allows two shift venues to start from the same
+pre-Phase-5 state concurrently, this is a real, recurring cost risk, not a
+one-off — worth a look at whatever triggers concurrent `photonlab-shift`
+(or `photonlab-shift`-plus-interactive-session) starts, independent of
+anything about this specific iteration's physics.
+
+**No new panel iteration run this shift.** Iteration 76 (the queue the
+winning venue's own close already reconciled: Null C re-test at a wider
+bracket, the cpl=50/R5 Richardson point, the GP2′-vs-exp-086 method
+reconciliation through the 74–89.5° tail, the T1-route-N/A flag) is left
+for the next shift — deliberately not started here, given the demonstrated
+live collision risk this same shift just absorbed and the cost of
+compounding it inside one already-long turn. PLAN.md's queue needs no
+edit; the winning venue's own close already states it correctly.
+
 ## 2026-09-01 (panel shift) — Iteration 75 complete (exp-098): the
 11-cycle-old grazing-incidence governance ask is finally, honestly
 discharged -- a redesigned instrument corroborates the already-known
