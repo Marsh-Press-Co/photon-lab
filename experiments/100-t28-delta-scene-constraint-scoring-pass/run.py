@@ -51,13 +51,34 @@ EXP097_DIR = os.path.join(ROOT, "experiments", "097-t28-r18-tier0-gate-closure")
 EXP098_DIR = os.path.join(ROOT, "experiments", "098-t28-cpl40-null-bracket-grazing-instrument")
 EXP099_DIR = os.path.join(ROOT, "experiments", "099-t28-null-c-r5-thirdpoint-gp2-reconciliation")
 
-# --- registration-readback gate (exp-097's own module) ---
+# --- exp-098's own registration-preflight extension + Richardson diagnostic,
+#     AND (per a Phase-4 same-shift fix -- see run_output.txt's own first,
+#     crashed execution) the R4-family real-FDTD machinery pulled through
+#     exp098's OWN internal `exp095` chain, never a second, independent
+#     `_load()` of exp-095/094. exp098's own module docstring already
+#     names this exact hazard ("the actual FDTD calls below use ONLY
+#     exp095's own objects, never mixed with [another chain's] own, to
+#     stay internally consistent with each function's own closure") --
+#     the first execution of this file violated it by ALSO calling
+#     `_load(EXP095_DIR, ...)` directly, which registers `sys.modules
+#     ["_exp095_exp094"]`; loading exp098 SECOND then re-executes exp095's
+#     own file internally (a fresh `_load(EXP094_DIR, ..., "_exp095_
+#     exp094")`, the SAME literal name, clobbering the registration this
+#     file's own `run_block_r4` reference depended on for multiprocessing
+#     pickling) -- `PicklingError: ... it's not the same object as
+#     _exp095_exp094.one_call_r4`, thrown before any sim.run() call
+#     executed (0 FDTD calls spent, confirmed from the crashed run's own
+#     console capture). Fixed by taking every R4-family name from
+#     `exp098.exp095` (exp098's own, single, internally-consistent
+#     instance) instead of a second direct load. ---
 exp097 = _load(os.path.join(EXP097_DIR, "run.py"), "_exp100_exp097")
 run_checks_1234_and_7 = exp097.run_checks_1234_and_7
 
-# --- R4-family real-FDTD machinery (exp-095's own module, itself chaining
-#     093->092->091->090) ---
-exp095 = _load(os.path.join(EXP095_DIR, "run.py"), "_exp100_exp095")
+exp098 = _load(os.path.join(EXP098_DIR, "run.py"), "_exp100_exp098")
+registration_preflight = exp098.registration_preflight
+NETD_ROW_KEYS = exp098.NETD_ROW_KEYS
+
+exp095 = exp098.exp095       # exp098's OWN internal instance -- not a fresh load
 dg = exp095.dg
 PAIR_KEYS_R4 = exp095.PAIR_KEYS_R4
 cell_metrics_r4 = exp095.cell_metrics_r4
@@ -69,11 +90,6 @@ XI_TOL = exp095.XI_TOL
 SIGMA_R4_CORRECTED = exp095.SIGMA_R4_CORRECTED
 assert abs(SIGMA_R4_CORRECTED - 0.25) < 1e-12
 assert PAIR_KEYS_R4 == ("C40_R4", "G40_R4")
-
-# --- exp-098's own registration-preflight extension + Richardson diagnostic ---
-exp098 = _load(os.path.join(EXP098_DIR, "run.py"), "_exp100_exp098")
-registration_preflight = exp098.registration_preflight
-NETD_ROW_KEYS = exp098.NETD_ROW_KEYS
 
 from lab import Sim, sections as sc, emit  # noqa: E402
 

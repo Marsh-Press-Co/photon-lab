@@ -1,0 +1,27 @@
+==============================================================================
+exp-100 -- First constraint-1/2/3 scoring pass on delta_scene(theta)
+==============================================================================
+
+-- Tier 1, item 1: PAD-vs-article partition --
+  n_rows=75  by_family={'cpl20-native': 3, 'R3': 33, 'R4': 35, 'R5': 4}
+  r_pooled=0.2065  p_pooled=0.0758  coupling_detected=False
+  [R3] {'n': 33, 'r': 0.4862068708642141, 'p': 0.00415, 'coupling_detected': True}
+  [R4] {'n': 35, 'r': 0.1102867253871392, 'p': 0.5249, 'coupling_detected': False}
+  [R5] {'n': 4, 'r': 0.9010050941024483, 'p': 0.1644, 'coupling_detected': False}
+  Delta ratio_abs_ext: n=57 max=0.000599624378943231 mean=0.0003525614130607842
+
+-- Tier 1, item 2: MATERIALS' disposition memo --
+  branch=ambiguous (disposition_memo.md written)
+
+-- Tier 1, item 3: Richardson 4-point characterization at Null B --
+  magnitudes(|20-30|,|30-40|,|40-50|)=[0.1935812644838535, 0.15031902190763446, 0.14464938943979178]  monotonic_decreasing=True
+  observed_ratio: 20/30/40=0.7765  30/40/50=0.9623
+  implied order p1=0.8792  p2=0.1723  p_decreasing=True
+
+-- Tier 2, Leg A: C_thr(L) desk score --
+  n_in_window=75  peak_abs_delta_scene=0.003149520984824239 at theta=39.2 (095-t28-r4-ground-truth-sign-control)
+  pass_lab(<0.005)=True  pass_field(<0.02)=True
+
+-- Pre-registered T1 label (fix 3), decided by Tier 1 item 1's outcome (ambiguous): N/A, unresolved -- Tier 1's pooled/family-stratified results contradict each other (Idealization 70); Tier 2's own numbers below are filed as instrument-characterization only and do not move T1 in either direction
+
+-- Tier 2, Leg B: 6 angles x 2 keys x 2 conditions = 24 sim.run() calls --
