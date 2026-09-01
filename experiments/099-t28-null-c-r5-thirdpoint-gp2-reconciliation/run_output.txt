@@ -10,3 +10,98 @@ Panel Iteration 76, THERMODYNAMICS rotation lead
 ITEM 1: Null C re-test, wider asymmetric bracket (+1.500deg upward)
 ==============================================================================
 theta0(cpl20)=41.46090139413deg  new angles=[42.294201, 42.627601, 42.960901]
+  [ 1/12] C40_R4   theta=+42.294 article=False steps=5600 sigma_max=None
+  [ 2/12] C40_R4   theta=+42.294 article=True steps=5600 sigma_max=0.25
+  [ 3/12] G40_R4   theta=+42.294 article=False steps=5600 sigma_max=None
+  [ 4/12] G40_R4   theta=+42.294 article=True steps=5600 sigma_max=0.25
+  [ 5/12] C40_R4   theta=+42.628 article=False steps=5600 sigma_max=None
+  [ 6/12] C40_R4   theta=+42.628 article=True steps=5600 sigma_max=0.25
+  [ 7/12] G40_R4   theta=+42.628 article=False steps=5600 sigma_max=None
+  [ 8/12] G40_R4   theta=+42.628 article=True steps=5600 sigma_max=0.25
+  [ 9/12] C40_R4   theta=+42.961 article=False steps=5600 sigma_max=None
+  [10/12] C40_R4   theta=+42.961 article=True steps=5600 sigma_max=0.25
+  [11/12] G40_R4   theta=+42.961 article=False steps=5600 sigma_max=None
+  [12/12] G40_R4   theta=+42.961 article=True steps=5600 sigma_max=0.25
+  wall=1463.6s (24.39 min)  calls=12  preflight_clean=True
+    theta=40.960901: delta_scene=+2.471869e-03
+    theta=41.294201: delta_scene=+1.512684e-03
+    theta=41.627601: delta_scene=+5.854146e-04
+    theta=41.960901: delta_scene=+4.704114e-04
+    theta=42.294201: delta_scene=+1.322251e-03
+    theta=42.627601: delta_scene=+2.456623e-03
+    theta=42.960901: delta_scene=+2.778079e-03
+[Item 1 SUMMARY] verdict=INCONCLUSIVE-AT-THIS-WIDTH  crossing=None  r_ratios=[1.3316739748300177, 0.28337723580831364]  half_width=1.5deg vs period=2.9474deg
+
+==============================================================================
+ITEM 2: cpl=50 (R5) first real spend -- Step 0 (FI rescoring) -> Step 1 (far-from-null GT) -> Step 2 (settling) -> Step 3 (interior, gated)
+==============================================================================
+
+[Step 0] fault-injection re-scoring at family='R5' (0 sim.run() calls)
+  all_as_predicted=True
+
+[Step 1] far-from-null ground-truth sign check, theta=36.0deg, R5
+  [ 1/4] C40_R5   theta=+36.000 article=False steps=7000 sigma_max=None
+  [ 2/4] C40_R5   theta=+36.000 article=True steps=7000 sigma_max=0.2
+  [ 3/4] G40_R5   theta=+36.000 article=False steps=7000 sigma_max=None
+  [ 4/4] G40_R5   theta=+36.000 article=True steps=7000 sigma_max=0.2
+  delta_scene(36.0deg, R5)=-1.064305e-03  established_sign=negative  match=True  calls=4
+
+[Step 2] Rank 2a settling precondition, theta=39.854853deg, R5_STEPS vs R5_STEPS_STRESS
+  [ 1/8] C40_R5   theta=+39.855 article=False steps=7000 sigma_max=None
+  [ 2/8] C40_R5   theta=+39.855 article=True steps=7000 sigma_max=0.2
+  [ 3/8] G40_R5   theta=+39.855 article=False steps=7000 sigma_max=None
+  [ 4/8] G40_R5   theta=+39.855 article=True steps=7000 sigma_max=0.2
+  [ 5/8] C40_R5   theta=+39.855 article=False steps=10500 sigma_max=None
+  [ 6/8] C40_R5   theta=+39.855 article=True steps=10500 sigma_max=0.2
+  [ 7/8] G40_R5   theta=+39.855 article=False steps=10500 sigma_max=None
+  [ 8/8] G40_R5   theta=+39.855 article=True steps=10500 sigma_max=0.2
+  delta_scene(R5_STEPS)=+5.253136e-04  delta_scene(R5_STEPS_STRESS)=+5.243753e-04  rel_dev=0.1786%  verdict=PASS  calls=8
+
+[Step 3 gate] gt_sign_match=True  step2_verdict=PASS  gate_open=True
+
+[Step 3] interior sweep, 4 angles around theta_c40, R5
+  theta_c40=39.921519deg  angles=[39.521519, 39.688519, 39.854519, 40.021519]
+  [ 1/16] C40_R5   theta=+39.522 article=False steps=7000 sigma_max=None
+  [ 2/16] C40_R5   theta=+39.522 article=True steps=7000 sigma_max=0.2
+  [ 3/16] G40_R5   theta=+39.522 article=False steps=7000 sigma_max=None
+  [ 4/16] G40_R5   theta=+39.522 article=True steps=7000 sigma_max=0.2
+  [ 5/16] C40_R5   theta=+39.689 article=False steps=7000 sigma_max=None
+  [ 6/16] C40_R5   theta=+39.689 article=True steps=7000 sigma_max=0.2
+  [ 7/16] G40_R5   theta=+39.689 article=False steps=7000 sigma_max=None
+  [ 8/16] G40_R5   theta=+39.689 article=True steps=7000 sigma_max=0.2
+  [ 9/16] C40_R5   theta=+39.855 article=False steps=7000 sigma_max=None
+  [10/16] C40_R5   theta=+39.855 article=True steps=7000 sigma_max=0.2
+  [11/16] G40_R5   theta=+39.855 article=False steps=7000 sigma_max=None
+  [12/16] G40_R5   theta=+39.855 article=True steps=7000 sigma_max=0.2
+  [13/16] C40_R5   theta=+40.022 article=False steps=7000 sigma_max=None
+  [14/16] C40_R5   theta=+40.022 article=True steps=7000 sigma_max=0.2
+  [15/16] G40_R5   theta=+40.022 article=False steps=7000 sigma_max=None
+  [16/16] G40_R5   theta=+40.022 article=True steps=7000 sigma_max=0.2
+  wall=3877.0s (64.62 min)  calls=16
+    theta=39.521519: delta_scene=-1.667781e-03
+    theta=39.688519: delta_scene=-5.951707e-04
+    theta=39.854519: delta_scene=+5.230823e-04
+    theta=40.021519: delta_scene=+1.597453e-03
+[Step 3 SUMMARY] verdict=SIGN-CHANGE-FOUND  crossing_cpl50=39.77686992722644
+[Richardson 30/40/50, corrected marginal-to-marginal] {'available': True, 'shift_20_30': -0.15031902190763446, 'shift_30_40': -0.14464938943979178, 'observed_ratio': 0.962282667915931, 'naive_order2_ratio': 0.6399999999999999, 'same_sign_as_20_30': True, 'note': 'descriptive only -- marginal-to-marginal pairing (corrected, Phase-5 Red Team audit); no continuum reference exists; not a formal order estimate (Idealization 49)'}
+
+[Item 2 SUMMARY] total real FDTD calls=28  (PASS-path expects 28, HALT-path 12)
+
+==============================================================================
+ITEM 3: GP2'/ptp tail reconciliation, theta_c in {79,81,83,85,87}deg
+==============================================================================
+  theta_c=79.0deg  ptp=2.173539e-01  ratio_to_theta_c=5=849.8135x
+  theta_c=81.0deg  ptp=2.183528e-01  ratio_to_theta_c=5=853.7191x
+  theta_c=83.0deg  ptp=1.815694e-01  ratio_to_theta_c=5=709.9030x
+  theta_c=85.0deg  ptp=1.286959e-01  ratio_to_theta_c=5=503.1771x
+  theta_c=87.0deg  ptp=7.461436e-02  ratio_to_theta_c=5=291.7284x
+  filed theta_c=69deg ptp=1.695985e+00  filed theta_c=77deg ptp=1.589445e-01
+  GP2' tail (theta>=74deg): min_ratio=12.2221x  max_ratio=78.5343x  any_VALID=False
+
+[R19 assert] item1=12  item2=28  total_real_fdtd_calls=40
+
+==============================================================================
+TOTAL: 40 real FDTD calls, 8899.4s (148.32 min) wall time
+==============================================================================
+
+results.json written.

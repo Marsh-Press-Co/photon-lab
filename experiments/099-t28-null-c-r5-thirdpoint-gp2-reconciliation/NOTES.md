@@ -419,3 +419,227 @@ Wall-time estimate, scaling from exp-098's own 64-call/134.62-min pace
 (≈2.10 min/call): **≈84 minutes** for the 40-call PASS-path total (≈50
 minutes for the 24-call HALT-path floor); item 3's 155 closed-form
 evaluations add well under 1 second.
+
+## Result
+
+**Carried idealizations banner: this section is governed by Idealizations
+1/7/17/38/39/42/46/49/53–61 (§Idealizations above) — restated here per
+this program's own house discipline (VISION SCIENCE's originating fix,
+exp-098).**
+
+**Process note, disclosed (R4 discipline applied to this program's own
+execution, not just its physics claims).** `run.py`'s first execution
+this shift crashed at item 1's own interval-slope-decay computation
+(`combined_delta_c[THETA0_C + 0.500]`, a `KeyError`) after item 1's 12
+real FDTD calls had already completed and printed correctly — a freshly
+computed float (`THETA0_C + 0.500`) does not bit-match the 6-decimal-
+rounded key parsed from `experiments/098-.../results.json`'s own filed
+string, so a direct-arithmetic dict lookup fails where the actual filed
+key (`NULL_C_FILED_KEYS[3]`) succeeds. Fixed (pull the stored key,
+matching this same document's own Fix 4 discipline: "never hand-type/
+recompute") and the full script re-executed from scratch, per this
+program's own exp-098 precedent for a mid-run defect caught before
+`results.json` existed. **No data was lost or altered**: the two
+executions' item 1 console output is bit-identical at all 7 combined
+`delta_scene` values (directly diffed, this shift, against the crashed
+run's own console capture) — the defect was confined to a downstream
+derived-statistic lookup, never the FDTD measurements themselves. Logged
+for Phase 5's attention (§Learned below): this is a different failure
+shape than exp-098's own call-count arithmetic miss (Learned #1 there),
+but the same underlying lesson — filed data must be read back by its
+actual stored key/precision, never reconstructed by fresh arithmetic —
+generalized to a second, distinct code location this cycle.
+
+**40 real FDTD calls (the full PASS-path budget, exactly as the
+self-checked table above priced it), 8899.4s (148.32 min) wall time**
+(materially longer than the ≈84-minute scaled estimate — a container/
+hardware timing difference, consistent with exp-098's own disclosed gap
+in the same direction, not a physics finding). Trust suite reconfirmed
+green (41/41, `--only 12346789`) both before this run and after this
+cycle's full close; zero `lab/` diff throughout.
+
+**Item 1 — Null C wider bracket: INCONCLUSIVE-AT-THIS-WIDTH**, the
+predicted-reachable outcome this cycle's own Fix 5 correctly excluded
+VANISHING-AMPLITUDE from. All 3 new points floor-clear
+(`all_new_floor_pass=True`); no sign change anywhere across the combined
+7-point span (4 filed + 3 new):
+
+| θ | `delta_scene` |
+|---|---|
+| 40.960901° (θ₀−0.500°, filed) | +2.471869×10⁻³ |
+| 41.294201° (θ₀−0.1667°, filed) | +1.512684×10⁻³ |
+| 41.627601° (θ₀+0.1667°, filed) | +5.854146×10⁻⁴ |
+| **41.960901° (θ₀+0.500°, filed) — the minimum** | **+4.704114×10⁻⁴** |
+| 42.294201° (θ₀+0.8333°, new) | +1.322251×10⁻³ |
+| 42.627601° (θ₀+1.1667°, new) | +2.456623×10⁻³ |
+| 42.960901° (θ₀+1.500°, new) | +2.778079×10⁻³ |
+
+The genuinely new finding: `delta_scene` does **not** continue
+decelerating toward zero past θ₀+0.500° — it **reverses** and climbs
+back up, `r₄=|Δ₄|/|Δ₃|=1.332` (>1, growing, not the <0.5 decay Fix 5's
+amplitude criterion needs) before decaying again on the next interval
+(`r₅=0.283`). `amplitude_criteria_met=False` on `r₄` alone, so neither
+clean pattern (crossing, or clean decay-to-plateau) holds — the data
+describe a **smooth local minimum (trough) near θ₀+0.5°–0.83° with no
+zero-crossing across this ±1.5° span**, not the "further deceleration"
+or "reversal-without-crossing" the pre-registered
+INCONCLUSIVE-AT-THIS-WIDTH bucket anticipated in the abstract, but a
+concrete instance of it: this is a genuine bounce, not a stall. Whether
+a true crossing sits beyond θ₀+1.5° (upward) remains untested
+(Idealization 46).
+
+**Item 2 — cpl=50 (R5) first real spend: every gate cleared, PASS-path
+in full, 28/28 calls.**
+
+- **Step 0** (fault-injection re-scoring, `family="R5"`, 0
+  `sim.run()` calls): `all_as_predicted=True` — positive control clean,
+  every corrupted scenario (FI-A/B/C/D via the exp-097 1234/7 idiom;
+  FI-E/F/H via Check 6) caught (`caught_by_new=True` at all six),
+  exactly matching every prior family's own idiom, zero exception.
+- **Step 1** (ground-truth sign, θ=36.0°, R5, 4 calls):
+  `delta_scene=−1.064305×10⁻³`, sign **negative**, matching the
+  established R4-family reference at the same angle
+  (`−8.776529×10⁻⁴`, `experiments/094-.../results.json`) —
+  `sign_match=True`. R5's first-ever real measurement at any angle
+  reproduces the correct sign at this one point (Idealization 59: this
+  certifies nothing beyond that one point).
+- **Step 2** (settling, θ=39.854853°, 8 calls): `delta_scene(R5_STEPS)
+  =+5.253136×10⁻⁴`, `delta_scene(R5_STEPS_STRESS)=+5.243753×10⁻⁴`,
+  `rel_dev=0.1786%` — well inside the ≤1% PASS band.
+- **Step 3 gate**: both Step 1 (GT sign match) and Step 2 (not HALT)
+  clear → **OPEN**, ran unconditionally-priced 16 calls.
+- **Step 3** (interior sweep, 4 angles around θc40=39.921519°, 16
+  calls): **SIGN-CHANGE-FOUND**, crossing at **θc50≈39.776870°**,
+  bracket [39.688519°, 39.854519°].
+
+| θ (cpl=50) | `delta_scene` |
+|---|---|
+| 39.521519° | −1.667781×10⁻³ |
+| 39.688519° | −5.951707×10⁻⁴ |
+| 39.854519° | +5.230823×10⁻⁴ |
+| 40.021519° | +1.597453×10⁻³ |
+
+`shift_40_50 = θc50 − θc40 = −0.144649°` — **same (negative) sign** as
+both established shifts (`shift_20_30=−0.150319°`,
+`shift_30_40=−0.144649°`, note: exp-098's own filed 30→40 shift is
+numerically coincidentally close to this cycle's fresh 40→50 shift,
+confirmed distinct quantities read from distinct sources, not a
+duplication bug — cross-checked against `results.json`'s own
+`step3.theta_c40`/`crossing_cpl50` fields directly), confirming
+Idealization 55's lean. **Richardson (30/40/50, corrected
+marginal-to-marginal, descriptive only — Idealization 49):
+observed_ratio=0.9623 vs. naive 2nd-order 0.64** — same-sign,
+larger-than-naive, the same qualitative pattern as exp-098's own Null-B
+Richardson figure (20/30/40: observed 1.777 vs. naive 0.5625) —
+**reproduced a second time, at a different point-pair on the same
+feature.** Neither figure alone settles whether this is genuine
+super-linear migration or a convergence order below 2 (Idealization
+49); two same-direction observations at Null B now exist, not one.
+
+**Item 3 — GP2′/`ptp` tail reconciliation, θc∈{79°,81°,83°,85°,87°}:
+result does not cleanly support either falsification branch.**
+
+| θc | `ptp` | ratio to θc=5° ref |
+|---|---|---|
+| 77° (filed) | 1.589445×10⁻¹ | 621.4× |
+| 79° | 2.173539×10⁻¹ | 849.8× |
+| 81° | 2.183528×10⁻¹ | 853.7× |
+| 83° | 1.815694×10⁻¹ | 709.9× |
+| 85° | 1.286959×10⁻¹ | 503.2× |
+| 87° | 7.461436×10⁻² | 291.7× |
+
+**Disclosed directly, not glossed over**: the predicted "weak lean
+toward continued decline from θc=77°" **missed at the very next point**
+— 77°→79° is an **increase** (621×→850×, +37%), well beyond the small
+~0.3% 74°/74.5° uptick already on file and flagged as a caveat. From
+79°→87° the trend **does** decline (850×→292×, a real ~66% drop), but
+never approaches "low order" (θc=5°-reference-comparable, i.e. ~1×) —
+it plateaus roughly an order of magnitude above the reference band
+throughout, well short of recovery. Over the same θ≥74° range, GP2′'s
+own (unchanged, re-read not recomputed) tail stays elevated
+(12.2×–78.5×, `gp2_tail_any_valid=False`, zero VALID points). Both
+curves show real decline in this range, in relative terms, but neither
+reaches its own "recovered" regime by the tested edge — the
+pre-registered falsification criterion does not resolve cleanly toward
+either "one curve fully explains the gap" or "persistent, unexplained
+shape divergence"; it is genuinely mixed, an honest non-resolution, not
+a coin-flip default.
+
+## Learned
+
+1. **A second, distinct instance of "filed data reconstructed by fresh
+   arithmetic instead of read back by its stored key/precision" broke a
+   run this cycle** (the `KeyError`, above) — a different failure shape
+   than exp-098's own call-count arithmetic miss (that Learned #1), but
+   the same root lesson, now demonstrated twice in two consecutive
+   cycles across two different code patterns. Neither instance survived
+   past `run.py`'s own execution (both were caught before
+   `results.json` existed), but neither was caught by the panel's
+   review layers either — this cycle's bug lives entirely inside code
+   that did not exist yet at Phase 2. Candidate governance question for
+   Phase 5/Red Team: whether a lightweight, code-level convention (e.g.
+   "any filed value pulled into a new computation must be looked up by
+   its stored dict key or re-parsed string, never reconstructed by
+   arithmetic on a cited float") is worth a named standing rule, given
+   two independent occurrences.
+2. **Null C's own wider-bracket behavior is a genuine bounce, not a
+   stall or a crossing** — `delta_scene` reverses direction at
+   θ₀+0.5°→+0.83° without approaching zero, the concrete shape behind
+   the abstract INCONCLUSIVE-AT-THIS-WIDTH label. This is new
+   information (not available from the ±0.5° bracket alone) even though
+   it does not resolve Null C's own SIGN-CHANGE question.
+3. **R5's first-ever real FDTD spend passed every gate it was asked to
+   clear**: zero fault-injection surprises, GT sign match, settling
+   well inside tolerance, and a genuine, cleanly-bracketed sign change
+   at Step 3. This sub-thread's three-cycle-old "R5 built, never spent"
+   status (exp-095) is now closed with a substantive, gated result, not
+   merely an unblocked capability.
+4. **The Richardson-style super-linear-growth pattern (observed ratio
+   well above the naive 2nd-order expectation, same sign) reproduced at
+   a second, independent point-pair on Null B** (20/30/40 in exp-098;
+   30/40/50 here) — still descriptive only (Idealization 49), but two
+   same-direction data points is a materially different evidentiary
+   state than one, and a natural candidate for Phase 5's own ranking.
+5. **Item 3's falsification criterion, honestly applied, does not
+   resolve** — the tail shows real decline without real recovery on
+   both curves, plus an unpredicted early reversal (77°→79°). Disclosing
+   a clean non-resolution is itself the informative outcome this item
+   was built to produce either way (§Setup item 3), not a defect in the
+   test.
+
+## Next (Reconciled Iteration-77 queue, Director's draft — subject to
+Phase 5's own ranking)
+
+1. **Null C: test whether the bounce found this cycle is a true local
+   minimum or the near edge of a wider oscillation** — a bracket
+   reaching the full ≥2.9474° period half-width (Fix 5's own named
+   threshold, item 1's own Idealization 60) is the natural next test,
+   now that a concrete reversal point (θ₀+0.5°–0.83°) narrows where to
+   center it.
+2. **The T1 escape-route trigger, restated (§T1 disposition,
+   THERMODYNAMICS' own ruling, this document)**: items 1–3 close this
+   cycle; Iteration 77 should include an actual constraint-1/2/3/4
+   scoring pass treating the now-more-fully-characterized
+   `delta_scene(θ)` sign structure as an angular-selectivity parameter,
+   scored against the existing constraint-metric instruments — not
+   another round of bracket/instrument validation alone. If Iteration 77
+   files T1: N/A without addressing this trigger, THERMODYNAMICS' own
+   disposition should be read as overridden, not reaffirmed by default.
+3. **The Richardson super-linear pattern, now reproduced twice at Null
+   B (20/30/40 and 30/40/50), warrants explicit scoping**: whether it
+   generalizes to Null A (cpl=30 counterpart not yet on file) or is
+   Null-B-specific.
+4. **Item 3's non-resolution is itself a candidate closing item**: a
+   direct GP2′-style recompute using exp-086's own narrow-sliding-window
+   method over this cycle's same θc∈{79°...87°} range (already named in
+   exp-098's own Next §3) would let one instrument, not two statistics
+   on the same curve, speak to the tail directly.
+5. **Standing, still-deferred items, unresolved by this cycle**: the
+   full-width non-aliased second-wavelength `G40` leg and the real
+   750/450nm wavelength-generality leg (both deferred since exp-076,
+   now six consecutive cycles); the x-wall realizable-admittance refit
+   (four cycles deferred); whether `PAD`-sensitivity survives with a
+   real absorbing article loaded (five cycles deferred, still the
+   single most overdue item on the T28 board) — this cycle did not
+   touch any of these three; if Iteration 77 defers them again, that
+   should be a stated decision, not silence.

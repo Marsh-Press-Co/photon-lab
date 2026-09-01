@@ -1,0 +1,804 @@
+{
+  "experiment": "exp-099",
+  "panel_iteration": 76,
+  "fdtd_calls": 40,
+  "wall_time_s": 8899.44218325615,
+  "r13_floor_gate": {
+    "floor": 0.00019174375118374476,
+    "rms": 0.0019174375118374476,
+    "n83": 31
+  },
+  "item_1": {
+    "theta0_cpl20": 41.46090139413461,
+    "new_angles": [
+      42.29420139413461,
+      42.62760139413461,
+      42.96090139413461
+    ],
+    "combined_angles": [
+      40.960901,
+      41.294201,
+      41.627601,
+      41.960901,
+      42.29420139413461,
+      42.62760139413461,
+      42.96090139413461
+    ],
+    "combined_report": {
+      "42.294201": {
+        "delta_scene": 0.001322250865020469,
+        "frac_contrast": 0.0025960344390429896,
+        "ratio_k": 1.8202480818043787,
+        "floor_pass": true,
+        "p_abs_w_c": 3.3120038882681574e-12,
+        "p_abs_w_g": 3.2963532566376475e-12,
+        "dt_ss_full_K_c": 5.441274959281366e-05,
+        "dt_ss_full_K_g": 5.415562613263391e-05,
+        "netd_classification_c": "UNDETECTABLE",
+        "netd_classification_g": "UNDETECTABLE",
+        "sigma_ext_cells_c": 660.7230301738906,
+        "sigma_ext_cells_g": 659.4258026101825,
+        "ratio_abs_ext_raw_c": 0.5121011146215637,
+        "ratio_abs_ext_raw_g": 0.5116884884635033
+      },
+      "42.627601": {
+        "delta_scene": 0.0024566233265059245,
+        "frac_contrast": 0.004919041947453973,
+        "ratio_k": 1.7093509879463675,
+        "floor_pass": true,
+        "p_abs_w_c": 3.321462312762328e-12,
+        "p_abs_w_g": 3.2935342313107863e-12,
+        "dt_ss_full_K_c": 5.4568141585367444e-05,
+        "dt_ss_full_K_g": 5.41093125036706e-05,
+        "netd_classification_c": "UNDETECTABLE",
+        "netd_classification_g": "UNDETECTABLE",
+        "sigma_ext_cells_c": 661.2981178228455,
+        "sigma_ext_cells_g": 658.601447349075,
+        "ratio_abs_ext_raw_c": 0.5126707367715074,
+        "ratio_abs_ext_raw_g": 0.5125315363059252
+      },
+      "42.960901": {
+        "delta_scene": 0.0027780786590187456,
+        "frac_contrast": 0.005657699581394652,
+        "ratio_k": 1.4257961843077431,
+        "floor_pass": true,
+        "p_abs_w_c": 3.3080170500360944e-12,
+        "p_abs_w_g": 3.2813321813184463e-12,
+        "dt_ss_full_K_c": 5.43472500228534e-05,
+        "dt_ss_full_K_g": 5.3908845622244516e-05,
+        "netd_classification_c": "UNDETECTABLE",
+        "netd_classification_g": "UNDETECTABLE",
+        "sigma_ext_cells_c": 659.0859505388352,
+        "sigma_ext_cells_g": 656.313558248941,
+        "ratio_abs_ext_raw_c": 0.5140287428175524,
+        "ratio_abs_ext_raw_g": 0.5141989890981631
+      },
+      "40.960901": {
+        "delta_scene": 0.0024718686763873787,
+        "frac_contrast": 0.004576671710467104,
+        "ratio_k": 1.4732926138509654,
+        "floor_pass": true,
+        "p_abs_w_c": 3.0880616137766573e-12,
+        "p_abs_w_g": 3.1088837234489266e-12,
+        "dt_ss_full_K_c": 5.073361293832054e-05,
+        "dt_ss_full_K_g": 5.107569835784694e-05,
+        "netd_classification_c": "UNDETECTABLE",
+        "netd_classification_g": "UNDETECTABLE",
+        "sigma_ext_cells_c": 636.2757553305222,
+        "sigma_ext_cells_g": 638.1210978395222,
+        "ratio_abs_ext_raw_c": 0.5148716501442417,
+        "ratio_abs_ext_raw_g": 0.515349720182681
+      },
+      "41.294201": {
+        "delta_scene": 0.0015126843736852358,
+        "frac_contrast": 0.0028280597997998647,
+        "ratio_k": 3.4724987415050923,
+        "floor_pass": true,
+        "p_abs_w_c": 3.1283817972027032e-12,
+        "p_abs_w_g": 3.1591038644683392e-12,
+        "dt_ss_full_K_c": 5.139603125614593e-05,
+        "dt_ss_full_K_g": 5.190076259387776e-05,
+        "netd_classification_c": "UNDETECTABLE",
+        "netd_classification_g": "UNDETECTABLE",
+        "sigma_ext_cells_c": 640.4070230273063,
+        "sigma_ext_cells_g": 643.490008405949,
+        "ratio_abs_ext_raw_c": 0.5148863175266096,
+        "ratio_abs_ext_raw_g": 0.5149725282842976
+      },
+      "41.627601": {
+        "delta_scene": 0.0005854146369200786,
+        "frac_contrast": 0.0011087719218370391,
+        "ratio_k": 6.898856381773085,
+        "floor_pass": true,
+        "p_abs_w_c": 3.1941599546887563e-12,
+        "p_abs_w_g": 3.2185929090704534e-12,
+        "dt_ss_full_K_c": 5.247669738236742e-05,
+        "dt_ss_full_K_g": 5.287810519269433e-05,
+        "netd_classification_c": "UNDETECTABLE",
+        "netd_classification_g": "UNDETECTABLE",
+        "sigma_ext_cells_c": 647.7096815966157,
+        "sigma_ext_cells_g": 650.3800583111641,
+        "ratio_abs_ext_raw_c": 0.5139248952846426,
+        "ratio_abs_ext_raw_g": 0.5136122692987434
+      },
+      "41.960901": {
+        "delta_scene": 0.0004704113885973804,
+        "frac_contrast": 0.000905863860571895,
+        "ratio_k": 1.8435704575649103,
+        "floor_pass": true,
+        "p_abs_w_c": 3.2649535637855616e-12,
+        "p_abs_w_g": 3.2704061141125145e-12,
+        "dt_ss_full_K_c": 5.3639762117345814e-05,
+        "dt_ss_full_K_g": 5.372934179949342e-05,
+        "netd_classification_c": "UNDETECTABLE",
+        "netd_classification_g": "UNDETECTABLE",
+        "sigma_ext_cells_c": 655.6434890983658,
+        "sigma_ext_cells_g": 656.5105605417558,
+        "ratio_abs_ext_raw_c": 0.5126787020161038,
+        "ratio_abs_ext_raw_g": 0.5121793043185422
+      }
+    },
+    "all_new_floor_pass": true,
+    "r_ratios": [
+      1.3316739748300177,
+      0.28337723580831364
+    ],
+    "amplitude_criteria_met": false,
+    "half_width_deg": 1.5,
+    "established_period_deg": 2.9474,
+    "period_criterion_met": false,
+    "crossing_cpl40": null,
+    "crossing_bracket": null,
+    "verdict": "INCONCLUSIVE-AT-THIS-WIDTH",
+    "wall_s": 1463.581621170044,
+    "n_calls": 12,
+    "preflight": {
+      "n_points": 6,
+      "all_clean": true,
+      "checks": [
+        {
+          "family": "R4",
+          "config_key": "C40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 42.29420139413461,
+          "cpl_actual": 40,
+          "theta_actual": 42.29420139413461,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        },
+        {
+          "family": "R4",
+          "config_key": "G40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 42.29420139413461,
+          "cpl_actual": 40,
+          "theta_actual": 42.29420139413461,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        },
+        {
+          "family": "R4",
+          "config_key": "C40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 42.62760139413461,
+          "cpl_actual": 40,
+          "theta_actual": 42.62760139413461,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        },
+        {
+          "family": "R4",
+          "config_key": "G40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 42.62760139413461,
+          "cpl_actual": 40,
+          "theta_actual": 42.62760139413461,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        },
+        {
+          "family": "R4",
+          "config_key": "C40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 42.96090139413461,
+          "cpl_actual": 40,
+          "theta_actual": 42.96090139413461,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        },
+        {
+          "family": "R4",
+          "config_key": "G40_R4",
+          "cpl_intended": 40,
+          "theta_intended": 42.96090139413461,
+          "cpl_actual": 40,
+          "theta_actual": 42.96090139413461,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true
+        }
+      ]
+    },
+    "shift_vs_cpl20_30_primary": 0.3201659178026546,
+    "shift_vs_cpl20_30_second": 0.3767516353289935
+  },
+  "item_2": {
+    "step0": {
+      "fi_1234_7": {
+        "positive_control": {
+          "family": "R5",
+          "config_key": "C40_R5",
+          "cpl_intended": 50,
+          "theta_intended": 41.825,
+          "cpl_actual": 50,
+          "theta_actual": 41.825,
+          "edge_actual": 100,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": true,
+          "clean_7": true,
+          "must_be_1234": "CLEAN",
+          "must_be_7": "CLEAN"
+        },
+        "FI_A_family_cpl_swap": {
+          "family": "R5",
+          "config_key": "C40_R5",
+          "cpl_intended": 50,
+          "theta_intended": 41.825,
+          "cpl_actual": 40,
+          "theta_actual": 41.825,
+          "edge_actual": 100,
+          "check1_resolution": false,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": true,
+          "clean_1234": false,
+          "clean_7": true,
+          "must_be_1234": "DEFECT-FOUND",
+          "must_be_7": "CLEAN"
+        },
+        "FI_B_angle_mislabel": {
+          "family": "R5",
+          "config_key": "C40_R5",
+          "cpl_intended": 50,
+          "theta_intended": 41.825,
+          "cpl_actual": 50,
+          "theta_actual": 41.85,
+          "edge_actual": 100,
+          "check1_resolution": true,
+          "check2_angle_spec": false,
+          "check3_placement": true,
+          "check4_phase_ramp": false,
+          "check7_taper": true,
+          "clean_1234": false,
+          "clean_7": true,
+          "must_be_1234": "DEFECT-FOUND",
+          "must_be_7": "CLEAN"
+        },
+        "FI_C_sign_flip": {
+          "family": "R5",
+          "config_key": "C40_R5",
+          "cpl_intended": 50,
+          "theta_intended": 41.825,
+          "cpl_actual": 50,
+          "theta_actual": -41.825,
+          "edge_actual": 100,
+          "check1_resolution": true,
+          "check2_angle_spec": false,
+          "check3_placement": true,
+          "check4_phase_ramp": false,
+          "check7_taper": true,
+          "clean_1234": false,
+          "clean_7": true,
+          "must_be_1234": "DEFECT-FOUND",
+          "must_be_7": "CLEAN"
+        },
+        "FI_D_wrong_taper_edge": {
+          "family": "R5",
+          "config_key": "C40_R5",
+          "cpl_intended": 50,
+          "theta_intended": 41.825,
+          "cpl_actual": 50,
+          "theta_actual": 41.825,
+          "edge_actual": 80,
+          "check1_resolution": true,
+          "check2_angle_spec": true,
+          "check3_placement": true,
+          "check4_phase_ramp": true,
+          "check7_taper": false,
+          "clean_1234": true,
+          "clean_7": false,
+          "must_be_1234": "CLEAN",
+          "must_be_7": "DEFECT-FOUND"
+        },
+        "all_as_predicted": true
+      },
+      "fi_e": {
+        "results": [
+          {
+            "pair_index": 0,
+            "theta_scored": 41.85,
+            "new_clean": false,
+            "old_clean": true
+          },
+          {
+            "pair_index": 1,
+            "theta_scored": 41.825,
+            "new_clean": false,
+            "old_clean": true
+          }
+        ],
+        "caught_by_new": true,
+        "missed_by_old": true
+      },
+      "fi_f": {
+        "new_clean": false,
+        "old_clean": true,
+        "caught_by_new": true,
+        "missed_by_old": true
+      },
+      "fi_h": {
+        "true_family": "R4",
+        "mislabeled_family": "R5",
+        "notes_line": 437,
+        "new_clean": false,
+        "old_clean": true,
+        "new_family_ok": false,
+        "caught_by_new": true,
+        "missed_by_old": true
+      },
+      "check6_idiom_all_as_predicted": true,
+      "all_as_predicted": true
+    },
+    "step1": {
+      "theta": 36.0,
+      "delta_scene": -0.0010643051959493555,
+      "floor_pass": true,
+      "established_sign_negative": true,
+      "sign_match": true,
+      "established_reference": {
+        "source": "experiments/094-.../results.json::rank3.per_theta['36.0']",
+        "delta_scene": -0.0008776529106750974,
+        "outcome": "CONSISTENT"
+      },
+      "n_calls": 4,
+      "wall_s": 1022.4484581947327,
+      "preflight": {
+        "n_points": 2,
+        "all_clean": true,
+        "checks": [
+          {
+            "family": "R5",
+            "config_key": "C40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 36.0,
+            "cpl_actual": 50,
+            "theta_actual": 36.0,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "G40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 36.0,
+            "cpl_actual": 50,
+            "theta_actual": 36.0,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          }
+        ]
+      }
+    },
+    "step2": {
+      "angle": 39.854853,
+      "delta_scene_r5_steps": 0.0005253136125293878,
+      "delta_scene_r5_steps_stress": 0.0005243753061360268,
+      "rel_dev": 0.0017861832836256804,
+      "verdict": "PASS",
+      "n_calls": 8,
+      "wall_s": 2462.913899421692,
+      "preflight": {
+        "n_points": 2,
+        "all_clean": true,
+        "checks": [
+          {
+            "family": "R5",
+            "config_key": "C40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 39.854853,
+            "cpl_actual": 50,
+            "theta_actual": 39.854853,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "G40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 39.854853,
+            "cpl_actual": 50,
+            "theta_actual": 39.854853,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          }
+        ]
+      }
+    },
+    "step3": {
+      "theta_c40": 39.921519316666235,
+      "angles": [
+        39.521519316666236,
+        39.68851931666624,
+        39.854519316666234,
+        40.021519316666236
+      ],
+      "report": {
+        "39.521519": {
+          "delta_scene": -0.0016677807542018197,
+          "frac_contrast": 0.0030375101488213903,
+          "ratio_k": 1.6501716312767263,
+          "floor_pass": true,
+          "p_abs_w_c": 3.0009324498665004e-12,
+          "p_abs_w_g": 2.985890536810695e-12,
+          "dt_ss_full_K_c": 4.930217217375259e-05,
+          "dt_ss_full_K_g": 4.905504932120957e-05,
+          "netd_classification_c": "UNDETECTABLE",
+          "netd_classification_g": "UNDETECTABLE",
+          "sigma_ext_cells_c": 785.2436024547715,
+          "sigma_ext_cells_g": 783.7076555874812,
+          "ratio_abs_ext_raw_c": 0.5132999298932891,
+          "ratio_abs_ext_raw_g": 0.5127309138012911
+        },
+        "39.688519": {
+          "delta_scene": -0.0005951707119924432,
+          "frac_contrast": 0.0010855716585847074,
+          "ratio_k": 6.998923906679259,
+          "floor_pass": true,
+          "p_abs_w_c": 3.021008948629141e-12,
+          "p_abs_w_g": 2.998055825835794e-12,
+          "dt_ss_full_K_c": 4.963200798817949e-05,
+          "dt_ss_full_K_g": 4.925491225850613e-05,
+          "netd_classification_c": "UNDETECTABLE",
+          "netd_classification_g": "UNDETECTABLE",
+          "sigma_ext_cells_c": 788.1559833996439,
+          "sigma_ext_cells_g": 785.4610121765895,
+          "ratio_abs_ext_raw_c": 0.5129221532073195,
+          "ratio_abs_ext_raw_g": 0.5125240490473679
+        },
+        "39.854519": {
+          "delta_scene": 0.0005230823206044954,
+          "frac_contrast": 0.0009552326063755989,
+          "ratio_k": 9.345321263811474,
+          "floor_pass": true,
+          "p_abs_w_c": 3.038060006889811e-12,
+          "p_abs_w_g": 3.0109393801338736e-12,
+          "dt_ss_full_K_c": 4.991213898884552e-05,
+          "dt_ss_full_K_g": 4.946657554077764e-05,
+          "netd_classification_c": "UNDETECTABLE",
+          "netd_classification_g": "UNDETECTABLE",
+          "sigma_ext_cells_c": 790.5729140564619,
+          "sigma_ext_cells_g": 787.1579585891459,
+          "ratio_abs_ext_raw_c": 0.5126680880741811,
+          "ratio_abs_ext_raw_g": 0.5125096288674699
+        },
+        "40.021519": {
+          "delta_scene": 0.001597452794614873,
+          "frac_contrast": 0.00292081170644389,
+          "ratio_k": 3.009159318440605,
+          "floor_pass": true,
+          "p_abs_w_c": 3.0508691273231475e-12,
+          "p_abs_w_g": 3.0240544657201527e-12,
+          "dt_ss_full_K_c": 5.01225794008004e-05,
+          "dt_ss_full_K_g": 4.968204263923798e-05,
+          "netd_classification_c": "UNDETECTABLE",
+          "netd_classification_g": "UNDETECTABLE",
+          "sigma_ext_cells_c": 792.282520033986,
+          "sigma_ext_cells_g": 788.7064596684736,
+          "ratio_abs_ext_raw_c": 0.5126101821333235,
+          "ratio_abs_ext_raw_g": 0.5127227785879108
+        }
+      },
+      "all_floor_pass": true,
+      "crossing_cpl50": 39.77686992722644,
+      "crossing_bracket": [
+        39.68851931666624,
+        39.854519316666234
+      ],
+      "verdict": "SIGN-CHANGE-FOUND",
+      "n_calls": 16,
+      "wall_s": 3877.034654378891,
+      "preflight": {
+        "n_points": 8,
+        "all_clean": true,
+        "checks": [
+          {
+            "family": "R5",
+            "config_key": "C40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 39.521519316666236,
+            "cpl_actual": 50,
+            "theta_actual": 39.521519316666236,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "G40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 39.521519316666236,
+            "cpl_actual": 50,
+            "theta_actual": 39.521519316666236,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "C40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 39.68851931666624,
+            "cpl_actual": 50,
+            "theta_actual": 39.68851931666624,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "G40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 39.68851931666624,
+            "cpl_actual": 50,
+            "theta_actual": 39.68851931666624,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "C40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 39.854519316666234,
+            "cpl_actual": 50,
+            "theta_actual": 39.854519316666234,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "G40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 39.854519316666234,
+            "cpl_actual": 50,
+            "theta_actual": 39.854519316666234,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "C40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 40.021519316666236,
+            "cpl_actual": 50,
+            "theta_actual": 40.021519316666236,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          },
+          {
+            "family": "R5",
+            "config_key": "G40_R5",
+            "cpl_intended": 50,
+            "theta_intended": 40.021519316666236,
+            "cpl_actual": 50,
+            "theta_actual": 40.021519316666236,
+            "edge_actual": 100,
+            "check1_resolution": true,
+            "check2_angle_spec": true,
+            "check3_placement": true,
+            "check4_phase_ramp": true,
+            "check7_taper": true,
+            "clean_1234": true,
+            "clean_7": true
+          }
+        ]
+      },
+      "richardson_30_40_50": {
+        "available": true,
+        "shift_20_30": -0.15031902190763446,
+        "shift_30_40": -0.14464938943979178,
+        "observed_ratio": 0.962282667915931,
+        "naive_order2_ratio": 0.6399999999999999,
+        "same_sign_as_20_30": true,
+        "note": "descriptive only -- marginal-to-marginal pairing (corrected, Phase-5 Red Team audit); no continuum reference exists; not a formal order estimate (Idealization 49)"
+      }
+    },
+    "step3_gate_open": true,
+    "total_calls": 28
+  },
+  "item_3": {
+    "new_windows": [
+      {
+        "theta_c": 79.0,
+        "ptp": 0.21735385064978663,
+        "window": [
+          76.0,
+          82.0
+        ],
+        "n_points": 31
+      },
+      {
+        "theta_c": 81.0,
+        "ptp": 0.21835279072177197,
+        "window": [
+          78.0,
+          84.0
+        ],
+        "n_points": 31
+      },
+      {
+        "theta_c": 83.0,
+        "ptp": 0.1815694267909474,
+        "window": [
+          80.0,
+          86.0
+        ],
+        "n_points": 31
+      },
+      {
+        "theta_c": 85.0,
+        "ptp": 0.12869585579898735,
+        "window": [
+          82.0,
+          88.0
+        ],
+        "n_points": 31
+      },
+      {
+        "theta_c": 87.0,
+        "ptp": 0.07461436316975525,
+        "window": [
+          84.0,
+          90.0
+        ],
+        "n_points": 31
+      }
+    ],
+    "ptp_ref_theta_c_5": 0.00025576654006225,
+    "ratios_new": [
+      {
+        "theta_c": 79.0,
+        "ptp": 0.21735385064978663,
+        "ratio_to_theta_c_5": 849.8134689427543
+      },
+      {
+        "theta_c": 81.0,
+        "ptp": 0.21835279072177197,
+        "ratio_to_theta_c_5": 853.7191403872764
+      },
+      {
+        "theta_c": 83.0,
+        "ptp": 0.1815694267909474,
+        "ratio_to_theta_c_5": 709.9029714627876
+      },
+      {
+        "theta_c": 85.0,
+        "ptp": 0.12869585579898735,
+        "ratio_to_theta_c_5": 503.1770604851775
+      },
+      {
+        "theta_c": 87.0,
+        "ptp": 0.07461436316975525,
+        "ratio_to_theta_c_5": 291.7283986857513
+      }
+    ],
+    "gp2_tail_min_ratio": 12.22212934970524,
+    "gp2_tail_max_ratio": 78.53434882108101,
+    "gp2_tail_any_valid": false,
+    "filed_theta_c_69_ptp": 1.6959845846063104,
+    "filed_theta_c_77_ptp": 0.15894454947662662
+  },
+  "delta_scene_established_period_deg": 2.9474
+}
