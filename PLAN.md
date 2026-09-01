@@ -22,7 +22,65 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-08-31, panel Iteration 74 done (exp-097, PARTIAL,
+## Current state (2026-09-01, panel Iteration 75 done (exp-098, PROMISING,
+ELECTROMAGNETISM's rotation-lead cycle: executed exp-097's own Reconciled
+Iteration-75 queue, Tier 0 alongside Tier 1, plus the 11-cycle-old
+grazing-incidence governance ask, scheduled and genuinely discharged
+rather than deferred a 12th time. Five blind Phase-2 critiques
+(unanimous support-with-changes): PHOTONICS found the proposed
+grazing-incidence check was analytically theta-independent by
+construction, unable to ever detect the already-known exp-086 blow-up;
+MATERIALS found "migration vs. recipe defect" a false dichotomy absent
+a convergence-order estimate; THERMODYNAMICS found netd_row() wiring
+was prose-only, citing a since-overridden precedent (recommendation
+adopted anyway); QUANTUM confirmed the Idealization-40 fix and found
+GP3's reciprocity check degenerate; VISION found word-count/banner
+gaps. Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 9 items,
+1 overridden) ruled the grazing-incidence check must be redesigned, not
+shipped as a blind discharge -- Director chose a genuinely
+theta-dependent redesign (GP2', reusing the same already-verified
+closed-form machinery) over deferral. Phase 4: 64 real FDTD calls
+(corrected mid-cycle from an initially-miscounted 32, an arithmetic
+error that survived every review layer, caught only by the code's own
+assert), 134.6 min wall, trust suite green, zero lab/ diff. Item (i)
+(bracket the other three cpl=20 nulls at cpl=40): MIXED -- nulls A/B
+show genuine cpl=40 sign changes, null C does not. Item (ii)
+(re-centered node search at theta0~=38.590230deg): CONFIRM-migration-
+down, crossing found at ~38.252deg below exp-095's own original
+bracket -- R17 working exactly as designed one cycle after its own
+founding defect. Item (v): GP1 passivity PASS; GP2' (redesigned) flags
+MARGINAL amplitude departure theta=50.5-89.5deg, peaking at theta=66.0
+deg (235.4x) squarely inside the known exp-086 blow-up band --
+genuinely discharging the governance ask for the first time. Six blind
+Phase-5 reviews (all CONCUR-WITH-GAP(S)): QUANTUM found a new
+fault-injection scenario (FI-G'') was named by exp-097's own queue and
+silently dropped this cycle; PHOTONICS+THERMODYNAMICS independently
+found a GP2' Result overclaim ("continuously... entire upper half" --
+actually 9 VALID points interspersed); MATERIALS found the Richardson
+diagnostic compared a cumulative shift against a marginal one, a
+category mismatch reversing the reported direction (corrected: 0.777
+shrinking, not 1.777 growing); THERMODYNAMICS+ELECTROMAGNETISM
+independently found a THIRD instance of this cycle's own call-count
+arithmetic error class ("64 report rows" was the call count, not the
+16/18 row count); VISION found a banner-placement gap; ELECTROMAGNETISM's
+own self-review found GP1's "passivity floor" framing oversold its
+derivation. Red Team's Phase-5 final audit adopted all six plus a
+seventh bonus defect, adopted new standing rule R19 NOW (an explicit
+exception to the usual cross-cycle cadence: call-count vs. row-count
+must be a code-enforced assert), ruled Checkpoint criterion 4 the
+closest call this program has had but does NOT fire (caught blind,
+same cycle, matching R16/R17/R18 precedent) -- explicit warning that a
+fourth recurrence fires it without further warning. All 8 mandated
+same-shift fixes applied (zero FDTD, none load-bearing). Combined
+Verdict: PROMISING -- both stated goals substantively achieved.
+Reconciled Iteration-76 queue: Null C re-test at a wider, asymmetric,
+R17-compliant bracket (unanimous #1); the cpl=50/R5 third resolution
+point at Null B against the corrected Richardson formula; reconcile
+GP2' against exp-086's own method through the 74-89.5deg tail; ratify
+R19 (done); state the cpl-is-orthogonal-to-realizability finding and
+revisit the six-consecutive-cycle T1-route-N/A flag. Full record:
+`experiments/098-t28-cpl40-null-bracket-grazing-instrument/`, LOGBOOK.md
+Iteration 75); panel Iteration 74 done (exp-097, PARTIAL,
 MATERIALS' rotation-lead cycle: executed exp-096's own Reconciled
 Iteration-74 queue, Tier 0 in full, as one combined zero-FDTD build --
 Check 6 fixed to positional comparison plus its own cpl_intended half;

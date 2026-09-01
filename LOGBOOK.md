@@ -756,6 +756,46 @@ top. Protocol: PANEL.md.*
   `phase5_review_electromagnetism.md` (filed as `phase5_review_em.md`),
   `phase5_review_quantum.md`, `phase5_redteam_audit.md` §1/§3/§5, LOGBOOK.md
   Iteration 73.
+- **R19 — any results table, Result-section prose, or Learned/Next item
+  that states a count of FDTD calls, report rows, or data points must be
+  backed by an explicit, checkable, CODE-ENFORCED assert distinguishing
+  call-count from distinct-row/data-point-count wherever both exist in
+  the same computation — never a reviewer's manual cross-check (not a
+  ruled-out idea; a standing house-discipline rule, proposed by Red
+  Team's Phase-5 final audit and ratified by the Director, Iteration 75,
+  adopted as an explicit, disclosed EXCEPTION to this program's own
+  usual cross-cycle recurrence-before-ratification cadence — the
+  recurrence signal already existed WITHIN one cycle at the strength
+  this program has historically required across two).** Founding case:
+  exp-098's own Phase-1/3 proposal predicted 32 real FDTD calls for
+  items (i)/(ii), an arithmetic undercount that omitted the empty/
+  article factor (each of 16 angle/config points needs BOTH conditions);
+  the code's own `assert total_calls == 32` caught it before
+  `results.json` existed, and the run was corrected and re-executed at
+  64 calls. One paragraph later, in the SAME document's own Result
+  section — written immediately after disclosing that first miss as a
+  Learned item — the identical error shape recurred: "held for all 64
+  real-FDTD report rows" mislabeled the call count (64) as the actual
+  distinct row/data-point count (16 new, 18 including 2 reused from
+  exp-095). THERMODYNAMICS and ELECTROMAGNETISM independently caught
+  this second instance at Phase 5; Red Team's final audit independently
+  re-verified both instances from source and ruled a fourth recurrence,
+  in any future cycle, should fire Checkpoint criterion 4 without
+  further warning — this rule exists to prevent that fourth instance by
+  making the invariant a code-level assert rather than an assigned human
+  duty (a channel three prior R-rules — R16 (a persisted-byproduct
+  channel), and by extension this program's own repeated finding that
+  unowned verification channels recur — have already shown goes
+  unowned). Checkpoint criterion 4 ruled the closest call this program
+  has had (Red Team's own words) but does NOT fire this cycle — both
+  instances, plus a separate undisclosed dropped fault-injection
+  scenario (`FI-G''`, named by exp-097's own queue and silently dropped
+  in exp-098, closed same-shift) were caught blind by this same cycle's
+  own six-seat-plus-Red-Team review layers before Iteration 76 opens,
+  matching the R16/R17/R18 founding-instance non-firing precedent. Full
+  record: `experiments/098-t28-cpl40-null-bracket-grazing-instrument/
+  phase5_review_thermodynamics.md`, `phase5_review_em.md`,
+  `phase5_redteam_audit.md` §1/§2/§3, LOGBOOK.md Iteration 75.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -6438,6 +6478,129 @@ should be scheduled within the next two cycles or formally
 deprioritized, closing Iteration 61's still-open ritualization question
 for this specific item. Full record: `experiments/097-t28-r18-tier0-
 gate-closure/`, LOGBOOK.md Iteration 74.
+
+**Iteration 75 (exp-098) — ELECTROMAGNETISM's rotation-lead cycle.**
+Executed exp-097's own Reconciled Iteration-75 queue (Tier 0 alongside
+Tier 1, not gating it), plus the deferred grazing-incidence governance
+ask, scheduled and genuinely discharged rather than deferred a twelfth
+time. Five blind Phase-2 critiques (unanimous support-with-changes):
+PHOTONICS independently found the proposal's own item (v) design
+(a `kr`-based classification of `_geom_derived`, exp-048) is
+analytically θ-INDEPENDENT by construction — verified numerically,
+`kr_min=70.06` constant across all 21 originally-proposed θ — meaning it
+could never detect the already-quantified θc≈59°–73° amplitude blow-up
+(5,444×–6,631×, exp-086) sitting squarely inside the sweep; MATERIALS
+found `cpl` is confirmed pure grid density with physical geometry held
+invariant across R3/R4/R5, making "genuine migration vs. family-wide
+recipe defect" a false dichotomy absent a convergence-order estimate,
+never computed anywhere in this program's history; THERMODYNAMICS found
+item (iii)'s `netd_row()` wiring was a prose commitment, not an
+enforced one, citing a since-OVERRIDDEN precedent (misattributing
+exp-094/Iteration 71's own R16 near-miss to exp-095's R4 family — Red
+Team independently confirmed exp-095 was clean, but adopted the
+recommended build-time assert anyway on R16's own text alone); QUANTUM
+OPTICS independently re-confirmed the Idealization-40 correction and
+found GP3's reciprocity dichotomy degenerate by construction (one
+shared `d_sp` serves both `y_src`/`y_obs`); VISION found the Predictions
+section's own word count and the §5 idealizations banner's Result-side
+gap. Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 9 attacks,
+1 critique overridden on its factual precedent with the recommendation
+adopted anyway, 4 escalated/adopted in full) ruled item (v) as specified
+could not honestly discharge the grazing-incidence governance ask and
+must not be written up as doing so — mandating either a genuinely
+θ-dependent replacement or an explicit, disclosed re-deferral; the
+Director chose the former (near-zero marginal cost, reuses the same
+already-verified closed-form machinery). Phase 3 adopted all five
+mandatory fixes: GP2 redesigned as GP2′, a genuinely θ-dependent
+amplitude-ratio probe reusing the exact `C(θ)` values GP1 already
+computes; item (iii) replaced with a build-time assert; MATERIALS'
+descriptive (non-formal) pairwise-shift-ratio diagnostic added; QUANTUM's
+GP3 degeneracy assertion added; VISION's dual-section banner commitment
+restated. `NOTES.md` frozen and pushed strictly before any Phase-4 code
+existed. Phase 4: 64 real FDTD calls (corrected mid-cycle from an
+initially-miscounted 32 — an arithmetic error that survived Phase 1, all
+five blind critiques, and Red Team's own audit, caught only by the
+code's own assert; the run was re-executed from scratch since the crash
+predated `results.json`), 8077.1s (134.6 min) wall, trust suite green
+throughout, zero `lab/` diff. **Item (i) — bracket the other three
+established `cpl=20` nulls at `cpl=40`: MIXED.** Null A
+(θ₀=37.127246°): SIGN-CHANGE-FOUND (~36.770°). Null B (θ₀=40.265420°):
+SIGN-CHANGE-FOUND (~39.922°). Null C (θ₀=41.460901°): NO-SIGN-CHANGE,
+same sign throughout, floor-clear. **Item (ii) — re-centered
+node-bracketing re-run at θ₀≈38.590230°: CONFIRM-migration-down.** A
+genuine crossing found at θ≈38.252°, below exp-095's own original
+38.49°/38.69° bracket — R17's own bracket-sizing discipline, adopted one
+cycle after its own founding defect, working exactly as designed one
+cycle later, resolving exp-095's Rank 1c FAIL as a bracket-sizing
+failure, not a genuine absence. **Item (v) — a real, informative, mixed
+result, discharging the 11-cycle-old governance ask for the first
+time**: GP1 (passivity) PASS at all 120 points; GP2′ (redesigned)
+flagged MARGINAL amplitude departure spanning θ=50.5°–89.5°, peaking at
+θ=66.0° (235.4×) squarely inside the known exp-086 blow-up band —
+corroborating, not certifying blind to, the already-known failure mode.
+Six blind Phase-5 reviews (all CONCUR-WITH-GAP(S), zero DISPUTE, every
+headline number independently re-verified against `results.json`
+before returning a verdict): QUANTUM OPTICS found FI-G′ (the new
+Tier-0 fault-injection scenario) only exercises the `native_absorb`-
+driven half of the `y_lo`/`y_hi` branch — `native_ny`, the only input
+that moves `y_hi` independently, had zero coverage, and exp-097's own
+Next queue had named this exact scenario (`FI-G″`) one cycle earlier,
+silently dropped this cycle; PHOTONICS and THERMODYNAMICS independently
+found the Result section's own "MARGINAL continuously... the ENTIRE
+upper half" claim factually wrong against `gp2_curve` (9 VALID points
+interspersed, including θ=69.5° itself inside the corroboration band),
+PHOTONICS additionally finding a 74°–89.5° tail shape divergence from
+exp-086's own trend never surfaced; MATERIALS found
+`richardson_style_diagnostic()` divided a CUMULATIVE cpl20→40 shift by a
+MARGINAL cpl20→30 shift — a category-mismatched comparison whose
+correctly-paired marginal ratio (0.777, shrinking) reverses the
+originally-reported direction (1.777, growing); THERMODYNAMICS and
+ELECTROMAGNETISM independently found a THIRD instance of this cycle's
+own call-count arithmetic-conflation class, one paragraph after the
+first was diagnosed as a Learned item ("64 real-FDTD report rows" was
+the call count, not the 16/18 actual row count); VISION found the
+Predictions-side idealizations banner sat in the closing paragraph of
+Idealizations, not physically inside Predictions; ELECTROMAGNETISM's
+own self-review found GP1's "hard passivity floor" framing oversold a
+windowed Poynting-component non-negativity check as a closed-surface
+flux theorem consequence. Red Team's Phase-5 final audit independently
+re-derived every finding from source, ADOPTED all six plus a seventh,
+independently-found bonus defect (Idealization 47's "re-verified"
+claim was false as coded — the registration gate was never actually
+called against the reused 38.49°/38.69° points). **New standing rule
+R19 adopted NOW** (full text above, RULED OUT registry), an explicit
+exception to the usual cross-cycle cadence given the within-cycle
+recurrence strength. **Checkpoint criterion 4 ruled the closest call
+this program has had — does NOT fire**, both the count-conflation
+recurrence and the undisclosed `FI-G″` drop caught blind by this same
+cycle's own review layers before this LOGBOOK entry, matching the
+R16/R17/R18 non-firing precedent; Red Team's own explicit warning: a
+fourth recurrence, or any dropped commitment surviving uncorrected past
+this Phase 5, fires criterion 4 without further warning. All eight
+mandated same-shift fixes applied via `phase5_same_shift_fixes.py`
+(zero FDTD, zero new `sim.run()` calls, none changing a PASS/FAIL
+classification or crossing value already on file), including executing
+`FI-G″` itself (native_ny corrupted, caught at all three families).
+**Combined Verdict: PROMISING** — both of this cycle's stated goals
+were substantively achieved in the underlying data (item i/ii's real
+MIXED migration result; the 11-cycle-old grazing-incidence governance
+ask genuinely, honestly discharged), independent of every corrected
+prose/arithmetic/scoping defect. Reconciled Iteration-76 queue (Red
+Team's final ranking, five items, origin cited per seat):
+(1) Null C re-test at a wider, R17-compliant, asymmetric bracket,
+explicitly scoping a "vanishing amplitude, no crossing at any
+reasonable width" outcome as a live third result — Null C's current
+NO-SIGN-CHANGE verdict rests on exactly the same-sized-but-mis-centered-
+bracket failure mode item (ii) just proved can hide a real crossing;
+(2) the `cpl=50`/`R5` third resolution point at Null B (and/or
+θ₀≈38.590230°), reusing exp-095's already-built family, against the
+now-corrected marginal-to-marginal Richardson formula; (3) reconcile
+GP2′ against exp-086's own sliding-window `ptp` method through the
+74°–89.5° tail, zero-FDTD; (4) ratify R19 formally (done, above); (5)
+state the cpl-is-orthogonal-to-realizability finding explicitly and
+revisit the six-consecutive-cycle T1-route-N/A flag (MATERIALS) at the
+next Phase 3 checkpoint. Full record: `experiments/098-t28-cpl40-null-
+bracket-grazing-instrument/`, LOGBOOK.md Iteration 75.
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
