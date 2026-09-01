@@ -1,0 +1,12 @@
+[ground truth, re-pulled] delta_scene(36.0deg, R4)=-8.776529e-04  sign=negative  outcome=CONSISTENT
+==============================================================================
+exp-099 -- Null C wider bracket, R5 first spend (GT-gated), GP2'/ptp tail
+Panel Iteration 76, THERMODYNAMICS rotation lead
+==============================================================================
+
+[R13 floor gate] RMS[frac_contrast], n=31: 1.917438e-03  FLOOR=1.917438e-04  (unchanged, applied unrecomputed -- Idealization 6)
+
+==============================================================================
+ITEM 1: Null C re-test, wider asymmetric bracket (+1.500deg upward)
+==============================================================================
+theta0(cpl20)=41.46090139413deg  new angles=[42.294201, 42.627601, 42.960901]
