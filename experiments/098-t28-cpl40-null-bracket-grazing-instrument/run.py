@@ -7,7 +7,12 @@ rationale: phase2_redteam_audit.md (9 numbered attacks; 5 mandatory
 fixes, all adopted; 1 critique's precedent overridden, its recommendation
 adopted anyway -- see NOTES.md's own "Changes from Phase 1" section).
 
-32 real FDTD `sim.run()` calls (items i+ii), each preceded by a zero-cost
+64 real FDTD `sim.run()` calls (items i+ii -- 16 angle/config points x
+2 empty/article conditions each; NOTES.md's own Phase-1/3 prediction of
+"32 calls" undercounted by exactly the empty/article factor, an arithmetic
+error caught only by this file's own internal assert, not by Phase 1/2/3 --
+corrected here and disclosed in Result, non-load-bearing to any physics
+finding), each preceded by a zero-cost
 registration-readback pre-check (extends exp-097's own gate by IMPORT,
 never by editing that file). Item (v)'s grazing-incidence instrument is
 0 FDTD calls (a closed-form desk computation). Item (iv)'s FI-G' is 0 new
@@ -448,7 +453,14 @@ def main():
 
     # ---- item (iii): netd_row() coverage, enforced (already asserted inline above) ----
     total_calls = item_i["A"]["n_calls"] + item_i["B"]["n_calls"] + item_i["C"]["n_calls"] + item_ii["n_calls"]
-    assert total_calls == 32, f"expected 32 real FDTD calls, got {total_calls}"
+    # NOTE (disclosed, Result section): NOTES.md's own Phase-1/3 prediction
+    # said "32 calls" -- an arithmetic undercount that omitted the
+    # empty/article factor (each of the 16 angle/config points needs BOTH
+    # conditions, matching exp-095's own established `PAIR_KEYS_R4` x
+    # empty/article job-list convention). The correct, actually-necessary
+    # figure is 64; this assert checks the code's actual behavior, not the
+    # miscounted prediction.
+    assert total_calls == 64, f"expected 64 real FDTD calls, got {total_calls}"
     all_netd_rows = []
     for l in NULLS:
         all_netd_rows.extend(item_i[l]["report"].values())
