@@ -2,6 +2,112 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-01 (panel shift) — Iteration 76 complete (exp-099):
+R5's first-ever real FDTD spend, ground-truth-gated, clears every gate
+in this program's 76-iteration history -- weighed against a five-instance
+R4-class citation-hygiene pattern that prompts a new standing rule (R20).
+**Combined Verdict: PROMISING.** No CHECKPOINT this cycle -- criterion 4
+ruled the closest call the program's own R4 lineage has had, but does not
+fire (every defect caught blind, within-cycle, before this entry).
+
+**Pre-flight**: fresh container this session -- installed dependencies
+from scratch via the documented pyMKL-wheel-workaround (numpy/scipy/
+matplotlib/pillow/autograd/fdtd first, then `pip install --no-deps
+ceviche`). Trust suite confirmed green, 41/41 checks (`--only
+12346789`), before any panel work, and re-confirmed green after the real
+Phase-4 run. Zero `lab/` diff throughout. Landed on `e6ad59b` -- exp-099's
+Phase 1-4 code committed but the real run never executed ("run currently
+in progress in the background" per that commit's own message, no
+`run_output.txt`/`results.json` on disk) -- continued Phase 4 from
+exactly that point rather than restarting the cycle.
+
+**Iteration 76 -- THERMODYNAMICS' rotation-lead cycle (exp-099).**
+Launched the frozen `run.py`; caught and killed a duplicate, untracked
+background process racing the harness-tracked one before it could
+corrupt output (an earlier `nohup` attempt had silently succeeded despite
+reporting exit 1). The run then crashed with a genuine code defect:
+`combined_delta_c[THETA0_C + 0.500]` (`run.py:355`) looked up a filed Null
+C point via fresh float arithmetic against a dict keyed from
+6-decimal-rounded strings parsed from `results.json` -- the two do not
+bit-match. Item 1's 12 real FDTD calls had already completed and printed
+correctly before the crash; no data was lost. Fixed (pull the actual
+stored key, `NULL_C_FILED_KEYS[3]`, per this same document's own Fix 4
+discipline) and re-executed the full script from scratch, matching this
+program's exp-098 precedent for a mid-run defect caught before
+`results.json` existed.
+
+**Phase 4: 40 real FDTD calls (full PASS-path), 8899.4s (148.32 min)
+wall, trust suite green throughout, zero `lab/` diff.** Item 1 (Null C
+wider bracket): INCONCLUSIVE-AT-THIS-WIDTH -- delta_scene does not
+continue decelerating toward zero past theta0+0.500deg, it reverses and
+climbs back up (a genuine local trough/bounce, no zero-crossing across
+the +-1.5deg span) -- Fix 5's period gate correctly barred a
+VANISHING-AMPLITUDE mis-score of this same oscillatory reversal. Item 2
+(cpl=50/R5's first-ever real FDTD spend in this program's 76-iteration
+history, ground-truth-gated): every gate cleared, full 28/28-call
+PASS-path -- Step 0 fault-injection re-scoring all_as_predicted=True,
+Step 1 ground-truth sign match at theta=36deg, Step 2 settling PASS
+(rel_dev=0.179%), Step 3 SIGN-CHANGE-FOUND at theta_c50~=39.776870deg,
+same sign as both established shifts; Richardson (30/40/50): observed
+0.9623 vs naive 0.64. Item 3 (GP2'/ptp tail, theta_c in 79-87deg):
+genuine non-resolution honestly disclosed -- an unpredicted 77->79deg
+increase (621x->850x) followed by real decline to 87deg (292x) that
+never reaches the reference-comparable regime, while GP2' stays elevated
+over the same range.
+
+**Six blind Phase-5 reviews, all CONCUR-WITH-GAP(S), an unusually clean
+crop.** PHOTONICS found this shift's own Learned #4 cited exp-098's own
+RETRACTED Richardson figure (1.777) instead of the currently-filed,
+corrected one (0.7765163757372424), inverting a "growing" claim into
+what should have read "shrinking, twice." THERMODYNAMICS' own
+self-review found a mislabeled ratio (the code never computes the
+formula the prose labeled) and that its own charter instrument (the
+energy sidecar) was silently omitted from Result/Learned at R5's two
+landmark first-ever points. ELECTROMAGNETISM found a false "coincidence"
+claim between two angles that actually differ by 3.3368e-4deg. QUANTUM
+OPTICS and MATERIALS independently converged on the same gap from two
+charters: delta_scene's own realizability content was never resolved
+past Iteration 60's explicit non-reinstatement of Iteration 59's rule --
+NOTES.md's own T1 trigger risked scoring a domain-geometry artifact as a
+material mechanism next cycle if honored literally. VISION found a
+Phase-2 word-cap recurrence (uncaught by Red Team's own Phase-2 audit)
+and an unauditable verification claim.
+
+**Red Team's Phase-5 final audit** independently re-verified all six
+findings from primitives (not taken on any reviewer's word) and ADOPTED
+all six in full, then named the pattern none of the six stated alone:
+this single document carries FIVE total R4-class defects across its
+lifecycle (two caught pre-freeze at Phase 2, three surviving into frozen
+Result/Learned, caught only at Phase 5). **New standing rule R20 adopted
+NOW**: three-or-more R4-class defects surviving a document's own Phase-3
+freeze into Result/Learned, each caught only at Phase 5, is a
+Checkpoint-4-grade pattern on its own going forward -- closing a real
+gap (unlike R6-R19, R4 itself never carried a forward-elevating clause).
+Folds in THERMODYNAMICS' own deferred KeyError-pattern governance
+question under the same rule text. All six mandatory documentation-only
+fixes applied same-shift to `NOTES.md`, each with an inline correction
+marker at its site, never silently rewritten.
+
+**Combined Verdict: PROMISING.** R5's first-ever real spend is a genuine
+methodological milestone -- the first resolution family in this
+sub-thread's history to clear ground-truth-sign AND fault-injection
+gates BEFORE its first near-null reading was trusted, rather than
+earning that discipline only retroactively. All three item-level
+outcomes stand undisputed. Reconciled Iteration-77 queue resolves a
+genuine 5-vs-1 seat disagreement on sequencing: Tier 1 (mandatory
+preconditions before any constraint-1/2/3/4 scoring pass touches
+delta_scene(theta)) -- QUANTUM's PAD-vs-article partition elevated to
+mandatory, MATERIALS' disposition memo, a 4-point Richardson convergence
+characterization at Null B; Tier 2 -- the constraint-1/2/3/4 scoring
+pass itself (rotation lead: QUANTUM OPTICS), gated on Tier 1 but not
+deferred an eighth cycle (seven consecutive T1:N/A cycles); Tier 3 --
+Null C's trough at full period, VISION's pre-flight note, EM/
+THERMODYNAMICS persistence-gap backfills, Richardson generalization to
+Null A, item 3's GP2'-vs-exp-086 recompute, standing 5-8-cycle-deferred
+items. Full record:
+`experiments/099-t28-null-c-r5-thirdpoint-gp2-reconciliation/`,
+LOGBOOK.md Iteration 76.
+
 ## 2026-09-01 (panel shift) — Live collision with a concurrent venue on
 Iteration 75; no new iteration run this shift.
 

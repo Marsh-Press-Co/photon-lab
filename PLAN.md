@@ -22,7 +22,57 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-01, panel Iteration 75 done (exp-098, PROMISING,
+## Current state (2026-09-01, panel Iteration 76 done (exp-099, PROMISING,
+THERMODYNAMICS' rotation-lead cycle: executed exp-098's own Reconciled
+Iteration-76 queue items 1-3 (item 4, ratifying R19, already done; item 5
+given a reasoned disposition). Five blind Phase-2 critiques (unanimous
+support-with-changes) plus Red Team's Phase-2 audit (9 attacks, 7
+mandatory fixes adopted, 1 new defect Red Team itself found). Phase 4:
+run.py's first execution crashed mid-item-1 with a KeyError (a
+freshly-computed float failing to bit-match a filed dict key) after 12
+real calls had already completed correctly; fixed (pull the actual
+stored key) and re-executed from scratch. 40 real FDTD calls (full
+PASS-path), 148.32 min wall, trust suite green throughout, zero lab/
+diff. Item 1 (Null C wider bracket): INCONCLUSIVE-AT-THIS-WIDTH -- a
+genuine reversal/bounce near theta0+0.5-0.83deg, no zero-crossing across
+the +-1.5deg span. Item 2 (cpl=50/R5's first-ever real FDTD spend in
+this program's history, ground-truth-gated): every gate cleared, full
+28/28-call PASS-path, SIGN-CHANGE-FOUND at theta_c50~=39.776870deg,
+Richardson (30/40/50): observed 0.9623 vs naive 0.64. Item 3 (GP2'/ptp
+tail): genuine non-resolution honestly disclosed. Six blind Phase-5
+reviews (all CONCUR-WITH-GAP(S)): PHOTONICS found Learned #4 cited
+exp-098's own RETRACTED Richardson figure (1.777) instead of the
+corrected 0.7765163757372424, inverting growing into shrinking;
+THERMODYNAMICS' own self-review found a mislabeled ratio and its own
+energy sidecar silently omitted from Result/Learned; ELECTROMAGNETISM
+found a false settling-angle "coincidence" claim (actual gap
+3.3368e-4deg); QUANTUM+MATERIALS independently converged on
+delta_scene's own unresolved realizability ambiguity (Iteration 59-60,
+never reaffirmed) risking the T1 trigger scoring a domain artifact as a
+material mechanism; VISION found a Phase-2 word-cap recurrence and an
+unauditable verification claim. Red Team's Phase-5 final audit ADOPTED
+all six in full (independently re-verified from primitives), named the
+aggregate pattern (FIVE total R4-class citation/label defects across
+this document's lifecycle) and adopted new standing rule R20 (3+
+R4-class defects surviving Phase-3 freeze into Result/Learned, each
+caught only at Phase 5, is a Checkpoint-4-grade pattern going forward --
+does not fire on its own founding instance). Checkpoint criterion 4:
+does NOT fire (closest call in the R4 lineage, but every defect caught
+blind within-cycle, matching R16-R19 precedent). All six mandatory
+documentation-only fixes applied same-shift to NOTES.md. Reconciled
+Iteration-77 queue (resolves a genuine 5-vs-1 seat disagreement on
+sequencing): Tier 1 (mandatory preconditions before any
+constraint-1/2/3/4 scoring pass touches delta_scene(theta)) -- QUANTUM's
+PAD-vs-article partition elevated to mandatory, MATERIALS' disposition
+memo, a 4-point Richardson convergence characterization at Null B; Tier
+2 -- the constraint-1/2/3/4 scoring pass itself (rotation lead: QUANTUM
+OPTICS), gated on Tier 1 but not deferred an eighth cycle (seven
+consecutive T1:N/A cycles); Tier 3 -- Null C's trough at full period,
+VISION's pre-flight note, EM/THERMODYNAMICS persistence-gap backfills,
+Richardson generalization to Null A, item 3's GP2'-vs-exp-086 recompute,
+standing 5-8-cycle-deferred items. Full record:
+`experiments/099-t28-null-c-r5-thirdpoint-gp2-reconciliation/`,
+LOGBOOK.md Iteration 76); panel Iteration 75 done (exp-098, PROMISING,
 ELECTROMAGNETISM's rotation-lead cycle: executed exp-097's own Reconciled
 Iteration-75 queue, Tier 0 alongside Tier 1, plus the 11-cycle-old
 grazing-incidence governance ask, scheduled and genuinely discharged
