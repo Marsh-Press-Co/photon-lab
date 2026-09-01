@@ -352,7 +352,14 @@ def main():
     # New-points-only trichotomy (Fix 5): interval-slope-decay ratios among
     # the 3 new points continuing on from the last filed interval.
     new_sorted = sorted(new_angles_c)
-    deltas_seq = [combined_delta_c[THETA0_C + 0.500]] + [combined_delta_c[a] for a in new_sorted]
+    # Bugfix (caught this shift, pre-results.json): the last filed point
+    # (theta0+0.500) must be looked up by its actual stored key
+    # (NULL_C_FILED_KEYS[3], per Fix 4's own "pull the true stored key,
+    # never hand-type/recompute" discipline) -- `THETA0_C + 0.500` is a
+    # freshly-computed float that does NOT bit-match the 6-decimal-rounded
+    # key parsed from the filed results.json string, and raised KeyError.
+    assert abs(NULL_C_FILED_KEYS[3] - (THETA0_C + 0.500)) < 1e-4, NULL_C_FILED_KEYS[3]
+    deltas_seq = [combined_delta_c[NULL_C_FILED_KEYS[3]]] + [combined_delta_c[a] for a in new_sorted]
     diffs = [deltas_seq[i + 1] - deltas_seq[i] for i in range(len(deltas_seq) - 1)]
     r_ratios = [abs(diffs[i + 1]) / abs(diffs[i]) if diffs[i] != 0 else float("inf")
                 for i in range(len(diffs) - 1)]
