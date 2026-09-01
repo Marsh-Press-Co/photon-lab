@@ -842,6 +842,38 @@ top. Protocol: PANEL.md.*
   phase5_review_photonics.md`, `phase5_review_thermodynamics.md`,
   `phase5_review_em.md`, `phase5_redteam_audit.md` §0/§2/§3, LOGBOOK.md
   Iteration 76.
+- **R21 — a persisted post-run analytic sidecar field's own headline
+  finding (classification/value) must be stated inline in a cycle's own
+  Result section, not merely persisted to `results.json` or left in
+  Setup/the frozen Predictions table — persistence alone (R16's own
+  standard) is necessary but not sufficient for the finding to be
+  treated as engaged with (not a ruled-out idea; a standing
+  house-discipline rule, proposed and adopted by Red Team's Phase-5
+  final audit, Iteration 77). Distinguishes cleanly from R16: R16 asks
+  "was the field written to `results.json`?"; R21 asks "was the field's
+  own finding stated in the prose a future citation will actually
+  read?" — a document can pass R16's own test perfectly (a code-enforced
+  assert, stronger than either prior R16-adjacent occurrence) and still
+  fail R21's, as exp-100 demonstrated. Founding basis: two instances on
+  record, both on the identical NETD/thermal-sidecar channel —
+  Iteration 76/exp-099 (THERMODYNAMICS' own self-review found its
+  charter instrument silently omitted from Result/Learned at R5's two
+  landmark first-ever points) and Iteration 77/exp-100 (THERMODYNAMICS'
+  and ELECTROMAGNETISM's independently-convergent Phase-5 findings: all
+  12 `netd_row()` classifications were correctly persisted and
+  code-asserted present, but never stated in Result/Learned prose as
+  filed). **Does not fire on either founding instance**, matching every
+  prior R-rule's own precedent — both were caught blind, within each
+  cycle's own review layers, before LOGBOOK, and corrected same-shift.
+  **Standing forward-elevating clause**: a THIRD occurrence of "a
+  persisted byproduct field's own headline finding never stated in
+  Result/Learned prose," on this or any T28-adjacent channel, in any
+  form, fires Checkpoint criterion 4 automatically, no further
+  deliberation — mirroring R16's own three-strike forward clause
+  exactly, one level up (narration, not persistence). Full record:
+  `experiments/100-t28-delta-scene-constraint-scoring-pass/
+  phase5_review_thermodynamics.md`, `phase5_review_em.md`,
+  `phase5_redteam_audit.md` §0/§1/§3, LOGBOOK.md Iteration 77.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -6750,6 +6782,134 @@ direct GP2′-vs-exp-086 recompute; the standing 5–8-cycle-deferred items
 (`G40` full-width leg, 750/450nm leg, `PAD`-with-article survival). Full
 record: `experiments/099-t28-null-c-r5-thirdpoint-gp2-reconciliation/`,
 LOGBOOK.md Iteration 76.
+
+**Iteration 77 (exp-100) — QUANTUM OPTICS' rotation-lead cycle.** Executed
+exp-099's own Reconciled Iteration-77 queue: Tier 1 (QUANTUM's
+PAD-vs-article partition, MATERIALS' disposition memo, a 4-point
+Richardson characterization at Null B) gating Tier 2 (the
+constraint-1/2/3/4 scoring pass on `delta_scene(θ)`, deferred seven prior
+cycles). Five blind Phase-2 critiques (unanimous support-with-changes)
+plus Red Team's Phase-2 audit (PROCEED-WITH-MANDATORY-FIXES, 9 numbered
+attacks, 0 overridden, 3 new defects Red Team itself found: RT-1 — Leg
+B's original 4 angles are `delta_scene`'s own zero-crossings, the worst
+possible sampling for testing its ripple; RT-2 — Tier-1 item 1(a)'s
+correlation test had no pre-registered decision threshold; RT-3 — Tier 2
+was not actually gated on Tier 1's outputs as commissioned, a live risk
+of an eighth T1:N/A deferral dressed as progress). Phase 3 adopted all 9
+fixes, expanding Leg B to 6 angles and pre-registering the cycle's own
+T1-label per Tier-1 outcome (majority-PAD / coupling-detected /
+ambiguous) before any run. **Phase 4: `run.py`'s first execution crashed
+before any `sim.run()` call (0 FDTD calls spent) with a
+`PicklingError`** — two independent `_load()` chains (a direct load of
+exp-095, and exp-098's own internal transitive reload of exp-095/094)
+clobbered the same `sys.modules` registration exp098's own module
+docstring had already named as a hazard; fixed by sourcing every
+R4-family name through exp098's own single internal chain, and
+re-executed from scratch. **24 real FDTD calls, 3095.8s (51.6 min) wall,
+trust suite green, zero `lab/` diff.** **Tier 1 item 1 — PAD-vs-article
+partition: AMBIGUOUS**, the pre-registered branch genuinely exercised on
+real, non-hypothetical contradictory data: pooled `r=0.2065, p=0.0758`
+misses the joint rule, but R3 alone shows a significant correlation
+(`r=0.486, p=0.0042, n=33`) contradicting R4 (`r=0.110, p=0.525, n=35`)
+and R5 (`n=4`, underpowered) — per Idealization 70's own pre-registered
+fold-in rule, this routes to AMBIGUOUS, not a post-hoc choice. **Item 3**:
+raw-magnitude monotonicity CONFIRMED at full precision
+(`|0.1936|>|0.1503|>|0.1446|`), implied local order drops sharply
+(0.879→0.172) — descriptive only (Idealization 49), consistent with
+either slow genuine convergence or a non-convergent artifact. **Tier 2
+Leg A**: PASS at both `C_thr` bars (static-contrast bound only, pending
+T3, per VISION's own Phase-2 fix). **Tier 2 Leg B — split result,
+disclosed, not smoothed over**: `observer_record_t28` (constraint 2)
+PASSES cleanly at all 6 angles, this bench's first-ever trustworthy
+direct specular-return measurement (empty-scene self-ratios
+1–4×10⁻⁴, ≥50× inside the R18 validation-gate bar); `beam_behind_t28`
+(constraint 1) is **UNINTERPRETABLE** — a real, quantified new-instrument
+defect, not a physics finding: the object's own shadow walks laterally
+125.7–154.6 cells between the object and the downstream measurement
+plane at these oblique (37°–43°) angles (`Δy=(R_OUT+10)·tanθ`), 79–97%
+of the fixed 160-cell window's own half-width, diluting the reading to
+0.42–0.46 (established near-total-absorption precedent: 1.5–1.8%) —
+independently re-derived and confirmed three further ways (PHOTONICS'
+own quantitative top-hat cross-check, ELECTROMAGNETISM, Red Team's own
+Phase-5 audit).
+
+**Six blind Phase-5 reviews, all CONCUR-WITH-GAP(S).** PHOTONICS
+corroborated the `beam_behind_t28` diagnosis quantitatively and flagged
+the 600nm-only Leg-A scope against the already-quantified T21 750nm/4.7×
+`C_thr` precedent in the identical window. MATERIALS found the R3-vs-R4
+split is a named instance of R15's own Iteration-71 addendum, whose
+already-specified remedy (a properly-powered, ground-truth-gated R5
+census) — not more R3 data — is the correctly-targeted next step; also
+that no branch of the disposition memo's own conditional can ever exceed
+"published." ELECTROMAGNETISM independently re-confirmed the
+`observer_record_t28` fix and the `beam_behind_t28` diagnosis from
+primitives, finding no separate energy/normalization defect.
+THERMODYNAMICS confirmed fix 7's `netd_row()` persistence landed
+code-enforced (stronger than either prior occurrence) but found the
+sidecar's own headline finding (all 12 cells UNDETECTABLE; a free T9
+`ratio_abs_ext≈0.51` reconfirmation at oblique R4-family incidence) never
+reached Result/Learned prose — the identical shape THERMODYNAMICS' own
+Iteration-76 self-review found in itself one cycle earlier. VISION
+confirmed both its Phase-2 fixes landed correctly in code and found the
+ambiguous-Tier-1 caveat was missing from Leg A's own Result paragraph.
+QUANTUM OPTICS' own self-review honestly traced RT-1/RT-2/RT-3 to reduced
+adversarial scrutiny from a motivated rotation lead, naming the general
+pattern (a lead auditing its own drift-breaking claim needs Red Team's
+own harder check) while flagging `beam_behind_t28` as a fourth, novel
+defect class its own proposal did not anticipate.
+
+**Red Team's Phase-5 final audit independently re-verified all six
+findings from primitives and ADOPTED all six** (0 overridden, except
+QUANTUM's own request for new structural governance, ruled already
+adequately covered by PANEL.md's existing Red-Team-never-leads charter),
+plus **one new defect Red Team itself caught**: fix 1's own "two
+largest-magnitude already-filed `delta_scene` values" claim searched
+only exp-099's own local subset, missing the full pool's own larger
+value (`3.1495×10⁻³` at θ=39.2°, exp-095, same R4 family) — real but
+non-load-bearing, caught at the correct final layer, disclosed same-shift
+rather than silently reproduced. **New standing rule R21 adopted NOW**
+(full text above, RULED OUT registry): a persisted sidecar field's own
+headline finding must be narrated in Result, not merely persisted —
+distinguishes cleanly from R16 (persistence alone), founding basis two
+instances (exp-099, exp-100), neither fires. **Checkpoint criterion 4
+ruled the closest call yet — does NOT fire**: RT-3's own Phase-2 risk was
+verified structurally discharged (the filed `t1_label` reads
+"N/A, unresolved," never narrated as "streak broken"), R21 is only its
+second instance, `beam_behind_t28`'s honest UNINTERPRETABLE disposition
+is the scientifically correct call rather than a defended error, and
+every defect was caught blind within this cycle's own review layers. The
+now-eight-consecutive-cycle T1:N/A streak (Iterations 70–77) is named
+explicitly and bound forward: Iteration 78 or 79 must either complete the
+R15-addendum-prescribed diagnostic or explicitly retire the
+`delta_scene`-realizability question as economically unresolvable,
+mirroring Iteration 51's own no-seventh-cycle precedent. Five same-shift
+documentation fixes applied to `NOTES.md`/`disposition_memo.md`
+(zero-FDTD, none changing a scored verdict). **Combined Verdict:
+PARTIAL** — genuine progress (constraint 2's first clean PASS on this
+bench; the pre-registered T1-labeling mechanism validated on real
+contradictory data; a free T9 reconfirmation) weighed against real,
+disclosed shortfalls (constraint 1 uninterpretable; Tier 1 unresolved;
+Red Team's own RT5-1 citation-accuracy gap). Reconciled Iteration-78
+queue (Red Team's own final ranking, resolving the MATERIALS-vs-QUANTUM
+tension by sequencing rather than choosing): **Tier 0** — fix
+`beam_behind_t28` via closed-box (4-face Poynting) reconstruction, not a
+re-centered line window (avoiding a third unverified geometric
+correction in this instrument family), re-select any "largest-magnitude"
+angle from the FULL pool, and report a three-way energy-partition table.
+**Tier 1** — PHOTONICS' zero-FDTD physical-hypothesis check on the
+R3-vs-R4 split first, then QUANTUM's targeted R3-family replication,
+then MATERIALS'/R15's own properly-powered ground-truth-gated R5 census
+(~30+ points) if item 4 doesn't foreclose a physical explanation, then
+the 750/450nm leg of Leg A's own window (elevated given T21's own
+already-quantified precedent). **Tier 2** — a genuinely differently-
+scoped attempt to build T3 (parallel, non-FDTD-competing); explicit
+governance text scoping what a future σ(I)/σ(x,t) proposal may claim
+from `delta_scene` (R3-only, never the pooled/null result, until the
+Tier-1 diagnostic resolves it). **Tier 3** — standing deferred items
+unchanged (`G40` full-width leg, x-wall admittance refit, `PAD`-with-
+article survival). Full record:
+`experiments/100-t28-delta-scene-constraint-scoring-pass/`, LOGBOOK.md
+Iteration 77.
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)

@@ -2,6 +2,90 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-01 (panel shift) — Iteration 77 complete (exp-100):
+The seven-cycle T1:N/A deferral finally addressed for real, not merely
+narrated as addressed -- but the result is honestly split, not a clean
+win. **Combined Verdict: PARTIAL.** No CHECKPOINT this cycle -- criterion
+4 ruled the closest call yet, but does not fire.
+
+**Pre-flight**: fresh container this session -- installed dependencies
+from scratch (numpy/scipy/matplotlib/pillow/autograd/fdtd, then
+`pip install --no-deps ceviche`). Trust suite confirmed green, 41/41
+checks (`--only 12346789`), before any panel work, and re-confirmed
+green after the real Phase-4 run. Zero `lab/` diff throughout. Landed on
+`d5c7276` -- Iteration 76/exp-099 fully closed, Iteration-77 queue
+written but not started -- ran the full cycle from Phase 1 through
+close in one shift.
+
+**Iteration 77 -- QUANTUM OPTICS' rotation-lead cycle (exp-100).**
+Executed exp-099's own Reconciled Iteration-77 queue: Tier 1 (zero-FDTD
+PAD-vs-article partition, MATERIALS' disposition memo, a 4-point
+Richardson characterization at Null B) gating Tier 2 (the first
+constraint-1/2/3/4 scoring pass on `delta_scene(theta)` in this
+sub-thread's history). Five blind Phase-2 critiques, unanimous
+support-with-changes, converged on real, independently-verified
+findings (EM/PHOTONICS both flagged a missing Hy pseudovector sign flip
+in the originally-proposed observer-camera mirror construction; VISION
+caught stale, superseded scotopic-anchor citations; MATERIALS found a
+category error in the originally-scoped disposition memo). Red Team's
+Phase-2 audit found three further defects none of the five critiques
+caught (RT-1: the four proposed angles are `delta_scene`'s own
+zero-crossings, the worst possible sampling; RT-2: no pre-registered
+correlation threshold; RT-3: Tier 2 wasn't actually gated on Tier 1's
+own outputs as commissioned -- a live risk of an eighth deferral dressed
+as progress). All nine fixes adopted before Phase 3 froze the spec.
+
+**Phase 4, first execution: a genuine own-code defect, caught before any
+FDTD call ran.** A `PicklingError` -- two independent `_load()` chains
+(a direct load of exp-095, and exp-098's own internal transitive reload
+of the same file) clobbered the same `sys.modules` registration,
+exactly the hazard exp-098's own module docstring had already named in
+writing. Zero calls wasted; fixed by sourcing every R4-family function
+through exp-098's own single internal chain, and re-executed from
+scratch.
+
+**24 real FDTD calls, 3095.8s (51.6 min) wall, trust suite green
+throughout, zero `lab/` diff.** Tier 1 item 1 came back **AMBIGUOUS**:
+the pooled PAD-vs-article correlation (r=0.2065, p=0.0758) misses the
+pre-registered joint rule, but the R3 family alone shows a real
+correlation (r=0.486, p=0.0042) that R4 and R5 don't share -- routed
+correctly to the pre-registered ambiguous branch, not resolved by
+picking whichever reading was convenient. Item 3's Richardson
+monotonicity check confirmed cleanly at full float precision. Tier 2
+Leg A (the `C_thr(L)` desk score) PASSED at both bars. Tier 2 Leg B
+split: `observer_record_t28` (constraint 2, specular return) PASSED
+cleanly and robustly at all 6 tested angles -- this bench's first-ever
+trustworthy direct measurement of "does anything bounce back to the
+observer," and it doesn't. `beam_behind_t28` (constraint 1, beam
+termination) came back **UNINTERPRETABLE** -- a real, newly-introduced
+instrument defect (a fixed downstream measurement window that never
+corrected for how far the object's own shadow walks sideways at these
+oblique incidence angles), quantified and disclosed rather than
+papered over, independently re-derived and confirmed by three more
+seats plus Red Team's own final audit.
+
+**Six blind Phase-5 reviews, all CONCUR-WITH-GAP(S)**, including QUANTUM
+OPTICS' own honest self-review of its rotation-lead cycle (tracing all
+three of Red Team's Phase-2 catches to reduced self-scrutiny from a
+motivated author -- exactly the bias PANEL.md's own "Red Team never
+leads a cycle" design exists to counteract). Red Team's Phase-5 final
+audit adopted all six findings and caught one more of its own (a
+Phase-2 fix's "two largest values" claim searched an incomplete subset
+of the data -- real but not load-bearing to any verdict, caught at the
+correct final layer). **New standing rule R21 adopted**: a persisted
+analytic byproduct's own headline finding must be stated in a cycle's
+Result prose, not merely persisted to disk -- two founding instances on
+record (this cycle and the last), neither fires. Checkpoint criterion 4
+ruled the closest call yet but does not fire; the now-eight-consecutive-
+cycle T1:N/A streak is named explicitly and bound forward -- Iteration
+78 or 79 must either complete the indicated diagnostic (a
+properly-powered, ground-truth-gated third resolution family, per an
+already-adopted standing rule) or explicitly retire the question as
+unresolvable at this bench.
+
+Full record: `experiments/100-t28-delta-scene-constraint-scoring-pass/`,
+LOGBOOK.md Iteration 77.
+
 ## 2026-09-01 (panel shift) — Iteration 76 complete (exp-099):
 R5's first-ever real FDTD spend, ground-truth-gated, clears every gate
 in this program's 76-iteration history -- weighed against a five-instance
