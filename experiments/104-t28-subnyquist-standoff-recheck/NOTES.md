@@ -276,6 +276,22 @@ review-time catch. This document's own Predictions section above (and its
 Result section, once Phase 4 runs) is pasted verbatim from those generated
 strings' actual printed output, per the same discipline.
 
+**Scope limitation (Red Team's Phase-5 audit, mandatory disclosure,
+`phase5_redteam_audit.md` §3.1/§5 item 4)**: as implemented this cycle,
+R23's code-level assert covers **only** the one perceptual `DISCLAIMER`
+string it was built to fix. It does **not** enforce the MATERIALS
+aliasing-origin sentence, the THERMODYNAMICS thermal-sidecar-N/A sentence,
+or the λ/scope-only idealization — all three remain manual prose,
+verbatim-consistent between `run.py`'s module docstring and this
+document's own Idealizations section by inspection, but unchecked by any
+assert. Independently confirmed identical by three seats (MATERIALS,
+THERMODYNAMICS, PHOTONICS) plus Red Team's own re-derivation; ruled NOT
+Checkpoint-4-grade this cycle (R23's founding use, caught blind pre-
+LOGBOOK, non-load-bearing — full reasoning in `phase5_redteam_audit.md`
+§3.1). Iteration 82 must either genericize the assert to cover all
+multi-section disclaimers this document carries, or formally ratify R23
+as intentionally single-disclaimer-scoped.
+
 ## Panel record
 
 **Phase 1 (exp-103's own Phase-5 close, Reconciled Iteration-81 queue,
@@ -428,31 +444,62 @@ here.
 ```
 
 **Interpretation, not a modification of the scored verdicts above.** P2's
-FALSIFIED result is itself the headline finding, not a null result to
-explain away: at genuinely sub-Nyquist 2-cell pitch, with a zero-averaging
-single-cell point channel specifically built to surface any ripple an
-11-cell box average would suppress, **no qualifying (>5%-amplitude,
-sign-changing) ripple was found anywhere across the full 104-cell dense
-span**. This directly answers the concern that motivated this whole
-cycle: exp-103's own Phase-5-flagged degenerate-aliasing risk (samples at
-exactly the λ/2≈10-cell period) does not, on this genuinely resolved
-recheck, turn up the ripple it could have been masking.
+FALSIFIED result is real and genuine — at genuinely sub-Nyquist 2-cell
+pitch, with a zero-averaging single-cell point channel specifically built
+to surface any ripple an 11-cell box average would suppress, **no
+qualifying (>5%-amplitude, sign-changing) ripple was found anywhere
+across the full 104-cell dense span**. But P2's own test, read plainly,
+is a weaker instrument than the "0 qualifying reversals" framing alone
+suggests: `residual_point(x)` is strictly positive at all 53 `DENSE_X`
+points (never crosses zero), so P2's sign-change criterion can only ever
+fire on a ripple large enough to flip the sign of that positive
+baseline — it is structurally blind to a ripple riding on top of it,
+*including the one genuine in-band wiggle this cycle's own data actually
+contains* (Q4, period 9.07 cells): Q4's own peak-to-peak `residual_point`
+amplitude (0.000572) is roughly 15× too small, relative to its own local
+baseline (~0.0083–0.0088), to ever cross zero regardless of the 5%
+threshold layered on top (Red Team's Phase-5 audit, `phase5_redteam_
+audit.md` §0b). **The actual, load-bearing disproof of Q4 as a real
+λ/2-scale ripple is P4's signed suppression-ratio cross-check, not P2**:
+predicted_ratio = sinc(11/9.066)/sinc(1/9.066) = −0.166 (independently
+re-derived exactly, `phase5_redteam_audit.md` §0c) against a measured
+ratio of +3.677 — wrong sign AND 22.12× off in magnitude. This directly
+answers the concern that motivated this whole cycle: exp-103's own
+Phase-5-flagged degenerate-aliasing risk (samples at exactly the
+λ/2≈10-cell period) does not, on this genuinely resolved recheck, turn up
+a real ripple — but that conclusion rests on P4's decisive mismatch for
+the one candidate that reached P4, not on P2's own weaker test.
 
 The P3/P4 FALSIFIED periods are consistent with this reading, not in
-tension with it: three of five quintiles' FFTs locked onto periods near
-32.5 cells — close to **3×11=33 cells**, triggering the pre-registered
-near-null exclusion — and the two non-excluded quintiles' periods (29.4
-and 9.1 cells) are not a coherent, chirp-consistent λ/2-scale signal
-either. A period longer than the quintile's own ~20-cell span is the
-signature of `estimate_period` locking onto the smooth curvature mismatch
-between a point sample and an 11-cell box average of the same underlying
-smooth Fresnel-fill-in trend (a Taylor-expansion-scale artifact, not a
-periodic ripple) rather than any real coherent fringe. This is a genuine,
-honestly-reported null result, not a forced pass — MATERIALS' own
-Idealizations fix above already pre-registered that *any* ripple found
-this cycle would be aliasing/numerical in origin, not physically
-interpretable; the actual finding is stronger still: no ripple, real or
-artifactual, was found in the first place.
+tension with it, but the evidentiary strength of P4's "1/2 pass" and P5's
+"2/2 CONFIRMED" is weaker than those labels suggest on their own. Three
+of five quintiles' (Q0–Q2) FFTs locked onto periods near 32.5 cells —
+close to **3×11=33 cells**, triggering the pre-registered near-null
+exclusion. **Q3 — scored, not excluded — locks onto the identical raw FFT
+bin as Q0–Q2 (`peak_idx=4, nfft=64` in all four quintiles), and only its
+own sub-bin curvature nudges the continuous-valued period estimate (29.4
+cells) just outside the 10%-of-33-cells exclusion boundary** (independently
+confirmed from `results.json`'s own `period_diag` fields — `phase5_
+redteam_audit.md` §0e). The near-null exclusion is a period-based proxy
+for a raw-bin-identity artifact, and the proxy has a demonstrated false
+negative on Q3: it is diagnostically the same window-geometry-driven
+leakage as the three excluded quintiles, not a genuine period. Read this
+way, P4's honestly-reported "1 pass" is really "0 meaningful comparisons"
+(Q3 likely spurious; Q4 fails its own P4 test outright), and P5's "2/2"
+covariation match is computed over exactly those same two dubious
+quintiles — thin support for a CONFIRMED label, even though it does not
+change the sign of the overall reading. A period longer than the
+quintile's own ~20-cell span is the signature of `estimate_period`
+locking onto the smooth curvature mismatch between a point sample and an
+11-cell box average of the same underlying smooth Fresnel-fill-in trend
+(a Taylor-expansion-scale artifact, not a periodic ripple) rather than
+any real coherent fringe. This is a genuine, honestly-reported null
+result, not a forced pass — MATERIALS' own Idealizations fix above
+already pre-registered that *any* ripple found this cycle would be
+aliasing/numerical in origin, not physically interpretable; the actual
+finding is stronger still: no ripple, real or artifactual, was found in
+the first place, on the strength of P4's decisive disproof of the one
+candidate that reached it, not P2's weaker test alone.
 
 P5's CONFIRMED (2/2) and P6's NARROWS are consequences of the same
 underlying finding: with no genuine ripple present, the wide/point
@@ -483,17 +530,29 @@ materializes at the resolution this cycle was built to check.
    plainly does.
 2. **A per-quintile FFT period estimator needs its own near-null
    discipline to avoid mistaking a smooth-curve artifact for a genuine
-   period** — three of five quintiles' dominant FFT peaks landed near
-   3×11=33 cells (an exact near-null of the 11-cell box width), which is
-   far more likely to be a numerical beat between the point-vs-box
-   curvature mismatch and the FFT's own zero-padded frequency grid than a
-   physical period; the pre-registered near-null exclusion (item 10)
-   correctly caught this and excluded those quintiles from P4 scoring
-   rather than forcing a spurious signed-ratio comparison on them. A
-   useful house lesson for any future per-quintile period-fit machinery:
-   always check whether an estimated "period" is actually shorter than
-   the window it was estimated from before trusting it as a real
-   oscillation.
+   period — and the discipline itself needs a raw-bin-identity check, not
+   just a derived-period proxy.** Four of five quintiles' (Q0, Q1, Q2, and
+   Q3) dominant FFT peaks locked onto the *identical raw bin*
+   (`peak_idx=4, nfft=64`) despite covering four different 10–11-point
+   x-stretches — this is **spectral leakage** of a smooth monotonic trend
+   into the FFT's lowest non-DC bin (the raw `residual_point` values
+   within Q0–Q3 are independently confirmed strictly monotonically
+   increasing, zero internal sign changes — QUANTUM's Phase-5 finding,
+   corrected from this document's own earlier "numerical beat" language:
+   a beat requires interference between two genuine frequency components,
+   and no oscillation is present in the raw data to beat against), not a
+   physical period. The pre-registered near-null exclusion (item 10)
+   correctly caught three of these four (Q0–Q2, whose fitted periods land
+   within 10% of 3×11=33 cells) and excluded them from P4 scoring — but
+   Q3's fitted period (29.4 cells, 32.9% away from 33) narrowly escapes
+   the same numeric band despite sharing the identical raw-bin signature,
+   a demonstrated false negative in the exclusion proxy (Red Team's
+   Phase-5 audit, `phase5_redteam_audit.md` §0e). A useful house lesson
+   for any future per-quintile period-fit machinery: check the raw
+   dominant-bin identity across quintiles directly, not only the derived
+   period's distance from a near-null band — a smooth-curvature artifact
+   can present a range of fitted "periods" from the identical underlying
+   raw bin, straddling an exclusion boundary by construction.
 3. **R23's assert-based discipline worked exactly as designed, with zero
    manual transcription drift.** Both `PREDICTIONS_TEXT` (committed before
    any FDTD call) and `RESULT_TEXT` (generated after) were pasted into
@@ -524,3 +583,106 @@ materializes at the resolution this cycle was built to check.
    `DENSE_X` points (out to x=456) were never directly settling-checked,
    only argued from the general monotonic-decay-with-standoff physical
    claim.
+4. **R23 scope decision** (Red Team's Phase-5 audit) — genericize the
+   code-level assert to cover all multi-section disclaimers this document
+   carries (MATERIALS aliasing-origin, THERMODYNAMICS N/A, λ/scope-only),
+   or formally ratify R23 as intentionally single-disclaimer-scoped. Four
+   of six Phase-5 seats independently flagged this same gap; it should not
+   go a second cycle without an explicit decision.
+5. **VISION's fresh-context cold-read**, trialed as a supplementary
+   Phase-5 check (not a replacement for R23's assert, a complement to
+   it) — R23 can only ever certify substring transcription, never content
+   adequacy, placement, or third-location generality.
+6. **Near-null-exclusion rule refinement** for any future per-quintile-FFT
+   reuse — supplement the period-based proxy with a direct raw-bin-identity
+   check (flag any quintile whose `peak_idx` matches an excluded
+   quintile's, independent of where the continuous-valued period estimate
+   happens to land); this cycle's own Q3 is a demonstrated false negative
+   in the period-only proxy (Learned #2 above).
+
+## Phase 5 outcome (six blind reviews + Red Team final audit)
+
+Six blind Phase-5 reviews: PHOTONICS, QUANTUM OPTICS, VISION SCIENCE
+(CONFIRM-WITH-GAPS); MATERIALS, THERMODYNAMICS (CONFIRM, each with a
+process-gap note); ELECTROMAGNETISM (self-review of its own Phase-1
+proposal, CONFIRM, deliberately harder scrutiny per this program's own
+anti-self-audit-laxity precedent). PHOTONICS found P2's sign-change test
+is structurally blind to a ripple riding on `residual_point`'s smooth
+positive baseline — the actual disproof of the sole in-band candidate
+(Q4) is P4's sign/magnitude sinc mismatch, not P2's "0 reversals" — and
+that Q0/Q1/Q2 independently land on the identical FFT bin, stronger
+corroboration of the artifact diagnosis than originally stated. MATERIALS
+confirmed the mandatory aliasing-origin disclaimer present, unaltered,
+correctly recognized as un-triggered. ELECTROMAGNETISM's self-review
+traced the original Phase-1 hypothesis's cited evidence
+(`kappa_window`'s disclosed spread) to its exact source — a single
+centerline point at the window's own far edge, the smooth radial
+falloff's own maximum, not λ/2-scale periodic structure — a self-critique
+of its own cycle's Phase-1 proposal. QUANTUM OPTICS independently
+confirmed the raw `residual_point` values in Q0–Q3 are strictly
+monotonically increasing with zero internal sign changes, proving the
+quintiles' fitted "periods" are spectral leakage, not a numerical beat,
+and found that Q3 shares the identical raw FFT bin as the three excluded
+quintiles despite not being formally near-null-excluded — the round's
+sharpest finding, since it means P4's "1 pass" and P5's "2/2" rest on
+weaker evidentiary ground than their labels suggest. THERMODYNAMICS
+independently confirmed zero `thermo_sidecar.py` calls and zero thermal
+fields. VISION SCIENCE executed `run.py --predictions-only` live to
+confirm the R23 asserts genuinely fire, confirmed byte-identical
+disclaimer text by direct string diff, and raised the round's deepest
+structural critique: R23 as implemented can only ever prove substring
+transcription, never content adequacy, placement, or third-location
+generality. Three seats (MATERIALS, THERMODYNAMICS, PHOTONICS)
+independently found, in three different places, that R23's code-enforced
+assert covers only the one perceptual disclaimer it was built for.
+
+Red Team's Phase-5 final audit independently re-verified every finding
+from primitives (eleven independent primitive-level re-derivations,
+spanning all six reviews) and adopted all of them — zero overrides —
+while sharpening two findings beyond what any single review stated: P2's
+structural blindness is not merely abstract but demonstrably blind to the
+one region that actually oscillates (Q4's own ripple is ~15× too small
+to ever cross zero), and Q3's shared raw FFT bin with the excluded
+quintiles is directly confirmed from `results.json`'s own diagnostic
+fields, not merely argued. R20 tally: **0** R4-class defects surviving
+Phase-3 freeze into Result/Learned — every citation independently
+re-checked reproduces exactly from its cited source (exp-103's
+`EDGE=40` at line 102; exp-102's `point_intensity`/`delta_phi` at lines
+406–407/417; exp-103's own `kappa_window` provenance traced digit-for-
+digit) — a cleaner record than either prior T28 cycle. This round's
+findings (the "beat" mislabeling, the P2-headline overstatement, the
+P3/P4/P5 evidentiary-strength gaps, the R23 scope gap) are ruled
+evidentiary-strength/framing critiques, not R4-shaped citation
+mismatches, per this program's own established distinction (Iteration
+78's `Q_ext`/`cosθ` ruling; Iteration 80's Nyquist-overclaim ruling) —
+**R20 does NOT fire.** Checkpoint criterion 4 ruled on both live
+sub-issues (the R23-coverage gap; VISION's legibility-vs-transcription
+critique) and does NOT fire on either: both real, both caught blind
+pre-LOGBOOK, both non-load-bearing, neither a dropped constraint nor an
+unfalsifiable claim in the actual scored record — R23's coverage gap is
+its founding-cycle scope question, not a recurrence pattern, and
+VISION's critique names a designed-in ceiling with no live defect this
+cycle to remedy. All other Checkpoint criteria (1, 2, 3, 5) confirmed
+N/A. Six mandatory same-shift documentation fixes applied above (zero
+re-run, zero verdict change): the P2/P4 headline reframed; the P3/P4/P5
+evidentiary-strength honestly stated; Learned #2's "beat" language
+corrected to "spectral leakage"; an explicit R23 scope-limitation
+statement added; three Iteration-82 queue items added to Next. **Combined
+Verdict: PARTIAL** — the substantive science is strong (Gate P1 exact to
+`0.0`, P2's null genuine, P4's disproof of the sole candidate
+digit-exact and decisive, zero R4-class defects — a cleaner citation
+record than either prior T28 cycle), weighed against a real, same-shift-
+fixed cluster of framing/evidentiary-strength/rule-scope gaps that a
+clean CONFIRM would not carry. Reconciled Iteration-82 queue (Red Team's
+own tiered ranking): **Tier 1** — the T8 r=78/156/312 bridge extension
+(consensus top pick, now unblocked by this cycle's clean null); the R23
+scope decision; the near-null-exclusion raw-bin-identity refinement.
+**Tier 2** — VISION's fresh-context cold-read trial; the multi-step-count
+settling convergence bench across the full dense span. **Tier 3** — the
+standing `delta_scene` R3-vs-R4 split, now FIVE consecutive deferrals (a
+sixth must be re-justified in writing or executed); the Tier-2 perceptual
+conversion, witness-scale wattage pinning, the dense-standoff-trend
+functional-form fit, and EM's floor-gate-empty-only-convention note (low
+priority, non-load-bearing). Full record: `phase5_redteam_audit.md`
+(condensed six blind reviews received inline, independently re-verified
+from primitives rather than as separate committed files this cycle).
