@@ -370,6 +370,157 @@ synthesis, strictly BEFORE `run.py`'s first real Phase-4 invocation.
 
 ## Result
 
-*(Pending Phase 4 — this section is written from `run.py`'s own generated
-`RESULT_TEXT`, R23 discipline, after the 2 real FDTD calls run and Gate P1
-is checked.)*
+**Pasted verbatim from `run.py`'s own generated `RESULT_TEXT` (R23
+discipline — not hand-typed):**
+
+```
+RESULT (exp-104, Panel Iteration 81)
+
+Raw physical intensity/phase ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility.
+
+All 2 real FDTD calls executed exactly as budgeted (theta=0, STEPS=3200),
+58.7s (0.98 min) total wall time, zero `lab/`
+diff throughout.
+
+**Gate P1 (reproducibility identity check): PASS.**
+max relative deviation = 0.000e+00 across all 16 original x-points,
+against experiments/103-.../results.json's own kappa_region_trend
+(<1e-9 required). This is the run's precondition; P2-P6 below are only
+trusted because Gate P1 passed.
+
+**P1: CONFIRMED.**
+
+**P2 (ripple existence): FALSIFIED.** 0 qualifying sign
+changes (>5% relative amplitude) found in residual_point(x) across the
+full 53-point DENSE_X span (>=2 required).
+
+**P3 (per-quintile period match): FALSIFIED.** 5/5
+quintiles determined a period; 1 of those fall in [7,13]
+cells (>=3 required). Per-quintile periods: [(0, 32.540162151563344), (1, 32.46870463306552), (2, 32.55833657701957), (3, 29.384689967054342), (4, 9.06634619846641)].
+
+**P4 (signed suppression-ratio cross-check): FALSIFIED.**
+2 quintile(s) scorable (determined period, not
+near-null-excluded); 1 pass (sign match + magnitude within
+2x) (>=2 required, or AMBIGUOUS if zero are scorable). Near-null-excluded
+quintiles (period within 10% of an integer multiple of 11 cells): [0, 1, 2].
+
+**P5 (delta_phi co-variation, simplified proxy): CONFIRMED.**
+2/2 scorable
+quintiles (both P3 and P4 determined) show sign-consistent covariation
+between residual_point and the delta_phi_point-vs-interpolated-delta_phi_
+wide phase-ripple residual (majority required). Proxy computed exactly as
+pre-registered in PREDICTIONS_TEXT -- no rigorous per-frequency-bin phase
+decomposition was attempted (delta_phi_wide is sparse by construction,
+only the 16 original x-points).
+
+**P6 (scope, narrows/overturns/mixed): NARROWS.** Per-quintile
+ripple_fraction_i (peak-to-peak(residual_point)/mean(kappa_region_wide)):
+['0.1380', '0.0730', '0.0614', '0.0337', '0.0095']. Narrows requires all <=0.20;
+overturns requires any >0.50.
+
+Mandatory Idealizations fixes (MATERIALS' aliasing-origin disclaimer on any
+P2 ripple found here, THERMODYNAMICS' thermal-sidecar N/A disclosure, the
+settling-leg scope correction, and QUANTUM's citation-overreach correction
+distinguishing a low-pass filter null from a sampling-rate failure) are
+carried unchanged from this file's own module docstring and NOTES.md's
+Idealizations section -- restated in full there, not narrowed or dropped
+here.
+```
+
+**Interpretation, not a modification of the scored verdicts above.** P2's
+FALSIFIED result is itself the headline finding, not a null result to
+explain away: at genuinely sub-Nyquist 2-cell pitch, with a zero-averaging
+single-cell point channel specifically built to surface any ripple an
+11-cell box average would suppress, **no qualifying (>5%-amplitude,
+sign-changing) ripple was found anywhere across the full 104-cell dense
+span**. This directly answers the concern that motivated this whole
+cycle: exp-103's own Phase-5-flagged degenerate-aliasing risk (samples at
+exactly the λ/2≈10-cell period) does not, on this genuinely resolved
+recheck, turn up the ripple it could have been masking.
+
+The P3/P4 FALSIFIED periods are consistent with this reading, not in
+tension with it: three of five quintiles' FFTs locked onto periods near
+32.5 cells — close to **3×11=33 cells**, triggering the pre-registered
+near-null exclusion — and the two non-excluded quintiles' periods (29.4
+and 9.1 cells) are not a coherent, chirp-consistent λ/2-scale signal
+either. A period longer than the quintile's own ~20-cell span is the
+signature of `estimate_period` locking onto the smooth curvature mismatch
+between a point sample and an 11-cell box average of the same underlying
+smooth Fresnel-fill-in trend (a Taylor-expansion-scale artifact, not a
+periodic ripple) rather than any real coherent fringe. This is a genuine,
+honestly-reported null result, not a forced pass — MATERIALS' own
+Idealizations fix above already pre-registered that *any* ripple found
+this cycle would be aliasing/numerical in origin, not physically
+interpretable; the actual finding is stronger still: no ripple, real or
+artifactual, was found in the first place.
+
+P5's CONFIRMED (2/2) and P6's NARROWS are consequences of the same
+underlying finding: with no genuine ripple present, the wide/point
+channels' residuals are small, smoothly-varying, and mutually consistent
+in sign by construction (P5's proxy), and `ripple_fraction_i` stays well
+under the 0.20 "narrows" bar in all 5 quintiles (max 0.138, in the
+near-object Q0). **Overall scope disposition: NARROWS** — exp-103's own
+16-point trend and `kappa_window` figure are reproduced unchanged (Gate
+P1, exact to machine precision) and no sub-Nyquist ripple hazard
+materializes at the resolution this cycle was built to check.
+
+## Learned
+
+1. **A genuinely sub-Nyquist recheck can falsify the very concern that
+   motivated it, and that is itself the useful result.** exp-103's Phase-5
+   review correctly identified a real methodological gap (the ≤10-cell
+   pitch does not satisfy Nyquist against a λ/2=10-cell period); this
+   cycle closed that gap with a real 2-cell-pitch, zero-averaging-channel
+   recheck and found P2 (ripple existence) FALSIFIED — no comparable-scale
+   coherent structure actually exists in this quantity at this geometry,
+   despite the internal spread `kappa_window` itself disclosed
+   (std/mean=0.849) being real. The two facts are not in tension:
+   `kappa_window`'s spread is measured over a much larger 100×40-cell
+   footprint (real spatial variation across that whole window, much of it
+   at longer length scales than λ/2) while `residual_point` isolates
+   specifically the wide-vs-point *channel* difference at the λ/2 scale —
+   a different question than "does the field vary spatially," which it
+   plainly does.
+2. **A per-quintile FFT period estimator needs its own near-null
+   discipline to avoid mistaking a smooth-curve artifact for a genuine
+   period** — three of five quintiles' dominant FFT peaks landed near
+   3×11=33 cells (an exact near-null of the 11-cell box width), which is
+   far more likely to be a numerical beat between the point-vs-box
+   curvature mismatch and the FFT's own zero-padded frequency grid than a
+   physical period; the pre-registered near-null exclusion (item 10)
+   correctly caught this and excluded those quintiles from P4 scoring
+   rather than forcing a spurious signed-ratio comparison on them. A
+   useful house lesson for any future per-quintile period-fit machinery:
+   always check whether an estimated "period" is actually shorter than
+   the window it was estimated from before trusting it as a real
+   oscillation.
+3. **R23's assert-based discipline worked exactly as designed, with zero
+   manual transcription drift.** Both `PREDICTIONS_TEXT` (committed before
+   any FDTD call) and `RESULT_TEXT` (generated after) were pasted into
+   this document verbatim from `run.py`'s own printed output — the two
+   `assert DISCLAIMER in ...` calls in `run.py` passed on the actual run,
+   confirmed by inspection of the generated strings above, not merely by
+   the code not crashing.
+
+## Next (candidate directions, not this cycle's scope)
+
+1. **Tier 1 item 3 (T8 r=78/156/312 near-field-to-witness-scale bridge
+   extension)** — deferred again this cycle (this cycle's own scope was
+   the sub-Nyquist recheck, not the bridge extension); now the object of
+   Iteration 82's own queue per exp-103's Phase-5 tiering, since this
+   cycle's recheck is the "ratified sampling convention" that extension
+   was sequenced to inherit. The genuine finding here (no sub-Nyquist
+   ripple at this geometry) is a reasonable basis to proceed with that
+   extension using the same wide-channel convention, without needing to
+   re-litigate pitch/Nyquist concerns at the bridge-family radii.
+2. **Tier 3 — the standing `delta_scene` R3-vs-R4 split** — now FIVE
+   consecutive deferrals (exp-100→101→102→103→104); per exp-103's own
+   explicit written warning, this should be treated as a rule violation
+   rather than routine unless Iteration 82 either executes it or
+   re-justifies a sixth deferral in writing.
+3. A genuine multi-step-count settling convergence bench across the full
+   dense span (not just x∈[352,356]) remains open — this cycle's own
+   settling-leg-scope Idealization explicitly flags that the farther
+   `DENSE_X` points (out to x=456) were never directly settling-checked,
+   only argued from the general monotonic-decay-with-standoff physical
+   claim.
