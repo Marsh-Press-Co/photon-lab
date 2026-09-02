@@ -20,7 +20,7 @@ rather than loading the exp-094/exp-101 module chain, keeping this file
 fully self-contained per NOTES.md's "lab/ diff: zero" / thermal-disposition
 commitments.
 
-DISCLOSED RESOLUTION NOTE (Gate B's beam-aligned frame sign): NOTES.md's
+DISCLOSED RESOLUTION NOTE 1 (Gate B's beam-aligned frame sign): NOTES.md's
 `u(theta)=(-cos theta, sin theta)` is `add_line_source`'s own documented
 launch convention (lab/fdtd2d.py docstring: "the -x-going wave... travels
 along (-cos theta, sin theta)"), which is the physically downstream
@@ -45,6 +45,32 @@ sign=-1 (a mirror flip) only for Gate B's own distinct, disclosed
 geometry. This is a geometry-fact-driven generalization of the same
 one construction, not a second construction or a redesign of the
 frozen formula.
+
+DISCLOSED RESOLUTION NOTE 2 (Gate C's sign, found by an actual failed
+first run, not assumed in advance): `sections.widths()`'s own established
+`i_inc` is a RAW signed Poynting-x-component (`-0.5*Re{Ez*conj(Hy)}`,
+positive meaning flow toward +x). For the R4 family the beam's real
+propagation direction is -x (src_x>obj_x; u_x(theta)=-cos(theta)), so
+`i_inc` genuinely comes out NEGATIVE there (confirmed empirically: e.g.
+at 41.460901deg, i_inc=-0.343 while the unsigned magnitude
+I0_corrected=0.453) -- this is not a bug in `i_inc`/`widths()` (unmodified,
+already-gated code), it is what a correctly-oriented incident wave
+produces. `I0_corrected=sqrt(mean_sx^2+mean_sy^2)` is by construction an
+UNSIGNED magnitude (Setup's own words: "direction-agnostic
+Poynting-magnitude reference"), so re-projecting it onto the signed `i_inc`
+axis requires the SAME signed x-component this instrument already uses
+for `P(theta)`/`P_off(theta)`, i.e. `u_x(theta)` (=-cos(theta) for the R4
+family's sign=+1), not a bare, sign-blind `cos(theta)`. Using bare
+`cos(theta)` (tried first; see the crash-and-fix history in the Phase-4
+report) gives a spurious ~145-160% "deviation" at every single
+(angle,config) cell -- a uniform, systematic sign flip, not per-cell
+noise -- while `I0_corrected*u_x(theta)` against the SAME `i_inc` lands
+under 1% at every cell tested. This is the same category of fix as
+Resolution Note 1 (a sign made explicit and geometry-derived, not a
+redesign of Gate C's own comparison or its 1% bar): NOTES.md's own u(theta)
+IS this instrument's local-plane-wave direction convention, and Gate C's
+whole purpose is checking that convention's own x-projection against the
+raw measured flux it is supposed to describe.
 """
 
 import importlib.util
@@ -182,62 +208,6 @@ def run_block_r4(jobs):
     return captures, wall
 
 
-# ================================================================ R4-family cache
-# The 24-call R4-family sweep is expensive (~53min wall) and its inputs
-# (ANGLES/PAIR_KEYS_R4/R4_STEPS/SIGMA_R4_CORRECTED/geometry) are frozen by
-# NOTES.md -- so its results are cached to disk (pickle, this experiment's
-# own directory, zero lab/ diff) and reused whenever the cache is newer
-# than this file. This only ever short-circuits the R4-family block; Gate
-# B's own 2 calls always run fresh (cheap, and exercise the fix being
-# tested this Phase-4 pass).
-R4_CACHE_PATH = os.path.join(HERE, "r4_family_cache.pkl")
-R4_CACHE_VERSION = 1  # bump if jobs/capture schema changes
-
-
-def _load_r4_cache(jobs):
-    if not os.path.exists(R4_CACHE_PATH):
-        return None
-    this_file = os.path.abspath(__file__)
-    if os.path.getmtime(R4_CACHE_PATH) <= os.path.getmtime(this_file):
-        print(f"[cache] {R4_CACHE_PATH} exists but is NOT newer than run.py -- ignoring "
-              f"(stale, will recompute).")
-        return None
-    import pickle
-    with open(R4_CACHE_PATH, "rb") as f:
-        blob = pickle.load(f)
-    if blob.get("version") != R4_CACHE_VERSION or blob.get("job_keys") != sorted(
-            (k, t, a) for (k, t, a, _s, _sig) in jobs):
-        print(f"[cache] {R4_CACHE_PATH} schema/job-set mismatch -- ignoring (will recompute).")
-        return None
-    return blob
-
-
-def _save_r4_cache(captures, wall_r4, jobs):
-    import pickle
-    blob = dict(version=R4_CACHE_VERSION,
-                job_keys=sorted((k, t, a) for (k, t, a, _s, _sig) in jobs),
-                captures=captures, wall_r4=wall_r4)
-    tmp = R4_CACHE_PATH + ".tmp"
-    with open(tmp, "wb") as f:
-        pickle.dump(blob, f, protocol=4)
-    os.replace(tmp, R4_CACHE_PATH)
-    print(f"[cache] R4-family sweep ({len(captures)} captures) saved to {R4_CACHE_PATH}")
-
-
-def get_r4_captures(jobs):
-    """Load the 24-call R4-family sweep from cache if a valid, fresh cache
-    exists; otherwise run it for real and cache the result. Returns
-    (captures, wall_r4, from_cache)."""
-    cached = _load_r4_cache(jobs)
-    if cached is not None:
-        print(f"[cache] LOADED R4-family sweep ({len(cached['captures'])} captures) from "
-              f"{R4_CACHE_PATH} -- skipping all 24 FDTD calls.")
-        return cached["captures"], cached["wall_r4"], True
-    captures, wall_r4 = run_block_r4(jobs)
-    _save_r4_cache(captures, wall_r4, jobs)
-    return captures, wall_r4, False
-
-
 # ================================================================ Gate B native-scale flagship (exp-001/002's own "absorber" scene)
 # Verbatim geometry/constants read directly from experiments/001-.../run.py
 # and experiments/002-.../run.py -- both build "absorber" as
@@ -253,38 +223,6 @@ GATEB_SRC_X = 64
 GATEB_CX, GATEB_CY = 252, 280
 GATEB_R_CORE, GATEB_R_COAT = 30, 78
 GATEB_Y_LO, GATEB_Y_HI = GATEB_ABSORB, GATEB_N - GATEB_ABSORB
-
-# ---- Gate B's OWN D_STANDOFF/H_REGION (Phase-4 diagnostic fix) ----
-# NOTES.md's D_STANDOFF=200/H_REGION=10 were derived (Phase-1) as multiples
-# of the R4-family object's OWN scale (D_STANDOFF=200cells = 1.28*R4_R_OUT
-# =156cells). This Gate's native-scale flagship uses a DIFFERENT
-# cells_per_lambda than the R4 family -- confirmed by direct read of both
-# grids' own constants: exp-001/002's 600nm leg uses GATEB_CPL=20 (their
-# own SWEEP=[(15,450),(20,600),(25,750)]), while the R4 family always uses
-# R4_CPL[600]=40 (design_geometry.py). Both articles share the SAME
-# physical outer radius (78*30nm = 156*15nm = 2340nm, NOTES.md Setup), so
-# reusing D_STANDOFF/H_REGION UNCHANGED IN CELL COUNT at this coarser grid
-# does NOT hold the same physical-standoff-to-object-size ratio the
-# R4-family value was designed around: 200 cells / GATEB_R_COAT(78 cells)
-# = 2.564x r_out, not the 1.28x r_out that 200/R4_R_OUT(156) actually
-# encodes for the R4 family -- a ~2x-too-far diffraction-regime shift at
-# this grid, not a sign/geometry bug (confirmed separately below: the
-# point still lands well downstream of the object, just at the wrong
-# physical standoff). Fix: rescale D_STANDOFF/H_REGION by the article's
-# own r_out ratio (a geometry fact, not a hand-picked constant) so both
-# grids hold IDENTICAL standoff/r_out and region/r_out ratios by
-# construction -- exactly the re-verification NOTES.md's own Idealizations
-# section anticipates ("Phase 4 re-verifies every margin by direct Sim
-# geometry computation... not by hand-derivation").
-_GATEB_R_OUT_RATIO = GATEB_R_COAT / R4_R_OUT          # 78/156 = 0.5 exactly
-_gateb_d_standoff_f = D_STANDOFF * _GATEB_R_OUT_RATIO  # 200*0.5 = 100
-_gateb_h_region_f = H_REGION * _GATEB_R_OUT_RATIO      # 10*0.5 = 5
-assert _gateb_d_standoff_f == round(_gateb_d_standoff_f), (
-    "GATEB_D_STANDOFF rescaling did not land on an integer cell count")
-assert _gateb_h_region_f == round(_gateb_h_region_f), (
-    "GATEB_H_REGION rescaling did not land on an integer cell count")
-GATEB_D_STANDOFF = int(round(_gateb_d_standoff_f))     # 100
-GATEB_H_REGION = int(round(_gateb_h_region_f))         # 5
 
 
 def _run_gate_b(with_article):
@@ -303,8 +241,9 @@ def u_hat_v_hat(theta_deg, sign):
     """u(theta)=(-cos,sin)*sign, v(theta)=(sin,cos)*sign -- NOTES.md's
     literal formula for sign=+1 (every R4_CONFIGS entry), mirror-flipped
     for sign=-1 (Gate B's own opposite source/object arrangement -- see
-    module docstring). Orthonormal for either sign (scaling a unit,
-    orthogonal pair by a common +-1 factor preserves both properties)."""
+    module docstring Resolution Note 1). Orthonormal for either sign
+    (scaling a unit, orthogonal pair by a common +-1 factor preserves both
+    properties)."""
     t = math.radians(theta_deg)
     u = np.array([-math.cos(t), math.sin(t)]) * sign
     v = np.array([math.sin(t), math.cos(t)]) * sign
@@ -437,9 +376,6 @@ def main():
     print("=" * 78)
     t_start = time.time()
     n_fdtd_calls = 0
-    n_fdtd_calls_actual = 0  # real Sim().run() calls executed by THIS process invocation
-                              # (vs n_fdtd_calls, the experiment's nominal 26-call budget,
-                              # which stays 26 regardless of cache hits -- see R19 assert)
 
     print(f"\nANGLES: {ANGLES}")
     print(f"PAIR_KEYS_R4: {PAIR_KEYS_R4}")
@@ -475,14 +411,10 @@ def main():
             jobs.append((key, th, True, R4_STEPS, SIGMA_R4_CORRECTED))
     assert len(jobs) == 24, f"R19 call-count assert: expected 24 R4 jobs, got {len(jobs)}"
     print(f"\n-- {len(jobs)} R4-family FDTD calls queued --")
-    captures, wall_r4, r4_from_cache = get_r4_captures(jobs)
-    n_fdtd_calls += len(jobs)  # nominal experiment call BUDGET (NOTES.md: 26) -- unchanged
-                                # regardless of cache; n_fdtd_calls_actual (below) tracks
-                                # what THIS process invocation really ran.
-    n_fdtd_calls_actual += 0 if r4_from_cache else len(jobs)
+    captures, wall_r4 = run_block_r4(jobs)
+    n_fdtd_calls += len(jobs)
     assert len(captures) == 24
-    print(f"R4-family wall time: {wall_r4:.1f}s ({wall_r4/60.0:.2f} min)  "
-          f"[{'FROM CACHE' if r4_from_cache else 'FRESH FDTD'}]")
+    print(f"R4-family wall time: {wall_r4:.1f}s ({wall_r4/60.0:.2f} min)")
 
     # phasors, once per capture
     phasors = {k: sc.phasors(cap) for k, cap in captures.items()}
@@ -501,7 +433,7 @@ def main():
             ez_empty = phasors[(key, th, False)]["ez"]
             (px, py), u, v = P_point(cfg, th, D_STANDOFF)
             p_off = P_off_point(cfg, th, D_STANDOFF, DELTA_LAT)
-            for (x, y) in (( px, py), p_off):
+            for (x, y) in ((px, py), p_off):
                 k = kappa_at(ez_empty, ez_empty, x, y, H_REGION)
                 gate_a_max_dev = max(gate_a_max_dev, abs(k["kappa_region"] - 1.0),
                                       abs(k["kappa_point"] - 1.0))
@@ -525,26 +457,18 @@ def main():
     cap_b_empty = _run_gate_b(with_article=False)
     cap_b_article = _run_gate_b(with_article=True)
     n_fdtd_calls += 2
-    n_fdtd_calls_actual += 2  # Gate B is never cached -- always run fresh
     wall_gate_b = time.time() - t0
     print(f"Gate B wall time: {wall_gate_b:.1f}s")
 
     gateb_cfg = dict(obj_x=GATEB_CX, obj_y=GATEB_CY, src_x=GATEB_SRC_X)
-    (gb_px, gb_py), gb_u, gb_v = P_point(gateb_cfg, 0.0, GATEB_D_STANDOFF)
-    print(f"[Gate B] D_STANDOFF rescale: R4-family 200cells/R4_R_OUT(156)=1.282x r_out; "
-          f"native GATEB_CPL={GATEB_CPL} vs R4_CPL[600]={R4_CPL[600]} (ratio "
-          f"{_GATEB_R_OUT_RATIO}) => GATEB_D_STANDOFF={GATEB_D_STANDOFF}cells "
-          f"({GATEB_D_STANDOFF/GATEB_R_COAT:.3f}x r_out), GATEB_H_REGION={GATEB_H_REGION}cells "
-          f"(holds the SAME standoff/r_out and region/r_out ratios the R4 family used)")
+    (gb_px, gb_py), gb_u, gb_v = P_point(gateb_cfg, 0.0, D_STANDOFF)
     print(f"[Gate B] P(0deg) = ({gb_px},{gb_py})  u={gb_u}  sign={downstream_sign(gateb_cfg)}  "
           f"(SRC_X={GATEB_SRC_X}, CX={GATEB_CX} -- downstream is +x here, opposite of R4 family)")
     assert gb_px > GATEB_SRC_X, "Gate B point landed upstream of the source -- sign bug"
-    assert gb_px > GATEB_CX + GATEB_R_COAT, (
-        "Gate B point landed inside/short of the coating's own outer radius -- geometry bug")
 
     ez_b_empty = sc.phasors(cap_b_empty)["ez"]
     ez_b_article = sc.phasors(cap_b_article)["ez"]
-    gate_b_kappa = kappa_at(ez_b_empty, ez_b_article, gb_px, gb_py, GATEB_H_REGION)
+    gate_b_kappa = kappa_at(ez_b_empty, ez_b_article, gb_px, gb_py, H_REGION)
     gate_b_pass = 0.005 <= gate_b_kappa["kappa_region"] <= 0.05
     print(f"[Gate B] kappa_region(0deg) = {gate_b_kappa['kappa_region']:.6e}  "
           f"kappa_point={gate_b_kappa['kappa_point']:.6e}  "
@@ -552,16 +476,24 @@ def main():
     if not gate_b_pass:
         print(f"  *** GATE B FAILED -- kappa_region={gate_b_kappa['kappa_region']:.6e} is "
               f"outside the pre-registered [0.005,0.05] band (established beam_behind "
-              f"anchor: 1.82% at 600nm, experiments/001-.../results.json['absorber-600']) "
-              f"even after rescaling GATEB_D_STANDOFF/GATEB_H_REGION to hold the same "
-              f"standoff/r_out ratio as the R4 family. Recorded, NOT halting -- same "
-              f"reporting-completeness rationale as Gate A above. ***")
+              f"anchor: 1.82% at 600nm, experiments/001-.../results.json['absorber-600']). "
+              f"Recorded, NOT halting -- same reporting-completeness rationale as Gate A "
+              f"above. This is a real, disclosed reading, not a bug: this instrument's "
+              f"H_REGION=10 block sits in a region of steep near-field spatial gradient "
+              f"at this native (coarser, dx=30nm) grid's D_STANDOFF=200-cell downstream "
+              f"point (kappa_region climbs from 0.031 to 0.083 across just x=430..475, "
+              f"and swings 0.038-0.075 across H_REGION=5..30 at the fixed point) -- exactly "
+              f"the disclosed Idealization ('region-averaging is a small nearest-cell "
+              f"block, not a true beam-cross-section-perpendicular sample') biting at this "
+              f"particular (undersampled, by cell-count-not-physical-distance construction) "
+              f"native-scale standoff. Verified not a sign/geometry bug: P(0deg)=(452,280) "
+              f"sits inside exp-001's own established BEHIND window x in [357,467]. ***")
 
     # ============================================================
     # Gate C / Prediction 2 -- absolute-normalization self-consistency
     # ============================================================
     print("\n" + "=" * 78)
-    print("GATE C / PREDICTION 2 -- I0_corrected*cos(theta) vs i_inc")
+    print("GATE C / PREDICTION 2 -- I0_corrected*u_x(theta) vs i_inc (see Resolution Note 2)")
     print("=" * 78)
     gate_c_rows = {}
     gate_c_max_dev = 0.0
@@ -570,12 +502,13 @@ def main():
             cfg = R4_CONFIGS[key]
             cap_empty = captures[(key, th, False)]
             r = i0_corrected_and_iinc(cap_empty, cfg)
-            dev = abs(r["i0_corrected"] * math.cos(math.radians(th)) - r["i_inc"]) / r["i0_corrected"]
-            gate_c_rows[(key, th)] = dict(**r, dev=dev)
+            u, v = u_hat_v_hat(th, downstream_sign(cfg))
+            dev = abs(r["i0_corrected"] * u[0] - r["i_inc"]) / r["i0_corrected"]
+            gate_c_rows[(key, th)] = dict(**r, u_x=float(u[0]), dev=dev)
             gate_c_max_dev = max(gate_c_max_dev, dev)
             print(f"  [{key}] theta={th:+.6f}  I0_corrected={r['i0_corrected']:.6e}  "
-                  f"i_inc={r['i_inc']:.6e}  mean_sx={r['mean_sx']:.6e}  mean_sy={r['mean_sy']:.6e}  "
-                  f"dev={dev:.4%}")
+                  f"i_inc={r['i_inc']:.6e}  u_x={u[0]:+.6f}  mean_sx={r['mean_sx']:.6e}  "
+                  f"mean_sy={r['mean_sy']:.6e}  dev={dev:.4%}")
             assert abs(r["mean_sx"] - r["i_inc"]) < 1e-9 * max(abs(r["i_inc"]), 1.0), (
                 "sx_profile mean should reproduce sections.widths()'s own i_inc exactly")
     gate_c_pass = gate_c_max_dev <= 0.01
@@ -697,7 +630,6 @@ def main():
     print("=" * 78)
 
     # Prediction 1: kappa(theta) in [0,0.10] at all 6 angles, both configs (region reading)
-    p1_cells = {kt: rows[kt] for kt in keys_order}
     p1_scored = [kt for kt in keys_order if rows[kt]["floor_pass_region"]]
     p1_violations = [kt for kt in p1_scored if not (0.0 <= rows[kt]["kappa_region"] < 0.10)]
     p1_verdict = "CONFIRMED" if not p1_violations else "FALSIFIED"
@@ -709,7 +641,7 @@ def main():
 
     # Prediction 2: Gate C itself (scored above as gate_c_pass/gate_c_max_dev)
     p2_verdict = "CONFIRMED" if gate_c_pass else "FALSIFIED"
-    print(f"\n[Prediction 2] |I0_corrected*cos(theta)-i_inc|/I0_corrected <= 0.01 at all "
+    print(f"\n[Prediction 2] |I0_corrected*u_x(theta)-i_inc|/I0_corrected <= 0.01 at all "
           f"{len(gate_c_rows)} (angle,config) cells: max_dev={gate_c_max_dev:.4%}  VERDICT={p2_verdict}")
 
     # Prediction 3: kappa_off(theta) >= 0.90 at all 6 angles, both configs
@@ -751,31 +683,19 @@ def main():
 
     total_wall = time.time() - t_start
     print(f"\nTotal wall time: {total_wall:.1f}s ({total_wall/60.0:.2f} min)")
-    print(f"Nominal experiment call budget: {n_fdtd_calls} (expected 26 = 24 R4-family + 2 Gate B, "
-          f"NOTES.md's Call budget -- unchanged regardless of cache hits)")
-    print(f"Real FDTD calls executed by THIS run: {n_fdtd_calls_actual} "
-          f"({'R4-family served from cache' if r4_from_cache else 'R4-family FRESH'} "
-          f"+ 2 Gate B always-fresh)")
+    print(f"Real FDTD call count: {n_fdtd_calls} (expected 26 = 24 R4-family + 2 Gate B)")
     assert n_fdtd_calls == 26, f"R19 call-count assert: expected 26 total FDTD calls, got {n_fdtd_calls}"
 
     result = dict(
         experiment="exp-102", panel_iteration=79,
         angles=ANGLES, pair_keys=list(PAIR_KEYS_R4),
         d_standoff=D_STANDOFF, h_region=H_REGION, delta_lat=DELTA_LAT, floor_frac=FLOOR_FRAC,
-        n_fdtd_calls=n_fdtd_calls, n_fdtd_calls_actual_this_run=n_fdtd_calls_actual,
-        r4_family_source="cache" if r4_from_cache else "fresh",
-        wall_r4_s=wall_r4, wall_gate_b_s=wall_gate_b, total_wall_s=total_wall,
+        n_fdtd_calls=n_fdtd_calls, wall_r4_s=wall_r4, wall_gate_b_s=wall_gate_b, total_wall_s=total_wall,
         gates=dict(
             A=dict(pass_=gate_a_pass, max_dev=gate_a_max_dev, n_points=gate_a_n),
             B=dict(pass_=gate_b_pass, kappa_region=gate_b_kappa["kappa_region"],
                    kappa_point=gate_b_kappa["kappa_point"], P=[gb_px, gb_py],
-                   band=[0.005, 0.05],
-                   d_standoff=GATEB_D_STANDOFF, h_region=GATEB_H_REGION,
-                   r_out_ratio=_GATEB_R_OUT_RATIO,
-                   note="D_STANDOFF/H_REGION rescaled from the R4-family's 200/10 "
-                        "cells by GATEB_R_COAT/R4_R_OUT=0.5 to hold the same "
-                        "standoff/r_out ratio (Phase-4 diagnostic fix; see run.py "
-                        "comment above Gate B)"),
+                   band=[0.005, 0.05]),
             C=dict(pass_=gate_c_pass, max_dev=gate_c_max_dev,
                    rows={f"{k}@{t}": v for (k, t), v in gate_c_rows.items()}),
             D=dict(pass_=gate_d_pass, report=gate_d_report),
