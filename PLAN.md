@@ -22,7 +22,64 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-02, panel Iteration 78 done (exp-101, PROMISING
+## Current state (2026-09-02, panel Iteration 79 done (exp-102, PROMISING,
+PHOTONICS' rotation-lead cycle: executed exp-101's own Reconciled
+Iteration-79 queue item 1 -- built the coherent, phase-resolved
+downstream point-intensity instrument (reads already-gated Ez/Hx/Hy
+phasors, lab/sections.py::full_capture/phasors, stage 8, zero lab/ diff,
+at a small region on the beam's own rotating downstream axis, comparing
+empty/article captures coherently at the identical point), closing
+exp-101's own top-ranked Next item and NOT touching T28/delta_scene at
+all (Tier 1's own R3-vs-R4 split now three cycles deferred). Diagnostic
+only, T1: N/A. Five blind Phase-2 critiques (unanimous support-with-
+changes) plus Red Team's Phase-2 audit (9 attacks, 7 mandatory fixes
+adopted, 0 overridden, 1 new defect Red Team itself found -- Gate A's
+self-comparison can't catch a P(theta) placement bug, closed by adding
+Gate D). A Director orchestration error (two Phase-4 agents raced on the
+same run.py) was disclosed in full and cleanly consolidated -- zero lab/
+diff throughout, trust suite green before/during/after, independently
+confirmed via git at Phase 5. 26 real FDTD calls, 3278.5s (54.6 min)
+wall. Gate A: PASS (exact). Gate B: FAIL, genuine and honestly diagnosed
+-- a real cpl-rescaling bug was found and fixed first, but the corrected
+point still sits closer to the object than the established beam_behind
+figure's own wide-window footprint, in the near-field where a shadow
+reads darker before Fresnel fill-in -- not force-fixed (would be the R5
+post-hoc-search pattern); only Gates A+D validate this cycle's primary
+readings. Gate C/a frozen self-consistency formula: FAILED as originally
+specified (uniform ~150% deviation, a sign-flip signature), PASSED after
+a sign correction independently re-derived SIX separate ways -- the most
+heavily cross-verified single formula fix in this program's history, both
+error and correction fully disclosed. Gate D: PASS. All five predictions
+CONFIRMED. kappa(theta): 3.48e-3-7.29e-3 across all 12 cells, genuinely
+dark (realizability caveat carried -- article is locked UNOBTAINIUM-WITH-
+PARAMETERS); kappa_off(theta): 1.04-1.08, confirming localized darkening.
+Thermal sidecar N/A, code-confirmed not invoked. Six blind Phase-5
+reviews (all CONFIRM-WITH-GAPS) converged, all six, on one real citation
+defect (Result's kappa range floor 3.68e-3 was the second-smallest of 12
+cells, not the true minimum 3.48e-3); MATERIALS additionally found the
+same headline recurring in Learned #1 without the caveat. Red Team's
+Phase-5 final audit independently re-verified every number (a seventh
+recomputation of the range-floor defect, a sixth Gate-C re-derivation)
+and ruled ONE distinct R4-class defect survives Phase-3-freeze into
+Result/Learned (one root cause, two places, not two defects) --
+R20 requires 3+, does NOT fire (the cycle immediately after Iteration
+78's own first-ever R20 firing). Checkpoint criterion 4 does not fire on
+any ground. New standing rule R22 adopted (a frozen vector self-
+consistency identity's SIGN must be independently re-derived from the
+same governing convention already in use elsewhere in the document,
+before any Phase-4 FDTD call is scored against it) -- founding instance,
+does not fire. Three same-shift documentation fixes applied (zero re-run,
+zero verdict change). LOGBOOK.md Iteration 79 entry written; Marsh
+notified per PANEL.md's continuous-mode protocol (no checkpoint pause).
+Reconciled Iteration-80 queue (Red Team's own ranking): Tier 1 (EM's
+zero-FDTD standoff diagnostic on Gate B's own captured field; a
+footprint+aperture-matched Gate B rebuild; extending this instrument
+across the T8 r=78/156/312 bridge family); Tier 2 (the Tier-2 perceptual
+conversion, gated on Tier 1; pinning the witness-scale source wattage);
+Tier 3 (the standing delta_scene split, now 3 cycles deferred; a
+pre-registered kappa_off angular resweep). Full record:
+`experiments/102-coherent-downstream-point-intensity/`, LOGBOOK.md
+Iteration 79); panel Iteration 78 done (exp-101, PROMISING
 substantively with CHECKPOINT CRITERION 4 FIRED as a process flag --
 VISION SCIENCE's rotation-lead cycle: executed exp-100's own Reconciled
 Iteration-78 queue, Tier 0 only -- replaced beam_behind_t28 (Iteration
