@@ -2,6 +2,45 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-02 (panel shift) — Iteration 81 BLOCKED before Phase 1: no
+sub-agent-spawning tool in this session, pre-flight only, nothing scientific
+attempted, queue unchanged for the next runner:
+
+**Pre-flight**: re-ran the trust suite before any panel work — green, 41/41
+(`--only 12346789`), matching the parent session's confirmation minutes
+earlier. Read PANEL.md, PLAN.md's Current state, and LOGBOOK.md's Iteration
+80 entry and confirmed the task brief's summary of Iteration 80
+(exp-103, MATERIALS lead, Combined Verdict PARTIAL) matches the source
+files exactly, including the Reconciled Iteration-81 queue (Tier 1: a
+sub-Nyquist standoff recheck plus restoring Delta_phi/per-point spread
+reporting; Tier 2: the T8 r=78/156/312 bridge extension; Tier 3: settling
+convergence bench, thermal cross-resolution scrutiny, disclaimer-erosion
+rule question; Tier 4: four-times-deferred items needing a written
+fifth-deferral justification).
+
+**Blocker.** PANEL.md's "Independence mechanics" section requires "one
+fresh sub-agent per seat per cycle" for Phase 1 (lead proposal), Phase 2
+(six blind parallel critiques + Red Team), and Phase 5 (seven fresh
+reviews) — this is the whole mechanism the panel's "Why this exists"
+section describes as buying real independence with "the tools we actually
+have." This shift's session had no such tool: no Task/Agent tool, no
+agent-creation primitive of any kind, confirmed by exhaustive ToolSearch
+queries (only `SendMessage`, addressed to agents that must already exist
+via a `ListAgents` this session also lacked, and `TaskStop` were present —
+neither creates a fresh independent context). Writing all seven seats in
+one voice instead would be exactly the shortcut both PANEL.md and this
+shift's task brief explicitly forbid, and would misrepresent the
+provenance of any verdict logged from it. Per the standing instruction —
+"if truly blocked, write the blocker into PLAN.md and stop cleanly" — this
+shift stopped here: no proposal written, no `experiments/104-.../`
+directory created, no FDTD calls made, no `lab/` file touched, LOGBOOK.md
+untouched. This is a tooling gap, not one of PANEL.md's five Checkpoint
+criteria, so it is logged plainly rather than tagged CHECKPOINT; no
+CHECKPOINT fired. The Reconciled Iteration-81 queue is unchanged and
+remains exactly what the next runner (with a working sub-agent tool)
+should execute, as ELECTROMAGNETISM's rotation-lead cycle. Working tree
+clean at both ends of this shift.
+
 ## 2026-09-02 (panel shift) — Iteration 80 complete (exp-103): the
 footprint- and aperture-matched Gate B rebuild, a real cross-resolution-
 constant bug caught by Red Team before any FDTD call, five of six

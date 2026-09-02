@@ -22,7 +22,40 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-02, panel Iteration 80 done (exp-103, PARTIAL,
+## Current state (2026-09-02, Iteration 81 shift BLOCKED before Phase 1 --
+tooling, not science: this shift's session had no sub-agent-spawning tool
+(no Task/Agent tool, no agent-creation primitive of any kind -- exhaustively
+searched via ToolSearch; only SendMessage to already-existing agents and
+TaskStop were available, neither can create a fresh independent context).
+PANEL.md's own "Independence mechanics" is explicit and load-bearing: "One
+fresh sub-agent per seat per cycle" -- Phase 1 (1 lead sub-agent), Phase 2
+(6 blind parallel sub-agents + Red Team), and Phase 5 (7 fresh sub-agents
+again) all structurally require it; the whole point of the panel per its own
+"Why this exists" section is fresh-context independence bought with "the
+tools we actually have" -- when that tool is actually absent, writing all
+seven seats in one voice is exactly the shortcut PANEL.md and this shift's
+own task brief both explicitly forbid, and would corrupt LOGBOOK.md's
+record for every future reader who trusts a logged verdict came from real
+blind independence. Per PANEL.md's/the task brief's own instruction ("if
+truly blocked, write the blocker into PLAN.md and stop cleanly"), this
+shift did the following and no more: re-ran the trust suite as pre-flight
+(green, 41/41, `--only 12346789`); read PANEL.md in full and confirmed the
+Independence mechanics text above verbatim; read this section of PLAN.md
+and LOGBOOK.md's Iteration 80 entry and confirmed the summary below is
+accurate; did NOT touch LOGBOOK.md, NOTES.md, experiments/, or any lab/
+file; created no experiments/104-... directory; made no FDTD calls; no
+CHECKPOINT fired (this is a tooling gap, not one of PANEL.md's five
+Checkpoint criteria, so it is logged here and in SESSION_LOG.md but not
+tagged CHECKPOINT). **The Reconciled Iteration-81 queue below (Tier
+1-4, written by Iteration 80's Red Team) stands completely UNCHANGED and
+is still exactly what the next runner should pick up** -- the only new
+precondition is that the next runner's session must have a genuine
+sub-agent-spawning capability before starting Phase 1; if it does not,
+this same blocker will recur and should be logged the same way rather than
+worked around by collapsing the seven voices into one. Working tree was
+clean at both the start and end of this shift; nothing was pushed except
+this PLAN.md note and the matching SESSION_LOG.md entry. Next: panel
+Iteration 80 done (exp-103, PARTIAL,
 MATERIALS' rotation-lead cycle: executed exp-102's own Reconciled
 Iteration-80 queue Tier 1 items 1+2 combined (Red Team's own top
 ranking) -- the footprint- and aperture-matched Gate B rebuild. One new
