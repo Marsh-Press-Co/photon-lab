@@ -2,6 +2,124 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-02 (panel shift) — Iteration 80 complete (exp-103): the
+footprint- and aperture-matched Gate B rebuild, a real cross-resolution-
+constant bug caught by Red Team before any FDTD call, five of six
+Phase-5 seats find real (non-load-bearing) documentation-layer gaps,
+Combined Verdict PARTIAL, no Checkpoint fires:
+
+**Pre-flight**: fresh container this session — installed dependencies
+from scratch, trust suite confirmed green, 41/41 checks
+(`--only 12346789`), before any panel work, re-confirmed green after
+Phase 4's real run. Landed on `33269dd` — Iteration 79/exp-102 fully
+closed, Iteration-80 queue written but not started — ran the full cycle
+from Phase 1 through close in one shift.
+
+**Iteration 80 — MATERIALS & METAMATERIALS' rotation-lead cycle
+(exp-103).** Executed exp-102's own Reconciled Iteration-80 queue Tier 1
+items 1+2 combined (Red Team's own top ranking): one new native-flagship
+FDTD pair (empty+article, θ=0°) reused for both a genuine
+window-averaged `kappa_window` over the literal established `BEHIND`
+footprint and an 11-point standoff trend (`kappa_region`) from the
+near-field gap identified last cycle out through the window — the
+combined fix for both real defects exp-102 honestly diagnosed in Gate B
+(a near-field-standoff mismatch and an undisclosed source-aperture-taper
+mismatch). **Red Team's own Phase-2 audit caught a load-bearing defect
+in the proposal itself before any FDTD call ran**: the Phase-1 draft's
+`edge=80` (a literal reuse of `R4_TAPER`) was the wrong constant for
+this file's own cpl=20 grid — `R4_TAPER=80` is deliberately rescaled for
+the R4 family's DOUBLE `cells_per_lambda`; reused unchanged it would
+have given a 4-wavelength taper, twice the R4 family's actual physical
+aperture — corrected to `EDGE=TAPER=40`, the identical cross-resolution-
+constant-reuse bug species this program's own T20/T21 lineage exists to
+catch, one parameter over from where exp-102 itself already guarded
+against it. Five blind Phase-2 critiques (four support-with-changes, one
+support) converged on real findings (a Nyquist-aliasing risk in the
+original sampling pitch; a settling-time risk on the new near-field
+points; a request to disclose, not merely assert, thermal independence;
+a missing perceptual-scoring disclaimer); Red Team adopted 8 of the
+resulting 9 fixes and explicitly **overrode** QUANTUM's own proposed
+remedy (phase-resampling) as a zero-information no-op —
+`sc.phasors()`'s magnitude is provably `rel_phase`-invariant for this
+linear engine, independently re-confirmed three separate times across
+the cycle.
+
+**4 real FDTD calls (2 primary + 2 settling-check, the settling leg
+checking all 5 near-field points at zero marginal cost — a Director-level
+strengthening beyond Red Team's own single-point fallback), 226.7s (3.78
+min) wall, trust suite green throughout, zero `lab/` diff.** All four
+pre-registered predictions **CONFIRMED**: `kappa_window=1.8337%` (inside
+[0.5%,4.0%], close to the established 1.5–1.8% `beam_behind` anchor —
+Gate B genuinely, honestly reproduced, not force-fixed); the 16-point
+standoff trend rises monotonically with zero reversals (0.458%→6.41%,
+x=352→456); floor gate 0/16 unresolved, window-span-to-window ratio
+1.796× (inside ≤2.0×); settling-independence residuals 0.003%–0.11% at
+all 5 near-field points, 2–4 orders of magnitude inside the 20% bar.
+
+**Six blind Phase-5 reviews, five of six CONFIRM-WITH-GAPS**
+(THERMODYNAMICS alone CONFIRM, the most thorough verification pass,
+explicitly registering zero energy-balance content this cycle):
+PHOTONICS and QUANTUM independently, by two different routes, found the
+adopted "≤10-cell (λ/2) pitch" Nyquist fix does **not** actually satisfy
+Nyquist for the λ/2=10-cell coherent-*intensity* fringe period at risk
+(true Nyquist needs <5 cells — the fix samples at exactly one full
+period, the textbook degenerate-aliasing case) — PHOTONICS additionally
+found `H_REGION=5`'s own 11-cell box-average independently suppresses
+~91% of any such ripple per sample, partially but not fully rescuing the
+pitch's own failure; QUANTUM independently found `kappa_window`'s own
+disclosed pointwise spread (std/mean=0.849, 97× min-to-max) is direct
+evidence of comparable-scale structure genuinely nearby. **MATERIALS'
+own rotation-lead self-review found its Phase-1 proposal's Realizability
+Bound reasoning was silently dropped** between Phase 1 and this
+document's own Phase-3 freeze — the status label survived, the
+falsifiable reasoning behind it did not, uncaught by five Phase-2
+critiques and Red Team's own Phase-2 audit. ELECTROMAGNETISM found the
+Result section's own settling-residual comparison to VALIDATION.md's
+stage-20 baseline ran numerically **backwards** — residuals larger than
+the cited figure by 2×–73×, not smaller as originally written
+(Prediction 4's verdict unaffected, cleared by ~180× regardless). VISION
+found the mandatory perceptual-scoring disclaimer present in
+Setup/Idealizations but absent from Predictions/Result, against
+LOGBOOK's own escalated Iteration-65 standing rule requiring both — the
+third post-escalation instance of this exact gap shape on this T28
+sub-thread, and the first to survive all the way to Phase 5.
+
+**Red Team's Phase-5 final audit independently re-verified every finding
+from primitives (eight independent primitive-level re-derivations) and
+adopted all of them — zero overrides.** R20 tally: **1** genuine
+R4-class defect (EM's backwards-citation finding) surviving Phase-3
+freeze into Result/Learned — far below the "three or more" bar, **R20
+does NOT fire.** **Checkpoint criterion 4 ruled on both live sub-issues
+and does NOT fire on either** — the disclaimer-erosion recurrence, per
+this program's own unbroken discharge-test precedent (Red Team traced
+the Iteration-65 CHECKPOINT entry directly and confirmed it adopted no
+forward-firing clause, so a third post-escalation instance does not
+auto-fire, though a fourth is flagged as ripe for exactly such a rule);
+and the Nyquist-overclaim prose, by direct analogy to an existing
+non-firing precedent for the identical defect shape. Six mandatory
+same-shift documentation fixes applied to `NOTES.md` (zero re-run, zero
+verdict change): the backwards settling-citation corrected; the
+perceptual disclaimer added to both Predictions and Result; the
+Realizability Bound section restored; the Prediction-2 Result paragraph
+rewritten to correctly scope the zero-reversal finding as weak, not
+clean, disconfirmation of the λ/2-scale alternative specifically; an
+explicit passivity-bound statement added; the quantization-bias worked
+arithmetic corrected. **Combined Verdict: PARTIAL.** LOGBOOK.md
+Iteration 80 entry written; PLAN.md's Current state updated; Marsh
+notified per PANEL.md's continuous-mode protocol (no checkpoint pause).
+Reconciled Iteration-81 queue: Tier 1 (a genuinely sub-Nyquist standoff
+recheck, one fresh ~2-call FDTD pair, plus restoring `Delta_phi` and
+per-point spread reporting at zero further marginal cost); Tier 2 (the
+T8 r=78/156/312 bridge extension, sequenced after Tier 1); Tier 3 (a
+multi-step-count settling convergence bench; thermal-sidecar
+cross-resolution scrutiny pre-registered for its next invocation; the
+disclaimer-erosion standing-rule question); Tier 4 (Tier-2 perceptual
+conversion, witness-scale wattage, the `delta_scene` R3-vs-R4 split —
+now FOUR consecutive deferrals, a fifth must be explicitly re-justified
+in writing — dense-standoff-trend functional fit). Full record:
+`experiments/103-t28-gateb-footprint-aperture-match/`, LOGBOOK.md
+Iteration 80.
+
 ## 2026-09-02 (panel shift) — Iteration 79 complete (exp-102): a genuinely
 new working instrument, a real sign-bug catch executed with unusual
 rigor, R20 does NOT fire the cycle immediately after its first-ever

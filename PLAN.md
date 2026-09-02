@@ -22,7 +22,68 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-02, panel Iteration 79 done (exp-102, PROMISING,
+## Current state (2026-09-02, panel Iteration 80 done (exp-103, PARTIAL,
+MATERIALS' rotation-lead cycle: executed exp-102's own Reconciled
+Iteration-80 queue Tier 1 items 1+2 combined (Red Team's own top
+ranking) -- the footprint- and aperture-matched Gate B rebuild. One new
+native-flagship FDTD pair (empty+article, theta=0) reused for a genuine
+window-averaged kappa_window over the literal established BEHIND
+footprint and an 11-point standoff trend (kappa_region) from the
+near-field gap out through the window. Red Team's own Phase-2 audit
+caught a load-bearing defect before any FDTD call ran: the Phase-1
+draft's edge=80 (a literal reuse of R4_TAPER) was the wrong constant
+for this file's own cpl=20 grid -- R4_TAPER=80 is rescaled for the R4
+family's DOUBLE cells_per_lambda; corrected to EDGE=TAPER=40, giving
+genuine physical-aperture-width fidelity. Five blind Phase-2 critiques
+(four support-with-changes, one support) plus Red Team's Phase-2 audit
+(8 of 9 fixes adopted, QUANTUM's own proposed phase-resampling remedy
+explicitly overridden as a zero-information no-op -- sc.phasors()'s
+magnitude is provably rel_phase-invariant for this linear engine,
+independently re-confirmed three separate times). 4 real FDTD calls (2
+primary + 2 settling-check, checking all 5 near-field points at zero
+marginal cost, stronger than Red Team's own single-point fallback),
+226.7s wall, trust suite green (41/41), zero lab/ diff. All four
+predictions CONFIRMED: kappa_window=1.8337% (inside [0.5%,4.0%], close
+to the established 1.5-1.8% beam_behind anchor -- Gate B genuinely
+reproduced, not force-fixed); the 16-point standoff trend rises
+monotonically with zero reversals; floor gate clean; settling residuals
+2-4 orders of magnitude inside the 20% bar. Six blind Phase-5 reviews,
+five of six CONFIRM-WITH-GAPS (THERMODYNAMICS alone CONFIRM):
+PHOTONICS+QUANTUM independently found the adopted <=10-cell "Nyquist
+fix" pitch does NOT actually satisfy Nyquist for the lambda/2=10-cell
+coherent-intensity fringe at risk (needs <5 cells -- the fix samples at
+exactly one full period, the degenerate-aliasing case), partially
+mitigated by H_REGION=5's own box-average low-pass filtering; MATERIALS'
+own self-review found its Realizability Bound reasoning was silently
+dropped between Phase 1 and NOTES.md's own Phase-3 freeze; EM found the
+Result section's settling-residual comparison to VALIDATION.md's
+baseline ran numerically backwards (larger not smaller, by 2x-73x,
+verdict unaffected); VISION found the mandatory perceptual disclaimer
+missing from Predictions/Result (the third post-escalation instance of
+an Iteration-65-named recurring gap, first to survive to Phase 5). Red
+Team's Phase-5 final audit independently re-verified every finding from
+primitives (8 re-derivations) and adopted all of them, zero overrides.
+R20 tally=1 (far below 3+), does not fire. Checkpoint criterion 4 ruled
+on both live sub-issues (disclaimer-erosion; Nyquist-overclaim) and does
+NOT fire on either, per unbroken discharge-test precedent -- both
+flagged, both mandatory same-shift fixes applied to NOTES.md (backwards
+citation corrected; disclaimer added to both sections; Realizability
+Bound restored; Prediction-2 Result paragraph rescoped as weak not
+clean disconfirmation of the lambda/2-scale alternative specifically;
+passivity statement added; quantization arithmetic corrected). Zero
+verdict changes. Combined Verdict: PARTIAL. Reconciled Iteration-81
+queue: Tier 1 (a genuinely sub-Nyquist standoff recheck, one fresh
+~2-call FDTD pair, plus restoring Delta_phi and per-point spread
+reporting at zero further marginal cost); Tier 2 (the T8 r=78/156/312
+bridge extension, sequenced after Tier 1); Tier 3 (a multi-step-count
+settling convergence bench; thermal-sidecar cross-resolution scrutiny
+pre-registered for its next invocation; the disclaimer-erosion
+standing-rule question); Tier 4 (Tier-2 perceptual conversion,
+witness-scale wattage, the delta_scene R3-vs-R4 split -- now FOUR
+consecutive deferrals, a fifth must be explicitly re-justified in
+writing -- dense-standoff-trend functional fit). Full record:
+`experiments/103-t28-gateb-footprint-aperture-match/`, LOGBOOK.md
+Iteration 80); panel Iteration 79 done (exp-102, PROMISING,
 PHOTONICS' rotation-lead cycle: executed exp-101's own Reconciled
 Iteration-79 queue item 1 -- built the coherent, phase-resolved
 downstream point-intensity instrument (reads already-gated Ez/Hx/Hy
