@@ -106,8 +106,10 @@ outright and lets confound (1) be characterized directly via an
   `beam_behind` figure (`Sim.envelope()`, an UNCORRECTED
   `sqrt(snap_a²+snap_b²)`) are related but not identical
   amplitude-reconstruction conventions. At this cycle's own grid numbers
-  (λ=20 cells, S≈0.2263, quarter=22 steps, φ=ω·22≈1.5644 rad vs. exact
-  π/2=1.5708), `envelope()` carries a small (cos φ≈0.0064, up to ~0.6%
+  (λ=20 cells, S≈0.2263, quarter=22 steps, ω=2π·S/λ≈0.071086, φ=ω·22≈1.563895 rad vs. exact
+  π/2=1.5708 — corrected per Phase-5 mandatory fix 6, ELECTROMAGNETISM: the
+  originally-stated ω≈0.07111/cos φ≈0.0064 carried a rounding slip),
+  `envelope()` carries a small (cos φ≈0.0069, up to ~0.7%
   relative in the worst-case phase relationship) quantization bias that
   `kappa_window` does not — relevant context if `kappa_window` lands
   outside the predicted band on the low side; does not by itself
@@ -131,6 +133,12 @@ a new-machinery cycle).
 
 ## Predictions (committed to git BEFORE Phase 4 runs any FDTD call — house
 ## discipline, non-negotiable)
+
+**kappa_window/kappa_region are raw physical intensity ratios; no
+Weber-contrast or C_thr(L) perceptual scoring is performed this cycle**
+(Phase-2 mandatory fix 8, restated here per the T28 dual-section banner
+requirement, LOGBOOK.md Iteration 65 — added at Phase 5, per Red Team's
+final-audit mandatory-fixes docket item 2).
 
 1. **kappa_window** ∈ **[0.005, 0.04]** (0.5%–4.0%). Anchored to the
    established `beam_behind` figure (1.5–1.8%), widened for the facts
@@ -205,6 +213,57 @@ a new-machinery cycle).
   delta_scene should be treated as due next, and a fifth silent
   deferral should be considered a rule violation rather than routine.
 
+## Realizability Bound (MATERIALS' seat duty — restored at Phase 5,
+## mandatory fix 3; dropped between Phase 1 and this document's own
+## Phase-3 freeze, caught only at Phase 5 by MATERIALS' own self-review)
+
+**Article status: UNOBTANIUM-WITH-PARAMETERS**, unchanged by this cycle
+— the `graded_black_shell` article measured here is the same idealized
+article already carrying that status across exp-001/002 and every
+R4-family cycle since. Carried forward from `phase1_proposal.md` §6
+(the reasoning promised inline above but never delivered into this
+document before Phase 5): if a realizable graded-absorption coating at
+comparable optical depth were substituted, expect the near-field
+fill-in curve to differ in two ways — (1) **less smoothness**: a finite
+number of discrete grading layers, rather than continuous sigma
+grading, would imprint small periodic ripple on the standoff trend tied
+to layer-boundary reflections; (2) **a higher floor at short standoff**:
+real absorbers are bounded by causality (Kramers–Kronig) and finite
+sub-wavelength thickness in how much extinction they can pack into
+`r_out − r_in`, so a realizable shell would likely leak more field into
+the near-field shadow than this idealized, arbitrarily-strong-graded
+article does — `kappa_window` for a realizable coating should sit at or
+above this cycle's own measured 1.83%, not below it.
+
+**This cycle's own measured data sharpens, not merely restates, that
+prediction.** The demonstrated zero-reversal smoothness (16/16 points
+strictly increasing, well inside settling and floor gates) is the
+correct continuum-limit control a future discretely-layered-coating
+comparison would need to difference against — any layer-tied ripple
+found in a future realizable-coating rerun, above this cycle's own
+demonstrated noise floor, would be attributable to discreteness, not
+instrument artifact.
+
+**New hypothesis, MATERIALS' own Phase-5 self-review (speculative,
+untested this cycle):** re-anchoring the standoff samples to the
+shell's own physical outer surface (`r_out=78` cells = 3.90λ, not the
+window formula's inherited `R_CLK=90` — exp-001's *cloak* radius, reused
+only because that file fixed one window across all three of its
+scenes), the sampled range runs from 1.10λ (x=352) to 6.30λ (x=456)
+from the coating's actual surface, over which κ rises ~14×. The shell's
+own radial grading thickness is `r_out − r_in = 48` cells = 2.4λ — the
+healing length needed for κ to climb an order of magnitude (~5λ of
+standoff) is roughly *double* the grading thickness, suggestive that
+fill-in here is dominated by the shell's overall transverse silhouette
+(diameter `2·r_out` = 7.8λ) rather than by how deep the sigma grading
+runs radially. If true, the grading thickness would principally set the
+*floor* of κ at the shell's own surface (how dark the shadow starts),
+while the silhouette size would set how *fast* it heals downstream —
+two distinct physical knobs. Any future dense-standoff-trend functional
+fit (Next item 5) should be parameterized against `r_out`, not
+`r_out − r_in`, per this hypothesis — untested, flagged for that future
+cycle, not resolved here.
+
 ## LOGBOOK.md RULED OUT registry / standing rules check
 
 No item in LOGBOOK's RULED OUT registry (R1–R22) is re-proposed: no
@@ -263,6 +322,17 @@ synthesis, strictly BEFORE `run.py`'s first real Phase-4 invocation.
 
 ## Result
 
+**kappa_window/kappa_region are raw physical intensity ratios; no
+Weber-contrast or C_thr(L) perceptual scoring is performed this cycle**
+(restated per the T28 dual-section banner requirement, LOGBOOK.md
+Iteration 65 — added at Phase 5, Red Team final-audit mandatory-fixes
+docket item 2; the mechanical gap — this sentence present in Setup/
+Idealizations but absent from Predictions/Result through Phase 4 — was
+independently caught by VISION's Phase-5 review, the third post-
+escalation instance of this exact pattern on this T28 sub-thread, ruled
+non-Checkpoint-4-firing per unbroken discharge-test precedent, ruled a
+mandatory same-shift fix regardless).
+
 **All 4 real FDTD calls executed exactly as budgeted** (2 primary + 2
 settling-check), 226.7s (3.78 min) total wall time (113.8s + 112.8s),
 trust suite confirmed green (41/41, `--only 12346789`) before and after,
@@ -280,16 +350,34 @@ the window genuinely averages over a spatially varying near-field
 pattern, not a flat plateau; this is disclosed data, not swept into the
 single scalar.
 
-**Prediction 2: CONFIRMED, cleanly — zero reversals.** The 16-point
-`kappa_region` trend rises monotonically and smoothly from 0.458% at
-x=352 to 6.41% at x=456, every single step an increase, no local maxima
-or dips anywhere in the sampled range. This is the clean Fresnel-fill-in
-signature the Iteration-79 Red Team audit's own standoff hypothesis
-predicted, not the "fringe-limited near-field null" alternative — the
-tightened (≤10-cell/λ2) window-spanning sampling pitch (Phase-2
-mandatory fix 5) that closed the original Nyquist-aliasing risk shows no
-sign of the aliased ripple that risk would have produced; the trend is
-smooth at this resolution.
+**Prediction 2: CONFIRMED as literally scored — zero reversals against
+its own pre-registered criteria.** The 16-point `kappa_region` trend
+rises monotonically and smoothly from 0.458% at x=352 to 6.41% at
+x=456, every single step an increase, no local maxima or dips anywhere
+in the sampled range.
+
+**Correction (Phase-5 mandatory fix 4, PHOTONICS + QUANTUM, Red Team
+final-audit-adopted — the original text below overclaimed what this
+data can show):** this is valid, unweakened evidence against the
+coarser (25–40-cell) Fresnel-edge-fringe alternative `VALIDATION.md`
+documents (adequately Nyquist-sampled at 10-cell pitch, 2.5–4
+samples/period). It is **weak, not clean, disconfirmation** of the
+finer λ/2-scale coherent standing-wave alternative Prediction 2 was
+also meant to distinguish from: the adopted ≤10-cell window-spanning
+pitch samples at *exactly* the λ/2=10-cell period of the coherent
+intensity cross-term at risk (the textbook degenerate-aliasing case,
+not a resolved one — independently re-derived by two Phase-5 seats and
+confirmed by Red Team's own final audit), and `H_REGION=5`'s own
+11-cell block-average independently suppresses ~91% of any such
+ripple's amplitude per sample (|sinc(11/10)|≈0.089), regardless of
+inter-sample pitch. `kappa_window`'s own disclosed internal spread
+(pointwise std/mean=0.849, 97× min-to-max within the window footprint —
+see below) is itself direct evidence that comparable-scale spatial
+structure genuinely exists nearby. The zero-reversal result therefore
+does not, on its own, rule out a fringe-limited near-field null at the
+λ/2 scale; it only rules out one at the coarser edge-diffraction scale.
+Queued for Iteration 81 Tier 1: a genuinely sub-Nyquist recheck (≤4-cell
+pitch, or a much smaller `H_REGION`).
 
 **Prediction 3: CONFIRMED.** Floor gate: 0/16 points unresolved (all
 comfortably above the pool-RMS floor). Window-spanning mean
@@ -300,20 +388,41 @@ not a tight cluster around it; the two readings are consistent measures
 of the same rising trend, not independent quantities that should match
 closely.
 
-**Prediction 4: CONFIRMED, decisively.** All 5 near-field points show
-STEPS=3200-vs-6400 relative changes of 0.003%–0.11% — two to four orders
-of magnitude inside the 20% tolerance band, and itself two to three
-orders of magnitude smaller than VALIDATION.md's own stage-20 canonical
-figure for this exact loss regime (`sigma_max=0.5`, ~1.5×10⁻⁵ field-relative
-RMS by 900 steps) would suggest as a rough ceiling. This corroborates
-Red Team's own Phase-2 ruling that ELECTROMAGNETISM's critique, while
-correctly motivated, imported an alarm figure (~100× larger residual)
-from a structurally different (near-lossless) regime — the moderately-
-lossy `sigma_max=0.5` article settles cleanly at this suite's own
-established STEPS=3200 convention, now demonstrated rather than argued,
-at all 5 of the near-field points the concern was raised about (not
-merely the single spot-check Red Team's own fallback text would have
-settled for).
+**Prediction 4: CONFIRMED.** All 5 near-field points show
+STEPS=3200-vs-6400 relative changes of 0.003%–0.11% — two to four
+orders of magnitude inside the 20% tolerance band. **Correction
+(Phase-5 mandatory fix 1, ELECTROMAGNETISM, Red Team-confirmed exact —
+the original text here ran the comparison backwards):** these residuals
+are LARGER than, not smaller than, VALIDATION.md's own stage-20
+canonical figure for this exact loss regime (`sigma_max=0.5`, ~1.5×10⁻⁵
+field-relative RMS by 900 steps) — by roughly 2×–73× across the five
+points (largest at x=352, closest to the object; smallest at x=356).
+This does not change the verdict: even the largest residual (0.110%)
+clears the pre-registered 20% tolerance by ~180×. The comparison to the
+stage-20 figure was never fully apples-to-apples in the first place (a
+two-step-count κ comparison vs. that lesson's own phase-rotation-
+identity noise floor) and is retained here only as informal context, not
+as a validated ceiling. Relative-change DOES decrease monotonically with
+standoff (0.110%→0.003%, x=352→356) — the correct qualitative signature
+of a decaying near-field transient, not a flat step-count-independent
+artifact floor, though this two-step-count check cannot by construction
+rule out convergence to a wrong value shared by both step counts (a
+genuine multi-step-count convergence bench is queued for a future
+cycle that pushes standoff nearer-field than x=352). This corroborates
+Red Team's own Phase-2 ruling that ELECTROMAGNETISM's original critique,
+while correctly motivated, imported an alarm figure from a structurally
+different (near-lossless) regime — the moderately-lossy `sigma_max=0.5`
+article settles at this suite's own established STEPS=3200 convention
+well inside its own pass bar, at all 5 of the near-field points the
+concern was raised about (not merely the single spot-check Red Team's
+own fallback text would have settled for), even though the residuals
+are not as small as the original Result text claimed.
+
+**Passivity check (Phase-5 mandatory fix 5, ELECTROMAGNETISM):** no
+`kappa` value — window or region, mean, pointwise, min, or max — anywhere
+in `results.json` approaches or exceeds 1 (largest value present:
+0.0641, the x=456 region reading); the passivity bound is implicitly
+satisfied everywhere.
 
 **Gate B is now genuinely, honestly reproduced — not force-fixed.**
 Both of exp-102's own diagnosed defects (near-field-standoff mismatch,
@@ -402,3 +511,70 @@ result.
    this cycle (T1: N/A, instrument-repair scope only), but a natural,
    cheap (zero new FDTD, reusing this cycle's own committed data)
    follow-up for a future cycle with spare capacity.
+
+## Phase 5 outcome (six blind reviews + Red Team final audit)
+
+Six blind Phase-5 reviews: THERMODYNAMICS (CONFIRM, zero findings, most
+thorough verification pass, explicitly registered zero energy-balance
+content this cycle); PHOTONICS, MATERIALS (this cycle's own rotation-lead
+seat, self-reviewing), ELECTROMAGNETISM, QUANTUM OPTICS, and VISION
+SCIENCE (all CONFIRM-WITH-GAPS). PHOTONICS and QUANTUM independently
+converged, by two different routes, on the same load-bearing finding:
+the Phase-2 "Nyquist fix" (≤10-cell window-spanning pitch) does not
+actually satisfy Nyquist for the λ/2=10-cell coherent-intensity fringe
+period it was meant to guard against (true Nyquist needs <5 cells) —
+PHOTONICS additionally found `H_REGION=5`'s own box-average partially
+mitigates this via low-pass filtering (~91% suppression per sample),
+and QUANTUM independently re-derived and confirmed correct Red Team's
+own Phase-2 rel_phase-invariance override of QUANTUM's own prior-cycle
+proposed remedy. MATERIALS' own self-review found its Phase-1 proposal's
+Realizability Bound reasoning was silently dropped between Phase 1 and
+this document's Phase-3 freeze — the status label survived, the
+reasoning did not, uncaught by five Phase-2 critiques and Red Team's own
+Phase-2 audit. ELECTROMAGNETISM found the Result section's own settling-
+residual comparison to VALIDATION.md's stage-20 baseline was numerically
+backwards (residuals larger, not smaller, by up to 73×; Prediction 4's
+verdict unaffected, cleared by ~180× regardless). VISION found the
+mandatory perceptual-scoring disclaimer present in Setup/Idealizations
+but absent from Predictions/Result, against an established LOGBOOK
+Iteration-65 standing rule requiring both — the third post-escalation
+instance of this exact gap shape on this T28 sub-thread, the first to
+survive to Phase 5 rather than being caught at Phase 2.
+
+Red Team's Phase-5 final audit independently re-verified every finding
+from primitives (eight independent primitive-level re-derivations,
+spanning five of the six reviews) and adopted all of them — zero
+overrides. R20 tally: 1 genuine R4-class defect surviving Phase-3 freeze
+into Result/Learned (the EM backwards-citation finding; the Nyquist
+overclaim and the dropped Realizability Bound are both real but not
+R4-shaped by R20's own text) — far below the "three or more" bar; R20
+does NOT fire. Checkpoint criterion 4 ruled on both live sub-issues
+(disclaimer-erosion recurrence; Nyquist-overclaim prose) and does NOT
+fire on either, per this program's own unbroken discharge-test
+precedent (caught blind, same cycle, before LOGBOOK, non-load-bearing
+to any scored verdict) — though the disclaimer-erosion sub-issue is
+flagged explicitly: a fourth post-escalation instance of this exact gap
+shape should be treated as ripe for a standing numbered rule with its
+own forward-firing clause. All six mandatory same-shift documentation
+fixes applied above (zero re-run, zero verdict change). **Combined
+Verdict: PARTIAL** — all four predictions genuinely hold against
+independent scrutiny and the two exp-102-diagnosed Gate B defects are
+genuinely resolved, weighed against six-plus distinct, confirmed
+documentation-layer defects (none load-bearing to a verdict, none
+Checkpoint-4-firing, all same-shift fixed) that a clean CONFIRM would
+not carry. Reconciled Iteration-81 queue (Red Team's own tiered
+ranking): Tier 1 (a genuinely sub-Nyquist standoff recheck, ≤4-cell
+pitch or smaller `H_REGION`, one fresh ~2-call FDTD pair — NOT free
+post-processing, `results.json` persists no raw field arrays across
+cycles — plus restoring `Delta_phi` and per-point spread reporting at
+zero further marginal cost from that same pair); Tier 2 (the T8
+r=78/156/312 bridge extension, sequenced after Tier 1 so it inherits a
+ratified sampling convention); Tier 3 (a multi-step-count settling
+convergence bench; thermal-sidecar cross-resolution scrutiny
+pre-registered for whenever it's next invoked on this instrument
+family; the disclaimer-erosion standing-rule question); Tier 4 (Tier-2
+perceptual conversion, witness-scale wattage, the `delta_scene`
+R3-vs-R4 split — now FOUR consecutive deferrals, a fifth must be
+explicitly re-justified in writing — dense-standoff-trend functional
+fit). Full record: `phase5_review_{photonics,materials,em,
+thermodynamics,quantum,vision}.md`, `phase5_redteam_audit.md`.
