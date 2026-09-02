@@ -177,12 +177,23 @@ unmodified article. No mechanism parameter is proposed, varied, or tested.
 
 - This is a cross-section/energy-partition measurement, not a
   downstream-intensity-ratio measurement — it does not answer "would a
-  human witness see the background still lit" (that conversion is the
-  still-unbuilt T3 instrument, out of scope here). No perceptual threshold
-  (`C_thr_lab`/`C_thr_field`) is invoked or scored this cycle.
+  human witness see the background still lit" (that conversion is
+  constraint 1's own still-missing instrument, per PANEL.md's metric
+  table — out of scope here). No perceptual threshold (`C_thr_lab`/
+  `C_thr_field`) is invoked or scored this cycle. **Correction (Phase-5
+  VISION/Red Team finding)**: this document's first draft mislabeled this
+  future instrument "T3" (both here and in Next item 1) — T3 is
+  specifically LOGBOOK's temporal-contrast/switching-transient instrument
+  (constraint 3/4 joint), an unrelated construction; the reference is
+  dropped.
 - `sigma_abs + sigma_scat_downstream + sigma_scat_sourceward` is NOT an
-  exact partition of `sigma_ext` — a lateral/diffuse remainder exits
-  through the box's `y0`/`y1` faces.
+  exact partition of `sigma_ext` — the remainder exits through the box's
+  `y0`/`y1` faces. **Quantified (Phase-5 EM finding, first draft said only
+  "a lateral/diffuse remainder")**: this lateral share is substantial and
+  itself grows with angle — 34.6% of `sigma_scat` at θ=37.13° to 46.7% at
+  θ=42.96° (exceeding `back_frac` itself at the largest angle) — very
+  likely the same fixed-lab-frame-box effect as `back_frac`'s own decline
+  (Result item 2, above), not a small correction term.
 - The Fix-1 `sigma_scat` amplitude floor is self-referential (drawn from
   this cycle's own 12-cell RMS, not a larger established dataset) — this
   bench's first use of `back_frac`/`fwd_frac` on the R4 family.
@@ -200,6 +211,15 @@ unmodified article. No mechanism parameter is proposed, varied, or tested.
 - The R3-vs-R4 pool-duplication finding (change 5) is disclosed as a
   caveat on citing exp-100's own Tier-1 result, not re-litigated or
   re-scored here — that is Tier 1's own future work.
+- **[Phase-5 EM finding, flagged for future reuse, not required this
+  cycle]** The Fix-1 `sigma_scat` amplitude floor (`scat_floor_pass`) is
+  wired only into `partition_forward_continuing` (Prediction 3);
+  `partition_absorbed`, the raw `sigma_scat_downstream`/
+  `sigma_scat_sourceward` fields feeding `back_frac`/Prediction 2, and
+  `box_dev_scat_downstream`/Prediction 4 are all computed unconditionally.
+  Moot this run (0/12 cells failed the floor), but a latent gap if this
+  exact `run_leg_b_fixed()` pattern is reused on data where a cell
+  genuinely fails the floor.
 
 ## Result (self-scored, run.py's own committed output, `results.json`)
 
@@ -215,15 +235,32 @@ the Fix-1 `sigma_scat` amplitude floor — `n_unresolved_by_construction=0`.**
    clustered (spread 0.0016). **T9's disclaimer applies as pre-registered
    (change 6)**: this exceeds the Babinet/shadow-formation ≤0.5 ceiling and
    is read as a near-field box-geometry effect (z/z_R≈0.04–0.06, T8), not
-   an asymptotic material-absorptivity constant.
-2. **`back_frac > 0.5` — CONFIRMED at all 12 cells**, but with a real,
-   clean, monotonic angular trend the pre-registered band did not predict:
+   an asymptotic material-absorptivity constant. **Extension (MATERIALS'
+   Phase-5 finding)**: the same disclaimer applies more sharply to the
+   RAW `sigma_abs` values themselves — `Q_abs=sigma_abs/(2·R4_R_OUT=312)`
+   exceeds the elementary `Q_abs≤1` geometric-optics ceiling (any passive
+   object's true absorption efficiency, a sharper bound than the ratio's
+   Babinet ceiling since it needs no forward-diffraction companion lobe)
+   at 10 of 12 cells, up to 8.6% over unity at θ=42.96° — the same
+   near-field box-geometry effect, not evidence of super-unity absorption
+   in any real coating.
+2. **`back_frac > 0.5` — CONFIRMED at all 12 cells**, with a real, clean,
+   monotonic angular trend the pre-registered band did not predict:
    `0.6536→0.5324` (C40_R4) and `0.6529→0.5340` (G40_R4) as θ rises
-   37.13°→42.96°, both configs tracking each other to 3 decimal places at
-   every angle. Confirmed-with-margin, but the flat ">0.5" framing
-   under-describes a genuinely angle-dependent quantity — flagged for
-   Phase 5, not rescored here (this cycle's own predictions did not
-   pre-register a slope).
+   37.13°→42.96°, the two configs agreeing to within 0.0007–0.0016 across
+   the sweep (**correction, Phase-5 Red Team final audit**: NOT "tracking
+   to 3 decimal places at every angle" as first drafted here — independent
+   digit-by-digit recomputation shows the third decimal actually matches
+   at only 1 of 6 angles; the agreement is real and close, just not that
+   close). **Likely shares one root cause with Prediction 3's own
+   falsification below, not two separate findings (PHOTONICS' Phase-5
+   finding)**: the lateral (y-face) share of `sigma_scat` grows from 34.6%
+   to 46.7% across the same sweep, tracking `tan θ`'s own 23% growth — a
+   fixed lab-frame box measuring an increasingly oblique forward lobe is
+   the best-supported explanation (not proven with certainty; see Next).
+   Confirmed-with-margin, but the flat ">0.5" framing under-describes a
+   genuinely angle-dependent quantity — flagged for Phase 5, not rescored
+   here (this cycle's own predictions did not pre-register a slope).
 3. **`sigma_scat_downstream/(2·R4_R_OUT)` < 0.15 — FALSIFIED at all 12
    cells, by a wide margin.** Measured range `[0.5457, 0.6159]` — roughly
    4× the predicted ceiling, not a near-miss. **Self-diagnosed cause, same
@@ -232,11 +269,33 @@ the Fix-1 `sigma_scat` amplitude floor — `n_unresolved_by_construction=0`.**
    diameter — but this ignores the SAME extinction-paradox physics T9's
    own disclaimer (change 6, above) already establishes on this exact
    bench: an optically large absorbing disk's extinction efficiency
-   approaches `Q_ext→2` in the geometric-optics limit specifically
-   *because* it must radiate a forward-diffracted wave of cross-section
-   comparable to its own geometric width — the same forward lobe that
-   destructively interferes with the incident wave to CREATE the
-   geometric shadow in the first place (Babinet's principle). A large
+   approaches a large fraction of the theoretical PEC ceiling in the
+   geometric-optics limit specifically *because* it must radiate a
+   forward-diffracted wave of cross-section comparable to its own
+   geometric width — the same forward lobe that destructively interferes
+   with the incident wave to CREATE the geometric shadow in the first
+   place (Babinet's principle), a far-field asymptotic statement subject
+   to the SAME T8 near-field caveat (box at z/z_R≈0.04–0.06) already
+   invoked for Prediction 2. **Correction (Phase-5 QUANTUM OPTICS/Red Team
+   finding)**: this document's first draft cited the raw, uncorrected
+   `sigma_ext/(2·R4_R_OUT)≈1.94–2.11` as "approaching `Q_ext→2`" — this
+   number is itself an artifact. `sc.widths()`'s `i_inc` measures only the
+   x-projected component of the incident Poynting flux
+   (`lab/fdtd2d.py::add_line_source`'s own documented oblique-launch
+   direction `(−cosθ,+sinθ)`), inflating every ABSOLUTE (non-ratio)
+   `sc.widths()` output by `1/cosθ` at oblique incidence — an R9
+   commensurability gap, not previously surfaced on this bench because
+   every prior use of these outputs (T9's anchor, exp-087's oblique
+   reconfirmation, this cycle's own Predictions 1/2/4) was a RATIO of two
+   such quantities, which cancels the factor exactly. Applying the `cosθ`
+   correction collapses the raw values to **1.539–1.556**, matching this
+   bench's own already-locked normal-incidence anchor
+   (`lab/qext_theory.py`/exp-059, `Q_ext=1.5385`) to ~1% — confirming the
+   mechanism, not merely correcting a display digit. The qualitative
+   Babinet/extinction-paradox argument stands; only the "`→2`" magnitude
+   was wrong. **This does not change the falsification**: the same
+   correction applied to `sigma_scat_downstream` itself gives
+   0.399–0.491 — still 2.7×–3.3× over the 0.15 ceiling. A large
    `sigma_scat_downstream` is therefore the mathematically expected
    companion of a real shadow, not evidence against one — this prediction
    band was wrong about the physics, not merely mis-calibrated, and the
@@ -254,7 +313,18 @@ the Fix-1 `sigma_scat` amplitude floor — `n_unresolved_by_construction=0`.**
    general terms (§5, "cross-section measurement, not downstream-
    intensity-ratio measurement") but did not connect specifically to why
    Prediction 3 itself was mis-calibrated — stated explicitly here rather
-   than left implicit.
+   than left implicit. **A further, separate scope caveat (MATERIALS'
+   Phase-5 finding)**: this extinction-paradox magnitude describes the
+   article AS SIMULATED — `graded_black_shell`'s own 1.44 µm shell
+   thickness (`(R4_R_OUT−PEC_R_R4)·DX_M_R4`) is the identical construction
+   `experiments/034-.../REALIZABILITY_MEMO.md` Amendments 6–7 already lock
+   **UNOBTANIUM-WITH-PARAMETERS**, overdetermined by thickness (every real
+   comparator class 6.9×–3472× thicker). A real, buildable coating at this
+   thickness would be far less optically black and would show a
+   correspondingly smaller forward-diffracted lobe by the same physics —
+   this cycle's own falsification magnitude is a property of a
+   locked-unrealizable article, not one a real coating at this thickness
+   would reproduce.
 4. **`box_dev_scat_downstream ≤ 0.12` — CONFIRMED at all 12 cells**, range
    `[0.0057, 0.0454]`, 2.6×–21× inside the bar even with the Fix-4
    disclosed weaker `C40_R4` cross-check (~6% box-size spread) — the
@@ -262,9 +332,12 @@ the Fix-1 `sigma_scat` amplitude floor — `n_unresolved_by_construction=0`.**
    the asymmetric independence-check power.
 
 **Constraint 2** (`observer_article_norm`, unchanged `observer_record_t28`)
-stays clean this cycle: `2.26e-4`–`3.95e-4` across all 12 cells, ≥50×
-inside the R18 validation-gate bar, matching Iteration 77's own finding
-that this instrument was never broken.
+stays clean this cycle: `[1.1543e-4, 3.9490e-4]` across all 12 cells
+(**correction, Phase-5 VISION/EM finding**: the range as first drafted
+here, `2.26e-4`–`3.95e-4`, was actually only `C40_R4`'s own subset — the
+true 12-cell minimum, `G40_R4` @ 37.127°, is less than half that figure),
+≥173× inside the R18 validation-gate bar (`<0.02`), matching Iteration
+77's own finding that this instrument was never broken.
 
 **Thermal sidecar (Fix 3, R21 compliance — narrated per the mandatory
 commitment, not merely persisted).** All 12 fresh `netd_row()`
@@ -272,20 +345,37 @@ classifications (`p_abs_w`, `dt_ss_full_K`, `netd_classification`) are
 code-enforced present in `results.json` (`NETD_ROW_KEYS` assert). Their
 headline finding: **every one of the 12 cells classifies UNDETECTABLE**
 (consistent with every prior R4-family NETD reading on this bench, exp-095
-through exp-100) — `p_abs_w`/`dt_ss_full_K` track the same smooth,
-monotonic-with-θ trend as `sigma_abs` above (absorbed power rising
-310→339 W-equivalent-cells as θ increases), with no cell approaching the
-`NETD_BAND_K` detectability threshold. No constraint-3 re-radiation risk
-is raised by this cycle's own spend.
+through exp-100), 368× below `NETD_BAND_K`'s lower edge at the largest
+measured `dt_ss_full_K` (5.4347e-5 K). **Correction (Phase-5
+THERMODYNAMICS finding)**: this document's first draft claimed `p_abs_w`/
+`dt_ss_full_K` "track the same smooth, monotonic-with-θ trend as
+`sigma_abs`" — false, independently reproduced: `sigma_abs` rises +8.96%
+across the sweep while `p_abs_w`/`dt_ss_full_K` rise +18.71%, a 2.09×
+divergence with an exact mechanical cause (`lab/thermo_sidecar.py`'s
+`iso_xsec_sq` convention makes `p_abs_w ∝ sigma_ext_cells²`, quadratic,
+while `sigma_abs ∝ sigma_ext_cells`, linear, at a nearly flat
+`ratio_abs_ext_raw`) — confirmed to 5 significant figures at all 6
+angles, not noise. `sigma_abs` is cited in its native cross-section units
+(cells); `p_abs_w` in Watts — no shared unit exists between them, so
+"tracking the same trend" was never a well-formed comparison. Neither
+this divergence nor Prediction 3's own falsified forward-scattered
+residual (**disclaimer, THERMODYNAMICS' Phase-5 finding**: an elastic,
+source-wavelength [600nm] scattering channel, mechanically disjoint from
+this sidecar's thermal-IR re-radiation chain — `cell_metrics_r4`'s call
+to `absorbed_power_established_ratio` never references
+`back_frac`/`fwd_frac`/`sigma_scat_downstream`) raises any constraint-3
+re-radiation risk this cycle.
 
 ## Learned
 
 - The closed-box reconstruction is interpretable where `beam_behind_t28`
   was not: every one of the 12 cells resolved cleanly, with tight,
-  physically coherent cross-config agreement (`C40_R4`/`G40_R4` track each
-  other to 3 decimal places on every derived ratio) — a genuinely
-  higher-quality instrument than its predecessor, not merely a different
-  number.
+  physically coherent cross-config agreement (`C40_R4`/`G40_R4` agree to
+  within 0.0007–0.0016 on `back_frac` across the sweep — **correction,
+  Phase-5 Red Team final audit**: not "3 decimal places at every angle" as
+  first drafted, which fails at 5 of 6 angles under direct digit-by-digit
+  comparison) — a genuinely higher-quality instrument than its
+  predecessor, not merely a different number.
 - `sigma_scat_downstream` (POWER crossing the box's downstream face in the
   scattered field) is NOT a proxy for "does the shadow stay dark" — the
   extinction paradox means a real, near-total shadow REQUIRES a
@@ -298,9 +388,11 @@ is raised by this cycle's own spend.
   disclosed finding, and the correct next step for constraint 1 on this
   bench (see Next).
 - `back_frac`'s real, monotonic decline with θ (0.65→0.53 across a 5.8°
-  sweep) is a genuine angular trend, un-pre-registered, worth a future
-  cycle's attention if T1 (currently N/A) is ever revisited for this
-  article — not scored here.
+  sweep) is a genuine, reproducibly-measured trend, un-pre-registered —
+  but (per PHOTONICS' Phase-5 finding, Result item 2 above) very likely a
+  fixed-lab-frame-box artifact rather than confirmed article physics;
+  worth a future cycle's attention (an orientation-sensitivity test, not
+  a T1 mechanism claim) if this article class is ever revisited.
 - Every mandatory Phase-2 fix discharged as designed: R13/14/15 (no cell
   needed the `UNRESOLVED-BY-CONSTRUCTION` escape valve, but the gate was a
   real, executed check, not merely asserted), R17 (both configs' box
@@ -315,11 +407,20 @@ is raised by this cycle's own spend.
    structurally correct successor to both `beam_behind_t28` and this
    cycle's own `sigma_scat_downstream`, and the only route to actually
    answering constraint 1's witness question ("does the background stay
-   lit") rather than an energy-partition proxy for it. This is closely
-   related to, but distinct from, Tier 2's own still-unbuilt T3 instrument
-   (constraint 3) — worth scoping whether one construction can serve both.
-2. Investigate `back_frac`'s angular trend (0.65→0.53) if a future cycle
-   returns to T1 for this article class.
+   lit") rather than an energy-partition proxy for it. **(Correction,
+   Phase-5 VISION finding: this is constraint 1's own missing
+   conversion, NOT "T3" as first drafted here — T3 is LOGBOOK's unrelated
+   temporal-contrast/switching instrument; dropped.)** Two binding
+   preconditions this cycle's own Phase-5 layer surfaced: (a) correctly
+   normalize the incident reference for oblique incidence (fix or
+   explicitly correct the `i_inc`/`cosθ` artifact, Result item 3) — this
+   instrument will need a genuinely absolute intensity, not a ratio; (b)
+   use a beam-aligned or beam-rotating reference frame, not a fixed
+   lab-frame box (Result item 2) — inheriting either artifact unmodified
+   would compromise the new instrument from first light.
+2. Investigate `back_frac`'s angular trend (0.65→0.53) — an
+   orientation-sensitivity test on the box itself, not a T1 mechanism
+   claim — if a future cycle returns to this article class.
 3. Tier 1 (the R3-vs-R4 `delta_scene`-realizability split, PHOTONICS'
    zero-FDTD physical-hypothesis check first) remains queued, unchanged,
    per exp-100's own Reconciled Iteration-78 ranking — untouched this
@@ -330,10 +431,24 @@ is raised by this cycle's own spend.
 No item in LOGBOOK's RULED OUT registry (lines 8–877) or the T28 thread
 narrative (lines 2572–6912) is re-proposed here — this is a zero-mechanism
 instrument fix, explicitly commissioned by Iteration 77's own Reconciled
-Iteration-78 queue, Tier 0. Standing-rule risk assessed and discharged per
-Red Team's Phase-2 audit §4: R13/14/15 (fix 1), R17 (fix 4), and R21 (fix
-3) were genuinely at risk of firing Checkpoint criterion 4 as originally
-proposed; R20 was a contingent risk (fix 5). All four are discharged by
-the six mandatory fixes above, implemented in code (not merely asserted in
-prose) before this Phase-4 run. R4, R9, R11, R19 were not at risk (Red
-Team's audit independently re-verified every cited figure this cycle).
+Iteration-78 queue, Tier 0. Pre-Phase-4 standing-rule risk was assessed
+and discharged per Red Team's Phase-2 audit §4: R13/14/15 (fix 1), R17
+(fix 4), and R21 (fix 3) were genuinely at risk of firing Checkpoint
+criterion 4 as originally proposed; R20 was flagged as a contingent risk
+via the R3-vs-R4 pool-duplication finding (fix 5) — that specific,
+anticipated R20 exposure WAS discharged as designed (neither selected
+angle is a duplicated row, and the caveat is carried, not settled fact).
+
+**R20 fired anyway, at Phase 5, via three unanticipated instances — the
+first time in this program's history R20's own automatic clause has
+actually triggered a Checkpoint.** Red Team's Phase-5 final audit
+independently confirmed three genuine R4-class citation/coincidence
+defects in this document's own Result prose (the `observer_article_norm`
+range, the `back_frac` "3-decimal-place" claim, the thermal-sidecar
+"same trend" claim — see the corrections marked above), each caught only
+at Phase 5, none load-bearing to any scored verdict, meeting R20's
+"three or more" bar under the most conservative valid counting.
+Checkpoint criterion 4 therefore FIRES this cycle — see the CHECKPOINT
+entry in LOGBOOK.md/SESSION_LOG.md (Director's action, Iteration 78
+close). R4, R9 (aside from the `i_inc`/`cosθ` finding, ruled R9-shaped
+not R20-shaped — see Result item 3), R11, R19 were not at risk.
