@@ -260,3 +260,145 @@ discharge of an already-adopted fix, made possible by a capability
 
 Predictions above are committed to git in this same commit as this
 synthesis, strictly BEFORE `run.py`'s first real Phase-4 invocation.
+
+## Result
+
+**All 4 real FDTD calls executed exactly as budgeted** (2 primary + 2
+settling-check), 226.7s (3.78 min) total wall time (113.8s + 112.8s),
+trust suite confirmed green (41/41, `--only 12346789`) before and after,
+zero `lab/` diff throughout.
+
+**Prediction 1: CONFIRMED.** `kappa_window = 1.8337%`, inside the
+predicted [0.5%,4.0%] band and close to the established `beam_behind`
+figure's own 1.5–1.8% (this cycle's number is a distinct, phasor-based
+window-mean-intensity convention, not a literal re-derivation of that
+figure — see the envelope()-vs-phasors() disclosure in Setup — but the
+close numeric proximity is itself informative, not merely inside a wide
+tolerance band). Internal spatial spread within the window is real and
+substantial (pointwise ratio std/mean = 0.849, min 0.075%, max 7.25%) —
+the window genuinely averages over a spatially varying near-field
+pattern, not a flat plateau; this is disclosed data, not swept into the
+single scalar.
+
+**Prediction 2: CONFIRMED, cleanly — zero reversals.** The 16-point
+`kappa_region` trend rises monotonically and smoothly from 0.458% at
+x=352 to 6.41% at x=456, every single step an increase, no local maxima
+or dips anywhere in the sampled range. This is the clean Fresnel-fill-in
+signature the Iteration-79 Red Team audit's own standoff hypothesis
+predicted, not the "fringe-limited near-field null" alternative — the
+tightened (≤10-cell/λ2) window-spanning sampling pitch (Phase-2
+mandatory fix 5) that closed the original Nyquist-aliasing risk shows no
+sign of the aliased ripple that risk would have produced; the trend is
+smooth at this resolution.
+
+**Prediction 3: CONFIRMED.** Floor gate: 0/16 points unresolved (all
+comfortably above the pool-RMS floor). Window-spanning mean
+(3.293×10⁻²) vs. `kappa_window` (1.834×10⁻²): ratio 1.796×, inside the
+≤2.0× band — expected, since the window-spanning points span a range
+(0.58%→6.41%) that straddles `kappa_window`'s own window-averaged value,
+not a tight cluster around it; the two readings are consistent measures
+of the same rising trend, not independent quantities that should match
+closely.
+
+**Prediction 4: CONFIRMED, decisively.** All 5 near-field points show
+STEPS=3200-vs-6400 relative changes of 0.003%–0.11% — two to four orders
+of magnitude inside the 20% tolerance band, and itself two to three
+orders of magnitude smaller than VALIDATION.md's own stage-20 canonical
+figure for this exact loss regime (`sigma_max=0.5`, ~1.5×10⁻⁵ field-relative
+RMS by 900 steps) would suggest as a rough ceiling. This corroborates
+Red Team's own Phase-2 ruling that ELECTROMAGNETISM's critique, while
+correctly motivated, imported an alarm figure (~100× larger residual)
+from a structurally different (near-lossless) regime — the moderately-
+lossy `sigma_max=0.5` article settles cleanly at this suite's own
+established STEPS=3200 convention, now demonstrated rather than argued,
+at all 5 of the near-field points the concern was raised about (not
+merely the single spot-check Red Team's own fallback text would have
+settled for).
+
+**Gate B is now genuinely, honestly reproduced — not force-fixed.**
+Both of exp-102's own diagnosed defects (near-field-standoff mismatch,
+undisclosed aperture-taper mismatch) are resolved by construction in
+this cycle's build, and the resulting `kappa_window` figure lands close
+to the established `beam_behind` anchor while every supporting
+diagnostic (floor gate, settling check, monotonicity) independently
+clears. The one real, load-bearing correction this cycle required — the
+`edge=80`→`edge=40` fix, caught by Red Team's own Phase-2 audit before
+any FDTD call ran — means the originally-proposed `edge=80` construction
+was never actually executed; there is no "what if we'd used the wrong
+aperture" comparison to report, only the corrected run's own clean
+result.
+
+## Learned
+
+1. **A cross-resolution constant reused unchanged for a NEW purpose
+   needs the same rescaling scrutiny already applied to its OLD purpose
+   — checking one use of a shared constant does not clear a second,
+   independent use.** exp-102 correctly rescaled `D_STANDOFF`/`H_REGION`
+   by the article's own `r_out` ratio when reusing them across the
+   R4-family's cpl=40 grid and Gate B's own cpl=20 grid — but this
+   cycle's own Phase-1 proposal, written by the same lineage of
+   instrument-repair cycles, initially reused `R4_TAPER=80` (itself
+   already a resolution-rescaled constant, `round(TAPER·R4_RATIO)`)
+   unchanged at Gate B's cpl=20 grid, without asking whether THIS
+   constant needed the identical treatment — caught only at Phase 2, by
+   Red Team's own direct provenance trace, not by any of five blind
+   Phase-2 critiques (all of which engaged with the *choice* to change
+   `edge` but not the *correctness* of the specific new value). A
+   generalizable house lesson: any proposal reusing a constant from a
+   different-resolution geometry family, however recently that
+   constant's own resolution-dependence was itself established and
+   fixed elsewhere in the same document, should re-verify the
+   rescaling explicitly for its own new use, not merely cite the
+   constant's name.
+2. **A settling-time alarm imported from one loss regime does not
+   automatically transfer to a different, more strongly-damped regime —
+   confirmed quantitatively, not merely argued, this cycle.**
+   ELECTROMAGNETISM's Phase-2 critique correctly named a real,
+   documented risk (VALIDATION.md's own stage-20 lesson: near-lossless
+   geometries need far more settling than strongly-lossy ones) but cited
+   a magnitude figure from the wrong regime; Red Team's own audit caught
+   this and scaled the fix down accordingly. This cycle's own settling
+   check — run at FULL strength (all 5 points, not the single-point
+   compromise) because a whole-field capture makes the fuller check free
+   — confirms Red Team's own correction was right: residuals here are
+   0.003%–0.11%, not "~100× larger" than a lossy-regime baseline. Both
+   the original alarm and its correction were worth having on the
+   record; a Phase-4 check that could be run at zero marginal cost
+   settled a Phase-2 disagreement definitively rather than leaving it as
+   competing arguments.
+3. **A whole-field capture makes a "settling-independence leg" and a
+   "standoff-trend leg" the same kind of cheap, multi-point diagnostic**
+   — this cycle's own 4-call budget produced 16 primary-channel readings
+   plus 5 settling-check readings from those same 4 calls, a pattern
+   worth reusing: when `sc.full_capture()`/`sc.phasors()` already return
+   the entire field, any number of point/region readings drawn from one
+   captured pair cost nothing beyond that pair's own two FDTD calls —
+   Red Team's own fallback "one representative point" compromise was a
+   reasonable caution given the audit's own text did not have this
+   cycle's own Director-level accounting of that fact in hand.
+
+## Next (candidate directions, not this cycle's scope)
+
+1. **Tier 1 item 3 (T8 r=78/156/312 near-field-to-witness-scale bridge
+   extension)**, explicitly deferred this cycle (see Idealizations) —
+   extend this cycle's own now-validated aperture-matched, footprint-
+   matched instrument (both the `kappa_window` and the standoff-trend
+   machinery) across the established bridge-family radii, closing
+   exp-102's own Reconciled Iteration-80 Tier 1 item 3.
+2. **Tier 2 — the perceptual conversion** (constraint 1's own missing
+   conversion from a raw physical `kappa`/intensity reading to a
+   witness-perceived `C_thr(L)` judgment), gated on item 1's own
+   bridge-family extrapolation to witness scale — still unbuilt.
+3. **Tier 2 — pin the witness-scale absolute source wattage** (T5's
+   long-open precondition), parallel-track with items 1–2.
+4. **Tier 3 — the standing `delta_scene` R3-vs-R4 split** (Tier 1,
+   PHOTONICS' own zero-FDTD physical-hypothesis check) — now deferred
+   FOUR consecutive cycles (exp-100→101→102→103); Iteration 81 should
+   either execute it or explicitly re-justify a fifth deferral in
+   writing, per this cycle's own Idealizations disposition.
+5. **A dense-standoff-trend fit**: this cycle's own 16-point monotonic
+   trend (x=352→456) is smooth enough to invite a candidate functional
+   form (e.g. a Fresnel-diffraction-fill-in closed form) — not attempted
+   this cycle (T1: N/A, instrument-repair scope only), but a natural,
+   cheap (zero new FDTD, reusing this cycle's own committed data)
+   follow-up for a future cycle with spare capacity.

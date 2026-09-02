@@ -1,0 +1,225 @@
+{
+  "experiment": "exp-103",
+  "panel_iteration": 80,
+  "n_fdtd_calls": 4,
+  "wall_primary_s": 113.7952983379364,
+  "wall_2x_s": 112.75780487060547,
+  "total_wall_s": 226.69314742088318,
+  "geometry": {
+    "N": 560,
+    "absorb": 40,
+    "courant_frac": 0.32,
+    "steps": 3200,
+    "steps_2x": 6400,
+    "src_x": 64,
+    "cx": 252,
+    "cy": 280,
+    "r_core": 30,
+    "r_coat": 78,
+    "cpl": 20,
+    "edge": 40,
+    "h_region": 5,
+    "floor_frac": 0.1,
+    "stability_tol": 0.2
+  },
+  "behind_window": {
+    "x_lo": 357,
+    "x_hi": 457,
+    "y_lo": 260,
+    "y_hi": 300
+  },
+  "kappa_window": {
+    "value": 0.018336958179764707,
+    "empty": {
+      "mean": 4.989746982701996,
+      "std": 0.2052433555483928,
+      "min": 4.537774149686944,
+      "max": 5.516932501174328
+    },
+    "article": {
+      "mean": 0.09149678174941363,
+      "std": 0.07427177768717651,
+      "min": 0.0037792100131621596,
+      "max": 0.33055095398902656
+    },
+    "pointwise_mean": 0.01868984554416697,
+    "pointwise_std": 0.015864562708848298,
+    "pointwise_min": 0.0007487406954119105,
+    "pointwise_max": 0.07250328395401615
+  },
+  "kappa_region_trend": {
+    "352": {
+      "kappa_region": 0.004580436735147808,
+      "i_region_empty": 4.989853565202869,
+      "i_region_article": 0.022855708573063478,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "353": {
+      "kappa_region": 0.00482004883735443,
+      "i_region_empty": 4.999931209897973,
+      "i_region_article": 0.024099912615120855,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "354": {
+      "kappa_region": 0.005066209963233353,
+      "i_region_empty": 5.010220781176426,
+      "i_region_article": 0.0253828304395948,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "355": {
+      "kappa_region": 0.005319302083119229,
+      "i_region_empty": 5.020758738573808,
+      "i_region_article": 0.026706932416934732,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "356": {
+      "kappa_region": 0.0055797070057914296,
+      "i_region_empty": 5.031597149375048,
+      "i_region_article": 0.028074837864688142,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "357": {
+      "kappa_region": 0.005847755206250309,
+      "i_region_empty": 5.0427527935803855,
+      "i_region_article": 0.029488783902492988,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "367": {
+      "kappa_region": 0.008929258554452658,
+      "i_region_empty": 5.1539389117384005,
+      "i_region_article": 0.046020853116766534,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "377": {
+      "kappa_region": 0.01279198937036871,
+      "i_region_empty": 5.235767964697964,
+      "i_region_article": 0.06697588815013338,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "387": {
+      "kappa_region": 0.01757376131177967,
+      "i_region_empty": 5.255304240765958,
+      "i_region_article": 0.09235546234800442,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "397": {
+      "kappa_region": 0.023416559055159745,
+      "i_region_empty": 5.2018066564189605,
+      "i_region_article": 0.12180841276355764,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "407": {
+      "kappa_region": 0.0303640357115601,
+      "i_region_empty": 5.084296356568367,
+      "i_region_article": 0.1543797561389968,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "417": {
+      "kappa_region": 0.038199142011960494,
+      "i_region_empty": 4.931724129397431,
+      "i_region_article": 0.1883876303826647,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "427": {
+      "kappa_region": 0.0463761199828898,
+      "i_region_empty": 4.778624690686846,
+      "i_region_article": 0.2216140720084928,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "437": {
+      "kappa_region": 0.05415576924470253,
+      "i_region_empty": 4.660752474518674,
+      "i_region_article": 0.2524066355167096,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "447": {
+      "kappa_region": 0.0604757434578739,
+      "i_region_empty": 4.602136047475512,
+      "i_region_article": 0.27831759896536284,
+      "floor_pass": true,
+      "outcome": "resolved"
+    },
+    "456": {
+      "kappa_region": 0.06411449630579616,
+      "i_region_empty": 4.610720540887714,
+      "i_region_article": 0.2956140250858038,
+      "floor_pass": true,
+      "outcome": "resolved"
+    }
+  },
+  "floor_gate": {
+    "rms": 4.979810579619917,
+    "floor": 0.4979810579619917,
+    "n_unresolved": 0
+  },
+  "settling_check": {
+    "352": {
+      "kappa_region_1x": 0.004580436735147808,
+      "kappa_region_2x": 0.004575402764189365,
+      "rel_change": 0.001099015497761522,
+      "cell_pass": true
+    },
+    "353": {
+      "kappa_region_1x": 0.00482004883735443,
+      "kappa_region_2x": 0.004816020234939159,
+      "rel_change": 0.00083580116119366,
+      "cell_pass": true
+    },
+    "354": {
+      "kappa_region_1x": 0.005066209963233353,
+      "kappa_region_2x": 0.005063564698295512,
+      "rel_change": 0.0005221388290335303,
+      "cell_pass": true
+    },
+    "355": {
+      "kappa_region_1x": 0.005319302083119229,
+      "kappa_region_2x": 0.0053180634844712,
+      "rel_change": 0.0002328498417038639,
+      "cell_pass": true
+    },
+    "356": {
+      "kappa_region_1x": 0.0055797070057914296,
+      "kappa_region_2x": 0.005579531994004347,
+      "rel_change": 3.136576650006356e-05,
+      "cell_pass": true
+    }
+  },
+  "predictions": {
+    "p1_kappa_window": {
+      "verdict": "CONFIRMED",
+      "value": 0.018336958179764707,
+      "band": [
+        0.005,
+        0.04
+      ]
+    },
+    "p2_monotonic_trend": {
+      "verdict": "CONFIRMED",
+      "reversals": 0
+    },
+    "p3_floor_and_span_consistency": {
+      "verdict": "CONFIRMED",
+      "floor_all_clear": true,
+      "span_mean": 0.032931330019344916,
+      "ratio_to_window": 1.7958992814678207
+    },
+    "p4_settling_independence": {
+      "verdict": "CONFIRMED",
+      "overall_pass": true
+    }
+  }
+}

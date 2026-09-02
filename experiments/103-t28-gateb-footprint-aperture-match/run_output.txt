@@ -1,0 +1,92 @@
+==============================================================================
+exp-103 -- Footprint- and aperture-matched Gate B rebuild
+==============================================================================
+
+DISCLAIMER (Phase-2 mandatory fix 8): kappa_window/kappa_region are raw physical intensity ratios; no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle.
+
+DISCLOSURE (Phase-2 mandatory fix 7): thermal sidecar NOT invoked -- p_abs_w (thermo_sidecar.absorbed_power_established_ratio) derives from sigma_ext_cells (exp-059 Mie/qext theory) x an assumed i_incident_w_cm2, independent of this file's FDTD source `edge` parameter; this file imports nothing from lab.thermo_sidecar.
+
+EDGE=40 (Phase-2 mandatory fix 1: TAPER=40, the cpl=20-calibrated value, physically matches the R4 family's own edge=80-at-cpl=40 2-wavelength taper -- NOT a literal reuse of R4_TAPER=80).
+
+[margin gate] 16 standoff points, all clear of absorb/boundary: PASS
+
+-- Primary pair: empty + article, theta=0, STEPS=3200, edge=40 --
+Primary pair wall time: 113.8s
+
+==============================================================================
+KAPPA_WINDOW -- literal established BEHIND footprint
+==============================================================================
+window empty:   mean=4.989747e+00  std=2.052434e-01  min=4.537774e+00  max=5.516933e+00
+window article: mean=9.149678e-02  std=7.427178e-02  min=3.779210e-03  max=3.305510e-01
+kappa_window = 1.833696e-02  (1.8337%)
+kappa_window pointwise ratio (internal spread): mean=1.868985e-02 std=1.586456e-02 min=7.487407e-04 max=7.250328e-02 (std/mean=0.8488)
+
+==============================================================================
+KAPPA_REGION -- 16-point standoff trend (STEPS=3200)
+==============================================================================
+  x= 352  kappa_region=4.580437e-03  i_empty=4.9899e+00  i_article=2.2856e-02
+  x= 353  kappa_region=4.820049e-03  i_empty=4.9999e+00  i_article=2.4100e-02
+  x= 354  kappa_region=5.066210e-03  i_empty=5.0102e+00  i_article=2.5383e-02
+  x= 355  kappa_region=5.319302e-03  i_empty=5.0208e+00  i_article=2.6707e-02
+  x= 356  kappa_region=5.579707e-03  i_empty=5.0316e+00  i_article=2.8075e-02
+  x= 357  kappa_region=5.847755e-03  i_empty=5.0428e+00  i_article=2.9489e-02
+  x= 367  kappa_region=8.929259e-03  i_empty=5.1539e+00  i_article=4.6021e-02
+  x= 377  kappa_region=1.279199e-02  i_empty=5.2358e+00  i_article=6.6976e-02
+  x= 387  kappa_region=1.757376e-02  i_empty=5.2553e+00  i_article=9.2355e-02
+  x= 397  kappa_region=2.341656e-02  i_empty=5.2018e+00  i_article=1.2181e-01
+  x= 407  kappa_region=3.036404e-02  i_empty=5.0843e+00  i_article=1.5438e-01
+  x= 417  kappa_region=3.819914e-02  i_empty=4.9317e+00  i_article=1.8839e-01
+  x= 427  kappa_region=4.637612e-02  i_empty=4.7786e+00  i_article=2.2161e-01
+  x= 437  kappa_region=5.415577e-02  i_empty=4.6608e+00  i_article=2.5241e-01
+  x= 447  kappa_region=6.047574e-02  i_empty=4.6021e+00  i_article=2.7832e-01
+  x= 456  kappa_region=6.411450e-02  i_empty=4.6107e+00  i_article=2.9561e-01
+
+==============================================================================
+FLOOR GATE (RMS across the 16-point pool's own local i_region_empty readings)
+==============================================================================
+rms=4.979811e+00  floor=4.979811e-01  n_unresolved=0/16
+
+==============================================================================
+SETTLING-INDEPENDENCE LEG -- all 5 near-field points re-read at STEPS=6400
+==============================================================================
+2x-STEPS pair wall time: 112.8s
+  x= 352  kappa@1x=4.580437e-03  kappa@2x=4.575403e-03  rel_change=0.1099%  PASS(<=20%)=True
+  x= 353  kappa@1x=4.820049e-03  kappa@2x=4.816020e-03  rel_change=0.0836%  PASS(<=20%)=True
+  x= 354  kappa@1x=5.066210e-03  kappa@2x=5.063565e-03  rel_change=0.0522%  PASS(<=20%)=True
+  x= 355  kappa@1x=5.319302e-03  kappa@2x=5.318063e-03  rel_change=0.0233%  PASS(<=20%)=True
+  x= 356  kappa@1x=5.579707e-03  kappa@2x=5.579532e-03  rel_change=0.0031%  PASS(<=20%)=True
+[settling gate] OVERALL PASS = True
+
+==============================================================================
+PREDICTIONS
+==============================================================================
+
+[Prediction i] kappa_window in [0.005,0.04]: 1.833696e-02  VERDICT=CONFIRMED
+
+[Prediction ii] monotonic rise, <=1 reversal: reversals=0  VERDICT=CONFIRMED
+    x=352: kappa_region=4.580437e-03
+    x=353: kappa_region=4.820049e-03
+    x=354: kappa_region=5.066210e-03
+    x=355: kappa_region=5.319302e-03
+    x=356: kappa_region=5.579707e-03
+    x=357: kappa_region=5.847755e-03
+    x=367: kappa_region=8.929259e-03
+    x=377: kappa_region=1.279199e-02
+    x=387: kappa_region=1.757376e-02
+    x=397: kappa_region=2.341656e-02
+    x=407: kappa_region=3.036404e-02
+    x=417: kappa_region=3.819914e-02
+    x=427: kappa_region=4.637612e-02
+    x=437: kappa_region=5.415577e-02
+    x=447: kappa_region=6.047574e-02
+    x=456: kappa_region=6.411450e-02
+
+[Prediction iii] floor gate all-clear=True, window-span mean 3.293133e-02 vs kappa_window 1.833696e-02 ratio=1.796 (<=2.0)=True  VERDICT=CONFIRMED
+
+[Prediction iv] settling-independence (STEPS 3200 vs 6400, all 5 near-field points, <=20% tolerance): VERDICT=CONFIRMED
+
+Total wall time: 226.7s (3.78 min)
+Real FDTD calls: 4 (expected 4 = 2 primary + 2 settling-check)
+Reported kappa_region readings: 16 (11 standoff points; the settling-independence leg additionally re-reads all 5 near-field points from the SAME 2 settling-check calls, zero marginal FDTD cost) [Phase-2 mandatory fix 2, R19]
+
+results.json written.
