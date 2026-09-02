@@ -905,6 +905,43 @@ top. Protocol: PANEL.md.*
   automatically — mirroring R16/R21's own three-strike forward clauses.
   Full record: `experiments/102-coherent-downstream-point-intensity/
   phase5_redteam_audit.md` §8, LOGBOOK.md Iteration 79.
+- **R23 — a disclaimer required in multiple document sections must be
+  enforced by a code-level assert on a single source-of-truth string, not
+  manual prose-carrying-forward** (not a ruled-out idea; a standing
+  house-discipline rule, proposed by Red Team's Phase-2 audit and
+  ratified/implemented by the Director, Iteration 81). Closes the
+  disclaimer-erosion recurrence pattern this program has now caught eight
+  times on the T28 sub-thread, most recently exp-103's own Phase-5 catch
+  (the pattern R16/R19/R21/R22's own registry entries each independently
+  point back to). Founding implementation: exp-104's own `run.py` — a
+  single `DISCLAIMER` string constant, `PREDICTIONS_TEXT`/`RESULT_TEXT`
+  generated from code rather than hand-typed, and two hard asserts
+  (`assert DISCLAIMER in PREDICTIONS_TEXT`, `assert DISCLAIMER in
+  RESULT_TEXT`) — confirmed live-fired by VISION's own Phase-5 execution
+  of `run.py --predictions-only` and independently re-confirmed by Red
+  Team's own second live execution. **Same-cycle finding, discovered at
+  Phase 5, own scope limitation**: as implemented this founding cycle,
+  R23's code enforcement covers only ONE of at least three disclaimers
+  this document's own Idealizations section requires (the perceptual
+  `DISCLAIMER` it was built for) — the MATERIALS aliasing-origin
+  sentence, the THERMODYNAMICS thermal-sidecar-N/A sentence, and the
+  λ/scope-only idealization all remain manual prose, verbatim-consistent
+  by inspection but unchecked by any assert. Independently found by three
+  of six blind Phase-5 seats (PHOTONICS, MATERIALS, THERMODYNAMICS) plus
+  Red Team's own re-derivation (`grep -n "assert"`/`"DISCLAIMER"` against
+  `run.py`), zero overrides. **Does not fire on its own founding
+  instance** (exp-104), matching every prior R-rule's own precedent —
+  ruled explicitly NOT Checkpoint-4-grade: this is a rule-completeness
+  gap discovered in a rule's first real use, not a recurrence pattern (a
+  recurrence needs a SECOND instance; this is R23's only one on record),
+  and no witness-statement constraint is implicated. **Iteration-82 queue
+  item, not a same-cycle blocker**: either genericize the assert to a
+  `(sentence, required_locations)` table checked in a loop, covering all
+  multi-section disclaimers this document carries, or formally ratify
+  R23 as intentionally single-disclaimer-scoped. Full record:
+  `experiments/104-t28-subnyquist-standoff-recheck/
+  phase5_redteam_audit.md` §0d, §1, §3.1, §5 item 4, LOGBOOK.md
+  Iteration 81.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -7387,6 +7424,157 @@ Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
 (`results.json`, `run_output.txt`, `run.py`), six Phase-5 blind reviews
 (`phase5_review_{photonics,materials,em,thermodynamics,quantum,vision}.md`),
 Phase-5 Red Team final audit.
+
+**Iteration 81 (exp-104) — ELECTROMAGNETISM's rotation-lead cycle: the
+genuinely sub-Nyquist standoff recheck, P2 (ripple existence) FALSIFIED —
+the very concern that motivated this whole cycle does not survive its
+own resolved recheck — Combined Verdict PARTIAL, R20 does not fire, R23
+adopted and immediately found to need its own follow-up.** Executed
+exp-103's own Reconciled Iteration-81 queue, Tier 1 (Red Team's own top
+ranking): a genuinely sub-Nyquist (2-cell pitch) recheck of exp-103's own
+degenerate-aliasing sampling defect — samples that landed at exactly the
+λ/2=10-cell coherent-intensity fringe period, not resolved against it.
+Byte-identical article/geometry to exp-103's primary pair; a new
+zero-averaging single-cell `point_intensity` channel (ported from
+exp-102) alongside the unchanged 11-cell box-average `kappa_region_wide`
+channel, at 53 `DENSE_X` points (x=352–456, 2-cell pitch) split into 5
+per-quintile FFT period estimates (PHOTONICS' chirp-tolerant fix) with a
+signed sinc-based suppression-ratio cross-check (QUANTUM's refined fix)
+and a `delta_phi` co-variation proxy. Five blind Phase-2 critiques, all
+support-with-changes, five distinct flip conditions (PHOTONICS:
+per-quintile not single-global period fit; MATERIALS: any ripple found
+is necessarily aliasing/numerical in origin, not evidence about a
+realizable coating; THERMODYNAMICS: the new point channel's peak local
+|Ez|² must be disclaimed as not thermally interpretable; QUANTUM: a
+SIGNED suppression-ratio prediction plus a `delta_phi` co-variation
+check; VISION: a perceptual-language leak in P2's wording). Red Team's
+Phase-2 audit ADOPTED all five, raised 2 more attacks of its own (a P3
+grid-quantization artifact fixed via per-quintile FFT + sub-bin
+interpolation instead of raw reversal-position differencing; a P6
+missing numeric threshold, fixed via explicit `ripple_fraction_i`
+≤0.20/>0.50 bands), and ratified a NEW standing house rule **R23** (a
+disclaimer required in multiple sections must be code-enforced via a
+single source-of-truth string constant + assert, not manual
+prose-carrying-forward — the disclaimer-erosion pattern's 8th
+recurrence, this time caught and fixed at Phase 1 itself, before any
+FDTD call). Predictions committed to git BEFORE any Phase-4 call
+(`db57beb`); **exactly 2 real FDTD calls, 58.7s (0.98 min) wall, zero
+`lab/` diff, trust suite green throughout (41/41).**
+
+**Gate P1 (reproducibility): PASS, exact** (0.000e+00 relative deviation
+across all 16 original x-points against exp-103's own `kappa_region_
+trend`). **P2 (ripple existence): FALSIFIED — the headline finding.** At
+genuinely sub-Nyquist 2-cell pitch, with a zero-averaging point channel
+specifically built to surface any ripple the 11-cell box average would
+suppress, NO qualifying (>5%-amplitude, sign-changing) ripple was found
+anywhere across the full 104-cell dense span — `residual_point` is
+strictly positive and monotonic at all 53 points in 4 of 5 quintiles (39
+of 39 consecutive diffs positive), never crossing zero. P3/P4 FALSIFIED:
+three quintiles (Q0–Q2) independently locked onto the identical raw FFT
+bin (`peak_idx=4, nfft=64`) despite covering different x-stretches —
+confirmed spectral leakage of a smooth monotonic trend, NOT a real
+oscillation (corrected from an earlier "numerical beat" mischaracter-
+ization: a beat needs two genuine frequency components, and none is
+present in the raw data); the one genuine in-band candidate (Q4, period
+9.07 cells) was decisively disproved by P4's independently-recomputed,
+digit-exact sinc mismatch — wrong sign AND 22.12× off in magnitude
+(predicted −0.166, measured +3.677). P5 CONFIRMED (2/2, though resting on
+the same two evidentiarily-weak quintiles per QUANTUM's own flag). P6:
+NARROWS (`ripple_fraction_i` ≤0.138 in all 5 quintiles, well under the
+0.20 bar). Overall: exp-103's own trend and `kappa_window` reproduce
+unchanged (Gate P1 exact); the Phase-5-flagged Nyquist-aliasing concern
+that motivated this whole cycle does NOT, on genuine resolution, turn up
+the ripple it could have been masking.
+
+**Six blind Phase-5 reviews.** PHOTONICS (CONFIRM-WITH-GAPS) found P2's
+sign-change test is structurally blind to a ripple riding on
+`residual_point`'s smooth positive baseline — the actual disproof of Q4
+is P4's sinc mismatch, not P2's "0 reversals," underplayed in the
+original writeup — and that Q0–Q2's identical FFT bin is stronger
+corroboration of the artifact diagnosis than originally stated.
+MATERIALS (CONFIRM) confirmed the mandatory aliasing-origin disclaimer
+present, unaltered, correctly un-triggered, and found R23 covers only
+the perceptual disclaimer. ELECTROMAGNETISM's own self-review (CONFIRM)
+traced the original Phase-1 hypothesis's cited evidence
+(`kappa_window`'s disclosed 97× spread) to its exact source — a single
+centerline point at the window's own far edge, the smooth radial
+falloff's own maximum, not λ/2-scale periodic structure — a genuine
+self-critique of its own cycle's proposal. THERMODYNAMICS (CONFIRM, same
+R23-gap note) independently confirmed zero `thermo_sidecar.py` calls,
+zero thermal fields. QUANTUM OPTICS (CONFIRM-WITH-GAPS) proved via raw
+monotonicity that Q0–Q3's fitted "periods" are spectral leakage, not a
+numerical beat, and found Q3 — scored, not excluded — shares the
+identical raw FFT bin as the three near-null-excluded quintiles, the
+round's sharpest finding: P4's "1 pass" and P5's "2/2" rest on weaker
+evidentiary ground than their labels suggest. VISION SCIENCE
+(CONFIRM-WITH-GAPS) executed `run.py --predictions-only` live to confirm
+R23's asserts genuinely fire, confirmed byte-identical disclaimer text,
+and raised the round's deepest structural critique — R23 proves
+substring-transcription fidelity, not content-adequacy, placement, or
+third-location generality — and found R23 not yet in LOGBOOK's registry.
+
+**Red Team's Phase-5 final audit independently re-verified every finding
+from primitives (eleven independent primitive-level re-derivations) and
+adopted all six reviews — zero overrides**, sharpening two beyond any
+single review: Q4's own ripple is ~15× too small to ever cross
+`residual_point`'s zero baseline regardless of the 5% threshold, and
+Q3's shared raw FFT bin with the three excluded quintiles is confirmed
+directly from `results.json`'s own `period_diag` fields, not merely
+argued. **R20 tally: 0** — every citation independently re-checked
+reproduces exactly from its cited source (exp-103's `EDGE=40` at line
+102; exp-102's `point_intensity`/`delta_phi` at lines 406–407/417;
+exp-103's own `kappa_window` provenance traced digit-for-digit); this
+round's findings (the "beat" mislabeling, the P2-headline overstatement,
+the P3/P4/P5 evidentiary-strength gaps, the R23 scope gap) are ruled
+evidentiary-strength/framing critiques, not R4-shaped citation
+mismatches, per this program's own established distinction (Iteration
+78's `Q_ext`/`cosθ` ruling; Iteration 80's Nyquist-overclaim ruling) —
+a cleaner citation record than either prior T28 cycle. **Checkpoint
+criterion 4 ruled on both live sub-issues and does NOT fire on either**:
+the R23-coverage gap (found independently by four of six seats plus Red
+Team) is R23's own founding-cycle scope question — one instance on
+record, not a recurrence pattern — and VISION's legibility-vs-
+transcription critique names a designed-in ceiling with no live defect
+this cycle to remedy; both caught blind, pre-LOGBOOK, non-load-bearing.
+**New standing rule R23 adopted** (full text above, RULED OUT registry)
+— founding instance, does not fire, own follow-up queued for Iteration
+82. Six mandatory same-shift documentation fixes applied to `NOTES.md`
+(zero re-run, zero verdict change): the P2/P4 headline reframed to name
+P4 as the operative disproof; the Q3-shared-FFT-bin finding added with
+P4/P5's evidentiary weakness disclosed; "numerical beat" corrected to
+"spectral leakage of a smooth monotonic trend"; an explicit R23
+scope-limitation statement added; three Iteration-82 queue items added
+to Next; a Phase 5 outcome section appended matching exp-103's own
+established convention. **Combined Verdict: PARTIAL** — the substantive
+science is strong (Gate P1 exact to `0.0`, P2's null genuine, P4's
+disproof of the sole candidate digit-exact and decisive, zero R4-class
+defects) weighed against a real, same-shift-fixed cluster of framing/
+evidentiary-strength/rule-scope gaps a clean CONFIRM would not carry.
+Reconciled Iteration-82 queue (Red Team's own tiered ranking): **Tier
+1** — the T8 r=78/156/312 bridge extension (consensus top pick, now
+unblocked by this cycle's clean null); the R23 scope decision
+(genericize the assert to cover all multi-section disclaimers, or
+formally ratify R23 as intentionally single-disclaimer-scoped — four of
+six seats independently flagged this); the near-null-exclusion
+raw-bin-identity refinement (supplement the period-based proxy with a
+direct `peak_idx`-match check, per Q3's own demonstrated false
+negative). **Tier 2** — VISION's fresh-context cold-read, trialed as a
+supplementary (not replacement) Phase-5 check; a multi-step-count
+settling convergence bench across the full dense span. **Tier 3** — the
+standing `delta_scene` R3-vs-R4 split, now FIVE consecutive deferrals
+(exp-100→101→102→103→104) — per exp-103's own explicit written warning,
+a sixth deferral at Iteration 82 must be re-justified in writing, not
+silent, or executed; standing lower-priority items unchanged from
+exp-103's own Tier 4 (the Tier-2 perceptual conversion, witness-scale
+wattage pinning, the dense-standoff-trend functional-form fit, EM's own
+floor-gate-empty-only-convention note). Full record: `experiments/
+104-t28-subnyquist-standoff-recheck/` — Phase-1 proposal
+(ELECTROMAGNETISM), five Phase-2 blind critiques
+(`phase2_critique_{photonics,materials,thermodynamics,quantum,vision}.md`),
+Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
+(`results.json`, `run_output.txt`, `run.py`), six Phase-5 blind reviews
+received condensed, Phase-5 Red Team final audit
+(`phase5_redteam_audit.md`).
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
