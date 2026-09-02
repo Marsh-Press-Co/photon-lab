@@ -43,3 +43,26 @@ BOX_MARGIN_REPORT: {
 }
 
 -- Leg B (fixed): 6 angles x 2 keys x 2 conditions = 24 sim.run() calls --
+  [ 1/24] C40_R4   theta=+37.127 article=False steps=5600 sigma_max=None
+  [ 2/24] C40_R4   theta=+37.127 article=True steps=5600 sigma_max=0.25
+  [ 3/24] G40_R4   theta=+37.127 article=False steps=5600 sigma_max=None
+  [ 4/24] G40_R4   theta=+37.127 article=True steps=5600 sigma_max=0.25
+  [ 5/24] C40_R4   theta=+38.590 article=False steps=5600 sigma_max=None
+  [ 6/24] C40_R4   theta=+38.590 article=True steps=5600 sigma_max=0.25
+  [ 7/24] G40_R4   theta=+38.590 article=False steps=5600 sigma_max=None
+  [ 8/24] G40_R4   theta=+38.590 article=True steps=5600 sigma_max=0.25
+  [ 9/24] C40_R4   theta=+39.200 article=False steps=5600 sigma_max=None
+  [10/24] C40_R4   theta=+39.200 article=True steps=5600 sigma_max=0.25
+  [11/24] G40_R4   theta=+39.200 article=False steps=5600 sigma_max=None
+  [12/24] G40_R4   theta=+39.200 article=True steps=5600 sigma_max=0.25
+  [13/24] C40_R4   theta=+40.265 article=False steps=5600 sigma_max=None
+  [14/24] C40_R4   theta=+40.265 article=True steps=5600 sigma_max=0.25
+  [15/24] G40_R4   theta=+40.265 article=False steps=5600 sigma_max=None
+  [16/24] G40_R4   theta=+40.265 article=True steps=5600 sigma_max=0.25
+  [17/24] C40_R4   theta=+41.461 article=False steps=5600 sigma_max=None
+  [18/24] C40_R4   theta=+41.461 article=True steps=5600 sigma_max=0.25
+  [19/24] G40_R4   theta=+41.461 article=False steps=5600 sigma_max=None
+  [20/24] G40_R4   theta=+41.461 article=True steps=5600 sigma_max=0.25
+  [21/24] C40_R4   theta=+42.961 article=False steps=5600 sigma_max=None
+  [22/24] C40_R4   theta=+42.961 article=True steps=5600 sigma_max=0.25
+  [23/24] G40_R4   theta=+42.961 article=False steps=5600 sigma_max=None
