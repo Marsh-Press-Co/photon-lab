@@ -297,3 +297,191 @@ T8's near-field caveat is disclosed, not resolved; T9's Babinet-ceiling
 disclaimer is restated, not contested; T28's own `delta_scene`/R3-vs-R4
 split (Tier 1, exp-100/101) is untouched — this experiment does not read,
 cite, or score `delta_scene`/`frac_contrast`/`ratio_k` at all.
+
+## Phase 4 process note (disclosed, non-scientific)
+
+Two Phase-4 execution agents were inadvertently run concurrently against
+this experiment's directory for part of this cycle (an orchestration
+error by the Director, not a science defect) — each independently
+executing/editing `run.py` without visibility into the other, and each
+independently discovering the two real defects below by different routes.
+The Director stood one down and consolidated the survivor's work into one
+final, clean, from-scratch 26-call run once both defects were understood.
+No `lab/` diff resulted at any point; the trust suite was confirmed green
+before, during, and after. Recorded here in the interest of the same
+verify-before-claim discipline this document applies to everything else —
+the final numbers below are from the single final consolidated run
+(`run_output.txt`/`results.json` as committed), not from either
+intermediate attempt.
+
+## Result
+
+**Gate A: PASS.** Trivial-reduction identity — no-object scene as both
+legs — `κ(P)=1.0` to `<1e-10` (measured: exactly `0.0`) at all 48
+points/angles tested. Zero marginal FDTD.
+
+**Gate B: FAIL — genuine, diagnosed, not force-fixed.** A real
+implementation bug was found and fixed first: `D_STANDOFF=200`/
+`H_REGION=10` cells were sized as `1.282×R4_R_OUT` for the R4 family's
+`cells_per_lambda=40` grid; reused unscaled at the native flagship's
+`cells_per_lambda=20` (confirmed directly from `experiments/001-.../
+run.py`'s `SWEEP=[(15,450),(20,600),(25,750)]`), they put the sample
+point at `2.56×r_out` instead of the intended `1.282×r_out` — rescaled
+to `GATEB_D_STANDOFF=100`/`GATEB_H_REGION=5` (×0.5, the `cpl` ratio) to
+correct this. **After the fix, Gate B still fails**: `κ_region(θ=0°) =
+1.627×10⁻³`, now BELOW the `[0.005,0.05]` band floor (the original,
+unrescaled crash had measured `5.471×10⁻²`, just above the ceiling — the
+correction moved the reading past the band, not into it). Diagnosis,
+independently verified against `experiments/001-flashlight-statement/
+run.py`'s own `BEHIND` slice definition (`slice(CX+R_CLK+15,
+CX+R_CLK+115)`, i.e. `x∈[357,457)`, `CX=252, R_CLK=90`, absorber
+`r_out=78` ⇒ the established window spans `≈1.35×`–`2.63×r_out` from
+center): the corrected point (`100` cells `≈1.28×r_out`) sits BEFORE
+that window even starts, closer to the object, in the near-field zone
+where a real shadow reads measurably darker than farther out (Fresnel
+diffraction fills a shadow back in with increasing standoff — a real,
+physically expected effect, not an artifact). A point sample and a
+wide-window spatial average, taken at two different effective distances
+from the object, are not the same quantity — moving the point to land
+inside the established window post-hoc would be exactly the kind of
+after-the-fact parameter adjustment LOGBOOK's R5 rules out, so it was not
+done. **Consequence for trust**: per PANEL.md's new-machinery rule, only
+Gates A (trivial identity) and D (fault-injection positive control, below)
+independently support trusting this instrument's primary-channel readings
+this cycle. Gate B — the cross-scale reproduction check against the
+established old-instrument figure — is NOT validated. This is a real,
+open limitation, not a formality; see Next.
+
+**Gate C / Prediction 2: FAIL as originally specified, PASS after an
+independently re-derived sign correction — CONFIRMED.** The frozen
+spec's formula compared `I0_corrected(θ)·cos θ` (unsigned) against
+`i_inc(θ)`. Measured: a uniform ~145–160% "deviation" at every single one
+of the 12 (angle,config) cells (max `159.78%`) — a systematic sign-flip
+signature, not per-cell noise, immediately suspicious. Root cause,
+independently re-derived (per LOGBOOK's R4 addendum — never adopt a sign
+correction merely because it makes numbers agree): `i_inc = mean_y(Sx(y))`
+(`lab/sections.py`, confirmed directly from source) and the R4 family's
+own propagation direction is `u(θ)=(-cosθ,+sinθ)` (independently verified
+correct against `add_line_source`'s own documented convention by EM's
+Phase-2 critique, for the unrelated purpose of constructing `P(θ)`).
+Since the Poynting flux vector is parallel to the propagation direction
+for a plane wave, `(Sx,Sy) ≈ I0_corrected·u(θ)`, i.e. `Sx ≈
+I0_corrected·(-cosθ)`, NOT `+I0_corrected·cosθ` as originally written —
+the frozen formula's sign, not the underlying instrument, was wrong.
+Corrected formula: `|I0_corrected(θ)·u_x(θ) − i_inc(θ)| / I0_corrected(θ)
+≤ 0.01`, `u_x(θ)=-cosθ`. Measured with the correction: max deviation
+`0.92%` across all 12 cells (range `0.04%–0.92%`) — inside the
+pre-registered 1% band. **Both the original erroneous values and the
+corrected values are recorded in `results.json`**, per the same
+non-negotiable disclosure standard this program's R4 lineage requires.
+**PASS/CONFIRMED on the corrected formula.**
+
+**Gate D: PASS.** At θ=39.2°, both configs: the hand-computed `P(θ)`
+independently matched the code's own `P(θ)` to the nearest cell in both
+configs (`(185,1710)`, `(265,1790)`). A +20-cell perturbation along
+`u(θ)` changed `κ_region` by `48.95%` (C40_R4) and `8.24%` (G40_R4) —
+both clearing the >5% discrimination bar. The rotating `P(θ)`
+construction is genuinely exercised and independently validated at a
+nonzero angle, closing the one class of bug Gates A/B cannot see.
+
+**Primary channel** (24 real FDTD calls, 6 angles × 2 configs × 2
+conditions, 3180.7s/53.01min wall): on-axis coherent intensity ratio
+`κ(θ)` (region-averaged) ranges `3.68×10⁻³`–`7.29×10⁻³` across all 12
+(angle,config) cells — genuinely dark, well inside `[0,0.10]`.
+**Realizability caveat (per fix 7, stated inline as required): this
+article is the byte-identical R4-family `graded_black_shell`, already
+locked UNOBTANIUM-WITH-PARAMETERS (`REALIZABILITY_MEMO.md` Amendments
+6–7) — a real, buildable coating at this shell thickness would show a
+shallower, not deeper, on-axis darkening than this idealized figure.**
+Off-axis companion point `κ_off(θ)` (pure beam-perpendicular, 450 cells)
+ranges `1.041`–`1.077` — mildly BRIGHTER than the empty scene (not
+merely "undimmed"), consistent with light scattered/diffracted away from
+the shadow's own axis rather than uniform dimming — confirming the
+darkening at `P(θ)` is spatially localized, the check's stated purpose.
+Point-vs-region agreement: ratios `1.23`–`1.56×`, comfortably inside the
+3× band. `Δφ(θ)` (diagnostic only): `+0.21`–`+0.59` rad, all positive,
+not scored. Floor gate: `0/12` cells `UNRESOLVED-BY-CONSTRUCTION` across
+all three pools (region@P, point@P, region@P_off) — the amplitude floor
+never triggered, as anticipated in Idealizations. Thermal sidecar: N/A
+this cycle, exactly as committed in Setup — `netd_row`/`cell_metrics_r4`
+were not imported into `run.py`, discharging the R21 risk cleanly.
+
+**Predictions: 1, 3, 4, 5 CONFIRMED as originally specified. 2 CONFIRMED
+on the corrected formula (FALSIFIED on the original, sign-erroneous
+formula — disclosed, not hidden).** Real FDTD calls: 26 (24 R4-family +
+2 Gate B), matching the committed budget exactly. Trust suite confirmed
+green before, during, and after (41/41); zero `lab/` diff throughout.
+
+## Learned
+
+1. **The coherent point/region instrument works and is trustworthy for
+   the primary channel it was built to answer** — constraint 1's own
+   physical (not yet perceptual) transmission question now has a real,
+   phase-resolved, rotating-frame answer on this bench for the R4 family:
+   a genuine, spatially-localized on-axis darkening of `κ~0.4–0.7%`,
+   immune by construction to the `i_inc`/cosθ artifact (it never calls
+   `sc.widths()`) and to fixed-lab-frame registration (Gate D
+   independently confirms the rotating construction is exercised
+   correctly). This closes exp-101's own Next item 1 as a working
+   instrument, not merely a proposal.
+2. **A cross-scale "known-good reproduction" gate needs the SAME
+   measurement footprint as the figure it reproduces, not merely the
+   same relative-to-object-size standoff.** Gate B's failure is not a
+   flaw in the new instrument — it is a mismatch between what the new
+   instrument measures (a point/small-region sample) and what the old
+   `beam_behind` figure measures (a wide spatial-window average starting
+   farther from the object). A near-field shadow genuinely fills back in
+   with distance (Fresnel diffraction), so a point sample and a window
+   average at different effective standoffs are not interchangeable —
+   this is a real, generalizable lesson for any future "does the new
+   thing see what the old thing saw" gate on this bench: match the
+   OLD measurement's own spatial footprint, don't merely rescale a
+   different footprint by object size.
+3. **A second, independent instance of the R4-lineage "sign correction
+   must be independently re-derived, never adopted merely because it
+   makes two numbers agree" discipline just earned its keep, live, at
+   Phase 4 rather than at a later Phase-5 catch.** The ~150% deviation's
+   own uniform, per-cell-invariant character (not noisy, not partial) was
+   itself the tell that this was a systematic sign artifact rather than a
+   per-cell physics discrepancy — a diagnostic heuristic worth carrying
+   forward: a "deviation" that is suspiciously uniform across independent
+   cells is more likely a formula/convention bug than a real effect.
+4. **A frozen Phase-3 formula can still carry a sign defect through to
+   Phase 4** — the `Sx≈I0_corrected·cosθ` self-consistency identity in
+   this cycle's own NOTES.md (and in the Phase-1 proposal, verified by
+   two Phase-2 critiques and Red Team without catching this) was written
+   without the leading minus sign its own `u(θ)=(-cosθ,sinθ)` convention,
+   used two lines away for `P(θ)`, already required. Neither the two
+   independent Phase-2 seats (EM, QUANTUM) that specifically checked this
+   formula, nor Red Team's own independent re-verification, caught the
+   sign — all three verified the MAGNITUDE relationship and the
+   AVERAGING-ORDER issue (correctly), but none independently re-derived
+   the sign from `u(θ)` itself. Worth flagging to Phase 5/Red Team as a
+   possible new standing-rule candidate: a self-consistency identity
+   between two vector-valued quantities must have its SIGN independently
+   re-derived from the same convention already governing any other use of
+   that vector in the same document, not merely its magnitude.
+
+## Next (candidate directions, not this cycle's scope)
+
+1. **A properly-scoped Gate B, matched to the established `beam_behind`
+   figure's own spatial footprint** (the literal `BEHIND` window, or an
+   equivalently-justified window on the R4-family scale) rather than a
+   rescaled point/region sample — the correct fix identified in Learned
+   item 2, deliberately NOT applied this cycle to avoid a post-hoc
+   parameter search on already-observed data (would need its own fresh
+   Phase-1 justification and a re-run, cleanly separated from this
+   cycle's own committed predictions).
+2. **The candidate standing rule from Learned item 4** (sign of a
+   vector-valued self-consistency identity must be independently
+   re-derived from the same convention already governing that vector
+   elsewhere in the same document) — a Red Team/Phase-5 call on whether
+   to formally adopt it.
+3. Tier 1 (the R3-vs-R4 `delta_scene`-realizability split, PHOTONICS'
+   zero-FDTD physical-hypothesis check first) remains queued, unchanged,
+   per exp-100/exp-101's own Reconciled-queue ranking — untouched this
+   cycle by design.
+4. The Tier-2 perceptual conversion (constraint 1's own missing
+   conversion from this cycle's raw `κ(θ)`/`I_abs(θ)` to a witness-
+   perceived `C_thr(L)` judgment) — still unbuilt, per fix 5/6's
+   corrected scoping.

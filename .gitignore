@@ -5,3 +5,4 @@ __pycache__/
 .venv/
 .firecrawl/
 experiments/*/run_log.txt
+experiments/*/*.pkl

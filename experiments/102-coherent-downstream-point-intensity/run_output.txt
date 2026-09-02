@@ -10,3 +10,148 @@ D_STANDOFF=200  H_REGION=10  DELTA_LAT=450  FLOOR_FRAC=0.1
 -- 24 R4-family FDTD calls queued --
   [ 1/24] C40_R4   theta=+37.127 article=False steps=5600
   [ 2/24] C40_R4   theta=+37.127 article=True steps=5600
+  [ 3/24] G40_R4   theta=+37.127 article=False steps=5600
+  [ 4/24] G40_R4   theta=+37.127 article=True steps=5600
+  [ 5/24] C40_R4   theta=+38.590 article=False steps=5600
+  [ 6/24] C40_R4   theta=+38.590 article=True steps=5600
+  [ 7/24] G40_R4   theta=+38.590 article=False steps=5600
+  [ 8/24] G40_R4   theta=+38.590 article=True steps=5600
+  [ 9/24] C40_R4   theta=+39.200 article=False steps=5600
+  [10/24] C40_R4   theta=+39.200 article=True steps=5600
+  [11/24] G40_R4   theta=+39.200 article=False steps=5600
+  [12/24] G40_R4   theta=+39.200 article=True steps=5600
+  [13/24] C40_R4   theta=+40.265 article=False steps=5600
+  [14/24] C40_R4   theta=+40.265 article=True steps=5600
+  [15/24] G40_R4   theta=+40.265 article=False steps=5600
+  [16/24] G40_R4   theta=+40.265 article=True steps=5600
+  [17/24] C40_R4   theta=+41.461 article=False steps=5600
+  [18/24] C40_R4   theta=+41.461 article=True steps=5600
+  [19/24] G40_R4   theta=+41.461 article=False steps=5600
+  [20/24] G40_R4   theta=+41.461 article=True steps=5600
+  [21/24] C40_R4   theta=+42.961 article=False steps=5600
+  [22/24] C40_R4   theta=+42.961 article=True steps=5600
+  [23/24] G40_R4   theta=+42.961 article=False steps=5600
+  [24/24] G40_R4   theta=+42.961 article=True steps=5600
+[cache] R4-family sweep (24 captures) saved to /home/user/photon-lab/experiments/102-coherent-downstream-point-intensity/r4_family_cache.pkl
+R4-family wall time: 3180.7s (53.01 min)  [FRESH FDTD]
+
+==============================================================================
+GATE A -- trivial-reduction identity (no-object BOTH legs => kappa=1.0)
+==============================================================================
+[Gate A] n_points=48 max|kappa-1.0|=0.000e+00  PASS=True
+
+==============================================================================
+GATE B -- known-good reproduction on native-scale flagship @ theta=0deg
+==============================================================================
+Gate B wall time: 31.8s
+[Gate B] D_STANDOFF rescale: R4-family 200cells/R4_R_OUT(156)=1.282x r_out; native GATEB_CPL=20 vs R4_CPL[600]=40 (ratio 0.5) => GATEB_D_STANDOFF=100cells (1.282x r_out), GATEB_H_REGION=5cells (holds the SAME standoff/r_out and region/r_out ratios the R4 family used)
+[Gate B] P(0deg) = (352,280)  u=[ 1. -0.]  sign=-1.0  (SRC_X=64, CX=252 -- downstream is +x here, opposite of R4 family)
+[Gate B] exp-001's own established BEHIND window: x in [357,457)  P(0deg).x=352  inside_window=False
+[Gate B] kappa_region(0deg) = 1.626896e-03  kappa_point=2.225692e-03  PASS (in [0.005,0.05]) = False
+  *** GATE B FAILED -- kappa_region=1.626896e-03 is outside the pre-registered [0.005,0.05] band (established beam_behind anchor: 1.82% at 600nm, experiments/001-.../results.json['absorber-600']), even AFTER rescaling GATEB_D_STANDOFF/GATEB_H_REGION to hold the same standoff/r_out ratio the R4-family value was designed around (see comment above GATEB_N). Recorded, NOT halting -- same reporting-completeness rationale as Gate A above. Diagnosis: this is a GENUINE, HONEST FAILURE, not a further implementation bug -- exp-001's own established figure is a WIDE WINDOW average (x in [357,457), i.e. ~1.35x-2.63x r_out from center) of a shadow that fills back in with increasing distance, whereas this instrument's rescaled point sits at ~1.28x r_out (BEFORE that established window) -- much closer to the object, in the near-field where the shadow reads measurably darker. A point/region sample and a window envelope average at two different standoffs are not directly comparable; forcing the point further out to land inside the window would be exactly the kind of post-hoc parameter search LOGBOOK's R5 already rules out. This means: only Gates A (trivial identity) and D (fault-injection positive control) independently support trusting the primary-channel Predictions 1/3/4/5 this cycle -- Gate B's cross-scale reproduction against the OLD established figure is NOT validated, a real limitation for Phase 5. ***
+
+==============================================================================
+GATE C / PREDICTION 2 -- I0_corrected*u_x(theta) vs i_inc (see Resolution Note 2)
+==============================================================================
+  [C40_R4] theta=+37.127246  I0_corrected=3.974182e-01  i_inc=-3.161575e-01  u_x=-0.797297  mean_sx=-3.161575e-01  mean_sy=2.408020e-01  dev=0.1768%  (ORIGINAL erroneous bare-cos(theta) dev=159.2826%)
+  [G40_R4] theta=+37.127246  I0_corrected=3.962285e-01  i_inc=-3.171790e-01  u_x=-0.797297  mean_sx=-3.171790e-01  mean_sy=2.374752e-01  dev=0.3198%  (ORIGINAL erroneous bare-cos(theta) dev=159.7792%)
+  [C40_R4] theta=+38.590230  I0_corrected=4.181913e-01  i_inc=-3.235719e-01  u_x=-0.781627  mean_sx=-3.235719e-01  mean_sy=2.649249e-01  dev=0.7885%  (ORIGINAL erroneous bare-cos(theta) dev=155.5368%)
+  [G40_R4] theta=+38.590230  I0_corrected=4.125990e-01  i_inc=-3.200847e-01  u_x=-0.781627  mean_sx=-3.200847e-01  mean_sy=2.603531e-01  dev=0.5850%  (ORIGINAL erroneous bare-cos(theta) dev=155.7403%)
+  [C40_R4] theta=+39.200000  I0_corrected=4.247609e-01  i_inc=-3.265908e-01  u_x=-0.774944  mean_sx=-3.265908e-01  mean_sy=2.715884e-01  dev=0.6063%  (ORIGINAL erroneous bare-cos(theta) dev=154.3826%)
+  [G40_R4] theta=+39.200000  I0_corrected=4.213542e-01  i_inc=-3.232072e-01  u_x=-0.774944  mean_sx=-3.232072e-01  mean_sy=2.703267e-01  dev=0.7877%  (ORIGINAL erroneous bare-cos(theta) dev=154.2012%)
+  [C40_R4] theta=+40.265420  I0_corrected=4.361870e-01  i_inc=-3.335681e-01  u_x=-0.763059  mean_sx=-3.335681e-01  mean_sy=2.810542e-01  dev=0.1678%  (ORIGINAL erroneous bare-cos(theta) dev=152.7795%)
+  [G40_R4] theta=+40.265420  I0_corrected=4.345000e-01  i_inc=-3.313597e-01  u_x=-0.763059  mean_sx=-3.313597e-01  mean_sy=2.810534e-01  dev=0.0435%  (ORIGINAL erroneous bare-cos(theta) dev=152.5682%)
+  [C40_R4] theta=+41.460901  I0_corrected=4.540420e-01  i_inc=-3.439942e-01  u_x=-0.749408  mean_sx=-3.439942e-01  mean_sy=2.963480e-01  dev=0.8219%  (ORIGINAL erroneous bare-cos(theta) dev=150.7034%)
+  [G40_R4] theta=+41.460901  I0_corrected=4.527882e-01  i_inc=-3.431862e-01  u_x=-0.749408  mean_sx=-3.431862e-01  mean_sy=2.953648e-01  dev=0.8532%  (ORIGINAL erroneous bare-cos(theta) dev=150.7348%)
+  [C40_R4] theta=+42.960901  I0_corrected=4.937821e-01  i_inc=-3.587676e-01  u_x=-0.731819  mean_sx=-3.587676e-01  mean_sy=3.392735e-01  dev=0.5248%  (ORIGINAL erroneous bare-cos(theta) dev=145.8390%)
+  [G40_R4] theta=+42.960901  I0_corrected=5.017633e-01  i_inc=-3.625847e-01  u_x=-0.731819  mean_sx=-3.625847e-01  mean_sy=3.468411e-01  dev=0.9198%  (ORIGINAL erroneous bare-cos(theta) dev=145.4440%)
+[Gate C/Pred2] max deviation across 12 (angle,config) cells: 0.9198%  PASS (<=1%) = True  (disclosure: the ORIGINAL erroneous bare-cos(theta) formula gave max dev=159.7792% -- a uniform sign-flip artifact, not a physics failure; corrected using u_x(theta)=-cos(theta) per Resolution Note 2 above, independently re-derived from the already-vetted u(theta) propagation-direction formula plus the physical fact S is parallel to u for a plane wave, not fit to match)
+
+==============================================================================
+PRIMARY CHANNEL -- kappa(theta), kappa_off(theta), I_abs(theta), Delta_phi(theta)
+==============================================================================
+  [C40_R4] theta=+37.127246  P=[181, 1705]  kappa_region=5.373870e-03  kappa_point=7.690025e-03  kappa_off_region=1.041224e+00  I_abs=5.320360e-03  delta_phi=+0.4405rad
+  [G40_R4] theta=+37.127246  P=[261, 1785]  kappa_region=4.631561e-03  kappa_point=6.601680e-03  kappa_off_region=1.041503e+00  I_abs=4.467916e-03  delta_phi=+0.5871rad
+  [C40_R4] theta=+38.590230  P=[184, 1709]  kappa_region=3.681515e-03  kappa_point=4.854461e-03  kappa_off_region=1.076646e+00  I_abs=3.661623e-03  delta_phi=+0.2892rad
+  [G40_R4] theta=+38.590230  P=[264, 1789]  kappa_region=5.186238e-03  kappa_point=7.738981e-03  kappa_off_region=1.069649e+00  I_abs=5.297865e-03  delta_phi=+0.3280rad
+  [C40_R4] theta=+39.200000  P=[185, 1710]  kappa_region=3.851006e-03  kappa_point=5.553751e-03  kappa_off_region=1.040581e+00  I_abs=3.707431e-03  delta_phi=+0.4994rad
+  [G40_R4] theta=+39.200000  P=[265, 1790]  kappa_region=3.822813e-03  kappa_point=5.960186e-03  kappa_off_region=1.041841e+00  I_abs=3.552947e-03  delta_phi=+0.3617rad
+  [C40_R4] theta=+40.265420  P=[187, 1713]  kappa_region=6.510754e-03  kappa_point=8.836379e-03  kappa_off_region=1.062422e+00  I_abs=6.762299e-03  delta_phi=+0.2700rad
+  [G40_R4] theta=+40.265420  P=[267, 1793]  kappa_region=5.761332e-03  kappa_point=7.780001e-03  kappa_off_region=1.062734e+00  I_abs=6.064201e-03  delta_phi=+0.4075rad
+  [C40_R4] theta=+41.460901  P=[190, 1716]  kappa_region=3.479968e-03  kappa_point=4.396322e-03  kappa_off_region=1.042896e+00  I_abs=3.491194e-03  delta_phi=+0.2092rad
+  [G40_R4] theta=+41.460901  P=[270, 1796]  kappa_region=4.703396e-03  kappa_point=6.704489e-03  kappa_off_region=1.044067e+00  I_abs=4.727021e-03  delta_phi=+0.2362rad
+  [C40_R4] theta=+42.960901  P=[194, 1720]  kappa_region=7.289772e-03  kappa_point=1.025072e-02  kappa_off_region=1.075745e+00  I_abs=7.422939e-03  delta_phi=+0.3634rad
+  [G40_R4] theta=+42.960901  P=[274, 1800]  kappa_region=5.124411e-03  kappa_point=6.303528e-03  kappa_off_region=1.074420e+00  I_abs=5.241633e-03  delta_phi=+0.3010rad
+
+==============================================================================
+FLOOR GATE -- amplitude-floor discipline (FLOOR_FRAC=0.10, house style)
+==============================================================================
+  [floor gate: region@P (i_region_empty)] n=12 rms=8.788881e-01 floor=8.788881e-02 n_unresolved_by_construction=0
+  [floor gate: point@P (i_point_empty)] n=12 rms=8.920135e-01 floor=8.920135e-02 n_unresolved_by_construction=0
+  [floor gate: region@P_off (i_off_region_empty)] n=12 rms=8.905653e-01 floor=8.905653e-02 n_unresolved_by_construction=0
+[floor gate] total UNRESOLVED-BY-CONSTRUCTION entries across all 3 pools: 0
+
+==============================================================================
+GATE D -- fault-injection positive control @ theta=39.2deg
+==============================================================================
+  [C40_R4] hand P=(185, 1710)  code P=(185, 1710)  match=True
+  [C40_R4] kappa_region correct=3.851006e-03  perturbed=5.736115e-03  rel_dev=48.9511%  PASS(>5%)=True
+  [G40_R4] hand P=(265, 1790)  code P=(265, 1790)  match=True
+  [G40_R4] kappa_region correct=3.822813e-03  perturbed=4.137878e-03  rel_dev=8.2417%  PASS(>5%)=True
+[Gate D] OVERALL PASS = True
+
+==============================================================================
+PREDICTIONS
+==============================================================================
+
+[Prediction 1] kappa_region in [0,0.10] -- scored cells=12/12  violations=0  VERDICT=CONFIRMED
+    ('C40_R4', 37.127246): kappa_region=5.373870e-03  outcome=resolved
+    ('G40_R4', 37.127246): kappa_region=4.631561e-03  outcome=resolved
+    ('C40_R4', 38.59023): kappa_region=3.681515e-03  outcome=resolved
+    ('G40_R4', 38.59023): kappa_region=5.186238e-03  outcome=resolved
+    ('C40_R4', 39.2): kappa_region=3.851006e-03  outcome=resolved
+    ('G40_R4', 39.2): kappa_region=3.822813e-03  outcome=resolved
+    ('C40_R4', 40.26542): kappa_region=6.510754e-03  outcome=resolved
+    ('G40_R4', 40.26542): kappa_region=5.761332e-03  outcome=resolved
+    ('C40_R4', 41.460901): kappa_region=3.479968e-03  outcome=resolved
+    ('G40_R4', 41.460901): kappa_region=4.703396e-03  outcome=resolved
+    ('C40_R4', 42.960901): kappa_region=7.289772e-03  outcome=resolved
+    ('G40_R4', 42.960901): kappa_region=5.124411e-03  outcome=resolved
+
+[Prediction 2] |I0_corrected*u_x(theta)-i_inc|/I0_corrected <= 0.01 at all 12 (angle,config) cells: max_dev=0.9198%  VERDICT=CONFIRMED
+
+[Prediction 3] kappa_off_region >= 0.90 -- scored cells=12/12  violations=0  VERDICT=CONFIRMED
+    ('C40_R4', 37.127246): kappa_off_region=1.041224e+00  outcome=resolved
+    ('G40_R4', 37.127246): kappa_off_region=1.041503e+00  outcome=resolved
+    ('C40_R4', 38.59023): kappa_off_region=1.076646e+00  outcome=resolved
+    ('G40_R4', 38.59023): kappa_off_region=1.069649e+00  outcome=resolved
+    ('C40_R4', 39.2): kappa_off_region=1.040581e+00  outcome=resolved
+    ('G40_R4', 39.2): kappa_off_region=1.041841e+00  outcome=resolved
+    ('C40_R4', 40.26542): kappa_off_region=1.062422e+00  outcome=resolved
+    ('G40_R4', 40.26542): kappa_off_region=1.062734e+00  outcome=resolved
+    ('C40_R4', 41.460901): kappa_off_region=1.042896e+00  outcome=resolved
+    ('G40_R4', 41.460901): kappa_off_region=1.044067e+00  outcome=resolved
+    ('C40_R4', 42.960901): kappa_off_region=1.075745e+00  outcome=resolved
+    ('G40_R4', 42.960901): kappa_off_region=1.074420e+00  outcome=resolved
+
+[Prediction 4] point-vs-region agree within 3x -- violations=0  VERDICT=CONFIRMED
+    ('C40_R4', 37.127246): kappa_region=5.373870e-03  kappa_point=7.690025e-03  ratio=1.431  agree=True
+    ('G40_R4', 37.127246): kappa_region=4.631561e-03  kappa_point=6.601680e-03  ratio=1.425  agree=True
+    ('C40_R4', 38.59023): kappa_region=3.681515e-03  kappa_point=4.854461e-03  ratio=1.319  agree=True
+    ('G40_R4', 38.59023): kappa_region=5.186238e-03  kappa_point=7.738981e-03  ratio=1.492  agree=True
+    ('C40_R4', 39.2): kappa_region=3.851006e-03  kappa_point=5.553751e-03  ratio=1.442  agree=True
+    ('G40_R4', 39.2): kappa_region=3.822813e-03  kappa_point=5.960186e-03  ratio=1.559  agree=True
+    ('C40_R4', 40.26542): kappa_region=6.510754e-03  kappa_point=8.836379e-03  ratio=1.357  agree=True
+    ('G40_R4', 40.26542): kappa_region=5.761332e-03  kappa_point=7.780001e-03  ratio=1.350  agree=True
+    ('C40_R4', 41.460901): kappa_region=3.479968e-03  kappa_point=4.396322e-03  ratio=1.263  agree=True
+    ('G40_R4', 41.460901): kappa_region=4.703396e-03  kappa_point=6.704489e-03  ratio=1.425  agree=True
+    ('C40_R4', 42.960901): kappa_region=7.289772e-03  kappa_point=1.025072e-02  ratio=1.406  agree=True
+    ('G40_R4', 42.960901): kappa_region=5.124411e-03  kappa_point=6.303528e-03  ratio=1.230  agree=True
+
+[Prediction 5] Gate D fault-injection control (perturbed vs correct kappa differ >5% at theta=39.2, both configs): VERDICT=CONFIRMED
+
+Total wall time: 3278.5s (54.64 min)
+Nominal experiment call budget: 26 (expected 26 = 24 R4-family + 2 Gate B, NOTES.md's Call budget -- unchanged regardless of cache hits)
+Real FDTD calls executed by THIS run: 26 (R4-family FRESH + 2 Gate B always-fresh)
+
+results.json written.
