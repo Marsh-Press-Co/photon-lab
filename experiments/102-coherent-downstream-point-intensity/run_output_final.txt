@@ -1,0 +1,10 @@
+==============================================================================
+exp-102 -- Coherent, phase-resolved downstream point-intensity instrument
+==============================================================================
+
+ANGLES: [37.127246, 38.59023, 39.2, 40.26542, 41.460901, 42.960901]
+PAIR_KEYS_R4: ('C40_R4', 'G40_R4')
+D_STANDOFF=200  H_REGION=10  DELTA_LAT=450  FLOOR_FRAC=0.1
+[margin gate] 24 point blocks, all clear of absorb/boundary: PASS
+
+-- 24 R4-family FDTD calls queued --
