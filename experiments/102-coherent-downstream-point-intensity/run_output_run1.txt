@@ -8,5 +8,3 @@ D_STANDOFF=200  H_REGION=10  DELTA_LAT=450  FLOOR_FRAC=0.1
 [margin gate] 24 point blocks, all clear of absorb/boundary: PASS
 
 -- 24 R4-family FDTD calls queued --
-  [ 1/24] C40_R4   theta=+37.127 article=False steps=5600
-  [ 2/24] C40_R4   theta=+37.127 article=True steps=5600
