@@ -1,0 +1,45 @@
+==============================================================================
+exp-101 -- Closed-box (4-face Poynting) reconstruction of beam_behind_t28
+==============================================================================
+
+Corrected LEG_B_ANGLES: [37.127246379304516, 38.59023047672059, 39.2, 40.26541960305772, 41.46090139413461, 42.960901]
+BOX_MARGIN_REPORT: {
+  "C40_R4": {
+    "box_a": [
+      160,
+      520,
+      1404,
+      1764
+    ],
+    "box_cross": [
+      170,
+      510,
+      1414,
+      1754
+    ],
+    "margin_a_left": 80,
+    "margin_cross_left": 90,
+    "margin_a_right": 120,
+    "margin_cross_right": 130
+  },
+  "G40_R4": {
+    "box_a": [
+      240,
+      600,
+      1484,
+      1844
+    ],
+    "box_cross": [
+      216,
+      624,
+      1460,
+      1868
+    ],
+    "margin_a_left": 160,
+    "margin_cross_left": 136,
+    "margin_a_right": 200,
+    "margin_cross_right": 176
+  }
+}
+
+-- Leg B (fixed): 6 angles x 2 keys x 2 conditions = 24 sim.run() calls --
