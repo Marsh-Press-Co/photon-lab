@@ -22,39 +22,77 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-02, Iteration 81 shift BLOCKED before Phase 1 --
-tooling, not science: this shift's session had no sub-agent-spawning tool
-(no Task/Agent tool, no agent-creation primitive of any kind -- exhaustively
-searched via ToolSearch; only SendMessage to already-existing agents and
-TaskStop were available, neither can create a fresh independent context).
-PANEL.md's own "Independence mechanics" is explicit and load-bearing: "One
-fresh sub-agent per seat per cycle" -- Phase 1 (1 lead sub-agent), Phase 2
-(6 blind parallel sub-agents + Red Team), and Phase 5 (7 fresh sub-agents
-again) all structurally require it; the whole point of the panel per its own
-"Why this exists" section is fresh-context independence bought with "the
-tools we actually have" -- when that tool is actually absent, writing all
-seven seats in one voice is exactly the shortcut PANEL.md and this shift's
-own task brief both explicitly forbid, and would corrupt LOGBOOK.md's
-record for every future reader who trusts a logged verdict came from real
-blind independence. Per PANEL.md's/the task brief's own instruction ("if
-truly blocked, write the blocker into PLAN.md and stop cleanly"), this
-shift did the following and no more: re-ran the trust suite as pre-flight
-(green, 41/41, `--only 12346789`); read PANEL.md in full and confirmed the
-Independence mechanics text above verbatim; read this section of PLAN.md
-and LOGBOOK.md's Iteration 80 entry and confirmed the summary below is
-accurate; did NOT touch LOGBOOK.md, NOTES.md, experiments/, or any lab/
-file; created no experiments/104-... directory; made no FDTD calls; no
-CHECKPOINT fired (this is a tooling gap, not one of PANEL.md's five
-Checkpoint criteria, so it is logged here and in SESSION_LOG.md but not
-tagged CHECKPOINT). **The Reconciled Iteration-81 queue below (Tier
-1-4, written by Iteration 80's Red Team) stands completely UNCHANGED and
-is still exactly what the next runner should pick up** -- the only new
-precondition is that the next runner's session must have a genuine
-sub-agent-spawning capability before starting Phase 1; if it does not,
-this same blocker will recur and should be logged the same way rather than
-worked around by collapsing the seven voices into one. Working tree was
-clean at both the start and end of this shift; nothing was pushed except
-this PLAN.md note and the matching SESSION_LOG.md entry. Next: panel
+## Current state (2026-09-02, panel Iteration 81 done (exp-104, PARTIAL,
+ELECTROMAGNETISM's rotation-lead cycle: a prior same-numbered shift
+BLOCKED before Phase 1 (tooling gap, no sub-agent-spawning primitive,
+logged and pushed as commit 2ad0c6e, zero science attempted) before a
+later shift with working tooling executed the full cycle. Executed
+exp-103's own Reconciled Iteration-81 queue Tier 1 (Red Team's own top
+ranking): a genuinely sub-Nyquist (2-cell pitch) standoff recheck of
+exp-103's own degenerate-aliasing sampling defect -- samples that landed
+at exactly the lambda/2=10-cell coherent-intensity fringe period, not
+resolved against it. Byte-identical article/geometry to exp-103's
+primary pair; a new zero-averaging point_intensity channel (ported from
+exp-102) alongside the unchanged 11-cell box-average kappa_region_wide
+channel, at 53 DENSE_X points split into 5 per-quintile FFT period
+estimates with a signed sinc-based suppression-ratio cross-check and a
+delta_phi co-variation proxy. Five blind Phase-2 critiques, all
+support-with-changes, five distinct flip conditions; Red Team's Phase-2
+audit adopted all five, raised 2 more attacks of its own (a P3
+grid-quantization fix via per-quintile FFT; a P6 missing numeric
+threshold), and ratified new standing house rule R23 (a disclaimer
+required in multiple sections must be code-enforced via a single
+source-of-truth string constant + assert -- the disclaimer-erosion
+pattern's 8th recurrence, caught and fixed at Phase 1 itself).
+Predictions committed to git BEFORE any FDTD call (db57beb); exactly 2
+real FDTD calls, 58.7s wall, zero lab/ diff, trust suite green
+throughout (41/41). Gate P1 (reproducibility): PASS, exact
+(0.000e+00 deviation). P2 (ripple existence): FALSIFIED -- the headline
+finding: at genuinely sub-Nyquist pitch, with a zero-averaging channel
+built to surface any ripple the box average would suppress, NO
+qualifying ripple was found anywhere across the full 104-cell span --
+residual_point is strictly monotonic with zero sign changes in 4 of 5
+quintiles. P3/P4 FALSIFIED (three quintiles locked onto the identical
+FFT bin, confirmed spectral leakage of a monotonic trend, not a real
+oscillation; the one genuine in-band candidate, Q4, was decisively
+disproved by P4's digit-exact sinc mismatch -- wrong sign, 22.12x off in
+magnitude). P5 CONFIRMED (2/2, on evidentiarily-weak ground). P6:
+NARROWS (ripple_fraction <=0.138 in all 5 quintiles). Six blind Phase-5
+reviews (PHOTONICS, QUANTUM, VISION: CONFIRM-WITH-GAPS; MATERIALS,
+THERMODYNAMICS: CONFIRM; ELECTROMAGNETISM self-review: CONFIRM) found
+P2's sign-change test is structurally blind to the one real in-band
+wiggle (P4's sinc mismatch is the actual disproof, not P2); Q0-Q3 share
+the identical raw FFT bin (QUANTUM's sharpest finding, independently
+confirmed by Red Team from results.json's own diagnostic fields); three
+of six seats independently found R23's assert covers only the one
+perceptual disclaimer it was built for; VISION executed
+run.py --predictions-only live to confirm the asserts fire and raised
+the round's deepest critique -- R23 proves transcription-fidelity, not
+content-adequacy/placement/generality. Red Team's final audit
+independently re-derived eleven findings from primitives, adopted all
+six reviews with zero overrides. R20 tally: 0 (this round's findings are
+evidentiary-strength/framing critiques, not false citations -- a cleaner
+citation record than either prior T28 cycle). Checkpoint criterion 4
+does NOT fire on either live sub-issue (the R23-coverage gap is its
+founding-cycle scope question, not a recurrence; VISION's legibility
+critique names a designed-in ceiling with no live defect to remedy) --
+both caught blind, pre-LOGBOOK, non-load-bearing. Six mandatory
+same-shift fixes applied to NOTES.md (zero re-run, zero verdict change):
+the P2/P4 headline reframed; the Q3-shared-FFT-bin finding added; "beat"
+corrected to "spectral leakage"; an explicit R23 scope-limitation
+statement added; three Iteration-82 queue items added to Next; a Phase 5
+outcome section appended. Combined Verdict: PARTIAL. Reconciled
+Iteration-82 queue (Red Team's own tiered ranking): Tier 1 -- the T8
+r=78/156/312 bridge extension (now unblocked by this cycle's clean
+null); the R23 scope decision (genericize or formally ratify
+single-disclaimer scope); the near-null-exclusion raw-bin-identity
+refinement. Tier 2 -- VISION's fresh-context cold-read trial; a
+multi-step-count settling convergence bench across the full dense span.
+Tier 3 -- the standing delta_scene R3-vs-R4 split, now FIVE consecutive
+deferrals (a sixth must be re-justified in writing or executed);
+standing lower-priority items unchanged from exp-103's own Tier 4. Full
+record: `experiments/104-t28-subnyquist-standoff-recheck/`, LOGBOOK.md
+Iteration 81). Next: panel
 Iteration 80 done (exp-103, PARTIAL,
 MATERIALS' rotation-lead cycle: executed exp-102's own Reconciled
 Iteration-80 queue Tier 1 items 1+2 combined (Red Team's own top
