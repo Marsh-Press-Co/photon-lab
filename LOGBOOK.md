@@ -874,6 +874,37 @@ top. Protocol: PANEL.md.*
   `experiments/100-t28-delta-scene-constraint-scoring-pass/
   phase5_review_thermodynamics.md`, `phase5_review_em.md`,
   `phase5_redteam_audit.md` §0/§1/§3, LOGBOOK.md Iteration 77.
+- **R22 — a self-consistency identity between two vector-valued
+  quantities, frozen at Phase 3, must have its SIGN (not only its
+  magnitude or averaging order) independently re-derived from whatever
+  convention already governs that vector elsewhere in the same
+  document, before any Phase-4 FDTD call is scored against it** (not a
+  ruled-out idea; a standing house-discipline rule, proposed and
+  adopted by Red Team's Phase-5 final audit, Iteration 79). Distinguishes
+  from the exp-073 R4 addendum (Iteration 50): that addendum requires
+  independent re-derivation of a sign correction ONCE A DISCREPANCY IS
+  ALREADY SUSPECTED; R22's gap is upstream — three independent reviewers
+  (two Phase-2 critiques, EM and QUANTUM, plus Red Team's own Phase-2
+  audit) each verified magnitude/averaging-order on exp-102's frozen
+  `I0_corrected(θ)·cosθ` self-consistency formula without any of them
+  independently re-deriving the SIGN from `u(θ)=(-cosθ,sinθ)`, the same
+  convention already governing that vector two lines away for `P(θ)`'s
+  own construction in the same document. Caught only after Phase 4
+  produced a uniform, suspiciously `2cosθ`-shaped ~150% "deviation"
+  across every cell — not before. **Does not fire on its own founding
+  instance** (exp-102), matching every prior R-rule's own precedent: the
+  error was caught at Phase 4, before any verdict was scored on the wrong
+  formula, both the original error and the correction are fully disclosed
+  in `results.json`/`NOTES.md`, and the correction was independently
+  re-derived six separate ways (the most heavily cross-verified single
+  formula correction in this program's history) before being trusted.
+  **Standing forward-elevating clause**: a future cycle that ships a
+  frozen vector self-consistency identity whose sign is later found
+  wrong, when three or more independent reviewers checked its magnitude
+  but none checked its sign before the run, fires Checkpoint criterion 4
+  automatically — mirroring R16/R21's own three-strike forward clauses.
+  Full record: `experiments/102-coherent-downstream-point-intensity/
+  phase5_redteam_audit.md` §8, LOGBOOK.md Iteration 79.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -7094,6 +7125,133 @@ and holds a standing veto he may exercise at any time; the program does
 not wait for it. No new standing rule is adopted this cycle — R20 itself,
 already on the books since Iteration 76, is the rule that fired; nothing
 about its text needed amending or extending to reach this ruling.
+
+**Iteration 79 (exp-102) — PHOTONICS' rotation-lead cycle: a genuinely
+new, working instrument closes exp-101's own top-ranked Next item, a real
+sign-bug catch executed with unusual rigor, and R20 does NOT fire on its
+own cycle-after-firing.** Executed exp-101's own Reconciled Iteration-79
+queue item 1: built the coherent, phase-resolved downstream point-
+intensity instrument — reading the already-gated complex Ez/Hx/Hy
+phasors (`lab/sections.py::full_capture`/`phasors`, trust-suite stage 8,
+zero `lab/` diff) at a small region on the beam's OWN rotating downstream
+axis, comparing empty- and article-scene captures coherently at the
+identical point. This is explicitly NOT a T28-thread item — no
+`delta_scene`/`frac_contrast`/`ratio_k` is read, cited, or scored;
+Tier 1's own R3-vs-R4 split remains untouched, now three cycles deferred.
+Diagnostic-only, T1: N/A, no mechanism proposed. Five blind Phase-2
+critiques (unanimous support-with-changes: MATERIALS, ELECTROMAGNETISM,
+THERMODYNAMICS, QUANTUM OPTICS, VISION SCIENCE) plus Red Team's Phase-2
+audit (9 numbered attacks, 7 mandatory fixes adopted, 0 overridden, 1 new
+defect Red Team itself found — Gate A's self-comparison cannot detect a
+geometric-placement bug in the new rotating `P(θ)` construction, closed
+by adding Gate D). Phase 3 adopted all seven fixes (an explicit thermal-
+sidecar disposition, discharging an unforced R21 third-strike risk before
+it could arise; the off-axis companion point rebuilt as a pure
+beam-perpendicular offset; `I0_corrected` rebuilt mean-then-norm per a
+Jensen's-inequality finding; the new Gate D fault-injection control;
+a struck perceptual overclaim; a struck "T3" mislabel recurrence, ruled
+non-R20-firing on two independent grounds; a realizability-caveat
+travel requirement).
+
+**A Director orchestration error, disclosed in full**: two Phase-4
+execution agents were inadvertently run concurrently against the same
+`run.py` for part of this cycle, each independently discovering one of
+two real bugs by a different route before being consolidated into one
+final, clean run — zero `lab/` diff throughout, trust suite green before,
+during, and after, independently confirmed via git history at Phase 5.
+**26 real FDTD calls (24 R4-family + 2 Gate B), 3278.5s (54.6 min) wall.**
+Gate A: PASS (trivial identity, exact). **Gate B: FAIL, genuine and
+honestly diagnosed** — a real `cells_per_lambda`-rescaling bug was found
+and fixed first (`D_STANDOFF`/`H_REGION` were unscaled across the R4
+family's cpl=40 vs. the native flagship's cpl=20), but the corrected
+point still sits closer to the object than the established `beam_behind`
+figure's own wide-window footprint, in the near-field where a shadow
+reads darker before Fresnel diffraction fills it back in — a footprint
+mismatch between a point sample and a window average, not force-fixed
+(would be exactly the post-hoc parameter search R5 rules out).
+Consequence, stated plainly: only Gates A and D independently validate
+this cycle's primary-channel readings; Gate B's cross-scale reproduction
+is not validated, a real limitation carried into Next. **Gate C / a
+frozen self-consistency formula: FAIL as originally specified (a uniform
+~150% deviation, a sign-flip signature), PASS after a sign correction
+independently re-derived six separate ways** (NOTES.md's own Resolution
+Note; EM's Phase-2 critique establishing `u(θ)` for an unrelated purpose;
+PHOTONICS', EM's, and QUANTUM's independent Phase-5 re-derivations; Red
+Team's own seventh confirmation) — the most heavily cross-verified single
+formula correction in this program's history, both the error and
+correction fully disclosed, never silently overwritten. Gate D: PASS
+(fault-injection control, both configs clear the discrimination bar).
+All five pre-registered predictions CONFIRMED (Prediction 2 on the
+corrected formula). On-axis coherent intensity ratio `κ(θ)`: `3.48×10⁻³`–
+`7.29×10⁻³` across all 12 (angle,config) cells, genuinely dark;
+realizability caveat carried (this article is locked UNOBTAINIUM-WITH-
+PARAMETERS). Off-axis companion point `κ_off(θ)`: `1.04`–`1.08`, mildly
+brighter than empty, confirming spatially-localized darkening. Thermal
+sidecar: N/A this cycle, code-confirmed not invoked, discharging R21's
+risk cleanly.
+
+**Six blind Phase-5 reviews (all CONFIRM-WITH-GAPS) independently
+recomputed `results.json` from primitives and converged, all six, on one
+real citation defect**: the Result section's stated `κ(θ)` range floor
+(`3.68×10⁻³`) was the second-smallest of 12 cells, not the true minimum
+(`3.48×10⁻³`) — one fact, six independent confirmations. MATERIALS
+additionally found the same headline recurring in Learned item 1 without
+Result's own realizability caveat. All six independently re-derived and
+confirmed the Gate C sign correction by different methods; zero
+overrides. **Red Team's Phase-5 final audit independently re-verified
+every number from `results.json`/`run.py`/git directly (a seventh
+recomputation of the range-floor defect, a sixth-overall Gate-C
+re-derivation) and ruled: ONE distinct R4-class defect survives
+Phase-3-freeze into Result/Learned** — the range floor, propagating
+unchanged into Learned #1 by direct inheritance, not independent
+re-arising (VISION's own "one root cause, two places" reasoning, adopted
+explicitly). MATERIALS' caveat-travel gap is real and mandatory but a
+different failure shape (R1/R21-lineage, not R4/R20) and excluded from
+the tally on that classification ground, not because it is unimportant —
+the same non-vote-driven, classify-by-actual-shape discipline Iteration
+78's own audit used for QUANTUM's `Q_ext`/`cosθ` finding. **R20 requires
+three or more; the count is one (two under the most generous counting) —
+does NOT fire, not a close call**, the cycle immediately after this
+program's first-ever R20 firing (Iteration 78) demonstrating that
+density was an isolated recurrence, not a systemic regression.
+**Checkpoint criterion 4 does not fire on any ground**: the disclosed
+process erratum touched zero `lab/` code, independently confirmed via
+git; Gate B's FAIL is honestly scoped as an open, non-fatal limitation
+with an already-identified cheap next check, not an unfalsifiable claim;
+constraint 3 untouched by design; T1 correctly N/A. **New standing rule
+R22 adopted** (a frozen vector-valued self-consistency identity's sign
+must be independently re-derived from the same governing convention
+already in use elsewhere in the document, before any Phase-4 FDTD call is
+scored against it) — founding instance, does not fire. Three mandatory
+same-shift documentation fixes applied (zero re-run, zero verdict
+change): the range floor corrected in Result and Learned, the
+realizability caveat added to Learned item 1. **Combined Verdict:
+PROMISING.** Reconciled Iteration-80 queue (Red Team's own ranking,
+resolving five of six seats' convergent Gate-B priority and VISION's own
+correctly-argued sequencing point): **Tier 1** — (1) EM's zero-additional-
+FDTD standoff diagnostic on Gate B's own already-captured field (4–5
+points between the corrected point and the established window's near
+edge, disambiguating smooth Fresnel fill-in from a fringe-limited near-
+field null before any redesign); (2) a properly footprint- AND
+aperture-matched Gate B rebuild (the literal `BEHIND` window, the same
+tapered-edge source profile as the R4 family); (3) extending this
+instrument across the T8 r=78/156/312 bridge family (MATERIALS'
+quantitative realizability need and VISION's own stated Tier-2
+precondition, sequenced once, not twice). **Tier 2** — (4) the Tier-2
+perceptual conversion, explicitly gated on item 3's own witness-scale
+extrapolation, per VISION's own argued warning against scoring `C_thr(L)`
+at today's raw near-field standoff; (5) pinning the witness-scale source
+wattage (parallel-track, not blocking). **Tier 3** — (6) Tier 1's own
+R3-vs-R4 `delta_scene` split, now three consecutive cycles deferred,
+flagged for explicit re-justification or execution at Iteration 80; (7) a
+pre-registered, null-controlled dense angular resweep of `κ_off(θ)`. Full
+record: `experiments/102-coherent-downstream-point-intensity/` — Phase-1
+proposal (PHOTONICS), five Phase-2 blind critiques
+(`phase2_critique_{materials,em,thermodynamics,quantum,vision}.md`),
+Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
+(`results.json`, `run_output.txt`, `run.py`), six Phase-5 blind reviews
+(`phase5_review_{photonics,materials,em,thermodynamics,quantum,vision}.md`),
+Phase-5 Red Team final audit.
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
