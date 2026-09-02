@@ -2,6 +2,74 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-02 (panel shift) — Iteration 78 complete (exp-101), CHECKPOINT
+criterion 4 FIRES for the first time in this program's history:
+
+**Pre-flight**: fresh container this session — installed dependencies
+from scratch (numpy/scipy/matplotlib/pillow/autograd/fdtd, then
+`pip install --no-deps ceviche`). Trust suite confirmed green, 41/41
+checks (`--only 12346789`), before any panel work, re-confirmed green
+after Phase 4's real run, and re-confirmed a third time after applying
+Phase-5's documentation fixes. Zero `lab/` diff throughout. Landed on
+`3295515` — Iteration 77/exp-100 fully closed, Iteration-78 queue
+written but not started — ran the full cycle from Phase 1 through
+close in one shift.
+
+**Iteration 78 — VISION SCIENCE's rotation-lead cycle (exp-101).**
+Executed exp-100's own Reconciled Iteration-78 queue, Tier 0 only:
+fixed constraint 1's `beam_behind_t28` (found uninterpretable at
+Iteration 77 — a fixed line window the object's own shadow walks out
+of at oblique incidence) via a closed four-face Poynting-box
+reconstruction on already-gated `sc.widths()`/`box_for_r4`/
+`ref_for_r4` (trust-suite stage 8) — zero `lab/` diff, zero new
+mechanism, T1 N/A. Re-selected the true pool-wide-largest-magnitude
+`delta_scene` angle (39.200000°, the single largest of 75 pooled
+values) in place of exp-100's own locally-scoped pick. Five blind
+Phase-2 critiques (unanimous support-with-changes) plus Red Team's
+Phase-2 audit (7 attacks, 6 mandatory fixes, 0 overridden, 1 new
+defect found — undisclosed duplicate rows in the `delta_scene` pool).
+24 real FDTD calls, 1961.6s (32.7 min) wall, trust suite green
+throughout, zero `lab/` diff. Three of four predictions CONFIRMED;
+Prediction 3 FALSIFIED by a wide margin (measured 0.55–0.62 vs.
+predicted <0.15) — self-diagnosed as the necessary extinction-paradox
+companion of a real shadow, headlining that this energy-partition
+instrument cannot itself answer constraint 1's witness question
+(needs coherent field phase, which a Poynting-flux integral
+discards). Constraint 2 stays clean; thermal sidecar all 12 cells
+UNDETECTABLE.
+
+**Six blind Phase-5 reviews found two genuinely new physics results**
+(QUANTUM: an `i_inc`/`cosθ` commensurability artifact inflating every
+absolute `sc.widths()` output at oblique incidence, corrected values
+matching the bench's own locked `Q_ext=1.5385` anchor to ~1%;
+PHOTONICS: the measured `back_frac` angular decline is very likely a
+fixed-lab-frame-box registration artifact, not article physics) **and,
+independently, three R4-class citation/restatement defects in
+NOTES.md's own Result prose**, each caught only at Phase 5 (an
+`observer_article_norm` range that was actually a subset mislabeled as
+the whole; a "tracking to 3 decimal places" claim that fails at 5 of 6
+angles; a thermal-sidecar "same trend" claim that diverges 2.09×).
+**Red Team's Phase-5 final audit independently re-verified every
+finding from primitives and ruled: standing rule R20 (adopted
+Iteration 76) FIRES for the first time — three valid instances meet
+its bar under the most conservative counting — and CHECKPOINT
+CRITERION 4 FIRES automatically as R20's own textually-mandated
+consequence.** None of the three defects changes any of the four
+scored verdicts; every number in `results.json` was independently
+reproduced unchanged — this is a citation-hygiene process finding, not
+a science one. Ruled a notification, not a pause, per this program's
+unbroken precedent (15 for 15, per LOGBOOK's own running count). 13
+same-shift, documentation-only NOTES.md fixes applied (zero re-run,
+zero verdict change). **Combined Verdict: PROMISING substantively,
+with Checkpoint 4 fired as a process flag.** LOGBOOK.md CHECKPOINT
+entry + Iteration 78 entry written; PLAN.md's Current state updated;
+Marsh notified per PANEL.md's continuous-mode protocol. Reconciled
+Iteration-79 queue: (1) the coherent, phase-resolved downstream
+point-intensity instrument, bound to two new preconditions this cycle
+surfaced; (2) Tier 1's own R3-vs-R4 `delta_scene` split; (3) standing
+deferred items unchanged. Full record:
+`experiments/101-t28-r4-closed-box-constraint1-reconstruction/`.
+
 ## 2026-09-01 (panel shift) — Iteration 77 complete (exp-100):
 The seven-cycle T1:N/A deferral finally addressed for real, not merely
 narrated as addressed -- but the result is honestly split, not a clean

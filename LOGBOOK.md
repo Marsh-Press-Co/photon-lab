@@ -6911,6 +6911,190 @@ article survival). Full record:
 `experiments/100-t28-delta-scene-constraint-scoring-pass/`, LOGBOOK.md
 Iteration 77.
 
+  **Iteration 78 (exp-101) — VISION SCIENCE's rotation-lead cycle: the
+  Tier-0 closed-box reconstruction, delivered correctly, then R20's own
+  automatic clause fires for the first time in this program's history.**
+  Executed exp-100's own Reconciled Iteration-78 queue, Tier 0 only:
+  replaced `beam_behind_t28` (Iteration 77's own uninterpretable fixed-
+  line-window instrument) with a closed four-face Poynting-box
+  reconstruction on already-gated `sc.widths()`/`box_for_r4`/`ref_for_r4`
+  (trust-suite stage 8) — zero `lab/` diff, zero new mechanism, T1 N/A.
+  Re-selected the true pool-wide-largest-magnitude `delta_scene` angle
+  (39.200000°, exp-095, R4, the single largest value in the 75-row pool)
+  in place of exp-100's own locally-scoped 40.960901° (only the pool's
+  10th-largest). Five blind Phase-2 critiques (unanimous
+  support-with-changes) plus Red Team's Phase-2 audit (7 numbered attacks,
+  6 mandatory fixes adopted, 0 overridden, 1 new defect Red Team itself
+  found — undisclosed duplicate rows in `pool_rows()`'s own 75-row pool,
+  12/33 R3 and 6/35 R4, flipping R3's "significant coupling" to
+  non-significant on dedup). Phase 3 adopted all six fixes (a real
+  amplitude floor on `sigma_scat` per R13; the false
+  `widths_direction_corrected` citation replaced with the actual `Sx`-face
+  warrant; an explicit R21 commitment to narrate the thermal sidecar;
+  per-config `BOX_CROSS` clearances so both configs clear a ≥90-cell
+  absorb-boundary margin per R17; the R3-vs-R4 contrast flagged fragile,
+  not settled; T9's Babinet-ceiling disclaimer restored). **24 real FDTD
+  calls, 1961.6s (32.7 min) wall, trust suite green throughout (41/41),
+  zero `lab/` diff, all 12 cells cleared the amplitude floor
+  (`n_unresolved_by_construction=0`).** Three of four pre-registered
+  predictions CONFIRMED (`sigma_abs/sigma_ext∈[0.5129,0.5145]`,
+  `back_frac>0.5` at every cell though with a real, un-pre-registered
+  monotonic decline 0.65→0.53, `box_dev_scat_downstream≤0.0454`);
+  **Prediction 3 FALSIFIED by a wide margin** (measured 0.55–0.62 vs. a
+  predicted <0.15 ceiling) — self-diagnosed same-shift as the necessary
+  extinction-paradox companion of a real shadow (a large forward-
+  scattered cross-section does not mean the beam continues; that
+  distinction needs field PHASE, which a Poynting-flux integral
+  discards), the program's clearest demonstration yet that this
+  particular energy-partition instrument cannot itself answer
+  constraint 1's witness question. Constraint 2 stays clean (all 12
+  cells ≥173× inside the R18 gate). Thermal sidecar: all 12 cells
+  UNDETECTABLE (368× below `NETD_BAND_K`), narrated per the R21
+  commitment, not merely persisted.
+
+  **Six blind Phase-5 reviews, all CONFIRM/CONFIRM-WITH-GAPS, an
+  unusually dense layer of independently-caught new physics and new
+  citation defects.** QUANTUM found a genuine R9 commensurability defect:
+  `sc.widths()`'s `i_inc` measures only the x-projected incident Poynting
+  flux, inflating every ABSOLUTE (non-ratio) output by `1/cosθ` at oblique
+  incidence — invisible on every prior use of these outputs (all ratios,
+  which cancel it) but exposed by Prediction 3's own absolute
+  construction; correcting it collapses this cycle's raw `Q_ext≈1.94-2.11`
+  to `1.539-1.556`, matching the bench's own already-locked normal-
+  incidence anchor (`lab/qext_theory.py`, exp-059, `Q_ext=1.5385`) to ~1%
+  — a real, valuable, non-load-bearing finding (Prediction 3 stays
+  falsified either way). PHOTONICS found the `back_frac` decline is very
+  likely a fixed-lab-frame-box registration artifact, not article
+  physics: the box's lateral (y-face) share of scattered power grows
+  34.6%→46.7% across the sweep, tracking `tanθ`'s own 23% growth — the
+  same effect as Prediction 3's falsification, viewed two ways, not two
+  findings. MATERIALS found the raw `sigma_abs` values exceed the
+  object's own geometric footprint (`Q_abs>1` at 10 of 12 cells, up to
+  8.6% over unity) undisclosed alongside the correctly-disclaimed ratio
+  one line above it, and connected Prediction 3's extinction-paradox
+  magnitude to the article's own already-LOCKED UNOBTAINIUM-WITH-
+  PARAMETERS verdict (`experiments/034-.../REALIZABILITY_MEMO.md`
+  Amendments 6-7) — the falsified magnitude describes an article no real
+  coating at this 1.44µm thickness would reproduce. EM independently
+  re-verified both of its own Phase-2 mandatory fixes landed in executed
+  code (not just prose), found the amplitude floor is wired into only one
+  of four fields it should protect (moot this run, a latent gap for
+  future reuse), and quantified the lateral-flux channel NOTES.md's first
+  draft called merely "a remainder." THERMODYNAMICS independently
+  re-verified the R21 third-strike discharge (all 12 cells UNDETECTABLE,
+  368× margin) and found NOTES.md's own claim that the thermal sidecar
+  "tracks the same trend" as `sigma_abs` is false — a 2.09× divergence
+  traced exactly to `thermo_sidecar.py`'s quadratic `iso_xsec_sq`
+  convention vs. `sigma_abs`'s linear one. VISION's own self-review
+  independently found the SAME `observer_article_norm` range error EM
+  found (the stated range was actually just the `C40_R4` subset), a
+  "3 decimal places" overclaim, and a mislabeled "T3" cross-reference
+  (LOGBOOK's T3 is the unrelated temporal-contrast instrument) — and was
+  the seat that first named the resulting pattern as an R20 risk.
+
+  **Red Team's Phase-5 final audit independently re-verified every
+  finding from primitives and ruled: R20 FIRES, Checkpoint criterion 4
+  fires as its direct, textually-mandated consequence — the first time
+  in this program's history R20's own automatic clause has actually
+  triggered.** Of five candidate R4-class defects, three were
+  independently confirmed genuine, located in Result (not Idealizations/
+  Next), and caught only at Phase 5: the `observer_article_norm` range
+  error (VISION+EM — the SAME single defect, ruled to count ONCE, not
+  twice, since it is one fact corroborated by two independent methods,
+  not two independently-arising defects); the `back_frac` "3 decimal
+  places" claim (Red Team's own digit-by-digit recount found the true
+  fail-rate is 5 of 6 angles, stricter than VISION's own stated 3 of 6 —
+  a minor imprecision in VISION's otherwise excellent self-review, noted
+  for the record, not chargeable); THERMODYNAMICS' "same trend" claim.
+  QUANTUM's own `Q_ext→2`/`cosθ` finding was ruled a genuine, serious
+  defect but categorized R9 (a derived multi-step physics inconsistency),
+  not R4/R20 (a single-step citation restatement) — explicitly not a
+  vote-driven call, since three valid instances remain regardless of this
+  one's classification. VISION's "T3" finding was excluded from the
+  tally on textual scope grounds (it lives in Idealizations/Next, never
+  Result/Learned) while still correctly flagged as a genuine defect to
+  fix. **Independently confirmed: none of the five candidates changes any
+  of the four scored PASS/FAIL verdicts** — the pattern that fired is a
+  citation-hygiene density pattern in post-run prose, exactly as R20 was
+  designed to catch systemically, not a reason to distrust this cycle's
+  actual numbers (every one independently reproduced). Checkpoint
+  criteria 1, 2, 3, 5 confirmed N/A, each reasoned through explicitly
+  (T1 route genuinely N/A; zero `lab/` diff; no null-iteration pattern).
+  13 same-shift, documentation-only NOTES.md fixes applied post-audit
+  (zero re-run, zero verdict change, confirmed by the audit itself before
+  they were written). **Combined Verdict: PROMISING** substantively (a
+  real, correctly-executed instrument fix, zero constraint violated, two
+  genuinely new physics findings of lasting value to the next instrument)
+  **with Checkpoint criterion 4 fired as a same-cycle process flag, not a
+  scientific one** — this program's unbroken "notification, not pause"
+  precedent continues (15 for 15 including this firing, per LOGBOOK's own
+  running count: 14 for 14 stood as of Iteration 65's own entry, line
+  ~5078; no firing occurred between Iterations 66-77, independently
+  grep-confirmed against every "No CHECKPOINT this cycle"/"does NOT fire"
+  entry in that span before this one was written; the program does not
+  halt). Reconciled Iteration-79 candidate directions (Red Team's own
+  ranking): **(1)** the coherent, phase-resolved downstream point-
+  intensity instrument (constraint 1's own still-missing conversion, NOT
+  "T3" — corrected same-shift), now bound to two new preconditions this
+  cycle surfaced (correct the `i_inc`/`cosθ` incident-reference artifact;
+  use a beam-aligned or beam-rotating frame, not a fixed lab-frame box, to
+  avoid inheriting the orientation artifact this cycle just found);
+  **(2)** Tier 1's own R3-vs-R4 `delta_scene` split (PHOTONICS' zero-FDTD
+  physical-hypothesis check first), now doubly informed by this cycle's
+  own pool-duplication finding; **(3)** the standing deferred items
+  (`G40` full-width leg, x-wall admittance refit, `PAD`-with-article
+  survival) unchanged. Full record:
+  `experiments/101-t28-r4-closed-box-constraint1-reconstruction/`, LOGBOOK.md
+  Iteration 78.
+
+### CHECKPOINT (Iteration 78, 2026-09-02, criterion 4 — program-integrity drift).
+
+**FIRES, automatically, per R20's own adopted text — the first time R20's
+forward-elevating clause has actually triggered a Checkpoint** (its
+founding instance, exp-099/Iteration 76, carried a one-time grace period,
+matching every prior R-rule's own founding-instance precedent; exp-101 is
+a later cycle already bound by the adopted rule, with no grace period
+left to spend). Red Team's Phase-5 final audit independently re-verified,
+from raw `results.json`/`NOTES.md`/source — not from any reviewer's
+restatement — three genuine, distinct R4-class defects surviving this
+cycle's own Phase-3 freeze into `NOTES.md`'s Result section, each caught
+only at Phase 5: a range figure that was actually a subset mislabeled as
+the whole (`observer_article_norm`), a "tracking to N decimal places"
+coincidence claim that does not reproduce under direct digit comparison
+(`back_frac`), and a "same trend" claim between two quantities that
+diverge by a confirmed, exact 2.09× (the thermal sidecar vs. `sigma_abs`).
+R20's own bar ("three or more") is met under the most conservative valid
+counting — a fourth candidate (QUANTUM's `Q_ext→2`/`cosθ` finding) was
+independently ruled R9-shaped, not R4/R20-shaped, and excluded rather than
+counted to force the vote; a fifth (a mislabeled "T3" cross-reference)
+was excluded on the textual scope ground that it lives in Idealizations/
+Next, never Result/Learned. **This is a process finding, not a science
+one**: none of the three counted defects, nor the excluded fourth and
+fifth, changes any of this cycle's four scored PASS/FAIL prediction
+verdicts or the constraint-2 "stays clean" reading — every underlying
+number in `results.json` was independently reproduced, unchanged, by
+Red Team's own audit. What fired is exactly the citation-hygiene density
+pattern R20 was built to catch systemically, independent of whether any
+individual instance is load-bearing — three non-load-bearing restatement
+errors in one document's Result prose, each individually minor, each
+caught blind within this cycle's own six-seat Phase-5 review layer before
+this entry (not by any human read, not by a later cycle).
+
+**Ruled a notification, not a pause — this program's unbroken precedent
+continues, now 15 for 15** (LOGBOOK's own running count stood at 14 for
+14 as of Iteration 65's entry, line ~5078; grep-confirmed zero firings
+between Iterations 66-77 before this one — this is the 15th). No `lab/`
+diff this cycle; the
+Tier-0 deliverable and all four scored verdicts stand, confirmed correct
+and unaffected; the remedy (13 same-shift NOTES.md documentation fixes)
+is actionable without halting any other thread and was applied before
+this entry was written. Per PANEL.md's continuous-mode protocol, Marsh is
+notified (this entry + the SESSION_LOG.md entry, panel shift discipline)
+and holds a standing veto he may exercise at any time; the program does
+not wait for it. No new standing rule is adopted this cycle — R20 itself,
+already on the books since Iteration 76, is the rule that fired; nothing
+about its text needed amending or extending to reach this ruling.
+
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 

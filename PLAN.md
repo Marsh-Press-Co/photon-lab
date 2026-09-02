@@ -22,7 +22,72 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-01, panel Iteration 77 done (exp-100, PARTIAL,
+## Current state (2026-09-02, panel Iteration 78 done (exp-101, PROMISING
+substantively with CHECKPOINT CRITERION 4 FIRED as a process flag --
+VISION SCIENCE's rotation-lead cycle: executed exp-100's own Reconciled
+Iteration-78 queue, Tier 0 only -- replaced beam_behind_t28 (Iteration
+77's uninterpretable fixed-line-window instrument) with a closed
+four-face Poynting-box reconstruction on already-gated sc.widths()/
+box_for_r4/ref_for_r4 (trust-suite stage 8), zero lab/ diff, T1 N/A.
+Re-selected the true pool-wide-largest-magnitude delta_scene angle
+(39.200000deg, exp-095, the single largest of 75 pooled values) in
+place of exp-100's own locally-scoped 40.960901deg. Five blind Phase-2
+critiques (unanimous support-with-changes) plus Red Team's Phase-2
+audit (7 attacks, 6 mandatory fixes adopted, 0 overridden, 1 new
+defect found -- undisclosed duplicate rows in the delta_scene pool,
+12/33 R3 + 6/35 R4, flipping R3's "significant coupling" to
+non-significant on dedup). 24 real FDTD calls, 1961.6s (32.7 min)
+wall, trust suite green throughout (41/41), zero lab/ diff, all 12
+cells cleared the amplitude floor. Three of four predictions
+CONFIRMED (sigma_abs/sigma_ext in [0.5129,0.5145]; back_frac>0.5 at
+every cell with a real, un-pre-registered monotonic decline
+0.65->0.53; box_dev_scat_downstream<=0.0454); Prediction 3 FALSIFIED
+by a wide margin (measured 0.55-0.62 vs predicted <0.15) --
+self-diagnosed as the necessary extinction-paradox companion of a real
+shadow, the clearest demonstration yet that this energy-partition
+instrument cannot itself answer constraint 1's witness question
+(needs coherent field PHASE, which a Poynting-flux integral
+discards). Constraint 2 stays clean (>=173x inside the R18 gate).
+Thermal sidecar: all 12 cells UNDETECTABLE (368x margin), narrated per
+R21. Six blind Phase-5 reviews (all CONFIRM/CONFIRM-WITH-GAPS) found
+two genuinely new physics results (QUANTUM: an R9 i_inc/cos(theta)
+commensurability artifact inflating every ABSOLUTE sc.widths() output
+at oblique incidence, corrected values matching the bench's own
+locked Q_ext=1.5385 anchor to ~1%; PHOTONICS: the back_frac decline is
+very likely a fixed-lab-frame-box registration artifact, not article
+physics, tracking tan(theta)) plus MATERIALS' Q_abs>1 finding and its
+connection to the article's own locked UNOBTAINIUM-WITH-PARAMETERS
+verdict -- and, independently, THREE R4-class citation/restatement
+defects in NOTES.md's own Result prose (an observer_article_norm
+range that was actually a subset mislabeled as the whole; a
+back_frac "tracking to 3 decimal places" claim that fails at 5 of 6
+angles; a thermal-sidecar "same trend as sigma_abs" claim that
+diverges 2.09x), each caught only at Phase 5. Red Team's Phase-5 final
+audit independently re-verified every finding from primitives and
+ruled: standing rule R20 (adopted Iteration 76) FIRES for the first
+time in this program's history -- three valid R4-class instances meet
+its "three or more" bar under the most conservative counting (a
+fourth candidate ruled R9-shaped not R20-shaped; a fifth excluded on
+textual scope grounds, living in Idealizations/Next not
+Result/Learned) -- and CHECKPOINT CRITERION 4 FIRES automatically as
+R20's own textually-mandated consequence. None of the three defects
+changes any of the four scored verdicts; every number in results.json
+was independently reproduced unchanged. Ruled a notification, not a
+pause, per this program's unbroken precedent (15 for 15). 13
+same-shift, documentation-only NOTES.md fixes applied (zero re-run,
+zero verdict change). LOGBOOK.md CHECKPOINT entry + Iteration 78
+entry written; Marsh notified per PANEL.md's continuous-mode protocol.
+Reconciled Iteration-79 queue (Red Team's own ranking): (1) the
+coherent, phase-resolved downstream point-intensity instrument
+(constraint 1's own missing conversion -- corrected from a mislabeled
+"T3" reference this cycle caught), bound to two new preconditions
+(correct the i_inc/cos(theta) artifact; use a beam-aligned or
+beam-rotating frame, not a fixed lab-frame box); (2) Tier 1's own
+R3-vs-R4 delta_scene split (PHOTONICS' zero-FDTD physical-hypothesis
+check first), now doubly informed by this cycle's own pool-duplication
+finding; (3) standing deferred items unchanged. Full record:
+`experiments/101-t28-r4-closed-box-constraint1-reconstruction/`,
+LOGBOOK.md Iteration 78); panel Iteration 77 done (exp-100, PARTIAL,
 QUANTUM OPTICS' rotation-lead cycle: executed exp-099's own Reconciled
 Iteration-77 queue -- Tier 1 (PAD-vs-article partition, MATERIALS'
 disposition memo, 4-point Richardson characterization at Null B) gating
