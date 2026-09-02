@@ -386,8 +386,9 @@ nonzero angle, closing the one class of bug Gates A/B cannot see.
 
 **Primary channel** (24 real FDTD calls, 6 angles × 2 configs × 2
 conditions, 3180.7s/53.01min wall): on-axis coherent intensity ratio
-`κ(θ)` (region-averaged) ranges `3.68×10⁻³`–`7.29×10⁻³` across all 12
-(angle,config) cells — genuinely dark, well inside `[0,0.10]`.
+`κ(θ)` (region-averaged) ranges `3.48×10⁻³`–`7.29×10⁻³` (minimum at
+`C40_R4@41.460901°`) across all 12 (angle,config) cells — genuinely dark,
+well inside `[0,0.10]`.
 **Realizability caveat (per fix 7, stated inline as required): this
 article is the byte-identical R4-family `graded_black_shell`, already
 locked UNOBTANIUM-WITH-PARAMETERS (`REALIZABILITY_MEMO.md` Amendments
@@ -418,12 +419,17 @@ green before, during, and after (41/41); zero `lab/` diff throughout.
    the primary channel it was built to answer** — constraint 1's own
    physical (not yet perceptual) transmission question now has a real,
    phase-resolved, rotating-frame answer on this bench for the R4 family:
-   a genuine, spatially-localized on-axis darkening of `κ~0.4–0.7%`,
+   a genuine, spatially-localized on-axis darkening of `κ~0.3–0.7%`,
    immune by construction to the `i_inc`/cosθ artifact (it never calls
    `sc.widths()`) and to fixed-lab-frame registration (Gate D
    independently confirms the rotating construction is exercised
    correctly). This closes exp-101's own Next item 1 as a working
-   instrument, not merely a proposal.
+   instrument, not merely a proposal. **Realizability caveat (per fix 7,
+   restated here per Red Team's Phase-5 mandatory fix 3 — this same
+   caveat travels with this figure wherever it is cited, not only beside
+   Prediction 1 in Result): this article is already locked
+   UNOBTANIUM-WITH-PARAMETERS — a real, buildable coating at this shell
+   thickness would show a shallower, not deeper, on-axis darkening.**
 2. **A cross-scale "known-good reproduction" gate needs the SAME
    measurement footprint as the figure it reproduces, not merely the
    same relative-to-object-size standoff.** Gate B's failure is not a
@@ -485,3 +491,39 @@ green before, during, and after (41/41); zero `lab/` diff throughout.
    conversion from this cycle's raw `κ(θ)`/`I_abs(θ)` to a witness-
    perceived `C_thr(L)` judgment) — still unbuilt, per fix 5/6's
    corrected scoping.
+
+## Phase 5 outcome (six blind reviews + Red Team final audit)
+
+Six blind Phase-5 reviews (all CONFIRM-WITH-GAPS) independently
+recomputed `results.json` from primitives and converged on one real
+citation defect: the on-axis `κ(θ)` range floor stated above as
+`3.68×10⁻³` was actually the second-smallest of 12 cells, not the
+minimum (true minimum `3.48×10⁻³`) — corrected above (Result and Learned
+item 1), per Red Team's mandatory fixes 1–2. MATERIALS additionally
+found the same headline recurring in Learned item 1 without the
+realizability caveat Result carries beside it — corrected above (fix 3).
+All six reviews independently re-derived and confirmed the Gate C sign
+correction from scratch by different methods (six independent
+derivations total, program's most heavily cross-verified single formula
+fix); zero overrides. Red Team's final audit ruled: **ONE** distinct
+R4-class defect survives Phase-3-freeze into Result/Learned (the range
+floor, propagating unchanged into Learned #1 by direct inheritance, not
+independent re-arising) — R20 requires 3+, does not fire, not close (1,
+or 2 under the most generous counting). Checkpoint criterion 4 does not
+fire on any ground (the disclosed process erratum touched zero `lab/`
+code, independently confirmed via git; Gate B's FAIL is honestly scoped,
+not unfalsifiable; constraint 3 untouched by design). **New standing
+rule R22 adopted** (LOGBOOK.md): a frozen vector-valued self-consistency
+identity's SIGN must be independently re-derived from whatever
+convention already governs that vector elsewhere in the document, before
+any Phase-4 FDTD call is scored against it — founding instance (this
+cycle's own Gate C), does not fire. **Combined Verdict: PROMISING.**
+Reconciled Iteration-80 queue (Red Team's own ranking): Tier 1 (a
+zero-new-FDTD standoff diagnostic on Gate B's own already-captured field;
+a footprint- AND aperture-matched Gate B rebuild; extending this
+instrument across the T8 r=78/156/312 bridge family); Tier 2 (the Tier-2
+perceptual conversion, gated on Tier 1; pinning the witness-scale source
+wattage); Tier 3 (the standing `delta_scene` split, now 3 cycles
+deferred; a pre-registered `κ_off(θ)` angular resweep). Full record:
+`phase5_review_{photonics,materials,em,thermodynamics,quantum,vision}.md`,
+`phase5_redteam_audit.md`.
