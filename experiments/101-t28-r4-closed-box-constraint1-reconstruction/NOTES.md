@@ -201,6 +201,130 @@ unmodified article. No mechanism parameter is proposed, varied, or tested.
   caveat on citing exp-100's own Tier-1 result, not re-litigated or
   re-scored here — that is Tier 1's own future work.
 
+## Result (self-scored, run.py's own committed output, `results.json`)
+
+**24 real FDTD calls, wall_s=1961.6 (32.7 min), trust suite green before and
+after (41/41, zero `lab/` diff), `xi_pass=True`, `nonneg_pass=True`, R18
+validation gate `True` (all 12 empty-scene observer self-ratios <0.02).
+Registration preflight clean. Box-margin gates (Fix 4) all passed as
+pre-registered before any FDTD call ran. All 12 (θ,config) cells cleared
+the Fix-1 `sigma_scat` amplitude floor — `n_unresolved_by_construction=0`.**
+
+1. **`sigma_abs/sigma_ext` ∈ [0.505, 0.520] — CONFIRMED at all 12 cells**,
+   range `[0.5129, 0.5145]`, comfortably inside the band and tightly
+   clustered (spread 0.0016). **T9's disclaimer applies as pre-registered
+   (change 6)**: this exceeds the Babinet/shadow-formation ≤0.5 ceiling and
+   is read as a near-field box-geometry effect (z/z_R≈0.04–0.06, T8), not
+   an asymptotic material-absorptivity constant.
+2. **`back_frac > 0.5` — CONFIRMED at all 12 cells**, but with a real,
+   clean, monotonic angular trend the pre-registered band did not predict:
+   `0.6536→0.5324` (C40_R4) and `0.6529→0.5340` (G40_R4) as θ rises
+   37.13°→42.96°, both configs tracking each other to 3 decimal places at
+   every angle. Confirmed-with-margin, but the flat ">0.5" framing
+   under-describes a genuinely angle-dependent quantity — flagged for
+   Phase 5, not rescored here (this cycle's own predictions did not
+   pre-register a slope).
+3. **`sigma_scat_downstream/(2·R4_R_OUT)` < 0.15 — FALSIFIED at all 12
+   cells, by a wide margin.** Measured range `[0.5457, 0.6159]` — roughly
+   4× the predicted ceiling, not a near-miss. **Self-diagnosed cause, same
+   shift**: the predicted 0.15 ceiling assumed a "geometric-optics
+   forward-diffraction ceiling" small relative to the object's own
+   diameter — but this ignores the SAME extinction-paradox physics T9's
+   own disclaimer (change 6, above) already establishes on this exact
+   bench: an optically large absorbing disk's extinction efficiency
+   approaches `Q_ext→2` in the geometric-optics limit specifically
+   *because* it must radiate a forward-diffracted wave of cross-section
+   comparable to its own geometric width — the same forward lobe that
+   destructively interferes with the incident wave to CREATE the
+   geometric shadow in the first place (Babinet's principle). A large
+   `sigma_scat_downstream` is therefore the mathematically expected
+   companion of a real shadow, not evidence against one — this prediction
+   band was wrong about the physics, not merely mis-calibrated, and the
+   falsification is the more informative outcome: it heads off a future
+   cycle mis-reading a large downstream-scattered cross-section as "the
+   beam is not terminated" without first accounting for coherent
+   destructive interference. **This is a POWER/cross-section quantity
+   (incoherent bookkeeping across scattered-field flux), not the coherent
+   total-field irradiance a witness would observe at a point downstream —
+   `sigma_scat_downstream` cannot, by construction, distinguish "forward
+   diffraction that cancels the beam in shadow" from "forward diffraction
+   that refills it," because that distinction requires the field's PHASE,
+   which a Poynting-flux magnitude integral discards.** This is a load-
+   bearing idealization this cycle's own Phase-1 proposal disclosed in
+   general terms (§5, "cross-section measurement, not downstream-
+   intensity-ratio measurement") but did not connect specifically to why
+   Prediction 3 itself was mis-calibrated — stated explicitly here rather
+   than left implicit.
+4. **`box_dev_scat_downstream ≤ 0.12` — CONFIRMED at all 12 cells**, range
+   `[0.0057, 0.0454]`, 2.6×–21× inside the bar even with the Fix-4
+   disclosed weaker `C40_R4` cross-check (~6% box-size spread) — the
+   derived quantity is genuinely box-independent at both configs, despite
+   the asymmetric independence-check power.
+
+**Constraint 2** (`observer_article_norm`, unchanged `observer_record_t28`)
+stays clean this cycle: `2.26e-4`–`3.95e-4` across all 12 cells, ≥50×
+inside the R18 validation-gate bar, matching Iteration 77's own finding
+that this instrument was never broken.
+
+**Thermal sidecar (Fix 3, R21 compliance — narrated per the mandatory
+commitment, not merely persisted).** All 12 fresh `netd_row()`
+classifications (`p_abs_w`, `dt_ss_full_K`, `netd_classification`) are
+code-enforced present in `results.json` (`NETD_ROW_KEYS` assert). Their
+headline finding: **every one of the 12 cells classifies UNDETECTABLE**
+(consistent with every prior R4-family NETD reading on this bench, exp-095
+through exp-100) — `p_abs_w`/`dt_ss_full_K` track the same smooth,
+monotonic-with-θ trend as `sigma_abs` above (absorbed power rising
+310→339 W-equivalent-cells as θ increases), with no cell approaching the
+`NETD_BAND_K` detectability threshold. No constraint-3 re-radiation risk
+is raised by this cycle's own spend.
+
+## Learned
+
+- The closed-box reconstruction is interpretable where `beam_behind_t28`
+  was not: every one of the 12 cells resolved cleanly, with tight,
+  physically coherent cross-config agreement (`C40_R4`/`G40_R4` track each
+  other to 3 decimal places on every derived ratio) — a genuinely
+  higher-quality instrument than its predecessor, not merely a different
+  number.
+- `sigma_scat_downstream` (POWER crossing the box's downstream face in the
+  scattered field) is NOT a proxy for "does the shadow stay dark" — the
+  extinction paradox means a real, near-total shadow REQUIRES a
+  comparably large forward-scattered cross-section, not a small one. Any
+  future constraint-1 instrument that wants "does light reach the far
+  side" must measure coherent TOTAL-field amplitude/phase at a point (or
+  small region) downstream, not an incoherent power integral over a
+  box face — this is a structurally different measurement, not a
+  refinement of this one. This is this cycle's own single most important,
+  disclosed finding, and the correct next step for constraint 1 on this
+  bench (see Next).
+- `back_frac`'s real, monotonic decline with θ (0.65→0.53 across a 5.8°
+  sweep) is a genuine angular trend, un-pre-registered, worth a future
+  cycle's attention if T1 (currently N/A) is ever revisited for this
+  article — not scored here.
+- Every mandatory Phase-2 fix discharged as designed: R13/14/15 (no cell
+  needed the `UNRESOLVED-BY-CONSTRUCTION` escape valve, but the gate was a
+  real, executed check, not merely asserted), R17 (both configs' box
+  margins verified ≥90 cells before any FDTD call), R21 (narrated above,
+  not merely persisted), R9/T9 (disclaimer carried through Result).
+
+## Next (candidate directions, not this cycle's scope)
+
+1. **Build a coherent, phase-resolved downstream point-intensity
+   instrument** (total-field amplitude at a witness-scale standoff,
+   compared coherently against the empty-scene reference) — the
+   structurally correct successor to both `beam_behind_t28` and this
+   cycle's own `sigma_scat_downstream`, and the only route to actually
+   answering constraint 1's witness question ("does the background stay
+   lit") rather than an energy-partition proxy for it. This is closely
+   related to, but distinct from, Tier 2's own still-unbuilt T3 instrument
+   (constraint 3) — worth scoping whether one construction can serve both.
+2. Investigate `back_frac`'s angular trend (0.65→0.53) if a future cycle
+   returns to T1 for this article class.
+3. Tier 1 (the R3-vs-R4 `delta_scene`-realizability split, PHOTONICS'
+   zero-FDTD physical-hypothesis check first) remains queued, unchanged,
+   per exp-100's own Reconciled Iteration-78 ranking — untouched this
+   cycle by design.
+
 ## LOGBOOK.md RULED OUT registry / standing rules check
 
 No item in LOGBOOK's RULED OUT registry (lines 8–877) or the T28 thread

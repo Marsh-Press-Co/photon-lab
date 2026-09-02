@@ -66,3 +66,35 @@ BOX_MARGIN_REPORT: {
   [21/24] C40_R4   theta=+42.961 article=False steps=5600 sigma_max=None
   [22/24] C40_R4   theta=+42.961 article=True steps=5600 sigma_max=0.25
   [23/24] G40_R4   theta=+42.961 article=False steps=5600 sigma_max=None
+  [24/24] G40_R4   theta=+42.961 article=True steps=5600 sigma_max=0.25
+  wall_s=1961.6  n_calls=24  xi_pass=True  nonneg_pass=True
+  floor_scat=3.068412e+01 (10% of RMS over this cycle's own 12 cells)
+  R18 validation gate (empty-scene observer self-ratio < 0.02): True
+
+  theta=+37.127246  delta_scene=+1.610726e-03
+    [C40_R4] outcome=resolved  absorbed=310.928276  observer_return=2.698286e-04  forward_continuing=192.159406345633  box_dev_scat_downstream=0.0181
+    [G40_R4] outcome=resolved  absorbed=310.181955  observer_return=1.155427e-04  forward_continuing=191.7606427716673  box_dev_scat_downstream=0.0454
+
+  theta=+38.590230  delta_scene=-2.071944e-03
+    [C40_R4] outcome=resolved  absorbed=317.867081  observer_return=2.259106e-04  forward_continuing=186.07058167004246  box_dev_scat_downstream=0.0150
+    [G40_R4] outcome=resolved  absorbed=319.192878  observer_return=1.389232e-04  forward_continuing=186.6662863248613  box_dev_scat_downstream=0.0400
+
+  theta=+39.200000  delta_scene=-3.149521e-03
+    [C40_R4] outcome=resolved  absorbed=320.590633  observer_return=2.992742e-04  forward_continuing=184.1893169778341  box_dev_scat_downstream=0.0142
+    [G40_R4] outcome=resolved  absorbed=320.910013  observer_return=1.226010e-04  forward_continuing=184.55936483098822  box_dev_scat_downstream=0.0399
+
+  theta=+40.265420  delta_scene=+1.726150e-03
+    [C40_R4] outcome=resolved  absorbed=325.701525  observer_return=3.639284e-04  forward_continuing=179.77064929905617  box_dev_scat_downstream=0.0122
+    [G40_R4] outcome=resolved  absorbed=324.705719  observer_return=2.121107e-04  forward_continuing=179.46175479696169  box_dev_scat_downstream=0.0348
+
+  theta=+41.460901  delta_scene=+9.879972e-04
+    [C40_R4] outcome=resolved  absorbed=331.218630  observer_return=3.742613e-04  forward_continuing=175.6373615059162  box_dev_scat_downstream=0.0095
+    [G40_R4] outcome=resolved  absorbed=332.724954  observer_return=1.821793e-04  forward_continuing=176.02403994425683  box_dev_scat_downstream=0.0299
+
+  theta=+42.960901  delta_scene=+2.778079e-03
+    [C40_R4] outcome=resolved  absorbed=338.789123  observer_return=3.948968e-04  forward_continuing=170.53691374121857  box_dev_scat_downstream=0.0057
+    [G40_R4] outcome=resolved  absorbed=337.475768  observer_return=3.093793e-04  forward_continuing=170.25660844811773  box_dev_scat_downstream=0.0169
+
+  n_cells=12  n_unresolved_by_construction=0  n_box_dev_scat_downstream_fail(>0.12)=0
+
+Total wall time: 1989.8s. results.json written.
