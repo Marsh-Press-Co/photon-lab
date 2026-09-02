@@ -2,6 +2,114 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-02 (panel shift) — Iteration 79 complete (exp-102): a genuinely
+new working instrument, a real sign-bug catch executed with unusual
+rigor, R20 does NOT fire the cycle immediately after its first-ever
+firing:
+
+**Pre-flight**: fresh container this session — installed dependencies
+from scratch (numpy/scipy/matplotlib/pillow/autograd/fdtd, then
+`pip install --no-deps ceviche`). Trust suite confirmed green, 41/41
+checks (`--only 12346789`), before any panel work, re-confirmed green
+multiple times through the shift (including after the final Phase-4
+run). Landed on `ddf51c1` — Iteration 78/exp-101 fully closed, Iteration
+79 queue written but not started — ran the full cycle from Phase 1
+through close in one shift.
+
+**Iteration 79 — PHOTONICS' rotation-lead cycle (exp-102).** Executed
+exp-101's own Reconciled Iteration-79 queue item 1 (Red Team's own top
+ranking): built the coherent, phase-resolved downstream point-intensity
+instrument — reads already-gated complex Ez/Hx/Hy phasors
+(`lab/sections.py::full_capture`/`phasors`, trust-suite stage 8, zero
+`lab/` diff) at a small region on the beam's own rotating downstream
+axis, comparing empty- and article-scene captures coherently at the
+identical point. This is the structurally correct successor to
+`beam_behind_t28`/`sigma_scat_downstream` — a coherent field-amplitude
+ratio, not an incoherent Poynting-flux power integral — and closes
+exp-101's own top-ranked Next item as a working instrument, not merely a
+proposal. Explicitly NOT a T28-thread item: no `delta_scene`/
+`frac_contrast`/`ratio_k` touched; Tier 1's own R3-vs-R4 split remains
+untouched, now three cycles deferred. Diagnostic-only, T1: N/A. Five
+blind Phase-2 critiques (unanimous support-with-changes: MATERIALS, EM,
+THERMODYNAMICS, QUANTUM, VISION) plus Red Team's Phase-2 audit (9
+attacks, 7 mandatory fixes adopted, 0 overridden, 1 new defect Red Team
+itself found — Gate A's self-comparison can't catch a `P(θ)`
+placement bug, closed by adding Gate D).
+
+**A Director orchestration error, disclosed in full**: two Phase-4
+execution agents were inadvertently run concurrently against the same
+`run.py` for part of this cycle — the Director's own periodic progress
+commits were mistaken by the first agent for a third, unexplained actor.
+Each agent independently discovered one of two real bugs by a different
+route before the Director stood one down and consolidated the survivor's
+work into one final, clean, from-scratch 26-call run. Zero `lab/` diff
+throughout; trust suite green before, during, and after; independently
+confirmed via git history at Phase 5. **26 real FDTD calls, 3278.5s
+(54.6 min) wall.** Gate A: PASS (trivial identity, exact). **Gate B:
+FAIL, genuine and honestly diagnosed** — a real `cells_per_lambda`-
+rescaling bug was found and fixed first (`D_STANDOFF`/`H_REGION` were
+unscaled across the R4 family's cpl=40 vs. the native flagship's
+cpl=20), but the corrected point still sits closer to the object than
+the established `beam_behind` figure's own wide-window footprint, in the
+near-field where a shadow reads darker before Fresnel diffraction fills
+it back in — a footprint mismatch, not force-fixed (would be exactly the
+post-hoc parameter search R5 rules out). Only Gates A and D independently
+validate this cycle's primary-channel readings; Gate B's cross-scale
+reproduction is not validated, a real limitation carried into Next.
+**Gate C / a frozen self-consistency formula: FAILED as originally
+specified** (a uniform ~150% deviation, a sign-flip signature),
+**PASSED after a sign correction independently re-derived six separate
+ways** (NOTES.md's own Resolution Note; EM's Phase-2 critique
+establishing `u(θ)` for an unrelated purpose; PHOTONICS', EM's, and
+QUANTUM's independent Phase-5 re-derivations; Red Team's own seventh
+confirmation) — the most heavily cross-verified single formula
+correction in this program's history, both the error and correction
+fully disclosed, never silently overwritten. Gate D: PASS. All five
+pre-registered predictions CONFIRMED. On-axis `κ(θ)`: `3.48×10⁻³`–
+`7.29×10⁻³` across all 12 cells, genuinely dark (realizability caveat
+carried — article is locked UNOBTAINIUM-WITH-PARAMETERS). Off-axis
+`κ_off(θ)`: `1.04`–`1.08`, confirming spatially-localized darkening.
+Thermal sidecar: N/A this cycle, code-confirmed not invoked, discharging
+R21's risk cleanly.
+
+**Six blind Phase-5 reviews (all CONFIRM-WITH-GAPS) independently
+recomputed `results.json` from primitives and converged, all six, on one
+real citation defect**: Result's stated `κ(θ)` range floor (`3.68×10⁻³`)
+was the second-smallest of 12 cells, not the true minimum (`3.48×10⁻³`)
+— one fact, six independent confirmations. MATERIALS additionally found
+the same headline recurring in Learned item 1 without Result's own
+realizability caveat. All six independently re-derived and confirmed the
+Gate C sign correction by different methods; zero overrides. **Red
+Team's Phase-5 final audit independently re-verified every number from
+`results.json`/`run.py`/git directly (a seventh recomputation of the
+range-floor defect, a sixth Gate-C re-derivation) and ruled: ONE distinct
+R4-class defect survives Phase-3-freeze into Result/Learned** — the
+range floor, propagating unchanged into Learned #1 by direct inheritance
+(VISION's own "one root cause, two places" reasoning, adopted
+explicitly). MATERIALS' caveat-travel gap is real and mandatory but a
+different failure shape (R1/R21-lineage, not R4/R20) and excluded from
+the tally on that classification ground. **R20 requires three or more;
+the count is one (two under the most generous counting) — does NOT
+fire, not a close call**, the cycle immediately after this program's
+first-ever R20 firing (Iteration 78) demonstrating that density was an
+isolated recurrence, not a systemic regression. **Checkpoint criterion 4
+does not fire on any ground.** **New standing rule R22 adopted** (a
+frozen vector-valued self-consistency identity's sign must be
+independently re-derived from the same governing convention already in
+use elsewhere in the document, before any Phase-4 FDTD call is scored
+against it) — founding instance, does not fire. Three mandatory
+same-shift documentation fixes applied (zero re-run, zero verdict
+change). **Combined Verdict: PROMISING.** LOGBOOK.md Iteration 79 entry
+written; PLAN.md's Current state updated; Marsh notified per PANEL.md's
+continuous-mode protocol (no checkpoint pause). Reconciled Iteration-80
+queue: Tier 1 (EM's zero-FDTD standoff diagnostic on Gate B's own
+captured field; a footprint+aperture-matched Gate B rebuild; extending
+this instrument across the T8 r=78/156/312 bridge family); Tier 2 (the
+Tier-2 perceptual conversion, gated on Tier 1; pinning the witness-scale
+source wattage); Tier 3 (the standing `delta_scene` split, now 3 cycles
+deferred; a pre-registered `κ_off(θ)` angular resweep). Full record:
+`experiments/102-coherent-downstream-point-intensity/`.
+
 ## 2026-09-02 (panel shift) — Iteration 78 complete (exp-101), CHECKPOINT
 criterion 4 FIRES for the first time in this program's history:
 
