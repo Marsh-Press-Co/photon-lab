@@ -273,26 +273,105 @@ r=312 nyquist_margin=1.234 (MARGINAL-REDUCED-CONFIDENCE) — exactly as
 predicted, all three tiers landed where the pre-registered thresholds
 put them.
 
+**Gate P1 scope note (Phase-5 mandatory fix 5, Red Team's own final-
+audit finding, none of the six blind reviews caught this):** Gate P1
+(rescoped) verifies only `kappa_region_wide`'s r=78 self-consistency —
+it does NOT touch `kappa_window_78` (loaded directly from exp-103's own
+`results.json`, unverified by any gate this cycle runs), the actual
+anchor P2's monotonicity test and P3's shape-discriminator fit both
+score against. The underlying construction is very likely correct
+(`window_stats()` is byte-identical to exp-103's own function, and the
+window-anchor re-parameterization is algebraically identical to
+exp-103/104's window at r=78 — independently confirmed by Red Team), but
+this cycle's own "every reused constant is ground-truth-verified" framing
+does not, in fact, extend to the one scalar the headline findings depend
+on most directly. Stated here so a future reader does not credit "Gate
+P0/P1 PASS" with more coverage than this cycle's own code provides.
+
 **kappa_window(r): 78→0.018337, 156→0.0008867, 312→0.000004793.**
 
 **P2 (monotonicity): CONFIRMED**, as predicted.
 
-**P3 (functional-form + shape discriminator): SCORED — the headline,
-genuinely surprising finding.** With r=312 committed, the full 2-point-
-fit-vs-held-out-r=78 test ran: shape_ratio = **19.79** (vs. the sqrt-law
-band 2.00±0.3 and the linear-law band 4.00±0.5 — nearly 5× past the
-linear-law's own already-generous band, and ~4× further out than T8's
-own already-REFUTED absorber ratio of 5.33 on the ambient channel).
-Model-A (sqrt-law) miss=85.55%, Model-B (linear-law) miss=75.93% —
-both catastrophically outside the pre-registered 25%/60% tolerance
-bands. **kappa_window falls by ~20.7× from r=78→156, then by ~185×
-from r=156→312** — accelerating, not merely failing to fit a power law.
-This is a materially different (and much more extreme) failure shape
-than T8's own P-VISION-1b REFUTE on the ambient channel, which showed
-modest absolute-C drift (−0.72→−0.73→−0.73, order-10% relative changes)
-against the SAME two candidate laws. Not interpreted here (R3 meta-rule
-— a surprising feature gets a resolution check before a mechanism
-debate) — flagged explicitly for Phase 5.
+**P3 (functional-form + shape discriminator): SCORED — the headline
+finding, now CAVEATED per Phase-5 mandatory fixes 3/4 (Red Team's final
+audit; independently found by PHOTONICS/EM/QUANTUM/THERMODYNAMICS).**
+With r=312 committed, the full 2-point-fit-vs-held-out-r=78 test ran:
+shape_ratio = **19.79** (vs. the sqrt-law band 2.00±0.3 and the
+linear-law band 4.00±0.5 — nearly 5× past the linear-law's own already-
+generous band, and ~4× further out than T8's own already-REFUTED
+absorber ratio of 5.33 on the ambient channel). Model-A (sqrt-law)
+miss=85.55%, Model-B (linear-law) miss=75.93% — both catastrophically
+outside the pre-registered 25%/60% tolerance bands. **kappa_window
+falls by ~20.7× from r=78→156, then by ~185× from r=156→312** —
+accelerating, not merely failing to fit a power law. This is a
+materially different (and much more extreme) failure shape than T8's
+own P-VISION-1b REFUTE on the ambient channel, which showed modest
+absolute-C drift (−0.72→−0.73→−0.73, order-10% relative changes)
+against the SAME two candidate laws.
+
+**Sharper characterization (mandatory fix 3, PHOTONICS/Red Team):**
+because this bridge's own forced geometry gives `x(78):x(156):x(312) =
+4:2:1` exactly, ANY two-parameter power law `κ(x)=κ_∞+B·x^n` obeys the
+exact algebraic identity `shape_ratio = 2^n`, independent of `κ_∞`, `B`,
+or the fit method — the measured 19.79 is therefore precisely equivalent
+to an implied global exponent **n≈4.31** (`log₂(19.79)`). This is
+roughly double the steepest theory-motivated candidate this program has
+tested on this bench family (n≈1–2, standard Fresnel/edge-diffraction
+shadow-falloff asymptotics), and — since `graded_black_shell`'s own
+τ_shell=24 is held exactly fixed at every r, killing direct shell
+transmission identically at every scale — the r-dependent signal must
+ride entirely on edge-diffraction-type effects, for which an *apodized*
+(smoothly-graded) shell should, if anything, SUPPRESS ripple/diffractive
+leakage relative to a hard edge — the wrong direction for n≈4.3, not
+merely an unexplained magnitude. A reusable diagnostic for any future
+extension of this bridge (κ=8, r=624, etc.).
+
+**Confidence caveat (mandatory fix 4, EM/Red Team — symmetric to P4's
+own, below):** `kappa_window_312` (and therefore `shape_ratio` and the
+n≈4.31 reading) shares r=312's own MARGINAL-REDUCED-CONFIDENCE Nyquist
+tier and complete absence of a settling leg — the identical disclosed
+risk P4's own r=312 reading carries, three paragraphs below. Unlike P4,
+`run.py`'s own P3-scoring path does not (yet) propagate this risk into
+its own verdict field; this is stated here explicitly rather than left
+implicit, per Red Team's own finding that this is this cycle's single
+most consequential code-level gap. **Not interpreted as physics yet**
+(R3 meta-rule — a surprising feature gets a resolution check before a
+mechanism debate): Phase 5 additionally surfaced that `kappa_window` has
+never been floor-gated at any r in this program's history (unlike its
+sibling DENSE_X channels), and that a genuine, previously-unnamed
+alternative mechanism exists — holding `τ_shell` fixed while `R_CORE`/
+`R_COAT` scale by κ forces the coating's own ELECTRICAL thickness to
+grow 4× (2.4λ→9.6λ) across this family, a different absorbing/
+interference regime than the pure geometric-window (z/z_R) hypothesis,
+with an already-built discriminating control (exp-052's fixed-absolute-
+thickness variant) — flagged explicitly for Iteration 83, not chased
+here.
+
+**Scope-boundary note (mandatory fix 6, VISION/Red Team):** however
+dramatic in raw-ratio terms, this collapse carries ~zero information
+bearing on constraint-3. Under even the loosest possible naive mapping
+`C=κ−1` (Weber contrast is bounded in `[−1,0]`), all three r-points
+already sit deep in saturation past this program's own pinned photopic
+threshold `C_thr=0.005` (`|C|`=0.9817/0.9991/0.99999521 at r=78/156/312)
+— the ~1,100× total collapse in raw `kappa_window` buys only
+`ΔC≈0.018`, a saturating, threshold-irrelevant move. `kappa_window` is
+a coherent, single-λ, on-axis near-field transmission diagnostic
+(T11/beam-transmission lineage), structurally different from
+constraint-3's own ambient/Weber-contrast instrument, and this cycle's
+own headline result should never be cited as constraint-3-relevant.
+
+**P3b (a pre-registered, Phase-1-flagged falsifiable prediction —
+mandatory fix 2, PHOTONICS/Red Team, scored here after being silently
+dropped between the Phase-1 proposal and this file's own frozen
+Predictions section):** the sign of Model-A's own fitted slope,
+`model_A_B = +0.00701` — **positive, the "right-direction" reading**
+(κ decreases as x decreases, i.e. as r grows — consistent with the
+near-field shadow continuing to deepen toward a genuine floor rather
+than T14's own "wrong-direction asymptote" pathology found on the
+ambient/Weber-contrast channel). This is a genuine, structurally
+different-channel NON-replication of T14's own finding — materially
+informative for T13/T14 either way, though not itself construed as
+resolving either thread (a different metric, κ not C).
 
 **P4 (sub-Nyquist ripple generalization, GATED): FALSIFIED at all three
 r, and TRUSTED at r=78 and r=156.** r=78 (reused): P2-analog=FALSIFIED
@@ -350,34 +429,157 @@ inline as committed.
    to take (a real risk that did not materialize this time is not
    evidence the caution was wrong to hold).
 
-## Next (candidate directions, Iteration 83 queue material)
+## Phase 5 outcome (six blind reviews + Red Team final audit)
 
-1. **P3's own accelerating-collapse finding needs a resolution check
-   before any mechanism debate** (R3 meta-rule) — is `kappa_window`'s
-   own ~20×/~185× two-step collapse a genuine near-field physical
-   effect (the fixed-cell window offset representing an ever-shrinking
-   FRACTION of the object's own growing radius, pushing the measurement
-   ever deeper into the geometric shadow's near zone as r grows), a
-   floor/dynamic-range artifact (kappa_window(312)=4.8e-6 is getting
-   close to floating-point/discretization noise territory relative to
-   the empty-scene intensity scale), or something else? A dedicated,
-   zero-new-mechanism resolution/floor check is the single highest-
-   value item this cycle's own result creates.
-2. **A settling-independence leg at r=312** — the one disclosed
-   idealization this cycle did not close (no settling check ran at
-   r=312 at all), now directly relevant since r=312's own nyquist_tier
-   is already MARGINAL; a settling artifact there would compound with,
-   not merely coexist alongside, the aliasing-margin risk.
-3. **A real, measured `sections.widths()` `sigma_ext(r)` trend**,
-   replacing P5's own `Q_ext`-invariance placeholder — zero marginal
-   FDTD cost, reusing this cycle's own captured fields (deferred from
-   the Phase-1 proposal's own Next list, still open).
-4. **The oblique-angle extension of this same θ=0°-validated bridge**
-   (deferred explicitly in the Phase-1 proposal, still open).
-5. The standing `delta_scene` R3-vs-R4 split (Tier 3, now SIX
-   consecutive deferrals per exp-104's own explicit written warning —
-   a seventh must be re-justified in writing or executed) — untouched
-   by this cycle, exactly as exp-102/103/104 left it.
-6. The other two Reconciled Iteration-82 Tier-1 items (R23's own scope
-   decision; the near-null-exclusion raw-bin-identity refinement) —
-   explicitly out of this cycle's own scope, still open.
+Six blind Phase-5 reviews, all CONFIRM-WITH-GAPS (no clean CONFIRM among
+them — a materially denser gap cluster than either exp-102 or exp-104's
+own Phase-5 layer). **PHOTONICS** proved the `shape_ratio≡2^n` identity
+from primitives (§ above), found `kappa_window` never floor-gated at any
+r, found r=312's raw window/point-channel intensities discarded rather
+than persisted, and found P3b silently dropped between Phase 1 and the
+frozen Predictions. **MATERIALS** independently reproduced the full
+thermal table and P3 numbers exactly, and identified the growing-
+electrical-thickness alternative mechanism (τ_shell fixed while R_CORE/
+R_COAT scale by κ, so the coating's own electrical thickness grows 4×)
+with an already-built discriminating control (exp-052). **ELECTROMAGNETISM**
+hand-verified the settling leg (a landslide pass, 14.5–30× inside
+tolerance at every one of 53 spot-checked points) and found this cycle's
+single most consequential code-level gap: P4 has a real risk-propagation
+gate (`p4_156_trusted`) symmetric to its own Nyquist/settling pre-check,
+but P3 — whose own headline number is a RAWER, less-residualized read of
+the identical MARGINAL-tier r=312 capture — has no equivalent gate at
+all. **QUANTUM OPTICS** independently reproduced every headline number
+exactly and confirmed zero non-classical content is expressible in this
+pipeline regardless of outcome magnitude (T1 correctly N/A). **VISION
+SCIENCE** found the R23 disclaimer assert covers only `RESULT_TEXT`, not
+`PREDICTIONS_TEXT`, despite the module docstring's own two-assert claim
+— a second, code-level data point in this sub-thread's disclaimer-
+erosion lineage — and proved, with numbers, that P3's own dramatic
+collapse carries ~zero constraint-3 information (even the loosest naive
+κ→C mapping saturates past photopic threshold already at r=78; the
+~1,100× collapse buys only ΔC≈0.018). **THERMODYNAMICS' own self-review**
+found a genuine defect in its own Phase-1 proposal (a dominance-ratio
+citation, 1949×/487×, that does not reproduce from its own stated
+constants — correct values ≈2160.6×/≈540.1×) and, going further, that
+Red Team's own Phase-2 audit repeated the identical wrong figures while
+explicitly claiming to have independently re-checked them.
+
+Red Team's Phase-5 final audit independently re-verified every finding
+from primitives (the `shape_ratio≡2^n`/n≈4.31 identity re-derived by
+direct symbolic expansion; the dominance-ratio error re-derived from raw
+constants and traced to a likely dropped ε factor; the settling-leg
+margins spot-checked at 5 of 53 points; every floor-gate/data-discard
+claim confirmed by direct code trace) and adopted all six reviews **in
+full, zero overrides**. Found one new defect none of the six caught:
+Gate P1 never touches `kappa_window_78` (loaded unverified from a
+different experiment's file) — the actual anchor P2 and P3 both score
+against — a real precondition-coverage gap distinct from Gate P1's own
+(correctly rescoped) `kappa_region_wide` check. **R20 tally: 0.** The
+dominance-ratio error is one root-cause defect appearing in two
+pre-freeze documents (`phase1_proposal.md`, this seat's own
+`phase2_redteam_audit.md`) — confirmed absent from `NOTES.md`'s own
+frozen Result/Learned sections by direct grep, so it does not survive
+Phase-3 freeze and does not count toward R20 (ruled once, not twice, per
+this program's own Iteration-50 counting precedent); every other
+candidate defect is a different rule-class entirely (R18/R21-shaped or
+an instrumentation-completeness gap, not an R4-shaped wrong-figure
+citation). **R20 does NOT fire.** The fact that this seat's own Phase-2
+"independent re-check" reproduced rather than caught the error is
+disclosed plainly as a first-of-its-kind verification-layer failure —
+flagged forward as a pattern to watch, not yet a rule (one instance).
+**Checkpoint criterion 4 does NOT fire**: R20's bar unmet; T1 correctly,
+repeatedly N/A; constraint-3 proactively (not quietly) scoped out with
+numbers (VISION's own ΔC≈0.018 finding is the opposite of a quiet drop);
+P5's own numeric bands were pre-demoted to descriptive-only at Phase 3,
+and P3's SCORED verdict is a real, falsifiable, already-scored result
+(the gap EM found is a missing confidence qualifier, not an unfalsifiable
+claim standing unflagged); R16/R21/R22's own forward-elevating clauses
+checked explicitly, none trip (R21 does NOT fire a third time — P5's own
+NETD finding IS narrated inline in Result, the channel R21 is scoped
+to). Two standing forward cautions named, neither firing: the Red-Team-
+repeats-a-wrong-figure pattern (one instance), and R23's own two-assert
+founding pattern losing one assert this cycle (a second disclaimer-
+erosion data point, code-level this time).
+
+**Combined Verdict: PARTIAL** (not RULED OUT — no mechanism class
+foreclosed, T1:N/A throughout, correctly; not PROMISING — this cycle's
+own declared headline finding, P3's shape_ratio=19.79, is by its own
+correct R3-meta-rule choice not yet interpreted, and Phase 5 now shows it
+rests on zero floor-gating, no risk-propagation gate symmetric to P4's,
+a Gate P1 that never touches its own r=78 anchor, and a genuine
+unconsidered alternative mechanism with an already-built, unused
+discriminating control — a denser, more consequential gap cluster,
+concentrated specifically on the headline result, than either exp-102's
+single cosmetic citation slip or exp-104's own framing/evidentiary-
+strength cluster). The four OTHER scored verdicts this cycle (Gate P0,
+Gate P1-rescoped, P2, P4 at r=78/156, P5) all independently reproduce
+clean, with wide margins where margins were checked — this is a real,
+logbook-advancing cycle, correctly and honestly not oversold, not a
+failed one.
+
+## Next — Reconciled Iteration-83 queue (Red Team's own final-audit
+## tiered ranking, `phase5_redteam_audit.md` §7)
+
+**Tier 0 — same-shift, zero-FDTD, applied this shift (see mandatory
+fixes above, now landed in this file's own Result section and in
+`run.py`).**
+
+**Tier 1 — highest priority, cheap-to-moderate FDTD, real 4-of-6-seat
+convergence (PHOTONICS/EM/THERMODYNAMICS ranked #1 or #2; QUANTUM cited
+it as the load-bearing precondition):**
+
+1. **Floor-gate `kappa_window`/`window_stats()`'s own output at every
+   already-captured r (156, 312), and stop discarding r=312's point-
+   channel raw intensities** (persist `wide_channel`/`point_channel`/
+   window means for r=312 the same way r=156 already does) — the single
+   load-bearing precondition for trusting or refuting P3's own
+   accelerating-collapse finding as physics rather than partly a floor/
+   dynamic-range artifact.
+2. **A settling-independence leg on `kappa_window` itself** (not merely
+   `kappa_region_point`, already done this cycle) **at r=156, and — more
+   urgently, given the MARGINAL Nyquist tier already there — at r=312.**
+3. **Gate P3's own scored verdict on r=312's Nyquist/settling status**,
+   symmetric to the already-built `p4_156_trusted` pattern — closing the
+   risk-propagation asymmetry EM and Red Team both independently found.
+4. **Re-run the `kappa_window`/P3 bridge on exp-052's existing fixed-
+   absolute-thickness `graded_black_shell` variant at r=156/312** —
+   MATERIALS' own newly-identified, already-built, zero-new-mechanism
+   discriminator between the geometric-window (z/z_R) hypothesis and the
+   growing-electrical-thickness materials hypothesis. Should reuse items
+   1–3's own machinery (floor-gated, settling-checked, risk-gated) from
+   the start.
+
+**Tier 2 — important, sequenced after Tier 1 resolves whether P3's
+collapse is trustworthy:**
+
+1. A fourth r-point (e.g. r≈221, the geometric mean of 156/312) to break
+   the two-point degeneracy and test whether the implied n≈4.3 exponent
+   is stable or itself compounding.
+2. A real, measured `sections.widths()` `sigma_ext(r)` trend, replacing
+   P5's own `Q_ext`-invariance placeholder — re-ranked given P3's own
+   finding now sharpens the case for verifying rather than assuming this
+   invariance (THERMODYNAMICS' own self-review finding); cross-check
+   against exp-030's own T11 `Q_ext` two-point precedent (+0.58% drift
+   at κ=2 on a self-similarly-scaled box).
+3. Split the blanket "UNOBTANIUM-WITH-PARAMETERS at every r" tag into a
+   scaling-law sentence and a per-geometry absolute-thickness sentence
+   (1.44–5.76µm, plausibly within the already-cited µm–mm real-coating
+   range) — MATERIALS' cheap precision fix.
+4. Pin VISION's κ↔C scope-boundary finding as a standing, cited note or
+   LOGBOOK T13/T14 cross-reference — preventing any future citation of
+   "shape_ratio=19.79" from being misread as constraint-3-relevant.
+
+**Tier 3 — standing, deferred, unchanged this cycle:**
+
+1. The oblique-angle extension of this same θ=0°-validated bridge
+   (deferred explicitly at Phase 1, still open).
+2. **The `delta_scene` R3-vs-R4 split — now SIX consecutive deferrals;
+   Iteration 83 is the point requiring explicit written re-justification
+   or execution**, not a silent seventh deferral.
+3. The other two Reconciled Iteration-82 Tier-1 items still open (R23's
+   own scope decision, now sharpened by this cycle's own second erosion
+   data point; the near-null-exclusion raw-bin-identity refinement).
+4. A doubled-STEPS settling spot-check at r=312's own near-field-closest
+   `DENSE_X` point on the wide/point channels specifically — largely
+   superseded in priority by Tier 1 item 2's broader `kappa_window`
+   settling leg, which should be built first.

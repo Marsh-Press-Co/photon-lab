@@ -188,7 +188,19 @@ the underlying physics (`lab/thermo_sidecar.py::mixed_length_scale_regime`,
 §0.2): conduction dominates radiative loss by ~3 orders of magnitude
 across this entire r-family (1949× at r=78, 487× at r=312, per the
 proposal's own Appendix output, independently re-checked against the
-function's own `dp_dt = area_m2·(4εσT³ + h_eff)` formula), so `dp/dT ≈
+function's own `dp_dt = area_m2·(4εσT³ + h_eff)` formula) **[Phase-5
+correction, THERMODYNAMICS' own self-review + this seat's own Phase-5
+final audit, applied same-shift: this "independent re-check" did NOT
+actually recover the correct number -- the true dominance ratios are
+≈2160.6× at r=78 and ≈540.1× at r=312 (see phase1_proposal.md's own
+same-shift correction for the likely dropped-ε mechanism). Disclosed
+plainly as this seat's own verification-layer failure, not minimized:
+the first known instance in this program's history of a Phase-2 Red
+Team audit's own "independently re-derived"/"independently re-checked"
+language reproducing rather than catching a Phase-1 error -- flagged
+forward as a standing pattern to watch, not yet a rule (one instance).
+Non-load-bearing: confirmed absent from NOTES.md's own frozen Result/
+Learned sections, so R20 does not count it.]**, so `dp/dT ≈
 k_air·r_out·dx` — linear in `r_out` — is close to a structural near-
 certainty for any `r_out` in [78,312], regardless of whether the disputed
 `Q_ext`-invariance assumption holds. That makes the classification-flip

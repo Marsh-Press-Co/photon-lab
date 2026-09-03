@@ -42,7 +42,18 @@ all adopted, none overridden):
    human-perceptual one -- asserted present in both PREDICTIONS_TEXT and
    RESULT_TEXT (R23 pattern), reusing thermo_sidecar's own netd_
    disposition()['disclaimer'] string verbatim as the load-bearing
-   source, not a hand-typed paraphrase.
+   source, not a hand-typed paraphrase. **Phase-5 correction (VISION +
+   Red Team's final audit, applied same-shift, zero re-run, zero verdict
+   change): at execution time this file carried only ONE assert (on
+   RESULT_TEXT) despite this very docstring's own claim of two -- a real,
+   if modest, second data point in the R23 disclaimer-erosion lineage
+   (a code-level regression from R23's own founding two-assert pattern,
+   not merely an unfinished scope extension). The missing
+   `assert DISCLAIMER in predictions_text_` is now added in main(),
+   below, making this docstring's claim true going forward; the string
+   was always genuinely present in the executed predictions_text (by
+   f-string construction), so this is a code-enforcement/documentation
+   fix, not a correction to any scored result.**
 6. Mandatory fix 8 (MATERIALS): the sigma_ext(78)=240.0 Q_ext-invariance
    thermal anchor's own diffraction-inflation/UNOBTANIUM caveat is
    restated inline, immediately before the P5 thermal table, not left in
@@ -509,7 +520,9 @@ def main():
     if not p0_pass:
         raise SystemExit("GATE P0 FAILED -- formula chain mis-derived; halting before any FDTD call.")
 
-    print(f"\n{build_predictions_text(g78, g156, g312)}")
+    predictions_text_ = build_predictions_text(g78, g156, g312)
+    assert DISCLAIMER in predictions_text_, "R23: disclaimer missing from Predictions block"
+    print(f"\n{predictions_text_}")
 
     # margin gates for every committed geometry (156 unconditional; 312 checked before any call)
     for label, g in (("r=156", g156), ("r=312", g312)):

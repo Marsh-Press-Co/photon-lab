@@ -510,7 +510,20 @@ quiescent-gas-conduction limit) AND `area_m2 = l_geometric_m²` for the
 steady-state loss term. At this bench's own µm scale, gas-conduction loss
 overwhelmingly dominates radiative loss at every r tested (computed:
 `h_eff/[4·ε·σ_SB·T³] ≈ 1949× at r=78`, shrinking to `≈487× at r=312` —
-still radiative-loss-negligible at every r in this family), so `dp/dT ≈
+**[Phase-5 correction, THERMODYNAMICS' own self-review + Red Team's
+final audit, applied same-shift: these two figures do NOT reproduce
+from this section's own stated constants -- the correct values are
+≈2160.6× at r=78 and ≈540.1× at r=312 (likely a dropped ε=0.9 factor in
+this one hand-evaluated sentence; recomputing with 4·σ_SB·T³ instead of
+4·ε·σ_SB·T³ reproduces the cited 1949×/487× to within 0.25%). Confirmed
+NOT to survive into NOTES.md's own frozen Result/Learned sections (zero
+grep hits for "1949"/"487" there) -- non-load-bearing, does not change
+this cycle's qualitative "gas-conduction dominates by ~3 orders of
+magnitude" conclusion, which holds at either figure. Left uncorrected
+above per house discipline (historical Phase-1 record, annotated not
+rewritten); the correct values are what NOTES.md and results.json
+actually use downstream.]** still radiative-loss-negligible at every r
+in this family), so `dp/dT ≈
 area_m2·h_eff = l_geometric_m·k_air` — LINEAR in `r_out`, not quadratic.
 Meanwhile `p_abs_w` (via `absorbed_power_established_ratio`'s own
 `iso_xsec_sq` convention, `area_m2=width_m²`, `width_m=σ_ext_cells·dx_m`)
