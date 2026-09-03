@@ -287,6 +287,28 @@ quietly, out of scope by inherited precedent).
 **Phase 3 (this synthesis, Director).** All 7 of Red Team's mandatory
 fixes ADOPTED in full:
 
+**Same-shift correction (Red Team's Phase-5 final audit,
+`phase5_redteam_audit.md` §0.1/§4, added post-freeze — zero re-run, zero
+verdict-arithmetic change): "ADOPTED in full," above, is imprecise for
+mandatory fix 1 specifically.** Mandatory fix 1's own text
+(`phase2_redteam_audit.md` §3.1) carries TWO parts: a ledger COMPUTATION
+(`ledger_check()`, `sections.widths()`+`radial_absorbed_power()`) and an
+attached interpretation RULE ("if fixed-abs and self-similar's
+`p_abs`/`sigma_ext` fractions land within ~10% of each other... adequately
+clean; if they diverge materially, report `shape_ratio_fixedabs`'s bands
+as **three-way ambiguous**"). Only the computation was wired into
+`run.py`; the rule's own consequence was never implemented in the
+classification logic (five of six blind Phase-5 seats — EM, MATERIALS,
+PHOTONICS, QUANTUM, THERMODYNAMICS — independently caught this from
+primitives; see the Result section's own Item 4 paragraph, corrected
+below, and the audit's §0.1/§2 for the full trace). No override of this
+consequence was ever recorded in this Panel record. Checkpoint criterion 4
+does not fire on this gap (audit §2: R20's own strict tally is 0, at most
+1 under the most generous reading, far short of "three or more"; the gap
+was caught blind, within this cycle's own six-seat-plus-Red-Team review
+layer, before LOGBOOK) — but a new standing rule (proposed R24, audit §2)
+is recommended for Director ratification to close it going forward.
+
 1. Ledger check (`ledger_check()`, `sections.widths()`+
    `radial_absorbed_power()`) on both families at r=156/312 — cost
    characterization corrected per Attack 8 (`_run()` now optionally
@@ -397,7 +419,10 @@ denominators) — the near-zero-denominator failure mode the gate exists
 to catch did not occur.
 
 **Item 4 (fixed-abs control — the falsifiable heart of this cycle):
-a real, scored, but explicitly NOT-TRUSTED result.**
+a real, scored, but explicitly NOT-TRUSTED result — and, per a same-shift
+correction below, also THREE-WAY AMBIGUOUS, not a clean binary (see the
+"Same-shift correction" paragraph following the Ledger sanity check,
+below).**
 `shape_ratio_fixedabs=18.2283` — inside the pre-registered REFUTE band
 (>=14.8), the same classification direction as a clean read would give
 ("REFUTES-electrical-thickness-growth-hypothesis": geometric z/z_R
@@ -407,7 +432,11 @@ thickness) — but `run.py`'s own classification string appends
 fixedabs_trusted=False` (item 3), and per Red Team's own mandatory fix 3
 this gate is honored literally: **the discriminator's own headline
 number is reported, not suppressed, but is not certified as physics
-this cycle.** Self-similar P3, recomputed fresh (not merely reused):
+this cycle.** The ledger sanity check below independently exceeds
+mandatory fix 1's own ~10% reclassification trigger, at both measured r —
+this is a second, additive reason (beyond the NOT-TRUSTED settling/Nyquist
+gate) the REFUTE reading is not yet a clean two-hypothesis discriminator.
+Self-similar P3, recomputed fresh (not merely reused):
 `shape_ratio=19.7878` — reproduces exp-105's own committed 19.79 to
 four significant figures, an independent confirmation via a freshly-run
 capture, not a re-read of the same file.
@@ -449,6 +478,36 @@ realized absorption fraction is not on its face surprising — whether
 12–18% is "physically sane" (as the ledger check's own stated purpose
 requires before trusting item 4 as a clean discriminator) or itself
 informative is not adjudicated here.
+
+**Same-shift correction (Red Team's Phase-5 final audit, applied
+post-freeze — zero re-run, pure re-labeling of already-persisted
+`results.json` fields, zero verdict-arithmetic change): this paragraph's
+own "not adjudicated here" is superseded.** Mandatory fix 1's own text
+(`phase2_redteam_audit.md` §3.1, itself reusing THERMODYNAMICS' own
+Phase-2 flip condition verbatim) pre-registers exactly this adjudication:
+*"if fixed-abs and self-similar's `p_abs`/`sigma_ext` fractions land
+within ~10% of each other at matched r, treat item 4's two-hypothesis
+framing as adequately clean; if they diverge materially, report
+`shape_ratio_fixedabs`'s CONFIRM/REFUTE bands as **three-way ambiguous**
+(thickness-law vs. core-reflection/gradient-steepness vs. both), not a
+clean binary."* The measured divergence — 12.31% (r=156), 17.96% (r=312)
+— **exceeds this ~10% trigger at both measured r, including r=156, this
+cycle's one fully TRUSTED, cleanly-settled leg.** Per this program's own
+rule, Item 4's honest classification is therefore: **THREE-WAY AMBIGUOUS
+(thickness-law vs. core-reflection/gradient-steepness vs. both) —
+REFUTES-electrical-thickness-growth-hypothesis nominally, per the raw
+`shape_ratio_fixedabs=18.2283` bands alone, but not yet certified as a
+clean two-hypothesis discriminator — and, independently, NOT-TRUSTED
+(r=312 MARGINAL/unsettled).** `run.py`'s own persisted classification
+string was never updated to reflect this rule (five of six blind Phase-5
+seats — EM, MATERIALS, PHOTONICS, QUANTUM, THERMODYNAMICS — independently
+caught this gap from primitives; full trace:
+`phase5_redteam_audit.md` §0.1/§2); correcting the code is Iteration-84's
+job (Tier 1, `phase5_redteam_audit.md` §5), not a same-shift change to
+`run.py`/`results.json` — this note corrects the prose record only. A
+genuine hollow-vs-PEC-cored delta test (exp-052's own methodology, Tier 1
+item 1 of the Reconciled Iteration-84 queue) remains the instrument that
+would actually resolve the three-way ambiguity, not merely disclose it.
 
 **Realizability note (mandatory fix 4): unchanged, reported verbatim as
 frozen** — both families' r=78 anchor is UNOBTANIUM-WITH-PARAMETERS per
