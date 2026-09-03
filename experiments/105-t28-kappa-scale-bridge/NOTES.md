@@ -257,3 +257,127 @@ pre-freeze code-correctness check, not a result.
 
 Predictions frozen and committed to git in this same commit, strictly
 BEFORE `run.py`'s first `Sim.run()` call, per house discipline.
+
+## Result
+
+**6 real FDTD calls, 3883.3s (64.72 min) wall time, zero `lab/` diff
+throughout.** r=312's cost-gated pilot (empty scene alone) came in at
+1867.5s (31.13 min, well under the 90-min abort threshold), so the full
+r=312 leg was committed and executed — better than the worst case the
+Phase-1 proposal's own cost model disclosed (up to 7.1h).
+
+**Gate P0: PASS.** **Gate P1 (r=78, rescoped self-consistency check):
+PASS**, max_rel=0.000e+00. **Fresnel/Nyquist pre-check**: r=78
+nyquist_margin=4.936 (TRUSTED); r=156 nyquist_margin=2.468 (TRUSTED);
+r=312 nyquist_margin=1.234 (MARGINAL-REDUCED-CONFIDENCE) — exactly as
+predicted, all three tiers landed where the pre-registered thresholds
+put them.
+
+**kappa_window(r): 78→0.018337, 156→0.0008867, 312→0.000004793.**
+
+**P2 (monotonicity): CONFIRMED**, as predicted.
+
+**P3 (functional-form + shape discriminator): SCORED — the headline,
+genuinely surprising finding.** With r=312 committed, the full 2-point-
+fit-vs-held-out-r=78 test ran: shape_ratio = **19.79** (vs. the sqrt-law
+band 2.00±0.3 and the linear-law band 4.00±0.5 — nearly 5× past the
+linear-law's own already-generous band, and ~4× further out than T8's
+own already-REFUTED absorber ratio of 5.33 on the ambient channel).
+Model-A (sqrt-law) miss=85.55%, Model-B (linear-law) miss=75.93% —
+both catastrophically outside the pre-registered 25%/60% tolerance
+bands. **kappa_window falls by ~20.7× from r=78→156, then by ~185×
+from r=156→312** — accelerating, not merely failing to fit a power law.
+This is a materially different (and much more extreme) failure shape
+than T8's own P-VISION-1b REFUTE on the ambient channel, which showed
+modest absolute-C drift (−0.72→−0.73→−0.73, order-10% relative changes)
+against the SAME two candidate laws. Not interpreted here (R3 meta-rule
+— a surprising feature gets a resolution check before a mechanism
+debate) — flagged explicitly for Phase 5.
+
+**P4 (sub-Nyquist ripple generalization, GATED): FALSIFIED at all three
+r, and TRUSTED at r=78 and r=156.** r=78 (reused): P2-analog=FALSIFIED
+(0 reversals), nyquist_tier=TRUSTED. r=156 (new): P2-analog=FALSIFIED
+(0 reversals), settling_pass=True (0/53 kappa failures, 0/53 phase
+failures, both well inside tolerance), nyquist_tier=TRUSTED —
+**P4_TRUSTED=True**, exp-104's own clean null genuinely generalizes to
+r=156 under a real, passing settling check on the exact channel that
+had never been settling-tested before. r=312 (new): P2-analog=FALSIFIED
+(0 reversals) but nyquist_tier=MARGINAL-REDUCED-CONFIDENCE (no settling
+leg run there, disclosed idealization) — reported with reduced
+confidence, not silently treated as equally trustworthy as r=156's.
+
+**P5 (thermal sidecar): CONFIRMED.** Classification UNDETECTABLE at all
+three r (699.27×/349.80×/175.06×, monotonically declining as predicted);
+r=78 row reproduces the locked 699.27× citation exactly
+(2.860128e-05 K). Realizability/diffraction-inflation caveat carried
+inline as committed.
+
+## Learned
+
+1. **The coherent point/region-intensity channel's own near-field
+   scale-dependence is far steeper, and shaped completely differently,
+   than the ambient Weber-contrast channel's already-REFUTED T8
+   finding** — this is new information, not a replication. Where T8's
+   own absorber showed slow, near-monotonic drift close to (though
+   outside) both candidate power laws, this channel's kappa_window
+   collapses by more than four orders of magnitude across the same
+   r-family (0.018→0.00089→0.0000048), accelerating rather than
+   flattening. Both cross-channel non-replication (P3, this cycle) and
+   the earlier cross-channel replication of a clean ripple null (P4,
+   also this cycle) are real, disclosed findings about how much this
+   program's two existing near-field instruments actually agree with
+   each other under scale — the answer is "sometimes, and sometimes not
+   at all," itself informative for how much weight either channel's own
+   near-field readings should carry pending a real witness-scale bridge.
+2. **The Nyquist/Fresnel pre-check (mandatory fix 4) worked exactly as
+   designed** — it predicted, before any r=312 call ran, that the
+   sub-Nyquist margin would degrade to MARGINAL at r=312 (1.234, just
+   above the UNRESOLVED floor of 1.0) while staying comfortably TRUSTED
+   at r=156 (2.468) — and the actual P4 readings landed in exactly the
+   predicted trust tiers. This is a genuinely useful, cheap, reusable
+   diagnostic for any future extension of this instrument to r>312.
+3. **The new point-channel settling leg (mandatory fix 3) passed
+   cleanly** (0/53 kappa failures, 0/53 phase failures) — the first time
+   this program has ever settling-tested `kappa_region_point`/
+   `delta_phi_point` at any geometry, closing a genuine gap EM's
+   Phase-2 critique identified (this channel had never been checked, at
+   any r, in this program's history).
+4. **r=312's real cost (1867.5s pilot, ~52.1 min for the full 2-call
+   leg) came in well under the Phase-1 proposal's own worst-case
+   estimate** (up to 7.1h) — closer to its optimistic-case naive-κ³
+   estimate than to T8's own 3.5×-worse-than-naive precedent. This
+   program's own T8-derived cost-blowup caution was the right posture
+   to take (a real risk that did not materialize this time is not
+   evidence the caution was wrong to hold).
+
+## Next (candidate directions, Iteration 83 queue material)
+
+1. **P3's own accelerating-collapse finding needs a resolution check
+   before any mechanism debate** (R3 meta-rule) — is `kappa_window`'s
+   own ~20×/~185× two-step collapse a genuine near-field physical
+   effect (the fixed-cell window offset representing an ever-shrinking
+   FRACTION of the object's own growing radius, pushing the measurement
+   ever deeper into the geometric shadow's near zone as r grows), a
+   floor/dynamic-range artifact (kappa_window(312)=4.8e-6 is getting
+   close to floating-point/discretization noise territory relative to
+   the empty-scene intensity scale), or something else? A dedicated,
+   zero-new-mechanism resolution/floor check is the single highest-
+   value item this cycle's own result creates.
+2. **A settling-independence leg at r=312** — the one disclosed
+   idealization this cycle did not close (no settling check ran at
+   r=312 at all), now directly relevant since r=312's own nyquist_tier
+   is already MARGINAL; a settling artifact there would compound with,
+   not merely coexist alongside, the aliasing-margin risk.
+3. **A real, measured `sections.widths()` `sigma_ext(r)` trend**,
+   replacing P5's own `Q_ext`-invariance placeholder — zero marginal
+   FDTD cost, reusing this cycle's own captured fields (deferred from
+   the Phase-1 proposal's own Next list, still open).
+4. **The oblique-angle extension of this same θ=0°-validated bridge**
+   (deferred explicitly in the Phase-1 proposal, still open).
+5. The standing `delta_scene` R3-vs-R4 split (Tier 3, now SIX
+   consecutive deferrals per exp-104's own explicit written warning —
+   a seventh must be re-justified in writing or executed) — untouched
+   by this cycle, exactly as exp-102/103/104 left it.
+6. The other two Reconciled Iteration-82 Tier-1 items (R23's own scope
+   decision; the near-null-exclusion raw-bin-identity refinement) —
+   explicitly out of this cycle's own scope, still open.
