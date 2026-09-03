@@ -22,7 +22,85 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-03, panel Iteration 82 done (exp-105, PARTIAL,
+## Current state (2026-09-03, panel Iteration 83 done (exp-106, PARTIAL,
+QUANTUM OPTICS' rotation-lead cycle: executed exp-105's own Reconciled
+Iteration-83 queue Tier 1 items 1-4 in full (Red Team's own final-audit
+tiered ranking) -- floor-gated window_stats()'s own output and stopped
+discarding r=312's raw channel data; ran a settling-independence leg on
+kappa_window itself (not merely its sibling kappa_region_point) at
+r=156/312; built p3_trusted/shape_ratio_fixedabs_trusted, risk-
+propagation gates symmetric in kind to exp-105's own p4_156_trusted; and,
+for the first time on this channel, re-ran the bridge on exp-052's
+fixed-absolute-thickness graded_black_shell control at r=156/312 --
+MATERIALS' own newly-identified discriminator between the geometric z/z_R
+window hypothesis and a growing-electrical-thickness alternative. Five
+blind Phase-2 critiques, all support-with-changes; Red Team's Phase-2
+audit adopted all five in full, one MAJOR partial override of MATERIALS'
+own stale realizability claim, verdict PROCEED-WITH-MANDATORY-FIXES.
+Predictions committed to git BEFORE any Phase-4 call; 10 real FDTD calls
+(of 12 scheduled if every leg committed), 18398.4s (306.64 min) wall,
+zero lab/ diff, trust suite green throughout (41/41). Gate P0/
+reproduction checks: exact PASS. Item 1 (floor-gate): clean at BOTH r
+(frac_unresolved=0.0000 everywhere) -- falsifies the Phase-1 proposal's
+own "possibly >10% unresolved at r=312" worry, in the reassuring
+direction. Item 2 (settling on kappa_window itself): landslide PASS at
+r=156 for both families; r=312 genuinely NOT RUN -- its own empty-scene
+settling pilot alone (103.28 min) correctly exceeded the 90-min cost
+gate, deferring the article calls. Item 3 (risk-propagation gates): both
+FALSE exactly as predicted, structurally forced by nyquist_tier(312)=
+MARGINAL -- confirmed (QUANTUM's Phase-5 finding, Red-Team-reverified)
+that p3_trusted/shape_ratio_fixedabs_trusted can NEVER reach True at
+r=312 under this bridge geometry, a structural ceiling, not a coin flip.
+Item 4 (fixed-abs control, the cycle's own stated centerpiece):
+shape_ratio_fixedabs=18.2283, REFUTE-band direction, explicitly
+NOT-TRUSTED; PHOTONICS' own ungated abs_ratio cross-check clears its
+factor-of-2 band at both r. Ledger sanity check: core_frac=0/box_dev
+clean at every point, but the cross-family absorbed-power divergence
+(12.31%/17.96%) exceeds mandatory fix 1's own pre-registered ~10%
+reclassification trigger at both r. Five of six blind Phase-5 seats (EM,
+MATERIALS, PHOTONICS, QUANTUM, THERMODYNAMICS), independently and blind
+to one another, converged on the identical finding: that reclassification
+rule was never wired into run.py's classification logic despite NOTES.md
+claiming all 7 mandatory fixes "adopted in full." Red Team's Phase-5
+final audit independently re-verified this from primitives, ruled R20
+tally=0 (at most 1 under the most generous reading -- a
+specification-vs-implementation gap is a different failure shape than
+R20's own citation/figure-reproduction instances), ruled the Iteration-82
+pre-freeze shield does NOT apply (this gap IS the frozen Result text
+itself) yet Checkpoint criterion 4 still does NOT fire (the tally falls
+short of "three or more," not a timing technicality; caught blind, same
+cycle, before LOGBOOK). Same-shift fix applied directly to NOTES.md:
+Item 4 reclassified THREE-WAY AMBIGUOUS (pure post-processing of
+already-persisted results.json fields, zero re-run); run.py's own code
+fix left for Iteration 84. New standing rule R24 ratified (a Phase-2
+mandatory fix's own specified consequence, once claimed "adopted in
+full," must be implemented as a binding classification/verdict element,
+not left computed-but-unwired -- does not fire on its own founding
+instance, fires Checkpoint 4 automatically on a second instance).
+Combined Verdict: PARTIAL -- not RULED OUT (T1 correctly N/A throughout),
+not PROMISING (the cycle's own stated hypothesis, that closing all four
+exp-105 gaps would let P3's collapse finally be TRUSTED or REFUTED as
+physics, is not achieved), but real self-correction: the risk-propagation
+symmetry fix genuinely works, the floor gate genuinely falsifies its own
+r=312 worry, and the fixed-abs control genuinely executes for the first
+time on this channel. Reconciled Iteration-84 queue (Red Team's own
+tiered ranking): Tier 0 -- execute or formally retire the delta_scene
+R3-vs-R4 split (now SEVEN consecutive deferrals, no eighth silent
+deferral permitted); Tier 1 -- exp-052's literal hollow-vs-PEC-cored
+radial_absorbed_power delta test on the fixed-abs family (the only
+instrument that can discharge Red Team's own founding Attack 9 concern);
+complete the r=312 settling leg (still diagnostically valuable despite
+the structural p3_trusted ceiling); a real non-placeholder P5 thermal row
+for both families (zero marginal FDTD cost); an absolute noise-floor
+check on kappa_window's own numerator, not merely the empty-scene
+denominator PHOTONICS found is all item 1 currently tests. Tier 2 -- a
+genuinely different bridge-family geometry (engineered so nyquist_margin
+crosses 2.0, since no re-run of the CURRENT geometry can ever produce a
+fully-TRUSTED r=312 reading); a fourth r-point; widen the R23 scope
+decision; correct exp-105's own stale Tier-2 realizability-tag queue item
+before it is executed. Full record: `experiments/106-t28-kappa-window-
+floor-fixedabs-control/`, LOGBOOK.md Iteration 83). Next: panel Iteration
+82 done (exp-105, PARTIAL,
 THERMODYNAMICS' rotation-lead cycle: executed exp-104's own Reconciled
 Iteration-82 queue Tier 1 item 1 (Red Team's consensus top pick) --
 extended T8's r=78/156/312 near-field-to-witness-scale bridge

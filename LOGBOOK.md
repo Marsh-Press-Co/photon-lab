@@ -942,6 +942,58 @@ top. Protocol: PANEL.md.*
   `experiments/104-t28-subnyquist-standoff-recheck/
   phase5_redteam_audit.md` §0d, §1, §3.1, §5 item 4, LOGBOOK.md
   Iteration 81.
+- **R24 — a Phase-2 mandatory fix's own specified consequence or decision
+  rule, once a Phase-3 synthesis states it was "adopted in full," must be
+  implemented as a binding element of whatever classification or verdict
+  string it was written to gate — not merely computed and left as an
+  unscored, disclosed observation — before that "adopted in full" claim is
+  trusted** (not a ruled-out idea; a standing house-discipline rule,
+  proposed by Red Team's Phase-5 final audit and ratified by the Director,
+  Iteration 83). Distinguished from R6/R7/R8 (an estimator's own
+  significance/robustness machinery) and from R16/R21 (a byproduct FIELD's
+  persistence/narration): this concerns a **rule** — already reused
+  verbatim from a named Phase-2 critique (THERMODYNAMICS' own exp-106
+  flip-condition) into a numbered mandatory fix — whose own if/then
+  consequence clause survived into the frozen Panel record's prose but was
+  never wired into the code path that produces the artifact a future
+  citation will quote. Founding instance: exp-106's own item 4
+  (`shape_ratio_fixedabs` classification) — mandatory fix 1's own
+  reclassification trigger ("if the cross-family ledger divergence exceeds
+  ~10%, report three-way ambiguous, not a clean binary") fired at both
+  measured r (12.31%/17.96%) but `run.py`'s classification logic never
+  checked it, despite NOTES.md's Panel record claiming all 7 mandatory
+  fixes were "adopted in full." Independently caught, from primitives, by
+  five of six blind Phase-5 seats (EM, MATERIALS, PHOTONICS, QUANTUM,
+  THERMODYNAMICS) plus Red Team's own final audit — zero seats missed it
+  among those whose charter bears on the question. **R20 tally on this
+  gap: 0 (at most 1 under the most generous "adopted in full is itself an
+  R4-shaped label" reading) — does not fire R20** (a
+  specification-vs-implementation gap is a different failure shape than
+  R20's own founding "citation/figure fails to reproduce from its own
+  cited source" instances). **The Iteration-82 pre-freeze shield does NOT
+  apply** — reasoned explicitly, not by inertia: unlike exp-105's
+  dominance-ratio error (which lived only in pre-freeze documents, absent
+  from NOTES.md's own frozen Result by direct grep), this gap IS the
+  frozen Result text itself (the persisted `classification` string,
+  reproduced verbatim in NOTES.md's Result section) — Checkpoint 4 still
+  does not fire only because the tally (0–1) falls short of "three or
+  more," not because of a freeze-timing technicality. **Does not fire on
+  its own founding instance** (exp-106), matching every prior R-rule's own
+  precedent — caught blind, same cycle, before LOGBOOK. Same-shift fix
+  applied: exp-106's own NOTES.md Item 4 paragraph corrected to THREE-WAY
+  AMBIGUOUS (pure post-processing of already-persisted `results.json`
+  fields, zero re-run, zero verdict-arithmetic change); `run.py`'s own
+  code fix is Iteration-84's job (Tier 1). **Rule, forward: a future cycle
+  that ships a Phase-3 "adopted in full" claim whose own mandatory-fix
+  consequence later proves not to have been coded, when that consequence's
+  own trigger condition is met by the data, fires Checkpoint criterion 4
+  automatically on a SECOND instance** — a two-strike-to-automatic
+  convention (matching R16/R22/R23's own single-instance-ratified,
+  forward-firing model), not R20's three-in-one-cycle density bar, because
+  this shape concerns one load-bearing rule, not a density of independent
+  citation slips. Full record: `experiments/106-t28-kappa-window-floor-
+  fixedabs-control/phase5_redteam_audit.md` §0.1, §2, §4, LOGBOOK.md
+  Iteration 83.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -7770,6 +7822,183 @@ Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
 (`results.json`, `run.py`), six Phase-5 blind reviews
 (`phase5_review_{photonics,materials,em,quantum,vision,thermodynamics}.md`),
 Phase-5 Red Team final audit (`phase5_redteam_audit.md`).
+
+**Iteration 83 (exp-106) — QUANTUM OPTICS' rotation-lead cycle: floor-
+gating, settling, symmetric risk-propagation gates, and the fixed-
+absolute-thickness control for `kappa_window`, executed in full — a real
+self-correction wrapped in a same-shift-fixable classification gap,
+Combined Verdict PARTIAL, R20 does not fire, Checkpoint criterion 4 does
+not fire, new standing rule R24 ratified.** Executed exp-105's own
+Reconciled Iteration-83 queue, Tier 1 items 1–4 in full (Red Team's own
+final-audit tiered ranking): floor-gate `window_stats()`'s own output and
+stop discarding r=312's raw channel data; a settling-independence leg on
+`kappa_window` itself (not merely its sibling `kappa_region_point`) at
+r=156/312; `p3_trusted`/`shape_ratio_fixedabs_trusted` — risk-propagation
+gates symmetric in KIND to exp-105's own `p4_156_trusted`; and, for the
+first time on this channel, exp-052's fixed-absolute-thickness
+`graded_black_shell` control at r=156/312, discriminating the geometric
+z/z_R window hypothesis from MATERIALS' own newly-identified growing-
+electrical-thickness alternative. Director's own disclosed cost
+optimization (empty-scene captures reused across both families) cut the
+Phase-1 proposal's own 16-call budget to 12 if every leg committed. Five
+blind Phase-2 critiques, all support-with-changes; Red Team's Phase-2
+audit adopted all five in full, raised 2 new attacks of its own (a
+gating-rigor symmetry gap; a cost-characterization correction), one MAJOR
+partial override of MATERIALS' own critique (a stale realizability claim,
+superseded by REALIZABILITY_MEMO.md AMENDMENT 6/7, replaced with
+citation-grounded text), verdict PROCEED-WITH-MANDATORY-FIXES. Predictions
+committed to git strictly BEFORE any Phase-4 call; **10 real FDTD calls
+(of 12 scheduled if every leg committed), 18398.4s (306.64 min) wall,
+zero `lab/` diff, trust suite green throughout (41/41).**
+
+**Gate P0/reproduction checks: exact PASS** (0.000e+00 at both r=156/312).
+**Item 1 (floor-gate): clean at BOTH r** (frac_unresolved=0.0000
+everywhere) — falsifies the Phase-1 proposal's own "possibly >10%
+unresolved at r=312" worry, in the reassuring direction; r=312's own
+wide/point/delta_phi channels persisted in full, the specific "stop
+discarding" gap exp-105's own Phase 5 named, now closed. **Item 2
+(settling on `kappa_window` itself): landslide PASS at r=156 for BOTH
+families** (rel_change 0.0002/0.0001, 3–4 orders of magnitude inside
+tolerance); **r=312 genuinely NOT RUN** — its own empty-scene settling
+pilot alone (103.28 min) exceeded the 90-min per-leg cost gate on its own,
+correctly deferring the two article calls that would have followed (the
+SAME gate firing two different ways on two legs of the identical r: the
+primary leg's own empty pilot, 52.65 min, cleared the threshold and
+committed). **Item 3 (risk-propagation gates): both FALSE exactly as
+predicted**, structurally forced by `nyquist_tier(312)=MARGINAL` — a fixed
+domain-geometry property identical between families, independently
+confirmed by QUANTUM's Phase-5 review (re-verified by Red Team, §0.2) to
+mean `p3_trusted`/`shape_ratio_fixedabs_trusted` can **never** reach True
+at r=312 under this bridge geometry's current construction, regardless of
+the deferred settling leg's outcome — a structural ceiling, not a coin
+flip. **Item 4 (fixed-abs control, the cycle's own stated centerpiece):
+`shape_ratio_fixedabs=18.2283`**, inside the pre-registered REFUTE band,
+same direction as a clean read (geometric z/z_R window effect over
+growing-electrical-thickness), explicitly `NOT-TRUSTED` (r=312
+unsettled); PHOTONICS' own ungated `abs_ratio` cross-check clears its
+factor-of-2 band at both r (1.0852/1.8797, the latter at 94% of its own
+boundary). **Ledger sanity check: core_frac=0 and box_dev clean at every
+point** (2+ orders of magnitude inside the established bound), but the
+cross-family absorbed-power divergence (`p_abs_frac_diff`) — 12.31%
+(r=156), 17.96% (r=312) — **exceeds mandatory fix 1's own pre-registered
+~10% reclassification trigger, at both r, including r=156, this cycle's
+one fully TRUSTED leg.**
+
+**Five of six blind Phase-5 seats (EM, MATERIALS, PHOTONICS, QUANTUM,
+THERMODYNAMICS), independently and blind to one another, converged on the
+identical finding**: mandatory fix 1's own attached rule ("if the
+cross-family divergence exceeds ~10%, report `shape_ratio_fixedabs` as
+three-way ambiguous, not a clean binary" — reused verbatim from
+THERMODYNAMICS' own Phase-2 critique) fires at both measured r, but
+`run.py`'s classification logic never implements it, despite NOTES.md's
+Panel record claiming all 7 mandatory fixes were "adopted in full."
+PHOTONICS additionally found `floor_gate_window()` only ever tests the
+empty-scene denominator, never the article-scene numerator that actually
+collapses ~200,000× by r=312 — item 1's own stated purpose ("is r=312's
+reading dynamic-range-limited?") is not actually answered by what was
+built. THERMODYNAMICS recomputed the thermal-chain-correct absorbed-power
+proxy (`σ_ext·σ_abs`, not `σ_abs` alone) and found larger divergence
+(31%/46%), though the UNDETECTABLE conclusion from exp-105 survives with
+120–270× margin; also found the ledger's own `closure` identity is
+computed cleanly (0.016–0.069%) but never narrated. VISION confirmed
+R23's disclaimer discipline is genuinely intact — the cleanest
+implementation in the three-cycle lineage — but found the Result
+section's own prose never quotes the disclaimer text verbatim, a
+two-cycle-consistent documentation gap (non-R23-violating). MATERIALS
+separately caught a stale realizability citation sitting uncorrected in
+exp-105's own still-open Tier-2 queue that would reintroduce a known
+error if executed as originally framed.
+
+**Red Team's Phase-5 final audit independently re-verified the
+five-seat-convergent finding from primitives** (direct read of `run.py`'s
+classification code, confirmed the trigger fires at both r, confirmed
+zero override was ever recorded), and ruled explicitly, in both
+directions, on the two hardest adjacent questions: **R20 tally is 0 (at
+most 1 under the most generous reading)** — a specification-vs-
+implementation gap (a rule's own consequence never coded) is a materially
+different failure shape than every prior R4/R20 instance (a citation or
+figure that fails to reproduce from its own cited source), so it does not
+meet R20's strict textual trigger even generously read; **the Iteration-82
+pre-freeze shield does NOT apply** — reasoned explicitly rather than by
+inertia: unlike exp-105's dominance-ratio error (confirmed absent from
+NOTES.md's own frozen Result by direct grep), this gap IS the frozen
+Result text itself (the persisted `classification` string, reproduced
+verbatim in NOTES.md's Result section) — Checkpoint 4 still does not fire
+only because the tally (0–1) falls short of "three or more," not because
+of a freeze-timing technicality. Zero disagreement found across the six
+reviews on any load-bearing point; one genuinely complementary (not
+missed) secondary finding — `abs_ratio(312)` sitting at 94% of its own
+band boundary, independently named by two of six seats. **Checkpoint
+criterion 4 does NOT fire** (R20's bar unmet; T1 correctly N/A throughout,
+confirmed directly from `_run()`'s own source; constraint-3 explicitly out
+of scope, R23 code-enforcement genuinely intact; the gap was caught blind,
+within this cycle's own six-seat-plus-Red-Team review layer, before
+LOGBOOK — the "known, named, ignored" bar automatic firing requires was
+never met). **Same-shift fix applied directly to NOTES.md by Red Team's
+own audit** (pure post-processing of already-persisted `results.json`
+fields, zero re-run, zero verdict-arithmetic change): Item 4 reclassified
+**THREE-WAY AMBIGUOUS** (thickness-law vs. core-reflection/gradient-
+steepness vs. both) — REFUTE nominally per the raw `shape_ratio_fixedabs`
+bands, but not yet a clean two-hypothesis discriminator, and independently
+NOT-TRUSTED; the Panel record's own "ADOPTED in full" claim annotated with
+a correction note (`run.py`'s own code fix left for Iteration 84, per this
+program's own "annotate, don't silently rewrite" R4 convention).
+
+**New standing rule R24 ratified (Director, this shift; full text in
+RULED OUT, above)**: a Phase-2 mandatory fix's own specified consequence,
+once a Phase-3 synthesis claims "adopted in full," must be implemented as
+a binding element of the classification/verdict string it was written to
+gate — not left computed-but-unwired. Does not fire on its own founding
+instance (this cycle); fires Checkpoint criterion 4 automatically on a
+second instance (a two-strike-to-automatic convention, matching
+R16/R22/R23's own single-instance-ratified precedent).
+
+**Combined Verdict: PARTIAL** — not RULED OUT (T1 correctly N/A, no
+mechanism class foreclosed); not PROMISING (the cycle's own stated
+hypothesis — that closing all four exp-105 gaps would let P3's collapse
+finally be TRUSTED or REFUTED as physics — is not achieved: item 1's floor
+gate answers only the denominator's question; item 2 resolves cleanly only
+at r=156; item 3's gates work exactly as designed but reveal a structural
+ceiling no re-run can clear; item 4's own centerpiece control delivers a
+result its own adopted rule says should be reported differently than it
+was). Real, logbook-advancing progress nonetheless: the risk-propagation
+symmetry fix genuinely works: the floor gate genuinely, cleanly falsifies
+its own r=312 worry; the fixed-abs control genuinely executes for the
+first time on this channel. Six independent CONFIRM-WITH-GAPS verdicts (no
+clean CONFIRM among them), denser than exp-102's or exp-104's own gap
+clusters, comparable to exp-105's own density. Reconciled Iteration-84
+queue (Red Team's own tiered ranking, full detail
+`phase5_redteam_audit.md` §5): **Tier 0, governance** — execute or
+formally retire the `delta_scene` R3-vs-R4 split (now SEVEN consecutive
+deferrals — this cycle's own NOTES.md already states, in writing, that
+Iteration 84 does not have the option of a silent eighth deferral);
+ratify-or-reject disposition already exercised for R24 above. **Tier 1,
+real cross-seat convergence (4+ of 6 seats)** — run exp-052's literal
+hollow-vs-PEC-cored `radial_absorbed_power` delta test on the fixed-abs
+family at r=156/312 (the only instrument that can actually discharge Red
+Team's own founding Attack 9 concern, sharpened this cycle by two
+independently-derived physical signatures: fixed-abs's own `abs_ext_ratio`
+falls monotonically with `R_CORE/R_COAT` while self-similar's stays flat);
+complete the r=312 settling leg (diagnostically valuable despite the
+structural ceiling on `p3_trusted`); a real, non-placeholder P5 thermal
+row for both families at r=156/312 using the ledger's own already-captured
+fields (zero marginal FDTD cost); an absolute noise-floor check on
+`kappa_window`'s own numerator, not merely the empty-scene denominator.
+**Tier 2** — pursue a genuinely different bridge-family geometry
+(engineered so `nyquist_margin` crosses 2.0, since no re-run of the
+CURRENT r=78/156/312 geometry can ever produce a fully-TRUSTED reading at
+r=312); a fourth r-point to break the two-point shape-fit degeneracy;
+widen the R23 scope decision with VISION's new Result-section-prose data
+point; correct exp-105's own stale Tier-2 realizability-tag queue item
+before it is executed. **Tier 3** — the oblique-angle extension; the
+near-null-exclusion raw-bin-identity refinement, two cycles further
+deferred. Full record: `experiments/106-t28-kappa-window-floor-fixedabs-
+control/` — Phase-1 proposal (QUANTUM OPTICS), five Phase-2 blind
+critiques (`phase2_critique_{photonics,materials,em,thermodynamics,
+vision}.md`), Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`),
+Phase-4 results (`results.json`, `run.py`), six Phase-5 blind reviews
+(`phase5_review_{photonics,materials,em,thermodynamics,quantum,
+vision}.md`), Phase-5 Red Team final audit (`phase5_redteam_audit.md`).
 
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
