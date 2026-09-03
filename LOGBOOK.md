@@ -7576,6 +7576,201 @@ Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
 received condensed, Phase-5 Red Team final audit
 (`phase5_redteam_audit.md`).
 
+**Iteration 82 (exp-105) — THERMODYNAMICS' rotation-lead cycle: the T8
+r=78/156/312 near-field-to-witness-scale bridge, extended for the first
+time to the coherent point/region-intensity channel — a genuine,
+materially different (and far more extreme) non-replication of T8's own
+already-REFUTED shape-discriminator finding, Combined Verdict PARTIAL,
+R20 does not fire, Checkpoint criterion 4 does not fire.** Executed
+exp-104's own Reconciled Iteration-82 queue, Tier 1 item 1 (Red Team's
+own consensus top pick, "now unblocked by this cycle's clean [P2]
+null"): T8's founding self-similar r-family scaling methodology (exp-030,
+Iteration 7 — κ=r/78, every length `round(value·κ)`, the mandatory
+`sigma_max(κ)=0.5/κ` optical-depth-preserving fix, independently
+cross-validated at κ=2 against the R4 family's own independently-built
+`SIGMA_R4_CORRECTED=0.25`) applied for the first time to the newer
+coherent, phase-resolved point/region-intensity channel
+(`kappa_window`/`kappa_region_wide`/`kappa_region_point`/`delta_phi`,
+built exp-102, hardened exp-103/104's own clean sub-Nyquist null) rather
+than the ambient Weber-contrast instrument T8's own Block 1 measured.
+r=78 fully reused (0 new FDTD calls) from exp-103/104's own committed
+results.json; r=156 unconditionally committed; r=312 cost-gated behind a
+timing pilot per T8's own Iteration-7 cost-blowup precedent (that leg
+overran its own hand estimate 8×). THERMODYNAMICS sidecar INVOKED this
+cycle (departure from exp-102/103/104's own N/A precedent — genuinely
+varying `r_out` changes the thermal chain's `l_geometric_m` argument
+directly). Five blind Phase-2 critiques, all support-with-changes —
+three independently caught the identical 10× arithmetic error in the
+Phase-1 proposal's own hand-typed `z_over_zr` figures (PHOTONICS, EM,
+QUANTUM); MATERIALS flagged the thermal sidecar's `Q_ext`-invariance
+anchor as resting on exp-057's own "ASSERTED, NOT INDEPENDENTLY BOUNDED"
+diffraction-inflated width, uncaveated inline; EM flagged that this
+program has never settling-tested `kappa_region_point`/`delta_phi_point`,
+the exact channel P4 depends on, at any r; QUANTUM flagged that P4's
+"unmodified" ripple-generalization claim ignores a 16× Fresnel-number
+growth across the r-family while `DENSE_PITCH` stays fixed; VISION
+flagged the newly-live NETD channel's own R23 disclaimer-scope gap.
+Red Team's Phase-2 audit ADOPTED all five in full (zero overridden),
+found 3 new defects of its own (the `z_over_zr` sentence contains a
+THIRD, separately-wrong range bracket, not scatter around the known 10×
+error; Gate P1's actual narrower scope for the reused r=78 leg,
+structurally the Iteration-69/exp-092 "unexecutable zero-cost reuse"
+precedent; P5's own illustrative numeric bands were self-disclaimed as
+non-binding, a real gap against PANEL.md's falsifiable-band requirement),
+verdict PROCEED-WITH-MANDATORY-FIXES. Predictions committed to git
+strictly BEFORE any Phase-4 call (`b8dc2d5`); **exactly 6 real FDTD
+calls, 3883.3s (64.72 min) wall, zero `lab/` diff, trust suite green
+throughout (41/41).** r=312's cost-gated pilot (31.13 min) came in well
+under the 90-min abort threshold, so the full leg was committed and
+executed — better than the Phase-1 proposal's own worst-case estimate
+(up to 7.1h).
+
+**Gate P0/P1: PASS, exact** (0.000e+00 relative deviation). **Fresnel/
+Nyquist pre-check landed exactly in its own pre-registered trust tiers**
+before any r=312 call ran: r=78 nyquist_margin=4.936 (TRUSTED); r=156
+nyquist_margin=2.468 (TRUSTED); r=312 nyquist_margin=1.234
+(MARGINAL-REDUCED-CONFIDENCE). **P2 (monotonicity): CONFIRMED**, as
+predicted. **P3 (functional-form + shape discriminator): SCORED — the
+headline finding.** shape_ratio=**19.79** (vs. the pre-registered
+sqrt-law band 2.00±0.3 and linear-law band 4.00±0.5 — Model-A miss
+85.55%, Model-B miss 75.93%, both catastrophically outside the
+25%/60% tolerance); `kappa_window` collapses ~20.7× (r=78→156) then
+~185× (r=156→312) — accelerating, not merely failing to fit a power
+law, and materially more extreme than T8's own already-REFUTED absorber
+ratio (5.33) on the ambient channel. **P4 (sub-Nyquist ripple
+generalization, GATED): FALSIFIED at all three r; TRUSTED at r=78/156**
+(the new point-channel settling leg — mandatory fix 3, EM's own
+finding, this program's first-ever settling test on this channel at any
+r — passed cleanly, 0/53 kappa failures, 0/53 phase failures, 14.5×–30×
+inside tolerance); r=312 reported reduced-confidence (no settling leg
+there, disclosed idealization). **P5 (thermal sidecar): CONFIRMED** —
+UNDETECTABLE at all three r (699.27×/349.80×/175.06×, monotonically
+declining as predicted), r=78 row reproduces the locked citation
+exactly.
+
+**Six blind Phase-5 reviews, all CONFIRM-WITH-GAPS (no clean CONFIRM
+among them, a denser cluster than either exp-102 or exp-104's own Phase-5
+layer).** PHOTONICS proved, from primitives, that this bridge's own
+forced geometry makes `shape_ratio≡2^n` exactly (`x(78):x(156):x(312)
+=4:2:1`), so the measured 19.79 implies exponent **n≈4.31** — roughly
+double the steepest diffraction-theory candidate this program has
+tested, and the WRONG direction for an apodized (graded) shell, which
+should suppress rather than steepen diffractive leakage — and found
+`kappa_window` never floor-gated at any r, r=312's raw intensities
+discarded rather than persisted, and a pre-registered Phase-1 prediction
+(P3b, the sign of Model-A's slope) silently dropped before freeze.
+MATERIALS independently reproduced the full thermal table and P3 numbers
+exactly, and named a genuine, previously-unconsidered alternative
+mechanism for P3's collapse — holding `τ_shell` fixed while `R_CORE`/
+`R_COAT` scale by κ forces the coating's own ELECTRICAL thickness to
+grow 4× (2.4λ→9.6λ), with an already-built discriminating control
+(exp-052's fixed-absolute-thickness variant) unused. ELECTROMAGNETISM
+hand-verified the settling leg (a landslide pass) and found this cycle's
+single most consequential code-level gap: P4 has a real risk-propagation
+gate symmetric to its own settling/Nyquist pre-check, but **P3 — a
+rawer, less-residualized read of the identical MARGINAL-tier r=312
+capture — has no equivalent gate at all**, reported "SCORED — the
+headline finding" with zero qualification. QUANTUM OPTICS independently
+reproduced every headline number exactly and confirmed zero non-classical
+content is expressible in this pipeline regardless of outcome magnitude
+(T1 correctly N/A throughout). VISION SCIENCE found the R23 disclaimer
+assert covers only `RESULT_TEXT`, not `PREDICTIONS_TEXT`, despite the
+module docstring's own two-assert claim — a second, code-level data
+point in this sub-thread's own disclaimer-erosion lineage — and proved,
+with numbers, that P3's own dramatic collapse carries ~zero
+constraint-3 information (even the loosest naive `C=κ−1` mapping is
+already saturated past photopic threshold at r=78; the ~1,100× collapse
+buys only ΔC≈0.018). **THERMODYNAMICS' own self-review found a genuine
+defect in its own Phase-1 proposal** (a dominance-ratio citation,
+1949×/487×, that does not reproduce from its own stated constants —
+correct values ≈2160.6×/≈540.1×) **and, going further, that Red Team's
+own Phase-2 audit repeated the identical wrong figures while explicitly
+claiming to have independently re-checked them.**
+
+Red Team's Phase-5 final audit independently re-verified every finding
+from primitives (the `shape_ratio≡2^n` identity re-derived by direct
+symbolic expansion; the dominance-ratio error re-derived from raw
+constants, traced to a likely dropped ε factor; the settling-leg margins
+spot-checked at 5 of 53 points; every floor-gate/data-discard claim
+confirmed by direct code trace) and **adopted all six reviews in full,
+zero overrides**, and found one new defect none of the six caught: **Gate
+P1 never touches `kappa_window_78`** (loaded unverified from a
+different experiment's file) — the actual anchor P2's monotonicity test
+and P3's shape-discriminator fit both score against, a real
+precondition-coverage gap distinct from Gate P1's own (correctly
+rescoped) `kappa_region_wide` check. **R20 tally: 0.** The dominance-
+ratio error is one root-cause defect appearing in two PRE-FREEZE
+documents (`phase1_proposal.md`, this seat's own `phase2_redteam_
+audit.md`) — confirmed absent from `NOTES.md`'s own frozen Result/
+Learned sections by direct grep, so it does not survive Phase-3 freeze
+and does not count toward R20 (ruled once, not twice, per this
+program's own Iteration-50 counting precedent). The fact that Red
+Team's own Phase-2 "independent re-check" reproduced rather than caught
+the error is disclosed plainly as a first-of-its-kind verification-layer
+failure — flagged forward as a pattern to watch, not yet a rule (one
+instance; a second would be grounds for extending the R4/Iteration-50
+addendum's text to name Phase-2 Red Team audits alongside Phase-5
+reviewers). **Checkpoint criterion 4 does NOT fire**: R20's bar unmet;
+T1 correctly, repeatedly N/A; constraint-3 proactively (not quietly)
+scoped out with numbers (VISION's own ΔC≈0.018 finding is the opposite
+of a quiet drop); P5's own numeric bands were pre-demoted to
+descriptive-only at Phase 3, and P3's SCORED verdict is a real,
+falsifiable, already-scored result (the gap EM found is a missing
+confidence qualifier, not an unfalsifiable claim standing unflagged);
+R16/R21/R22's own forward-elevating clauses checked explicitly, none
+trip (R21 does NOT fire a third time — P5's own NETD finding IS
+narrated inline in Result). Two standing forward cautions named,
+neither firing: the Red-Team-repeats-a-wrong-figure pattern (one
+instance); R23's own two-assert founding pattern losing one assert this
+cycle (a second disclaimer-erosion data point, code-level this time).
+
+Eight mandatory same-shift documentation fixes applied (zero re-run,
+zero verdict change): the dominance-ratio citation annotated, not
+rewritten, in both historical pre-freeze documents; P3b scored
+explicitly in NOTES.md (`model_A_B=+0.00701`, the right-direction
+reading, a non-replication of T14's own wrong-direction pathology on a
+structurally different channel); the `shape_ratio≡2^n`/n≈4.31
+characterization added; an r=312 confidence caveat added to P3
+symmetric to P4's; a Gate-P1-scope note added; VISION's constraint-3
+scope-boundary note added; R23's missing `predictions_text` assert
+restored in `run.py`. **Combined Verdict: PARTIAL** — not RULED OUT (no
+mechanism class foreclosed, T1:N/A throughout); not PROMISING (this
+cycle's own declared headline finding rests on zero floor-gating, no
+risk-propagation gate symmetric to P4's, an unverified Gate-P1 anchor,
+and a genuine unconsidered alternative mechanism with an already-built,
+unused discriminating control — concentrated specifically on the
+headline result, denser than either exp-102's or exp-104's own Phase-5
+gap clusters); the four other scored verdicts (Gate P0/P1, P2, P4 at
+r=78/156, P5) all independently reproduce clean. Reconciled Iteration-83
+queue (Red Team's own tiered ranking, real 4-of-6-seat convergence on
+Tier 1): **Tier 1** — floor-gate `kappa_window` and stop discarding
+r=312's raw channel data (the single load-bearing precondition for
+trusting or refuting P3 as physics vs. artifact); a settling-independence
+leg on `kappa_window` itself, especially at r=312; a symmetric Nyquist/
+settling gate on P3's own scored verdict; re-run the bridge on exp-052's
+existing fixed-absolute-thickness control (MATERIALS' own newly-
+identified, zero-new-mechanism discriminator). **Tier 2** — a fourth
+r-point to break the two-point fit degeneracy; a real measured
+`sections.widths()` σ_ext(r) trend replacing the `Q_ext`-invariance
+placeholder; splitting the blanket UNOBTANIUM tag into scaling-law vs.
+absolute-thickness sentences; pinning VISION's κ↔C scope-boundary note
+as a standing T13/T14 cross-reference. **Tier 3** — the oblique-angle
+extension; the standing `delta_scene` R3-vs-R4 split, now SIX
+consecutive deferrals (Iteration 83 is the point NOTES.md's own text
+already names as requiring explicit written re-justification or
+execution, not a silent seventh deferral); the other two Reconciled
+Iteration-82 Tier-1 items (R23's own scope decision, now sharpened by
+this cycle's own second erosion data point; the near-null-exclusion
+raw-bin-identity refinement); a narrower r=312 settling spot-check,
+largely superseded by Tier 1's own broader leg. Full record:
+`experiments/105-t28-kappa-scale-bridge/` — Phase-1 proposal
+(THERMODYNAMICS), five Phase-2 blind critiques
+(`phase2_critique_{photonics,materials,em,quantum,vision}.md`), Phase-2
+Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
+(`results.json`, `run.py`), six Phase-5 blind reviews
+(`phase5_review_{photonics,materials,em,quantum,vision,thermodynamics}.md`),
+Phase-5 Red Team final audit (`phase5_redteam_audit.md`).
+
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
