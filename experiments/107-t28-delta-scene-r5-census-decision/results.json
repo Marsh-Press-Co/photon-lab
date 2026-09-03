@@ -1,0 +1,108 @@
+{
+  "experiment": "exp-107-t28-delta-scene-r5-census-decision",
+  "panel_iteration": 84,
+  "tier0_disposition": "FORMALLY RETIRED (text-only decision, see NOTES.md -- zero FDTD)",
+  "n_fdtd_calls": 4,
+  "total_wall_item1_s": 6614.377256393433,
+  "r312_committed": true,
+  "gate_p0": {
+    "156": {
+      "pass_": true
+    },
+    "312": {
+      "pass_": true
+    }
+  },
+  "item1_rows": {
+    "156": {
+      "r": 156,
+      "sigma_abs": 279.6505123643697,
+      "sigma_ext": 560.2118425678262,
+      "abs_ext_ratio_hollow": 0.49918707730729867,
+      "abs_ext_ratio_pec_cored_exp106": 0.4992167630142016,
+      "delta_abs_ext_ratio": -2.96857069029266e-05,
+      "box_dev": 0.0007082491592625747,
+      "core_frac": 8.654326038766481e-07,
+      "core_power": 0.0005979302498689484,
+      "radial_total": 690.9033091549353,
+      "item1_pass": true,
+      "item1_confirms_band": false,
+      "floor_gate_article_numerator": {
+        "rms": 0.006923022650726175,
+        "floor": 0.0006923022650726176,
+        "n_unresolved": 731,
+        "frac_unresolved": 0.18275
+      },
+      "wall_empty_s": 301.5534632205963,
+      "wall_article_s": 321.3237931728363
+    },
+    "312": {
+      "r": 312,
+      "sigma_abs": 588.0318471532298,
+      "sigma_ext": 1191.405731015438,
+      "abs_ext_ratio_hollow": 0.4935613719534896,
+      "abs_ext_ratio_pec_cored_exp106": 0.4935860562303906,
+      "delta_abs_ext_ratio": -2.468427690099917e-05,
+      "box_dev": 0.0002219226856419363,
+      "core_frac": 2.8800501118760605e-07,
+      "core_power": 0.00041867831618465953,
+      "radial_total": 1453.7188587733742,
+      "item1_pass": true,
+      "item1_confirms_band": false,
+      "floor_gate_article_numerator": {
+        "rms": 7.213132466394405e-05,
+        "floor": 7.213132466394405e-06,
+        "n_unresolved": 1070,
+        "frac_unresolved": 0.2675
+      }
+    }
+  },
+  "item3_rows": {
+    "selfsim_156": {
+      "family": "selfsim",
+      "r": 156,
+      "sigma_ext": 480.6881014804668,
+      "abs_ext_ratio": 0.5180430284747772,
+      "i_incident": 6.584362139917695e-06,
+      "p_abs_w": 7.093307648790325e-12,
+      "dt_ss_K": 5.824085844284275e-05,
+      "margin": 343.40153175502877,
+      "classification": "UNDETECTABLE"
+    },
+    "fixedabs_156": {
+      "family": "fixedabs",
+      "r": 156,
+      "sigma_ext": 560.198850825502,
+      "abs_ext_ratio": 0.4992167630142016,
+      "i_incident": 6.584362139917695e-06,
+      "p_abs_w": 9.283886142008288e-12,
+      "dt_ss_K": 7.622699104110958e-05,
+      "margin": 262.37425519280833,
+      "classification": "UNDETECTABLE"
+    },
+    "selfsim_312": {
+      "family": "selfsim",
+      "r": 312,
+      "sigma_ext": 960.4456295185845,
+      "abs_ext_ratio": 0.5190124481393582,
+      "i_incident": 6.584362139917695e-06,
+      "p_abs_w": 2.8371321293456664e-11,
+      "dt_ss_K": 0.0001163662613549568,
+      "margin": 171.87112284198233,
+      "classification": "UNDETECTABLE"
+    },
+    "fixedabs_312": {
+      "family": "fixedabs",
+      "r": 312,
+      "sigma_ext": 1191.3258584254531,
+      "abs_ext_ratio": 0.4935860562303906,
+      "i_incident": 6.584362139917695e-06,
+      "p_abs_w": 4.1512628975031126e-11,
+      "dt_ss_K": 0.00017026593096860568,
+      "margin": 117.46331098784337,
+      "classification": "UNDETECTABLE"
+    }
+  },
+  "item3_i_incident": 6.584362139917695e-06,
+  "execution_note": "Executed via sequential foreground Bash calls with Sim-object checkpoint/resume pickling for the r=312 leg (6 chunks of 2200 steps each per scene), after diagnosing that this session's backgrounded/nohup process execution runs this FDTD workload pathologically slowly (confirmed via isolated A/B test: foreground ~0.047-0.22s/step reproducing exp-106's own historical rate; the same code backgrounded accrued CPU time at roughly 1/10-1/20 that rate over a >90 minute wall-clock window with zero output, then was killed). A pure CPU-bound Python loop was NOT similarly slowed in the background, isolating this to the sustained large-array numpy FDTD workload specifically under this session's background-task execution mode -- an environment/tooling characteristic of this remote session, not a lab/ engine defect (the trust suite, run directly foreground, was green in 104s at session start)."
+}

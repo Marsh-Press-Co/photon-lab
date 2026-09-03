@@ -1,0 +1,71 @@
+exp-107 Phase 4 -- consolidated execution log (Panel Iteration 84)
+==============================================================================
+See NOTES.md's own "Result" section for the full disclosed execution-
+methodology note: this session's backgrounded/nohup process execution was
+found, mid-cycle, to run this FDTD workload pathologically slowly. Items
+1/4 were actually executed via `chunk_runner.py` (checkpoint/resume
+Sim-object pickling across sequential foreground Bash calls) and
+`finalize.py`, not `run.py`'s own single-process `main()` (kept for
+formula documentation/reference only). This log consolidates the actual
+foreground-call-by-call output.
+
+==============================================================================
+Gate P0 (ground-truth reproduction)
+==============================================================================
+  [Gate P0] r=156  reproduces exp-106 geom_156_fixedabs exactly: True
+  [Gate P0] r=312  reproduces exp-106 geom_312_fixedabs exactly: True
+
+==============================================================================
+Item 3 -- real, non-placeholder P5 thermal row (zero marginal FDTD)
+==============================================================================
+[item3] selfsim   r= 156  sigma_ext=  480.6881  dt_ss_K=5.824086e-05  margin=  343.402x  class=UNDETECTABLE
+[item3] fixedabs  r= 156  sigma_ext=  560.1989  dt_ss_K=7.622699e-05  margin=  262.374x  class=UNDETECTABLE
+[item3] selfsim   r= 312  sigma_ext=  960.4456  dt_ss_K=1.163663e-04  margin=  171.871x  class=UNDETECTABLE
+[item3] fixedabs  r= 312  sigma_ext= 1191.3259  dt_ss_K=1.702659e-04  margin=  117.463x  class=UNDETECTABLE
+
+==============================================================================
+Item 1/4 -- hollow-vs-PEC-cored radial_absorbed_power delta + numerator
+floor gate (r=156: 2 foreground Sim.run() calls, no chunking needed;
+r=312: chunk_runner.py, 2200-step chunks, 6 chunks per scene)
+==============================================================================
+[r=156 empty]   ran 6400 steps (single foreground call) in 301.6s
+[r=156 article] ran 6400 steps (single foreground call) in 321.3s
+[r=312 empty]   chunk 1: 2200 steps in 485.4s -> 2200/12800
+[r=312 empty]   chunk 2: 2200 steps in 533.6s -> 4400/12800
+[r=312 empty]   chunk 3: 2200 steps in 516.7s -> 6600/12800
+[r=312 empty]   chunk 4: 2200 steps in 514.2s -> 8800/12800
+[r=312 empty]   chunk 5: 2200 steps in 481.7s -> 11000/12800
+[r=312 empty]   chunk 6: 1800 steps in 413.0s -> 12800/12800 COMPLETE
+[r=312 article] chunk 1: 2200 steps in 489.8s -> 2200/12800
+[r=312 article] chunk 2: 2200 steps in 567.3s -> 4400/12800
+[r=312 article] chunk 3: 2200 steps in 505.5s -> 6600/12800
+[r=312 article] chunk 4: 2200 steps in 533.2s -> 8800/12800
+[r=312 article] chunk 5: 2200 steps in 520.7s -> 11000/12800
+[r=312 article] chunk 6: 1800 steps in 430.4s -> 12800/12800 COMPLETE
+
+finalize.py output (r=156):
+{
+  "r": 156, "sigma_abs": 279.6505123643697, "sigma_ext": 560.2118425678262,
+  "abs_ext_ratio_hollow": 0.49918707730729867,
+  "abs_ext_ratio_pec_cored_exp106": 0.4992167630142016,
+  "delta_abs_ext_ratio": -2.96857069029266e-05, "box_dev": 0.0007082491592625747,
+  "core_frac": 8.654326038766481e-07, "core_power": 0.0005979302498689484,
+  "radial_total": 690.9033091549353, "item1_pass": true, "item1_confirms_band": false,
+  "floor_gate_article_numerator": {"rms": 0.006923022650726175, "floor": 0.0006923022650726176,
+    "n_unresolved": 731, "frac_unresolved": 0.18275}
+}
+
+finalize.py output (r=312):
+{
+  "r": 312, "sigma_abs": 588.0318471532298, "sigma_ext": 1191.405731015438,
+  "abs_ext_ratio_hollow": 0.4935613719534896,
+  "abs_ext_ratio_pec_cored_exp106": 0.4935860562303906,
+  "delta_abs_ext_ratio": -2.468427690099917e-05, "box_dev": 0.0002219226856419363,
+  "core_frac": 2.8800501118760605e-07, "core_power": 0.00041867831618465953,
+  "radial_total": 1453.7188587733742, "item1_pass": true, "item1_confirms_band": false,
+  "floor_gate_article_numerator": {"rms": 7.213132466394405e-05, "floor": 7.213132466394405e-06,
+    "n_unresolved": 1070, "frac_unresolved": 0.2675}
+}
+
+Total wall time (items 1/4, both r, all foreground calls summed): ~6558s (~109.3 min).
+Trust suite: green (41/41) at this shift's start; zero `lab/` diff throughout.

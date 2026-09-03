@@ -317,3 +317,127 @@ selectivity/sub-threshold mechanism is built, varied, or claimed anywhere
 in this document. Constraint-3 is not engaged by any branch of this
 cycle (confirmed independently by Red Team, `phase2_redteam_audit.md`
 §1, "No constraint-#N-violation found").
+
+## Result
+
+**Execution-methodology note (disclosed, does not change any predicted
+band or gate above).** This session's own backgrounded/nohup process
+execution was found, mid-cycle, to run this FDTD workload pathologically
+slowly (isolated A/B test: foreground execution reproduces exp-106's own
+historical per-step rate; the identical code launched in the background
+accrued CPU time at ~1/10–1/20 that rate over a >90-minute wall-clock
+window with zero completed output, then was killed — a pure CPU-bound
+Python loop was NOT similarly slowed in the background, isolating this
+to the sustained large-array numpy FDTD workload specifically; the trust
+suite, run directly foreground, was green in 104s at this shift's start,
+confirming an environment/tooling characteristic of this remote session,
+not a `lab/` engine defect). Items 1/4 were executed via sequential
+foreground Bash calls with Sim-object checkpoint/resume pickling
+(`chunk_runner.py`, 2200-step chunks, 6 per scene at r=312) and
+`finalize.py` (the identical formulas `run.py`'s own `item1_and_4_one_r()`
+specifies) — independently re-run to confirm bit-exact reproduction of
+every number below before this note was written. **4 real new `Sim.run()`
+calls** (empty+hollow-article at r=156, r=312), as corrected in
+§Synthesis (not the Phase-1 proposal's original miscount of 2). Gate P0
+and Item 3 ran exactly as designed, in-process — no substitution needed.
+
+**Gate P0 (ground-truth reproduction): PASS, exact, both r.** Locally
+re-derived `geom_fixedabs(156)`/`geom_fixedabs(312)` matched exp-106's
+own committed `geom_156_fixedabs`/`geom_312_fixedabs` on every shared
+field, bit-exact.
+
+**Item 3 (real, non-placeholder P5 thermal row): CONFIRMED, all four
+cells reproduce the pre-registered table to full floating-point
+precision** (deterministic recomputation, as expected — this item is a
+reproducibility gate on `run.py`'s own implementation, not a physical-
+uncertainty test, per §Predictions). **R21 narration, honored here, not
+merely persisted:**
+
+| Family | r | `dt_ss_K` | Margin | Classification |
+|---|---|---|---|---|
+| selfsim | 156 | 5.824×10⁻⁵ | **343.4×** | UNDETECTABLE |
+| fixedabs | 156 | 7.623×10⁻⁵ | **262.4×** | UNDETECTABLE |
+| selfsim | 312 | 1.164×10⁻⁴ | **171.9×** | UNDETECTABLE |
+| fixedabs | 312 | 1.703×10⁻⁴ | **117.5×** | UNDETECTABLE (fragile cell, as named — 20% above the 100× naive floor, but clears the tightened 50× falsification bar with margin to spare) |
+
+**Item 1 (hollow-vs-PEC-cored `radial_absorbed_power`/`sections.widths()`
+delta): PASSES the falsification band at both r, but does NOT reach the
+tighter "confirms" band — an honest partial, not a clean reproduction of
+the T9-established anchor magnitude.**
+
+| r | `abs_ext_ratio` hollow | `abs_ext_ratio` PEC-cored (exp-106) | `\|Δ\|` | vs. `≤2×10⁻⁵` (confirms) | vs. `≤2×10⁻⁴` (falsifies) | `core_frac` (hollow) | `box_dev` |
+|---|---|---|---|---|---|---|---|
+| 156 | 0.4991871 | 0.4992168 | **2.969×10⁻⁵** | fails (1.48×) | **PASS** | 8.65×10⁻⁷ | 0.00071 |
+| 312 | 0.4935614 | 0.4935861 | **2.468×10⁻⁵** | fails (1.23×) | **PASS** | 2.88×10⁻⁷ | 0.00022 |
+
+T9's own "core is energetically incidental" null generalizes to the
+fixed-abs family's much higher `R_CORE/R_COAT` ratios (0.692 at r=156,
+0.846 at r=312, past T9's only-previously-validated 0.385) — both deltas
+clear the 10× falsification margin comfortably, and `core_frac` confirms
+the hollow core itself carries a genuinely negligible share of absorbed
+power at both r (order 10⁻⁷, consistent with `graded_black_shell`'s own
+r<R_CORE-untouched convention). **Honestly flagged, not smoothed over:**
+both deltas sit at roughly an order of magnitude above the original T9
+anchors (exp-027: `+1.56×10⁻⁶`; exp-031: `6.8×10⁻⁶`) — same near-zero
+order of magnitude, same qualitative conclusion (core-presence stays
+energetically incidental), but this is a PASS at the loose band, not a
+tight reproduction of the historical anchor scale. Red Team's founding
+Attack 9 concern (core-reflection leakage driving fixed-abs's own falling
+`abs_ext_ratio`) is discharged at both r: the hollow-vs-PEC-cored delta
+is two-to-three orders of magnitude smaller than the `abs_ext_ratio`
+values themselves (~0.49–0.50), too small to explain that trend.
+
+**Item 4 (numerator noise-floor check): FALSIFIED at r=156, informative
+at r=312 — a genuine, previously undetected finding, not a foregone
+conclusion.**
+
+| r | `frac_unresolved` (article numerator, hollow) | Predicted | Outcome |
+|---|---|---|---|
+| 156 | **0.18275** (731/4000 cells) | `≤0.10` (clean, mirroring the empty-scene denominator) | **FALSIFIED** — the article-scene numerator is NOT clean at r=156, unlike the empty-scene denominator exp-106's own Item 1 tested |
+| 312 | **0.2675** (1070/4000 cells) | genuinely uncertain (PHOTONICS' own ~200,000× collapse flag) | Informative: contamination is real and WORSENS with r (18.3%→26.8%) |
+
+This is this cycle's single most consequential finding, and it was not
+anticipated by either the Phase-1 proposal or any Phase-2 critique:
+exp-106's own Item 1 floor-gated only the EMPTY-scene window (the
+`kappa_window` denominator) and found it clean at both r
+(`frac_unresolved=0.0`) — but the ARTICLE-scene window (the numerator)
+was never checked, and turns out to carry substantial noise-floor
+contamination at BOTH r, worsening with r. **Scope caveat, stated
+plainly (per NOTES.md Idealizations, above): this was measured on the
+HOLLOW fixed-abs article, not the PEC-cored primary article
+`kappa_window`'s own P2/P3 shape_ratio was scored from** — the physical
+scene differs, so this result does not directly overturn P2/P3's own
+trust status. It DOES mean the open question PHOTONICS flagged at
+exp-106's own Phase 5 (a possible noise-floor component in P3's headline
+"accelerating collapse") is real and worth checking directly on the
+PEC-cored primary article next cycle, not merely plausible.
+
+**Combined Verdict: PARTIAL.** Tier 0 is a clean governance win — the
+`delta_scene` R3-vs-R4-vs-R5 question is formally retired, discharging
+an eight-cycle-deferred standing obligation with a reasoned, cited,
+zero-FDTD-cost written decision, not a silent ninth deferral. Tier 1 is
+genuinely mixed: Item 3 CONFIRMED cleanly (a real methodological
+improvement — real ledger-measured `sigma_ext(r)`, not a placeholder,
+used for the first time); Item 1 PASSES but only at the loose band, an
+honest partial; Item 4 FALSIFIED its own r=156 prediction and surfaced a
+new, real, actionable gap in `kappa_window`'s own trust chain. No
+mechanism proposed or varied; T1 correctly N/A throughout; constraint-3
+not engaged.
+
+## Next — candidate Iteration 85 directions (Director's own ranking,
+pending Phase 5's ranked top-3)
+
+1. **Check the numerator noise-floor on the PEC-cored PRIMARY article**
+   (self-similar and fixed-abs, r=156/312) — item 4's own hollow-variant
+   substitution should be closed with the real measurement P2/P3's
+   shape_ratio was actually scored from. Low marginal cost if a captured-
+   field checkpoint from a future r=156/312 primary re-run is saved.
+2. **Widen Item 1's own "confirms" band, or re-derive it from a real
+   R17-style cross-check**, rather than leaving both r sitting just
+   outside a band nobody re-justified for these specific ratios (0.692,
+   0.846) — the current `≤2×10⁻⁵` figure is inherited from T9's original
+   two-anchor spread, not independently derived for this construction.
+3. Standing T28 items unchanged from exp-106's own Tier 2/3 (a
+   genuinely different bridge-family geometry; a fourth r-point; the
+   oblique-angle extension; the near-null-exclusion refinement) — none
+   touched this cycle.
