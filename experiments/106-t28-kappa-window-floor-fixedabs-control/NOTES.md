@@ -337,3 +337,122 @@ before any real-STEPS FDTD call ran.
 Predictions frozen and committed to git in this same commit, strictly
 BEFORE `run.py`'s first real-STEPS `Sim.run()` call, per house
 discipline.
+
+## Result
+
+**10 real FDTD calls (of the 12 scheduled if every leg committed),
+18398.4s (306.64 min / 5.11h) wall time, zero `lab/` diff throughout.**
+The two calls not run were the r=312 settling leg's own article pair
+(self-similar + fixed-abs): its own empty-scene pilot alone took 6196.6s
+(103.28 min) — past the 90-min per-leg abort threshold on its own, before
+either article call would have run — so the cost gate correctly deferred
+the entire leg rather than committing further wall-clock. (The r=312
+*primary* leg's own empty pilot, by contrast, came in at 3158.8s
+(52.65 min), under threshold, so its own two article calls DID commit —
+the same gate firing two different ways on two legs of the identical r,
+exactly as designed.)
+
+**Gate P0: PASS.** **Reproduction checks (r=156/312, self-similar):**
+both **exact**, rel_dev=0.000e+00 — fresh captures reproduce exp-105's
+own committed `kappa_window` values to machine precision at both r,
+before any of this cycle's own diagnostics are trusted.
+
+**Item 1 (floor-gate `window_stats()`'s own output): PASS at BOTH r,
+cleanly — the r=312 BORDERLINE prediction is FALSIFIED, in the
+reassuring direction.** r=156 frac_unresolved=0.0000 (n=4000, rms=5.002,
+floor=0.5002, 0 unresolved cells). r=312 frac_unresolved=0.0000 as well
+(n=4000, rms=5.003, floor=0.5003, 0 unresolved) — the Phase-1 proposal's
+own "possibly >10%" concern, carried into the frozen Predictions, does
+not survive contact with the actual data: the solver's noise floor tracks
+the signal's own fall-off closely enough that `window_stats()`'s mean
+intensity never approaches it at either scale tested. r=312's own
+wide/point/delta_phi channels (DENSE_X, self-similar) are persisted in
+full this cycle — see `results.json` `r312_selfsim` — the specific
+"stop discarding" gap exp-105's own Phase 5 named is closed; its own
+floor gate is likewise clean (frac_unresolved=0.0000, n=53).
+
+**Item 2 (settling-independence leg on `kappa_window` itself): PASS,
+landslide, at r=156 for BOTH families; genuinely NOT RUN at r=312 (cost-
+deferred, per the pre-registered gate, not a silent drop).** r=156
+self-similar rel_change=0.0002 (tol 0.20 — three orders of magnitude
+inside); fixed-abs rel_change=0.0001 (four orders of magnitude inside).
+r=312: the empty-scene settling pilot alone exceeded the 90-min abort
+threshold (see wall-time note above), so neither family's article pair
+ran — `kappa_window`'s own settling status at r=312 remains genuinely
+untested, exactly the "most urgent, genuinely uncertain" leg the frozen
+Predictions named as the cycle's own biggest open risk, and it is the
+one leg that did NOT resolve this shift. Queued forward, not silently
+dropped (see Next).
+
+**Item 3 (risk-propagation gates): both FALSE, exactly as predicted —
+a structural outcome, not a coin flip.** `p3_trusted` (self-similar) =
+False; `shape_ratio_fixedabs_trusted` = False. Both forced by
+`nyquist_tier(312)=MARGINAL-REDUCED-CONFIDENCE` (nyquist_margin=1.234,
+a fixed domain-geometry property identical between families) — and, for
+`shape_ratio_fixedabs_trusted` specifically, doubly so this shift since
+the r=312 settling leg never ran for either family (item 2, above).
+`noise_floor_flag`: NOT triggered for either family (`noise_dominated=
+False` on both self-similar's and fixed-abs' own shape_ratio
+denominators) — the near-zero-denominator failure mode the gate exists
+to catch did not occur.
+
+**Item 4 (fixed-abs control — the falsifiable heart of this cycle):
+a real, scored, but explicitly NOT-TRUSTED result.**
+`shape_ratio_fixedabs=18.2283` — inside the pre-registered REFUTE band
+(>=14.8), the same classification direction as a clean read would give
+("REFUTES-electrical-thickness-growth-hypothesis": geometric z/z_R
+window effect dominates, not the coating's own growing electrical
+thickness) — but `run.py`'s own classification string appends
+"(NOT-TRUSTED — r=312 MARGINAL/unsettled)" because `shape_ratio_
+fixedabs_trusted=False` (item 3), and per Red Team's own mandatory fix 3
+this gate is honored literally: **the discriminator's own headline
+number is reported, not suppressed, but is not certified as physics
+this cycle.** Self-similar P3, recomputed fresh (not merely reused):
+`shape_ratio=19.7878` — reproduces exp-105's own committed 19.79 to
+four significant figures, an independent confirmation via a freshly-run
+capture, not a re-read of the same file.
+
+**PHOTONICS' own sharper absolute-ratio test (mandatory fix 2) DOES
+clear its own band at both r, and is NOT gated by `..._trusted`** (it
+compares two families' raw `kappa_window` values directly, not a fitted
+shape parameter): `abs_ratio(156) = kappa_fixedabs/kappa_selfsim =
+1.0852`; `abs_ratio(312) = 1.8797` — both within the pre-registered
+factor-of-2.0 band of 1.0, corroborating geometric-window dominance at
+the absolute-magnitude level at both r, independent of the settling
+question above. (Read together with item 4: the shape-fit discriminator
+is honestly withheld from trust, but the simpler, ungated absolute-ratio
+test the same Phase-2 critique proposed as a cheaper cross-check already
+points the same direction.)
+
+**Ledger sanity check (mandatory fix 1): core-concentration and
+box-independence both clean; the cross-family absorbed-power fraction
+itself diverges more than the ~10% informal expectation named in the
+frozen Predictions, an honest, unresolved-band finding, not a pass/fail
+gate.** `core_frac` (fraction of absorbed power landing inside the PEC
+core, should be ~0): 0.000e+00 at every (r, family) — perfectly clean,
+same as exp-105's own r=78/156 anchor, generalizing cleanly to both
+higher `R_CORE/R_COAT` ratios (0.692/0.846) past T9's 0.385 anchor.
+`box_dev` (established <=0.12 convention): 0.0001 (r=156 self-similar),
+0.0008 (r=156 fixed-abs), 0.0000 (r=312 self-similar), 0.0002 (r=312
+fixed-abs) — all 2+ orders of magnitude inside the established bound.
+**But `|p_abs_fa − p_abs_ss|/p_abs_ss`: 0.1231 at r=156, 0.1796 at
+r=312 — both EXCEED the ~10% figure `run.py`'s own print-statement used
+as an informal descriptor.** No pre-registered pass/fail band was frozen
+for this specific quantity (the frozen Predictions describe the ledger
+as a sanity check on concentration/box-independence, not a gated
+tolerance on the cross-family absorbed-power delta itself) — reported
+here as a genuine, disclosed, un-gated observation for Phase 5 to weigh:
+the two families hold `tau_shell=24.0` exactly equal by construction
+(both self-similar and fixed-abs), but achieve it via different
+thickness/sigma_max combinations, so some cross-family divergence in the
+realized absorption fraction is not on its face surprising — whether
+12–18% is "physically sane" (as the ledger check's own stated purpose
+requires before trusting item 4 as a clean discriminator) or itself
+informative is not adjudicated here.
+
+**Realizability note (mandatory fix 4): unchanged, reported verbatim as
+frozen** — both families' r=78 anchor is UNOBTANIUM-WITH-PARAMETERS per
+REALIZABILITY_MEMO.md AMENDMENT 6/7; fixed-abs holds the same 69–347×
+thickness gap at every r; self-similar's absolute thickness grows with r
+(2.88µm/5.76µm at r=156/312) and is only marginally, not substantially,
+closer to the real 100–500µm range at larger r.
