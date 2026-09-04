@@ -103,8 +103,14 @@ if __name__ == "__main__":
 
         pilot_empty = row156["total_wall_s"]["empty"]
         pilot_total = sum(row156["total_wall_s"].values())
+        # Panel Iteration 88 (exp-111): this call is now a DOWNSTREAM,
+        # REDUNDANT reporting/persistence step only -- the actual
+        # enforcement point is chunk_runner.py's own check_cost_gate_for_312(),
+        # called upstream of every real r=312 Sim.run() (R28's own founding
+        # gap, fixed this cycle). Kept here so results.json still persists
+        # the gate's own outcome alongside the rest of this analysis.
         cost_gate = R.cost_gate_check(pilot_empty, pilot_total)
-        print(f"\nR27 cost gate: {json.dumps(cost_gate, indent=2)}")
+        print(f"\nR27/R28 cost gate (downstream reporting copy): {json.dumps(cost_gate, indent=2)}")
     else:
         cost_gate = None
         print("r=156 captures not yet complete; run chunk_runner.py for empty/hollow/peccored at r=156 first.")

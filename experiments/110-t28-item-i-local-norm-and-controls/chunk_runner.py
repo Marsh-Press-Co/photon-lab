@@ -82,6 +82,34 @@ def build_sim(g, which):
     return sim
 
 
+def check_cost_gate_for_312():
+    """Panel Iteration 88 (exp-111), mandatory-fixes 1/2 of
+    experiments/111-.../phase2_redteam_audit.md Sec 5 (THERMODYNAMICS' own
+    Phase-1 proposal; R28's own founding remedy). Genuinely upstream of
+    every real r=312 Sim.run() call: refuses to proceed unless r=156's
+    three scenes are DONE and R.cost_gate_check() clears, using THIS
+    session's own log_wall_time()/total_wall_time() records (grounding-fact
+    correction, phase1_proposal.md Sec 2.0: a prior session's own historical
+    wall-time logs are not assumed present). Called from step_once() AFTER
+    the existing already-DONE early-return (mandatory-fix 2: the guard must
+    not re-evaluate the gate on an idempotent status-check of an
+    already-completed r=312 scene, where r=156's own logs may be absent or
+    stale in a fresh session -- see gate_reposition_control.py Case 5)."""
+    for which in ("empty", "hollow", "peccored"):
+        _, done_path_156 = path_for(156, which)
+        if not os.path.exists(done_path_156):
+            raise RuntimeError(f"cost gate: r=156/{which} not complete -- "
+                                f"cannot evaluate cost_gate_check() before r=312.")
+    pilot_empty = total_wall_time(156, "empty")
+    pilot_total = sum(total_wall_time(156, w) for w in ("empty", "hollow", "peccored"))
+    gate = R.cost_gate_check(pilot_empty, pilot_total)
+    with open(os.path.join(SCRATCH, "r312_costgate.json"), "w") as f:
+        json.dump(gate, f, indent=2)
+    if not gate["proceed_to_r312"]:
+        raise RuntimeError(f"R27/R28 cost gate REFUSED r=312: {gate}")
+    return gate
+
+
 def step_once(r, which):
     g = R.geom_fixedabs(r)
     ckpt_path, done_path = path_for(r, which)
@@ -89,6 +117,9 @@ def step_once(r, which):
         print(f"[{which} r={r}] already DONE ({done_path}); total wall so far: "
               f"{total_wall_time(r, which):.1f}s")
         return True
+
+    if r == 312:
+        check_cost_gate_for_312()          # genuinely upstream of build_sim/Sim.run below
 
     t0 = time.time()
     if os.path.exists(ckpt_path):

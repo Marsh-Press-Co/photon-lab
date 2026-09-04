@@ -315,20 +315,46 @@ def classify_item_i_local(r, margin, pattern_peccored, pattern_hollow, pattern_d
     floor-gating) ONLY -- NOT R14 (Red Team Fix 3: a literal R14(a)
     numerator-parent-smoothness check does not apply to genuinely
     multi-lobed diffraction-pattern curves that are non-monotonic/
-    non-smooth BY PHYSICS, not by artifact)."""
+    non-smooth BY PHYSICS, not by artifact).
+
+    Panel Iteration 88 (exp-111) fix, mandatory-fix 3 of
+    experiments/111-.../phase2_redteam_audit.md Sec 5 (QUANTUM's own
+    Phase-2 finding): floor==0.0 is a genuinely degenerate, mirror-symmetric
+    input (both parent patterns exactly even under i<->n-1-i) -- guarded
+    explicitly via `floor_degenerate`, distinct from RESOLVED, rather than
+    silently reading `resolved=[True]*n` (a mathematical identity of
+    `abs(x)>=0`, not a measurement). local_snr_peccored/local_snr_hollow are
+    now `nan`-filled (not `inf`-filled) in this same degenerate case, closing
+    a live self-contradiction the founding exp-110 cycle's own patch would
+    otherwise have left (`resolved=False` beside `local_snr=inf` in the same
+    returned dict) -- independently caught by QUANTUM's own Phase-2 critique
+    and confirmed by Red Team's own from-primitives re-run,
+    experiments/111-.../phase2_redteam_audit.md Sec 1/5 item 3. Verified
+    non-regressive against all 12 real committed (r,margin) cells in
+    exp-110's own results.json (floor strictly positive at every one;
+    `floor_degenerate=False` and `n_resolved` bit-identical throughout) --
+    see experiments/111-.../floor_fault_injection_control.py."""
     pattern_peccored = np.asarray(pattern_peccored, dtype=float)
     pattern_hollow = np.asarray(pattern_hollow, dtype=float)
     pattern_delta = np.asarray(pattern_delta, dtype=float)
     floor_p = mirror_pooled_floor(pattern_peccored, percentile)
     floor_h = mirror_pooled_floor(pattern_hollow, percentile)
     floor = K * max(floor_p, floor_h)
-    resolved = (np.abs(pattern_peccored) >= floor) & (np.abs(pattern_hollow) >= floor)
+    floor_degenerate = bool(floor <= 0.0)
+    resolved = ((floor > 0.0)
+                & (np.abs(pattern_peccored) >= floor)
+                & (np.abs(pattern_hollow) >= floor))
     local_rel = np.full(pattern_delta.shape, np.nan)
     local_rel[resolved] = np.abs(pattern_delta[resolved]) / np.abs(pattern_peccored[resolved])
-    local_snr_peccored = np.abs(pattern_peccored) / floor if floor > 0 else np.full(pattern_delta.shape, np.inf)
-    local_snr_hollow = np.abs(pattern_hollow) / floor if floor > 0 else np.full(pattern_delta.shape, np.inf)
+    if floor > 0.0:
+        local_snr_peccored = np.abs(pattern_peccored) / floor
+        local_snr_hollow = np.abs(pattern_hollow) / floor
+    else:
+        local_snr_peccored = np.full(pattern_delta.shape, np.nan)
+        local_snr_hollow = np.full(pattern_delta.shape, np.nan)
     return dict(r=r, margin=margin, K=K, percentile=percentile,
                 floor_peccored_pooled=floor_p, floor_hollow_pooled=floor_h, floor=floor,
+                floor_degenerate=floor_degenerate,
                 resolved=resolved.tolist(), n_resolved=int(np.sum(resolved)), n_total=int(len(pattern_delta)),
                 local_rel=[None if np.isnan(v) else float(v) for v in local_rel],
                 local_snr_peccored=local_snr_peccored.tolist(),
@@ -337,22 +363,45 @@ def classify_item_i_local(r, margin, pattern_peccored, pattern_hollow, pattern_d
 
 
 # ================================================================ cost gate (Fix 5 -- wired as code, R27's own founding fix)
-def cost_gate_check(pilot_empty_wall_s, pilot_total_wall_s):
+# Panel Iteration 88 (exp-111), mandatory-fix 4 of experiments/111-.../
+# phase2_redteam_audit.md Sec 5 (EM's own Phase-5-of-exp-110 finding, R28's
+# own companion caution): the previous hardcoded exponent (3.0, "area x
+# steps scaling") underestimated the measured r=312/r=156 combined-wall
+# ratio (9.2236x) by ~15% -- independently re-derived, this cycle, from
+# exp-110's own committed results.json: ln(9.223600318696624)/ln(2.0) =
+# 3.2053299988171697. A single-geometry/single-kappa_ratio=2.0 empirical
+# fit, not a first-principles law (disclosed in DISCLAIMER_88, below) --
+# a 10% multiplicative safety margin is applied on top, since this
+# exponent has not been validated at any other kappa_ratio (e.g. a future
+# r=624 point, Tier 2 item 5).
+KAPPA_COST_EXPONENT = 3.2053299988171697
+COST_GATE_SAFETY_MARGIN = 1.10
+
+
+def cost_gate_check(pilot_empty_wall_s, pilot_total_wall_s,
+                     kappa_exponent=KAPPA_COST_EXPONENT,
+                     safety_margin=COST_GATE_SAFETY_MARGIN):
     """R27 (this cycle's own ratified standing rule): a numeric cost gate
     MUST be enforced by executable code, not merely referenced in prose.
     pilot_empty_wall_s: r=156's own empty-scene capture wall time.
     pilot_total_wall_s: r=156's own 3-call (empty+hollow+peccored) total.
-    Projects r=312's total via the historical exp-107/108 own r312/r156
-    combined-wall ratio (~kappa^3, checked against exp-108's own recorded
-    combined 128.5 min/6-call figure as a sanity bound, not a hard
-    derivation) -- reported explicitly, not silently assumed."""
+    Projects r=312's total via an empirically re-derived exponent (see
+    KAPPA_COST_EXPONENT, above) plus an explicit safety margin -- reported
+    explicitly, not silently assumed. R28's own founding-instance gap
+    (this same function sat downstream of 90.2% of exp-110's own
+    wall-clock spend) is fixed by chunk_runner.py's own upstream call
+    (Panel Iteration 88, mandatory-fix 1/2), not by this function itself --
+    this function only computes the projection; see
+    check_cost_gate_for_312() in chunk_runner.py for the causal
+    repositioning."""
     pilot_pass = pilot_empty_wall_s < COST_GATE_PILOT_S
     kappa_ratio = kappa_of(312) / kappa_of(156)          # = 2.0
-    projected_312_total_s = pilot_total_wall_s * (kappa_ratio ** 3)   # area x steps scaling, disclosed estimate
+    projected_312_total_s = pilot_total_wall_s * (kappa_ratio ** kappa_exponent) * safety_margin
     total_pass = projected_312_total_s < COST_GATE_TOTAL_S
     proceed = bool(pilot_pass and total_pass)
     return dict(pilot_empty_wall_s=pilot_empty_wall_s, pilot_total_wall_s=pilot_total_wall_s,
                 pilot_pass=pilot_pass, kappa_ratio=kappa_ratio,
+                kappa_exponent=kappa_exponent, safety_margin=safety_margin,
                 projected_312_total_s=projected_312_total_s, total_pass=total_pass,
                 proceed_to_r312=proceed)
 
