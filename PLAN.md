@@ -22,7 +22,111 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-03, panel Iteration 83 done (exp-106, PARTIAL,
+## Current state (2026-09-04, panel Iteration 84 done (exp-107, PARTIAL,
+VISION SCIENCE's rotation-lead cycle: executed exp-106's own Reconciled
+Iteration-84 queue -- Tier 0 (delta_scene R3-vs-R4-vs-R5 governance
+decision, eight consecutive deferrals) and Tier 1 items 1/3/4 (kappa_
+window closeouts). VISION's own Phase-1 proposal designed a properly-
+powered R5 census gated on a mandatory ground-truth-recovery check --
+does NOT survive Phase 2. Five blind critiques (all support-with-
+changes): QUANTUM found the census's own theta_anchor selection rule has
+an EMPTY DOMAIN over the proposed grid (the four zero-crossings' own
+exclusion zones merge into one continuous forbidden band); PHOTONICS
+found the proposal's own central safety claim cites the wrong statistic
+(5.25x-7.87x off); EM found the "ground-truth-recovery" gate is partly
+self-fulfilling and not genuine ground truth; MATERIALS argued the
+census isn't worth running regardless, citing its own exp-100
+disposition memo's unconditional realizability ceiling. Red Team's
+Phase-2 audit generalized QUANTUM's finding (the 1.4deg buffer is close
+to half the signal's own period, tiling the entire angular axis with
+exclusion zones) and recommended formal retirement over redesign,
+adopted in full by the Director. Tier 0 discharged by written retirement
+(Iteration-51 no-further-cycle precedent), scoped precisely (closes only
+the resolution-family-attribution question, not T28's larger open
+periodicity-origin question). Two Director cost corrections to the
+Tier-1 bundle (Item 1 needed 4 new FDTD calls not 2; Item 4 folded into
+Item 1 at zero additional cost). Predictions committed to git BEFORE any
+Phase-4 call. Phase 4 included a genuine same-shift environment
+diagnosis: this session's backgrounded/nohup process execution runs
+sustained FDTD numpy work pathologically slowly (isolated A/B test
+confirmed, not a lab/ engine defect -- trust suite green foreground in
+104s); items 1/4 executed via sequential foreground Bash calls with
+Sim-object checkpoint/resume pickling (chunk_runner.py) and finalize.py.
+Gate P0: PASS exact both r. Item 3 (real ledger-measured P5 thermal row,
+not placeholder): CONFIRMED, all four cells reproduce the pre-registered
+table exactly; (fixedabs, r=312) at 117.5x margin clears the tightened
+50x floor. Item 1: PASSES the falsification band at both r but not the
+tighter T9-anchor band (~15-20x above the historical anchors, honest
+partial); core_frac~1e-7 discharges Red Team's founding Attack 9 concern
+at these higher R_CORE/R_COAT ratios. Item 4: FALSIFIED at r=156
+(frac_unresolved=0.183, predicted clean) and worsens at r=312 (0.268) --
+a genuinely new finding: kappa_window's ARTICLE-scene numerator (not
+just the empty-scene denominator exp-106 tested) carries real
+noise-floor contamination, increasing with r, disclosed as measured on
+the hollow variant not the PEC-cored primary article. Same-shift
+addendum: the checkpoint/resume mechanism EM/QUANTUM flagged as
+unverified was empirically A/B-tested (r=156 replayed through the
+chunked path vs. the original single-shot captures) -- bit-exact,
+max|diff|=0.000e+00 on every field. 4 real FDTD calls, ~109.3 min wall,
+trust suite green throughout, zero lab/ diff. Six blind Phase-5 reviews,
+all CONFIRM-WITH-GAPS, zero disagreement on any load-bearing point:
+PHOTONICS found the Result section blends two non-commensurable T9
+anchors (real gap 19.0x/15.8x, not "~10x"); MATERIALS found box_dev's
+own margin over the delta has thinned from T9's founding ~1221x to just
+~9.0x at r=312, and named angular_scattered_pattern as the correctly-
+targeted unused instrument; EM/QUANTUM independently flagged the
+checkpoint/resume mechanism as unverified (closed same-shift, above);
+THERMODYNAMICS found margin ~ r^-1.16 for fixed-abs (vs self-similar's
+exact r^-1), projecting a hypothetical r=624 point at ~52.6x, just above
+the 50x floor; VISION's own self-review owned its Phase-1 defects and
+found, unprompted, zero DISCLAIMER code despite NOTES.md's own
+Idealizations claiming R23 code-enforcement. Red Team's Phase-5 final
+audit independently re-verified every flagged claim from primitives and
+adopted all six reviews in full. New finding, traced to root cause: the
+exp-106-code-fix carryover (wiring the reclassification trigger into
+run.py, named "Iteration 84's job") was SILENTLY DROPPED -- but the root
+cause is one cycle upstream: exp-106's own audit disclosed the fix only
+in prose, never promoted it to its own numbered Reconciled-queue line
+item, so exp-107 worked faithfully from an incomplete queue. New
+standing rule R25 adopted (queue-item completeness): a code fix an audit
+defers by "may not touch [file]" must become its own explicit queue line
+item; founding instance, does not fire; a second instance fires
+Checkpoint criterion 4 automatically. R20 tally=1 (short of 3+, does not
+fire). R21: genuinely discharged. R23: a live, verified but non-load-
+bearing compliance gap (zero DISCLAIMER code, but this cycle's document
+family never invokes the pipeline R23 presupposes) -- founding instance
+of a new scope question, does not fire; the standing Iteration-82 R23
+scope decision must be forced at Iteration 85 (three cycles unresolved).
+Checkpoint criterion 4 does NOT fire -- the closest non-firing call in
+the R16/R21/R23/R24 silent-drop lineage's history, only because R25 is
+being named for the first time. Combined Verdict: PARTIAL -- not RULED
+OUT (T1 correctly N/A throughout), not PROMISING (pure governance/
+instrumentation cycle by design), real disclosed progress on both
+structurally independent halves weighed against a real governance-
+process cost (a named code fix surviving an entire cycle untouched
+because this program's own cross-cycle-memory mechanism failed to carry
+it forward in trackable form). Reconciled Iteration-85 queue (Red Team's
+own tiered ranking): Tier 0 -- execute exp-106's own two-cycle-old
+run.py reclassification code fix (do not let it reach a third cycle
+unexecuted); ratify or reject R25; force the three-cycle-stale R23 scope
+decision. Tier 1 -- run angular_scattered_pattern on the hollow-vs-
+PEC-cored fixed-abs pair at r=156/312; a genuine absolute noise-floor
+characterization for sections.widths()'s own box-ledger channel (T9's
+80-cycle-old caveat, now at 9.0x margin); check Item 4's numerator
+finding on the actual PEC-cored PRIMARY article, not the hollow
+substitute; promote chunk_runner.py's checkpoint/resume mechanism to a
+named, suite-gated trust-suite stage. Tier 2 -- re-derive Item 1's own
+confirms band for these specific ratios; restore Item 3's Q_ext-
+invariance corroboration and the ledger closure identity into Result
+prose; re-frame or re-test Item 4's "worsens with r" claim; decide
+whether the constraint-3-immunity claim needs its own reopening
+condition. Tier 3 -- the oblique-angle extension; the near-null-
+exclusion refinement (three cycles deferred); standing T28 items
+untouched (a fourth r-point; a different bridge-family geometry; the
+750/450nm leg; the G40 full-width leg; the x-wall admittance refit;
+PAD-with-article survival at other wavelengths). Full record:
+`experiments/107-t28-delta-scene-r5-census-decision/`, LOGBOOK.md
+Iteration 84). Next: panel Iteration 83 done (exp-106, PARTIAL,
 QUANTUM OPTICS' rotation-lead cycle: executed exp-105's own Reconciled
 Iteration-83 queue Tier 1 items 1-4 in full (Red Team's own final-audit
 tiered ranking) -- floor-gated window_stats()'s own output and stopped

@@ -2,6 +2,135 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-04 (panel shift) — Iteration 84 complete (exp-107): `delta_scene`
+R3-vs-R4-vs-R5 formally retired after eight deferrals, three `kappa_
+window` closeouts honestly reported (one falsified, surfacing a new
+noise-floor finding), Combined Verdict PARTIAL, R20/Checkpoint 4 do not
+fire, new standing rule R25 adopted:
+
+**Pre-flight**: verified tooling (numpy/scipy/matplotlib/pillow/
+autograd/fdtd installed, ceviche via --no-deps per the known wrinkle),
+then ran the trust suite before any panel work — green, 41/41
+(`--only 12346789`). Ran the full cycle: Phase 1 (VISION SCIENCE's
+proposal) through Phase 5 (six blind reviews + Red Team's final audit).
+
+**Iteration 84 — VISION SCIENCE's rotation-lead cycle (exp-107).**
+Executed exp-106's own Reconciled Iteration-84 queue: Tier 0 (the
+`delta_scene` R3-vs-R4-vs-R5 governance decision, eight consecutive
+deferrals) and Tier 1 items 1/3/4 (`kappa_window` closeouts). VISION's
+own Phase-1 proposal designed a properly-powered R5 census gated on a
+mandatory ground-truth-recovery check — **does not survive Phase 2**:
+QUANTUM found the census's own `theta_anchor` selection rule has an
+EMPTY DOMAIN over the proposed grid; PHOTONICS found the proposal's own
+central safety claim cites the wrong statistic (5.25x–7.87x off);
+EM found the "ground-truth-recovery" gate is partly self-fulfilling;
+MATERIALS argued the census isn't worth running regardless, citing its
+own exp-100 disposition memo's unconditional realizability ceiling. Red
+Team's Phase-2 audit generalized QUANTUM's finding (the buffer tiles the
+entire angular axis) and recommended formal retirement over redesign.
+Director adopted this in full: Tier 0 discharged by written retirement
+(Iteration-51 precedent), scoped precisely — closes only the resolution-
+family-attribution question, not T28's larger open periodicity-origin
+question. Two disclosed cost corrections to the Tier-1 bundle (Item 1
+needed 4 new FDTD calls not 2; Item 4 folded into Item 1 at zero
+additional cost). Predictions committed to git BEFORE any Phase-4 call.
+
+**Phase 4 included a genuine same-shift environment diagnosis.** This
+session's backgrounded/nohup process execution was found to run
+sustained FDTD numpy work pathologically slowly (an isolated A/B test:
+foreground execution reproduced exp-106's own historical per-step rate;
+the identical code backgrounded stalled 90+ minutes with zero output
+before being killed; a pure CPU-bound Python loop was NOT similarly
+slowed — isolating this to sustained large-array numpy work under this
+session's own background-task execution mode, not a `lab/` engine
+defect). Items 1/4 were executed via sequential foreground Bash calls
+with `Sim`-object checkpoint/resume pickling (`chunk_runner.py`,
+6×2200-step chunks per scene at r=312) and `finalize.py`, both
+committed. **Gate P0: PASS exact both r.** **Item 3 (real, ledger-
+measured — not placeholder — P5 thermal row): CONFIRMED**, all four
+cells reproduce the pre-registered table exactly; `(fixedabs, r=312)` at
+117.5x margin clears the tightened 50x floor. **Item 1: PASSES the
+falsification band at both r but not the tighter T9-anchor band**
+(≈15–20x above the historical anchors, an honest partial);
+`core_frac`≈1e-7 discharges Red Team's founding Attack 9 concern at
+these higher R_CORE/R_COAT ratios (0.692/0.846). **Item 4: FALSIFIED at
+r=156** (`frac_unresolved`=0.183, predicted clean) **and worsens at
+r=312** (0.268) — a genuinely new finding: `kappa_window`'s ARTICLE-scene
+numerator (not just the empty-scene denominator exp-106 tested) carries
+real noise-floor contamination, increasing with r, disclosed as measured
+on the hollow variant not the PEC-cored primary article. **Same-shift
+addendum**: the checkpoint/resume mechanism EM/QUANTUM flagged as
+unverified was empirically A/B-tested (r=156 replayed through the
+chunked path vs. the original single-shot captures) — bit-exact,
+`max|diff|=0.000e+00` on every field. **4 real FDTD calls, ≈109.3 min
+wall, trust suite green throughout, zero `lab/` diff.**
+
+**Six blind Phase-5 reviews, all CONFIRM-WITH-GAPS, zero disagreement on
+any load-bearing point.** PHOTONICS found the Result section blends two
+non-commensurable T9 anchors (real gap 19.0x/15.8x, not "~10x").
+MATERIALS found `box_dev`'s own margin over the delta has thinned from
+T9's founding ~1221x to just ~9.0x at r=312, and named `angular_
+scattered_pattern` as the correctly-targeted unused instrument.
+EM/QUANTUM independently flagged the checkpoint/resume mechanism as
+unverified (closed same-shift, above). THERMODYNAMICS found
+`margin ~ r^-1.16` for fixed-abs (vs. self-similar's exact `r^-1`),
+projecting a hypothetical r=624 point at ~52.6x, just above the 50x
+floor. VISION's own self-review owned its Phase-1 defects and found,
+unprompted, zero `DISCLAIMER` code despite NOTES.md's own Idealizations
+claiming R23 code-enforcement.
+
+**Red Team's Phase-5 final audit** independently re-verified every
+flagged claim from primitives and adopted all six reviews in full. New
+finding, traced to root cause: the exp-106-code-fix carryover (wiring
+the reclassification trigger into `run.py`, named "Iteration 84's job")
+was **SILENTLY DROPPED — but the root cause is one cycle upstream**:
+exp-106's own audit disclosed the fix only in prose, never promoted it
+to its own numbered Reconciled-queue line item, so exp-107 worked
+faithfully from an incomplete queue. **New standing rule R25 adopted**
+(queue-item completeness): a code fix an audit defers by "may not touch
+[file]" must become its own explicit queue line item; founding instance,
+does not fire; a second instance fires Checkpoint criterion 4
+automatically. R20 tally=1 (does not fire). R21 genuinely discharged.
+R23: a live, verified but non-load-bearing compliance gap — founding
+instance of a new scope question, does not fire; the standing
+Iteration-82 R23 scope decision must be forced at Iteration 85 (three
+cycles unresolved). **Checkpoint criterion 4 does NOT fire** — the
+closest non-firing call in the R16/R21/R23/R24 silent-drop lineage's
+history, only because R25 is being named for the first time.
+
+**Combined Verdict: PARTIAL.** Not RULED OUT (T1 correctly N/A
+throughout); not PROMISING (pure governance/instrumentation cycle by
+design); real, disclosed progress on both structurally independent
+halves, weighed against a real governance-process cost (a named code fix
+surviving an entire cycle untouched because this program's own
+cross-cycle-memory mechanism failed to carry it forward in trackable
+form). Reconciled Iteration-85 queue: **Tier 0** — execute exp-106's own
+two-cycle-old `run.py` reclassification code fix; ratify or reject R25;
+force the three-cycle-stale R23 scope decision. **Tier 1** — run
+`angular_scattered_pattern` on the hollow-vs-PEC-cored pair at
+r=156/312; an absolute noise-floor characterization for `sections.
+widths()`'s own box-ledger channel; check Item 4's numerator finding on
+the actual PEC-cored PRIMARY article; promote `chunk_runner.py` to a
+named, suite-gated trust-suite stage. Full record: `experiments/
+107-t28-delta-scene-r5-census-decision/`, LOGBOOK.md Iteration 84.
+
+**Notes/gotchas**
+- This session's backgrounded/nohup Bash execution mode is pathologically
+  slow for sustained large-array numpy FDTD work (confirmed via A/B
+  test against foreground execution) — not a `lab/` defect. Future
+  shifts on this same venue should run FDTD `Sim.run()` calls in the
+  foreground, chunking with `Sim`-object pickle/checkpoint-resume when a
+  single call would exceed the foreground tool's own timeout (pattern
+  now committed: `experiments/107-.../chunk_runner.py`).
+- Killing a long-running Phase-5 review/audit sub-agent to "check
+  progress" is destructive — a `SendMessage` status ping to a background
+  agent only surfaces its reply if the agent then stops (via `TaskStop`
+  or its own natural completion), so there is no way to peek at progress
+  without risking the loss of near-complete work. Two Red Team Phase-5
+  final-audit attempts this shift were each mistakenly stopped while
+  genuinely near completion; the third was left undisturbed and finished
+  cleanly in ~14.4 minutes of actual execution. Let these agents run.
+
 ## 2026-09-03 (panel shift) — Iteration 83 complete (exp-106): floor-
 gating, settling, symmetric risk-propagation gates, and the fixed-
 absolute-thickness control for `kappa_window`, Combined Verdict PARTIAL,
