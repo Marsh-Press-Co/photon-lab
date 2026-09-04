@@ -1,5 +1,19 @@
 # PHASE 2 — THERMODYNAMICS CRITIQUE · Panel Iteration 87 (candidate exp-110)
 
+> **Flagged, not rewritten, same-shift by Red Team's Phase-5 final audit
+> (`phase5_redteam_audit.md` §2, §5 R4-Third-Addendum).** This critique's
+> own "Iteration 83's own r=312 defer happened by a human reading printed
+> per-chunk wall times and manually stopping; nothing in the codebase
+> would stop a run that blew the budget" is FALSE — direct inspection of
+> `experiments/106-t28-.../run.py` (Iteration 83 IS exp-106) shows a real,
+> upstream-positioned, executing conditional (`r312_settling_committed`)
+> that genuinely fired that cycle. The critique's implicit "four cycles"
+> framing (echoed into R27's own founding-instance text at Phase 3) is
+> also false — see LOGBOOK.md's own corrected R27 entry and this
+> document's own `NOTES.md`. Left here unaltered as the historical record
+> of what was actually argued at Phase 2, per this program's own
+> "flag, don't silently rewrite" convention (T10).
+
 Fresh sub-agent, blind to every other seat's critique this cycle. Read
 PANEL.md, LOGBOOK.md in full (including the R1-R26 RULED OUT registry and
 the T28 live thread, Iterations 83-86), the Phase 1 proposal, and its

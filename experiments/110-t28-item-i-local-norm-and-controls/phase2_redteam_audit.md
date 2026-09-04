@@ -2,6 +2,25 @@
 ## "Item i's Local-Magnitude Floor Gate, a Fault-Injection Control for
 ## `linear_fit_1_over_margin`, and `stage26`'s Truncation-Direction Control"
 
+> **Flagged, not rewritten, same-shift by Red Team's own Phase-5 final
+> audit (`phase5_redteam_audit.md` §2, §5 R4-Third-Addendum).** §1.5's
+> "CONFIRMED... exactly as THERMODYNAMICS states" and §4's "THERMODYNAMICS
+> is the first seat... back through exp-105/106..." below each verified
+> only an exp-108-directory-scoped grep — this audit never opened exp-105/
+> 106/107's own `run.py` before endorsing THERMODYNAMICS' broader
+> multi-cycle framing, which is false (exp-105/106 enforce a real,
+> upstream, hardcoded conditional; exp-107 wires a named constant
+> upstream; exp-108 alone left the gate unenforced). Caught only at Phase
+> 5 (MATERIALS' review), independently re-verified by Red Team's own
+> Phase-5 final audit against primary source. Left here unaltered as the
+> historical record of what this audit actually verified at Phase 2, per
+> this program's own "flag, don't silently rewrite" convention (T10). New
+> standing rule adopted at Phase 5 (R4's Third Addendum) generalizes this
+> exact gap: a Phase-2 Red Team audit's own multi-cycle claims must be
+> independently checked per-cycle, not only for the cycle under review,
+> before they are trusted forward into a mandatory-fix docket or a new
+> rule's own founding-instance text.
+
 *Charter (PANEL.md, verbatim): attacks every proposal, speaks last and
 hardest. Standard is NOT textbook-physics compliance — speculation is
 permitted. Kills: internal inconsistency, unfalsifiable claims, mechanisms

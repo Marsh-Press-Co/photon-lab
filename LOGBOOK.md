@@ -95,6 +95,42 @@ top. Protocol: PANEL.md.*
   already applied to the substantive claim being reviewed.** Full record:
   `experiments/074-t28-window-pricing-cramer-rao-bound/
   phase5_redteam_audit.md` §5, LOGBOOK.md Iteration 51.
+  **Third addendum (Iteration 87, exp-110) — extended to name Phase-2 Red
+  Team audits explicitly, discharging the "pattern to watch" LOGBOOK
+  opened at Iteration 82.** Iteration 82 (exp-105) found THERMODYNAMICS'
+  own self-review catching that "Red Team's own Phase-2 audit repeated
+  the identical wrong [dominance-ratio] figures while explicitly
+  claiming to have independently re-checked them," and ruled it "a
+  pattern to watch, not yet a rule (one instance; a second would be
+  grounds for extending the R4/Iteration-50 addendum's text to name
+  Phase-2 Red Team audits alongside Phase-5 reviewers)." exp-110's own
+  Phase-2 Red Team audit repeated an unverified multi-cycle claim
+  (THERMODYNAMICS' own critique's "exp-105 through exp-108, four-plus
+  cycles, reused `COST_GATE_*` invoked only in prose") TWICE, verifying
+  only an exp-108-directory-scoped grep, never opening exp-105/106/107's
+  own source; Phase-3 synthesis then ratified the unverified claim into
+  R27's own founding-instance text. Caught only at Phase 5, by MATERIALS,
+  independently reading all three prior cycles' own `run.py` directly:
+  exp-105/106 enforce a real, upstream, hardcoded cost conditional (no
+  named constant existed yet); exp-107 introduces a named constant and
+  wires it upstream; exp-108 alone is the genuine founding instance of
+  an unenforced, prose-only gate. **Rule, extended: a Phase-2 Red Team
+  audit's own claim about MULTIPLE PRIOR CYCLES' collective behavior (a
+  "this pattern spans N cycles" framing) must be independently verified
+  against EACH named prior cycle's own primary source — not only the
+  cycle immediately under review — before it is trusted, adopted into a
+  mandatory-fix docket, or, especially, ratified into a new standing
+  rule's own founding-instance narrative. A single-cycle-scoped check
+  does not license a multi-cycle historical claim.** **Does not fire on
+  its own founding/consolidating instance** (this cycle), matching R5's
+  own two-occurrence-before-generalization precedent rather than the
+  single-instance-ratified R16-lineage model, since this addendum's own
+  text is what Iteration 82 explicitly reserved for "a second instance."
+  **Standing forward clause: a THIRD instance of a Phase-2 Red Team
+  audit's own unverified multi-cycle claim reaching a frozen, ratified
+  record, on this or any channel, fires Checkpoint criterion 4
+  automatically.** Full record: `experiments/110-t28-item-i-local-norm-
+  and-controls/phase5_redteam_audit.md` §2, §5, LOGBOOK.md Iteration 87.
 - **R5 — Phase offset relative to the single-angle fringe's own
   zero-crossing, normalized by the T21 period `P(θ)=λ/(A·cosθ)`, as a
   predictor of quadrature tier instability** (ruled out Iteration 28,
@@ -1094,6 +1130,81 @@ top. Protocol: PANEL.md.*
   unrelated citations. Full record: `experiments/109-t28-item-ii-smooth-
   gate-r23-completion/phase5_redteam_audit.md` §3.1, §5 item 1, LOGBOOK.md
   Iteration 86.
+- **R27 — a numeric cost, safety, or scope gate (e.g. `COST_GATE_*`)
+  defined as a module-level constant, and referenced only in prose/
+  docstring/Idealizations language, is not a gate at all until it is
+  enforced by executable code that actually branches on it and records
+  the outcome (not a ruled-out idea; a standing house-discipline rule,
+  proposed by Panel Iteration 87's own Phase-3 synthesis on
+  THERMODYNAMICS' Phase-2 finding, ratified by Red Team's Phase-2 audit,
+  Iteration 87).** **Founding instance, corrected same-shift by Red
+  Team's own Phase-5 final audit (MATERIALS' finding, below): exp-108
+  alone** — not "exp-105 through exp-108," as this cycle's own first-
+  draft text originally, falsely, claimed (see the R4 Third Addendum,
+  above, and Iteration 87's own LOGBOOK entry). exp-105/106 enforce an
+  equivalent bound via real, upstream, hardcoded conditionals (no named
+  constant existed yet); exp-107 introduces a named constant
+  (`COST_GATE_TOTAL_S`) and wires it into a real, upstream, abort-
+  capable branch; only exp-108 ever defined `COST_GATE_PILOT_S`/
+  `COST_GATE_TOTAL_S` and left both unenforced across itself and
+  exp-109/110's own inherited copies, until exp-110's own Fix 5. **Does
+  not fire on its own founding instance**, matching every prior rule's
+  own precedent — a single genuine instance (exp-108) is sufficient
+  founding precedent, matching R5 through R26's own convention (none
+  required more than one). **Rule, forward: a future cycle that reuses a
+  documented numeric gate a second time without executable enforcement,
+  on this or any T28-adjacent channel, in any form, after this rule is
+  on the books, fires Checkpoint criterion 4 automatically** — a
+  single-instance-ratified, forward-firing model, matching R16/R21–R26's
+  own precedent. Fixed same-shift, exp-110's own cycle:
+  `run.py::cost_gate_check()`. See R28, immediately below, for a
+  necessary-but-not-sufficient companion finding on THIS SAME founding
+  fix. Full record: `experiments/110-t28-item-i-local-norm-and-controls/
+  phase2_redteam_audit.md` §1.5, §4, §6 Fix 5; `phase5_redteam_audit.md`
+  §2, §5, §7; LOGBOOK.md Iteration 87.
+- **R28 — a cost/safety/scope gate satisfying R27 (enforced by executable
+  code that branches on its outcome) is necessary, but not sufficient:
+  the branch must sit CAUSALLY UPSTREAM of the resource expenditure it
+  purports to control, independently traced from the actual resource-
+  consuming call site backward — not merely shown to exist, be called,
+  and branch somewhere in the pipeline (not a ruled-out idea; a standing
+  house-discipline rule, proposed and adopted by Red Team's Phase-5 final
+  audit, Iteration 87, a distinct failure axis from R27: R27 asks
+  "does executable code enforce this gate at all?"; R28 asks "does that
+  code's own branch sit before or after the cost?").** Founding instance:
+  exp-110's own `cost_gate_check()` (R27's own founding fix) — genuinely
+  wired, genuinely branches, satisfies R27's own literal text in full —
+  but sits inside `analyze.py`, downstream of 90.2% of that cycle's own
+  wall-clock spend (independently traced from the actual
+  `chunk_runner.py`→`analyze.py` call chain: `chunk_runner.py`, the sole
+  caller of `Sim.run()` anywhere in the cycle's tree, never imports or
+  consults `cost_gate_check()` or any `COST_GATE_*` constant). Missed by
+  six review layers before Phase 5 (five blind Phase-2 critiques plus Red
+  Team's own Phase-2 audit — all six confirmed "the gate exists and
+  branches" at grep-level, none traced whether the branch sat upstream or
+  downstream of the cost). **Companion caution, folded in rather than a
+  separate rule** (EM's own Phase-5 self-review finding, independently
+  re-confirmed by Red Team): even once correctly repositioned upstream, a
+  gate's own projection formula must be checked against real data as soon
+  as such data exists — `cost_gate_check()`'s own `kappa_ratio**3` term
+  underestimated the measured r=312/r=156 wall-time ratio by ~15%
+  (measured 9.224×, per-scene 8.93×–9.42×, vs. projected 8.0×; effective
+  exponent ≈3.21, not 3.00), anti-conservative for a safety gate,
+  non-blocking this cycle only by a wide margin unrelated to the
+  formula's own accuracy. **Does not fire on its own founding instance**
+  (exp-110), matching every prior rule's own precedent — the gate
+  happened to clear this cycle (the true spend was in fact affordable),
+  and the actual code reposition (`chunk_runner.py` itself consulting the
+  gate before its own r=312 `Sim.run()` calls) is named as its own
+  explicit Iteration-88 Tier-1 queue line (R25 discipline), not a
+  parenthetical. **Rule, forward: a future cycle that ships an
+  R27-satisfying gate whose own causal position is later found to sit
+  downstream of the cost it purports to control, on this or any
+  T28-adjacent channel, in any form, fires Checkpoint criterion 4
+  automatically, no further deliberation** — a single-instance-ratified,
+  forward-firing model, matching R16/R21–R27's own precedent. Full
+  record: `experiments/110-t28-item-i-local-norm-and-controls/
+  phase5_redteam_audit.md` §1, §5, §7, LOGBOOK.md Iteration 87.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -8702,6 +8813,199 @@ Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
 (`results.json`, the patched `experiments/108-.../run.py`/`.../
 analyze.py`, `reclassify_108.py`, `run_output.txt`), six Phase-5 blind
 reviews (`phase5_review_{photonics,materials,em,thermodynamics,quantum,
+vision}.md`), Phase-5 Red Team final audit (`phase5_redteam_audit.md`).
+
+**Iteration 87 (exp-110) — ELECTROMAGNETISM's rotation-lead cycle: the
+Iteration-86 queue's own "zero new FDTD" premise for item i's local-
+magnitude renormalization proven false and corrected with a real
+6-call re-capture; two new standing rules (R27, R28) discharge a
+four-cycle-old unenforced cost gate, only to have R28's own founding
+instance immediately re-expose the identical unenforced-in-substance
+shape one layer deeper; a false multi-cycle citation, originated by
+THERMODYNAMICS and repeated twice by Red Team's own Phase-2 audit,
+caught only at Phase 5 by MATERIALS — Combined Verdict PARTIAL
+(corrected from the Director's own initial PROMISING by Red Team's
+Phase-5 final audit), zero Checkpoint criteria fire.** Executed the
+Reconciled Iteration-87 Tier-1 queue in full: EM's own Phase-1 proposal
+first independently re-verified, from primitives, that the queue's own
+"zero new FDTD, all data already committed" premise for item i's
+local-magnitude floor gate was false — the per-bin angular-pattern
+arrays needed for it were computed only in-memory by exp-108's own
+`analyze.py`, from raw field captures pickled to a different, now-
+defunct session's ephemeral scratchpad, never persisted to any
+committed file. Scoped the cycle accordingly: a minimal, bit-identical
+6-call re-capture of exp-108's own geometry (empty/hollow/peccored ×
+r=156/312) whose sole new purpose is permanent per-bin persistence,
+plus the two genuinely zero-FDTD Tier-1 items (a synthetic fault-
+injection control for `linear_fit_1_over_margin`'s own smooth/noise
+discriminator, R18 discipline; `stage26`'s symmetric truncation-
+direction negative control). Five blind Phase-2 critiques (PHOTONICS,
+MATERIALS, THERMODYNAMICS, QUANTUM, VISION — EM is this cycle's lead),
+all support-with-changes, zero opposition, each finding a different
+defect: PHOTONICS and QUANTUM independently attacked the proposed
+mirror-symmetry noise floor from two angles (a structural blindness to
+common-mode/even noise; a correlated-not-independent single-realization
+variance problem) — Red Team's Phase-2 audit ruled these two distinct
+root causes, not one, and adopted both remedies; MATERIALS found the
+proposal's own "discharges R13 and R14" claim false as stated (a
+literal R14 smoothness check cannot apply to genuinely multi-lobed
+diffraction-pattern curves); THERMODYNAMICS found `COST_GATE_PILOT_S`/
+`COST_GATE_TOTAL_S` defined but enforced nowhere in code; VISION found
+zero occurrences of `DISCLAIMER`/R23 machinery anywhere in the
+proposal, naming exp-107's own identical silence as the precedent for
+this sub-thread's one prior R23 regression. Red Team's Phase-2 audit
+independently re-derived every consequential claim from primitives,
+combined the five critiques into 8 numbered mandatory fixes, one
+partial override (declining MATERIALS' own "add a genuine R14(a)
+check" as unachievable on multi-lobed curves, adopting MATERIALS' own
+"drop the claim" alternative instead). Verdict PROCEED-WITH-MANDATORY-
+FIXES. Predictions committed to git before any Phase-4 `Sim.run()`
+call, all 8 fixes already implemented in the committed code at that
+same commit.
+
+**Phase 4: 6 real FDTD calls, 7690.4s (128.17 min) wall, the r=312 leg
+cleared the newly-code-enforced R27 cost gate (pilot 752.2s vs. a 5400s
+bound; projected total 6017.8s vs. a 10800s bound) and executed in
+full.** Gate P0 and reproduction_precondition: PASS exact, both r
+(`rel_dev=0.0` against exp-108's own committed `sigma_abs`/`sigma_ext`).
+`classify_item_i` verdict: CONFIRM at both r, unchanged (byte-for-byte
+reused classifier). Item 1c/1d (the genuinely new, explicitly
+informational finding): neither of the two low-power bins PHOTONICS'
+own Iteration-85 self-review flagged (−146.25° at r=156, +168.75° at
+r=312, each read ~10% local deviation under the old global-blind
+computation) clears this cycle's own K=3 mirror-pooled floor gate —
+both `UNRESOLVED-BY-CONSTRUCTION`. Item 2: all four synthetic
+`(is_monotonic, r_squared, smooth)` triples reproduced bit-exact. Item
+3: `rel_diff_truncated=1.999`, inside the predicted band. `finalize.py`
+asserted `DISCLAIMER in` both `predictions_text`/`result_text`
+(R23) — both passed, both persisted, both quoted verbatim in NOTES.md.
+Trust suite green throughout (41/41).
+
+**All six blind Phase-5 reviews (PHOTONICS, MATERIALS, EM self-review,
+THERMODYNAMICS, QUANTUM, VISION) independently landed CONFIRM-WITH-GAPS
+— a unanimous six-of-six departure from the Director's own initial
+PROMISING label, zero substantive disagreement on any finding.** No
+factual or arithmetic defect survived anywhere in the object-level
+physics/instrumentation claims — every seat independently re-derived
+item 1a/1b/1c/1d/2/3 and all 8 mandatory fixes from primitives and
+confirmed them exact. Five DISTINCT new gaps surfaced, none raised at
+Phase 2 (including by Red Team's own Phase-2 audit): QUANTUM found
+`classify_item_i_local`'s own `resolved` mask lacks a `floor==0` guard
+(a constructed synthetic case trivially marks every bin RESOLVED; does
+not fire on real data, floor confirmed strictly positive at all 12 real
+cells). PHOTONICS found the Result section's "narrows rather than
+resolves" framing, while defensible, understates the evidence: both
+named bins sit 3.5×–30× below even an unmultiplied (K=1) floor,
+consistently across all six margins, with a clean bimodal gap from
+every RESOLVED bin. THERMODYNAMICS found the R27 cost gate (Fix 5),
+though genuinely real, executed, branching code, sits inside
+`analyze.py`, downstream of 90.2% of this cycle's own wall-clock
+spend — `chunk_runner.py`, the sole caller of `Sim.run()`, never
+consults it, so the gate is structurally incapable of "aborting the
+r=312 leg" the way its own motivating comment claims, missed by five
+Phase-2 critiques and Red Team's own Phase-2 audit alike. EM's own
+self-review found `cost_gate_check()`'s `kappa_ratio**3` projection
+formula, checked against real data that did not exist at Phase 1,
+underestimates the measured r=312/r=156 wall-time ratio by ~15%
+(measured 9.224×, projected 8.0×) — anti-conservative, non-outcome-
+reversing this cycle only by margin. MATERIALS found R27's own
+founding-instance narrative false: direct inspection of exp-105/106/
+107's own `run.py` shows all three enforce real, upstream, executing
+cost conditionals — only exp-108 actually left the gate unenforced,
+not "exp-105 through exp-108 (four-plus cycles)" as this cycle's own
+first-draft R27 text and Red Team's own Phase-2 audit (twice) claimed
+without opening those files' own source. VISION found NOTES.md's own
+Interpretation prose applies the mirror floor's disclosed common-mode-
+blindness mechanism backward (an underestimated floor makes RESOLVED
+easier to pass falsely, not UNRESOLVED harder — the hedge on the two
+UNRESOLVED named bins had it exactly reversed).
+
+**Red Team's Phase-5 final audit independently re-verified the two most
+consequential findings from primitives** (traced the actual
+`chunk_runner.py`→`analyze.py` call chain itself for THERMODYNAMICS'
+finding, confirming the 90.2% figure exactly; read exp-105/106/107's
+own `run.py` itself for MATERIALS' finding, confirming it exactly) and
+**adopted all six reviews in full.** Checked all five findings element-
+by-element against R1–R27's own operative text: none fires any existing
+rule. Ratified two new standing rules: **R28** (RULED OUT registry,
+above) — a cost gate satisfying R27 is necessary but not sufficient;
+its own branch must sit causally upstream of the spend it purports to
+control, independently traced, not merely shown to exist and branch
+somewhere in the pipeline; founding instance exp-110's own
+`cost_gate_check()`, does not fire — and the **R4 Third Addendum**
+(RULED OUT registry, above) — a Phase-2 Red Team audit's own multi-
+cycle claims must be independently verified per-named-cycle before
+being trusted forward or ratified into a new rule's founding-instance
+text; this is the second instance of the pattern Iteration 82 flagged
+as "a pattern to watch," discharging that flag into a rule; does not
+fire on its own consolidating instance, standing forward clause on a
+third instance. Ruled VISION's logic-direction finding correct,
+re-derived independently from the mirror-differencing algebra.
+Checkpoint criterion 4 does NOT fire on any of the five findings
+(checked element-by-element; none meets any existing rule's literal
+trigger) — both new rules correctly non-firing on their own founding/
+consolidating instances. Nine same-shift annotations applied directly
+to NOTES.md and the frozen Phase-2 documents (blockquoted/struck-and-
+corrected, attributed, zero re-run, zero verdict-arithmetic change):
+R27's founding-instance narrative corrected to name exp-108 alone; R27's
+forward clause and founding-instance label brought into line with this
+registry's own conventions; the Interpretation paragraph's backward
+hedge corrected; the causal-positioning and formula-bias gaps disclosed
+in Result; the `floor==0` construction gap disclosed; the margin-
+independence/bimodal-separation finding stated explicitly; the Combined
+Verdict corrected PROMISING → PARTIAL; `phase2_critique_thermodynamics.md`
+and `phase2_redteam_audit.md` flagged (not rewritten) with a pointer to
+the correction.
+
+**Combined Verdict: PARTIAL** — not RULED OUT (T1 correctly N/A
+throughout, confirmed structurally by every layer); not PROMISING (a
+real, independently-derived gap cluster survives Phase-3 freeze — none
+individually fatal, together denser than a clean landing carries, and
+matching this exact T28 governance sub-thread's own established pattern:
+every cycle since Iteration 82, exp-105 through exp-109, has landed
+PARTIAL under a comparable gap density); real, disclosed, independently
+seven-ways-reproduced progress nonetheless: the grounding-fact/data-
+persistence gap that made the Iteration-86 queue's own premise false is
+genuinely, permanently closed (36 arrays, 1728 floats, committed to
+git); R23 honored to a byte-exact standard; all 8 Phase-2 mandatory
+fixes genuinely implemented, not merely claimed; item 1a/1b/2/3 clean
+across every reviewing layer. Reconciled Iteration-88 queue (Red Team's
+own tiered ranking): **Tier 0** — rule on the Iteration-85 Checkpoint-4/
+R24 firing at the next convened checkpoint (unchanged, still pending
+Marsh's own ruling); the R27/R28/R4-Third-Addendum text corrections and
+NOTES.md annotations above are already applied, this shift. **Tier 1**
+(named in every one of six Phase-5 reviews' own top-3, in some form) —
+execute the queued fault-injection control for `mirror_pooled_floor`/
+`classify_item_i_local`, both sub-cases (asymmetric, planned; symmetric/
+common-mode, including QUANTUM's own purely-symmetric `floor==0`
+degenerate case), zero new FDTD; reposition the R27/R28 cost gate
+genuinely upstream — have `chunk_runner.py` itself call
+`cost_gate_check()`, using r=156's own already-logged wall times, before
+r=312's first `Sim.run()` call, zero new FDTD; PHOTONICS' own
+independent, non-differencing floor check (a `cpl`-refinement spot
+check) at the two named bins — the only instrument that can actually
+discriminate genuine common-mode-masked structure from pure
+discretization noise there, genuine new FDTD, named in 5 of 6 reviews'
+own top-3; apply an empirical safety margin (or the measured ≈3.2
+exponent) to `cost_gate_check()`'s own projection formula. **Tier 2** —
+the long-outstanding `R2_SMOOTH_THRESHOLD=0.90` re-derivation; MATERIALS'
+own fabrication-tolerance quantitative bound for the mirror floor's
+disclaimer, now a third consecutive cycle naming it undone; a full
+per-margin Result-section table for item 1c/1d; `CLOSURE_CONFIRM`/
+`CLOSURE_FALSIFY` dead-code cleanup; a fourth r-point (r=624), testing
+THERMODYNAMICS' own `r^-1.16` fixed-abs projection. **Tier 3** —
+unchanged: the oblique-angle extension; the 750/450nm leg; the `G40`
+full-width leg; the x-wall admittance refit; `PAD`-with-article
+survival; `box_dev`'s own thinning margin (~9.0× at r=312, still
+unresolved). Full record: `experiments/110-t28-item-i-local-norm-and-
+controls/` — Phase-1 proposal (EM), five Phase-2 blind critiques
+(`phase2_critique_{photonics,materials,thermodynamics,quantum,
+vision}.md`), Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`),
+Phase-4 code and results (`run.py`, `chunk_runner.py`, `analyze.py`,
+`linear_fit_control.py`, `finalize.py`, `results.json`,
+`linear_fit_control_output.json`), the disclosed `lab/validation/
+run_all.py` `stage26` extension, six Phase-5 blind reviews
+(`phase5_review_{photonics,materials,em,thermodynamics,quantum,
 vision}.md`), Phase-5 Red Team final audit (`phase5_redteam_audit.md`).
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)

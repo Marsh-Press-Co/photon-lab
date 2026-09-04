@@ -89,12 +89,44 @@ Idealizations language, is not a gate at all until it is enforced by
 executable code that actually branches on it and records the outcome (not
 a ruled-out idea; a standing house-discipline rule, proposed by this
 cycle's own Phase-3 synthesis on THERMODYNAMICS' Phase-2 finding, Red
-Team's Phase-2 audit §1.5/§4/§6 Fix 5).** Founding instance: exp-105
+Team's Phase-2 audit §1.5/§4/§6 Fix 5).** ~~Founding instance: exp-105
 through exp-108 (four-plus cycles) each reused `COST_GATE_PILOT_S`/
 `COST_GATE_TOTAL_S`, invoked only in prose ("abort r=312 leg if projected
 exceeds this," "commit r=312 only if pilot wall time <90 min") — `grep -rn
 "COST_GATE"` across exp-108's own directory finds only the two definitions
-and zero enforcing branches anywhere in `chunk_runner.py` or `analyze.py`.
+and zero enforcing branches anywhere in `chunk_runner.py` or `analyze.py`.~~
+
+> **CORRECTED same-shift (Phase-5 final audit, MATERIALS' review + Red
+> Team's independent re-verification against primary source, §2 of
+> `phase5_redteam_audit.md`).** The struck text above is FALSE as stated.
+> Direct inspection of exp-105/106/107's own `run.py` (not merely
+> exp-108's): exp-105 (line 663, `r312_committed = ...`, `if
+> r312_committed:` at line 671) and exp-106 (`r312_primary_committed`/
+> `r312_settling_committed`, lines 642/658/724/729) both enforce an
+> equivalent bound via real, executing, upstream-positioned conditionals
+> — hardcoded literals, no named constant existed yet, so they cannot
+> have "reused `COST_GATE_PILOT_S`/`COST_GATE_TOTAL_S`... invoked only in
+> prose." exp-106's own settling gate genuinely FIRED (Iteration 83, the
+> empty-scene settling pilot exceeded 90 min and correctly deferred both
+> article calls) — this also falsifies THERMODYNAMICS' own Phase-2
+> critique's "the defer happened by a human reading printed wall times and
+> manually stopping" characterization of that same cycle. exp-107 (lines
+> 111, 329-330) introduces a NAMED constant (`COST_GATE_TOTAL_S=150*60`)
+> AND wires it into a real, upstream branch with an explicit abort
+> message. **exp-108 alone is the genuine founding instance** of "a
+> documented numeric gate, referenced only in prose, with zero enforcing
+> code" — one cycle, not four. The false claim propagated through
+> THERMODYNAMICS' own Phase-2 critique, Red Team's own Phase-2 audit
+> (twice — §1.5, §4, neither of which opened exp-105/106/107's own
+> source), and this Phase-3 synthesis, caught only at Phase 5. Does not
+> touch R27's own forward-looking rule text (a single genuine instance is
+> sufficient founding precedent, matching every other rule in this
+> registry) or any scored verdict this cycle. Full record:
+> `phase5_redteam_audit.md` §2, §5 (R4 Third Addendum).
+
+**Founding instance (corrected): exp-108 alone.** `grep -rn "COST_GATE"`
+across exp-108's own directory finds only the two definitions and zero
+enforcing branches anywhere in `chunk_runner.py` or `analyze.py`.
 Checked element-by-element against R23/R24/R25's own operative text by
 Red Team's Phase-2 audit (§4): none of the three literally fires (R23 is
 scoped to repeated disclaimer strings; R24 requires a specific Phase-2
@@ -104,11 +136,36 @@ THERMODYNAMICS is the first seat ever to name this gap). A genuinely new
 failure shape, not a recurrence of any named one. **Does not fire on its
 own founding instance**, matching every prior rule in this registry.
 **Rule, forward: a future cycle that reuses a documented numeric gate a
-second time without executable enforcement, after this rule is on the
-books, fires Checkpoint criterion 4 automatically** — a single-instance-
-ratified, forward-firing model, matching R16/R21/R22/R23/R24/R25/R26's own
-precedent. This cycle's own founding instance is fixed same-shift (Fix 5,
-`run.py::cost_gate_check()`).
+second time without executable enforcement, on this or any T28-adjacent
+channel, in any form, after this rule is on the books, fires Checkpoint
+criterion 4 automatically** — a single-instance-ratified, forward-firing
+model, matching R16/R21/R22/R23/R24/R25/R26's own precedent
+[corrected same-shift, Phase-5 final audit: forward clause reworded to
+match R16/R21's own explicit generalization language; "Founding instance"
+relabeled below to name exp-110 itself, per this registry's own universal
+convention, rather than the antecedent cycles]. This cycle (exp-110) is
+R27's own founding/ratifying/fixing instance; the underlying gap (Fix 5,
+`run.py::cost_gate_check()`) is fixed same-shift.
+
+> **Companion finding, same-shift (ELECTROMAGNETISM's own Phase-5
+> self-review; Red Team's independent re-derivation, `phase5_redteam_
+> audit.md` §1, §5 R28).** `cost_gate_check()` genuinely satisfies R27's
+> own literal text (wired, branches, records the outcome) — but tracing
+> the actual `chunk_runner.py`→`analyze.py` call chain shows the gate
+> sits DOWNSTREAM of 90.2% of this cycle's own wall-clock spend (r=312's
+> 6938.2s of 7690.4s total); `chunk_runner.py`, the only code anywhere in
+> this tree that calls `Sim.run()`, never consults it. The gate cleared
+> this cycle (nothing wasted in fact) but is structurally incapable of
+> "aborting the r=312 leg" the way `run.py`'s own comment (line 70) and
+> R27's own founding narrative claim. Separately, the gate's own
+> `kappa_ratio**3` projection underestimates the REAL measured r=312/r=156
+> wall-time ratio by ~15% (measured 9.22×, per-scene 8.93×-9.42×, vs.
+> projected 8.0×; effective exponent ≈3.2, not 3.0) — anti-conservative,
+> non-blocking this cycle only by margin. Neither gap changes any scored
+> outcome. New standing rule **R28** ratified this Phase-5 (full text,
+> LOGBOOK.md) — does not fire on its own founding instance (this cycle);
+> repositioning the gate genuinely upstream is Iteration-88's own Tier-1
+> item, not attempted here (a real code change, not an annotation).
 
 ## T1 escape route: N/A
 
@@ -291,20 +348,84 @@ real, mirror-symmetric structural effect at exactly those bins would look
 identical to this floor gate) — but it does mean PHOTONICS' own "real
 shape structure" reading is **not corroborated** by the one instrument
 built this cycle to test it, and the honest disposition is genuinely
-open, not resolved either direction. ~23–30% of all sampled bins
-(85/288 at r=156, 66/288 at r=312) sit below the K=3 floor entirely —
-informationally relevant for any FUTURE cycle that might consider scoring
-`classify_item_i_local`'s output, but this cycle's own item i CONFIRM
-verdict is untouched (informational only, per Fix 2's reasoning).
+open, not resolved either direction. ~~though PHOTONICS' own unclosed
+common-mode-blindness concern (Idealizations) means this instrument cannot
+rule out a real but common-mode-masked effect at either bin.~~
 
-**Combined Verdict: PROMISING** — a clean governance/instrumentation
-cycle: T1 correctly N/A throughout (confirmed structurally, not merely
-asserted); every one of the eight Phase-2-mandated fixes genuinely
-implemented and verified, not merely claimed; R23 fully honored (both
-DISCLAIMER asserts live-fired, both text fields persisted, quoted
-verbatim above); the data-persistence gap that made the Iteration-86
-queue's own premise false is closed for good (item 1b); a new, real,
-disclosed finding (item 1c/1d) that appropriately narrows rather than
-resolves a two-cycle-old open question, exactly as an informational
-diagnostic should. Zero Checkpoint criteria fire pending Phase 5's own
-independent review (see below).
+> **CORRECTED same-shift (VISION's Phase-5 review §3; Red Team's
+> independent re-derivation from the mirror-differencing algebra,
+> `phase5_redteam_audit.md` §3).** The struck hedge above applies the
+> DISCLAIMER's own named mechanism backward. Common-mode/even bias
+> cancels exactly inside `|pattern[i]-pattern[47-i]|`, so `mirror_
+> pooled_floor` is a structural UNDERESTIMATE of true noise whenever such
+> contamination is present. An underestimated floor makes the RESOLVED
+> test EASIER to pass — the systematic risk this creates is a FALSE
+> RESOLVED elsewhere in the dataset, not a false UNRESOLVED here. A bin
+> that fails to clear an already-too-lenient floor would fail an even
+> higher, common-mode-corrected floor by an even wider margin — the same
+> mechanism, worked through explicitly, REINFORCES an UNRESOLVED verdict
+> for these two named bins rather than undermining it. The correct
+> statement of residual uncertainty: this instrument's disclosed blind
+> spot means a RESOLVED bin elsewhere in this cycle's own 425/576 total
+> is not validated clean of common-mode contamination — not that either
+> of these two UNRESOLVED bins carries an unruled-out real effect by this
+> particular mechanism. The document's own bottom-line ("not
+> corroborated... genuinely open") stands on the K=3/median
+> house-style-convention-status ground alone, independent of this
+> correction. Non-outcome-reversing (item 1c/1d stays informational).
+
+Independently, PHOTONICS' own Phase-5 review (`phase5_review_photonics.md`
+§1) found the "narrows rather than resolves" framing above, while
+defensible, understates how decisively the odd-noise evidence in hand
+leans: at both named bins, `local_snr` sits 3.5×-30× BELOW even an
+unmultiplied (K=1) floor, consistently across all six margins (not only
+margin=32), with a clean bimodal gap separating the UNRESOLVED population
+(`snr <= 0.79` everywhere) from the RESOLVED one (`snr >= 1.32`
+everywhere) — no bin anywhere near the K=3 cutoff. This is computed and
+persisted (`local_diag[m]` for every margin) but was not previously
+stated in this Result section. Separately, QUANTUM's own Phase-5 review
+(`phase5_review_quantum.md` §3) found a genuine, non-outcome-reversing
+construction gap: `classify_item_i_local`'s `resolved` mask has no guard
+against `floor==0` (unlike its sibling `local_snr` computation, which
+does) — a constructed synthetic mirror-symmetric case collapses the floor
+to exactly 0.0, trivially marking every bin RESOLVED plus a silent 0/0
+masked as `None`. Does not fire on this cycle's real captured data: floor
+is confirmed strictly positive (2.346e-4-2.096e-3) at all 12 real
+`(r,margin)` cells. Both findings are disclosed here; the queued
+Iteration-88 fault-injection control (Idealizations, above) is now
+sharpened to explicitly include a purely-symmetric/zero-odd-component
+degenerate synthetic case per QUANTUM's own recommendation. ~23–30% of
+all sampled bins (85/288 at r=156, 66/288 at r=312) sit below the K=3
+floor entirely — informationally relevant for any FUTURE cycle that might
+consider scoring `classify_item_i_local`'s output, but this cycle's own
+item i CONFIRM verdict is untouched (informational only, per Fix 2's
+reasoning). Full record: `phase5_redteam_audit.md` §3, §7.
+
+~~**Combined Verdict: PROMISING**~~
+
+> **CORRECTED (Phase-5 final audit, all six blind reviews independently
+> landed CONFIRM-WITH-GAPS, none PROMISING; Red Team's own final audit,
+> `phase5_redteam_audit.md` §6): Combined Verdict: PARTIAL.** Every
+> object-level physics/instrumentation claim (item 1a/1b/1c/1d/2/3, all 8
+> mandatory fixes) reproduces exactly from primitives — nothing here is
+> outcome-reversed, and PROMISING's own substantive case (T1 correctly
+> N/A; the grounding-fact/persistence gap genuinely closed; R23 honored
+> byte-exact) all stands. But five distinct new gaps, none raised at
+> Phase 2 (including by Red Team's own Phase-2 audit), survive into this
+> document: a real R4-class citation defect inside R27's own founding
+> text (corrected above) that propagated through Red Team's own Phase-2
+> audit twice; a causal-positioning gap in the R27 cost gate missed by
+> six review layers including Red Team's own Phase-2 audit; a logic error
+> in this section's own Interpretation prose (corrected above); an
+> undisclosed ~15% formula bias in the same gate; a first-use-instrument
+> construction gap. None individually fatal (all disclosed, all
+> non-outcome-reversing, no Checkpoint criterion fires — see
+> `phase5_redteam_audit.md` §4), but denser than an unqualified PROMISING
+> carries. Matches this exact T28 governance sub-thread's own established
+> pattern (every cycle since Iteration 82 — exp-105 through exp-109 —
+> landed PARTIAL under a comparable gap density); exp-110 is not an
+> exception to that pattern. Two new standing rules ratified at Phase 5:
+> R28 (a cost gate's own code-level branch must sit causally upstream of
+> the spend it controls) and R4's Third Addendum (a Phase-2 Red Team
+> audit's own multi-cycle claims must be independently verified per-cycle
+> before being trusted forward) — full text, LOGBOOK.md.

@@ -2,6 +2,95 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-04 (panel shift) — Iteration 87 complete (exp-110): the
+Iteration-86 queue's own "zero new FDTD" premise proven false and
+corrected with a real re-capture, R27+R28 discharge a four-cycle-old
+unenforced cost gate then immediately re-expose the same shape one
+layer deeper, a false multi-cycle citation caught only at Phase 5:
+
+**Pre-flight**: trust suite green before any panel work (`--only
+12346789`, 41/41, 76s; tooling already installed from earlier this
+shift).
+
+**Iteration 87 — ELECTROMAGNETISM's rotation-lead cycle (exp-110).**
+EM's own Phase-1 proposal independently verified, from primitives, that
+the Iteration-86 Reconciled queue's own "zero new FDTD, all data
+already committed" premise for item i's local-magnitude renormalization
+was false — the per-bin angular-pattern arrays lived only in a
+different, now-defunct session's ephemeral scratchpad, never
+committed. Scoped the cycle to a minimal, bit-identical 6-call
+re-capture (empty/hollow/peccored × r=156/312) whose sole new purpose
+is permanent per-bin persistence, bundled with the two genuinely
+zero-FDTD Tier-1 items (a fault-injection control for
+`linear_fit_1_over_margin`'s smooth/noise discriminator, R18
+discipline; `stage26`'s symmetric truncation-direction negative
+control). Five blind Phase-2 critiques, all support-with-changes, zero
+opposition, each finding a different defect — PHOTONICS/QUANTUM on the
+new mirror-symmetry noise floor (two distinct root causes, per Red
+Team's own ruling: common-mode blindness vs. correlated-variance);
+MATERIALS on a false "discharges R13 and R14" claim; THERMODYNAMICS on
+the cost gate being defined but never enforced; VISION on zero R23/
+DISCLAIMER machinery anywhere in the proposal (naming exp-107's own
+identical silence, the precedent for this sub-thread's one prior R23
+regression). Red Team's Phase-2 audit combined all five into 8
+mandatory fixes. Predictions committed to git before any Phase-4 run,
+all fixes already coded in that commit.
+
+**Phase 4: 6 real FDTD calls, 7690.4s (128.17 min) wall — the r=312 leg
+cleared the newly-code-enforced R27 cost gate and executed in full.**
+Every prediction held: gate P0/reproduction_precondition PASS exact
+both r; `classify_item_i` CONFIRM both r, unchanged; item 2's four
+synthetic triples bit-exact; item 3's `stage26` truncation control
+inside its predicted band. Item 1c/1d (informational, the genuinely
+new finding): neither of the two low-power bins PHOTONICS' own
+Iteration-85 self-review flagged clears the new K=3 mirror-pooled
+floor — both `UNRESOLVED-BY-CONSTRUCTION`. R23 honored to a byte-exact
+standard. Trust suite green throughout.
+
+**All six blind Phase-5 reviews independently landed CONFIRM-WITH-GAPS
+— unanimous six-of-six departure from the Director's own initial
+PROMISING label.** No factual/arithmetic defect anywhere in the
+object-level claims, but five distinct new gaps surfaced, none raised
+at Phase 2: a construction gap (`floor==0` unguarded, non-firing on
+real data); an under-narrated evidence strength; and — the two
+consequential ones — THERMODYNAMICS found the R27 cost gate sits
+downstream of 90.2% of this cycle's own wall-clock spend, structurally
+incapable of the "abort" its own comment claims, missed by six review
+layers; MATERIALS found R27's own founding-instance narrative false —
+exp-105/106/107 all had real, upstream, executing cost gates, only
+exp-108 actually left one unenforced, not "four-plus cycles" as
+THERMODYNAMICS' Phase-2 critique and Red Team's own Phase-2 audit
+(twice) claimed without opening those files' own source.
+
+**Red Team's Phase-5 final audit** independently re-verified both
+consequential findings from primitives (traced the real call chain;
+read exp-105/106/107's own source directly), adopted all six reviews,
+ruled a sixth issue (VISION's finding that the Director's own
+Interpretation prose applied a disclosed noise mechanism backward)
+correct, and ratified two new standing rules: **R28** (a cost gate
+must sit causally upstream of the spend it controls, not merely be
+enforced somewhere) and the **R4 Third Addendum** (a Phase-2 Red Team
+audit's own multi-cycle claims must be independently verified
+per-named-cycle) — discharging a "pattern to watch" LOGBOOK flagged at
+Iteration 82. Neither rule fires on its own founding instance; zero
+Checkpoint criteria fire this cycle. Nine same-shift annotations
+applied directly to the frozen record.
+
+**Combined Verdict: PARTIAL** (corrected from the Director's own
+initial PROMISING) — the data-persistence gap genuinely, permanently
+closed; R23 honored byte-exact; all 8 mandatory fixes genuinely
+implemented; but a real, disclosed gap cluster (2 citation/formula
+defects, 1 causal-positioning gap missed by six review layers, 1
+Director-prose logic error, 1 construction gap) survives freeze,
+matching this exact T28 sub-thread's own pattern every cycle since
+Iteration 82. Reconciled Iteration-88 queue: reposition the cost gate
+genuinely upstream (zero new FDTD); execute the queued mirror-floor
+fault-injection control, both directions; PHOTONICS' own independent
+non-differencing floor check at the two named bins (genuine new FDTD);
+plus the standing Tier-2/3 items, unchanged. Full record:
+`experiments/110-t28-item-i-local-norm-and-controls/`, LOGBOOK.md
+Iteration 87.
+
 ## 2026-09-04 (panel shift) — Iteration 86 complete (exp-109): the R24
 second instance genuinely closed, R23's human-readable-citation half
 closed for the first time in this document family's history, a new

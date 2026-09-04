@@ -22,7 +22,124 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-04, panel Iteration 86 done (exp-109, PARTIAL,
+## Current state (2026-09-04, panel Iteration 87 done (exp-110, PARTIAL,
+ELECTROMAGNETISM's rotation-lead cycle: independently proved the
+Iteration-86 queue's own "zero new FDTD, all data already committed"
+premise for item i's local-magnitude renormalization false -- the
+per-bin angular-pattern arrays lived only in a now-defunct prior
+session's ephemeral scratchpad, never persisted -- and corrected it
+with a minimal, bit-identical 6-call re-capture (empty/hollow/peccored
+x r=156/312) whose sole new purpose is permanent per-bin persistence
+(36 arrays, 1728 floats, now committed to git). Bundled with the two
+genuinely zero-FDTD Tier-1 items: a synthetic fault-injection control
+for linear_fit_1_over_margin's own smooth/noise discriminator (R18),
+and stage26's symmetric truncation-direction negative control. Five
+blind Phase-2 critiques (PHOTONICS, MATERIALS, THERMODYNAMICS, QUANTUM,
+VISION), all support-with-changes, zero opposition: PHOTONICS and
+QUANTUM independently attacked the proposed mirror-symmetry noise
+floor from two angles (common-mode blindness; correlated-not-
+independent variance) -- Red Team ruled these two distinct root
+causes, adopted both remedies; MATERIALS found the "discharges R13 and
+R14" claim false (multi-lobed curves can't clear a literal R14
+smoothness check); THERMODYNAMICS found COST_GATE_PILOT_S/
+COST_GATE_TOTAL_S defined but never enforced in code; VISION found
+zero R23/DISCLAIMER machinery anywhere in the proposal, naming
+exp-107's own identical silence as this sub-thread's one prior R23
+regression precedent. Red Team's Phase-2 audit combined all five into
+8 mandatory fixes, one partial override, verdict PROCEED-WITH-
+MANDATORY-FIXES. Predictions committed to git before any Phase-4
+Sim.run() call, all 8 fixes already implemented in that same commit.
+Phase 4: 6 real FDTD calls, 7690.4s (128.17 min) wall -- the r=312 leg
+cleared the newly-code-enforced R27 cost gate (pilot 752.2s vs 5400s
+bound; projected total 6017.8s vs 10800s bound) and executed in full.
+Gate P0/reproduction_precondition PASS exact both r (rel_dev=0.0).
+classify_item_i verdict CONFIRM both r, unchanged. Item 1c/1d
+(informational): neither of the two low-power bins PHOTONICS' own
+Iteration-85 self-review flagged (~10% local deviation under the old
+global-blind computation) clears the new K=3 mirror-pooled floor --
+both UNRESOLVED-BY-CONSTRUCTION. Item 2: all four synthetic triples
+reproduced bit-exact. Item 3: rel_diff_truncated=1.999, inside the
+predicted band. R23 fully honored: both DISCLAIMER asserts passed,
+both text fields persisted and quoted verbatim. Trust suite green
+throughout (41/41). All six blind Phase-5 reviews (PHOTONICS,
+MATERIALS, EM self-review, THERMODYNAMICS, QUANTUM, VISION)
+independently landed CONFIRM-WITH-GAPS -- unanimous six-of-six
+departure from the Director's own initial PROMISING, zero factual/
+arithmetic defect found anywhere, but five distinct NEW gaps
+surfaced, none raised at Phase 2 including by Red Team's own Phase-2
+audit: QUANTUM found classify_item_i_local's resolved mask lacks a
+floor==0 guard (non-firing on real data); PHOTONICS found the Result
+section understates how decisively both named bins sit below even a
+K=1 floor across all six margins; THERMODYNAMICS found the R27 cost
+gate sits downstream of 90.2% of this cycle's own wall-clock spend --
+structurally incapable of aborting the leg its own comment claims it
+guards, missed by six review layers; EM's own self-review found
+cost_gate_check()'s kappa_ratio**3 formula underestimates the real
+r=312/r=156 wall-time ratio by ~15%; MATERIALS found R27's own
+founding-instance narrative false -- exp-105/106/107 all had real,
+executing, upstream cost-gate conditionals, only exp-108 actually left
+it unenforced, not "exp-105 through exp-108 (four-plus cycles)" as
+THERMODYNAMICS' own Phase-2 critique and Red Team's own Phase-2 audit
+(twice) claimed without opening those files' own source. Red Team's
+Phase-5 final audit independently re-verified the two most
+consequential findings from primitives (traced the actual call chain
+itself for THERMODYNAMICS' finding, confirming 90.2% exactly; read
+exp-105/106/107's own run.py itself for MATERIALS' finding, confirming
+it exactly), adopted all six reviews in full, ruled VISION's logic-
+direction finding correct (the Interpretation prose applied the mirror
+floor's common-mode-blindness mechanism backward -- an underestimated
+floor risks false RESOLVED, not false UNRESOLVED), checked all five
+findings element-by-element against R1-R27 -- none fires -- and
+ratified two new standing rules: R28 (a cost gate satisfying R27 must
+also sit causally upstream of the spend it controls, independently
+traced; founding instance exp-110's own cost_gate_check(), does not
+fire) and the R4 Third Addendum (a Phase-2 Red Team audit's own multi-
+cycle claims must be independently verified per-named-cycle before
+being trusted forward; second instance of the pattern Iteration 82
+flagged as "a pattern to watch," discharged into a rule; does not fire
+on its own consolidating instance). Nine same-shift annotations
+applied directly to NOTES.md and the frozen Phase-2 documents
+(blockquoted/struck-and-corrected, zero re-run, zero verdict-
+arithmetic change): R27's founding-instance narrative corrected to
+exp-108 alone; R27's forward clause and label brought into line with
+registry convention; the Interpretation paragraph's backward hedge
+corrected; the causal-positioning and formula-bias gaps disclosed; the
+floor==0 gap disclosed; the margin-independence/bimodal finding stated
+explicitly; Combined Verdict corrected PROMISING -> PARTIAL;
+phase2_critique_thermodynamics.md and phase2_redteam_audit.md flagged
+with a pointer to the correction. Combined Verdict (LOGBOOK-level):
+PARTIAL -- not RULED OUT (T1 correctly N/A throughout), not PROMISING
+(a real, disclosed gap cluster survives freeze, none individually
+fatal, matching this exact sub-thread's own established pattern since
+Iteration 82); real, disclosed, seven-ways-reproduced progress
+nonetheless -- the data-persistence gap genuinely, permanently closed;
+R23 honored byte-exact; all 8 mandatory fixes genuinely implemented.
+Zero Checkpoint criteria fire this cycle -- the Iteration-85
+Checkpoint-4/R24 firing remains open, unchanged, still pending Marsh's
+own ruling. Reconciled Iteration-88 queue: Tier 0 -- rule on the
+Iteration-85 Checkpoint-4 firing at the next convened checkpoint
+(unchanged); the R27/R28/R4-Third-Addendum corrections are already
+applied, this shift. Tier 1 (named in every one of six Phase-5
+reviews' own top-3) -- execute the queued fault-injection control for
+mirror_pooled_floor/classify_item_i_local, both sub-cases (asymmetric
++ symmetric/common-mode, including QUANTUM's own floor==0 degenerate
+case), zero new FDTD; reposition the R27/R28 cost gate genuinely
+upstream (chunk_runner.py itself calls cost_gate_check() before
+r=312's first Sim.run(), using r=156's already-logged wall times),
+zero new FDTD; PHOTONICS' own independent non-differencing floor check
+(cpl-refinement) at the two named bins, genuine new FDTD; apply an
+empirical safety margin (or the measured ~3.2 exponent) to the cost
+gate's own projection formula. Tier 2 -- the long-outstanding
+R2_SMOOTH_THRESHOLD=0.90 re-derivation; MATERIALS' own fabrication-
+tolerance quantitative bound, now a third consecutive cycle naming it
+undone; a full per-margin Result-section table for item 1c/1d;
+CLOSURE_CONFIRM/CLOSURE_FALSIFY dead-code cleanup; a fourth r-point
+(r=624). Tier 3 -- unchanged: the oblique-angle extension; the
+750/450nm leg; the G40 full-width leg; the x-wall admittance refit;
+PAD-with-article survival; box_dev's own thinning margin (~9.0x at
+r=312, still unresolved). Full record: `experiments/110-t28-item-i-
+local-norm-and-controls/`, LOGBOOK.md Iteration 87. Next: panel
+Iteration 86 done (exp-109, PARTIAL,
 MATERIALS' rotation-lead cycle: executed exactly the four Tier-0
 UNBLOCKED items from exp-108's own Reconciled Iteration-86 queue -- gate
 classify_item_ii() on fit["smooth"] (the R24 second-instance fix that
