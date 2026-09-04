@@ -34,9 +34,19 @@ being that (1) gets described rather than executed a third time — the
 literal R25 failure mode — which this cycle guards against explicitly
 (§Setup, Tier-0 item 1's binding execution requirement).
 
+> **[Phase-5 Red Team correction, not silently rewritten]** `angular_
+> scattered_pattern` was **built and first gated at exp-016/017**
+> ("017-trough-angular-pattern"), not exp-059/060 — exp-059/060 is where
+> it was later **reused** as a Phase-2 mandatory fix. PHOTONICS' own
+> Phase-1 proposal mis-cited this, uncaught by five Phase-2 critiques and
+> Red Team's own Phase-2 audit, caught only by PHOTONICS' own Phase-5
+> self-review. Non-load-bearing (no gate/band/verdict depends on the
+> citation); an R4-class defect, counted in `phase5_redteam_audit.md`
+> §4's R20 tally (=2, short of 3, does not fire on its own).
+
 **Tier 1 (real FDTD, one bundled spend).** `lab/sections.py::
-angular_scattered_pattern`, validated at exp-059/060 but never applied to
-the fixed-abs hollow-vs-PEC-cored pair, is the correctly-targeted
+angular_scattered_pattern`, validated at exp-059/060 (see correction,
+above) but never applied to the fixed-abs hollow-vs-PEC-cored pair, is the correctly-targeted
 instrument (PHOTONICS/MATERIALS, both exp-106 and exp-107 Phase 5) for
 whether the near-zero *aggregate* `abs_ext_ratio` delta between hollow and
 PEC-cored fixed-abs shells (T9's own "core is energetically incidental"
@@ -438,6 +448,18 @@ cost — already computed by `ledger_check`, newly surfaced in this table)
   change to a document already closed by its own Combined Verdict —
   historical `results.json`/`NOTES.md` there are annotated, not
   overwritten) and this cycle's own new experiment directory.
+
+  > **[Phase-5 Red Team correction, not silently rewritten]** Accurate
+  > for `results.json` (correctly, verifiably untouched — confirmed via
+  > `git show --stat`) and for `run.py` (three disclosed comment
+  > blocks). **Not accurate for `NOTES.md`**: `experiments/106-.../
+  > NOTES.md` was NEITHER annotated NOR overwritten — `grep -n "108\|
+  > Iteration 85\|THREE-WAY-AMBIGUOUS" experiments/106-.../NOTES.md`
+  > returns zero hits, confirmed. Non-load-bearing (no historical claim
+  > in that file is stale or misleading; it simply carries no forward
+  > reference). Independently found by QUANTUM's own Phase-5 review,
+  > folded into `phase5_redteam_audit.md`'s own R20 tally (§4, =2, does
+  > not fire).
 - No witness-scale extrapolation is attempted or claimed anywhere in this
   document.
 
@@ -495,6 +517,30 @@ at both r tested — the first time this instrument has been applied to
 this family at r≠78, and the first genuinely two-sided test that could
 have found a real angular signature and did not.
 
+> **[Phase-5 Red Team correction, not silently rewritten]** This CONFIRM
+> is overclaimed in scope. `rel32` normalizes every bin's deviation
+> against the GLOBAL peak bin (`max_bin(σ_scat_per_bin[PEC-cored])`),
+> not each bin's own local magnitude. 62.5% of bins (30/48, both r)
+> carry <1% of peak scattered power; independently recomputed from the
+> raw captures, LOCAL relative deviation in those low-cross-section
+> (side/back-scatter) sectors reaches **9.88% (r=156)/10.88% (r=312)** —
+> comparable to two-thirds of the 15% REFUTE bar — while the reported,
+> globally-normalized `max(rel32)` is ~1.5×10⁻⁴, ~300× below the 5%
+> CONFIRM line. The classification's own normalization makes a real
+> signature in those sectors numerically un-detectable by construction,
+> independent of whether one is present. **The CONFIRM should be read
+> as scoped to the dominant, power-carrying forward-scattering lobe,
+> not "the angular pattern" full stop** — "could have found a real
+> angular signature and did not" is true only for that lobe. Separately,
+> item i's own docstring/predictions promise a "floor-cleared bin"
+> filter that was never implemented anywhere in this cycle's code
+> (confirmed by direct grep) — non-load-bearing (all 48 bins is a
+> strict superset of any floor-cleared subset) but the promised
+> per-bin noise floor does not exist. Full reasoning:
+> `phase5_review_photonics.md` §3a/§3b, `phase5_redteam_audit.md` §2
+> Attack 1, §3 Defect A. Iteration-86 Tier 1 item 1 re-normalizes
+> locally at zero new `Sim.run()` cost.
+
 **Item ii (absolute box-ledger noise floor, six-margin, detrended):
 CONFIRM at both r — the floor is genuinely, comfortably tighter than the
 signal.** Fitting `Δ(margin) = abs_ext_ratio[hollow] − abs_ext_ratio
@@ -509,7 +555,34 @@ This is this cycle's single most consequential quantitative finding: T9's
 own `≤2×10⁻⁵`-order near-zero band, inherited unmodified since exp-027,
 is **not** an artifact of box-placement/near-field-convergence noise —
 the genuine, detrended floor sits roughly an order of magnitude below the
-signal itself at both r. T11 (the 80+-cycle-old open absolute-noise-floor
+signal itself at both r.
+
+> **[Phase-5 Red Team correction, not silently rewritten]** "The genuine,
+> detrended floor" overstates what the fit itself supports.
+> `linear_fit_1_over_margin`'s own persisted diagnostic:
+> r=156 `r_squared=0.665, is_monotonic=False, smooth=False`; r=312
+> `r_squared=0.021, is_monotonic=False, smooth=False` — **at NEITHER r
+> does the fit clear this file's own `R2_SMOOTH_THRESHOLD=0.90`
+> smoothness bar**, most starkly at r=312 where the fit explains ~2% of
+> the six-point sequence's variance (detrending there removes ~1% of the
+> raw std, consistent with overfitting six points with two parameters,
+> not genuine bias removal). `classify_item_ii()` applies `residual_std`
+> to the CONFIRM/AMBIGUOUS/REFUTE bands unconditionally, never reading
+> `fit["smooth"]`/`fit["r_squared"]` — unlike its sibling
+> `classify_item_i()`, which DOES gate its own REFUTE branch on
+> `fit["smooth"]`. This is independently ruled, in
+> `phase5_redteam_audit.md` §3 Defect B, a clean SECOND INSTANCE of R24
+> (a Phase-2 mandatory fix's own if/then consequence, stated "adopted in
+> full" at Phase 3, never wired into the classification it was written
+> to gate, with its own trigger condition — "not smooth" — met by the
+> data at both r) — **firing Checkpoint criterion 4**, per R24's own
+> forward-elevating clause. **The CONFIRM verdict itself is UNCHANGED**:
+> the raw, undetrended `std` also clears the CONFIRM bar at both r
+> (5.008×10⁻⁶ vs. 1.485×10⁻⁵ bar at r=156; 2.124×10⁻⁶ vs. 1.234×10⁻⁵ bar
+> at r=312) — what is corrected is the confidence language attached to
+> the number, not the number or the verdict. Full reasoning:
+> `phase5_review_em.md` §2, `phase5_review_quantum.md` §2,
+> `phase5_redteam_audit.md` §3/§4. T11 (the 80+-cycle-old open absolute-noise-floor
 question) is substantively answered for this channel, at these two r: the
 box-ledger `abs_ext_ratio` delta is trustworthy at face value, not merely
 "informally decisive." Iteration-84's own concern (the box-ledger
@@ -580,6 +653,26 @@ is genuinely R23-compliant, live-fire-verified.** The Tier-0 item 3 (R23
 ratify-as-scoped) ruling is now closed on the record, not merely
 asserted.
 
+> **[Phase-5 Red Team correction, not silently rewritten]** "Genuinely
+> R23-compliant" is true only for HALF of R23's own two-function founding
+> contract. `build_predictions_text()` is genuinely called and verified
+> (the live-fire check above). `build_result_text()` (`run.py:312`) has
+> **zero call sites** anywhere in this cycle's executed path — confirmed
+> by `grep -rn "build_result_text"` (one hit: its own definition) —
+> dead code. This cycle carries **zero `assert` statements anywhere**
+> (`grep -n "assert" run.py analyze.py chunk_runner.py reclassify_106.py`
+> returns nothing) — a regression below even exp-105's single missing
+> assert. No `predictions_text`/`result_text` field is persisted in
+> `results.json`, unlike exp-104's own founding precedent. Independently
+> found by VISION's own Phase-5 review, confirmed by Red Team's own
+> audit. Does not reopen the R23 ratify-as-scoped ruling's own outcome
+> (its independent cost argument stands) but the compliance claim itself
+> is corrected: compliant for predictions-generation, unverified/
+> unexercised for result-generation. Full reasoning:
+> `phase5_review_vision.md` §2b/§2c/§3, `phase5_redteam_audit.md` §6.
+> Iteration-86 Tier 0 item 2 wires `build_result_text()` in and restores
+> both founding asserts.
+
 **Execution note.** 6 real new `Sim.run()`-equivalent captures (empty +
 hollow-article + PEC-cored-article, at each of r=156/312), each executed
 via `chunk_runner.py`'s checkpoint/resume (2200-step chunks, sequential
@@ -607,6 +700,29 @@ in this cycle's own scored results, a first for this T28 sub-thread's own
 recent run (exp-102 through exp-107 each carried at least one gap
 cluster, a FALSIFIED item, or an unresolved ambiguity). T1 correctly N/A
 throughout; constraint-3 not engaged; no mechanism proposed or varied.
+
+> **[Phase-5 Red Team correction, not silently rewritten] Combined
+> Verdict REVISED: PROMISING → PARTIAL.** "The cleanest cycle in the
+> R20/R21/R23/R24/R25 lineage to date" does not survive Phase-5 audit.
+> `classify_item_ii()`'s own smoothness-gate omission (above) is an
+> independently-ruled SECOND INSTANCE of R24 (a Phase-2 mandatory fix's
+> own "adopted in full" if/then consequence never wired into the
+> classification it was written to gate, trigger condition met by the
+> data at both r) — **Checkpoint criterion 4 FIRES**, per R24's own
+> forward-elevating clause, unconditional on load-bearing-ness. This is
+> distinct from, and does not diminish, R25's own genuine, independently
+> re-verified discharge (§ above; a different rule, a different channel
+> — `classify_shape_ratio_fixedabs`, not `classify_item_ii`). No
+> AMBIGUOUS/FALSIFIED/NOT-TRUSTED string appears anywhere in this
+> cycle's own scored results, and that remains true — but a clean-looking
+> string is not the same claim as a clean governance process, and this
+> cycle's own process is the thing that did not stay clean. Item i's
+> CONFIRM is real but scope-corrected (dominant lobe only, above); item
+> ii's CONFIRM is numerically unchanged but its confidence language is
+> corrected (above); the R23 "genuinely compliant" claim is corrected to
+> predictions-only (above). Full reasoning, all rulings, and the
+> Reconciled Iteration-86 queue: `phase5_redteam_audit.md` (this cycle's
+> own Phase-5 final audit) §3/§4/§7/§9.
 
 ## Next — candidate Iteration 86 directions (Director's own ranking,
 pending Phase 5's ranked top-3)
