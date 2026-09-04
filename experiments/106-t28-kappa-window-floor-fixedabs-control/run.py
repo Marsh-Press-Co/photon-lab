@@ -113,6 +113,38 @@ SHAPE_RATIO_FIXEDABS_CONFIRM = 8.0    # <= this: CONFIRMS growing-electrical-thi
 SHAPE_RATIO_FIXEDABS_REFUTE = 14.8    # >= this: REFUTES it (within 25% of self-similar's 19.79)
 ABS_RATIO_BAND = 2.0                  # factor-of-2 band on the raw cross-family absolute ratio
 
+# ---------------------------------------------- Panel Iteration 85 (exp-108) patch: mandatory
+# fix 1 (phase2_redteam_audit.md Sec 3.1, exp-106) was disclosed but never wired into the
+# classification logic below for two full cycles (83->84) -- R25's own founding tripwire.
+# Executed here, exp-108 Tier-0 item 1, as an extracted, importable function (Attack 1,
+# exp-108 phase2_redteam_audit.md: one function, one name, used both by this file's own
+# inline call site and by experiments/108-.../reclassify_106.py, not duplicated).
+P_ABS_FRAC_DIFF_TRIGGER = 0.10  # promoted from the inline 0.10 literal at lines 596/675
+
+
+def classify_shape_ratio_fixedabs(sr_fa, noise_dominated, trusted,
+                                   p_abs_frac_diff_156, p_abs_frac_diff_312=None):
+    if sr_fa <= SHAPE_RATIO_FIXEDABS_CONFIRM:
+        classification = "CONFIRMS-electrical-thickness-growth-hypothesis"
+    elif sr_fa >= SHAPE_RATIO_FIXEDABS_REFUTE:
+        classification = "REFUTES-electrical-thickness-growth-hypothesis"
+    else:
+        classification = "AMBIGUOUS"
+    divergences = [p_abs_frac_diff_156]
+    if p_abs_frac_diff_312 is not None:
+        divergences.append(p_abs_frac_diff_312)
+    if any(d > P_ABS_FRAC_DIFF_TRIGGER for d in divergences):
+        classification = (f"THREE-WAY-AMBIGUOUS ({classification} nominally "
+                           f"per shape_ratio_fixedabs bands; p_abs_frac_diff="
+                           f"{p_abs_frac_diff_156:.4f}(r156)"
+                           + (f"/{p_abs_frac_diff_312:.4f}(r312)" if p_abs_frac_diff_312 is not None else "")
+                           + f" exceeds {P_ABS_FRAC_DIFF_TRIGGER:.2f})")
+    if noise_dominated:
+        classification = f"NOISE-DOMINATED-UNRELIABLE ({classification} nominally)"
+    if not trusted:
+        classification = f"{classification} (NOT-TRUSTED -- r=312 MARGINAL/unsettled)"
+    return classification
+
 
 def kappa_of(r):
     return r / R_BASE
@@ -619,6 +651,9 @@ def main():
     settle_312_ss_rel = settle_312_fa_rel = None
     wall_312_article = wall_312_settling = None
     r312_settling_committed = False
+    p_abs_frac_diff_312 = None  # Panel Iteration 85 (exp-108) patch: guard against the
+                                 # r312_primary_committed=False path, where the item-1
+                                 # cross-family divergence is never computed below.
 
     if r312_primary_committed:
         t0 = time.time()
@@ -751,16 +786,12 @@ def main():
         p4_fa["noise_flag"] = noise_floor_flag(kappa_window_156_fa, kappa_window_312_fa)
         p4_fa["trusted"] = shape_ratio_fixedabs_trusted
         sr_fa = p4_fa["shape_ratio"]
-        if sr_fa <= SHAPE_RATIO_FIXEDABS_CONFIRM:
-            classification = "CONFIRMS-electrical-thickness-growth-hypothesis"
-        elif sr_fa >= SHAPE_RATIO_FIXEDABS_REFUTE:
-            classification = "REFUTES-electrical-thickness-growth-hypothesis"
-        else:
-            classification = "AMBIGUOUS"
-        if p4_fa["noise_flag"]["noise_dominated"]:
-            classification = f"NOISE-DOMINATED-UNRELIABLE ({classification} nominally)"
-        if not shape_ratio_fixedabs_trusted:
-            classification = f"{classification} (NOT-TRUSTED -- r=312 MARGINAL/unsettled)"
+        # Panel Iteration 85 (exp-108) patch: mandatory fix 1 (p_abs_frac_diff > ~10% ->
+        # THREE-WAY-AMBIGUOUS), previously disclosed but never wired in -- now via the
+        # extracted classify_shape_ratio_fixedabs() function (module-level, above).
+        classification = classify_shape_ratio_fixedabs(
+            sr_fa, p4_fa["noise_flag"]["noise_dominated"], shape_ratio_fixedabs_trusted,
+            p_abs_frac_diff_156, p_abs_frac_diff_312)
         p4_fa["classification"] = classification
         print(f"[item 4, fixed-abs] shape_ratio={sr_fa:.4f}  classification={classification}")
 

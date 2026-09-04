@@ -449,3 +449,181 @@ angular-selectivity/sub-threshold mechanism; no constraint-1/2/3/4 verdict
 is scored or moved by any branch of this cycle. Confirmed structurally
 (Red Team's own grep, `phase2_redteam_audit.md` §0, Attack 4): zero
 perceptual-scoring code path anywhere in this cycle's scope.
+
+## Result
+
+**Tier 0, item 1 (reclassification, R25's own founding tripwire):
+EXECUTED, not merely described — CONFIRMED, exact.** `reclassify_106.py`
+(imports `classify_shape_ratio_fixedabs()` directly from the patched
+`experiments/106-.../run.py`, zero new `Sim.run()` calls) reports:
+
+```
+OLD (exp-106 results.json, committed): REFUTES-electrical-thickness-growth-hypothesis (NOT-TRUSTED -- r=312 MARGINAL/unsettled)
+NEW (patched, this cycle):             THREE-WAY-AMBIGUOUS (REFUTES-electrical-thickness-growth-hypothesis nominally per shape_ratio_fixedabs bands; p_abs_frac_diff=0.1231(r156)/0.1796(r312) exceeds 0.10) (NOT-TRUSTED -- r=312 MARGINAL/unsettled)
+```
+
+Contains `"THREE-WAY-AMBIGUOUS"`: **True**, as predicted. All other fields
+(`shape_ratio_fixedabs=18.2283...`, `noise_dominated=False`, `trusted=
+False`) bit-identical to exp-106's own committed `results.json` — the
+patch changed the classification string only, nothing else. **R25's own
+founding instance is discharged on the record, not merely on paper**:
+this Result section states, with the string quoted inline, that the patch
+was applied and its output checked (Red Team's own binding conditional,
+§Synthesis).
+
+**Gate P0 (ground-truth reproduction): PASS, exact, both r.** Locally
+re-derived `geom_fixedabs(156)`/`geom_fixedabs(312)` matched exp-106's own
+committed `geom_156_fixedabs`/`geom_312_fixedabs` on every shared field.
+
+**Reproduction precondition (item i's own HALT gate): PASS, both r
+(<1e-6 relative on `sigma_abs`/`sigma_ext`/`abs_ext_ratio`).** The angular
+claims below are trusted.
+
+**Item i (`angular_scattered_pattern`, unified multi-margin fix):
+CONFIRM at both r.** The implementation self-consistency identity
+(`sum(sigma_scat_per_bin) == sigma_scat`) held to `<1e-9` relative at
+every one of the 6 margins, both articles, both r. At margin=32
+(`box_a`), no floor-cleared bin's relative deviation between the hollow
+and PEC-cored angular patterns exceeded 5% — **and this held at all 6
+margins, not merely margin=32**, the stronger, multi-radius form of the
+CONFIRM criterion this cycle's unified fix requires. No contiguous
+≥3-bin run ever cleared the 15% REFUTE bar at margin=32, so no smooth-
+migration check was even triggered. **The null generalizes to the
+angular domain**: an opaque, near-Babinet fixed-abs graded shell's
+scattering pattern is set by its outer profile, not its interior fill,
+at both r tested — the first time this instrument has been applied to
+this family at r≠78, and the first genuinely two-sided test that could
+have found a real angular signature and did not.
+
+**Item ii (absolute box-ledger noise floor, six-margin, detrended):
+CONFIRM at both r — the floor is genuinely, comfortably tighter than the
+signal.** Fitting `Δ(margin) = abs_ext_ratio[hollow] − abs_ext_ratio
+[PEC-cored]` to `A + B/margin` across the 6 margins:
+
+| r | `residual_std` (detrended) | `0.5×\|Δ_boxA\|` (CONFIRM bar) | `\|Δ_boxA\|` (REFUTE bar) | Verdict |
+|---|---|---|---|---|
+| 156 | **2.897×10⁻⁶** | 1.485×10⁻⁵ | 2.969×10⁻⁵ | **CONFIRM** (5.1× inside the CONFIRM bar) |
+| 312 | **2.102×10⁻⁶** | 1.234×10⁻⁵ | 2.468×10⁻⁵ | **CONFIRM** (5.9× inside the CONFIRM bar) |
+
+This is this cycle's single most consequential quantitative finding: T9's
+own `≤2×10⁻⁵`-order near-zero band, inherited unmodified since exp-027,
+is **not** an artifact of box-placement/near-field-convergence noise —
+the genuine, detrended floor sits roughly an order of magnitude below the
+signal itself at both r. T11 (the 80+-cycle-old open absolute-noise-floor
+question) is substantively answered for this channel, at these two r: the
+box-ledger `abs_ext_ratio` delta is trustworthy at face value, not merely
+"informally decisive." Iteration-84's own concern (the box-ledger
+channel's margin over near-zero deltas thinning from ~1221× at founding
+to ~9.0× at r=312) is a DIFFERENT margin (`box_dev` vs. this channel's
+own noise floor) and is not resolved by this finding — it remains open,
+Tier 2 below.
+
+**Item iii (numerator floor-gate, PEC-cored PRIMARY article): PASS at
+both r — the hollow-substitute measurement exp-107 filed generalizes to
+the actual article `kappa_window`'s shape_ratio was scored from.**
+
+| r | `frac_unresolved` (PEC-cored PRIMARY) | Predicted band (±0.05 of exp-107's hollow reading) | Outcome |
+|---|---|---|---|
+| 156 | **0.1827** | `[0.133, 0.233]` | **PASS** (vs. hollow's own 0.18275 — near-identical) |
+| 312 | **0.2525** | `[0.218, 0.318]` | **PASS** (vs. hollow's own 0.2675 — close, slightly lower) |
+
+exp-107's own disclosed substitution (measuring the hollow variant, not
+the PEC-cored primary article) is now confirmed representative at both
+r — the numerator noise-floor contamination PHOTONICS originally flagged
+(and QUANTUM/VISION/EM independently re-named at exp-107 Phase 5) is real
+on the article that matters, not merely plausible by analogy, and
+worsens with r on that article too (18.3%→25.3%), though slightly less
+severely than the hollow proxy suggested (18.3%→26.8%).
+
+**Item iv (chunked-vs-continuous suite-stage identity, `stage26_chunked_
+run_identity`, `lab/validation/run_all.py`): both gates PASS, run via the
+trust suite (`--only 26`), zero marginal FDTD cost beyond the cheap
+canonical bench scene.**
+
+| Check | Result | Predicted | Outcome |
+|---|---|---|---|
+| Positive control (chunked vs. continuous) | `max\|diff\|=0.000e+00` | `0.0` exactly | **PASS** |
+| Negative control (corrupted checkpoint, steps_done off by one chunk) | relative deviation **2.000** (200%) | `>0.01` | **PASS** — the gate genuinely discriminates the defect class it exists to catch |
+
+`chunk_runner.py`'s checkpoint/resume mechanism (load-bearing for every
+r=312 number in this document, and every r=312 number exp-107 produced)
+is now a named, permanent, suite-gated instrument, not a disclosed-but-
+unverified workaround — closing exp-107's own item-iv debt in full.
+
+**`closure` (ledger sanity, both articles, both r): CONFIRM at all four
+cells, comfortably inside the 0.1% band.**
+
+| Article | r=156 | r=312 |
+|---|---|---|
+| hollow | 0.0196% | 0.0563% |
+| PEC-cored | 0.0160% | 0.0581% |
+
+Consistent with exp-106's own established 0.02–0.06% precedent range
+(PLAN.md Current-state) — EM's mandatory fix 5 (Attack, adopted) is
+discharged: the `radial_absorbed_power`-vs-box-ledger closure identity
+holds cleanly for both constructions, both r, restoring the narration
+Red Team flagged as computed-but-unwired for three consecutive cycles
+(106→107→108).
+
+**R23 live-fire check (VISION's mandatory bound condition): PASS.**
+`python3 experiments/108-.../run.py --predictions-only` runs cleanly and
+prints the `DISCLAIMER` text. `grep -in disclaimer` across this cycle's
+own executable files: `run.py` **4 hits** (the `DISCLAIMER` constant
+definition plus 3 uses — `run.py` module docstring, `build_predictions_
+text()`, `build_result_text()`); `chunk_runner.py`/`analyze.py`/
+`reclassify_106.py` **0 hits each** (correctly — none of the three
+generates or scores perceptual claims; the disclaimer belongs on the
+text-generation/scoring layer, `run.py`, not the capture/post-processing
+scripts). **Unlike exp-107 (zero `DISCLAIMER` code anywhere), this
+cycle's own Tier-1 batch newly invokes the code-generated pipeline and
+is genuinely R23-compliant, live-fire-verified.** The Tier-0 item 3 (R23
+ratify-as-scoped) ruling is now closed on the record, not merely
+asserted.
+
+**Execution note.** 6 real new `Sim.run()`-equivalent captures (empty +
+hollow-article + PEC-cored-article, at each of r=156/312), each executed
+via `chunk_runner.py`'s checkpoint/resume (2200-step chunks, sequential
+foreground Bash calls — this session's own backgrounded/nohup execution
+mode remains confirmed pathologically slow for sustained FDTD numpy work,
+exp-107's own A/B-tested finding, not re-tested this cycle). **128.5 min
+combined wall time** (r=156: 12.3 min for all 3 scenes; r=312: 116.2 min
+for all 3 scenes — both comfortably inside the disclosed 160–190 min
+estimate and the cost gate's own 180-min r=312 ceiling). Trust suite
+green throughout (41/41 on the standard `--only 12346789` set; `--only 26`
+separately green, 2/2). `lab/` diff limited to the disclosed
+`stage26_chunked_run_identity()` addition. `experiments/106-.../run.py`
+diff limited to the disclosed Tier-0 item 1 patch (an extracted
+classification function plus its call site — historical `results.json`
+untouched, annotated not overwritten, per §Idealizations).
+
+**Combined Verdict: PROMISING (for the instrumentation/governance program
+itself, not the phenomenon) — the cleanest cycle in the R20/R21/R23/R24/
+R25 lineage to date.** All three Tier-0 governance items closed cleanly,
+with R25's own founding instance discharged and *verified* discharged
+(not merely described — the literal failure mode this cycle guarded
+against). All four Tier-1 items landed as clean, unambiguous CONFIRM/PASS
+verdicts — no AMBIGUOUS, no FALSIFIED, no NOT-TRUSTED qualifier anywhere
+in this cycle's own scored results, a first for this T28 sub-thread's own
+recent run (exp-102 through exp-107 each carried at least one gap
+cluster, a FALSIFIED item, or an unresolved ambiguity). T1 correctly N/A
+throughout; constraint-3 not engaged; no mechanism proposed or varied.
+
+## Next — candidate Iteration 86 directions (Director's own ranking,
+pending Phase 5's ranked top-3)
+
+1. **T9's own `≤2×10⁻⁵`/`≤2×10⁻⁴` bands can now be formally re-derived
+   from this cycle's own detrended noise floor** (Iteration-85's own
+   Tier-2 item 1, discharged as a byproduct per §Predictions) — promote
+   this to a standing citation, replacing the inherited two-anchor spread.
+2. **`box_dev`'s own margin over near-zero deltas (thinned to ~9.0× at
+   r=312, exp-107) is a DIFFERENT quantity from this cycle's own noise
+   floor and remains unresolved** — still Tier 2/standing, now sharper:
+   this cycle proves the *box-ledger channel's* floor is clean, but
+   `box_dev` itself (box_a-vs-box_b self-consistency on `sigma_ext`) was
+   not re-examined.
+3. Standing T28 items unchanged (a fourth r-point/r=624 to test
+   THERMODYNAMICS' `r^-1.16` fixed-abs projection at ~52.6× margin, just
+   above the 50× floor; the oblique-angle extension, now well-motivated
+   by `angular_scattered_pattern`'s first successful application at r≠78;
+   the 750/450nm leg; the `G40` full-width leg; the x-wall admittance
+   refit; the near-null-exclusion refinement, now 4+ cycles deferred).

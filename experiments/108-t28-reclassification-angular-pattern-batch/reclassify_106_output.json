@@ -1,0 +1,10 @@
+{
+  "shape_ratio_fixedabs": 18.228333623646076,
+  "noise_dominated": false,
+  "trusted": false,
+  "p_abs_frac_diff_156": 0.12305795332466973,
+  "p_abs_frac_diff_312": 0.17962207739772926,
+  "old_classification": "REFUTES-electrical-thickness-growth-hypothesis (NOT-TRUSTED -- r=312 MARGINAL/unsettled)",
+  "new_classification": "THREE-WAY-AMBIGUOUS (REFUTES-electrical-thickness-growth-hypothesis nominally per shape_ratio_fixedabs bands; p_abs_frac_diff=0.1231(r156)/0.1796(r312) exceeds 0.10) (NOT-TRUSTED -- r=312 MARGINAL/unsettled)",
+  "contains_three_way_ambiguous": true
+}

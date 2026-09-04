@@ -1,0 +1,108 @@
+=== Tier-0 item 1: reclassify_106.py ===
+exp-106 reclassification (Panel Iteration 85, exp-108 Tier-0 item 1)
+  shape_ratio_fixedabs        = 18.228333623646076
+  noise_dominated             = False
+  trusted                     = False
+  p_abs_frac_diff_156         = 0.12305795332466973
+  p_abs_frac_diff_312         = 0.17962207739772926
+  OLD classification (committed, exp-106 results.json):
+    REFUTES-electrical-thickness-growth-hypothesis (NOT-TRUSTED -- r=312 MARGINAL/unsettled)
+  NEW classification (patched, this cycle):
+    THREE-WAY-AMBIGUOUS (REFUTES-electrical-thickness-growth-hypothesis nominally per shape_ratio_fixedabs bands; p_abs_frac_diff=0.1231(r156)/0.1796(r312) exceeds 0.10) (NOT-TRUSTED -- r=312 MARGINAL/unsettled)
+  Contains 'THREE-WAY-AMBIGUOUS': True  (predicted True, exp-108 NOTES.md Sec Predictions, Tier 0 item 1)
+  Unchanged fields (bit-identical to exp-106's own results.json, as predicted): {'shape_ratio_fixedabs': 18.228333623646076, 'noise_dominated': False, 'trusted': False}
+
+Written: /home/user/photon-lab/experiments/108-t28-reclassification-angular-pattern-batch/reclassify_106_output.json
+
+=== Gate P0 / geometry check ===
+r=156 gate_p0: {'pass_': True, 'mismatches': []}
+r=312 gate_p0: {'pass_': True, 'mismatches': []}
+
+=== Tier-1 items i/ii/iii + closure: analyze.py ===
+
+======================================================================
+Analyzing r=156
+======================================================================
+  [floor gate: r=156 window (PEC-cored PRIMARY article, numerator)] n=4000 rms=6.931093e-03 floor=6.931093e-04 n_unresolved=731
+gate_p0 pass=True
+reproduction_precondition pass=True
+item_i verdict=CONFIRM sum_check_pass=True
+item_ii verdict=CONFIRM residual_std=2.8972e-06 |Delta_boxA|=2.9690e-05
+item_iii frac_unresolved=0.1827 pass=True
+closure hollow=0.000196 peccored=0.000160
+
+======================================================================
+Analyzing r=312
+======================================================================
+  [floor gate: r=312 window (PEC-cored PRIMARY article, numerator)] n=4000 rms=7.083316e-05 floor=7.083316e-06 n_unresolved=1010
+gate_p0 pass=True
+reproduction_precondition pass=True
+item_i verdict=CONFIRM sum_check_pass=True
+item_ii verdict=CONFIRM residual_std=2.1022e-06 |Delta_boxA|=2.4680e-05
+item_iii frac_unresolved=0.2525 pass=True
+closure hollow=0.000563 peccored=0.000581
+
+Written: /home/user/photon-lab/experiments/108-t28-reclassification-angular-pattern-batch/analyze_output.json
+
+=== Item iv: stage26 (lab/validation/run_all.py --only 26) ===
+stage 26 — chunked/checkpointed Sim.run() vs continuous execution identity
+  [PASS] chunked-run · positive control: chunked vs continuous, max|diff| over ez/hx/hy: 0.000e+00  (expect 0.0 exactly)
+  [PASS] chunked-run · negative control: corrupted checkpoint (steps_done off by one chunk) vs continuous, relative max|diff| (ez scale): 2.000  (expect >0.01 (gate must discriminate))
+
+2/2 checks passed in 4 s
+
+=== R23 live-fire check ===
+-- run.py --predictions-only --
+PREDICTIONS (pre-registered, exp-108, Panel Iteration 85)
+
+Raw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family is a new convention this cycle, interpolating/extending the already-validated box_a/box_b pair, not independently re-derived from a resolution or aliasing bound.
+
+**Tier 0, item 1** (deterministic): reclassify_106.py's reported string
+contains "THREE-WAY-AMBIGUOUS"; all other fields bit-identical to
+exp-106's own committed results.json.
+
+**Gate P0** (ground-truth reproduction, zero cost): geom_fixedabs(156/312)
+reproduces exp-106's own committed geom_156_fixedabs/geom_312_fixedabs
+exactly. Falsified by ANY mismatch -> halt.
+
+**Reproduction precondition** (item i, must PASS before any angular claim
+is trusted): fresh PEC-cored capture's sections.widths() at box_a
+reproduces exp-106's own committed ledger_r{r}['fixedabs'] to <1e-6
+relative.
+
+**Item i** (angular_scattered_pattern, unified multi-margin fix): CONFIRM
+if every floor-cleared bin <=5% relative deviation at ALL 6 margins;
+REFUTE if a >=3-bin contiguous run clears a 15% bar at margin=32 AND its
+6-point across-margin sequence is smooth (monotonic or R^2>=0.90 fit to
+A+B/margin); else AMBIGUOUS.
+
+**Item ii** (absolute floor, six-margin, detrended): fit Delta(margin) =
+A + B/margin; CONFIRM if residual_std <= 0.5*|Delta_boxA|; REFUTE if
+residual_std >= |Delta_boxA|; else AMBIGUOUS. |Delta_boxA| = 2.969e-05
+(r=156) / 2.468e-05 (r=312), reused from exp-107.
+
+**Item iii** (numerator floor-gate, PEC-cored PRIMARY article):
+frac_unresolved within +/-0.05 of exp-107's own hollow-article reading
+(0.18275 at r=156, 0.2675 at r=312).
+
+**Item iv** (chunked-vs-continuous suite-stage identity): positive control
+max|diff|=0.0; negative control (corrupted checkpoint) deviates >1%
+relative.
+
+**closure** (ledger sanity, both articles, both r): <=0.1%, falsified if
+>1%.
+
+Cost gate (reused verbatim, exp-106's own r312_primary_committed rule):
+pilot r=156 (3 calls) first; commit r=312 (3 calls) only if pilot empty-
+scene wall time <90 min AND projected 3-call r=312 total <180 min.
+
+-- grep -in disclaimer --
+experiments/108-t28-reclassification-angular-pattern-batch/run.py: 4 hits
+experiments/108-t28-reclassification-angular-pattern-batch/chunk_runner.py: 0 hits
+experiments/108-t28-reclassification-angular-pattern-batch/analyze.py: 0 hits
+experiments/108-t28-reclassification-angular-pattern-batch/reclassify_106.py: 0 hits
+
+=== Full trust suite (--only 12346789) ===
+  [PASS] ambient · oblique extinction: two routes agree: 0.000  (expect <=0.12)
+
+41/41 checks passed in 83 s

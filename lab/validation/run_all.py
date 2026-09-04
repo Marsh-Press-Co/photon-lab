@@ -2080,7 +2080,7 @@ def stage22_uniform_lossy_shell():
           abs(gap_pct - 8.326) <= 0.05, "8.326%+-0.05% (regression anchor, pinned)")
 
 
-_STAGE_IDS = frozenset(str(n) for n in range(1, 26))
+_STAGE_IDS = frozenset(str(n) for n in range(1, 27))
 
 
 def stage23_front_surface_biot_correction():
@@ -2695,6 +2695,102 @@ def stage25_bonded_substrate_conduction_correction():
           f"{n_call_sites} call sites scanned", n_call_sites >= 1, ">=1")
 
 
+def stage26_chunked_run_identity():
+    """`chunk_runner.py`'s mid-run `Sim`-object checkpoint/resume pickling
+    (Panel Iteration 84, exp-107; extended to a third scene type, Panel
+    Iteration 85, exp-108) is load-bearing for every r=312 number either
+    cycle produced, and was only ever empirically A/B-tested once, same-
+    shift, at one scale (r=156, exp-107) -- never a named, suite-gated,
+    reproducible check. PANEL.md's own rule ("new machinery => new suite
+    stage with at least one absolute identity gate") applies; R18's own
+    discipline (a check joining an already-verified architecture needs its
+    own fault-injection control the same cycle it is added) supplies the
+    second gate. Iteration-85's own Reconciled queue, Tier-1 item iv
+    (`experiments/108-.../phase2_redteam_audit.md` mandatory fix, adopted
+    in full).
+
+    Reuses stage 8's own canonical bench scene construction verbatim
+    (`Sim(360,240,cells_per_lambda=20,courant_frac=0.99,absorb=30)`,
+    `add_line_source(54)`, empty scene, 900 steps) -- cheap, already
+    trust-suite-validated, not a new physics claim.
+
+    Gate 1 (positive control): a continuous single-shot `sim.run(900)`
+    must be bit-identical to the SAME scene run in 3 pickled chunks of
+    300 steps each (an in-memory `pickle.dumps`/`pickle.loads` round trip
+    between chunks, mirroring `chunk_runner.py`'s own on-disk pickling) --
+    every field (`ez`, `hx`, `hy`) and the extracted phasor, `max|diff|=0.0`.
+
+    Gate 2 (negative control, R18): a corrupted checkpoint -- the pickled
+    mid-run state after chunk 1 (300 real steps already advanced), but
+    with `steps_done` reported as 0 instead of 300 -- causes the resumed
+    run to advance 900 MORE steps on top of an already-300-step-advanced
+    field (1200 total physical steps, not 900). This must NOT reproduce
+    the true continuous 900-step result (demonstrating the gate can
+    actually discriminate the defect class it exists to catch, not merely
+    pass by coincidence)."""
+    print("stage 26 — chunked/checkpointed Sim.run() vs continuous execution identity")
+    import pickle
+    from lab import sections as sc
+
+    def fresh_scene():
+        sim = Sim(360, 240, cells_per_lambda=20, courant_frac=0.99, absorb=30)
+        sim.add_line_source(54)
+        return sim
+
+    def capture_fields(sim):
+        cap = sc.full_capture(sim)
+        ph = sc.phasors(cap)
+        return dict(ez=ph["ez"], hx=ph["hx"], hy=ph["hy"])
+
+    TOTAL_STEPS = 900
+    CHUNK = 300
+
+    # ---- continuous, single-shot reference ----
+    sim_continuous = fresh_scene()
+    sim_continuous.run(TOTAL_STEPS)
+    fields_continuous = capture_fields(sim_continuous)
+
+    # ---- positive control: chunked, pickled between chunks ----
+    sim_chunked = fresh_scene()
+    steps_done = 0
+    while steps_done < TOTAL_STEPS:
+        chunk = min(CHUNK, TOTAL_STEPS - steps_done)
+        sim_chunked.run(chunk)
+        steps_done += chunk
+        # in-memory checkpoint/resume round trip, mirroring chunk_runner.py's
+        # own on-disk pickle.dump/pickle.load between foreground Bash calls
+        sim_chunked = pickle.loads(pickle.dumps(sim_chunked))
+    fields_chunked = capture_fields(sim_chunked)
+
+    max_diff = 0.0
+    for key in ("ez", "hx", "hy"):
+        d = float(np.max(np.abs(fields_continuous[key] - fields_chunked[key])))
+        max_diff = max(max_diff, d)
+    check("chunked-run", "positive control: chunked vs continuous, max|diff| over ez/hx/hy",
+          f"{max_diff:.3e}", max_diff == 0.0, "0.0 exactly")
+
+    # ---- negative control: corrupted checkpoint (steps_done off by one chunk) ----
+    sim_probe = fresh_scene()
+    sim_probe.run(CHUNK)                      # 300 real physical steps have now happened
+    ckpt = pickle.dumps(sim_probe)
+    sim_resumed = pickle.loads(ckpt)
+    corrupted_steps_done = 0                  # LIES: should be CHUNK=300
+    remaining = TOTAL_STEPS - corrupted_steps_done   # = 900, not the true 600
+    sim_resumed.run(remaining)                # ends at 300+900=1200 real physical steps, not 900
+    fields_corrupted = capture_fields(sim_resumed)
+
+    max_diff_corrupted = 0.0
+    for key in ("ez", "hx", "hy"):
+        d = float(np.max(np.abs(fields_continuous[key] - fields_corrupted[key])))
+        max_diff_corrupted = max(max_diff_corrupted, d)
+    ref_scale = float(np.max(np.abs(fields_continuous["ez"]))) or 1.0
+    rel_diff_corrupted = max_diff_corrupted / ref_scale
+    check("chunked-run",
+          "negative control: corrupted checkpoint (steps_done off by one chunk) vs continuous, "
+          "relative max|diff| (ez scale)",
+          f"{rel_diff_corrupted:.3f}", rel_diff_corrupted > 0.01, ">0.01 (gate must discriminate)")
+
+
 def _stage_selected(n, only):
     """Stage selection, aware of ALL THREE of this suite's `--only` idioms.
 
@@ -2761,6 +2857,7 @@ if __name__ == "__main__":
     run_stage23 = _stage_selected(23, only)
     run_stage24 = _stage_selected(24, only)
     run_stage25 = _stage_selected(25, only)
+    run_stage26 = _stage_selected(26, only)
     t0 = time.time()
 
     if _stage_selected(1, only):
@@ -2838,6 +2935,8 @@ if __name__ == "__main__":
         stage24_length_provenance_guard()
     if run_stage25:
         stage25_bonded_substrate_conduction_correction()
+    if run_stage26:
+        stage26_chunked_run_identity()
 
     n_fail = sum(1 for r in RESULTS if not r[3])
     print(f"\n{len(RESULTS) - n_fail}/{len(RESULTS)} checks passed in {time.time() - t0:.0f} s")
