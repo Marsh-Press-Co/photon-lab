@@ -384,7 +384,181 @@ absorption, or perceptual parameter.
 
 ## Result
 
-*(Phase 4 not yet run. This section is filled in after execution, quoting
-`results.json['result_text']`/`['predictions_text']` verbatim per the
-binding execution requirement above — Predictions section, and mandatory
-fix 6.)*
+Phase 4 executed. All four items confirmed exactly as predicted, zero
+new `Sim.run()` calls, zero `lab/` diff (`git diff --stat lab/` empty),
+trust suite green before and after (41/41, `--only 12346789`, 100s/102s).
+Full console record: `run_output.txt`. `results.json` written with all
+predicted keys present.
+
+**Item 4 (the substantive question) — CONFIRMED exactly as predicted.**
+`new_verdict="CONFIRM"` at both r; `stat_used` matches the frozen table
+to <1e-9 relative (`5.008328e-06`/`2.124086e-06`); `raw_over_residual_ratio`
+matches to <1e-3 relative (`1.7287`/`1.0104` vs. predicted `1.729×`/
+`1.010×`); `stat_source` contains `"raw/undetrended"` (not `"detrended"`)
+at both r. Falsification condition (any deviation) did not fire.
+
+**Items 1–3 (mechanical) — all confirmed exactly as predicted.**
+`assert DISCLAIMER in predictions_text` passed silently, both call sites
+(`run.py --predictions-only` and `reclassify_108.py`). `assert DISCLAIMER
+in result_text` passed silently on `build_result_text()`'s first-ever
+live-fired call with real values. `results.json["predictions_text"]` and
+`["result_text"]` are both present, non-empty, and contain the
+`DISCLAIMER` text (independently checked: `"no Weber-contrast" in
+predictions_text`/`result_text"` both `True`). `grep -c "assert"`:
+`run.py` = 1 (≥1, predicted), `reclassify_108.py` = 3 (≥2, predicted).
+`gate_p0_pass`/`repro_pass` (explicit AND, fix 4) both `True`. Trust
+suite remained green, unaffected.
+
+**Binding execution requirement (VISION's mandatory fix 6) — quoted
+verbatim, in full, below.**
+
+### `predictions_text` (quoted verbatim from `results.json['predictions_text']`)
+
+```
+PREDICTIONS (pre-registered, exp-108, Panel Iteration 85)
+
+Raw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family is a new convention this cycle, interpolating/extending the already-validated box_a/box_b pair, not independently re-derived from a resolution or aliasing bound.
+
+**Tier 0, item 1** (deterministic): reclassify_106.py's reported string
+contains "THREE-WAY-AMBIGUOUS"; all other fields bit-identical to
+exp-106's own committed results.json.
+
+**Gate P0** (ground-truth reproduction, zero cost): geom_fixedabs(156/312)
+reproduces exp-106's own committed geom_156_fixedabs/geom_312_fixedabs
+exactly. Falsified by ANY mismatch -> halt.
+
+**Reproduction precondition** (item i, must PASS before any angular claim
+is trusted): fresh PEC-cored capture's sections.widths() at box_a
+reproduces exp-106's own committed ledger_r{r}['fixedabs'] to <1e-6
+relative.
+
+**Item i** (angular_scattered_pattern, unified multi-margin fix): CONFIRM
+if every floor-cleared bin <=5% relative deviation at ALL 6 margins;
+REFUTE if a >=3-bin contiguous run clears a 15% bar at margin=32 AND its
+6-point across-margin sequence is smooth (monotonic or R^2>=0.90 fit to
+A+B/margin); else AMBIGUOUS.
+
+**Item ii** (absolute floor, six-margin, detrended): fit Delta(margin) =
+A + B/margin; CONFIRM if residual_std <= 0.5*|Delta_boxA|; REFUTE if
+residual_std >= |Delta_boxA|; else AMBIGUOUS. |Delta_boxA| = 2.969e-05
+(r=156) / 2.468e-05 (r=312), reused from exp-107.
+
+**Item iii** (numerator floor-gate, PEC-cored PRIMARY article):
+frac_unresolved within +/-0.05 of exp-107's own hollow-article reading
+(0.18275 at r=156, 0.2675 at r=312).
+
+**Item iv** (chunked-vs-continuous suite-stage identity): positive control
+max|diff|=0.0; negative control (corrupted checkpoint) deviates >1%
+relative.
+
+**closure** (ledger sanity, both articles, both r): <=0.1%, falsified if
+>1%.
+
+Cost gate (reused verbatim, exp-106's own r312_primary_committed rule):
+pilot r=156 (3 calls) first; commit r=312 (3 calls) only if pilot empty-
+scene wall time <90 min AND projected 3-call r=312 total <180 min.
+```
+
+*(This block is `run.py`'s own frozen exp-108 Predictions text, unchanged
+by exp-109 — reproduced here only because `reclassify_108.py` calls
+`build_predictions_text()` live and asserts the DISCLAIMER against it,
+per this cycle's own R23 restoration. It documents exp-108's own frozen
+predictions, not exp-109's — exp-109's own predictions are the
+Predictions section above.)*
+
+### `result_text` (quoted verbatim from `results.json['result_text']`)
+
+```
+RESULT (exp-108, Panel Iteration 85)
+
+Raw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family is a new convention this cycle, interpolating/extending the already-validated box_a/box_b pair, not independently re-derived from a resolution or aliasing bound.
+
+6 real FDTD calls, 7712.0s (128.53 min)
+total wall time, zero `lab/` diff except the new stage26 addition.
+(exp-108's own historical spend, reused verbatim -- exp-109 makes zero new Sim.run() calls)
+
+**Gate P0: PASS.**
+**Reproduction precondition: PASS.**
+**Item i:** r=156 verdict=CONFIRM, r=312 verdict=CONFIRM (exp-108's own committed values, unchanged this cycle)
+**Item ii:** r=156: OLD=CONFIRM -> NEW=CONFIRM (stat_used=5.008328e-06, raw/residual ratio=1.729x); r=312: OLD=CONFIRM -> NEW=CONFIRM (stat_used=2.124086e-06, raw/residual ratio=1.010x) -- both take the raw/undetrended fallback branch (fit not smooth at either r); both CONFIRM survives, non-outcome-reversing, exp-108's own Phase-5 annotation informally disclosed this, now a coded, executed, falsifiable gate (R24 second instance closed)
+**Item iii:** r=156: 0.1827 pass=True, r=312: 0.2525 pass=True (exp-108's own committed values, unchanged this cycle)
+**Item iv:** {'positive_control_max_diff': 0.0, 'positive_control_pass': True, 'negative_control_rel_diff': 2.0, 'negative_control_pass': True, 'stage': 'stage26_chunked_run_identity, lab/validation/run_all.py'} (exp-108's own committed value, unchanged this cycle)
+**closure:** hollow: r156=0.000196, r312=0.000563; peccored: r156=0.000160, r312=0.000581 (exp-108's own committed values, unchanged this cycle)
+```
+
+*(This is exp-108's own `build_result_text()` template — its header line
+literally reads "RESULT (exp-108, Panel Iteration 85)" because the
+function is exp-108's own, unrenamed; exp-109 calls it, does not
+reauthor it, per this cycle's own scope: patch exp-108's code in place,
+do not fork it. The wall-time attribution line — fix 5 — makes clear
+whose spend the header figures are.)*
+
+## Same-shift note on R18 (disclosed, not discharged)
+
+As disclosed in Idealizations: neither `classify_item_ii()`'s new branch
+nor `analyze.py`'s companion call site received a fault-injection
+positive/negative control this cycle. Validated instead by (a) the OLS
+inequality (general, not fault-injected) and (b) exact reproduction
+against both already-committed r points, immediately above. Queued as
+Iteration-86's own Tier-1 item 2 (a synthetic control for
+`linear_fit_1_over_margin` itself) — the natural place to extend that
+control to cover both new/changed sites.
+
+## Combined Verdict: **CONFIRM** (governance/instrumentation cycle —
+no PROMISING/PARTIAL/RULED-OUT scoring applies; T1 correctly N/A
+throughout, confirmed structurally by Red Team's Phase-2 Attack 7)
+
+The R24 second instance is genuinely, verifiably discharged: the fix is
+wired into the executed classification path (not merely narrated a third
+time), independently re-derived by five blind Phase-2 critiques and Red
+Team's own audit before this run, and reproduces exactly on execution.
+R23's code/persistence half (items 2/3) is closed with a live-fired,
+asserted, persisted `result_text`/`predictions_text`; its human-readable-
+citation half (mandatory fix 6) is closed in this document, above,
+by verbatim quotation — the specific gap exp-108's own Phase-5 VISION
+review found still open after the code half was already fixed. All six
+Red Team mandatory fixes were incorporated before this run (not after);
+zero deviations from Predictions on execution; zero R-rule firings this
+cycle (all six gaps caught blind, before freeze, exactly this program's
+own unbroken discharge-test pattern).
+
+## Next — candidate Iteration 87 directions (Director's own ranking)
+
+Reconciled Iteration-87 queue (this cycle's own Tier-0 items are now
+fully closed; nothing carries forward from them):
+
+**Tier 0** — rule on the Iteration-85 Checkpoint-4 firing (still pending
+Marsh; unchanged by this cycle, which fixed the code defect that CAUSED
+the firing but does not itself rule on the firing's own governance
+consequence — Red Team's own Phase-2 audit confirmed these are separate
+acts, §3 of `phase2_redteam_audit.md`).
+
+**Tier 1** (from exp-108's own still-open queue, unchanged by this cycle
+— nothing here was touched) — re-normalize (or floor-gate) item i's
+per-bin comparison against each bin's own LOCAL magnitude, not the
+global peak (zero new FDTD, the single highest-value item on this
+queue); a synthetic positive/negative control for `linear_fit_1_over_
+margin`'s own smooth/noise discriminator — now doubly motivated, since
+it would also discharge this cycle's own disclosed R18 gap on both
+`classify_item_ii()`'s new branch and `analyze.py`'s companion call
+site; extend `stage26`'s negative control to the symmetric truncation
+direction.
+
+**Tier 2** — a fourth r-point (r=624), now sharpened by this cycle's own
+Attack 2 finding: the raw-std fallback is liberal toward false REFUTE,
+not merely conservative toward false CONFIRM, so r=624's own reading
+should be checked against BOTH bars, not assumed safe by the same margin
+logic that held at r=156/312; MATERIALS' own fabrication-tolerance
+framing for item i's CONFIRM with Red Team's own observer-angle caveat
+folded in; formalize the absolute-floor six-margin family from a
+resolution/aliasing bound, now including a re-derivation of
+`R2_SMOOTH_THRESHOLD=0.90` for item ii's own question specifically
+(QUANTUM's named-but-not-mandatory concern this cycle, Red-Team-deferred
+here, not dropped).
+
+**Tier 3** — the oblique-angle extension; the 750/450nm leg; the `G40`
+full-width leg; the x-wall admittance refit; `PAD`-with-article survival;
+`box_dev`'s own thinning margin (~9.0× at r=312, still unresolved).
+
+Full record: `experiments/109-t28-item-ii-smooth-gate-r23-completion/`,
+LOGBOOK.md Iteration 86.

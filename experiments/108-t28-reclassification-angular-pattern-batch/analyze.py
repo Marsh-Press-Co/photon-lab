@@ -82,9 +82,14 @@ def analyze_r(r):
         w_h = sc.widths(cap_h, cap_e, box, g["ref"])
         delta_values.append(w_h["sigma_abs"] / w_h["sigma_ext"] - w_p["sigma_abs"] / w_p["sigma_ext"])
     fit = R.linear_fit_1_over_margin(R.MARGINS, delta_values)
-    item_ii_verdict, boxA = R.classify_item_ii(r, fit["residual_std"])
+    item_ii_result = R.classify_item_ii(r, fit, delta_values)
     item_ii = dict(margins=list(R.MARGINS), delta_values=delta_values, fit=fit,
-                   verdict=item_ii_verdict, delta_boxA=boxA)
+                   verdict=item_ii_result["verdict"], delta_boxA=item_ii_result["boxA"],
+                   stat_used=item_ii_result["stat_used"],
+                   stat_source=item_ii_result["stat_source"],
+                   raw_std=item_ii_result["raw_std"],
+                   residual_std=item_ii_result["residual_std"],
+                   raw_over_residual_ratio=item_ii_result["raw_over_residual_ratio"])
 
     # ---------------------------------------------- item iii: numerator floor-gate, PEC-cored PRIMARY
     fg_article = sc_floor_gate_window(ez_p, *g["behind"], f"r={r} window (PEC-cored PRIMARY article, numerator)")

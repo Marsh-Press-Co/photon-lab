@@ -1,0 +1,63 @@
+{
+  "predictions_text": "PREDICTIONS (pre-registered, exp-108, Panel Iteration 85)\n\nRaw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family is a new convention this cycle, interpolating/extending the already-validated box_a/box_b pair, not independently re-derived from a resolution or aliasing bound.\n\n**Tier 0, item 1** (deterministic): reclassify_106.py's reported string\ncontains \"THREE-WAY-AMBIGUOUS\"; all other fields bit-identical to\nexp-106's own committed results.json.\n\n**Gate P0** (ground-truth reproduction, zero cost): geom_fixedabs(156/312)\nreproduces exp-106's own committed geom_156_fixedabs/geom_312_fixedabs\nexactly. Falsified by ANY mismatch -> halt.\n\n**Reproduction precondition** (item i, must PASS before any angular claim\nis trusted): fresh PEC-cored capture's sections.widths() at box_a\nreproduces exp-106's own committed ledger_r{r}['fixedabs'] to <1e-6\nrelative.\n\n**Item i** (angular_scattered_pattern, unified multi-margin fix): CONFIRM\nif every floor-cleared bin <=5% relative deviation at ALL 6 margins;\nREFUTE if a >=3-bin contiguous run clears a 15% bar at margin=32 AND its\n6-point across-margin sequence is smooth (monotonic or R^2>=0.90 fit to\nA+B/margin); else AMBIGUOUS.\n\n**Item ii** (absolute floor, six-margin, detrended): fit Delta(margin) =\nA + B/margin; CONFIRM if residual_std <= 0.5*|Delta_boxA|; REFUTE if\nresidual_std >= |Delta_boxA|; else AMBIGUOUS. |Delta_boxA| = 2.969e-05\n(r=156) / 2.468e-05 (r=312), reused from exp-107.\n\n**Item iii** (numerator floor-gate, PEC-cored PRIMARY article):\nfrac_unresolved within +/-0.05 of exp-107's own hollow-article reading\n(0.18275 at r=156, 0.2675 at r=312).\n\n**Item iv** (chunked-vs-continuous suite-stage identity): positive control\nmax|diff|=0.0; negative control (corrupted checkpoint) deviates >1%\nrelative.\n\n**closure** (ledger sanity, both articles, both r): <=0.1%, falsified if\n>1%.\n\nCost gate (reused verbatim, exp-106's own r312_primary_committed rule):\npilot r=156 (3 calls) first; commit r=312 (3 calls) only if pilot empty-\nscene wall time <90 min AND projected 3-call r=312 total <180 min.\n",
+  "result_text": "RESULT (exp-108, Panel Iteration 85)\n\nRaw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family is a new convention this cycle, interpolating/extending the already-validated box_a/box_b pair, not independently re-derived from a resolution or aliasing bound.\n\n6 real FDTD calls, 7712.0s (128.53 min)\ntotal wall time, zero `lab/` diff except the new stage26 addition.\n(exp-108's own historical spend, reused verbatim -- exp-109 makes zero new Sim.run() calls)\n\n**Gate P0: PASS.**\n**Reproduction precondition: PASS.**\n**Item i:** r=156 verdict=CONFIRM, r=312 verdict=CONFIRM (exp-108's own committed values, unchanged this cycle)\n**Item ii:** r=156: OLD=CONFIRM -> NEW=CONFIRM (stat_used=5.008328e-06, raw/residual ratio=1.729x); r=312: OLD=CONFIRM -> NEW=CONFIRM (stat_used=2.124086e-06, raw/residual ratio=1.010x) -- both take the raw/undetrended fallback branch (fit not smooth at either r); both CONFIRM survives, non-outcome-reversing, exp-108's own Phase-5 annotation informally disclosed this, now a coded, executed, falsifiable gate (R24 second instance closed)\n**Item iii:** r=156: 0.1827 pass=True, r=312: 0.2525 pass=True (exp-108's own committed values, unchanged this cycle)\n**Item iv:** {'positive_control_max_diff': 0.0, 'positive_control_pass': True, 'negative_control_rel_diff': 2.0, 'negative_control_pass': True, 'stage': 'stage26_chunked_run_identity, lab/validation/run_all.py'} (exp-108's own committed value, unchanged this cycle)\n**closure:** hollow: r156=0.000196, r312=0.000563; peccored: r156=0.000160, r312=0.000581 (exp-108's own committed values, unchanged this cycle)\n",
+  "item_ii_reclassified": {
+    "r156": {
+      "old_verdict": "CONFIRM",
+      "new_verdict": "CONFIRM",
+      "stat_used": 5.008327900579266e-06,
+      "stat_source": "raw/undetrended (fit NOT smooth: is_monotonic=False, r_squared=0.6654 < 0.90 -- residual_std is not trusted as 'the genuine floor'; falls back to raw std, which is provably >= residual_std for any OLS fit with an intercept term (conservative against a false CONFIRM; liberal/anti-conservative against a false REFUTE, since inflating the statistic only ever makes stat>=boxA easier to satisfy -- NOT 'conservative in every case'). raw/residual ratio this point: 1.729x)",
+      "raw_std": 5.008327900579266e-06,
+      "residual_std": 2.89716280726349e-06,
+      "raw_over_residual_ratio": 1.72870088212608,
+      "boxA": 2.969e-05,
+      "fit": {
+        "A": -1.2969152209471519e-05,
+        "B": -0.0004559068140436681,
+        "residuals": [
+          -2.885652422751129e-07,
+          -2.469466754590456e-06,
+          2.4241131720738097e-06,
+          3.816693027464672e-06,
+          1.2311076109672992e-06,
+          -4.713881813640175e-06
+        ],
+        "residual_std": 2.89716280726349e-06,
+        "r_squared": 0.6653735294260243,
+        "is_monotonic": false,
+        "smooth": false
+      }
+    },
+    "r312": {
+      "old_verdict": "CONFIRM",
+      "new_verdict": "CONFIRM",
+      "stat_used": 2.1240857290489e-06,
+      "stat_source": "raw/undetrended (fit NOT smooth: is_monotonic=False, r_squared=0.0205 < 0.90 -- residual_std is not trusted as 'the genuine floor'; falls back to raw std, which is provably >= residual_std for any OLS fit with an intercept term (conservative against a false CONFIRM; liberal/anti-conservative against a false REFUTE, since inflating the statistic only ever makes stat>=boxA easier to satisfy -- NOT 'conservative in every case'). raw/residual ratio this point: 1.010x)",
+      "raw_std": 2.1240857290489e-06,
+      "residual_std": 2.102199273342035e-06,
+      "raw_over_residual_ratio": 1.010411218377062,
+      "boxA": 2.468e-05,
+      "fit": {
+        "A": -2.6355152167751385e-05,
+        "B": -3.3940456389432225e-05,
+        "residuals": [
+          -9.230913085606078e-07,
+          2.7315145289219727e-06,
+          -2.748667842515117e-06,
+          3.2641070385090593e-07,
+          2.5820066966884037e-06,
+          -1.9681727783855273e-06
+        ],
+        "residual_std": 2.102199273342035e-06,
+        "r_squared": 0.020501712361515212,
+        "is_monotonic": false,
+        "smooth": false
+      }
+    }
+  },
+  "gate_p0_pass": true,
+  "repro_pass": true,
+  "n_fdtd_calls": 6,
+  "total_wall_s": 7712.0,
+  "source_results_json_sha": "9bcdbdf7ca3066035363b61d272e921e133fb755"
+}

@@ -184,13 +184,51 @@ def linear_fit_1_over_margin(margins, values):
                 is_monotonic=is_monotonic, smooth=bool(is_monotonic or r_squared >= R2_SMOOTH_THRESHOLD))
 
 
-def classify_item_ii(r, residual_std):
+def classify_item_ii(r, fit, delta_values):
+    """R24 second-instance fix (Panel Iteration 86, exp-109): gate the
+    reported floor statistic on fit["smooth"], mirroring classify_item_i's
+    own smoothness-gated fit machinery. When the 6-margin sequence is
+    smooth, use the detrended residual_std (exp-108's own original logic,
+    unchanged). When it is not smooth, fall back to the raw, undetrended
+    np.std(delta_values) -- the original Iteration-85 mandatory fix's own
+    text already specifies this as the non-smooth default (a stronger
+    ground than the OLS-inequality proof alone, itself independently
+    airtight: for any OLS fit with an intercept, residual_std <= raw_std
+    always, since the constant model is a feasible fit point -- 'residual
+    std' can never exceed 'raw std'). NOTE this inequality is one-sided:
+    the raw-std fallback is conservative against manufacturing a false
+    CONFIRM (it cannot make the reported floor read smaller than the
+    trusted detrended estimate) but simultaneously liberal/anti-
+    conservative against a false REFUTE (inflating the statistic only
+    ever makes stat>=boxA easier to satisfy) -- NOT 'more conservative in
+    every case.'"""
     boxA = DELTA_BOXA[r]
-    if residual_std <= 0.5 * boxA:
-        return "CONFIRM", boxA
-    if residual_std >= boxA:
-        return "REFUTE", boxA
-    return "AMBIGUOUS", boxA
+    raw_std = float(np.std(delta_values))
+    ratio = raw_std / fit["residual_std"] if fit["residual_std"] else float("inf")
+    if fit["smooth"]:
+        stat = fit["residual_std"]
+        stat_source = (f"detrended (fit smooth: is_monotonic={fit['is_monotonic']}, "
+                        f"r_squared={fit['r_squared']:.4f})")
+    else:
+        stat = raw_std
+        stat_source = (f"raw/undetrended (fit NOT smooth: is_monotonic={fit['is_monotonic']}, "
+                        f"r_squared={fit['r_squared']:.4f} < {R2_SMOOTH_THRESHOLD:.2f} -- "
+                        f"residual_std is not trusted as 'the genuine floor'; falls back to "
+                        f"raw std, which is provably >= residual_std for any OLS fit with an "
+                        f"intercept term (conservative against a false CONFIRM; liberal/"
+                        f"anti-conservative against a false REFUTE, since inflating the "
+                        f"statistic only ever makes stat>=boxA easier to satisfy -- NOT "
+                        f"'conservative in every case'). raw/residual ratio this point: "
+                        f"{ratio:.3f}x)")
+    if stat <= 0.5 * boxA:
+        verdict = "CONFIRM"
+    elif stat >= boxA:
+        verdict = "REFUTE"
+    else:
+        verdict = "AMBIGUOUS"
+    return dict(verdict=verdict, stat_used=stat, stat_source=stat_source, boxA=boxA,
+                raw_std=raw_std, residual_std=fit["residual_std"],
+                raw_over_residual_ratio=ratio)
 
 
 def classify_item_i(pattern_by_margin_delta, sigma_scat_by_margin_peccored, r):
@@ -310,13 +348,15 @@ scene wall time <90 min AND projected 3-call r=312 total <180 min.
 
 
 def build_result_text(n_fdtd_calls, total_wall_s, gate_p0_pass, repro_pass,
-                       item_i, item_ii, item_iii, item_iv, closure_rows):
+                       item_i, item_ii, item_iii, item_iv, closure_rows,
+                       wall_time_source=None):
+    wall_time_note = f"\n({wall_time_source})" if wall_time_source else ""
     return f"""RESULT (exp-108, Panel Iteration 85)
 
 {DISCLAIMER}
 
 {n_fdtd_calls} real FDTD calls, {total_wall_s:.1f}s ({total_wall_s/60.0:.2f} min)
-total wall time, zero `lab/` diff except the new stage26 addition.
+total wall time, zero `lab/` diff except the new stage26 addition.{wall_time_note}
 
 **Gate P0: {'PASS' if gate_p0_pass else 'FAIL'}.**
 **Reproduction precondition: {'PASS' if repro_pass else 'FAIL'}.**
@@ -330,7 +370,9 @@ total wall time, zero `lab/` diff except the new stage26 addition.
 
 if __name__ == "__main__":
     if "--predictions-only" in sys.argv:
-        print(build_predictions_text())
+        predictions_text = build_predictions_text()
+        assert DISCLAIMER in predictions_text, "R23: disclaimer missing from Predictions block"
+        print(predictions_text)
     else:
         print("This module holds shared geometry/constants and analysis functions only.")
         print("Capture via chunk_runner.py; analysis via analyze.py.")
