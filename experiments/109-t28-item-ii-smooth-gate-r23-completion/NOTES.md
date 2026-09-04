@@ -65,6 +65,19 @@ document) adopts Red Team's Phase-2 audit in full — no further overrides.
    fix's own text (`experiments/108-.../phase2_redteam_audit.md:340-347`)
    already specifies raw `std` as the pre-registered non-smooth default —
    the fix's own words, not an analogy to a different function.
+   > **Same-shift Red Team annotation (Phase 5 final audit,
+   > `phase5_redteam_audit.md` §3.1/§5 item 1):** this pointer was
+   > dangling as frozen — no section named "Why raw std, not forced
+   > AMBIGUOUS" existed anywhere in this document, independently caught by
+   > three of six blind Phase-5 reviews (PHOTONICS, MATERIALS, QUANTUM).
+   > Non-outcome-reversing (the correct reasoning was always present in
+   > `classify_item_ii()`'s own docstring, below, and Red Team's Phase-2
+   > audit independently supplied a sufficient alternate ground) — the
+   > missing section is now written in at § "Why raw std, not forced
+   > AMBIGUOUS" below, added same-shift, zero re-run, zero
+   > verdict-arithmetic change. Proposed as the founding instance of a new
+   > standing rule, R26 (a promised forward cross-reference must resolve
+   > to real content); does not fire.
 2. **[ELECTROMAGNETISM]** "Raw std is more conservative in every case" is
    corrected to a two-sided statement: conservative against a false
    CONFIRM (inflating the stat cannot make the reported floor read
@@ -164,6 +177,85 @@ def classify_item_ii(r, fit, delta_values):
                 raw_over_residual_ratio=ratio)
 ```
 
+### Why raw std, not forced AMBIGUOUS
+
+> **Section added same-shift by Red Team's Phase-5 final audit
+> (`phase5_redteam_audit.md` §3.1/§5 item 1)** — this is the section
+> mandatory fix 1, above, promised and that the frozen document never
+> actually wrote; the reasoning below is a pure transcription of content
+> already independently verified seven separate times over in this
+> cycle's own record (Phase 2's five critiques, Red Team's Phase-2 audit,
+> and this Phase-5 final audit), not new analysis. Zero re-run, zero
+> verdict-arithmetic change.
+
+Two candidate substitutes exist for `classify_item_ii()`'s non-smooth
+branch. Raw, undetrended `np.std(delta_values)` is chosen over forcing the
+verdict straight to AMBIGUOUS regardless of magnitude, on two independent
+grounds — **not** on the sibling-code analogy the Phase-1 proposal
+originally used, which misdescribed `classify_item_i()`:
+
+- **The OLS-with-intercept inequality (airtight, general).**
+  `linear_fit_1_over_margin`'s design matrix is `A_mat = [1, 1/margin]` —
+  an intercept column plus one regressor. The constant model
+  `ŷ = mean(y)` (`B=0`) is therefore a feasible point in the same
+  least-squares search space, so the optimal fit's own residual sum of
+  squares can never exceed `Σ(y−ȳ)²` — i.e. `residual_std ≤ raw_std`
+  always, for any ordinary-least-squares fit with an intercept, with
+  equality only when the fit places zero weight on `1/margin`. Using the
+  raw statistic when detrending is not licensed by a smooth trend is
+  therefore provably conservative against manufacturing a false CONFIRM
+  (it cannot make the reported floor read smaller than the trusted
+  detrended estimate) — though, as ELECTROMAGNETISM's own mandatory fix 2
+  corrects elsewhere in this document, simultaneously liberal/
+  anti-conservative against a false REFUTE, not "conservative in every
+  case."
+- **The original Iteration-85 mandatory fix's own text (a stronger,
+  more directly on-point ground than the OLS proof alone).** Red Team's
+  own Phase-2 audit for this cycle re-read the EM+QUANTUM unified
+  item-ii remedy verbatim
+  (`experiments/108-.../phase2_redteam_audit.md:340-347`): *"before
+  reporting raw `std` across the 6 margins as a placement-noise proxy,
+  report whether the sequence is monotonic (or fits a smooth
+  `1/margin`-type trend) in margin, at both r. If it is, report the
+  residual-from-fit `std`... as the genuine floor."* This sentence's own
+  grammar already presupposes raw `std` as the thing that would otherwise
+  be reported, with the residual-from-fit `std` as the smoothness-gated
+  override — the fix's own words already specify raw `std` as the
+  non-smooth-case default, independent of any analogy to a different
+  function.
+
+**What was wrong with the originally-cited third ground, and why removing
+it does not change the outcome.** The Phase-1 proposal's own §4 argued
+`classify_item_i()`'s CONFIRM branch is "unconditional on smoothness...
+exactly because a null finding needs no trend-removal story to be
+believed" — framing it as a deliberate design choice to treat null claims
+differently from positive ones, and using that as a third argument against
+forcing AMBIGUOUS. Traced to source (`experiments/108-.../run.py:234-289`,
+independently re-verified by PHOTONICS at Phase 2, by Red Team at Phase 2
+§0.2, and by all six Phase-5 seats bar VISION at Phase 5):
+`linear_fit_1_over_margin` is called exactly once, inside
+`for (i0,j0) in runs:` — this loop is unreached when `runs` is empty, and
+`verdict="CONFIRM"` requires exactly `confirm_all_margins and not runs`.
+**CONFIRM is reachable only in the one case where the fit-and-smoothness
+code path is never entered at all** — the branch is structurally
+incapable of facing a smoothness question there, not deliberately exempt
+from one by design. This misdescription lived only in explanatory prose,
+never in the executed classification logic (`classify_item_ii()`'s new
+docstring correctly cites only the two grounds above, never repeating the
+flawed analogy) — so the CONFIRM/CONFIRM outcome at both r is unaffected;
+alternative (a) survives on the two grounds above alone, which the flawed
+third ground was never load-bearing to in the first place.
+
+Forcing straight to AMBIGUOUS regardless of magnitude (alternative (b)) is
+rejected on its own terms, independent of the item-i question: item ii's
+CONFIRM branch is a null claim (the floor is small), and nothing in the
+original mandatory fix's own text ever asked for a verdict-bucket override
+on non-smooth data — only for a choice of *which statistic* to trust.
+Manufacturing a third rule the fix never specified would be exactly the
+kind of un-pre-registered addition Red Team's own Phase-2 audit
+independently warned against as overreach for this cycle (`phase2_
+redteam_audit.md` §2, QUANTUM disposition).
+
 ### `analyze.py` line-85 companion call site — exact diff (Attack 6, non-blocking, adopted)
 
 ```python
@@ -220,8 +312,8 @@ def build_result_text(n_fdtd_calls, total_wall_s, gate_p0_pass, repro_pass,
 {n_fdtd_calls} real FDTD calls, {total_wall_s:.1f}s ({total_wall_s/60.0:.2f} min)
 total wall time, zero `lab/` diff except the new stage26 addition.{wall_time_note}
 
-**Gate P0: {{'PASS' if gate_p0_pass else 'FAIL'}}.**
-**Reproduction precondition: {{'PASS' if repro_pass else 'FAIL'}}.**
+**Gate P0: {'PASS' if gate_p0_pass else 'FAIL'}.**
+**Reproduction precondition: {'PASS' if repro_pass else 'FAIL'}.**
 **Item i:** {{item_i}}
 **Item ii:** {{item_ii}}
 **Item iii:** {{item_iii}}
@@ -234,6 +326,18 @@ total wall time, zero `lab/` diff except the new stage26 addition.{wall_time_not
 any future caller that doesn't need it) — this cycle's own call passes
 `"exp-108's own historical spend, reused verbatim -- exp-109 makes zero
 new Sim.run() calls"`.
+
+> **Same-shift Red Team annotation (Phase 5 final audit,
+> `phase5_redteam_audit.md` §0.3/§5 item 2):** the `**Gate P0:**`/
+> `**Reproduction precondition:**` lines above were double-braced
+> (`{{'PASS' if ...}}`) as originally frozen — a documentation-quoting
+> slip against the actual committed, executed
+> `experiments/108-.../run.py:361-362`, which is single-braced (correct
+> f-string interpolation). Independently confirmed cosmetic only: the
+> executed `result_text` (`run_output.txt`, `results.json`) correctly
+> renders `**Gate P0: PASS.**`, proving the double-brace text was never
+> in the executed f-string. Corrected in place above, same-shift, zero
+> re-run, zero verdict-arithmetic change.
 
 ### `experiments/109-.../reclassify_108.py` (new)
 
@@ -390,6 +494,24 @@ trust suite green before and after (41/41, `--only 12346789`, 100s/102s).
 Full console record: `run_output.txt`. `results.json` written with all
 predicted keys present.
 
+> **Same-shift Red Team annotation (Phase 5 final audit,
+> `phase5_redteam_audit.md` §0.4/§5 item 3):** `run_output.txt`, the
+> artifact this sentence cites as the "Full console record," contains
+> **zero** trust-suite output — no `41/41`, no `--only` invocation, no
+> per-stage listing, no timing (grepped directly; independently confirmed
+> by three of six blind Phase-5 reviews — MATERIALS, ELECTROMAGNETISM,
+> THERMODYNAMICS — plus this audit, the most heavily convergent finding
+> among the six). It contains only `reclassify_108.py`'s own console
+> capture. The "zero `lab/` diff" half of this sentence IS independently
+> evidenced (`git diff --stat -- lab/`, empty). The underlying "41/41"
+> claim is independently corroborated true (ELECTROMAGNETISM's own fresh
+> re-run this cycle: 41/41 checks passed in 106s) but the specific
+> "100s/102s" figure and the citation to `run_output.txt` as its source
+> are not evidenced by any committed artifact. Non-load-bearing (zero
+> scored verdict in this cycle depends on the trust suite) but flagged so
+> a future citation of this sentence does not treat it as independently
+> checkable when it is not.
+
 **Item 4 (the substantive question) — CONFIRMED exactly as predicted.**
 `new_verdict="CONFIRM"` at both r; `stat_used` matches the frozen table
 to <1e-9 relative (`5.008328e-06`/`2.124086e-06`); `raw_over_residual_ratio`
@@ -504,9 +626,25 @@ Iteration-86's own Tier-1 item 2 (a synthetic control for
 `linear_fit_1_over_margin` itself) — the natural place to extend that
 control to cover both new/changed sites.
 
-## Combined Verdict: **CONFIRM** (governance/instrumentation cycle —
-no PROMISING/PARTIAL/RULED-OUT scoring applies; T1 correctly N/A
-throughout, confirmed structurally by Red Team's Phase-2 Attack 7)
+## Combined Verdict: ~~**CONFIRM**~~ **CONFIRM-WITH-GAPS** (governance/
+instrumentation cycle — no PROMISING/PARTIAL/RULED-OUT scoring applies to
+this document's own internal verdict line; T1 correctly N/A throughout,
+confirmed structurally by Red Team's Phase-2 Attack 7)
+
+> **Same-shift Red Team annotation (Phase 5 final audit,
+> `phase5_redteam_audit.md` §4/§5 item 4):** corrected from `CONFIRM` to
+> `CONFIRM-WITH-GAPS`, matching five of the six blind Phase-5 reviews'
+> own verdicts on this exact document (PHOTONICS, MATERIALS,
+> ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS all independently
+> landed on CONFIRM-WITH-GAPS; VISION's own clean CONFIRM was scoped
+> specifically to mandatory fix 6, which genuinely is clean). The "all
+> six... incorporated before this run" sentence below is corrected in
+> place. `CONFIRM-WITH-GAPS` remains a legitimate, document-local
+> vocabulary for a pure reproducibility-gate cycle (distinct from
+> PANEL.md's own promising/partial/ruled-out vocabulary, which this
+> audit rules applies to the LOGBOOK.md Iteration 86 entry specifically —
+> that entry reads **PARTIAL**, per `phase5_redteam_audit.md` §4). Zero
+> re-run, zero change to the underlying CONFIRM/CONFIRM physical result.
 
 The R24 second instance is genuinely, verifiably discharged: the fix is
 wired into the executed classification path (not merely narrated a third
@@ -516,11 +654,22 @@ R23's code/persistence half (items 2/3) is closed with a live-fired,
 asserted, persisted `result_text`/`predictions_text`; its human-readable-
 citation half (mandatory fix 6) is closed in this document, above,
 by verbatim quotation — the specific gap exp-108's own Phase-5 VISION
-review found still open after the code half was already fixed. All six
-Red Team mandatory fixes were incorporated before this run (not after);
-zero deviations from Predictions on execution; zero R-rule firings this
-cycle (all six gaps caught blind, before freeze, exactly this program's
-own unbroken discharge-test pattern).
+review found still open after the code half was already fixed. Five of
+six Red Team mandatory fixes were incorporated before this run in the
+specific, checkable form each fix's own disposition promised (fixes
+2/3/5/6, cleanly; fix 4 in substance though not literally "in... code and
+docstring"); the sixth (fix 1) landed correctly in substance
+(`classify_item_ii()`'s own docstring, unchanged) but not in the named
+location its own disposition promised — corrected same-shift, above (§
+"Why raw std, not forced AMBIGUOUS"). Zero deviations from Predictions on
+execution (CONFIRM/CONFIRM reproduces exactly at both r, independently
+reconfirmed seven separate times across six blind Phase-5 reviews plus
+this cycle's own Red Team final audit); zero R-rule firings this cycle —
+all gaps caught blind, before or at this Phase-5 audit, exactly this
+program's own unbroken discharge-test pattern. One new standing rule
+proposed by this cycle's own Phase-5 final audit (R26 — a promised
+forward cross-reference must resolve to real content before freeze),
+founding instance, does not fire. Full ruling: `phase5_redteam_audit.md`.
 
 ## Next — candidate Iteration 87 directions (Director's own ranking)
 
@@ -550,11 +699,29 @@ not merely conservative toward false CONFIRM, so r=624's own reading
 should be checked against BOTH bars, not assumed safe by the same margin
 logic that held at r=156/312; MATERIALS' own fabrication-tolerance
 framing for item i's CONFIRM with Red Team's own observer-angle caveat
-folded in; formalize the absolute-floor six-margin family from a
+folded in; ~~formalize the absolute-floor six-margin family from a
 resolution/aliasing bound, now including a re-derivation of
 `R2_SMOOTH_THRESHOLD=0.90` for item ii's own question specifically
 (QUANTUM's named-but-not-mandatory concern this cycle, Red-Team-deferred
-here, not dropped).
+here, not dropped).~~
+
+> **Same-shift Red Team annotation (Phase 5 final audit,
+> `phase5_redteam_audit.md` §3.3/§5 item 6, QUANTUM's own finding,
+> adopted):** the struck sentence folded a genuinely distinct item (the
+> `R2_SMOOTH_THRESHOLD=0.90` re-derivation) into a subordinate clause of a
+> different, textually-adjacent Tier-2 item via "now including..." rather
+> than giving it its own line — the precise shape R25's own line-item
+> discipline exists to forbid, though not a literal R25 firing (a
+> calibration task, not a code-level fix; founding instance of this
+> specific concern). Split into two independently-checkable lines,
+> below, so neither can be silently satisfied by completing only the
+> other. Non-outcome-reversing; zero re-run.
+
+**Tier 2, split (same-shift):** (a) formalize the absolute-floor
+six-margin family from a resolution/aliasing bound; (b) re-derive
+`R2_SMOOTH_THRESHOLD=0.90` for item ii's own question specifically
+(QUANTUM's named-but-not-mandatory concern this cycle, Red-Team-deferred,
+not dropped — now its own queue line, not a subordinate clause of (a)).
 
 **Tier 3** — the oblique-angle extension; the 750/450nm leg; the `G40`
 full-width leg; the x-wall admittance refit; `PAD`-with-article survival;

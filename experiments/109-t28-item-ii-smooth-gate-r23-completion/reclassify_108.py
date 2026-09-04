@@ -81,6 +81,11 @@ def main():
     assert R.DISCLAIMER in predictions_text, "R23: disclaimer missing from predictions_text"
 
     # -------------------------------------------------- result_text (R23, first live call ever)
+    # Same-shift Red Team annotation (Phase 5 final audit, phase5_redteam_audit.md
+    # section 5 item 5): fix 4 (THERMODYNAMICS) asked that this reduction rule be
+    # stated explicitly "in code AND docstring" -- the code below IS the explicit
+    # logical AND of both r's pass_ fields (not left for a reader to infer), but
+    # lacked this inline comment naming it as such until this same-shift addition.
     gate_p0_pass = bool(committed["tier1"]["r156"]["gate_p0"]["pass_"]
                          and committed["tier1"]["r312"]["gate_p0"]["pass_"])
     repro_pass = bool(committed["tier1"]["r156"]["reproduction_precondition"]["pass_"]
