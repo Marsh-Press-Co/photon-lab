@@ -134,6 +134,30 @@ registry) — this cycle's queue phrasing ("ratify-or-reject disposition
 already exercised for R24") is a bookkeeping confirmation, not a
 re-opened question.
 
+> **Phase-5 correction (Red Team's final audit, annotating per R4 — not
+> silently rewritten): this paragraph is true as far as it goes but
+> incomplete, and the incompleteness left a real carryover task
+> unexecuted for a second consecutive cycle.** "Ratify or reject R24"
+> (the RULE) is one of TWO textually-distinct items exp-106's own close
+> named for Iteration 84 — the second, separately stated in
+> `experiments/106-.../phase5_redteam_audit.md` line 520 ("require...a
+> `run.py` change — Iteration 84's job, since this audit may not touch
+> `run.py`"), is wiring mandatory-fix-1's own `>~10%`-divergence
+> reclassification trigger into `run.py`'s `shape_ratio_fixedabs`
+> classification logic. That second item was never promoted to its own
+> line item in exp-106's own §5 "Reconciled Iteration-84 queue" (Tier 0
+> item 2 there reads only "ratify or reject proposed R24"), so this
+> cycle's Phase 1/Phase 2 layers (which worked from that queue as
+> literally written) cannot fairly be said to have dropped a tracked
+> item — but the underlying code fix is, independently confirmed by
+> direct read of exp-106's own `run.py`, still NOT implemented as of this
+> cycle's close. Caught by exactly one of six blind Phase-5 reviews this
+> cycle (`phase5_review_thermodynamics.md` §6 item 3), correctly scoped
+> as out-of-scope for this cycle's own assigned Tier-1 items. Placed,
+> explicitly, as Iteration-85's own Tier 0 item 1 (`phase5_redteam_
+> audit.md` §6, this directory) — a third silent drop is not acceptable.
+> Full record: `phase5_redteam_audit.md` §2/§3 (R24 ruling), this file.
+
 **Tier 1 — three `kappa_window` closeouts, PROCEED, with THERMODYNAMICS'
 mandatory fix applied (Red Team ADOPTED in full, unconditionally):**
 
@@ -310,6 +334,28 @@ physics finding).
   `C_thr(L)` perceptual scoring is performed by items 1/3/4 this cycle;
   NETD is an instrument/detector threshold, not a human perceptual one.
 
+  > **Phase-5 correction (Red Team's final audit, annotating per R4 — not
+  > silently rewritten): "R23 code-enforced" is FALSE for this cycle's own
+  > `run.py`/`chunk_runner.py`/`finalize.py`.** VISION's own Phase-5
+  > self-review found, and Red Team independently re-confirmed by direct
+  > grep (`grep -in disclaimer run.py chunk_runner.py finalize.py` — zero
+  > hits, all three files), that no `DISCLAIMER` string constant, no
+  > generated Predictions/Result text, and no code-level assert exists
+  > anywhere in this cycle's executable record. The scope claim above is
+  > true in *substance* (no perceptual scoring is in fact performed) but
+  > the *code-enforcement mechanism* R23 was built to guarantee that claim
+  > is simply not reused this cycle — Tier 0 is text-only and Tier 1's
+  > items never invoke the `build_predictions_text()`/`build_result_text()`
+  > pipeline exp-104–106 built. Non-load-bearing (constraint-3 is
+  > correctly N/A throughout, confirmed independently — nothing is scored
+  > against an unstated or misapplied threshold) and does not, on this
+  > audit's ruling, constitute a firing-grade R23 recurrence (see
+  > `phase5_redteam_audit.md` §3, R23 ruling, this directory) — but it is
+  > the third consecutive cycle (82→83→84) the standing "genericize the
+  > assert, or ratify R23 as intentionally single-disclaimer-scoped"
+  > decision (R23's own Iteration-82 queue item) has gone unresolved.
+  > Placed as Iteration-85 Tier 0 item 3.
+
 ## T1 escape-route statement
 
 **N/A.** Instrument-extension/governance cycle — no σ(I)/σ(x,t)/angular-
@@ -381,7 +427,25 @@ both deltas sit at roughly an order of magnitude above the original T9
 anchors (exp-027: `+1.56×10⁻⁶`; exp-031: `6.8×10⁻⁶`) — same near-zero
 order of magnitude, same qualitative conclusion (core-presence stays
 energetically incidental), but this is a PASS at the loose band, not a
-tight reproduction of the historical anchor scale. Red Team's founding
+tight reproduction of the historical anchor scale.
+
+> **Phase-5 correction (Red Team's final audit, annotating per R4/R9 —
+> not silently rewritten): the sentence above blends two non-commensurable
+> T9 anchors, an R9-class defect independently caught by PHOTONICS' Phase-5
+> review and re-confirmed here from primitives.** `exp-031`'s `6.8×10⁻⁶` is
+> a *different measurement channel* (single-angle ambient contrast) than
+> this cycle's own `sections.widths()` box-ledger channel; only `exp-027`'s
+> `+1.56×10⁻⁶` is like-for-like. Correctly compared against that one
+> anchor alone: this cycle's deltas are **19.0×** larger at r=156
+> (`2.969×10⁻⁵/1.56×10⁻⁶`) and **15.8×** larger at r=312
+> (`2.468×10⁻⁵/1.56×10⁻⁶`) — a genuine ~15–20× gap (over 1.2 decades), not
+> "roughly an order of magnitude" (~10×, blending in the wrong-channel
+> anchor understates it). Does not reverse `item1_pass=True` at either r
+> (both deltas remain 2–3 orders of magnitude below `abs_ext_ratio` itself)
+> or any scored verdict. Full record: `phase5_review_photonics.md`
+> (exp-107), `phase5_redteam_audit.md` §1/§3 (this file).
+
+Red Team's founding
 Attack 9 concern (core-reflection leakage driving fixed-abs's own falling
 `abs_ext_ratio`) is discharged at both r: the hollow-vs-PEC-cored delta
 is two-to-three orders of magnitude smaller than the `abs_ext_ratio`
