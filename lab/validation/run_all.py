@@ -2727,7 +2727,14 @@ def stage26_chunked_run_identity():
     field (1200 total physical steps, not 900). This must NOT reproduce
     the true continuous 900-step result (demonstrating the gate can
     actually discriminate the defect class it exists to catch, not merely
-    pass by coincidence)."""
+    pass by coincidence).
+
+    Gate 3 (negative control, TRUNCATION direction, Panel Iteration 87,
+    exp-110): the symmetric corruption -- `steps_done` OVER-reported (600
+    instead of the true 300) -- causes the resumed run to advance FEWER
+    steps than the true total (600 total physical steps, not 900). Gate 2
+    alone only covers the over-run direction; this closes the other half
+    of R18's own "both corruption directions" coverage."""
     print("stage 26 — chunked/checkpointed Sim.run() vs continuous execution identity")
     import pickle
     from lab import sections as sc
@@ -2789,6 +2796,32 @@ def stage26_chunked_run_identity():
           "negative control: corrupted checkpoint (steps_done off by one chunk) vs continuous, "
           "relative max|diff| (ez scale)",
           f"{rel_diff_corrupted:.3f}", rel_diff_corrupted > 0.01, ">0.01 (gate must discriminate)")
+
+    # ---- negative control (extended, Panel Iteration 87, exp-110): TRUNCATION
+    # direction -- over-reported steps_done -> resumed run advances FEWER
+    # steps than the true total. The existing negative control above only
+    # tests under-reporting (over-run); this closes the symmetric direction
+    # (R18 discipline: a check joining an already-partially-verified layered
+    # architecture needs its own fault-injection control covering both
+    # corruption directions, not just one).
+    sim_probe2 = fresh_scene()
+    sim_probe2.run(CHUNK)                       # 300 real physical steps done
+    ckpt2 = pickle.dumps(sim_probe2)
+    sim_resumed2 = pickle.loads(ckpt2)
+    corrupted_steps_done2 = 2 * CHUNK           # LIES: claims 600 done, true=300
+    remaining2 = TOTAL_STEPS - corrupted_steps_done2   # = 300, not the true 600
+    sim_resumed2.run(remaining2)                # ends at 300+300=600 real physical steps, not 900
+    fields_truncated = capture_fields(sim_resumed2)
+
+    max_diff_truncated = 0.0
+    for key in ("ez", "hx", "hy"):
+        d = float(np.max(np.abs(fields_continuous[key] - fields_truncated[key])))
+        max_diff_truncated = max(max_diff_truncated, d)
+    rel_diff_truncated = max_diff_truncated / ref_scale
+    check("chunked-run",
+          "negative control (truncation): over-reported checkpoint (steps_done high by one "
+          "chunk) vs continuous, relative max|diff| (ez scale)",
+          f"{rel_diff_truncated:.3f}", rel_diff_truncated > 0.01, ">0.01 (gate must discriminate)")
 
 
 def _stage_selected(n, only):
