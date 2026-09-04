@@ -252,5 +252,59 @@ this commit — Phase 4 begins after this document lands in git.)
 
 ## Result
 
-*(Filled in after Phase 4 executes — predictions above are committed
-first, house discipline.)*
+**Every predicted outcome held — nothing falsified.** `finalize.py`
+asserted `DISCLAIMER in` both `predictions_text` and `result_text` (both
+passed) and persisted both into `results.json` (Fix 7). Trust suite
+confirmed green after Phase 4: `--only 12346789` → 41/41 (77s).
+
+```
+RESULT (exp-110, Panel Iteration 87)
+
+Raw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family and item 1's own mirror-symmetry floor are both new conventions this cycle, not independently re-derived from a resolution or aliasing bound. Item 1's mirror floor characterizes grid-discretization/floating-point noise for the IDEALIZED simulated geometry ONLY -- a bin clearing it licenses NO inference about a physically realized coated disk's own achievable angular-pattern symmetry (real deposition/machining tolerances sit orders of magnitude above this floor's ~1e-9-1e-4 scale). Item 1's mirror floor is structurally BLIND to common-mode/even noise (a bias, not variance -- any bias identical at bin i and its mirror bin cancels exactly in the differencing construction, at any sample size, unclosed by pooling) -- a RESOLVED bin under this gate is cleared only against the ODD/antisymmetric noise component, not validated clean of common-mode contamination. Item 1's diagnostic is INFORMATIONAL ONLY and does not replace, gate, or reclassify item i's own existing frozen CONFIRM verdict.
+
+6 real FDTD calls, 7690.4s (128.17 min)
+total wall time this cycle, zero `lab/` diff except the disclosed stage26
+symmetric-truncation addition (item 3).
+(This cycle's own genuinely new wall time: 7690.4s (128.17 min), 6 real FDTD calls -- distinct from exp-108's own historical 7712.0s/6-call figure (a separate, already-committed capture of the identical geometry); per-scene: r156 empty/hollow/peccored = 250.6s/250.1s/251.5s; r312 empty/hollow/peccored = 2334.8s/2233.0s/2370.4s.)
+
+**Gate P0: PASS.**
+**Reproduction precondition: PASS.**
+**Item 1a (re-capture fidelity):** PASS exact, both r -- reproduction_precondition rel_dev=0.0 exactly at both r (r=156: sigma_abs=279.6607, sigma_ext=560.1989; r=312: sigma_abs=588.0218, sigma_ext=1191.3259 -- matches exp-108's own committed results.json exactly). NOT FALSIFIED.
+**Item 1b (persistence):** PASS -- 48/48 bins persisted for all 6 margins, both r. NOT FALSIFIED.
+**Item 1c/1d (mirror pooled floor, informational):** NOT FALSIFIED -- some bins fail the K=3 pooled floor gate at both r, as predicted (not 'ALL clear comfortably'). r=156: 203/288 bins RESOLVED (70.5%), 85 UNRESOLVED-BY-CONSTRUCTION (29.5%) across all 6 margins. r=312: 222/288 RESOLVED (77.1%), 66 UNRESOLVED (22.9%). The two PHOTONICS-named bins (margin=32): r=156 bin at -146.25 deg is UNRESOLVED-BY-CONSTRUCTION; r=312 bin at 168.75 deg is UNRESOLVED-BY-CONSTRUCTION. Neither named bin's ~10% local-normalized reading from exp-108's own Phase-5 review clears the K=3 mirror-pooled floor at this cycle's own default (K=3, median, within-margin) -- their earlier local-deviation readings are NOT validated as genuine shape structure by this instrument; they are exactly the shape of reading this floor gate exists to catch (near-null relative-error territory), though PHOTONICS' own unclosed common-mode-blindness concern (Idealizations) means this instrument cannot rule out a real but common-mode-masked effect at either bin.
+**Item 2 (linear_fit_1_over_margin control):** PASS -- all four predicted (is_monotonic, r_squared, smooth) triples reproduced bit-exact: P1=(True, 1.000, True); P2=(True, 0.397, True); P3=(False, 0.912, True); N1=(False, 0.097, False). All four fault-injection assertions passed (python3 linear_fit_control.py). NOT FALSIFIED.
+**Item 3 (stage26 truncation control):** PASS -- rel_diff_truncated=1.999 (lab/validation/run_all.py --only 26: 3/3), inside the predicted (0.01,10] band, same order of magnitude as the existing over-run control's own 2.0. NOT FALSIFIED.
+```
+
+**Interpretation.** Item 1a/1b/2/3 are clean, unsurprising confirmations of
+already-established machinery (a bit-identical re-capture, a fault-
+injection control validating logic that was already believed correct, a
+symmetric extension of an existing gate). **Item 1c/1d is the genuinely
+new finding**, and it cuts the OTHER way from PHOTONICS' own Iteration-85
+speculation: neither of the two specific bins PHOTONICS named as carrying
+a real ~10% local-normalized deviation clears this cycle's own K=3
+mirror-pooled floor — both read as `UNRESOLVED-BY-CONSTRUCTION`, i.e. this
+instrument cannot distinguish their ~10% reading from pure grid-
+discretization noise at the K=3 threshold. This does **not** prove the
+deviation is noise (Fix 2's own disclosed common-mode blindness means a
+real, mirror-symmetric structural effect at exactly those bins would look
+identical to this floor gate) — but it does mean PHOTONICS' own "real
+shape structure" reading is **not corroborated** by the one instrument
+built this cycle to test it, and the honest disposition is genuinely
+open, not resolved either direction. ~23–30% of all sampled bins
+(85/288 at r=156, 66/288 at r=312) sit below the K=3 floor entirely —
+informationally relevant for any FUTURE cycle that might consider scoring
+`classify_item_i_local`'s output, but this cycle's own item i CONFIRM
+verdict is untouched (informational only, per Fix 2's reasoning).
+
+**Combined Verdict: PROMISING** — a clean governance/instrumentation
+cycle: T1 correctly N/A throughout (confirmed structurally, not merely
+asserted); every one of the eight Phase-2-mandated fixes genuinely
+implemented and verified, not merely claimed; R23 fully honored (both
+DISCLAIMER asserts live-fired, both text fields persisted, quoted
+verbatim above); the data-persistence gap that made the Iteration-86
+queue's own premise false is closed for good (item 1b); a new, real,
+disclosed finding (item 1c/1d) that appropriately narrows rather than
+resolves a two-cycle-old open question, exactly as an informational
+diagnostic should. Zero Checkpoint criteria fire pending Phase 5's own
+independent review (see below).
