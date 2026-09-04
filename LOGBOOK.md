@@ -994,6 +994,23 @@ top. Protocol: PANEL.md.*
   citation slips. Full record: `experiments/106-t28-kappa-window-floor-
   fixedabs-control/phase5_redteam_audit.md` §0.1, §2, §4, LOGBOOK.md
   Iteration 83.
+  **SECOND INSTANCE, Iteration 85 (exp-108), on a DIFFERENT channel
+  (`classify_item_ii()`, not `classify_shape_ratio_fixedabs()`) — FIRES
+  CHECKPOINT CRITERION 4, per this rule's own forward-elevating clause,
+  automatically, no further deliberation.** The EM+QUANTUM unified box-
+  radius fix (Iteration 85's own Phase-2 mandatory fix 4) specified: "if
+  the 6-margin sequence is smooth, report the residual-from-fit std as the
+  genuine floor." Phase 3 stated it "adopted in full." `classify_item_ii`
+  never reads `fit["smooth"]`/`fit["r_squared"]` — the trigger condition
+  ("not smooth") is met by the data at BOTH r (r=156 R²=0.665, r=312
+  R²=0.021), and the code applies the untested-for-smoothness residual as
+  "the genuine, detrended floor" regardless. Independently re-derived by
+  EM and QUANTUM (blind, Phase 5) and confirmed from primitives by Red
+  Team's Phase-5 final audit. Non-outcome-reversing (the raw, undetrended
+  statistic also clears the CONFIRM bar at both r) but the rule's own text
+  carries no load-bearing exception. See CHECKPOINT block, below, and
+  `experiments/108-t28-reclassification-angular-pattern-batch/
+  phase5_redteam_audit.md` §3/§4, LOGBOOK.md Iteration 85.
 - **R25 — a code-level fix an audit determines is necessary, but defers
   because "this audit may not touch [file]" or an equivalent scope limit,
   must be added as its own explicit, numbered line item in that audit's
@@ -8245,6 +8262,239 @@ Phase-4 results (`results.json`, `run.py`, `chunk_runner.py`,
 (`phase5_review_{photonics,materials,em,thermodynamics,quantum,
 vision}.md`), Phase-5 Red Team final audit (`phase5_redteam_audit.md`).
 
+**Iteration 85 (exp-108) — PHOTONICS' rotation-lead cycle: R25's own
+two-cycle-old founding tripwire genuinely, verifiably discharged; all
+four Tier-1 items land as clean CONFIRM/PASS; a second, DIFFERENT
+governance rule (R24) fires its own forward-elevating clause on a
+channel built in this same cycle — Combined Verdict PARTIAL (revised
+from the Director's own initial PROMISING by Red Team's Phase-5 final
+audit), CHECKPOINT CRITERION 4 FIRES.** Executed exp-107's own Reconciled
+Iteration-85 queue in full: all three Tier-0 governance items (execute
+exp-106's own `run.py` reclassification code fix — R25's own load-bearing
+tripwire; ratify R25 itself, bookkeeping; force the three-cycle-stale R23
+scope decision) and all four Tier-1 items, bundled at the cost of one
+FDTD spend (`angular_scattered_pattern` on the hollow-vs-PEC-cored
+fixed-abs pair, first application to this family at r≠78; an absolute
+box-ledger noise-floor characterization, six-margin family, T11's
+80-cycle-old open question; the numerator floor-gate check on the actual
+PEC-cored PRIMARY article, closing exp-107's own hollow-substitute
+disclosure; promoting `chunk_runner.py`'s checkpoint/resume mechanism to
+a named, suite-gated trust-suite stage, `stage26_chunked_run_identity`).
+Five blind Phase-2 critiques (MATERIALS, EM, THERMODYNAMICS, QUANTUM,
+VISION — PHOTONICS is this cycle's lead), all support-with-changes: EM
+and QUANTUM independently found the same root-cause defect from two
+angles (box radius treated as an exchangeable nuisance parameter for two
+quantities — a near/mid-field angular pattern, a between-family
+difference-of-ratios — that do not carry the scalar-flux conservation
+guarantee stage 8's own `box_a`/`box_b` convention relies on); Red Team's
+Phase-2 audit combined their two remedies into one unified multi-margin
+convergence/detrending fix (the deepest finding of that audit) rather
+than picking either in isolation, plus 5 more mandatory fixes (a T9-anchor
+citation correction; a real absorbed-watts-divergence thermal check;
+an R23 "belt-and-suspenders" correction bound to a mandatory Phase-4
+live-fire check; a `closure`-field addition; explicit middle-verdict
+bands). Verdict PROCEED-WITH-MANDATORY-FIXES, 7 mandatory fixes, zero
+overrides. Predictions committed to git strictly BEFORE any Phase-4 call.
+
+**Phase 4: 6 real new FDTD captures (empty+hollow-article+PEC-cored-
+article, r=156/312), 128.5 min combined wall via `chunk_runner.py`'s
+checkpoint/resume (extended to a third scene type this cycle), zero
+`lab/` diff beyond the disclosed `stage26` addition, trust suite green
+throughout (41/41 standard set, 2/2 on `--only 26`).** Tier-0 item 1:
+`classify_shape_ratio_fixedabs()` extracted as a standalone, importable
+function in exp-106's own `run.py` (Attack 1's own remedy), wired into
+both the inline call site and a new `reclassify_106.py`; the corrected
+classification reads `THREE-WAY-AMBIGUOUS(...)`, exactly as predicted,
+all other fields bit-identical to exp-106's own committed `results.json`
+— **git-tracked, independently-diffable evidence the fix was executed,
+not merely described a third time.** Gate P0 and the item-i reproduction
+precondition: PASS, exact, both r. Item i (`angular_scattered_pattern`,
+unified fix): **CONFIRM at both r** — the null generalizes to the angular
+domain, no floor-cleared bin at any of 6 margins exceeds a 5% relative
+deviation, no smooth-migration signature found. Item ii (absolute
+noise floor, detrended): **CONFIRM at both r** — `residual_std` sits
+5.1×/5.9× inside the CONFIRM bar, substantively answering T11's own
+80-cycle-old open question for this channel. Item iii (numerator
+floor-gate, PEC-cored PRIMARY): **PASS both r** (0.1827/0.2525, both
+within ±0.05 of exp-107's own hollow-article reading) — the substitution
+generalizes. Item iv (`stage26`): **both controls PASS** (positive:
+`max|diff|=0.0`; negative: corrupted-checkpoint deviation 200%).
+`closure`: **CONFIRM all four cells** (0.016%–0.058%).
+
+**All six blind Phase-5 reviews (PHOTONICS self-review, MATERIALS, EM,
+THERMODYNAMICS, QUANTUM, VISION) independently reproduced every headline
+number from primitives — a clean six-of-six, zero overrides by Red
+Team's own final audit, unlike several recent cycles.** THERMODYNAMICS:
+clean CONFIRM, independently re-deriving its own Phase-2 finding (real
+absorbed-watts divergence 30.9%/46.3%, ≥117× margin) by two methods.
+MATERIALS: CONFIRM-WITH-GAPS — item i's CONFIRM is a genuine, appropriately-
+scoped fabrication-tolerance finding (a near-Babinet shell's angular
+pattern is set by its outer profile, not interior fill) never translated
+into MATERIALS' own charter language. EM and QUANTUM, independently and
+blind to one another: `classify_item_ii()` never checks its own
+`fit["smooth"]`/`r_squared` diagnostic before applying the detrended
+`residual_std` as "the genuine floor" — at r=312 the fit explains 2% of
+the six-point sequence's variance (`smooth=False` at BOTH r) — the
+IDENTICAL diagnostic that DOES correctly gate item i's own REFUTE branch,
+applied to one sibling classifier and not the other, in code built
+together in the same Phase-3 synthesis. QUANTUM additionally found item
+i's own "floor-cleared bin" filtering, named in NOTES.md's Predictions
+table, was never implemented anywhere in the call chain. PHOTONICS'
+own self-review found the deepest single defect: item i normalizes each
+of 48 angular bins against the GLOBAL peak bin, not local magnitude — in
+a strongly forward-peaked pattern (62.5% of bins carry <1% of peak
+power), this is structurally blind to real shape differences in
+low-cross-section side/back-scatter sectors, where LOCALLY-normalized
+deviations reach 9.88%/10.88% against a reported global-normalized max of
+0.015%. VISION: `build_result_text()` — R23's own founding "RESULT_TEXT"
+half — is defined in `run.py` but has zero call sites anywhere in this
+cycle's executed path, and zero `assert` statements exist anywhere in the
+cycle's code — a regression below even exp-105's own single missing
+assert — while NOTES.md's own Result section claims this cycle is
+"genuinely R23-compliant, live-fire-verified," true only for the
+predictions half of R23's own two-function contract.
+
+**Red Team's Phase-5 final audit independently re-verified every finding
+from primitives** (including a from-scratch re-derivation of PHOTONICS'
+own 62.5%/9.88%/10.88% figures against the raw retained field captures,
+and a from-scratch re-implementation of the `A+B/margin` fit by normal
+equations, not `numpy.linalg.lstsq`) **and adopted all six reviews in
+full, zero overrides.** Ruled the EM/QUANTUM/PHOTONICS convergence as
+**two distinct root-cause defects, not one and not three**: Defect A
+(item i's global-vs-local normalization) is a spec-level design choice,
+correctly implemented exactly as specified at every reviewing layer
+before freeze, closer to R17's own shape (a tolerance never justified
+against comparable data) than R20/R24 — filed as a new finding, does not
+fire either tally. Defect B (item ii's ungated smoothness diagnostic) is
+ruled a clean **SECOND INSTANCE of R24** (full text, RULED OUT registry,
+above), checked element-by-element against R24's own operative text: a
+Phase-2 mandatory fix's if/then consequence, Phase-3-claimed "adopted in
+full," never wired into the classification logic it was written to gate,
+its own trigger condition met by the data at both r. **R24's own
+forward-elevating clause fires Checkpoint criterion 4 automatically, no
+further deliberation** — the first Checkpoint-4 firing since Iteration 68
+by this document's own section-header record. R20 tally: 2 (PHOTONICS'
+own exp-016/017-vs-exp-059/060 mis-citation, uncaught by five Phase-2
+critiques and Red Team's own Phase-2 audit; the "annotated, not
+overwritten" claim, true only for `run.py`/`results.json`, false for
+exp-106's own untouched `NOTES.md`) — short of "three or more," does not
+fire independently. R21: the ungated `smooth`/`r_squared` fields are
+persisted-but-unnarrated in R21's own shape; Red Team declined to
+independently fire R21 alongside R24 on the identical code defect, citing
+this program's own "ruled once, not twice" counting discipline. R23:
+VISION's finding is a genuinely new sub-shape (a claimed dual-pipeline
+compliance where only one half is ever exercised), correctly adopted,
+but R23 itself carries no forward-elevating clause and cannot, on its own
+text, fire Checkpoint 4. **R25: genuinely, robustly discharged** — `git
+show` confirms a real, git-tracked, 33-line-net diff extracting the
+function exactly as specified; a cold re-run of `reclassify_106.py`
+reproduces the exact string NOTES.md quotes inline; does not fire,
+unrelated to and undiminished by the R24 firing on a different channel.
+Six same-shift annotations applied directly to NOTES.md (blockquoted,
+attributed, zero re-run, zero verdict-arithmetic change): the Combined
+Verdict corrected PROMISING → PARTIAL; item ii's Result table annotated
+with the `r_squared`/`smooth` values and a correction that "the genuine,
+detrended floor" language is unsupported at either r (the CONFIRM verdict
+itself unchanged — the raw statistic also clears the bar); item i's
+Result re-scoped explicitly to the dominant forward-scattering lobe; the
+R23 "live-fire-verified" claims annotated true for predictions only; the
+"annotated, not overwritten" sentence corrected; PHOTONICS' own citation
+corrected (exp-016/017, not exp-059/060).
+
+**Combined Verdict: PARTIAL** (Red Team's own revision of the Director's
+initial PROMISING) — not RULED OUT (T1 correctly N/A throughout,
+confirmed structurally, independent of every layer's own claim); not
+PROMISING: Checkpoint criterion 4 fires, inside the very document built
+to demonstrate clean post-R25 governance, on a different rule (R24), on a
+different channel, in code built the same cycle. Real, disclosed
+progress on both halves nonetheless, stated plainly alongside the
+correction: R25's founding instance is genuinely, verifiably discharged
+— the actual intended outcome of this cycle's Tier-0 work, not undone by
+the Tier-1 findings; items iii, iv, and `closure` are clean, independently
+reproduced, with no gaps found by any of seven reviewing layers; item i's
+CONFIRM for the dominant, power-carrying part of the scattering pattern
+(deviations ~300× below the 5% bar) is genuine, not merely salvaged. See
+CHECKPOINT block, below. Reconciled Iteration-86 queue (Red Team's own
+tiered ranking): **Tier 0** — rule on this Checkpoint-4 firing at the
+next convened checkpoint; wire `build_result_text()` into the executed
+path, restore both founding `assert DISCLAIMER in ...` calls, persist
+`predictions_text`/`result_text` into `results.json` (VISION's own
+recommendation); gate `classify_item_ii()` on `fit["smooth"]` (the R24
+second-instance fix itself, zero new FDTD, data already captured).
+**Tier 1** — re-normalize (or floor-gate) item i's per-bin comparison
+against each bin's own LOCAL magnitude, not the global peak (PHOTONICS'
+own recommendation, zero new FDTD, all data already committed — the
+single highest-value item on this queue: the only way to learn whether
+the ~10% local deviations in low-cross-section sectors are real shape
+structure or near-null relative-error blowup); a synthetic positive/
+negative control for `linear_fit_1_over_margin`'s own smooth/noise
+discriminator (R18 discipline); extend `stage26`'s negative control to
+the symmetric truncation direction. **Tier 2** — a fourth r-point
+(r=624) to test THERMODYNAMICS' own `r^-1.16` fixed-abs projection
+(~52.6× margin, just above the 50× `box_dev` floor, still standing);
+MATERIALS' own recommended fabrication-tolerance framing for item i's
+CONFIRM, with Red Team's own observer-angle caveat folded in explicitly;
+formalize the absolute-floor six-margin family from a resolution/
+aliasing bound. **Tier 3** — the oblique-angle extension (now doubly
+motivated); the 750/450nm leg; the `G40` full-width leg; the x-wall
+admittance refit; `PAD`-with-article survival; `box_dev`'s own thinning
+margin (~9.0× at r=312, a DIFFERENT quantity from this cycle's own
+noise-floor finding, still unresolved). Full record:
+`experiments/108-t28-reclassification-angular-pattern-batch/` —
+Phase-1 proposal (PHOTONICS), five Phase-2 blind critiques
+(`phase2_critique_{materials,em,thermodynamics,quantum,vision}.md`),
+Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
+(`results.json`, `run.py`, `chunk_runner.py`, `analyze.py`,
+`reclassify_106.py`, `run_output.txt`), six Phase-5 blind reviews
+(`phase5_review_{photonics,materials,em,thermodynamics,quantum,
+vision}.md`), Phase-5 Red Team final audit (`phase5_redteam_audit.md`).
+
+### CHECKPOINT (Iteration 85, 2026-09-04, criterion 4 — program-integrity
+drift).
+
+Red Team's Phase-5 final audit ruled criterion 4 **FIRES**, via R24's own
+explicit, unconditional second-instance clause (RULED OUT registry,
+above) — not via R20 (tally 2, short of "three or more"), not via R21
+(the identical code defect, declined to double-fire per this program's
+own "ruled once, not twice" counting discipline), not via R23 (no
+forward-elevating clause exists to trip). Checked element-by-element
+against R24's own operative text, independent of either blind review's
+own framing: (1) a Phase-2 mandatory fix (this cycle's own EM+QUANTUM
+unified fix, item ii's half) specified an explicit if/then consequence —
+"if the sequence is smooth, report the residual-from-fit as the genuine
+floor"; (2) Phase-3 synthesis (`NOTES.md`) stated the combination was
+adopted "in full"; (3) the consequence was never coded —
+`classify_item_ii(r, residual_std)` never reads `fit["smooth"]` or
+`fit["r_squared"]`, confirmed by direct source read; (4) the trigger
+condition is met by the data at BOTH r (`smooth=False` at r=156, R²=0.665;
+at r=312, R²=0.021) — the "not smooth" case the fix's own text says
+should withhold the "genuine floor" framing. All four elements satisfied,
+on a channel (`classify_item_ii`) R24's own founding instance
+(`classify_shape_ratio_fixedabs`) never touched — a genuine second
+instance, not a recurrence of the first. Independently, blindly
+converged on by EM and QUANTUM at Phase 5, confirmed from primitives by
+Red Team's own final audit; the sibling classifier built in the identical
+Phase-3 synthesis (`classify_item_i`) correctly implements the same gate
+using the same underlying diagnostic (`linear_fit_1_over_margin`) — this
+is not a case where nobody thought to build the check; half of the
+document's own machinery has it and the other half does not.
+
+**Ruled a notification, not a pause** — this program's unbroken
+precedent. No engine physics is implicated; zero `lab/` diff beyond the
+disclosed `stage26` addition; the physically-scored verdicts (item i/ii
+CONFIRM, item iii/iv PASS, `closure` CONFIRM) are unaffected in outcome
+(the raw, undetrended statistic also clears item ii's own CONFIRM bar at
+both r) — what fires is a governance-process defect, not a corrupted
+physics result. Notable, and named plainly: this is a governance cycle,
+purpose-built to demonstrate clean process discipline after exp-106→107's
+own R25-founding failure, that itself ships a second instance of a
+DIFFERENT named governance rule inside the very same document that
+discharges R25 — Red Team's own words, "not a contradiction in this
+audit's own reasoning — it is the finding." No new standing rule adopted
+this cycle (R24's own forward-elevating clause, adopted at its founding,
+already covers this case in full — no gap in the rule taxonomy itself was
+found, only a gap in one cycle's own code). Unblocked threads continue
+per PANEL.md's continuous-mode protocol; Marsh notified.
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 
