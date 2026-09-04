@@ -1,0 +1,34 @@
+Same-shift addendum, post-Phase-5: chunk_runner.py checkpoint/resume A/B
+test against the r=156 single-shot captures (EM's and QUANTUM's
+independently-flagged gap, addressed here rather than deferred).
+
+Method: r=156's empty and article scenes, originally captured via a
+single uninterrupted Sim.run(6400) call each, were each RE-RUN via
+chunk_runner.py using the identical chunking pattern r=312 used
+(CHUNK_STEPS=2200 -> chunks of 2200+2200+2000 steps, pickling and
+resuming the Sim object between chunks). The two resulting capture sets
+were compared field-by-field.
+
+=== EMPTY scene: single-shot vs chunked(3x) ===
+cap.ez_a: identical=True  max|diff|=0.000e+00
+cap.hx_a: identical=True  max|diff|=0.000e+00
+cap.hy_a: identical=True  max|diff|=0.000e+00
+cap.ez_b: identical=True  max|diff|=0.000e+00
+cap.hx_b: identical=True  max|diff|=0.000e+00
+cap.hy_b: identical=True  max|diff|=0.000e+00
+ez (phasor) identical: True
+
+=== ARTICLE scene: single-shot vs chunked(3x) ===
+cap.ez_a: identical=True  max|diff|=0.000e+00
+cap.hx_a: identical=True  max|diff|=0.000e+00
+cap.hy_a: identical=True  max|diff|=0.000e+00
+cap.ez_b: identical=True  max|diff|=0.000e+00
+cap.hx_b: identical=True  max|diff|=0.000e+00
+cap.hy_b: identical=True  max|diff|=0.000e+00
+ez (phasor) identical: True
+sigma_e identical: True
+
+Conclusion: bit-exact reproduction on every compared field. The
+checkpoint/resume mechanism introduces zero discontinuity. r=312's own
+item-1/4 numbers (results.json) are empirically confirmed, not merely
+architecturally plausible.

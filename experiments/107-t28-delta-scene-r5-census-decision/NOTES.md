@@ -412,6 +412,30 @@ exp-106's own Phase 5 (a possible noise-floor component in P3's headline
 "accelerating collapse") is real and worth checking directly on the
 PEC-cored primary article next cycle, not merely plausible.
 
+**Same-shift addendum (Director, post-Phase-5): checkpoint/resume
+mechanism empirically A/B-tested, not merely inspected.** Three of six
+blind Phase-5 reviews (ELECTROMAGNETISM, QUANTUM OPTICS, and implicitly
+relevant to VISION's own methodology scrutiny) independently flagged the
+same real gap: `chunk_runner.py`'s mid-run `Sim`-object checkpoint/resume
+pickling (load-bearing for every r=312 number above) had been argued
+correct from code inspection (plain picklable arrays/ints, no wall-clock
+or RNG dependence) but never empirically verified against an
+uninterrupted run. EM named the exact free test available: replay r=156's
+already-banked single-shot captures through the chunked path and diff
+bit-for-bit. Done here, same shift: r=156's empty AND article scenes were
+each re-run via `chunk_runner.py` (3 chunks: 2200+2200+2000 steps,
+matching r=312's own chunking pattern) and compared field-by-field
+against the original single-shot captures. **Result: bit-exact
+(`max|diff|=0.000e+00` on every field — `ez_a`, `hx_a`, `hy_a`, `ez_b`,
+`hx_b`, `hy_b`, the extracted phasor `ez`, and `sigma_e`).** The
+checkpoint/resume mechanism introduces zero discontinuity; r=312's own
+numbers above are now empirically confirmed, not merely architecturally
+plausible. This closes EM's/QUANTUM's shared gap as a real, positive
+same-shift fix (zero re-run of any scored quantity, zero verdict
+change) — the load-bearing new machinery this cycle introduced is now a
+genuinely validated instrument for future T28 cycles, not merely a
+disclosed-but-unverified workaround.
+
 **Combined Verdict: PARTIAL.** Tier 0 is a clean governance win — the
 `delta_scene` R3-vs-R4-vs-R5 question is formally retired, discharging
 an eight-cycle-deferred standing obligation with a reasoned, cited,
