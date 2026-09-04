@@ -22,7 +22,98 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-04, panel Iteration 85 done (exp-108, PARTIAL --
+## Current state (2026-09-04, panel Iteration 86 done (exp-109, PARTIAL,
+MATERIALS' rotation-lead cycle: executed exactly the four Tier-0
+UNBLOCKED items from exp-108's own Reconciled Iteration-86 queue -- gate
+classify_item_ii() on fit["smooth"] (the R24 second-instance fix that
+fired Iteration 85's own Checkpoint criterion 4); wire build_result_text()
+into an executed path; restore both founding assert DISCLAIMER calls;
+persist predictions_text/result_text into a new results.json. Tier-0
+item 0 (ruling on the Iteration-85 Checkpoint-4 firing itself) is Marsh's
+call, explicitly out of scope, still pending -- unblocked-threads-continue
+per PANEL.md's own continuous-mode protocol. Five blind Phase-2 critiques
+(PHOTONICS, EM, THERMODYNAMICS, QUANTUM, VISION), all support-with-changes,
+zero opposition: PHOTONICS found the proposal's own rejection of a
+forced-AMBIGUOUS alternative rested on a misdescribed sibling-code analogy
+(classify_item_i's CONFIRM branch never reaches the fit/smoothness code
+path at all); EM found "raw std is more conservative in every case" false
+as stated (conservative against false CONFIRM, liberal against false
+REFUTE); THERMODYNAMICS found an undisclosed AND-reduction rule and a
+wall-time-attribution gap; QUANTUM found the raw/residual ratio
+(1.729x/1.010x) should be persisted and narrated; VISION found R23's own
+human-readable-citation half left unbound. Red Team's Phase-2 audit
+independently re-derived every figure from primitives and adopted all
+five into six mandatory fixes (one explicit, disclosed override: declined
+to mandate an R2_SMOOTH_THRESHOLD re-derivation this cycle). Verdict
+PROCEED-WITH-MANDATORY-FIXES. Predictions committed to git five minutes
+before Phase 4's code was patched or run (git-blame-verified). Phase 4:
+zero new Sim.run() calls, zero lab/ diff, trust suite green before and
+after (41/41). classify_item_ii() patched to (r, fit, delta_values):
+detrended residual_std when smooth, raw undetrended np.std otherwise (true
+at both r=156/312, unchanged from exp-108). Every predicted outcome
+reproduced exactly: CONFIRM/CONFIRM at both r, ratios matching to <1e-3
+relative, both DISCLAIMER asserts live-fired for the first time on real
+data and passed silently. All six blind Phase-5 reviews (PHOTONICS,
+MATERIALS self-review, EM, THERMODYNAMICS, QUANTUM, VISION) independently
+re-derived the core numeric chain -- unanimous on the fix's correctness --
+but three of six (PHOTONICS, MATERIALS, QUANTUM), independently and blind
+to each other, found NOTES.md's own mandatory-fix-1 disposition promised a
+correction "below (Sec 'Why raw std, not forced AMBIGUOUS')" that did not
+exist anywhere in the frozen document; three of six (MATERIALS,
+THERMODYNAMICS, EM) independently found the trust-suite citation
+("41/41, 100s/102s") unevidenced by its own cited console record
+(run_output.txt); EM independently found a cosmetic double-braced
+f-string quotation slip in NOTES.md not matching the real single-braced
+source; QUANTUM found a subtler R25-shaped gap (a declined re-derivation
+folded into a different item's subordinate clause rather than its own
+queue line). VISION alone returned clean CONFIRM: byte-for-byte diff of
+results.json's two text fields against NOTES.md's own quoted blocks --
+exact match, DISCLAIMER confirmed present verbatim, twice -- genuinely
+closing VISION's own three-cycle-old exp-108 finding for the first time.
+Red Team's Phase-5 final audit independently re-verified every finding
+from primitives, adopted all six reviews, and overrode one factual error
+(PHOTONICS' claim that NOTES.md was committed only once, bundled with
+Phase 4's results -- git blame/log show its Predictions content was
+committed five minutes before Phase 4's execution, at a separate commit,
+byte-exact diff boundary at the Result placeholder -- house discipline
+was honored). Ruled the missing-section defect a genuinely new failure
+shape and adopted a new standing rule, R26 (a Phase-3 document's own
+named forward cross-reference must resolve to real content before
+freeze) -- founding instance, does not fire. The trust-suite-citation gap
+ruled R4-lineage, non-firing (R20 tally 2, short of three, the second
+consecutive cycle in this lineage to land exactly one short). QUANTUM's
+R25-shaped concern ruled non-firing (a calibration task, not a code-level
+fix; founding instance of this sub-concern). Six same-shift annotations
+applied directly to NOTES.md (blockquoted, zero re-run, zero
+verdict-arithmetic change): the missing section written in, the brace
+quotation corrected, the trust-suite citation gap disclosed, the Combined
+Verdict corrected CONFIRM -> CONFIRM-WITH-GAPS, a docstring comment added
+to reclassify_108.py, the folded Tier-2 item queued for a future split.
+Combined Verdict (LOGBOOK-level): PARTIAL -- not RULED OUT, not
+PROMISING (real, disclosed, non-outcome-reversing completeness gaps
+remain); the substantive result stands unreversed, seven-ways
+independently verified. Zero Checkpoint criteria fire this cycle -- the
+Iteration-85 Checkpoint-4 firing whose root cause this cycle was built to
+close remains open, unchanged, still pending Marsh's own ruling. Reconciled
+Iteration-87 queue: Tier 0 -- rule on the Iteration-85 Checkpoint-4 firing
+at the next convened checkpoint (unchanged). Tier 1 -- re-normalize (or
+floor-gate) item i's per-bin comparison against each bin's own LOCAL
+magnitude (still the single highest-value item); a synthetic
+positive/negative control for linear_fit_1_over_margin's own smooth/noise
+discriminator, now doubly motivated (discharges the R18 gap on both
+classify_item_ii()'s new branch and analyze.py's companion call site);
+extend stage26's negative control to the symmetric truncation direction.
+Tier 2 -- split into two lines: formalize the absolute-floor six-margin
+family from a resolution/aliasing bound; re-derive R2_SMOOTH_THRESHOLD=
+0.90 for item ii's own question specifically, now its own line; a fourth
+r-point (r=624), checked against BOTH bars per this cycle's own fix-2
+finding; MATERIALS' own fabrication-tolerance framing for item i's
+CONFIRM. Tier 3 -- unchanged: the oblique-angle extension; the 750/450nm
+leg; the G40 full-width leg; the x-wall admittance refit; PAD-with-article
+survival; box_dev's own thinning margin (~9.0x at r=312, still
+unresolved). Full record: `experiments/109-t28-item-ii-smooth-gate-r23-
+completion/`, LOGBOOK.md Iteration 86. Next: panel Iteration 85 done
+(exp-108, PARTIAL --
 revised by Red Team's own Phase-5 final audit from the Director's initial
 PROMISING, CHECKPOINT CRITERION 4 FIRES (notification, not a pause; Marsh
 notified), PHOTONICS' rotation-lead cycle: executed exp-107's own

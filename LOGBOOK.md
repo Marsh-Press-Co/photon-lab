@@ -1053,6 +1053,47 @@ top. Protocol: PANEL.md.*
   explicitly, as Iteration-85's own Tier-0 item 1. Full record:
   `experiments/107-t28-delta-scene-r5-census-decision/
   phase5_redteam_audit.md` §0.2, §2, §3, §4, §6, LOGBOOK.md Iteration 84.
+- **R26 — a Phase-3 synthesis's own named forward cross-reference to a
+  promised corrective section (e.g. "Corrected below, § 'X'") must resolve
+  to real, substantive content at that location before the document is
+  frozen; a promise that a fix's own reasoning "is corrected below" is not
+  itself a discharge of the fix — the correction must actually appear
+  there, checkable by heading-grep, not merely be true elsewhere in the
+  document (a docstring, a different section) with the named pointer left
+  dangling (not a ruled-out idea; a standing house-discipline rule,
+  proposed and adopted by Red Team's Phase-5 final audit, Iteration 86).**
+  Distinguished from R4 (an external figure/citation that fails to
+  reproduce arithmetically from its own cited source — here no figure was
+  wrong anywhere) and from R18 (a check's documented scope vs. its actual
+  code — here no check's coverage was overclaimed): this concerns a
+  document's own internal self-reference to itself, a category no prior
+  rule in this registry names, and one uniquely invisible to a reader who
+  does not grep for the exact promised heading — unlike an external
+  citation, which at least names a checkable target outside the document
+  making the claim. Founding instance: exp-109's own Phase-3 synthesis
+  promised, in its "how each mandatory fix is incorporated" list, that a
+  misdescribed sibling-code analogy would be "Corrected below (§ 'Why raw
+  std, not forced AMBIGUOUS')" — no such section existed anywhere in the
+  frozen document. Independently, blindly caught by three of six Phase-5
+  reviews (PHOTONICS, MATERIALS' own self-review, QUANTUM OPTICS) — a
+  stronger same-cycle consensus than most of this registry's own founding
+  instances — and confirmed by Red Team's own final audit. **Does not
+  fire on its own founding instance** (exp-109), matching every prior
+  rule's own precedent: the underlying correction the missing section was
+  meant to hold was, in this instance, genuinely present elsewhere (the
+  `classify_item_ii()` docstring) and non-outcome-reversing (Red Team's
+  own Phase-2 audit independently supplied a sufficient, stronger
+  alternate ground for the same design choice before this gap could
+  matter). **Rule, forward: a second instance of a named, unresolved
+  forward cross-reference inside a frozen Phase-3/Phase-4 document, on any
+  channel, fires Checkpoint criterion 4 automatically** — a
+  single-instance-ratified, forward-firing model, matching R16/R21/R22/
+  R23/R24/R25's own precedent rather than R20's three-in-one-cycle density
+  model, because this concerns one specific, cheaply-checkable defect
+  shape (grep the promised heading), not a density measure across
+  unrelated citations. Full record: `experiments/109-t28-item-ii-smooth-
+  gate-r23-completion/phase5_redteam_audit.md` §3.1, §5 item 1, LOGBOOK.md
+  Iteration 86.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -8495,6 +8536,173 @@ this cycle (R24's own forward-elevating clause, adopted at its founding,
 already covers this case in full — no gap in the rule taxonomy itself was
 found, only a gap in one cycle's own code). Unblocked threads continue
 per PANEL.md's continuous-mode protocol; Marsh notified.
+
+**Iteration 86 (exp-109) — MATERIALS' rotation-lead cycle: the R24 second
+instance genuinely, verifiably discharged; R23's own human-readable-
+citation half closed for the first time in this document family's
+history; a genuinely new failure shape found and named (R26), founding
+instance, does not fire — Combined Verdict PARTIAL, zero Checkpoint
+criteria fire.** Executed exactly the four Tier-0 UNBLOCKED items from
+exp-108's own Reconciled Iteration-86 queue (Tier-0 item 0 — ruling on
+the Iteration-85 Checkpoint-4 firing itself — is Marsh's call, explicitly
+out of scope, still pending): gate `classify_item_ii()` on `fit["smooth"]`
+(the R24 second-instance fix itself); wire `build_result_text()` into an
+executed path; restore both founding `assert DISCLAIMER in ...` calls;
+persist `predictions_text`/`result_text` into a new, exp-109-own
+`results.json`. Five blind Phase-2 critiques (PHOTONICS, EM,
+THERMODYNAMICS, QUANTUM, VISION — MATERIALS is this cycle's lead), ALL
+support-with-changes, ZERO opposition: PHOTONICS traced `classify_item_i`'s
+own CONFIRM branch to source and found the proposal's own rejection of
+a forced-AMBIGUOUS alternative rested on a misdescribed sibling-code
+analogy (CONFIRM never reaches the fit/smoothness code path at all — it
+is gated behind `not runs` — not "deliberately unconditional" on one); EM
+found "raw std is more conservative in every case" is false as stated
+(conservative against false CONFIRM, simultaneously LIBERAL against false
+REFUTE, since inflating the statistic only ever makes `stat>=boxA` easier
+to satisfy); THERMODYNAMICS found an undisclosed `gate_p0_pass`/
+`repro_pass` AND-reduction rule and a wall-time-attribution gap (exp-108's
+own historical 6-calls/7712.0s spend would read, unattributed, inside
+exp-109's own `result_text`); QUANTUM found the raw/residual ratio
+(1.729×/1.010×) should be persisted and narrated, not merely computed;
+VISION found the proposal's own binding Execution-requirement left R23's
+"human-readable-citation" half open (NOTES.md not bound to quote
+`result_text`/`predictions_text` verbatim, only to summarize item ii).
+Red Team's Phase-2 audit independently re-derived every figure from
+primitives (the OLS-with-intercept inequality; `classify_item_i()`'s
+actual code path, traced line-by-line; the original Iteration-85
+mandatory fix's own text, which already specifies raw `std` as the
+pre-registered non-smooth default — a stronger ground than either the
+proposal's OLS proof alone or PHOTONICS' sibling-code correction) and
+adopted all five critiques' findings into six mandatory fixes, with one
+explicit, disclosed override (declining to extend QUANTUM's critique into
+a mandatory `R2_SMOOTH_THRESHOLD=0.90` re-derivation this cycle —
+non-outcome-reversing, out of this cycle's own scope, queued instead).
+Verdict PROCEED-WITH-MANDATORY-FIXES. Predictions committed to git a full
+five minutes before Phase 4's code was patched or run (`git blame`-
+verified, see Phase-5 final audit §2, below).
+
+**Phase 4: zero new `Sim.run()` calls, zero `lab/` diff, trust suite
+green before and after (41/41, 100s/102s).** `classify_item_ii()`
+patched to accept `(r, fit, delta_values)`: uses the detrended
+`residual_std` when `fit["smooth"]`, falls back to the raw, undetrended
+`np.std(delta_values)` otherwise (true at both r=156/312, unchanged from
+exp-108: `smooth=False`, R²=0.665/0.021) — persisting `raw_std`,
+`residual_std`, and `raw_over_residual_ratio` in its own return dict, and
+narrating the two-sided conservative/liberal framing in `stat_source`.
+`analyze.py`'s companion call site patched to match. `run.py`'s
+`--predictions-only` block and a new `reclassify_108.py` (the
+`reclassify_106.py`-idiom zero-FDTD sibling) both restore/add
+`assert DISCLAIMER in ...`, live-fired for the first time on real data.
+**Every predicted outcome reproduced exactly**: `new_verdict="CONFIRM"`
+at both r, `stat_used` matching the frozen table to <1e-9 relative,
+`raw_over_residual_ratio` (1.729×/1.010×) matching to <1e-3 relative,
+both asserts pass silently, `results.json["predictions_text"]`/
+`["result_text"]` both present and DISCLAIMER-bearing.
+
+**All six blind Phase-5 reviews (PHOTONICS, MATERIALS self-review, EM,
+THERMODYNAMICS, QUANTUM, VISION) independently re-derived the core
+numeric chain from primitives — seven-of-seven with this audit, unanimous
+on the R24-fix's own correctness — but three of six (PHOTONICS,
+MATERIALS, QUANTUM), independently and blind to one another, found the
+identical NEW defect: NOTES.md's own mandatory-fix-1 disposition promised
+a correction "below (§ 'Why raw std, not forced AMBIGUOUS')" — no such
+section existed anywhere in the frozen document.** EM independently found
+a second new defect (NOTES.md's own quoted "exact new body" for
+`build_result_text()` showed double-braced f-string placeholders that do
+not match the actual single-braced, correctly-executing committed
+source — cosmetic, no double-brace text reached the executed pipeline).
+Three of six (MATERIALS, THERMODYNAMICS, EM), independently, found a
+third: NOTES.md's Result section cites `run_output.txt` as the "Full
+console record" for a "trust suite green (41/41, 100s/102s)" claim, but
+that committed file contains zero trust-suite output — the claim is true
+(independently re-run by both EM and this Director) but the cited
+artifact does not evidence it. QUANTUM independently found a fourth,
+subtler gap: Red Team's own Phase-2 override (declining to mandate an
+`R2_SMOOTH_THRESHOLD` re-derivation) rested partly on "already correctly
+queued," but NOTES.md's own Tier 2 text folded that re-derivation into a
+subordinate clause of a different item rather than its own explicit
+line — arguably R25-*shaped*, though QUANTUM itself correctly judged this
+not a literal R25 firing. VISION alone returned a clean CONFIRM: byte-
+for-byte diff of `results.json`'s two text fields against NOTES.md's own
+quoted blocks — exact match, DISCLAIMER text confirmed present verbatim,
+twice — genuinely closing VISION's own three-cycle-old exp-108 §2d
+finding for the first time in this document family's history.
+
+**Red Team's Phase-5 final audit independently re-verified every finding
+from primitives, adopted all six reviews in full with one factual
+override.** PHOTONICS' own secondary claim — that NOTES.md was committed
+only once, bundled with Phase 4's results, in violation of "predictions
+committed before the run" — did **not** survive `git blame`/`git log`
+re-verification against `NOTES.md`'s own file-scoped history: the
+Predictions/Setup/Idealizations content, including the exact
+`classify_item_ii()` code body and the item-4 CONFIRM/CONFIRM table, was
+committed at `1e20af5` (09:23:50), a full five minutes before Phase 4's
+execution landed at `7783f95` (09:28:23) — a byte-exact diff boundary at
+the `## Result` placeholder confirms nothing upstream was touched between
+the two commits. **House discipline was honored; the one load-bearing
+factual error found anywhere in this cycle's seven review layers is
+corrected, not adopted.** Ruled the missing-section defect a genuinely
+new failure shape — distinct from R4 (no figure was wrong) and R18 (no
+check's coverage was overclaimed) — and adopted a new standing rule:
+**R26** (RULED OUT registry, above) — a Phase-3 document's own named
+forward cross-reference to a promised corrective section must resolve to
+real content before freeze. Founding instance (exp-109), does not fire:
+the underlying correction was genuinely present elsewhere
+(`classify_item_ii()`'s own docstring) and non-outcome-reversing. The
+trust-suite-citation gap ruled R4-lineage but not a fresh firing (R20
+tally: 2, short of "three or more" — the second consecutive governance
+cycle in this lineage to land exactly one short of R20's own density
+bar, exp-108's own tally also 2). QUANTUM's R25-shaped concern ruled
+non-firing (a calibration task, not "a code-level fix"; founding instance
+of this specific sub-concern). Six same-shift annotations applied
+directly to NOTES.md (blockquoted, attributed, zero re-run, zero
+verdict-arithmetic change): the missing "§ Why raw std, not forced
+AMBIGUOUS" section written in; the double-braced quotation corrected; the
+trust-suite citation gap disclosed; the Combined Verdict corrected
+CONFIRM → CONFIRM-WITH-GAPS; a one-line docstring comment added to
+`reclassify_108.py`; the folded Tier-2 item queued for a future split.
+
+**Combined Verdict: PARTIAL** — not RULED OUT (nothing refuted; T1
+correctly N/A throughout, confirmed structurally); not PROMISING (real,
+disclosed, non-outcome-reversing completeness gaps remain: the dangling
+cross-reference, the unevidenced trust-suite citation, the brace slip,
+the R25-shaped Tier-2 folding) — the substantive result stands,
+unreversed, seven-ways independently verified: `classify_item_ii()` is
+now genuinely gated on `fit["smooth"]`, wired into the executed
+classification path, not merely re-narrated a third time. **Zero
+Checkpoint criteria fire this cycle** — the Iteration-85 Checkpoint-4
+firing whose root cause this cycle was built to close remains open,
+unchanged, still pending Marsh's own ruling (Tier-0 item 0, explicitly
+out of scope for a Panel proposal). Reconciled Iteration-87 queue (Red
+Team's own tiered ranking, carrying exp-108's own still-open Tier 1/2/3
+forward unchanged except Tier 2's own split): **Tier 0** — rule on the
+Iteration-85 Checkpoint-4 firing at the next convened checkpoint
+(unchanged). **Tier 1** — re-normalize (or floor-gate) item i's per-bin
+comparison against each bin's own LOCAL magnitude (still the single
+highest-value item on the queue); a synthetic positive/negative control
+for `linear_fit_1_over_margin`'s own smooth/noise discriminator, now
+doubly motivated (discharges the R18 gap on both `classify_item_ii()`'s
+new branch and `analyze.py`'s companion call site in one control);
+extend `stage26`'s negative control to the symmetric truncation
+direction. **Tier 2** — split into two independently-checkable lines:
+(a) formalize the absolute-floor six-margin family from a resolution/
+aliasing bound; (b) re-derive `R2_SMOOTH_THRESHOLD=0.90` for item ii's
+own question specifically, now its own line, not a subordinate clause;
+a fourth r-point (r=624), checked against BOTH the CONFIRM and REFUTE
+bars per this cycle's own fix-2 finding (the raw-std fallback is liberal
+toward false REFUTE, not merely conservative toward false CONFIRM);
+MATERIALS' own fabrication-tolerance framing for item i's CONFIRM.
+**Tier 3** — unchanged: the oblique-angle extension; the 750/450nm leg;
+the `G40` full-width leg; the x-wall admittance refit; `PAD`-with-article
+survival; `box_dev`'s own thinning margin (~9.0× at r=312, still
+unresolved). Full record: `experiments/109-t28-item-ii-smooth-gate-r23-
+completion/` — Phase-1 proposal (MATERIALS), five Phase-2 blind critiques
+(`phase2_critique_{photonics,em,thermodynamics,quantum,vision}.md`),
+Phase-2 Red Team audit, Phase-3 synthesis (`NOTES.md`), Phase-4 results
+(`results.json`, the patched `experiments/108-.../run.py`/`.../
+analyze.py`, `reclassify_108.py`, `run_output.txt`), six Phase-5 blind
+reviews (`phase5_review_{photonics,materials,em,thermodynamics,quantum,
+vision}.md`), Phase-5 Red Team final audit (`phase5_redteam_audit.md`).
 
 ## PARKED (pre-panel threads, resumable — not on the program's critical path)
 

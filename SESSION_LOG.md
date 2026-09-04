@@ -2,6 +2,113 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-04 (panel shift) — Iteration 86 complete (exp-109): the R24
+second instance genuinely closed, R23's human-readable-citation half
+closed for the first time in this document family's history, a new
+standing rule (R26) proposed and named, zero Checkpoint criteria fire:
+
+**Pre-flight**: tooling not pre-installed this shift (`ModuleNotFoundError:
+numpy`) — installed fresh per the known wrinkle (numpy/scipy/matplotlib/
+pillow/autograd/fdtd first, then `pip install --no-deps ceviche`), then
+ran the trust suite before any panel work — green, 41/41
+(`--only 12346789`, 100s).
+
+**Iteration 86 — MATERIALS' rotation-lead cycle (exp-109).** Executed
+exactly the four Tier-0 UNBLOCKED items from exp-108's own Reconciled
+Iteration-86 queue: gate `classify_item_ii()` on `fit["smooth"]` (the R24
+second-instance fix that fired Iteration 85's own Checkpoint criterion
+4); wire `build_result_text()` into an executed path; restore both
+founding `assert DISCLAIMER` calls; persist `predictions_text`/
+`result_text` into a new `results.json`. Tier-0 item 0 (ruling on the
+Iteration-85 Checkpoint-4 firing itself) is Marsh's call, out of scope,
+still pending. Five blind Phase-2 critiques, all support-with-changes,
+zero opposition: PHOTONICS found a misdescribed sibling-code analogy in
+the proposal's own reasoning; EM found an overclaimed "conservative in
+every case" statement (actually one-sided: conservative against false
+CONFIRM, liberal against false REFUTE); THERMODYNAMICS found an
+undisclosed AND-reduction rule and a wall-time-attribution gap; QUANTUM
+found a ratio that should be persisted and narrated; VISION found R23's
+own human-readable-citation half left unbound by the proposal's binding
+requirement. Red Team's Phase-2 audit independently re-derived every
+figure from primitives, adopted all five critiques into six mandatory
+fixes (one disclosed override). Verdict PROCEED-WITH-MANDATORY-FIXES.
+Predictions committed to git five minutes before Phase 4's code was
+patched or run.
+
+**Phase 4: zero new FDTD calls, zero `lab/` diff, trust suite green
+before and after (41/41).** `classify_item_ii()` patched to gate the
+reported floor statistic on `fit["smooth"]`: detrended `residual_std`
+when smooth, raw undetrended `np.std` otherwise (true at both r=156/312,
+unchanged from exp-108). Every predicted outcome reproduced exactly:
+CONFIRM/CONFIRM at both r, raw/residual ratios (1.729×/1.010×) matching
+to <1e-3 relative, both DISCLAIMER asserts live-fired for the first time
+on real data and passed silently.
+
+**All six blind Phase-5 reviews independently re-derived the core numeric
+chain — unanimous on the fix's own correctness — but found real,
+non-outcome-reversing completeness gaps.** Three of six (PHOTONICS,
+MATERIALS' own self-review, QUANTUM), independently and blind to each
+other, found NOTES.md's own mandatory-fix-1 disposition promised a
+correction "below (§ 'Why raw std, not forced AMBIGUOUS')" that did not
+exist anywhere in the frozen document. Three of six (MATERIALS,
+THERMODYNAMICS, EM) independently found a trust-suite citation
+unevidenced by its own cited console record. EM independently found a
+cosmetic brace-quotation slip. QUANTUM found a subtler R25-shaped gap (a
+declined re-derivation folded into a different item's subordinate
+clause). VISION alone returned clean CONFIRM, closing its own
+three-cycle-old exp-108 finding for the first time (byte-for-byte
+verbatim-quote diff, exact match).
+
+**Red Team's Phase-5 final audit** independently re-verified every
+finding from primitives and adopted all six reviews, overriding one
+factual error: PHOTONICS' claim that NOTES.md was committed only once,
+bundled with Phase 4's results — `git blame`/`git log` show its
+Predictions content was committed five minutes before Phase 4's
+execution, at a separate commit, byte-exact diff boundary at the Result
+placeholder — **house discipline was honored.** Ruled the missing-section
+defect a genuinely new failure shape (distinct from R4 and R18) and
+adopted a new standing rule, **R26** — a Phase-3 document's own named
+forward cross-reference must resolve to real content before freeze —
+founding instance, does not fire. The trust-suite-citation gap ruled
+R4-lineage, non-firing (R20 tally 2, short of three — the second
+consecutive cycle in this lineage to land exactly one short). QUANTUM's
+R25-shaped concern ruled non-firing (a calibration task, not a code-level
+fix). Six same-shift annotations applied directly to NOTES.md
+(blockquoted, zero re-run, zero verdict-arithmetic change).
+
+**Combined Verdict: PARTIAL** (LOGBOOK-level vocabulary) — not RULED OUT,
+not PROMISING; the substantive result stands unreversed, seven-ways
+independently verified. **Zero Checkpoint criteria fire this cycle** —
+the Iteration-85 Checkpoint-4 firing whose root cause this cycle was
+built to close remains open, unchanged, still pending Marsh's own ruling
+(Tier-0 item 0 of Iteration 87's own queue). Reconciled Iteration-87
+queue: Tier 0 — rule on the Iteration-85 Checkpoint-4 firing (unchanged).
+Tier 1 — re-normalize item i's per-bin comparison against LOCAL magnitude
+(still the single highest-value item); a synthetic control for
+`linear_fit_1_over_margin`, now doubly motivated; extend `stage26`'s
+negative control. Tier 2 — split into two lines (the resolution/aliasing
+bound; the `R2_SMOOTH_THRESHOLD` re-derivation, now its own line); a
+fourth r-point (r=624); MATERIALS' own fabrication-tolerance framing.
+Tier 3 — unchanged. Full record: `experiments/109-t28-item-ii-smooth-
+gate-r23-completion/`, LOGBOOK.md Iteration 86.
+
+**Notes/gotchas**
+- A git-hygiene slip: an earlier `git add` of `NOTES.md`/
+  `phase2_redteam_audit.md` left them staged, so a subsequent
+  per-file-labeled commit (intended as "ELECTROMAGNETISM blind critique
+  landing") accidentally bundled all three files together — no content
+  lost or wrong, just a commit boundary/label mismatch; not corrected via
+  history rewrite (force-push/rebase stays human-initiated). One Phase-5
+  review commit was similarly mislabeled "PHOTONICS self-review" (PHOTONICS
+  was not this cycle's lead — MATERIALS was) — content correct regardless.
+  Future shifts: `git status --short` before every `git add` in a batch of
+  per-file commits, not just before the first.
+- This program's own "annotated, not overwritten" discipline extends
+  cleanly to a sub-agent applying its own same-shift fixes directly (Red
+  Team's Phase-5 final audit wrote its own six annotations into `NOTES.md`
+  and a comment into `reclassify_108.py` before reporting back) — worked
+  well, matching the Director-level precedent exactly.
+
 ## 2026-09-04 (panel shift) — Iteration 85 complete (exp-108): R25's own
 founding tripwire genuinely discharged, all four Tier-1 items clean
 CONFIRM/PASS, Combined Verdict revised PROMISING → PARTIAL by Red Team's
