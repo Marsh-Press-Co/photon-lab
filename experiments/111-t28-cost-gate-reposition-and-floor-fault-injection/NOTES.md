@@ -160,8 +160,159 @@ multiplicative constant in a wall-clock projection formula. None of the
 three scores or moves any constraint-1/2/3/4 verdict. Item 3, the one
 item with any physical content, is untouched this cycle.
 
-## Result (after Phase 4)
+## Result (after Phase 4 — verbatim quote of
+## `predictions_result_88.py::build_result_text_88()`'s own output, fed
+## the real captured control outputs, persisted in `results.json`)
 
-*(to be filled in after Phase 4 executes — code is already patched as of
-this commit, per the Setup section above; nothing has been RUN for real
-yet as of this commit.)*
+RESULT (exp-111, Panel Iteration 88)
+
+{DISCLAIMER_88 — identical to the Predictions block above, omitted here for brevity; verbatim in `results.json["result_text"]`}
+
+Zero new FDTD calls this cycle (items 1/2/4 are synthetic/orchestration/
+formula-only, item 3 deferred), zero `lab/` diff.
+(zero new FDTD this cycle; all figures from exp-110's own already-committed results.json plus this cycle's own synthetic/formula controls)
+
+**Item 1 (fault-injection control):** FI-A PASS (recovered `5.000000e-04`,
+predicted `5.000000e-04`). FI-B PASS (recovered `0.000000e+00` despite
+`1.0e-03` injected common-mode magnitude). FI-C PASS (`floor_degenerate`=
+`True`, `resolved` all False=`True`, no `inf` in `local_snr`=`True`). **FI-D
+(informational) FAIL** on its own "never exactly zero" sub-claim (floor
+range `0.000e+00`–`3.534e-04`, spread `3.534e-04` = 70.7% of injected
+amplitude — genuinely phase-dependent, as predicted; but at 2 of the 24
+swept phases (0°, 180°) the pooled floor reads *exactly* `0.0`, not merely
+small). Non-regression: all 12 real cells match=`True`.
+
+**Item 2 (gate reposition control, bound to the real `chunk_runner`
+module):** 5/5 cases PASS. Favorable reaches `build_sim` (calls=1), gate
+written before the stub with `proceed_to_r312`=`True`. Both budget/
+precondition-unfavorable cases refuse before `build_sim` (calls=0). r=156
+scope-precision case reaches `build_sim` unconditionally (calls=1). The
+already-done/stale-156 case (mandatory-fix 2) returns `True` with zero
+gate evaluation and zero `build_sim` calls, as predicted.
+
+**Item 4 (cost-gate formula recalibration control):** 3/3 cases PASS.
+Non-regression projects `7632.028s` (overestimates the real measured
+r=312 total by `693.8s`; the OLD formula underestimated it by `920.4s`).
+Discriminating case: old formula `10799.0s` (PASS) vs new formula
+`13695.8s` (FAIL) — the two formulas diverge as predicted.
+
+**Item 3 (deferred, not run):** regenerated cost table (`cpl_cost_table.py`,
+correcting MATERIALS' own found arithmetic slip): cpl=25: `4.17h`, cpl=30:
+`7.21h` (was hand-typed as "~6.5h" in `phase1_proposal.md` — that figure
+was the r=312-alone column's own value, misplaced; corrected here per
+mandatory fix 4). Recommendation for Iteration 89 unchanged: `cpl=25`,
+r=156-alone-first.
+
+### Interpretation — FI-D's own falsified sub-claim (disclosed, not hidden)
+
+FI-D's predicted band (`non_constant AND never_exactly_zero AND
+never_exactly_full`) was **falsified on one of its three conjuncts**:
+`never_exactly_zero` is false — the pooled floor reads exactly `0.0` at
+swept phases 0° and 180° (out of 24). The mechanism, verified directly by
+re-running the construction: `BIN_CENTERS_DEG[i] == -BIN_CENTERS_DEG[47-i]`
+by this instrument's own convention (confirmed against `analyze.py`'s own
+bin-center construction and the two PHOTONICS-named bins' own mirror
+partners), so `cos(2·pi·BIN_CENTERS_DEG/P* + 0)` is an EVEN function of
+the bin index under `i<->47-i` at phase=0/180° specifically (`cos` is even
+in its argument, and the argument itself is odd in `i<->47-i` at those two
+phases only) — collapsing FI-D's own swept perturbation to a purely
+common-mode/even signal at exactly those two points, i.e. **the identical
+mechanism FI-B already demonstrates**, not a new pathology. This is a
+genuine Director-level prediction error (the "never exactly zero" clause
+was written without checking phase=0/180° specifically), disclosed here
+rather than silently reworded post-hoc (R4 discipline applied to the
+Director's own Phase-3 text, not only to seats' claims). **Non-blocking**:
+FI-D is explicitly informational (mandatory fixes 3/6 do not depend on
+FI-D's own predicted band; R18's own literal text is satisfied by FI-A/B
+alone, per Red Team's own Phase-2 ruling); the qualitative point FI-D
+exists to demonstrate — that a realistic, neither-clean-odd-nor-clean-even
+periodic perturbation produces a floor reading that depends on where in
+its cycle it sits, spanning the full range from FI-B's exact blindness
+(at the two symmetric phases) up to 70.7% of the injected amplitude
+recovered (near phase=90°/270°, the maximally antisymmetric alignment) —
+still stands, and is if anything sharpened by finding the exact
+blind-spot phases rather than merely a nonzero minimum.
+
+## Combined Verdict (Director, pending Phase 5)
+
+**PARTIAL** (LOGBOOK-level vocabulary) — not RULED OUT (T1 correctly N/A
+throughout); not a clean, unqualified PASS, since FI-D's own predicted
+band was falsified on one conjunct (disclosed above, non-blocking, with a
+verified mechanism). All mandatory-fix-gating items (1's FI-A/B/C +
+non-regression, 2's all 5 cases, 4's all 3 cases) PASS exactly as
+predicted; zero new FDTD; zero `lab/` diff; trust suite green throughout
+(41/41, before and after this cycle's code patches). Six blind Phase-5
+reviews plus Red Team's own final audit, below, will independently
+re-verify all of the above and may revise this label.
+
+## Reconciled Iteration-89 queue (written now, per R25 discipline —
+## mandatory fix 7 — not a parenthetical)
+
+**Tier 0** — rule on the Iteration-85 Checkpoint-4/R24 firing at the next
+convened checkpoint (unchanged, still Marsh's call, still pending).
+
+**Tier 1** — (1) Execute item 3 (PHOTONICS' own independent, non-
+differencing floor check, a `cpl`-refinement spot check) at the two named
+bins (−146.25° at r=156, +168.75° at r=312), protected by this cycle's own
+repositioned, safety-margined, real-module-verified cost gate — this
+proposal's own recommendation: start with `cpl=25`, r=156-alone-first
+(~24.5 min, cheapest genuinely informative option per the regenerated
+`cpl_cost_table.py`), expand to r=312 only if r=156's own result is
+decisive; genuine new FDTD, correctly deferred twice now, should not be
+deferred a third time without new, equally explicit reasoning. (2) The
+long-outstanding `R2_SMOOTH_THRESHOLD=0.90` re-derivation (queued since
+Iteration 86 Tier 2b, now a fifth consecutive cycle naming it undone).
+(3) MATERIALS' own fabrication-tolerance quantitative bound (now a fourth
+consecutive cycle naming it undone).
+
+**Tier 2** — a full per-margin item-1c/1d Result-section table (still
+outstanding, Iteration-87 Tier 2 item 3); `CLOSURE_CONFIRM`/
+`CLOSURE_FALSIFY` dead-code cleanup (Iteration-87 Tier 2 item 4); a fourth
+r-point (r=624) — note this would require re-deriving or re-validating
+`KAPPA_COST_EXPONENT`/`COST_GATE_SAFETY_MARGIN` at a new `kappa_ratio`
+(this cycle's own Idealizations, above), not assuming they transfer.
+
+**Tier 3 — unchanged standing items**: the oblique-angle extension; the
+750/450nm leg; the `G40` full-width leg; the x-wall admittance refit;
+`PAD`-with-article survival; `box_dev`'s own thinning margin (~9.0× at
+r=312, still unresolved).
+
+## Idealizations — what this cycle does and does not establish
+
+- **Does establish**: `mirror_pooled_floor`/`classify_item_i_local` now
+  has a genuinely bound (mandatory fix 1), correctly-ordered (mandatory
+  fix 2) fault-injection control covering the two mathematical corner
+  cases (pure odd/asymmetric, pure even/symmetric-or-degenerate) plus one
+  realistic aliased/phase-swept case (FI-D) that sharpens rather than
+  merely narrows the claim — the "closes the last open R18 gap" language
+  is correctly narrowed (mandatory fix 6) to: R18's own literal positive/
+  negative-control requirement is satisfied in full; the realistic
+  aliased/intermediate regime is now *characterized* (phase-dependent,
+  spanning 0%–70.7% of injected amplitude recovered), not merely flagged
+  as untested. The `floor==0` degenerate construction gap (QUANTUM,
+  Iteration 87) is closed with no live self-contradiction remaining
+  (mandatory fix 3). The R27/R28 cost gate is now genuinely, verifiably
+  upstream of every real r=312 `Sim.run()` call, bound to the real
+  production module (mandatory fixes 1/2) — not merely shown to branch
+  somewhere, the exact gap R28 exists to close. The gate's own projection
+  formula now uses an empirically re-derived exponent plus an explicit
+  safety margin, verified non-regressive against exp-110's own real
+  historical pilot data and shown to change the decision on a constructed
+  near-boundary case.
+- **Does NOT establish**: anything about constraint 1/2/3/4, T1, or any
+  physical mechanism (T1 explicitly N/A). Does not establish that
+  `KAPPA_COST_EXPONENT=3.2053`/`COST_GATE_SAFETY_MARGIN=1.10` generalize
+  beyond exp-110's own single geometry/`kappa_ratio=2.0` data point — a
+  future cycle introducing a different `kappa_ratio` (e.g. r=624) must
+  re-derive or re-validate this formula, not assume it transfers. Does not
+  resolve whether the two PHOTONICS-named bins carry real, common-mode-
+  masked structure or pure discretization noise — item 3's own unresolved
+  question, deferred here a second time with reasons stated (sequencing,
+  predicted cost, density risk — `phase1_proposal.md` Sec 3), not
+  answered. Does not re-derive `R2_SMOOTH_THRESHOLD=0.90` or MATERIALS' own
+  fabrication-tolerance bound (both Tier 1/2, unchanged, now undone a
+  fourth/fifth consecutive cycle respectively). `chunk_runner.py`'s own
+  upstream gate is only as good as the *current* live session's own
+  wall-time logs — it cannot, and does not try to, reach back into a
+  different session's ephemeral scratchpad (a standing property of this
+  whole re-capture idiom, unchanged from exp-110's own disclosure).

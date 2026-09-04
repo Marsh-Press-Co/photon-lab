@@ -1,0 +1,263 @@
+{
+  "floor_fault_injection_control": {
+    "fi_a": {
+      "case": "FI-A",
+      "floor": 0.0004999999999999996,
+      "predicted": 0.0005,
+      "pass_": true
+    },
+    "fi_b": {
+      "case": "FI-B",
+      "floor": 0.0,
+      "predicted": 0.0,
+      "pass_": true,
+      "injected_magnitude": 0.001
+    },
+    "fi_c": {
+      "case": "FI-C",
+      "floor_peccored_pooled": 0.0,
+      "floor_hollow_pooled": 0.0,
+      "floor_degenerate": true,
+      "resolved_all_false": true,
+      "local_snr_peccored_sample": [
+        NaN,
+        NaN,
+        NaN
+      ],
+      "local_snr_hollow_sample": [
+        NaN,
+        NaN,
+        NaN
+      ],
+      "no_inf_snr": true,
+      "pass_": true
+    },
+    "fi_d": {
+      "case": "FI-D",
+      "amplitude": 0.0005,
+      "n_phases": 24,
+      "floor_min": 0.0,
+      "floor_max": 0.000353406793027197,
+      "spread": 0.000353406793027197,
+      "floor_min_over_amplitude": 0.0,
+      "floor_max_over_amplitude": 0.7068135860543939,
+      "non_constant": true,
+      "never_exactly_zero": false,
+      "never_exactly_full": true,
+      "pass_": false
+    },
+    "non_regression": {
+      "rows": [
+        {
+          "r": 156,
+          "margin": 24,
+          "floor": 0.0020959081684008007,
+          "floor_degenerate": false,
+          "n_resolved": 32,
+          "frozen_n_resolved": 32,
+          "match": true
+        },
+        {
+          "r": 156,
+          "margin": 32,
+          "floor": 0.0011261666277300464,
+          "floor_degenerate": false,
+          "n_resolved": 34,
+          "frozen_n_resolved": 34,
+          "match": true
+        },
+        {
+          "r": 156,
+          "margin": 40,
+          "floor": 0.00028186379156881335,
+          "floor_degenerate": false,
+          "n_resolved": 36,
+          "frozen_n_resolved": 36,
+          "match": true
+        },
+        {
+          "r": 156,
+          "margin": 48,
+          "floor": 0.0010107092836928178,
+          "floor_degenerate": false,
+          "n_resolved": 34,
+          "frozen_n_resolved": 34,
+          "match": true
+        },
+        {
+          "r": 156,
+          "margin": 57,
+          "floor": 0.0008826774006805149,
+          "floor_degenerate": false,
+          "n_resolved": 34,
+          "frozen_n_resolved": 34,
+          "match": true
+        },
+        {
+          "r": 156,
+          "margin": 65,
+          "floor": 0.0008758130650570574,
+          "floor_degenerate": false,
+          "n_resolved": 33,
+          "frozen_n_resolved": 33,
+          "match": true
+        },
+        {
+          "r": 312,
+          "margin": 24,
+          "floor": 0.0007209567476121059,
+          "floor_degenerate": false,
+          "n_resolved": 36,
+          "frozen_n_resolved": 36,
+          "match": true
+        },
+        {
+          "r": 312,
+          "margin": 32,
+          "floor": 0.00033825903375508254,
+          "floor_degenerate": false,
+          "n_resolved": 38,
+          "frozen_n_resolved": 38,
+          "match": true
+        },
+        {
+          "r": 312,
+          "margin": 40,
+          "floor": 0.00023458052774092807,
+          "floor_degenerate": false,
+          "n_resolved": 40,
+          "frozen_n_resolved": 40,
+          "match": true
+        },
+        {
+          "r": 312,
+          "margin": 48,
+          "floor": 0.0004228044444477552,
+          "floor_degenerate": false,
+          "n_resolved": 36,
+          "frozen_n_resolved": 36,
+          "match": true
+        },
+        {
+          "r": 312,
+          "margin": 57,
+          "floor": 0.0005640583431358037,
+          "floor_degenerate": false,
+          "n_resolved": 36,
+          "frozen_n_resolved": 36,
+          "match": true
+        },
+        {
+          "r": 312,
+          "margin": 65,
+          "floor": 0.0005952392893856448,
+          "floor_degenerate": false,
+          "n_resolved": 36,
+          "frozen_n_resolved": 36,
+          "match": true
+        }
+      ],
+      "all_match": true,
+      "n_cells": 12
+    }
+  },
+  "gate_reposition_control": [
+    {
+      "case": "favorable",
+      "build_sim_calls": 1,
+      "exception_type": "StubReached",
+      "exception_msg": "build_sim reached for which=empty",
+      "returned": null,
+      "predicted_exception": "StubReached",
+      "predicted_calls": 1,
+      "gate_written_before_stub": true,
+      "gate_proceed_to_r312": true,
+      "pass_": true
+    },
+    {
+      "case": "unfavorable_budget",
+      "build_sim_calls": 0,
+      "exception_type": "RuntimeError",
+      "exception_msg": "R27/R28 cost gate REFUSED r=312: {'pilot_empty_wall_s': 10000.0, 'pilot_total_wall_s': 10501.596686840057, 'pilot_pass': False, 'kappa_ratio': 2.0, 'kappa_exponent': 3.2053299988171697, 'safety_margin': 1.1, 'projected_312_total_s': 106548.7836023175, 'total_pass': False, 'proceed_to_r312': False}",
+      "returned": null,
+      "pass_": true
+    },
+    {
+      "case": "unfavorable_precondition",
+      "build_sim_calls": 0,
+      "exception_type": "RuntimeError",
+      "exception_msg": "cost gate: r=156/empty not complete -- cannot evaluate cost_gate_check() before r=312.",
+      "returned": null,
+      "pass_": true
+    },
+    {
+      "case": "scope_precision_r156",
+      "build_sim_calls": 1,
+      "exception_type": "StubReached",
+      "exception_msg": "build_sim reached for which=empty",
+      "pass_": true
+    },
+    {
+      "case": "already_done_312_stale_156",
+      "build_sim_calls": 0,
+      "exception_type": null,
+      "exception_msg": null,
+      "returned": true,
+      "gate_evaluated": false,
+      "pass_": true
+    }
+  ],
+  "cost_gate_formula_control": {
+    "positive": {
+      "case": "positive",
+      "projected": 10.145960350566288,
+      "predicted": 10.145960350566288,
+      "pass_": true
+    },
+    "non_regression": {
+      "case": "non_regression",
+      "projected": 7632.027742505074,
+      "predicted": 7632.027742505074,
+      "total_pass": true,
+      "pass_": true,
+      "real_measured_r312_total": 6938.207038640976,
+      "new_formula_overestimate_s": 693.8207038640976,
+      "old_formula_projection_s": 6017.786373138428,
+      "old_formula_underestimate_s": 920.4206655025482
+    },
+    "discriminating": {
+      "case": "discriminating",
+      "old_formula_projection_s": 10799.0,
+      "old_formula_pass": true,
+      "new_formula_projection_s": 13695.778228220666,
+      "new_formula_pass": false,
+      "pass_": true
+    }
+  },
+  "cpl_cost_table": [
+    {
+      "cpl": 25,
+      "ratio": 1.25,
+      "r156_s": 1469.186126254499,
+      "r156_h": 0.40810725729291636,
+      "r312_s": 13551.185622345656,
+      "r312_h": 3.764218228429349,
+      "both_s": 15020.371748600155,
+      "both_h": 4.172325485722265
+    },
+    {
+      "cpl": 30,
+      "ratio": 1.5,
+      "r156_s": 2538.753626167774,
+      "r156_h": 0.7052093406021595,
+      "r312_s": 23416.448755413294,
+      "r312_h": 6.504569098725915,
+      "both_s": 25955.202381581068,
+      "both_h": 7.209778439328074
+    }
+  ],
+  "result_text": "RESULT (exp-111, Panel Iteration 88)\n\nRaw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family and item 1's own mirror-symmetry floor are both new conventions this cycle, not independently re-derived from a resolution or aliasing bound. Item 1's mirror floor characterizes grid-discretization/floating-point noise for the IDEALIZED simulated geometry ONLY -- a bin clearing it licenses NO inference about a physically realized coated disk's own achievable angular-pattern symmetry (real deposition/machining tolerances sit orders of magnitude above this floor's ~1e-9-1e-4 scale). Item 1's mirror floor is structurally BLIND to common-mode/even noise (a bias, not variance -- any bias identical at bin i and its mirror bin cancels exactly in the differencing construction, at any sample size, unclosed by pooling) -- a RESOLVED bin under this gate is cleared only against the ODD/antisymmetric noise component, not validated clean of common-mode contamination. Item 1's diagnostic is INFORMATIONAL ONLY and does not replace, gate, or reclassify item i's own existing frozen CONFIRM verdict. Panel Iteration 88 (exp-111) adds three new caveats to the above, carried forward as part of this same single-source-of-truth string (R23): (1) `floor_degenerate` is a new status field, distinct from `resolved`/RESOLVED -- it marks the genuinely degenerate case where the pooled floor itself collapses to exactly 0.0 (both parent patterns exactly mirror-symmetric); a bin with `floor_degenerate=True` is UNRESOLVED-BY-CONSTRUCTION, not silently RESOLVED, and its `local_snr_peccored`/`local_snr_hollow` fields are `nan`, not `inf`. (2) `KAPPA_COST_EXPONENT=3.2053299988171697` and `COST_GATE_SAFETY_MARGIN=1.10` are an empirical re-derivation from a SINGLE geometry/kappa_ratio=2.0 data point (exp-110's own r=156/r=312 combined wall times) -- this does NOT establish that either constant generalizes to a different kappa_ratio (e.g. a future r=624 point); a future cycle introducing one must re-derive or re-validate this formula, not assume it transfers. (3) The R27/R28 cost gate's own enforcement point is repositioned this cycle from `analyze.py` (downstream, reporting-only as of this cycle) to `chunk_runner.py` (genuinely upstream of every real r=312 `Sim.run()` call) -- verified by a control bound to the real, imported `chunk_runner` module, never a hand-copied reimplementation.\n\nZero new FDTD calls this cycle (items 1/2/4 are synthetic/orchestration/\nformula-only, item 3 deferred), zero `lab/` diff.\n(zero new FDTD this cycle; all figures from exp-110's own already-committed results.json plus this cycle's own synthetic/formula controls)\n\n**Item 1 (fault-injection control):** FI-A PASS\n(recovered 5.000000e-04, predicted 5.000000e-04). FI-B\nPASS (recovered 0.000000e+00 despite\n1.0e-03 injected common-mode magnitude). FI-C\nPASS (`floor_degenerate`=\nTrue, `resolved` all False=True,\nno `inf` in `local_snr`=True). FI-D (informational)\nFAIL (floor range\n0.000e+00-3.534e-04, spread\n3.534e-04 = 70.7% of\ninjected amplitude -- phase-dependent, neither FI-A's full recovery nor\nFI-B's exact blindness). Non-regression: all 12 real\ncells match=True.\n\n**Item 2 (gate reposition control, bound to the real `chunk_runner`\nmodule):** 5/5\ncases PASS. Favorable reaches `build_sim` (calls=\n1), gate written before the stub with\n`proceed_to_r312`=True. Both\nbudget/precondition-unfavorable cases refuse before `build_sim` (calls=0).\nr=156 scope-precision case reaches `build_sim` unconditionally (calls=\n1). The already-done/stale-156 case\n(mandatory-fix 2) returns True with zero gate evaluation and zero\n`build_sim` calls, as predicted.\n\n**Item 4 (cost-gate formula recalibration control):**\n3/3 cases PASS.\nNon-regression projects 7632.028s\n(overestimates the real measured r=312 total by\n693.8s;\nthe OLD formula underestimated it by\n920.4s).\nDiscriminating case: old formula 10799.0s\n(PASS) vs new formula\n13695.8s (FAIL)\n-- the two formulas diverge as predicted.\n\n**Item 3 (deferred, not run):** regenerated cost table (`cpl_cost_table.py`,\ncorrecting MATERIALS' own found arithmetic slip): cpl=25: 4.17h, cpl=30: 7.21h.\nRecommendation for Iteration 89 unchanged: `cpl=25`, r=156-alone-first.\n",
+  "n_fdtd_calls": 0,
+  "lab_diff": false,
+  "predictions_text": "PREDICTIONS (pre-registered, exp-111, Panel Iteration 88)\n\nRaw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family and item 1's own mirror-symmetry floor are both new conventions this cycle, not independently re-derived from a resolution or aliasing bound. Item 1's mirror floor characterizes grid-discretization/floating-point noise for the IDEALIZED simulated geometry ONLY -- a bin clearing it licenses NO inference about a physically realized coated disk's own achievable angular-pattern symmetry (real deposition/machining tolerances sit orders of magnitude above this floor's ~1e-9-1e-4 scale). Item 1's mirror floor is structurally BLIND to common-mode/even noise (a bias, not variance -- any bias identical at bin i and its mirror bin cancels exactly in the differencing construction, at any sample size, unclosed by pooling) -- a RESOLVED bin under this gate is cleared only against the ODD/antisymmetric noise component, not validated clean of common-mode contamination. Item 1's diagnostic is INFORMATIONAL ONLY and does not replace, gate, or reclassify item i's own existing frozen CONFIRM verdict. Panel Iteration 88 (exp-111) adds three new caveats to the above, carried forward as part of this same single-source-of-truth string (R23): (1) `floor_degenerate` is a new status field, distinct from `resolved`/RESOLVED -- it marks the genuinely degenerate case where the pooled floor itself collapses to exactly 0.0 (both parent patterns exactly mirror-symmetric); a bin with `floor_degenerate=True` is UNRESOLVED-BY-CONSTRUCTION, not silently RESOLVED, and its `local_snr_peccored`/`local_snr_hollow` fields are `nan`, not `inf`. (2) `KAPPA_COST_EXPONENT=3.2053299988171697` and `COST_GATE_SAFETY_MARGIN=1.10` are an empirical re-derivation from a SINGLE geometry/kappa_ratio=2.0 data point (exp-110's own r=156/r=312 combined wall times) -- this does NOT establish that either constant generalizes to a different kappa_ratio (e.g. a future r=624 point); a future cycle introducing one must re-derive or re-validate this formula, not assume it transfers. (3) The R27/R28 cost gate's own enforcement point is repositioned this cycle from `analyze.py` (downstream, reporting-only as of this cycle) to `chunk_runner.py` (genuinely upstream of every real r=312 `Sim.run()` call) -- verified by a control bound to the real, imported `chunk_runner` module, never a hand-copied reimplementation.\n\n**Item 1** (fault-injection control, `mirror_pooled_floor`/\n`classify_item_i_local`): FI-A recovers `5.0e-4` exactly (`<1e-12` abs\ndiff). FI-B recovers `0.0` exactly (`<1e-12`) despite a 2x larger\ncommon-mode input. FI-C (degenerate): `floor_peccored_pooled==\nfloor_hollow_pooled==0.0` exactly; post-fix, `floor_degenerate=True`,\n`resolved==[False]*48`, and (closing QUANTUM's own Phase-2 finding)\nneither `local_snr_peccored` nor `local_snr_hollow` is `inf` anywhere.\nFI-D (PHOTONICS' own recommended addition, informational): the pooled\nfloor's recovered magnitude is NOT constant across a 24-point phase sweep\nof a `P*=2.8421deg`-period synthetic perturbation (spread > 1% of the\ninjected amplitude), and no swept phase drives the floor to exactly 0.0\nor exactly the full injected amplitude. Non-regression: the patched\nfunction, re-run against all 12 real (r, margin) cells already committed\nin exp-110's own `results.json`, reports `floor_degenerate=False`\neverywhere and `n_resolved` bit-identical to the frozen dicts. Falsified\nby any single deviation from the above.\n\n**Item 2** (cost-gate reposition control, bound to the real `chunk_runner`\nmodule): favorable case reaches `build_sim` (raises `StubReached`, call\ncounter `==1`), with `r312_costgate.json` written showing\n`proceed_to_r312=True` BEFORE the stub is reached. Both unfavorable cases\n(budget-exceeded; r=156 precondition incomplete) raise `RuntimeError`\nbefore `build_sim` is ever called (counter `==0`), with the predicted\nsubstring (`\"REFUSED\"` / `\"not complete\"`) present. The r=156 scope-\nprecision case reaches `build_sim` unconditionally (counter `==1`) --\nthe guard fires only for `r==312`. The fifth case (r=312 already DONE,\nr=156 logs absent/stale) returns `True` immediately, WITHOUT evaluating\nthe cost gate at all (`r312_costgate.json` not written this call,\n`build_sim` counter `==0`) -- the fixed guard ordering (done-check before\ngate-check) never re-evaluates the gate on an idempotent status check.\nFalsified by any call reaching `build_sim` in an unfavorable case, any\nunfavorable case reaching it via `step_once(156, ...)` instead, or the\nfifth case ever writing/evaluating the gate.\n\n**Item 4** (cost-gate formula recalibration control): unit-arithmetic case\n`==10.145960350566288` (`<1e-9`); non-regression case (exp-110's own real\nr=156 pilot data) `==7632.027742505074s`, `<10800s` (PASS, an OVERestimate\nof the real measured r=312 total `6938.207038640976s` -- the opposite\ndirection from the old formula's own `6017.786...s` UNDERestimate, the\nfix's whole point); discriminating case: old formula (exponent 3.0, no\nmargin) `==10799.0s` (PASS), new formula `==13695.778220666s` (FAIL) --\nthe two formulas diverge in their pass/fail decision on this constructed\nnear-boundary input. Falsified if the non-regression case flips to FAIL,\nor if the two formulas do not diverge on the discriminating case.\n\n**Item 3**: no outcome predicted -- deferred, not run this cycle (see\nNOTES.md Setup/Idealizations for the reasoned scoping decision and the\nregenerated `cpl_cost_table.py` output, correcting Sec 3's own\nhand-typed-table arithmetic slip MATERIALS' Phase-2 critique caught --\nmandatory fix 4).\n\n**T1**: N/A. Confirmed structurally: item 1 touches only a `floor>0.0`\nboolean guard, a new status field, and a `nan`-vs-`inf` fill choice on an\nalready-informational angular-noise-floor diagnostic; item 2 touches only\ncheckpoint/resume orchestration (WHEN a chunk is permitted to run), not\nwhat any chunk computes; item 4 touches only an exponent and a\nmultiplicative constant in a wall-clock projection formula. None of the\nthree scores or moves any constraint-1/2/3/4 verdict. Item 3, the one\nitem with any physical content, is untouched this cycle.\n\n"
+}

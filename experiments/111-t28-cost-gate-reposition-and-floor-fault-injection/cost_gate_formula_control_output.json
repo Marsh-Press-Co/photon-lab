@@ -1,0 +1,27 @@
+{
+  "positive": {
+    "case": "positive",
+    "projected": 10.145960350566288,
+    "predicted": 10.145960350566288,
+    "pass_": true
+  },
+  "non_regression": {
+    "case": "non_regression",
+    "projected": 7632.027742505074,
+    "predicted": 7632.027742505074,
+    "total_pass": true,
+    "pass_": true,
+    "real_measured_r312_total": 6938.207038640976,
+    "new_formula_overestimate_s": 693.8207038640976,
+    "old_formula_projection_s": 6017.786373138428,
+    "old_formula_underestimate_s": 920.4206655025482
+  },
+  "discriminating": {
+    "case": "discriminating",
+    "old_formula_projection_s": 10799.0,
+    "old_formula_pass": true,
+    "new_formula_projection_s": 13695.778228220666,
+    "new_formula_pass": false,
+    "pass_": true
+  }
+}

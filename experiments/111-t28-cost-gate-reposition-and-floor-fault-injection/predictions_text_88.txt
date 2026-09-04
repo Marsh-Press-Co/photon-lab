@@ -1,0 +1,64 @@
+PREDICTIONS (pre-registered, exp-111, Panel Iteration 88)
+
+Raw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family and item 1's own mirror-symmetry floor are both new conventions this cycle, not independently re-derived from a resolution or aliasing bound. Item 1's mirror floor characterizes grid-discretization/floating-point noise for the IDEALIZED simulated geometry ONLY -- a bin clearing it licenses NO inference about a physically realized coated disk's own achievable angular-pattern symmetry (real deposition/machining tolerances sit orders of magnitude above this floor's ~1e-9-1e-4 scale). Item 1's mirror floor is structurally BLIND to common-mode/even noise (a bias, not variance -- any bias identical at bin i and its mirror bin cancels exactly in the differencing construction, at any sample size, unclosed by pooling) -- a RESOLVED bin under this gate is cleared only against the ODD/antisymmetric noise component, not validated clean of common-mode contamination. Item 1's diagnostic is INFORMATIONAL ONLY and does not replace, gate, or reclassify item i's own existing frozen CONFIRM verdict. Panel Iteration 88 (exp-111) adds three new caveats to the above, carried forward as part of this same single-source-of-truth string (R23): (1) `floor_degenerate` is a new status field, distinct from `resolved`/RESOLVED -- it marks the genuinely degenerate case where the pooled floor itself collapses to exactly 0.0 (both parent patterns exactly mirror-symmetric); a bin with `floor_degenerate=True` is UNRESOLVED-BY-CONSTRUCTION, not silently RESOLVED, and its `local_snr_peccored`/`local_snr_hollow` fields are `nan`, not `inf`. (2) `KAPPA_COST_EXPONENT=3.2053299988171697` and `COST_GATE_SAFETY_MARGIN=1.10` are an empirical re-derivation from a SINGLE geometry/kappa_ratio=2.0 data point (exp-110's own r=156/r=312 combined wall times) -- this does NOT establish that either constant generalizes to a different kappa_ratio (e.g. a future r=624 point); a future cycle introducing one must re-derive or re-validate this formula, not assume it transfers. (3) The R27/R28 cost gate's own enforcement point is repositioned this cycle from `analyze.py` (downstream, reporting-only as of this cycle) to `chunk_runner.py` (genuinely upstream of every real r=312 `Sim.run()` call) -- verified by a control bound to the real, imported `chunk_runner` module, never a hand-copied reimplementation.
+
+**Item 1** (fault-injection control, `mirror_pooled_floor`/
+`classify_item_i_local`): FI-A recovers `5.0e-4` exactly (`<1e-12` abs
+diff). FI-B recovers `0.0` exactly (`<1e-12`) despite a 2x larger
+common-mode input. FI-C (degenerate): `floor_peccored_pooled==
+floor_hollow_pooled==0.0` exactly; post-fix, `floor_degenerate=True`,
+`resolved==[False]*48`, and (closing QUANTUM's own Phase-2 finding)
+neither `local_snr_peccored` nor `local_snr_hollow` is `inf` anywhere.
+FI-D (PHOTONICS' own recommended addition, informational): the pooled
+floor's recovered magnitude is NOT constant across a 24-point phase sweep
+of a `P*=2.8421deg`-period synthetic perturbation (spread > 1% of the
+injected amplitude), and no swept phase drives the floor to exactly 0.0
+or exactly the full injected amplitude. Non-regression: the patched
+function, re-run against all 12 real (r, margin) cells already committed
+in exp-110's own `results.json`, reports `floor_degenerate=False`
+everywhere and `n_resolved` bit-identical to the frozen dicts. Falsified
+by any single deviation from the above.
+
+**Item 2** (cost-gate reposition control, bound to the real `chunk_runner`
+module): favorable case reaches `build_sim` (raises `StubReached`, call
+counter `==1`), with `r312_costgate.json` written showing
+`proceed_to_r312=True` BEFORE the stub is reached. Both unfavorable cases
+(budget-exceeded; r=156 precondition incomplete) raise `RuntimeError`
+before `build_sim` is ever called (counter `==0`), with the predicted
+substring (`"REFUSED"` / `"not complete"`) present. The r=156 scope-
+precision case reaches `build_sim` unconditionally (counter `==1`) --
+the guard fires only for `r==312`. The fifth case (r=312 already DONE,
+r=156 logs absent/stale) returns `True` immediately, WITHOUT evaluating
+the cost gate at all (`r312_costgate.json` not written this call,
+`build_sim` counter `==0`) -- the fixed guard ordering (done-check before
+gate-check) never re-evaluates the gate on an idempotent status check.
+Falsified by any call reaching `build_sim` in an unfavorable case, any
+unfavorable case reaching it via `step_once(156, ...)` instead, or the
+fifth case ever writing/evaluating the gate.
+
+**Item 4** (cost-gate formula recalibration control): unit-arithmetic case
+`==10.145960350566288` (`<1e-9`); non-regression case (exp-110's own real
+r=156 pilot data) `==7632.027742505074s`, `<10800s` (PASS, an OVERestimate
+of the real measured r=312 total `6938.207038640976s` -- the opposite
+direction from the old formula's own `6017.786...s` UNDERestimate, the
+fix's whole point); discriminating case: old formula (exponent 3.0, no
+margin) `==10799.0s` (PASS), new formula `==13695.778220666s` (FAIL) --
+the two formulas diverge in their pass/fail decision on this constructed
+near-boundary input. Falsified if the non-regression case flips to FAIL,
+or if the two formulas do not diverge on the discriminating case.
+
+**Item 3**: no outcome predicted -- deferred, not run this cycle (see
+NOTES.md Setup/Idealizations for the reasoned scoping decision and the
+regenerated `cpl_cost_table.py` output, correcting Sec 3's own
+hand-typed-table arithmetic slip MATERIALS' Phase-2 critique caught --
+mandatory fix 4).
+
+**T1**: N/A. Confirmed structurally: item 1 touches only a `floor>0.0`
+boolean guard, a new status field, and a `nan`-vs-`inf` fill choice on an
+already-informational angular-noise-floor diagnostic; item 2 touches only
+checkpoint/resume orchestration (WHEN a chunk is permitted to run), not
+what any chunk computes; item 4 touches only an exponent and a
+multiplicative constant in a wall-clock projection formula. None of the
+three scores or moves any constraint-1/2/3/4 verdict. Item 3, the one
+item with any physical content, is untouched this cycle.
+

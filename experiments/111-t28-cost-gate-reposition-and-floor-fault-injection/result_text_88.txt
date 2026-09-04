@@ -1,0 +1,48 @@
+RESULT (exp-111, Panel Iteration 88)
+
+Raw physical angular-scattering-pattern and absorbed-power/ extinction ratios only -- no Weber-contrast or C_thr(L) perceptual scoring is performed this cycle; not a claim about human visibility. angular_scattered_pattern() is a square-path near-to-mid-field angular sample, not a true circular far-field pattern (function's own docstring). The absolute-floor six-margin family and item 1's own mirror-symmetry floor are both new conventions this cycle, not independently re-derived from a resolution or aliasing bound. Item 1's mirror floor characterizes grid-discretization/floating-point noise for the IDEALIZED simulated geometry ONLY -- a bin clearing it licenses NO inference about a physically realized coated disk's own achievable angular-pattern symmetry (real deposition/machining tolerances sit orders of magnitude above this floor's ~1e-9-1e-4 scale). Item 1's mirror floor is structurally BLIND to common-mode/even noise (a bias, not variance -- any bias identical at bin i and its mirror bin cancels exactly in the differencing construction, at any sample size, unclosed by pooling) -- a RESOLVED bin under this gate is cleared only against the ODD/antisymmetric noise component, not validated clean of common-mode contamination. Item 1's diagnostic is INFORMATIONAL ONLY and does not replace, gate, or reclassify item i's own existing frozen CONFIRM verdict. Panel Iteration 88 (exp-111) adds three new caveats to the above, carried forward as part of this same single-source-of-truth string (R23): (1) `floor_degenerate` is a new status field, distinct from `resolved`/RESOLVED -- it marks the genuinely degenerate case where the pooled floor itself collapses to exactly 0.0 (both parent patterns exactly mirror-symmetric); a bin with `floor_degenerate=True` is UNRESOLVED-BY-CONSTRUCTION, not silently RESOLVED, and its `local_snr_peccored`/`local_snr_hollow` fields are `nan`, not `inf`. (2) `KAPPA_COST_EXPONENT=3.2053299988171697` and `COST_GATE_SAFETY_MARGIN=1.10` are an empirical re-derivation from a SINGLE geometry/kappa_ratio=2.0 data point (exp-110's own r=156/r=312 combined wall times) -- this does NOT establish that either constant generalizes to a different kappa_ratio (e.g. a future r=624 point); a future cycle introducing one must re-derive or re-validate this formula, not assume it transfers. (3) The R27/R28 cost gate's own enforcement point is repositioned this cycle from `analyze.py` (downstream, reporting-only as of this cycle) to `chunk_runner.py` (genuinely upstream of every real r=312 `Sim.run()` call) -- verified by a control bound to the real, imported `chunk_runner` module, never a hand-copied reimplementation.
+
+Zero new FDTD calls this cycle (items 1/2/4 are synthetic/orchestration/
+formula-only, item 3 deferred), zero `lab/` diff.
+(zero new FDTD this cycle; all figures from exp-110's own already-committed results.json plus this cycle's own synthetic/formula controls)
+
+**Item 1 (fault-injection control):** FI-A PASS
+(recovered 5.000000e-04, predicted 5.000000e-04). FI-B
+PASS (recovered 0.000000e+00 despite
+1.0e-03 injected common-mode magnitude). FI-C
+PASS (`floor_degenerate`=
+True, `resolved` all False=True,
+no `inf` in `local_snr`=True). FI-D (informational)
+FAIL (floor range
+0.000e+00-3.534e-04, spread
+3.534e-04 = 70.7% of
+injected amplitude -- phase-dependent, neither FI-A's full recovery nor
+FI-B's exact blindness). Non-regression: all 12 real
+cells match=True.
+
+**Item 2 (gate reposition control, bound to the real `chunk_runner`
+module):** 5/5
+cases PASS. Favorable reaches `build_sim` (calls=
+1), gate written before the stub with
+`proceed_to_r312`=True. Both
+budget/precondition-unfavorable cases refuse before `build_sim` (calls=0).
+r=156 scope-precision case reaches `build_sim` unconditionally (calls=
+1). The already-done/stale-156 case
+(mandatory-fix 2) returns True with zero gate evaluation and zero
+`build_sim` calls, as predicted.
+
+**Item 4 (cost-gate formula recalibration control):**
+3/3 cases PASS.
+Non-regression projects 7632.028s
+(overestimates the real measured r=312 total by
+693.8s;
+the OLD formula underestimated it by
+920.4s).
+Discriminating case: old formula 10799.0s
+(PASS) vs new formula
+13695.8s (FAIL)
+-- the two formulas diverge as predicted.
+
+**Item 3 (deferred, not run):** regenerated cost table (`cpl_cost_table.py`,
+correcting MATERIALS' own found arithmetic slip): cpl=25: 4.17h, cpl=30: 7.21h.
+Recommendation for Iteration 89 unchanged: `cpl=25`, r=156-alone-first.

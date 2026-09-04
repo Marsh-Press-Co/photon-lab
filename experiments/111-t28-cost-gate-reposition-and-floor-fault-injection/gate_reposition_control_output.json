@@ -1,0 +1,46 @@
+[
+  {
+    "case": "favorable",
+    "build_sim_calls": 1,
+    "exception_type": "StubReached",
+    "exception_msg": "build_sim reached for which=empty",
+    "returned": null,
+    "predicted_exception": "StubReached",
+    "predicted_calls": 1,
+    "gate_written_before_stub": true,
+    "gate_proceed_to_r312": true,
+    "pass_": true
+  },
+  {
+    "case": "unfavorable_budget",
+    "build_sim_calls": 0,
+    "exception_type": "RuntimeError",
+    "exception_msg": "R27/R28 cost gate REFUSED r=312: {'pilot_empty_wall_s': 10000.0, 'pilot_total_wall_s': 10501.596686840057, 'pilot_pass': False, 'kappa_ratio': 2.0, 'kappa_exponent': 3.2053299988171697, 'safety_margin': 1.1, 'projected_312_total_s': 106548.7836023175, 'total_pass': False, 'proceed_to_r312': False}",
+    "returned": null,
+    "pass_": true
+  },
+  {
+    "case": "unfavorable_precondition",
+    "build_sim_calls": 0,
+    "exception_type": "RuntimeError",
+    "exception_msg": "cost gate: r=156/empty not complete -- cannot evaluate cost_gate_check() before r=312.",
+    "returned": null,
+    "pass_": true
+  },
+  {
+    "case": "scope_precision_r156",
+    "build_sim_calls": 1,
+    "exception_type": "StubReached",
+    "exception_msg": "build_sim reached for which=empty",
+    "pass_": true
+  },
+  {
+    "case": "already_done_312_stale_156",
+    "build_sim_calls": 0,
+    "exception_type": null,
+    "exception_msg": null,
+    "returned": true,
+    "gate_evaluated": false,
+    "pass_": true
+  }
+]
