@@ -22,7 +22,88 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-04, panel Iteration 87 done (exp-110, PARTIAL,
+## Current state (2026-09-04, panel Iteration 88 done (exp-111, PARTIAL,
+THERMODYNAMICS' rotation-lead cycle: executed Reconciled Iteration-88
+Tier-1 items 1/2/4 (fault-injection control for mirror_pooled_floor/
+classify_item_i_local; repositioning the R27/R28 cost gate genuinely
+upstream into chunk_runner.py; recalibrating cost_gate_check()'s
+projection formula with an empirically re-derived exponent, 3.2053, plus
+a 10% safety margin), all zero new FDTD, and explicitly deferred item 3
+(PHOTONICS' cpl-refinement floor spot-check, genuine new FDTD) a second
+time, reasoned (sequencing + predicted cost + density risk). Five blind
+Phase-2 critiques (PHOTONICS, MATERIALS, EM, QUANTUM, VISION), all
+support-with-changes, zero opposition, each finding a distinct defect --
+PHOTONICS: the fault-injection triad tests only idealized mirror-parity
+extremes; MATERIALS: an R4-shaped hand-typed arithmetic slip in the
+item-3 deferral cost table; EM: the gate-reposition control's probative
+value depended on binding to the REAL chunk_runner module (R28's own
+founding shape recurring one layer deeper if unbound), plus a guard-
+ordering gap; QUANTUM: local_snr_peccored/hollow would still leak inf at
+the floor==0 case even post-fix; VISION: zero R23/DISCLAIMER machinery
+referenced despite three new claims this cycle introduces. Red Team's
+Phase-2 audit adopted all five into 7 mandatory fixes, verdict PROCEED-
+WITH-MANDATORY-FIXES. Predictions committed to git in the same commit as
+all 7 fixes' code (nothing executed for real before that commit). Phase
+4: zero new FDTD, zero lab/ diff, trust suite green throughout (41/41).
+Item 1: FI-A/B/C PASS exactly, non-regression against all 12 real
+committed cells PASS. FI-D (informational, added per Red Team's own
+mandatory fix 6) FAILED its own "never exactly zero" sub-claim at swept
+phases 0/180deg -- disclosed and explained (BIN_CENTERS_DEG's own mirror-
+antisymmetry collapses the perturbation to common-mode at those two
+phases, the same mechanism FI-B already demonstrates, not a new
+pathology). Item 2: all 5 gate-reposition cases PASS. Item 4: all 3
+formula-recalibration cases PASS exactly. Item 3: deferred, cost table
+regenerated confirming MATERIALS' found slip (7.21h, not 6.5h). All six
+blind Phase-5 reviews (PHOTONICS, MATERIALS, EM, QUANTUM, VISION,
+THERMODYNAMICS self-review) independently landed CONFIRM-WITH-GAPS --
+four of six (MATERIALS, PHOTONICS, VISION, THERMODYNAMICS) converged,
+blind, on the same root defect: NOTES.md's own disposition table falsely
+claimed BOTH R23 text-builder functions carried a working assert
+DISCLAIMER_88, when only the predictions half did. VISION additionally
+found the Result section's own "verbatim quote" claim was false (a hand-
+edited rewrite). EM independently found gate_reposition_control.py tests
+only the fresh-build branch, never the checkpoint-resume branch where 5
+of 6 real Sim.run() calls per r=312 scene actually occur -- and itself
+constructed/executed the missing case, confirming the underlying causal
+property genuinely holds there too. QUANTUM found the floor<=0.0 guard
+is not floating-point-robust (adversarial construction: floor~5.85e-18,
+floor_degenerate=False, local_snr~1e14), and that NOTES.md's own
+"exactly 0.0 at 180deg" claim is itself false (~1.95e-18). THERMODYNAMICS'
+own self-review derived the closed form governing FI-D's collapse and
+showed it is P*-independent, a generic property of any cosine on this
+mirror-symmetric grid, not the T28-specific regime NOTES.md's own framing
+implied. Red Team's Phase-5 final audit independently re-verified all
+five findings from primitives (two understated by their own finders),
+ratified a new standing rule (R23 First Addendum -- a disclaimer string's
+own assert-symmetry does not transfer to a later cycle's successor
+string; does not fire on this consolidating instance, third instance
+auto-fires Checkpoint 4), classified the remaining findings as fresh
+instances of R4 (x2, R20 tally 2 of 3, does not fire, a fourth
+consecutive cycle at this exact tally), R13, and R18 (none firing,
+matching established non-escalating precedent for each). Ten same-shift
+fixes applied directly (predictions_result_88.py's builders now assert
+internally; new finalize_88.py makes results.json's text fields
+genuinely reproducible from committed code alone, verified passing;
+NOTES.md annotated throughout). Trust suite reconfirmed green (41/41).
+Combined Verdict: PARTIAL -- not RULED OUT (T1 correctly N/A throughout),
+not PROMISING (a real, disclosed, seven-ways-confirmed gap cluster
+survives freeze, matching this exact T28 sub-thread's own established
+pattern since Iteration 82). Zero Checkpoint criteria fire this cycle --
+the Iteration-85 Checkpoint-4/R24 firing remains open, unchanged, still
+pending Marsh's own ruling. Reconciled Iteration-89 queue: Tier 0 --
+rule on the Iteration-85 Checkpoint-4 firing (unchanged); ratify or
+reject the new R23 First Addendum. Tier 1 -- a sixth gate_reposition_
+control.py case exercising the checkpoint-resume branch directly; harden
+classify_item_i_local's own floor<=0.0 test to an amplitude/epsilon-scaled
+magnitude floor gate (R13 discipline); a genuinely non-sinusoidal/multi-
+harmonic FI-D successor; execute item 3 (PHOTONICS' cpl-refinement floor
+check), cpl=25/r=156-alone-first, deferred twice now, not a third time
+without new reasoning; the R2_SMOOTH_THRESHOLD=0.90 re-derivation (fifth
+consecutive cycle); MATERIALS' own fabrication-tolerance bound (fourth
+consecutive cycle). Tier 2/3 -- unchanged (see LOGBOOK.md Iteration 88
+for full text). Full record: `experiments/111-t28-cost-gate-reposition-
+and-floor-fault-injection/`, LOGBOOK.md Iteration 88. Next: panel
+Iteration 87 done (exp-110, PARTIAL,
 ELECTROMAGNETISM's rotation-lead cycle: independently proved the
 Iteration-86 queue's own "zero new FDTD, all data already committed"
 premise for item i's local-magnitude renormalization false -- the

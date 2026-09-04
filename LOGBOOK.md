@@ -978,6 +978,45 @@ top. Protocol: PANEL.md.*
   `experiments/104-t28-subnyquist-standoff-recheck/
   phase5_redteam_audit.md` §0d, §1, §3.1, §5 item 4, LOGBOOK.md
   Iteration 81.
+  **R23 First Addendum (Iteration 88, exp-111) — a code-level assert
+  satisfying R23 for one disclaimer string does NOT transfer to a NEW
+  disclaimer-successor string a later cycle introduces; each new single-
+  source-of-truth string must independently ship BOTH the predictions-side
+  and result-side assert, verified via a committed, re-invocable call
+  site — not an ad hoc, uncaptured invocation — in the SAME cycle it is
+  introduced, before a Phase-3 disposition table may claim the pair is
+  symmetric.** Founding basis: Iteration 85/exp-108 (the original
+  `DISCLAIMER` string's own result-side assert was entirely absent) and
+  Iteration 88/exp-111 (a NEW `DISCLAIMER_88` string, built specifically to
+  extend R23 with three fresh caveats, repeated the identical asymmetry one
+  level over — `build_predictions_text_88()` carried the assert,
+  `build_result_text_88()` carried none and was never invoked by any
+  committed script; `results.json["result_text"]` was genuine, correct
+  content, produced by an ad hoc, uncaptured invocation, not reproducible
+  from committed code alone). Independently caught, blind, by FOUR of six
+  Phase-5 seats (MATERIALS, PHOTONICS, VISION, THERMODYNAMICS' own self-
+  review) — the strongest same-cycle multi-seat convergence this specific
+  sub-shape has produced — and confirmed by Red Team's own Phase-5 final
+  audit, which additionally found VISION's own "not byte-exact" finding
+  understated (the Director's own hand-edited "verbatim quote" Result
+  section contains an added sentence that is itself independently false —
+  see R4, below) and ran the missing reproduction check itself. **Does not
+  fire on this, its own consolidating instance** (exp-111), matching every
+  prior rule's own founding/consolidating-instance precedent — R23 itself
+  carries no forward-elevating clause of its own (re-confirmed directly
+  against its ratified text, twice, by this cycle's own Phase-2 and Phase-5
+  Red Team layers), so this addendum supplies one. Same-shift fix applied:
+  both builder functions in `predictions_result_88.py` now assert
+  `DISCLAIMER_88 in text` internally; a new `finalize_88.py` reproduces
+  `results.json`'s own two text fields byte-for-byte from committed code
+  alone, verified passing. **Standing forward-elevating clause**: a THIRD
+  instance of "predictions half asserted, result half not," on this or any
+  T28-adjacent channel, on any disclaimer string, in any form, fires
+  Checkpoint criterion 4 automatically, no further deliberation — mirroring
+  R16/R21/R22/R24/R26/R27/R28's own single-instance-ratified, forward-
+  firing convention. Full record: `experiments/111-t28-cost-gate-
+  reposition-and-floor-fault-injection/phase5_redteam_audit.md` §1, §6-§9,
+  LOGBOOK.md Iteration 88.
 - **R24 — a Phase-2 mandatory fix's own specified consequence or decision
   rule, once a Phase-3 synthesis states it was "adopted in full," must be
   implemented as a binding element of whatever classification or verdict
@@ -23809,3 +23848,214 @@ wavelength-generality leg (deferred FIVE consecutive cycles); whether
 FIVE consecutive cycles, the single most overdue item on the whole T28
 board); the oldest-unexecuted 750nm x-wall two-wall spot-check (untested).
 Full record: `experiments/080-t28-y-wall-planewave-validity-precheck/`.
+
+**Editorial note (Iteration 88, this shift, disclosed rather than silently
+continued): this file's own per-iteration narrative record has a gap.**
+The RULED OUT registry above (through R28 and this entry's own R23 First
+Addendum) and the LIVE THREADS section were kept current through
+Iteration 87, but no full `## Iteration N — ...` narrative section was
+ever appended for Iterations 58 through 87 (exp-081 through exp-110) — a
+`grep` for `## Iteration` against this file confirms the last such heading
+before this one is Iteration 57 (exp-080), while the rules/registry
+sections and `SESSION_LOG.md`'s own condensed recaps cite "LOGBOOK.md
+Iteration N" for N up to 87 as if a matching section existed. Nothing is
+lost — every cycle's full technical record lives, undamaged, in its own
+`experiments/0NN-.../` directory (phase1/2/3/4/5 documents, `NOTES.md`,
+`results.json`), and `SESSION_LOG.md`'s own entries for those iterations
+are substantive, not stubs — but this file's own promise ("record every
+phase verbatim in LOGBOOK.md") was not kept for that 30-iteration span.
+Not fixed retroactively this shift (out of scope for closing Iteration 88;
+backfilling 30 iterations' worth of narrative risks compressing or
+mischaracterizing detail better read from its own primary source). Flagged
+here for a future shift's or Marsh's own judgment on whether to backfill,
+formally adopt `SESSION_LOG.md` + the experiment directories as this
+span's authoritative narrative record, or otherwise close the gap.
+
+## Iteration 88 — The Cost-Gate Reposition and Floor Fault-Injection Cycle
+## (exp-111) — 2026-09-04
+
+**THERMODYNAMICS' rotation-lead cycle**, executing Reconciled
+Iteration-88 Tier-1 items 1/2/4 from Iteration 87's own queue (all
+zero-new-FDTD, per that queue's own text), with a reasoned, second,
+explicit deferral of item 3 (PHOTONICS' own cpl-refinement floor
+spot-check, genuine new FDTD). Tier-0 item 0 (ruling on the
+Iteration-85 Checkpoint-4/R24 firing) remained explicitly out of scope,
+Marsh's call, unattempted.
+
+**Phase 1** (THERMODYNAMICS): independently re-derived every load-bearing
+figure from exp-110's own committed `results.json` before proposing
+anything (R4 discipline) — the measured r=312/r=156 combined-wall ratio
+(9.2236×, exponent 3.2053), the real floor range and `n_resolved` sums.
+Also caught, before any critique touched it, that the Iteration-88 queue's
+own premise ("r=156's own already-logged wall times") was false in this
+fresh session (the identical shape of gap Iteration 87 found in exp-108's
+own pickles) and scoped item 2's control around synthetic logs
+accordingly. Proposed: (1) a fault-injection control for
+`mirror_pooled_floor`/`classify_item_i_local` (asymmetric recovery +
+symmetric blindness + a `floor==0` degenerate case, closing the last open
+R18 gap on exp-110's own new instrument); (2) repositioning the R27/R28
+cost gate genuinely upstream into `chunk_runner.py`; (4) recalibrating
+`cost_gate_check()`'s projection formula with the empirically re-derived
+exponent (3.2053) plus a 10% safety margin. Item 3 explicitly **deferred a
+second time** — reasoned on sequencing (item 3 should be the gate's first
+beneficiary, not run alongside its own repair), predicted cost (a
+regenerated table, up to 6 new FDTD calls, ~24.5 min to ~7.2h depending on
+`cpl` target/scope), and density risk — recommending `cpl=25`, r=156-alone
+for Iteration 89.
+
+**Phase 2**: five blind critiques (PHOTONICS, MATERIALS, ELECTROMAGNETISM,
+QUANTUM, VISION), all support-with-changes, zero opposition, each finding
+a distinct defect: PHOTONICS found the fault-injection triad tests only
+idealized mirror-parity extremes, never a realistic aliased/intermediate
+case (recommending an FI-D swept-phase control at T28's own established
+`P*=2.8421°`); MATERIALS found an R4-shaped hand-typed arithmetic slip in
+the item-3 deferral cost table (`~6.5h` claimed, `~7.21h` correct — the
+r=312-alone figure misplaced into the "both r" cell); ELECTROMAGNETISM
+found the proposed gate-reposition control's own probative value depended
+on binding to the REAL `chunk_runner` module (not a hand-copied
+reimplementation) — R28's own founding-instance shape recurring one layer
+deeper if left unbound — plus a guard-ordering gap (the guard sat before,
+not after, the existing already-DONE early-return, untested by any listed
+case); QUANTUM found `local_snr_peccored`/`local_snr_hollow` would still
+leak `inf` at the `floor==0` degenerate case even after the proposed fix
+(an untouched pre-existing ternary); VISION found zero R23/`DISCLAIMER`
+machinery referenced anywhere in the proposal despite three genuinely new
+claims this cycle introduces. Red Team's Phase-2 audit independently
+re-verified all five findings from primitives, adopted all five (one
+partial override each on PHOTONICS' urgency-framing and VISION's
+escalation-framing, both reasoned, substance adopted either way) into 7
+numbered mandatory fixes, all `[inconsistency]`, zero
+unfalsifiable/inexpressible/constraint-violation tags. Verdict
+PROCEED-WITH-MANDATORY-FIXES.
+
+**Phase 3**: Director adopted all 7 mandatory fixes in full. Code patched
+in the SAME commit as the Predictions freeze (house discipline: nothing
+executed for real before that commit) — `classify_item_i_local()`
+(`floor_degenerate` field, `floor>0.0` guard, `nan`-not-`inf` fill on
+`local_snr_*`); `cost_gate_check()` (`KAPPA_COST_EXPONENT=3.2053299988171697`,
+`COST_GATE_SAFETY_MARGIN=1.10`); `chunk_runner.py`'s new
+`check_cost_gate_for_312()`, called for `r==312` AFTER the existing
+already-DONE early-return. `DISCLAIMER`/`build_predictions_text()`/
+`build_result_text()` in exp-110's own `run.py` were deliberately left
+UNMODIFIED — mutating them would have silently broken that prior cycle's
+own frozen, already-verbatim-quoted historical reproducibility (an
+R4-shaped regression avoided by construction); this cycle's own R23 text
+lives in a new `predictions_result_88.py` (`DISCLAIMER_88 = R.DISCLAIMER +
+`NEW_CAVEATS_88`) instead. T1 confirmed N/A structurally against exactly
+what changed, not copied language.
+
+**Phase 4: zero new FDTD calls, zero `lab/` diff, trust suite green
+throughout (41/41).** Item 1: FI-A/B/C PASS exactly as predicted;
+non-regression against all 12 real committed cells PASS (bit-identical).
+**FI-D (informational) FAILED its own "never exactly zero" sub-claim** at
+swept phases 0°/180° — disclosed and explained in the Director's own
+Interpretation paragraph (not hidden): `BIN_CENTERS_DEG` is itself
+antisymmetric under mirror pairing, so a cosine perturbation at those two
+phases collapses to a purely common-mode signal, the same mechanism FI-B
+already demonstrates, not a new pathology. Item 2: all 5 gate-reposition
+cases PASS, including the new mandatory-fix-2 case (r=312 already done +
+r=156 logs stale — zero gate evaluation, zero `build_sim` calls, exactly
+as predicted). Item 4: all 3 formula-recalibration cases PASS exactly.
+Item 3: deferred, not run — `cpl_cost_table.py` regenerated the deferral
+cost table from real data, confirming MATERIALS' found slip (`7.21h`, not
+`6.5h`). Director's own working Combined Verdict: PARTIAL.
+
+**All six blind Phase-5 reviews independently landed CONFIRM-WITH-GAPS —
+a sixth clean six-of-six, four of six converging, blind, on the identical
+root defect Red Team's own final audit calls "the single most
+consequential finding."** MATERIALS, PHOTONICS, VISION, and
+THERMODYNAMICS' own self-review each independently found that NOTES.md's
+own Phase-3 disposition table falsely claimed BOTH R23 text-builder
+functions carried a working `assert DISCLAIMER_88 in ...` — only the
+predictions half did; the result half had no assert and was never invoked
+by any committed script (though its content, once produced ad hoc, was
+genuinely correct). VISION additionally found NOTES.md's own Result
+section — claimed as a "verbatim quote" — was actually a hand-edited
+rewrite. ELECTROMAGNETISM independently found `gate_reposition_control.py`
+tests only the fresh-build branch of `chunk_runner.py::step_once`, never
+the checkpoint-resume branch where 5 of 6 real `Sim.run()` calls per
+r=312 scene actually occur — and independently constructed and executed
+the missing case to confirm the underlying causal property genuinely
+holds there too. QUANTUM independently found the `floor<=0.0` guard is a
+bit-exact-zero test, not floating-point-robust (a realistic-magnitude
+adversarial construction lands `floor≈5.85e-18`, reading
+`floor_degenerate=False` and producing `local_snr~10¹⁴`-scale physically
+meaningless values), and that NOTES.md's own "exactly 0.0 at 180°" claim
+is itself false (`~1.95e-18`). THERMODYNAMICS' own self-review derived the
+closed form governing FI-D's phase-0°/180° collapse
+(`-2·amplitude·sin(phase)·sin(θᵢ)`) and showed it is completely
+`P*`-independent — a generic property of any cosine tested on this
+mirror-symmetric bin grid, not the T28-specific aliasing regime NOTES.md's
+own framing implied.
+
+**Red Team's Phase-5 final audit independently re-verified all five
+converging findings from primitives** (including constructing and
+executing, itself, both the missing checkpoint-resume gate case and the
+adversarial near-degenerate floor case), confirmed all five exactly (two
+UNDERSTATED, not overstated, by their own finders), and classified each
+against the full R1–R28 registry: the "both assert" finding is R23's own
+"predictions/result asymmetry" sub-shape, a genuine SECOND real-world
+instance (first: Iteration 85/exp-108) — ratified as **R23 First
+Addendum** (see RULED OUT registry, above), non-firing on this
+consolidating instance, third instance auto-fires Checkpoint 4. The
+"verbatim quote" defect and the "exactly 0.0 at 180°" claim are both clean
+R4-class (R20 tally: 2 of 3 required — does not fire, a FOURTH consecutive
+cycle at this exact tally, named as a standing observation, not itself
+escalated). The `floor<=0.0` non-robustness is a fresh technical instance
+of R13 (does not fire — no real committed cell triggers it). The
+gate-reposition control's untested resume branch is a fresh instance of
+R18 (does not fire — matches this sub-thread's own established,
+non-escalating precedent for R18 recurrences). Same-shift fixes applied
+directly (10 total): `predictions_result_88.py`'s two builders now assert
+`DISCLAIMER_88` internally; a new `finalize_88.py` makes both of
+`results.json`'s text fields genuinely reproducible from committed code
+alone (verified passing); NOTES.md annotated (blockquoted, attributed)
+throughout. Trust suite reconfirmed green (41/41) after the patches.
+
+**Combined Verdict: PARTIAL** — unchanged from the Director's own working
+verdict and all six blind reviews' own independent landing. Not RULED OUT
+(T1 correctly N/A throughout). Not PROMISING (a real, disclosed,
+seven-ways-independently-confirmed gap cluster survives freeze: two
+R4-class documentation defects, one R13-class guard-robustness gap, one
+R18-class control-coverage gap, one R23-First-Addendum-class
+predictions/result asymmetry — none individually fatal, none reversing
+any mandatory-fix PASS, matching this exact T28 governance sub-thread's
+own established pattern, PARTIAL every cycle since Iteration 82). Real,
+disclosed progress nonetheless: the R27/R28 cost gate is now genuinely
+repositioned upstream, confirmed by direct execution against BOTH the
+fresh-build and checkpoint-resume branches; the `inf` self-contradiction
+on the `floor==0` degenerate case is genuinely closed; the cost-gate
+formula is now empirically recalibrated and safety-margined; `results.json`'s
+own text fields are, for the first time this cycle, genuinely reproducible
+from committed code alone. **Zero Checkpoint criteria fire this cycle** —
+the standing Iteration-85 Checkpoint-4/R24 firing remains open, unchanged,
+still pending Marsh's own ruling.
+
+**Reconciled Iteration-89 queue**: **Tier 0** — (0a) rule on the
+Iteration-85 Checkpoint-4/R24 firing at the next convened checkpoint
+(unchanged); (0b) ratify or reject the R23 First Addendum. **Tier 1** —
+(1) a sixth `gate_reposition_control.py` case exercising the checkpoint-
+resume branch directly (the underlying property is independently confirmed
+to hold; the committed control itself still doesn't prove it); (2) harden
+`classify_item_i_local`'s own `floor<=0.0` test to an amplitude/epsilon-
+scaled magnitude floor gate, per R13's own established discipline; (3) a
+genuinely non-sinusoidal/multi-harmonic FI-D successor (a single pure
+cosine can never escape periodically revisiting FI-A/FI-B's own two clean
+extremes, at any period); (4) execute item 3 (PHOTONICS' own cpl-
+refinement floor spot-check at the two named bins), protected by this
+cycle's own repositioned, safety-margined gate — `cpl=25`, r=156-alone-
+first — deferred twice now, should not be deferred a third time without
+new, equally explicit reasoning; (5) the `R2_SMOOTH_THRESHOLD=0.90`
+re-derivation (fifth consecutive cycle naming it undone); (6) MATERIALS'
+own fabrication-tolerance quantitative bound (fourth consecutive cycle).
+**Tier 2** — a full per-margin item-1c/1d Result-section table;
+`CLOSURE_CONFIRM`/`CLOSURE_FALSIFY` dead-code cleanup; a fourth r-point
+(r=624, requiring re-derivation/re-validation of `KAPPA_COST_EXPONENT`/
+`COST_GATE_SAFETY_MARGIN` at a new `kappa_ratio`, not assumed transfer).
+**Tier 3 — unchanged**: the oblique-angle extension; the 750/450nm leg;
+the `G40` full-width leg; the x-wall admittance refit; `PAD`-with-article
+survival; `box_dev`'s own thinning margin (~9.0× at r=312, still
+unresolved). Full record: `experiments/111-t28-cost-gate-reposition-and-
+floor-fault-injection/` — `phase1_proposal.md`, five Phase-2 blind
+critiques, `phase2_redteam_audit.md`, `NOTES.md`, `results.json`, six
+Phase-5 blind reviews, `phase5_redteam_audit.md`.
