@@ -13,6 +13,25 @@ verbatim-quoted as exp-110's own historical Predictions/Result text in
 that cycle's own NOTES.md; mutating it in place would silently break that
 prior cycle's own reproducibility, an R4-shaped regression this file
 avoids by construction).
+
+Phase-5 Red Team final audit fix (Panel Iteration 88, this file): as
+committed at Phase 4, `build_predictions_text_88()` and
+`build_result_text_88()` were NOT symmetric despite NOTES.md's own Phase-3
+disposition table claiming "both assert `DISCLAIMER_88 in ...`" --
+independently, from source, four of six blind Phase-5 reviews (MATERIALS,
+PHOTONICS, VISION, THERMODYNAMICS) found exactly one `assert` existed
+anywhere in this file (line ~180 of the as-shipped version, inside
+`if "--predictions-only" in sys.argv`), covering only `predictions_text`;
+`build_result_text_88()` carried no assert at all, and no committed script
+anywhere in this tree called it with real data (`results.json["result_text"]`
+was produced by an ad hoc, uncaptured invocation that happened to supply
+the right `wall_time_source` kwarg -- genuinely correct content, but not
+reproducible from committed code alone). Fixed here: both builder functions
+now assert `DISCLAIMER_88 in text` INSIDE the function itself (fires on
+every real call, not merely a specific script's own entry point) -- see
+`finalize_88.py` (new, this fix) for the actually-invoked, re-runnable
+script that calls both with real captured control outputs and verifies the
+result against the frozen `results.json` byte-for-byte.
 """
 import os
 import sys
@@ -51,6 +70,12 @@ DISCLAIMER_88 = R.DISCLAIMER + NEW_CAVEATS_88
 
 
 def build_predictions_text_88():
+    text = _build_predictions_text_88_body()
+    assert DISCLAIMER_88 in text, "R23 (Panel Iteration 88 audit fix): disclaimer missing from Predictions block"
+    return text
+
+
+def _build_predictions_text_88_body():
     return f"""PREDICTIONS (pre-registered, exp-111, Panel Iteration 88)
 
 {DISCLAIMER_88}
@@ -119,6 +144,14 @@ item with any physical content, is untouched this cycle.
 
 def build_result_text_88(fi_results, gate_results, formula_results, cpl_table_rows,
                          wall_time_source=None):
+    text = _build_result_text_88_body(fi_results, gate_results, formula_results, cpl_table_rows,
+                                       wall_time_source=wall_time_source)
+    assert DISCLAIMER_88 in text, "R23 (Panel Iteration 88 audit fix): disclaimer missing from Result block"
+    return text
+
+
+def _build_result_text_88_body(fi_results, gate_results, formula_results, cpl_table_rows,
+                                wall_time_source=None):
     wall_time_note = f"\n({wall_time_source})" if wall_time_source else ""
     fi_a, fi_b, fi_c, fi_d, non_regr = (fi_results["fi_a"], fi_results["fi_b"],
                                         fi_results["fi_c"], fi_results["fi_d"],

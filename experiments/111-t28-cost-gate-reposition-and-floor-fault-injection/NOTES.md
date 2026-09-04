@@ -33,6 +33,36 @@ see `phase2_redteam_audit.md` Sec 3):**
 | 3 | Extend the `floor>0.0` guard to `local_snr_peccored`/`local_snr_hollow` (nan, not inf) + FI-C assertion | `run.py::classify_item_i_local()` patched (both fields now `nan`-filled when `floor<=0`); `floor_fault_injection_control.py::fi_c()` asserts `no_inf_snr` |
 | 4 | Correct §3's cost-projection table (cpl=30 "Both r" is 7.21h, not 6.5h); regenerate via script, not hand-typing | `cpl_cost_table.py` (new, this cycle) — see Result, below, for its actual output |
 | 5 | Extend `DISCLAIMER` (or its Iteration-88 successor string) with the three new scope caveats; wire predictions/result text; re-fire `assert DISCLAIMER in ...` | `predictions_result_88.py` — new `DISCLAIMER_88 = R.DISCLAIMER + NEW_CAVEATS_88` (does NOT mutate exp-110's own frozen `DISCLAIMER`, avoiding an R4-shaped regression against that cycle's own already-quoted verbatim text); `build_predictions_text_88()`/`build_result_text_88()`, both assert `DISCLAIMER_88 in ...` |
+
+> **Red Team's Phase-5 final audit correction (Panel Iteration 88):** the
+> "both assert" claim above is **false as shipped at Phase 4**, independently
+> caught by four of six blind Phase-5 reviews (MATERIALS, PHOTONICS, VISION,
+> THERMODYNAMICS) and confirmed here from source: exactly ONE
+> `assert DISCLAIMER_88 in ...` existed in the committed
+> `predictions_result_88.py`, inside `__main__`'s `--predictions-only`
+> branch, covering only `predictions_text`. `build_result_text_88()` carried
+> no assert at all, and no committed script anywhere in this tree called it
+> with real data — `results.json["result_text"]` was genuine, correct
+> content, but produced by an ad hoc, uncaptured invocation (it only
+> reproduces if the caller separately supplies the exact `wall_time_source`
+> string; three of six Phase-5 seats independently discovered this by
+> trial). **Same-shift fix applied by this audit**: both builder functions
+> now assert `DISCLAIMER_88 in text` INSIDE the function itself (fires on
+> every real call); a new `finalize_88.py` loads the four real
+> `*_output.json` control files, calls both functions with the real
+> `wall_time_source`, and verifies the result reproduces `results.json`'s
+> two text fields byte-for-byte (predictions modulo one harmless
+> `print()`-appended trailing newline, VISION's own Phase-5 finding,
+> independently re-confirmed) — `python3 finalize_88.py` passes. This is a
+> genuine, second real-world instance of this document family's own
+> "predictions half asserted, result half not" R23 sub-shape (first:
+> Iteration 85/exp-108, VISION's finding there; fully closed in between at
+> Iteration 86/exp-109) recurring on a NEW disclaimer string
+> (`DISCLAIMER_88`) after the original string's own symmetry was verified —
+> see the Combined Verdict section and `phase5_redteam_audit.md` for the
+> full ruling (R23 itself carries no forward-elevating clause; this audit
+> proposes a new R23 addendum covering successor-string recurrences,
+> non-firing on this, its own consolidating instance).
 | 6 | Narrow the "closes the last open R18 gap" claim; strongly recommended (not required) to add PHOTONICS' own FI-D case | **Both**: FI-D (a swept-phase quasi-periodic perturbation at `P*=2.8421°`) added to `floor_fault_injection_control.py` since it costs zero new FDTD; the claim itself is narrowed below (Idealizations) regardless of FI-D's own outcome, per Red Team's own minimum bar |
 | 7 | Carry item 3's deferral forward as its own explicit, numbered Reconciled-Iteration-89 Tier-1 line (R25 discipline) | Done — see Reconciled Iteration-89 queue, below (written now, preventatively, per Red Team's own instruction) |
 
@@ -164,6 +194,25 @@ item with any physical content, is untouched this cycle.
 ## `predictions_result_88.py::build_result_text_88()`'s own output, fed
 ## the real captured control outputs, persisted in `results.json`)
 
+> **Red Team's Phase-5 final audit correction (Panel Iteration 88):** the
+> "verbatim quote" heading above is **false as filed**, independently caught
+> by VISION's blind Phase-5 review and confirmed here by direct diff:
+> calling `build_result_text_88()` with the real committed control outputs
+> and the correct `wall_time_source` string reproduces
+> `results.json["result_text"]` byte-for-byte, but the prose block quoted
+> inline below (after the DISCLAIMER placeholder) is a **hand-edited
+> rewrite** of that real output, not a copy of it — it adds sentences the
+> function itself never generates (Item 1's "but at 2 of the 24 swept
+> phases (0°, 180°) the pooled floor reads *exactly* `0.0`, not merely
+> small"; Item 3's "(was hand-typed as '~6.5h' in `phase1_proposal.md` ...)")
+> and reformats backticks/line-wraps throughout. Every added sentence is
+> independently confirmed factually accurate (this is a fidelity-to-source
+> defect, not a numeric one) — but the code the function actually produces,
+> byte-for-byte, is `results.json["result_text"]` / `result_text_88.txt`,
+> not the prose immediately below. `finalize_88.py` (new, this audit)
+> reproduces `results.json`'s own two text fields from committed code
+> alone; run it to see the function's real, unedited output.
+
 RESULT (exp-111, Panel Iteration 88)
 
 {DISCLAIMER_88 — identical to the Predictions block above, omitted here for brevity; verbatim in `results.json["result_text"]`}
@@ -182,6 +231,33 @@ amplitude — genuinely phase-dependent, as predicted; but at 2 of the 24
 swept phases (0°, 180°) the pooled floor reads *exactly* `0.0`, not merely
 small). Non-regression: all 12 real cells match=`True`.
 
+> **Red Team's Phase-5 final audit annotation (Panel Iteration 88),
+> disclosing QUANTUM's own blind Phase-5 finding, independently
+> re-derived here from scratch in fresh numpy against adversarially
+> constructed inputs of this audit's own:** mandatory fix 3's own
+> `floor_degenerate = bool(floor <= 0.0)` guard is a **bit-exact-zero
+> test**, not a magnitude-based floor gate — the exact naive shape R13
+> (LOGBOOK RULED OUT registry) already exists to warn against. Feeding
+> `classify_item_i_local()` two realistic-magnitude (`~3e-3`) patterns whose
+> asymmetric content sits near this bench's own antisymmetric-canceling
+> phase (the phase-180° point FI-D's own data already lands on by
+> construction) produces `floor≈5.85e-18` — a genuine floating-point
+> residual, not a true zero — for which `floor_degenerate` reads **`False`**
+> (wrong: this is a computed value from an essentially-degenerate,
+> noise-scale input), every one of 48 bins reads `resolved=True`
+> (wrong: the "measurement" clearing them is pure floating-point noise),
+> and `local_snr_peccored`/`local_snr_hollow` report physically-meaningless
+> values in the `~1e14`–`~1e15` range (finite, so mandatory fix 3's own
+> literal `inf`-target is genuinely closed, but a "confidently resolved,
+> high-SNR" reading built on a floor that IS floating-point noise is just as
+> wrong in substance). Does **not** fire on any of the 12 real committed
+> cells (all floors `2.3458e-4`–`2.0959e-3`, five-plus orders of magnitude
+> clear of this danger zone, independently re-confirmed) — matching R13's
+> own precedent of not retroactively violating itself on data that has
+> never actually triggered it. See `phase5_redteam_audit.md` for the full
+> R13-instance ruling and the queued Iteration-89 fix (replace the
+> bit-exact `floor<=0.0` test with an amplitude/epsilon-scaled floor gate).
+
 **Item 2 (gate reposition control, bound to the real `chunk_runner`
 module):** 5/5 cases PASS. Favorable reaches `build_sim` (calls=1), gate
 written before the stub with `proceed_to_r312`=`True`. Both budget/
@@ -189,6 +265,36 @@ precondition-unfavorable cases refuse before `build_sim` (calls=0). r=156
 scope-precision case reaches `build_sim` unconditionally (calls=1). The
 already-done/stale-156 case (mandatory-fix 2) returns `True` with zero
 gate evaluation and zero `build_sim` calls, as predicted.
+
+> **Red Team's Phase-5 final audit annotation (Panel Iteration 88),
+> disclosing EM's own blind Phase-5 finding, independently re-verified
+> here by direct execution:** all 5 of `gate_reposition_control.py`'s own
+> cases call `fresh_scratch()` and never write a `ckpt_path` for r=312 —
+> every case exercises ONLY `step_once`'s **fresh-build** branch
+> (`sim = build_sim(g, which)`), never the **checkpoint-resume** branch
+> (`sim = state["sim"]`, loaded from pickle, `build_sim` never called). This
+> is not an edge case: `STEPS(312)=12800`, `CHUNK_STEPS=2200` ⟹ 6 chunks per
+> r=312 scene, so **5 of every 6 real `Sim.run()` calls per r=312 scene in
+> the historical exp-110 capture went through the untested resume branch**.
+> The call-counting stub this control is built around is structurally blind
+> to this branch (it patches `build_sim`, which resume never calls) — so
+> even a future bug that removed `check_cost_gate_for_312()` from the
+> resume path specifically would not be caught by any of these 5 cases.
+> **Independently tested here** (a standalone probe, not a committed-control
+> edit: a checkpoint written for r=312/"empty", a stand-in `sim` object
+> whose own `.run()` raises a sentinel the moment it is reached): the
+> underlying causal property genuinely holds on the resume branch too —
+> `check_cost_gate_for_312()` fires (and, in an unfavorable case, correctly
+> refuses before the sentinel `.run()` is ever reached) regardless of
+> whether `step_once` is about to take the fresh or resume branch, because
+> the gate call sits unconditionally between the done-check and the
+> fresh/resume split. So mandatory fix 1's own underlying claim is true in
+> full — but it was proven here, this audit, for the first time; the
+> committed control itself is one branch short of what its own "genuinely
+> upstream of every real r=312 `Sim.run()` call" claim implies. Queued as
+> an explicit Iteration-89 Tier-1 item, below (a sixth control case:
+> a pre-written checkpoint for r=312, favorable and unfavorable r=156
+> states).
 
 **Item 4 (cost-gate formula recalibration control):** 3/3 cases PASS.
 Non-regression projects `7632.028s` (overestimates the real measured
@@ -233,6 +339,54 @@ recovered (near phase=90°/270°, the maximally antisymmetric alignment) —
 still stands, and is if anything sharpened by finding the exact
 blind-spot phases rather than merely a nonzero minimum.
 
+> **Red Team's Phase-5 final audit correction #1 (Panel Iteration 88),
+> disclosing QUANTUM's own blind Phase-5 finding, independently
+> re-derived here by direct re-invocation of the real code:** "the pooled
+> floor reads exactly `0.0` at swept phases 0° and 180°" is only half
+> true. Re-running `mirror_pooled_floor()` at exactly those two phases:
+> `phase=0°` → `0.0` (bit-exact: `deg2rad(0)=0.0` exactly, so `cos(θ_i)`
+> and `cos(-θ_i)` are computed identically); `phase=180°` →
+> `1.9515639105e-18` — **not** bit-exact zero (`deg2rad(180)=π`, an
+> irrational number only approximately representable in IEEE-754, so the
+> argument-reduction that produces `cos(-θ_i+2π)` leaves a genuine,
+> reproducible floating-point residual at the `~1e-18` scale). The
+> antisymmetry MECHANISM above is correct — `φ=0` or `φ=π` are indeed the
+> only two phases where every pairwise difference vanishes analytically —
+> but the specific numeric claim "reads exactly 0.0... at 180°" does not
+> reproduce under direct invocation. Non-outcome-reversing (the code's own
+> `never_exactly_zero = bool(np.all(floors > 1e-12))` check already treats
+> anything this small as "zero" for its own pass/fail purposes, so FI-D's
+> own filed FAIL stands regardless) — but exactly the R4 failure shape
+> applied to this Director's own Phase-3/4 prose rather than a critique's,
+> and empirically the SAME residual this cycle's own `floor_degenerate`
+> guard is not robust to (see the Item-1 annotation, above, and R13,
+> LOGBOOK RULED OUT registry).
+>
+> **Red Team's Phase-5 final audit correction #2, disclosing
+> THERMODYNAMICS' own blind Phase-5 finding, independently re-derived here
+> in closed form:** writing `θ_i = 2π·BIN_CENTERS_DEG[i]/P* `, the per-pair
+> difference is exactly `arr(i) - arr(47-i) = -2·amplitude·sin(phase)·
+> sin(θ_i)` (from `cos(A+B)-cos(A-B) = -2 sin A sin B`) — independently
+> confirmed numerically (max abs deviation from the actual array ≈`5e-18`,
+> floating-point roundoff). **This vanishes identically across every bin
+> pair iff `sin(phase)=0` — completely independently of `P*`.** Re-running
+> FI-D's own construction at four other periods (`1°`, `5°`, `13.7°`,
+> `100°`) reproduces the exact-zero collapse at `phase=0°/180°` in every
+> case, with no other period-dependence. So the "Does establish" bullet's
+> own framing of FI-D as probing "the realistic aliased/phase-swept case"
+> — implying a T28-specific aliasing interaction between `P*=2.8421°` and
+> this instrument's `7.5°` bin pitch — is misleading: the phase-0°/180°
+> collapse is a **completely generic property of testing any single pure
+> cosine, of any period, on this mirror-symmetric bin grid**, not evidence
+> specific to T28's own established periodicity or its aliasing against
+> this instrument. What IS genuinely T28-specific is only the CHOICE of
+> `P*=2.8421°` for the other 22/24 swept phases' own quantitative recovery
+> curve — the qualitative "two blind phases exist, generically" fact would
+> hold for any period tested this way. A non-sinusoidal or multi-harmonic
+> perturbation shape (PHOTONICS' own original Phase-2 request) remains the
+> untested, genuinely more informative probe of the "neither clean odd nor
+> even" regime — queued, Iteration-89 Tier 2, below.
+
 ## Combined Verdict (Director, pending Phase 5)
 
 **PARTIAL** (LOGBOOK-level vocabulary) — not RULED OUT (T1 correctly N/A
@@ -245,13 +399,57 @@ predicted; zero new FDTD; zero `lab/` diff; trust suite green throughout
 reviews plus Red Team's own final audit, below, will independently
 re-verify all of the above and may revise this label.
 
+> **Red Team's Phase-5 final audit (Panel Iteration 88): Combined Verdict
+> confirmed PARTIAL, unchanged.** All six blind Phase-5 reviews landed
+> CONFIRM-WITH-GAPS independently; this audit independently re-derived,
+> from primitives, the four most consequential convergent findings (see
+> `phase5_redteam_audit.md` for the full ruling) and confirms every one:
+> mandatory-fix-5's own "both assert" claim is false as shipped (fixed,
+> this shift, `predictions_result_88.py`/`finalize_88.py`); NOTES.md's own
+> Result section is not byte-exact (annotated above, code fix supplies the
+> real reproducible path); the Interpretation's "exactly 0.0 at 180°" claim
+> is false by `~1.95e-18` (corrected above); `gate_reposition_control.py`'s
+> five cases test only the fresh-build branch, never checkpoint-resume,
+> though the underlying causal property is independently confirmed to hold
+> on resume too (annotated above); `classify_item_i_local`'s own
+> `floor<=0.0` guard is not floating-point-robust, an R13-class gap
+> (annotated above). None of these reverse any mandatory-fix PASS or touch
+> T1/constraint scoring — trust suite re-confirmed green (43/43, current
+> suite size) after this shift's own code patches, zero `lab/` diff. Zero
+> Checkpoint criteria newly fire this cycle (checked element-by-element
+> against R1–R28's own operative text); the standing Iteration-85
+> Checkpoint-4/R24 firing remains open, unchanged, still pending Marsh's
+> own ruling (Tier-0 item 0, below).
+
 ## Reconciled Iteration-89 queue (written now, per R25 discipline —
 ## mandatory fix 7 — not a parenthetical)
 
 **Tier 0** — rule on the Iteration-85 Checkpoint-4/R24 firing at the next
-convened checkpoint (unchanged, still Marsh's call, still pending).
+convened checkpoint (unchanged, still Marsh's call, still pending). (0b,
+Red Team's Phase-5 final audit, this shift) Ratify or reject the proposed
+R23 First Addendum (`phase5_redteam_audit.md`, below) — does R23's own
+predictions/result assert-symmetry discipline need to be independently
+re-satisfied for every NEW disclaimer-successor string a future cycle
+introduces, not assumed to transfer once the original string is fixed.
 
-**Tier 1** — (1) Execute item 3 (PHOTONICS' own independent, non-
+**Tier 1** — (0) Newly-found gaps this cycle's own Phase-5 review layer
+surfaced (R25 discipline, numbered so a future cycle inherits them
+literally, not as a parenthetical): (a) add a sixth
+`gate_reposition_control.py` case exercising the checkpoint-RESUME branch
+(a pre-written `ckpt_path` for r=312, both a favorable and an unfavorable
+r=156 state) — the underlying causal property is independently confirmed
+to hold (annotated in Result, above), but the committed control itself
+does not yet prove it; (b) harden `classify_item_i_local`'s own
+`floor_degenerate`/`floor<=0.0` test from a bit-exact-zero comparison to
+an amplitude/epsilon-scaled magnitude floor gate, per R13's own
+established discipline (LOGBOOK RULED OUT registry) — this cycle's own
+adversarial construction demonstrates `floor≈5.85e-18` reads
+`floor_degenerate=False` and produces `~1e14`-scale physically-meaningless
+"SNR" values; (c) a genuinely non-sinusoidal or multi-harmonic FI-D-style
+perturbation (PHOTONICS' own original Phase-2 request), since a single
+pure cosine can never escape periodically revisiting FI-A/FI-B's own two
+clean extremes at any period (THERMODYNAMICS' own Phase-5 finding,
+corrected into the Interpretation section, above). (1) Execute item 3 (PHOTONICS' own independent, non-
 differencing floor check, a `cpl`-refinement spot check) at the two named
 bins (−146.25° at r=156, +168.75° at r=312), protected by this cycle's own
 repositioned, safety-margined, real-module-verified cost gate — this
@@ -299,6 +497,25 @@ r=312, still unresolved).
   safety margin, verified non-regressive against exp-110's own real
   historical pilot data and shown to change the decision on a constructed
   near-boundary case.
+
+  > **Red Team's Phase-5 final audit annotation (Panel Iteration 88):** two
+  > qualifications to the "Does establish" claims above, both disclosed in
+  > full in the Interpretation/Result annotations above. (i) "realistic
+  > aliased/phase-swept case" is imprecise: the phase-0°/180° collapse FI-D
+  > demonstrates is independently confirmed to be a generic property of
+  > testing ANY single pure cosine, of any period, on this mirror-symmetric
+  > bin grid — not a T28-`P*`-specific aliasing effect (THERMODYNAMICS'
+  > own finding, closed-form-verified). The genuinely T28-specific content
+  > is only the shape of the OTHER 22/24 swept phases' own recovery curve,
+  > not the existence of the two blind phases. (ii) "genuinely, verifiably
+  > upstream of every real r=312 `Sim.run()` call" is true (independently
+  > confirmed by direct execution against both the fresh-build AND
+  > checkpoint-resume branches, this audit) but was, as shipped, verified
+  > by the committed control on the fresh-build branch only — 5 of every 6
+  > real `Sim.run()` calls per r=312 scene go through the untested resume
+  > branch (EM's own Phase-5 finding). Neither qualification reverses the
+  > underlying claim; both narrow "the control proves X" to "X is true,
+  > independently confirmed, though the control itself proves less than X."
 - **Does NOT establish**: anything about constraint 1/2/3/4, T1, or any
   physical mechanism (T1 explicitly N/A). Does not establish that
   `KAPPA_COST_EXPONENT=3.2053`/`COST_GATE_SAFETY_MARGIN=1.10` generalize
