@@ -224,18 +224,131 @@ proceed past a HALT to the kappa_exponent comparison.
 
 ## Phase 4 — Test
 
-*(To be filled in when Phase 4 runs — R31 same-session control first,
-then the cost-gate re-check, then, if approved, the real r=234
-empty/hollow/peccored captures via `chunk_runner114.py`.)*
+**R31 same-session control** (`chunk_runner114.py --control`): short
+(1000 steps/scene, 198.5s, speed_ratio=0.4221) and sustained (3334
+steps/scene, 712.2s, speed_ratio=0.3923) 3-scene-blend re-timings of the
+r=156/cpl=25 pilot — `combine_control_readings()` correctly selected the
+sustained (lower, more conservative) reading. **This session ran at
+~0.392× the historical (Iteration-89-derived) session's own per-step
+speed** — i.e. genuinely SLOWER, in the same direction as exp-113's own
+finding (0.406×), reinforcing that "faster than historical" (Iteration
+89's own +2.19× reading) is not the reliable default.
+
+**Cost-gate re-check** (`chunk_runner114.py --gate 25`): R31-scaled
+projection = **6895.7s** vs. the 10800s bound — **APPROVED** (36.2%
+margin). Unlike the r=312 leg (refused three times running, exp-111/
+112/113), this leg's own lower `kappa_ratio=1.5` keeps it comfortably
+inside the bound even at this session's slow throughput — confirming the
+proposal's own stated rationale for choosing r=234 (Tier-1 item 3,
+"immune to a fourth session-speed-driven deferral").
+
+**Real FDTD spend**: 3 real scenes (empty/hollow/peccored) at r=234,
+cpl=25, run via time-budgeted, checkpointed `chunk_runner114.py` calls.
+Total: empty=2355.9s, hollow=2326.2s, peccored=2356.1s —
+**7038.3s total (117.3 min)**, ~2% ABOVE the R31-scaled projection
+(6895.7s) but comfortably inside the 10800s hard bound (35% margin
+remaining) — disclosed, not smoothed over: the projection is a
+single-point extrapolation from one same-session control reading, not a
+promise, and a small overrun is exactly the kind of residual variance
+R31 itself does not claim to eliminate.
+
+**Phase-4 correction (Director's own catch, R9 discipline — a real
+defect, caught before any result was frozen, not by any Phase-2 seat
+since `analyze114.py` did not exist until Phase 3)**: the first run of
+`analyze114.py` fed the falsifiable-heart comparison
+(`refit_kappa_exponent`) the raw cross-session historical `t156`
+(670.4778s) directly against this session's own real `t234` (7038.3s) —
+an operand-commensurability defect exactly of the class R9 exists to
+catch ("verifying a ratio's arithmetic ≠ verifying its operands are
+commensurable"): this session's own R31 control had ALREADY measured
+that it runs at 0.392× historical throughput, so comparing a
+cross-session historical figure against a same-session real measurement
+conflates genuine `kappa_ratio` cost-scaling with an unrelated,
+already-quantified session-speed difference. The naive, uncorrected
+comparison gave `exponent_234=5.799`, `rel_dev=1.862` (186%) —
+**REFUTE** — which would have been a materially wrong scientific
+conclusion. Corrected `analyze114.py` to score against the historical
+`t156` **rescaled by this session's own measured R31 `speed_ratio`**
+(`t156_session_adjusted = 670.4778/0.3923 = 1709.045s`, exactly the
+figure the cost gate's own `scaled.pilot_total_wall_s` already computed
+for the cost projection — reused, not re-derived) — the session-
+normalized, correctly-scored result is below. The naive/uncorrected
+reading is retained in `results.json` under
+`kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE`, disclosed, not
+deleted, so the size of the confound this correction removes stays
+visible. **This is registered as a candidate standing rule (R33) at this
+cycle's close** — see LOGBOOK.md.
 
 ## Result
 
-*(To be filled in when Phase 4 completes — verbatim quote of
-`analyze114.py`'s own `result_text`.)*
+Verbatim quote of `analyze114.py`'s own `result_text` (`results.json`):
+
+```
+RESULT (exp-114, Panel Iteration 91)
+
+[DISCLAIMER -- unchanged, see above]
+
+3 real FDTD calls, 7038.3s (117.30 min)
+total wall time this cycle, zero `lab/` diff.
+(exp-114's own genuinely new r=234/cpl=25 spend, R31-gated by a
+same-session control. Reproduction/self-consistency precondition: N/A --
+this leg does not invoke the angular-pattern instrument (declined by
+scope, Idealization 3). Phase-4 correction (Director's own catch, R9):
+kappa_exponent_result is scored against a same-session-normalized t156
+(1709.0453s, the historical pilot rescaled by this session's own R31
+speed_ratio=0.3923), NOT the raw cross-session historical t156
+(670.4778s) directly -- the naive uncorrected comparison is disclosed,
+not scored, in kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE
+(verdict=REFUTE (kappa_exponent is kappa_ratio-dependent, not a portable
+constant), rel_dev=1.8619).)
+
+**Geometry identity: PASS.**
+**Reproduction/self-consistency precondition: N/A (not reached).**
+**Cost gate:** {raw: proceed=true (2705.3s/10800s); scaled: proceed=true
+(6895.7s/10800s, this session's own R31-controlled projection)}
+**kappa_exponent generalization check:** exponent_234=3.490881,
+measured_ratio=4.118258, reference_ratio=3.668011,
+rel_dev(ratio-space)=0.1227, verdict=CONFIRM (kappa_exponent generalizes
+across kappa_ratio)
+```
+
+**Energy ledger** (THERMODYNAMICS'/Red Team's Fix 3(a), zero marginal
+FDTD cost): peccored `sigma_scat=551.585`, `sigma_abs=541.883`,
+`sigma_ext=1093.468`; hollow `sigma_scat=551.645`, `sigma_abs=541.880`,
+`sigma_ext=1093.525` — real, non-zero absorbed power confirmed, as
+THERMODYNAMICS predicted (`graded_black_shell`, genuinely absorptive),
+now persisted rather than silently discarded.
+
+Trust suite green throughout (41/41, 98s, clean single combined run,
+zero contention this check), zero `lab/` diff, confirmed both before and
+after Phase 4.
 
 ## Combined Verdict (Director, pending Phase 5)
 
-*(Pending Phase 4.)*
+**CONFIRM (Tier 1 falsifiable question) + a genuine, self-caught R9
+defect (Tier 0 process finding), both real, both disclosed.**
+`KAPPA_COST_EXPONENT` (fit from a single `kappa_ratio=2.0` pair,
+exp-110/111) **generalizes to `kappa_ratio=1.5`**: the session-normalized
+`rel_dev=0.1227` clears the CONFIRM band (≤0.15) with room to spare, and
+sits comfortably below the REFUTE band (≥0.30) — the first time this
+exponent has been checked at any ratio other than its own founding one.
+This is now the program's second real data point on the kappa-cost
+scaling law's own portability, distinct from (and consistent with) the
+still-blocked r=312 leg's own unresolved named-bin question. Genuine,
+disclosed non-null progress on three fronts: (1) the falsifiable heart
+of this cycle resolves CONFIRM, not AMBIGUOUS or REFUTE; (2) this leg's
+own choice of the lower-`kappa_ratio` r=234 (explicitly to avoid a fourth
+r=312-style deferral) is vindicated — the cost gate approved on the
+first attempt, at real, disclosed 36.2% margin, unlike r=312's three
+consecutive deferrals; (3) a real, consequential R9-class
+operand-commensurability defect was caught and fixed by the Director
+before any result was frozen, not after — the naive, uncorrected
+comparison would have shipped a wrong REFUTE verdict, a genuinely
+different and worse outcome than what actually happened. Zero
+Checkpoint criteria fire on their own account — no unfalsifiable claim,
+no dropped constraint (T1 route N/A confirmed six ways at Phase 2), and
+the R9 defect was self-caught and corrected before freeze, not a
+program-integrity-drift finding against anyone.
 
 ## Idealizations — carried from `phase1_proposal.md` §6, as corrected at Phase 3
 

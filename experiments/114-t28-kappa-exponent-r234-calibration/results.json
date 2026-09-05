@@ -1,0 +1,153 @@
+{
+  "r": 234,
+  "cpl": 25,
+  "geom": {
+    "r": 234,
+    "cpl": 25,
+    "ratio": 1.25,
+    "k": 3.0,
+    "N": 2100,
+    "CX": 945,
+    "CY": 1050,
+    "SRC_X": 240,
+    "STEPS": 12000,
+    "R_CORE": 232,
+    "R_COAT": 292,
+    "sigma_max": 0.4,
+    "tau_shell": 24.0,
+    "absorb": 50,
+    "edge": 50,
+    "box_a": [
+      533,
+      1357,
+      638,
+      1462
+    ],
+    "ref": [
+      945,
+      1050,
+      225
+    ],
+    "family": "fixedabs_cpl"
+  },
+  "energy_ledger": {
+    "peccored": {
+      "sigma_scat": 551.5854282367458,
+      "sigma_abs": 541.8828571541701,
+      "sigma_ext": 1093.4682853909158,
+      "sigma_ext_cross": 1093.4986768887502
+    },
+    "hollow": {
+      "sigma_scat": 551.6454083870983,
+      "sigma_abs": 541.8797867365105,
+      "sigma_ext": 1093.5251951236087,
+      "sigma_ext_cross": 1093.5555866214431
+    }
+  },
+  "total_wall_s_by_scene": {
+    "empty": 2355.936572790146,
+    "hollow": 2326.2050988674164,
+    "peccored": 2356.1488120555878
+  },
+  "t234_cpl25": 7038.29048371315,
+  "t156_session_adjusted": 1709.0453443658805,
+  "kappa_exponent_result": {
+    "exponent_234": 3.490880835092507,
+    "exponent_reference": 3.2053299988171697,
+    "kappa_ratio": 1.5,
+    "measured_ratio": 4.11825848092089,
+    "reference_ratio": 3.6680107109370383,
+    "rel_dev": 0.12274985147707763,
+    "confirm_band": 0.15,
+    "refute_band": 0.3,
+    "verdict": "CONFIRM (kappa_exponent generalizes across kappa_ratio)"
+  },
+  "kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE": {
+    "exponent_234": 5.798600165690798,
+    "exponent_reference": 3.2053299988171697,
+    "kappa_ratio": 1.5,
+    "measured_ratio": 10.497425567547275,
+    "reference_ratio": 3.6680107109370383,
+    "rel_dev": 1.8618852001295216,
+    "confirm_band": 0.15,
+    "refute_band": 0.3,
+    "verdict": "REFUTE (kappa_exponent is kappa_ratio-dependent, not a portable constant)"
+  },
+  "n_fdtd_calls": 3,
+  "total_wall_s_all_scenes": 7038.29048371315,
+  "geom_identity": {
+    "pass_": true,
+    "mismatches": []
+  },
+  "r31_control": {
+    "short": {
+      "control_steps": 1000,
+      "n_scenes": 3,
+      "control_wall_s": 198.54811024665833,
+      "historical_per_step_s": 0.02793657374382019,
+      "this_session_per_step_s": 0.06618270341555277,
+      "speed_ratio": 0.422112913224623
+    },
+    "sustained": {
+      "control_steps": 3334,
+      "n_scenes": 3,
+      "control_wall_s": 712.2446472644806,
+      "historical_per_step_s": 0.02793657374382019,
+      "this_session_per_step_s": 0.07121022268191168,
+      "speed_ratio": 0.3923112818872906
+    },
+    "used_speed_ratio": 0.3923112818872906,
+    "used_label": "sustained",
+    "historical_per_step_s": 0.02793657374382019
+  },
+  "cost_gate": {
+    "raw": {
+      "pilot_empty_wall_s": 223.49258995056152,
+      "pilot_total_wall_s": 670.4777698516846,
+      "pilot_pass": true,
+      "kappa_ratio": 1.5,
+      "kappa_exponent": 3.2053299988171697,
+      "safety_margin": 1.1,
+      "projected_234_total_s": 2705.2516053872732,
+      "total_pass": true,
+      "proceed_to_r234": true
+    },
+    "scaled": {
+      "pilot_empty_wall_s": 569.6817814552935,
+      "pilot_total_wall_s": 1709.0453443658805,
+      "pilot_pass": true,
+      "kappa_ratio": 1.5,
+      "kappa_exponent": 3.2053299988171697,
+      "safety_margin": 1.1,
+      "projected_234_total_s": 6895.676291472242,
+      "total_pass": true,
+      "proceed_to_r234": true
+    },
+    "control": {
+      "short": {
+        "control_steps": 1000,
+        "n_scenes": 3,
+        "control_wall_s": 198.54811024665833,
+        "historical_per_step_s": 0.02793657374382019,
+        "this_session_per_step_s": 0.06618270341555277,
+        "speed_ratio": 0.422112913224623
+      },
+      "sustained": {
+        "control_steps": 3334,
+        "n_scenes": 3,
+        "control_wall_s": 712.2446472644806,
+        "historical_per_step_s": 0.02793657374382019,
+        "this_session_per_step_s": 0.07121022268191168,
+        "speed_ratio": 0.3923112818872906
+      },
+      "used_speed_ratio": 0.3923112818872906,
+      "used_label": "sustained",
+      "historical_per_step_s": 0.02793657374382019
+    },
+    "proceed_to_r234": true
+  },
+  "kappa_exponent_reached": true,
+  "gate_refused": false,
+  "predictions_text": "PREDICTIONS (pre-registered, exp-114, Panel Iteration 91)\n\nThis is an instrument-calibration/cost-gate cycle -- not a phenomenon-mechanism proposal and not a named-bin resolution-convergence classification (unlike exp-108/110/112/113). No sigma(I)/sigma(x,t)/angular-selectivity/sub-threshold content, no Weber-contrast or C_thr(L) perceptual scoring, is performed anywhere in this document. R30/R32 (a discriminating statistic's threshold/direction needing null-calibration/validation before an evidentiary reading) are N/A -- this cycle produces no discriminating statistic of that kind; it produces a wall-time calibration point and a re-verification of two already-established geometry-derived figures (Fix 1/Fix 2, exp-113) at a third r. R31 (same-session cost-projection control) DOES apply and gates the real Phase-4 spend, exactly as in exp-113 -- the projection reported in this document's own predictions text is the UNCONTROLLED reading (as if this session matches the historical 670.4778s/3-scene session's own throughput exactly), explicitly provisional, never the gating figure -- chunk_runner114.py's own check_cost_gate_for_r234() raises rather than proceeds if no same-session control point is on file. This document's own `kappa_exponent` (KAPPA_COST_EXPONENT, a wall-time COST-scaling exponent, empirically fit from ONE (t156,t312) pair at kappa_ratio=2.0, exp-110/R28) is a DIFFERENT quantity from `shape_ratio_fixedabs`'s own forced shape_ratio===2^n PHYSICS exponent (kappa_window's own near-field-collapse scaling, n approx 4.31, exp-105/106) -- r=234 has been informally proposed twice in this program's history, once for EACH of these two unrelated exponents (PHOTONICS' own Iteration-83 Phase-5 review, exp-106, for the physics exponent; MATERIALS' own Iteration-90 Phase-5 review, exp-113, for THIS cost exponent) -- this document concerns only the cost exponent; it does not re-engage, score, or extend the physics shape_ratio question (see Idealization 4). Separately: `234` also appears in this program's own RULED-OUT registry (R5 addendum, exp-070) as a REJECTED named-constant mechanism match (`A_alt approx 3*R_OUT = 233/234`, a dense-search coincidence shown statistically indistinguishable from chance, `null_p=0.204-0.806`) -- that finding concerns a periodicity-MECHANISM candidate for T28's own 2.84-degree signal and has nothing to do with r=234 as a GEOMETRY SIZE for this cost-calibration leg; the two uses of the numeral are unrelated, stated here only so a future reader does not conflate a ruled-out mechanism search with this cycle's own, entirely different, proposal. R4 correction (this cycle's own re-derivation): MATERIALS' own Iteration-90 Phase-5 review (exp-113, Finding 4) estimated the r=234 leg's own cost multiplier as '1.5**3.2 approx 2.98x' ('about 32%' of the r=312 leg's own projected/refused cost) -- independently re-invoked here from the actual committed formula: the true multiplier is 3.668011x (not 2.98x), and the true ratio to the r=312 leg's own analogous uncontrolled multiplier is 0.3977 (approx 39.8%, not approx 32%). Non-fatal to that review's own qualitative conclusion (r=234 remains comfortably the cheaper option), but a real, disclosed citation discrepancy, not silently propagated forward as '~32%' in this document.\n\n**R31 same-session control (measured pre-Phase-4-gate-decision, this session, reusing R113.r31_control_ratio/combine_control_readings unmodified)**: a short (1000 steps/scene) and a sustained (3334 steps/scene) 3-scene-blend re-timing of the already-completed r=156/cpl=25 scenes -- gated on the LOWER (more conservative) of the two speed_ratio values (0.422 short vs. 0.392 sustained; used=0.392). Scaled cost-gate projection: 6895.7s vs. the 10800s bound -- proceed_to_r234=True.\n\n**Geometry identity (zero-FDTD, pre-Phase-4)**: verify_geometry_identity()\nreturns pass_=True at r=156, r=234 (new), AND r=312 -- geom_fixedabs_cpl(r,\ncpl=20) must reduce to R110.geom_fixedabs(r) exactly at all three, not just\nthe two this program has evaluated it at before. Falsified by any\nmismatch -- HALT before any Sim.run() call.\n\n**Reproduction/self-consistency precondition (r=234 only, this cycle's own\nnew capture)**: sum(sigma_scat_per_bin) == sigma_scat (angular_scattered_\npattern's own docstring identity, if the angular-pattern instrument is\ninvoked at all this cycle -- see Idealization 3) to <1e-9 relative.\nFalsified by any larger deviation -- HALT before any downstream figure\nfrom this capture is trusted.\n\n**Cost gate (the genuinely uncertain question this leg exists to answer\ncheaply)**: UNCONTROLLED reading (as if this session matches the\nhistorical per-step throughput exactly, NOT the gating figure --\nR31 requires a fresh same-session control first): projected r=234 total\n= 2705.3s vs. the 10800s\nbound (75.0%\nmargin if this reading held) -- compare against the already-attempted\nr=312 leg's own analogous uncontrolled reading of 6802.6s (37% margin,\nexp-113 Sec 2.0), which STILL failed once R31-controlled for real\n(16737.4s, REFUSED). This cycle's own real, same-session R31 control\n(chunk_runner114.py --control) governs the actual Phase-4 decision;\nproceed_to_r234 may read False even though the uncontrolled projection\nabove looks comfortable, exactly as it did for r=312 last cycle.\n\n**kappa_exponent generalization check (pre-registered, falsifiable, the\nfalsifiable heart of this cycle -- NOT the shape_ratio_fixedabs physics\nquestion, see DISCLAIMER)**: once real t156(cpl=25) (already on file,\n670.4778s) and a fresh real t234(cpl=25) both\nexist, refit_kappa_exponent() computes exponent_234 =\nln(t234/t156)/ln(1.5). **Phase-3 correction (Red Team's audit, Fix 1 --\nEM/VISION/QUANTUM's convergent Phase-2 finding)**: scored in RATIO space,\nnot exponent space -- measured_ratio = 1.5**exponent_234 (== t234/t156\nexactly) vs. reference_ratio = 1.5**KAPPA_COST_EXPONENT=\n3.2053299988 (the founding exponent's own prediction, fit\nfrom the single existing r=156-to-r=312 pair at kappa_ratio=2.0,\nexp-110/R28, evaluated at THIS leg's own kappa_ratio=1.5):\n| Outcome | Condition |\n|---|---|\n| CONFIRM | relative deviation (ratio-space) <= 0.15 |\n| AMBIGUOUS | 0.15 < relative deviation < 0.30 |\n| REFUTE | relative deviation (ratio-space) >= 0.30 |\nThe 0.15/0.30 bands are RATIO-space bounds, matching R28's own founding\nmiss (2.0**3.2053.../2.0**3.0 - 1 = 0.1530) in the same space it was\nmeasured, at ANY kappa_ratio -- not an exponent-space bound whose\nreal-world stringency would otherwise vary with kappa_ratio (see\nclassify_kappa_exponent_check's own docstring). No advance position is\ntaken on which band this cycle's own real data will land in.\n\n**Fix 1 (box_a clearance in wavelengths, zero-FDTD, computable now)**:\n3.2 lambda at r=156, 4.8\nlambda at r=234 (new), 6.4 lambda at r=312 --\na geometry fact reported for continuity with exp-113's own Fix 1 finding,\nnot a pass/fail band (margin=32 preserves the PROPORTIONAL margin/R_COAT\nratio, not the near-field depth in wavelengths, at every r).\n\n**Fix 2 (sponge-margin figures)**: the domain-edge sponge's own one-way\naccumulated log-attenuation is IDENTICAL at r=234 to r=156/312\n(17.242357, exp(-17.242357)=\n3.249e-08, cpl-dependent only, confirmed identical `absorb`\nat all three r above) -- but the margin-against-signal/floor figures\n(exp-113's own three-way split: floor/signal/delta) cannot be computed\nuntil Phase 4 produces a real r=234 measurement to compare against; not\npredicted here, reported in result_text only if this cycle's own scope\nextends to computing it (see Idealization 3).\n",
+  "result_text": "RESULT (exp-114, Panel Iteration 91)\n\nThis is an instrument-calibration/cost-gate cycle -- not a phenomenon-mechanism proposal and not a named-bin resolution-convergence classification (unlike exp-108/110/112/113). No sigma(I)/sigma(x,t)/angular-selectivity/sub-threshold content, no Weber-contrast or C_thr(L) perceptual scoring, is performed anywhere in this document. R30/R32 (a discriminating statistic's threshold/direction needing null-calibration/validation before an evidentiary reading) are N/A -- this cycle produces no discriminating statistic of that kind; it produces a wall-time calibration point and a re-verification of two already-established geometry-derived figures (Fix 1/Fix 2, exp-113) at a third r. R31 (same-session cost-projection control) DOES apply and gates the real Phase-4 spend, exactly as in exp-113 -- the projection reported in this document's own predictions text is the UNCONTROLLED reading (as if this session matches the historical 670.4778s/3-scene session's own throughput exactly), explicitly provisional, never the gating figure -- chunk_runner114.py's own check_cost_gate_for_r234() raises rather than proceeds if no same-session control point is on file. This document's own `kappa_exponent` (KAPPA_COST_EXPONENT, a wall-time COST-scaling exponent, empirically fit from ONE (t156,t312) pair at kappa_ratio=2.0, exp-110/R28) is a DIFFERENT quantity from `shape_ratio_fixedabs`'s own forced shape_ratio===2^n PHYSICS exponent (kappa_window's own near-field-collapse scaling, n approx 4.31, exp-105/106) -- r=234 has been informally proposed twice in this program's history, once for EACH of these two unrelated exponents (PHOTONICS' own Iteration-83 Phase-5 review, exp-106, for the physics exponent; MATERIALS' own Iteration-90 Phase-5 review, exp-113, for THIS cost exponent) -- this document concerns only the cost exponent; it does not re-engage, score, or extend the physics shape_ratio question (see Idealization 4). Separately: `234` also appears in this program's own RULED-OUT registry (R5 addendum, exp-070) as a REJECTED named-constant mechanism match (`A_alt approx 3*R_OUT = 233/234`, a dense-search coincidence shown statistically indistinguishable from chance, `null_p=0.204-0.806`) -- that finding concerns a periodicity-MECHANISM candidate for T28's own 2.84-degree signal and has nothing to do with r=234 as a GEOMETRY SIZE for this cost-calibration leg; the two uses of the numeral are unrelated, stated here only so a future reader does not conflate a ruled-out mechanism search with this cycle's own, entirely different, proposal. R4 correction (this cycle's own re-derivation): MATERIALS' own Iteration-90 Phase-5 review (exp-113, Finding 4) estimated the r=234 leg's own cost multiplier as '1.5**3.2 approx 2.98x' ('about 32%' of the r=312 leg's own projected/refused cost) -- independently re-invoked here from the actual committed formula: the true multiplier is 3.668011x (not 2.98x), and the true ratio to the r=312 leg's own analogous uncontrolled multiplier is 0.3977 (approx 39.8%, not approx 32%). Non-fatal to that review's own qualitative conclusion (r=234 remains comfortably the cheaper option), but a real, disclosed citation discrepancy, not silently propagated forward as '~32%' in this document.\n\n3 real FDTD calls, 7038.3s (117.30 min)\ntotal wall time this cycle, zero `lab/` diff.\n(exp-114's own genuinely new r=234/cpl=25 spend, R31-gated by a same-session control. Reproduction/self-consistency precondition: N/A -- this leg does not invoke the angular-pattern instrument (declined by scope, Idealization 3). Phase-4 correction (Director's own catch, R9): kappa_exponent_result is scored against a same-session-normalized t156 (1709.0453s, the historical pilot rescaled by this session's own R31 speed_ratio=0.3923), NOT the raw cross-session historical t156 (670.4778s) directly -- the naive uncorrected comparison is disclosed, not scored, in kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE (verdict=REFUTE (kappa_exponent is kappa_ratio-dependent, not a portable constant), rel_dev=1.8619).)\n\n**Geometry identity: PASS.**\n**Reproduction/self-consistency precondition: N/A (not reached).**\n**Cost gate:** {\"raw\": {\"pilot_empty_wall_s\": 223.49258995056152, \"pilot_total_wall_s\": 670.4777698516846, \"pilot_pass\": true, \"kappa_ratio\": 1.5, \"kappa_exponent\": 3.2053299988171697, \"safety_margin\": 1.1, \"projected_234_total_s\": 2705.2516053872732, \"total_pass\": true, \"proceed_to_r234\": true}, \"scaled\": {\"pilot_empty_wall_s\": 569.6817814552935, \"pilot_total_wall_s\": 1709.0453443658805, \"pilot_pass\": true, \"kappa_ratio\": 1.5, \"kappa_exponent\": 3.2053299988171697, \"safety_margin\": 1.1, \"projected_234_total_s\": 6895.676291472242, \"total_pass\": true, \"proceed_to_r234\": true}, \"control\": {\"short\": {\"control_steps\": 1000, \"n_scenes\": 3, \"control_wall_s\": 198.54811024665833, \"historical_per_step_s\": 0.02793657374382019, \"this_session_per_step_s\": 0.06618270341555277, \"speed_ratio\": 0.422112913224623}, \"sustained\": {\"control_steps\": 3334, \"n_scenes\": 3, \"control_wall_s\": 712.2446472644806, \"historical_per_step_s\": 0.02793657374382019, \"this_session_per_step_s\": 0.07121022268191168, \"speed_ratio\": 0.3923112818872906}, \"used_speed_ratio\": 0.3923112818872906, \"used_label\": \"sustained\", \"historical_per_step_s\": 0.02793657374382019}, \"proceed_to_r234\": true}\n**kappa_exponent generalization check:** exponent_234=3.490881, measured_ratio=4.118258, reference_ratio=3.668011, rel_dev(ratio-space)=0.1227, verdict=CONFIRM (kappa_exponent generalizes across kappa_ratio)\n"
+}

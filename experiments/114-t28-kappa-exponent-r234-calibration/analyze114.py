@@ -63,7 +63,7 @@ def have(r, cpl, which):
     return os.path.exists(os.path.join(CR.SCRATCH, f"r{r}_cpl{cpl}_{which}_done.pkl"))
 
 
-def analyze_r234_cpl25():
+def analyze_r234_cpl25(control):
     de = load(234, R.CPL_TARGET, "empty")
     dh = load(234, R.CPL_TARGET, "hollow")
     dp = load(234, R.CPL_TARGET, "peccored")
@@ -91,14 +91,41 @@ def analyze_r234_cpl25():
 
     # Fix 3(b): this cycle's own stated falsifiable heart -- defined in
     # run114.py through Phase 2 but never invoked by any committed script.
-    exponent_234 = R.refit_kappa_exponent(R.HISTORICAL_R156_CPL25_TOTAL_S, t234_cpl25)
+    #
+    # Phase-4 correction (Director's own catch, R9 discipline -- an
+    # operand-commensurability defect no Phase-2 seat could have caught
+    # since analyze114.py did not exist yet): t234_cpl25 is measured THIS
+    # session; R.HISTORICAL_R156_CPL25_TOTAL_S is a bare cross-session
+    # historical figure -- and this session's own R31 control (measured
+    # before this leg's real spend) shows THIS session runs at
+    # control['used_speed_ratio'] (~0.39x) the historical session's own
+    # throughput. Feeding the raw historical t156 directly against a
+    # same-session-real t234 conflates genuine kappa_ratio cost-scaling
+    # with this session's own, already-measured, unrelated throughput
+    # difference -- exactly the class of defect R9 exists to catch
+    # ("verifying a ratio's arithmetic != verifying its operands are
+    # commensurable"). The correct same-session-normalized comparator is
+    # the historical t156 RESCALED by this session's own measured
+    # speed_ratio (R31's own same-session-control mechanism, already
+    # computed for the cost gate -- reused here, not re-derived):
+    t156_session_adjusted = R.HISTORICAL_R156_CPL25_TOTAL_S / control["used_speed_ratio"]
+    exponent_234 = R.refit_kappa_exponent(t156_session_adjusted, t234_cpl25)
     kappa_exponent_result = R.classify_kappa_exponent_check(exponent_234)
+    # Also compute (disclosed, NOT scored) the naive cross-session version,
+    # so the size of the confound this correction removes stays visible
+    # rather than silently replaced.
+    exponent_234_naive = R.refit_kappa_exponent(R.HISTORICAL_R156_CPL25_TOTAL_S, t234_cpl25)
+    kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE = (
+        R.classify_kappa_exponent_check(exponent_234_naive))
 
     return dict(r=234, cpl=R.CPL_TARGET, geom=g,
                 energy_ledger=energy_ledger,
                 total_wall_s_by_scene=total_wall_s_by_scene,
                 t234_cpl25=t234_cpl25,
-                kappa_exponent_result=kappa_exponent_result)
+                t156_session_adjusted=t156_session_adjusted,
+                kappa_exponent_result=kappa_exponent_result,
+                kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE=(
+                    kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE))
 
 
 if __name__ == "__main__":
@@ -149,14 +176,14 @@ if __name__ == "__main__":
               "empty/hollow/peccored at r=234, cpl=25 first.")
         raise SystemExit(0)
 
-    row = analyze_r234_cpl25()
-
     control_path = os.path.join(CR.SCRATCH, "r31_control.json")
     with open(control_path) as f:
         control = json.load(f)
     gate_path = os.path.join(CR.SCRATCH, f"r234_cpl{R.CPL_TARGET}_costgate.json")
     with open(gate_path) as f:
         gate = json.load(f)
+
+    row = analyze_r234_cpl25(control)
 
     print(json.dumps({k: v for k, v in row.items() if k != "geom"}, indent=2, default=str))
 
@@ -168,11 +195,20 @@ if __name__ == "__main__":
         n_fdtd_calls=n_fdtd_calls, total_wall_s=row["t234_cpl25"],
         geom_ok=geom_check["pass_"], repro_ok=None, cost_gate_result=gate,
         kappa_exponent_result=row["kappa_exponent_result"],
-        wall_time_source="exp-114's own genuinely new r=234/cpl=25 spend, "
-                          "R31-gated by a same-session control. Reproduction/"
-                          "self-consistency precondition: N/A -- this leg does "
-                          "not invoke the angular-pattern instrument (declined "
-                          "by scope, Idealization 3).")
+        wall_time_source=(
+            "exp-114's own genuinely new r=234/cpl=25 spend, R31-gated by a "
+            "same-session control. Reproduction/self-consistency precondition: "
+            "N/A -- this leg does not invoke the angular-pattern instrument "
+            "(declined by scope, Idealization 3). Phase-4 correction (Director's "
+            "own catch, R9): kappa_exponent_result is scored against a "
+            f"same-session-normalized t156 ({row['t156_session_adjusted']:.4f}s, "
+            "the historical pilot rescaled by this session's own R31 "
+            f"speed_ratio={control['used_speed_ratio']:.4f}), NOT the raw "
+            f"cross-session historical t156 ({R.HISTORICAL_R156_CPL25_TOTAL_S:.4f}s) "
+            "directly -- the naive uncorrected comparison is disclosed, not "
+            "scored, in kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE "
+            f"(verdict={row['kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE']['verdict']}, "
+            f"rel_dev={row['kappa_exponent_result_naive_uncorrected_DO_NOT_SCORE']['rel_dev']:.4f})."))
     assert R.DISCLAIMER in result_text
 
     out = dict(row, n_fdtd_calls=n_fdtd_calls, total_wall_s_all_scenes=row["t234_cpl25"],
