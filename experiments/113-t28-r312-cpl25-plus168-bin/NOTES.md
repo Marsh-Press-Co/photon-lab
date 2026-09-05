@@ -174,18 +174,96 @@ proceed past a HALT to the named-bin comparison.
 
 ## Phase 4 — Test
 
-*(to be filled in after real execution — chunk_runner113.py's own R31
-same-session control, cost-gate re-check, and the 3 real FDTD calls at
-r=312/cpl=25)*
+**R31 same-session control (Fix 3b/Fix 4), before any r=312 spend**: two
+commensurable 3-scene-blend re-timings of the r=156/cpl=25 scenes — short
+(1000 steps/scene, 190.7s, speed_ratio=0.439) and sustained (3334
+steps/scene, 687.5s, speed_ratio=0.406) — `combine_control_readings()`
+correctly selected the sustained reading (the LOWER, more conservative
+speed_ratio). **This session ran at ~0.41× the historical (Iteration 89)
+session's own per-step speed — i.e. genuinely SLOWER, the OPPOSITE
+direction from that session's own ~2.19×-faster finding.** 6 real FDTD
+calls, 878.2s (14.64 min) total, all at r=156 (cheap grid) — zero r=312
+Sim.run() calls at this stage.
+
+**Cost-gate re-check (`chunk_runner113.py --gate 25`)**: the R31-scaled
+projection is `16737.4s` against the `10800s` bound — **REFUSED**. The
+naive, uncontrolled cross-session projection this cycle's own Reconciled-
+Iteration-90 queue cited (`6802.6s`, reproducing Iteration 89's own
+briefed figure bit-exact) would have wrongly **APPROVED** the real spend.
+`chunk_runner113.py`'s own `check_cost_gate_for_r312` (R28: independently
+confirmed genuinely upstream of every r=312 `Sim.run()` call by
+ELECTROMAGNETISM's own Phase-2 critique and Red Team's audit) raised
+`RuntimeError` before any real r=312 scoring call was attempted — **zero
+r=312 `Sim.run()` calls occurred this cycle.**
+
+**This is R31's own mechanism working exactly as designed — the first
+time it has actually prevented a real overspend**, unlike its own
+founding instance (exp-112, Iteration 89), where the miss was
+conservative (over-, not under-, estimating cost) and no unsafe spend
+would have occurred either way. Here, without R31's same-session control,
+this cycle would have proceeded to attempt a real r=312/cpl=25 leg
+projected (by the naive cross-session figure) to cost ~6802s but actually
+requiring, by this session's own real per-step throughput, ~4.6 hours —
+a genuine near-miss the gate correctly caught.
 
 ## Result
 
-*(to be filled in after Phase 4 — verbatim quote of
-`analyze113.py`'s own committed `result_text`, persisted in `results.json`)*
+Verbatim quote of `analyze113.py`'s own committed `result_text`
+(`results.json`, this cycle's own gate-refused branch):
+
+```
+RESULT (exp-113, Panel Iteration 90)
+
+[DISCLAIMER -- unchanged, see above]
+
+6 real FDTD calls, 878.2s (14.64 min)
+total wall time this cycle, zero `lab/` diff.
+(6 real FDTD calls this cycle, ALL at r=156/cpl=25 (R31 same-session
+control, short+sustained 3-scene blends) -- ZERO real r=312 scoring
+Sim.run() calls were made; the gate refused upstream of all of them.)
+
+**Geometry identity: PASS.**
+**Reproduction/self-consistency precondition: N/A (not reached).**
+**Named bin (168.75deg, r=312, margin=32):** NOT REACHED -- R27/R28/R31
+cost gate REFUSED the real r=312 leg before any scoring Sim.run() call
+was attempted (upstream, per R28). Same-session control (Fix 3b/Fix 4):
+this session ran at 0.406x the historical (Iteration 89) session's own
+speed (sustained reading used, the more conservative of the two) -- i.e.
+THIS session is slower, the OPPOSITE direction from Iteration 89's own
+~2.19x-faster finding. R31-scaled projection: 16737.4s vs. the 10800s
+bound -- REFUSED (the naive, uncontrolled cross-session projection this
+cycle's own Reconciled-Iteration-90 queue cited, 6802.6s, would have
+wrongly APPROVED). This is R31's own mechanism working as designed,
+catching a real would-have-been-unsafe spend this time -- unlike its own
+founding (conservative-miss) instance.
+```
+
+Both R23 `DISCLAIMER` asserts (predictions-side, result-side) fired on
+real, live re-execution. Trust suite green throughout (41/41), zero
+`lab/` diff, confirmed both before and after Phase 4.
 
 ## Combined Verdict (Director, pending Phase 5)
 
-*(to be filled in after Phase 4)*
+**PARTIAL — BLOCKED BY COST GATE, not RULED OUT, not the intended
+data-producing PROMISING/AMBIGUOUS/etc. outcome.** The named-bin question
+(the `+168.75°` bin at r=312) remains untested — deferred for a THIRD
+time, but this time for a verified, real, this-session cost-gate
+refusal, not a sequencing/density choice (exp-111: sequencing; exp-112:
+cost/density risk; exp-113: genuine R31-scaled REFUSAL). All five
+Phase-3 mandatory fixes are real, verified, and now exercise real code
+paths for the first time (the R31 control/gate machinery ran for real
+and produced the single most consequential finding of this cycle: R31
+prevented a real overspend). Genuine, disclosed, non-null progress
+nonetheless: (1) R31/Fix-3b/Fix-4's own necessity is now empirically
+demonstrated, not merely reasoned about — a materially different outcome
+from simply re-confirming the prior session's own projection; (2) all
+five Phase-2 findings (box_a depth confound, sponge-margin comparator,
+PEC-zeroing cost asymmetry, control representativeness, Check-C
+direction inversion) are now permanently fixed in code, available to
+every future cycle in this family; (3) the new standing rule R32 is
+ratified. Zero Checkpoint criteria fire this cycle on their own account —
+this is a real, gated, disclosed cost-based deferral, not an
+unfalsifiable claim, a dropped constraint, or program-integrity drift.
 
 ## Idealizations — carried from `phase1_proposal.md` §6, as corrected at Phase 3
 
