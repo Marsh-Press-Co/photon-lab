@@ -323,32 +323,103 @@ Trust suite green throughout (41/41, 98s, clean single combined run,
 zero contention this check), zero `lab/` diff, confirmed both before and
 after Phase 4.
 
-## Combined Verdict (Director, pending Phase 5)
+## Phase 5 — Review
 
-**CONFIRM (Tier 1 falsifiable question) + a genuine, self-caught R9
-defect (Tier 0 process finding), both real, both disclosed.**
+Six blind Phase-5 reviews (VISION, MATERIALS, EM, THERMODYNAMICS,
+QUANTUM, PHOTONICS self-review): VISION/MATERIALS promising;
+EM/PHOTONICS promising-with-a-named-caveat; THERMODYNAMICS/QUANTUM
+partial. Every seat independently re-derived the R9 fix's own arithmetic
+bit-exact — zero wrong numbers in the executed chain. But three seats
+(EM, QUANTUM, PHOTONICS) each found a DIFFERENT, non-overlapping residual
+confound underneath the correction: (1) EM — the R31 sustained control
+(3334 steps/scene) is ~10× shorter than the real production run
+(~2350s/scene) and measured once, before the spend, not bracketed after;
+only ~2.4% further unfavorable drift would flip CONFIRM to AMBIGUOUS.
+(2) QUANTUM — choosing the "short" control reading instead of
+"sustained" (both same-session, both on file) flips the verdict to
+AMBIGUOUS outright; the sustained/lower-of-two selection rule was
+ratified (Iteration 90) for cost-gate safety-margin purposes, never
+independently re-justified for this different, symmetric-risk scientific
+use. (3) PHOTONICS — the deepest finding: the R31 control is measured
+EXCLUSIVELY on the r=156 grid (N=1400) and applied to rescale a verdict
+built from r=234-grid (N=2100, 2.25× cells) data — untested whether
+session slowdown transfers uniformly across grid sizes, physically
+plausible it doesn't (larger arrays more memory-bandwidth-bound).
+
+The Director's own exploratory follow-up (using already-collected,
+zero-marginal-cost cold-build r=234 timing data to construct an
+alternative "v2" normalization via an N²-per-step-scaling assumption)
+was handed to Red Team for independent assessment rather than added to
+the record directly, given uncertainty whether it was a valid check.
+
+## Phase 5 — Red Team final audit (`phase5_redteam_audit.md`)
+
+Independently re-verified every headline figure across all six reviews
+bit-exact; caught one non-outcome-reversing R4-class transcription slip
+in an earlier revision of MATERIALS' own table, already self-corrected
+in the committed record. **Extended the Director's "v2" check and found
+something more consequential than the Director's own stated uncertainty
+suggested: the two leading correction methods (sustained-control vs.
+N²-scaling) place `measured_ratio` on OPPOSITE SIDES of `reference_ratio`
+(4.118 vs. 3.217, a 28.0% spread between the two central estimates) — a
+straddle, not a corroboration.** Ruled the v2 calculation should NOT
+enter the record as supporting evidence, only as a further sensitivity
+finding (recorded here for that reason, not as a scored result).
+
+**Verdict-framing ruling: CONFIRM-WITH-NAMED-GAPS** — not plain CONFIRM
+(would understate what three independent seats plus this audit's own
+extension found); not a downgrade to AMBIGUOUS (would violate R7 — a
+robustness argument alone, without a validated superior replacement
+method, cannot override a correctly-executed pre-registered test; there
+IS an independently-ratified physical argument favoring "sustained"
+(Iteration 90); every alternative method tried stays nowhere near the
+0.30 REFUTE line — the qualitative conclusion is robust, only the
+precise tier boundary is fragile).
+
+**Checkpoint criterion 4: does not fire** — a healthy Phase-5 catch
+working as designed (Phase 2 caught the dead-code gap; the Director's
+own Phase-4 R9 catch caught a more serious defect before any freeze;
+Phase 5 found three further, mutually-independent, deeper layers of the
+SAME question, not the same defect recurring unfixed) — conditioned on
+promoting all three named confounds to explicit Iteration-92 Tier-1
+queue lines (done; see LOGBOOK.md/PLAN.md for the full Reconciled
+queue).
+
+**R33 ratified**, core + both QUANTUM's and PHOTONICS' scoping addenda +
+VISION's wording fixes — full text in `phase5_redteam_audit.md` §5,
+reproduced in LOGBOOK.md's own registry at this cycle's close.
+
+**Escalation**: Red Team's audit flags the Iteration-85 Checkpoint-4/R24
+firing as now SEVEN cycles pending without Marsh's own convening —
+escalated directly this shift (see SESSION_LOG.md).
+
+## Combined Verdict (Director, final)
+
+**CONFIRM-WITH-NAMED-GAPS** (Tier 1 falsifiable question) + a genuine,
+self-caught R9 defect, now generalized into standing rule R33 (Tier 0
+process finding) — both real, both disclosed, both now closed out.
 `KAPPA_COST_EXPONENT` (fit from a single `kappa_ratio=2.0` pair,
-exp-110/111) **generalizes to `kappa_ratio=1.5`**: the session-normalized
-`rel_dev=0.1227` clears the CONFIRM band (≤0.15) with room to spare, and
-sits comfortably below the REFUTE band (≥0.30) — the first time this
-exponent has been checked at any ratio other than its own founding one.
-This is now the program's second real data point on the kappa-cost
-scaling law's own portability, distinct from (and consistent with) the
-still-blocked r=312 leg's own unresolved named-bin question. Genuine,
-disclosed non-null progress on three fronts: (1) the falsifiable heart
-of this cycle resolves CONFIRM, not AMBIGUOUS or REFUTE; (2) this leg's
-own choice of the lower-`kappa_ratio` r=234 (explicitly to avoid a fourth
-r=312-style deferral) is vindicated — the cost gate approved on the
-first attempt, at real, disclosed 36.2% margin, unlike r=312's three
-consecutive deferrals; (3) a real, consequential R9-class
-operand-commensurability defect was caught and fixed by the Director
-before any result was frozen, not after — the naive, uncorrected
-comparison would have shipped a wrong REFUTE verdict, a genuinely
-different and worse outcome than what actually happened. Zero
-Checkpoint criteria fire on their own account — no unfalsifiable claim,
-no dropped constraint (T1 route N/A confirmed six ways at Phase 2), and
-the R9 defect was self-caught and corrected before freeze, not a
-program-integrity-drift finding against anyone.
+exp-110/111) **generalizes to `kappa_ratio=1.5` under the pre-registered,
+correctly ratio-space-scored rule** (`rel_dev=0.1227`, CONFIRM) — the
+first real check of this exponent at any ratio other than its own
+founding one — but the correction underlying that number rests on an
+unverified cross-grid-transfer assumption that, under one equally
+defensible alternative, would place the true ratio on the *other side*
+of the reference value. Genuine, disclosed non-null progress on four
+fronts: (1) the falsifiable heart resolves CONFIRM-WITH-NAMED-GAPS, not
+AMBIGUOUS or REFUTE, under a rule the whole panel scrutinized and
+believes robust in its qualitative conclusion; (2) this leg's own choice
+of the lower-`kappa_ratio` r=234 (explicitly to avoid a fourth
+r=312-style deferral) is vindicated — cost gate approved on the first
+attempt, 36.2% margin; (3) a real, consequential R9-class defect was
+caught and fixed by the Director before any result was frozen; (4) that
+catch generalized into R33, a new standing rule with two independently-
+sourced scoping addenda, closing exactly the kind of gap that produced
+it. Zero Checkpoint criteria fire (Red Team's explicit ruling, §4 of its
+audit) — no unfalsifiable claim, no dropped constraint (T1 route N/A
+confirmed six ways at Phase 2 and again at Phase 5), and the R9 defect
+and its own residual gaps were self-caught, disclosed, and queued for
+Iteration 92 — not a program-integrity-drift finding against anyone.
 
 ## Idealizations — carried from `phase1_proposal.md` §6, as corrected at Phase 3
 
