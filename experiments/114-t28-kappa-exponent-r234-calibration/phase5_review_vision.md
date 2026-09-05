@@ -293,9 +293,38 @@ Nothing in this cycle's own record needs correcting; R33, once worded per
 
 ## Trust suite
 
-`python3 lab/validation/run_all.py --only 12346789`, re-run this session
-from the repo root: **[see below — result pending at time of writing this
-section; recorded once the run completes, per this cycle's own disclosed
-shared-sandbox contention (5 of the 5 prior Phase-2 critiques this cycle
-independently reported 6–10 concurrent copies of this exact command running
-under other seats' own sessions)]**.
+Attempted `python3 lab/validation/run_all.py --only 12346789` (single
+combined invocation) from the repo root first; it was killed by its own
+`timeout 590` wrapper with **zero** stdout produced (`ps aux` confirmed 20+
+concurrent copies of this identical command, `uptime` load average 21.96 on
+a `nproc=4` box) — the same shared-sandbox contention every one of this
+cycle's five Phase-2 critiques and the Red Team audit independently
+disclosed, reproduced here a third time, at Phase 5.
+
+Fell back to the disclosed `--only 1` through `--only 9` (skipping 5)
+methodology this cycle's own critiques and Red Team audit already
+established. Ran each stage individually, this session, and independently
+confirmed every reported figure against the historical values (not merely
+that a `[PASS]` line appeared):
+
+| Stage | Checks | Result | Headline figures (this run) |
+|---|---|---|---|
+| 1 | 3 | PASS | λ=19.97 cells, peak|Ez|=2.52, shadow ratio=0.479 |
+| 2 | 3 | PASS | R=0.0983/0.0178/0.0177 |
+| 3 | 4 | PASS | corr=0.928, λ=20.37, shadow agreement 0.451 vs 0.498 |
+| 4 | 3 (1 shared prereq) | PASS — took two attempts (a 150s and a 585s try were both killed mid-solve by the same contention; a third attempt with a 1500s budget completed cleanly in 7s once the shared sandbox quieted) | ceviche corr=0.956, λ=19.80 |
+| 6 | 5 | PASS | empty-room return 0.0001, mirror 0.924, Fresnel-1/9 0.1114, specular 0.99, round-trip OK |
+| 7 | 5 | PASS | bare-wall R=0.988, coated-wall R=0.0010/−0.0002/0.0020 @600/450/750nm |
+| 8 | 6 | PASS | box independence 0.020/0.001, extinction-routes-agree 0.002, abs/ext=0.571, back_frac=0.0001 |
+| 9 | 13 | PASS | angle=0 bit-exact, oblique λ=23.08, empty-window balance/ripple canaries all inside band, `|C_empty|`=0.00043 |
+
+Raw sum: 3+3+4+3+5+5+6+13 = 42 — but stage 3 and stage 4 both separately
+compute the shared `ours-small` prerequisite (`λ=19.96` cells, identical in
+both logs) when run as standalone `--only` invocations; deduplicating per
+this program's own R19 discipline (call-count ≠ distinct-check-count) gives
+**41 unique checks, all `[PASS]`, every one independently confirmed by
+direct execution this session** — matching this program's own long-
+established `--only 12346789` figure exactly, and every headline value
+matches the historical figures cited above bit-for-bit (no drift, no
+regression). `git diff --stat -- lab/` confirmed empty throughout. **41/41
+green.**
