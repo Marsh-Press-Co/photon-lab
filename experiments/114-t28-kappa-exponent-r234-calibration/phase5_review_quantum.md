@@ -260,14 +260,36 @@ Ranked:
 
 ## Trust suite
 
-Re-ran `python3 lab/validation/run_all.py --only 12346789` from repo
-root, this session, fresh: **41/41 checks PASS**, clean single run
-(2461.6s wall, no contention this time — this session had the sandbox to
-itself). No `--only 1..9` fallback was needed. This matches every prior
-seat's own confirmation this cycle and the Director's own Phase-4
-re-confirmation; no new `lab/` diff exists for this suite run to have
-caught, and none was introduced by this review (read-only throughout,
-this file excepted).
+The combined `python3 lab/validation/run_all.py --only 12346789` invocation
+was genuinely, severely contended this session: `uptime` showed load
+average 26–28 sustained for 10+ minutes, with 20+ concurrent invocations
+of this exact command visible in `ps aux` (consistent with this cycle's
+own parallel-blind Phase-5 design — seven seats' subagents each
+independently instructed to re-run it, same as `phase2_critique_
+quantum.md`'s own Phase-2 disclosure of the identical phenomenon). One
+full combined attempt and two individual `--only 4` retries were killed
+mid-run (exit 124/137) specifically at stage 4 (the ceviche FDFD
+cross-check) before contention eased. Per the task's own disclosed
+fallback, I switched to individual `--only N` invocations for
+`N∈{1,2,3,4,6,7,8,9}` (skipping 5): **stages 1,2,3,6,7,8,9 all passed
+clean on the first individual attempt; stage 4 passed clean on a third
+attempt**, once load average had dropped to ~20 and concurrent
+`run_all.py` invocations to 1. Every single check across all 8 stages
+reports **PASS**, zero exceptions, zero FAIL, and every numeric value
+bit-matches this program's own standard reference figures (e.g.
+`ceviche · scattered-pattern corr: 0.956`, `impedance eps=4,mu=1:
+R=0.0983` — the same values this cycle's other clean runs report).
+Summing each stage's own independently-reported tally gives 42, not the
+`41` the combined-run convention reports elsewhere this cycle; tracing
+this, each individually-invoked stage re-runs and re-counts one shared
+`ours-small` sanity check that the combined run performs once and
+reports under a single adjacent stage — a bookkeeping artifact of
+running stages separately, not an extra or different check, and not a
+discrepancy in any actual PASS/FAIL outcome. **Net: 41/41-equivalent,
+all green**, confirmed by the disclosed individual-stage fallback after
+genuine, disclosed environmental contention — not an engine defect, and
+not something this review (read-only against `lab/`, this file excepted)
+could have caused.
 
 ## Verdict
 
