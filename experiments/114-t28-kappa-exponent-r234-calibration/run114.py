@@ -220,10 +220,28 @@ def cost_gate_check_r31_r234(pilot_empty_wall_s, pilot_total_wall_s, control):
 # ================================================================ pre-registered kappa_exponent generalization check (the falsifiable
 # heart of this cycle -- see module docstring; NOT the fixedabs shape_ratio
 # physics question, a different exponent entirely, see Idealization 4)
-KAPPA_EXPONENT_CONFIRM_REL = 0.15   # matches R28's own already-tolerated founding
-                                     # miss magnitude (the old exponent=3.0 missed
-                                     # the real measured ratio by ~15%) -- a deviation
-                                     # at or below this is "no surprise," not a new finding
+#
+# Phase-3 correction (Red Team's Phase-2 audit, exp-114, Fix 1 -- route (a),
+# independently converged on by EM/VISION/QUANTUM's own blind critiques):
+# the ORIGINAL form of this check (through Phase 2) scored rel_dev in
+# EXPONENT space (|exponent_234 - KAPPA_COST_EXPONENT|/KAPPA_COST_EXPONENT)
+# but justified its 0.15/0.30 bands by citing R28's own founding miss, which
+# is a RATIO-space quantity (the projected wall-time MULTIPLIER miss,
+# (2.0**3.2053...-2.0**3.0)/2.0**3.0 = 0.1530, not an exponent-space one --
+# the true exponent-space equivalent is only (3.2053-3.0)/3.0 = 0.0684).
+# Independent of the citation error, an exponent-space band of fixed
+# nominal size has a kappa_ratio-DEPENDENT real-world (ratio-space)
+# stringency (0.15 exponent-space implies 21.5% ratio-space stringency at
+# kappa_ratio=1.5 but 39.6% at kappa_ratio=2.0) -- undermining the very
+# cross-ratio-portability question this check exists to answer. Scoring
+# DIRECTLY in ratio-space (below) fixes both: the 0.15/0.30 bands now
+# genuinely reuse R28's own founding figure in the SAME space it was
+# measured in, and their real-world stringency is kappa_ratio-invariant by
+# construction (a fixed relative gap between two ratio-space numbers, not
+# an exponent-space gap whose ratio-space image depends on kappa_ratio).
+KAPPA_EXPONENT_CONFIRM_REL = 0.15   # RATIO-space bound -- matches R28's own founding
+                                     # miss (2.0**3.2053.../2.0**3.0 - 1 = 0.1530) in
+                                     # the SAME space it was measured, at ANY kappa_ratio
 KAPPA_EXPONENT_REFUTE_REL = 0.30    # double that -- a deviation this large is evidence
                                      # the exponent genuinely depends on kappa_ratio,
                                      # not a single portable constant
@@ -237,8 +255,19 @@ def refit_kappa_exponent(t156_cpl25, t234_cpl25, kappa_ratio=KAPPA_RATIO_234_156
     return math.log(t234_cpl25 / t156_cpl25) / math.log(kappa_ratio)
 
 
-def classify_kappa_exponent_check(exponent_234):
-    rel_dev = abs(exponent_234 - KAPPA_COST_EXPONENT) / abs(KAPPA_COST_EXPONENT)
+def classify_kappa_exponent_check(exponent_234, kappa_ratio=KAPPA_RATIO_234_156):
+    """Phase-3-corrected (Red Team's audit, Fix 1, route (a)): scores in
+    RATIO space, not exponent space. `kappa_ratio ** exponent_234` is
+    mathematically identical to the real measured ratio t234/t156
+    (refit_kappa_exponent's own construction inverted) -- so this compares
+    the real measured wall-time-scaling ratio directly against the ratio
+    KAPPA_COST_EXPONENT itself would have predicted at this SAME
+    kappa_ratio, exactly mirroring how R28's own founding ~15.3% figure was
+    computed (old-guess-exponent's ratio vs. fitted-exponent's ratio, both
+    at kappa_ratio=2.0)."""
+    measured_ratio = kappa_ratio ** exponent_234
+    reference_ratio = kappa_ratio ** KAPPA_COST_EXPONENT
+    rel_dev = abs(measured_ratio - reference_ratio) / abs(reference_ratio)
     if rel_dev <= KAPPA_EXPONENT_CONFIRM_REL:
         verdict = "CONFIRM (kappa_exponent generalizes across kappa_ratio)"
     elif rel_dev >= KAPPA_EXPONENT_REFUTE_REL:
@@ -246,7 +275,9 @@ def classify_kappa_exponent_check(exponent_234):
     else:
         verdict = "AMBIGUOUS"
     return dict(exponent_234=exponent_234, exponent_reference=KAPPA_COST_EXPONENT,
-                rel_dev=rel_dev, confirm_band=KAPPA_EXPONENT_CONFIRM_REL,
+                kappa_ratio=kappa_ratio, measured_ratio=measured_ratio,
+                reference_ratio=reference_ratio, rel_dev=rel_dev,
+                confirm_band=KAPPA_EXPONENT_CONFIRM_REL,
                 refute_band=KAPPA_EXPONENT_REFUTE_REL, verdict=verdict)
 
 
@@ -380,16 +411,24 @@ falsifiable heart of this cycle -- NOT the shape_ratio_fixedabs physics
 question, see DISCLAIMER)**: once real t156(cpl=25) (already on file,
 {HISTORICAL_R156_CPL25_TOTAL_S:.4f}s) and a fresh real t234(cpl=25) both
 exist, refit_kappa_exponent() computes exponent_234 =
-ln(t234/t156)/ln(1.5). Scored against KAPPA_COST_EXPONENT=
-{KAPPA_COST_EXPONENT:.10f} (fit from the single existing r=156-to-r=312
-pair, kappa_ratio=2.0, exp-110/R28):
+ln(t234/t156)/ln(1.5). **Phase-3 correction (Red Team's audit, Fix 1 --
+EM/VISION/QUANTUM's convergent Phase-2 finding)**: scored in RATIO space,
+not exponent space -- measured_ratio = 1.5**exponent_234 (== t234/t156
+exactly) vs. reference_ratio = 1.5**KAPPA_COST_EXPONENT=
+{KAPPA_COST_EXPONENT:.10f} (the founding exponent's own prediction, fit
+from the single existing r=156-to-r=312 pair at kappa_ratio=2.0,
+exp-110/R28, evaluated at THIS leg's own kappa_ratio=1.5):
 | Outcome | Condition |
 |---|---|
-| CONFIRM | relative deviation <= {KAPPA_EXPONENT_CONFIRM_REL:.2f} |
+| CONFIRM | relative deviation (ratio-space) <= {KAPPA_EXPONENT_CONFIRM_REL:.2f} |
 | AMBIGUOUS | {KAPPA_EXPONENT_CONFIRM_REL:.2f} < relative deviation < {KAPPA_EXPONENT_REFUTE_REL:.2f} |
-| REFUTE | relative deviation >= {KAPPA_EXPONENT_REFUTE_REL:.2f} |
-No advance position is taken on which band this cycle's own real data will
-land in.
+| REFUTE | relative deviation (ratio-space) >= {KAPPA_EXPONENT_REFUTE_REL:.2f} |
+The 0.15/0.30 bands are RATIO-space bounds, matching R28's own founding
+miss (2.0**3.2053.../2.0**3.0 - 1 = 0.1530) in the same space it was
+measured, at ANY kappa_ratio -- not an exponent-space bound whose
+real-world stringency would otherwise vary with kappa_ratio (see
+classify_kappa_exponent_check's own docstring). No advance position is
+taken on which band this cycle's own real data will land in.
 
 **Fix 1 (box_a clearance in wavelengths, zero-FDTD, computable now)**:
 {_BOX_A_CLEARANCE_LAMBDA_R156:.1f} lambda at r=156, {_BOX_A_CLEARANCE_LAMBDA_R234:.1f}
@@ -415,7 +454,9 @@ def build_result_text(n_fdtd_calls, total_wall_s, geom_ok, repro_ok, cost_gate_r
     wall_time_note = f"\n({wall_time_source})" if wall_time_source else ""
     kx_line = ("Not yet scored (no real t234 on file)." if kappa_exponent_result is None
                else f"exponent_234={kappa_exponent_result['exponent_234']:.6f}, "
-                    f"rel_dev={kappa_exponent_result['rel_dev']:.4f}, "
+                    f"measured_ratio={kappa_exponent_result['measured_ratio']:.6f}, "
+                    f"reference_ratio={kappa_exponent_result['reference_ratio']:.6f}, "
+                    f"rel_dev(ratio-space)={kappa_exponent_result['rel_dev']:.4f}, "
                     f"verdict={kappa_exponent_result['verdict']}")
     return f"""RESULT (exp-114, Panel Iteration 91)
 

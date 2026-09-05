@@ -129,6 +129,18 @@ charter question, a different exponent, deliberately out of scope — see
 Idealization 4). Each is a real, named, undropped debt, not silently
 dropped.
 
+> **Phase-3 correction (Red Team's Phase-2 audit, Fix 4, ratifying
+> MATERIALS' own Phase-2 critique)**: this list, as originally drafted,
+> omitted **MATERIALS' own fabrication-tolerance quantitative bound** —
+> a Tier-2 queue item independently confirmed restated in every one of
+> exp-111/112/113's own declined-items sections for three consecutive
+> cycles running, and still a live Tier-2 line in the Iteration-91 queue
+> itself. Named here, now, as the fifth real, undropped debt this
+> document declines to engage: it is unaffected by this leg's own r=234
+> geometry or cost-exponent question, and remains carried forward to
+> Iteration 92 exactly as before — restoring the restatement chain this
+> draft broke.
+
 ## 4. T1 escape route: N/A
 
 Confirmed structurally, independent of outcome: this document changes
