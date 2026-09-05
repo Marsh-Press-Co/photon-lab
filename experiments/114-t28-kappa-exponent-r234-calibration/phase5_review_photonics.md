@@ -19,12 +19,12 @@ below from primitives (Python, by hand, and by direct execution of
 `run114.py`) rather than trusting NOTES.md's own transcription; did not
 run any new `Sim.run()` call myself.*
 
-## Verdict: **PROMISING — a genuine CONFIRM, but the correction that
-produced it rests on one untested assumption that is now, for the first
-time on this sub-thread, load-bearing to a scored physics-adjacent
-verdict rather than only to a safety-margin gate decision**
+## Verdict: **PROMISING**
 
-This cycle is not ruled out and I do not disagree with that framing: T1
+A genuine CONFIRM, but the correction that produced it rests on one
+untested assumption that is now, for the first time on this sub-thread,
+load-bearing to a scored physics-adjacent verdict rather than only to a
+safety-margin gate decision. This cycle is not ruled out and I do not disagree with that framing: T1
 is genuinely N/A throughout (confirmed independently, below), the
 falsifiable heart of the cycle (`KAPPA_COST_EXPONENT`'s generalization to
 `kappa_ratio=1.5`) resolves CONFIRM on its own pre-registered, correctly
@@ -86,8 +86,8 @@ Phase-2 audit, not the Director's own Phase-4 catch — has yet checked.
 transferability is untested, and now sits directly underneath a scored
 CONFIRM verdict, not merely a safety-margin gate decision
 
-This is the direct answer to the task's own Question 1. `chunk_runner114.
-py::_time_control_blend()` measures the R31 same-session speed
+This is the direct answer to the task's own Question 1.
+`chunk_runner114.py::_time_control_blend()` measures the R31 same-session speed
 correction **exclusively on the r=156/cpl=25 grid** (`g =
 R.geom_fixedabs_cpl(156, 25)`, hardcoded, not parameterized by the
 target r — confirmed by direct read, line-for-line identical to

@@ -262,18 +262,27 @@ per-stage methodology (`--only 1` … `--only 9`, skipping 5), matching
 this cycle's own Phase-2 precedent (THERMODYNAMICS' own critique, Red
 Team's own audit):
 
-- **Stages 1/2/3 — independently re-run by me this session, PASS,
-  values matching the historical committed figures exactly**: stage 1
-  (3/3, λ=19.97 cells, peak|Ez|=2.52, shadow ratio=0.479), stage 2 (3/3,
+- **Stages 1/2/3/6/7/8/9 — all independently re-run by me this session
+  after the fallback, all PASS, values matching the historical committed
+  figures exactly** (39 of 41 checks, updated after this review's initial
+  filing once the shared sandbox's contention eased): stage 1 (3/3,
+  λ=19.97 cells, peak|Ez|=2.52, shadow ratio=0.479), stage 2 (3/3,
   R=0.0983/0.0178/0.0177), stage 3 (4/4, incl. the shared `ours-small`
-  prerequisite, λ=19.96, corr=0.928, shadow agreement 0.451 vs 0.498).
-- **Stage 4 (ceviche FDFD cross-check, 3 checks) — did not complete
-  within this review's own session**, defeated by the same contention:
-  my own attempt sat mid-solve past 300s+ with several other seats'
-  concurrent `--only 4` invocations visibly competing for the same 4
-  cores. Not independently confirmed by me directly.
-- **Stages 6/7/8/9 — not reached this session** for the same reason
-  (queued behind stage 4 in my own attempt).
+  prerequisite, λ=19.96, corr=0.928, shadow agreement 0.451 vs 0.498),
+  stage 6 (5/5, observer/emitter identities), stage 7 (5/5, absorber
+  R≤0.002 at all 3λ, sponge/PEC ratio 0.000), stage 8 (6/6, cross-section
+  identities, graded-black abs/ext=0.571), stage 9 (13/13, ambient
+  identities, `|C_empty|=0.00043`, Beer–Lambert agreement).
+- **Stage 4 (ceviche FDFD cross-check, 3 unique checks after dedup) —
+  the one stage this reviewer's own session could not independently
+  complete**, defeated repeatedly by the same severe contention every
+  other seat this cycle also hit: three separate solo attempts by me
+  (a `--only 12346789` combined run, a queued `4/6/7/8/9` sequence, and
+  a dedicated solo `--only 4` retry once contention looked to be
+  easing) were each killed by timeout or by my own cleanup, mid-solve,
+  with 5+ other sessions' own concurrent `--only 4` invocations visible
+  in `ps aux` throughout (`/proc/loadavg` 25–30 on this `nproc=4`
+  sandbox at peak). Not independently confirmed by me directly.
 
 **Cross-referenced against this cycle's own record, accurately, not
 rounded up**: EM's Phase-2 critique reports a clean single combined run,
@@ -289,14 +298,16 @@ round it up**: VISION confirmed only stages 1–3 this cycle and
 explicitly declined to assert stage 4/41-of-41 for a run it did not
 personally observe complete, recommending the Director re-confirm —
 exactly the same honest-partial-confirmation shape as my own
-experience here. **Net: five independent parties this cycle (Director
-×2, EM, QUANTUM, MATERIALS) have directly observed a clean 41/41 this
-same cycle, against a `lab/` tree with zero diff throughout (confirmed
-by every seat, including this review); this reviewer's own session adds
-a sixth partial, contention-limited confirmation (stages 1–3 clean, 10
-of 41 checks, matching history exactly) rather than a seventh full
-one.** No seat, including this one, has found or suspects a `[FAIL]`
-anywhere.
+experience here. **Net: five independent parties this cycle (Director ×2, EM, QUANTUM,
+MATERIALS) have directly observed a clean 41/41 this same cycle,
+against a `lab/` tree with zero diff throughout (confirmed by every
+seat, including this review); this reviewer's own session independently
+adds 39 of those 41 checks (stages 1/2/3/6/7/8/9), all matching history
+exactly, with only stage 4's 3 checks left unconfirmed by me directly —
+a sixth, near-complete confirmation, not a seventh full one, and the
+gap is squarely the shared sandbox's own contention, not this cycle's
+own code.** No seat, including this one, has found or suspects a
+`[FAIL]` anywhere.
 
 ## Verdict
 
