@@ -26,13 +26,37 @@ sys.path.insert(0, os.path.join(ROOT, "experiments", "110-t28-item-i-local-norm-
 
 import run as R110  # noqa: E402  (experiments/110-.../run.py -- classify_item_i_local, etc.)
 import run112 as R  # noqa: E402  (this directory's own run112.py)
-import chunk_runner as CR  # noqa: E402
+import chunk_runner112 as CR  # noqa: E402  (this directory's own chunk_runner112.py)
 from lab import sections as sc  # noqa: E402
 
-# Phase-2 Red Team audit Docket Fix 1 (R29 candidate) -- see chunk_runner.py's
-# own identical comment; this file crashed identically before the rename.
+# Phase-2 Red Team audit Docket Fix 1 (R29): see chunk_runner112.py's own
+# identical comment for the run.py/run.py collision this addresses.
 assert R is not R110, "R29: run112 (R) must be a distinct module object from exp-110's run (R110)"
 assert hasattr(R, "geom_fixedabs_cpl"), "R29: R must be exp-112's own run112.py, not exp-110's run.py"
+
+# SECOND INSTANCE of the identical R29 collision shape, found at Phase 4
+# (not Phase 2): experiments/110-.../ ALSO has its own chunk_runner.py, and
+# this file's own sys.path insertion order (HERE inserted before ROOT before
+# the exp-110 dir, each via insert(0, ...), so exp-110's dir ends up FIRST)
+# made a bare `import chunk_runner as CR` resolve to exp-110's own module,
+# not this directory's -- CR.SCRATCH silently pointed at exp-110's own
+# scratch dir, which never received this cycle's real cpl=25 captures, so
+# `have(...)` returned False even after all three scenes genuinely
+# completed. Confirmed by direct execution: `python3 analyze.py` printed
+# the correct-looking-but-wrong "captures not yet complete" message with
+# all three done.pkl files genuinely present at exp-112's own SCRATCH.
+# Fixed identically to Fix 1: renamed this directory's own chunk_runner.py
+# -> chunk_runner112.py (no cross-directory basename collision possible),
+# executed identity assertion added below. Recorded in NOTES.md's own
+# Result section for Phase 5 to adjudicate whether this constitutes R29's
+# own "second instance, fires Checkpoint 4" clause or is the SAME founding
+# instance's own second, previously-undiscovered manifestation (this
+# cycle's own Phase-1 draft introduced BOTH collisions; Phase 2 only
+# exercised as far as the first one before crashing) -- not decided here.
+EXP110_DIR_NAME = "110-t28-item-i-local-norm-and-controls"
+assert EXP110_DIR_NAME not in os.path.dirname(CR.__file__), (
+    "R29 (2nd instance): chunk_runner112 (CR) must be THIS directory's own "
+    "module, not exp-110's chunk_runner.py")
 
 
 def load(r, cpl, which):

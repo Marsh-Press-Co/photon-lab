@@ -169,15 +169,114 @@ yet ruled out" regardless of Check A's own reading. No advance position
 taken on which outcome any of the three checks will report.
 ```
 
-## Result
+## Phase 4 — Test
 
-*(To be filled after Phase 4 — verbatim quote of
-`run112.py::build_result_text()`'s own output, fed the real captured
-control outputs, persisted in `results.json`.)*
+**Second instance of the R29 collision shape, found during Phase 4 (not
+Phase 2), fixed same-shift, before any result was scored.** `analyze.py`'s
+own `import chunk_runner as CR` silently resolved to
+`experiments/110-.../chunk_runner.py` (that directory sits earlier on
+`sys.path` after this cycle's own `sys.path.insert(0, ...)` ordering),
+not this directory's own file — `CR.SCRATCH` pointed at exp-110's own
+scratch dir, so `have(...)` read `False` even after all three r=156/
+cpl=25 scenes genuinely completed (confirmed: `python3 analyze.py`
+printed the correct-looking-but-wrong "captures not yet complete"
+message with all three `done.pkl` files genuinely present at exp-112's
+own scratch path). Fixed identically to Fix 1: renamed this directory's
+own `chunk_runner.py` → `chunk_runner112.py`, added an executed identity
+assertion in `analyze.py`. Re-verified by actual re-execution: `analyze.py`
+now runs end-to-end to `results.json`. **Whether this constitutes R29's
+own "second instance, fires Checkpoint 4" clause, or is the SAME founding
+instance's own second, previously-undiscovered manifestation (this
+cycle's own original Phase-1 draft introduced BOTH collisions in the same
+sitting; Phase 2's blind critiques only ever exercised as far as the
+FIRST one before crashing, so the second was never reachable for Phase 2
+to catch) is not decided here — flagged explicitly for Phase 5's blind
+reviews and Red Team's own final audit to adjudicate**, matching this
+program's own standing practice of not self-adjudicating a Checkpoint
+question in the same breath that finds it.
 
-## Combined Verdict
+Trust suite reconfirmed green (41/41) after both fixes; zero `lab/` diff
+throughout Phase 4.
 
-*(Pending Phase 4 + Phase 5.)*
+## Result (after Phase 4 — verbatim quote of
+## `run112.py::build_result_text()`'s own output, fed the real captured
+## control outputs, persisted in `results.json`)
+
+```
+RESULT (exp-112, Panel Iteration 89)
+
+This is an instrument-fidelity/resolution-convergence check on an angular-scattering-pattern noise floor, not a phenomenon-mechanism proposal -- no sigma(I)/sigma(x,t)/angular-selectivity/sub-threshold content, no Weber-contrast or C_thr(L) perceptual scoring, is performed anywhere in this document. 'Coherent sub-wavelength structure', as used here, means spatially deterministic classical field structure, not quantum coherence -- no non-classical or state-dependent mechanism is proposed, varied, or required. The congruent cpl-resolution-refinement construction (geom_fixedabs_cpl) is verified byte-exact to the cpl=20 baseline geometry at cpl==20 (verify_geometry_identity), but this is the FIRST application of that construction to the fixedabs family -- a single new resolution point (cpl=25) relative to the cpl=20 baseline can rule out a sign-flip/order-of-magnitude collapse but CANNOT establish full continuum convergence (R15's own two-point caution): a third, differently-scaled resolution point would be needed for that stronger claim, not proposed this cycle. This leg tests r=156 alone -- the +168.75deg bin at r=312 remains untested, deferred pending this cycle's own gate (Sec 2.0) and Phase-4 outcome. 'Detection floor', throughout this document, means the K=3/K=1 mirror-pooled-floor instrument's own grid-discretization SNR threshold -- NOT a human perceptual or observer-detection threshold; no constraint-2/3 claim is made or implied by this term (Phase-2 Red Team audit Docket Fix 4, VISION's own finding). The domain-edge sponge (ABSORB/EDGE) scaling is NOT resolution-invariant the way tau_shell/sigma_max is -- its one-way accumulated log-attenuation genuinely rises from 13.93 (cpl=20, absorb=40) to 17.24 (cpl=25, absorb=50), a real ~1.25x change -- but both values sit 6-8 orders of magnitude below the ~1e-4-1e-3 measurement-floor scale this cycle actually measures at, so it cannot manufacture the near-field signal under test (Phase-2 Red Team audit Docket Fix 2, MATERIALS'/ELECTROMAGNETISM's own independently convergent finding). A Check-A SURVIVES reading may be described as 'candidate real structure' only if Check C (neighbor_correlation_check, below) also clears its own corr>=0.5 bar -- otherwise it is reported as 'not yet ruled out', never upgraded on Check A alone (Phase-2 Red Team audit Docket Fix 3, PHOTONICS' own finding).
+
+3 real FDTD calls, 670.5s (11.17 min)
+total wall time this cycle, zero `lab/` diff.
+(exp-112's own genuinely new r=156/cpl=25 spend, zero r=312 calls this cycle)
+
+**Geometry identity: PASS.**
+**Reproduction/self-consistency precondition: PASS.**
+**Named bin (-146.25deg, r=156, margin=32):** deg=-146.25, cpl=25 peccored=1.404528e-04, hollow=1.545771e-04, delta=-1.412430e-05, resolved=False, local_snr_peccored=0.14442370182068412, local_snr_hollow=0.15894731653238098 -- Check A: AMBIGUOUS (some local_snr improvement, still below K=1); Check B: SURVIVES (same sign, within 1 order of magnitude of cpl=20); Check C (neighbor corr): {'corr': 0.9993580404725309, 'bar': 0.5, 'supports_real_structure': True, 'baseline_window': [-4.855081806589897e-06, -4.530412161309381e-06, -1.0739276308597632e-05, -9.599418746872762e-06, -2.2699372100104466e-05], 'new_window': [-6.399113494883553e-06, -5.847469099535421e-06, -1.4124295060780675e-05, -1.1860482407544018e-05, -2.8171844018358037e-05]}
+```
+
+**Total wall time: 670.5s (11.17 min)** — well under the 1469.19s
+projection (empty/hollow/peccored each measured ~221–225s vs. the
+`cpl_cost_table.py` extrapolation's ~490s/scene; the extrapolation was a
+projection, not a promise, and this cycle's own DISCLAIMER never claimed
+otherwise). **Fix 5 verified by actual execution, not merely present in
+source**: both `assert DISCLAIMER in predictions_text` and
+`assert DISCLAIMER in result_text` fired successfully on this real run
+(confirmed directly against `results.json`'s own persisted text fields,
+not merely by re-reading `analyze.py`'s source) — R23 compliance is now
+genuinely closed for this cycle, not merely claimed.
+
+### Interpretation — an honest, pre-registration-disciplined read
+
+None of the three pre-registered checks independently produces a clean
+verdict, and per this cycle's own DISCLAIMER, **no check is allowed to
+borrow another's language**:
+
+- **Check A: AMBIGUOUS.** `local_snr` improved at both cpl=25
+  (`0.0965→0.1444` peccored, `0.1061→0.1589` hollow — the floor itself
+  also dropped, `1.126e-3→9.725e-4`) but stays well below the `K=1=1.0`
+  bar. Per the pre-registered bands, this is neither SURVIVES nor
+  COLLAPSES.
+- **Check B: SURVIVES.** `delta` keeps its sign (both negative) and grew
+  by `1.315×` — inside the `[0.1, 10]` order-of-magnitude band.
+- **Check C: `corr=0.9994`**, clears the `≥0.5` bar by a wide margin —
+  the ±2-bin neighborhood *shape* around the named bin is nearly
+  identical at cpl=20 and cpl=25 (both windows visibly scale together,
+  not merely agree in sign at one point). This is a striking number for
+  an independent grid refinement to reproduce by chance.
+
+**Per the pre-registered DISCLAIMER text, Check C's role this cycle is
+narrowly scoped**: it may only upgrade a Check-A **SURVIVES** reading to
+"candidate real structure" language. Check A did not reach SURVIVES here
+— so, honoring the pre-registration exactly as written rather than
+picking whichever combination reads most favorably (R10 discipline), this
+cycle does **not** claim "candidate real structure" for the named bin.
+**Named plainly as a genuinely interesting, NOT-pre-scored observation
+for a future cycle**: Check C's near-unity correlation, on a check that
+was designed to distinguish real structure from uncorrelated Yee-grid
+noise, sits in real tension with Check A's own AMBIGUOUS reading — a
+purely random discretization artifact would not obviously be expected to
+preserve a `0.9994`-correlated local shape across an independent,
+congruently-rescaled 1.25× mesh refinement. This tension is exactly the
+kind of "not yet ruled out, and not yet confirmed" result T28's own
+founding standard (R3, exp-069) is built to produce honestly, rather than
+force to a premature verdict either way.
+
+## Combined Verdict (Director, pending Phase 5)
+
+**PARTIAL** (LOGBOOK-level vocabulary) — not RULED OUT (the named bin is
+not shown to be pure noise: Check B survives and Check C's own
+neighborhood-shape correlation is striking), not PROMISING (Check A, the
+cycle's own primary pre-registered instrument, stays AMBIGUOUS — the bin
+does not newly clear even the K=1 floor). All mandatory-fix-gating items
+from Phase 2 verified; a second, previously-undiscovered instance of the
+same R29 collision shape was found and fixed at Phase 4, flagged above,
+not self-adjudicated for Checkpoint purposes. Zero new `lab/` diff; trust
+suite green throughout (41/41, before and after this cycle's code
+changes). Six blind Phase-5 reviews plus Red Team's own final audit,
+below, will independently re-verify all of the above, adjudicate the
+second-R29-instance Checkpoint question, and may revise this label.
 
 ## Idealizations — what this cycle does and does not establish
 
