@@ -83,6 +83,22 @@ def analyze_r312_cpl25(baseline_delta_48):
         pat_delta, named_at_idx["peccored"], named_at_idx["hollow"], named_at_idx,
         np.asarray(baseline_delta_48))
 
+    # Fix 5b (Red Team's Phase-2 audit, QUANTUM OPTICS' own finding, R32):
+    # validate Check C's own direction AT THIS GEOMETRY (r=312), on real
+    # data, rather than assuming exp-112's own r=156 finding transfers.
+    # Zero marginal FDTD cost -- both arrays already computed above.
+    crosstab = R.resolved_unresolved_crosstab(
+        local_diag["resolved"], resolution_check["check_c"]["null_scan"]["all_window_corrs"])
+    resolution_check["check_c"]["resolved_unresolved_crosstab"] = crosstab
+    # direction_validated is True only if THIS geometry's own crosstab
+    # independently confirms the SAME direction classify_resolution_check
+    # currently codes as the candidate reading (low_percentile_outlier) --
+    # per Red Team's own ruling, neither tail is asserted as evidentiary
+    # until this confirms it; a "high" or degenerate crosstab result means
+    # the low-percentile premise is NOT validated at r=312 either.
+    resolution_check["check_c"]["direction_validated"] = (
+        crosstab["direction_supported"] == "low")
+
     energy_ledger = dict(
         peccored=dict(sigma_scat=w_p["sigma_scat"], sigma_abs=w_p["sigma_abs"],
                       sigma_ext=w_p["sigma_ext"], sigma_ext_cross=w_p["sigma_ext_cross"]),
@@ -162,7 +178,11 @@ if __name__ == "__main__":
         f"Check B-raw: {rc['check_b_raw']['verdict']}; "
         f"Check C: corr={rc['check_c']['corr']}, "
         f"percentile_in_null={rc['check_c']['percentile_in_null']}, "
-        f"supports_real_structure={rc['check_c']['supports_real_structure']}")
+        f"low_percentile_outlier={rc['check_c']['low_percentile_outlier']}, "
+        f"high_percentile_outlier={rc['check_c']['high_percentile_outlier']}, "
+        f"direction_validated={rc['check_c']['direction_validated']} "
+        f"(resolved-vs-unresolved crosstab, Fix 5b: "
+        f"{rc['check_c']['resolved_unresolved_crosstab']})")
     result_text = R.build_result_text(
         n_fdtd_calls=n_fdtd_calls, total_wall_s=total_wall_s,
         geom_ok=geom_check["pass_"], repro_ok=row["repro_ok"],

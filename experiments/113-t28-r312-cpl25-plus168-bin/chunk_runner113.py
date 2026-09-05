@@ -157,19 +157,46 @@ def step_budgeted(r, cpl, which, budget_s=DEFAULT_BUDGET_S):
         return False
 
 
-def run_control(control_steps=1000):
-    """R31 same-session control: fresh, cold build (NOT resumed, NOT
-    reusing any r=156/cpl=25 checkpoint from a prior session -- this
-    session has none) of the r=156/cpl=25 empty scene, timed for exactly
-    `control_steps` steps. Written to its own control-tagged path so it
-    never collides with (and never gets mistaken for) the real r=312 done
-    files."""
+SHORT_CONTROL_STEPS = 1000     # per scene
+SUSTAINED_CONTROL_STEPS = 3334  # per scene, ~10002 steps total -- Fix 4's own
+                                # "comparable duration to a real production
+                                # sub-chunk" sustained-load reading
+CONTROL_SCENES = ("empty", "hollow", "peccored")   # Fix 3b: same 3-scene mix
+                                                     # HISTORICAL_PER_STEP_S blends
+
+
+def _time_control_blend(control_steps_per_scene, scenes=CONTROL_SCENES):
+    """Fresh, cold builds (NOT resumed, NOT reusing any r=156/cpl=25
+    checkpoint from a prior session -- this session has none) of EACH
+    scene in `scenes`, each timed for exactly `control_steps_per_scene`
+    steps, summed. Fix 3b (Red Team's Phase-2 audit, EM's own finding):
+    re-timing 'empty' alone against a HISTORICAL_PER_STEP_S that blends
+    in peccored's own ~14%-costlier PEC-zeroing step was a real,
+    anti-conservative mismatch -- this control re-times the SAME 3-scene
+    mix, so both sides of the R31 ratio are commensurable."""
     g = R.geom_fixedabs_cpl(156, 25)
-    sim = build_sim(g, "empty")
-    t0 = time.time()
-    sim.run(control_steps)
-    dt = time.time() - t0
-    result = R.r31_control_ratio(control_steps, dt)
+    total_wall_s = 0.0
+    for which in scenes:
+        sim = build_sim(g, which)
+        t0 = time.time()
+        sim.run(control_steps_per_scene)
+        total_wall_s += time.time() - t0
+    return R.r31_control_ratio(control_steps_per_scene, total_wall_s, n_scenes=len(scenes))
+
+
+def run_control():
+    """R31 same-session control, repaired per Fix 3b/Fix 4: a short
+    (SHORT_CONTROL_STEPS/scene) 3-scene-blend reading and a sustained
+    (SUSTAINED_CONTROL_STEPS/scene) 3-scene-blend reading, combined by
+    R.combine_control_readings() (gates on the LOWER, more conservative
+    speed_ratio of the two -- Fix 4, THERMODYNAMICS' own finding: a short
+    burst on r=156's small grid cannot see sustained-load effects a
+    multi-hour r=312 job would). Written to its own control-tagged path
+    so it never collides with (and never gets mistaken for) the real
+    r=312 done files."""
+    short = _time_control_blend(SHORT_CONTROL_STEPS)
+    sustained = _time_control_blend(SUSTAINED_CONTROL_STEPS)
+    result = R.combine_control_readings(short, sustained)
     out_path = os.path.join(SCRATCH, "r31_control.json")
     with open(out_path, "w") as f:
         json.dump(result, f, indent=2)
@@ -199,8 +226,7 @@ def check_cost_gate_for_r312(cpl):
 
 if __name__ == "__main__":
     if sys.argv[1] == "--control":
-        steps = int(sys.argv[2]) if len(sys.argv) > 2 else 1000
-        run_control(steps)
+        run_control()
     elif sys.argv[1] == "--gate":
         cpl_arg = int(sys.argv[2])
         check_cost_gate_for_r312(cpl_arg)

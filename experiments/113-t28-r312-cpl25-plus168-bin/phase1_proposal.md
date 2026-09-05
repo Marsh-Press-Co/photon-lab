@@ -242,6 +242,28 @@ pre-registration posture.
   `total_wall_s` name), so this specific completeness gap cannot recur
   from THIS cycle's own output — but exp-112's own historical figure
   remains an averaged, not measured, per-scene baseline.
+
+  > **Phase-3 correction (Director, ratifying Red Team's Phase-2 audit Fix
+  > 3a, ELECTROMAGNETISM's own Phase-2 finding):** the hedge above
+  > ("touches the full grid regardless of contents") understated a real,
+  > independently-confirmed asymmetry — `lab/fdtd2d.py::Sim.run()`
+  > executes an extra per-step masked write
+  > (`if self.pec.any(): self.Ez[self.pec] = 0.0`) that ONLY the
+  > `peccored` scene pays (`empty`/`hollow` have `self.pec` all-`False`,
+  > so the guard short-circuits and the masked assignment never
+  > executes for them) — an independently op-counted **~14%** extra
+  > per-step cost on `peccored` specifically (1 extra op / 7 baseline
+  > full-grid touches), EM's own estimate, explicitly not a profiled
+  > measurement. `HISTORICAL_PER_STEP_S` is still a valid, honestly
+  > labeled 3-scene BLEND — what was false was calling per-step cost
+  > materials-invariant. Fixed at the point that matters (the R31
+  > same-session CONTROL, not this historical figure): `run_control()`
+  > now re-times the identical 3-scene blend
+  > (`empty`+`hollow`+`peccored`), commensurable with
+  > `HISTORICAL_PER_STEP_S`'s own blend, removing the anti-conservative
+  > mismatch an empty-only control introduced. See
+  > `phase2_redteam_audit.md` Fix 3, `run113.py`'s own corrected comment
+  > above `HISTORICAL_R156_CPL25_TOTAL_S`.
 - **Idealization 2 — the projected cost is explicitly provisional until
   Phase 4's own R31 control runs.** The `6802.6s`/37%-margin figure (§2.0)
   assumes this session's own compute throughput matches exp-112's own
