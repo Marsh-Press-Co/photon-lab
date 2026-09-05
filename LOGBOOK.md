@@ -1442,6 +1442,74 @@ top. Protocol: PANEL.md.*
   `experiments/113-t28-r312-cpl25-plus168-bin/phase2_critique_quantum.md`,
   `phase2_redteam_audit.md` §1.5, §2 Fix 5, `phase5_redteam_audit.md` §3,
   LOGBOOK.md Iteration 90.
+- **R33 — a scored ratio or fitted exponent whose operands mix a
+  wall-time/throughput-derived quantity measured THIS session with one
+  measured or established in a PRIOR session must be normalized by
+  re-using the SAME already-measured (or freshly-measured) same-session
+  R31 control value the cost gate itself already computes — never a raw
+  cross-session figure directly, and never a fresh, separately-estimated
+  ad hoc factor (not a ruled-out idea; a standing house-discipline rule,
+  proposed by the Director's own Phase-4 self-catch, Iteration 91,
+  extending R9/R31 one level deeper: R31 governs whether a cost-*gate
+  decision* trusts a cross-session projection; R33 governs whether a
+  *falsifiable scientific verdict* built from cross-session wall-time
+  data is scored correctly, using the identical machinery one step
+  further downstream).** Scope is explicitly restricted to
+  wall-time/throughput-derived operands — a physics observable measured
+  within a single `Sim.run()` call (a cross-section, a field amplitude, a
+  resolution-invariant geometric quantity) carries no session-speed
+  confound and is not in scope. Two same-cycle addenda, both required
+  before a scored verdict built this way is trusted: **(a)** when more
+  than one same-session control reading exists and their selection rule
+  was justified for a different purpose than the one it is now being
+  reused for, that reuse requires its own independent justification for
+  the new purpose, stated in the record, and any alternative reading(s)
+  must be disclosed as a stated, not-scored sensitivity (QUANTUM's own
+  Phase-5 addendum — this cycle's own numbers show the purpose-built
+  "favor the lower/more-conservative of two readings" selection rule,
+  ratified Iteration 90 for cost-gate safety-margin purposes, silently
+  reused for an unbiased scientific comparison, with an equally
+  computable alternative reading already on file flipping the verdict
+  tier); **(b)** the underlying R31 control point must be verified — not
+  merely assumed — to characterize the SAME grid/problem size as the
+  quantity it is being used to correct, before the corrected comparison
+  is trusted as a scored verdict, distinct from a conservative-by-
+  construction gate-margin decision where an unverified cross-grid
+  transfer is comparatively low-stakes (PHOTONICS' own Phase-5
+  addendum — the R31 control was measured exclusively on a smaller grid,
+  2.25× fewer cells than the geometry the corrected verdict is scored
+  against, and nobody checked whether the session slowdown transfers
+  uniformly across grid sizes). Founding instance: exp-114's own Phase-4,
+  the Director caught and corrected a naive cross-session comparison
+  (raw REFUTE, `rel_dev=1.86`) that would otherwise have shipped as this
+  cycle's own scored result; Phase 5 then found, independently, three
+  further non-overlapping residual confounds in the correction itself
+  (EM: control duration ~10× shorter than production and measured only
+  once, before the spend; QUANTUM: addendum (a), above; PHOTONICS:
+  addendum (b), above), and Red Team's own final audit found a fourth,
+  more consequential result extending the Director's own exploratory
+  cross-check: two independently-defensible correction methods place the
+  measured ratio on OPPOSITE SIDES of the reference value (a 28.0%
+  spread between their two central estimates), not merely at different
+  distances from it — genuine evidence the frozen verdict is thinner than
+  its headline `rel_dev` alone conveys, though every method tried stays
+  nowhere near the REFUTE line. **Does not fire on its own founding
+  instance** (exp-114) — the naive, uncorrected comparison was caught and
+  corrected before any result was frozen, and the two addenda's own gaps
+  are disclosed, not defended against a known affordable check, matching
+  every prior rule's own founding-instance precedent. **Standing forward
+  clause**: a future cycle that scores a same-session-measured
+  wall-time-derived ratio or exponent against an un-rescaled cross-session
+  historical figure, or that reuses a purpose-built control-selection
+  rule for a new purpose without independent justification, or that
+  trusts a cross-grid-unverified control point for a scored (not merely
+  gated) verdict, on this or any channel, after this rule is on the
+  books, fires Checkpoint criterion 4 automatically — a
+  single-instance-ratified, forward-firing model, matching
+  R16/R21–R32's own precedent. Full record:
+  `experiments/114-t28-kappa-exponent-r234-calibration/NOTES.md`,
+  `phase2_redteam_audit.md`, all six `phase5_review_*.md`,
+  `phase5_redteam_audit.md` §2–§5, LOGBOOK.md Iteration 91.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -24654,3 +24722,156 @@ full text). Full record: `experiments/113-t28-r312-cpl25-plus168-bin/` —
 `phase1_proposal.md`, five Phase-2 blind critiques,
 `phase2_redteam_audit.md`, `NOTES.md`, `results.json`, six Phase-5 blind
 reviews, `phase5_redteam_audit.md`.
+
+## Iteration 91 — A Second Kappa-Ratio Calibration Point Confirms, But A Director Self-Catch Reveals Three Independent Layers Of The Same Normalization Gap; R33 Ratified (exp-114) — 2026-09-05
+
+**Lead: PHOTONICS** (rotation: VISION SCIENCE(90)→PHOTONICS(91)→
+MATERIALS→ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→repeat).
+Executes the Reconciled Iteration-91 queue's Tier-1 item 3: a cheaper
+intermediate-`r` calibration point (`r=234`, `fixedabs` family, `cpl=25`)
+for `KAPPA_COST_EXPONENT`, chosen specifically because it does not
+depend on the r=312 leg's own repeated cost-gate deferrals
+(exp-111/112/113) and can proceed in parallel.
+
+**Phase 1**: verified before proposing (R4/R9) that `r=234` was never
+previously used for this family; corrected a real citation defect in
+MATERIALS' own Iteration-90 Phase-5 review (true cost multiplier
+`3.668×`/`≈39.8%`, not the filed `≈2.98×`/`≈32%` — that error also
+survives, uncorrected, inside this file's own Iteration-90 entry above,
+in the "~32%" phrase — a disclosed forward correction, not a
+retroactive edit, matching this program's own established practice).
+
+**Phase 2**: five blind critiques, all support-with-changes. Red Team's
+audit found four mandatory fixes: (1) EM/VISION/QUANTUM's convergent
+finding that the CONFIRM/REFUTE bands' citation of R28's own founding
+miss conflated exponent-space and ratio-space deviations, plus a deeper
+`kappa_ratio`-dependent-stringency defect QUANTUM found underneath it —
+fixed by rescoring in ratio space; (2) the same "~32%" arithmetic error
+also survives inside this file's own frozen Iteration-90 entry, one
+level upstream of what the proposal's own R4 correction reaches —
+disclosed here as that forward correction; (3) no `analyze114.py`
+existed — this cycle's own stated falsifiable heart
+(`refit_kappa_exponent`/`classify_kappa_exponent_check`) was defined but
+never invoked, THERMODYNAMICS' flagged energy-ledger capture had no code
+path, zero R23 assert existed for the new `DISCLAIMER` string; (4)
+MATERIALS' own fabrication-tolerance debt item, restated for three
+consecutive cycles, was missing from this cycle's declined-items list.
+All four applied at Phase 3, verified before any Phase-4 `Sim.run()`
+call. New standing rule declined at Phase 2 (zero-founding-instance
+ground) — named as a watched risk instead.
+
+**Phase 4**: R31 same-session control measured this session at 0.392×
+historical throughput (sustained reading, used); cost gate **approved
+on the first attempt** (6895.7s vs. 10800s bound, 36.2% margin) —
+unlike the r=312 leg's three consecutive deferrals, vindicating this
+leg's own lower-`kappa_ratio` design rationale. Three real FDTD scenes
+completed: 7038.3s total (~2% over the R31 projection, still 35% under
+the hard bound). **The Director then caught and fixed a real,
+consequential R9-class defect before any result was frozen**: the first
+scoring attempt compared this session's real `t234` against the RAW
+cross-session historical `t156`, ignoring the very same-session
+throughput difference the R31 control had already measured — naive
+result REFUTE (`rel_dev=1.86`). Corrected to score against `t156`
+rescaled by the R31 speed_ratio (reusing the cost gate's own already-
+computed `scaled.pilot_total_wall_s`, not re-derived) — corrected
+result: **CONFIRM** (`rel_dev=0.1227`, well inside the 0.15 band). This
+self-catch is the founding instance of R33 (registry, above).
+
+**Phase 5**: six blind reviews — VISION/MATERIALS promising;
+EM/PHOTONICS promising-with-a-named-caveat; THERMODYNAMICS/QUANTUM
+partial. Every seat independently re-derived the R9 fix's own arithmetic
+bit-exact (zero wrong numbers in the executed chain), but **three seats
+each found a different, non-overlapping residual confound** in the
+correction itself: **EM** — the R31 sustained control (3334 steps/scene)
+is ~10× shorter than the real production run (~2350s/scene) and measured
+once, before the spend, not bracketed after; only ~2.4% further
+unfavorable drift would flip CONFIRM to AMBIGUOUS. **QUANTUM** —
+choosing the "short" control reading instead of "sustained" (both
+same-session, both already on file) flips the verdict to AMBIGUOUS
+outright; the sustained/lower-of-two selection rule was ratified
+(Iteration 90) for cost-gate safety-margin purposes, never independently
+re-justified for this different, symmetric-risk scientific use.
+**PHOTONICS** (self-review, lead seat) — the deepest finding: the R31
+control is measured exclusively on the r=156 grid (`N=1400`) and applied
+to rescale a verdict built from r=234-grid (`N=2100`, 2.25× cells) data
+— untested whether session slowdown transfers uniformly across grid
+sizes, physically plausible it doesn't (larger arrays more
+memory-bandwidth-bound).
+
+The Director's own exploratory follow-up (an alternative "v2"
+normalization using already-collected cold-build r=234 timing data plus
+an N²-per-step-scaling assumption) was handed to Red Team rather than
+added to the record directly. **Red Team's final audit independently
+extended it and found something more consequential than the Director's
+own stated uncertainty suggested: the two leading correction methods
+place `measured_ratio` on OPPOSITE SIDES of `reference_ratio` (4.118 vs.
+3.217, a 28.0% spread between the two central estimates) — a straddle,
+not a corroboration** — and ruled the v2 calculation should NOT enter
+the record as supporting evidence, only as a further sensitivity
+finding. Also caught one non-outcome-reversing R4-class transcription
+slip in an earlier revision of MATERIALS' own table (already
+self-corrected before this audit's own later pass).
+
+**Verdict-framing ruling (Red Team's final audit, adopted by the
+Director): CONFIRM-WITH-NAMED-GAPS** — not plain CONFIRM (would
+understate what three independent seats plus Red Team's own extension
+found); not a downgrade to AMBIGUOUS (would violate R7 — a robustness
+argument alone, without a validated superior replacement method, cannot
+override a correctly-executed pre-registered test; there IS an
+independently-ratified physical argument favoring "sustained"; every
+alternative method tried stays nowhere near the 0.30 REFUTE line — the
+qualitative conclusion is robust, only the precise tier boundary is
+fragile). **Checkpoint criterion 4 does not fire** — a healthy Phase-5
+catch working as designed (three independent, mutually non-overlapping
+deeper layers of the SAME question, not the same defect recurring
+unfixed), conditioned on promoting all three named confounds to explicit
+Iteration-92 Tier-1 queue lines (done, PLAN.md). **R33 ratified**, core
++ both QUANTUM's and PHOTONICS' scoping addenda + VISION's wording fixes
+(full text in the registry, above).
+
+**Combined Verdict**: `KAPPA_COST_EXPONENT` (fit from a single
+`kappa_ratio=2.0` pair, exp-110/111) **CONFIRMS-WITH-NAMED-GAPS at
+`kappa_ratio=1.5`** — the first real check of this exponent at any ratio
+other than its own founding one, genuine non-null progress, but thinner
+than its headline number alone conveys. Trust suite green throughout
+(41/41, multiple independent confirmations under heavy shared-sandbox
+contention this cycle, fully disclosed), zero `lab/` diff.
+
+**Escalation (this shift)**: Red Team's audit flags the Iteration-85
+Checkpoint-4/R24 firing as now **SEVEN cycles pending** (Iterations 86
+through 91) without Marsh's own convening — escalated directly to Marsh
+this shift (SESSION_LOG.md), rather than left to silently carry forward
+an eighth time.
+
+**Reconciled Iteration-92 queue** (Red Team's final audit, merging all
+six seats' own rankings — see PLAN.md for the full Tier 0–3 structure):
+**Tier 1** — (1) a genuine same-session control-timing burst measured
+directly on the r=234 grid (the single highest-value, cheapest item,
+independently ranked #1 by EM/PHOTONICS, #2 by QUANTUM — resolves the
+v2 straddle with real data instead of two competing assumptions; bundle
+a repeat reading to distinguish sustained-load degradation from noise);
+(2) persist and disclose the short-reading alternative scoring and the
+v2 straddle finding as stated NOT-scored sensitivities, with an explicit
+justification for why "sustained" is the right choice for this purpose;
+(3) re-attempt the `+168.75°`/r=312/`cpl=25` leg, sequenced AFTER item 1
+lands, reusing whatever cross-grid slowdown factor it measures; (4)
+execute `resolved_unresolved_crosstab`/`apply_crosstab_to_check_c`
+immediately once real r=312 data lands; (5) MATERIALS' own
+fabrication-tolerance quantitative bound — write the actual number, now
+seven consecutive cycles named-but-undone. **Tier 0** (Marsh's calls) —
+(0a) the Iteration-85 Checkpoint-4/R24 firing, escalated this shift,
+still pending; (0b) "ratify or reject R23 First Addendum/R30/R31/R32" —
+Red Team's own audit finds all four already carry fully-adopted,
+in-force language and recommends the Director close this line as
+already discharged; (0c, unchanged) the `COST_GATE_TOTAL_S`
+wall-clock-vs-compute-cost policy fork, still Marsh's own call. **Tier
+2/3** — unchanged in substance, see PLAN.md for full text (per-bin
+core-fill check at r=234; `box_dev` floor-gate; third P5 thermal-margin
+point, gated on resolving the `CPL_RATIO` commensurability gap first; a
+fourth r-point serving multiple open questions at once; VISION's own
+charter-level argument to re-score the program's only-ever Tier-W/Tier-A
+constraint-3 citation through the now-modernized ambient instrument).
+Full record: `experiments/114-t28-kappa-exponent-r234-calibration/` —
+`phase1_proposal.md`, `run114.py`, `chunk_runner114.py`, `analyze114.py`,
+five Phase-2 blind critiques, `phase2_redteam_audit.md`, `NOTES.md`,
+`results.json`, six Phase-5 blind reviews, `phase5_redteam_audit.md`.

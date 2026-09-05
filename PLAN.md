@@ -22,7 +22,90 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-05, panel Iteration 90 done (exp-113, PARTIAL --
+## Current state (2026-09-05, panel Iteration 91 done (exp-114,
+CONFIRM-WITH-NAMED-GAPS, PHOTONICS' rotation-lead cycle: executed the
+Reconciled Iteration-91 queue's Tier-1 item 3 -- a cheaper
+intermediate-r (r=234, fixedabs family, cpl=25) calibration point for
+KAPPA_COST_EXPONENT, chosen because it does not depend on the r=312
+leg's own repeated cost-gate deferrals and can proceed in parallel. Five
+blind Phase-2 critiques (MATERIALS, EM, THERMODYNAMICS, QUANTUM, VISION),
+all support-with-changes, zero opposition. Red Team's Phase-2 audit found
+four mandatory fixes -- (1) EM/VISION/QUANTUM's convergent band-citation
+defect (exponent-space vs ratio-space conflation, plus a deeper
+kappa_ratio-dependent-stringency issue QUANTUM found underneath),
+rescored in ratio space; (2) the same "~32%" arithmetic error from
+Iteration 90's own entry survives uncorrected in this file/LOGBOOK.md --
+disclosed forward, true figure ~39.8%; (3) no analyze114.py existed --
+the falsifiable heart was dead code, THERMODYNAMICS' energy-ledger
+finding had no code path, zero R23 assert existed; (4) MATERIALS' own
+fabrication-tolerance debt, restated 3 cycles running, missing from the
+declined-items list. All four applied at Phase 3, new standing rule
+declined (zero-founding-instance ground). **Phase 4: R31 control measured
+0.392x historical throughput; cost gate APPROVED on the first attempt**
+(6895.7s vs 10800s bound, 36.2% margin) -- unlike r=312's three
+consecutive refusals, vindicating the r=234 design choice. Three real
+FDTD scenes completed, 7038.3s total. **The Director then caught and
+fixed a real R9-class defect before any result froze**: the first
+scoring attempt compared this session's real t234 against the RAW
+cross-session historical t156, ignoring the R31-measured throughput
+difference -- naive result REFUTE (rel_dev=1.86); corrected to rescale
+t156 by the R31 speed_ratio (reusing the cost gate's own already-computed
+scaled.pilot_total_wall_s) -- corrected result: CONFIRM (rel_dev=0.1227).
+Six blind Phase-5 reviews (VISION/MATERIALS promising; EM/PHOTONICS
+promising-with-a-caveat; THERMODYNAMICS/QUANTUM partial) all re-derived
+the R9 fix bit-exact, but three seats each found a DIFFERENT residual
+confound: EM -- the sustained control (3334 steps/scene) is ~10x shorter
+than the real production run and measured only once, before the spend
+(~2.4% further unfavorable drift would flip CONFIRM to AMBIGUOUS);
+QUANTUM -- choosing the "short" control reading instead of "sustained"
+(both already on file) flips the verdict to AMBIGUOUS outright, since
+that selection rule was ratified for cost-gate safety-margin purposes,
+never re-justified for this scientific use; PHOTONICS (self-review,
+deepest finding) -- the R31 control is measured exclusively on the
+r=156 grid (N=1400) and applied to a verdict built from r=234-grid
+(N=2100, 2.25x cells) data, an untested cross-grid-transfer assumption.
+The Director's own exploratory "v2" cross-check (an alternative
+normalization via already-collected cold-build r=234 timing data) was
+handed to Red Team rather than added directly -- **Red Team's final
+audit found the two leading correction methods place measured_ratio on
+OPPOSITE SIDES of the reference value (a 28.0% spread), a straddle not
+a corroboration**, ruled it should not enter the record as supporting
+evidence. **Verdict-framing ruling: CONFIRM-WITH-NAMED-GAPS** -- not
+plain CONFIRM (would understate 3 independent seats' + Red Team's own
+findings), not AMBIGUOUS (would violate R7; every method tried stays
+nowhere near REFUTE; the qualitative conclusion is robust, only the
+tier boundary is fragile). Zero Checkpoint criteria fire, conditioned on
+promoting all three confounds to explicit Iteration-92 Tier-1 lines
+(done, below). **R33 ratified** (core + both QUANTUM's and PHOTONICS'
+scoping addenda + VISION's wording fixes -- see LOGBOOK.md registry):
+a scored ratio/exponent mixing a this-session wall-time quantity with a
+prior-session one must be normalized by the SAME already-measured R31
+control value the cost gate computes, never a raw cross-session figure
+directly. **Escalation this shift**: the Iteration-85 Checkpoint-4/R24
+firing is now SEVEN cycles pending without Marsh's convening -- escalated
+directly to Marsh (SESSION_LOG.md), not left to carry forward an eighth
+time. Reconciled Iteration-92 queue: Tier 1 -- (1) a genuine same-session
+control-timing burst measured directly on the r=234 grid (highest-value,
+cheapest item, resolves the v2 straddle with real data); (2) persist and
+disclose the short-reading alternative and the v2 straddle finding as
+stated NOT-scored sensitivities, with an explicit justification for the
+sustained-reading choice; (3) re-attempt the +168.75deg/r=312/cpl=25 leg,
+sequenced AFTER item 1 lands; (4) execute the resolved_unresolved_crosstab
+immediately once real r=312 data lands; (5) MATERIALS' own
+fabrication-tolerance bound -- write the actual number, now SEVEN
+consecutive cycles named-but-undone. Tier 0 -- (0a) the Iteration-85
+Checkpoint-4/R24 firing, escalated this shift, still pending; (0b) Red
+Team's own audit finds R23-First-Addendum/R30/R31/R32 already carry
+fully-adopted, in-force language and recommends closing this line as
+already discharged; (0c, unchanged) the COST_GATE_TOTAL_S policy fork,
+still Marsh's own call. Tier 2/3 -- per-bin core-fill check at r=234;
+box_dev floor-gate; third P5 thermal-margin point (gated on the
+CPL_RATIO commensurability gap); a fourth r-point serving multiple open
+questions; VISION's own charter-level argument to re-score the program's
+only-ever Tier-W/Tier-A constraint-3 citation through the now-modernized
+ambient instrument (unrun since Iteration 12). Full record:
+`experiments/114-t28-kappa-exponent-r234-calibration/`, LOGBOOK.md
+Iteration 91. Next: panel Iteration 90 done (exp-113, PARTIAL --
 BLOCKED BY COST GATE, VISION SCIENCE's rotation-lead cycle: executed the
 Reconciled Iteration-90 queue's Tier-1 items 1-4 -- the +168.75deg bin
 (r=312/cpl=25, mirror companion of exp-112's own -146.25deg/r=156 bin,
