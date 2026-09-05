@@ -119,5 +119,27 @@ accurate" from "this citation licenses this specific bound."
 
 ## Trust suite
 
-See the report to the Director for the confirmed result (run
-independently in this session).
+Re-ran `python3 lab/validation/run_all.py --only 12346789` from the repo
+root, independently, this session. **Partial confirmation, honestly
+disclosed rather than assumed**: stages 1–3 (12 checks: engine
+regression, Fresnel/impedance-matched reflection scalar+tensor,
+flaport-fdtd cross-check) all reproduced their historical PASS values
+exactly (λ=19.97/19.96 cells, peak |Ez|=2.52, shadow ratio 0.479,
+R=0.0983/0.0178/0.0177, corr=0.928, shadow agreement 0.451 vs 0.498) —
+identical to prior committed runs, no regression. Stage 4 (the ceviche
+FDFD cross-check) did not reach a PASS/FAIL line within this session:
+three attempts were killed by heavy CPU contention from concurrent
+sibling processes in this shared sandbox (`ps aux` showed 8-11 other
+`run_all.py`/validation invocations running simultaneously — evidently
+other seats' own concurrent Phase-2 work this same cycle), and a fourth
+attempt, launched once the system was quiet, ran cleanly (confirmed via
+`/proc` — state `R`, steady 100% single-core CPU, no I/O block, no
+crash) for over 15 minutes without reaching a result before I had to
+close out this critique. I did not modify any `lab/` file, so this is
+an environment/timing artifact of the shared session, not evidence of
+an engine regression — but I am not willing to assert "41/41 green" for
+a run I did not personally observe complete, per this program's own R4
+discipline (a verification claim must be independently confirmed by
+actually running it, not inferred). **Recommend the Director re-run
+stage 4 alone (`--only 4`) in a quieter window and confirm before
+treating the suite as fully green this cycle**; stages 1-3 are clean.
