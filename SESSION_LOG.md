@@ -2,6 +2,83 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-05 (panel shift) — Iteration 89 complete (exp-112): the
+twice-deferred cpl=25 floor spot-check finally executes, the cost gate
+flips on real data, two same-cycle R29 collisions both ruled non-firing,
+R30/R31 ratified, zero Checkpoint criteria fire:
+
+**Pre-flight**: tooling not pre-installed this shift (`ModuleNotFoundError:
+numpy`) — installed fresh per the known wrinkle, then ran the trust suite
+before any panel work — green, 41/41 (`--only 12346789`, 63s).
+
+**Iteration 89 — QUANTUM OPTICS' rotation-lead cycle (exp-112).**
+Executed the Reconciled Iteration-89 queue's headline Tier-1 item:
+PHOTONICS' own cpl-refinement floor spot-check (cpl=20→25, r=156, bin
+index 4/-146.25°), deferred twice, executed for the first time. Five
+blind Phase-2 critiques (all support-with-changes) found: no
+bin-neighborhood correlation check (PHOTONICS); the ABSORB/EDGE sponge
+scaling is NOT resolution-invariant (MATERIALS/EM, independently
+convergent); the Phase-4 pipeline as shipped could not run at all — a
+`run`/`run` module-import-cache collision confirmed by direct execution
+(THERMODYNAMICS); "detection floor" never disambiguated from a human
+perceptual threshold (VISION). Red Team's Phase-2 audit: 6 mandatory
+fixes, PROCEED-WITH-MANDATORY-FIXES, new standing rule R29 recommended.
+All fixes applied at Phase 3, R29 ratified, predictions committed before
+Phase 4.
+
+**Phase 4**: 3 real FDTD calls, 670.5s total (well under the 1469.19s
+projection). A SECOND instance of the identical R29 collision surfaced
+here (`analyze.py`'s own `chunk_runner` import), fixed identically,
+flagged for Phase 5. Result: Check A (mirror-pooled floor) AMBIGUOUS;
+Check B (T28's founding R3 standard) SURVIVES; Check C (new this cycle)
+corr=0.9994 clears its own bar, but since Check A never reached SURVIVES,
+"candidate real structure" was correctly not claimed.
+
+**Phase 5**: six blind reviews surfaced two new, independently
+convergent findings. PHOTONICS and QUANTUM (self-review), by different
+methods, found Check C has ZERO discriminating power (48/48 bins clear
+its own bar; UNRESOLVED population's own mean correlation exceeds the
+RESOLVED population's) — traced to an un-normalized 1.25× raw-magnitude
+artifact in `lab/sections.py::_face_flux()`. MATERIALS found the
+DISCLAIMER's own "6-8 orders of magnitude below the floor" claim does
+not survive re-derivation (true margin ~1.8-4.5 orders, non-outcome-
+reversing). THERMODYNAMICS' own headline finding: real wall time
+(670.5s) came in at less than half the ratio³ projection (1469.19s) —
+re-invoking the real cost gate with the actual pilot FLIPS the r=312-
+expansion decision from REFUSED to APPROVED (37% margin), traced to a
+~2.19× cross-session compute-speed confound. Red Team's Phase-5 final
+audit independently re-derived all three tasked findings bit-exact,
+ruled the second R29 instance does NOT fire Checkpoint 4 (six-of-six
+unanimous), ratified a textual addendum to R29 plus two new standing
+rules (R30 — an adopted, uncalibrated discriminating-instrument
+threshold must be checked against its own computable null population
+before evidentiary language is used; R31 — a cross-session wall-time
+cost projection needs a same-session control point), neither firing on
+its founding instance. Zero Checkpoint criteria fire.
+
+**Verified**
+- Trust suite green throughout (41/41 pre-flight, 43/43 post-fix), zero
+  `lab/` diff.
+- Both R23 DISCLAIMER asserts confirmed firing on real execution.
+- Cost-gate flip confirmed bit-exact by direct re-invocation of the real,
+  unmodified `R.cost_gate_check()`.
+
+**Deferred/next**
+- Reconciled Iteration-90 queue: execute the `+168.75°` bin at r=312/
+  cpl=25 (the cost gate now clears it, per a fresh same-session R31
+  pilot); recalibrate Check C's own bar per R30; diagnose/normalize the
+  CPL_RATIO raw-magnitude confound in `_face_flux()`.
+- Tier 0 (Marsh's calls, unchanged): the Iteration-85 Checkpoint-4/R24
+  firing remains pending — now **five cycles** without a ruling; the R23
+  First Addendum and R30/R31 also await ratify-or-reject.
+
+**Notes/gotchas**
+- The T28 sub-thread (opened Iteration 46) has now run 44 consecutive
+  iterations, PARTIAL every cycle since Iteration 82 — flagged to Marsh
+  this shift alongside the standing Checkpoint-4/R24 item (see
+  notification).
+
+
 ## 2026-09-04 (panel shift) — Iteration 88 complete (exp-111): the R27/R28
 cost gate genuinely repositioned upstream, a floor==0 self-contradiction
 closed, four of six Phase-5 seats blind-converge on the same R23-shaped

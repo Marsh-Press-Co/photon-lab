@@ -22,7 +22,89 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-04, panel Iteration 88 done (exp-111, PARTIAL,
+## Current state (2026-09-05, panel Iteration 89 done (exp-112, PARTIAL,
+QUANTUM OPTICS' rotation-lead cycle: executed the Reconciled Iteration-89
+queue's headline Tier-1 item -- PHOTONICS' own cpl-refinement floor
+spot-check, deferred twice, executed for the first time: cpl=20->25
+(1.25x) congruent grid-resolution refinement of the fixedabs family,
+r=156 alone, targeting bin index 4 (-146.25deg, margin=32),
+UNRESOLVED-BY-CONSTRUCTION at cpl=20 despite a 9.88% local deviation.
+Five blind Phase-2 critiques (PHOTONICS, MATERIALS, EM, THERMODYNAMICS,
+VISION), all support-with-changes, zero opposition, each finding a
+distinct defect -- PHOTONICS: no bin-neighborhood correlation check;
+MATERIALS/EM (independently convergent): the ABSORB/EDGE sponge scaling
+is NOT resolution-invariant the way tau_shell/sigma_max is;
+THERMODYNAMICS: the Phase-4 pipeline as shipped could not run at all (a
+run/run module-import-cache collision, confirmed by direct execution,
+crashing before any Sim.run() call); VISION: "detection floor" never
+disambiguated from a human perceptual threshold. Red Team's Phase-2
+audit combined all five into a 6-item mandatory-fix docket, verdict
+PROCEED-WITH-MANDATORY-FIXES, recommended new standing rule R29
+(same-basename-module import-cache collisions). Phase 3: all six fixes
+applied (module renamed run112.py with executed identity assertions;
+ABSORB/EDGE non-invariance disclosed with computed numbers; new Check C
+neighbor-correlation gate added; DISCLAIMER clause disambiguating
+"detection floor"; sigma_abs/sigma_ext persistence), R29 ratified,
+predictions committed before Phase 4. Phase 4: 3 real FDTD calls, 670.5s
+total (well under the 1469.19s projection). A SECOND, previously-
+undiscoverable instance of the identical R29 collision surfaced here
+(analyze.py's own chunk_runner import), fixed identically, flagged for
+Phase 5 to adjudicate. Result: Check A (mirror-pooled floor) AMBIGUOUS
+(local_snr improved but stayed well below the K=1 bar); Check B (T28's
+founding R3 standard) SURVIVES; Check C corr=0.9994, clears its own bar
+-- but since Check A never reached SURVIVES, "candidate real structure"
+was correctly NOT claimed per the pre-registered DISCLAIMER. Both R23
+asserts confirmed firing on real execution. Six blind Phase-5 reviews
+independently re-verified every figure and surfaced two new, convergent
+findings: PHOTONICS and QUANTUM (self-review), by different methods,
+found Check C has ZERO discriminating power (48/48 bins clear its own
+bar; the UNRESOLVED population's own mean correlation exceeds the
+RESOLVED population's) -- PHOTONICS traced the mechanism to an
+un-normalized 1.25x raw-magnitude artifact in lab/sections.py's own
+_face_flux(). MATERIALS found the DISCLAIMER's own "6-8 orders of
+magnitude below the floor" claim does not survive re-derivation (true
+margin ~1.8-4.5 orders, a ~100-1000x overstatement, non-outcome-
+reversing). ELECTROMAGNETISM found the sigma_ext~=sigma_abs+sigma_scat
+cross-check is a code-level tautology; the genuinely independent
+sigma_ext_cross had been silently dropped from the persisted ledger.
+THERMODYNAMICS' own headline finding: real wall time (670.5s) came in at
+less than half the ratio^3 projection (1469.19s) -- re-invoking the real
+cost gate with the actual pilot FLIPS the r=312-expansion decision from
+REFUSED to APPROVED (37% margin), traced to a ~2.19x cross-session
+compute-speed confound. Four of six seats explicitly ruled the second
+R29 instance does NOT fire Checkpoint 4. Red Team's Phase-5 final audit
+independently re-derived all three tasked findings bit-exact, no
+correction needed to their substance; ruled definitively the second R29
+instance does NOT fire (six-of-six unanimous), ratified a textual
+addendum scoping R29's forward clause to a future cycle's own reuse;
+ratified two new standing rules (R30 -- an adopted, uncalibrated
+discriminating-instrument threshold must be checked against its own
+computable null population before evidentiary language is used; R31 --
+a cross-session wall-time cost projection needs a same-session control
+point), neither firing on its founding instance. Zero Checkpoint
+criteria fire; R20's density tally sits at 1-2, a fifth consecutive
+cycle at this near-miss level, named as a standing observation. Same-
+shift fixes applied and verified by re-execution (sigma_ext_cross
+restored; corrective DISCLAIMER comment; three attributed NOTES.md
+corrections). Trust suite green throughout (43/43), zero lab/ diff.
+Combined Verdict: PARTIAL -- continues this exact T28 sub-thread's own
+unbroken pattern since Iteration 82 -- but real progress: the first
+genuinely new FDTD data this long-deferred spot-check has ever produced,
+tau_shell-invariance independently confirmed to hold in real data
+(<0.01%), both module-collision defects genuinely fixed, R23 compliance
+genuinely clean, and the cost-gate re-invocation hands Iteration 90 a
+concretely unblocked, affordable next step (the +168.75deg bin at
+r=312) that did not exist before this cycle ran. Reconciled Iteration-90
+queue: Tier 0 -- rule on the Iteration-85 Checkpoint-4/R24 firing
+(unchanged, still Marsh's own call, still pending -- FIVE cycles now);
+ratify or reject the R23 First Addendum; ratify or reject R30/R31. Tier
+1 -- execute the +168.75deg bin at r=312/cpl=25 (the cost gate now
+clears it, needing its own fresh same-session pilot per R31); recalibrate
+Check C's own bar per R30; diagnose/normalize the CPL_RATIO raw-
+magnitude confound in lab/sections.py::_face_flux(). Tier 2/3 --
+unchanged (see LOGBOOK.md Iteration 89 for full text). Full record:
+`experiments/112-t28-cpl25-floor-spot-check/`, LOGBOOK.md Iteration 89.
+Next: panel Iteration 88 done (exp-111, PARTIAL,
 THERMODYNAMICS' rotation-lead cycle: executed Reconciled Iteration-88
 Tier-1 items 1/2/4 (fault-injection control for mirror_pooled_floor/
 classify_item_i_local; repositioning the R27/R28 cost gate genuinely

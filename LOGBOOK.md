@@ -1284,6 +1284,118 @@ top. Protocol: PANEL.md.*
   matching R16/R21–R28's own precedent. Full record:
   `experiments/112-t28-cpl25-floor-spot-check/phase2_redteam_audit.md`
   §1, §5, LOGBOOK.md Iteration 89.
+  **Addendum (Phase-5 final audit, same shift, Iteration 89) — a SECOND
+  manifestation of the identical collision shape (`analyze.py`'s own
+  `import chunk_runner as CR` silently resolving to exp-110's own
+  `chunk_runner.py`) was found at Phase 4, after this rule's own Phase-3
+  ratification, in the SAME cycle that founded it.** Ruled, six-of-six
+  blind Phase-5 seats independently converging, Red Team's own final
+  audit ratifying definitively: **does NOT fire.** Both collisions trace
+  to one authoring decision (exp-112's own Phase-1 draft, one sitting,
+  before R29 existed even as an idea); the second was structurally
+  unreachable at Phase 2 (the pipeline crashed on the first collision's
+  own first attribute access before ever reaching the second's import
+  line); every rule in this registry treats a founding cycle's own
+  multiple manifestations of a newly-named shape as one founding
+  instance (R18, R19, R21, the R23 First Addendum), not a
+  founding-plus-second-instance pair. **Textual addendum, ratified,
+  closing the ambiguity**: "a second instance... after this rule is on
+  the books" means a **future cycle's** own reuse of the collision-prone
+  idiom, or a later, separately-reviewed change, after that cycle's own
+  authors had the opportunity to consult this registry — not a second,
+  previously-unreachable manifestation of the identical root cause,
+  discovered and fixed within the SAME cycle that proposes, ratifies,
+  and fixes the founding instance, before any result is scored. Full
+  record: `experiments/112-t28-cpl25-floor-spot-check/
+  phase5_redteam_audit.md` §4, LOGBOOK.md Iteration 89.
+- **R30 — an adopted, uncalibrated discriminating-instrument threshold
+  must be checked against its own already-computable null/background
+  population before its reading is cited with evidentiary language in
+  Result/Interpretation prose — not merely before it gates a
+  pre-registered classification (not a ruled-out idea; a standing
+  house-discipline rule, proposed independently and convergently by
+  PHOTONICS and QUANTUM at Phase 5, by two different methods, ratified
+  by Red Team's Phase-5 final audit, Iteration 89).** Distinguished from
+  the existing uncalibrated-threshold lineage: R5/its exp-070 addendum
+  concerns a dense named-constant search needing a null-permutation
+  control; R10 concerns a free-period/free-phase fit needing a
+  circular-shift-on-real-data null; R17 concerns a tolerance/bracket
+  sized to test whether a feature has moved, needing justification
+  against an already-on-file comparable magnitude before the run. None
+  literally covers this shape: a freshly-built discriminating STATISTIC
+  (a spatial correlation, not a search, fit, or bracket) whose
+  calibrating data (the other 47 bins of the identical pattern) did not
+  exist until AFTER the run that motivated the check, and which — once
+  it did exist — was never checked before the statistic's own reading
+  was described with strong evidentiary language ("striking," "not
+  expected by chance") in frozen prose. Founding instance: exp-112's own
+  `neighbor_correlation_check` (`corr≥0.5`, an illustrative "e.g."
+  offered in PHOTONICS' own Phase-2 critique, adopted verbatim into Red
+  Team's own Phase-2 mandatory-fix docket) — independently shown, by two
+  Phase-5 seats via different routes (an exhaustive 48-window scan; a
+  RESOLVED/UNRESOLVED population split), to clear its own bar at 48 of
+  48 sampled bins (median `0.9952`), with the UNRESOLVED population's
+  own mean correlation HIGHER than the RESOLVED population's — the
+  opposite of the check's own motivating premise. **Rule: once the
+  calibrating data for an adopted-verbatim, uncalibrated discriminating
+  threshold becomes available (even if it did not exist when the
+  threshold was chosen), it must be checked — e.g. against the
+  instrument's own reading at other, independently labeled cases in the
+  same dataset — before that threshold's reading is used with
+  evidentiary/interpretive language in any Result or Interpretation
+  section.** A future cycle that cites such a reading evidentially
+  without this check, when the check later shows the threshold has no
+  demonstrated discriminating power, fires Checkpoint criterion 4
+  automatically — a single-instance-ratified, forward-firing model,
+  matching R16/R21–R29's own precedent. **Does not fire on its own
+  founding instance** (exp-112) — caught blind, same cycle
+  (independently, by two seats), before LOGBOOK, corrected same-shift.
+  Full record: `experiments/112-t28-cpl25-floor-spot-check/
+  phase5_redteam_audit.md` §3, §7, LOGBOOK.md Iteration 89.
+- **R31 — a wall-time-based cost-gate projection that combines pilot
+  data measured in two different execution sessions must include a
+  same-session control point (re-timing one already-completed, cheap
+  scene at the start of the new session and scaling by the ratio to its
+  own historical figure) before its output is trusted for a
+  scope-limiting decision (not a ruled-out idea; a standing
+  house-discipline rule, proposed by THERMODYNAMICS' own Phase-5
+  self-review, independently re-verified and ratified by Red Team's
+  Phase-5 final audit, Iteration 89).** Distinguished from R27 (a
+  numeric gate must be enforced by executable code) and R28 (a gate
+  satisfying R27 must sit causally upstream of the spend it purports to
+  control): both concern the gate's own position and enforcement; this
+  concerns the gate's own INPUT DATA. Founding instance: exp-112's own
+  r=156/`cpl=25` scope decision — `cpl_cost_table.py`'s own `ratio**3`
+  extrapolation, combining exp-110's real `cpl=20` baseline (a PRIOR
+  session) with this cycle's own `cpl=25` pilot (projected, not yet
+  measured), predicted `1469.19s` total; the real measured total, once
+  this cycle's own genuine FDTD spend completed, was `670.48s` — `45.6%`
+  of the projection, a `>2×` miss. Independently re-invoking the real,
+  unmodified `R.cost_gate_check()` with the real pilot flips its own
+  r=312-expansion decision from REFUSED (`14906.3s` projected vs.
+  `10800s` bound) to APPROVED (`6802.6s` vs. `10800s`) — confirmed
+  bit-exact. Root cause: this session's own compute throughput is
+  `~2.19×` exp-110's own prior session's — a genuine, previously
+  undisclosed cross-session machine-speed confound, larger than R28's
+  own founding ~15% exponent-fit miss. **Rule: before trusting any
+  wall-time-based cost projection or gate decision that combines
+  pilot/baseline data measured in two different sessions, re-time one
+  already-completed, cheap scene at the start of the new session, and
+  scale the cross-session baseline by the ratio of that control time to
+  its own historical figure, before combining it with the new session's
+  own pilot in any gate decision.** A future cycle that ships a
+  cross-session cost projection or gate decision without this control,
+  when the projection later proves off by a factor comparable to or
+  larger than this cycle's own `2.19×` finding, fires Checkpoint
+  criterion 4 automatically — a single-instance-ratified, forward-firing
+  model, matching R16/R21–R30's own precedent. **Does not fire on its
+  own founding instance** (exp-112) — the gate's own conservative miss
+  (over-, not under-, estimating the cost) meant no unsafe spend
+  actually occurred; the deferral it produced was merely more cautious
+  than the real numbers required, caught and disclosed by
+  THERMODYNAMICS' own self-review before LOGBOOK. Full record:
+  `experiments/112-t28-cpl25-floor-spot-check/phase5_redteam_audit.md`
+  §1, §7, LOGBOOK.md Iteration 89.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -24099,3 +24211,205 @@ unresolved). Full record: `experiments/111-t28-cost-gate-reposition-and-
 floor-fault-injection/` — `phase1_proposal.md`, five Phase-2 blind
 critiques, `phase2_redteam_audit.md`, `NOTES.md`, `results.json`, six
 Phase-5 blind reviews, `phase5_redteam_audit.md`.
+
+## Iteration 89 — The Twice-Deferred cpl=25 Floor Spot-Check Finally Executes; the Cost Gate Flips on Real Data; Two Same-Cycle R29 Collisions Both Ruled Non-Firing; R30/R31 Ratified (exp-112) — 2026-09-05
+
+**Lead seat: QUANTUM OPTICS** (rotation: PHOTONICS→MATERIALS→
+ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→VISION SCIENCE).
+Executed the Reconciled Iteration-89 queue's headline Tier-1 item
+(LOGBOOK Iteration 88 / exp-111's own `phase5_redteam_audit.md` §8):
+PHOTONICS' own cpl-refinement floor spot-check, deferred twice, executed
+for the first time — `cpl=20→25` (1.25×) congruent grid-resolution
+refinement of the `fixedabs` family, r=156 alone, targeting bin index 4
+(`−146.25°`, margin=32) — `UNRESOLVED-BY-CONSTRUCTION` at `cpl=20`
+(`local_snr≈0.10`, ~10× below even the K=1 floor) despite a `9.88%`
+local fractional deviation. Tier-0 items (ruling on the Iteration-85
+Checkpoint-4/R24 firing; ratifying the R23 First Addendum) remained
+Marsh's call, explicitly out of scope.
+
+**Phase 2 — five blind critiques, all support-with-changes, zero
+opposition, each finding a distinct, independently-verified defect.**
+PHOTONICS: no bin-neighborhood cross-correlation check existed to
+distinguish real structure from an isolated noise spike, despite being
+zero-marginal-cost. MATERIALS and ELECTROMAGNETISM independently,
+convergently found the `ABSORB`/`EDGE` domain-edge sponge scaling is
+NOT resolution-invariant the way `tau_shell`/`sigma_max` provably is
+(`13.93→17.24` log-attenuation, discrete route; `-13.26→-16.57`,
+continuum route — both bit-exact to each other). THERMODYNAMICS found
+the Phase-4 pipeline **as shipped could not run at all**:
+`chunk_runner.py`/`analyze.py` both `import run as R110` then `import
+run as R`, and Python's module cache silently aliased both names to the
+same object — confirmed by actually executing the code, crashing before
+any `Sim.run()` call. VISION found "detection floor" (used to frame
+this as QUANTUM's own charter question) was never disambiguated from a
+human perceptual/observer-detection threshold and did not appear in the
+code-enforced `DISCLAIMER` string R23's own asserts check. **Red Team's
+Phase-2 audit** independently re-derived/re-executed all five from
+primitives, combined them into a 6-item mandatory-fix docket, verdict
+PROCEED-WITH-MANDATORY-FIXES, recommended a new standing rule (R29,
+same-basename-module import-cache collisions).
+
+**Phase 3 — Director synthesis: all six mandatory fixes applied, no
+criticism overridden, R29 ratified.** Module renamed `run.py`→
+`run112.py` with executed identity assertions (hard blocker, re-verified
+by actual re-execution); ABSORB/EDGE non-invariance disclosed with
+computed numbers; a new Check C (`neighbor_correlation_check`, ±2-bin
+window, `corr≥0.5` bar) added to gate when a Check-A SURVIVES reading
+may be called "candidate real structure"; `DISCLAIMER` clause added
+disambiguating "detection floor"; `sigma_abs`/`sigma_ext` persistence
+added. Predictions committed to git (`19c4ac8`) strictly before any
+Phase-4 `Sim.run()` call.
+
+**Phase 4 — 3 real FDTD calls (empty/hollow/peccored, r=156, cpl=25),
+670.5s total wall — well under the 1469.19s projection.** A SECOND,
+previously-undiscoverable instance of the identical R29 collision shape
+surfaced here (not Phase 2): `analyze.py`'s own `import chunk_runner as
+CR` silently resolved to exp-110's own `chunk_runner.py` (same
+cross-directory `sys.path`-ordering root cause), so `have()` read
+`False` even after all three scenes genuinely completed. Fixed
+identically (renamed `chunk_runner112.py`), flagged explicitly for
+Phase 5 to adjudicate, not self-adjudicated. **Result**: Check A
+(mirror-pooled floor) **AMBIGUOUS** — `local_snr` improved
+(`0.0965→0.1444` peccored, `0.1061→0.1589` hollow) but stayed well below
+the K=1 bar. Check B (T28's founding R3 standard) **SURVIVES** — same
+sign, `1.315×` magnitude, within one order of magnitude. Check C
+(new this cycle) `corr=0.9994`, clears its own `≥0.5` bar by a wide
+margin. Per the pre-registered `DISCLAIMER`, Check C may only upgrade a
+Check-A SURVIVES reading — which did not occur — so "candidate real
+structure" was correctly NOT claimed; the Check A/Check C tension was
+named explicitly as a genuinely open, not-yet-scored observation. Both
+R23 `DISCLAIMER` asserts confirmed firing on REAL execution, not merely
+present in source. Combined Verdict (Director, pending Phase 5):
+PARTIAL.
+
+**Phase 5 — six blind reviews, five of six explicitly PARTIAL/
+CONFIRM-WITH-GAPS, one CONFIRM-WITH-GAPS (MATERIALS); every headline
+figure re-verified from primitives; two genuinely new, independently
+convergent findings surfaced, neither raised at Phase 2 including by Red
+Team's own Phase-2 audit.** PHOTONICS and QUANTUM (self-review),
+independently, by different methods (an exhaustive 48-bin correlation
+scan; a RESOLVED/UNRESOLVED population split), found **Check C has zero
+demonstrated discriminating power**: 48/48 bins clear its own `≥0.5`
+bar (median `0.9952`), and the UNRESOLVED population's own mean
+correlation (`0.9921`) is HIGHER than the RESOLVED population's
+(`0.9793`) — the opposite of the check's own motivating premise.
+PHOTONICS traced the mechanism to an un-normalized `1.25×`(`=CPL_RATIO`)
+raw-magnitude artifact in `lab/sections.py::_face_flux()` (a fresh
+instance of R9's existing principle, not a new category). MATERIALS
+found the `DISCLAIMER`'s own "6–8 orders of magnitude below the floor"
+claim does NOT survive re-derivation — exponentiating the (correctly
+disclosed) log-attenuation values gives `~1.8–4.5 orders`, not `6–8`, a
+`~100–1000×` overstatement in a permanent, R23-asserted string, traced
+to an unverified back-of-envelope estimate from Phase 2 (MATERIALS' own
+"6-8" and EM's own "7+", never reconciled by actually computing the
+number) that slipped past Red Team's own Phase-2 audit and Phase 3
+uncorrected. ELECTROMAGNETISM found the persisted `sigma_ext≈sigma_abs+
+sigma_scat` cross-check is a code-level TAUTOLOGY (`lab/sections.py`
+*defines* it that way); the genuinely independent optical-theorem
+quantity (`sigma_ext_cross`) had been silently dropped from the
+persisted ledger, breaking a continuity convention exp-110 itself
+established. THERMODYNAMICS supplied the real independent check
+(`sigma_ext_cross`, agreeing to `6.6ppm`) and, as its own headline
+finding, showed the real measured wall time (`670.5s`) came in at less
+than half `cpl_cost_table.py`'s `ratio³` projection (`1469.19s`) —
+re-invoking the real, unmodified cost gate with the actual pilot **flips
+the r=312-expansion decision from REFUSED to APPROVED** (`6802.6s` vs.
+`10800s`, 37% margin), traced to an apparent `~2.19×` cross-session
+compute-speed difference. VISION confirmed Fix 4/Fix 5 by actually
+re-running `analyze.py` fresh, byte-identical `results.json`, both
+`DISCLAIMER` asserts firing on live re-execution. Four of six seats
+explicitly ruled the second R29 collision instance does NOT fire
+Checkpoint criterion 4 (two more leaned the same way without as firm a
+ruling), each independently reasoning it is the same founding cycle's
+own second manifestation of one root cause authored before R29 existed,
+not a future-cycle repeat.
+
+**Red Team's Phase-5 final audit** independently re-derived all three
+tasked findings from primitives — the cost-gate flip (re-invoked
+`R.cost_gate_check()` directly, confirmed bit-exact both directions),
+the "6-8 vs ~2-4.5 orders" arithmetic (confirmed bit-exact to MATERIALS'
+own table), and the Check-C null-calibration gap (independently
+re-scanned all 48 bins from scratch, confirmed near-exact to both
+seats') — **no correction needed to any of the three substantive
+findings**, only to the frozen prose built on top of them. **Ruled
+definitively: the second R29 instance does NOT fire Checkpoint criterion
+4** (six-of-six unanimous) — both collisions trace to one authoring
+decision made before R29 existed even as an idea, the second was
+structurally unreachable at Phase 2, and every rule in this registry
+grants founding-cycle immunity to multiple manifestations discovered
+within the same cycle. **R29 textual addendum ratified**, scoping "a
+second instance... after this rule is on the books" to a **future
+cycle's** own reuse. **Two new standing rules ratified**: **R30** (an
+adopted, uncalibrated discriminating-instrument threshold must be
+checked against its own computable null population before evidentiary
+language is used — founding instance, Check C, does not fire) and
+**R31** (a cross-session wall-time cost projection needs a same-session
+control point before a gate decision trusts it — founding instance,
+this cycle's own cost-gate scope decision, does not fire; the miss was
+conservative, no unsafe spend occurred). **Zero Checkpoint criteria
+fire.** R20's own density tally sits at 1–2 (conservative count), short
+of "three or more" — a standing observation, now the fifth consecutive
+cycle at this near-miss level (exp-108 through exp-112, each tallying
+1–2), named explicitly without a rule change, matching Iteration 88's
+own identical restraint. Same-shift fixes applied and verified by
+re-execution: `sigma_ext_cross` restored to the persisted energy ledger;
+a corrective comment above `run112.py`'s `DISCLAIMER`; three attributed
+corrections in `NOTES.md`. Trust suite green throughout (43/43, zero
+`lab/` diff).
+
+**Combined Verdict: PARTIAL** (Red Team confirmed, unchanged from the
+Director's own working label) — not RULED OUT (T1 correctly N/A
+throughout; Check B genuinely SURVIVES and Check C's own high
+correlation, though shown non-diagnostic, is not evidence AGAINST real
+structure either, merely uninformative); not PROMISING (Check A, this
+cycle's own primary pre-registered instrument, stays genuinely
+AMBIGUOUS — both `local_snr` readings sit 6–7× below even the
+permissive K=1 bar — and two real, independently-confirmed documentation
+defects survived Phase-3/4 freeze into permanent text, caught only at
+Phase 5). **This continues, unbroken, this exact T28 governance
+sub-thread's own established pattern: every cycle since Iteration 82 has
+landed PARTIAL.** Real, disclosed, independently-reproduced progress
+stands alongside the gaps: the first genuinely new FDTD data this
+long-deferred spot-check has ever produced; the geometry-scaling
+recipe's material-parameter invariance (`tau_shell`) independently
+confirmed to hold in real data to `<0.01%` (MATERIALS' F2); both
+module-collision defects genuinely, verifiably fixed; R23 compliance
+genuinely clean, re-confirmed by three independent parties; and the
+cost-gate re-invocation hands Iteration 90 a concretely unblocked,
+affordable next step (executing the `+168.75°` companion bin at r=312)
+that did not exist before this cycle ran.
+
+**Reconciled Iteration-90 queue: Tier 0** — (0a) rule on the
+Iteration-85 Checkpoint-4/R24 firing at the next convened checkpoint
+(unchanged, still Marsh's own call, still pending — **five cycles now**);
+(0b) ratify or reject the R23 First Addendum (Iteration 88, still
+pending); (0c, new this audit) ratify or reject R30/R31 (provisionally
+ratified by Phase-5 final audit per this program's own established
+practice — final unless a future Director/Marsh session reverses it).
+**Tier 1** — (1) re-invoke `R.cost_gate_check()` with the real,
+now-measured `cpl=25`/r=156 pilot (already done — `proceed_to_r312=
+True`, 37% margin) and execute the `+168.75°` bin at r=312/`cpl=25` with
+the same three-check instrument — the single highest-value item on this
+queue, needing its own fresh, same-session pilot re-measurement per
+R31, not assumed to transfer unchanged; (2) apply R31's own
+same-session-control discipline to that new pilot before trusting its
+projection; (3) recalibrate or replace Check C's own `corr≥0.5` bar with
+the R30-mandated null-calibrated version (percentile/z-score against
+this cycle's own 48-window background, already computed, zero marginal
+cost) before it is applied to the r=312 leg; (4) diagnose and either
+normalize (a `dx`/`cpl` correction to `lab/sections.py::_face_flux()`)
+or explicitly bound the `CPL_RATIO` raw-magnitude confound before any
+future raw cross-`cpl` `sections.py` comparison is trusted. **Tier 2**
+— a third, differently-scaled resolution point (`cpl=30`) for the named
+bin, per R15's own two-point-insufficiency discipline, but only AFTER
+Tier-1 items 3–4 are resolved; state MATERIALS' own F2 cross-cpl
+`abs_ext_ratio` agreement (`<0.1%`) explicitly in a future Result
+section; the `R2_SMOOTH_THRESHOLD=0.90` re-derivation (sixth consecutive
+cycle); MATERIALS' own fabrication-tolerance bound (fifth consecutive
+cycle); the sixth `gate_reposition_control.py` checkpoint-resume case.
+**Tier 3 — unchanged**: the oblique-angle extension; the 750/450nm leg;
+the `G40` full-width leg; the x-wall admittance refit; `PAD`-with-article
+survival; `box_dev`'s own thinning margin. Full record:
+`experiments/112-t28-cpl25-floor-spot-check/` — `phase1_proposal.md`,
+five Phase-2 blind critiques, `phase2_redteam_audit.md`, `NOTES.md`,
+`results.json`, six Phase-5 blind reviews, `phase5_redteam_audit.md`.
