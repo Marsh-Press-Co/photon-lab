@@ -65,7 +65,7 @@
   },
   {
     "id": "exp061-t18-evidentiary-tier-propagation",
-    "description": "Iteration-38 Phase-2 Red Team mandatory fix 2 (VISION SCIENCE's own live catch: this cycle's own Phase-1 proposal stated the T18 WebSearch-snippet-only evidentiary tier in its search-plan and Idealizations sections but NOT at the specific table rows a Phase-4 verdict is actually cited from). Any site stating exp-061's own literature-check verdict (PUBLISHED/PLAUSIBLE/UNOBTANIUM for the graded_black_shell absorptivity question) must disclose the WebSearch-snippet-only sourcing tier AT THE VERDICT ITSELF, not only in a general methodology section elsewhere in the same document. WIDENED at exp-061 Phase-5 close (mandatory-fix docket item 2, VISION's own second live catch): required_sites widened to add phase4_results.md. **CHECKPOINT CRITERION 4 FIRED, Iteration 39 Phase 2 (exp-062)**: this entry's required_sites/candidate_globs could not discover exp-062's forthcoming NOTES.md/phase4_results.md; WIDENED same-shift (mandatory-fix docket item 1) to add both by literal path plus a generic experiments/*/phase4_results.md pattern. **CHECKPOINT CRITERION 4 FIRED A SECOND TIME, Iteration 39 Phase 5 (exp-062) -- unprecedented, two firings in one iteration**: VISION SCIENCE's Phase-5 review found the Phase-2 widening's own generic pattern covered ONLY phase4_results.md-class files, never phase2_critique_*/phase3_synthesis/phase5_review_*/phase5_redteam_audit.md -- demonstrated live on a PRE-EXISTING, already-merged file (experiments/061-.../phase5_review_materials.md) that restates the UNOBTANIUM verdict with ZERO T18 disclosure, invisible to this tool at any tier. Red Team's Phase-5 audit ruled this fires: the tripwire's temporal test ('discovered at Iteration 39 or later') is a floor not a per-iteration ceiling, and this is a textually distinct sub-defect (candidate_globs, not required_sites) -- not the same argument re-offered (phase5_redteam_audit.md section 2, full argument). WIDENED again same-shift (mandatory-fix docket item 2): candidate_globs below, and lab/caveat_lint.py's own DEFAULT_CANDIDATE_GLOBS, now carry a generic experiments/*/phase*.md pattern reaching every phase-numbered document for any experiment, present or future -- not another named-filename patch. The live violation in phase5_review_materials.md was closed directly (mandatory-fix docket item 3): the file now carries the T18 disclosure at its own restated verdict.",
+    "description": "Iteration-38 Phase-2 Red Team mandatory fix 2 (VISION SCIENCE's own live catch: this cycle's own Phase-1 proposal stated the T18 WebSearch-snippet-only evidentiary tier in its search-plan and Idealizations sections but NOT at the specific table rows a Phase-4 verdict is actually cited from). Any site stating exp-061's own literature-check verdict (PUBLISHED/PLAUSIBLE/UNOBTANIUM for the graded_black_shell absorptivity question) must disclose the WebSearch-snippet-only sourcing tier AT THE VERDICT ITSELF, not only in a general methodology section elsewhere in the same document. WIDENED at exp-061 Phase-5 close (mandatory-fix docket item 2, VISION's own second live catch): required_sites widened to add phase4_results.md. **CHECKPOINT CRITERION 4 FIRED, Iteration 39 Phase 2 (exp-062)**: this entry's required_sites/candidate_globs could not discover exp-062's forthcoming NOTES.md/phase4_results.md; WIDENED same-shift (mandatory-fix docket item 1) to add both by literal path plus a generic experiments/*/phase4_results.md pattern. **CHECKPOINT CRITERION 4 FIRED A SECOND TIME, Iteration 39 Phase 5 (exp-062) -- unprecedented, two firings in one iteration**: VISION SCIENCE's Phase-5 review found the Phase-2 widening's own generic pattern covered ONLY phase4_results.md-class files, never phase2_critique_*/phase3_synthesis/phase5_review_*/phase5_redteam_audit.md -- demonstrated live on a PRE-EXISTING, already-merged file (experiments/061-.../phase5_review_materials.md) that restates the UNOBTANIUM verdict with ZERO T18 disclosure, invisible to this tool at any tier. Red Team's Phase-5 audit ruled this fires: the tripwire's temporal test ('discovered at Iteration 39 or later') is a floor not a per-iteration ceiling, and this is a textually distinct sub-defect (candidate_globs, not required_sites) -- not the same argument re-offered (phase5_redteam_audit.md section 2, full argument). WIDENED again same-shift (mandatory-fix docket item 2): candidate_globs below, and lab/caveat_lint.py's own DEFAULT_CANDIDATE_GLOBS, now carry a generic experiments/*/phase*.md pattern reaching every phase-numbered document for any experiment, present or future -- not another named-filename patch. The live violation in phase5_review_materials.md was closed directly (mandatory-fix docket item 3): the file now carries the T18 disclosure at its own restated verdict. **WIDENED AGAIN, Iteration 92 Phase 3 (exp-115, Red Team Phase-2 mandatory fix MF-14, VISION SCIENCE Sec 4.8 + QUANTUM OPTICS B11):** two trigger BLINDNESSES were demonstrated live against exp-115's own Phase-1 proposal -- the registry spelled the tier 'UNOBTANIUM' while PANEL.md and the proposal spell it 'UNOBTAINIUM', and the registry's absorptivity trigger matched ASCII 'alpha' while the documents write the Unicode alpha character (U+03B1) -- so the one entry that has fired Checkpoint criterion 4 TWICE in a single iteration was structurally unable to discover the document restating its verdict. Both spellings and both alphabets are now carried as trigger_terms, candidate_globs reaches experiments/*/*.py, and exp-115's own NOTES.md/run115.py/analyze115.py are added to required_sites so the T18 disclosure is GATED at this cycle's sites, not merely warned. RESIDUAL, DISCLOSED (exp-115 NOTES.md TODO): trigger terms are discovery-only and never gate the exit code in lab/caveat_lint.py -- closing that is a code change this cycle was not authorized to make.",
     "source": "LOGBOOK.md Iteration 38 Phase-2 Red Team audit, mandatory fix 2; Iteration 38 Phase-5 Red Team audit, mandatory-fix docket item 2; LOGBOOK.md Iteration 39 CHECKPOINT #1 (criterion 4, Phase 2), exp-062 phase2_redteam_audit.md section 3; LOGBOOK.md Iteration 39 CHECKPOINT #2 (criterion 4, Phase 5), exp-062 phase5_review_vision.md section 1 + phase5_redteam_audit.md section 2",
     "phrase_patterns": [
       "WebSearch.snippet",
@@ -76,11 +76,18 @@
       "experiments/061-absorptivity-mechanism-literature-check/NOTES.md",
       "experiments/061-absorptivity-mechanism-literature-check/phase4_results.md",
       "experiments/062-thin-film-interference-and-near-field-coupling-bound/NOTES.md",
-      "experiments/062-thin-film-interference-and-near-field-coupling-bound/phase4_results.md"
+      "experiments/062-thin-film-interference-and-near-field-coupling-bound/phase4_results.md",
+      "experiments/115-t28-r234-grid-native-control-and-fab-tolerance/NOTES.md",
+      "experiments/115-t28-r234-grid-native-control-and-fab-tolerance/run115.py",
+      "experiments/115-t28-r234-grid-native-control-and-fab-tolerance/analyze115.py"
     ],
     "trigger_terms": [
       "PUBLISHED.{0,10}PLAUSIBLE.{0,10}UNOBTANIUM",
+      "PUBLISHED.{0,10}PLAUSIBLE.{0,10}UNOBTAINIUM",
+      "UNOBTANIUM.WITH.PARAMETERS",
+      "UNOBTAINIUM.WITH.PARAMETERS",
       "alpha.{0,15}(1\\.66|1\\.667|5\\.7|5\\.73|5\\.74)",
+      "\\u03b1.{0,15}(1\\.66|1\\.667|5\\.7|5\\.73|5\\.74)",
       "graded_black_shell.{0,30}absorptivity"
     ],
     "candidate_globs": [
@@ -89,6 +96,7 @@
       "experiments/*/NOTES.md",
       "experiments/*/phase4_results.md",
       "experiments/*/phase*.md",
+      "experiments/*/*.py",
       "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md"
     ]
   },
@@ -421,6 +429,37 @@
       "PLAN.md",
       "experiments/*/NOTES.md",
       "experiments/*/phase*.md"
+    ]
+  },
+  {
+    "id": "exp115-t28-fabrication-tolerance-bound-certified-resolution",
+    "description": "exp-115 (Panel Iteration 92) wrote, for the first time in seven cycles of naming it, MATERIALS' fabrication-tolerance bound for the graded_black_shell article: the core/backing material is a free parameter from vacuum to a perfect electric conductor. The bound as DRAFTED at Phase 1 was refuted three ways by Red Team's Phase-2 audit and is shipped only in corrected form (mandatory fixes MF-1..MF-4): (1) MF-1 -- the physics used exp(-2*tau_true), the |dA|^2 term only, where the observable is a relative change in a cross-section whose leading term is the COHERENT CROSS TERM; the correct scale is exp(-tau_true) = 2.5896e-04 with upper bound 2*exp(-tau_true) = 5.1793e-04, so the draft was wrong by exp(+tau_true) ~ 3.86e3 and inverted its own 'floor-limited' conclusion. (2) MF-2 -- the floor gate used |sigma_ext - sigma_ext_cross|, which is scene-independent (p_ext_cross - p_ext = F(pi), a function of the EMPTY capture and the box alone: 0.0 EXACTLY at r=234, 2.27e-13 at r=156) and therefore cancels between the two scenes being differenced; it is a SOLVER SELF-CONSISTENCY statistic, never a differential floor. The only differential floor on file is exp-108's six-margin item_ii family, on which the effect is RESOLVED at 4.47x (r=156) and 11.70x (r=312) -- and NO differential floor exists at r=234 at all. (3) MF-3/MF-4 -- the per-bin half of 'insensitive at better than 1.6e-04' is WITHDRAWN: that is the PEAK-normalized figure LOGBOOK Iteration 85 already recorded as structurally blind in low-cross-section sectors; on exp-110's own floor-gated LOCAL normalization the figure is 1.4669e-02 at r=156 (34/48 resolved) and 5.290e-02 at r=312 (38/48), 99x and 347x larger, with the two largest resolved r=312 deviations at +/-138.75 deg, INSIDE the observer-return hemisphere PANEL.md scores constraint 2 on. ANY future citation of this bound MUST carry the certified-resolution wording alongside the number: CERTIFIED AT MARGIN=32 ONLY (the other five margins are certified by one boolean against a 5e-02 DECISION BAR, 330x looser); per-bin evidence at cpl=20 only and aggregate evidence at cpl=25 only, so CHANNEL AND RESOLUTION ARE FULLY CONFOUNDED; r=234 aggregate-only; near-to-mid-field box ledger, not far-field; and the bound does NOT license varying the backing without re-measuring the per-bin angular channel in the observer-return hemisphere. Citing the bound without that wording would restate the refuted draft, which is exactly the caveat-propagation failure class this program has repeatedly fired Checkpoint criterion 4 on.",
+    "source": "experiments/115-t28-r234-grid-native-control-and-fab-tolerance/phase2_redteam_audit.md RT-1/RT-2/RT-3/RT-4/RT-9/RT-10/RT-15 and mandatory-fix docket MF-1..MF-4, MF-11, MF-13, MF-14; phase2_critique_photonics.md Sec 4.2/4.3/4.5/4.6, phase2_critique_quantum.md B10, phase2_critique_em.md A7/A10, phase2_critique_thermodynamics.md Sec 1/3/4, phase2_critique_vision.md Sec 4.2/4.10/4.11; NOTES.md Phase 3",
+    "phrase_patterns": [
+      "certified at margin=32 only",
+      "channel and resolution are fully confounded",
+      "per-bin half of (any|the) .{0,40}withdrawn"
+    ],
+    "required_sites": [
+      "experiments/115-t28-r234-grid-native-control-and-fab-tolerance/NOTES.md",
+      "experiments/115-t28-r234-grid-native-control-and-fab-tolerance/run115.py",
+      "experiments/115-t28-r234-grid-native-control-and-fab-tolerance/analyze115.py"
+    ],
+    "trigger_terms": [
+      "fabrication.tolerance",
+      "core/backing",
+      "backing.independen",
+      "free parameter over the entire span from vacuum to a perfect conductor",
+      "1\\.6.{0,6}10.{0,6}4 relative"
+    ],
+    "candidate_globs": [
+      "LOGBOOK.md",
+      "PLAN.md",
+      "PANEL.md",
+      "experiments/*/NOTES.md",
+      "experiments/*/phase*.md",
+      "experiments/*/*.py",
+      "experiments/034-floor-convergence-scale-bridge/REALIZABILITY_MEMO.md"
     ]
   }
 ]
