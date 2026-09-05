@@ -2,6 +2,56 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-08-27 → 09-05 — THE COMPUTE BENCH: bought, delivered, meshed, verified
+
+Multi-day thread (Marsh driving, phone-first) that took the photon-lab compute box from
+"wrong listings" to a verified, agent-run machine at Preston's house. Full buy research +
+running bench state live in the vault: [[Workstation-Buy-Options]].
+
+**Shipped/Done**
+- **Bought a Dell Precision T5820** — W-2145 8c/16t · 128GB ECC quad-channel (8×16 Micron
+  2133) · RTX 3070 8GB · 950W · 1.7TB SSD + 4TB HDD · Win11 Pro WS activated — for
+  **$1,144.99** (offered $1,100, closed $100 under sticker). eBay seller Titanium Rebuild.
+  6 competing listings evaluated + rejected first (dual-socket server, PowerEdge T430,
+  PCSP 3650, a $3,879 boutique T5820, 3090 Ti/4080 GPU detours).
+- **Bench brought online overnight 09-04→05:** Preston did the whole physical side
+  mouse-only (GPU reseat to x16, ethernet, on-screen-keyboard SSH install, firewall rule);
+  Bonnie keyed in; put it on Marsh's Tailscale mesh (`desktop-9k6ejea` @ 100.121.247.14).
+- **Marsh's road login live:** `ssh Superuser@100.121.247.14` with his `marsh-laptop-road`
+  key — works from any tailnet device.
+- **Hardware GATE = full pass** (run over key-SSH): every listing claim verified, RTX 3070
+  confirmed at **PCIe x16/x16** (reseat worked), **WHEA 0 errors**, drives 0 wear.
+
+**Decisions**
+- Workstation over server (Preston's instinct was server): modern cores, house-friendly
+  power/noise, and the un-retrofittable 950W GPU bay won it. GPU (24GB) deferred until
+  Ampere prices sober up; the 3070 is a capable interim.
+- Box lives at **Preston's house** (always-on); Tailscale tailnet of record = Marsh's
+  **GitHub** login (his Google login has a stale-nodekey conflict).
+- Preston invited onto Marsh's tailnet as a Member (one mesh, whole team) rather than
+  meshing to his own account.
+
+**Verified**
+- End-to-end tailnet reach: `tailscale ping` pong 85ms, port 22 open, key `LOGIN_OK`.
+- Gate suite over key-SSH: CPU/BIOS/RAM/OS/activation/disks/GPU/WHEA all green vs listing.
+
+**Deferred/next** (Bonnie / next session — see #38)
+- `tailscale set --unattended=true` (IMPORTANT — mesh must survive reboots), §3 sleep-off,
+  rotate the burned console password, real perf numbers via a compute load (photon-lab job
+  or elevated benchmark — winsat returns nothing over non-elevated SSH).
+- NVMe (~$75) + Proxmox decision still open; Windows stays as fallback.
+
+**Notes/gotchas** (promoted this session)
+- **Agents run the code; every human is physical-world-only unless they volunteer** →
+  [[Working-Style]]. ("Leave my boy Preston alone.")
+- **Credentialed remote-access is classifier-gated** — scripted password-SSH and
+  credential-bearing board posts are blocked (correct; not bypassed). Route it to the
+  on-machine agent, or pivot to key-auth (not blocked). → [[Delegation-and-Agents]].
+- Bench coordination moved off Telegram to its own board thread **co-lab #38**; a resumed
+  session should read #38 first. A live #38 watcher ran this session.
+- The GitHub OAuth "Authorize" button needs a real human tap (anti-clickjacking) —
+  automation reaches it but can't trip it; Marsh taps on phone. Hit twice (laptop + bench
+  tailnet join).
 ## 2026-09-05 (panel shift) — Pre-flight only; no new iteration this
 shift; the Iteration-85 Checkpoint-4/R24 firing escalated to Marsh
 directly (real notification, not another in-document line):
