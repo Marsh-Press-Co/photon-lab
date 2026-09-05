@@ -288,6 +288,21 @@ def classify_resolution_check(delta_pattern_cpl25, peccored_cpl25, hollow_cpl25,
 
 
 # ================================================================ predictions/result text (R23 -- single source of truth)
+# Phase-5 Red Team final audit correction (Panel Iteration 89, MATERIALS'
+# finding, independently re-derived and confirmed exactly): the sentence
+# below claiming the ABSORB/EDGE sponge's accumulated log-attenuation
+# values sit "6-8 orders of magnitude below" the measurement floor does
+# NOT survive re-derivation -- exponentiating 13.93/17.24 and comparing to
+# the stated 1e-4/1e-3 floor scale gives ~1.8-4.5 orders, not 6-8 (a
+# ~100-1000x overstatement). This constant is left UNMODIFIED because it
+# is already byte-frozen into this cycle's own committed results.json
+# (predictions_text/result_text); rewriting it now would break historical
+# reproducibility (analyze.py would no longer regenerate the committed
+# file byte-exact from a fresh run). ANY FUTURE CYCLE THAT REUSES OR
+# EXTENDS THIS STRING (the exp-110-DISCLAIMER -> exp-111-DISCLAIMER_88
+# idiom) MUST correct "6-8 orders" to "~2-4.5 orders" in its own
+# successor string -- do not propagate the uncorrected figure forward.
+# See phase5_redteam_audit.md Sec 2 for the full re-derivation.
 DISCLAIMER = ("This is an instrument-fidelity/resolution-convergence check on "
               "an angular-scattering-pattern noise floor, not a phenomenon-"
               "mechanism proposal -- no sigma(I)/sigma(x,t)/angular-selectivity/"

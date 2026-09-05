@@ -118,9 +118,25 @@ def analyze_r156_cpl25():
     # for this cycle's own scored checks (T1 N/A); needed by any future
     # cycle attempting a genuinely physical, not merely statistical,
     # interpretation of the named bin's own deviation.
+    #
+    # Phase-5 Red Team final audit (Panel Iteration 89, EM's finding,
+    # independently confirmed): sigma_ext_cross (the optical-theorem
+    # interference-based extinction route, w["sigma_ext_cross"] --
+    # STRUCTURALLY DIFFERENT from sigma_ext=sigma_scat+sigma_abs, which is
+    # a tautological definitional identity, not a physical check) was
+    # already computed in-memory here but silently dropped from the
+    # persisted ledger, breaking continuity with exp-110's own established
+    # convention (its own results.json DOES persist sigma_ext_cross).
+    # Restored, zero marginal FDTD cost (already computed by sc.widths()
+    # above) -- this is the genuinely independent cross-check that lets a
+    # future reader confirm the ledger reflects real, correctly-wired field
+    # data (agrees with sigma_scat+sigma_abs to ~6.6ppm, both configs, per
+    # the audit).
     energy_ledger = dict(
-        peccored=dict(sigma_scat=w_p["sigma_scat"], sigma_abs=w_p["sigma_abs"], sigma_ext=w_p["sigma_ext"]),
-        hollow=dict(sigma_scat=w_h["sigma_scat"], sigma_abs=w_h["sigma_abs"], sigma_ext=w_h["sigma_ext"]))
+        peccored=dict(sigma_scat=w_p["sigma_scat"], sigma_abs=w_p["sigma_abs"], sigma_ext=w_p["sigma_ext"],
+                      sigma_ext_cross=w_p["sigma_ext_cross"]),
+        hollow=dict(sigma_scat=w_h["sigma_scat"], sigma_abs=w_h["sigma_abs"], sigma_ext=w_h["sigma_ext"],
+                    sigma_ext_cross=w_h["sigma_ext_cross"]))
 
     return dict(
         r=156, cpl=R.CPL_TARGET,

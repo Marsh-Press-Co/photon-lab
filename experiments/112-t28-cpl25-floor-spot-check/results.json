@@ -340,12 +340,14 @@
     "peccored": {
       "sigma_scat": 350.57117595080604,
       "sigma_abs": 349.5371138134443,
-      "sigma_ext": 700.1082897642503
+      "sigma_ext": 700.1082897642503,
+      "sigma_ext_cross": 700.1129451080386
     },
     "hollow": {
       "sigma_scat": 350.60048277707733,
       "sigma_abs": 349.5228378615304,
-      "sigma_ext": 700.1233206386078
+      "sigma_ext": 700.1233206386078,
+      "sigma_ext_cross": 700.1279759823958
     }
   },
   "pattern_peccored": [

@@ -79,6 +79,30 @@ shift, before any Phase-4 `Sim.run()` call — no criticism overridden.**
    measurement floor, non-fatal) instead of a vague "not independently
    re-derived" idealization. Folded into `run112.py`'s own `DISCLAIMER`
    string (single source of truth, R23 discipline).
+
+   > **Phase-5 Red Team final audit correction (MATERIALS' finding,
+   > independently re-derived from primitives, confirmed exactly):
+   > "6–8 orders of magnitude below the floor" does NOT survive
+   > re-derivation. The log-attenuation values (`13.93`/`17.24`) are
+   > correct and reproduce exactly, but nobody in this cycle's own chain
+   > (MATERIALS, EM, Red Team's own Phase-2 audit, Phase 3) actually
+   > exponentiated them and compared the RESULT to the stated
+   > `~1e-4`–`1e-3` floor scale before freezing the claim into a
+   > permanent, code-asserted string. Doing so: `exp(-13.929451)
+   > =8.92e-7`, `exp(-17.242357)=3.25e-8` (discrete route); `exp(-13.258)
+   > =1.75e-6`, `exp(-16.573)=6.35e-8` (continuum route). Against
+   > `1e-4`–`1e-3`, the true margin is **~1.8–4.5 orders of magnitude,
+   > not 6–8** — a ~100–1000× overstatement of the safety margin.
+   > Non-outcome-reversing (the corrected margin, several orders above
+   > the ~10⁻¹-scale signal under test, still supports "non-fatal"), but
+   > the specific asserted figure is wrong. `run112.py`'s own live
+   > `DISCLAIMER` constant is left UNMODIFIED here (it is already
+   > byte-frozen into this cycle's own committed `results.json`
+   > `predictions_text`/`result_text`, and rewriting it now would break
+   > that historical reproducibility) — a corrective code comment is
+   > added directly above the constant instead, so a future cycle that
+   > extends this string (the `DISCLAIMER`→`DISCLAIMER_88` idiom) does
+   > not inherit the error. See `phase5_redteam_audit.md` §2.
 3. **Fix 3 (neighbor-correlation Check C)**: `run112.py::
    neighbor_correlation_check()` added — Pearson-correlates the ±2-bin
    window of the delta pattern around the named bin, cpl=20 vs cpl=25,
@@ -263,6 +287,37 @@ kind of "not yet ruled out, and not yet confirmed" result T28's own
 founding standard (R3, exp-069) is built to produce honestly, rather than
 force to a premature verdict either way.
 
+> **Phase-5 Red Team final audit correction (PHOTONICS' and QUANTUM's
+> independently convergent findings, reached by different methods,
+> both independently re-derived from primitives here and confirmed
+> exactly): the claims "striking... not obviously expected... by
+> chance" and "real tension with Check A" do NOT survive re-derivation
+> from data this cycle itself already committed.** Running the identical
+> ±2-bin correlation at all 48 possible window positions (`cpl=20` vs.
+> `cpl=25`, the same two committed arrays Check C reads) gives 48/48
+> clearing `≥0.5`, 46/48 clearing `≥0.9`, median `0.9952`, range
+> `[0.8169, 0.9996]` — the named bin's own `0.9994` is unremarkable
+> against this background, not an outlier. Splitting by exp-110's own
+> RESOLVED/UNRESOLVED mask makes this sharper, not weaker: the
+> UNRESOLVED population's own mean correlation (`0.9916`–`0.9921`) is
+> HIGHER than the RESOLVED population's (`0.9793`) — the opposite of
+> what "real structure imprints correlated shape" would predict, and the
+> single lowest correlation anywhere in the pattern (`0.8169`, bin 35)
+> sits in the RESOLVED population, not the unresolved one. Mechanism,
+> independently traced: `delta(θ)` is dominated by the disk's smooth
+> diffraction envelope at *both* resolutions, so any `±2`-bin window
+> correlates highly under a congruent mesh refinement regardless of
+> whether that window's own absolute magnitude is individually
+> well-resolved — Check C, as built and as calibrated (`corr≥0.5`, an
+> uncalibrated illustrative bar, never checked against this cycle's own
+> other 47 bins before being cited evidentially), has no demonstrated
+> discriminating power at the resolution this cycle needed it to operate
+> at. **Non-outcome-reversing**: the document's own scored disposition
+> (no "candidate real structure" claim; Check A never reached SURVIVES)
+> is unaffected, and is if anything more defensible once this correction
+> is made, not less. See `phase5_redteam_audit.md` §3 for the full
+> re-derivation and the new standing rule (R30) this founds.
+
 ## Combined Verdict (Director, pending Phase 5)
 
 **PARTIAL** (LOGBOOK-level vocabulary) — not RULED OUT (the named bin is
@@ -277,6 +332,33 @@ suite green throughout (41/41, before and after this cycle's code
 changes). Six blind Phase-5 reviews plus Red Team's own final audit,
 below, will independently re-verify all of the above, adjudicate the
 second-R29-instance Checkpoint question, and may revise this label.
+
+> **Red Team's Phase-5 final audit ruling (full record:
+> `phase5_redteam_audit.md`): Combined Verdict PARTIAL, confirmed,
+> unchanged.** The second R29 instance does **not** fire Checkpoint 4 —
+> ruled unanimously by all six blind Phase-5 seats plus this audit (same
+> founding cycle's own second, previously-unreachable manifestation of
+> one root cause, not a future cycle reusing a known-named danger); a
+> textual addendum tightening R29's own forward clause to "a future
+> cycle's own instance" is ratified. Two genuinely new, governance-worthy
+> findings are ratified as new standing rules: **R30** (an adopted,
+> uncalibrated discriminating-instrument threshold — here, Check C's
+> `corr≥0.5` bar — must be checked against its own already-computable
+> null/background population before its reading is used with
+> evidentiary language, not merely before it gates a classification) and
+> **R31** (a wall-time-based cost-gate projection that combines pilot
+> data from two different execution sessions must include a same-session
+> control point before its output is trusted — THERMODYNAMICS' own
+> headline finding: the real `cpl=25` pilot came in at `670.5s`, less
+> than half `cpl_cost_table.py`'s `1469.19s` cross-session projection,
+> and re-invoking the real, unmodified `R.cost_gate_check()` with the
+> real pilot **flips** the r=312 expansion decision from REFUSED
+> (`14906.3s` projected vs. `10800s` bound) to APPROVED (`6802.6s` vs.
+> `10800s`) — independently re-confirmed bit-exact by this audit, §1).
+> Neither new rule fires on its own founding instance. Zero Checkpoint
+> criteria fire this cycle. See `phase5_redteam_audit.md` for the full
+> reasoning, the Reconciled Iteration-90 queue, and the ranked top-3
+> next-step list.
 
 ## Idealizations — what this cycle does and does not establish
 
