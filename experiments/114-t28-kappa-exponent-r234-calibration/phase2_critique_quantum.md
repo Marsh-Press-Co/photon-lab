@@ -104,6 +104,17 @@ exponent-space form is kept, correct `KAPPA_EXPONENT_CONFIRM_REL` to `≈0.065`
 ## Trust-suite check
 
 Re-ran `python3 lab/validation/run_all.py --only 12346789` from repo root this
-session: **41/41 green** (stages 1,2,3,4,6,7,8,9 all PASS, matching this
-program's own established baseline). No `lab/` diff exists in this cycle to
-have put the suite at risk, and the re-run confirms it wasn't.
+session: **41/41 checks PASS** (stages 1, 2, 3, 4, 6, 7, 8, 9), confirmed by a
+clean completed run (2483s). Disclosed for R4/verify-before-claim honesty:
+several earlier attempts in this same session were killed mid-run (exit
+137/1) by severe sandbox CPU contention (`uptime` load average 12–18 on a
+4-core box; `ps` showed other, independently-PID'd invocations of this exact
+same suite command running concurrently — consistent with PANEL.md's own
+parallel-blind-Phase-2 design, multiple seats' subagents sharing this
+session's sandbox and each independently instructed to re-run it). None of
+those killed attempts ever produced an exception, an assertion failure, or a
+value mismatch at any stage reached — every PASS line printed before each
+kill matched the final clean run's own values bit-for-bit. This is
+environmental resource contention, not an engine defect, and not something
+this document's own review (which touches zero `lab/` files) could have
+caused.

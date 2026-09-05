@@ -45,53 +45,40 @@ lab/` was empty throughout, confirmed repeatedly.
 
 Falling back to individual stages, matching THERMODYNAMICS' own disclosed
 methodology: `--only 1` through `--only 9` (skipping 5, not part of the
-`12346789` set). Seven of eight stages were independently, freshly
-re-executed to completion this session, each verified by direct stdout
-capture (not assumed from a prior cycle's own figure):
+`12346789` set). All eight stages were independently, freshly re-executed
+to completion this session, each verified by direct stdout capture (not
+assumed from a prior cycle's own figure) — stage 4 alone required four
+attempts (killed at 110s, 300s, a 590s ceiling, and finally completing,
+unbounded, after 2377s/≈40 min under sustained contention worse than
+THERMODYNAMICS' own disclosed experience — `ps aux` showed 6–10 concurrent
+copies of this exact command, including another session's own
+`faulthandler`-instrumented diagnostic of this identical slow stage;
+`/proc/loadavg` read 10–22 throughout):
 
-| Stage | Checks | Result |
+| Stage | Own checks (standalone run) | Result |
 |---|---|---|
 | 1 | 3 | PASS |
 | 2 | 3 | PASS |
-| 3 | 4 | PASS |
+| 3 | 4 (incl. `ours-small` prerequisite) | PASS |
+| 4 | 3 (incl. `ours-small` prerequisite AGAIN) | PASS — `ceviche · scattered-pattern corr: 0.956` (≥0.90), `ceviche · lambda (cells): 19.80` (20.0±0.5), 2377s |
 | 6 | 5 | PASS |
 | 7 | 5 | PASS |
 | 8 | 6 | PASS |
 | 9 | 13 | PASS |
 
-Subtotal: 3+3+4+5+5+6+13 = **39**, all `[PASS]`.
-
-**Stage 4 (ceviche FDFD cross-check) is the one stage this session could
-not drive to completion within an affordable budget** — four separate
-attempts (killed at 110s, 300s, and a 590s ceiling; a fourth, unbounded
-attempt survived past 6 CPU-minutes, memory still climbing slowly, and was
-still in flight when this audit was finalized) all died or ran
-indefinitely at the identical point: inside `ceviche.fdfd_ez`'s own sparse
-solve, called twice per stage. This is consistent with, not contrary to,
-the contention already disclosed above — a direct sparse LU factorization
-is far less forgiving of CPU starvation/oversubscription than this suite's
-own FDTD stages, all of which (1/2/3/6/7/8/9) completed in 14–78s each
-under the identical shared-sandbox conditions. **Disclosed, not
-adopted as evidence either way**: `stage4_ceviche()`'s own source (`lab/
-validation/run_all.py` lines 202–229, read directly, unmodified —
-`git diff` empty) defines exactly two unconditional `check()` calls
-(`scattered-pattern corr >=0.90`, `lambda (cells) 20.0±0.5`), no loop, no
-data dependency beyond the already-unmodified `ceviche` library — so a
-completed run would contribute exactly 2 to the tally, making
-39+2=**41**, matching this program's own long-established figure exactly.
-This is a **static-code count, not an executed-and-observed PASS**, and is
-named as such, not conflated with the 39 stages actually confirmed by
-direct execution above. **I do not claim 41/41 confirmed by execution this
-session** — I claim 39/39 confirmed by execution, plus a fifth, independent
-line of evidence (source inspection) that the remaining 2 checks are the
-only two stage-4 defines and would need to fail an already-`≥0.90`/`≤0.5`-
-banded comparison against an unmodified library, on an unmodified
-scene, to break the established 41/41 baseline — and no seat, including
-this one, found any reason across five blind critiques plus this audit to
-suspect such a break. If the Director requires a literal 41/41 execution
-confirmation before Phase 3 proceeds, stage 4's own background attempt
-(`/tmp/.../scratchpad/stage4_v3.log`) should be re-checked when sandbox
-contention eases, rather than re-attempted under these same conditions.
+Naive sum: 3+3+4+3+5+5+6+13=**42** — but this double-counts: `ours-small ·
+lambda (cells): 19.96` is a shared prerequisite that stages 3 and 4 BOTH
+recompute and print when run as separate standalone `--only 3`/`--only 4`
+invocations (confirmed identical value, identical check, in both logs),
+whereas the real combined `--only 12346789` pipeline computes it exactly
+once. Deduplicating (per this program's own R19 discipline — call-count is
+not distinct-check-count) gives the true unique-check total: **41, all
+`[PASS]`, every one confirmed by direct execution this session** —
+matching this program's own long-established `--only 12346789` figure
+exactly, reconstructed from its own parts under the same disclosed
+methodological substitution THERMODYNAMICS used, and (unlike THERMODYNAMICS'
+own cycle) with every one of the 8 constituent stages actually completing
+this session, not merely 7 of 8 plus a static-code inference for the 8th.
 
 Additionally, and beyond what any of the five blind critiques did: I
 executed the **literal production dispatch path** itself —
@@ -553,12 +540,12 @@ N/A throughout — no attack below is a constraint-#N violation):
 
 **Everything independently re-executed — the geometry-identity check at
 r=156/234/312, the cost-multiplier arithmetic, the R31 control-reuse
-direction, the literal no-control-file dispatch path, and 7 of 8 trust-suite
-stages (39/39 checks) — reproduced correctly; stage 4 (ceviche cross-check,
-2 checks) could not be driven to completion this session under sandbox
-contention exceeding even THERMODYNAMICS' own disclosed experience — see §0
-for the full disclosure and the static-code basis for expecting 41/41.**
-No constraint-#N violation, no
+direction, the literal no-control-file dispatch path, and all 41 unique
+trust-suite checks (all 8 stages, deduplicated per §0) — reproduced
+correctly, PASS, confirmed by direct execution, despite sandbox contention
+this session that exceeded even THERMODYNAMICS' own disclosed experience
+(stage 4 alone required 2377s/four attempts to complete). No constraint-#N
+violation, no
 unfalsifiable claim, and no inexpressible mechanism exists anywhere in this
 cycle (there is no mechanism here to be inexpressible). The defects found
 are real but narrow: a falsifiable band's own justification, a permanent-
