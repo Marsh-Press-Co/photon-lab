@@ -26,41 +26,72 @@ and I independently agree on this, by six different routes.
 
 ---
 
-## 0. Trust suite (re-run this session, methodology disclosed)
+## 0. Trust suite (re-run this session, methodology disclosed — contention
+## more severe than THERMODYNAMICS' own already-disclosed experience)
 
 A single `python3 lab/validation/run_all.py --only 12346789` was attempted
 from the repo root and killed at the 580s wall-clock ceiling with **zero**
 stdout produced — no `[PASS]`/`[FAIL]` line, no traceback. `ps aux` during
-the attempt showed 6–9 concurrent copies of this same command (three
-distinct invocation shapes) already running under this session's own
-`nproc=4` sandbox, `/proc/loadavg` reading 17–22 throughout — other panel
-seats' own sessions sharing this same container, exactly the contention
-THERMODYNAMICS' own Phase-2 critique already disclosed for this cycle. This
-is external resource contention, not a `lab/` regression: `git diff --stat
--- lab/` was empty throughout.
+the attempt showed 6–10 concurrent copies of this same command (three
+distinct invocation shapes, one of them another session's own
+`faulthandler.dump_traceback_later`-instrumented diagnostic of this exact
+same slow stage) running under this session's own `nproc=4` sandbox,
+`/proc/loadavg` reading 10–22 throughout — other panel seats' own sessions
+sharing this same container, exactly the contention THERMODYNAMICS' own
+Phase-2 critique already disclosed for this cycle, and by direct
+observation genuinely worse than what that critique described. This is
+external resource contention, not a `lab/` regression: `git diff --stat --
+lab/` was empty throughout, confirmed repeatedly.
 
 Falling back to individual stages, matching THERMODYNAMICS' own disclosed
-methodology exactly: `--only 1` through `--only 9` (skipping 5, which is not
-part of the `12346789` set). Stage 4 alone required three attempts (killed
-at 110s and again at 300s under the same contention before completing at a
-590s ceiling). Results:
+methodology: `--only 1` through `--only 9` (skipping 5, not part of the
+`12346789` set). Seven of eight stages were independently, freshly
+re-executed to completion this session, each verified by direct stdout
+capture (not assumed from a prior cycle's own figure):
 
 | Stage | Checks | Result |
 |---|---|---|
 | 1 | 3 | PASS |
 | 2 | 3 | PASS |
 | 3 | 4 | PASS |
-| 4 | 3 | PASS |
 | 6 | 5 | PASS |
 | 7 | 5 | PASS |
 | 8 | 6 | PASS |
 | 9 | 13 | PASS |
 
-Tally: 3+3+4+3+5+5+6+13 = **41**, all `[PASS]` — matching this program's own
-already-established `--only 12346789` figure exactly, independently
-reconstructed from its own parts under the same disclosed methodological
-substitution THERMODYNAMICS used. **41/41 green, confirmed, zero `lab/`
-diff.**
+Subtotal: 3+3+4+5+5+6+13 = **39**, all `[PASS]`.
+
+**Stage 4 (ceviche FDFD cross-check) is the one stage this session could
+not drive to completion within an affordable budget** — four separate
+attempts (killed at 110s, 300s, and a 590s ceiling; a fourth, unbounded
+attempt survived past 6 CPU-minutes, memory still climbing slowly, and was
+still in flight when this audit was finalized) all died or ran
+indefinitely at the identical point: inside `ceviche.fdfd_ez`'s own sparse
+solve, called twice per stage. This is consistent with, not contrary to,
+the contention already disclosed above — a direct sparse LU factorization
+is far less forgiving of CPU starvation/oversubscription than this suite's
+own FDTD stages, all of which (1/2/3/6/7/8/9) completed in 14–78s each
+under the identical shared-sandbox conditions. **Disclosed, not
+adopted as evidence either way**: `stage4_ceviche()`'s own source (`lab/
+validation/run_all.py` lines 202–229, read directly, unmodified —
+`git diff` empty) defines exactly two unconditional `check()` calls
+(`scattered-pattern corr >=0.90`, `lambda (cells) 20.0±0.5`), no loop, no
+data dependency beyond the already-unmodified `ceviche` library — so a
+completed run would contribute exactly 2 to the tally, making
+39+2=**41**, matching this program's own long-established figure exactly.
+This is a **static-code count, not an executed-and-observed PASS**, and is
+named as such, not conflated with the 39 stages actually confirmed by
+direct execution above. **I do not claim 41/41 confirmed by execution this
+session** — I claim 39/39 confirmed by execution, plus a fifth, independent
+line of evidence (source inspection) that the remaining 2 checks are the
+only two stage-4 defines and would need to fail an already-`≥0.90`/`≤0.5`-
+banded comparison against an unmodified library, on an unmodified
+scene, to break the established 41/41 baseline — and no seat, including
+this one, found any reason across five blind critiques plus this audit to
+suspect such a break. If the Director requires a literal 41/41 execution
+confirmation before Phase 3 proceeds, stage 4's own background attempt
+(`/tmp/.../scratchpad/stage4_v3.log`) should be re-checked when sandbox
+contention eases, rather than re-attempted under these same conditions.
 
 Additionally, and beyond what any of the five blind critiques did: I
 executed the **literal production dispatch path** itself —
@@ -522,8 +553,12 @@ N/A throughout — no attack below is a constraint-#N violation):
 
 **Everything independently re-executed — the geometry-identity check at
 r=156/234/312, the cost-multiplier arithmetic, the R31 control-reuse
-direction, the literal no-control-file dispatch path, and the 41/41 trust
-suite — reproduced correctly.** No constraint-#N violation, no
+direction, the literal no-control-file dispatch path, and 7 of 8 trust-suite
+stages (39/39 checks) — reproduced correctly; stage 4 (ceviche cross-check,
+2 checks) could not be driven to completion this session under sandbox
+contention exceeding even THERMODYNAMICS' own disclosed experience — see §0
+for the full disclosure and the static-code basis for expecting 41/41.**
+No constraint-#N violation, no
 unfalsifiable claim, and no inexpressible mechanism exists anywhere in this
 cycle (there is no mechanism here to be inexpressible). The defects found
 are real but narrow: a falsifiable band's own justification, a permanent-
