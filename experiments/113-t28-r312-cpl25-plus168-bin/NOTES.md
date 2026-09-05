@@ -118,9 +118,27 @@ deviation while sitting below even the K=1 mirror-pooled floor at
 `cpl=20` (`local_snr_peccored=0.2584`, `local_snr_hollow=0.2865`).
 Geometry reused unmodified from `run112.py::geom_fixedabs_cpl`, already
 verified byte-exact to `R110.geom_fixedabs` at `cpl==20` for both r=156
-and r=312. 3 real FDTD calls this cycle (empty/hollow/peccored, r=312,
+and r=312. ~~3 real FDTD calls this cycle (empty/hollow/peccored, r=312,
 cpl=25), R31-gated by a same-session control point measured at the start
-of Phase 4 (before the real spend, per house discipline).
+of Phase 4 (before the real spend, per house discipline).~~
+
+> **Phase-5 correction (Red Team's final audit, Iteration 90, PHOTONICS'
+> own Phase-5 finding F3):** the struck sentence above was written at
+> Phase 3, before Phase 4 ran, per house discipline — but was never
+> retroactively annotated once Phase 4's actual outcome (below) was known,
+> so it reads as an accomplished fact to any reader who stops at "Setup."
+> **Zero r=312 `Sim.run()` calls occurred this cycle.** The R31 same-
+> session control (correctly gated *before* the real spend, per house
+> discipline) measured this session's own throughput at 0.406× historical
+> and REFUSED the projected r=312 leg (16737.4s vs. the 10800s bound) —
+> see Phase 4/Result, below. The 6 real FDTD calls this cycle actually
+> made were all at r=156/`cpl=25` (the R31 control's own short+sustained
+> 3-scene blends), not the 3 calls (empty/hollow/peccored, r=312) this
+> Setup section describes as the plan. Non-blocking (the Phase 4/Result/
+> Combined-Verdict sections below always correctly stated what actually
+> happened; only this Setup paragraph lagged) — matching this program's
+> own R23/citation-shortening discipline: a reader must not stop at
+> "Setup" and conclude real r=312 data exists.
 
 ## Predictions (committed to git BEFORE any Phase-4 code is executed for
 ## real, house discipline, non-negotiable — verbatim quote of

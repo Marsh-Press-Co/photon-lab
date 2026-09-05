@@ -266,7 +266,19 @@ def resolved_unresolved_crosstab(resolved_mask_48, all_window_corrs_48):
     rather than assuming exp-112's own r=156 finding (resolved mean
     0.9793 < unresolved mean 0.9921, a thin, non-monotonic-with-SNR gap)
     transfers unchanged to r=312. Zero marginal FDTD cost -- both arrays
-    are already computed by the time this is called."""
+    are already computed by the time this is called.
+
+    Phase-5 same-shift fix (Red Team's final audit, Iteration 90,
+    QUANTUM OPTICS' own Phase-5 finding, test 6): both arrays are always
+    48-element outputs of the same pattern by construction at the one
+    real call site today, but nothing enforced that -- a silent length
+    mismatch would have `zip()` truncate to the shorter array with no
+    warning, the same 'silent misalignment' shape R29 exists to catch in
+    a different channel. Asserted explicitly, cheap, zero-FDTD."""
+    assert len(resolved_mask_48) == len(all_window_corrs_48), (
+        "resolved_unresolved_crosstab: resolved_mask_48 and all_window_corrs_48 "
+        "must be the same length (same bin ordering) -- got "
+        f"{len(resolved_mask_48)} vs {len(all_window_corrs_48)}")
     resolved_corrs = [c for c, r in zip(all_window_corrs_48, resolved_mask_48) if r and c is not None]
     unresolved_corrs = [c for c, r in zip(all_window_corrs_48, resolved_mask_48) if (not r) and c is not None]
     if not resolved_corrs or not unresolved_corrs:
@@ -289,6 +301,48 @@ def resolved_unresolved_crosstab(resolved_mask_48, all_window_corrs_48):
                 resolved_range=[float(np.min(resolved_corrs)), float(np.max(resolved_corrs))],
                 unresolved_range=[float(np.min(unresolved_corrs)), float(np.max(unresolved_corrs))],
                 direction_supported=direction_supported)
+
+
+def apply_crosstab_to_check_c(check_c, crosstab):
+    """Phase-5 same-shift fix (Red Team's final audit, Iteration 90,
+    QUANTUM OPTICS' own Phase-2/Phase-5 findings 2a/2b, ratifying/completing
+    R32/Fix 5b). Mutates and returns `check_c` (as produced by
+    `classify_resolution_check`) once `resolved_unresolved_crosstab` has
+    run on this geometry's own real data. Closes two distinct, previously
+    unclosed contract ambiguities QUANTUM's own Phase-5 self-audit found
+    by direct synthetic testing (its own tests 2 and 8):
+
+    (2a) `direction_validated` (this cycle's own original field) is `True`
+    only for "low validated" -- silently indistinguishable from "high
+    validated" (the OPPOSITE tail, independently confirmed real by the
+    SAME crosstab -- positive evidence, not merely uninformative) or a
+    tie/degenerate split. `high_direction_validated` is added as a
+    genuine symmetric sibling, so "high" is no longer a silently-dropped
+    case with no field of its own.
+
+    (2b) population-level direction validation and the named bin's own
+    tail are independent facts; nothing previously computed their
+    conjunction. `named_bin_evidentiary_reading` is the single, explicit,
+    top-level field a future citation should read instead of manually
+    ANDing `low_percentile_outlier`/`high_percentile_outlier` against
+    `direction_validated`/`high_direction_validated` itself -- exactly
+    QUANTUM's own concrete Iteration-91 proposal (b), applied now instead
+    of deferred, since it is zero-FDTD and this cycle's own gate-refused
+    branch never calls this function (nothing frozen this cycle changes)."""
+    check_c["direction_validated"] = (crosstab["direction_supported"] == "low")
+    check_c["high_direction_validated"] = (crosstab["direction_supported"] == "high")
+    if check_c["low_percentile_outlier"] and check_c["direction_validated"]:
+        reading = "candidate real structure (low-percentile tail, population-validated at this geometry)"
+    elif check_c["high_percentile_outlier"] and check_c["high_direction_validated"]:
+        reading = "candidate real structure (high-percentile tail, population-validated at this geometry)"
+    elif crosstab["direction_supported"] is None:
+        reading = "no evidentiary reading (population-level direction tied or degenerate at this geometry)"
+    else:
+        reading = ("no evidentiary reading (named bin's own tail does not match the "
+                    f"'{crosstab['direction_supported']}' direction this geometry's own "
+                    "population data supports)")
+    check_c["named_bin_evidentiary_reading"] = reading
+    return check_c
 
 
 def percentile_of(value, population):
@@ -369,9 +423,27 @@ def classify_resolution_check(delta_pattern_cpl25, peccored_cpl25, hollow_cpl25,
     clears_k1_new = (snr_p_new is not None and snr_h_new is not None
                       and snr_p_new >= SNR_K1 and snr_h_new >= SNR_K1)
     if clears_k1_new:
-        check_a = ("SURVIVES (newly clears K=1 floor -- Check C reported undirected per R32/Fix 5, "
-                    "NOT yet upgraded to 'candidate real structure' in either tail pending the "
-                    "resolved-vs-unresolved cross-tabulation)")
+        # Phase-5 same-shift fix (Red Team's final audit, Iteration 90,
+        # QUANTUM OPTICS' own finding 2c): the ORIGINAL text here hard-coded
+        # "NOT yet upgraded ... pending the resolved-vs-unresolved
+        # cross-tabulation" -- a claim generated BEFORE analyze113.py ever
+        # computes that cross-tabulation (Fix 5b runs afterward, over this
+        # function's own already-returned check_c dict) and never
+        # regenerated once it does. On real data landing, the crosstab
+        # could confirm EITHER tail (or neither), and the frozen "NOT yet
+        # upgraded" string would go permanently stale the moment it did --
+        # exactly the citation-shortening risk the R4/R9 lineage exists to
+        # catch. Fixed by making this string point at, rather than
+        # pre-empt, the actual post-crosstab determination: it is correct
+        # at every point in time, before and after Fix 5b runs, because it
+        # never states a specific disposition itself -- `check_c
+        # ['named_bin_evidentiary_reading']` (set by analyze113.py once the
+        # crosstab exists; None/absent before then) is the single place
+        # that claim now lives.
+        check_a = ("SURVIVES (newly clears K=1 floor -- see check_c['named_bin_evidentiary_"
+                    "reading'] for whether this reading is upgraded to 'candidate real "
+                    "structure' in either tail; None until the resolved-vs-unresolved "
+                    "cross-tabulation, Fix 5b, has run on this geometry's own real data)")
     elif not (snr_p_improved or snr_h_improved):
         check_a = "COLLAPSES (no improvement in local_snr under refinement -- noise-consistent)"
     else:

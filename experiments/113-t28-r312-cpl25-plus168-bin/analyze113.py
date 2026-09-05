@@ -90,14 +90,21 @@ def analyze_r312_cpl25(baseline_delta_48):
     crosstab = R.resolved_unresolved_crosstab(
         local_diag["resolved"], resolution_check["check_c"]["null_scan"]["all_window_corrs"])
     resolution_check["check_c"]["resolved_unresolved_crosstab"] = crosstab
-    # direction_validated is True only if THIS geometry's own crosstab
-    # independently confirms the SAME direction classify_resolution_check
-    # currently codes as the candidate reading (low_percentile_outlier) --
-    # per Red Team's own ruling, neither tail is asserted as evidentiary
-    # until this confirms it; a "high" or degenerate crosstab result means
-    # the low-percentile premise is NOT validated at r=312 either.
-    resolution_check["check_c"]["direction_validated"] = (
-        crosstab["direction_supported"] == "low")
+    # Phase-5 same-shift fix (Red Team's final audit, Iteration 90,
+    # QUANTUM OPTICS' own findings 2a/2b): direction_validated is True only
+    # if THIS geometry's own crosstab independently confirms the SAME
+    # (low) direction classify_resolution_check currently codes as the
+    # candidate reading; high_direction_validated is the genuine symmetric
+    # sibling (a "high" crosstab result is positive evidence for the
+    # OPPOSITE tail, not merely "uninformative" -- it deserves its own
+    # field, not silent absorption into direction_validated=False); and
+    # named_bin_evidentiary_reading is the single explicit conjunction of
+    # the named bin's own tail with population-level validation, so a
+    # future reader never has to AND two nested booleans by hand.
+    # apply_crosstab_to_check_c() also finalizes check_a's own text is
+    # NOT re-touched here (it deliberately points at this same field
+    # rather than pre-stating a disposition -- see run113.py Fix-5-2c).
+    R.apply_crosstab_to_check_c(resolution_check["check_c"], crosstab)
 
     energy_ledger = dict(
         peccored=dict(sigma_scat=w_p["sigma_scat"], sigma_abs=w_p["sigma_abs"],
@@ -232,7 +239,9 @@ if __name__ == "__main__":
         f"percentile_in_null={rc['check_c']['percentile_in_null']}, "
         f"low_percentile_outlier={rc['check_c']['low_percentile_outlier']}, "
         f"high_percentile_outlier={rc['check_c']['high_percentile_outlier']}, "
-        f"direction_validated={rc['check_c']['direction_validated']} "
+        f"direction_validated={rc['check_c']['direction_validated']}, "
+        f"high_direction_validated={rc['check_c']['high_direction_validated']}, "
+        f"named_bin_evidentiary_reading={rc['check_c']['named_bin_evidentiary_reading']!r} "
         f"(resolved-vs-unresolved crosstab, Fix 5b: "
         f"{rc['check_c']['resolved_unresolved_crosstab']})")
     result_text = R.build_result_text(
