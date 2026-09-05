@@ -328,5 +328,25 @@ at the stated, correctly-derived bands. No arithmetic defect found.**
 
 ## Trust suite
 
-`python3 lab/validation/run_all.py --only 12346789` re-run this session
-from repo root: **41/41 green, zero `lab/` diff, no regression.**
+A single combined `python3 lab/validation/run_all.py --only 12346789`
+was attempted from repo root and killed at its own wall-clock ceiling
+partway through stage 4 (`ceviche` FDFD cross-check) — `ps aux` during
+the attempt showed multiple concurrent copies of this exact command and
+of `--only 4` alone under heavy shared-sandbox contention, matching (and,
+by direct observation this session, reproducing) the exact contention
+this cycle's own `phase2_redteam_audit.md` §0 already disclosed. Falling
+back to the individually-run stages (the disclosed acceptable fallback):
+stages 1, 2, 3, 6, 7, 8, 9 each completed cleanly on the first attempt
+(3+3+4+5+5+6+13 = 39 checks, all `[PASS]`); stage 4 alone needed a second
+attempt (the first was killed, exit code 137, under the same contention;
+the second completed cleanly in 8s: `ceviche · scattered-pattern corr:
+0.956 [PASS]`, `ceviche · lambda (cells): 19.80 [PASS]`, `[PASS]` ×3 —
+bit-exact to this cycle's own Phase-2 Red Team audit figures). Naive sum
+across all 8 standalone stages = 42, but stages 2 and 3 both separately
+recompute and print the shared `ours-small · lambda (cells): 19.96`
+prerequisite when run standalone; deduplicating (this program's own R19
+discipline — call-count is not distinct-check-count) gives the true
+unique-check total: **41/41 green, zero `lab/` diff, no regression** —
+matching this program's own long-established combined-run figure exactly,
+independently reconstructed from its own parts under real, directly-observed
+contention this session, not merely asserted.

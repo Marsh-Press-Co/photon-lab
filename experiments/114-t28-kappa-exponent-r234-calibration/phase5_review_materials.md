@@ -75,8 +75,7 @@ critique warned would happen if left unfixed.
 **Yes — this is a clean, physically consistent reading, and it
 strengthens rather than merely repeats this seat's own prior findings.**
 Compared directly (never taken from either document's own prose,
-recomputed from the raw `results.json`/`results.json` primitives of both
-cycles):
+recomputed from each cycle's own raw `results.json` primitives):
 
 | | r=156 (exp-112, real) | r=234 (exp-114, real) | r=312 (exp-113) |
 |---|---|---|---|
@@ -265,20 +264,24 @@ by direct stdout capture:
 
 | Stage | Checks | Result |
 |---|---|---|
-| 1 | 3 | PASS |
-| 2 | 3 | PASS |
-| 3 | 4 (incl. shared `ours-small` prerequisite) | PASS |
-| 4 | 3 (incl. `ours-small` prerequisite again — dedup'd) | PASS |
-| 6 | 5 | PASS |
-| 7 | 5 | PASS |
-| 8 | 6 | PASS |
-| 9 | 13 | PASS |
+| 1 | 3 | PASS (28s) |
+| 2 | 3 | PASS (55s) |
+| 3 | 4 (incl. shared `ours-small` prerequisite) | PASS (31s) |
+| 4 | 3 (incl. `ours-small` prerequisite again — dedup'd); `ceviche · scattered-pattern corr: 0.956` (≥0.90), `ceviche · lambda (cells): 19.80` (20.0±0.5) | PASS (1032s under heavy contention — 6 concurrent copies of this exact stage observed running simultaneously via `ps aux`, `state=R` confirmed genuinely computing, not hung, via `/proc/<pid>/status`) |
+| 6 | 5 | PASS (27s) |
+| 7 | 5 | PASS (123s, one prior attempt timed out at 110s under contention before this clean completion) |
+| 8 | 6 | PASS (21s) |
+| 9 | 13 | PASS (109s) |
 
 Naive sum 42, deduplicated for the shared `ours-small` prerequisite
 (stages 3 and 4 both recompute and print it) per this program's own R19
 discipline: **41/41 unique checks, all PASS, confirmed by direct
-execution this session**, matching this program's own long-established
-figure. `git diff --stat -- lab/` empty throughout. This is environmental
-sandbox contention (multiple concurrent panel-seat sessions), not a
-`lab/` regression — consistent with every other seat's own disclosed
-experience this cycle.
+execution this session, every stage completed to a final `[PASS]`/
+`checks passed` line I personally observed** (not inferred from a
+partial run). `git diff --stat -- lab/` empty throughout. The contention
+itself (a single combined `--only 12346789` invocation produced zero
+output before being abandoned; individual stages saw 6–19 concurrent
+`run_all.py` copies) is environmental sandbox contention from other
+panel-seat sessions sharing this container, not a `lab/` regression —
+consistent with, and no worse in kind than, every other seat's own
+disclosed experience this cycle.
