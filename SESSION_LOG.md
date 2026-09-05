@@ -2,6 +2,109 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-05 (panel shift) — Iteration 90 complete (exp-113): the R31
+cost gate fires for real, for the first time, and correctly REFUSES a
+would-be overspend (this session ran 0.406x historical speed, opposite
+direction from Iteration 89's own faster session); five mandatory fixes
+permanently closed, R32 ratified, zero Checkpoint criteria fire:
+
+**Pre-flight**: tooling not pre-installed this shift (`ModuleNotFoundError:
+numpy`) — installed fresh per the known wrinkle, then ran the trust suite
+before any panel work — green, 41/41 (`--only 12346789`, 98s).
+
+**Iteration 90 — VISION SCIENCE's rotation-lead cycle (exp-113).**
+Executed the Reconciled Iteration-90 queue's Tier-1 items 1–4: the
+`+168.75°` bin (r=312/`cpl=25`, mirror companion of exp-112's own
+`−146.25°`/r=156 bin, 10.88% local deviation), R31-gated by a fresh
+same-session control, Check C recalibrated per R30, Check B normalized
+per the `CPL_RATIO` finding. Five blind Phase-2 critiques (PHOTONICS,
+MATERIALS, EM, THERMODYNAMICS, QUANTUM), all support-with-changes, zero
+opposition, each finding a distinct defect: PHOTONICS — `box_a`
+clearance in wavelengths (3.2λ r=156 vs 6.4λ r=312), undisclosed;
+MATERIALS — the sponge-margin figure compared against the wrong operand;
+EM — the PEC-zeroing masked write makes `peccored` scenes ~14% costlier
+per step, biasing the R31 control anti-conservatively; THERMODYNAMICS —
+a short control burst may not represent sustained r=312 throughput;
+QUANTUM OPTICS (most consequential) — an earlier draft's Check-C
+direction silently inverted the ORIGINAL `neighbor_correlation_check`
+premise, never validated at the new geometry. Red Team's Phase-2 audit
+combined all five into a 5-item mandatory-fix docket, verdict
+PROCEED-WITH-MANDATORY-FIXES, proposed new standing rule R32. All fixes
+applied at Phase 3, R32 ratified, predictions committed before Phase 4.
+
+**Phase 4**: the R31 control fired for real, for the first time — this
+session ran at ~0.406× the historical (Iteration 89) session's own
+speed, genuinely SLOWER, the opposite direction from that session's own
+~2.19×-faster finding. The R31-scaled cost projection (16737.4s) exceeds
+the 10800s bound — **REFUSED** — where the naive cross-session
+projection (6802.6s, matching Iteration 89's own briefed figure) would
+have wrongly APPROVED. Zero r=312 `Sim.run()` calls occurred; the
+named-bin question remains untested, deferred a third time.
+
+**Phase 5**: six blind reviews, all CONFIRM or CONFIRM-WITH-GAPS, zero
+substantive disagreement, every headline figure re-verified from
+primitives. PHOTONICS re-ran the full trust suite (43/43) but incorrectly
+claimed NOTES.md's own 41/41 figure was stale relative to it (VISION's
+own review had already correctly reconciled both as legitimately
+different invocations — Red Team confirmed VISION, not PHOTONICS). EM
+found the literal production-dispatch path was never actually executed
+this cycle (a commit-message-vs-review-body discrepancy) — closed by Red
+Team itself, same-shift. THERMODYNAMICS ruled out fixed per-scene
+overhead as an alternative explanation for the sustained-vs-short gap —
+positive evidence for genuine sustained-load degradation; flagged
+whether `COST_GATE_TOTAL_S` should be a fixed wall-clock bound given ~5×
+session-to-session throughput swings now demonstrated across two
+consecutive cycles. QUANTUM OPTICS found a new composition gap in Fix
+5b's `direction_validated`/`check_a` fields. Red Team's Phase-5 final
+audit independently re-derived every figure, corrected PHOTONICS' own
+41-vs-43 finding as wrong, closed the production-dispatch-path gap
+itself, and applied two same-shift fixes (NOTES.md's stale Setup claim
+corrected; QUANTUM's composition gap completed in code). **Ruled zero
+Checkpoint criteria fire** — criterion 5 does not fire and should not be
+conflated with "two consecutive PARTIAL labels": this cycle produced a
+fourth new standing rule (R32), five permanently-fixed Phase-2 defects,
+and the first real-data confirmation that R31 can actually prevent an
+overspend.
+
+**Verified**
+- Trust suite green throughout (41/41 pre-flight and post-fix; 43/43 on
+  the full invocation independently re-run twice), zero `lab/` diff.
+- Both R23 DISCLAIMER asserts confirmed firing on real execution, in
+  both the (never-reached) data branch and the (real) gate-refused branch.
+- `results.json` confirmed byte-identical after Red Team's same-shift
+  code fixes (`git diff` empty) — the composition-gap fix touches only
+  code paths never reached this cycle.
+
+**Deferred/next**
+- Reconciled Iteration-91 queue: re-attempt the `+168.75°`/r=312/`cpl=25`
+  leg with an upgraded R31 control (repeat the sustained reading once
+  for reproducibility; add a same-session timing point genuinely on the
+  r=312 grid itself, closing the grid-size confound Fix 4 never
+  reached); execute `resolved_unresolved_crosstab` immediately the
+  moment real data lands; a cheaper intermediate-r (`r=234`) calibration
+  point pursued in parallel, immune to a fourth session-speed-driven
+  deferral.
+- Tier 0 (Marsh's calls, unchanged): the Iteration-85 Checkpoint-4/R24
+  firing remains pending — now **six cycles** without a ruling; the R23
+  First Addendum and R30/R31/R32 also await ratify-or-reject; a new item
+  0d (should `COST_GATE_TOTAL_S` cap wall-clock time or actual
+  compute/energy cost — a genuine policy fork, not a discovered defect,
+  Red Team's own explicit disposition).
+
+**Notes/gotchas**
+- The T28 sub-thread (opened Iteration 46) has now run 45 consecutive
+  iterations, PARTIAL every cycle since Iteration 82 — flagged to Marsh
+  this shift alongside the standing Checkpoint-4/R24 item and the new
+  `COST_GATE_TOTAL_S` policy question (see notification).
+- This is the first cycle where R31's own same-session-control machinery
+  produced a real gate REFUSAL rather than merely a conservative
+  approval — this session's compute throughput was measured at ~0.406×
+  Iteration 89's own session, a >5x session-to-session swing across two
+  consecutive cycles (Iteration 89: ~2.19× faster; Iteration 90: ~2.46×
+  slower than that), worth Marsh's attention regardless of the T28
+  question's own resolution.
+
+
 ## 2026-09-05 (panel shift) — Iteration 89 complete (exp-112): the
 twice-deferred cpl=25 floor spot-check finally executes, the cost gate
 flips on real data, two same-cycle R29 collisions both ruled non-firing,

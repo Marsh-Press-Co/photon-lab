@@ -1396,6 +1396,52 @@ top. Protocol: PANEL.md.*
   THERMODYNAMICS' own self-review before LOGBOOK. Full record:
   `experiments/112-t28-cpl25-floor-spot-check/phase5_redteam_audit.md`
   §1, §7, LOGBOOK.md Iteration 89.
+- **R32 — a freshly-adopted or freshly-recalibrated discriminating
+  statistic's DIRECTION (which tail of its distribution counts as
+  diagnostic) must be independently validated — via a mechanistic
+  argument stated before the recalibrating data is seen, or a
+  resolved/unresolved cross-tabulation computed on the SAME geometry/scale
+  the statistic is about to be applied to — before its reading is scored
+  or cited evidentially in either direction (not a ruled-out idea; a
+  standing house-discipline rule, proposed by Red Team's Phase-2 audit,
+  Iteration 90, extending R30 one level deeper).** Distinguished from R30:
+  R30 requires an uncalibrated THRESHOLD to be checked against its own
+  null population before it is cited evidentially; it says nothing about
+  which TAIL of that population should count as signal once the threshold
+  is recalibrated. R30's own founding instance (exp-112) left this open,
+  and exp-113 is the first cycle to actually recalibrate a threshold —
+  and, in doing so, an earlier draft silently inverted the statistic's
+  own founding premise (`neighbor_correlation_check`'s original docstring:
+  HIGH correlation across `cpl` indicates real structure;
+  `classify_resolution_check`'s new code: LOW correlation indicates real
+  structure) using the identical r=156 dataset whose own miscalibration
+  motivated the recalibration, then applied the new, unvalidated
+  direction unchanged to a different geometry (r=312) never checked
+  against it. Caught blind, at Phase 2, by QUANTUM's own critique,
+  independently confirmed by Red Team's own Phase-2 audit — before Phase
+  3, Phase 4, or any frozen record. **Rule: before any Result or
+  Interpretation section cites a directional discriminating statistic's
+  reading evidentially, in either direction, that direction must be
+  validated independently of the data that motivated its own most recent
+  recalibration, and independently at each new geometry/scale where the
+  statistic is next applied — a validated direction at one geometry does
+  not transfer automatically to another.** **Does not fire on its own
+  founding instance** (exp-113) — caught at Phase 2, before any freeze,
+  matching every prior rule's own precedent; the composition gap the fix
+  itself introduced (`direction_validated` conflating "high validated"/
+  tie/degenerate into one `False`; `check_a`'s own text going stale the
+  moment a future crosstab runs) was found and closed same-shift, Phase 5,
+  by Red Team's own final audit (`apply_crosstab_to_check_c`,
+  `high_direction_validated`, `named_bin_evidentiary_reading`) before any
+  real data ever reached the code. **Standing forward clause: a future
+  cycle that ships or evidentially cites a directional statistic's
+  reading without this validation, on this or any channel, fires
+  Checkpoint criterion 4 automatically, no further deliberation** —
+  a single-instance-ratified, forward-firing model, matching
+  R16/R21–R31's own precedent. Full record:
+  `experiments/113-t28-r312-cpl25-plus168-bin/phase2_critique_quantum.md`,
+  `phase2_redteam_audit.md` §1.5, §2 Fix 5, `phase5_redteam_audit.md` §3,
+  LOGBOOK.md Iteration 90.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -24413,3 +24459,198 @@ survival; `box_dev`'s own thinning margin. Full record:
 `experiments/112-t28-cpl25-floor-spot-check/` — `phase1_proposal.md`,
 five Phase-2 blind critiques, `phase2_redteam_audit.md`, `NOTES.md`,
 `results.json`, six Phase-5 blind reviews, `phase5_redteam_audit.md`.
+
+## Iteration 90 — The R31 Cost Gate Fires For Real, For The First Time, And Correctly Refuses A Would-Be Overspend; Five Mandatory Fixes Permanently Closed; R32 Ratified (exp-113) — 2026-09-05
+
+**Lead seat: VISION SCIENCE** (rotation: PHOTONICS→MATERIALS→
+ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→VISION SCIENCE→repeat).
+Executed the Reconciled Iteration-90 queue's Tier-1 items 1–4: the
+`+168.75°` bin — r=312/`cpl=25`, the mirror companion of exp-112's own
+`−146.25°`/r=156 leg, both flagged by PHOTONICS' Iteration-85 self-review
+at comparably large local deviations (10.88% this bin, `local_snr`
+0.2584/0.2865 — closer to K=1 than exp-112's own bin) — R31-gated by a
+fresh same-session control, Check C recalibrated per R30, Check B
+normalized per the `CPL_RATIO` finding. Stated plainly, up front: this
+seat's own numeric-perceptual-threshold charter duty does not bind here
+— instrument-fidelity work, T1 N/A throughout, matching exp-108–112.
+
+**Phase 2 — five blind critiques, all support-with-changes, zero
+opposition, each finding a distinct, independently-verified defect.**
+PHOTONICS: `box_a`'s clearance past the coat surface, in wavelengths, is
+3.2λ at r=156 but 6.4λ at r=312 — exactly `kappa_ratio=2.0` — an
+undisclosed near-field-depth confound alongside the `CPL_RATIO` fix.
+MATERIALS: the sponge-margin figure (`~4.02` orders) was computed
+against `BASELINE_FLOOR` (the K=1 noise-floor scale) rather than the
+named bin's own signal magnitude (`~3.43` orders) or `|delta|`, the
+quantity Check B actually scores (`~2.47` orders) — a wrong comparator.
+ELECTROMAGNETISM: confirmed the R28 gate genuinely sits upstream on
+every code path, but found `lab/fdtd2d.py::Sim.run()`'s own PEC-zeroing
+masked write makes `peccored` scenes ~14% costlier per step than
+`empty`/`hollow` — biasing the R31 control anti-conservatively since the
+historical figure blends all three scenes but the control re-timed only
+`empty`. THERMODYNAMICS: confirmed the R31 division-by-`speed_ratio`
+arithmetic is correct in both directions, but found a 1000-step burst on
+r=156's small grid may not represent sustained r=312 throughput
+(turbo-boost decay, memory-bandwidth saturation) — same anti-conservative
+direction as EM's finding. QUANTUM OPTICS (the most consequential): an
+earlier draft's `supports_real_structure = percentile≤10.0` silently
+INVERTED the ORIGINAL `neighbor_correlation_check` premise (HIGH
+correlation across `cpl` = real structure) — argued post-hoc from the
+same r=156 dataset whose own miscalibration motivated R30, never
+validated at the new geometry (r=312) this cycle tests. Red Team's
+Phase-2 audit independently re-derived all five from primitives
+(bit-exact), combined them into a 5-item mandatory-fix docket, verdict
+PROCEED-WITH-MANDATORY-FIXES, ruled Check C should ship **undirected**
+(neither tail asserted as evidentiary) pending a same-geometry
+resolved-vs-unresolved cross-tabulation, and proposed **R32** (a
+recalibrated discriminating statistic's DIRECTION, not just its
+threshold, needs independent validation at the geometry under test).
+
+**Phase 3 — Director synthesis: all five mandatory fixes applied, no
+criticism overridden, R32 ratified.** Fix 1: `box_a` clearance in
+wavelengths disclosed as computed constants, with an explicit caution
+against a cross-leg "companion" reading. Fix 2: the single sponge-margin
+figure replaced by three explicitly labeled figures (floor/signal/delta).
+Fix 3: the false "materials-invariant per-step cost" claim corrected;
+`chunk_runner113.py::run_control()` re-times the SAME 3-scene blend
+`HISTORICAL_PER_STEP_S` itself blends. Fix 4: `run_control()` now takes
+a short (1000 steps/scene) AND sustained (3334 steps/scene) reading,
+gated on the LOWER (more conservative) `speed_ratio`. Fix 5: Check C's
+single directional field replaced by two undirected fields
+(`low_percentile_outlier`/`high_percentile_outlier`) plus
+`direction_validated` (starts `False`); `analyze113.py` computes a
+resolved-vs-unresolved cross-tabulation on r=312's own real data before
+either direction may be cited evidentially. Predictions committed to
+git in the same commit as all five fixes (nothing executed for real
+before that commit).
+
+**Phase 4 — the R31 control fires for real, for the first time, and
+correctly refuses the r=312 spend.** 6 real FDTD calls, all at
+r=156/`cpl=25` (878.2s total): a short and a sustained 3-scene-blend
+control re-timing. **This session ran at ~0.406× the historical
+(Iteration 89) session's own per-step speed — genuinely SLOWER, the
+OPPOSITE direction from that session's own ~2.19×-faster finding.** The
+R31-scaled cost-gate projection (`16737.4s`) exceeds the `10800s` bound
+— **REFUSED** — where the naive, uncontrolled cross-session projection
+this cycle's own Reconciled-Iteration-90 queue cited (`6802.6s`, matching
+Iteration 89's own briefed figure bit-exact) would have wrongly
+**APPROVED**. `chunk_runner113.py`'s own `check_cost_gate_for_r312`
+(R28: independently confirmed genuinely upstream of every r=312
+`Sim.run()` call) raised before any real scoring call was attempted —
+**zero r=312 `Sim.run()` calls occurred**; the named-bin question
+remains untested, deferred a third time (exp-111: sequencing; exp-112:
+cost/density choice; exp-113: a real, R31-scaled refusal). Persisted as
+a genuine, R23-compliant result (not a silent no-op):
+`analyze113.py`'s own gate-refused branch writes `results.json` with
+the control/gate JSON and an explicit `result_text`.
+
+**Phase 5 — six blind reviews, all CONFIRM or CONFIRM-WITH-GAPS, zero
+disagreement on substance; every headline figure re-verified from
+primitives; one reviewer finding corrected by Red Team, one gap closed
+same-shift.** PHOTONICS (re-ran the FULL trust suite, 43/43, confirming
+the 41-vs-43 reconciliation) found `NOTES.md`'s own Setup section still
+described "3 real FDTD calls this cycle... r=312" as accomplished fact
+— the Director's own oversight, never corrected post-Phase-4 — but
+**incorrectly** claimed `NOTES.md`'s 41/41 trust-suite figure was
+"stale" relative to `phase1_proposal.md`'s 43/43 (VISION's own review
+had already correctly reconciled these as two legitimately
+differently-scoped invocations — Red Team independently re-ran both
+itself and confirmed VISION, not PHOTONICS). MATERIALS confirmed Fix 2
+landed correctly and completely, and that Fixes 1/2 remain fully
+accurate despite the gate refusal (geometry/baseline-derived, not
+data-dependent); proposed a cheaper intermediate-r (r=234) calibration
+point for Iteration 91. ELECTROMAGNETISM confirmed all R31 arithmetic
+bit-exact and the scratch directory clean, and found the LITERAL
+production-dispatch path (`chunk_runner113.py 312 25 empty`) was never
+actually executed this cycle — only the standalone `--control`/`--gate`
+branches were (a commit-message-vs-review-body discrepancy Red Team
+later corrected, closing the gap itself by running it for real:
+immediate `RuntimeError`, zero grid built). THERMODYNAMICS
+independently re-derived the full R31 chain bit-exact and ruled out
+fixed per-scene overhead as an alternative explanation for the
+sustained-vs-short gap — positive evidence for genuine sustained-load
+degradation; solved the breakeven `speed_ratio` (0.6298) needed to flip
+the gate; flagged whether `COST_GATE_TOTAL_S` should be a fixed
+wall-clock bound given ~5× session-to-session throughput swings now
+demonstrated across two consecutive cycles. QUANTUM OPTICS tested Fix
+5b's `resolved_unresolved_crosstab` with eight synthetic constructions
+(core logic confirmed correct, genuinely undirected) and found a new
+composition gap: `direction_validated` conflates "high validated"/tie/
+degenerate into one `False`; nothing computes the conjunction of the
+named bin's own tail with population-level validation; `check_a`'s own
+text is generated before the crosstab runs and never regenerated — a
+stale-text risk once real data lands. VISION SCIENCE (self-review)
+confirmed R23 discipline genuinely holds in the gate-refused branch and
+that Fix 3b/4 closes only the control's DURATION half, not its
+GRID-SIZE half (still runs on r=156, not r=312).
+
+**Red Team's Phase-5 final audit** independently re-derived every
+figure across all six reviews from primitives. Confirmed five reviews
+in full; corrected PHOTONICS' own Finding F4 (the 41-vs-43 claim) as
+factually wrong, vindicating VISION's own reconciliation. Found the task
+briefing's premise that EM had already closed the production-dispatch
+gap did not hold up against EM's own review body text (a
+commit-message-vs-document overclaim, not an experiment defect) and
+closed the real gap itself. Applied two same-shift fixes: corrected
+`NOTES.md`'s stale Setup claim (blockquoted); completed QUANTUM's
+`direction_validated`/`check_a` composition gap in code
+(`apply_crosstab_to_check_c`, a new `high_direction_validated` field, an
+explicit `named_bin_evidentiary_reading` conjunction field, a
+non-stale `check_a` text, a length assertion) — judged same-shift-
+appropriate since it is cheap, zero-FDTD, and currently non-load-bearing
+(no real r=312 data exists yet), verified against 13 synthetic
+constructions and byte-identical `results.json` reproduction. **Ruled
+zero Checkpoint criteria fire**, reasoned explicitly against all five
+criteria — criterion 5 in particular does not fire and should not be
+conflated with "two consecutive PARTIAL labels": this cycle produced a
+fourth new standing rule (R32), five permanently-fixed Phase-2 defects,
+and the first real-data confirmation that R31's own mechanism can
+actually prevent an overspend, not merely a repeat of Iteration 89's own
+conservative-miss founding instance. Declined to mint new standing rules
+for THERMODYNAMICS' `COST_GATE_TOTAL_S` semantics question (recommended
+as a new Tier-0 queue item 0d — a policy fork, not a discovered fixable
+defect) or VISION's R23-forward-risk (named as a watched risk, zero
+founding instance to ratify against).
+
+**Combined Verdict: PARTIAL — BLOCKED BY COST GATE** (Red Team confirmed,
+unchanged from the Director's own working label) — not RULED OUT (T1
+correctly N/A throughout), not the intended data-producing outcome (the
+named-bin question remains untested, deferred a third time). Real,
+disclosed, non-null progress: R31's own necessity is now empirically
+demonstrated, not merely reasoned about — a materially different outcome
+from simply re-confirming a prior projection; all five Phase-2 findings
+are now permanently fixed in code, available to every future cycle in
+this family; R32 is ratified with its own composition gap closed rather
+than merely disclosed. Zero Checkpoint criteria fire.
+
+**Reconciled Iteration-91 queue** (Red Team's own ranking, six-of-six
+reviews converging): **Tier 1** — (1) re-attempt the `+168.75°`/r=312/
+`cpl=25` leg at the top of the cycle, with a single, upgraded R31
+control closing every gap named so far, not just the duration half:
+immediately repeat the sustained (3334-step/scene) reading once,
+back-to-back, to distinguish a reproducible sustained-load effect from
+single-sample noise; add a third, cheap, bounded same-session timing
+point genuinely on the r=312 grid itself (a few hundred `empty`-scene
+steps at `N=2800²`), closing the grid-size confound Fix 4 never reached;
+(2) the moment real r=312/`cpl=25` data lands, execute
+`resolved_unresolved_crosstab`/`apply_crosstab_to_check_c` immediately,
+as its own named Tier-1 line; (3) a cheaper intermediate-`r` (`r=234`,
+~32% of this cycle's own refused-leg cost) calibration point, pursued in
+parallel, immune to a fourth session-speed-driven deferral — also gives
+`kappa_exponent` a third calibration point and a third geometry to
+re-verify Fix 1/2's own figures against. **Tier 0** (Marsh's calls,
+unchanged) — (0a) rule on the Iteration-85 Checkpoint-4/R24 firing
+(pending — **six cycles now**); (0b) ratify or reject the R23 First
+Addendum; (0c) ratify or reject R30/R31 (R32 now joins this list,
+provisionally ratified per this program's own established practice);
+**(0d, new this cycle)** should `COST_GATE_TOTAL_S` cap real elapsed
+wall-clock waiting time (R31's own same-session scaling is already the
+correct answer under this reading) or actual compute/energy cost (a
+fixed wall-clock bound is the wrong invariant once throughput swings
+~5× session-to-session, as two consecutive cycles now demonstrate) —
+a genuine policy fork, not a discovered defect, Red Team's own explicit
+disposition. **Tier 2/3** — unchanged (see LOGBOOK.md Iteration 89 for
+full text). Full record: `experiments/113-t28-r312-cpl25-plus168-bin/` —
+`phase1_proposal.md`, five Phase-2 blind critiques,
+`phase2_redteam_audit.md`, `NOTES.md`, `results.json`, six Phase-5 blind
+reviews, `phase5_redteam_audit.md`.

@@ -22,7 +22,104 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-05, panel Iteration 89 done (exp-112, PARTIAL,
+## Current state (2026-09-05, panel Iteration 90 done (exp-113, PARTIAL --
+BLOCKED BY COST GATE, VISION SCIENCE's rotation-lead cycle: executed the
+Reconciled Iteration-90 queue's Tier-1 items 1-4 -- the +168.75deg bin
+(r=312/cpl=25, mirror companion of exp-112's own -146.25deg/r=156 bin,
+10.88% local deviation, local_snr 0.2584/0.2865 at cpl=20), R31-gated by
+a fresh same-session control, Check C recalibrated per R30, Check B
+normalized per the CPL_RATIO finding. Five blind Phase-2 critiques
+(PHOTONICS, MATERIALS, EM, THERMODYNAMICS, QUANTUM), all
+support-with-changes, zero opposition, each finding a distinct defect --
+PHOTONICS: box_a clearance in wavelengths is 3.2lambda at r=156 but
+6.4lambda at r=312, undisclosed; MATERIALS: the sponge-margin figure
+compared against the wrong operand (floor scale, not signal/|delta|);
+EM: the PEC-zeroing masked write makes peccored scenes ~14% costlier per
+step, biasing the R31 control anti-conservatively; THERMODYNAMICS: a
+1000-step burst on r=156's small grid may not represent sustained r=312
+throughput; QUANTUM OPTICS (most consequential): an earlier draft's
+Check-C direction silently inverted the ORIGINAL neighbor_correlation_
+check premise (HIGH correlation = real structure), never validated at
+the new geometry. Red Team's Phase-2 audit combined all five into a
+5-item mandatory-fix docket, verdict PROCEED-WITH-MANDATORY-FIXES, ruled
+Check C should ship undirected pending a same-geometry cross-tabulation,
+proposed new standing rule R32 (a recalibrated statistic's direction, not
+just its threshold, needs independent validation at the geometry under
+test). Phase 3: all five fixes applied (box_a wavelength disclosure;
+three-figure sponge-margin comparators; corrected false
+materials-invariant-cost claim + commensurable 3-scene-blend control;
+short+sustained control gated on the lower speed_ratio; undirected Check
+C with a post-Phase-4 resolved-vs-unresolved cross-tabulation), R32
+ratified, predictions committed before Phase 4. **Phase 4: the R31
+control fired for real, for the first time, and correctly REFUSED the
+r=312 spend** -- this session ran at ~0.406x the historical (Iteration
+89) session's own speed (genuinely SLOWER, opposite direction from that
+session's own ~2.19x-faster finding); the R31-scaled cost projection
+(16737.4s) exceeds the 10800s bound, where the naive cross-session
+projection (6802.6s, matching Iteration 89's own briefed figure) would
+have wrongly APPROVED. Zero r=312 Sim.run() calls occurred; the
+named-bin question remains untested, deferred a third time (exp-111:
+sequencing; exp-112: cost/density choice; exp-113: a real, R31-scaled
+refusal). Persisted as a genuine result (not a silent no-op) via
+analyze113.py's own gate-refused branch. Six blind Phase-5 reviews, all
+CONFIRM or CONFIRM-WITH-GAPS, zero substantive disagreement, every
+headline figure re-verified from primitives: PHOTONICS (re-ran the FULL
+trust suite, 43/43) found NOTES.md's own Setup section still described
+"3 real FDTD calls this cycle...r=312" as accomplished fact (Director's
+own oversight) but incorrectly claimed the 41/41 figure was stale
+relative to 43/43 (VISION's own review had already correctly reconciled
+these as two legitimately different invocations -- Red Team confirmed
+VISION, not PHOTONICS). MATERIALS confirmed Fix 2 landed correctly,
+proposed a cheaper intermediate-r (r=234) calibration point. EM confirmed
+all R31 arithmetic bit-exact, found the literal production-dispatch path
+was never actually executed this cycle (a commit-message-vs-review-body
+discrepancy, not an experiment defect) -- closed by Red Team itself,
+same-shift. THERMODYNAMICS ruled out fixed per-scene overhead as an
+alternative explanation for the sustained-vs-short gap -- positive
+evidence for genuine sustained-load degradation; flagged whether
+COST_GATE_TOTAL_S should be a fixed wall-clock bound given ~5x
+session-to-session throughput swings now demonstrated across two
+consecutive cycles. QUANTUM OPTICS tested Fix 5b with eight synthetic
+constructions (core logic correct) and found a new composition gap:
+direction_validated conflates three distinct future states into one
+False; check_a's own text goes stale the moment a future crosstab runs.
+VISION SCIENCE (self-review) confirmed R23 discipline holds in the
+gate-refused branch; found Fix 3b/4 closes only the control's duration
+half, not its grid-size half. Red Team's Phase-5 final audit independently
+re-derived every figure, corrected PHOTONICS' own 41-vs-43 finding as
+wrong (vindicating VISION), closed the production-dispatch-path gap
+itself, applied two same-shift fixes (NOTES.md's stale Setup claim
+corrected; QUANTUM's direction_validated/check_a composition gap
+completed in code -- a new high_direction_validated field, an explicit
+named_bin_evidentiary_reading conjunction field, a non-stale check_a
+text, a length assertion), verified against 13 synthetic constructions
+and byte-identical results.json reproduction. Ruled zero Checkpoint
+criteria fire -- criterion 5 does not fire and should not be conflated
+with "two consecutive PARTIAL labels": this cycle produced a fourth new
+standing rule (R32), five permanently-fixed Phase-2 defects, and the
+first real-data confirmation that R31 can actually prevent an overspend.
+Declined to mint new standing rules for the COST_GATE_TOTAL_S policy
+question (queued as new Tier-0 item 0d) or VISION's R23-forward-risk
+(named as a watched risk, zero founding instance). Combined Verdict:
+PARTIAL -- BLOCKED BY COST GATE (Red Team confirmed) -- not RULED OUT (T1
+correctly N/A throughout), real progress nonetheless: R31's own necessity
+now empirically demonstrated, not merely reasoned about; all five
+Phase-2 findings permanently fixed in code; R32 ratified with its own
+composition gap closed rather than merely disclosed. Zero Checkpoint
+criteria fire. Reconciled Iteration-91 queue: Tier 1 -- re-attempt the
++168.75deg/r=312/cpl=25 leg with an upgraded R31 control (repeat the
+sustained reading once for reproducibility; add a same-session timing
+point genuinely on the r=312 grid itself, closing the grid-size
+confound); execute the crosstab immediately the moment real data lands;
+a cheaper intermediate-r (r=234) calibration point pursued in parallel,
+immune to a fourth session-speed-driven deferral. Tier 0 -- rule on the
+Iteration-85 Checkpoint-4/R24 firing (unchanged, still pending -- SIX
+cycles now); ratify or reject the R23 First Addendum; ratify or reject
+R30/R31/R32; (0d, new) should COST_GATE_TOTAL_S cap wall-clock time or
+actual compute/energy cost -- a genuine policy fork, not a discovered
+defect. Tier 2/3 -- unchanged (see LOGBOOK.md Iteration 89 for full
+text). Full record: `experiments/113-t28-r312-cpl25-plus168-bin/`,
+LOGBOOK.md Iteration 90. Next: panel Iteration 89 done (exp-112, PARTIAL,
 QUANTUM OPTICS' rotation-lead cycle: executed the Reconciled Iteration-89
 queue's headline Tier-1 item -- PHOTONICS' own cpl-refinement floor
 spot-check, deferred twice, executed for the first time: cpl=20->25
