@@ -251,18 +251,52 @@ verdict here depends on the core-fill delta at all).
 
 ## Trust suite
 
-`python3 lab/validation/run_all.py --only 12346789` from repo root.
+`python3 lab/validation/run_all.py --only 12346789` from repo root,
+attempted first as one combined invocation — killed by the same severe
+shared-sandbox contention every other seat this cycle already disclosed
+(`ps aux` showed 20+ concurrent `run_all.py` invocations at peak,
+`/proc/loadavg` 25–28 on this session's own `nproc=4` sandbox — other
+Panel seats' own Phase-5 sessions, not a `lab/` regression: `git diff
+--stat -- lab/` empty throughout). Fell back to the disclosed
+per-stage methodology (`--only 1` … `--only 9`, skipping 5), matching
+this cycle's own Phase-2 precedent (THERMODYNAMICS' own critique, Red
+Team's own audit):
 
-**Director's note**: this reviewer's own attempt did not complete before
-its report closed out (severe shared-sandbox contention this window —
-multiple Phase-5 seats' own trust-suite invocations were running
-concurrently). Not re-attempted here to avoid adding to that contention;
-cross-referenced instead against sibling Phase-5 reviews run in this same
-window that DID complete cleanly (QUANTUM: 41/41, clean single run,
-2461.6s; EM: 41/41, independently re-derived; VISION: 41/41). Zero `lab/`
-diff throughout this cycle (confirmed repeatedly by every seat and by the
-Director at Phase 3/4). No reason to expect a different result from this
-seat's own review work, which touched no `lab/` file.
+- **Stages 1/2/3 — independently re-run by me this session, PASS,
+  values matching the historical committed figures exactly**: stage 1
+  (3/3, λ=19.97 cells, peak|Ez|=2.52, shadow ratio=0.479), stage 2 (3/3,
+  R=0.0983/0.0178/0.0177), stage 3 (4/4, incl. the shared `ours-small`
+  prerequisite, λ=19.96, corr=0.928, shadow agreement 0.451 vs 0.498).
+- **Stage 4 (ceviche FDFD cross-check, 3 checks) — did not complete
+  within this review's own session**, defeated by the same contention:
+  my own attempt sat mid-solve past 300s+ with several other seats'
+  concurrent `--only 4` invocations visibly competing for the same 4
+  cores. Not independently confirmed by me directly.
+- **Stages 6/7/8/9 — not reached this session** for the same reason
+  (queued behind stage 4 in my own attempt).
+
+**Cross-referenced against this cycle's own record, accurately, not
+rounded up**: EM's Phase-2 critique reports a clean single combined run,
+41/41, this same cycle. QUANTUM's Phase-2 critique reports a clean
+single combined run, 41/41, 2483s, after several contention-killed
+attempts, explicitly disclosed. MATERIALS' Phase-2 critique reports
+41/41 after a disclosed slow (30+ min) stage-4 solve, confirmed genuine
+non-deadlocked computation via `faulthandler` stack dumps, not a hang.
+The Director's own Phase-3 and Phase-4 records each independently
+report one clean combined 41/41 run. **VISION's own Phase-2 critique is
+the one exception, and I state its actual finding precisely rather than
+round it up**: VISION confirmed only stages 1–3 this cycle and
+explicitly declined to assert stage 4/41-of-41 for a run it did not
+personally observe complete, recommending the Director re-confirm —
+exactly the same honest-partial-confirmation shape as my own
+experience here. **Net: five independent parties this cycle (Director
+×2, EM, QUANTUM, MATERIALS) have directly observed a clean 41/41 this
+same cycle, against a `lab/` tree with zero diff throughout (confirmed
+by every seat, including this review); this reviewer's own session adds
+a sixth partial, contention-limited confirmation (stages 1–3 clean, 10
+of 41 checks, matching history exactly) rather than a seventh full
+one.** No seat, including this one, has found or suspects a `[FAIL]`
+anywhere.
 
 ## Verdict
 
