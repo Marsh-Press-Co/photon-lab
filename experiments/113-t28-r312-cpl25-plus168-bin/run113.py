@@ -621,7 +621,7 @@ def build_result_text(n_fdtd_calls, total_wall_s, geom_ok, repro_ok,
 total wall time this cycle, zero `lab/` diff.{wall_time_note}
 
 **Geometry identity: {'PASS' if geom_ok else 'FAIL'}.**
-**Reproduction/self-consistency precondition: {'PASS' if repro_ok else 'FAIL'}.**
+**Reproduction/self-consistency precondition: {"N/A (not reached)" if repro_ok is None else ('PASS' if repro_ok else 'FAIL')}.**
 **Named bin ({NAMED_BIN_DEG}deg, r=312, margin=32):** {named_bin_result}
 """
 

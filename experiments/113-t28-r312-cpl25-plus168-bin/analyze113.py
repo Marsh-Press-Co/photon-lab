@@ -141,6 +141,58 @@ if __name__ == "__main__":
 
     if not (have(312, R.CPL_TARGET, "empty") and have(312, R.CPL_TARGET, "hollow")
             and have(312, R.CPL_TARGET, "peccored")):
+        control_path = os.path.join(CR.SCRATCH, "r31_control.json")
+        gate_path = os.path.join(CR.SCRATCH, f"r312_cpl{R.CPL_TARGET}_costgate.json")
+        if os.path.exists(control_path) and os.path.exists(gate_path):
+            # R23/R31: the R31-gated cost decision is itself a genuine,
+            # committed-worthy result this cycle -- not silently dropped.
+            # chunk_runner113.py's own check_cost_gate_for_r312 (R28: upstream
+            # of every r=312 Sim.run()) already refused before any real r=312
+            # scoring call was attempted -- persist that refusal, the control
+            # readings that produced it, and an explicit zero-scoring-data
+            # result_text, rather than exiting silently.
+            with open(control_path) as f:
+                control = json.load(f)
+            with open(gate_path) as f:
+                gate = json.load(f)
+            predictions_text = R.build_predictions_text(control=control, gate=gate)
+            assert R.DISCLAIMER in predictions_text
+            n_control_calls = (control["short"]["n_scenes"] + control["sustained"]["n_scenes"])
+            control_wall_s = control["short"]["control_wall_s"] + control["sustained"]["control_wall_s"]
+            result_text = R.build_result_text(
+                n_fdtd_calls=n_control_calls, total_wall_s=control_wall_s,
+                geom_ok=geom_check["pass_"], repro_ok=None,
+                named_bin_result=(
+                    "NOT REACHED -- R27/R28/R31 cost gate REFUSED the real r=312 leg before any "
+                    f"scoring Sim.run() call was attempted (upstream, per R28). Same-session "
+                    f"control (Fix 3b/Fix 4): this session ran at "
+                    f"{control['used_speed_ratio']:.3f}x the historical (Iteration 89) session's "
+                    f"own speed ({control['used_label']} reading used, the more conservative of "
+                    f"the two) -- i.e. THIS session is slower, the OPPOSITE direction from "
+                    f"Iteration 89's own ~2.19x-faster finding. R31-scaled projection: "
+                    f"{gate['scaled']['projected_312_total_s']:.1f}s vs. the "
+                    f"{R.COST_GATE_TOTAL_S}s bound -- REFUSED (the naive, uncontrolled "
+                    f"cross-session projection this cycle's own Reconciled-Iteration-90 queue "
+                    f"cited, {gate['raw']['projected_312_total_s']:.1f}s, would have wrongly "
+                    f"APPROVED). This is R31's own mechanism working as designed, catching a "
+                    f"real would-have-been-unsafe spend this time -- unlike its own founding "
+                    f"(conservative-miss) instance."),
+                wall_time_source=(f"{n_control_calls} real FDTD calls this cycle, ALL at "
+                                   f"r=156/cpl=25 (R31 same-session control, short+sustained "
+                                   f"3-scene blends) -- ZERO real r=312 scoring Sim.run() calls "
+                                   f"were made; the gate refused upstream of all of them."))
+            assert R.DISCLAIMER in result_text
+            out = dict(r=312, cpl=R.CPL_TARGET, geom_identity=geom_check,
+                       r31_control=control, cost_gate=gate,
+                       n_fdtd_calls=n_control_calls, total_wall_s_all_scenes=control_wall_s,
+                       named_bin_reached=False, gate_refused=True,
+                       predictions_text=predictions_text, result_text=result_text)
+            out_path = os.path.join(HERE, "results.json")
+            with open(out_path, "w") as f:
+                json.dump(out, f, indent=2, default=str)
+            print(result_text)
+            print(f"\nWritten: {out_path}")
+            raise SystemExit(0)
         print("r=312/cpl=25 captures not yet complete; run chunk_runner113.py for "
               "empty/hollow/peccored at r=312, cpl=25 first.")
         raise SystemExit(0)
