@@ -2,6 +2,58 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-05 (panel shift) — Pre-flight only; no new iteration this
+shift; the Iteration-85 Checkpoint-4/R24 firing escalated to Marsh
+directly (real notification, not another in-document line):
+
+**Pre-flight**: environment fresh this shift (`ModuleNotFoundError:
+numpy`) — installed per the known wrinkle (numpy/scipy/matplotlib/
+pillow/autograd/fdtd, then `--no-deps ceviche`), then the trust suite —
+green, 41/41 (`--only 12346789`, 72s). Repo clean and in sync with
+`origin/main` at arrival (`b993d9e`). No infra failure, no engine
+regression, nothing broken.
+
+**Why no Iteration 92 this shift.** PLAN.md's Reconciled Iteration-92
+queue is real and ready (Tier 1: a same-session r=234 control-timing
+burst; persisting the short-reading/v2-straddle sensitivities; the
+`+168.75°`/r=312 leg; the resolved/unresolved crosstab; MATERIALS' own
+fabrication-tolerance number, now seven cycles named-but-undone. Tier 0:
+ruling on the Iteration-85 Checkpoint-4/R24 firing; closing the
+R23-Addendum/R30/R31/R32 ratification line Red Team already judged
+discharged; the `COST_GATE_TOTAL_S` policy fork). Executing it honestly
+means the full PANEL.md loop — seven fresh seats, blind Phase-2, Red
+Team last, committed predictions, a real FDTD spend, six fresh Phase-5
+reviews, Red Team's final audit — the same weight as Iterations 90/91.
+This shift's judgment: that is real work worth doing right, not
+compressing into a lower-fidelity pass just to post a 92nd entry: "one
+honest, gated iteration beats five sloppy ones" (CLAUDE.md's own
+standard). The queue is untouched and ready for the next shift or a live
+session; PLAN.md's Current-state section still accurately describes
+Iteration 91 as the latest completed cycle.
+
+**The escalation.** LOGBOOK.md's own CHECKPOINT block (Iteration 85,
+2026-09-04, criterion 4 — R24's forward-elevating clause) has carried
+"Marsh notified" as its disposition for seven consecutive iterations
+(86–91) without, as far as this shift can tell, an actual message ever
+reaching Marsh outside this document — PANEL.md's "notification, not
+pause" precedent means the program correctly kept running underneath it,
+but Tier-0 item 0a has now recurred unresolved across seven straight
+queues (Iteration 91's own entry called this out explicitly as "SEVEN
+cycles pending Marsh's own convening"). This shift sent a real,
+out-of-band notification rather than writing an eighth in-document line.
+It is a governance-process finding, not a physics defect: zero `lab/`
+diff is implicated, no scored result is affected, Red Team's own
+Iteration-85 audit was explicit that the physically-scored verdicts
+stand unchanged. What is pending is Marsh's own ruling (accept as
+discharged / amend R24's forward-elevating clause / something else) —
+his standing veto, exercised or not, on his own schedule; nothing in the
+program is blocked either way. Full text: LOGBOOK.md's Iteration 85
+CHECKPOINT block and the Iteration 86–91 entries' own recurring Tier-0
+item 0a.
+
+Runner: cloud routine (`photonlab-shift`), background/autonomous. No
+git diff this shift beyond this entry.
+
 ## 2026-09-05 (panel shift) — Iteration 91 complete (exp-114):
 CONFIRM-WITH-NAMED-GAPS on a second kappa-ratio calibration point; a
 Director self-catch reveals three independent layers of the same
