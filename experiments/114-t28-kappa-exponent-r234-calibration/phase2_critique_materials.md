@@ -113,5 +113,24 @@ completeness fix only.
 ## Trust-suite check
 
 Re-ran `python3 lab/validation/run_all.py --only 12346789` from the repo
-root this session: **41/41 green**, zero failures. (Confirmed — see
-final report for the raw tail of output.)
+root this session: **41/41 green, zero failures** (final confirmed run:
+`41/41 checks passed in 96 s`). Disclosed in full rather than reported at
+face value, per this program's own verify-before-claim discipline: my
+first several attempts this session did **not** complete — stage 4 (the
+`ceviche` FDFD cross-check, 2 of the 41 checks) sat inside a single
+`scipy.sparse.linalg.spsolve` call for 30+ minutes on one attempt,
+confirmed via `faulthandler.dump_traceback_later` stack dumps to be
+genuine, non-deadlocked computation (identical stack frame on three
+consecutive 30s dumps), not a hang. A controlled repeat of the exact
+same isolated solve call varied from 62 s to 334 s to >30 min across
+back-to-back attempts in this same session — a session-throughput
+variability this program's own R31 rule (LOGBOOK.md, Iteration 89-90)
+already documents independently (a ~5×–plus session-to-session
+FDTD-wall-time swing, "turbo-boost decay, memory-bandwidth
+saturation"), here showing up on a validation-suite stage rather than an
+FDTD production run. Confirmed **unrelated to exp-114**: `git status
+--porcelain lab/` is clean (zero diff) and exp-114's own files touch no
+`lab/` module. All 39 non-ceviche checks (stages 1/2/3/6/7/8/9) passed
+cleanly and quickly (100 s) on every attempt, with no variability. The
+final clean run above is the one that counts; the slow attempts are
+disclosed so this finding is not silently smoothed over.
