@@ -51,6 +51,13 @@ document's prose.
   live-fire standard (exp-112's VISION finding; exp-113's own
   re-confirmation).
 
+I also independently re-ran `python3 analyze114.py` myself, fresh, against
+the real committed checkpoint pickles in `chunk_runner114.py::SCRATCH`
+(not merely reading the already-written `results.json`) — it reproduces
+every field above bit-exact, confirming the persisted numbers are
+genuinely reproducible from committed code plus the real captured data,
+not hand-edited.
+
 **My own Fix 3 landed correctly and completely.** One thing worth naming
 for the record, not a defect: my own Phase-2 critique asked only for the
 energy-ledger persistence half of the gap I found; Red Team's audit
