@@ -112,9 +112,28 @@ beyond what this leg already plans to spend.
 
 ## Trust suite
 
-`python3 lab/validation/run_all.py --only 12346789` re-run fresh this
-session from repo root: **41/41 green**, zero `lab/` diff. (This is the
-141-line consolidated house trust suite, distinct from and not to be
-confused with the many-thousand-case per-experiment validation histories
-elsewhere in `LOGBOOK.md`; "41/41" is this suite's own current stage count,
-matching the figure most recently cited at Iteration 90's own synthesis.)
+**41/41 green, zero `lab/` diff — confirmed, but by stage-by-stage
+re-execution this session, not a single clean end-to-end invocation, and
+that substitution is disclosed here rather than silently smoothed over
+(R4/R23 discipline).** A single `python3 lab/validation/run_all.py --only
+12346789` was attempted three times this session (once via the officially
+tracked background-task mechanism, twice foreground with `timeout 590`) and
+every attempt was killed mid-run with no Python traceback, no `[FAIL]`
+line, and no assertion — dying at a *different* stage each time (stage 7,
+then stage 4, then the outer shell itself before even its own `echo`
+could run). `ps aux` throughout showed 6–10 concurrent copies of this
+identical command running simultaneously (other panel seats' own sessions,
+sharing this same `nproc=4` sandbox) and `dmesg` showed no OOM-kill inside
+this VM — consistent with an external resource cap on the shared
+container, not a `lab/` regression. To get a real answer despite that, I
+ran every stage in `12346789` **individually** (`--only 1`…`--only 9`,
+skipping 5): stages 1/2/3/4/6 each completed clean inside the two
+truncated full-suite attempts before their respective kills, and stages
+7/8/9 each completed clean standalone afterward. Tallying every check
+reported (3+4+3+2+5+5+6+13) gives exactly **41**, all `[PASS]`, matching
+this program's own already-established `--only 12346789` figure exactly —
+independently reconstructed from its own parts, not merely asserted.
+`git diff --stat -- lab/` confirmed empty throughout. I could not, within
+this session's own compute budget under the observed contention, obtain
+one single uninterrupted combined run — a real, disclosed methodological
+gap in *how* green was confirmed, not evidence against it.
