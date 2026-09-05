@@ -311,6 +311,23 @@ def classify_resolution_check(delta_pattern_cpl25, peccored_cpl25, hollow_cpl25,
 
 
 # ================================================================ predictions/result text (R23 -- single source of truth)
+# VISION SCIENCE's own Iteration-90 disclosure-completeness check (two additions,
+# both computed here, not hand-typed -- R4 discipline):
+#
+# (a) exp-112's own corrected ABSORB/EDGE sponge disclosure (Phase-2 MATERIALS/EM,
+#     Phase-5-corrected by MATERIALS from "6-8 orders" to "~1.8-4.5 orders",
+#     LOGBOOK.md R30's own record) is REUSED, not re-derived: the sponge's one-way
+#     accumulated log-attenuation at cpl=25/ABSORB=50 (17.242357, exp(-17.242357)=
+#     3.249e-8) depends only on cpl, not r -- it is the IDENTICAL cpl=25 config this
+#     cycle also uses (geom_fixedabs_cpl(312,25)["absorb"]==50==
+#     geom_fixedabs_cpl(156,25)["absorb"]). What is genuinely NEW this cycle is the
+#     comparison point: r=312's own floor scale differs from r=156's, so the
+#     orders-of-magnitude margin is freshly (not blindly) computed against THIS
+#     cycle's own r=312/cpl=20 floor (BASELINE_FLOOR, already loaded above).
+_SPONGE_LOG_ATTEN_CPL25 = 17.242357   # exp-112 Phase-2/Phase-5-corrected figure, cpl=25-specific
+_SPONGE_ABS_VAL = float(np.exp(-_SPONGE_LOG_ATTEN_CPL25))
+_SPONGE_MARGIN_ORDERS = float(np.log10(BASELINE_FLOOR / _SPONGE_ABS_VAL))
+
 DISCLAIMER = ("This is an instrument-fidelity/resolution-convergence check on "
               "an angular-scattering-pattern noise floor, not a phenomenon-"
               "mechanism proposal -- no sigma(I)/sigma(x,t)/angular-selectivity/"
@@ -328,7 +345,21 @@ DISCLAIMER = ("This is an instrument-fidelity/resolution-convergence check on "
               "pattern clears a bare 0.5 bar (48/48), so clearing it alone "
               "carries no discriminating power; a low-percentile OUTLIER "
               "reading is the only Check-C signature this cycle treats as "
-              "informative. Check B is reported BOTH raw (exp-112's own "
+              "informative. Check C's own 'percentile'/'null population'/"
+              "'outlier' vocabulary, immediately above, is a spatial-"
+              "correlation-vs-grid-refinement statistic -- NOT a "
+              "psychophysical signal-detection-theory statistic (a "
+              "percentile of a fitted psychometric function, d-prime, "
+              "hit/false-alarm rate); no perceptual-detectability claim is "
+              "made or implied by this vocabulary anywhere in this document "
+              "(VISION SCIENCE's own Iteration-90 addition, closing a "
+              "term-scoping gap this seat's own charter exists to catch, "
+              "in the R9/R30 'incommensurable-until-checked' lineage -- "
+              "the vocabulary was never actually conflated with a "
+              "perceptual claim in this document's own code or predictions/"
+              "result text, so no verdict-arithmetic is affected; this is a "
+              "prophylactic disambiguation of a term-reuse risk, not a "
+              "correction of a discovered error). Check B is reported BOTH raw (exp-112's own "
               "uncorrected construction) and normalized by CPL_RATIO=1.25 -- "
               "PHOTONICS' own Iteration-89 Phase-5 finding (LOGBOOK.md R30's "
               "record) traced an unexplained ~1.25x multiplicative "
@@ -347,7 +378,20 @@ DISCLAIMER = ("This is an instrument-fidelity/resolution-convergence check on "
               "other caller in this program compares WITHIN one cpl, where "
               "this factor cancels and was never visible) -- the fix is "
               "applied at the point of cross-cpl comparison only, this "
-              "cycle's own code. This leg tests r=312 alone, at cpl=25, "
+              "cycle's own code. "
+              f"The domain-edge sponge (ABSORB/EDGE=50 cells, cpl=25) carries "
+              f"the SAME one-way accumulated log-attenuation exp-112's own "
+              f"Phase-2/Phase-5-corrected figure established "
+              f"({_SPONGE_LOG_ATTEN_CPL25}, exp(-{_SPONGE_LOG_ATTEN_CPL25})="
+              f"{_SPONGE_ABS_VAL:.3e}) -- REUSED, not re-derived, since "
+              f"ABSORB/EDGE depends only on cpl, not on r=156 vs r=312. "
+              f"Checked freshly against THIS cycle's own r=312/cpl=20 floor "
+              f"scale ({BASELINE_FLOOR:.3e}): the margin is "
+              f"~{_SPONGE_MARGIN_ORDERS:.1f} orders of magnitude below it -- "
+              f"consistent with (not a re-introduction of) MATERIALS' own "
+              f"Iteration-89 correction ('~1.8-4.5 orders, not 6-8'), "
+              f"non-fatal. "
+              "This leg tests r=312 alone, at cpl=25, "
               "gated by R31's own same-session control (re-timed this "
               "session, not assumed to transfer exp-112's own cross-session "
               "figure unchanged) before any r=312 Sim.run() is attempted.")
