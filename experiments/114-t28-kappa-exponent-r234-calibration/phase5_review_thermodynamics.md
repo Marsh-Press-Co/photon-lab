@@ -34,8 +34,10 @@ document's prose.
   not round numbers or a stub. `sigma_ext_cross` — the genuinely
   independent optical-theorem cross-check EM's Iteration-89 review found
   silently dropped from exp-112's own ledger — is present here and agrees
-  with `sigma_ext` to 3.2×10⁻⁵ relative (peccored) / 2.8×10⁻⁵ relative
-  (hollow), i.e. this cycle did not repeat that specific regression.
+  with `sigma_ext` to 2.78×10⁻⁵ relative (both peccored and hollow,
+  independently recomputed by me — my own first-pass mental estimate of
+  "3.2×10⁻⁵/2.8×10⁻⁵" was itself slightly off; corrected here before
+  filing), i.e. this cycle did not repeat that specific regression.
 - The R23-style `DISCLAIMER` asserts are present (`analyze114.py` lines
   151, 163, 191, 212 — `assert R.DISCLAIMER in predictions_text` /
   `result_text`, both in the real-data branch and the gate-refused
