@@ -175,7 +175,11 @@ convened ONLY at:
    standing kill-criterion pattern).
 
 On checkpoint: a CHECKPOINT entry in LOGBOOK.md + SESSION_LOG.md, and Marsh
-is notified. Unblocked threads keep running. **Checkpoint #0 (one-time,
+is notified. Unblocked threads keep running. **Amendment (Marsh's ruling,
+2026-09-05 — LOGBOOK R34):** a criterion-4 firing the panel rules "a
+notification, not a pause" self-closes when the next iteration's Red Team
+audit confirms the defect discharged; Marsh is convened only for pauses or
+for firings still undischarged after that audit. **Checkpoint #0 (one-time,
 already agreed):** Iteration 1 halts after Phases 1–2 for Marsh's go-ahead
 before the first synthesis, engine code, or run.
 
@@ -192,7 +196,9 @@ before the first synthesis, engine code, or run.
 
 ## Venues and collisions
 
-State lives in the repo; any venue executes the loop: the `photonlab-shift`
-cloud routine (default runner), Marsh's Windows bench, or a live session. An
-interactive session that takes the wheel pauses the routine and re-enables it
-when done. Every iteration entry in LOGBOOK.md records its runner.
+State lives in the repo; any venue executes the loop: the T5820 team bench
+(default runner from 2026-09-05; the `panel-shift` cloud routine is disabled),
+Marsh's Windows laptop, or a live session (Director in-session, compute on the
+bench over SSH). An interactive session that takes the wheel pauses the bench
+runner and re-enables it when done. Every iteration entry in LOGBOOK.md
+records its runner.

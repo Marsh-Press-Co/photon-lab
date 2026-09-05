@@ -1510,6 +1510,31 @@ top. Protocol: PANEL.md.*
   `experiments/114-t28-kappa-exponent-r234-calibration/NOTES.md`,
   `phase2_redteam_audit.md`, all six `phase5_review_*.md`,
   `phase5_redteam_audit.md` §2–§5, LOGBOOK.md Iteration 91.
+- **R34 — a Checkpoint criterion-4 (program-integrity drift) firing that
+  the panel itself rules "a notification, not a pause" SELF-CLOSES the
+  moment a later iteration's Red Team final audit confirms, from
+  primitives, that the underlying defect is genuinely discharged — the
+  Director records the closure in the CHECKPOINT entry and the item
+  leaves every queue; Marsh is convened only for a criterion-4 firing
+  that is (a) ruled a pause, or (b) still undischarged after the NEXT
+  iteration's Red Team audit (Marsh's ruling, 2026-09-05, in-session,
+  on the Iteration-85 Checkpoint-4/R24 firing — a standing governance
+  rule, not a ruled-out idea).** Founding instance: the Iteration-85
+  Checkpoint-4/R24 firing (2026-09-04) was ruled a notification, its
+  defect (`classify_item_ii` never gated on `fit["smooth"]`) was fixed in
+  Iteration 86/exp-109 and confirmed discharged by Red Team's own Phase-5
+  audit that same cycle — yet the item carried "still pending Marsh's own
+  ruling" through Iterations 86→91 (seven cycles), reached Marsh only via
+  a direct escalation on 2026-09-05, and occupied a Tier-0 queue slot the
+  whole time for a decision that changed nothing. Marsh's words: "accept
+  and change the rule." Criterion 4 keeps its full force as a DETECTOR
+  (nothing about what fires it changes); what changes is that a verified
+  fix, not a human signature, closes a non-pausing firing. Precedent:
+  PANEL.md's own "humans are never required gates except the checkpoint
+  pauses PANEL.md defines" — a notification that waits seven cycles for
+  a signature had become a gate in fact. Retroactive application:
+  Iteration-85 Checkpoint-4 CLOSED 2026-09-05 (RULING paragraph under its
+  CHECKPOINT entry).
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)
@@ -8952,6 +8977,17 @@ this cycle (R24's own forward-elevating clause, adopted at its founding,
 already covers this case in full — no gap in the rule taxonomy itself was
 found, only a gap in one cycle's own code). Unblocked threads continue
 per PANEL.md's continuous-mode protocol; Marsh notified.
+
+**RULING (Marsh, 2026-09-05, in-session, on Clyde's plain-language brief):
+"accept and change the rule."** (1) The panel's handling — notification,
+not pause; fix landed and Red-Team-verified in Iteration 86/exp-109 — is
+ACCEPTED; this checkpoint is CLOSED. No pause, no re-audit of Iterations
+85–91. (2) Rule change adopted as **R34** (RULED OUT registry): a
+criterion-4 firing ruled a notification self-closes on the next Red Team
+audit's verified discharge; Marsh is convened only for pauses or for
+firings still undischarged after that audit. Tier-0 item 0a leaves the
+queue. Recorded by the Director (Clyde); runner: live session, compute on
+the T5820 bench.
 
 **Iteration 86 (exp-109) — MATERIALS' rotation-lead cycle: the R24 second
 instance genuinely, verifiably discharged; R23's own human-readable-

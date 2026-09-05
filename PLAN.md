@@ -94,7 +94,8 @@ sequenced AFTER item 1 lands; (4) execute the resolved_unresolved_crosstab
 immediately once real r=312 data lands; (5) MATERIALS' own
 fabrication-tolerance bound -- write the actual number, now SEVEN
 consecutive cycles named-but-undone. Tier 0 -- (0a) the Iteration-85
-Checkpoint-4/R24 firing, escalated this shift, still pending; (0b) Red
+Checkpoint-4/R24 firing: RULED 2026-09-05 by Marsh ("accept and change
+the rule") -- CLOSED, R34 adopted (LOGBOOK registry), off the queue; (0b) Red
 Team's own audit finds R23-First-Addendum/R30/R31/R32 already carry
 fully-adopted, in-force language and recommends closing this line as
 already discharged; (0c, unchanged) the COST_GATE_TOTAL_S policy fork,
