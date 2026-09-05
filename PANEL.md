@@ -150,6 +150,22 @@ target; scotopic is the witness-consistency check (the reported scene was a
 night flashlight sweep). VISION SCIENCE pins the numeric pass/fail thresholds
 per experiment, cited, before the run.
 
+**Scope amendment (Director, Iteration 92, 2026-09-05 — discharges the
+program-level Checkpoint-4 notification Red Team filed in exp-115's Phase-2
+audit §4.2, item D1):** "recorded every run" binds **phenomenon-program
+cycles** — any iteration whose proposal names a mechanism or a T1 escape
+route. **Instrument-fidelity / governance cycles** (the T28 sub-thread since
+Iteration 46: cost gates, timing controls, classifier repairs, bound-writing)
+record none of the seven rows, declare "T1 escape route: N/A" explicitly, and
+carry a per-cycle DISCLAIMER string asserted on both the predictions and the
+result side (R23). The charter now says what the practice has been since
+exp-101; the practice is not thereby endorsed as permanent — `lab/ambient.py`'s
+Weber entry points have been unrun since exp-100 (14 cycles), and the
+Director's ruling of record (D2) is that **Iteration 93 executes Tier-3
+item 10 — VISION's re-score of the program's only Tier-W/Tier-A constraint-3
+citation through the modernized ambient instrument — as its Tier-1 item 1,
+regardless of lead-seat rotation.**
+
 **Constraint-3 scoring (Marsh's ruling, Checkpoint #0, 2026-08-12): two
 named tiers.** *Tier W — witness-reproduced:* all four constraints hold in
 the reported scene's own regime (night ambient; observer = the flashlight

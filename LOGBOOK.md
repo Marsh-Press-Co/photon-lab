@@ -24911,3 +24911,178 @@ Full record: `experiments/114-t28-kappa-exponent-r234-calibration/` —
 `phase1_proposal.md`, `run114.py`, `chunk_runner114.py`, `analyze114.py`,
 five Phase-2 blind critiques, `phase2_redteam_audit.md`, `NOTES.md`,
 `results.json`, six Phase-5 blind reviews, `phase5_redteam_audit.md`.
+
+## Iteration 92 — The Grid-Native Same-Session Control: exp-114's Scored Ratio Is Exactly `kappa_ratio × G`, Measured Directly On The Bench; The Fabrication-Tolerance Bound Written, Corrected By Four Blind Seats (exp-115) — 2026-09-05
+
+Runner: bench panel shift (T5820) — Director Clyde, live session; compute on
+the team bench (Dell T5820, Xeon W-2145 8c/16t, 128 GB, WSL2 Ubuntu 24.04,
+py3.11). First iteration executed on the bench; the `panel-shift` cloud
+routine was disabled 21:58Z (Marsh: all routines move to the bench).
+
+**Lead: MATERIALS & METAMATERIALS** (rotation: PHOTONICS(91)→MATERIALS(92)→
+ELECTROMAGNETISM→THERMODYNAMICS→QUANTUM OPTICS→VISION SCIENCE→repeat).
+Executes the Reconciled Iteration-92 queue's Tier-1 item 1 (a genuine
+same-session control-timing burst measured directly on the r=234 grid,
+matched-protocol against r=156, in one session on one machine), folds in
+item 2 (persist the short-reading and v2 sensitivities as NOT-scored
+fields) and item 5 (MATERIALS' own fabrication-tolerance bound, seven
+cycles named-but-undone, as a zero-FDTD analytic sidecar).
+
+**Phase 1** (`phase1_proposal.md`): verified before proposing (R4/R9) that
+no control burst has ever been timed on any grid but r=156 in program
+history (`_time_control_blend` hardcodes `geom_fixedabs_cpl(156, 25)` in
+both `chunk_runner113.py` and `chunk_runner114.py`). Re-derived exp-114's
+scored statistic from its committed primitives and found an identity no
+seat had stated: because `STEPS` scales linearly with `kappa` and both
+legs run three scenes, **`measured_ratio ≡ kappa_ratio × G`**, `G` the
+same-session per-step cost ratio r=234/r=156, every cross-session term
+cancelling — verified bit-exact (`1.5 × 2.74550565394726 =
+4.11825848092089`, the filed value to 15 digits). exp-114 therefore
+measured `G` under a protocol mismatch (3334-step cold control vs
+12000-step chunked production), not a cross-session ratio. Block CG: six
+cold-build 3-scene control bursts (S156, S234 at 1000 steps/scene; U156,
+U234 and repeats at 3334), 18 `Sim.run()` calls, 46,008 grid-steps,
+nothing else. Metrics M1–M9 with bands anchored on `R_DEG = 0.07596`
+(exp-114's own measured short→sustained degradation) and R28's founding
+miss `0.15295`; M5 PRIMARY = bench replication of exp-114's own scored
+statistic via the unmodified classifier (CONFIRM iff `G ∈ [2.0785,
+2.8121]`, REFUTE iff `G ≤ 1.7117` or `≥ 3.1789`). Also shown: pure `N²`
+scaling is algebraically the pre-R28 exponent `k = 3.0` exactly. T1
+escape route: NONE / N/A, reasoned structurally for both items. Cost:
+43.2% margin under the worst real anchor (6136 s vs 10800). Flagged its
+own uncertainty: exp-114's `t234` is a production figure while every
+control ever taken is a burst; three chunk times bounding that gap
+survive only as quotations.
+
+**Phase 2** — five blind critiques, **all support-with-changes, zero
+opposition**; every seat reproduced the load-bearing identity bit-exact.
+PHOTONICS: the sidecar's `exp(−2τ_true) = 6.7×10⁻⁸` is a round-trip
+*intensity* where a buried perturbation enters a cross-section through
+the coherent *amplitude* cross-term, `~2·exp(−τ_true) = 5.18×10⁻⁴` — the
+measured deltas are then a resolved detection, not a floor artifact; the
+"peccored ~14% costlier" citation is 1.29% in exp-114's own per-scene
+times. ELECTROMAGNETISM: A,B,A,B ordering leaves the mean r=234 midpoint
+trailing r=156 by `(a+b)/2`, so under monotone drift both pairs carry the
+same-signed bias and `d_rep` reads ≈0 — the null instrument blind to the
+systematic it exists to catch; fix A,B,B,A; M9(b)'s optical-theorem floor
+is bit-identical across scenes, zero differential content; same exponent
+error. THERMODYNAMICS: same exponent error (3861×); floor common-mode;
+answered the thermal-soak question — exp-114's own empty scene ran 6.05%
+*faster* per step late-run, sign opposite to `R_DEG`, so that anchor is
+cloud contention, not duration; inherits its two prior findings.
+QUANTUM OPTICS: same exponent error; the proposal's "short-reading flip
+and v2 straddle are the same question" is false — v2 reduces to
+`1.5 × 2.25 × (p234_prod/p234_burst)` and never touches an r=156 rate, so
+over 66.4% of M5's own CONFIRM band the cycle would report "replicated"
+with the straddle open (boundary `G ≥ 2.5652851`); ABBA; M5 has no
+degradation branch. VISION SCIENCE: **R18 — M5's stated invocation passes
+a ratio into `classify_kappa_exponent_check(exponent_234)`, executable,
+silently yielding `rel_dev = 0.448`, a false REFUTE on the declared
+falsifiable heart**; `DISCLAIMER_115` named but its text never written;
+`lab/caveat_lint.py`'s T18 entry cannot fire (trigger spells `UNOBTANIUM`
+vs the documents' `unobtainium`; ASCII `alpha` vs `α`), registry
+unchanged since exp-071; **constraint-3 drift: `lab/ambient.py`'s Weber
+entry points last invoked at exp-100 — fourteen cycles, exp-115 the
+fifteenth — while PANEL.md still says "recorded every run."**
+
+**Phase 2, Red Team** (`phase2_redteam_audit.md`): **PROCEED-WITH-
+MANDATORY-FIXES.** Sixteen numbered attacks; confirmed the four-seat
+convergence on the exponent error and the void floor, VISION's R18 catch
+to 17 digits, QUANTUM's straddle boundary exactly. **Refuted four critique
+claims from primitives**: PHOTONICS' 3.6–11.3% backscatter figures sit on
+bins that all fail exp-112's own floor gate (0/12 resolved); EM's A9
+contradicts EM's A7; THERMO's "CONFIRM→REFUTE" warm-up span is
+`0.1227 → 0.2977` (CONFIRM→AMBIGUOUS) under consistent application;
+QUANTUM's `τ_true` interval and 8.93% anchor both collapse (`τ_true`
+bit-identical at both family members; the anchor inherited the refuted
+14%). Added RT-6: ABBA is not free — it makes the two same-grid repeat
+lags unequal (`a+2b` vs `b`) and repurposes `d_rep` from a repeatability
+into a drift statistic while three composition rules consume it as the
+former; and RT-7: two defensible protocol models put `G` on opposite
+sides of the CONFIRM ceiling (`2.540` vs `2.868–2.880`), and pure `N²`
+(`k=3.0`) lands *inside* CONFIRM at `rel_dev = 0.0799`, so M5 cannot by
+itself distinguish `k = 3.2053` from `k = 3.0`. Fifteen mandatory fixes
+(all zero-FDTD; MF-6 is the one protocol change, irreversible once Phase
+4 starts), six disclosed-override candidates.
+
+### CHECKPOINT (Iteration 92, 2026-09-05, criterion 4 — program-integrity drift, PROGRAM level, not this proposal)
+
+Red Team's Phase-2 audit §4.2 rules criterion 4 **FIRES** on the narrow,
+verifiable ground that PANEL.md's own Metrics section ("recorded every
+run"; "VISION SCIENCE pins the numeric pass/fail thresholds per
+experiment, cited, before the run") no longer describes the program it
+governs: `grep -rln "weber(\|contrast_from_runs\|observer_profile"
+experiments/*/*.py` returns nothing after exp-100 (Iteration 77);
+exp-101→exp-114 is fourteen consecutive cycles with no constraint-3
+number; the de facto amendment lived only in per-cycle DISCLAIMER strings
+across ~14 files, never in the charter a fresh seat reads first. Raised
+independently by two blind seats (VISION §4.9 — "Tier order is the
+mechanism by which constraint 3 slips: each cycle's Tier 1 is
+manufactured by the cycle before it"; QUANTUM §D — twelfth consecutive
+"T1 escape route: NONE"). **Ruled a notification, not a pause; does NOT
+block exp-115** (item 1 is cheap, correctly ranked, in queue order).
+Discharge, both zero-cost: **D1** — amend PANEL.md's Metrics section so
+the charter matches practice (DONE this cycle, Director, PANEL.md "Scope
+amendment"); **D2** — an explicit on-record Director decision on Tier-3
+item 10. **Director's ruling (D2): Iteration 93 executes Tier-3 item 10 —
+VISION's re-score of the program's only-ever Tier-W/Tier-A constraint-3
+citation through the modernized `lab/ambient.py` instrument — as its
+Tier-1 item 1, regardless of lead-seat rotation** (ELECTROMAGNETISM leads
+93; VISION pins thresholds per its charter duty). Under **R34** this
+firing self-closes when Iteration 93's Red Team final audit confirms D1
+and D2 discharged from primitives. Companion observation (not a firing):
+MF-14's caveat-registry blindness means the entry that has fired
+criterion 4 twice cannot see these documents — "a silent gate and an
+absent gate produce identical observations" — fixed this cycle.
+
+**Phase 3 — Synthesis (Director).** **All fifteen mandatory fixes
+MF-1..MF-15 ACCEPTED in full**, before any `Sim.run()` call: MF-1/MF-2 the
+physics (`2·exp(−τ_true) = 5.18×10⁻⁴` as the bound, `exp(−τ_true)` the
+scale; M9(b)'s floor withdrawn as differential, exp-108's six-margin
+`item_ii` family substituted, "no differential floor exists at r=234"
+stated; `τ_true` recomputed from `lab/materials._graded_black`, the exact
+identity `σ_max·cpl = 10`, `thickness/cpl = 2.4` replacing the concavity
+hedge); MF-3 the per-bin channel (exp-110's floor-gated local figures
+`1.4669×10⁻²`/`5.290×10⁻²` reported alongside the peak-normalized
+`1.5266×10⁻⁴`; the ±138.75° observer-return statement; the per-bin half of
+"better than 1.6×10⁻⁴" withdrawn); MF-4 scope at certified resolution;
+MF-5 the M5 invocation (`exponent_B = ln(1.5·G)/ln(1.5)`, code-asserted);
+MF-6 protocol integrity (ABBA `U156, U234, U234b, U156b`; M2/M5 on the
+mean of both pairwise `G`; per-reading timestamps, per-scene times,
+drift as a rate per unit elapsed time; `d_rep` semantics restated;
+**exclusive-use protocol on the bench** — no concurrent process, the
+runner posts each reading to the ticker so the Director need not poll;
+machine-state block persisted); MF-7 M5's power limit (two-point
+protocol-mismatch interval, BOUNDED-REPLICATION when it spans a boundary;
+the `k=3.0`-inside-CONFIRM statement; both protocol-model predictions
+pre-registered); MF-8 "resolves the straddle" withdrawn, v2-with-measured-
+`G` persisted NOT-scored with the `G ≥ 2.5652851` boundary; MF-9 every
+composition rule one persisted code-asserted boolean, MARGINAL split,
+mechanism-neutral M3 labels, conditional 18/12-call assert; MF-10
+`DISCLAIMER_115` text written with both asserts (incl. the energy-ledger/
+thermal-sidecar N/A sentence: at 3334 steps the wavefront reaches ~65% of
+the r=156 and ~47% of the r=234 domain, no settled ledger computable —
+closing exp-104's three-cycle-old gap); MF-11 the three citations
+corrected (`+1.287%`, `8.83%` chunk spread + the `4.47%` level shift, "two
+channels and their exact sum"); MF-12 identity gate on the parameterized
+blend + the bench trust-suite record committed; MF-13 the perturbation
+disclosed (12 cells at `rr = R_CORE` both PEC-zeroed and lossy, `~10⁻⁸`);
+MF-14 caveat-registry fixes + this cycle's own gated entry; MF-15 exp-061's
+MP-5 thermal counterweight carried, warm-up sensitivity under consistent
+application. **Six disclosed overrides, each per Red Team's own
+recommendation**: OV-1 QUANTUM's M10 declined as a *scored* verdict
+(composes a bench `G` with exp-114's session factor — assumes the
+machine-independence M6 exists to test; adopted NOT-scored); OV-2
+PHOTONICS' eighth-deferral branch declined (the bound ships corrected —
+a corrected bound beats an eighth deferral); OV-3 THERMO's
+discard-first-1000-steps protocol declined outright, no extra reading
+(breaks matched-protocol comparability with every prior R31 reading;
+MF-7(a)'s two-point bound carries the information; 18-call budget stands);
+OV-4 EM's `σ_ext_cross` third channel declined (refuted by EM's own A7);
+OV-5 QUANTUM's `τ_true` interval declined (refuted numerically); OV-6
+QUANTUM's 8.93% re-anchor magnitude declined, its sign finding adopted.
+**Adopted, Red Team's recommended-not-mandatory item**: a
+`SUSTAINED_CONTROL_STEPS` step-down branch in the budget gate so
+degradation is graceful at both ends, disclosed. Phase-3 code:
+`run115.py`, `chunk_runner115.py`, `analyze115.py`; predictions committed
+before the run (see `NOTES.md`). Phases 4–5 follow in this record.
