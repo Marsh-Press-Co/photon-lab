@@ -83,16 +83,27 @@ per-geometry fit, so it is exactly as valid to reuse at r=234 as it was
 at r=156/312. I re-ran this exact recipe myself against exp-114's own
 persisted `energy_ledger` (r=234, cpl=25) — a genuine, if informational,
 post-run analytic calculation, per my own expressibility contract, not
-an FDTD output:
+an FDTD output. **My own first attempt at this desk check itself
+committed the exact class of error this section goes on to warn about,
+caught and corrected before reporting it here (an R9 self-catch, not
+silently smoothed over)**: `experiments/107-.../run.py::DX_M=30e-9` is
+the physical cell size at **`cpl=20`** (600nm design λ / 20); feeding
+that same constant into `width_m = sigma_ext(cells) · DX_M` against a
+`sigma_ext` measured at **`cpl=25`** (this cycle's own ledger) is exactly
+the commensurability slip named below, one level more concrete than the
+abstract warning — the correct cell size at `cpl=25` is `600nm/25=24nm`,
+not `30nm`. Both readings, disclosed side by side:
 
 ```
 i_incident = 6.5844e-6 W/cm²  (unchanged, reused from r=78)
-r=234, peccored:  sigma_ext=1093.468, abs_ext_ratio=0.4956,
-                  p_abs_w=3.5113e-11 W, dT_ss=1.921e-4 K,
-                  margin=104.1x vs NETD_BAND_K[0]=0.020K -> UNDETECTABLE
-r=234, hollow:    sigma_ext=1093.525, abs_ext_ratio=0.4955,
-                  p_abs_w=3.5115e-11 W, dT_ss=1.921e-4 K,
-                  margin=104.1x -> UNDETECTABLE
+r=234, peccored, sigma_ext=1093.468, abs_ext_ratio=0.4956:
+  using WRONG cpl=20 dx (30nm, my own first-pass slip): margin=104.1x
+  using CORRECT cpl=25 dx (24nm):                       margin=130.1x
+r=234, hollow, sigma_ext=1093.525, abs_ext_ratio=0.4955:
+  using WRONG cpl=20 dx:   margin=104.1x
+  using CORRECT cpl=25 dx: margin=130.1x
+(both -> UNDETECTABLE either way, vs NETD_BAND_K[0]=0.020K; the
+correction moves the margin ~25%, not the classification)
 ```
 
 So the honest answer to "does exp-114 need to run this itself": **no.**
@@ -117,22 +128,26 @@ were ever treated as a gap.
 
 **But now that real r=234 `sigma_abs`/`sigma_ext` data is on file, the
 extension is genuinely cheap** (zero marginal FDTD cost, ~10 lines,
-reusing `item3_thermal_row()`'s own recipe verbatim) **— with one real
-caveat my own desk check above does NOT control for and a naive
-Iteration-92 attempt must not skip**: exp-107's own r=156/312 figures
-were computed from **`cpl=20`** ledgers (`EXP106_RESULTS`), while my
-r=234 figure above uses this cycle's own **`cpl=25`** ledger. This
-program's own Iteration-89 finding (R30's founding instance, exp-112,
-PHOTONICS) established that `lab/sections.py::_face_flux()`-derived
-quantities carry a raw, un-normalized `CPL_RATIO`(=1.25×) magnitude
-artifact between `cpl=20` and `cpl=25` — **not** resolution-invariant
-the way `tau_shell`/`sigma_max` provably are. My own r=234 margin figure
-(104.1×) is therefore **not yet a clean third point on exp-107's own
-r=156(262.4×)/r=312(117.5×) trend** — comparing them naively would be
-exactly the operand-commensurability error (R9) this cycle's own Phase-4
-already caught once, on a different pair of quantities (`t156` vs
-`t234`). Flagged here as a genuine open item, not resolved by this
-review (see Iteration-92 ranking, below).
+reusing `item3_thermal_row()`'s own recipe verbatim) **— with a SECOND,
+deeper commensurability gap my own dx correction above does NOT fix, and
+a naive Iteration-92 attempt must not skip**: exp-107's own r=156/312
+figures were computed from **`cpl=20`** ledgers (`EXP106_RESULTS`), while
+my own r=234 figure (130.1×, dx-corrected) uses this cycle's own
+**`cpl=25`** ledger. This program's own Iteration-89 finding (R30's
+founding instance, exp-112, PHOTONICS) established that
+`lab/sections.py::_face_flux()`-derived quantities themselves — `sigma_ext`,
+`sigma_abs`, etc. — carry a raw, un-normalized `CPL_RATIO`(=1.25×)
+magnitude artifact between `cpl=20` and `cpl=25`, **upstream of any
+dx-per-cell conversion**, and **not** resolution-invariant the way
+`tau_shell`/`sigma_max` provably are. My own dx-corrected r=234 margin
+figure (130.1×) is therefore **still not yet a clean third point on
+exp-107's own r=156(262.4×)/r=312(117.5×) trend** — comparing them
+naively would repeat, on a different quantity, the exact class of
+operand-commensurability error (R9) this cycle's own Phase-4 already
+caught once (on `t156` vs `t234`) and my own dx slip just repeated a
+second time in this very review before I caught it. Flagged here as a
+genuine open item, not resolved by this review (see Iteration-92
+ranking, below).
 
 ## 3. Sanity-check: peccored vs. hollow sigma_abs, nearly identical — does that make sense?
 
