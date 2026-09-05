@@ -1244,6 +1244,46 @@ top. Protocol: PANEL.md.*
   forward-firing model, matching R16/R21–R27's own precedent. Full
   record: `experiments/110-t28-item-i-local-norm-and-controls/
   phase5_redteam_audit.md` §1, §5, §7, LOGBOOK.md Iteration 87.
+- **R29 — when two different files sharing an identical base module name
+  are both imported via bare `import <name>` statements inside the same
+  process, Python's `sys.modules` cache silently binds EVERY subsequent
+  `import <name> as <alias>` to whichever file resolved first on
+  `sys.path`, regardless of how many distinct aliases the source code
+  uses to try to tell them apart (not a ruled-out idea; a standing
+  house-discipline rule, proposed by Red Team's Phase-2 audit and
+  ratified by the Director at Phase 3, Iteration 89).** A cycle that
+  imports a same-basename module from more than one directory must
+  either (a) give the colliding files genuinely distinct basenames, or
+  (b) load the second one via `importlib.util.spec_from_file_location(...)`
+  under a distinct `sys.modules` key — and in either case must verify, by
+  an EXECUTED identity or attribute check run before any function relying
+  on the distinction is trusted, that the intended distinct module object
+  is actually bound. Founding instance: exp-112's own `chunk_runner.py`/
+  `analyze.py`, both doing `import run as R110` (exp-110's `run.py`)
+  immediately followed by `import run as R` (exp-112's own,
+  differently-located `run.py`) — `R`/`R110` silently resolved to the
+  SAME module object in both files (exp-110's), so exp-112's own
+  `geom_fixedabs_cpl`/`verify_geometry_identity`/etc. were never actually
+  reachable through `R`. Caught cleanly at Phase 2, before any
+  `Sim.run()` call, by THERMODYNAMICS' own blind critique actually
+  executing the code (`python3 chunk_runner.py 156 25 empty` crashed with
+  `AttributeError` on `step_once()`'s first line), independently
+  confirmed by direct re-execution in Red Team's own Phase-2 audit. Fixed
+  same-shift: exp-112's own module renamed `run112.py`, executed identity
+  assertions (`assert R is not R110`) added to both downstream files,
+  re-verified by actual re-execution through the pipeline's own
+  early-exit path. **Does not fire on its own founding instance**,
+  matching every prior rule in this registry. Recurrence risk is
+  concrete, not hypothetical: this exact "import a prior cycle's `run.py`
+  as `R<iteration>`, this cycle's own as `R`" idiom was already an
+  established two-cycle-running T28 convention (exp-110→exp-111) before
+  it collided here. **Rule, forward: a second instance of this exact
+  collision shape, on this or any channel, after this rule is on the
+  books, fires Checkpoint criterion 4 automatically, no further
+  deliberation** — a single-instance-ratified, forward-firing model,
+  matching R16/R21–R28's own precedent. Full record:
+  `experiments/112-t28-cpl25-floor-spot-check/phase2_redteam_audit.md`
+  §1, §5, LOGBOOK.md Iteration 89.
 
 ## ESTABLISHED (what the bench has already proven — the absorption model
 ## assessment, 2026-08-12)

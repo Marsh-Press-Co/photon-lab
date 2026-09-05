@@ -25,9 +25,14 @@ sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "experiments", "110-t28-item-i-local-norm-and-controls"))
 
 import run as R110  # noqa: E402  (experiments/110-.../run.py -- classify_item_i_local, etc.)
-import run as R  # noqa: E402  (this directory's own run.py)
+import run112 as R  # noqa: E402  (this directory's own run112.py)
 import chunk_runner as CR  # noqa: E402
 from lab import sections as sc  # noqa: E402
+
+# Phase-2 Red Team audit Docket Fix 1 (R29 candidate) -- see chunk_runner.py's
+# own identical comment; this file crashed identically before the rename.
+assert R is not R110, "R29: run112 (R) must be a distinct module object from exp-110's run (R110)"
+assert hasattr(R, "geom_fixedabs_cpl"), "R29: R must be exp-112's own run112.py, not exp-110's run.py"
 
 
 def load(r, cpl, which):
@@ -81,7 +86,17 @@ def analyze_r156_cpl25():
     )
 
     resolution_check = R.classify_resolution_check(
-        named_at_idx["delta"], named_at_idx["peccored"], named_at_idx["hollow"], named_at_idx)
+        pat_delta, named_at_idx["peccored"], named_at_idx["hollow"], named_at_idx)
+
+    # Phase-2 Red Team audit Docket Fix 6 (recommended, THERMODYNAMICS' own
+    # finding): persist sigma_abs/sigma_ext for both captures -- already
+    # computed above via sc.widths(), previously discarded. Not load-bearing
+    # for this cycle's own scored checks (T1 N/A); needed by any future
+    # cycle attempting a genuinely physical, not merely statistical,
+    # interpretation of the named bin's own deviation.
+    energy_ledger = dict(
+        peccored=dict(sigma_scat=w_p["sigma_scat"], sigma_abs=w_p["sigma_abs"], sigma_ext=w_p["sigma_ext"]),
+        hollow=dict(sigma_scat=w_h["sigma_scat"], sigma_abs=w_h["sigma_abs"], sigma_ext=w_h["sigma_ext"]))
 
     return dict(
         r=156, cpl=R.CPL_TARGET,
@@ -89,7 +104,8 @@ def analyze_r156_cpl25():
         repro_ok=repro_ok, rel_dev_peccored=rel_dev_p, rel_dev_hollow=rel_dev_h,
         bin_centers_deg=bin_centers_deg, named_idx=named_idx,
         named_bin=named_at_idx, local_diag_margin32=local_diag,
-        resolution_check=resolution_check,
+        resolution_check=resolution_check, energy_ledger=energy_ledger,
+        pattern_peccored=pat_p.tolist(), pattern_hollow=pat_h.tolist(), pattern_delta=pat_delta.tolist(),
         baseline=dict(peccored=R.BASELINE_PECCORED, hollow=R.BASELINE_HOLLOW,
                       delta=R.BASELINE_DELTA, floor=R.BASELINE_FLOOR,
                       local_snr_peccored=R.BASELINE_SNR_PECCORED,
@@ -132,7 +148,8 @@ if __name__ == "__main__":
         f"local_snr_peccored={row['named_bin']['local_snr_peccored']}, "
         f"local_snr_hollow={row['named_bin']['local_snr_hollow']} -- "
         f"Check A: {row['resolution_check']['check_a']}; "
-        f"Check B: {row['resolution_check']['check_b']}")
+        f"Check B: {row['resolution_check']['check_b']}; "
+        f"Check C (neighbor corr): {row['resolution_check']['check_c']}")
     result_text = R.build_result_text(
         n_fdtd_calls=n_fdtd_calls, total_wall_s=total_wall_s,
         geom_ok=geom_check["pass_"], repro_ok=row["repro_ok"],

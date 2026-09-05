@@ -45,6 +45,19 @@ sys.path.insert(0, os.path.join(ROOT, "experiments", "110-t28-item-i-local-norm-
 from lab import sections as sc  # noqa: E402
 import run as R  # noqa: E402  (experiments/110-.../run.py -- reused unmodified)
 
+# Phase-2 Red Team audit, Docket Fix 1 (module-name-collision, R29 candidate):
+# THIS FILE is named run112.py specifically so that a downstream file doing
+# `import run as R110` (exp-110's own run.py) and `import run112 as R` (this
+# file) binds two genuinely distinct sys.modules entries -- the original
+# `run.py`/`run.py` basename collision silently aliased both names to the
+# SAME module object (whichever resolved first on sys.path), confirmed by
+# direct execution (chunk_runner.py/analyze.py crashed before any Sim.run()
+# call). See phase2_redteam_audit.md Attack 1/Docket Fix 1, R29 (LOGBOOK.md
+# RULED OUT registry, ratified this cycle). The real identity assertions
+# (R is not R110, R has the exp-112-specific attributes) live in
+# chunk_runner.py and analyze.py, executed before either file trusts the
+# distinction -- see their own module-level asserts, below in each file.
+
 EXP110_DIR = os.path.join(ROOT, "experiments", "110-t28-item-i-local-norm-and-controls")
 with open(os.path.join(EXP110_DIR, "results.json")) as f:
     EXP110_RESULTS = json.load(f)
@@ -178,11 +191,50 @@ SURVIVE_REL_LO = 0.10
 SURVIVE_REL_HI = 10.0
 
 
-def classify_resolution_check(delta_cpl25, peccored_cpl25, hollow_cpl25,
+# ================================================================ Check C (Phase-2 Red Team audit Docket Fix 3, PHOTONICS' own Attack 3)
+NEIGHBOR_HALF_WINDOW = 2   # +/-2 bins around the named bin, 5 total
+CORR_BAR = 0.5             # Red Team's own stated bar, phase2_redteam_audit.md Docket #3
+
+
+def _window_indices(idx, half=NEIGHBOR_HALF_WINDOW, n=48):
+    return [(idx + k) % n for k in range(-half, half + 1)]
+
+
+_BASELINE_WINDOW_IDX = _window_indices(NAMED_BIN_IDX)
+BASELINE_WINDOW_DELTA = np.array(
+    [_BASELINE_MARGIN32["delta"][i] for i in _BASELINE_WINDOW_IDX])
+
+
+def neighbor_correlation_check(delta_pattern_cpl25):
+    """Fix 3 (Phase-2 Red Team audit Docket #3; PHOTONICS' own Attack 3,
+    independently confirmed by Red Team): a genuine deterministic
+    sub-wavelength field feature should imprint spatially CORRELATED
+    structure across adjacent angular bins (physical correlation length ~
+    lambda/box-scale) -- unlike uncorrelated Yee-grid discretization noise,
+    which need not correlate bin-to-bin under a resolution change. Pearson-
+    correlates the +/-2-bin window of the delta (peccored-hollow) pattern
+    around the named bin: cpl=20 baseline (exp-110's own committed
+    results.json) vs. this cycle's fresh cpl=25 reading. Zero marginal FDTD
+    cost -- both 48-bin arrays already exist once Phase 4 completes. A
+    Check-A SURVIVES reading may be cited as 'candidate real structure'
+    ONLY if this also clears corr>=CORR_BAR; otherwise it stays 'not yet
+    ruled out' (DISCLAIMER, above)."""
+    window_new = np.array(
+        [delta_pattern_cpl25[i] for i in _window_indices(NAMED_BIN_IDX)])
+    if np.std(BASELINE_WINDOW_DELTA) == 0 or np.std(window_new) == 0:
+        corr = None
+    else:
+        corr = float(np.corrcoef(BASELINE_WINDOW_DELTA, window_new)[0, 1])
+    supports_real_structure = (corr is not None) and (corr >= CORR_BAR)
+    return dict(corr=corr, bar=CORR_BAR, supports_real_structure=supports_real_structure,
+                baseline_window=BASELINE_WINDOW_DELTA.tolist(), new_window=window_new.tolist())
+
+
+def classify_resolution_check(delta_pattern_cpl25, peccored_cpl25, hollow_cpl25,
                                local_diag_cpl25_at_idx):
     """Applies this cycle's own pre-registered PASS/FAIL/INCONCLUSIVE bands
     (phase1_proposal.md Sec 2, falsification table) to a fresh cpl=25
-    reading at the named bin. Two independent, complementary checks (per
+    reading at the named bin. Three independent, complementary checks (per
     this proposal's own reasoning: neither alone is decisive):
 
     Check A (primary -- reuses classify_item_i_local's own K=3/median
@@ -195,7 +247,13 @@ def classify_resolution_check(delta_cpl25, peccored_cpl25, hollow_cpl25,
     Check B (supplementary -- this program's own founding T28 R3 standard,
     exp-069): does delta[idx] keep the same sign and stay within one
     order of magnitude of its cpl=20 value?
+
+    Check C (Docket Fix 3, gates how a SURVIVES reading may be described,
+    not a fourth independent verdict): does the +/-2-bin neighborhood
+    around the named bin correlate across cpl=20/cpl=25 (corr>=0.5)?
     """
+    delta_cpl25 = float(delta_pattern_cpl25[NAMED_BIN_IDX])
+    check_c = neighbor_correlation_check(delta_pattern_cpl25)
     snr_p_new = local_diag_cpl25_at_idx["local_snr_peccored"]
     snr_h_new = local_diag_cpl25_at_idx["local_snr_hollow"]
     resolved_new = local_diag_cpl25_at_idx["resolved"]
@@ -205,8 +263,10 @@ def classify_resolution_check(delta_cpl25, peccored_cpl25, hollow_cpl25,
     clears_k1_new = (snr_p_new is not None and snr_h_new is not None
                       and snr_p_new >= SNR_K1 and snr_h_new >= SNR_K1)
 
-    if clears_k1_new:
-        check_a = "SURVIVES (newly clears K=1 floor -- candidate real structure)"
+    if clears_k1_new and check_c["supports_real_structure"]:
+        check_a = "SURVIVES (newly clears K=1 floor AND Check C corr>=bar -- candidate real structure)"
+    elif clears_k1_new:
+        check_a = "SURVIVES (newly clears K=1 floor, but Check C corr<bar -- not yet ruled out, NOT candidate real structure)"
     elif not (snr_p_improved or snr_h_improved):
         check_a = "COLLAPSES (no improvement in local_snr under refinement -- noise-consistent)"
     else:
@@ -221,7 +281,7 @@ def classify_resolution_check(delta_cpl25, peccored_cpl25, hollow_cpl25,
     else:
         check_b = "AMBIGUOUS"
 
-    return dict(check_a=check_a, check_b=check_b,
+    return dict(check_a=check_a, check_b=check_b, check_c=check_c,
                 snr_p_new=snr_p_new, snr_h_new=snr_h_new, resolved_new=resolved_new,
                 same_sign=bool(same_sign) if same_sign is not None else None,
                 rel_to_baseline=rel_to_baseline)
@@ -248,7 +308,27 @@ DISCLAIMER = ("This is an instrument-fidelity/resolution-convergence check on "
               "be needed for that stronger claim, not proposed this cycle. "
               "This leg tests r=156 alone -- the +168.75deg bin at r=312 "
               "remains untested, deferred pending this cycle's own gate "
-              "(Sec 2.0) and Phase-4 outcome.")
+              "(Sec 2.0) and Phase-4 outcome. 'Detection floor', throughout "
+              "this document, means the K=3/K=1 mirror-pooled-floor "
+              "instrument's own grid-discretization SNR threshold -- NOT a "
+              "human perceptual or observer-detection threshold; no "
+              "constraint-2/3 claim is made or implied by this term "
+              "(Phase-2 Red Team audit Docket Fix 4, VISION's own finding). "
+              "The domain-edge sponge (ABSORB/EDGE) scaling is NOT "
+              "resolution-invariant the way tau_shell/sigma_max is -- its "
+              "one-way accumulated log-attenuation genuinely rises from "
+              "13.93 (cpl=20, absorb=40) to 17.24 (cpl=25, absorb=50), a "
+              "real ~1.25x change -- but both values sit 6-8 orders of "
+              "magnitude below the ~1e-4-1e-3 measurement-floor scale this "
+              "cycle actually measures at, so it cannot manufacture the "
+              "near-field signal under test (Phase-2 Red Team audit Docket "
+              "Fix 2, MATERIALS'/ELECTROMAGNETISM's own independently "
+              "convergent finding). A Check-A SURVIVES reading may be "
+              "described as 'candidate real structure' only if Check C "
+              "(neighbor_correlation_check, below) also clears its own "
+              "corr>=0.5 bar -- otherwise it is reported as 'not yet ruled "
+              "out', never upgraded on Check A alone (Phase-2 Red Team "
+              "audit Docket Fix 3, PHOTONICS' own finding).")
 
 
 def build_predictions_text():
@@ -277,8 +357,12 @@ value ({BASELINE_SNR_PECCORED:.4f}/{BASELINE_SNR_HOLLOW:.4f}); else
 AMBIGUOUS. Check B (this program's own founding T28 R3 standard):
 SURVIVES if delta[idx] keeps the same sign as cpl=20
 ({BASELINE_DELTA:.6e}) and stays within one order of magnitude of it;
-COLLAPSES on a sign flip or a >=10x drop; else AMBIGUOUS. No advance
-position taken on which of the three outcomes either check will report.
+COLLAPSES on a sign flip or a >=10x drop; else AMBIGUOUS. Check C
+(+/-{NEIGHBOR_HALF_WINDOW}-bin neighborhood correlation, cpl=20 vs cpl=25,
+Docket Fix 3): a Check-A SURVIVES reading may be described as "candidate
+real structure" only if corr>={CORR_BAR}; otherwise it is reported as "not
+yet ruled out" regardless of Check A's own reading. No advance position
+taken on which outcome any of the three checks will report.
 """
 
 

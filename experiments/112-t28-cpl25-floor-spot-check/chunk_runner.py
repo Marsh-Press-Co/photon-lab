@@ -28,9 +28,18 @@ sys.path.insert(0, ROOT)
 sys.path.insert(0, os.path.join(ROOT, "experiments", "110-t28-item-i-local-norm-and-controls"))
 
 import run as R110  # noqa: E402  (experiments/110-.../run.py -- cost_gate_check, constants)
-import run as R  # noqa: E402  (this directory's own run.py -- geom_fixedabs_cpl, etc.)
+import run112 as R  # noqa: E402  (this directory's own run112.py -- geom_fixedabs_cpl, etc.)
 from lab import Sim, materials  # noqa: E402
 from lab import sections as sc  # noqa: E402
+
+# Phase-2 Red Team audit Docket Fix 1 (R29 candidate): the ORIGINAL
+# same-basename "run.py"/"run.py" collision silently aliased R110 and R to
+# the SAME sys.modules entry, crashing this file before any Sim.run() call
+# (confirmed by direct execution, phase2_redteam_audit.md Attack 1). Renamed
+# this directory's own module to run112.py; executed identity assertion so
+# a future re-collision halts here, loudly, rather than silently aliasing.
+assert R is not R110, "R29: run112 (R) must be a distinct module object from exp-110's run (R110)"
+assert hasattr(R, "geom_fixedabs_cpl"), "R29: R must be exp-112's own run112.py, not exp-110's run.py"
 
 SCRATCH = os.path.join(
     "/tmp/claude-0/-home-user-photon-lab/fbd87760-699f-5fb6-8cb5-6f52801ed2e5/scratchpad",

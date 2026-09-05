@@ -237,14 +237,65 @@ cycle since Iteration 46.
   fabrication-tolerance bound, the `gate_reposition_control.py`
   checkpoint-resume case, or a non-sinusoidal FI-D successor — all
   explicitly declined this cycle, §3.
-- `geom_fixedabs_cpl`'s own `ABSORB`/`EDGE` scaling (40→50 cells) is a
-  disclosed, first-use choice for this family, following the T21/
-  Block-MINI family's own established convention (`R3_TAPER`/`R4_TAPER`
-  etc. all scale with the same ratio) — not independently re-derived from
-  a PML-reflectance or taper-adequacy bound specific to THIS geometry.
+- **Correction (Phase-2 Red Team audit Docket Fix 2, MATERIALS'/
+  ELECTROMAGNETISM's own independently convergent finding — supersedes
+  this section's own first-draft text, which incorrectly folded
+  `ABSORB`/`EDGE` into "the same congruent-refinement convention" as
+  `tau_shell`/`sigma_max`):** `geom_fixedabs_cpl`'s own `ABSORB`/`EDGE`
+  scaling (40→50 cells) is **NOT** resolution-invariant the way
+  `tau_shell`/`sigma_max` provably is. `tau_shell` invariance follows
+  exactly from `lab/fdtd2d.py`'s own Yee-update loss coefficient
+  (`alpha = sigma_e·S/(2·eps_r)`), where the Courant factor `S` cancels
+  the "more timesteps per crossing" effect at finer grid — verified,
+  holds exactly at both `cpl`. The domain-edge sponge (`self.Ez *=
+  self.damp_e`) is a structurally different mechanism — a bare
+  per-timestep multiplicative mask with no `S`/`dt` normalization — whose
+  one-way accumulated log-attenuation genuinely **rises** with `ABSORB`'s
+  absolute cell count: **13.93 (cpl=20, absorb=40) → 17.24 (cpl=25,
+  absorb=50)**, a real, computed **~1.25× change** (two independent
+  derivation routes — discrete cell-sum and closed-form continuum
+  integral — agree bit-exact; both confirmed independently by MATERIALS,
+  ELECTROMAGNETISM, and Red Team's own re-derivation from
+  `lab/fdtd2d.py`'s raw source). **Non-fatal**: both values sit 6–8
+  orders of magnitude below the `~1e-4`–`1e-3` measurement-floor scale
+  this cycle actually measures at, so the sponge cannot manufacture the
+  near-field signal under test — but this is now a verified,
+  quantified, disclosed non-invariance, not the "not independently
+  re-derived" unverified-idealization language this section originally
+  shipped (an R8-shaped gap, corrected same-shift, before Phase 3 froze
+  Predictions).
 - If Check A and Check B disagree (e.g. A says SURVIVES, B says
   AMBIGUOUS), both are reported side by side, per this program's own
   established "when instruments disagree, report both, the more
   conservative one governs" discipline (R10) — no verdict is manufactured
   by picking whichever check reads more favorably.
+- **Added (Phase-2 Red Team audit Docket Fix 3, PHOTONICS' own Attack
+  3):** Check A alone cannot distinguish a genuine deterministic
+  near-field feature (which should imprint spatially correlated
+  structure across adjacent angular bins) from an isolated noise spike.
+  A new Check C (`neighbor_correlation_check`, `run112.py`) Pearson-
+  correlates the ±2-bin window of the delta pattern around the named
+  bin, cpl=20 vs. cpl=25, zero marginal FDTD cost. A Check-A SURVIVES
+  reading may be described as "candidate real structure" only if Check
+  C also clears `corr≥0.5`; otherwise it is reported as "not yet ruled
+  out," never upgraded on Check A alone.
+- **Added (Phase-2 Red Team audit Docket Fix 4, VISION's own finding):**
+  the phrase "detection floor" (§1, above) is now explicitly defined, in
+  the code-enforced `DISCLAIMER` string itself (`run112.py`), as this
+  instrument's own grid-discretization SNR threshold — NOT a human
+  perceptual or observer-detection threshold; no constraint-2/3 claim is
+  made or implied by the term anywhere in this document.
+- **Added (Phase-2 Red Team audit Docket Fix 1, R29 candidate):** the
+  Phase-4 execution pipeline as originally committed could not run at
+  all — `chunk_runner.py`/`analyze.py` both imported a same-basename
+  `run.py` from two different directories under two different aliases,
+  and Python's `sys.modules` cache silently aliased both to the same
+  module object, confirmed by direct execution (crash before any
+  `Sim.run()` call). Fixed by renaming this cycle's own module to
+  `run112.py` and adding executed identity assertions
+  (`assert R is not R110`) in both downstream files, re-verified by
+  actual re-execution (not by re-reading the diff) — `run112.py
+  --verify-geometry` and `analyze.py`'s own early-exit path both now run
+  correctly end-to-end up to the point where real Phase-4 captures are
+  required.
 - 2D TMz, λ=600nm only — unchanged program-wide scope.
