@@ -1,0 +1,63 @@
+# Photon Lab trust suite -- ON THE BENCH (MF-12 / VALIDATION.md docket-14)
+# started 20260905T235042Z UTC
+# host: Machine · Model name: Intel(R) Xeon(R) W-2145 CPU @ 3.70GHz · 14 threads visible · 94 GiB
+# platform: Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39 | python 3.11.16
+# numpy 2.4.6 · ceviche 0.1.3 · fdtd 0.3.5
+# threads: OMP_NUM_THREADS=unset OPENBLAS_NUM_THREADS=unset
+
+stage 1 — exp-000 regression through lab engine
+  [PASS] regression · lambda (cells): 19.97  (expect 20.0±0.2)
+  [PASS] regression · peak |Ez|: 2.52  (expect 2.50±0.15)
+  [PASS] regression · shadow ratio: 0.479  (expect 0.48±0.03)
+stage 2 — half-space reflection vs Fresnel
+  [PASS] impedance · eps=4, mu=1 (Fresnel): R=0.0983  (expect 0.111±0.025)
+  [PASS] impedance · eps=mu=4 matched (scalar path): R=0.0178  (expect 0.000±0.02)
+  [PASS] impedance · mu_yy=4 matched (tensor path): R=0.0177  (expect 0.000±0.02)
+  [PASS] ours-small · lambda (cells): 19.96  (expect 20.0±0.2)
+stage 3 — cross-check vs flaport fdtd (time domain)
+  [PASS] fdtd-lib · scattered-pattern corr: 0.928  (expect >=0.90)
+  [PASS] fdtd-lib · lambda (cells): 20.37  (expect 20.0±0.5)
+  [PASS] fdtd-lib · shadow agreement: 0.451 vs ours 0.498  (expect |Δ|<=0.10)
+stage 4 — cross-check vs ceviche (FDFD, frequency domain)
+  [PASS] ceviche · scattered-pattern corr: 0.956  (expect >=0.90)
+  [PASS] ceviche · lambda (cells): 19.80  (expect 20.0±0.5)
+stage 6 — observer camera vs Fresnel + emitter round-trip
+  [PASS] observer · empty room returns ~nothing: 0.0001  (expect <0.02)
+  [PASS] observer · mirror returns ~everything: 0.924  (expect >=0.90)
+  [PASS] observer · half-space returns Fresnel 1/9: 0.1114  (expect 0.111±0.02)
+  [PASS] observer · Fresnel return is specular: 0.99 within ±12°  (expect >=0.80)
+  [info] observer · cylinder total return = 0.0438
+  [PASS] emitter · save→load→validate round trip (2 runs): OK  (expect no exception)
+stage 7 — graded-black absorber vs pre-registered gates
+  [PASS] absorber · bare wall sanity (mirror): R=0.988  (expect >=0.90)
+  [PASS] absorber · coated wall @ 600 nm: R=0.0010  (expect <=0.01)
+  [PASS] absorber · coated wall @ 450 nm: R=-0.0002  (expect <=0.02)
+  [PASS] absorber · coated wall @ 750 nm: R=0.0020  (expect <=0.02)
+  [info] absorber · observer return raw: bare PEC 0.0812, sponge 0.0002, camera floor 0.0001
+  [PASS] absorber · sponge/PEC return ratio (net of floor): 0.000  (expect <=0.10)
+stage 8 — cross-section machinery vs physics identities
+  [PASS] sections · lossless object: silent absorption channel: -0.0212  (expect |·|<=0.05)
+  [PASS] sections · box independence (dielectric): 0.020  (expect <=0.12)
+  [PASS] sections · box independence (PEC): 0.001  (expect <=0.12)
+  [PASS] sections · extinction: two routes agree (PEC): 0.002  (expect <=0.12)
+  [PASS] sections · graded-black eats (abs/ext, paradox-aware): 0.571  (expect >=0.45)
+  [PASS] sections · graded-black never sprays backward: back_frac=0.0001  (expect <=0.05)
+  [info] sections - PEC: sigma_ext=123.8 cells (Q=2.21) - dielectric sigma_ext=51.7 - black back_frac=0.000
+stage 9 — ambient-appearance instrument vs identities
+  [PASS] ambient · angle_deg=0 bit-exact vs legacy: max|dEz|=0.0e+00  (expect 0.0 exactly)
+  [PASS] ambient · oblique wavelength @30° (20/cosθ): 23.08  (expect 23.09±0.4)
+  [PASS] ambient · empty window balance @+0°: -0.0004  (expect |·|<=0.005)
+  [PASS] ambient · empty window balance @+15°: -0.0192  (expect |·|<=0.04)
+  [PASS] ambient · empty window balance @-15°: +0.0209  (expect |·|<=0.04)
+  [PASS] ambient · ripple canary @+0° (fringe-limited): 0.130  (expect <=0.25)
+  [PASS] ambient · ripple canary @+15° (fringe-limited): 0.325  (expect <=0.5)
+  [PASS] ambient · ripple canary @-15° (fringe-limited): 0.325  (expect <=0.5)
+  [PASS] ambient · empty identity |C_empty|: +0.00043  (expect |·|<=0.005)
+  [PASS] ambient · ±15° mirror symmetry (raw flank): 0.0213  (expect <=0.03)
+  [PASS] ambient · Beer–Lambert slab C vs analytic: -0.0982 vs -0.0973  (expect |Δ|<=0.02)
+  [PASS] ambient · oblique lossless: silent absorption: -0.0136  (expect |·|<=0.05)
+  [PASS] ambient · oblique extinction: two routes agree: 0.000  (expect <=0.12)
+
+41/41 checks passed in 87 s
+
+# wall: 87 s · finished 2026-09-05T23:52:12Z
