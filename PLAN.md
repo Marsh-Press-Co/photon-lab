@@ -22,7 +22,59 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
-## Current state (2026-09-05, panel Iteration 91 done (exp-114,
+## Current state (2026-09-06 ~02:20Z — panel Iteration 92 (exp-115) IN PROGRESS, Phase 4 INTERRUPTED by a bench outage; resume recipe below)
+
+**Runner: bench panel shift (T5820) — Director Clyde, live session; first
+iteration executed on the team bench.** The `panel-shift` cloud routine is
+DISABLED (Marsh, 2026-09-05 21:58Z: all routines move to the bench); PANEL.md
+venues amended. Phases 1–3 COMPLETE and committed (`main` @ f75b905 =
+predictions before any run): MATERIALS lead; five blind critiques all
+support-with-changes; Red Team PROCEED-WITH-MANDATORY-FIXES (15 fixes, all
+accepted; 6 disclosed overrides); program-level Checkpoint-4 notification
+(constraint-3 instrument unrun since exp-100) discharged D1 (PANEL.md scope
+amendment) + D2 (**Iteration 93 executes Tier-3 item 10, VISION's constraint-3
+re-score, as its Tier-1 item 1 regardless of rotation**). Marsh's ruling on the
+Iteration-85 Checkpoint-4/R24 firing: CLOSED, **R34 adopted** (criterion-4
+notifications self-close on the next Red Team audit's verified discharge).
+
+**Phase 4 — Block CG on the bench, INTERRUPTED.** Pre-flight all green on the
+bench (geometry identity r=156/234/312; MF-12 identity gate 10/10; trust suite
+41/41 in 87 s with the platform-named console record at
+`experiments/115-.../data/trust_suite_bench_20260905T235042Z.txt`; machine-state
+block persisted). Readings completed and persisted to the bench's
+`experiments/115-.../data/readings.json` (posted live to co-lab #32):
+`S156` 0.050909 s/step · `S234` 0.117121 s/step (**first r=234-grid control
+in program history**; `G_short = 2.3006`) · `U156` 0.052374 s/step · `U234`
+0.120053 s/step (**first pairwise `G_sustained = 2.2922`** — inside M5's
+CONFIRM window `[2.0785, 2.8121]`, within 1.9% of pure `N²` scaling 2.25,
+17% below exp-114's cloud `G_E = 2.7455`; NOT yet scored — ABBA mean of both
+pairs is the scored operand). `U234b` was in flight when, at ~00:53Z, the
+Windows host stopped answering SSH (Tailscale still pinged) and by ~01:15Z
+went fully dark (ping/22/3389 all dead) — machine hung, powered off, or
+network-severed at Preston's; cause unknown pending a physical check
+(asked on co-lab #38). The four completed readings live only on the bench's
+disk (`data/readings.json`, `~/routines/logs/exp115-cg-20260905T235042Z.log`)
+and are NOT yet committed.
+
+**Resume recipe (any venue, once the bench is back):** (1) `ssh` in, `git
+fetch && git checkout -B main origin/main` in `~/projects/photon-lab`; (2)
+read `data/readings.json` — if `U234b`/`U156b` are present, check their
+loadavg-before/after and the run log for contamination; (3) if absent or
+contaminated, the pre-registered degradation path applies: analyze with
+`repeat_skipped=True` semantics (M4 UNMEASURED, `m3_scored=False`,
+`m6_directional_only=True`, M5 scored on the single sustained pair with the
+MF-7 interval) OR, if the bench is healthy and idle, re-run ONLY the two
+repeats (`U234b`, `U156b`) as a disclosed second session — the ABBA
+first-order cancellation no longer holds across a reboot, so persist the gap
+and let M4 read as drift+noise across sessions, stated as such; (4) commit
+`data/readings.json` + the trust-suite record + `results.json`; (5) Phase 5:
+seven fresh seats read the results, ranked top-3; LOGBOOK/PLAN/SESSION_LOG
+close with runner line. Check the Windows System event log
+(`Get-WinEvent -LogName System -MaxEvents 50` around 00:50–01:20Z; BugCheck
+1001, Kernel-Power 41, WHEA) for the outage cause and record it in NOTES.md
+Idealizations — if anything our run did contributed, it goes in the record.
+
+## Previous current state (2026-09-05, panel Iteration 91 done (exp-114,
 CONFIRM-WITH-NAMED-GAPS, PHOTONICS' rotation-lead cycle: executed the
 Reconciled Iteration-91 queue's Tier-1 item 3 -- a cheaper
 intermediate-r (r=234, fixedabs family, cpl=25) calibration point for

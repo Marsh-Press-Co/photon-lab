@@ -2,6 +2,63 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-05 → 06 (live session, Marsh + Clyde) — the bench becomes the lab: layout decided, agents resident, first iteration run ON the T5820 (exp-115, Phase 4 interrupted by a host outage)
+
+Runner: live session (Director Clyde), compute on the T5820 bench over SSH.
+
+**Shipped/Done**
+- **Bench layout decided by Marsh** (co-lab `runbooks/t5820-bench-layout.md`): WSL2 Ubuntu
+  = the lab, Windows = Preston's studio; agents resident on the bench (Claude Code per Linux
+  user, that human's seat); one Windows account `Superuser`, two Linux users `themachinist`
+  (Preston+Bonnie) / `theblacksmith` (Marsh+Clyde); photon-lab, stillbloom, deeplight
+  relocate first; Preston's flyover = first GPU slot.
+- **Phase A built + receipted:** docker-ce + nvidia-container-toolkit (GPU verified inside a
+  container), gh, uv (py 3.11/3.14), fnm Node 24, Claude Code 2.1.261; `.wslconfig` 96 GB/14
+  threads; hibernate off; `WSL-Ubuntu-Boot` S4U task positive-controlled; **trust suite on
+  the bench 41/41 + cloak 2/2 + Evidence Gate clean, 213 s wall (par with CI).**
+- **Clyde resident on the bench:** Marsh signed `theblacksmith` into Claude (his seat) + gh
+  (`clyde-colab`) over RDP (`BROWSER=wslview` = no code paste); first board post FROM the
+  bench; tmux `clyde`; all three repos cloned (clyde-colab added to deeplight, Marsh's call).
+- **Cloud routine `panel-shift` DISABLED 21:58Z** (Marsh: all routines to the bench). The
+  bench scheduler (systemd timers per routine) is designed but blocked by the auto-mode
+  classifier — needs Marsh's permission-mode click; spec + routine prompts drafted.
+- **Marsh's ruling on the Iteration-85 Checkpoint-4/R24 firing: "accept and change the
+  rule"** → checkpoint CLOSED, **R34 adopted**, PANEL.md amended (`main` @ 294aacf).
+- **Panel Iteration 92 (exp-115), first iteration on the bench:** MATERIALS lead found
+  `measured_ratio ≡ kappa_ratio × G` (bit-exact); five blind critiques all support-with-
+  changes (four converged on the sidecar's `exp(−2τ)`→`exp(−τ)` error; VISION caught an R18
+  false-REFUTE bug in the stated M5 invocation and the caveat-lint T18 spelling blindness);
+  Red Team PROCEED-WITH-MANDATORY-FIXES (15 accepted, 6 disclosed overrides); **program-
+  level Checkpoint-4** (constraint-3 instrument unrun 14 cycles) discharged D1 + D2
+  (**Iteration 93 leads with the constraint-3 re-score**). Predictions committed (f75b905);
+  Phase 4: 4/6 readings done — `G_short 2.3006`, first pairwise `G_sustained 2.2922`
+  (inside CONFIRM, ~N²) — then the **bench went dark ~00:53Z** two repeats from the end.
+- GPU burn-in 30 min: 81 °C peak, clocks flat 1665–1725 MHz, 14.8 TFLOP/s, 0 errors.
+
+**Decisions**
+- Password rotation PARKED (Marsh; private board + tailnet-only door). Bench Sonnet vs Opus:
+  iteration ran with Opus seats; cost flagged to Marsh.
+- Long-run etiquette added to the bench spec: heads-up on #38 before any timing/>15-min job.
+
+**Verified**
+- Every bench claim over key SSH; suite record committed with platform; identity gate 10/10.
+
+**Deferred/next**
+- Recover `data/readings.json` + run log when the bench returns; Windows event log for the
+  outage cause; analyze (degradation path or disclosed re-run of the two repeats); Phase 5;
+  LOGBOOK/PLAN close. Resume recipe: PLAN.md Current state.
+- Bonnie: `themachinist` layer; Preston: his sign-in + Docker Desktop WSL-integration OFF.
+- Bench routines (systemd timers) once Marsh switches permission mode or adds the allowlist.
+- Per-project "remote control" shortcuts on the bench; Codex CLI for Sol if wanted.
+
+**Notes/gotchas** (promoted to the vault the same night)
+- `powershell -Command -` over ssh stdin: here-strings silently end execution → string arrays.
+- Agent PATH goes in `~/.profile` (non-interactive `bash -lc`), never `.bashrc`.
+- `claude -p` inside a stdin-fed script EATS the rest of the script as its prompt.
+- Auto-mode classifier blocks any agent starting an agent unattended (timer or not), and
+  credential handling; the lever is the user's permission mode / allowlist — not my word.
+- Bench outage signature: Tailscale pongs + TCP accepts + no SSH banner = starved host.
+
 ## 2026-08-27 → 09-05 — THE COMPUTE BENCH: bought, delivered, meshed, verified
 
 Multi-day thread (Marsh driving, phone-first) that took the photon-lab compute box from

@@ -25086,3 +25086,42 @@ QUANTUM's 8.93% re-anchor magnitude declined, its sign finding adopted.
 degradation is graceful at both ends, disclosed. Phase-3 code:
 `run115.py`, `chunk_runner115.py`, `analyze115.py`; predictions committed
 before the run (see `NOTES.md`). Phases 4–5 follow in this record.
+
+**Phase 4 — Block CG on the bench, INTERRUPTED (2026-09-06 ~00:53Z).**
+Pre-flight green on the bench: geometry identity r=156/234/312; MF-12
+identity gate 10/10 (build_sim byte-identical to chunk_runner114, scene set
+and step constants identical, `r` the one parameterized change); trust suite
+41/41 in 87 s with the platform-named console record committed
+(`data/trust_suite_bench_20260905T235042Z.txt`: Xeon W-2145, WSL2 Ubuntu
+24.04, py3.11, numpy/ceviche/fdtd versions named — VALIDATION.md docket-14);
+machine-state block persisted; 120 s idle gap after the suite (disclosed).
+Block CG started 23:54Z under the exclusive-use protocol, each reading posted
+live to the co-lab #32 ticker by the runner. Completed and persisted (bench
+disk, `data/readings.json` — NOT yet committed at the time of writing):
+`S156` 152.7 s / 0.050909 s-per-step · `S234` 351.4 s / 0.117121 s-per-step
+(**the first r=234-grid control reading in this program's history**;
+`G_short = 2.3006`) · `U156` 523.8 s / 0.052374 s-per-step (bench
+short→sustained shift +2.9%, vs the cloud's `R_DEG = +7.6%` — a steadier
+instrument) · `U234` 1200.8 s / 0.120053 s-per-step (**first pairwise
+`G_sustained = 2.2922`**: inside M5's CONFIRM window `[2.0785, 2.8121]`;
+`excess = G/2.25 − 1 = +0.0188`, i.e. within 2% of pure `N²` cell-count
+scaling, which would read M7 `N2_HOLDS` and put BOTH pre-registered cost
+models (constant-`k` 2.4453, constant-`ε` 2.5941) off the mark; `T = G/G_E =
+0.835`, `|T−1| = 0.165`, which would read M6 AMBIGUOUS — **none of this is
+scored yet**: the scored operand is the ABBA mean of both sustained pairs).
+`U234b` was in flight when the Windows host stopped answering SSH at ~00:53Z
+(TCP 22 accepted, no banner; Tailscale still ponged) and by ~01:15Z went
+fully dark (ping, 22, 3389 all dead; Tailscale "tx only, rx 0"). Still dark
+at 02:20Z. Cause unknown — hung, powered off, or network-severed at
+Preston's house; physical check requested on co-lab #38 (a human, physical-
+world step by design). Exclusive-use protocol held from the Director's side
+throughout (one read-only liveness probe at 00:55Z after the first reading
+went overdue, disclosed). Whether a concurrent desktop load, a WSL/Windows
+memory interaction, or an unrelated fault caused it is for the Windows event
+log to say when the machine returns; the resume recipe is in PLAN.md
+Current state. Lesson promoted the same night to the co-lab bench spec
+(`runbooks/t5820-bench-layout.md` §4): any timing or >15-minute run posts a
+heads-up on #38 BEFORE starting; the humans at the desk outrank the job;
+"kernel answers, userland doesn't" = a hung Windows host, fixed only at the
+power button. Phase 4 resumes in this record when the readings are
+recovered.
