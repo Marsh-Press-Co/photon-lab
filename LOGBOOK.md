@@ -24912,6 +24912,31 @@ Full record: `experiments/114-t28-kappa-exponent-r234-calibration/` —
 five Phase-2 blind critiques, `phase2_redteam_audit.md`, `NOTES.md`,
 `results.json`, six Phase-5 blind reviews, `phase5_redteam_audit.md`.
 
+**FORWARD DISCLOSURE (added at the Iteration-92 close, 2026-09-06; this
+entry is not otherwise edited — house practice is forward disclosure,
+never retroactive editing).** exp-115 measured `G` directly on a second
+machine at the same `kappa_ratio = 1.5`, matched-protocol, same-session,
+and **exp-114's `G_E = 2.7455057` / `k = 3.4909` is NOT reproduced
+there**: the bench gives `G = 2.2459405` / `k_B = 2.9955462` (scored,
+ABBA mean of two sustained pairs) and `2.2922399` / `3.0458713` (the
+interrupted session 1, committed and NOT scored). The two machines sit on
+**opposite sides** of `reference_ratio` and **both score CONFIRM** while
+differing from each other by **18.20%** — above exp-115's M6 transfer bar
+of **15.295%**; **M6 reads AMBIGUOUS**, and the protocol-matched cloud
+value `G_E/f = 2.880173` moves M6 **further** from transfer
+(`|T−1| = 0.2202`). Per Red Team's Iteration-92 verdict-framing ruling
+this disclosure **may not** upgrade this entry's `CONFIRM-WITH-NAMED-GAPS`
+(M5's CONFIRM is a *containment* result on a band wider than the
+between-machine spread it must survive, and MF-7(b) pre-registered that a
+CONFIRM cannot distinguish `k = 3.2053` from `k = 3.0` — exp-115's own
+central estimate is 0.149% from 3.0), **may not** remove any named gap
+(none was closed), and **may not** license the claim that
+`KAPPA_COST_EXPONENT` is a cloud-contention artifact — contention is a
+demonstrated but **partial** explanation, accounting for ~1/7.9 of the
+gap and protocol-inconsistent in sign. `KAPPA_COST_EXPONENT = 3.2053`
+stays in force for the cost gate as the conservative choice, labelled a
+gate-margin decision.
+
 ## Iteration 92 — The Grid-Native Same-Session Control: exp-114's Scored Ratio Is Exactly `kappa_ratio × G`, Measured Directly On The Bench; The Fabrication-Tolerance Bound Written, Corrected By Four Blind Seats (exp-115) — 2026-09-05
 
 Runner: bench panel shift (T5820) — Director Clyde, live session; compute on
@@ -25087,41 +25112,393 @@ degradation is graceful at both ends, disclosed. Phase-3 code:
 `run115.py`, `chunk_runner115.py`, `analyze115.py`; predictions committed
 before the run (see `NOTES.md`). Phases 4–5 follow in this record.
 
-**Phase 4 — Block CG on the bench, INTERRUPTED (2026-09-06 ~00:53Z).**
+**Phase 4 — Block CG was run TWICE; session 2 is the sole scored source.**
 Pre-flight green on the bench: geometry identity r=156/234/312; MF-12
-identity gate 10/10 (build_sim byte-identical to chunk_runner114, scene set
-and step constants identical, `r` the one parameterized change); trust suite
-41/41 in 87 s with the platform-named console record committed
-(`data/trust_suite_bench_20260905T235042Z.txt`: Xeon W-2145, WSL2 Ubuntu
-24.04, py3.11, numpy/ceviche/fdtd versions named — VALIDATION.md docket-14);
-machine-state block persisted; 120 s idle gap after the suite (disclosed).
-Block CG started 23:54Z under the exclusive-use protocol, each reading posted
-live to the co-lab #32 ticker by the runner. Completed and persisted (bench
-disk, `data/readings.json` — NOT yet committed at the time of writing):
-`S156` 152.7 s / 0.050909 s-per-step · `S234` 351.4 s / 0.117121 s-per-step
-(**the first r=234-grid control reading in this program's history**;
-`G_short = 2.3006`) · `U156` 523.8 s / 0.052374 s-per-step (bench
-short→sustained shift +2.9%, vs the cloud's `R_DEG = +7.6%` — a steadier
-instrument) · `U234` 1200.8 s / 0.120053 s-per-step (**first pairwise
-`G_sustained = 2.2922`**: inside M5's CONFIRM window `[2.0785, 2.8121]`;
-`excess = G/2.25 − 1 = +0.0188`, i.e. within 2% of pure `N²` cell-count
-scaling, which would read M7 `N2_HOLDS` and put BOTH pre-registered cost
-models (constant-`k` 2.4453, constant-`ε` 2.5941) off the mark; `T = G/G_E =
-0.835`, `|T−1| = 0.165`, which would read M6 AMBIGUOUS — **none of this is
-scored yet**: the scored operand is the ABBA mean of both sustained pairs).
-`U234b` was in flight when the Windows host stopped answering SSH at ~00:53Z
-(TCP 22 accepted, no banner; Tailscale still ponged) and by ~01:15Z went
-fully dark (ping, 22, 3389 all dead; Tailscale "tx only, rx 0"). Still dark
-at 02:20Z. Cause unknown — hung, powered off, or network-severed at
-Preston's house; physical check requested on co-lab #38 (a human, physical-
-world step by design). Exclusive-use protocol held from the Director's side
-throughout (one read-only liveness probe at 00:55Z after the first reading
-went overdue, disclosed). Whether a concurrent desktop load, a WSL/Windows
-memory interaction, or an unrelated fault caused it is for the Windows event
-log to say when the machine returns; the resume recipe is in PLAN.md
-Current state. Lesson promoted the same night to the co-lab bench spec
-(`runbooks/t5820-bench-layout.md` §4): any timing or >15-minute run posts a
-heads-up on #38 BEFORE starting; the humans at the desk outrank the job;
-"kernel answers, userland doesn't" = a hung Windows host, fixed only at the
-power button. Phase 4 resumes in this record when the readings are
-recovered.
+identity gate 10/10 (`build_sim` byte-identical to `chunk_runner114`, scene
+set and step constants identical, `r` the one parameterized change); trust
+suite **41/41 in 87 s** with the platform-named console record committed
+(`data/trust_suite_bench_20260905T235042Z.txt` — VALIDATION.md docket-14);
+machine-state block persisted.
+
+**Session 1 (2026-09-05T23:54:14Z → 2026-09-06T00:31:28Z; four readings, 12
+`Sim.run()` calls, 2228.700 s) was INTERRUPTED and is retained as committed
+data, scored NOWHERE.** `U234b` was in flight when the Windows host stopped
+answering SSH at ~00:53Z (TCP 22 accepted, no banner; Tailscale still
+ponged) and by ~01:15Z went fully dark (ping, 22, 3389 all dead). Cause
+unknown — hung, powered off, or network-severed at Preston's house; a
+physical check was requested on co-lab #38 (a human, physical-world step by
+design) and the bench was power-cycled by hand at ~04:30Z. Two facts about
+that session are load-bearing and neither is derivable from the repository:
+a **Windows-side VC++ runtime installation by a desktop user at ~00:03Z**,
+overlapping session 1's `U156` (00:02:42Z → 00:11:26Z) exactly and preceding
+a monotone 4.78 → 8.33% per-step slowdown; and
+`data/cg_session1_interrupted.log` surviving with **two lines** — the ticker
+output did not survive, the same shape as exp-114's lost scratch wall-time
+log one cycle earlier. Both are now NOTES.md Idealizations 12–13.
+
+**Session 2 (2026-09-06T04:39:25Z → 05:41:04Z; six readings, 18 `Sim.run()`
+calls, 46,008 grid-steps, 3690.309 s of `Sim.run` inside 3700.506 s elapsed;
+`repeat_skipped=False`, `sustained_stepped_down=False`) is the complete ABBA
+block and the sole scored source.** Scored readings, re-derived from
+per-scene wall times upward and reproducing every persisted rate bit-exactly:
+`S156` 0.04858939027786255 s/step · `S234` 0.11239203476905822 s/step (**the
+first per-step control ever timed on any grid but r=156 in this program's
+history**) · `U156` 0.04970505291927912 · `U234` 0.11082375609762692 ·
+`U234b` 0.11105367999581237 · `U156b` 0.04908984934084655. Hence
+**`G_short = 2.3130982736423493`**, `G_pair1 = 2.2296275647790664`,
+`G_pair2 = 2.2622534289060674`, **`G_sustained = 2.245940496842567`** (the
+ABBA mean, the scored operand). Scored verdicts: **M3
+`G-DURATION-INVARIANT`** (`d_dur = 0.02903368938753793` vs
+`R_DEG/2 = 0.037982123779318644`); **M4 `REPEATABLE`**
+(`d_rep = 0.01463287619976741` vs 0.02); **M5 PRIMARY CONFIRM**
+(`exponent_B = 2.995546218006855`, `measured_ratio = 3.3689107452638507`,
+`rel_dev = 0.0815428277734715` ≤ 0.15; interval
+`[2.2176904, 2.2458389]`, 1.269% wide, spanning no band edge, so
+`m5_protocol_caveat = False`); **M6 AMBIGUOUS** (`T = 0.8180425684476521`,
+`|T−1| = 0.1819574315523479` against the 0.152950 transfer bar); **M7
+`N2_HOLDS`** (`excess = −0.0018042236255256805`, `k_B = 2.995546218006855`);
+**M9 `REPRODUCED`** (11/11 checks). `m3_scored = True`,
+`m6_directional_only = False`, `m7_underpowered = False`,
+`may_move_logbook_verdict = True` — each subject to the anchor disclosure
+below.
+
+**Every session-1 figure previously quoted in this record and in PLAN.md is
+SUPERSEDED — one of them in SIGN.** The table below is retained so the
+supersession is auditable; every left-hand value is **session 1, NOT
+SCORED**:
+
+| Quantity | SUPERSEDED (session 1, NOT scored) | Scored (session 2) |
+|---|---|---|
+| `S156` per-step | `0.050909` | **`0.04858939027786255`** |
+| `S234` per-step | `0.117121` | **`0.11239203476905822`** |
+| `U156` per-step | `0.052374` | **`0.04970505291927912`** |
+| `U234` per-step | `0.120053` | **`0.11082375609762692`** |
+| `G_short` | `2.3006` | **`2.3130982736423493`** |
+| `G_sustained` | `2.2922` (one pair) | **`2.245940496842567`** (ABBA mean of two) |
+| `excess` | **`+0.0188`** | **`−0.0018042236255256805`** — **THE SIGN FLIPS** |
+| `\|T−1\|` | `0.165` | **`0.1819574315523479`** |
+| bench short→sustained shift | `+2.9%` (a ratio magnitude) | **`+2.296%` (r=156)** and **`−1.395%` (r=234)** — opposite signs |
+
+**The "+2.9% bench shift vs the cloud's `R_DEG = +7.6%` — a steadier
+instrument" characterization is WITHDRAWN.** It reported the *ratio's*
+magnitude as if it were a single-grid duration response, which is exactly
+the conflation MF-9's mechanism-neutral labels exist to prevent. The correct
+statement is the per-grid decomposition: the bench's own duration response is
+**+2.296% at r=156** and **−1.395% at r=234**, matched protocol,
+**opposite in sign** — so in the ratio they **ADD** rather than cancelling
+(`(1+r₂₃₄)/(1+r₁₅₆) − 1 = −0.029078`, reproducing the filed `d_dur` to four
+digits). **R31/R33's founding grid-independence assumption is measured FALSE
+at the 2–3% level on one clean machine**, twice and in two independent ways
+(the within-session duration response, and a session-1-vs-2 grid-differential
+slowdown of 2.96 pp). That is this cycle's best physics-of-the-instrument
+result and it existed in no committed file.
+
+**R25 — the executed resume path is a THIRD branch.** PLAN.md pre-registered
+exactly two degradation branches (analyse the four survivors with
+`repeat_skipped=True` semantics, or re-run only the two repeats as a
+disclosed second session). The executed path — a full six-reading re-run
+from scratch inside one post-reboot session — is **neither**. It was the
+better choice, on pre-registered grounds: branch (ii) would have destroyed
+ABBA's first-order cancellation by splitting the A and B legs across a
+reboot, and branch (i) would have surrendered M4 entirely; the re-run also
+produced the loaded-vs-clean session pairing. **It is disclosed as a numbered
+deviation, not absorbed as a silent improvement.**
+
+**Phase 5 — six blind reviews, then Red Team's final audit.** PHOTONICS
+**CONFIRM**; MATERIALS, ELECTROMAGNETISM, THERMODYNAMICS, QUANTUM OPTICS,
+VISION SCIENCE **PARTIAL**. **T1 escape route: N/A — unanimous across all
+seven seats and verified structurally by three of them independently**
+(`build_sim`/`_time_control_blend` bracket `sim.run()` only; no
+`full_capture`, no `lab/sections.py`, no `lab/ambient.py`, no angular
+instrument in the executed path). Every seat re-derived rather than restated;
+three seats (THERMODYNAMICS, QUANTUM, MATERIALS) reported findings refuting
+their own prior positions **before** reporting anything that flattered them.
+Sharpest per seat: **PHOTONICS** — the per-bin↔bound reconciliation (the
+printed 28.3×/102.1× "exceedance" is *exactly* the normalization change;
+peak-normalized, the corrected bound is honored at **all 48 bins at both
+radii** with ≈3.4× margin), plus the byte-identity of the frozen Predictions
+block against its generator, which makes pre-registration a **verified
+property of the git tree**. **MATERIALS** — the observer-facing face is
+**UNMEASURED at ten of twelve (r, margin) cells**, so the bound's one
+constraint-adjacent sentence reports as bounded a channel that is not
+measured, and reports it in *relative* units where PANEL.md's constraint-2
+row is *absolute*; plus the margin-40 maxima (3.384×/1.383× the quoted
+figures) and the false "only the margin-32 array is persisted".
+**ELECTROMAGNETISM** — the bench-native anchor flip, the 721.8× ABBA lag
+measurement, and `d_rep ≡ D_234 − D_156` exactly, so **common-mode drift
+cancels in it identically**. **THERMODYNAMICS** — a **+5.63% / +6.02%**
+monotone within-reading ramp on the r=234 SHORT reading, reproduced in both
+sessions, absent from every sustained reading, sitting inside the reading
+that sets `G_short`: the largest unmodelled systematic in the dataset, and no
+instrument in the cycle records it; plus the cycle-scope spend and the
+per-invocation gate. **QUANTUM OPTICS** — mutual AMBIGUITY: both machines
+score CONFIRM against a reference lying between them, so **M5 is a
+containment test, not a replication test**. **VISION SCIENCE** — the MF-5
+counterfactual: at this cycle's own `G` the un-fixed invocation returns
+**CONFIRM** from a `measured_ratio` wrong by 16.3%, so *a wrong computation
+that agrees with the right one is indistinguishable from correctness by
+verdict alone*; plus the drift correction (`−4.123%` → PARTIAL), which VISION
+correctly refuses to score.
+
+**Red Team's adjudications**: PHOTONICS' CONFIRM **OVERTURNED** (its own
+review lists an R21 exposure, a live R18 defect in shared `lab/` machinery
+and an unreconciled incommensurable comparison — in this program the record
+IS the product). MATERIALS-vs-PHOTONICS on the per-bin figures: **not a
+conflict, two normalizations**. EM's `+1.663%/−1.293%` vs THERMO's
+`+2.296%/−1.395%`: **mean-of-sustained vs first-sustained, both reproduce;
+THERMO's is `R_DEG`'s own construction and is the forward R17 anchor**, EM's
+the disclosed alternative — **M3 flips either way**. VISION's drift route and
+the anchor route **both hold, with different reach**. THERMO's
+"`KAPPA_COST_EXPONENT` is a cloud-contention artifact" **REFUTED at the
+magnitude** (the one contention lever measured accounts for 1/7.9 of the gap
+and its sign is protocol-inconsistent); its DRAM-bandwidth *mechanism*
+adopted **NOT-SCORED**. QUANTUM's D-Q8 (7c/14t) **REFUTED** — NOTES.md Setup
+states both figures correctly. `m7["favoured"] = "constant-k"` **DECLINED as
+a shipped reading**: a bare nearest-neighbour with no rejection test, in a
+file whose adjacent note already says both models are wrong. **Rules checked
+and NOT fired**: R23 + First Addendum (**discharged from the artifact for the
+first time in this program**), R24, R25, R17, R19, R27/R28, R29, R30/R32,
+R31/R33, R13. **R21 does not fire, conditionally** — four seats found the
+exposure and all four ruled it should not fire because the Result section did
+not yet exist; it fires automatically at Iteration 93 if any of Red Team's
+twenty numbered Result contents is missing from this close.
+
+### CHECKPOINT (Iteration 92, 2026-09-06, Phase 5, criterion 4 — R20, SIX R4-class defects)
+
+**Criterion 4 FIRES on R20's automatic clause. NOTIFICATION, NOT A PAUSE.
+Marsh is NOT convened.** R20's forward clause makes three or more
+independent R4-class defects surviving a document's own Phase-3
+prediction-freeze into its Result/Learned sections, **each caught only at
+Phase 5**, a Checkpoint-4-grade recurrence pattern *"on its own, independent
+of whether any individual instance is load-bearing to a scored verdict …
+fires Checkpoint criterion 4 automatically, no further deliberation."* R20 is
+not on its founding instance.
+
+**The tally is SIX against a bar of three**, each verified from primitives,
+each introduced at or before Phase 3, each caught only at Phase 5: (1) *"~2
+domain crossings"* — the front travels **1.293** domain widths (1.407
+source-anchored) on **both** grids at `geom_fixedabs_cpl`'s own STEPS
+[EM D-1]; (2) *"4.47×"* hand-typed beside the committed function's own
+`4.464601791167039` (printed "4.46×" in the same document) with the gate's
+own `expected = 4.4653` a **third** value, passing only because `rel_bar` is
+6.4× the disagreement [EM D-2, MATERIALS D12]; (3) *"only the margin-32 array
+is persisted"* — **false of exp-110**, the channel the headline quotes; all
+six margins are persisted and margin 40 gives **3.384×** the quoted figure at
+r=156 [MATERIALS D4]; (4) *"330× looser than the quoted figure"* — against
+the quoted figure it is **3.41×** at r=156 and **0.95× (TIGHTER)** at r=312;
+327.5× reproduces only against the **withdrawn** peak-normalized figure
+[MATERIALS D6]; (5) *"even allowing a 4× standing-wave enhancement"* — the
+180×/3455× ratios are computed **without** the 4× (45.01×/863.73× with it;
+the RULED-OUT conclusion survives) [MATERIALS D10]; (6) the MP-5 forward
+conditional *"survives and strengthens … `τ_true` grows with thickness"* —
+**MP-5 holds `τ_true` FIXED by its own definition**, so the bound survives
+unchanged and does not strengthen [MATERIALS D9]. Instances 1–4 sit in
+`result_text`, which was until this close the only Result prose in the
+repository. **Nobody had the union**: EM tallied two and ruled it does not
+fire, MATERIALS tallied three and deferred the ruling to Red Team, PHOTONICS
+found none on the line ranges it checked — each correct about its own slice.
+Struck so the count is honest: QUANTUM's D-Q8 (refuted), THERMO's D1
+(R21/R4-adjacent, would double-count), MATERIALS' D13 (R9), VISION's D4
+(R18).
+
+**Ruled a NOTIFICATION**: no instance is load-bearing to a scored verdict and
+every one is desk-correctable at zero FDTD cost. **Under R34 it self-closes
+the moment Iteration 93's Red Team final audit confirms, from primitives,
+that the twenty-item discharge list has landed.** The observation that gives
+it teeth, in EM's own words: *"both new instances sit inside the
+`DISCLAIMER_115` string that MF-10 wrote to fix exactly this class — the
+correction machinery is now the place the class recurs."* Sixth consecutive
+cycle at or above R20's density bar. **A single source of truth that is never
+independently re-derived is a single source of un-audited truth** — so
+Iteration 93's discharge must include a re-derivation pass over
+`DISCLAIMER_115`'s own arithmetic, not merely a patch of the six lines.
+
+**The Iteration-92 PROGRAM-LEVEL criterion-4 firing (Phase 2, above) remains
+OPEN and carries to Iteration 93's Red Team final audit, exactly as its own
+entry pre-registered.** Iteration 92's Red Team declined to close its own
+firing (R34 requires *a later* iteration's audit). Confirmed from primitives:
+**D1 VERIFIED PRESENT** (`PANEL.md:153-167`, the Iteration-92 Scope
+amendment) — with three defects in it now confirmed and promoted to
+Iteration-93 Tier-0 item 0.3 (the class test is **self-certifying**, since a
+proposal exempts itself by declining to name a mechanism, which is precisely
+what a drifting program does; VISION's charter threshold duty is left
+unamended and is now vacuous on the majority class of cycle; and the
+hardcoded *"unrun since exp-100 (14 cycles)"* count went stale the day it was
+written — write it as *"since exp-100 (Iteration 77)"* with no count).
+**D2 VERIFIED AS A RULING** in three places, and **verified as EXECUTED: not
+yet, and it cannot be until Iteration 93 runs.** Marsh is not convened for
+either firing.
+
+**Director's acceptance (Phase 5 close).** **Red Team's final audit is
+ACCEPTED IN FULL, with no overrides** — its §3.1 twenty mandatory Result
+contents, §3.2 LOGBOOK/PLAN corrections and caveat-registry update, §4
+Checkpoint ruling and R34 status, §5.1 verdict, §5.2 verdict-framing, §5.3
+Reconciled queue with its twelve numbered declines, and §5.4. The only items
+not executable as literally worded are those living in **frozen Phase-4
+artifacts** (`run115.py`'s "R21: stated here" self-certification and the six
+FALSE clauses in `results.json`/`DISCLAIMER_115`): they are corrected in
+prose in `NOTES.md § Phase 4 — Results` and their deletion is Iteration-93
+Tier-1 item 3(v)–(vi).
+
+**The fabrication-tolerance bound, as re-issued (the only citable form; the
+shipped headline may NOT be cited forward).** For the `graded_black_shell`
+article at `τ_shell = 24`, `ε_r ≡ 1`, λ = 600 nm, normal incidence, 2D TM,
+measured on this bench's **near-to-mid-field box ledger** (not a far-field
+pattern): replacing the entire core/backing from vacuum to a perfect electric
+conductor moves the **aggregate** cross-section channels by at most
+**1.0874×10⁻⁴** relative — `σ_scat` and `σ_abs` plus their exact algebraic
+sum `σ_ext`, **two independent channels, not three** — **resolved, not
+floor-limited**, at **4.46×** (r=156) and **11.70×** (r=312) on exp-108's
+six-margin `item_ii` family, the only differential floor this program has;
+**no differential floor exists at r=234 at all**. Peak-normalized, the
+per-bin angular deviation is at most `1.4760×10⁻⁴` (r=156) and
+`1.5266×10⁻⁴` (r=312) — **0.285× and 0.295× of `2·exp(−τ_true) =
+5.1793×10⁻⁴`**, so the corrected coherent cross-term bound is honored at
+**all 48 bins at both radii**; on exp-110's floor-gated **local**
+normalization the typical resolved bin moves by ≈1.2×10⁻⁴ (median
+`9.43×10⁻⁵ – 1.60×10⁻⁴` across **all six** margins) with a low-SNR tail
+reaching `1.4669×10⁻²` (r=156, m32), `4.9648×10⁻²` (r=156, m40) and
+`7.3202×10⁻²` (r=312, m40) — a near-constant `|Δσ_scat| ≈ 2×10⁻⁵`
+**absolute** divided by whichever backward bin is smallest, **not a growing
+physical effect**. **The per-bin half of the "better than 1.6×10⁻⁴" reading
+is WITHDRAWN.** The source-facing face (`|θ| > 135°`, `0° = +x = downstream`
+per `lab/sections.py`'s **code**, whose docstring states the convention
+backwards) is **entirely below the floor gate at TEN of twelve (r, margin)
+cells — UNMEASURED there, not bounded** — and has never been scored in the
+**absolute** units PANEL.md measures constraint 2 with. Per-bin evidence
+exists at cpl=20 only and aggregate evidence at cpl=25 only, so **channel and
+resolution are fully confounded**; r=234 contributes aggregate channels only.
+**THIS ARTICLE FAILS CONSTRAINT 3 BY CONSTRUCTION** (a perfect absorber is a
+black shape in daylight — LOGBOOK ESTABLISHED) and this bound is **not**
+constraint-3 progress. **REALIZABILITY TIER: UNOBTANIUM-WITH-PARAMETERS**,
+inherited unchanged from exp-061 on a 70–350× thickness gap, every literature
+figure behind it **WebSearch-snippet synthesis, NOT primary-source-verified
+(T18)** — and **INVARIANT, not improved, under exp-061's own MP-5 re-spec**,
+which holds `τ_true` fixed, so thickening buys **no** backing freedom while
+costing thermal margin (3.79× → 1.35× vs NETD-lo 0.020 K) and a physically
+larger black silhouette.
+
+**Combined verdict: PARTIAL.** The **measurement** half is CONFIRM-grade
+without qualification — every scored statistic reproduces bit-exact from
+primitives at six independent seats and again at Red Team's; the
+pre-registration is a verified property of the git tree; the MF-12 identity
+gate is a real absolute gate (10/10); the bench trust suite is 41/41 with its
+platform named and committed; ABBA worked and its **721.8×** lag reduction
+was measured; the budget gate branched three times upstream of spend at 54.8%
+of the bound; R23's First Addendum is discharged from the artifact for the
+first time in this program. The **record** half fails — LOGBOOK and PLAN
+quoted a superseded session, one figure in sign; six independent R4-class
+defects sit in the frozen text (R20 fires); three mandated Phase-2 fixes and
+an entire declared deliverable (M8) were persisted and un-narrated; the
+quotable bound's scope clause is false against the instrument it governs and
+its one constraint-adjacent sentence reports as bounded a channel
+**unmeasured at ten of twelve cells**; and M3's verdict — which gates
+`m6_directional_only` and, through `m3_scored`, `may_move_logbook_verdict` —
+does not survive correction by the cycle's own persisted data on **two
+independent routes**. In this program the record is the product. **Not
+RULED-OUT**: every defect is desk-correctable at zero FDTD cost, no scored
+verdict reverses, and the cycle delivered four things the program did not
+have — the first per-step control ever measured on any grid but r=156; a
+matched-protocol, same-session, single-machine `G` that is R33-immune by
+construction; the first bench-native R17/R31 anchor
+(**`R_DEG_bench = 0.022961`**, first-reading construction, with `0.016630`
+the disclosed mean-form alternative — the cloud `R_DEG` is retired for bench
+work); and MATERIALS' seven-cycle fabrication debt written as a quotable,
+caveat-gated, arithmetic-reproduced bound. **OV-2 — decline the eighth
+deferral — is vindicated.**
+
+**Also established this cycle, and previously written nowhere**: `exponent_B
+≡ k_B` **identically**, so M5 and M7 are one number under three labels and
+this cycle is **not** five corroborating measurements; the cycle-scope spend
+is **30 `Sim.run()` calls and 5919.0 s across two sessions = 54.8% of
+`COST_GATE_TOTAL_S`**, against a `result_text` sentence that says "18 real
+FDTD calls … this cycle" — an R21/R4 defect in the sentence, **not** an R19
+violation, because the assert and the R27/R28 gate are **per-invocation by
+construction** while the resource is consumed by the cycle (a
+twice-interrupted cycle could spend 2–3× the bound with every gate reading
+PROCEED); **M7 model comparison = NO MODEL FAVOURED** (constant-`k` wrong by
+8.15%, constant-`ε` by 13.42%, against the 6.08% separating them, while the
+un-nominated pure-`N²` model fits at **0.18%**); the v2 straddle
+**remains OPEN** (`measured_ratio = 3.2113911`, signed dev `−0.1244870`,
+below the boundary `G ≥ 2.5652851`); a **4–8% common-mode session slowdown
+moved `G` by only −0.54%** on the short protocol while the
+between-**machine** difference is **18.20%**, i.e. 9–34× larger, so **M6's
+AMBIGUOUS is better read as a genuine machine property than as session
+noise**; and **both pre-registered protocol models were REFUTED by the data**
+(2.5403 and 2.8681–2.8802 against 2.2459), with the warm-up constant measured
+**16.9× below** its cloud-derived estimate.
+
+**Reconciled Iteration-93 queue** (Red Team's final audit, merging all six
+seats' rankings — full text in PLAN.md). **Tier 0** — (0.1) record this R20
+firing as a CHECKPOINT entry, notification, closing on Iteration 93's audit;
+(0.2) carry the program-level firing OPEN to that same audit; (0.3) repair
+D1's three defects (Director-assigned cycle class, a standing
+consecutive-governance-cycles counter on PANEL.md, VISION's threshold duty
+stated as discharged-by-the-DISCLAIMER-and-nothing-else, the stale count
+struck); (0.4) ratify the forward **R17 venue-native anchor rule**; (0.5) the
+`COST_GATE_TOTAL_S` wall-clock-vs-compute fork, **unchanged, still Marsh's
+own call**; (0.6) ratify or reject "a cost/safety gate must bound the CYCLE,
+not the process". **Tier 1** — (1) **[FIXED by D2]** VISION's constraint-3
+re-score of the program's only Tier-W/Tier-A citation through the modernized
+`lab/ambient.py`, **EM leading by rotation, VISION pinning thresholds**;
+S-A is the mandatory-and-first positive control with HALT semantics and *the
+failure is the result*; Iteration 93 is a **phenomenon-program cycle** that
+declares σ(I) as its escape route and records the seven metric rows or says
+per row why not; it must budget **real FDTD** projected from a bench-native
+rate at the geometry actually run. (2) **`lab/sections.py`'s
+angle-convention correction** (`0° = +x = downstream`; the docstring states
+it backwards and has since exp-017), **a positive control in the trust suite**
+(argmax bin of a `graded_black_shell` pattern within ±30° of 0°), and a
+re-audit of every angular claim in the record — **this lands FIRST**, because
+both item 1's angular scoring and item 3's bound quote "observer-return
+hemisphere". (3) the **zero-FDTD re-issue of the fabrication-tolerance bound
+at full scope, bundled with the complete R20/R21 discharge** — all six
+margins with median/p90/max/SNR/absolute `|Δ|`, the UNMEASURED observer face,
+the corrected MP-5 conditional, the six FALSE fixes, the corrected headline,
+the registry update, a rejection-gated replacement for `favoured`, the
+`machine_transfer_caveat` boolean, and the bench-native anchors persisted;
+**it rides as a labelled rider and drops as a numbered decline if only two
+items fit.** **Tier 2** — (4) QUANTUM's T18 probe, **Stage A only** (*a probe
+that can only return "blocked" is not a probe*); (5) persist the remaining
+not-scored sensitivities; (6) THERMO's **cycle-scoped spend ledger**; (7) a
+contention instrument that **can** produce the reading meaning "bad"
+(`loadavg` is WSL2-scoped and blind to the Windows host); (8) a **common-mode
+drift channel** from the per-scene sub-timings already persisted. **Tier 3** —
+(9) EM's **T1 passivity/causality ledger** (Red Team's recommendation for
+Iteration 94's Tier-1 item 1; **if the σ(I) sign-and-magnitude argument
+closes, that is Checkpoint criterion 2**); (10) the merged G-variance
+decomposition + third grid point + deliberate contention lever; (11) the
+observer-return channel in **absolute** units against the camera floor, gated
+on item 2; (12) EM's r=312/cpl=25/+168.75° leg, **now unblocked** and priced
+from bench-native rates at 5179.3 s; (13) THERMO's r=234 within-reading ramp;
+(14) MATERIALS' channel/resolution de-confound, **after** item 3; (15)
+QUANTUM's Stage B, gated on item 4; (16) QUANTUM's first bench-native σ(I)
+two-intensity run, which **fires Checkpoint criterion 3** and must be
+proposed as such; (17) `R2_SMOOTH_THRESHOLD = 0.90` re-derivation, now in its
+**eighth** cycle; (18) the `box_dev` differential floor at r=234.
+**Numbered declines (R25), twelve**: D-1 the MP-5 thickness re-spec as a
+forward direction (strictly worse on every axis); D-2 retiring
+`KAPPA_COST_EXPONENT = 3.2053` for the bench's 2.9955 (**declined for the
+gate** — anti-conservative, R28's founding failure mode backwards); D-3
+re-scoring M3 against a bench anchor as a **scored** verdict (post-hoc
+estimator switching, ruled out at Iteration 1); D-4 folding session 1 into
+`G_sustained` as a scored operand (cross-session, and a ramp into a fault);
+D-5 scoring `sensitivity_v2_with_measured_G` (OV-1, now empirically
+reinforced by M6's AMBIGUOUS); D-6 THERMO's discard-first-1000-steps protocol
+(OV-3, withdrawn by THERMO itself); D-7 `σ_ext_cross` as a third channel
+(OV-4, refuted by EM's own A7); D-8 QUANTUM's `τ_true` concavity interval
+(OV-5, refuted numerically); D-9 a sixteenth consecutive T28 instrument cycle
+as Iteration 93's falsifiable heart; D-10 QUANTUM's Stage B as a *scheduled*
+item before Stage A returns; D-11 EM's "zero-FDTD if exp-100's captures are
+committed" branch (verified: `experiments/100-.../` has **no** `artifacts/`
+directory); D-12 presenting the DRAM-bandwidth mechanism or the
+contention-artifact conclusion **as evidence**.
+
+Full record: `experiments/115-t28-r234-grid-native-control-and-fab-tolerance/`
+— `phase1_proposal.md`, `run115.py`, `chunk_runner115.py`, `analyze115.py`,
+five Phase-2 blind critiques, `phase2_redteam_audit.md`, `NOTES.md`
+(Phases 1–3, Predictions, Idealizations 1–13, Phase 4 Results, Phase 5
+Review), `results.json`, `data/readings.json`,
+`data/readings_session1_interrupted_20260905T2354Z.json`,
+`data/trust_suite_bench_20260905T235042Z.txt`, six Phase-5 blind reviews,
+`phase5_redteam_audit.md`.

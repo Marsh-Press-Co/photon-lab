@@ -2,7 +2,7 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
-## 2026-09-05 → 06 (live session, Marsh + Clyde) — the bench becomes the lab: layout decided, agents resident, first iteration run ON the T5820 (exp-115, Phase 4 interrupted by a host outage)
+## 2026-09-05 → 06 (live session, Marsh + Clyde) — the bench becomes the lab: layout decided, agents resident, first full panel iteration run ON the T5820 (exp-115: PARTIAL; host outage mid-run, re-run clean)
 
 Runner: live session (Director Clyde), compute on the T5820 bench over SSH.
 
@@ -31,8 +31,18 @@ Runner: live session (Director Clyde), compute on the T5820 bench over SSH.
   Red Team PROCEED-WITH-MANDATORY-FIXES (15 accepted, 6 disclosed overrides); **program-
   level Checkpoint-4** (constraint-3 instrument unrun 14 cycles) discharged D1 + D2
   (**Iteration 93 leads with the constraint-3 re-score**). Predictions committed (f75b905);
-  Phase 4: 4/6 readings done — `G_short 2.3006`, first pairwise `G_sustained 2.2922`
-  (inside CONFIRM, ~N²) — then the **bench went dark ~00:53Z** two repeats from the end.
+  Phase 4: session 1 (4/6 readings, `G_pair1 2.2922`) ended when the **host went dark
+  ~00:35Z** (unexpected shutdown; a desktop user had installed a VC++ runtime at 00:03Z —
+  likely an Unreal first launch; power-cycled 04:30Z; WSL + docker came back on the boot task
+  unattended). **Session 2 re-ran the full ABBA block clean: `G_sustained 2.2459`, M5 CONFIRM
+  (rel_dev 0.0815), M7 N2_HOLDS (`k_B 2.9955` — pure cell-count scaling), M6 AMBIGUOUS vs the
+  cloud's 2.7455; sidecar REPRODUCED.** Phase 5: PHOTONICS CONFIRM, five PARTIAL; Red Team
+  **PARTIAL** (measurement half CONFIRM-grade; record half failed — six R4-class defects in
+  frozen text → **R20 fires Checkpoint 4, notification**; M3 fails on two bench-native routes;
+  session 1 admitted as a NOT-scored replicate). Director accepted the audit in full, no
+  overrides; close written (NOTES Phase 4/5, LOGBOOK, PLAN, caveat config). Iteration-93
+  queue: (1) VISION's constraint-3 re-score [D2], (2) `lab/sections.py` angle-convention fix +
+  positive control, (3) zero-FDTD re-issue of the fabrication bound at full scope.
 - GPU burn-in 30 min: 81 °C peak, clocks flat 1665–1725 MHz, 14.8 TFLOP/s, 0 errors.
 
 **Decisions**
@@ -44,9 +54,9 @@ Runner: live session (Director Clyde), compute on the T5820 bench over SSH.
 - Every bench claim over key SSH; suite record committed with platform; identity gate 10/10.
 
 **Deferred/next**
-- Recover `data/readings.json` + run log when the bench returns; Windows event log for the
-  outage cause; analyze (degradation path or disclosed re-run of the two repeats); Phase 5;
-  LOGBOOK/PLAN close. Resume recipe: PLAN.md Current state.
+- Marsh's calls carried: Tier-0 0.5 (`COST_GATE_TOTAL_S` wall-clock vs compute) and 0.6 (gates
+  bound the CYCLE, not the process — Clyde recommends ratify). CPU burn-in deferred to daylight
+  with Preston aware (the host hung under WSL load + desktop use tonight).
 - Bonnie: `themachinist` layer; Preston: his sign-in + Docker Desktop WSL-integration OFF.
 - Bench routines (systemd timers) once Marsh switches permission mode or adds the allowlist.
 - Per-project "remote control" shortcuts on the bench; Codex CLI for Sol if wanted.
