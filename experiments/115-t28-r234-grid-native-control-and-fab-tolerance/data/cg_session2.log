@@ -1,0 +1,25 @@
+/home/theblacksmith/projects/photon-lab/.venv311/lib/python3.11/site-packages/numpy/__config__.py:155: UserWarning: Install `pyyaml` for better output
+  warnings.warn("Install `pyyaml` for better output", stacklevel=1)
+  build_sim source segment byte-identical to chunk_runner114 PASS   (866 chars)
+  CONTROL_SCENES identical (same three scenes, same order)   PASS   (('empty', 'hollow', 'peccored'))
+  SHORT_CONTROL_STEPS identical                              PASS   (1000)
+  SUSTAINED_CONTROL_STEPS identical (nominal)                PASS   (3334)
+  geom_fixedabs_cpl(156, 25) identical field-for-field       PASS   (18 fields)
+  chunk_runner114._time_control_blend hardcodes geom_fixedabs_cpl(156, 25) PASS
+  this cycle's _time_control_blend takes r as a parameter (the ONE disclosed change) PASS
+  tau_shell invariant across the two timed grids             PASS   (24.0)
+  absorb/edge invariant across the two timed grids           PASS
+  geometry identity (r=156/234/312, cpl=20 reduction)        PASS
+
+MF-12 identity gate: PASS (10 checks)
+[ticker] exp-115 Block CG: identity gate PASS, exclusive-use protocol in force, starting S156 (6 readings, 18 Sim.run calls, 46008 grid-steps).
+[ticker] exp-115 S156: r=156, 1000 steps/scene, total 145.8s, per-step 0.048589s (cumulative Sim.run calls 3).
+[ticker] exp-115 S234: r=234, 1000 steps/scene, total 337.2s, per-step 0.112392s (cumulative Sim.run calls 6).
+[ticker] exp-115 U156: r=156, 3334 steps/scene, total 497.1s, per-step 0.049705s (cumulative Sim.run calls 9).
+[ticker] exp-115 U234: r=234, 3334 steps/scene, total 1108.5s, per-step 0.110824s (cumulative Sim.run calls 12).
+[ticker] exp-115 U234b: r=234, 3334 steps/scene, total 1110.8s, per-step 0.111054s (cumulative Sim.run calls 15).
+[ticker] exp-115 U156b: r=156, 3334 steps/scene, total 491.0s, per-step 0.049090s (cumulative Sim.run calls 18).
+[ticker] exp-115 Block CG COMPLETE: 18 Sim.run calls (expected 18), 3700.5s total, G_short=2.31310, G_pair1=2.2296275647790664, G_pair2=2.2622534289060674, repeat_skipped=False. Run analyze115.py.
+
+Written: /home/theblacksmith/projects/photon-lab/experiments/115-t28-r234-grid-native-control-and-fab-tolerance/data/readings.json
+CG-EXIT=0

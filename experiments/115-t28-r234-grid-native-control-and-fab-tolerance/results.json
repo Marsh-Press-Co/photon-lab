@@ -1,0 +1,790 @@
+{
+  "cycle": "exp-115",
+  "iteration": 92,
+  "runner": "bench panel shift (T5820) -- Director Clyde, live session",
+  "readings": {
+    "S156": {
+      "r": 156,
+      "cpl": 25,
+      "n_scenes": 3,
+      "control_steps": 1000,
+      "total_steps": 3000,
+      "per_scene_wall_s": {
+        "empty": 48.68359661102295,
+        "hollow": 48.43069815635681,
+        "peccored": 48.653876066207886
+      },
+      "total_wall_s": 145.76817083358765,
+      "per_step_s": 0.04858939027786255,
+      "start_utc": "2026-09-06T04:39:25Z",
+      "end_utc": "2026-09-06T04:41:51Z",
+      "start_epoch_s": 1788669565.2413585,
+      "end_epoch_s": 1788669711.4380517,
+      "mid_epoch_s": 1788669638.339705,
+      "label": "S156",
+      "loadavg_before": [
+        0.04443359375,
+        0.103515625,
+        0.04931640625
+      ],
+      "loadavg_after": [
+        1.00537109375,
+        0.4951171875,
+        0.20849609375
+      ],
+      "n_sim_run_calls_cumulative": 3
+    },
+    "S234": {
+      "r": 234,
+      "cpl": 25,
+      "n_scenes": 3,
+      "control_steps": 1000,
+      "total_steps": 3000,
+      "per_scene_wall_s": {
+        "empty": 109.78528547286987,
+        "hollow": 111.41933608055115,
+        "peccored": 115.97148275375366
+      },
+      "total_wall_s": 337.1761043071747,
+      "per_step_s": 0.11239203476905822,
+      "start_utc": "2026-09-06T04:41:52Z",
+      "end_utc": "2026-09-06T04:47:30Z",
+      "start_epoch_s": 1788669712.3053796,
+      "end_epoch_s": 1788670050.2693865,
+      "mid_epoch_s": 1788669881.287383,
+      "label": "S234",
+      "loadavg_before": [
+        1.00537109375,
+        0.4951171875,
+        0.20849609375
+      ],
+      "loadavg_after": [
+        1.0390625,
+        0.87451171875,
+        0.4775390625
+      ],
+      "n_sim_run_calls_cumulative": 6
+    },
+    "U156": {
+      "r": 156,
+      "cpl": 25,
+      "n_scenes": 3,
+      "control_steps": 3334,
+      "total_steps": 10002,
+      "per_scene_wall_s": {
+        "empty": 167.3934576511383,
+        "hollow": 164.74374294281006,
+        "peccored": 165.0127387046814
+      },
+      "total_wall_s": 497.14993929862976,
+      "per_step_s": 0.04970505291927912,
+      "start_utc": "2026-09-06T04:47:31Z",
+      "end_utc": "2026-09-06T04:55:48Z",
+      "start_epoch_s": 1788670051.428875,
+      "end_epoch_s": 1788670548.9351182,
+      "mid_epoch_s": 1788670300.1819966,
+      "label": "U156",
+      "loadavg_before": [
+        1.0390625,
+        0.87451171875,
+        0.4775390625
+      ],
+      "loadavg_after": [
+        1.17041015625,
+        1.0673828125,
+        0.75439453125
+      ],
+      "n_sim_run_calls_cumulative": 9
+    },
+    "U234": {
+      "r": 234,
+      "cpl": 25,
+      "n_scenes": 3,
+      "control_steps": 3334,
+      "total_steps": 10002,
+      "per_scene_wall_s": {
+        "empty": 369.7576458454132,
+        "hollow": 368.3444309234619,
+        "peccored": 370.35713171958923
+      },
+      "total_wall_s": 1108.4592084884644,
+      "per_step_s": 0.11082375609762692,
+      "start_utc": "2026-09-06T04:55:50Z",
+      "end_utc": "2026-09-06T05:14:19Z",
+      "start_epoch_s": 1788670550.1997137,
+      "end_epoch_s": 1788671659.4726512,
+      "mid_epoch_s": 1788671104.8361826,
+      "label": "U234",
+      "loadavg_before": [
+        1.2373046875,
+        1.0830078125,
+        0.76123046875
+      ],
+      "loadavg_after": [
+        1.09326171875,
+        1.0458984375,
+        1.0029296875
+      ],
+      "n_sim_run_calls_cumulative": 12
+    },
+    "U234b": {
+      "r": 234,
+      "cpl": 25,
+      "n_scenes": 3,
+      "control_steps": 3334,
+      "total_steps": 10002,
+      "per_scene_wall_s": {
+        "empty": 370.10148310661316,
+        "hollow": 369.5349726676941,
+        "peccored": 371.122451543808
+      },
+      "total_wall_s": 1110.7589073181152,
+      "per_step_s": 0.11105367999581237,
+      "start_utc": "2026-09-06T05:14:20Z",
+      "end_utc": "2026-09-06T05:32:52Z",
+      "start_epoch_s": 1788671660.7526004,
+      "end_epoch_s": 1788672772.3995395,
+      "mid_epoch_s": 1788672216.5760698,
+      "label": "U234b",
+      "loadavg_before": [
+        1.00537109375,
+        1.0283203125,
+        0.9970703125
+      ],
+      "loadavg_after": [
+        1.0087890625,
+        1.01513671875,
+        1.0
+      ],
+      "n_sim_run_calls_cumulative": 15
+    },
+    "U156b": {
+      "r": 156,
+      "cpl": 25,
+      "n_scenes": 3,
+      "control_steps": 3334,
+      "total_steps": 10002,
+      "per_scene_wall_s": {
+        "empty": 163.29732608795166,
+        "hollow": 163.24400353431702,
+        "peccored": 164.45534348487854
+      },
+      "total_wall_s": 490.9966731071472,
+      "per_step_s": 0.04908984934084655,
+      "start_utc": "2026-09-06T05:32:53Z",
+      "end_utc": "2026-09-06T05:41:04Z",
+      "start_epoch_s": 1788672773.3411014,
+      "end_epoch_s": 1788673264.6706119,
+      "mid_epoch_s": 1788673019.0058565,
+      "label": "U156b",
+      "loadavg_before": [
+        1.0087890625,
+        1.01513671875,
+        1.0
+      ],
+      "loadavg_after": [
+        1.0732421875,
+        1.0390625,
+        1.0048828125
+      ],
+      "n_sim_run_calls_cumulative": 18
+    }
+  },
+  "readings_summary": {
+    "S156": {
+      "r": 156,
+      "control_steps": 1000,
+      "total_wall_s": 145.76817083358765,
+      "per_step_s": 0.04858939027786255,
+      "start_utc": "2026-09-06T04:39:25Z",
+      "end_utc": "2026-09-06T04:41:51Z"
+    },
+    "S234": {
+      "r": 234,
+      "control_steps": 1000,
+      "total_wall_s": 337.1761043071747,
+      "per_step_s": 0.11239203476905822,
+      "start_utc": "2026-09-06T04:41:52Z",
+      "end_utc": "2026-09-06T04:47:30Z"
+    },
+    "U156": {
+      "r": 156,
+      "control_steps": 3334,
+      "total_wall_s": 497.14993929862976,
+      "per_step_s": 0.04970505291927912,
+      "start_utc": "2026-09-06T04:47:31Z",
+      "end_utc": "2026-09-06T04:55:48Z"
+    },
+    "U234": {
+      "r": 234,
+      "control_steps": 3334,
+      "total_wall_s": 1108.4592084884644,
+      "per_step_s": 0.11082375609762692,
+      "start_utc": "2026-09-06T04:55:50Z",
+      "end_utc": "2026-09-06T05:14:19Z"
+    },
+    "U234b": {
+      "r": 234,
+      "control_steps": 3334,
+      "total_wall_s": 1110.7589073181152,
+      "per_step_s": 0.11105367999581237,
+      "start_utc": "2026-09-06T05:14:20Z",
+      "end_utc": "2026-09-06T05:32:52Z"
+    },
+    "U156b": {
+      "r": 156,
+      "control_steps": 3334,
+      "total_wall_s": 490.9966731071472,
+      "per_step_s": 0.04908984934084655,
+      "start_utc": "2026-09-06T05:32:53Z",
+      "end_utc": "2026-09-06T05:41:04Z"
+    }
+  },
+  "identity_gate": {
+    "pass_": true,
+    "checks": [
+      {
+        "name": "build_sim source segment byte-identical to chunk_runner114",
+        "ok": true,
+        "detail": "866 chars"
+      },
+      {
+        "name": "CONTROL_SCENES identical (same three scenes, same order)",
+        "ok": true,
+        "detail": "('empty', 'hollow', 'peccored')"
+      },
+      {
+        "name": "SHORT_CONTROL_STEPS identical",
+        "ok": true,
+        "detail": "1000"
+      },
+      {
+        "name": "SUSTAINED_CONTROL_STEPS identical (nominal)",
+        "ok": true,
+        "detail": "3334"
+      },
+      {
+        "name": "geom_fixedabs_cpl(156, 25) identical field-for-field",
+        "ok": true,
+        "detail": "18 fields"
+      },
+      {
+        "name": "chunk_runner114._time_control_blend hardcodes geom_fixedabs_cpl(156, 25)",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "this cycle's _time_control_blend takes r as a parameter (the ONE disclosed change)",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "tau_shell invariant across the two timed grids",
+        "ok": true,
+        "detail": "24.0"
+      },
+      {
+        "name": "absorb/edge invariant across the two timed grids",
+        "ok": true,
+        "detail": ""
+      },
+      {
+        "name": "geometry identity (r=156/234/312, cpl=20 reduction)",
+        "ok": true,
+        "detail": ""
+      }
+    ]
+  },
+  "machine_state": {
+    "hostname": "Machine",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "python_version": "3.11.16 (main, Sep  1 2026, 14:18:37) [Clang 22.1.3 ]",
+    "numpy_version": "2.4.6",
+    "cpu_count": 14,
+    "lscpu": "CPU(s):                                  14\nOn-line CPU(s) list:                     0-13\nModel name:                              Intel(R) Xeon(R) W-2145 CPU @ 3.70GHz\nThread(s) per core:                      2\nCore(s) per socket:                      7\nSocket(s):                               1\nL3 cache:                                11 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-13",
+    "cpuinfo_head": "processor\t: 0\nvendor_id\t: GenuineIntel\ncpu family\t: 6\nmodel\t\t: 85\nmodel name\t: Intel(R) Xeon(R) W-2145 CPU @ 3.70GHz\nstepping\t: 4\nmicrocode\t: 0xffffffff\ncpu MHz\t\t: 3696.000\ncache size\t: 11264 KB\nphysical id\t: 0\nsiblings\t: 14\ncore id\t\t: 0\ncpu cores\t: 7\napicid\t\t: 0\ninitial apicid\t: 0\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 22\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid tsc_known_freq pni pclmulqdq vmx ssse3 fma cx16 pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch pti ssbd ibrs ibpb stibp tpr_shadow ept vpid ept_ad fsgsbase t",
+    "meminfo_head": "MemTotal:       98875468 kB\nMemFree:        96767632 kB\nMemAvailable:   97554452 kB\nBuffers:           68020 kB\nCached:          1463928 kB\nSwapCached:           48 kB\nActive:           219080 kB\nInactive:        1431040 kB\nActive(anon):       2952 kB\nInactive(anon):   118784 kB\nActive(file):     21",
+    "transparent_hugepage": "always [madvise] never",
+    "thread_env": {
+      "OMP_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null,
+      "MKL_NUM_THREADS": null,
+      "NUMEXPR_NUM_THREADS": null,
+      "VECLIB_MAXIMUM_THREADS": null
+    },
+    "numpy_show_config": "{\n  \"Compilers\": {\n    \"c\": {\n      \"name\": \"gcc\",\n      \"linker\": \"ld.bfd\",\n      \"version\": \"14.2.1\",\n      \"commands\": \"cc\"\n    },\n    \"cython\": {\n      \"name\": \"cython\",\n      \"linker\": \"cython\",\n      \"version\": \"3.2.4\",\n      \"commands\": \"cython\"\n    },\n    \"c++\": {\n      \"name\": \"gcc\",\n      \"linker\": \"ld.bfd\",\n      \"version\": \"14.2.1\",\n      \"commands\": \"c++\"\n    }\n  },\n  \"Machine Information\": {\n    \"host\": {\n      \"cpu\": \"x86_64\",\n      \"family\": \"x86_64\",\n      \"endian\": \"little\",\n      \"system\": \"linux\"\n    },\n    \"build\": {\n      \"cpu\": \"x86_64\",\n      \"family\": \"x86_64\",\n      \"endian\": \"little\",\n      \"system\": \"linux\"\n    }\n  },\n  \"Build Dependencies\": {\n    \"blas\": {\n      \"name\": \"scipy-openblas\",\n      \"found\": true,\n      \"version\": \"0.3.31.188.0\",\n      \"detection method\": \"pkgconfig\",\n      \"include directory\": \"/opt/_internal/cpython-3.11.14/lib/python3.11/site-packages/scipy_openblas64/include\",\n      \"lib directory\": \"/opt/_internal/cpython-3.11.14/lib/python3.11/site-packages/scipy_openblas64/lib\",\n      \"openblas configuration\": \"OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\",\n      \"pc file directory\": \"/project/.openblas\"\n    },\n    \"lapack\": {\n      \"name\": \"scipy-openblas\",\n      \"found\": true,\n      \"version\": \"0.3.31.188.0\",\n      \"detection method\": \"pkgconfig\",\n      \"include directory\": \"/opt/_internal/cpython-3.11.14/lib/python3.11/site-packages/scipy_openblas64/include\",\n      \"lib directory\": \"/opt/_internal/cpython-3.11.14/lib/python3.11/site-packages/scipy_openblas64/lib\",\n      \"openblas configuration\": \"OpenBLAS 0.3.31.188.0  USE64BITINT DYNAMIC_ARCH NO_AFFINITY Haswell MAX_THREADS=64\",\n      \"pc file directory\": \"/project/.openblas\"\n    }\n  },\n  \"Python Information\": {\n    \"path\": \"/tmp/build-env-gjolnpt6/bin/python\",\n    \"version\": \"3.11\"\n  },\n  \"SIMD Extensions\": {\n    \"baseline\": [\n      \"X86_V2\"\n    ],\n    \"found\": [\n      \"X86_V3\",\n      \"X86_V4\"\n    ],\n    \"not found\": [\n      \"A",
+    "loadavg": [
+      0.04443359375,
+      0.103515625,
+      0.04931640625
+    ],
+    "timestamp_utc": "2026-09-06T04:39:24Z"
+  },
+  "machine_state_end": {
+    "loadavg": [
+      1.0732421875,
+      1.0390625,
+      1.0048828125
+    ],
+    "timestamp_utc": "2026-09-06T05:41:05Z"
+  },
+  "gates": [
+    {
+      "stage": "after_S156",
+      "per_step_r156": 0.04858939027786255,
+      "g_used": 2.74550565394726,
+      "sustained_steps_in": 3334,
+      "bound_s": 10800,
+      "safety_margin": 1.1,
+      "timestamp_utc": "2026-09-06T04:41:52Z",
+      "projected_total_s": 4605.194215070314,
+      "projected_primary_only_s": 2602.8836369476708,
+      "pass_": true,
+      "action": "PROCEED"
+    },
+    {
+      "stage": "after_S234",
+      "per_step_r156": 0.04858939027786255,
+      "g_used": 2.3130982736423493,
+      "sustained_steps_in": 3334,
+      "bound_s": 10800,
+      "safety_margin": 1.1,
+      "timestamp_utc": "2026-09-06T04:47:31Z",
+      "projected_total_s": 4073.5383719573024,
+      "projected_primary_only_s": 2302.3885373060702,
+      "pass_": true,
+      "action": "PROCEED"
+    },
+    {
+      "stage": "after_U234",
+      "per_step_r156": 0.04970505291927912,
+      "g_used": 2.2296275647790664,
+      "sustained_steps_in": 3334,
+      "bound_s": 10800,
+      "safety_margin": 1.1,
+      "timestamp_utc": "2026-09-06T05:14:20Z",
+      "measured_elapsed_s": 2095.5106275081635,
+      "repeat_cost_s": 1605.6091477870941,
+      "projected_total_s": 4071.2317528247836,
+      "pass_": true,
+      "action": "PROCEED"
+    }
+  ],
+  "repeat_skipped": false,
+  "repeat_skip_reason": null,
+  "sustained_steps_used": 3334,
+  "sustained_stepped_down": false,
+  "n_sim_run_calls": 18,
+  "n_sim_run_calls_expected": 18,
+  "total_wall_s": 3700.5056738853455,
+  "G_short": 2.3130982736423493,
+  "G_pair1": 2.2296275647790664,
+  "G_pair2": 2.2622534289060674,
+  "G_sustained": 2.245940496842567,
+  "G_E": 2.74550565394726,
+  "G_ref": 2.4453404739580256,
+  "R_DEG": 0.07596424755863729,
+  "drift": {
+    "r156": {
+      "lag_s": 2718.8238599300385,
+      "delta_per_step_s": -0.0006152035784325674,
+      "rate_s_per_step_per_s": -2.2627562877442087e-07,
+      "relative_rate_per_s": -4.552366720982913e-06,
+      "relative_rate_per_hour": -0.01638852019553849
+    },
+    "r234": {
+      "lag_s": 1111.7398872375488,
+      "delta_per_step_s": 0.00022992389818544956,
+      "rate_s_per_step_per_s": 2.0681447236436253e-07,
+      "relative_rate_per_s": 1.8661564961051803e-06,
+      "relative_rate_per_hour": 0.0067181633859786484
+    },
+    "note": "Rates, not differences: ABBA gives the r=156 pair a lag of a+2b and the r=234 pair a lag of b (~2.4x apart), so only a rate per unit elapsed time is comparable between grids. This is the equal-lag same-grid comparison ABAB would have provided and ABBA does not; reporting it as a rate is the substitute (MF-6c)."
+  },
+  "m3": {
+    "d_dur": 0.02903368938753793,
+    "invariant_bar": 0.037982123779318644,
+    "not_invariant_bar": 0.07596424755863729,
+    "verdict": "G-DURATION-INVARIANT"
+  },
+  "m4": {
+    "d_rep": 0.01463287619976741,
+    "verdict": "REPEATABLE (M3 scored, M7 powered)",
+    "repeatable_bar": 0.02,
+    "m7_power_bar": 0.03,
+    "m3_scored_bar": 0.037982123779318644,
+    "noisy_bar": 0.07596424755863729
+  },
+  "m5": {
+    "exponent_234": 2.995546218006855,
+    "exponent_reference": 3.2053299988171697,
+    "kappa_ratio": 1.5,
+    "measured_ratio": 3.3689107452638507,
+    "reference_ratio": 3.6680107109370383,
+    "rel_dev": 0.0815428277734715,
+    "confirm_band": 0.15,
+    "refute_band": 0.3,
+    "verdict": "CONFIRM (kappa_exponent generalizes across kappa_ratio)",
+    "g_sustained": 2.245940496842567,
+    "exponent_B": 2.995546218006855,
+    "m5_protocol_caveat": false,
+    "reported_verdict": "CONFIRM (kappa_exponent generalizes across kappa_ratio)",
+    "may_move_logbook_verdict": true,
+    "power_limit": "Pure N^2 (cell-count) scaling gives G = 2.25 exactly, i.e. k = 3.0 EXACTLY -- the pre-R28 hardcoded exponent -- with rel_dev = 0.0799, INSIDE the CONFIRM band. A CONFIRM therefore does NOT distinguish k = 3.2053 from k = 3.0.",
+    "preregistered_protocol_models": {
+      "drift_degradation_G": 2.5402672032651066,
+      "warmup_amortization_G_scene_matched": 2.8681442922477283,
+      "warmup_amortization_G_blend": 2.880173551993364,
+      "confirm_ceiling_G": 2.812141545051729,
+      "note": "Pre-registered at Phase 3, before any bench reading. The two models sit on OPPOSITE sides of the CONFIRM ceiling; their inputs include exp-114's three r=234 chunk times, which survive only as quotations and are NOT independently re-derivable -- directional, cited."
+    }
+  },
+  "m6": {
+    "T": 0.8180425684476521,
+    "abs_dev": 0.1819574315523479,
+    "transfers_bar": 0.152950039837078,
+    "no_transfer_bar": 0.305900079674156,
+    "verdict": "AMBIGUOUS",
+    "m6_directional_only": false,
+    "g_e_protocol_caveat": false,
+    "g_e": 2.74550565394726
+  },
+  "m7": {
+    "excess": -0.0018042236255256805,
+    "k_B": 2.995546218006855,
+    "holds_bar": 0.05,
+    "fails_bar": 0.152950039837078,
+    "verdict": "N2_HOLDS",
+    "model_comparison": {
+      "const_k_prediction": 2.4453404739580256,
+      "const_eps_prediction": 2.5941375896334256,
+      "rel_to_const_k": 0.0815428277734715,
+      "rel_to_const_eps": 0.13422460480982495,
+      "separation": 0.060849242573798784,
+      "underpowered": false,
+      "favoured": "constant-k"
+    },
+    "note": "N2_HOLDS requires BOTH candidate cost models to be wrong: the in-force constant-k model predicts excess=0.08682 (AMBIGUOUS) and the constant-eps model predicts excess=0.152950039837078, bit-adjacent to the N2_FAILS bar."
+  },
+  "protocol_mismatch_interval": {
+    "p156_inf": 0.04974366400589843,
+    "c156": -1.1542737280358781,
+    "p234_inf": 0.11031604592917955,
+    "c234": 2.0759888398786654,
+    "g_at_burst_protocol": 2.2458389149395477,
+    "g_at_production_protocol": 2.2276295684987977,
+    "g_at_amortized_limit": 2.217690396029104,
+    "interval_lo": 2.217690396029104,
+    "interval_hi": 2.2458389149395477,
+    "interval_rel_width": 0.01269271804614623,
+    "band_edges": [
+      2.0785394028643216,
+      2.812141545051729,
+      1.7117383317706178,
+      3.178942616145433
+    ],
+    "m5_protocol_caveat": false,
+    "note": "Two-point p(n) = p_inf + C_g/n per grid, exactly determined by the S and U readings already scheduled -- it BOUNDS, it does not fit (R7). The sustained per-step rate used on each grid is the MEAN over that grid's sustained readings; a mean of ratios is not a ratio of means, but this is a bound, and the endpoint spread is what the caveat consumes. Endpoints: the measured burst protocol, the production protocol (8000/12000 steps/scene -- exp-114's own numerator and denominator step counts), and the amortized limit n -> inf."
+  },
+  "m3_scored": true,
+  "m5_protocol_caveat": false,
+  "m6_directional_only": false,
+  "m7_underpowered": false,
+  "sensitivities": {
+    "sensitivity_short_reading_DO_NOT_SCORE": {
+      "t156_session_adjusted_short": 1588.3848819732666,
+      "speed_ratio_short": 0.422112913224623,
+      "measured_ratio": 4.431098887676021,
+      "rel_dev": 0.20803869914110543,
+      "signed_dev": 0.20803869914110543,
+      "verdict": "AMBIGUOUS"
+    },
+    "sensitivity_v2_straddle_DO_NOT_SCORE": {
+      "measured_ratio": 3.217195628521234,
+      "signed_dev": -0.12290451635585277,
+      "filed_signed_dev": 0.12274985147707763,
+      "opposite_sides": true,
+      "spread_between_central_estimates": 0.28007710952094766,
+      "note": "The two 'sensitivities' are the SAME question in different clothes: which same-session r=156 per-step rate is protocol-matched to the r=234 numerator."
+    },
+    "sensitivity_v2_with_measured_G_DO_NOT_SCORE": {
+      "measured_ratio": 3.2113910881603176,
+      "signed_dev": -0.12448699274928553,
+      "straddle_sign_boundary_G": 2.5652851279677367,
+      "straddle_still_open": true,
+      "fraction_of_confirm_band_below_boundary": 0.6635009593239029,
+      "NOT_SCORED": "Composes a bench-measured G with exp-114's own session's p_prod/p_burst; scoring it would presume the machine-independence M6 exists to test (OV-1)."
+    },
+    "sustained_choice_justification": "'Sustained' (3334 steps/scene) is the protocol-matched r=156 comparator for a 12000-steps/scene production numerator because 3334 is the CLOSER DURATION MATCH than 1000 is, and R_DEG = 0.075964 shows duration measurably matters on this axis. That is a protocol-commensurability argument (R9), NOT the cost-gate conservatism argument Iteration 90 ratified -- a materially different justification, and M3 tests it directly rather than asserting it. Disclosed conflict, not papered over: R113.combine_control_readings() selects the LOWER speed_ratio, which happened to be the sustained reading in exp-114's session but is not the same rule."
+  },
+  "decline_8": "8. Tier-1 item 1's OWN SECOND HALF -- 're-score kappa_exponent_result against the corrected denominator' -- is DECLINED as un-executable, not silently absorbed (R25). It has two halves and neither is available: (i) the cross-session half DISSOLVES under the Sec-1 identity (measured_ratio == kappa_ratio * G; every cross-session term cancels identically, so there is no cross-session denominator left to correct); (ii) the burst-vs-production half is not measurable without an r=234 PRODUCTION leg, which this cycle does not run and which would cost three 12000-step scenes. What this cycle CAN do for it -- MF-7(a)'s two-point protocol-mismatch interval -- it does.",
+  "sidecar_m9": {
+    "status": "REPRODUCED",
+    "reproduction_checks": [
+      {
+        "name": "tau_true@cpl20(sigma_max=0.5,48 cells)",
+        "got": 8.258813114090946,
+        "expected": 8.258819829686677,
+        "rel": 8.131422975140548e-07,
+        "rel_bar": 0.01,
+        "ok": true
+      },
+      {
+        "name": "tau_true@cpl25(sigma_max=0.4,60 cells)",
+        "got": 8.258813114090952,
+        "expected": 8.258819829686677,
+        "rel": 8.131422968687967e-07,
+        "rel_bar": 0.01,
+        "ok": true
+      },
+      {
+        "name": "tau_true bit-identity between family members",
+        "got": 8.258813114090952,
+        "expected": 8.258813114090946,
+        "rel": 6.452586400227953e-16,
+        "rel_bar": 1e-12,
+        "ok": true
+      },
+      {
+        "name": "loss tangent sigma_max*cpl identical",
+        "got": 10.0,
+        "expected": 10.0,
+        "rel": 0.0,
+        "rel_bar": 1e-15,
+        "ok": true
+      },
+      {
+        "name": "thickness/cpl identical (lambda)",
+        "got": 2.4,
+        "expected": 2.4,
+        "rel": 0.0,
+        "rel_bar": 1e-15,
+        "ok": true
+      },
+      {
+        "name": "exp-112 sigma_scat delta",
+        "got": 8.359387007873527e-05,
+        "expected": 8.359387007873527e-05,
+        "rel": 0.0,
+        "rel_bar": 1e-09,
+        "ok": true
+      },
+      {
+        "name": "exp-114 sigma_scat delta",
+        "got": 0.00010873544930288214,
+        "expected": 0.00010873544930288214,
+        "rel": 0.0,
+        "rel_bar": 1e-09,
+        "ok": true
+      },
+      {
+        "name": "exp-108 item_ii r156 mean/std",
+        "got": 4.464601791167039,
+        "expected": 4.4653,
+        "rel": 0.000156363252852318,
+        "rel_bar": 0.001,
+        "ok": true
+      },
+      {
+        "name": "exp-108 item_ii r312 mean/std",
+        "got": 11.695432413176777,
+        "expected": 11.6959,
+        "rel": 3.997869537387825e-05,
+        "rel_bar": 0.001,
+        "ok": true
+      },
+      {
+        "name": "exp-110 r156 max floor-gated local_rel",
+        "got": 0.014669070259562213,
+        "expected": 0.014669070259562213,
+        "rel": 0.0,
+        "rel_bar": 1e-12,
+        "ok": true
+      },
+      {
+        "name": "exp-110 r312 max floor-gated local_rel",
+        "got": 0.05290046381280309,
+        "expected": 0.05290046381280309,
+        "rel": 0.0,
+        "rel_bar": 1e-12,
+        "ok": true
+      }
+    ],
+    "c_physics": {
+      "tau_true_recomputed_cpl20": 8.258813114090946,
+      "tau_true_recomputed_cpl25": 8.258813114090952,
+      "tau_true_filed": 8.258819829686677,
+      "characteristic_scale_exp_minus_tau": 0.00025896617219231565,
+      "coherent_cross_term_upper_bound_2exp_minus_tau": 0.0005179323443846313,
+      "proposal_figure_exp_minus_2tau_WITHDRAWN": 6.706347833994009e-08,
+      "wrong_by_factor": 3861.508209872954,
+      "wavelength_rows": [
+        {
+          "lambda_nm": 450.0,
+          "cpl": 18.75,
+          "I_graded": 0.214594030171773,
+          "tau_true": 8.629337967255916,
+          "two_exp_minus_tau": 0.00035756593234456766
+        },
+        {
+          "lambda_nm": 600.0,
+          "cpl": 25.0,
+          "I_graded": 0.27383977732911335,
+          "tau_true": 8.258813114090952,
+          "two_exp_minus_tau": 0.0005179323443846313
+        },
+        {
+          "lambda_nm": 750.0,
+          "cpl": 31.25,
+          "I_graded": 0.32780375822693447,
+          "tau_true": 7.909062748146141,
+          "two_exp_minus_tau": 0.0007347975288990219
+        }
+      ],
+      "withheld": false,
+      "note": "MF-1. tau_true is a ONE-WAY INTENSITY optical depth; the measured observable is a relative change in a cross-section, and every cross-section in lab/sections.py is a flux integral QUADRATIC IN THE TOTAL FIELD. Writing A = A_shell + A_core, dSigma/Sigma = [2 Re(A_shell* dA_core) + |dA_core|^2]/|A_shell|^2 -- the leading term is the COHERENT CROSS TERM, first order in the returned amplitude. exp(-2 tau_true) answers 'how much core-reflected POWER returns' and is the wrong answer to 'how much does the CROSS-SECTION change'; this is a deterministic single-frequency FDTD field and the cross term does not average away. exp(-tau_true) is the characteristic SCALE, 2 exp(-tau_true) the correct UPPER BOUND (|2 Re z| <= 2|z|). Backing freedom is weakest in the red (2.05x worse at 750 nm than 450 nm) and has been MEASURED only at 600 nm."
+    },
+    "a_aggregate_deltas": {
+      "r156": {
+        "sigma_scat": 8.359387007873527e-05,
+        "sigma_abs": 4.084328355450674e-05,
+        "sigma_ext": 2.146912588710513e-05
+      },
+      "r234": {
+        "sigma_scat": 0.00010873544930288214,
+        "sigma_abs": 5.666217924972678e-06,
+        "sigma_ext": 5.20438064401917e-05
+      },
+      "normalization": "symmetric mean: |hollow - peccored| / ((hollow + peccored)/2)",
+      "channel_count_correction": "TWO independent channels and their EXACT ALGEBRAIC SUM (MF-11), not 'three independent energy-ledger channels': lab/sections.py:150 defines sigma_ext == (p_scat + p_abs)/i_inc. Residual d_scat + d_abs - d_ext = -5.684e-14 (r=156), 0.000e+00 (r=234). At r=156 the two genuine channels PARTIALLY CANCEL, so the derived sigma_ext delta is about half the largest real one -- the flattering direction.",
+      "largest": 0.00010873544930288214,
+      "smallest": 5.666217924972678e-06
+    },
+    "b_floor": {
+      "withdrawn_common_mode_statistic": {
+        "r156_peccored": 0.004655343788272148,
+        "r156_hollow": 0.0046553437880447746,
+        "r234_peccored": 0.030391497834443726,
+        "r234_hollow": 0.030391497834443726,
+        "r156_between_scene_difference": 2.2737367544323206e-13,
+        "r234_between_scene_difference": 0.0,
+        "status": "WITHDRAWN as a differential floor (MF-2). p_ext_cross - p_ext = F(pi), a function of the EMPTY capture and the box alone, carrying no scene information -- so the quantity is bit-identical in the two configurations being differenced (0.0 EXACTLY at r=234, 2.27e-13 roundoff at r=156) and cancels. It is a SOLVER SELF-CONSISTENCY statistic, never a differential floor; dividing a between-scene difference by a within-scene common-mode residual is a pure R9 incommensurability, and the proposal's '0.2x-12.6x the floor' reading and its 'upper bound, not a resolved effect' conclusion are both void. R30, not R13, was the live rule on that gate (sigma_ext ~ 1093 has no zero-crossing); this withdrawal discharges it."
+      },
+      "differential_floor": {
+        "r156": {
+          "margins": [
+            24,
+            32,
+            40,
+            48,
+            57,
+            65
+          ],
+          "mean_delta": -2.4494360594743785e-05,
+          "std_delta": 5.48634833305951e-06,
+          "mean_over_std": 4.464601791167039,
+          "n_margins": 6
+        },
+        "r312": {
+          "margins": [
+            24,
+            32,
+            40,
+            48,
+            57,
+            65
+          ],
+          "mean_delta": -2.7213158278934408e-05,
+          "std_delta": 2.3268193357497777e-06,
+          "mean_over_std": 11.695432413176777,
+          "n_margins": 6
+        },
+        "r234": "NO DIFFERENTIAL FLOOR EXISTS AT r=234 (THERMODYNAMICS' box_dev gap)",
+        "reading": "On the only differential floor this program has -- exp-108's item_ii family, the SAME peccored-minus-hollow differential measured at six independent box radii -- the core-swap effect is RESOLVED at 4.47x (r=156) and 11.70x (r=312), NOT floor-limited."
+      }
+    },
+    "d_per_bin": {
+      "r156": {
+        "max_floor_gated_local_rel": 0.014669070259562213,
+        "at_bin_center_deg": 123.75,
+        "second": {
+          "local_rel": 0.01450949193195865,
+          "at_bin_center_deg": -123.75
+        },
+        "n_resolved": 34,
+        "n_total": 48,
+        "peak_normalized_rel32_max": 0.00014760284822434646
+      },
+      "r312": {
+        "max_floor_gated_local_rel": 0.05290046381280309,
+        "at_bin_center_deg": 138.75,
+        "second": {
+          "local_rel": 0.05226074222601501,
+          "at_bin_center_deg": -138.75
+        },
+        "n_resolved": 38,
+        "n_total": 48,
+        "peak_normalized_rel32_max": 0.00015265673604659632
+      },
+      "withdrawal": "The PER-BIN half of any 'insensitive at better than 1.6e-04' claim is WITHDRAWN (MF-3). 1.5266e-04 is the PEAK-normalized figure (denominator = the global max over 48 bins), which LOGBOOK Iteration 85 already records as structurally blind to real shape differences in low-cross-section side/back-scatter sectors, and which exp-110 was built at Iteration 87 to replace. On the floor-gated LOCAL normalization the figure is 99.4x larger at r=156 and 346.5x larger at r=312. The two largest resolved r=312 deviations sit at +/-138.75 deg, INSIDE the observer-return hemisphere PANEL.md scores constraint 2 on. exp-112's ungated backscatter bins are NOT cited: that cycle's own mirror-pooled floor gate marks 0 of 12 backscatter bins resolved."
+    },
+    "d_scope": {
+      "margin_scope": "CERTIFIED AT MARGIN=32 ONLY for the tight per-bin figure. experiments/108-.../run.py:244-254 sets confirm_all_margins as ONE boolean over MARGINS=(24,32,40,48,57,65) against ITEM_I_CONFIRM_REL = 0.05 -- a DECISION BAR, not a measurement, and 330x looser than the quoted figure; only the margin-32 array is persisted. R4 second addendum: an aggregate flag is not sufficient to certify an 'every single X' claim.",
+      "channel_resolution_confound": "CHANNEL AND RESOLUTION ARE FULLY CONFOUNDED: the per-bin channel exists only at cpl=20 (exp-108/110, r=156/312) and the aggregate channels only at cpl=25 (exp-112/114, r=156/234). 'Two grid resolutions' is therefore NOT a resolution check on any channel.",
+      "radius_scope": "r=234 contributes AGGREGATE channels only (exp-114's captures were never persisted).",
+      "instrument_scope": "NEAR-TO-MID-FIELD BOX LEDGER at this bench's own measurement geometry -- NOT a far-field pattern. lab/sections.py:212-215 says so in its own docstring ('a square-path angular sample, not a true circular far-field pattern'), and LOGBOOK's ESTABLISHED section plus T9 record that this bench's box sits deep in the shadow's near zone (sigma_abs/sigma_ext = 0.51 and 0.606-0.608 both EXCEED the far-field Babinet ceiling of 0.5 for exactly that reason)."
+    },
+    "perturbation": {
+      "what_it_is": "vacuum -> PERFECT ELECTRIC CONDUCTOR over rr <= R_CORE. It is NOT a pure core-material swap: materials.pec_disk sets sim.pec |= rr <= R_CORE while graded_black_shell writes sigma for rr >= R_CORE, so the sets OVERLAP on cells at exactly rr == R_CORE, which are both PEC-zeroed and maximally lossy.",
+      "overlap_cells_r156": 12,
+      "shell_cells_r156": 62236,
+      "overlap_cells_r234": 12,
+      "shell_cells_r234": 98740,
+      "overlap_fraction_r156": 0.00019281444822932066,
+      "overlap_fraction_r234": 0.00012153129430828438,
+      "closure_bound": 3.1472494088594165e-08,
+      "closure_bound_with_4x_standing_wave": 1.2588997635437666e-07,
+      "ratio_to_smallest_measured_delta": 180.0371431962919,
+      "ratio_to_largest_measured_delta": 3454.9358877245313,
+      "closure": "RULED OUT, not merely unaddressed. Those cells sit at the shell's inner face where the intensity has already been attenuated by exp(-tau_true) = 2.5897e-04, so their contribution to a relative delta is ~3.15e-08 -- 180x below the SMALLEST of the six measured aggregate deltas (5.666e-06) and 3455x below the largest (1.087e-04), even allowing a 4x standing-wave enhancement at the PEC face. PHOTONICS' Sec 4.11 calls these 12 cells 'the innermost ring', which overstates them by ~3 orders. DISCLOSED FORWARD CORRECTION (R4): MF-13's own wording says this bound sits 'five orders below the smallest measured delta'; recomputed here it is 2.3 orders below the smallest and 3.5 below the largest. The ~1e-8 magnitude MF-13 states reproduces; its 'five orders' comparison does not, and the qualitative conclusion (ruled out) is unchanged."
+    },
+    "e_tier": {
+      "tier": "UNOBTANIUM-WITH-PARAMETERS",
+      "inherited_from": "exp-061 (Iteration 38), MP-2/MP-4 CONFIRMED",
+      "binding_axis": "thickness: alpha_true ~ 5.74e4 cm^-1 is not an implausible absorption rate, but the coating is asked to deliver it in 1.44 um where real record-blackness CNT-forest coatings run 100-500 um -- a 70-350x gap, the dominant anchor-invariant falsification axis.",
+      "moved_by_this_finding": false,
+      "evidentiary_tier": "T18: every literature figure behind this tier is WebSearch-snippet synthesis, NOT primary-source-verified (WebFetch blocked at 41+ consecutive attempts as of exp-061). This cycle attempts no new literature search and makes no new realizability claim from new sources; the tier is CITED, not re-derived.",
+      "forward_conditional": "IF a future cycle re-specs this article at exp-061's own MP-5-plausible thickness (230-730x of 1.44 um), the core/backing freedom survives and strengthens -- the bound scales as exp(-tau_true) (MF-1: exp(-tau), not exp(-2 tau)) and tau_true grows with thickness. Stated as a physical argument, explicitly NOT re-measured here.",
+      "thermal_counterweight": {
+        "source": "experiments/061-absorptivity-mechanism-literature-check/NOTES.md, THERMO disposition table",
+        "rows": [
+          {
+            "mp5_multiple": 230,
+            "l_geometric_um": 331.2,
+            "delta_T_ss_K": 0.005277,
+            "margin_vs_netd_lo": 3.79,
+            "classification": "UNDETECTABLE"
+          },
+          {
+            "mp5_multiple": 730,
+            "l_geometric_um": 1051.2,
+            "delta_T_ss_K": 0.014774,
+            "margin_vs_netd_lo": 1.35,
+            "classification": "UNDETECTABLE"
+          }
+        ],
+        "netd_lo_K": 0.02,
+        "reading": "The same thickening that makes the article MORE backing-independent (the bound scales as exp(-tau_true) and tau_true grows with thickness) also shrinks the thermal margin from 3.79x to 1.35x against NETD-lo, and makes the article a physically LARGER BLACK SILHOUETTE -- constraint 3's own failure mode. The forward conditional is not free."
+      },
+      "open_caveat": "exp052-alpha-60nm-absorptivity-open still bites on 'thickness as the binding constraint': the 60 nm absorptivity question is open.",
+      "constraint_scope": "Says NOTHING about constraints 3 or 4, about any T1 escape route, or about any sigma(I)/sigma(x,t) mechanism. The article FAILS CONSTRAINT 3 BY CONSTRUCTION (a perfect absorber is a black shape in daylight -- LOGBOOK ESTABLISHED)."
+    },
+    "headline": "FABRICATION-TOLERANCE BOUND (analytic sidecar -- desk arithmetic over committed data, NOT an FDTD output of this cycle). For the graded_black_shell recipe at tau_shell = 24, eps_r == 1, lambda = 600 nm, plane-wave normal incidence, 2D TM, measured on this bench's NEAR-TO-MID-FIELD BOX LEDGER at its own measurement geometry (NOT a far-field pattern): replacing the core/backing over the entire inner radius, vacuum -> perfect electric conductor, moves the AGGREGATE cross-section channels by at most 1.0874e-04 relative (two independent channels, sigma_scat and sigma_abs, and their exact algebraic sum sigma_ext -- not three), and moves the PER-BIN angular pattern, on the program's own floor-gated local-normalization instrument, by up to 1.4669e-02 at r=156 (34/48 bins resolved) and 5.2900e-02 at r=312 (38/48 resolved), with the two largest resolved r=312 deviations at +/-138.75 deg, INSIDE the observer-return hemisphere PANEL.md scores constraint 2 on. The per-bin half of any 'better than 1.6e-04' reading is WITHDRAWN. On the only differential floor on file (exp-108's six-margin item_ii family) the aggregate effect is RESOLVED at 4.46x (r=156) and 11.70x (r=312), NOT floor-limited; no differential floor exists at r=234 at all. The coating's own committed optical depth predicts a core-dependent cross-section change at the coherent-cross-term scale exp(-tau_true) = 2.5897e-04, upper bound 2 exp(-tau_true) = 5.1793e-04 -- the SAME ORDER as the measured aggregate deltas, not orders below them. SCOPE: CERTIFIED AT MARGIN=32 ONLY for the tight per-bin figure (the other five margins are certified only by one boolean against a 5e-02 decision bar, 330x looser); per-bin evidence at cpl=20 only and aggregate evidence at cpl=25 only, so CHANNEL AND RESOLUTION ARE FULLY CONFOUNDED; r=234 contributes aggregate channels only. FABRICATION CONSEQUENCE, at that scope: over the vacuum-to-PEC range tested at 600 nm, normal incidence, 2D TM, a process implementing this design does not need to control the core/backing material to better than the ~1e-04 aggregate level -- and it does NOT license varying the backing without re-measuring the per-bin angular channel in the observer-return hemisphere, which moves by ~5 percent there. The optical function is carried entirely by a 1.440 um (2.40 lambda) graded-sigma coating whose physical thickness is INVARIANT across r = 156/234/312 and cpl = 20/25. THIS ARTICLE FAILS CONSTRAINT 3 BY CONSTRUCTION (a perfect absorber is a black shape in daylight); the bound is a fabrication statement about the bench's workhorse article and MUST NOT be read as constraint-3 progress. REALIZABILITY TIER: UNOBTANIUM-WITH-PARAMETERS, inherited unchanged from exp-061 and driven by the 70-350x thickness gap; EVERY literature figure behind that tier is WebSearch-snippet synthesis, NOT primary-source-verified (T18)."
+  },
+  "geom_identity": {
+    "pass_": true,
+    "mismatches": []
+  },
+  "predictions_text": "PREDICTIONS (pre-registered, exp-115, Panel Iteration 92)\nRunner: bench panel shift (T5820) -- Director Clyde, live session.\n\nThis is an instrument-fidelity / governance cycle on the T28 sub-thread -- not a phenomenon-mechanism proposal and not a named-bin resolution-convergence classification. T1 escape route: NONE / N/A. No sigma(I)/sigma(x,t)/angular-selectivity/sub-threshold content, no Weber-contrast or C_thr(L) perceptual scoring, is performed anywhere in this document; none of PANEL.md's seven metric rows is recorded (see PANEL.md's Iteration-92 scope amendment). ANALYTIC SIDECAR, NOT FDTD: M9's fabrication-tolerance bound is desk arithmetic over already-committed results.json files plus one desk integral over lab/materials._graded_black -- it consumes zero FDTD calls, zero grid-steps and zero bench wall time on the timed path, and it is NOT an output of this cycle's own six timing readings. It carries a code-enforced arithmetic reproduction gate; any mismatch HALTs it and it is reported NOT-REPRODUCED rather than published. UPPER BOUND VS RESOLVED: the sidecar's per-bin channel figures are floor-GATED and resolved on exp-110's own local-normalization instrument; the aggregate channels are resolved at 4.47x/11.70x on exp-108's six-margin differential family, which is the ONLY differential floor this program has -- no differential floor exists at r=234, and the |sigma_ext - sigma_ext_cross| quantity the Phase-1 proposal used as a floor is WITHDRAWN (it is scene-independent and cancels exactly between the two scenes being differenced). The bound is certified at margin=32 only, with channel and resolution fully confounded. CONSTRAINT 3: the graded_black_shell article this bound describes FAILS CONSTRAINT 3 BY CONSTRUCTION -- a perfect absorber is a black shape in daylight (LOGBOOK ESTABLISHED) -- and nothing in this cycle is constraint-3 progress or a T1 escape route. EVIDENTIARY TIER (T18): every literature figure behind the UNOBTANIUM-WITH-PARAMETERS realizability tier is inherited from exp-061's WebSearch-snippet synthesis, NOT primary-source-verified; this cycle attempts no new literature search. ENERGY-LEDGER / THERMAL-SIDECAR: N/A THIS CYCLE, and the reason is physical, not clerical. geom_fixedabs_cpl sizes STEPS so each grid gets ~2 domain crossings at S = courant_frac/sqrt(2) = 0.2263 cells/step; the control bursts run 1000 and 3334 steps, so the wavefront reaches only ~65 percent of the r=156 domain and ~47 percent of the r=234 domain. A sigma_abs/sigma_ext ledger from fields that far from settled would be a WRONG NUMBER, not a free byproduct (T27 is this program's own paid-for lesson that a truncated run is not a small perturbation of a settled one) -- so PANEL.md's 'Absorbed energy budget + predicted re-radiation' row, which exp-114 filled, is declared N/A here rather than silently dropped. SCORING SCOPE: G is a MACHINE PROPERTY, not a physics constant. M5 replicates exp-114's own scored statistic and can move a filed verdict; M6 tests machine transfer with N = 2 machines; M7 is descriptive. Pure cell-count (N^2) scaling is algebraically identical to the pre-R28 hardcoded exponent 3.0 and lands INSIDE the CONFIRM band at rel_dev = 0.0799, so a CONFIRM does NOT distinguish k = 3.2053 from k = 3.0. Two defensible protocol models put G on OPPOSITE sides of the CONFIRM ceiling; whenever MF-7(a)'s protocol-mismatch interval spans a band edge, M5 is reported BOUNDED-REPLICATION and may not move exp-114's LOGBOOK entry. The claim that this cycle 'resolves the v2 straddle' is WITHDRAWN: v2's construction contains no r=156 quantity and its second operand, an intra-r=234 production-vs-burst factor, is not measured here. R30/R32: N/A -- this cycle produces no discriminating statistic of that class. R31/R33: M5 is R33-immune BY CONSTRUCTION (no scored operand mixes sessions); M6 is explicitly a cross-machine comparison and is labelled one.\n\n**Geometry identity (zero-FDTD, pre-Phase-4)**: verify_geometry_identity()\nreturns pass_=True at r=156, r=234 AND r=312 -- geom_fixedabs_cpl(r, cpl=20)\nmust reduce to R110.geom_fixedabs(r) exactly at all three. Falsified by any\nmismatch -- HALT before any Sim.run() call.\n\n**MF-12 absolute identity gate on the new machinery (zero-FDTD, pre-reading)**:\nchunk_runner115.py's parameterized _time_control_blend(r, ...) at r=156 must\nconstruct a scene set IDENTICAL to chunk_runner114.py's own hardcoded\n_time_control_blend() -- same geometry dict field-for-field, same three scenes\nin the same order, same SHORT/SUSTAINED step constants, and a build_sim source\nsegment byte-identical to chunk_runner114.py's. Falsified by any difference --\nHALT before any reading is trusted. The trust suite is re-run ON THE BENCH and\nits console record committed (VALIDATION.md docket-14: a reproducibility claim\nthat does not name its platform is not a gate).\n\n**Block CG -- six readings, 18 Sim.run() calls, 46008 grid-steps**\n(23004 per grid), in the order S156, S234, U156, U234, U234b, U156b. The\nsustained pass is ABBA (MF-6a), not ABAB: under ABAB both sustained pairs\ninherit the same-signed (a+b)/2 lag while d_rep reads ~0 -- an alarm\nstructurally incapable of producing the reading that means \"bad\".\nG_sustained is the MEAN of the two pairwise G values, both persisted.\nSame-grid drift is reported as a RATE PER UNIT ELAPSED TIME, because ABBA\nmakes the two same-grid lags unequal (a+2b vs b). Exclusive use of the bench\nis enforced for the duration of the readings; a machine-state block is\npersisted with each reading.\n\n**M1 `G_short` / M2 `G_sustained`** -- descriptive; M2 is the operand M5/M6/M7\nscore. No advance position is taken on which band any metric lands in.\n\n**M3 -- is `G` duration-invariant? (MECHANISM-NEUTRAL labels, MF-9)**\n| Outcome | Condition |\n|---|---|\n| G-DURATION-INVARIANT | d_dur <= R_DEG/2 = 0.0379821 |\n| PARTIAL | between |\n| G-NOT-DURATION-INVARIANT | d_dur >= R_DEG = 0.0759642 |\nAnchor (R17): R_DEG = 0.0759642 is exp-114's own measured single-grid\n(r=156) 1000->3334 steps/scene shift, the largest comparable on file. The\nlabels name no mechanism because the mechanism is unvalidated AND\ncontradicted in sign on file: R_DEG is +7.596% (longer = slower) while\nexp-114's own intra-r=234 first-3000-vs-full reading is -4.467% (longer =\nfaster), and run_control() runs short-then-sustained with no counterbalance,\nso R_DEG conflates duration with elapsed session position by construction.\n\n**M4 -- drift+noise (MF-6d: under ABBA this is NOT a repeatability statistic)**\n| Outcome | Condition | Consequence carried in the label |\n|---|---|---|\n| REPEATABLE | d_rep <= 0.02 | M3 scored, M7 powered |\n| MARGINAL-M3-SCORED-M7-POWERED | <= 0.03 | |\n| MARGINAL-M3-SCORED-M7-UNDERPOWERED | <= 0.0379821 | |\n| MARGINAL-M3-UNSCORED-M7-UNDERPOWERED | < 0.0759642 | |\n| NOISY-M3-UNSCORED-M7-UNDERPOWERED | >= 0.0759642 | |\nCoded booleans, all persisted (MF-9): m3_scored = (not repeat_skipped) and\n(d_rep <= R_DEG/2); m5_protocol_caveat; m6_directional_only = (m3_verdict !=\n\"G-DURATION-INVARIANT\"); m7_underpowered. If the budget gate skips the repeat\npass, repeat_skipped=True is persisted with its reason, M4 reports UNMEASURED,\nm3_scored is False, and the R19 call-count assert expects\n12 calls instead of 18.\n\n**M5 -- PRIMARY: bench replication of exp-114's own scored statistic**\nScored by exponent_B = ln(1.5*G_sustained)/ln(1.5) fed to R114's own\ncommitted classify_kappa_exponent_check(), UNMODIFIED, with a code-assert\nthat |measured_ratio - 1.5*G_sustained| < 1e-12 (MF-5 -- passing\nmeasured_ratio directly, as the Phase-1 document's own text says, evaluates\n1.5**(1.5*G) and returns rel_dev = 0.4480 -> a false REFUTE on exp-114's own\nfiled value).\n| Outcome | Condition | Exact boundary in G |\n|---|---|---|\n| CONFIRM | rel_dev <= 0.15 | G in [2.0785394, 2.8121415] |\n| AMBIGUOUS | between | |\n| REFUTE | rel_dev >= 0.30 | G <= 1.7117383 or G >= 3.1789426 |\n\n**M5's stated power limit, pre-registered (MF-7)**. (b) Pure N^2 (cell-count)\nscaling gives G = 2.25 exactly, i.e. k = 3.0 EXACTLY -- the pre-R28\nhardcoded exponent -- and rel_dev = 0.0799, INSIDE the CONFIRM band. A\nCONFIRM therefore does NOT distinguish k = 3.2053 from k = 3.0;\nthe entire hypothesis space between the two competing exponents is ~8% wide and\nthe CONFIRM band is 15% wide. (c) Two defensible protocol models, both on file,\npredict G on OPPOSITE sides of the CONFIRM ceiling (2.8121415):\n  - drift/degradation model (R_DEG extrapolated log-linearly from 1000->3334 to\n    3334->12000, factor 0.08079): G ~ 2.5403 -- comfortable CONFIRM\n  - warm-up-amortization model (exp-114's own r=234 first-3000-steps rate against\n    its own 12000-step average): G ~ 2.8681 (scene-matched) to 2.8802\n    (blend-denominator) -- ABOVE the ceiling, i.e. AMBIGUOUS\n  The span is ~13%, comparable to M5's entire CONFIRM half-width. These two\n  models' inputs include exp-114's three r=234 chunk times, which survive only\n  as quotations and are NOT independently re-derivable -- directional, cited.\n(a) A protocol-mismatch INTERVAL is persisted from the two-point\np(n) = p_inf + C_g/n relation on each grid (S and U are the two points, so it\nis exactly determined -- it BOUNDS, it does not fit, R7). If the interval\nspans a band boundary, m5_protocol_caveat=True is persisted and M5 is reported\nBOUNDED-REPLICATION (protocol-mismatch interval spans a band edge) -- NOT a verdict that can move exp-114's LOGBOOK entry.\n\n**M6 -- cross-machine transfer of G**: T = G_sustained/G_E, G_E = 2.74550565.\nTRANSFERS if |T-1| <= 0.1529500 (R28's own founding-miss\nmagnitude, reused in the same ratio space); DOES-NOT-TRANSFER if\n|T-1| >= 0.3059001. m6_directional_only is True unless M3 reads\nG-DURATION-INVARIANT -- MF-9 INVERTS the Phase-1 rule so PARTIAL, UNSCORED and\nrepeat-skipped all INHERIT the caveat instead of escaping it. This cycle does\nNOT claim to resolve the v2 straddle (MF-8): v2's construction contains no\nr=156 quantity, and over 66.4% of M5's own CONFIRM band the cycle\nwould return \"CONFIRM, replicated\" with the straddle still open (sign boundary\nat G >= 2.5652851).\n\n**M7 -- the N^2 assumption, TWO-SIDED labels (MF-9/RT-14)**: excess =\nG_sustained/2.25 - 1. N2_HOLDS if |excess| <= 0.05;\nN2_FAILS-SUPERLINEAR if excess >= 0.152950040; N2_FAILS-SUBLINEAR if\nexcess <= -0.152950040 (sub-cell-count scaling is the OPPOSITE finding\nand must not inherit the positive branch's meaning). Note, computed before any\nbench data: N2_HOLDS requires BOTH candidate cost models to be wrong -- the\nin-force constant-k model predicts excess = 0.08682 (AMBIGUOUS) and the\nconstant-eps model predicts excess = 0.152950039837078, bit-adjacent to the\nN2_FAILS bar. The two models differ by only 6.085%, so the comparison is\nreported UNDERPOWERED and NOT scored whenever d_rep > 0.03. VISION's identity\nis carried forward: eps_E/eps_k == G_E/G_ref == measured_ratio/reference_ratio,\nso M5 and M7's secondary comparison are ONE datum wearing two hats.\n\n**M8 -- persisted, NOT-scored sensitivities (Tier-1 item 2)**:\nsensitivity_short_reading_DO_NOT_SCORE: measured_ratio = 4.4310989, rel_dev = 0.20803870 (AMBIGUOUS). sensitivity_v2_straddle_DO_NOT_SCORE: measured_ratio = 3.2171956, SIGNED deviation -0.12290 against the filed +0.12275 -- opposite sides of reference_ratio, a 28.0% spread between central estimates. A third,\nsensitivity_v2_with_measured_G_DO_NOT_SCORE, is added once G is measured\n(OV-1: the SCORED half of QUANTUM's M10 is DECLINED -- scoring it would\npresume the machine-independence M6 exists to test).\n\n**M9 -- fabrication-tolerance bound (ANALYTIC SIDECAR, no blind prediction)**.\nIts falsifiable element is a code-enforced arithmetic reproduction gate: every\ncited figure is recomputed in analyze115.py from its source results.json and\nasserted equal to <1e-12 relative, and tau_true is recomputed from\nlab/materials._graded_black at BOTH family members and must reproduce\n8.258819829686677 to <1%. Any mismatch HALTs the\nsidecar, which is then reported NOT-REPRODUCED rather than published. The\nsidecar's PHYSICS is stated in its corrected functional form BEFORE the run\n(MF-1): the core-dependent contribution to a cross-section is the COHERENT\nCROSS TERM, scale exp(-tau_true), upper bound 2*exp(-tau_true) -- NOT\nexp(-2*tau_true), which is the |dA|^2 term only and is wrong by exp(+tau_true)\n~ 3.86e3.\n\n**Budget gate (R27/R28, executable, upstream of every Sim.run)**: reuses\nR110.COST_GATE_TOTAL_S = 10800 and COST_GATE_SAFETY_MARGIN =\n1.1 unmodified, re-projecting after S156 (G_prior = G_E),\nafter S234 (measured G_short), and after U234 (the repeat pass). Graceful\ndegradation at BOTH ends (Red Team's recommended-not-mandatory branch,\nADOPTED and disclosed): a breach spends the REPEAT first (repeat_skipped=True\nwith its reason persisted); if even the primary sustained pass would breach,\nSUSTAINED_CONTROL_STEPS steps DOWN to the largest value that fits and\nsustained_steps_used is persisted with a flag. Only if no value at or above\n1000 steps/scene fits does the gate raise.\n\n**Declined this cycle, numbered (R25)**: phase1_proposal.md Sec 3 items 1-7,\nplus --\n8. Tier-1 item 1's OWN SECOND HALF -- 're-score kappa_exponent_result against the corrected denominator' -- is DECLINED as un-executable, not silently absorbed (R25). It has two halves and neither is available: (i) the cross-session half DISSOLVES under the Sec-1 identity (measured_ratio == kappa_ratio * G; every cross-session term cancels identically, so there is no cross-session denominator left to correct); (ii) the burst-vs-production half is not measurable without an r=234 PRODUCTION leg, which this cycle does not run and which would cost three 12000-step scenes. What this cycle CAN do for it -- MF-7(a)'s two-point protocol-mismatch interval -- it does.\n",
+  "result_text": "RESULT (exp-115, Panel Iteration 92)\nRunner: bench panel shift (T5820) -- Director Clyde, live session.\n\nThis is an instrument-fidelity / governance cycle on the T28 sub-thread -- not a phenomenon-mechanism proposal and not a named-bin resolution-convergence classification. T1 escape route: NONE / N/A. No sigma(I)/sigma(x,t)/angular-selectivity/sub-threshold content, no Weber-contrast or C_thr(L) perceptual scoring, is performed anywhere in this document; none of PANEL.md's seven metric rows is recorded (see PANEL.md's Iteration-92 scope amendment). ANALYTIC SIDECAR, NOT FDTD: M9's fabrication-tolerance bound is desk arithmetic over already-committed results.json files plus one desk integral over lab/materials._graded_black -- it consumes zero FDTD calls, zero grid-steps and zero bench wall time on the timed path, and it is NOT an output of this cycle's own six timing readings. It carries a code-enforced arithmetic reproduction gate; any mismatch HALTs it and it is reported NOT-REPRODUCED rather than published. UPPER BOUND VS RESOLVED: the sidecar's per-bin channel figures are floor-GATED and resolved on exp-110's own local-normalization instrument; the aggregate channels are resolved at 4.47x/11.70x on exp-108's six-margin differential family, which is the ONLY differential floor this program has -- no differential floor exists at r=234, and the |sigma_ext - sigma_ext_cross| quantity the Phase-1 proposal used as a floor is WITHDRAWN (it is scene-independent and cancels exactly between the two scenes being differenced). The bound is certified at margin=32 only, with channel and resolution fully confounded. CONSTRAINT 3: the graded_black_shell article this bound describes FAILS CONSTRAINT 3 BY CONSTRUCTION -- a perfect absorber is a black shape in daylight (LOGBOOK ESTABLISHED) -- and nothing in this cycle is constraint-3 progress or a T1 escape route. EVIDENTIARY TIER (T18): every literature figure behind the UNOBTANIUM-WITH-PARAMETERS realizability tier is inherited from exp-061's WebSearch-snippet synthesis, NOT primary-source-verified; this cycle attempts no new literature search. ENERGY-LEDGER / THERMAL-SIDECAR: N/A THIS CYCLE, and the reason is physical, not clerical. geom_fixedabs_cpl sizes STEPS so each grid gets ~2 domain crossings at S = courant_frac/sqrt(2) = 0.2263 cells/step; the control bursts run 1000 and 3334 steps, so the wavefront reaches only ~65 percent of the r=156 domain and ~47 percent of the r=234 domain. A sigma_abs/sigma_ext ledger from fields that far from settled would be a WRONG NUMBER, not a free byproduct (T27 is this program's own paid-for lesson that a truncated run is not a small perturbation of a settled one) -- so PANEL.md's 'Absorbed energy budget + predicted re-radiation' row, which exp-114 filled, is declared N/A here rather than silently dropped. SCORING SCOPE: G is a MACHINE PROPERTY, not a physics constant. M5 replicates exp-114's own scored statistic and can move a filed verdict; M6 tests machine transfer with N = 2 machines; M7 is descriptive. Pure cell-count (N^2) scaling is algebraically identical to the pre-R28 hardcoded exponent 3.0 and lands INSIDE the CONFIRM band at rel_dev = 0.0799, so a CONFIRM does NOT distinguish k = 3.2053 from k = 3.0. Two defensible protocol models put G on OPPOSITE sides of the CONFIRM ceiling; whenever MF-7(a)'s protocol-mismatch interval spans a band edge, M5 is reported BOUNDED-REPLICATION and may not move exp-114's LOGBOOK entry. The claim that this cycle 'resolves the v2 straddle' is WITHDRAWN: v2's construction contains no r=156 quantity and its second operand, an intra-r=234 production-vs-burst factor, is not measured here. R30/R32: N/A -- this cycle produces no discriminating statistic of that class. R31/R33: M5 is R33-immune BY CONSTRUCTION (no scored operand mixes sessions); M6 is explicitly a cross-machine comparison and is labelled one.\n\n18 real FDTD calls (Sim.run), 3700.5s (61.68 min) total wall time this cycle, zero `lab/` diff.\nR19 call-count invariant: expected 18 (repeat_skipped=False), got 18.\n**Geometry identity: PASS.**\n**MF-12 absolute identity gate on the new machinery: PASS.**\n**SUSTAINED_CONTROL_STEPS used: 3334** (nominal 3334).\n\n**Readings (ABBA sustained pass, MF-6a):** {\"S156\": {\"r\": 156, \"control_steps\": 1000, \"total_wall_s\": 145.76817083358765, \"per_step_s\": 0.04858939027786255, \"start_utc\": \"2026-09-06T04:39:25Z\", \"end_utc\": \"2026-09-06T04:41:51Z\"}, \"S234\": {\"r\": 234, \"control_steps\": 1000, \"total_wall_s\": 337.1761043071747, \"per_step_s\": 0.11239203476905822, \"start_utc\": \"2026-09-06T04:41:52Z\", \"end_utc\": \"2026-09-06T04:47:30Z\"}, \"U156\": {\"r\": 156, \"control_steps\": 3334, \"total_wall_s\": 497.14993929862976, \"per_step_s\": 0.04970505291927912, \"start_utc\": \"2026-09-06T04:47:31Z\", \"end_utc\": \"2026-09-06T04:55:48Z\"}, \"U234\": {\"r\": 234, \"control_steps\": 3334, \"total_wall_s\": 1108.4592084884644, \"per_step_s\": 0.11082375609762692, \"start_utc\": \"2026-09-06T04:55:50Z\", \"end_utc\": \"2026-09-06T05:14:19Z\"}, \"U234b\": {\"r\": 234, \"control_steps\": 3334, \"total_wall_s\": 1110.7589073181152, \"per_step_s\": 0.11105367999581237, \"start_utc\": \"2026-09-06T05:14:20Z\", \"end_utc\": \"2026-09-06T05:32:52Z\"}, \"U156b\": {\"r\": 156, \"control_steps\": 3334, \"total_wall_s\": 490.9966731071472, \"per_step_s\": 0.04908984934084655, \"start_utc\": \"2026-09-06T05:32:53Z\", \"end_utc\": \"2026-09-06T05:41:04Z\"}}\n**M1 G_short:** 2.3130983\n**M2 G_sustained (mean of the two pairwise G, both persisted):** 2.2459405\n**M3 (mechanism-neutral):** d_dur=0.029034, G-DURATION-INVARIANT\n**M4 (drift+noise under ABBA):** d_rep=0.014633, REPEATABLE (M3 scored, M7 powered)\n**M5 PRIMARY:** G_sustained=2.2459405, exponent_B=2.9955462, measured_ratio=3.3689107, reference_ratio=3.6680107, rel_dev(ratio-space)=0.08154, verdict=CONFIRM (kappa_exponent generalizes across kappa_ratio)\n**M5 protocol-mismatch interval (MF-7a):** G in [2.2176904, 2.2458389], m5_protocol_caveat=False\n**M6:** T=0.818043, AMBIGUOUS, directional_only=False\n**M7:** excess=-0.001804, k_B=2.995546, N2_HOLDS (model comparison: constant-k)\n**Same-grid drift rate per unit elapsed time (MF-6c):** {\"r156\": {\"lag_s\": 2718.8238599300385, \"delta_per_step_s\": -0.0006152035784325674, \"rate_s_per_step_per_s\": -2.2627562877442087e-07, \"relative_rate_per_s\": -4.552366720982913e-06, \"relative_rate_per_hour\": -0.01638852019553849}, \"r234\": {\"lag_s\": 1111.7398872375488, \"delta_per_step_s\": 0.00022992389818544956, \"rate_s_per_step_per_s\": 2.0681447236436253e-07, \"relative_rate_per_s\": 1.8661564961051803e-06, \"relative_rate_per_hour\": 0.0067181633859786484}, \"note\": \"Rates, not differences: ABBA gives the r=156 pair a lag of a+2b and the r=234 pair a lag of b (~2.4x apart), so only a rate per unit elapsed time is comparable between grids. This is the equal-lag same-grid comparison ABAB would have provided and ABBA does not; reporting it as a rate is the substitute (MF-6c).\"}\n**Machine state (MF-6e):** {\"hostname\": \"Machine\", \"numpy\": \"2.4.6\", \"python\": \"3.11.16 (main, Sep  1 2026, 14:18:37) [Clang 22.1.3 ]\", \"loadavg_start\": [0.04443359375, 0.103515625, 0.04931640625], \"loadavg_end\": [1.0732421875, 1.0390625, 1.0048828125]}\n\n**M9 -- fabrication-tolerance bound (ANALYTIC SIDECAR, R21: stated here, not merely persisted):** REPRODUCED\n\nFABRICATION-TOLERANCE BOUND (analytic sidecar -- desk arithmetic over committed data, NOT an FDTD output of this cycle). For the graded_black_shell recipe at tau_shell = 24, eps_r == 1, lambda = 600 nm, plane-wave normal incidence, 2D TM, measured on this bench's NEAR-TO-MID-FIELD BOX LEDGER at its own measurement geometry (NOT a far-field pattern): replacing the core/backing over the entire inner radius, vacuum -> perfect electric conductor, moves the AGGREGATE cross-section channels by at most 1.0874e-04 relative (two independent channels, sigma_scat and sigma_abs, and their exact algebraic sum sigma_ext -- not three), and moves the PER-BIN angular pattern, on the program's own floor-gated local-normalization instrument, by up to 1.4669e-02 at r=156 (34/48 bins resolved) and 5.2900e-02 at r=312 (38/48 resolved), with the two largest resolved r=312 deviations at +/-138.75 deg, INSIDE the observer-return hemisphere PANEL.md scores constraint 2 on. The per-bin half of any 'better than 1.6e-04' reading is WITHDRAWN. On the only differential floor on file (exp-108's six-margin item_ii family) the aggregate effect is RESOLVED at 4.46x (r=156) and 11.70x (r=312), NOT floor-limited; no differential floor exists at r=234 at all. The coating's own committed optical depth predicts a core-dependent cross-section change at the coherent-cross-term scale exp(-tau_true) = 2.5897e-04, upper bound 2 exp(-tau_true) = 5.1793e-04 -- the SAME ORDER as the measured aggregate deltas, not orders below them. SCOPE: CERTIFIED AT MARGIN=32 ONLY for the tight per-bin figure (the other five margins are certified only by one boolean against a 5e-02 decision bar, 330x looser); per-bin evidence at cpl=20 only and aggregate evidence at cpl=25 only, so CHANNEL AND RESOLUTION ARE FULLY CONFOUNDED; r=234 contributes aggregate channels only. FABRICATION CONSEQUENCE, at that scope: over the vacuum-to-PEC range tested at 600 nm, normal incidence, 2D TM, a process implementing this design does not need to control the core/backing material to better than the ~1e-04 aggregate level -- and it does NOT license varying the backing without re-measuring the per-bin angular channel in the observer-return hemisphere, which moves by ~5 percent there. The optical function is carried entirely by a 1.440 um (2.40 lambda) graded-sigma coating whose physical thickness is INVARIANT across r = 156/234/312 and cpl = 20/25. THIS ARTICLE FAILS CONSTRAINT 3 BY CONSTRUCTION (a perfect absorber is a black shape in daylight); the bound is a fabrication statement about the bench's workhorse article and MUST NOT be read as constraint-3 progress. REALIZABILITY TIER: UNOBTANIUM-WITH-PARAMETERS, inherited unchanged from exp-061 and driven by the 70-350x thickness gap; EVERY literature figure behind that tier is WebSearch-snippet synthesis, NOT primary-source-verified (T18).\n\n**What this cycle does NOT establish:** anything about kappa_ratio other than 1.5; k's portability to kappa_ratio = 2.0 still rests on the single founding pair, and to ratios above 2.0 on nothing at all. A CONFIRM here does not license extrapolation past 2.0, and does not distinguish k = 3.2053 from k = 3.0.\n"
+}
