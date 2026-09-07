@@ -2,6 +2,32 @@
 
 Newest on top. Current state lives in the vault hub; this is history.
 
+## 2026-09-07 — Bonnie returns, closes the reserved lane: exp-001 witness figure
+
+Runner: Bonnie, standalone (not a Panel session; separate reserved lane
+per AGENTS.md's Research Panel section).
+
+**Shipped/Done**
+- **`lab/viz.py`** — the viz-lane rendering the exp-001 witness figure
+  never built (`PLAN.md` had it `[claimed: Bonnie]` since 2026-08-09, no
+  prior commits). Three field maps (reflector/absorber/cloak @ 600nm)
+  beside three sweep panels (observer return, beam-behind, scattered RMS
+  vs λ), per house style R1–R4.
+- Caught before rendering: local checkout was 1211 commits behind
+  `origin/main` (stale since PR #5). Re-pulled before trusting anything;
+  the pre-pull artifacts/results.json were pre-phasor-fix (`37f3722`) —
+  would have shipped a figure on since-corrected numbers.
+- **Two independent fresh-context cold reads** (AGENTS.md amendment: a
+  fresh-context agent gates now, not Preston) — one on a draft (old
+  numbers), one on the final (corrected) figure. Both correctly named the
+  absorber from the figure alone, both with correct reasoning, both
+  independently flagging the same real ambiguity (scattered RMS conflates
+  shadow with glint) — now captioned directly in the figure rather than
+  left implicit.
+- **exp-001 CLOSED** — figure + agent cold read, no human gate, per the
+  amendment. `NOTES.md` updated (status line + Next section); this file
+  and `PLAN.md` per the "PR that does the work" convention.
+
 ## 2026-09-05 → 06 (live session, Marsh + Clyde) — the bench becomes the lab: layout decided, agents resident, first full panel iteration run ON the T5820 (exp-115: PARTIAL; host outage mid-run, re-run clean)
 
 Runner: live session (Director Clyde), compute on the T5820 bench over SSH.

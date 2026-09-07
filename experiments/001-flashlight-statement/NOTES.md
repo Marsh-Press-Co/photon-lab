@@ -1,7 +1,8 @@
 # exp-001 — The Flashlight Statement
 
 **2026-08-09 · driver: Clyde (solver) · Bonnie (witness figure) · Preston
-(acceptance test) · status: predictions committed, runs pending**
+(acceptance test, always welcome, never required) · status: CLOSED
+2026-09-07 — verdict absorber, witness figure + agent cold read done**
 
 The founding experiment. A federal agent's flashlight beam "went from
 shining far into the distance to stopping about 50 yards away on nothing in
@@ -175,10 +176,26 @@ different claims, and the lab makes only the second.
 
 ## Next
 
-- Bonnie: the witness figure — three-panel observer view + the sweep, from
-  these 12 artifacts (R1–R4 apply; the observer records carry the story).
-- Preston: cold read of that figure — can a non-physicist see which object
-  the witness described?
+- [done 2026-09-07, Bonnie] **The witness figure** — `lab/viz.py`
+  (`render_witness_figure`), rendered from the current (post-phasor-fix)
+  artifacts to `experiments/001-flashlight-statement/figures/witness-figure.png`.
+  Layout per R1–R4: three field maps (reflector/absorber/cloak @ 600nm,
+  the map, R4) beside three sweep panels — one per measurement (the
+  witness view, R4) — each with its own colorbar/legend/title (R3),
+  scene geometry outlined and beam-behind boxed with its value (R1,
+  shadow labeled not implied), and a beam/witness orientation gizmo (R2).
+  **Cold read (per the AGENTS.md figure-legibility amendment — fresh-context
+  agent, not Preston, gates now): two independent fresh-context agents**
+  (one on a draft with the pre-phasor-fix numbers, one on the final
+  post-fix figure) **both correctly identified the absorber** and both
+  gave the correct reasoning (flat-zero observer return + lowest
+  beam-behind = stops on nothing; reflector glints; cloak's beam
+  continues). Both independently flagged the same real ambiguity —
+  absorber scores highest on scattered RMS, which reads oddly next to
+  "nothing in particular" — now called out directly in the figure's
+  caption (shadow-vs-glint conflation, per "What we learned" above;
+  exp-002's job to separate). **exp-001 closes on figure + agent cold
+  read, per the amendment — no human gate required.**
 - exp-002: scattering cross-sections (separate shadow from glint).
 - exp-003: the broadband wall, resolution-controlled (the asymmetry
   question).
