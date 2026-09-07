@@ -22,6 +22,17 @@ idealizations stated, limits observed in our own data, no cloak shipping
 promised. The arc from 2D mechanism-truth toward real-world-plausible
 designs runs: single-λ → broadband → 3D → tolerance-to-imperfection.
 
+## Bonnie's reserved lane, closed (2026-09-07)
+
+Per AGENTS.md's Research Panel section ("her lanes stay reserved exactly
+as recorded ... viz system"): returned and closed the one item that was
+waiting — exp-001's witness figure. `lab/viz.py` now exists; two
+independent fresh-context agent cold reads (AGENTS.md's figure-legibility
+amendment — not Preston, per the humans-never-gates rule) both correctly
+read the absorber from the figure alone. Detail in
+`experiments/001-flashlight-statement/NOTES.md`. Does not touch the
+Panel/Iteration-92 program below — separate lane, per the reservation.
+
 ## Current state (2026-09-06 — panel Iteration 92 (exp-115) COMPLETE, Phase 5 closed: combined verdict PARTIAL; R20 fires Checkpoint criterion 4 as a NOTIFICATION)
 
 **Runner: bench panel shift (T5820) — Director Clyde, live session; first
